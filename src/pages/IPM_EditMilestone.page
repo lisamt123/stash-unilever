@@ -6,7 +6,7 @@
 *@Copyright © 2015  Unilever  
 *************************************************************************
 -->
-<apex:page standardController="IPM_Milestone__c" extensions="IPM_Milestone,IPM_GetHelpDoc"  sidebar="false" standardStylesheets="true" showHeader="false">      
+<apex:page standardController="IPM_Milestone__c" extensions="IPM_Milestone"  sidebar="false" standardStylesheets="true" showHeader="false">      
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>        
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
@@ -19,7 +19,9 @@
             <apex:form id="form"> 
                 <apex:pageMessages id="messages"/> 
                 <div class="row inlineEdit">
-                    <div class="col-xs-offset-2 col-xs-3">                            
+                    <div class="firstBox">
+                    </div>
+                    <div class="col-xs-3 wid32P">                            
                         <div class="inputField">                            
                             <apex:outputPanel rendered="{!!editMsNameFlag}">
                                 <apex:outputField id="mName" value="{!milestoneObj.IPM_Name__c}"  styleClass="fieldFont" />
@@ -33,7 +35,7 @@
                         </script> 
                     </div>
                     
-                    <div class="col-xs-offset-1 col-xs-2 mPhaseEditDiv">                           
+                    <div class="col-xs-2">                           
                         <div class="inputField">
                             <apex:outputPanel rendered="{!!editPhaseFlag}">
                                 <apex:outputField id="mPhase" value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont mPhaseEdit"/>
@@ -61,12 +63,7 @@
                             </div> 
                         </div>
                     </apex:outputPanel>
-                    
-                     <!-- To place the help symbol in the top right hand corner of page -->
-                     <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                     </apex:outputPanel> 
-                    
+
                     <div class="buttonMarginRight ipmButtonGroup pull-right">   
                         <div class="pull-right">    
                                                        

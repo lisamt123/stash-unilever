@@ -14,12 +14,14 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 2.0 - Nagesh       14/1/2014        UPDATION                Send Email Functionality
 3.0 - Samrin       16/11/2015       CSC-2845                US-097 Personal data not included in Pulse
 4.0 - Mahendra     17/11/2015       CSC-2910                Personal Data Retention
+5.0 - Goverdhan S. 9/12/2015        CSC-2850                Added method to implement CSAT functionality
+6.0 - Masood       16/12/2015       CSC-2986                Added flag for picking account according to retention date
 ****************************************************************************/
 public class CEC_CaseTriggerHelper{
     
     map<Id,string> caseMap = new map<Id,String>();
     map<string,Id> accountMap = new map<string,Id>();
-    map<string,Account> emailAccntIdMap = new map<string,Account>();
+    map<string,Account> emailAccntMap = new map<string,Account>();
     map<string,Id> contactMap = new map<string,Id>();
     set<string> dupEmailSet = new set<string>();
     List<Account> accntList = new List<Account>();
@@ -30,6 +32,8 @@ public class CEC_CaseTriggerHelper{
     String msgString;
     String emailSubject;
     String sfdcBaseURL = URL.getSalesforceBaseUrl().toExternalForm()+'/';
+    map<id, Account> caseToAccountMap = new map<id, Account>();
+    list<Id> noAccountCaseIds = new list<Id>();
     
     
     
@@ -71,7 +75,7 @@ public class CEC_CaseTriggerHelper{
         //Check for cases with null contactId
         for(Case c: newCaseMap.Values()){
             System.debug('c----------------'+c);
-            if(c.ContactId == null && (c.SuppliedEmail != null && c.SuppliedEmail != '') && c.Origin.contains('Email')){
+            if(c.ContactId == null && (c.SuppliedEmail != null && c.SuppliedEmail != '') && (c.Origin.contains('Email') || c.Origin.contains('Web North America'))){
                 caseMap.put(c.Id,c.SuppliedEmail);
             }
         }   
@@ -85,13 +89,23 @@ public class CEC_CaseTriggerHelper{
                 if(dupEmailSet.contains(caseMap.get(caseId))){
                     caseRecord = new Case(Id=caseId);
                     caseRecord.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccount;
+                    // Update case brand
+                    caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
                 }
-                else if(emailAccntIdMap.containsKey(caseMap.get(caseId))){
+                else if(emailAccntMap.containsKey(caseMap.get(caseId))){
+                    account acc = new account();
+                    acc = emailAccntMap.get(caseMap.get(caseId));
                     caseRecord = new Case(Id=caseId);
-                    caseRecord.AccountId=emailAccntIdMap.get(caseMap.get(caseId)).Id;
-                    caseRecord.ContactId=emailAccntIdMap.get(caseMap.get(caseId)).PersonContactId;
+                    caseRecord.AccountId = acc.Id;
+                    caseRecord.ContactId = acc.PersonContactId;
+                    // update case brand
+                    caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
+                    // update related account details from case description
+                    acc = updateAccountDetailsFromCaseDescription(acc, newCaseMap.get(caseId).description);
+                    accntList.add(acc);
+                    
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
                 }
@@ -111,10 +125,15 @@ public class CEC_CaseTriggerHelper{
                         else{
                             Lname = suppName;
                         }
-                    }                    
+                    }
                     accnt.PersonEmail = newCaseMap.get(caseId).SuppliedEmail;
                     accnt.LastName = LName;
                     accnt.FirstName = FName;
+                    
+                    // update related account details from case description
+                    if(newCaseMap.get(caseId).Origin == 'Web North America'){
+                        accnt = updateAccountDetailsFromCaseDescription(accnt, newCaseMap.get(caseId).description);
+                    }
                     System.debug('Nagesh I am here'+ accntList);                  
                     accntList.add(accnt);
                 }
@@ -139,7 +158,7 @@ public class CEC_CaseTriggerHelper{
             caseRecord = new Case(Id=caseId);
             caseRecord.AccountId= accountMap.get(caseMap.get(caseId));
             caseRecord.ContactId= contactMap.get(caseMap.get(caseId));
-            caseRecord.NewAccountFlag__C = TRUE;
+            caseRecord.NewAccountFlag__c = TRUE;
             if(accountMap.get(caseMap.get(caseId)) == null){
                 caseRecord.Matching_Response__c=Label.CEC_MatchingResponse_AccountNotCreated;
             }
@@ -148,7 +167,7 @@ public class CEC_CaseTriggerHelper{
         
         //Update the case records
         if(caseList.size()>0){
-            //update caseList;
+        
             Database.SaveResult[] updateResults = Database.update(caseList, false);
             failedCases = '';
             for(Integer i=0; i<updateResults.size();i++){
@@ -251,7 +270,7 @@ public class CEC_CaseTriggerHelper{
         //Query for Account Id
         for(Account accnt:[Select Id, PersonEmail, PersonContactId from Account where PersonEmail IN: caseMap.values() and RecordTypeId =: recTypeId]){
             if(!dupEmailSet.Contains(accnt.PersonEmail)){
-                emailAccntIdMap.put(accnt.PersonEmail, accnt);
+                emailAccntMap.put(accnt.PersonEmail, accnt);
             }
         }
         
@@ -605,6 +624,7 @@ This method identifies date of manufacture from the daycode
                     objAcc.Retention_Date__c=caseRecord.Manual_Retention_Override__c;
                     objAcc.Retention_Reason__c=caseRecord.Manual_Override_Reason__c;
                     objAcc.Retention_Record_Id__c = caseRecord.id;
+                    objAcc.Anonymise_check__c = true;
                     acctoUpdatelst.add(objAcc);
                 }
             }
@@ -637,5 +657,184 @@ This method identifies date of manufacture from the daycode
         }Catch(Exception e ){
             System.debug('An exception occurred: ' + e.getMessage());  
         }        
-    }  /* End US CSC-2910 Personal Data Retention */ 
+    }
+    
+    public void setWorkflowFlag(Map<id,Case> newMap , Map<id,Case> oldMap){
+        List<Case> caseLstUpdate = new List<Case>();
+        list<id> caseIds = new list<id>();
+        
+        for(Case newCase: newMap.values()){
+            // fetch caseIds of closed cases
+            if(newCase.Status == 'Closed' && oldMap.get(newCase.id).status != 'Closed'){                
+                caseIds.add(newCase.id);
+            }
+            // if cases are reopened, set Surveyworkflow flag to false
+            if(newCase.Status != 'Closed' && oldMap.get(newCase.id).status == 'Closed'){
+                newCase.ExecuteCaseSurveyWorkflow__c = false;
+            }
+        }
+        // query cases that are closed along with related account fields
+        caseLstUpdate = [SELECT id, ExecuteCaseSurveyWorkflow__c, account.PersonEmail, account.Known_Consumer__c
+                        FROM Case
+                        WHERE id IN :caseIds
+                        LIMIT 10000];
+        for(Case c :caseLstUpdate){
+        // for all closed cases that fulfill the Survey criteria set survey flag to true
+            if(c.account.PersonEmail != Null && c.account.PersonEmail != '' && c.account.Known_Consumer__c != 'Frequent'){
+                newMap.get(c.id).ExecuteCaseSurveyWorkflow__c = true;
+            }
+        }
+    }
+    /* End US CSC-2910 Personal Data Retention */
+    
+    
+    //To update the store and product information for Web Cases
+    public void updateStoreAndProductInfo(List<Case> caseList , Map<id,Case> oldMap){
+
+        map<id, string> caseUPCMap = new map<id, string>();
+        map<id, string> caseStoreMap = new map<id, string>();
+        map<id, string> caseCountryMap = new map<id, string>();  
+        map<id, string> caseISOCodeMap = new map<id, string>();   
+        list<mdm_Case_Product__c> caseProdList  = new list<mdm_Case_Product__c>();
+        list<cec_store__c> caseStoreList = new list<cec_store__c>();
+        
+        string caseUPC = '';
+        string caseStore = '';
+   
+                     
+        Try{
+            for(case newCase: caseList){
+            
+                System.debug('Values $$$$$$$$$$$$$$$$' + newCase.Origin + ' ' + newCase.Case_ISO_Country_Code__c + ' ' + oldMap.get(newCase.Id).Case_ISO_Country_Code__c + ' ' + newCase.Country_Name__c + ' ' + oldMap.get(newCase.Id).Country_Name__c);
+                              
+                if(newCase.Origin == 'Web North America' && newCase.Case_ISO_Country_Code__c != oldMap.get(newCase.Id).Case_ISO_Country_Code__c && newCase.Country_Name__c != oldMap.get(newCase.Id).Country_Name__c){
+                    caseUPC = CEC_CaseDescriptionParser.getCaseUPC(newCase.description);
+                                    
+                    if(caseUPC != null){
+                        caseUPCMap.put(newCase.Id, caseUPC);
+                        caseISOCodeMap.put(newCase.Id, newCase.Case_ISO_Country_Code__c ); 
+                    }
+                    
+                    caseStore = CEC_CaseDescriptionParser.getStoreName(newCase.description);
+                                    
+                    if(caseStore != null){
+                        caseStoreMap.put(newCase.Id, caseStore);
+                        caseCountryMap.put(newCase.Id, newCase.Country_Name__c); 
+                    }
+                    
+                }
+                
+            } 
+            
+            
+            if(caseUPCMap.size() > 0){
+                caseProdList  = [Select Id, GTIN_EAN_UPC_Code__c, ISO_Country_Code__c from mdm_Case_Product__c where GTIN_EAN_UPC_Code__c IN :caseUPCMap.values() AND ISO_Country_Code__c IN :caseISOCodeMap.values()];
+            }  
+            
+                        
+            if(caseStoreMap.size() > 0){
+                caseStoreList = [Select Id, Name, Country__r.Name from cec_store__c where Country__r.Name IN :caseCountryMap.values() and Name IN :caseStoreMap.values()];
+            }
+                          
+            if(caseProdList.size()>0 || caseStoreList.size()>0){
+
+                 for(case newCase: caseList){
+                
+                    if(newCase.Origin == 'Web North America' && newCase.Case_ISO_Country_Code__c != ''){
+                        
+                        if(caseUPCMap.get(newCase.Id) != null){
+                            for(mdm_Case_Product__c caseProd : caseProdList){
+                                if(caseProd.GTIN_EAN_UPC_Code__c == caseUPCMap.get(newCase.Id) && caseProd.ISO_Country_Code__c == caseISOCodeMap.get(newCase.Id)){
+                                    newCase.CEC_Product__c = caseProd.Id;
+                                    break;
+                                }
+                            }                        
+                        } 
+                        
+                        if(caseStoreMap.get(newCase.Id) != null){
+                            for(cec_store__c storeRec : caseStoreList){
+                                if(storeRec.Name == caseStoreMap.get(newCase.Id) && storeRec.Country__r.Name == caseCountryMap.get(newCase.Id)){
+                                    newCase.Store__c= storeRec.Id;
+                                    break;
+                                }
+                            }                        
+                        }
+                        
+                        newCase.Origin = 'Web';
+                    }
+                    
+                    
+                 }
+            
+            }
+            
+        }Catch(Exception e ){
+            System.debug('An exception occurred: ' + e.getMessage());  
+        }        
+    }   
+    
+    
+    
+    /****  BEGIN: Case description parsing  ******/       
+    public void updateSuppliedEmail(List<Case> newCaseList){
+        
+        // set supplied Email and Supplier name fields for Web North America Cases
+        for(Case aCase : newCaseList){
+            
+            string caseEmail = '';
+            string firstName = '', lastName = '';
+            
+            if(aCase.Origin == 'Web North America'){
+                try{
+                    aCase.AccountId = null;
+                    aCase.ContactId = null;
+                    // Fetch Email address from description 
+                    caseEmail = CEC_CaseDescriptionParser.getCaseEmail(aCase.Description);
+                    
+                    // Set case email    
+                    if(!String.isEmpty(caseEmail)){
+                        aCase.SuppliedEmail = caseEmail;
+                    }
+
+                    // Extract First name from case description
+                    firstName = CEC_CaseDescriptionParser.getFirstName(aCase.Description);
+                    
+                    // Extract last name from Case description
+                    lastName = CEC_CaseDescriptionParser.getLastName(aCase.Description);
+                    
+                    // Set case name
+                    if(!String.isEmpty(lastName)){
+                        if(!String.isEmpty(firstName)){
+                            aCase.suppliedName = lastName + ', ' + firstName;
+                        }else{
+                            aCase.suppliedName = lastName;
+                        }
+                    }   
+                    
+                    // update case brand
+                    aCase.Brand__c = CEC_CaseDescriptionParser.getBrand(aCase.Description);
+                    
+                }catch(Exception e ){
+                    System.debug('An exception occurred: ' + e.getMessage());  
+                }
+            }
+        }
+    }
+    
+    private account updateAccountDetailsFromCaseDescription(Account accnt, string caseDescription){
+        // fetch street Address
+        accnt.PersonMailingStreet = CEC_CaseDescriptionParser.getPersonMailingStreet(caseDescription);
+        // fetch City
+        accnt.PersonMailingCity = CEC_CaseDescriptionParser.getPersonMailingCity(caseDescription);
+        //fetch State
+        accnt.PersonMailingState = CEC_CaseDescriptionParser.getPersonMailingState(caseDescription);
+        // fetch ZIP code
+        accnt.PersonMailingPostalCode = CEC_CaseDescriptionParser.getPersonMailingPostalCode(caseDescription);
+        // fetch Country
+        accnt.PersonMailingCountry = CEC_CaseDescriptionParser.getPersonMailingCountry(caseDescription);
+        
+        return accnt;
+    }
+    
+    /******  END: Case description parsing *******/
 }

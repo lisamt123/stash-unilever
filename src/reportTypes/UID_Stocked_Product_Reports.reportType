@@ -742,12 +742,37 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>UID_Product_Name__c</field>
+            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UID_Material_Category__c</field>
+            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UID_Material_Brand__c</field>
+            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>UID_Material__c.UID_Category__c</field>
             <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>UID_Material__c.UID_Brand__c</field>
+            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UID_Summarized_Invoice_Value__c</field>
+            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UID_Stock_Product_Summary_Ranking__c</field>
             <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
         </columns>
         <masterLabel>Stocked Product Summary</masterLabel>

@@ -6,31 +6,51 @@
   margin-left: 2.5%;
   margin-top: -15px;
 }
-
+.THIS .err_search_user :first-child {
+    margin-left: 0;
+}
+.THIS .search_icon_big{
+    width: 2rem !important;
+    height: 1.5rem !important;
+    margin-top: -0.7rem !important;
+}
 .THIS .clear_btn{
   margin-top: 10px;
   background-color: #2e91cf;
   color: white;
   border: none;
   margin-left: 2.5%;
+    font-size: 1.2rem;
 }
-
+.THIS .recent_item_list span {
+    line-height: 3;
+}
 .THIS .error-msg{
     color:red;
     font-size:1rem;
 }
 
 .THIS .recent_item_list{
-  padding-left: 0px;
-  margin-top: 0.5em;
+    padding-left: 0px;
+    width: 94%;
+    margin: .5em auto;
 }
-
+.THIS .recent_item_list :first-child a span {
+    margin-left: 0;
+}
 .THIS .invt_lst{
   background-color: lightgray;
   padding: 3px;
   margin-left: 10px;
   margin-bottom:5px;
+    line-height:3;
+    font-size: 1.1rem;
 }
+.THIS .to_so_placeholder{
+	min-height: 3.8rem; 
+    font-size: 1.4rem;
+}
+.THIS .to_so_placeholder::-webkit-input-placeholder { font-size:1.4rem;}
 .THIS .message_margin_left{
  margin-left: 10px;   
 }

@@ -108,6 +108,8 @@ global without sharing class  IPM_GroupManagement {
                     queueList.add(mappingObject_Country);
                     QueueSobject mappingObject_Rollout = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_ROLLOUTOBJECT);
                     queueList.add(mappingObject_Rollout);
+                    QueueSobject mappingObject_SectionContent = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_DOCUMENTSECTIONCONTENT);
+                    queueList.add(mappingObject_SectionContent);                      
                     
                     if(QueueMemberIdMap.containskey(grp.Name)){
                         for(string memid:QueueMemberIdMap.get(grp.Name)){
@@ -211,25 +213,22 @@ global without sharing class  IPM_GroupManagement {
       @future
       public static void groupmemberupdate(Set<id>projidset){
         Set<id>grpidset = new Set<id>();
-        Map<String,Set<string>> QueueMemberIdMap = new Map<String,Set<string>>(); 
+        Map<String,Set<string>> QueueMemberIdMap = new Map<String,Set<string>>();
+        Map<id,string> QueueMemberIdNameMap = new Map<id,string>(); 
         Set<string> QueueMemberSet;
                 
-        List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,IPM_Project_Name__c, IPMProject_Span__c, OwnerId,IPM_Global_Project_Id__c, IPM_Golbal_Project_OwnerId__c, IPM_Technical_Project_Leader__r.id, 
+        List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,owner.type,IPM_Project_Name__c, IPMProject_Span__c, OwnerId,IPM_Global_Project_Id__c, IPM_Golbal_Project_OwnerId__c, IPM_Technical_Project_Leader__r.id, 
                                             IPM_Project_Gatekeeper__r.id, IPM_Project_Leader__r.id, Deputy_Project_Leader__r.id, 
                                             (Select name, id, IPM_User__r.id from IPM_Project_Resources__r ) FROM 
-                                            IPM_Project__c WHERE id in:projidset LIMIT 50000]);
+                                            IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 50000]);
+            
             
             if(projList!=null && !projList.isEmpty()){  
                 for(IPM_Project__c p:projList){
                     id queueid = p.IPM_Golbal_Project_OwnerId__c;
-                   
                     if(QueueMemberIdMap.containskey(queueid)){
                          QueueMemberSet = new Set<string>();
-                         
-                         
                          QueueMemberSet = QueueMemberIdMap.get(queueid);
-                         
-                         
                          if(p.IPM_Technical_Project_Leader__r.id !=null){
                          QueueMemberSet.add(p.IPM_Technical_Project_Leader__r.id);}
                          
@@ -244,7 +243,6 @@ global without sharing class  IPM_GroupManagement {
                          
                          
                          QueueMemberIdMap.put(queueid,QueueMemberSet);
-                         
                                             
                      }
                      else{
@@ -264,7 +262,12 @@ global without sharing class  IPM_GroupManagement {
                         
                          
                          QueueMemberIdMap.put(queueid,QueueMemberSet);
-                         grpidset.add(queueid);   
+                         grpidset.add(queueid);
+                         
+                         if(p.owner.type != 'Queue'){
+                         	string tempid = p.id;
+                         	QueueMemberIdNameMap.put(queueid,IPM_ConstantUtils.IPM_IPMNNAME+tempid.Substring(0,15));                          	
+                         }      
                             
                      }
                      
@@ -279,8 +282,15 @@ global without sharing class  IPM_GroupManagement {
                 }
             }
             
-        list<GroupMember> memberdeleteList = new List<GroupMember>([SELECT Id, UserOrGroupId, GroupId FROM GroupMember WHERE GroupId IN: grpidset LIMIT 50000]);
-        Map<id, Group> grpmap = new Map<id,Group>([SELECT Id,Name FROM Group WHERE id IN: grpidset LIMIT 50000]);
+        
+        Map<id, Group> grpmap = new Map<id,Group>([SELECT Id,Name FROM Group WHERE (id IN: grpidset or Name IN:QueueMemberIdNameMap.values()) LIMIT 50000]);
+        list<GroupMember> memberdeleteList = new List<GroupMember>([SELECT Id, UserOrGroupId, GroupId FROM GroupMember WHERE GroupId IN: grpmap.keyset() LIMIT 50000]);
+		Map<string, Group> grpNamemap = new Map<string,Group>();
+			
+		for(Group grp:grpmap.values()){
+			grpNamemap.put(grp.Name,grp);
+		}
+			     
         
         if(grpmap != null && !grpmap.isEmpty()){
             if(memberdeleteList!=null && !memberdeleteList.isEmpty()){
@@ -294,7 +304,7 @@ global without sharing class  IPM_GroupManagement {
                   
             list<GroupMember> memberList = new List<GroupMember>();           
            
-            
+           
             if(QueueMemberIdMap.keyset() != null){
                 for(id grpid:QueueMemberIdMap.keyset()){
                                       
@@ -303,12 +313,19 @@ global without sharing class  IPM_GroupManagement {
                             GroupMember member = new GroupMember();
                             member.UserOrGroupId = memid;
                             member.GroupId = grpId;                         
+                            memberList.add(member);                                                
+                        }
+                    }
+                                      
+                    if(QueueMemberIdNameMap.containskey(grpid) && grpNamemap.containskey(QueueMemberIdNameMap.get(grpid))){
+                         for(string memid:QueueMemberIdMap.get(grpid)){
+                            GroupMember member = new GroupMember();
+                            member.UserOrGroupId = memid;
+                            member.GroupId = grpNamemap.get(QueueMemberIdNameMap.get(grpid)).id;                         
                             memberList.add(member); 
                                                 
                         }
-                    }
-                    
-                        
+                    }   
                                         
                 }
             }
@@ -334,5 +351,24 @@ global without sharing class  IPM_GroupManagement {
         }
         
       }
+    /*********************************************************************
+    @Description : This method is used to delete queue
+    **********************************************************************/
+          
+    @future
+    public static void deleteQueue(Set<id>Queueidset){
+        List<Group>grpsList=[SELECT Id,Name FROM Group WHERE id IN: Queueidset LIMIT 50000];
+        
+        if(grpsList!=null && !grpsList.isEmpty()){
+            try{
+                delete grpsList;
+                    
+                }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                                                       'deleteQueue',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
+                }
+        }
+
+    }
 
 }

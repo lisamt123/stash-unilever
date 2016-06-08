@@ -22,7 +22,7 @@ public with sharing Class IPM_CMIGateSectionController{
     public Map<String,IPM_Project_Document_Section_Content__c> displayCon{get; set;}
     public set<String> countryNames{get; set;}
     public Map<String,Integer> inputCount{get; set;}
-    
+    @TestVisible private String gateDocument;
     private static string CLASS_NAME=IPM_CMIGateSectionController.class.getName();
     /**********************************************************************************************************************************
     @description For Showing Gate CMI Data Values in Table
@@ -36,7 +36,7 @@ public with sharing Class IPM_CMIGateSectionController{
         displayCon=new Map<String,IPM_Project_Document_Section_Content__c>(); 
         inputCount=new Map<String,Integer>();
         countryNames=new set<String>();
-        String gateDocument=IPM_ConstantUtils.BLANK;
+        gateDocument=IPM_ConstantUtils.BLANK;
         try{
             if(gateType==IPM_ConstantUtils.CHARTER_GATE){
                 gateDocument=IPM_ConstantUtils.CHARTER_GATE;

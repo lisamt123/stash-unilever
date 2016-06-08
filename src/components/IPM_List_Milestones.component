@@ -43,7 +43,7 @@
                 </div>
             </div>
         </apex:outputPanel>
-        
+        <!-- Below code used to display warning message based  starts here -->
         <div class="mstoneInfo" style="{!if(isWarningRequired,'display:block','display:none')};">
                 <apex:outputPanel rendered="{!isWarningRequired}" >
                     <apex:repeat var="message" value="{!warningMessages}">
@@ -51,7 +51,9 @@
                     </apex:repeat>
                 </apex:outputPanel>
         </div>
+         <!------ Below code used to display warning message based  ends here ------->
          
+        <!------- Below code is to show the milestones in timeline view  -------->
         <apex:outputPanel id="milestonesTimeLineView">
             <div class="timeLineView">
         
@@ -118,6 +120,7 @@
                   
             <div class="table-responsive proLoader" id="ipmTableDiv">
               <apex:actionStatus startText="" id="myStatusM" startStyleClass="proInit"/> 
+              <!----------  Data Table to show milestone details  -------------->
                 <apex:dataTable value="{!projectMilestones}" var="p" id="tskPanelM" styleClass="ipmTable ipmMilestoneTable table table-bordered">
                 
                     <apex:column width="14%" styleClass="{!IF(p.isChecked,'selected', 'notselected')} completeHeader">
@@ -127,7 +130,7 @@
                                 <div class="keep-open  btn-group">
                                     <div class="dropdown completedFilter completedFilterM ipmDropDown">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <a class="fa filterIcon icoButton filter"></a>
+                                            <a class="{!IF(isCompleteMilestones != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter calfilt')}"></a>
                                         </div>
                                         <ul class="dropdown-menu pull-right completeM" role="menu">
                                             <li>
@@ -135,14 +138,14 @@
                                                     <input type="checkbox" value="t" id="complYesM" />
                                                     <label for="complYesM"></label>
                                                 </div>
-                                                <div class="col-sm-10 staticLabel">{!$Label.IPM_MILESTONE_Yes}</div>
+                                                <div class="col-sm-10 staticLabel font-Small">{!$Label.IPM_MILESTONE_Yes}</div>
                                             </li>
                                             <li>
                                                 <div class="col-sm-2 ipmCheckbox">
                                                     <input type="checkbox" value="f" id="complNoM" />
                                                     <label for="complNoM"></label>
                                                 </div>
-                                                <div class="col-sm-10 staticLabel">{!$Label.IPM_BETRequestNo}</div>
+                                                <div class="col-sm-10 staticLabel font-Small">{!$Label.IPM_BETRequestNo}</div>
                                             </li>
                                             <li class="filterActions">
                                                 <div class="ipmButtonGroup col-xs-6 pull-left fltrbrdrRight">
@@ -160,7 +163,7 @@
                         <div class="col-xs-2 ipmCheckbox milestoneCheck">
                             
                             
-                            <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
+                            <apex:outputPanel styleClass="misalignchck" rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
                                 <a class="icoButton edit1 editMilestoneBtn" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" >
                                     <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c'] ),isSDateEdit=true,isEditable=true)),'false','true')}"/>
                                 </a>
@@ -172,6 +175,7 @@
                         </div>
                     </apex:column>
                     
+                    <!--  Document icon column of milestone table  -->
                     <apex:column headerValue="{!$Label.IPM_MILESTONE1}" styleClass="{!IF(p.isChecked,'selected', 'notselected')}">
                             <apex:facet name="header">
                                 <div>{!$Label.IPM_MILESTONE1}</div>
@@ -195,6 +199,7 @@
                             </div>
                     </apex:column>
                     
+                    <!--  Completed checkbox column of milestone table  -->
                     <apex:column styleClass="{!IF(p.isChecked,'selected', 'notselected')}">
                         <apex:facet name="header">
                             <div class="colPhase">
@@ -202,7 +207,7 @@
                                     <div class="keep-open  btn-group">
                                     <div class="dropdown phaseMFilter ipmDropDown">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <a class="fa filterIcon icoButton filter"></a> 
+                                            <a class="{!IF(phaseM != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter calfilt2')}"></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -218,6 +223,7 @@
                         </apex:outputPanel>
                     </apex:column>
                     
+                    <!--  Due date column of milestone table  -->
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" width="12%" styleClass="duedateHeader {!IF(p.isChecked,'selected', 'notselected')}">
                         <apex:facet name="header">
                             <div>{!$Label.IPM_DUE_DATE} 
@@ -232,6 +238,7 @@
                         </apex:outputPanel>
                     </apex:column>
                     
+                    <!--  Completed on date column of milestone table  -->
                     <apex:column headerValue="{!$Label.IPM_Completed_On}" styleClass="{!IF(p.isChecked,'selected', 'notselected')}">
                         <apex:facet name="header">
                             <div>{!$Label.IPM_Completed_On}
@@ -246,6 +253,7 @@
                         </apex:outputPanel>
                     </apex:column>
                     
+                    <!--  Edit and Delete icon column of milestone table  -->
                      <apex:column headerValue="{!$Label.IPM_Milestone_Action}" styleClass="{!IF(p.isChecked,'selected', 'notselected')} iconHeader">
                         <apex:outputPanel styleClass="SecButtonSet" >
                             
@@ -271,6 +279,7 @@
                     
                 </apex:dataTable>
             </div> 
+            <!--  Code to implement the Pagination to show the limited milestones per page  -->
             <div class="pull-right">
                 <apex:panelGrid columns="5" styleClass="panel-group clearfix" id="cmdBtnPanel">
                      <apex:commandButton styleClass="mstoneArrows {!If(hasPrevious,'mstoneActive','mstoneNotActive')}" disabled="{!!hasPrevious}" status="myStatusM" action="{!firstPage}" value="<<" rerender="tskPanelM,cmdBtnPanel,jsLoadM" oncomplete="jsLoadM()"/ >
@@ -299,7 +308,7 @@
                             <input type="checkbox" value="{!phsM}" id="M_{!phsM}" />
                             <label for="M_{!phsM}"></label>
                         </div>
-                        <div class="col-sm-10 staticLabel">{!phsM}</div>
+                        <div class="col-sm-10 staticLabel font-Small">{!phsM}</div>
                     </li>
                 </apex:repeat>
                 <li class="filterActions">
@@ -313,9 +322,11 @@
             </ul>
         </div>  
        <apex:form >
+       <!-------- Action function to delete the Mini and Adhoc milestones ------->
         <apex:actionFunction name="deleteMilestone" action="{!deleteMilestone}" reRender="tskPanelM,statsPanelM,tml,cmdBtnPanel,jsLoadM" status="myStatusM" onComplete="jsLoadM()">
             <apex:param name="tskId" assignTo="{!milestoneId}" value="" />
          </apex:actionFunction>
+        <!-- Below action functions has been used to implement sorting based on colomns -->
         <apex:actionFunction name="toggleDueDate1" action="{!toggleDueDate}" reRender="tskPanelM,statsPanelM,cmdBtnPanel,jsLoadM" status="myStatusM" onComplete="jsLoadM()">
          </apex:actionFunction>
         <apex:actionFunction name="toggleSortMilestones" action="{!toggleSortMilestones}" reRender="tskPanelM,statsPanelM,cmdBtnPanel,jsLoadM" onComplete="jsLoadM()" status="myStatusM"/>
@@ -335,7 +346,7 @@
      </apex:form> 
      <apex:outputPanel id="jsLoadM">     
      <script>
-        var IPMAppLM = {isCompleteMilestones:'{!isCompleteMilestones}', removeMilestone:'{!$Label.IPM_REMOVE_MILESTONE}', msgDelMilestone:'{!$Label.delete_milestone_msg}', phaseM:'{!phaseM}'};
+        var IPMAppLM = {isCompleteMilestones:'{!isCompleteMilestones}', removeMilestone:'{!$Label.IPM_REMOVE_MILESTONE}', msgDelMilestone:'{!$Label.IPM_Delete_Milestone_Msg}', phaseM:'{!phaseM}'};
      
      </script>
      </apex:outputPanel>

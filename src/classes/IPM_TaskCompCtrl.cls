@@ -83,18 +83,21 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         phaseTaskComp = new  Map<String,Boolean>();
         
         projectId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.TEAM_PROJECTID);
-        if(String.isBlank(projectId)){
+        if(String.isBlank(projectId))
+        {
             projectId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.IPM_Project_PID);
         }
         projectObj = new IPM_Project__c();
         
-        if(String.isNotBlank(projectId)){
-            string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null)+' where id =:projectId ';
+        if(String.isNotBlank(projectId))
+        {
+            string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null,true)+' where id =:projectId ';
             list<IPM_Project__c> projList = Database.query(query);
             projectObj  = projList[0];
         }
         
-        if(projectObj == NULL){
+        if(projectObj == NULL)
+        {
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
             ApexPages.addMessage(myMsg); 
             
@@ -143,12 +146,15 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         String strQuery = getQuery();
         sourcesObjectList = database.query(strQuery);
         
-        if(sourcesObjectList != null && !sourcesObjectList.isEmpty()){
+        if(sourcesObjectList != null && !sourcesObjectList.isEmpty())
+        {
             
             totalTask = sourcesObjectList.size();
             //process from all the tasks & process them and add the users associated with it
-            for(IPM_Task__c eachTask : (List<IPM_Task__c>)sourcesObjectList) {
-                if(eachTask.IPM_Assignee__c != null){
+            for(IPM_Task__c eachTask : (List<IPM_Task__c>)sourcesObjectList) 
+            {
+                if(eachTask.IPM_Assignee__c != null)
+                {
                     userSet.add(eachTask.IPM_Assignee__c);
                     usersSet.add(eachTask.IPM_Assignee__r.Name);
                 }
@@ -156,12 +162,17 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                 //prevoius phase map
                 if(!previousPhases.isEmpty() && previousPhases.contains(eachTask.IPM_Phase__c)){
                     phaseTaskComp.put(eachTask.IPM_Phase__c,false);
-                }else{
+                }
+                else
+                {
                     phaseTaskComp.put(eachTask.IPM_Phase__c,true);
                 }
-                if(eachTask.IPM_Completed__c) {
-                    closedTasks++;
-                }else{
+                if(eachTask.IPM_Completed__c) 
+                {
+                   closedTasks++;
+                }
+                else
+                {
                     openTasks++;
                 }
             }
@@ -183,7 +194,8 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         
         String usrRole = IPM_Utils.userRole();
         String soqlWHERE = '' ;
-        if(String.isNotBlank(usrRole)){
+        if(String.isNotBlank(usrRole))
+        {
             soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ usrRole +'\' , \'BD\')' : 
                                                                              ' AND IPM_Function__c = \'' + usrRole + '\'';
         }
@@ -195,28 +207,37 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c FROM IPM_Task__c ';
                soql += 'WHERE IPM_Active__c = true  AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
                
-        if(String.isNotBlank(phase) ) {
+        if(String.isNotBlank(phase) ) 
+        {
             soql += ' AND (IPM_Phase__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(phase))+')';
         }
-        if(toggleTask) {
+        if(toggleTask) 
+        {
             soql += ' AND IPM_Assignee__c = \'' + UserInfo.getUserId() + '\'';
         }
-        if(toggleRole == IPM_ConstantUtils.TEAM_TRUE && String.isNotBlank(soqlWHERE)) {
+        if(toggleRole == IPM_ConstantUtils.TEAM_TRUE && String.isNotBlank(soqlWHERE))
+        {
             soql += soqlWHERE;
         }
-        if(isCompleteTasks == 't') {
+        if(isCompleteTasks == 't') 
+        {
             soql += ' AND IPM_Completed__c = true';
         }
-        if(isCompleteTasks == 'f') {
+        if(isCompleteTasks == 'f') 
+        {
             soql += ' AND IPM_Completed__c = false';
         }
-        if(String.isNotBlank(user)) {
+        if(String.isNotBlank(user)) 
+        {
             soql += ' AND IPM_Assignee__r.Name IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(user));
         }
-        if(isAsc) {
+        if(isAsc) 
+        {
             soql += ' ORDER BY ' + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' DESC NULLS LAST';
-        } else {
-            soql += ' ORDER BY ' + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' ASC NULLS LAST';
+        } 
+        else 
+        {
+            soql += ' ORDER BY IPM_Completed__c,IPM_Phase__c,IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC NULLS LAST';
         }
         soql += ' limit 1000'; 
         return soql;  
@@ -233,9 +254,12 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         totalTask = 0;
         loadTasks();
         getWrapperRecords();
-        if(getEndIndexNumber() == 0){
+        if(getEndIndexNumber() == 0)
+        {
             pagintnDisp = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber()-1),String.valueof(getEndIndexNumber()),String.valueof(totalTask)});
-        }else{
+        }
+        else
+        {
             pagintnDisp = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber()),String.valueof(getEndIndexNumber()),String.valueof(totalTask)});
         }
         return  wrapperRecordList;
@@ -250,17 +274,25 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         
         for(IPM_Task__c eachTask : (List<IPM_Task__c>)recordList ) 
         {
-            if(!phaseTaskComp.isEmpty() && String.IsNotBlank(eachTask.IPM_Phase__c))
+            if(!phaseTaskComp.isEmpty())
             {
-                Boolean isEditable = phaseTaskComp.get(eachTask.IPM_Phase__c) ? true :false ;
+            	Boolean isEditable = false;
+            	if(String.IsNotBlank(eachTask.IPM_Phase__c))
+            	{
+            		isEditable = phaseTaskComp.get(eachTask.IPM_Phase__c) ? true :false ;
+            	}
+            	else{
+                	isEditable = true;
+            	}
                 if(eachTask.IPM_Completed__c) {
                     wrapperRecordList.add(new sObjectPaginationWrapper(eachTask, true,isEditable,true));
                 }
-                if(!eachTask.IPM_Completed__c) {
-                wrapperRecordList.add(new sObjectPaginationWrapper(eachTask, false,isEditable,true)); 
+                if(!eachTask.IPM_Completed__c) 
+                {
+                	wrapperRecordList.add(new sObjectPaginationWrapper(eachTask, false,isEditable,true)); 
                 }
             }
-        }
+         }
     }
     public pageReference refresh() {
         setCon = null;
@@ -442,7 +474,8 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
             {
                 projectObj.IPM_PM_Approach__c=IPM_ConstantUtils.IPM_APPROACH_EXTERNAL;
             }
-            else{
+            else
+            {
                 projectObj.IPM_PM_Approach__c=IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
             }
             projectUpdateList.add(projectObj);

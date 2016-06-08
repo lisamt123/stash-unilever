@@ -34,6 +34,7 @@ public class EA_ControllerTestClass{
             insert event;
             System.assertEquals('test.Description', event.Description__c);
             EA_Team_Member__c Team =new EA_Team_Member__c();
+            team.Activity_Due_Date__c=datetime.newInstance(2014, 9, 15, 13, 30, 0);
             team.Activity_Due_Day__c='Today';
             team.Activity_Points__c=5;
             team.Everyday_Activity__c=event.id;
@@ -44,18 +45,23 @@ public class EA_ControllerTestClass{
             team.Participant__c=localUser.id;
             team.Rating_By_Participant__c=4;
             team.Type__c='Participant';
-            insert team;
+            //insert team;
+            List<EA_Team_Member__c> userList= new List<EA_Team_Member__c>();
+            userList.add(team);
+            insert userList;
+            
             System.assertEquals('test.feedback', team.Feedback_Comments__c);
             FeedItem post = new FeedItem();
             post.ParentId = event.id; 
             post.Body = 'test.Body';
             insert post;
-          
+            
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='ThemesDetails';
             ea.ThemeColorCode__c='test.color';
             ea.ThemeDescription__c='Description';
             insert ea;
+            
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
             badge.name='Newbee';
             badge.BadgeColor__c='blue';
@@ -84,82 +90,69 @@ public class EA_ControllerTestClass{
             badge3.BadgeValue__c=2;
             insert badge3;
             
+            EA_ReportingGA__c report=new EA_ReportingGA__c();
+            report.name='ReportEA';
+            report.Text_value__c='dummyvalue';
+            insert report;
          
             
             FeedItem chatterPost1 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
-            insert chatterPost1;
-            
+            insert chatterPost1;            
             FeedItem chatterPost2 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
-            insert chatterPost2;
-            
+            insert chatterPost2;            
             FeedItem chatterPost3 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
             insert chatterPost3;
             
-             
-                  
             Test.startTest();
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            EA_ControllerClass.updateParticipantResponse(team.id,team.Participant__c,'Accept');
             List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
             EA_ControllerClass.getbooleanvalue('3446677');
-            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
-           
-           try{
-             EA_ControllerClass.getUserDetail();
-           
-          //   EA_ControllerClass.getActivityParticipantCount(event.id);   
-               List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');           
+            try{
+                EA_ControllerClass.getUserDetail(); 
+                 List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities(); 
+                      
+            }catch(exception e){
+                System.debug('Exception caught: ' + e.getMessage());}
                 
-               }catch(exception e){
-            System.debug('Exception caught: ' + e.getMessage());}
-              EA_ControllerClass.insertteamrecord(event.id); 
+            EA_ControllerClass.insertteamrecord(event.id); 
+            EA_ControllerClass.getActivityParticipantCount(event.id);
             
-          EA_ControllerClass.getParticipantName(users);
-             EA_ControllerClass.insertfeeditem(event.id,'comment');
-             
-             EA_ControllerClass.getbooleanvalue(event.id);               
-                  
-            List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);
-            
+            EA_ControllerClass.insertfeeditem(event.id,'comment');             
+            EA_ControllerClass.getbooleanvalue(event.id);                                          
             EA_ControllerClass.getToDoTimeline();
-            List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities();    
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
-            
-            
             //Increasing Test Coverage - Start
-            
             string dateStr = '2015-12-05';
             string resultStr = EA_ControllerClass.getProperDate(dateStr);
             System.assertEquals(resultStr, '05-Dec-2015');
             
             //["005c00000024XSZAA2","005E0000006cowkIAA"]
-             
-             string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';
-             
-             system.debug('jsonStr=========>'+jsonStr);
-             string result1 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Today');
-             string result2 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Tomorrow');
-             string result3 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Next Week');
-             string result4 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Two Weeks');
-             string result5 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'One Month');
             
+            string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';
             
-             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> lst = EA_ControllerClass.getcommentDetail(event.id);
+            system.debug('jsonStr=========>'+jsonStr);
+            string result1 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Today');
+            string result2 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Tomorrow');
+            string result3 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Next Week');
+            string result4 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Two Weeks');
+            string result5 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'One Month');
+            List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> lst = EA_ControllerClass.getcommentDetail(event.id);
             //Increasing Test Coverage - End
             
             Test.stopTest();
-      
+            
         }
     }
-   static testMethod void negative() {
-       ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
+    static testMethod void negative() {
+        ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
         user  localUser= new User(username='localuserforUnitTest@20110308test.com',
                                   alias = 'testu',
                                   email='localuserforUnitTest@20110308test.com',
@@ -192,7 +185,7 @@ public class EA_ControllerTestClass{
             team.Invitation_Status__c='Declined';
             team.Invitation_Text__c='test.inv';
             team.Invited_By__c=localUser.id;
-            team.Participant__c=localUser.id;
+            //team.Participant__c=localUser.id;
             team.Rating_By_Participant__c=4;
             team.Type__c='Participant';
             insert team;
@@ -201,13 +194,14 @@ public class EA_ControllerTestClass{
             post.ParentId = event.id; 
             post.Body = 'test.Body';
             insert post;
-           
-           
-          aa_agent_app_custom_setting__c app=new aa_agent_app_custom_setting__c();
-          app.Name='agent';
-          app.Key__c='key';
-          app.Value__c='value';
-          insert app;
+            
+            
+            aa_agent_app_custom_setting__c app=new aa_agent_app_custom_setting__c();
+            app.Name='agent';
+            app.Key__c='key';
+            app.Value__c='value';
+            insert app;
+            
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='test11';
             ea.ThemeColorCode__c='test.color';
@@ -219,51 +213,49 @@ public class EA_ControllerTestClass{
             badge.BadgeSerial__c=1;
             badge.BadgeValue__c=2;
             insert badge;
-             EA_ReportingGA__c Re=new EA_ReportingGA__c();
+           
+            EA_ReportingGA__c re=new EA_ReportingGA__c();
             re.Name='testreport';
-            re.Text_value__c ='reporting';
+            re.Text_value__c =' EA_System_User_ID';
             insert re;
-              Test.startTest();
-        
+             EA_ReportingGA__c re1=new EA_ReportingGA__c();
+            re1.Name='testreport';
+            re1.Text_value__c ='GA_Id';
+            insert re1;
+            Test.startTest();
+            
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            EA_ControllerClass.updateParticipantResponse(team.id,team.Participant__c,'Decline');
             List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
             EA_ControllerClass.getbooleanvalue('3446677');
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
-           try{
-             EA_ControllerClass.getUserDetail();
-              EA_ControllerClass.getGAID();
-           //  EA_ControllerClass.getActivityParticipantCount(event.id);  
-             // List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
-              }catch(exception e){
-             System.debug('Exception caught: ' + e.getMessage());}
-                EA_ControllerClass.updateParticipantResponse(team.id,team.Participant__c,'Accept');          
-             EA_ControllerClass.insertfeeditem(event.id,'comment');
-             EA_ControllerClass.getbooleanvalue(event.id);               
-                  
-            List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);
-           
+            try{
+                EA_ControllerClass.getUserDetail();
+                   string test1=EA_ControllerClass.getGAID(); 
+                   
+                   // List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);  
+            }catch(exception e){
+                System.debug('Exception caught: ' + e.getMessage());}
+              
+            EA_ControllerClass.insertfeeditem(event.id,'comment');
+            EA_ControllerClass.getbooleanvalue(event.id);                                 
+            List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities();    
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
-            
             //Increasing Test Coverage - Start
-            
             string dateStr = '2015-12-05';
             string resultStr = EA_ControllerClass.getProperDate(dateStr);
             System.assertEquals(resultStr, '05-Dec-2015');
-            
-            
             //Increasing Test Coverage - End
             Test.stopTest();
         }
     } 
-     
-   }
+    
+}

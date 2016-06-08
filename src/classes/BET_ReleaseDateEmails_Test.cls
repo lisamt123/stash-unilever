@@ -11,12 +11,11 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             22/12/2014      INITIAL DEVELOPMENT
-1.1 -   Michał Bluj				30/09/2015		BETIPM CHANGES
 **********************************************************************/
 
 @isTest
 private class BET_ReleaseDateEmails_Test {
-   
+  
     static testMethod void testTwo(){
       BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
 
@@ -110,5 +109,22 @@ private class BET_ReleaseDateEmails_Test {
         system.debug(template);
         System.assert(template.containsIgnoreCase('Final Release'));
         System.assert(!template.containsIgnoreCase('First Release'));
+    }
+
+    static testMethod void updateEmailParams(){
+      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
+
+      Date myDate = date.today();
+      Date launchDate = Date.newInstance(myDate.year()+1, 1, 15);
+
+      wrap.BET.Launch_Date__c = launchDate;
+      update wrap.BET;
+
+      BET_Request_Access__c setting = new BET_Request_Access__c(Name = 'Test', Send_Mail_To_Owner__c = true, Email_Address__c='test@test.com', Logo_Url__c='http://test.com/img.jpg');
+      insert setting;
+
+      Test.startTest();
+      System.assert(BET_ReleaseDateEmails.updateEmailParams(new Messaging.SingleEmailMessage(),wrap.BET,setting,true,new List<String>()) != null,'Email should not be null');
+      Test.stopTest();
     }
 }

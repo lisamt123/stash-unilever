@@ -16,9 +16,9 @@
     
     <div class="container-fluid">
         <div class="row" id="EditTask">
-            <apex:pageMessages id="messages"/> 
+
             <apex:form id="form">
-                <apex:outputPanel id="errMassage" styleClass="errorBlock" layout="block" rendered="{!displayError}">
+                <apex:outputPanel id="errMassage" styleClass="errorBlock" layout="block" >
                         <span ><apex:pagemessages id="pagemessages"></apex:pagemessages></span>
                 </apex:outputPanel> 
                 <div class="row inlineEdit">
@@ -64,7 +64,7 @@
                             </div>
                             <div class="ipmButtonGroup pull-right"> 
                                 <apex:commandLink id="cancelLink" value="Cancel" styleClass="ipmButton buttonMarginRight" reRender="form, reRenderScript" onClick="pageclose();" onComplete="callEditTask()"/>   
-                                <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onComplete="{!if(AND(!displayError),'pageclose(); callEditTask();','')};"/>
+                                <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onComplete="{!if(AND(validate),'pageclose(); callEditTask();','')};"/>
                             </div>
                         </div>
                     </apex:outputPanel>

@@ -1,0 +1,5 @@
+The following SOW is ready for approval:
+
+SOW Name: {!Marketing_SOW__c.Name}
+
+Click here to view the SOW: https://unilever--sfproto--c.cs7.visual.force.com/apex/oblix_sowmaindetail?sowId={!Marketing_SOW__c.Id}

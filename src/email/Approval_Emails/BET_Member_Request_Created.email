@@ -1,0 +1,11 @@
+<html>
+<br/>
+<br/>
+{!BET_Member_Request__c.CreatedBy} has suggested 
+{!BET_Member_Request__c.UserId__c} is given access to the BET 
+{!BET_Member_Request__c.Brand_Experience_Toolkit__c} (Private With Customers)
+<br/>
+<br/>
+To view this BET, go to:<br/>  
+<a href="{!BET_Member_Request__c.BET_Link__c}">{!BET_Member_Request__c.Brand_Experience_Toolkit__c} </a>
+</html>

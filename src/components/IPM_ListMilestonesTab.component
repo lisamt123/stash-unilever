@@ -13,7 +13,7 @@
     <apex:attribute name="IsBD" type="Boolean" AssignTo="{!isBDuser}" description="this is used for security"/>
     <apex:attribute name="IsDateEditable" type="Boolean" AssignTo="{!isSDateEdit}" description="this is used for security"/>
      
-     <!-- main panel -->
+    <!--------------- main panel ---------------->
         <apex:outputPanel id="statsPanelM">
         <div class="row ipmMileRow mileTabrow">
             <div class="col-sm-12 noPadleft">
@@ -30,6 +30,7 @@
             </div>            
         </div>
         </apex:outputPanel>  
+        <!-- Below code used to display warning message based  starts here -->
         <div class="mstoneInfo {!if(isWarningRequired,'mstoneTabshow','mstoneTabhide')}">
             <apex:outputPanel rendered="{!isWarningRequired}" >
                 <apex:repeat var="message" value="{!warningMessages}">
@@ -37,6 +38,7 @@
                 </apex:repeat>
             </apex:outputPanel>
         </div>      
+        <!-- Below code used to display warning message based  ends here --> 
         <div class="row ipmMileRow" id="milestoneList">         
             <div class="table-responsive" id="ipmTableDiv">
                 <apex:actionStatus startText="updating..." id="myStatusM">
@@ -44,7 +46,9 @@
                         <img height="15" width="15" src="/img/loading32.gif" alt="Loading.." />
                     </apex:facet>
                 </apex:actionStatus>
+                <!----------  Data Table to show milestone details  -------------->
                 <apex:dataTable value="{!projectMilestones}" var="p" id="tskPanelM" styleClass="clear ipmTable table table-bordered mstoneTab">
+                    <!--  Document icon column of milestone table  -->
                     <apex:column width="40%" headerValue="{!$Label.IPM_MILESTONE}" styleClass="{!IF(p.isChecked,'selected', 'notselected')}">
                             <apex:facet name="header">
                                 <div>{!$Label.IPM_MILESTONE} 
@@ -63,6 +67,7 @@
                             </div>
                         
                     </apex:column>
+                    <!--  Completed Checkbox column of milestone table  -->
                     <apex:column styleClass="{!IF(p.isChecked,'selected', 'notselected')}">
                         <apex:facet name="header">
                             <div class="colPhase">
@@ -78,6 +83,7 @@
                         </apex:facet>
                         <apex:outputfield value="{!p.record['IPM_Phase__c']}" />
                     </apex:column>
+                    <!--  Due date column of milestone table  -->
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" styleClass="mstoneDate duedateHeader {!IF(p.isChecked,'selected', 'notselected')}">
                         <apex:facet name="header">
                             <div>{!$Label.IPM_DUE_DATE} 
@@ -99,6 +105,7 @@
                                   
                              <!-- Delete button code starts here-------- -->
                              <apex:outputPanel rendered="{!p.isDeletable}">
+                             	 <!-- Delete button will be applicable only for Adhoc and Mini Milestones  -->
                                  <apex:outputPanel rendered="{!if(AND(isEditable=true,isBDuser=false),true,false)}">
                                   <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!p.record['Id']}" onclick="delMilestone('{!p.record['Id']}')" title="{!$Label.IPM_Delete_Button}" data-backdrop="static" data-keyboard="false"/>
                                  </apex:outputPanel>
@@ -109,6 +116,7 @@
                     </apex:column>
                 </apex:dataTable>
             </div> 
+            <!--  Code to implement the Pagination to show the limited milestones per page  -->
             <div class="pull-right">
                 <apex:panelGrid columns="5" styleClass="panel-group clearfix" id="cmdBtnPanel">
                      <apex:commandButton styleClass="mstoneArrows {!If(hasPrevious,'mstoneActive','mstoneNotActive')}" disabled="{!!hasPrevious}" action="{!firstPage}" value="<<" rerender="tskPanelM,cmdBtnPanel"/ >
@@ -129,11 +137,11 @@
                 </div>
             </div>
         </div>
-       
+       	<!-------- Action function to delete the Mini and Adhoc milestones ------->
         <apex:actionFunction name="deleteMilestone" action="{!deleteMilestone}" reRender="tskPanelM,statsPanelM,jsLoadM,tml,cmdBtnPanel" status="myStatusM" oncomplete="jsLoadM()">
             <apex:param name="tskId" assignTo="{!milestoneId}" value="" />
          </apex:actionFunction>
-     
+     	<!-- Below action functions has been used to implement sorting based on colomns -->
         <apex:actionFunction name="toggleDueDate1" action="{!toggleDueDate}" reRender="tskPanelM,statsPanelM,jsLoadM" oncomplete="jsLoadM()">
          </apex:actionFunction>
      
@@ -143,7 +151,7 @@
     
      <apex:outputPanel id="jsLoadM">
      <script>
-     var IPMAppLM = {isCompleteMilestones:'{!isCompleteMilestones}', removeMilestone:'{!$Label.IPM_REMOVE_MILESTONE}', msgDelMilestone:'{!$Label.delete_milestone_msg}', phaseM:'{!phaseM}'};
+     var IPMAppLM = {isCompleteMilestones:'{!isCompleteMilestones}', removeMilestone:'{!$Label.IPM_REMOVE_MILESTONE}', msgDelMilestone:'{!$Label.IPM_Delete_Milestone_Msg}', phaseM:'{!phaseM}'};
      </script>
      </apex:outputPanel>
      <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ListMilestones.js')}" type="text/javascript"></script>

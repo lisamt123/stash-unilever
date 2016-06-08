@@ -1,41 +1,37 @@
 /******************************************************************************************************************************
 * @author Cognizant 
 * @date 15/12/2014
-* @description Test Class for IPM_GateCMIController
+* @description Test Class for IPM_GateCMIController 
 */
 @isTest
 public class IPM_GateCMIController_Test{    
-    public static IPM_Project__c project;// Project object initialization
-    public static IPM_Project_Document__c projDoc;
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    public static User stdUserForGateCMI;
+    private static IPM_Project__c project;// Project object initialization    
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static User stdUserForGateCMI;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    public static PageReference  pRef;
-    public static IPM_GateCMIController ipmCmiControl;
+    private static IPM_GateCMIController ipmCmiControl;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
-    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
-    public static User globalUser;
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();    
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static User globalUser;
     private static string LOCAL_STR='Local';
     private static string REGIONAL_STR='Regional';
-    public static IPM_Project_Document_Section__c docSec;
-    public static IPM_Project_Document__c document;
-    public static IPM_Gate_CMI__c gateCMICountry;
-    public static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
+    private static IPM_Project_Document_Section__c docSec;
+    private static IPM_Project_Document__c document;
+    private static IPM_Gate_CMI__c gateCMICountry;
+    private static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
     private static final string COUNTRY_NAME_STR='contry name';
-    private static final string RESULT_STR='result';
-    private static final string NAME_STR='cmi color';
-     public static mdo_Geography__c mdoGeo=new mdo_Geography__c();
-    private static final string INDIA_STR='IND';
-    public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
-    public static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
+    private static final string RESULT_STR='Idea Screener - Nielsen';    
+    private static final string INDIA_STR='IND'; 
+    private static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
+    private static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
 
     /*************************************************************************************************************************
     * @description Test Data
     */
     @testSetup static void initializeData(){
+        
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -58,6 +54,7 @@ public class IPM_GateCMIController_Test{
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForGateCMI);
         System.runAs(stdUserForGateCMI) {
+            
             insert projectList;
             
             project=projectList[0];
@@ -93,8 +90,8 @@ public class IPM_GateCMIController_Test{
             
             // Create Country specific information.
             
-             // Create Country specific information.
-           String geoExternalId = '';
+            // Create Country specific information.
+            String geoExternalId = '';
             for(IPM_Project_Rollout__c localRolloutObj : localRolloutList)
             {
                 
@@ -107,36 +104,40 @@ public class IPM_GateCMIController_Test{
                     geoExternalId = 'BR';
                 }
                 
-                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId); 
+                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId, name = 'AFR'); 
                 mdoGeoList.add(mdo);    
                 IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
-                IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO');    
+                IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO', isActive__c = true);    
                 countryList.add(tempCountry);
             }
             
-                    
-             insert mdoGeoList;
-             List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdoGeoList[0].Id limit 1];
-             system.assertNotEquals(mdoList[0].Id,null,'mdo created'); 
             
+            insert mdoGeoList;
+            List<MDO_Geography__c>mdoList=[select Id, name from MDO_Geography__c where id=:mdoGeoList[0].Id limit 1];
+            system.assertNotEquals(mdoList[0].Id,null,'mdo created'); 
+             system.debug('mdoList[0].Country_Name__c--> ' + mdoList[0].name);
             insert countryList;
-           
             
-            List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
+            
+            List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c, Country_Name__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
             system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
         }
+   
+        
     }
+    
     
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
-        
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+    public static void initializeTestMethodData(){
+  
+    Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         system.runAs(globalUser){
+            
             projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r )
-                              from IPM_Project__c where Name in:projectNameSet];
+            from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
            
             for(IPM_Project__c projectObj : projectListObj) {
@@ -164,7 +165,7 @@ public class IPM_GateCMIController_Test{
             System.assertEquals(cmicounList[0].Results__c,RESULT_STR,'cmi created');
             
             
-          
+            
             
             
             projectDocSecConListObj = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
@@ -183,9 +184,10 @@ public class IPM_GateCMIController_Test{
             
             
             ipmCmiControl=new IPM_GateCMIController();
-            
-        }
+    
+       }
     }
+
     
     
     /*************************************************************************************************************************
@@ -293,12 +295,17 @@ public class IPM_GateCMIController_Test{
             FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
             System.assertEquals(cmiListData[0].Country__c,'IND;abc','country value');
             gateCMICountry.Country__c='abc';
-            update gateCMICountry;
+            gateCMICountry.KPI__c='Salience/Attraction Matrix';
+            update gateCMICountry; 
+            ipmCmiControl.createCountryCMI();
+            List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT Id FROM IPM_Project_Document_Section_Content__c 
+            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];  
+            system.assertEquals(secColorList.isEmpty(),false,'record inserted');                                                  
             Test.stopTest();
         }
     }
     
-  
+
     
     /*************************************************************************************************************************
     * @description Running Test Script
@@ -318,6 +325,9 @@ public class IPM_GateCMIController_Test{
             List<IPM_Gate_CMI__c>cmiListData=[SELECT id,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
             FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
             System.assertEquals(cmiListData[0].IPM_Skip_Test_Reason__c,'reason','skip test');
+            ipmCmiControl.gateCMIId=docSec.Id;    
+            ipmCmiControl.updateSkipTestReason(); 
+            ipmCmiControl.skipTest();  
             test.stopTest();
         }
     }
@@ -335,20 +345,20 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.isSkip = true;
             ipmCmiControl.gateCMIId=gateCMICountry.Id;
             Map<String,IPM_CMI_Overall_Color_Mapping__c> overallColorMap=new Map<String,IPM_CMI_Overall_Color_Mapping__c>();  
-           // overallColorMap.put(RESULT_STR,overallColor);
+            
             ipmCmiControl.overallColorMapping=new Map<String,IPM_CMI_Overall_Color_Mapping__c>();
             ipmCmiControl.overallColorMapping=overallColorMap;
             ipmCmiControl.gateType=IPM_ConstantUtils.CONTRACT_GATE;
             ipmCmiControl.isEditActionStandard=true;
             
-            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
+            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true,docSec.Id);
             ipmCmiControl.isEditActionStandard=false;
-            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
+            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true,docSec.Id);
             ipmCmiControl.gateType=IPM_ConstantUtils.CHARTER_GATE;
             ipmCmiControl.isEditActionStandard=true;
-            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
+            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true,docSec.Id);
             ipmCmiControl.isEditActionStandard=false;
-            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
+            ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true,docSec.Id);
             List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result__c,IPM_CMI_Country__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Gate_Test__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
             FROM IPM_Project_Document_Section_Content__c 
             WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
@@ -377,6 +387,8 @@ public class IPM_GateCMIController_Test{
             List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT id,IPM_CMI_Country__c,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result_Timing__c,IPM_Gate_CMI__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c FROM IPM_Project_Document_Section_Content__c 
             WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
             System.assertEquals(secColorList[0].IPM_CMI_Country__c,COUNTRY_NAME_STR,'overall score test');
+            
+            
             test.stopTest();
         }
     }
@@ -417,6 +429,31 @@ public class IPM_GateCMIController_Test{
             WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
             System.assertEquals(secColorList.size(),0,'country deleted');
             Test.stopTest();
+        }
+        
+    }
+    /*************************************************************************************************************************
+    * @description Running Test Script
+    */
+    static testmethod void testUpdateCMI(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+            ipmCmiControl.projDocSecId=docSec.Id;
+            ipmCmiControl.secConId=projectDocSecConListObj.Id;
+            ipmCmiControl.projectId=project.Id;
+            ipmCmiControl.isSkip = true;
+            ipmCmiControl.countryNameStr=COUNTRY_NAME_STR;
+            ipmCmiControl.gateCMIId=gateCMICountry.Id;
+            ipmCmiControl.updateResultTiming();
+            ipmCmiControl.isEditActionStandard=false;
+            ipmCmiControl.isComment=false;
+            ipmCmiControl.updateCMI();
+            List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT id,IPM_CMI_Country__c,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result_Timing__c,IPM_Gate_CMI__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c FROM IPM_Project_Document_Section_Content__c 
+            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
+            System.assertEquals(secColorList[0].IPM_CMI_Country__c,COUNTRY_NAME_STR,'update score test');
+            
+            test.stopTest();
         }
     }
     

@@ -651,12 +651,25 @@
         left: 51px;
         margin-left: 7px;
     }
-    .btext {
-        color: #0084C7;
-        font-size: 12px;
-        font-weight: bold;
-        width: 170px;
-    }
+   .btext {
+		color: #666;
+		font-size: 12px;
+		font-weight: normal;
+		text-indent: -5px;
+		width: 170px;
+		display: block;
+		background: #FFF372;
+		padding: 10px;
+		margin-right: 17px;
+		margin-top: -3px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+	.btext .btm2 {
+		margin-left: 15px;
+		width: 16px;
+		float: left;
+	}	
     .ipmCheckbox label {
         top: 2px;
     }

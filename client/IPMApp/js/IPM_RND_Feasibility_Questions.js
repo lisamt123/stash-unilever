@@ -34,7 +34,11 @@ jq(s).each(function() {
              var pointer = ui.value - 1;
              jq('#s' + itemsRnd.indexOf(RnD)+1).prop('checked', true);
              score = itemsRnd[pointer];
-         }
+         },
+		 slide: function( event, ui ) {
+			jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+			jq(this).find(".legendSld label").eq(ui.value -1).click();
+		}
      });
 	 
 	 if (RnD == IPMAppRNDfq.yes) {             

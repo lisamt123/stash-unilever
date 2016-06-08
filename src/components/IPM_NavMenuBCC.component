@@ -23,10 +23,12 @@
                           <span>{!$Label.IPM_Essentials}<div class="caret"></div></span>
                         </a>
                     <ul class="dropdown-menu" role="menu">
-                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECTS} {!$Label.IPM_Parameters}</span></a></li>
+                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECT} {!$Label.IPM_Parameters}</span></a></li>
+                   <!-- Below rendered is used to enable navigation to rolloutplan for global -->
                     <apex:outputPanel rendered="{!projSpan='Global'}">
                     <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlans}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
                     </apex:outputPanel>
+                   <!-- Below rendered is used to enable navigation to rolloutplan for regional -->
                     <apex:outputPanel rendered="{!projSpan='Regional'}">
                     <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlansRegional}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
                     </apex:outputPanel>

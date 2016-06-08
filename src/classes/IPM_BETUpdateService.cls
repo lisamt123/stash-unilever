@@ -5,8 +5,8 @@
 **/
 
 /*
-    This class has been defined as Without Sharing as its methods would be invoked via BET service methods which needs 
-    access to all related IPM and MDO data irrespective of sharing.
+     This class has been defined as Without Sharing as the methods are invoked via BET Integration service methods which needs to 
+     access  all related IPM data related to a particular BET.
 */
     
 public without sharing class IPM_BETUpdateService{ 
@@ -146,6 +146,7 @@ public without sharing class IPM_BETUpdateService{
             project.bet__c = betId;
             update project;
         }catch(Exception ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETUpdateService.class.getName(),'updateBETLink',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, ex.getStackTraceString(), null, null) ;
             throw new IPM_CustomException(ex.getMessage());     
         }
     }
@@ -164,6 +165,7 @@ public without sharing class IPM_BETUpdateService{
                 update lstProj;
             }
         }catch(Exception ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETUpdateService.class.getName(),'updateBETMemberRequest',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, ex.getStackTraceString(), null, null) ;
             throw new IPM_CustomException(ex.getMessage());     
         }
     }

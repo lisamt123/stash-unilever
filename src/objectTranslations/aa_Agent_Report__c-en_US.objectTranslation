@@ -105,6 +105,10 @@
             <translation><!-- Brand Building --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Counterfeit</masterLabel>
+            <translation><!-- Counterfeit --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Look-a-like</masterLabel>
             <translation><!-- Look-a-like --></translation>
         </picklistValues>

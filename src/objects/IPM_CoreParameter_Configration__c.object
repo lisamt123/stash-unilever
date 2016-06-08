@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
+    <description>This custom setting is used to configure core parameter screen wizard and core parameter landing page.</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>IPM_Additional_Parameters__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether additional parameter is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>Additional Parameters</label>
         <trackTrending>false</trackTrending>
@@ -13,6 +16,7 @@
     <fields>
         <fullName>IPM_BET__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether BET is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>BET</label>
         <trackTrending>false</trackTrending>
@@ -21,7 +25,7 @@
     <fields>
         <fullName>IPM_CPV__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Customer place values</description>
+        <description>Store customer place values</description>
         <externalId>false</externalId>
         <label>CPV</label>
         <trackTrending>false</trackTrending>
@@ -30,6 +34,7 @@
     <fields>
         <fullName>IPM_CVP__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To Be Deleted</description>
         <externalId>false</externalId>
         <label>CVP</label>
         <trackTrending>false</trackTrending>
@@ -38,6 +43,7 @@
     <fields>
         <fullName>IPM_ET__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether enable technology is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>ET</label>
         <trackTrending>false</trackTrending>
@@ -46,6 +52,7 @@
     <fields>
         <fullName>IPM_FastTrack__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether fast track is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>FastTrack</label>
         <trackTrending>false</trackTrending>
@@ -53,7 +60,7 @@
     </fields>
     <fields>
         <fullName>IPM_Help_Text_Two__c</fullName>
-        <description>store help text</description>
+        <description>store strategic intent help text</description>
         <externalId>false</externalId>
         <label>Help Text Two</label>
         <length>255</length>
@@ -64,7 +71,7 @@
     </fields>
     <fields>
         <fullName>IPM_Help_Text__c</fullName>
-        <description>store help text</description>
+        <description>store strategic intent help text</description>
         <externalId>false</externalId>
         <label>Help Text</label>
         <length>255</length>
@@ -76,6 +83,7 @@
     <fields>
         <fullName>IPM_MPA__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether MPA is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>MPA</label>
         <trackTrending>false</trackTrending>
@@ -84,6 +92,7 @@
     <fields>
         <fullName>IPM_Strategic_Intent__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether strategic intent is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>Strategic Intent</label>
         <trackTrending>false</trackTrending>
@@ -92,6 +101,7 @@
     <fields>
         <fullName>IPM_WhiteSpace__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether white space is applicable for current project or not</description>
         <externalId>false</externalId>
         <label>WhiteSpace</label>
         <trackTrending>false</trackTrending>
@@ -99,6 +109,7 @@
     </fields>
     <fields>
         <fullName>Project_Type__c</fullName>
+        <description>store project type</description>
         <externalId>false</externalId>
         <label>Project Type</label>
         <length>80</length>
@@ -108,5 +119,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM CoreParameter Configration</label>
-    <visibility>Public</visibility>
 </CustomObject>

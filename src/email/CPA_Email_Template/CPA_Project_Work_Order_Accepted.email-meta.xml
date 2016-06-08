@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>35.0</apiVersion>
+    <available>true</available>
+    <description>SMT accepts the PWO.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CPA Project Work Order Accepted</name>
+    <style>none</style>
+    <subject>PWO with ID  is Accepted by</subject>
+    <type>visualforce</type>
+</EmailTemplate>

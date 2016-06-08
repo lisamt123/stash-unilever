@@ -199,6 +199,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Advisor_Correspondence_Display_Name__c</fullName>
+        <description>CEC: To capture the advisor correspondence display name. This will be used in email and letters,</description>
+        <externalId>false</externalId>
+        <label>Advisor Correspondence Display Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>CEC_User_Reference__c</fullName>
         <description>CEC - This field is used to contain reference text that can be filtered using a view on the user record to simplify the user creation process and reduce errors.</description>
         <externalId>false</externalId>
@@ -381,7 +392,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -626,6 +637,17 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Letter_Quality_Check_Percentage__c</fullName>
+        <description>CEC Letter Quality Check Percentage is used to assign quality percentages for advisor&apos;s which define what percentage of their thunderhead letters get send for quality check.</description>
+        <externalId>false</externalId>
+        <label>Letter Quality Check Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>MCO__c</fullName>
@@ -1466,6 +1488,66 @@
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Social Media</fullName>
+                <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Czech Republic</controllingFieldValues>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Hungary</controllingFieldValues>
+                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Poland</controllingFieldValues>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Solutions</fullName>
+                <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Czech Republic</controllingFieldValues>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Hungary</controllingFieldValues>
+                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Poland</controllingFieldValues>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food Solutions</fullName>
+                <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Czech Republic</controllingFieldValues>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Hungary</controllingFieldValues>
+                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Poland</controllingFieldValues>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1991,7 +2073,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -2172,6 +2254,16 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>SessionId__c</fullName>
+        <externalId>false</externalId>
+        <label>SessionId</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <listViews>
         <fullName>ActiveUsers</fullName>
         <columns>FULL_NAME</columns>
@@ -2290,82 +2382,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <sharedTo>
             <group>Admins</group>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_001</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>11/24/2014 12:00 AM</value>
-        </filters>
-        <filters>
-            <field>CREATED_BY_NAME</field>
-            <operation>equals</operation>
-            <value>Mahesh Kumar</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.EMAIL</field>
-            <operation>contains</operation>
-            <value>@careline-mail.eu</value>
-        </filters>
-        <label>CEC Upload 001</label>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_Activate</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Activate</value>
-        </filters>
-        <label>CEC Upload Activate</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_Admin</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Admin</value>
-        </filters>
-        <label>CEC Upload Admin</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>CEC_Upload_Content</fullName>
@@ -2629,12 +2645,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.USERS.ACTIVE</columns>
         <columns>CORE.PROFILE.NAME</columns>
-        <columns>CORE.USERS.SAML_SUBJECT</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.SAML_SUBJECT</field>
-            <operation>equals</operation>
-        </filters>
         <label>No Federation ID</label>
         <sharedTo>
             <group>Admins</group>
@@ -2674,6 +2685,28 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>OV_</value>
         </filters>
         <label>One View Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>PM_My_view</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>Function__c</columns>
+        <columns>Sub_Function__c</columns>
+        <columns>Person_Type__c</columns>
+        <columns>CORE.PROFILE.USERTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USER_ROLE.NAME</field>
+            <operation>contains</operation>
+            <value>North America</value>
+        </filters>
+        <label>PM: My view</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -2806,7 +2839,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <searchResultsAdditionalFields>CORE.USERS.TITLE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.PHONE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CORE.USER_ROLE.NAME</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
 </CustomObject>

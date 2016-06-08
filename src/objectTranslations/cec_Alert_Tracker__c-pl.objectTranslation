@@ -100,8 +100,8 @@
         <name>Rule_Type__c</name>
     </fields>
     <fields>
-        <label><!-- Trigger Email --></label>
-        <name>Trigger_Email__c</name>
+        <label><!-- Trigger Batch --></label>
+        <name>Trigger_Batch__c</name>
     </fields>
     <fields>
         <label><!-- Unique Id --></label>

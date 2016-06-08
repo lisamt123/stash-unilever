@@ -13,12 +13,14 @@
     <aura:attribute name="todoTime" type="Map" />
     <aura:attribute name="activityTimeToComplete" type="String" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="pagename" type="String" />
+    <aura:attribute name="index" type="Integer" />
     
     <!-- Event handlers -->
     <aura:registerEvent name="redirectToDetail" type="c:EA_Detailpage_Event" />
     <aura:handler name="updateLookupIdEvent" event="c:EA_UpdateLookupId_Event" action="{!c.handleIdUpdate}"/>
     <aura:handler name="clearLookupIdEvent" event="c:EA_ClearLookupId_Event" action="{!c.handleIdClear}"/>
-    
+    <aura:attribute name="showLoading" type="boolean" default="false"/>
     <style>
         .slds-lookup[data-select="multi"] {
         .slds-pill__container {
@@ -41,7 +43,23 @@
         width: 95%;
         margin-left: 2.5%;
         margin-top:1rem;
+        font-size:1.4rem;
         }
+        .slds .slds-fade-in-open {
+        background-color: black;
+        opacity: 0.5;
+        visibility: visible;
+        -webkit-transition: opacity 0.1s linear;
+        transition: opacity 0.1s linear;
+        }
+        .slds .slds-spinner--small {
+        width: 32px;
+        height: 32px;
+        margin-left: 40%;
+        }
+      .slds .slds-input {
+  			height: 30px;
+		}
     </style>
     <form aura:id="frm1">
         <div class="slds">
@@ -53,13 +71,12 @@
                     </aura:iteration>
                 </div>
                 <div class="section_f">
-                    <div class="rateTitle"><p class="para_inv">Everday Action can be even better when done with colleagues.</p></div>
+                    <div class="rateTitle"><p class="para_inv">Everday Action can be even better when done with colleagues!</p></div>
                     <div class="cTitle">Ask Someone	to join you:</div>
                     <!-- Lookup component -->
                     <c:EA_LookupSObject label="User" pluralLabel="Users" sObjectAPIName="User"
                                         listIconSVGPath="/resource/EA_StaticResource/assets/icons/standard-sprite/svg/symbols.svg#account"
                                         listIconClass="slds-icon-standard-account" selectedUsers="{!v.selectedUsers}" selectedItem="{!v.selectedItem}" maxLimit="{!v.maxLimit}" participantCount="{!v.participantCount}"/>
-                    
                     
                     <div  style="margin-top:10px;"></div>
                     <div class="cTitle">When would you like to do this?</div>
@@ -67,7 +84,7 @@
                         <ui:inputSelect aura:id="activityTime" change="{!c.onSelecteChange}" class="slds-select">
                             <aura:iteration items="{!v.todoTime}" var="todoT">
                                 <aura:if isTrue="{!todoT.Value == 'Today'}">
-                                	<ui:inputSelectOption text="{!todoT.Value}" label="{!todoT.Label}" value="true"/>
+                                	<ui:inputSelectOption text="{!todoT.Value}" class="uiInputSelectOption" label="{!todoT.Label}" value="true"/>
                                 </aura:if>
                                 <aura:if isTrue="{!todoT.Value != 'Today'}">
                                 	<ui:inputSelectOption text="{!todoT.Value}" label="{!todoT.Label}"/>
@@ -81,7 +98,15 @@
                 </div>
                 <div><button class="cancel_btn" onclick="{!c.skipToDoActivity}" >Cancel</button></div>
                 <div><button class="submitButton" onclick="{!c.callSubmitToDoActivity}" >Submit</button></div>
-
+				<aura:if isTrue="{!v.showLoading}">
+                    <div class="slds-modal slds-fade-in-open" aria-hidden="false" role="dialog" data-aura-rendered-by="1191:c">
+                        <div class="slds-modal__container" data-aura-rendered-by="1192:c">
+                     <div class="slds-spinner--small">
+                         <img src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif" alt="Loading..." />
+                    </div>
+                        </div>
+                    </div>
+                </aura:if>
             </div>
         </div>
     </form>

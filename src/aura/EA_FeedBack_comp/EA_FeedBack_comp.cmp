@@ -13,12 +13,28 @@
     <aura:attribute name="numbers" type="integer[]"/>
     <aura:attribute name="remain" type="integer[]" />
     <aura:attribute name="showrating" type="boolean" default="false"/>
-     <aura:attribute name="rateStars" type="integer[]" />
+    <aura:attribute name="rateStars" type="integer[]" />
     <aura:attribute name="showError" type="boolean" default="false"/>
-    
+    <aura:attribute name="showLoading" type="boolean" default="false"/>
+    <aura:attribute name="pagename" type="string"></aura:attribute>
+    <aura:attribute name="index" type="integer"></aura:attribute>
+    <aura:attribute name="pageIndex" type="integer"/>
+    <aura:attribute name="showmessage" type="boolean" default="false"/>
     <style>
         .spacer-pull-to-load-more{
         height:100% !important;
+        }
+        .slds .slds-fade-in-open {
+        background-color: black;
+        opacity: 0.5;
+        visibility: visible;
+        -webkit-transition: opacity 0.1s linear;
+        transition: opacity 0.1s linear;
+        }
+        .slds .slds-spinner--small {
+        width: 32px;
+        height: 32px;
+        margin-left: 40%;
         }
     </style>
     <div class="slds">
@@ -28,7 +44,12 @@
                 <div class="t-title_f"><h4><ui:outputText value="{!act.Name}"/></h4></div>
             </aura:iteration>		
         </div>
-        
+        <aura:if isTrue="{!v.showmessage}">
+            <ui:message title="Confirmation" severity="confirm" closable="true">
+              Your activity has been shared on your chatter wall.
+          </ui:message>
+
+        </aura:if>
         <div class="section_f">
             <aura:if isTrue="{!v.showrating}">
                 <div class="rateTitle">Rate this activity</div>
@@ -43,7 +64,7 @@
                         </aura:iteration>
                         
                         <aura:iteration var="rating1" items="{!v.remain}" indexVar="{!v.rateStars}">
-                            <span style="margin-left=12px;">
+                            <span>
                                 <img  value="{!rating1}"   data-index="{!v.rateStars}"  onclick="{!c.imageClick}" class="starunfill_f" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
                             </span>
                         </aura:iteration>
@@ -51,7 +72,7 @@
                     <aura:if isTrue="{!v.participant_rating ==undefined}">
                         <aura:iteration var="rating1" items="[1,2,3,4,5]"   indexVar="index2">
                             
-                            <span  style="margin-left=12px;">
+                            <span>
                                 <img  data-index="{!index2}" onclick="{!c.imageClick}"  value="{!rating1}" class="starunfill_f" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
                             </span>
                         </aura:iteration>
@@ -69,7 +90,17 @@
         </div>   
         <button class="cancel_btn" onclick="{!c.gotoDetail}">Cancel</button>
         <button id="btn" class="submitButton" onclick="{!c.submitFeedback1}">Submit</button>
+        <aura:if isTrue="{!v.showLoading}">
+            <div class="slds-modal slds-fade-in-open" aria-hidden="false" role="dialog" data-aura-rendered-by="1191:c">
+                <div class="slds-modal__container" data-aura-rendered-by="1192:c">
+       		 <div class="slds-spinner--small">
+ 				 <img src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif" alt="Loading..." />
+			</div>
+                </div>
+            </div>
+        </aura:if>
         
+            	
         
     </div>
 </aura:component>

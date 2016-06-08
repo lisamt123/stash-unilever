@@ -6,6 +6,7 @@
 *@Created Date: 06/01/2015  
 *********************************************************************************/
 var jq = jQuery.noConflict();
+jq.browser = {};
 jq(document).ready(function() {
     initSliderGk();
 });
@@ -29,7 +30,11 @@ function initSliderGk() {
                 var pointer = ui.value - 1;
                 jq('#s' + itemsGK.indexOf(answerGK) + 1).prop('checked', true);
                 score = itemsGK[pointer];
-            }
+            },
+			slide: function( event, ui ) {
+				jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+				jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
+			}
         });
         if (answerGK == IPMAppGKC.yes) {
             jq(this).find("label[for=s1]").css({
@@ -37,24 +42,30 @@ function initSliderGk() {
                 'font-weight': 'bold'
             });
         }
-        if (answerGK == IPMAppGKC.partly) {
+        else if (answerGK == IPMAppGKC.partly) {
             jq(this).find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        if (answerGK == IPMAppGKC.no) {
+        else if (answerGK == IPMAppGKC.no) {
             jq(this).find("label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        if (answerGK == IPMAppGKC.na) {
+        else if (answerGK == IPMAppGKC.na) {
             jq(this).find("label[for=s4]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
+		else {
+			jq(this).find("label[for=s0]").css({
+                'color': '#e98824',
+                'font-weight': 'bold'
+            });		
+		}
 
     });
     jq(".legendSld label").on("click", function() {

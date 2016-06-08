@@ -6,7 +6,7 @@
 /* Below script is to validate and display error message */
 var jq = jQuery.noConflict();
 jq("#errorMsg").hide();
-function Validate() {
+function validate() {
     if (jq("#dueDate").val() == null) {
         $("#errorMsg").show();
     }

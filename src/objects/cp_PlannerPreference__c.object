@@ -91,6 +91,15 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>CP_Event_Approvers_Queue_cp_PlannerPreference</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CP Event Approvers</label>
+        <queue>CP_Event_Approvers_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>PP-{000000}</displayFormat>
         <label>Preference Code</label>

@@ -201,7 +201,7 @@ global with sharing class BET_ManageMembersController {
     public PageReference doDelete(){
         System.debug('Entering doDelete : ' + selectedMemberId);
         uw_BET_Team_Member__c member = [select id,BET__c,Team_Member__c from uw_BET_Team_Member__c where id =:selectedMemberId];
-        delete member;
+        BET_ManageMembersService.deleteTeamMembers(new List<uw_BET_Team_Member__c> {member});
         BET_ManageMembersService.deleteRelatedMemberRequests(new List<uw_BET_Team_Member__c> {member},betId);
         BET_ManageMembersService.cleanUpSharesGroupsSubscriptions(new List<uw_BET_Team_Member__c> {member},bet);
         PageReference pr = BET_ManageMembersService.forward(betId);
@@ -227,7 +227,7 @@ global with sharing class BET_ManageMembersController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, Label.BET_Member_Requests_Not_Marked));  
             return null;
         }
-        delete membersToDelete;
+        BET_ManageMembersService.deleteTeamMembers(membersToDelete);
         BET_ManageMembersService.deleteRelatedMemberRequests(membersToDelete,betId);
         BET_ManageMembersService.cleanUpSharesGroupsSubscriptions(membersToDelete,bet);
         PageReference pr = BET_ManageMembersService.forward(betId);

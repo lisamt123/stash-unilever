@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-		<members>BET_ManageMembersController_Test2</members>
-		<members>BET_ManageMembersController_Test3</members>
-		<members>BET_BatchAssetStatusMapping</members>
-		<members>BET_BatchAssetStatusMapping_Test</members>
-		<members>BET_BatchBETStatusMapping</members>
-		<members>BET_BatchBETStatusMapping_Test</members>
-		<members>BET_BatchBrandDelete</members>
-		<members>BET_BatchBrandDelete_Test</members>
-		<members>BET_BatchBrandMapping</members>
-		<members>BET_BatchBrandMapping_Test</members>
-		<members>BET_BatchCategoryMapping</members>
-		<members>BET_BatchCategoryMapping_Test</members>
-		<members>BET_BatchCopyBrandValues</members>
-		<members>BET_BatchCopyBrandValues_Test</members>
-		<members>BET_BatchMediaChannel1Mapping</members>
-		<members>BET_BatchMediaChannel1Mapping_Test</members>
-		<members>BET_BatchOldAssetStatusMapping</members>
-		<members>BET_BatchOldAssetStatusMapping_Test</members>
-		<members>BET_BatchUpdateChatterGroupInfo</members>
-		<members>BET_BatchUpdateChatterGroupInfo_Test</members>
-		<members>BET_SoslFieldsBatch</members>
-		<members>BET_SoslFieldsBatch_Test</members>
-		<members>BET_PresentationBatch</members>
-		<members>BET_PresentationBatch_Test</members>
-		<members>BET_UpdateBrandKeywordSearch</members>
-		<members>BET_UpdateCategoryKeywordSearch</members>
-        <name>ApexClass</name>
-    </types>
 	<types>
-		<members>BET_UpdateBETSearch</members>
-		<members>uw_BET_before_delete</members>
-		<members>uw_BET_after_update</members>
-		<members>uw_BET_before_insert</members>
-		<members>BET_LogChanges</members>
-		<members>uw_BET_after_insert</members>
-		<members>uw_Asset_AfterInsertAfterUpdate</members>
-        <name>ApexTrigger</name>
+		<members>af_usersearch</members>
+		<members>af_SendCurrencyReminder</members>
+		<members>AFBrandEstimateStCtrlExtSummary</members>
+		<members>checkRecursive</members>
+		<members>checkRecursiveBonusQuarterly</members>
+		<members>checkRecursivePOReport</members>
+		<members>AgencyHomePageController</members>
+		<name>ApexClass</name>
     </types>
-</Package>
+	</Package>

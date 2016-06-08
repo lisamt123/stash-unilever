@@ -42,7 +42,11 @@ function initSliderOTIF() {
                     var pointer = ui.value - 1;
                     jq('#s' + itemsGK.indexOf(answer)+1).prop('checked', true);
                     score = itemsGK[pointer];
-                }
+                },
+				slide: function( event, ui ) {
+					jq('label', ".legendSld").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+					jq('label', ".legendSld").eq(ui.value -1).click();
+				}
             });
 			
 		if (answer == IPMAppOTT.green) {            
@@ -84,7 +88,11 @@ function initSliderOTIF() {
                     var pointer = ui.value - 1;
                     jq('#s' + itemsGK3.indexOf(answer)+1).prop('checked', true);
                     score = itemsGK3[pointer];
-                }
+                },
+				slide: function( event, ui ) {
+					jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+					jq(this).find(".legendSld label").eq(ui.value -1).click();
+				}
             });
 
 		if (answer == IPMAppOTT.green) { 

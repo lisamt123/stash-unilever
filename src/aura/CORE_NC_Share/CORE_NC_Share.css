@@ -1,0 +1,8 @@
+/*add spaceing in the top for the first button*/
+.THIS .smallSpaceing{
+    padding-top:50px;
+}
+/*add spaceing in the last button top*/
+.THIS .largeSpaceing{
+    padding-top:100px;
+}

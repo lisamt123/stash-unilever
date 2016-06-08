@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Used as the background tile for Math &amp; Analytics</description>
+    <internalUseOnly>true</internalUseOnly>
+    <keywords>Math, Analytics</keywords>
+    <name>Math &amp; Analytics Pillar Tile</name>
+    <public>false</public>
+</Document>

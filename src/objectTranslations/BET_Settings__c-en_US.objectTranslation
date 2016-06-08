@@ -9,6 +9,10 @@
         <value>BET_Settings</value>
     </caseValues>
     <fields>
+        <label><!-- FollowRequestAutoApproved --></label>
+        <name>FollowRequestAutoApproved__c</name>
+    </fields>
+    <fields>
         <label><!-- HelpChatterGroupId --></label>
         <name>HelpChatterGroupId__c</name>
     </fields>

@@ -8,9 +8,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     
     Public Map<String, IPM_BET_Search_Fields__c> betCustomSettings = IPM_BET_Search_Fields__c.getAll();
     Public List<String> dataSetNames= new List<String>();
-    Public  List<String> columnLabels{get{if(columnLabels==null) checkLabel();return columnLabels; } private set;}
-    Public  List<String> classProperties {get{if(classProperties==null) checkLabel();return classProperties ; } private set;}
-    Public  Map<String,boolean> classPropertiesMap {get{if(classPropertiesMap==null) checkLabel();return classPropertiesMap ; } private set;}
+    Public  List<String> columnLabels{get{if(columnLabels==null){ checkLabel();} return columnLabels; } private set;}
+    Public  List<String> classProperties {get{if(classProperties==null) {checkLabel();} return classProperties ; } private set;}
+    Public  Map<String,boolean> classPropertiesMap {get{if(classPropertiesMap==null) {checkLabel();} return classPropertiesMap ; } private set;}
     Public void checkLabel(){
         dataSetNames.addAll(betCustomSettings.keySet());
         dataSetNames.sort();
@@ -26,6 +26,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     }
     // Boolean to control rendering of BET Search Component
     public boolean bLinkBET {get;set;}
+    //Variable to store reset BET options
+    public string resetBEToption;
     
     //*@description: store project id from url parameter
     public string ProjectID{get;set;}
@@ -130,10 +132,13 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public String searchstring{get;set;}
     public string betId{get;set;}
     public string betName{get;set;}
+    public boolean isEmptySearchResult {get { if(isEmptySearchResult==null) { isEmptySearchResult  =false;} return isEmptySearchResult ;} set;}
     Public List<IPM_BET_BETWrapper> searchresultBet{
         get{
             if(searchresultBet==null)
+            {
                 searchresultBet=new List<IPM_BET_BETWrapper>();
+            }
                 return searchresultBet;
         } 
         set;    
@@ -152,6 +157,10 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
         update updateProj ;             
         projbetlink = '';
+        betId = '';
+        IPM_Coreparameter.BET_Link_Requested__c=null;
+        IPM_Coreparameter.BET_Link_Requested_on_Date__c=null;
+        IPM_Coreparameter.BET__c = null;
         return null;
     } 
     /****************************************************************************
@@ -170,7 +179,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 categoryId = lstCat[0].id;  
             }
         }
-        List<BET_BETWrapper> searchBet =BET_BETService.searchBet(searchstring,categoryId,null);
+        List<BET_BETWrapper> searchBet = new List<BET_BETWrapper>();
+        searchBet = BET_BETService.searchBet(searchstring,categoryId,null);
         for (BET_BETWrapper bw : searchBet ){
             if(!bw.isArchived){
                 betWapMap.put(bw.betId ,bw);
@@ -178,12 +188,18 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 setBrandPosIds.add(bw.brandPosition);
             }
         }
+        if(searchBet.isEmpty()){
+            isEmptySearchResult = true;
+        }
+        else{
+            isEmptySearchResult = false;
+        }
         
         
         if(!setOwnerIds.isEmpty()){
             mapIdOwner= new map<id, string>();
             for(user usr : [select id, firstname, lastName from user where id in :setOwnerIds LIMIT 1000]){
-                mapIdOwner.put(usr.id,usr.firstname+' '+usr.LastName);      
+                mapIdOwner.put(usr.id,(usr.firstname!=null?usr.firstname+' ':'')+usr.LastName);      
             }
         }
         if(!setBrandPosIds.isEmpty()){
@@ -202,8 +218,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             }
             searchresultBet.add(temp);
         }
-        
-   
     } 
     /**BET Search related Changes: End**/
     /****************************************************************************
@@ -212,12 +226,14 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public ipm_Coreparameters (){
         
         // call utility class to save having to do this multiple times in multiple places
+        super();
         IPM_IECompatible.ieFix();    
         initialise();
         bLinkBET = true;
         If(IPM_Coreparameter!=null && (IPM_Coreparameter.BET_Link_Requested__c!=null || String.isNotBlank(IPM_Coreparameter.BET__c))){
             bLinkBET = false;
-        }      
+        }
+        resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
     }
     @TestVisible private  void initialise(){
         isEditCoreparameter=false;
@@ -287,13 +303,23 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         getcoreparameterHelps();                   
         getAllQuestions();
         getCoreStrategicIntent();
-        getIpmuserType();
+        if(project!=null && !project.Is_Archieved__c){
+            getIpmuserType();   
+        }
         getCategoryValue();
         getsubsector();
         getMarket();
         getStrategicGraph();
         betValue();
         getAccessonPage();
+        //Reset BET option for eligible IPM Projects
+        if(string.isNotBlank(resetBEToption) && IPM_Coreparameter.BET_Link_Requested__c==null && IPM_Coreparameter.BET__c==null){
+            IPM_Coreparameter.IPM_BET_Toolkit__c = resetBEToption;  
+        }
+        searchstring = '';
+        searchresultBet.clear();
+        betId = '';
+        
     }
     /****************************************************************************
     @Description :Method to get core parameter configuration
@@ -473,7 +499,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             market_STR=IPM_Coreparameter.IPM_Market__c;
             subSector_STR=IPM_Coreparameter.IPM_Sub_sector__c;
             betValue_STR=IPM_Coreparameter.IPM_BET_Toolkit__c;
-            if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c)){
+            if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) ){
                 isOriginal=true;
             }
             
@@ -486,13 +512,17 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(String.isNotBlank(betId) && betId!=IPM_Coreparameter.BET_Link_Requested__c){
             IPM_Coreparameter.BET_Link_Requested__c=betId;
             IPM_Coreparameter.BET_Link_Requested_on_Date__c=system.now();
-            BET_LinkingService.follow(projectid,betId,new list<id> {IPM_Coreparameter.IPM_Project_Leader__c,IPM_Coreparameter.Deputy_Project_Leader__c});
+            if(!IPM_ConstantUtils.PHASE_IDEAS.equals(IPM_Coreparameter.IPM_Phase__c)){
+                BET_LinkingService.follow(projectid,betId,new list<id> {IPM_Coreparameter.IPM_Project_Leader__c,IPM_Coreparameter.Deputy_Project_Leader__c});
+            }
         }
         IPM_Coreparameter.IPM_Market__c=market_STR;
         IPM_Coreparameter.IPM_Sub_sector__c=subSector_STR;
         //IPM_Coreparameter.IPM_BET_Toolkit__c=betValue_STR; 
         isThresholdSaved =true;
         updateCoreParameter();
+        //Update Reset BET option upon save
+        resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
     }
         
     /****************************************************************************
@@ -770,7 +800,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
         if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && 
         !((IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
-            ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c)
+            ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)
             ))){
             isEditCoreparam=true;
             isAdditionalPara=true;
@@ -814,6 +844,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public string OwnerName{get;set;}
     //Name of Brand POsition
     public string brandPos{get;set;}
+    //Date of launch
+    public Datetime targetLaunchDate{get;set;}
     Public IPM_BET_BETWrapper(BET_BETWrapper bw){
     this.betId=bw.betId;
     this.betName = bw.betName;
@@ -828,6 +860,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     this.category = bw.category;
     this.brandPosition = bw.brandPosition;
     this.brand = bw.brand;
+    this.targetLaunchDate = bw.targetLaunchDate;
     }
     }
 }

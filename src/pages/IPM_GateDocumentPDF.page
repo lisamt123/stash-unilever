@@ -4,7 +4,7 @@
     <style type="text/css" media="print">
     
         @page { 
-            margin-top: 25mm; 
+            margin-top: 30mm; 
             margin-bottom: 30mm;          
             margin-left: 0mm; 
             margin-right: 0mm;     
@@ -43,7 +43,18 @@
                  background-position: 20px 40px;
              }
         }
-         body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);}
+        *
+        {
+           font-size:10px !important;
+        }
+        table tr th, 
+        table tr td, 
+        table thead tr th,
+        table tbody tr th,
+        {
+           font-size:10px !important
+        }
+         body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
          table td {text-align:left; vertical-align:top;}
          .bold {font-weight: bold; font-family: sans-serif;}
          .header {margin-left:5mm!important; margin-right:5mm!important; margin-top:5mm!important; margin-bottom:5mm!important;}
@@ -64,8 +75,9 @@
         #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:10mm !important;float:left;}
         .headSecBlock {display:inline-block; padding-left:8px; text-transform:uppercase; padding-right:8px; margin-top:6px; color:#555!important; border-left:0.25pt solid #a8a8a8!important; }        
         .headSecBlock.smallText {font-size:9pt!important;font-weight:normal;} 
-        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/globe.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
-        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/icoLocal.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
+        .headSecBlock.operational{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
          h5 {font-size:13px!important;}        
         .projLogo{width:100%!important;}        
         .floatLeft{float:left;}
@@ -109,7 +121,7 @@
         .ipmTable.table{border-left:none; border-right:none;}
         .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
         .ipmTable>thead>tr>th, .ipmTable>tbody>tr>th, .ipmTable>tfoot>tr>th, .ipmTable>thead>tr>td, .ipmTable>tbody>tr>td, .ipmTable>tfoot>tr>td{border-left:none; border-right:none;border-top:0.5pt #9ab4b1 solid;border-bottom:none;}
-        .ipmTable.table-bordered{border-top: 0.5pt solid #7fa19e;border-bottom: 0.5pt solid #7fa19e;}
+       .ipmTable.table-bordered{border-top: 0.5pt solid #7fa19e;border-bottom: 0.5pt solid #7fa19e;}
         .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{height: 40px;padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
         .table>thead>tr>td>a, .table>tbody>tr>td a, .table>tfoot>tr>td>a{color:#428bca; text-decoration: none;word-break: break-word;}
         .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 9px 5px;vertical-align: middle;}
@@ -138,7 +150,7 @@
         /* Customer Channel Styles*/
         #upImg .modal-body{padding:0;}
         .customerSelect{padding: 5px 5px;background:#fff;border: 0.5pt solid #dddddd;}
-        .selectBackground{padding:10px 15px;background:#f5f5f5;}
+       .selectBackground{padding:10px 15px;background:#f5f5f5;}
         .listContainer{border:0.5pt solid #636363; margin-bottom:15px;}
         .noPadleft{padding-left:0px !important;}
         .noPadright{padding-right:0px !important;}
@@ -180,10 +192,10 @@
         .col-sm-1{width:10px;}
         .clearfix{clear:both !important;}
         
-        .Red{max-width:40px;background:#81bf42;color:#fff;text-align:center;font-size:10px;}
-        .Green{max-width:40px;background:#81bf42;color:#fff;text-align:center;font-size:10px; background: #81bf42;}
-        .Amber{max-width:40px;background:#81bf42;color:#fff;text-align:center;font-size:10px; background: #f1993e;}
-        .Not.Apllicable{max-width:60px;background:#81bf42;color:#fff;text-align:center;font-size:10px;background: orange;}
+        .Red{max-width:40px;background:#fe0000;color:#fff;text-align:center;font-size:10px;}
+        .Green{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #81bf42;}
+        .Amber{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #f1993e;}
+        .Not.Apllicable{max-width:60px;color:#fff;text-align:center;font-size:10px;background: orange;}
         .pageTitle{border-right:0px !important;}
         .colHeight{height:20px;}
         .noteimg .icoButton {display: inline-block;width: 15px;cursor: text;margin: 2px 6px -9px 0px; height: 30px;float:left; }
@@ -213,7 +225,7 @@
        .col-sm-4 .fintable{padding-right:10px;}
          tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
         .ipmFinancetable thead th{width:100%;background-color:#dceefa;border: 0.5pt #ddd solid;padding: 9px 5px;vertical-align: middle;  }
-        .ipmFinancetable tr{height:35px;}
+       .ipmFinancetable tr{height:35px;}
         .finproject{font-weight:bold !important;font-size:15px;color:#3b516d !important;}
         .fintotal{font-weight:Bold;font-size:19px;color:#253b78;line-height:22px;}
         .fintable td{font-size:15px;color:#364354 !important;}
@@ -333,6 +345,7 @@
         .threshold{display:block;}
         
         /* consumer evidence styles */
+.consumerContainer{clear:both;}
         .ceContainer{border:1px solid #ddd;margin-bottom:20px;margin-top:20px;}
         .cevidenceborder{border-bottom: 3px solid #E8E848;padding: 10px 15px;float:left;width:100%;clear: both;margin-top:30px;}
         .evidenceType{color: #344356;font-size: 1.2em;font-weight: bold;margin-left: 20px;}
@@ -342,8 +355,8 @@
         .consumerContainer .uploadImage img {  max-width: 100%;height:100%;}
         .consumerContainer .uploadImage {width: 60px;height: 50px;}
         .ceImage{margin-right: 20px;  float: left;  margin-left: 20px;margin-bottom:10px;clear: both;}
-        .ceInfoContainer{  float: left;  margin-bottom: 10px;width:100%;clear:both;}
-        .ceCommentBox{float:left;margin:0px 20px;width: 58%;}
+        .ceInfoContainer{margin-bottom: 10px;width:100%;clear:both;}
+        .ceCommentBox{float:left;margin:0px 20px;width: 97%;clear:both;}
         .ceCommentBox textarea{  width: 100%;  height: 90px;  border-radius: 2px;  border: 1px solid #A8A8A8;}
         .conceptLink{font-weight: bold;cursor: pointer;color: #027DC1;  margin-right: 10px;  margin-top: 5px;}
         .ceImgDel{position: absolute;  bottom: 96px;  left: 47px;}
@@ -368,40 +381,142 @@
         
         .noOfCu{width:100%;}
         .altBGcolor{width:100%;float:none !important;}
+.cusText{display:block;}
+      
+        
+        /* Assortment Styles */
+ 
+        .viewassortpriority {display: block;font-weight: 700;}
+ 
+        .viewDistribType, .viewDataPeriod {margin-right: 10px;font-weight: 700;}
+ 
+        .cmiGateSectionTable{width:100%;}
         
         /* ===CMI GATE SECTION STYLES=== */
-        .cmiCountryHead{width:5%;padding-right:5px;padding-left: 5px;}
-        .cmiInputHead{width:10%;padding-right: 5px;padding-left: 5px;}
-        .cmiTimingHead{width:10%;padding-right: 5px;padding-left: 5px;}
-        .cmiResultsHead{width:22%;padding-right: 5px;padding-left: 5px;}
-        .cmiResfirst{width:7%;padding-right: 5px;padding-left: 5px;}
-        .cmiRessecond{width:8%;padding-right: 5px;padding-left: 5px;}
-        .cmiOverallHead{width:12%;padding-right: 5px;padding-left: 5px;border-right:0px !important;}
-        .cmiCommentsHead{width:10%;padding-right:5px;padding-left: 10px;}
-        .ovrAllHeadText{margin-right:5px;}
-        .cmiContractInputHead{width:17%;}
-        .cmiContractTimingHead{width:17%;}
-        .cmiContractCountryHead{width:10%;min-width: 78px;padding-left: 5px;}
-        .cmiContractResultsHead{width:46%;}
-        .cmiRessecond span.CMILGreen,.cmiRessecond span.CMIRed,.cmiRessecond span.CMIAmber,.cmiRessecond span.CMIPink,.cmiRessecond span.CMIGreen{width:20px !important;height:20px;padding:5px;text-align:center;}
-        .cmiOverallHead span.CMILGreen,.cmiOverallHead span.CMIRed,.cmiOverallHead span.CMIAmber,.cmiOverallHead span.CMIPink,.cmiOverallHead span.CMIGreen{width:auto !important;height:auto;padding:5px;text-align:center;}
-        .rSpan{border-right:1px solid #ddd !important;}
-        .cmitdNopadding{padding-top:0px !important;padding-bottom:0px !important;padding-left:0px !important;}
-        .gateCmiInnerTable tbody td{border-right:1px solid #ddd !important;border-bottom: 1px solid #ddd !important;}
-        .gateCmiInnerTable tbody tr td .cmiContractCountryHead:last-child{border-bottom:0px !important;}
-        .cmiGateSectionTable>thead>tr>th{width:10% !important;font-size:9pt !important;}
-        .cmiGateSectionTable>thead>tr>th>div{border-right:0px !important;}
-        .cmiGateSectionTable{margin-top:10px;}
-        .gateCMITable {width:100%;margin-left: 0px;}
-        .cmiGateSectionTable tbody tr td{font-size:9pt !important;}
-        .cmiGateSectionTable>thead{background:#000 !important;}
-        .gateCmiInnerTable th{font-size:9pt !important;color: #3b516d;}
-        .cmiGateSectionTable .gateCmiTitle{background: #f3ffe7 !important;border-top: 1px #9ab4b1 solid;padding:2px;font-size:9pt !important;}
-               
+        .cmiTabHeader{font-size:9px;color: #3b516d;font-weight: bold;padding: 5px;}
+        .cmiHeaderHolder{border-top: 1px solid #7fa19e;width:100%;background: #f2f8fc;min-height:50px;margin-top: 10px;border-bottom: 0.5pt #9ab4b1 solid;}
+        .cmiGateName{width:100%;background: #f3ffe7;padding:5px;display:table;border-bottom: 0.5pt solid #ddd;}
+        .cmiTabContainer{width:100%;}
+        .cmiValue{padding:5px;font-size: 9px;min-height: 45px;}
+        .cmiTimingValue{width:43px;padding:3px;maring-top:40px;font-size: 9px;}
+        .elemWidth{width:60px;}
+        .testValWidth{width:50px;display:table-cell;}
+        .kpiWidth{width:90px;display:table-cell;}
+        .cmiRenBlock{width:100%;border-bottom: 0.5pt solid #ddd;}
+        .cmiActionStnds{width:117px;}
+        .cmiChrtrResWidth{width:120px;}
+        .cmiActionOvrall{width: 42px;}
+        .cmiConResOvrall{width: 70px;}
+        .cmiResultsOvrall{width: 40px;}
+        .cmiComments{width: 140px;}
+        .cmiConComments{width: 40px;}
+        .cmiCountryWidth{width: 45px;}
+        .cmiValContainer{width:100%;}
+        .charterCmiTable{clear:both;width:100%;}
+        .mainCmiTable{width:100%;clear:both;margin-top:20px;display:table;}
+        .cmiColumnTitle{display:block;float:left;padding: 5px;}
+        .cmiColumnDesc {text-align: center;width: 85%;display: inline-block;float: left;padding: 5px;}
+        .cmiCountryValue{width: 45px;padding:5px;font-size: 9px;display:block;}
+        .cmiInputVal{display:block;height:100%;padding:3px;font-size: 9px;min-height: 54px;border-bottom:0.5pt solid #ccc;}
+        .cmiCntryContainer{float:left;clear:both;}
+        .cmiTimingHead{width:43px;}
+        .cmiInputHead{width:53px;}
+        .cmiInputContainer{width:66px;}
+        .cmiActOvrValContainer{font-size: 9px;width: 55px;padding-bottom: 5px;}
+        .cmiChrtrLeftValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiChrtrRightValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiRightClrBox{display:block;}
+        .cmiConRes1{display:block;width:30px;border-right: 1px solid #ddd;font-size: 11px;min-height: 50px;}
+        .cmiConRes2{display:block;width:45px;border-right: 1px solid #ddd;font-size: 11px;min-height: 50px;}
+        .cmiConResValue1{display:block;font-size: 8px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiConResValue2{display:block;font-size: 8px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiConResHeader{width:75px;}
+        .cmichrtrOvrallClr{display:block;width:80px;font-size: 8px;min-height: 45px;}
+        .cmiconOvrallClr{display:block;width:48px;font-size: 8px;min-height: 45px;}
+        .cmiChrtrRightValue .CMIRed,.cmiChrtrRightValue .CMIGreen,.cmiChrtrRightValue .CMIAmber,.cmiChrtrRightValue .CMILGreen{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:2px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+        .CMIRed,.CMIGreen,.CMIAmber,.CMILGreen{margin-top:5px;margin-left:3px !important;margin-right:2px !important;padding:2px !important;color:#fff;}
+        .cmiCommentsValue{width:45px;display:block;font-size: 9px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiChrtrComment{width:146px !important;}
+        .CMIRed{background-color:#FF0000;}
+        .CMIGreen{background-color:#4F6228;}
+        .CMIAmber{background-color:#FFC000;}
+        .CMILGreen{background-color:#C4D79B;}
+        .cmiRightContainer{border-bottom: 0.5pt solid #ddd;height:100%;width: 532px;clear:both;}
+        .cmiLeftContainer{height:100%;width:230px;}
+        .cmiTabRight{border-left:1px solid #ccc;width:500px;}
+        .cmiTimeContainer2,.cmiChrtrResMcontainer,.cmiConResContainer,.cmiCommentsContainer{border-left:0.5pt solid #ccc;}
+        .cpart2{display:table-cell;border-right:0.5pt solid #ccc;}
+        .cmiTimeContainer1{display:table-cell;}
+        .cpart1{display:table-cell;}
+        .cmiRes1Container .cmiChrtrLeftValue:first-child,.cmiRes2Container .cmiChrtrRightValue:first-child{border-bottom:0.5pt solid #ccc;}
+
+        .ipmFintableAlign .finproject,.ipmFintableAlign tr.fintleblubg div,.ipmFintableAlign tr td.fintleblubg div{font-size:10px !important;}
+        .ipmFintableAlign tr td.fintleblubg div{padding-left:10px;}
+        
+        td.bggray:first-child 
+        {
+           width:27.5%
+        } 
+        
+        td.bggray:first-child + td
+        {
+           width:16.5%
+        } 
+        td.bggray:first-child + td +td
+        {
+           width:55%
+        }
+        .riskCustBackground
+        {
+            background: #dceefa;
+            color: #3b516d;
+            font-weight: bold;
+            padding:8px 0;
+            border-top:#9ab4b1 solid 1px;
+            border-bottom:#9ab4b1 solid 3px;      
+        }
+.noMargin .ipmAcrdnExpand:first-child
+ 
+        {
+ 
+           background-color:red
+ 
+        }
+ 
+        .Consumer_Evidence_Concept
+ 
+        {
+ 
+           clear:both
+ 
+        }
+        .ceContainer
+        {
+ 
+           clear:both !important;
+        }
+        .ipmFinancetable tbody tr td
+        {
+            font-size:10px
+        }
+        .htmlDetailElementTable
+        {
+           clear:both;
+        }
+        .ceCommentBox
+        {
+           width:78%;
+          float:right;
+        }
+         .consumerImgContainer
+        {
+           min-height:160px;
+           display:block;
+        }
     </style>
 </head>
 <body class="docBody">
- <apex:form >
+<apex:form >
         <apex:outPutpanel rendered="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Document_Status__c='Proposed'), 'false', 'true')}">
             <img alt="Draft" src="{!URLFOR($Resource.IPM_Resource, 'images/draft-wm.png')}" class="waterMark"/>
         </apex:outPutpanel>
@@ -422,7 +537,8 @@
                 </td>
                 <td align="center">        
                 <apex:outputText value="{!projectDoc.IPM_GateDocuments__c }" styleClass="headSecBlock bold"/>
-                <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>    
+                <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>
+                 <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock operational"  rendered="{!project.IPM_Project_Type__c='Operational'}"/>    
                 <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock local"  rendered="{!project.IPM_Project_Type__c='Rollout'}"/>
                 <apex:outPutpanel rendered="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Document_Status__c='Proposed'), 'true', 'false')}">
                     <div class="headSecBlock bold">{!projectDoc.IPM_Document_Status__c}</div>
@@ -493,7 +609,7 @@
                         <apex:outputText value="{!project.IPM_Strategic_Intent__c}"/>
                     </td>
                     <td class="label">
-                        {!$Label.IPM_Gatekeeper}{!$Label.IPM_COLON}
+                       {!$Label.IPM_Gatekeeper}{!$Label.IPM_COLON}
                     </td>      
                     <td>                    
                          <apex:outputText value="{!project.IPM_Project_Gatekeeper__r.Name}"/>
@@ -502,27 +618,20 @@
                         {!$Label.IPM_BusinessImpact}{!$Label.IPM_COLON}
                     </td> 
                   
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
+                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
                     <td>
-                        <apex:outputText value="{!globalbusinessImpactStr}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>
                     </td>
                     </apex:outputText>
-                 
-                    
-                    
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
-                    <td>
-                        <apex:outputText value="{!globalbusinessImpactStr}"/>
-                    </td>
+                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
+	                   <td>
+							<apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finLocal.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>	
+					   </td>
                     </apex:outputText>
-                    
-                    
-
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
-                    <td>
-                        <apex:outputText value="{!globalbusinessImpactStr}"/>}
-                    </td>
-                 
+                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
+	                    <td>
+	                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finRegional.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>
+	                    </td>
                     </apex:outputText>
                     
                 </tr>
@@ -532,7 +641,7 @@
                         {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                     </td>      
                     <td>                   
-                        <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
+                        <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
                     </td>
                     <td class="label">
                         {!$Label.IPM_PROJECT_ROUTE_COLON}
@@ -545,23 +654,22 @@
                     </td>
                     
                     
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
+                     <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                     <td>
-                        <apex:outputText value="{!fin.Year_3_iTO_Global__c}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                       
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
+                       <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
                     <td>
-                        <apex:outputText value="{!fin.Year_3_iTO_Local__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                    
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
-                  
-                    
                    
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
+                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
                     <td>
-                        <apex:outputText value="{!fin.Year_3_iTO_Regional__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                    
@@ -578,7 +686,7 @@
                         {!$Label.IPM_FIRST_COUNTRY_TO_LAUNCH}
                     </td>      
                     <td>
-                        <apex:outputText value="{!country.MCO_Name__c}"/>
+                        <apex:outputText value="{!if(country.MCO_Name__c=='','N/A',country.MCO_Name__c)}"/>
                     </td>
                     <td class="label">
                         {!$Label.IPM_FAST_TRACK_COLON}
@@ -614,8 +722,20 @@
                         </td>
                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                             <td>
-                                <apex:outputText value="{!fin.Year_3_iTO_Global__c}"/>
+                              <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                             </td>
+                        </apex:outputText>
+                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
+                            <td>
+                               
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                                
+                            </td>
+                        </apex:outputText>
+                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
+                            <td>
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                            </td>      
                         </apex:outputText>
                     </tr>
                     <tr>     
@@ -637,23 +757,14 @@
                         <td>                    
                             <apex:outputText value="{!project.IPM_Complexity__c}"/>
                         </td>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
-                            <td>
-                                <apex:outputText value="{!fin.Year_3_iTO_Local__c}"/>
-                            </td>
-                        </apex:outputText>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
-                            <td>
-                                <apex:outputText value="{!fin.Year_3_iTO_Regional__c}"/>
-                            </td>      
-                        </apex:outputText>
+                       
                     </tr>
                     <tr class="lastchild" >    
                         <td class="label" >
                             {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                         </td>      
                         <td >                   
-                            <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
+                            <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
                         </td>  
                         <td class="label" width="20%">
                           {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
@@ -675,26 +786,32 @@
                 <apex:outputText value="(guidance not due until contract)" rendered="{!IF(pds.IPM_Section_Name__c='Deployment',True,False)}"  styleClass="bdText"> </apex:outputText>
                 
             </apex:outputPanel>
+            <!-- below panel is rendered when document section sectioType is "sub-header" and default section is true -->
             <apex:outputPanel rendered="{!IF(AND(pds.IPM_Section__r.IPM_Section_Type__c='Sub Header',pds.IPM_Default_Section__c=true),true,false)}">   
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c}"  styleClass="heading3 bold" rendered="{!!pds.IPM_Has_Appendix__c}" /> 
                
                 <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}"  styleClass="bdText" />
             </apex:outputPanel>
-           <apex:outputPanel rendered="{!IF(AND(OR(pds.IPM_Section__r.IPM_Section_Type__c='Text',pds.IPM_Section__r.IPM_Section_Type__c='Checklist',pds.IPM_Section__r.IPM_Section_Type__c='Static Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Complex Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Simple Table'),pds.IPM_Section__r.IPM_Parent_Section__r.External_ID__c!='Appendix',pds.IPM_Default_Section__c=true,IF(AND(pds.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c = 'BLG',pds.IPM_Section__r.IPM_Section_Sequence__c='5.3'),FALSE,TRUE)),true,false)}"> 
+            <!-- below panel is rendered when  -->
+            <!-- 1. SectionType of section associated with project document section is any of the "Text/Checklist/Static Table/Dynamic Complex Table/Dynamic Simple Table" -->
+            <!-- 2. SectionType of section associated with project document section external id is not "Appendix" -->
+            <!-- 3. Projectsubtype associated with prject of document section is not "BLG" and sectionSequence of document section is not "5.3" -->
+           <apex:outputPanel rendered="{!IF(AND(OR(pds.IPM_Section__r.IPM_Section_Type__c='Text',pds.IPM_Section__r.IPM_Section_Type__c='Checklist',pds.IPM_Section__r.IPM_Section_Type__c='Static Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Complex Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Simple Table'),pds.IPM_Section__r.IPM_Parent_Section__r.External_ID__c!='Appendix',pds.IPM_Default_Section__c=true,IF(AND(pds.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c = 'BLG',pds.IPM_Section__r.IPM_Section_Sequence__c='5.3'),FALSE,TRUE)),true,false)}"> 
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c} [{!pds.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
           <!--- Components To BE Displayed within Sections--->
 
-
-                <!--<c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}" > </c:IPM_Financial_ActionStandards>-->
-                <c:IPM_FinGate projId="{!projectId}" rendered="{!pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}" ></c:IPM_FinGate>
+                <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment')}" > </c:IPM_Financial_ActionStandards>
+                <!-- below component renders while it meet one of the criteria -->
+                <!-- 1. sub header section master section external id is "Initial_Estimate_of_Opportunity" -->
+                <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project Document gate is "Market Deployment"-->                                                    
+                <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c=='Market Deployment'))}" ></c:IPM_FinGate>
                 <c:IPM_RND_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',pds.IPM_Section_Name__c=='R&D Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                 <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='Supply Chain Feasibility',pds.IPM_Section_Name__c=='Supply Chain Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
                 <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
+                <!-- below component will render when child od sub header section master external id is "CUs n Complexity" and project span is "Regional" or "Local" and phase is "Ideas" -->
                <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!pds.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}"></c:IPM_CU_Complexity>
                <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',pds.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
-                                                                             
-                
-                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
+               <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
                 <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
                 <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',true,false)}"></c:IPM_GateKeeperListView> 
            
@@ -719,19 +836,19 @@
                 
             </apex:outputPanel>
                 <apex:outputText value="{!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
-                    <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}"></c:IPM_FinInitialEstOfOppCharter>
+                    <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',project.IPM_Project_Type__c!='Operational')}"></c:IPM_FinInitialEstOfOppCharter>
                     <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
                     <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
                     <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
-                    <c:IPM_Gate_RollOuts projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans'}"></c:IPM_Gate_RollOuts>
-                    <c:IPM_MilestoneList_PDF pId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
+                    <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
+                    <c:IPM_MilestoneList_PDF pId="{!projectId}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" gateDocStatus="{!projectDoc.IPM_Document_Status__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
                     <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback> 
                     <c:IPM_CMIGateSectionPDF projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}" secId="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSectionPDF>
-                    <c:IPM_BCC_Consolidate projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
+                    <c:IPM_BCC_Consolidate gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
-                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
-        </apex:repeat>
+                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy> 
+        </apex:repeat> 
     
 
         </div>

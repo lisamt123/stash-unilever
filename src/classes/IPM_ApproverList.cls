@@ -82,7 +82,7 @@ public with sharing class IPM_ApproverList {
         map<id,id>avoidDupUsemap=new map<id,id>();
         String per_Str='%';
         String UQuery='SELECT IPM_User__c,IPM_User__r.name,IPM_User__r.smallphotourl,IPM_User__r.email ';
-        UQuery+=' FROM IPM_User_Profile__c WHERE  IPM_User__r.IsActive=True AND (IPM_User__r.name Like \'' + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\' ';
+        UQuery+=' FROM IPM_User_Profile__c WHERE  IPM_User__r.IsActive=True AND (IPM_User__r.name Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\' ';
         UQuery+=' OR IPM_User__r.email Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\') LIMIT 50000';                            
         approverList=database.query(UQuery);
         for(IPM_User_Profile__c up:approverList){

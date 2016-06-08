@@ -6,6 +6,7 @@
 var jq = jQuery.noConflict();
 /* Below code is to open the Modal in edit core parameters */
 jq(document).ready(function() {
+	jq(".cust-overlay").hide();
     var ipmEditProjectMD = jq('#ipmEditProject .modal-dialog');
     var ipmEditCoreparametersMD = jq('#ipmEditCoreparameters .modal-dialog');
     var ipmEditAdditionalParametersMD = jq('#ipmEditAdditionalParameters .modal-dialog');
@@ -32,7 +33,7 @@ jq(document).ready(function() {
 });
 /* Below code is to switch the CP questions based on the project type */
 jq(window).load(function() {
-    jq(".cust-overlay").show().delay(1000).fadeOut();
+	//jq(".cust-overlay").show().delay(1000).fadeOut();
     if (IPMProAppCP.tpluser == 'true' && IPMProAppCP.addtnlParameter == 'false') {
         jq('#myCarousel').carousel(2);
         var $this = jq("#slideBar3 label:not('.fstchild'):");

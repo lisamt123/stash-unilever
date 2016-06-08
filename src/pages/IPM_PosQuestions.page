@@ -18,7 +18,7 @@
         <apex:form id="frm" >
         
             <!-- To place the help symbol in the top right hand corner of page -->
-            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right marginTB10" >
                 <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
             </apex:outputPanel> 
         
@@ -153,7 +153,7 @@
                     </div>      
                     <div class="marginTop ipmButtonGroup pull-right">
                         <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_BACK}" action="{!backToPos}" reRender="qPanel,rPanel" oncomplete="retainValues();"  rendered="{!projDocType!='Contract'}"/>
-                        <apex:commandLink value="{!$Label.IPM_Generate_Mitigation_Button}" styleClass="ipmButton green" action="{!generateMitigationPlan}" oncomplete="GotoParentPage();" rendered="{!AND(isEditableUser='true',projDocType!='Contract')}" /> 
+                        <apex:commandLink value="{!$Label.IPM_Generate_Mitigation_Button}" styleClass="ipmButton green" action="{!generateMitigationPlan}" oncomplete="goToParentPage();" rendered="{!AND(isEditableUser='true',projDocType!='Contract')}" /> 
                     </div>  
                 </apex:outputPanel>
             </apex:outputPanel>
@@ -206,7 +206,7 @@
                     </div>      
                     <div class="marginTop ipmButtonGroup pull-right">
                         <apex:commandLink styleClass="ipmButton buttonMarginRight" value="Back" action="{!backToPos}" reRender="qPanel,rPanel" oncomplete="retainValues();"  rendered="{!projDocType!='Contract'}"/>
-                        <apex:commandLink value="{!$Label.IPM_Generate_Mitigation_Button}" styleClass="ipmButton green" action="{!generateMitigationPlan}" oncomplete="GotoParentPage();" rendered="{!isEditableUser}" /> 
+                        <apex:commandLink value="{!$Label.IPM_Generate_Mitigation_Button}" styleClass="ipmButton green" action="{!generateMitigationPlan}" oncomplete="goToParentPage();" rendered="{!isEditableUser}" /> 
                     </div>  
                 </apex:outputPanel>
             </apex:outputPanel>

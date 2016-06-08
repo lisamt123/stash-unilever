@@ -85,7 +85,7 @@
             <div class="form-item">
                 <div class="item-label">
                     <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
+                    <apex:outputPanel layout="inline" styleClass="question-icon" 
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
                 </div>
@@ -105,9 +105,9 @@
                 </div>
                 <div class="item-input">
                     <div class="styled-select">
-                        <apex:inputField id='visibilityid' value="{!bet.Sharing__c}" 
+                        <apex:inputField id="visibilityid" value="{!bet.Sharing__c}" 
                                 rendered="{!OR(bet.Sharing__c == 'Private',bet.Sharing__c == null)}"/>
-                        <apex:inputField id='visibilityiddisabled' value="{!bet.Sharing__c}"
+                        <apex:inputField id="visibilityiddisabled" value="{!bet.Sharing__c}"
                                 style="color:#AAA;"  
                                 rendered="{!bet.Sharing__c == 'Public'}"/>
                         <script>
@@ -134,7 +134,13 @@
 
     </apex:outputPanel>
 
-    <apex:outputPanel id="betMembers">
+    <apex:outputPanel id="betMembers" rendered="{!goToMemberSelection}">
+
+        <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+        <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
+        <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />
+        <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
+
         <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
                             Callback="/{!bet.id}" 

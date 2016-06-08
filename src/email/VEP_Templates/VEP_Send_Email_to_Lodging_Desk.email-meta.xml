@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>VEP_Send Email to Lodging Desk</name>
+    <style>none</style>
+    <subject>Factory Lodging Request</subject>
+    <textOnly>Hi,
+
+Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} and approved by {!Vep_Visitor__c.Person_to_Meet__c}
+
+Thanks&amp;Regards,
+{!Visitor__c.Name}
+{!Vep_Visitor__c.Email__c}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

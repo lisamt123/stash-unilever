@@ -5,6 +5,7 @@
  *******************************************************************/
 var jq = jQuery.noConflict();
 function finScriptCallBack() {
+	jq('[data-toggle="tooltip"]').tooltip();
     jq(".initAccordian").on("click", function() {
         var $this = jq(this);
         if ($this.parent().nextUntil(".leftsidemenu").is(":hidden")) {
@@ -78,7 +79,7 @@ function modalFunc(title, confirmMsg) {
     jq('#ipmDeleteModal .modal-title').html(title);
     jq('#ipmDeleteModal .confirmMsg').html(confirmMsg);
 }
-function UpdateCheckbox(Country, check) {
+function updateCheckbox(Country, check) {
     ActionUpdate(Country, check);
 }
 var dots;
@@ -87,10 +88,12 @@ function progressDots() {
     document.getElementById(IPMApp.compOtl).textContent = 'Currency: ' + currSel + ': exchange rate is being applied..';
     dots = window.setInterval(function() {
         var wait = document.getElementById("wait");
-        if (wait.innerHTML.length > 3)
+        if (wait.innerHTML.length > 3){
             wait.innerHTML = "";
-        else
+			}
+        else{
             wait.innerHTML += ".";
+			}
     }, 500);
 }
 function stopDots() {

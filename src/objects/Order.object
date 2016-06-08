@@ -47,6 +47,10 @@
         <fullName>ContractName</fullName>
     </fields>
     <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>CustomerAuthorizedById</fullName>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
@@ -454,8 +458,7 @@ UID_IOP__r.UID_Dec_IOP__c)</formula>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>UID_IOP__c</fullName>
@@ -497,6 +500,16 @@ UID_IOP__r.UID_Dec_IOP__c)</formula>
         <externalId>false</externalId>
         <formula>CASE(TEXT (Month(EffectiveDate)) ,&quot;1&quot;, &quot;01&quot;, &quot;2&quot;, &quot;02&quot;,&quot;3&quot;,&quot;03&quot;,&quot;4&quot;,&quot;04&quot;,&quot;5&quot;,&quot;05&quot;,&quot;6&quot;,&quot;06&quot;,&quot;7&quot;,&quot;07&quot;,&quot;8&quot;,&quot;08&quot;,&quot;9&quot;,&quot;09&quot;,&quot;10&quot;,&quot;10&quot;,&quot;11&quot;,&quot;11&quot;,&quot;12&quot;)</formula>
         <label>Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UID_Order_RecordType__c</fullName>
+        <externalId>false</externalId>
+        <label>Order RecordType</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Text</type>
@@ -560,6 +573,7 @@ UID_IOP__r.UID_Dec_IOP__c)</formula>
         <fullName>AllOrders</fullName>
         <columns>ORDERS.ORDER_NUMBER</columns>
         <columns>UID_Invoice_Number__c</columns>
+        <columns>UID_Order_RecordType__c</columns>
         <columns>ORDERS.EFFECTIVE_DATE</columns>
         <columns>UID_Bill__c</columns>
         <columns>UID_Incoterm__c</columns>

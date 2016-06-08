@@ -7,6 +7,7 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
+1.1        blessy.voola@accenture.com 24-Mar-2016    Do not send notification to inactive BET owner
 *************************************************************************************/
 
 /* Service helper class takes sharings settings from parent class */
@@ -72,7 +73,12 @@ public class BET_LinkingServiceHelper {
 		if(oldProject.pLId != null && oldProject.pLId == bet.ownerId){
 			bet.ownerId = project.pLId;
 		} else {
+			//Do not send notification if BET owner is inactive
+        List<User> owner=[select id,isactive from user where id=:bet.ownerid];
+        if(owner.size()>0){
+        if(owner.get(0).isactive)
 			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject,project); //US23
+        }
 		}
 		bet.IPM_Project__c = project.projectId;
 		uw_Bet__c updatedBet = BET_BETService.updateBetFields(bet,project);

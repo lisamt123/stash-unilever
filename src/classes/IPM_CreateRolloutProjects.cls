@@ -36,6 +36,9 @@ public with sharing class IPM_CreateRolloutProjects
             {
                 if( rollout.IPM_Regional_PL__c != null)
                 {
+                    if(rollout.IPM_Rollout_Gatekeeper__c==null){
+                    	rollout.IPM_Rollout_Gatekeeper__c=rollout.IPM_Regional_PL__c;
+                    }
                     IPM_Project__c newIpmProject = new IPM_Project__c(
                         IPM_Project_Name__c = rollout.IPM_Rollout_Project__c,
                         Market_Cluster__c = rollout.Market_Cluster__c,
@@ -44,7 +47,7 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Project_Leader__c = rollout.IPM_Regional_PL__c,
                         Deputy_Project_Leader__c = rollout.IPM_Regional_PL__c,
                         IPM_Technical_Project_Leader__c = rollout.IPM_Regional_PL__c,
-                        IPM_Project_Gatekeeper__c = rollout.IPM_Regional_PL__c,
+                        IPM_Project_Gatekeeper__c = rollout.IPM_Rollout_Gatekeeper__c,
                         IPM_Finance_Member__c = rollout.Finance_Member__c,
                         Market_Cluster_Name__c=rollout.Market_Cluster_Name__c,
                         IPM_Rollout_Status__c = rollout.IPM_Status__c,
@@ -58,7 +61,7 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Category_Text__c = ipmProject.IPM_Category_Text__c,
                         IPMCompany__c = ipmProject.IPMCompany__c,
                         IPM_Market__c = ipmProject.IPM_Market__c,
-                        IPMPlatform__c = ipmProject.IPMPlatform__c,
+                       // IPMPlatform__c = ipmProject.IPMPlatform__c,
                         IPM_Sector__c = ipmProject.IPM_Sector__c,
                         IPM_Sub_sector__c = ipmProject.IPM_Sub_sector__c,
                         IPM_Answer_of_Q1__c = ipmProject.IPM_Answer_of_Q1__c,
@@ -85,7 +88,9 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Clustering__c= ipmProject.IPM_Clustering__c,
                         IPM_IsSaved__c = ipmProject.IPM_IsSaved__c,
                         IPM_White_Space_Project__c=ipmProject.IPM_White_Space_Project__c,
-                        Project_External_ID__c=rollout.External_Id__c
+                        Project_External_ID__c=rollout.External_Id__c,
+                        IPM_Bosscard_Status__c=ipmProject.IPM_Bosscard_Status__c
+                        
                     );
                     
                     if( projectType.IPM_CreateRegionalProjects__c  && 

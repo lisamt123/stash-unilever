@@ -136,12 +136,12 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>IPM_Answer__c</columns>
         <columns>IPM_Core_Parameter_example__c</columns>
         <columns>IPM_Core_Parameter_example_two__c</columns>
         <columns>IMP_Core_Parameter_example_three__c</columns>
         <columns>IPM_Core_Parameter_example_four__c</columns>
         <columns>IPM_Core_Parameter_example_five__c</columns>
+        <columns>IPM_Answer__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

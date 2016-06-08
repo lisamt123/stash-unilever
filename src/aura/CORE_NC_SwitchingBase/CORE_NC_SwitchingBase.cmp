@@ -1,0 +1,56 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <!--Including Jquery and bootstrap files-->
+    <ltng:require scripts="/resource/CORE_NC_JsFiles/jquery.js,/resource/CORE_NC_JsFiles/jqueryUiJs.js" styles="/resource/CORE_NC_JsFiles/jqueryUiCss.css,/resource/CORE_NC_JsFiles/lightningBootStrap.css,/resource/CORE_NC_JsFiles/lightningBootstrapMin.css"/>   
+    <style>
+        .button-type-filament, .flare-total, .flare-button-count {
+            display: none !important;
+        }
+    </style>
+    <!--Handling Events-->
+    <aura:handler event="c:CORE_NC_SelectNewsId" action="{!c.getNewsDetailInfo}" />
+    <aura:handler event="c:Core_NC_BackButtonEvent" action="{!c.backButton}" />
+    <aura:handler event="c:Core_NC_SharePage" action="{!c.shareButton}" />
+    <aura:handler event="c:Core_ShareCancelButton" action="{!c.shareCancelButton}" />
+    <aura:handler event="c:CORE_NC_FilterEvent" action="{!c.displayFilter}" />
+    <aura:handler event="c:Core_NC_ChatterShareEvent" action="{!c.chatterShare}" />               
+    
+    <aura:attribute name="articleId" type="String" default="ankish"/>
+    <ui:outputText value="{!v.articleId}" />
+
+    
+    <!--Creating attributes-->    
+    <aura:attribute name="BaseComponent" type="Boolean" default="true"/>
+    <aura:attribute name="NewsDetailComponent" type="Boolean" default="false"/>
+    <aura:attribute name="FilterComponent" type="Boolean" default="false"/> 
+    <aura:attribute name="NewsId" type="String"/>
+    <aura:attribute name="NewsType" type="String" default="GlobalNews"/>
+    <!--<aura:attribute name="CurrentFilterType" type="String" default="showAll"/>-->
+    <aura:attribute name="CurrentFilterType" type="String" default="Show All"/>
+    <aura:attribute name="ShareComponent" type="Boolean" default="false"/>
+    <aura:attribute name="NewsDetail" type="Core_NC_NewsDetailWrapperClass"/>    
+    <aura:attribute name="ChatterShareComponent" type="Boolean" default="false"/>    
+    
+    <!--Applying background color for the base page-->
+    <style>
+        body {
+            background: #F5F6F7 !important;  
+        }
+    </style>    
+    
+    <!--Switching between the components using attribute flag values-->
+    <aura:if isTrue="{!v.ShareComponent}">
+        <c:CORE_NC_Share NewsDetail="{!v.NewsDetail}" NewsType="{!v.NewsType}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.FilterComponent}">
+        <c:CORE_NC_FilterComponent selectedFilter="{!v.CurrentFilterType}"  />
+    </aura:if>
+    <aura:if isTrue="{!v.NewsDetailComponent}">
+        <c:Core_NC_NewsDetail newsId="{!v.NewsId}" NewsType="{!v.NewsType}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.ChatterShareComponent}">
+        <c:CORE_NC_ChatterShareComponent NewsDetail="{!v.NewsDetail}" NewsType="{!v.NewsType}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.BaseComponent}">
+        <c:CORE_NC_BaseComponent filterType="{!v.CurrentFilterType}" NewsType="{!v.NewsType}"/>
+    </aura:if>
+</aura:component>

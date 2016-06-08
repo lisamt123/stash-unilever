@@ -50,7 +50,7 @@ public class IPM_ObjHistoryComponentController_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
+     static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
@@ -94,43 +94,43 @@ public class IPM_ObjHistoryComponentController_Test{
      * @Description Do the actual test
      */
     static testMethod void testHistory() {
-    	initializeTestMethodData();
+        initializeTestMethodData();
         system.RunAs(globalUser){
-        	test.startTest();
+            test.startTest();
         
-        	objHistoryAll.myObject=projectDocSecListObj[0];
-         	objHistoryAll.recordLimit=1;
+            objHistoryAll.myObject=projectDocSecListObj[0];
+            objHistoryAll.recordLimit=1;
          
-         	objHistoryAll.projectId=project.id;
-         	objHistoryAll.sectionId=docSec.Id;
+            objHistoryAll.projectId=project.id;
+            objHistoryAll.sectionId=docSec.Id;
          
-         	objHistoryAll.getObjectHistory();
+            objHistoryAll.getObjectHistory();
         
-        	objHistory.myObject=projectDocSecListObj[0];
-         	objHistory.recordLimit=50;
-         	objHistory.getObjectHistory();
+            objHistory.myObject=projectDocSecListObj[0];
+            objHistory.recordLimit=50;
+            objHistory.getObjectHistory();
       
-         	String fieldName=TEST_DATA;
-         	IPM_ObjectAllHistoryComponentController.returnFieldLabel(fieldName);
-         	IPM_ObjectAllHistoryComponentController.objectHistoryLine objHis1 =new IPM_ObjectAllHistoryComponentController.objectHistoryLine();
-         	objHis1.theDate=TEST_DATA;
-         	objHis1.who= TEST_DATA;
-         	objHis1.userId=project.Id;
-         	objHis1.action= TEST_DATA;
-         	objHis1.whoImage= TEST_DATA;
-         	objHis1.recordLink= TEST_DATA;
-         	objHis1.actionType= TEST_DATA;
+            String fieldName=TEST_DATA;
+            IPM_ObjectAllHistoryComponentController.returnFieldLabel(fieldName);
+            IPM_ObjectAllHistoryComponentController.objectHistoryLine objHis1 =new IPM_ObjectAllHistoryComponentController.objectHistoryLine();
+            objHis1.theDate=TEST_DATA;
+            objHis1.who= TEST_DATA;
+            objHis1.userId=project.Id;
+            objHis1.action= TEST_DATA;
+            objHis1.whoImage= TEST_DATA;
+            objHis1.recordLink= TEST_DATA;
+            objHis1.actionType= TEST_DATA;
         
-         	IPM_ObjectHistoryComponentController.returnFieldLabel(fieldName);
-         	IPM_ObjectHistoryComponentController.objectHistoryLine objHis =new IPM_ObjectHistoryComponentController.objectHistoryLine();
-         	objHis.theDate= TEST_DATA;
-         	objHis.who= TEST_DATA;
-         	objHis.userId=project.Id;
-         	objHis.action= TEST_DATA;
-         	objHis.whoImage= TEST_DATA;
-         	objHis.fieldName= TEST_DATA;
-        	system.assertEquals(objHis1.actionType,TEST_DATA,'we cannot query data as we are not call any function');
-     		test.stopTest();
-     	}
+            IPM_ObjectHistoryComponentController.returnFieldLabel(fieldName);
+            IPM_ObjectHistoryComponentController.objectHistoryLine objHis =new IPM_ObjectHistoryComponentController.objectHistoryLine();
+            objHis.theDate= TEST_DATA;
+            objHis.who= TEST_DATA;
+            objHis.userId=project.Id;
+            objHis.action= TEST_DATA;
+            objHis.whoImage= TEST_DATA;
+            objHis.fieldName= TEST_DATA;
+            system.assertEquals(objHis1.actionType,TEST_DATA,'we cannot query data as we are not call any function');
+            test.stopTest();
+        }
     }
 }

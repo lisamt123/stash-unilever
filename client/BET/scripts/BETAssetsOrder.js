@@ -1,6 +1,6 @@
 	    function saveOrderRemoteCallBack(event,result){
 	    	if (event.status) {
-	            	window.top.postMessage({action: 'saveAssets'},
+	            	window.top.postMessage({action: 'saveAssetsOrder'},
             		document.location.protocol + '//' + document.domain
             	);
 	        } else {

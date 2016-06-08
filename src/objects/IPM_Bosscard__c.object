@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object is created to hold the Bosscard Details</description>
@@ -53,13 +52,13 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Used for data migration</description>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>100</length>
@@ -71,6 +70,7 @@
     </fields>
     <fields>
         <fullName>IPMBosscard_Span__c</fullName>
+        <description>To store the span of the BOSSCARD.</description>
         <externalId>false</externalId>
         <label>IPMBosscard_Span</label>
         <length>15</length>
@@ -82,6 +82,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumptions__c</fullName>
+        <description>This field is used to capture  the assumption content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Assumptions</label>
         <length>32768</length>
@@ -92,6 +93,7 @@
     </fields>
     <fields>
         <fullName>IPM_Background__c</fullName>
+        <description>This field is used to capture  the Background content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Background</label>
         <length>32768</length>
@@ -102,6 +104,7 @@
     </fields>
     <fields>
         <fullName>IPM_BosscardIdea__c</fullName>
+        <description>To Be Deleted</description>
         <externalId>false</externalId>
         <label>Idea</label>
         <required>false</required>
@@ -112,6 +115,7 @@
     <fields>
         <fullName>IPM_BosscardName__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>To store the name of the BOSSCARD.</description>
         <externalId>false</externalId>
         <label>Name</label>
         <length>14</length>
@@ -133,6 +137,7 @@
     </fields>
     <fields>
         <fullName>IPM_Bosscard_Last_Modified_Date_Time__c</fullName>
+        <description>Used to store the last modified date and time which is useful for auto archival.</description>
         <externalId>false</externalId>
         <formula>NOW()</formula>
         <label>IPM Bosscard Last Modified Date Time</label>
@@ -142,6 +147,7 @@
     </fields>
     <fields>
         <fullName>IPM_Bosscard_Logo_Id__c</fullName>
+        <description>To store the id from standard  document object for the logo.</description>
         <externalId>false</externalId>
         <label>Bosscard Logo Id</label>
         <length>18</length>
@@ -153,6 +159,7 @@
     </fields>
     <fields>
         <fullName>IPM_Bosscard_Logo__c</fullName>
+        <description>To store the logo of BOSSCARD</description>
         <externalId>false</externalId>
         <label>Bosscard Logo</label>
         <length>32768</length>
@@ -163,6 +170,7 @@
     </fields>
     <fields>
         <fullName>IPM_Bosscard_Span_Logo__c</fullName>
+        <description>To display the imaged based on the span , different images for Global , Regional and Local.</description>
         <externalId>false</externalId>
         <formula>IF( IPMBosscard_Span__c  = &apos;Global&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/globe.png&apos;,&apos;Global&apos;,21,21),IF(IPMBosscard_Span__c  = &apos;Regional&apos; || IPMBosscard_Span__c  = &apos;Local&apos;, 
@@ -176,7 +184,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Loca
     </fields>
     <fields>
         <fullName>IPM_Bosscard_Status__c</fullName>
-        <description>Contains the status of Bosscard</description>
+        <description>Stores the status of BOSSCARD</description>
         <externalId>false</externalId>
         <label>IPM Bosscard Status</label>
         <picklist>
@@ -204,6 +212,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Loca
     </fields>
     <fields>
         <fullName>IPM_Bosscord_Approval_Date__c</fullName>
+        <description>To store the approval date of the BOSSCARD.</description>
         <externalId>false</externalId>
         <label>Bosscord Approval Date</label>
         <required>false</required>
@@ -213,6 +222,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Loca
     </fields>
     <fields>
         <fullName>IPM_Brand_Positioning__c</fullName>
+        <description>To store the brand positioning value</description>
         <externalId>false</externalId>
         <label>Brand Positioning</label>
         <length>50</length>
@@ -224,6 +234,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Loca
     </fields>
     <fields>
         <fullName>IPM_Brand__c</fullName>
+        <description>To be Deleted.</description>
         <externalId>false</externalId>
         <label>Brand</label>
         <length>50</length>
@@ -235,6 +246,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Loca
     </fields>
     <fields>
         <fullName>IPM_Category_Icon__c</fullName>
+        <description>To display the icon based on category.</description>
         <externalId>false</externalId>
         <formula>IF(IPM_Category__c  = &apos;Beverages&apos; || IPM_Category__c  = &apos;BEVERAGES&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_beverages.png&apos;,&apos;BEVERAGES&apos;,21,21), 
@@ -272,6 +284,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Category__c</fullName>
+        <description>To store the category value of BOSSCARD.</description>
         <externalId>false</externalId>
         <label>Category</label>
         <length>50</length>
@@ -284,6 +297,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Company_Card__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>To relate BOSSCARD to a Company card.</description>
         <externalId>false</externalId>
         <label>IPM Company Card</label>
         <referenceTo>IPM_Company_Card__c</referenceTo>
@@ -296,6 +310,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Constraints__c</fullName>
+        <description>This field is used to capture the  Constraints content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Constraints</label>
         <length>32768</length>
@@ -306,6 +321,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Consumer_Need__c</fullName>
+        <description>This field is used to capture the  Consumer Need content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Consumer Need</label>
         <length>32768</length>
@@ -316,6 +332,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Deliverables__c</fullName>
+        <description>This field is used to capture the deliverables content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Deliverables</label>
         <length>32768</length>
@@ -341,6 +358,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Gate_Keeper__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>To capture the gate keeper user name</description>
         <externalId>false</externalId>
         <label>Gate Keeper</label>
         <referenceTo>User</referenceTo>
@@ -353,6 +371,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_IsSaved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>On Click of Save this value is checked to true , As on click of Cancel we need to delete the created BOSSCARD.</description>
         <externalId>false</externalId>
         <label>IsSaved</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -362,6 +381,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Is_Accepted__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Is Checked when BOSSCARD is approved.</description>
         <externalId>false</externalId>
         <label>Is Accepted</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -371,6 +391,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Is_Archived__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Checked when the BOSSCARD status is Archived.</description>
         <externalId>false</externalId>
         <label>Is Archived</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -380,6 +401,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Is_Draft__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Used for the purpose of Auto Save. But as of now auto save logic is on hold.</description>
         <externalId>false</externalId>
         <label>Is Draft</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -388,6 +410,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Opportunity__c</fullName>
+        <description>This field is used to capture the Opportunity content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <inlineHelpText>Opportunity Information</inlineHelpText>
         <label>Opportunity</label>
@@ -399,6 +422,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Potential_Business_Opportunity__c</fullName>
+        <description>This field is used to capture the Potential Business Opportunity content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Potential Business Opportunity</label>
         <length>32768</length>
@@ -422,9 +446,10 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Region_Shr__c</fullName>
+        <description>To store the region value from the company card which is useful to retrieve brand positioning values and used for sharing BOSSCARDS as well.</description>
         <externalId>false</externalId>
         <label>Region</label>
-        <length>80</length>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -433,6 +458,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Region__c</fullName>
+        <description>To Be Deleted.</description>
         <externalId>false</externalId>
         <label>Region</label>
         <length>80</length>
@@ -444,6 +470,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Resources__c</fullName>
+        <description>This field is used to capture the Resources content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Resources</label>
         <length>32768</length>
@@ -454,6 +481,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Scope__c</fullName>
+        <description>This field is used to capture the Scope content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Scope</label>
         <length>32768</length>
@@ -464,6 +492,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Small_C_shr__c</fullName>
+        <description>To Be Deleted.</description>
         <externalId>false</externalId>
         <label>Small C</label>
         <length>255</length>
@@ -475,6 +504,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Sustainibility__c</fullName>
+        <description>This field is used to capture the Sustainability content entered by users on the BOSSCARD creation screen.</description>
         <externalId>false</externalId>
         <label>Sustainability</label>
         <length>32768</length>
@@ -498,6 +528,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_isBosscardSkipped__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Checked when user clicks on Skip BOSSCARD button on BOSSCARD Creation Screen.</description>
         <externalId>false</externalId>
         <label>isBosscardSkipped</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -563,6 +594,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>Used_By_Workflow_175_days__c</fullName>
+        <description>Used for Auto Archival.</description>
         <externalId>false</externalId>
         <label>Used By Workflow 175 days</label>
         <length>255</length>
@@ -574,6 +606,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>Used_By_Workflow_30_days__c</fullName>
+        <description>Used for Auto Archival.</description>
         <externalId>false</externalId>
         <label>Used By Workflow 30 days</label>
         <length>255</length>

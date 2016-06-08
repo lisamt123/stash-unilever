@@ -9,6 +9,10 @@
         <value>Project Type</value>
     </caseValues>
     <fields>
+        <label><!-- FinancialCopyOverPrefix --></label>
+        <name>FinancialCopyOverPrefix__c</name>
+    </fields>
+    <fields>
         <label><!-- Associated Company Card --></label>
         <name>IPM_CompanyCard__c</name>
     </fields>
@@ -67,10 +71,6 @@
     <fields>
         <label><!-- EcoDesign Document Name --></label>
         <name>IPM_EcoDesign_Document_Name__c</name>
-    </fields>
-    <fields>
-        <label><!-- EcoDesign Sync Wait Time --></label>
-        <name>IPM_EcoDesign_Sync_Wait_Time__c</name>
     </fields>
     <fields>
         <label><!-- Fast Forward Phase Change --></label>
@@ -140,10 +140,6 @@
     <fields>
         <label><!-- Source Company Card --></label>
         <name>IPM_Source_Company_Card__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync To Eco Design --></label>
-        <name>IPM_Sync_To_Eco_Design__c</name>
     </fields>
     <fields>
         <label><!-- Update Financials API Name --></label>

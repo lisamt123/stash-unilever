@@ -13,6 +13,7 @@
    <apex:attribute name="editSection" description="For displaying in gate document" type="Boolean" required="true" assignTo="{!edit}"/>
    <apex:attribute name="gateType" description="Gate Document Type" type="String" required="false" assignTo="{!projDocType}"/>
    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Risk_QuestionnaireView.css')}"/>  
+   <!-- Render condition for checking RQS question list is empty or not -->
    <apex:outputPanel rendered="{!AND(!edit,displayRQSQuestionsList!=null,displayRQSQuestionsList.size>0)}">
                 <div class="riskMainHead projectRiskLbl">{!$Label.IPM_A_PROJECT_RISK}</div>
                 <table class="ipmTable table table-bordered riskTablecolor gateKeeperlist tabletxtcenter">
@@ -44,6 +45,7 @@
                          </td>
                     </tr>
                     <apex:repeat value="{!displayRQSQuestionsList}" var="disp" >
+                    	<!-- Render condition for displaying questions for corresponding question type -->
                         <apex:outputPanel rendered="{!rc==disp.IPM_RQS_Question_Type__c}">
                             <tbody>
                             <tr>
@@ -58,6 +60,7 @@
                </table>
 </apex:outputPanel>
 <!---------Corporate Risk-->
+<!-- Condition for checking Corporate Risk question list is empty or not-->
  <apex:outputPanel rendered="{!AND(!edit,displayCRQuestionsList!=null,displayCRQuestionsList.size>0)}">
  <div class="riskMainHead projectRiskLbl">{!$Label.IPM_B_CORPORATE_RISK}</div>
                 <table class="ipmTable table table-bordered riskTablecolor gateKeeperlist tabletxtcenter">

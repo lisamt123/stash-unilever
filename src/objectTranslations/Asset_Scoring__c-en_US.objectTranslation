@@ -9,6 +9,18 @@
         <value>SWOP Asset  Scoring</value>
     </caseValues>
     <fields>
+        <label><!-- Asset Option Description --></label>
+        <name>Asset_Option_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Option --></label>
+        <name>Asset_Option__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset name --></label>
+        <name>Asset_name__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Description --></label>
         <name>Description__c</name>
     </fields>
@@ -36,8 +48,8 @@
             <translation><!-- Audio --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Cut downs and Tags</masterLabel>
-            <translation><!-- Cut downs and Tags --></translation>
+            <masterLabel>Cut Downs and Tags</masterLabel>
+            <translation><!-- Cut Downs and Tags --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Data Analytics Reporting Dashboards</masterLabel>
@@ -52,12 +64,12 @@
             <translation><!-- Digital Campaign Assets --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Experiential - Promotional Ideas Adaptation</masterLabel>
-            <translation><!-- Experiential - Promotional Ideas Adaptation --></translation>
+            <masterLabel>Experiential - Promotional ideas ADAPTATION</masterLabel>
+            <translation><!-- Experiential - Promotional ideas ADAPTATION --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Experiential - Promotional Ideas Origination</masterLabel>
-            <translation><!-- Experiential - Promotional Ideas Origination --></translation>
+            <masterLabel>Experiential - Promotional ideas ORIGINATION</masterLabel>
+            <translation><!-- Experiential - Promotional ideas ORIGINATION --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Origination</masterLabel>

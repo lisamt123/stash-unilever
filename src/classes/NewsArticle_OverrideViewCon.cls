@@ -30,9 +30,9 @@ public with sharing class NewsArticle_OverrideViewCon{
         //String strRedirectURL = article.Sharepoint_URL__c;
         strRedirectURL = article.Sharepoint_URL__c;
         
-        PageReference pageref=new PageReference ('/_ui/core/chatter/ui/ChatterPage?nooverride=1');
+        //PageReference pageref=new PageReference ('/_ui/core/chatter/ui/ChatterPage?nooverride=1');
        // pageref.setRedirect(true); 
-        PageReference result  ;
+        PageReference result=null;
         
         PermissionSetAssignment[] perm;
         

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
     <description>Used in IPM core parameter Strategic help text</description>
     <enableFeeds>false</enableFeeds>
     <fields>
@@ -24,6 +25,7 @@
     </fields>
     <fields>
         <fullName>IPM_InnovationPartTwo__c</fullName>
+        <description>strategic intent help text part 2</description>
         <externalId>false</externalId>
         <label>IPM InnovationPartTwo</label>
         <required>false</required>
@@ -42,6 +44,7 @@
     </fields>
     <fields>
         <fullName>IPM_Operational_Part_Two__c</fullName>
+        <description>store strategic intent help text for operational</description>
         <externalId>false</externalId>
         <label>IPM Operational Part Two</label>
         <required>false</required>
@@ -50,6 +53,7 @@
     </fields>
     <fields>
         <fullName>IPM_Operational__c</fullName>
+        <description>store strategic intent help text for operational</description>
         <externalId>false</externalId>
         <label>IPM Operational</label>
         <required>false</required>
@@ -58,7 +62,7 @@
     </fields>
     <fields>
         <fullName>IPM_RenovationPartTwo__c</fullName>
-        <description>hold send part of the renovation helps text</description>
+        <description>store strategic intent help text for renovation</description>
         <externalId>false</externalId>
         <label>IPM RenovationPartTwo</label>
         <required>false</required>
@@ -76,5 +80,4 @@
         <type>TextArea</type>
     </fields>
     <label>IPM CoreParameter Strategic help content</label>
-    <visibility>Public</visibility>
 </CustomObject>

@@ -14,6 +14,7 @@ public class IPM_ProjectSearchCtrl_Test {
     private static final String COMPLEXITY_FIELD = 'IPM_Complexity__c';
     private static final String PROJECT_TYPE = 'IPM_Project_Type__c';
     private static final String PROJECT_SPAN = 'IPMProject_Span__c';
+    private static final String COMPANY_CARD = 'IPM_Company_Card__c';
     private static IPM_ProjectSearchCtrl psCtrl;
     private static List<MDO_Geography__c> lstGeographies;
     private static List<IPM_Country__c> lstCountries;
@@ -23,12 +24,17 @@ public class IPM_ProjectSearchCtrl_Test {
     private static final String ORIGINAL_PROJ_NAME = 'OriProj';
     private static User platformUserFirst;
     private static User platformUserSecond;
+    private static IPM_Company_Card__c companyCard;
     
     static void createTestUsers(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUserFirst = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             platformUserSecond = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
         }
+        
+        companyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        insert companyCard;
+        
     }
     
     static void initializeData(){
@@ -65,6 +71,7 @@ public class IPM_ProjectSearchCtrl_Test {
             proj.IPM_Project_Leader__c = UserInfo.getUserId();
             proj.IPM_Target_Launch_Dates__c = System.today();
             proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL; 
+            proj.IPM_Company_Card__c = companyCard.Id;
             insert proj;
        
             for(Integer i = 0 ; i < lstCountries.size() ; i++){
@@ -137,7 +144,7 @@ public class IPM_ProjectSearchCtrl_Test {
             
             for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             }
             insert lstProjects;
@@ -173,7 +180,7 @@ public class IPM_ProjectSearchCtrl_Test {
         //Create 5 Original projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'OriginalProj' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             
         }
@@ -181,7 +188,7 @@ public class IPM_ProjectSearchCtrl_Test {
         //Create 5 Rollout projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'RolloutProj' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             
         }
@@ -189,7 +196,7 @@ public class IPM_ProjectSearchCtrl_Test {
         //Create 5 Operational projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'OperationalProj' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        'IPM_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        'IPM_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
@@ -224,21 +231,21 @@ public class IPM_ProjectSearchCtrl_Test {
         //Create 5 Original projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS , PROJECT_SPAN => IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
         //Create 5 Rollout projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'RollProj' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS , PROJECT_SPAN => 'Regional',
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
         //Create 5 Operational projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'OperProj' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS , PROJECT_SPAN => IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
@@ -273,21 +280,21 @@ public class IPM_ProjectSearchCtrl_Test {
         //Create 5 Original projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'TestComments' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
         //Create 5 Rollout projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'TestComments' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
         //Create 5 Operational projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'TestComments' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
@@ -320,7 +327,7 @@ public class IPM_ProjectSearchCtrl_Test {
             
             for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             }
             insert lstProjects;
@@ -358,7 +365,7 @@ public class IPM_ProjectSearchCtrl_Test {
             
             for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             }
             insert lstProjects;
@@ -392,7 +399,7 @@ public class IPM_ProjectSearchCtrl_Test {
             
             for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             }
             insert lstProjects;
@@ -437,7 +444,7 @@ public class IPM_ProjectSearchCtrl_Test {
             
             for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             }
             insert lstProjects;
@@ -481,7 +488,7 @@ public class IPM_ProjectSearchCtrl_Test {
             
             for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => ORIGINAL_PROJ_NAME + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
             }
             insert lstProjects;
@@ -513,32 +520,7 @@ public class IPM_ProjectSearchCtrl_Test {
     }
     
     
-   /* static testMethod void testGetusertypeAsBDUser() {
-        createTestUsers();
-        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
-            platformUserFirst = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-            
-            PermissionSetAssignment permissionAssignment = new PermissionSetAssignment();
-            permissionAssignment.AssigneeId = platformUserFirst.Id;
-            permissionAssignment.PermissionSetId = [SELECT Id FROM PermissionSet WHERE Name =:IPM_Utils.IPM_Central_Team limit 1].Id;
-            insert permissionAssignment;
-        }
-        Test.startTest();
-        
-        IPM_User_Profile__c userProfile = IPM_TestFactory_Helper.createUserProfile(false);
-        userProfile.IPM_User__c = platformUserFirst.Id;
-        insert userProfile;
-        
-        System.runAs(platformUserFirst){
-            psCtrl=new IPM_ProjectSearchCtrl();
-            psCtrl.getusertype();
-            System.assertEquals(false,psCtrl.isProjectEditable, 'ProjectEditable is Not Checked');
-            System.assertEquals(false,psCtrl.isBossCardEditable, 'BossCardEditable is Not Checked');
-        }
-        
-        Test.stopTest();
-    }*/
-    
+   
     static testMethod void testGetusertype() {
         createTestUsers();
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
@@ -555,23 +537,6 @@ public class IPM_ProjectSearchCtrl_Test {
         
         Test.stopTest();
     }
-     /*******************************************************
-     * @Description: Invoking the test Method
-     * *****************************************************/
-     /*static testMethod void countriesTest(){
-         test.startTest();
-         initializeData();
-         IPM_ProjectSearchCtrl.IPM_GeoWrapper ipmGeo=new IPM_ProjectSearchCtrl.IPM_GeoWrapper();
-         list<MDO_Geography__c> cS=new list<MDO_Geography__c>();
-         system.assertEquals(cS.size(),0);
-         new IPM_ProjectSearchCtrl.IPM_ClusterMCO(goegraphiesMCO.Name,cs);
-         list<IPM_ProjectSearchCtrl.IPM_MCO> mS=new list<IPM_ProjectSearchCtrl.IPM_MCO>();
-         system.assertEquals(mS.size(),0);
-         new IPM_ProjectSearchCtrl.IPM_ClusterMCO('abc',ms);
-         list<IPM_ProjectSearchCtrl.IPM_ClusterMCO> LClusMco=new list<IPM_ProjectSearchCtrl.IPM_ClusterMCO>();
-         LClusMco=ipmGeo.getclusterMCOWrapper();
-         system.assertEquals(LClusMco.size(),2);
-         test.stopTest();
-     }*/
+     
     
 }

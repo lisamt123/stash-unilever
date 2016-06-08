@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -52,7 +51,6 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -78,6 +76,7 @@
     </fieldSets>
     <fields>
         <fullName>Added_At_Stage__c</fullName>
+        <description>This is field stores the phase when the financial was associated to the project.</description>
         <externalId>false</externalId>
         <label>Added At Stage</label>
         <picklist>
@@ -115,6 +114,7 @@
     <fields>
         <fullName>BIC_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>BIC value at charter is stored in this field.</description>
         <externalId>false</externalId>
         <label>BIC Charter</label>
         <precision>18</precision>
@@ -128,6 +128,7 @@
     <fields>
         <fullName>BIC_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>BIC Value at contract is saved in this field for future reference.</description>
         <externalId>false</externalId>
         <label>BIC Contract</label>
         <precision>18</precision>
@@ -140,6 +141,7 @@
     </fields>
     <fields>
         <fullName>BIC_Difference__c</fullName>
+        <description>This field is the difference between BIC regional and BIC local.</description>
         <externalId>false</externalId>
         <formula>IF(BIC_Regional__c &lt;&gt; 0, 
 	IF((ABS(BIC_Regional__c - BIC_Local__c)/BIC_Regional__c) &gt; 0.05, 
@@ -160,6 +162,7 @@
     <fields>
         <fullName>BIC_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC when project span is at global.</description>
         <externalId>false</externalId>
         <label>BIC Global</label>
         <precision>18</precision>
@@ -173,6 +176,7 @@
     <fields>
         <fullName>BIC_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC when project span is at Local.</description>
         <externalId>false</externalId>
         <label>BIC Local</label>
         <precision>18</precision>
@@ -186,6 +190,7 @@
     <fields>
         <fullName>BIC_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC value at Market deployment.</description>
         <externalId>false</externalId>
         <label>BIC MD</label>
         <precision>18</precision>
@@ -199,6 +204,7 @@
     <fields>
         <fullName>BIC_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC value at Market ready.</description>
         <externalId>false</externalId>
         <label>BIC MR</label>
         <precision>18</precision>
@@ -212,6 +218,7 @@
     <fields>
         <fullName>BIC_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC value when project span is Regional.</description>
         <externalId>false</externalId>
         <label>BIC Regional</label>
         <precision>18</precision>
@@ -225,20 +232,19 @@
     <fields>
         <fullName>Business_Impact_Global__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(Year_3_iTO_Global__c &gt;= 50000, 
-	&quot;Super&quot;, 
-	IF(AND(Year_3_iTO_Global__c &gt;=15000, Year_3_iTO_Global__c&lt;50000), 
-		&quot;Large&quot;, 
-		IF( AND(Year_3_iTO_Global__c &gt;=3000, Year_3_iTO_Global__c&lt;15000), 
-			&quot;Mid&quot;, 
-			IF( OR(Year_3_iTO_Global__c=0, ISNULL(Year_3_iTO_Global__c)), 
-				&quot;&quot;, 
-				&quot;Small&quot;
-			)
-		)
-	)
+        <formula>IF(Year_3_iTO_Global__c &gt;= 50000,
+&quot;Super&quot;,
+IF(AND(Year_3_iTO_Global__c &gt;=15000, Year_3_iTO_Global__c&lt;50000),
+&quot;Large&quot;,
+IF( AND(Year_3_iTO_Global__c &gt;=3000, Year_3_iTO_Global__c&lt;15000),
+&quot;Medium&quot;,
+IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
+&quot;&quot;,
+&quot;Small&quot;
+)
+)
+)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Business Impact Global</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -275,10 +281,10 @@
         <externalId>false</externalId>
         <formula>IF(Year_3_iTO_Regional__c &gt;= 50000, 
 	&quot;Super&quot;, 
-	IF(AND(Year_3_iTO_Regional__c &gt;=15000, Year_3_iTO_Regional__c&lt;49999.999), 
+	IF(AND(Year_3_iTO_Regional__c &gt;=15000, Year_3_iTO_Regional__c&lt;50000), 
 		&quot;Large&quot;, 
-		IF( AND(Year_3_iTO_Regional__c &gt;=3000, Year_3_iTO_Regional__c&lt;14999.999), 
-			&quot;Mid&quot;, 
+		IF( AND(Year_3_iTO_Regional__c &gt;=3000, Year_3_iTO_Regional__c&lt;15000), 
+			&quot;Medium&quot;, 
 			IF( OR(Year_3_iTO_Regional__c=0.00, ISNULL(Year_3_iTO_Regional__c)), 
 				&quot;&quot;, 
 				&quot;Small&quot;
@@ -286,7 +292,6 @@
 		)
 	)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Business Impact Regional</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -297,6 +302,7 @@
     <fields>
         <fullName>CAPEX_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Charter.</description>
         <externalId>false</externalId>
         <label>CAPEX Charter</label>
         <precision>18</precision>
@@ -310,6 +316,7 @@
     <fields>
         <fullName>CAPEX_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Contract.</description>
         <externalId>false</externalId>
         <label>CAPEX Contract</label>
         <precision>18</precision>
@@ -322,6 +329,7 @@
     </fields>
     <fields>
         <fullName>CAPEX_Difference__c</fullName>
+        <description>This captures difference between Regional and local CAPEX field.</description>
         <externalId>false</externalId>
         <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
 	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
@@ -342,6 +350,7 @@
     <fields>
         <fullName>CAPEX_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value when project span is Global.</description>
         <externalId>false</externalId>
         <label>CAPEX Global</label>
         <precision>18</precision>
@@ -355,6 +364,7 @@
     <fields>
         <fullName>CAPEX_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value when project span is Local.</description>
         <externalId>false</externalId>
         <label>CAPEX Local</label>
         <precision>18</precision>
@@ -368,6 +378,7 @@
     <fields>
         <fullName>CAPEX_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Market deployment.</description>
         <externalId>false</externalId>
         <label>CAPEX MD</label>
         <precision>18</precision>
@@ -381,6 +392,7 @@
     <fields>
         <fullName>CAPEX_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Market Ready.</description>
         <externalId>false</externalId>
         <label>CAPEX MR</label>
         <precision>18</precision>
@@ -394,6 +406,7 @@
     <fields>
         <fullName>CAPEX_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value when project span is Regional.</description>
         <externalId>false</externalId>
         <label>CAPEX Regional</label>
         <precision>18</precision>
@@ -407,85 +420,94 @@
     <fields>
         <fullName>Charter_Approved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Check box to know if charter is approved.</description>
         <externalId>false</externalId>
         <label>Charter Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Charter_Locked__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Check box to know if charter is locked</description>
         <externalId>false</externalId>
         <label>Charter Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Contract_Approved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Check box to know if contract is approved.</description>
         <externalId>false</externalId>
         <label>Contract Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Contract_Locked__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Check box to know if contract is locked.</description>
         <externalId>false</externalId>
         <label>Contract Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Copy_Global_to_Local__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy global fields to local fields with help of a workflow.</description>
         <externalId>false</externalId>
         <label>Copy Global to Local</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Copy_Global_to_Regional__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy global fields to regional fields with help of a workflow.</description>
         <externalId>false</externalId>
         <label>Copy Global to Regional</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Copy_Local_to_Regional__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy local fields to Regional fields with help of a workflow.</description>
         <externalId>false</externalId>
         <label>Copy Local to Regional</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Copy_Regional_to_Local__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy Regional fields to Local fields with help of a workflow.</description>
         <externalId>false</externalId>
         <label>Copy Regional to Local</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Display_Name__c</fullName>
+        <description>Financial Display Name</description>
         <externalId>false</externalId>
         <formula>IF(CONTAINS(Financial_External_ID__c , &apos;CONSOLIDATED&apos;), 
     SUBSTITUTE(Financial_External_ID__c, &apos;_CONSOLIDATED&apos;, &apos; (Consolidated)&apos;), 
@@ -517,6 +539,7 @@
     <fields>
         <fullName>Financial_External_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Financial External Id.</description>
         <externalId>true</externalId>
         <label>Financial External ID</label>
         <length>100</length>
@@ -530,6 +553,7 @@
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS Charter</description>
         <externalId>false</externalId>
         <label>GM Y1 bps vs DNDS Charter</label>
         <precision>18</precision>
@@ -544,6 +568,7 @@
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS Contract</description>
         <externalId>false</externalId>
         <label>GM Y1 bps vs DNDS Contract</label>
         <precision>18</precision>
@@ -557,6 +582,7 @@
     </fields>
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Difference__c</fullName>
+        <description>GM Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(GM_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
 	IF((ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
@@ -577,6 +603,7 @@
     </fields>
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Global__c</fullName>
+        <description>GM Y1 bps vs DNDS Global</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Global__c = 0, 0, Gross_Y1_Gross_Profit_Global__c / Gross_Y1_Turnover_Global__c)
@@ -595,6 +622,7 @@
     </fields>
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Local__c</fullName>
+        <description>GM Y1 bps vs DNDS Local</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Local__c = 0, 0, Gross_Y1_Gross_Profit_Local__c / Gross_Y1_Turnover_Local__c)
@@ -614,6 +642,7 @@
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS MD</description>
         <externalId>false</externalId>
         <label>GM Y1 bps vs DNDS MD</label>
         <precision>18</precision>
@@ -628,6 +657,7 @@
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS MR</description>
         <externalId>false</externalId>
         <label>GM Y1 bps vs DNDS MR</label>
         <precision>18</precision>
@@ -641,6 +671,7 @@
     </fields>
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Regional__c</fullName>
+        <description>GM Y1 bps vs DNDS Market ready</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Regional__c = 0, 0, Gross_Y1_Gross_Profit_Regional__c / Gross_Y1_Turnover_Regional__c)
@@ -659,6 +690,7 @@
     </fields>
     <fields>
         <fullName>Global_External_Id__c</fullName>
+        <description>This field is used to store the Global project external id.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.IPM_Project_Name__c, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c, IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -671,6 +703,7 @@
     </fields>
     <fields>
         <fullName>Global_Project_Id__c</fullName>
+        <description>Associated Global Project Id.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c)))</formula>
         <label>Global Project Id</label>
@@ -682,6 +715,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Gross_Profit_Global__c</fullName>
+        <description>Gross Y1 Gross Profit Global</description>
         <externalId>false</externalId>
         <label>Gross Y1 Gross Profit Global</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Global__c</summarizedField>
@@ -708,6 +742,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Gross_Profit_Local__c</fullName>
+        <description>Gross Y1 Gross Profit Local</description>
         <externalId>false</externalId>
         <label>Gross Y1 Gross Profit Local</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Local__c</summarizedField>
@@ -734,6 +769,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Gross_Profit_Regional__c</fullName>
+        <description>Gross Y1 Gross Profit Regional</description>
         <externalId>false</externalId>
         <label>Gross Y1 Gross Profit Regional</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Regional__c</summarizedField>
@@ -760,6 +796,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Profit_Before_Overheads_Global__c</fullName>
+        <description>Gross Y1 Profit Before Overheads Global</description>
         <externalId>false</externalId>
         <label>Gross Y1 Profit Before Overheads Global</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Global__c</summarizedField>
@@ -786,6 +823,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Profit_Before_Overheads_Local__c</fullName>
+        <description>Gross Y1 Profit Before Overheads Local</description>
         <externalId>false</externalId>
         <label>Gross Y1 Profit Before Overheads Local</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Local__c</summarizedField>
@@ -812,6 +850,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Profit_Before_Overheads_Regiona__c</fullName>
+        <description>Gross Y1 Profit Before Overheads Regional</description>
         <externalId>false</externalId>
         <label>Gross Y1 Profit Before Overheads Regiona</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Regional__c</summarizedField>
@@ -838,6 +877,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Turnover_Global__c</fullName>
+        <description>Gross Y1 Turnover Global</description>
         <externalId>false</externalId>
         <label>Gross Y1 Turnover Global</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
@@ -864,6 +904,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Turnover_Local__c</fullName>
+        <description>Gross Y1 Turnover Local</description>
         <externalId>false</externalId>
         <label>Gross Y1 Turnover Local</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
@@ -890,6 +931,7 @@
     </fields>
     <fields>
         <fullName>Gross_Y1_Turnover_Regional__c</fullName>
+        <description>Gross Y1 Turnover Regional</description>
         <externalId>false</externalId>
         <label>Gross Y1 Turnover Regional</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
@@ -927,6 +969,7 @@
     </fields>
     <fields>
         <fullName>IPM_BD_BB_Feedback__c</fullName>
+        <description>captures the BD BB Feedback</description>
         <externalId>false</externalId>
         <label>IPM BD-BB Feedback</label>
         <length>32768</length>
@@ -948,12 +991,65 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>IPM_CPP_Local__c</fullName>
+        <fullName>IPM_Business_Impact_Charter__c</fullName>
+        <description>To store the Business Impact Value after charter Approved</description>
         <externalId>false</externalId>
-        <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot;NA&quot;,
+        <label>Business_Impact_Charter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Business_Impact_Contract__c</fullName>
+        <description>To store the business impact value after contract Approved</description>
+        <externalId>false</externalId>
+        <label>Business_Impact_Contract</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Business_Impact_MD__c</fullName>
+        <description>To store the value of Business Impact after Market Deployment Approved</description>
+        <externalId>false</externalId>
+        <label>Business_Impact_MD</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Business_Impact_MR__c</fullName>
+        <description>To store the value of Business Impact after Market Ready Approved</description>
+        <externalId>false</externalId>
+        <label>Business_Impact_MR</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_CPP_Local__c</fullName>
+        <description>Project Priority Local</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot; NA&quot;,
 IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.005) ),
 &quot;Gold&quot;,
-IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.001), OpCo__c &lt; (Gross_Y1_Turnover_Local__c *0.005) ),
+IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.001), Gross_Y1_Turnover_Local__c &lt; (OpCo__c *0.005) ),
 &quot;Silver&quot;,
 IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
 &quot;Bronze&quot;,
@@ -962,7 +1058,6 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
 )
 )
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM CPP Local</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -996,8 +1091,58 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Financial_Postfix__c</fullName>
+        <description>Financial Postfix</description>
+        <externalId>false</externalId>
+        <label>IPM Financial Postfix</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Inoplan_Fin_External_Id__c</fullName>
+        <description>IPM Inoplan Fin External Id - To be used by Data Migration</description>
+        <externalId>true</externalId>
+        <label>IPM_Inoplan_Fin_External_Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Key_Financial__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To mark the key Financial</description>
+        <externalId>false</externalId>
+        <label>Key Financial</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Regional Rollout associated to financial.</description>
         <externalId>false</externalId>
         <label>Regional Rollout</label>
         <referenceTo>IPM_Project_Rollout__c</referenceTo>
@@ -1010,8 +1155,22 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_Project_Type__c</fullName>
+        <description>Associated Project Type</description>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(Parent_Project__c)),  TEXT(Parent_Project__r.IPM_Project_Type__c), IF(NOT(ISBLANK(Regional_Project__c)), TEXT(Regional_Project__r.IPM_Project_Type__c),TEXT(Local_Project__r.IPM_Project_Type__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Project Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IRR_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value at charter.</description>
         <externalId>false</externalId>
         <label>IRR Charter</label>
         <precision>18</precision>
@@ -1025,6 +1184,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value at Contract.</description>
         <externalId>false</externalId>
         <label>IRR Contract</label>
         <precision>18</precision>
@@ -1037,6 +1197,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>IRR_Difference__c</fullName>
+        <description>This field holds IRR  difference between value of IRR regional and local fields.</description>
         <externalId>false</externalId>
         <formula>IF(IRR_Regional__c &lt;&gt; 0, 
 	IF((ABS(IRR_Regional__c - IRR_Local__c)/IRR_Regional__c) &gt; 0.05, 
@@ -1057,6 +1218,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value when project is at Global span.</description>
         <externalId>false</externalId>
         <label>IRR Global</label>
         <precision>18</precision>
@@ -1070,6 +1232,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value when project is at Local span.</description>
         <externalId>false</externalId>
         <label>IRR Local</label>
         <precision>18</precision>
@@ -1096,6 +1259,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value at Market Ready.</description>
         <externalId>false</externalId>
         <label>IRR MR</label>
         <precision>18</precision>
@@ -1109,6 +1273,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value when project is at Regional span.</description>
         <externalId>false</externalId>
         <label>IRR Regional</label>
         <precision>18</precision>
@@ -1121,6 +1286,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Gross_Profit_Global__c</fullName>
+        <description>Incremental Y1 Gross Profit Global</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Gross Profit Global</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Global__c</summarizedField>
@@ -1147,6 +1313,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Gross_Profit_Local__c</fullName>
+        <description>Incremental Y1 Gross Profit Local</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Gross Profit Local</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Local__c</summarizedField>
@@ -1173,6 +1340,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Gross_Profit_Regional__c</fullName>
+        <description>Incremental Y1 Gross Profit Regional</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Gross Profit Regional</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Regional__c</summarizedField>
@@ -1199,6 +1367,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Profit_Before_Overheads_G__c</fullName>
+        <description>Incremental Y1 Profit Before Overheads Global</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Profit Before Overheads G</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Global__c</summarizedField>
@@ -1225,6 +1394,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Profit_Before_Overheads_L__c</fullName>
+        <description>Incremental Y1 Profit Before Overheads Local</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Profit Before Overheads L</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Local__c</summarizedField>
@@ -1251,6 +1421,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Profit_Before_Overheads_R__c</fullName>
+        <description>Incremental Y1 Profit Before Overheads Rregional</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Profit Before Overheads R</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Regional__c</summarizedField>
@@ -1277,6 +1448,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Turnover_Global__c</fullName>
+        <description>Incremental Y1 Turnover Global</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Turnover Global</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
@@ -1303,6 +1475,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Turnover_Local__c</fullName>
+        <description>Incremental Y1 Turnover Local</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Turnover Local</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
@@ -1329,6 +1502,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Turnover_Regional__c</fullName>
+        <description>Incremental Y1 Turnover Regional</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Turnover Regional</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
@@ -1354,8 +1528,20 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Is_BC_Confirmed_Capability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To capture the Business Case Confirmation at Capability Phase</description>
+        <externalId>false</externalId>
+        <label>Is BC Confirmed Capability</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Last_Saved_By_Global__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field saves the user who saved the Global fields.</description>
         <externalId>false</externalId>
         <label>Last Saved By (Global)</label>
         <referenceTo>User</referenceTo>
@@ -1370,6 +1556,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_By_Local__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field saves the user who saved the local fields.</description>
         <externalId>false</externalId>
         <label>Last Saved By (Local)</label>
         <referenceTo>User</referenceTo>
@@ -1384,6 +1571,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_By_Regional__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field saves the user who saved the Regional fields.</description>
         <externalId>false</externalId>
         <label>Last Saved By (Regional)</label>
         <referenceTo>User</referenceTo>
@@ -1398,6 +1586,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_Global__c</fullName>
         <defaultValue>NOW()</defaultValue>
+        <description>Last when global fields were saved.</description>
         <externalId>false</externalId>
         <label>Last Saved (Global)</label>
         <required>false</required>
@@ -1409,6 +1598,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_Local__c</fullName>
         <defaultValue>NOW()</defaultValue>
+        <description>When the _Local fields were last saved.</description>
         <externalId>false</externalId>
         <label>Last Saved (Local)</label>
         <required>false</required>
@@ -1420,6 +1610,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_Regional__c</fullName>
         <defaultValue>NOW()</defaultValue>
+        <description>When the _Regional fields were last saved.</description>
         <externalId>false</externalId>
         <label>Last Saved (Regional)</label>
         <required>false</required>
@@ -1431,6 +1622,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Local_Project__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
+        <description>Local Project associated with the financial.</description>
         <externalId>false</externalId>
         <label>Local Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -1445,45 +1637,50 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>MD_Approved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicated that Market Deployment was approved.</description>
         <externalId>false</externalId>
         <label>MD Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>MD_Locked__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates that Market Deployment is locked.</description>
         <externalId>false</externalId>
         <label>MD Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>MR_Approved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates that Market Deployment was approved.</description>
         <externalId>false</externalId>
         <label>MR Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>MR_Locked__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicated that Market ready phase is locked.</description>
         <externalId>false</externalId>
         <label>MR Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Misaligned_Date__c</fullName>
+        <description>This captures the date when financial business cases were misaligned..</description>
         <externalId>false</externalId>
         <label>Misaligned Date</label>
         <required>false</required>
@@ -1494,6 +1691,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Misaligned__c</fullName>
+        <description>This shows the misalignment between regional and local business case.</description>
         <externalId>false</externalId>
         <formula>IF(
 ( Volume_Unit_Difference__c +  
@@ -1511,6 +1709,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>MisalignmentDateTime__c</fullName>
+        <description>This captures the date and time when financial business cases were misaligned..</description>
         <externalId>false</externalId>
         <label>MisalignmentDateTime</label>
         <required>false</required>
@@ -1522,6 +1721,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Value of NPV at charter.</description>
         <externalId>false</externalId>
         <label>NPV Charter</label>
         <precision>18</precision>
@@ -1535,6 +1735,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Value of NPV at Contract..</description>
         <externalId>false</externalId>
         <label>NPV Contract</label>
         <precision>18</precision>
@@ -1547,6 +1748,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>NPV_Difference__c</fullName>
+        <description>Difference between NPV regional and local NPV&apos;s.</description>
         <externalId>false</externalId>
         <formula>IF(NPV_Regional__c &lt;&gt; 0, 
 	IF((ABS(NPV_Regional__c - NPV_Local__c)/NPV_Regional__c) &gt; 0.05, 
@@ -1567,6 +1769,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV field value when at Project span Global.</description>
         <externalId>false</externalId>
         <label>NPV Global</label>
         <precision>18</precision>
@@ -1580,6 +1783,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV field value when at Project span Local.</description>
         <externalId>false</externalId>
         <label>NPV Local</label>
         <precision>18</precision>
@@ -1593,6 +1797,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV at Market deployment.</description>
         <externalId>false</externalId>
         <label>NPV MD</label>
         <precision>18</precision>
@@ -1606,6 +1811,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV at Market Ready phase of the project.</description>
         <externalId>false</externalId>
         <label>NPV MR</label>
         <precision>18</precision>
@@ -1619,6 +1825,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV value when project span is regional.</description>
         <externalId>false</externalId>
         <label>NPV Regional</label>
         <precision>18</precision>
@@ -1631,8 +1838,9 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>OpCo__c</fullName>
+        <description>This field holds the Local Project&apos;s Company Card Total_OpCo_Turnover__c</description>
         <externalId>false</externalId>
-        <formula>Local_Project__r.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formula>Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>OpCo</label>
         <precision>18</precision>
@@ -1646,6 +1854,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Charter</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS Charter</label>
         <precision>18</precision>
@@ -1660,6 +1869,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Contract</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS Contract</label>
         <precision>18</precision>
@@ -1673,6 +1883,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Difference__c</fullName>
+        <description>PBO Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(PBO_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
 	IF((ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
@@ -1693,6 +1904,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Global__c</fullName>
+        <description>PBO Y1 bps vs DNDS Global</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Global__c = 0, 0, Gross_Y1_Profit_Before_Overheads_Global__c / Gross_Y1_Turnover_Global__c)
@@ -1711,6 +1923,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Local__c</fullName>
+        <description>PBO Y1 bps vs DNDS Local</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Local__c = 0, 0, Gross_Y1_Profit_Before_Overheads_Local__c / Gross_Y1_Turnover_Local__c)
@@ -1730,6 +1943,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Market deployment</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS MD</label>
         <precision>18</precision>
@@ -1744,6 +1958,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Market ready</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS MR</label>
         <precision>18</precision>
@@ -1757,6 +1972,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Regional__c</fullName>
+        <description>PBO Y1 bps vs DNDS Regional</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Regional__c = 0, 0, Gross_Y1_Profit_Before_Overheads_Regiona__c / Gross_Y1_Turnover_Regional__c)
@@ -1776,6 +1992,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Parent_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Project Parent associated with financial</description>
         <externalId>false</externalId>
         <label>Parent Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -1790,6 +2007,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback at charter.</description>
         <externalId>false</externalId>
         <label>Payback Charter</label>
         <precision>18</precision>
@@ -1804,6 +2022,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback value before contract when approved.</description>
         <externalId>false</externalId>
         <label>Payback Contract</label>
         <precision>18</precision>
@@ -1817,6 +2036,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Payback_Difference__c</fullName>
+        <description>Payback_Regional - payback_Local = payback_Difference.</description>
         <externalId>false</externalId>
         <formula>IF(Payback_Regional__c &lt;&gt; 0, 
 	IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05, 
@@ -1838,6 +2058,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when project span is Global</description>
         <externalId>false</externalId>
         <label>Payback Global</label>
         <precision>18</precision>
@@ -1852,6 +2073,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when project span is Global</description>
         <externalId>false</externalId>
         <label>Payback Local</label>
         <precision>18</precision>
@@ -1866,6 +2088,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when market deployment is approved.</description>
         <externalId>false</externalId>
         <label>Payback MD</label>
         <precision>18</precision>
@@ -1880,6 +2103,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when market ready is approved.</description>
         <externalId>false</externalId>
         <label>Payback MR</label>
         <precision>18</precision>
@@ -1894,6 +2118,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when project span is Regional.</description>
         <externalId>false</externalId>
         <label>Payback Regional</label>
         <precision>18</precision>
@@ -1908,6 +2133,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Project_Sustainability_Period__c</fullName>
         <defaultValue>&quot;3&quot;</defaultValue>
+        <description>Project Span associated to Financial.</description>
         <externalId>false</externalId>
         <label>Project Sustainability Period</label>
         <length>10</length>
@@ -1920,6 +2146,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Regional_External_Id__c</fullName>
+        <description>Regional Project External Id associated with the financial.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Regional_Project__c)),  Regional_Project__r.IPM_Project_Name__c ,  IPM_Project_Rollout__r.IPM_Rollout_Project__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -1932,6 +2159,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Regional_Market_Cluster_Name__c</fullName>
+        <description>Market cluster name of the Regional Project asociated.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Market_Cluster_Name__c , IPM_Project_Rollout__r.Market_Cluster_Name__c )</formula>
         <label>Regional Market Cluster Name</label>
@@ -1944,6 +2172,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Regional_Project__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
+        <description>Lookup to associated Regional Project.</description>
         <externalId>false</externalId>
         <label>Regional Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -1957,6 +2186,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Sorting_Order__c</fullName>
+        <description>This field is used in query for sorting records.</description>
         <externalId>false</externalId>
         <formula>IF(CONTAINS(Financial_External_ID__c, &apos;NONKEY&apos;), 99, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -1971,6 +2201,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Status__c</fullName>
+        <description>Status of financial.</description>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -1995,6 +2226,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Target_Launch_Date_Updated_From__c</fullName>
+        <description>Updated Target launch date.</description>
         <externalId>false</externalId>
         <label>Target Launch Date Updated From</label>
         <picklist>
@@ -2019,6 +2251,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Target_Launch_Date__c</fullName>
+        <description>Project Target Launch date.</description>
         <externalId>false</externalId>
         <label>Target Launch Date</label>
         <required>true</required>
@@ -2029,6 +2262,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold_Status_Global__c</fullName>
+        <description>Copies Global Project threshold.</description>
         <externalId>false</externalId>
         <formula>IF( Year_3_iTO_Global__c &gt;  Threshold__c, 
 	&quot;Above Threshold&quot;, 
@@ -2053,6 +2287,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold_Status_Local__c</fullName>
+        <description>Copies Local Project threshold.</description>
         <externalId>false</externalId>
         <formula>IF( Year_3_iTO_Local__c &gt;  Threshold__c, 
 	&quot;Above Threshold&quot;, 
@@ -2077,6 +2312,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold_Status_Regional__c</fullName>
+        <description>Copies Regional Project threshold.</description>
         <externalId>false</externalId>
         <formula>IF( Year_3_iTO_Regional__c &gt;  Threshold__c, 
 	&quot;Above Threshold&quot;, 
@@ -2101,6 +2337,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold__c</fullName>
+        <description>Project category threshold.</description>
         <externalId>false</externalId>
         <formula>CASE(IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.IPM_Category_Text__c, Regional_Project__r.IPM_Category_Text__c), 
 	&quot;Laundry&quot;, 3000,
@@ -2118,6 +2355,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Total_FY_Difference__c</fullName>
+        <description>total Financial year difference of all the _difference fields.</description>
         <externalId>false</externalId>
         <label>Total FY Difference</label>
         <summarizedField>IPM_Financial_Year__c.Total_Difference__c</summarizedField>
@@ -2129,18 +2367,20 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Charter__c</fullName>
+        <description>unit at Charter.</description>
         <externalId>false</externalId>
         <label>Volume Unit Charter</label>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Volume_Unit_Contract__c</fullName>
+        <description>Volume unit at contract.</description>
         <externalId>false</externalId>
         <label>Volume Unit Contract</label>
         <length>100</length>
@@ -2153,6 +2393,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Difference__c</fullName>
+        <description>Regional-local difference of Volume unit.</description>
         <externalId>false</externalId>
         <formula>IF(TEXT(Volume_Unit_Regional__c) == TEXT(Volume_Unit_Local__c), 0, 1)</formula>
         <label>Volume Unit Difference</label>
@@ -2166,6 +2407,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Global__c</fullName>
+        <description>Volume unit when project span is global.</description>
         <externalId>false</externalId>
         <label>Volume Unit Global</label>
         <picklist>
@@ -2177,6 +2419,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
                 <fullName>Total &apos;000 Units</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Total 000 Units</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2186,6 +2432,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Local__c</fullName>
+        <description>Volume unit when project span is Local.</description>
         <externalId>false</externalId>
         <label>Volume Unit Local</label>
         <picklist>
@@ -2197,6 +2444,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
                 <fullName>Total &apos;000 Units</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Total 000 Units</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2206,18 +2457,20 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_MD__c</fullName>
+        <description>Volume unit when project phase is market deployment..</description>
         <externalId>false</externalId>
         <label>Volume Unit MD</label>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Volume_Unit_MR__c</fullName>
+        <description>Volume unit when project phase is market ready..</description>
         <externalId>false</externalId>
         <label>Volume Unit MR</label>
         <length>100</length>
@@ -2230,6 +2483,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Regional__c</fullName>
+        <description>Volume unit when project span is regional.</description>
         <externalId>false</externalId>
         <label>Volume Unit Regional</label>
         <picklist>
@@ -2241,6 +2495,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
                 <fullName>Total &apos;000 Units</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Total 000 Units</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2250,6 +2508,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit__c</fullName>
+        <description>Volume unit picklist.</description>
         <externalId>false</externalId>
         <label>Volume Unit</label>
         <picklist>
@@ -2312,6 +2571,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Charter</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Charter</label>
         <precision>18</precision>
@@ -2325,6 +2585,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Contract</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Contract</label>
         <precision>18</precision>
@@ -2337,6 +2598,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Year_3_iTO_Global__c</fullName>
+        <description>Year 3 ITO when project span was global</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Global</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
@@ -2363,6 +2625,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Year_3_iTO_Local__c</fullName>
+        <description>Year 3 ITO when project span is local</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Local</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
@@ -2374,7 +2637,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>Calendar</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>
@@ -2390,6 +2653,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Market Deployment</description>
         <externalId>false</externalId>
         <label>Year 3 iTO MD</label>
         <precision>18</precision>
@@ -2403,6 +2667,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Market Ready.</description>
         <externalId>false</externalId>
         <label>Year 3 iTO MR</label>
         <precision>18</precision>
@@ -2415,6 +2680,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Year_3_iTO_Regional__c</fullName>
+        <description>Year 3 ITO when project span is regional</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Regional</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
@@ -2426,7 +2692,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>Calendar</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>
@@ -2440,8 +2706,20 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>isActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>To hold the status of the Financials</description>
+        <externalId>false</externalId>
+        <label>isActive</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>isGateSubmissionDue__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if the Gate Submission date is due</description>
         <externalId>false</externalId>
         <label>isGateSubmissionDue</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2482,6 +2760,9 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         </filters>
         <label>Finder</label>
         <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Finder_Global_Projects</fullName>

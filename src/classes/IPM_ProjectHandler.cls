@@ -15,15 +15,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 
    
     // Constructor
-    public IPM_ProjectHandler()
+    public IPM_ProjectHandler() 
     { 
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
     
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
-    
+    public Set<id>queueSet=new Set<id>();
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
+    private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     
     /***********************************************************************************************************************************
     * bulkBefore
@@ -32,8 +33,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */
     public void bulkBefore()
     {
-        
-        
         List<IPM_Project__c> projectAssociatedWithProjectTypesList = new List<IPM_Project__c>();
         
         if(Trigger.isInsert || Trigger.isUpdate)
@@ -46,19 +45,39 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 {
                     projectAssociatedWithProjectTypesList.add(project); 
                 }
-                 //Set default BET value
-                if(Trigger.isUpdate && String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                    project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
-                }
-                //Set BET MIlestone Dates as Project Target launch Dates
-                if(Trigger.isUpdate && (project.IPM_BET_Toolkit__c == IPM_ConstantUtils.CREATE_NEW_BET || project.IPM_BET_Toolkit__c == IPM_ConstantUtils.LINK_EXISTING_BET ) && project.IPM_Target_Launch_Dates__c!=null && ((project.BET_TLD_First_Release_Date__c==null || project.BET_TLD_Final_Release_Date__c==null) || project.IPM_Target_Launch_Dates__c!= ((IPM_Project__c) trigger.oldMap.get(project.id)).IPM_Target_Launch_Dates__c)){
-                    project.BET_TLD_First_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
-                    project.BET_TLD_Final_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
-                }
-                //Reset BET Milestones when BET option is selected as No BET
-                if(Trigger.isUpdate && project.IPM_BET_Toolkit__c == IPM_ConstantUtils.NO_BET && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_BET_Toolkit__c != IPM_ConstantUtils.NO_BET){
-                    project.BET_TLD_First_Release_Date__c = null;
-                    project.BET_TLD_Final_Release_Date__c = null;
+                //Process BET flow
+                if(Trigger.isUpdate){
+                    //Set default BET value
+                    if(String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                        project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
+                    }
+                    //Set BET MIlestone Dates as Project Target launch Dates
+                    if((project.IPM_BET_Toolkit__c == IPM_ConstantUtils.CREATE_NEW_BET || project.IPM_BET_Toolkit__c == IPM_ConstantUtils.LINK_EXISTING_BET ) && project.IPM_Target_Launch_Dates__c!=null && ((project.BET_TLD_First_Release_Date__c==null || project.BET_TLD_Final_Release_Date__c==null) || project.IPM_Target_Launch_Dates__c!= ((IPM_Project__c) trigger.oldMap.get(project.id)).IPM_Target_Launch_Dates__c)){
+                        project.BET_TLD_First_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
+                        project.BET_TLD_Final_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
+                    }
+                    //Reset BET Milestones when BET option is selected as No BET
+                    if(project.IPM_BET_Toolkit__c == IPM_ConstantUtils.NO_BET && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_BET_Toolkit__c != IPM_ConstantUtils.NO_BET){
+                        project.BET_TLD_First_Release_Date__c = null;
+                        project.BET_TLD_Final_Release_Date__c = null;
+                    }
+                    //Save Last BET detail
+                    if(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c!=null && project.BET__c != ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c){
+                        project.Bulk_BET_Member_Request__c = false;
+                        BET_BETWrapper bwrap = new BET_BETWrapper();
+                        bwrap = (BET_BETWrapper)BET_BETService.getBet(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c);
+                        if(bwrap!=null){
+                            project.BET_Last_BET__c = bwrap.betName;
+                        }
+                    }
+                    //Send Rollout member access request for associated BET if it is already past First Release status
+                    if(project.BET__c!= null && (project.BET__c != ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c)){
+                        BET_BETWrapper bwrap = new BET_BETWrapper();
+                        bwrap = (BET_BETWrapper)BET_BETService.getBet(project.BET__c);
+                        if(bwrap.status == IPM_ConstantUtils.BET_FIRST_RELEASE || bwrap.status == IPM_ConstantUtils.BET_FINAL_RELEASE){
+                            IPM_BETHelper.sendBETAccessRequestonFirstRelease(project.BET__c);   
+                        }
+                    }
                 }
             }
         } 
@@ -111,20 +130,33 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     * any data required into maps prior execution of the trigger.
     */
     public void bulkAfter()
-    {
-     
+    { 
        /* Actual Project specific process starts */
        if( Trigger.isInsert || Trigger.isUpdate)
        {
+          Set<Id> lstDeleteProjectId = new Set<Id>(); 
+          for(IPM_Project__c project : (List<IPM_Project__c>)Trigger.New)
+          {
+             if(project.Created_in_error__c) 
+             { 
+                lstDeleteProjectId.add(project.Id);
+             } 
+            //Send BET Link Request for requested BET link on phase change from Ideas to Feasibility
+            if(Trigger.isUpdate && project.BET_Link_Requested__c!=null && !IPM_ConstantUtils.PHASE_IDEAS.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PHASE_IDEAS.equals(((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_Phase__c)){
+                BET_LinkingService.follow(project.id,project.BET_Link_Requested__c,new list<id> {project.IPM_Project_Leader__c,project.Deputy_Project_Leader__c});      
+            }
+          }
           
-          IPM_ProjectHelper.deleteProj((List<IPM_Project__c>)Trigger.New);
-       
+          IPM_ProjectHelper.deleteProject(lstDeleteProjectId); 
            
            // Contains Master Project Map
            Map<Id,IPM_Project__c> masterProjectMap = new Map<Id,IPM_Project__c>();
-
+           
+           //Phase Change Project Map 
+           Map<Id,IPM_Project__c> phaseChangeProjectMap = new Map<Id,IPM_Project__c>();
+                
            // Stores information for updating Project document,Document Section,Section content and Questionnaire
-           Map<Id,IPM_Project__c> processProjectDocumentMap = new Map<Id,IPM_Project__c>();
+           Map<Id,IPM_Project__c> complexityChangeProjectMap = new Map<Id,IPM_Project__c>();
            
            // Stores information for updating current document Status
            Map<Id,IPM_Project__c> updateProjectDocumentStatusMap = new Map<Id,IPM_Project__c>();
@@ -139,7 +171,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            Map<Id,IPM_Project__c> notificationEligibleProjects = new Map<Id,IPM_Project__c>();
            
            // Stores information for financial Updates.
-           Map<Id,IPM_Project__c> financialEligibleProjects = new Map<Id,IPM_Project__c>();
            Map<String,IPM_Project__c> financialYearUpdates = new Map<String,IPM_Project__c>();
            
            //Stores tha updated fast track projects for chatter
@@ -162,6 +193,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            Set<String> setSustainabilityPeriod = new Set<String>();
            Boolean updateTaskAssignee = false ; 
            
+           List<IPM_Project__c> newlyNamedProjectList = new List<IPM_Project__c>();
+           
+          
            // Initiate the Gate Document Master Copy.
            for(IPM_Project__c incomingProject :(List<IPM_Project__c>)Trigger.New)
            {
@@ -180,12 +214,18 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 {
                     
                     oldProject = ( (Map<Id,IPM_Project__c>)Trigger.OldMap).get(incomingProject.Id);
-                    /* Under development , not to be reviewed */
+                    
+                    //Notify the project is created
+                    if(oldProject.IPM_Project_Name__c == null && String.IsBlank(oldProject.IPM_Project_Name__c) && incomingProject.IPM_Project_Name__c != null && String.IsNotBlank(incomingProject.IPM_Project_Name__c) )
+                    {
+                         newlyNamedProjectList.add(incomingProject);
+                    }   
+                    
                     if(oldProject.IPM_Fast_Track_Project__c != incomingProject.IPM_Fast_Track_Project__c)
                     {
                         fastTrackProjects.add(incomingProject);
                     }
-                    if(oldProject.IPM_Target_Launch_Dates__c != incomingProject.IPM_Target_Launch_Dates__c)
+                    if((oldProject.IPM_Target_Launch_Dates__c != incomingProject.IPM_Target_Launch_Dates__c) || (oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c))
                     {
                         tldChangeProjects.add(incomingProject);
                     }
@@ -219,17 +259,18 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                             {  
                                 masterProjectMap.put(incomingProject.Id,incomingProject);
                                 
+                                // Phase Change Project Map 
+                                phaseChangeProjectMap.put(incomingProject.Id,incomingProject);
+                                
                                 // Processing for Updating Project document Status on Phase Change.
                                 updateProjectDocumentStatusMap.put(incomingProject.Id,incomingProject);
                                 
                                 // Processing For creating new Project Documents.
-                                processProjectDocumentMap.put(incomingProject.Id,incomingProject); 
+                                complexityChangeProjectMap.put(incomingProject.Id,incomingProject); 
                                 
                                 processTasksMap.put(incomingProject.Id,incomingProject);
                                 
                                 processMilestonesMap.put(incomingProject.Id,incomingProject);
-    
-                                financialEligibleProjects.put(incomingProject.Id,incomingProject);
                                 
                                 // Follow Unfollow People
                                 for(String projectMember : ProjectMembersAPINames)
@@ -288,7 +329,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     {
                         masterProjectMap.put(incomingProject.Id,incomingProject);
                         
-                        processProjectDocumentMap.put(incomingProject.Id,incomingProject);
+                        complexityChangeProjectMap.put(incomingProject.Id,incomingProject);
                         
                         processTasksMap.put(incomingProject.Id,incomingProject);
                     }
@@ -330,11 +371,15 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 
                 // Prepare Administrative Project Master Data 
                 IPM_ProjectHelper.initializeProjectMaster();
-               
-                if(updateProjectDocumentStatusMap!=null && !updateProjectDocumentStatusMap.isEmpty() || processProjectDocumentMap!=null && !processProjectDocumentMap.isEmpty())
+                
+                if(!phaseChangeProjectMap.isEmpty())
                 {
                     // Prepare Country and Rollout data  based on Certain conditions
                     IPM_ProjectHelper.intializeProjectCountryNRollouts();
+                }
+                
+                if(!updateProjectDocumentStatusMap.isEmpty() || !complexityChangeProjectMap.isEmpty())
+                {
                     
                     // Prepare Project Related Document,Sections.Section content,Questionnaire data based on Certain conditions
                     IPM_ProjectHelper.initializeProjectRelatedData();
@@ -359,25 +404,23 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 }
                 
                 // Step 2 : Update References to Country and Rollouts based on incoming Project.
-                IPM_ProjectHelper.manageProjectCountryNRolloutReferences(masterProjectMap);
-                
-                // Step 3: Get Updated Country References.
-                IPM_ProjectHelper.refreshProjectRolloutCountryMapping();
-                
-                
-                // Step 4 : Update financials based on incoming Project
-                if(financialEligibleProjects!=null && !financialEligibleProjects.isEmpty() )
+                if(phaseChangeProjectMap!=null && !phaseChangeProjectMap.isEmpty() )
                 {
-                    IPM_ProjectHelper.manageProjectFinancials(financialEligibleProjects,(Map<Id,IPM_Project__c>)Trigger.OldMap);   
+                    IPM_ProjectHelper.manageProjectCountryNRolloutReferences(phaseChangeProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);  
+                    
+                    // Step 3: Get Updated Country References.
+                    IPM_ProjectHelper.refreshProjectRolloutCountryMapping(phaseChangeProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);    
+
+                    // Step 4 : Update financials based on incoming Project
+                    IPM_ProjectHelper.manageProjectFinancials(phaseChangeProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);
                 }
                 
-                // Step 5 : Create Gate Documents and Sections for incoming Project
-                if(processProjectDocumentMap!=null && !processProjectDocumentMap.isEmpty() )
+                // Step 5 : Create Gate Documents and Sections for incoming Project 
+                if(!complexityChangeProjectMap.isEmpty() )
                 {    
-                    IPM_ProjectHelper.manageProjectDocuments(processProjectDocumentMap); 
+                    IPM_ProjectHelper.manageProjectDocuments(complexityChangeProjectMap); 
                 }
-                
-                               
+                            
                // Step 6 : Process Milestones for incoming Project. Processing before task as Task Due date is calculated based on Milestone Due date 
                if(processMilestonesMap!=null && !processMilestonesMap.isEmpty() )
                {
@@ -387,13 +430,13 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                // Step 7 : Process Tasks for incoming Project.
                if(processTasksMap!=null && !processTasksMap.isEmpty() )
                {    
-                    IPM_TaskHelper.manageTasks(IPM_ProjectHelper.projectDocumentToSecMap,IPM_ProjectHelper.projectToDocumentMap,processTasksMap);  
-                    if(updateTaskAssignee)
+                    if(!updateTaskAssignee)
+                    {
+                        IPM_TaskHelper.manageTasks(IPM_ProjectHelper.projectDocumentToSecMap,IPM_ProjectHelper.projectToDocumentMap,processTasksMap);
+                    }  
+                    else
                     {   
-                        list<Id> projectIdList = new list<Id>();
-                        projectIdList.addAll(processTasksMap.keySet());
-                        Id projectId = projectIdList[0];
-                        IPM_TaskHelper.assigneUserToTask(projectId);
+                        IPM_TaskHelper.assignUserToTask(processTasksMap.keySet());
                         updateTaskAssignee = false;
                     } 
                }
@@ -421,14 +464,21 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            {
                 IPM_ChatterFeedHelper.notifyProjectIsFasttrack(fastTrackProjects); 
            }
-           
+       
            //Chatter if TLD is changed
             if(tldChangeProjects != null && !tldChangeProjects.isEmpty())
-            {      
+           {      
                 IPM_ChatterFeedHelper.postChatterIfLocalRegionalTLDMisaligned(tldChangeProjects);
                 tldChangeProjects = new List<IPM_Project__c>();
            }
-           } 
+           
+               if(!newlyNamedProjectList.isEmpty())
+               {
+                    IPM_ChatterFeedHelper.notifyProjectCreated((List<IPM_Project__c>)Trigger.New);
+               }
+                 
+            
+       } 
             
        
        List<IPM_Project__c> projectList=new List<IPM_Project__c>(); //List of Projects
@@ -439,14 +489,27 @@ public with sharing class IPM_ProjectHandler implements ITrigger
        if(trigger.isInsert)
        {
             Map<Id,Id>regionalRolloutProjectMap=new Map<Id,Id>();//Map of regional rollout project id's and finance user id's
+            List<IPM_Project__c> newProjectNotifyList = new List<IPM_Project__c>();
             //Extracting Global and Regional Projects 
             for(IPM_Project__c proj:(List<IPM_Project__c>)trigger.new)
             {
+                if(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(proj.IPM_Project_Type__c) && proj.IPM_Project_Name__c != null && String.IsNotBlank(proj.IPM_Project_Name__c))
+                { 
+                    newProjectNotifyList.add(proj);
+                }
+            
                 if((proj.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || proj.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) && proj.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT 
                         && proj.IPM_Finance_Member__c!=null && proj.IPM_Finance_Member__c!=proj.IPM_Project_Leader__c){
                         regionalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Member__c);
                 }
             }
+            
+            //Notify when rollout project is created
+            if(!newProjectNotifyList.isEmpty())
+            {
+                IPM_ChatterFeedHelper.notifyProjectCreated(newProjectNotifyList);
+            }
+            
             //For create finance user for regional rollout project
             if(regionalRolloutProjectMap != NULL && !regionalRolloutProjectMap.isEmpty()){
                 IPM_Resource_Allocation.createfinanceMember(regionalRolloutProjectMap);
@@ -531,6 +594,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             Map<Id,Id>deleteLocalRolloutProjectMap=new Map<Id,Id>();//Map of local rollout project id's and finance user id's
             Map<Id,String>updateNewProNameMap=new Map<Id,String>();//Map of Project id to Project Name
             Map<Id,String>oldprojectnameMap=new Map<Id,String>();//Map project id with old project name
+            List<IPM_Project__c> changedNameProjectList = new List<IPM_Project__c>();
             //IPM BET related changes
             set<id> setBETProjects = new set<id>(); //Set of IPM Project Id's for which all BET Milestones should be deleted
             list<IPM_Milestone__c> lstBETMilestones = new list<IPM_Milestone__c>(); //List of BET related IPM Milestones which should be upserted.
@@ -540,59 +604,62 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
-                IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
-               
-               if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && p.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && 
-                    p.IPM_Fast_Track_Project__c != proj.IPM_Fast_Track_Project__c){
-                    ipmFastTrackProjectMap.put(p.Id, p);    
-               }
-               
-               
-               if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && p.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT 
-                   && p.IPM_Finance_Member__c!=null && p.IPM_Finance_Member__c!=p.IPM_Project_Leader__c && p.IPM_Finance_Member__c!=proj.IPM_Finance_Member__c)
-               {
-                   localRolloutProjectMap.put(p.Id, p.IPM_Finance_Member__c);
-                   if(proj.IPM_Finance_Member__c!=null)
-                   {
-                       deleteLocalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Member__c);
+                    IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
+                   
+                   if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && p.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && 
+                        p.IPM_Fast_Track_Project__c != proj.IPM_Fast_Track_Project__c){
+                        ipmFastTrackProjectMap.put(p.Id, p);    
                    }
-                }
-                
-                if(p.IPM_Project_Name__c!=null && Proj.IPM_Project_Name__c!=null && !String.isBlank(p.IPM_Project_Name__c) && !String.isBlank(Proj.IPM_Project_Name__c)  && 
-                    p.IPM_Project_Name__c!= Proj.IPM_Project_Name__c && String.isNotBlank(p.IPM_Phase__c) && !p.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_PLE))
-                {
-                    updateNewProNameMap.put(p.id,p.IPM_Project_Name__c);
-                    oldprojectnameMap.put(p.id,Proj.IPM_Project_Name__c);
-                }
-                //BET related changes
-                // Set of IPM Project Id's for which list of BET Milestones should be deleted.
-                if(string.isNotBlank(proj.IPM_BET_Toolkit__c) && p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_NoBET) && !proj.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_NoBET)) {
-                    setBETProjects.add(p.id);   
-                }
-                // List of BET Milestones to be upserted
-                if(string.isNotBlank(proj.IPM_BET_Toolkit__c) && !proj.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) && !proj.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing) && string.isBlank(p.BET__c) && (p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) || p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing))){
-                    lstBETMilestones.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE , IPM_Project__c = p.id, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId =  Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFirstReleaseDueDate(p.IPM_Target_Launch_Dates__c) , ExternalField__c=p.id+IPM_ConstantUtils.STRING_MS_BET_FIRSTRELEASE, IPM_Active__c = true));
-                    lstBETMilestones.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FINAL_RELEASE , IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE , IPM_Project__c = p.id, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId =  Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFinalReleaseDueDate(p.IPM_Target_Launch_Dates__c) , ExternalField__c=p.id+IPM_ConstantUtils.STRING_MS_BET_FINALRELEASE, IPM_Active__c = true));
-                }
-                //BET Milestone Due Dates to be updated
-                if((string.isNotBlank(p.BET__c) && proj.BET__c!= p.BET__c) || (String.isBlank(p.BET__c) && (proj.IPM_Target_Launch_Dates__c !=p.IPM_Target_Launch_Dates__c || string.isNotBlank(proj.BET__c)) && (p.IPM_BET_Toolkit__c != null && (p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) || p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing)))) ){
-                    mapProjBETupdate.put(p.id, p);  
-                }  
-                //New PL/DPL, for requesting BET access 
-                list<id> lstBETaccessIds = new list<id>();
-                if(string.isNotBlank(p.BET__c) && p.BET__c==proj.BET__c){
-                    if(string.isNotBlank(p.IPM_Project_Leader__c) && proj.IPM_Project_Leader__c != p.IPM_Project_Leader__c){
-                        lstBETaccessIds.add(p.IPM_Project_Leader__c);   
+                   
+                   
+                   if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && p.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT 
+                       && p.IPM_Finance_Member__c!=null && p.IPM_Finance_Member__c!=p.IPM_Project_Leader__c && p.IPM_Finance_Member__c!=proj.IPM_Finance_Member__c)
+                   {
+                       localRolloutProjectMap.put(p.Id, p.IPM_Finance_Member__c);
+                       if(proj.IPM_Finance_Member__c!=null)
+                       {
+                           deleteLocalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Member__c);
+                       }
                     }
-                    if(string.isNotBlank(p.Deputy_Project_Leader__c) && proj.Deputy_Project_Leader__c != p.Deputy_Project_Leader__c){
-                        lstBETaccessIds.add(p.Deputy_Project_Leader__c);    
+                    
+                    if(p.IPM_Project_Name__c!=null && Proj.IPM_Project_Name__c!=null && !String.isBlank(p.IPM_Project_Name__c) && !String.isBlank(Proj.IPM_Project_Name__c)  && 
+                        p.IPM_Project_Name__c!= Proj.IPM_Project_Name__c && String.isNotBlank(p.IPM_Phase__c) && !p.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_PLE))
+                    {
+                        updateNewProNameMap.put(p.id,p.IPM_Project_Name__c);
+                        oldprojectnameMap.put(p.id,Proj.IPM_Project_Name__c);
+                        changedNameProjectList.add(p);
                     }
+                    //BET related changes
+                    // Set of IPM Project Id's for which list of BET Milestones should be deleted.
+                    if(string.isNotBlank(proj.IPM_BET_Toolkit__c) && p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_NoBET) && !proj.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_NoBET)) {
+                        setBETProjects.add(p.id);   
+                    }
+                    // List of BET Milestones to be upserted
+                    if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (string.isBlank(proj.IPM_BET_Toolkit__c) || (string.isNotBlank(proj.IPM_BET_Toolkit__c) && !proj.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) && !proj.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing))) && string.isBlank(p.BET__c) && (p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) || p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing))){
+                        lstBETMilestones.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE , IPM_Project__c = p.id, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId =  Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFirstReleaseDueDate(p.IPM_Target_Launch_Dates__c) , ExternalField__c=p.id+IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Active__c = true));
+                        lstBETMilestones.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FINAL_RELEASE , IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE , IPM_Project__c = p.id, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId =  Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFinalReleaseDueDate(p.IPM_Target_Launch_Dates__c) , ExternalField__c=p.id+IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Active__c = true));
+                    }
+                    //BET Milestone Due Dates to be updated
+                    if((p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && string.isNotBlank(p.BET__c) && proj.BET__c!= p.BET__c) || (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && String.isBlank(p.BET__c) && (proj.IPM_Target_Launch_Dates__c !=p.IPM_Target_Launch_Dates__c || string.isNotBlank(proj.BET__c)) && (p.IPM_BET_Toolkit__c != null && (p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) || p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing)))) ){
+                        mapProjBETupdate.put(p.id, p);  
+                    }  
+                    //New PL/DPL, for requesting BET access 
+                    list<id> lstBETaccessIds = new list<id>();
+                    if(string.isNotBlank(p.BET__c) && p.BET__c==proj.BET__c){
+                        if(string.isNotBlank(p.IPM_Project_Leader__c) && proj.IPM_Project_Leader__c != p.IPM_Project_Leader__c){
+                            lstBETaccessIds.add(p.IPM_Project_Leader__c);   
+                        }
+                        if(string.isNotBlank(p.Deputy_Project_Leader__c) && proj.Deputy_Project_Leader__c != p.Deputy_Project_Leader__c){
+                            lstBETaccessIds.add(p.Deputy_Project_Leader__c);    
+                        }
+                    }                    
+                     //Call BET access service for access request for new PL/DPL
+                    if(!lstBETaccessIds.isEmpty())
+                    {
+                        IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
+                    }         
                 }
-                //Call BET access service for access request for new PL/DPL
-                if(!lstBETaccessIds.isEmpty())
-                {
-                    IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
-                }
+               
                  // Fast Track Global Original Project 
                 if(!ipmFastTrackProjectMap.isEmpty())
                 {
@@ -603,7 +670,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            //call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
-                IPM_UpdateGlobalProjectName.updateChildProjects(updateNewProNameMap,oldprojectnameMap);
+                IPM_ChatterFeedHelper.notifyProjectNameChange(changedNameProjectList);
             }
             //For create finance user for local rollout project resource
             if(localRolloutProjectMap != NULL && !localRolloutProjectMap.isEmpty()){
@@ -611,19 +678,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             }
             if(deleteLocalRolloutProjectMap != NULL && !deleteLocalRolloutProjectMap.isEmpty()){
                IPM_Resource_Allocation.deletefinanceMember(deleteLocalRolloutProjectMap);
-            }
-            
-           
-            boolean ischanged=false;
-            for(IPM_Project__c ipmpro:(List<IPM_Project__c>)trigger.new)
-            {
-                if(ipmpro.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                    ischanged=true;
-                }
-            }
-            
-       }
+            }            
+
        //BET related changes
             if(!setBETProjects.isEmpty()){
                 list<IPM_Milestone__c> lstDelMS = [select id from IPM_Milestone__c where IPM_Project__c in :setBETProjects and IPM_Type_of_Milestone__c=:IPM_ConstantUtils.STRING_BET limit 50000];
@@ -644,33 +700,32 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             // Call IPM BET Helper method to send IPM updates to BET
             IPM_BETHelper.sendIPMupdatetoBET((List<IPM_Project__c>)Trigger.New, (List<IPM_Project__c>)Trigger.Old);
            // EPIC172 implementation start
-            IPM_CustomPermission cpr = new IPM_CustomPermission();
-            Boolean syncTLD = cpr.hasPermission(IPM_ConstantUtils.IPM_SYNC_TLD);
-            
-            if(syncTLD) {
-                Map<ID,IPM_Project__c> updatedProjects = new Map<ID,IPM_Project__c>();
-                Map<Id,IPM_Project__c> mapNewProjects = (Map<Id,IPM_Project__c>)Trigger.newMap;
-                Map<Id,IPM_Project__c> mapOldProjects = (Map<Id,IPM_Project__c>)Trigger.oldMap;
-                for(IPM_Project__c project: mapNewProjects.values()) {
-                    if ( project.IPM_Target_Launch_Dates__c != mapOldProjects.get(project.Id).IPM_Target_Launch_Dates__c ) {
-                        updatedProjects.put(project.Id,project);
-                    }
+           
+           
+            Map<ID,IPM_Project__c> updatedProjects = new Map<ID,IPM_Project__c>();
+            Map<Id,IPM_Project__c> mapNewProjects = (Map<Id,IPM_Project__c>)Trigger.newMap;
+            Map<Id,IPM_Project__c> mapOldProjects = (Map<Id,IPM_Project__c>)Trigger.oldMap;
+            for(IPM_Project__c project: mapNewProjects.values()) {
+                if ( project.IPM_Target_Launch_Dates__c != mapOldProjects.get(project.Id).IPM_Target_Launch_Dates__c ) {
+                    updatedProjects.put(project.Id,project);
                 }
-               
-              /*  if(updatedProjects.size()>0) {
-                    IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
-                    syncFinanceTableTLD.syncProjectFinancialTLD(updatedProjects);
-                }*/
+            }
+            if(!updatedProjects.isEmpty()) {
+                IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
+                syncFinanceTableTLD.syncProjectFinancialTLD(updatedProjects);
             }
             // EPIC172 implementation end
+            
+              
     }
     
    } 
+   
     public void beforeInsert(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c insertedProject = (IPM_Project__c)so; 
-        
+
         // Set Data in Temporary Phase and make original Phase as Blank. Also only do that when Job Status is not processing.
         if(insertedProject.IPM_Phase__c!=null)
         {
@@ -710,7 +765,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c incomingProject = (IPM_Project__c)so;
         IPM_Project__c oldProject = (IPM_Project__c)oldSo;
-         
+ 
         if(incomingProject.IPM_Project_Name__c !=null && !String.isBlank(incomingProject.IPM_Project_Name__c) && 
         incomingProject.IPM_Project_Name__c != oldProject.IPM_Project_Name__c)
         {
@@ -787,25 +842,20 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //Identify if the fields on the project have changed and marked the project to be synced with ecodesign
         for (FieldSetMember fsm : Schema.SObjectType.IPM_Project__c.fieldSets.IPM_Project_Fields_EcoDesign.getFields()) {
-            if (oldProject.get(fsm.getFieldPath()) != incomingProject.get(fsm.getFieldPath()) && oldProject.First_Sync_To_EcoDesign__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(incomingProject)) {
+            if (oldProject.get(fsm.getFieldPath()) != incomingProject.get(fsm.getFieldPath()) && oldProject.First_Sync_To_EcoDesign__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(incomingProject) && String.isNotBlank(incomingProject.Project_Countries__c) ) {
                   incomingProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
                   break;
             }
         }
         
+        if(oldProject.IPM_Target_Launch_Dates__c != incomingProject.IPM_Target_Launch_Dates__c)
+        {
+            incomingProject.MisAligned_Confirmed_By_Finance_Leader__c = false;
+        }        
+        
         //process incoming project status
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
-        
-        //To update Rollout TLD date on Rollout Projet Object
-      /*  if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c)
-        {
-            rolloutTLDChangedProjList.put(incomingProject.IPM_Project_Rollout__c,incomingProject);
-            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
-            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
-                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
-                rolloutTLDChangedProjList.add(rolloutProj);
-            }
-        }    */    
+   
     }
     
     /***********************************************************************************************************************************
@@ -815,18 +865,18 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */
     public void beforeDelete(SObject so){      
         //This method has been included as the class implements the ITrigger interface 
-    } 
+        IPM_Project__c newProject = (IPM_Project__c) so;
+        if(newProject.IPM_Golbal_Project_OwnerId__c!=null){
+            queueSet.add(newProject.IPM_Golbal_Project_OwnerId__c);
+        }
+        IPM_GroupManagement.deleteQueue(queueSet);
+    }
+     
     
     public void afterInsert(SObject so)
     {
         IPM_Project__c incomingProject = (IPM_Project__c)so; 
-         //Track field history of Pl into Project Resource History custom object when PL gets assigned to project.
-         
-         //Notify when rollout project is created
-         if(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(incomingProject.IPM_Project_Type__c) && incomingProject.IPM_Project_Name__c != null && String.IsNotBlank(incomingProject.IPM_Project_Name__c))
-         {
-            IPM_ChatterFeedHelper.notifyProjectCreated((List<IPM_Project__c>)Trigger.New);
-         } 
+         //Track field history of Pl into Project Resource History custom object when PL gets assigned to project. 
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
@@ -834,27 +884,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c oldProject = (IPM_Project__c) oldSo;
         IPM_Project__c newProject = (IPM_Project__c) so;
-        
-        //Notify the project is created
-        if(oldProject.IPM_Project_Name__c == null && String.IsBlank(oldProject.IPM_Project_Name__c) && newProject.IPM_Project_Name__c != null && String.IsNotBlank(newProject.IPM_Project_Name__c) )
-        {
-          IPM_ChatterFeedHelper.notifyProjectCreated((List<IPM_Project__c>)Trigger.New);
-        }   
-        
-        //Notify the project name is changed
-        if((oldProject.IPM_Project_Name__c != null || String.IsNotBlank(oldProject.IPM_Project_Name__c)) && !oldProject.IPM_Project_Name__c.equals(newProject.IPM_Project_Name__c)){
-            IPM_ChatterFeedHelper.notifyProjectNameChange((List<IPM_Project__c>)Trigger.New);
-        }
+
         //To update Rollout TLD date on Rollout Projet Object
-        if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c)
+        if((oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c) || (oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c))
         {
             rolloutTLDChangedProjList.put(newProject.IPM_Project_Rollout__c,newProject);
-            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
-            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
-                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
-                rolloutTLDChangedProjList.add(rolloutProj);
-            }*/
-        }        
+        }
+        if(oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c)
+        {
+            tldChangeProjListForMilestones.add(newProject);
+        }
         
     }
     
@@ -875,7 +914,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             {
                 IPM_ProjectJob_Queue phaseChangeAsyncHandler = new IPM_ProjectJob_Queue(); 
                 phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
-                System.enqueueJob(phaseChangeAsyncHandler);
+                Id asyncJobId = System.enqueueJob(phaseChangeAsyncHandler); 
+                IPM_ProjectHelper.udpateAsyncJobId(phaseChangeProjects,asyncJobId);
             }           
         }
         
@@ -886,10 +926,17 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 System.enqueueJob(changeOwnerHandler);      
         }
         
-        /*if(!rolloutTLDChangedProjList.isEmpty()){
+        
+        if(!tldChangeProjListForMilestones.isEmpty()){
+            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+            rolloutPlanTLDSync.updatedMilestoneTLD(tldChangeProjListForMilestones);     
+        }
+        
+        if(!rolloutTLDChangedProjList.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
             rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
-        }*/
+        }
+        
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

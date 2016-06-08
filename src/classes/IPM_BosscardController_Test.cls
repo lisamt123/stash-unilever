@@ -14,6 +14,7 @@ public class IPM_BosscardController_Test{
     private static Ipm_BosscardController sic;
     private static final String TEST_CONTENT =  'fox jumped over a lazy dog';
     private static final String MDOCATEGORY_NAME='Household Care';
+    public static IPM_SoqlUtilities soqlUtility;
     /*********************************************************************
     * @Description: This method is used to initialize data for test class
     * *******************************************************************/
@@ -40,6 +41,14 @@ public class IPM_BosscardController_Test{
             compCard.IPM_Currency__c='10';
             compCard.IPM_TxtGeographical_Scope__c='Global';
             insert compCard;
+            //Insert Company Card
+            IPM_Company_Card__c regincompCard=IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+            regincompCard.Name='Test bosscard company card2';
+            regincompCard.IPM_Managed_Category__c=MDOCATEGORY_NAME;
+            regincompCard.IPM_Currency__c='10';
+            regincompCard.IPM_TxtGeographical_Scope__c='Africa';
+            regincompCard.IPM_Business_Partner__c= LoginUser.id;
+            insert regincompCard;
             List<IPM_Company_Card__c>companyCList=[SELECT Name FROM IPM_Company_Card__c WHERE ID=:compCard.id LIMIT 1];
             System.AssertEquals(companyCList[0].Name,compCard.Name, 'company card name is:'+companyCList[0].Name); //Positive test
             
@@ -85,7 +94,7 @@ public class IPM_BosscardController_Test{
             insert bPosition;
             List<MDO_BrandPosition__c>mdoBrandPList=[SELECT Name,status__c from MDO_BrandPosition__c WHERE id=:bPosition.id LIMIT 1];
             system.assertEquals(mdoBrandPList[0].Name,bPosition.Name,'Category name is:'+mdoBrandPList[0].Name);
-            system.assertEquals(mdoBrandPList[0].status__c,bPosition.status__c,'Status is:'+mdoBrandPList[0].status__c);
+            
             
             
             //Insert Brand Positions
@@ -117,6 +126,10 @@ public class IPM_BosscardController_Test{
     static testMethod void testGetListOfQuarter(){
         initializeData();
         Test.startTest();
+        soqlUtility = new IPM_SoqlUtilities();
+        IPM_SoqlUtilities.IPM_ProjectID='';
+        IPM_SoqlUtilities.getBosscardMap();
+        
         system.RunAs(loginUser){
             List<SelectOption>quarterList=sic.getListOfQuarter();
             system.assertEquals(quarterList.isEmpty(),false,'List of quarter should not be empty');//positive test
@@ -133,6 +146,8 @@ public class IPM_BosscardController_Test{
         Test.startTest();
         system.runAs(LoginUser){
             sic.selCat=MDOCATEGORY_NAME;
+            sic.geoScope_STR=compCard.IPM_TxtGeographical_Scope__c;
+            sic.REType=IPM_ConstantUtils.COMPANY_CARD_GLOBAL;
             List<Selectoption> optns=sic.getBrandPos(); 
             system.assert(!optns.isEmpty(),'brand positioning list can not be empty');//positive test
         }
@@ -201,7 +216,9 @@ public class IPM_BosscardController_Test{
             sic.save();
             List<IPM_Bosscard__c>bossLists=[SELECT IPM_Category__c FROM IPM_Bosscard__c WHERE ID=:ipmBosscards.id LIMIT 1];
             System.AssertNotEquals(bossLists[0].IPM_Category__c,sic.selCat, 'Bosscard category is:'+bossList[0].IPM_Category__c); //Positive test
-           
+            sic.bosscard.IPM_BosscardName__c=null;
+            sic.selectedCompany=null;
+            sic.save();
              
         }
         //read only user
@@ -354,6 +371,29 @@ public class IPM_BosscardController_Test{
         system.runAs(LoginUser){
             sic.getIpmuserType();
             System.assertEquals(true, sic.isEditable);//positive test
+            sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_INPROGRESS;
+            sic.isEditable=true;
+            sic.isPL=true;
+            sic.renderedConditions();
+			sic.bosscard.IPM_Is_Accepted__c=true;
+            sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED;
+            sic.isEditable=false;
+            sic.renderedConditions();
+            sic.bosscard.IPM_Bosscard_Logo_Id__c=null;
+            sic.renderedConditions();
+            sic.isEditable=true;
+            sic.bosscard.IPM_Gate_Keeper__c=null;
+            sic.renderedConditions();
+            sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_DISCARD;
+            sic.renderedConditions();
+            sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_INPROGRESS;
+            sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED;
+            sic.renderedConditions();
+            sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_APPROVED;
+            sic.renderedConditions();
+            system.assertEquals(sic.changeBossStatusCCS,IPM_ConstantUtils.IPM_BOSS_CSS_COMPLETED);
+            
+           
         }
         Test.stopTest();  
     }
@@ -373,7 +413,24 @@ public class IPM_BosscardController_Test{
         Test.stopTest(); 
         
     }
-   
+   /********************************************************************************
+    *@Description : For Duplicate bosscard
+    *********************************************************************************/  
+    static testMethod void testsearchDuplicateBosscard() {
+        initializeData();
+        Test.startTest();
+        system.runAs(LoginUser){
+            sic.bosscardId=ipmBosscards.id;
+            sic.bosscard.IPM_BosscardName__c='TestwithBoss';
+            sic.searchDuplicateBosscard();//check for duplicate bosscard name
+            System.assertEquals(sic.isBosscardNameBlank,true);//positive test
+            sic.isBosscardNameBlank=false;
+            sic.hideBosscardSuggetion();
+            System.assertEquals(sic.isBosscardNameBlank,true);//positive test
+        } 
+        Test.stopTest(); 
+        
+    }
     
     
 }

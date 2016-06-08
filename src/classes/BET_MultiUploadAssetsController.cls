@@ -149,16 +149,14 @@ global class BET_MultiUploadAssetsController {
 
 		uw_Bet__c bet = [select id, Status__c from uw_bet__c where id =: betId];
            
-        ConnectApi.FeedItem fi = null;
         ConnectApi.ContentAttachment ca = null;
         List<FeedItem> chatterContentPostList = null;
         FeedItem chatterContentPost = null;
+        chatterContentPostList = [SELECT Id, RelatedRecordId, ContentDescription, Type, ContentFileName FROM FeedItem WHERE Id = :feedid LIMIT 1];
         if(!Test.isRunningTest()){  
-            chatterContentPostList = [SELECT Id, RelatedRecordId, ContentDescription, Type, ContentFileName FROM FeedItem WHERE Id = :feedid LIMIT 1];
             chatterContentPost = chatterContentPostList[0];   
-            file.Related_Feed_Item__c = chatterContentPost.Id;        
-            fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);   
-            ca = (ConnectApi.ContentAttachment) fi.attachment;
+            file.Related_Feed_Item__c = chatterContentPost.Id;   
+            ca = (ConnectApi.ContentAttachment) ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c).attachment;
         }
 
         file.URL_of_Asset__c = ca == null ? null : ca.downloadUrl;

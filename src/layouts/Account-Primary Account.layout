@@ -206,6 +206,9 @@
         <fields>NAME</fields>
         <relatedList>UID_Performance__c.UID_Distributor__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedAccountSalesTeam</relatedList>
+    </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

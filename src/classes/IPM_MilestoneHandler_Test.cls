@@ -7,13 +7,12 @@
   @reference : IPM_MilestoneHandler
 */
 @isTest
-private with sharing class IPM_MilestoneHandler_Test {
+private with sharing class IPM_MilestoneHandler_Test 
       
-    private static User stdUserForMilestone;
-    
+{
    /**
-        *  Used for Setting test Data for Project Creation . 
-        *  @name projectSetUp
+        *  @Decription : Used for Setting test Data for Project Creation . 
+        *  @Name : milestoneSetUp
     */
     
      @testSetup static void milestoneSetUp() 
@@ -58,6 +57,8 @@ private with sharing class IPM_MilestoneHandler_Test {
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList; 
+            
+            System.assert(projectList.size() > 0, 'project successfully not created');
         }
      }
      
@@ -107,19 +108,19 @@ private with sharing class IPM_MilestoneHandler_Test {
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
         
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0, 'Standard Milestones successfully not created.');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1, 'Project Gate document successfully not created.');
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(), 'Standard milestones mismatched.');
                 
                 // Project default phase would always be set as IDEAS.
-                System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
+                System.assertEquals(project.IPM_Phase__c,'Ideas', 'Default phase should be Ideas'); // Phase would be always ideas for Global Project.
             }
                 
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -210,10 +211,10 @@ private with sharing class IPM_MilestoneHandler_Test {
                IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
                // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1, 'Project documents successfully not created.');
    
                // MileStones would be Copied from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(), 'Milestone record successfully not copied from Parent Project');
             }
         }
         
@@ -226,13 +227,13 @@ private with sharing class IPM_MilestoneHandler_Test {
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0, 'Tasks successfully not created.');
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0, 'Regional Project Milestones successfully not created.');
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility', 'Invalid phase'); // Phase would be feasibility for Regional Projects.
                 
             }
         }

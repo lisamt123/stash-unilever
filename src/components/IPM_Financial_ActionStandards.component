@@ -10,15 +10,17 @@
 <apex:attribute name="isEditable" type="boolean" assignTo="{!editTable}" description="Passing parameter to check is table editable or not"/>
 <apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
 <apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
+<apex:attribute name="gate" type="string" assignTo="{!gateType}" description="passing gate name"/>
+   <!-- Render condition for checking editable to display url to financial page --> 	
    <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
        <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
    </apex:outputPanel>
    <div class="gatefinTabContainer">
     <!-- Action Standards -->
-    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig">
+    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig ipmFintableAlign">
         <thead>
             <tr>
-                <th scope="col" width="30%">                    
+                <th scope="col" width="29%">                    
                     <span class="finproject"></span>
                 </th>
                  <th scope="col">
@@ -29,7 +31,7 @@
                         <span class="finproject">   {!$Label.IPM_RESULTS} at {!gateName}</span>
                     </th>
                 </apex:repeat>
-                 <th scope="col" width="30%">                    
+                 <th scope="col" width="29%">                    
                     <span class="finproject">{!$Label.IPM_COMMENTS}</span>
                 </th>
             </tr>
@@ -44,9 +46,11 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
+                	<!-- Condition for checking gate document phase is ideas -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" />
                     </apex:outputText>
+					<!-- Render condition for checking gate document phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation',this.value,'{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!innovationValueShareWrapper.lstGateValues}" var="value">
@@ -57,7 +61,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation','{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking read only -->
                     <apex:outputField value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -67,9 +73,11 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking phase other than ideas or read only -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" />
                     </apex:outputText>
+					<!-- Render condition for checking gate document phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental',this.value,'{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!incrementalValueShareWrapper.lstGateValues}" var="value">
@@ -80,7 +88,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental','{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking read only -->
                     <apex:outputField value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -90,9 +100,11 @@
                     <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking phase other than ideas or read only -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" />
                     </apex:outputText>
+					<!-- Condition for checking phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO',this.value,'{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!gTOWrapper.lstGateValues}" var="value">
@@ -103,7 +115,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO','{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking read only -->
                     <apex:outputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -113,9 +127,11 @@
                     <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking phase other than ideas or read only -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" />
                     </apex:outputText>
+					<!-- Condition for checking phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO',this.value,'{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!iTOWrapper.lstGateValues}" var="value">
@@ -126,7 +142,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO','{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking read only -->
                     <apex:outputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -136,9 +154,11 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking phase other than ideas or read only -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" />
                     </apex:outputText> 
+					<!-- Condition for checking phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM',this.value,'{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!GMWrapper.lstGateValues}" var="value">
@@ -149,7 +169,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM','{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking read only -->
                     <apex:outputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -158,13 +180,15 @@
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>i
-                    <div class="col-sm-5">€ 000</div>
+                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>
+                    <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking phase other than ideas or read only -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" />
                     </apex:outputText>
+					<!-- Condition for checking phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV',this.value,'{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!NPVWrapper.lstGateValues}" var="value">
@@ -175,7 +199,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+					<!-- Condition for checking editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV','{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking read only -->
                     <apex:outputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -188,6 +214,7 @@
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" />
                     </apex:outputText>
+                    <!-- Condition for checking gate document phase Ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR',this.value,'{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!IRRWrapper.lstGateValues}" var="value">
@@ -198,7 +225,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+                	<!-- Condition for checking comments editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR','{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <!-- Condition for checking comments readonly -->
                     <apex:outputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>
@@ -208,9 +237,11 @@
                     <div class="col-sm-5">{!$Label.IPM_Fin_Years}</div>
                 </td>
                 <td class="fintlewhitebg">
+                	<!-- Condition for checking gate document phase ideas or read only -->
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" />
                     </apex:outputText> 
+                    <!-- Condition for checking gate document phase Ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack',this.value,'{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <apex:repeat value="{!PaybackWrapper.lstGateValues}" var="value">
@@ -221,7 +252,9 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
+                	<!-- Condition for checking comments editable -->
                     <apex:inputTextArea value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack','{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                   	<!-- Condition for checking comments readonly -->
                     <apex:outputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
                 </td>
             </tr>

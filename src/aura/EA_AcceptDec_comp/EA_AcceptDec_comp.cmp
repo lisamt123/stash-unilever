@@ -38,13 +38,13 @@
     
     <div class="slds">
         <div class="activity-sec_acc">
-            <img   value="" class="close_btn" src="/resource/EA_StaticResource/assets/images/close.svg"  onclick="{!c.redirect}" alt="person name" />
+           <div class="cross_img"><img   value="" class="close_btn" src="/resource/EA_StaticResource/assets/images/close.svg"  onclick="{!c.redirect}" alt="person name" /></div> 
             <aura:iteration items="{!v.activity}" var="act">
                 <div class="a-title_acc"><h4><ui:outputText value="{!act.EaRecordtype}"  /></h4></div>
                 <div class="t-title_acc"><p><ui:outputText value="{!act.Eaname}"/></p></div>
                 
                 
-                <div class="default-rating" style="margin-left:-5px;">
+                <div class="default-rating">
                     <aura:if isTrue="{!act.participant_rating != null}">
                         <aura:iteration items="{!v.numbers}" var="rating">
                             <span>

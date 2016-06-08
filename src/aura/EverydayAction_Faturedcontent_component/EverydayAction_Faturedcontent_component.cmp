@@ -29,7 +29,7 @@
         }
     </style>     
      <div class="slds">  
-         
+        <!-- <div style="text-align:center;width: 90%;margin-left: 5%;"> <ui:outputURL value="/sfc/servlet.shepherd/version/download/068180000008WFB" label="Download Video" target="_top"/></div>-->
          <div class="fTitle">Comments</div>
          <aura:iteration items="{!v.comments}" var="comment"> 
              <table class="com_table">

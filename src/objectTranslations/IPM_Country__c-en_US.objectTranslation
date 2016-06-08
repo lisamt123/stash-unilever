@@ -9,6 +9,34 @@
         <value>IPM Countries</value>
     </caseValues>
     <fields>
+        <label><!-- AddedAtStage --></label>
+        <name>AddedAtStage__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Added At Stage --></label>
         <name>Added_At_Stage__c</name>
     </fields>
@@ -36,12 +64,21 @@
         <relationshipLabel><!-- IPM Countries --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- CharterApproved --></label>
+        <name>IPM_CharterApproved__c</name>
+    </fields>
+    <fields>
         <label><!-- Country Code --></label>
         <name>IPM_CountryCode__c</name>
     </fields>
     <fields>
         <label><!-- Country Name --></label>
         <name>IPM_Country_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Financial At Charter --></label>
+        <name>IPM_FinancialAtCharter__c</name>
+        <relationshipLabel><!-- IPM Countries (IPM Financial At Charter) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- IPM Financial --></label>
@@ -158,6 +195,10 @@
     <fields>
         <label><!-- Test Financial --></label>
         <name>Test_Financial__c</name>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
     </fields>
     <layouts>
         <layout>IPM Country Layout</layout>

@@ -23,6 +23,26 @@
         <relationshipLabel><!-- SWOP (Agency Contact) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Agency SOW Approver Name 2 --></label>
+        <name>Agency_SOW_Approver_Name_2__c</name>
+        <relationshipLabel><!-- SWOP (Agency SOW Approver Name 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agency SOW Approver Name 3 --></label>
+        <name>Agency_SOW_Approver_Name_3__c</name>
+        <relationshipLabel><!-- SWOP (Agency SOW Approver Name 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agency SOW Approver Name 4 --></label>
+        <name>Agency_SOW_Approver_Name_4__c</name>
+        <relationshipLabel><!-- SWOP (Agency SOW Approver Name 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agency SOW Approver Name 5 --></label>
+        <name>Agency_SOW_Approver_Name_5__c</name>
+        <relationshipLabel><!-- SWOP (Agency SOW Approver Name 5) --></relationshipLabel>
+    </fields>
+    <fields>
         <help><!-- Who at the Agency concerned will Approve this SOW --></help>
         <label><!-- Agency SOW Approver Name --></label>
         <name>Agency_SOW_Approver_Name__c</name>
@@ -32,6 +52,11 @@
         <help><!-- The Allocated budget for this SOW --></help>
         <label><!-- Allocated Budget (K) --></label>
         <name>Allocated_Budget_K__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Submitter --></label>
+        <name>Approval_Submitter__c</name>
+        <relationshipLabel><!-- SWOP (Approval Submitter) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- BB or BD --></label>
@@ -132,8 +157,16 @@
         <name>OblixSOWOverallTotal__c</name>
     </fields>
     <fields>
+        <label><!-- Total Adapt Fees --></label>
+        <name>OblixTotalAdaptFees__c</name>
+    </fields>
+    <fields>
         <label><!-- shTotal Campaign Fees --></label>
         <name>OblixTotalCampaignCalculatedTotalFee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Digital Fees --></label>
+        <name>OblixTotalDigitalFees__c</name>
     </fields>
     <fields>
         <label><!-- Total Number of basics --></label>
@@ -146,6 +179,10 @@
     <fields>
         <label><!-- Total Non Campaign Fees --></label>
         <name>OblixTotalOtherItemsFees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Campaign Fees --></label>
+        <name>OblixTotalProjectsFees__c</name>
     </fields>
     <fields>
         <label><!-- Agency --></label>
@@ -165,6 +202,18 @@
         <name>Oblix_tec_Unique_Name__c</name>
     </fields>
     <fields>
+        <label><!-- % of Total Fee --></label>
+        <name>Percentage_of_Total_Fee_Campaign_Fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Total Fee --></label>
+        <name>Percentage_of_Total_Fee_Non_Campaign__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOW Creator is Approver --></label>
+        <name>SOW_Creator_is_Approver__c</name>
+    </fields>
+    <fields>
         <label><!-- SOW Status --></label>
         <name>SOW_Status__c</name>
         <picklistValues>
@@ -172,8 +221,8 @@
             <translation><!-- Approved --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Awaiting Agency Acceptance</masterLabel>
-            <translation><!-- Awaiting Agency Acceptance --></translation>
+            <masterLabel>Awaiting Agency Approval</masterLabel>
+            <translation><!-- Awaiting Agency Approval --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Unilever Approval</masterLabel>
@@ -186,6 +235,18 @@
         <picklistValues>
             <masterLabel>Draft - with Unilever</masterLabel>
             <translation><!-- Draft - with Unilever --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Agency Approval</masterLabel>
+            <translation><!-- Pending Agency Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returned by Agency</masterLabel>
+            <translation><!-- Returned by Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returned by Approver</masterLabel>
+            <translation><!-- Returned by Approver --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -239,6 +300,26 @@
         <label><!-- Unilever Lead --></label>
         <name>Unilever_Lead__c</name>
         <relationshipLabel><!-- SWOP (Unilever Lead) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unilever SOW Approver Name 2 --></label>
+        <name>Unilever_SOW_Approver_Name_2__c</name>
+        <relationshipLabel><!-- SWOP (Unilever SOW Approver Name 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unilever SOW Approver Name 3 --></label>
+        <name>Unilever_SOW_Approver_Name_3__c</name>
+        <relationshipLabel><!-- SWOP (Unilever SOW Approver Name 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unilever SOW Approver Name 4 --></label>
+        <name>Unilever_SOW_Approver_Name_4__c</name>
+        <relationshipLabel><!-- SWOP (Unilever SOW Approver Name 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unilever SOW Approver Name 5 --></label>
+        <name>Unilever_SOW_Approver_Name_5__c</name>
+        <relationshipLabel><!-- SWOP (Unilever SOW Approver Name 5) --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- Who will Approve this SOW on behave of Unilever --></help>

@@ -89,6 +89,10 @@
         <name>Unilever_Fouracres</name>
     </customApplications>
     <customApplications>
+        <label><!-- Unilever International Distributor --></label>
+        <name>Unilever_International_Distributor</name>
+    </customApplications>
+    <customApplications>
         <label><!-- WIN@POS --></label>
         <name>WIN_POS</name>
     </customApplications>
@@ -437,12 +441,24 @@
         <name>AR_StepTwo</name>
     </customLabels>
     <customLabels>
+        <label><!-- Accept from Local --></label>
+        <name>Accept_from_Local</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Accept from Regional --></label>
+        <name>Accept_from_Regional</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Agency Email Alerts --></label>
         <name>Agency_Email_Alerts</name>
     </customLabels>
     <customLabels>
         <label><!-- Agency Fee Title --></label>
         <name>Agency_Fee_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agree and Proceed --></label>
+        <name>Agree_and_Proceed</name>
     </customLabels>
     <customLabels>
         <label><!-- BETManagerRole --></label>
@@ -1005,6 +1021,22 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
+        <label><!-- Business Case Update Needed --></label>
+        <name>Business_Case_Update_Needed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Business Case Update Needed Value --></label>
+        <name>Business_Case_Update_Needed_Value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Account_Site --></label>
+        <name>CEC_Account_Site</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Address --></label>
+        <name>CEC_Address</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_AlertActionSchedulerName --></label>
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
@@ -1033,8 +1065,16 @@
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_CaseCountryVerbitimMessage --></label>
+        <name>CEC_CaseCountryVerbitimMessage</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_CaseNumber --></label>
         <name>CEC_CaseNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC CaseRefreshAlertError --></label>
+        <name>CEC_CaseRefreshAlertError</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Case_Factory_Survey_Reference --></label>
@@ -1049,6 +1089,10 @@
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
+        <name>CEC_ChequeBook_ChequeNo_Already_Added</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_ChequeBook_DetailsMissing --></label>
         <name>CEC_ChequeBook_DetailsMissing</name>
     </customLabels>
@@ -1059,6 +1103,14 @@
     <customLabels>
         <label><!-- CEC_ChequeBook_Input_Fields_Missing --></label>
         <name>CEC_ChequeBook_input_fields_missing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_City --></label>
+        <name>CEC_City</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ClickHere --></label>
+        <name>CEC_ClickHere</name>
     </customLabels>
     <customLabels>
         <label>Bitte speichern sie Änderungen Ihres Falls bevor sie einen neuen Konsumenten zufügen.</label>
@@ -1113,6 +1165,14 @@
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Country --></label>
+        <name>CEC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Country_region --></label>
+        <name>CEC_Country_region</name>
+    </customLabels>
+    <customLabels>
         <label>Kontakt anlegen</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
@@ -1127,6 +1187,10 @@
     <customLabels>
         <label>Records werden angezeigt</label>
         <name>CEC_Display_Records</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Distance --></label>
+        <name>CEC_Distance</name>
     </customLabels>
     <customLabels>
         <label>E-Mail: Sie müssen einen Wert eingeben</label>
@@ -1147,6 +1211,10 @@
     <customLabels>
         <label>sonstige</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_InvalidChatterGroupName --></label>
+        <name>CEC_InvalidChatterGroupName</name>
     </customLabels>
     <customLabels>
         <label>Aktion</label>
@@ -1173,6 +1241,14 @@
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Latitude --></label>
+        <name>CEC_Latitude</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Longitude --></label>
+        <name>CEC_Longitude</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Marketing_Opt_in --></label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
@@ -1187,6 +1263,10 @@
     <customLabels>
         <label>Informationen fehlen</label>
         <name>CEC_Missing_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Name --></label>
+        <name>CEC_Name</name>
     </customLabels>
     <customLabels>
         <label>Fehler: Es kann kein neuer Vorgang erstellt werden</label>
@@ -1217,6 +1297,10 @@
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_PageSize --></label>
+        <name>CEC_PageSize</name>
+    </customLabels>
+    <customLabels>
         <label>Parent Vorgang</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
@@ -1241,8 +1325,20 @@
         <name>CEC_ProductCategory</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ProductCode --></label>
+        <name>CEC_ProductCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ProductLocator --></label>
+        <name>CEC_ProductLocator</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Product_Hierarchy --></label>
         <name>CEC_Product_Hierarchy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Product_Tag --></label>
+        <name>CEC_Product_Tag</name>
     </customLabels>
     <customLabels>
         <label>Bitte geben sie einen Länder Code ein, bevor sie Quick Code nutzen.</label>
@@ -1281,6 +1377,10 @@
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_State --></label>
+        <name>CEC_State</name>
+    </customLabels>
+    <customLabels>
         <label>Status: Bestätigung des Fehlers: Wert ist notwendig.</label>
         <name>CEC_Status</name>
     </customLabels>
@@ -1289,12 +1389,32 @@
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_SurveyLink --></label>
+        <name>CEC_SurveyLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SurveyName --></label>
+        <name>CEC_SurveyName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SurveyResults --></label>
+        <name>CEC_SurveyResults</name>
+    </customLabels>
+    <customLabels>
         <label>Titel</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ValidChatterTemplate --></label>
+        <name>CEC_ValidChatterTemplate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_ValidEmailTemplate --></label>
         <name>CEC_ValidEmailTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ZipCode --></label>
+        <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
         <label>ist Produktformat bekannt</label>
@@ -2133,6 +2253,10 @@
         <name>CRMfusionDBR101__DB_Warning_Task_Subject</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cancel and Revert --></label>
+        <name>Cancel_and_Revert</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Core NT App Url --></label>
         <name>Core_NT_App_Url</name>
     </customLabels>
@@ -2709,6 +2833,10 @@
         <name>IPM_AboutProject</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM About To Postpone Comments --></label>
+        <name>IPM_About_To_Postpone_Comments</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_AccessBET --></label>
         <name>IPM_AccessBET</name>
     </customLabels>
@@ -2771,6 +2899,10 @@
     <customLabels>
         <label><!-- IPM_AdvertisingCP --></label>
         <name>IPM_AdvertisingCP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agree and Remove --></label>
+        <name>IPM_AgreeCountryRemoval</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_AlertMsgOutsideOTIF --></label>
@@ -2879,6 +3011,10 @@
     <customLabels>
         <label><!-- IPM At --></label>
         <name>IPM_At</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_AttentionMsg --></label>
+        <name>IPM_AttentionMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_BACK --></label>
@@ -3141,6 +3277,10 @@
         <name>IPM_BET_No_BET_Message</name>
     </customLabels>
     <customLabels>
+        <label><!-- No result found --></label>
+        <name>IPM_BET_No_Result_Found</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM BET SEARCH RESULT --></label>
         <name>IPM_BET_SEARCH_RESULT</name>
     </customLabels>
@@ -3227,6 +3367,10 @@
     <customLabels>
         <label><!-- IPM_BOSSCARD_SKIP --></label>
         <name>IPM_BOSSCARD_SKIP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_BRAND_BUILDING_FINANCE --></label>
+        <name>IPM_BRAND_BUILDING_FINANCE</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_BRAND_POSITIONING --></label>
@@ -3569,6 +3713,10 @@
         <name>IPM_CONCEPT</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_CONCEPT_REMOVE_NOTE --></label>
+        <name>IPM_CONCEPT_REMOVE_NOTE</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_CONFIDENTIAL_INFO --></label>
         <name>IPM_CONFIDENTIAL_INFO</name>
     </customLabels>
@@ -3685,6 +3833,10 @@
         <name>IPM_Calendar</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cancel and Revert --></label>
+        <name>IPM_CancelCountryRemoval</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_CategoryNameNotNull --></label>
         <name>IPM_CategoryNameNotNull</name>
     </customLabels>
@@ -3797,6 +3949,14 @@
         <name>IPM_Confirm_Parameter</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_Consolidate_Show_Earlier_Years --></label>
+        <name>IPM_Consolidate_Show_Earlier_Years</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Consolidate_Show_Later_Years --></label>
+        <name>IPM_Consolidate_Show_Later_Years</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM Consumer Evidence --></label>
         <name>IPM_Consumer_Evidence</name>
     </customLabels>
@@ -3819,6 +3979,10 @@
     <customLabels>
         <label><!-- IPM_Contract --></label>
         <name>IPM_Contract</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_CopyPastevolumevalid --></label>
+        <name>IPM_CopyPastevolumevalid</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Copy Team From Other Projects --></label>
@@ -3863,6 +4027,10 @@
     <customLabels>
         <label><!-- IPM_CreateNewBETTitle --></label>
         <name>IPM_CreateNewBETTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Create Assotment Strategy --></label>
+        <name>IPM_Create_Assotment_Strategy</name>
     </customLabels>
     <customLabels>
         <label><!-- used wherever we want to show error message for creating regional rollouts --></label>
@@ -4497,6 +4665,10 @@
         <name>IPM_FastTrackProject</name>
     </customLabels>
     <customLabels>
+        <label><!-- FastTrack HelpText --></label>
+        <name>IPM_FastTrack_HelpText</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Used wherever file is uploaded successfully --></label>
         <name>IPM_File_Uploaded_Successfully</name>
     </customLabels>
@@ -4559,6 +4731,10 @@
     <customLabels>
         <label><!-- IPM_Fin_Years --></label>
         <name>IPM_Fin_Years</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Finacial key data missing message --></label>
+        <name>IPM_Finacial_Data_Missing</name>
     </customLabels>
     <customLabels>
         <label><!-- Final Stategic Intent --></label>
@@ -4669,6 +4845,10 @@
         <name>IPM_Function_Leader_is_responsible</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_FunctionalRoleErrorMsg --></label>
+        <name>IPM_FunctionalRoleErrorMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_FunctionalTeamMsgIdeas --></label>
         <name>IPM_FunctionalTeamMsgIdeas</name>
     </customLabels>
@@ -4691,6 +4871,10 @@
     <customLabels>
         <label><!-- IPM_GATE_KEEPING_MODULE --></label>
         <name>IPM_GATE_KEEPING_MODULE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_GATE_STOP_COMMENTS_MEETING --></label>
+        <name>IPM_GATE_STOP_COMMENTS_MEETING</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_GCLT_AND_RCLT_ALL_APPROVAL --></label>
@@ -4857,6 +5041,10 @@
         <name>IPM_GlobalProject</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_Go_back_to_gate --></label>
+        <name>IPM_Go_back_to_gate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_GotoIPMPortal --></label>
         <name>IPM_GotoIPMPortal</name>
     </customLabels>
@@ -4977,6 +5165,18 @@
         <name>IPM_ITOValidation</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_ITO_GTO_CALENDAR --></label>
+        <name>IPM_ITO_GTO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_ITO_GTO_INNOVATION --></label>
+        <name>IPM_ITO_GTO_INNOVATION</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM ITO GTO Validation Common message --></label>
+        <name>IPM_ITO_GTO_Validation_Common_message</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_IdsApprovalNotNullMSg --></label>
         <name>IPM_IdsApprovalNotNullMSg</name>
     </customLabels>
@@ -5095,6 +5295,10 @@
     <customLabels>
         <label><!-- IPM_LOCAL_PROJECT --></label>
         <name>IPM_LOCAL_PROJECT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Label for Financial Edit --></label>
+        <name>IPM_Label_for_Financial_Edit</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Later --></label>
@@ -5317,6 +5521,10 @@
         <name>IPM_Milestone_Due_Date_Error</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_Milestone_FutureDueDate_Validation --></label>
+        <name>IPM_Milestone_FutureDueDate_Validation</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM Milestone Standard --></label>
         <name>IPM_Milestone_Standard</name>
     </customLabels>
@@ -5399,6 +5607,10 @@
     <customLabels>
         <label><!-- IPM_NO_DOCUMENT --></label>
         <name>IPM_NO_DOCUMENT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_NO_EFFECT --></label>
+        <name>IPM_NO_EFFECT</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_NO_MATCHES_FOUND --></label>
@@ -5961,6 +6173,10 @@
         <name>IPM_PhaseChangeBKProcessWarning_Regional</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_PhaseChangeInProgressMsg --></label>
+        <name>IPM_PhaseChangeInProgressMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM PhaseLabel --></label>
         <name>IPM_PhaseLabel</name>
     </customLabels>
@@ -5985,6 +6201,10 @@
         <name>IPM_Please_Fill_Comments_In</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Please complete the Risk management plan before proposing gate document --></label>
+        <name>IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_PojectSetupUrl --></label>
         <name>IPM_PojectSetupUrl</name>
     </customLabels>
@@ -5995,6 +6215,14 @@
     <customLabels>
         <label><!-- IPM Postpone Msg --></label>
         <name>IPM_Postpone_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Postponed Future Date Validation --></label>
+        <name>IPM_Postponed_Future_Date_Validation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Postponing Project Gate --></label>
+        <name>IPM_Postponing_Project_Gate</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Priority | Dist target % --></label>
@@ -6051,6 +6279,10 @@
     <customLabels>
         <label><!-- IPM ProjectPhaseChangeMesg --></label>
         <name>IPM_ProjectPhaseChangeMesg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_ProjectPriority --></label>
+        <name>IPM_ProjectPriority</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM ProjectRoute --></label>
@@ -6169,6 +6401,10 @@
         <name>IPM_REFERENCE_MARKET_RESEARCH</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_REGIONAL_ROLLOUT_ADD_HELP --></label>
+        <name>IPM_REGIONAL_ROLLOUT_ADD_HELP</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_REMOVE_MILESTONE --></label>
         <name>IPM_REMOVE_MILESTONE</name>
     </customLabels>
@@ -6211,6 +6447,10 @@
     <customLabels>
         <label><!-- IPM_REVIEW_RISK_LINK_RQS --></label>
         <name>IPM_REVIEW_RISK_LINK_RQS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_REVIEW_RISK_QUICK_SCAN --></label>
+        <name>IPM_REVIEW_RISK_QUICK_SCAN</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_RISKY --></label>
@@ -6329,6 +6569,14 @@
         <name>IPM_Remove</name>
     </customLabels>
     <customLabels>
+        <label><!-- Remove Country From MCO --></label>
+        <name>IPM_RemoveCountryFromMCO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Remove Country Warning Message --></label>
+        <name>IPM_RemoveCountryMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_RemoveTask --></label>
         <name>IPM_RemoveTask</name>
     </customLabels>
@@ -6355,6 +6603,10 @@
     <customLabels>
         <label><!-- IPM_Remove_Country --></label>
         <name>IPM_Remove_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Remove_Customer_Channel --></label>
+        <name>IPM_Remove_Customer_Channel</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_Remove_Member --></label>
@@ -6605,6 +6857,10 @@
         <name>IPM_SOME_CONSIDERATIONS</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Started --></label>
+        <name>IPM_STARTED</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_START_ADD_ROLLOUT --></label>
         <name>IPM_START_ADD_ROLLOUT</name>
     </customLabels>
@@ -6623,6 +6879,10 @@
     <customLabels>
         <label><!-- IPM_SUMMARY --></label>
         <name>IPM_SUMMARY</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_SUMMARY_TEXT_MINIMUM_LIMIT --></label>
+        <name>IPM_SUMMARY_TEXT_MINIMUM_LIMIT</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_SUPPLY_CHAIN_QUESTIONS --></label>
@@ -6751,6 +7011,10 @@
     <customLabels>
         <label><!-- IPM Select Sustainability --></label>
         <name>IPM_Select_Sustainab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Select Text --></label>
+        <name>IPM_Select_Text</name>
     </customLabels>
     <customLabels>
         <label><!-- Select existing Toolkit --></label>
@@ -6905,6 +7169,18 @@
         <name>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_TLD_VR_Misaligned --></label>
+        <name>IPM_TLD_VR_Misaligned</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TLD_VR_Misaligned_Part_Msg --></label>
+        <name>IPM_TLD_VR_Misaligned_Part_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TLD_Year_Misaligned --></label>
+        <name>IPM_TLD_Year_Misaligned</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_TOPPING_UP_ON_THINGS --></label>
         <name>IPM_TOPPING_UP_ON_THINGS</name>
     </customLabels>
@@ -6983,6 +7259,10 @@
     <customLabels>
         <label><!-- IPM TaskLabel --></label>
         <name>IPM_TaskLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TaskNameErrorMsg --></label>
+        <name>IPM_TaskNameErrorMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Task Assign Text1 --></label>
@@ -8713,6 +8993,10 @@
         <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
+        <label><!-- TLD After Charter Contract and Market Ready Milestone Dates --></label>
+        <name>TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates</name>
+    </customLabels>
+    <customLabels>
         <label><!-- TO_CaseIdentifier --></label>
         <name>TO_CaseIdentifier</name>
     </customLabels>
@@ -9269,6 +9553,10 @@
         <name>refresh</name>
     </customLabels>
     <customLabels>
+        <label><!-- Audio --></label>
+        <name>secondsOblix_Lbl_UIUX_Audio_Score4</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Text for the link in the upper left corner --></label>
         <name>toolbar_app_top_nav_lbl_title_text</name>
     </customLabels>
@@ -9641,6 +9929,19 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Agent App User Details --></description>
+        <label><!-- Agent App User Details --></label>
+        <name>Agent_App_User_Details</name>
+        <sections>
+            <label><!-- Agent App User Preferences (Last Modified By) --></label>
+            <name>Agent App User Preferences (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Agent Report Custom --></description>
         <label><!-- Agent Report Custom --></label>
         <name>Agent_Report_Custom</name>
@@ -9789,14 +10090,6 @@
                 <name>Geography</name>
             </columns>
             <columns>
-                <label><!-- Gross TO 2010 (BD) --></label>
-                <name>Gross TO 2010 (BD)</name>
-            </columns>
-            <columns>
-                <label><!-- Gross TO 2012 (BD) --></label>
-                <name>Gross TO 2012 (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- Gross TO 2013 (BD) --></label>
                 <name>Gross TO 2013 (BD)</name>
             </columns>
@@ -9823,6 +10116,14 @@
             <columns>
                 <label><!-- Gross TO 2019 (BD) --></label>
                 <name>Gross TO 2019 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2020 (BD) --></label>
+                <name>Gross TO 2020 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2021 (BD) --></label>
+                <name>Gross TO 2021 (BD)</name>
             </columns>
             <columns>
                 <label><!-- IC / NBU --></label>
@@ -9925,10 +10226,6 @@
                 <name>Y3 iTO(BD)</name>
             </columns>
             <columns>
-                <label><!-- iGP 2012 (BD) --></label>
-                <name>iGP 2012 (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- iGP 2013 (BD) --></label>
                 <name>iGP 2013 (BD)</name>
             </columns>
@@ -9961,8 +10258,8 @@
                 <name>iGP 2020 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2012 (BD) --></label>
-                <name>iTO 2012 (BD)</name>
+                <label><!-- iGP 2021 (BD) --></label>
+                <name>iGP 2021 (BD)</name>
             </columns>
             <columns>
                 <label><!-- iTO 2013 (BD) --></label>
@@ -9995,6 +10292,10 @@
             <columns>
                 <label><!-- iTO 2020 (BD) --></label>
                 <name>iTO 2020 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2021 (BD) --></label>
+                <name>iTO 2021 (BD)</name>
             </columns>
             <label><!-- IPM Analytics --></label>
             <name>IPM Analytics</name>
@@ -10334,12 +10635,87 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- CEC Case Product &amp; Product Category --></description>
+        <label><!-- CEC Case Product &amp; Product Category --></label>
+        <name>CEC_Case_Product_Product_Category</name>
+        <sections>
+            <label><!-- Case Products --></label>
+            <name>Case Products</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Global CPG Code --></label>
+                <name>Global CPG Code</name>
+            </columns>
+            <columns>
+                <label><!-- L0 Product Category  --></label>
+                <name>L0 Product Category </name>
+            </columns>
+            <columns>
+                <label><!-- L1 Product Category --></label>
+                <name>L1 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L2 Product Category --></label>
+                <name>L2 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L3 Product Category --></label>
+                <name>L3 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L4 Product Category --></label>
+                <name>L4 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L5 Product Category --></label>
+                <name>L5 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L6 Product Category --></label>
+                <name>L6 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L7 Product Category --></label>
+                <name>L7 Product Category</name>
+            </columns>
+            <label><!-- Product Categories --></label>
+            <name>Product Categories</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC_Enclosures --></description>
+        <label><!-- CEC_Enclosures --></label>
+        <name>CEC_Enclosures</name>
+        <sections>
+            <label><!-- Enclosures --></label>
+            <name>Enclosures</name>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Enclosures --></label>
+            <name>Fulfilment Enclosures</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- CEC Fulfillment &amp; Enclosure --></description>
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
         <sections>
             <label><!-- Fulfilment --></label>
             <name>Fulfilment</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases With/Without Activities --></description>
+        <label><!-- Cases With/Without Activities --></label>
+        <name>Cases_With_Without_Activities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -10697,6 +11073,55 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- JLodge Reports --></description>
+        <label><!-- JLodge Reports --></label>
+        <name>JLodge_Reports</name>
+        <sections>
+            <columns>
+                <label><!--  Brand --></label>
+                <name> Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Case Creator --></label>
+                <name>Case Creator</name>
+            </columns>
+            <columns>
+                <label><!-- Case No --></label>
+                <name>Case No</name>
+            </columns>
+            <columns>
+                <label><!-- Case owner manager --></label>
+                <name>Case owner manager</name>
+            </columns>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Parent Case No. --></label>
+                <name>Parent Case No.</name>
+            </columns>
+            <columns>
+                <label><!-- Product Description inc. pack size --></label>
+                <name>Product Description inc. pack size</name>
+            </columns>
+            <columns>
+                <label><!-- Product UPC Code --></label>
+                <name>Product UPC Code</name>
+            </columns>
+            <columns>
+                <label><!-- Reason short code --></label>
+                <name>Reason short code</name>
+            </columns>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Last Password Report Type --></description>
         <label><!-- Last Password Report Type --></label>
         <name>Last_Password_Report_Type</name>
@@ -10847,6 +11272,37 @@
             </columns>
             <label><!-- PO Report --></label>
             <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Asset Scoring --></description>
+        <label><!-- SWOP Asset Scoring --></label>
+        <name>Oblix_Assets</name>
+        <sections>
+            <label><!-- SWOP Asset  Scoring --></label>
+            <name>SWOP Asset  Scoring</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW, Campaign and Asset --></description>
+        <label><!-- SWOP SOW, Campaign and Asset --></label>
+        <name>Oblix_Marketing_SOW</name>
+        <sections>
+            <label><!-- Marketing SOW --></label>
+            <name>Marketing SOW</name>
+        </sections>
+        <sections>
+            <label><!-- Marketing SOW Copies --></label>
+            <name>Marketing SOW Copies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Calculator --></description>
+        <label><!-- SWOP Calculator --></label>
+        <name>Oblix_SWOP_Calculator</name>
+        <sections>
+            <label><!-- SWOP Calculator --></label>
+            <name>SWOP Calculator</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -11091,6 +11547,79 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- SWOP Campaigns --></description>
+        <label><!-- SWOP Campaigns --></label>
+        <name>SWOP_Campaigns</name>
+        <sections>
+            <label><!-- Asset --></label>
+            <name>Asset</name>
+        </sections>
+        <sections>
+            <label><!-- SOW --></label>
+            <name>SOW</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP - SOW and Campaigns --></description>
+        <label><!-- SWOP - SOW and Campaigns --></label>
+        <name>SWOP_SOW</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW --></description>
+        <label><!-- SWOP SOW --></label>
+        <name>SWOP_SOW_ONLY</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW campaigns splits --></description>
+        <label><!-- SWOP SOW campaigns splits --></label>
+        <name>SWOP_SOW_campaigns_splits</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaign Splits --></label>
+            <name>SWOP Campaign Splits</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP with SWOP Campaigns with SWOP Campaign Splits --></description>
+        <label><!-- SWOP with SWOP Campaigns with SWOP Campaign Splits --></label>
+        <name>SWOP_with_SWOP_Campaigns_with_SWOP_Campaign_Splits</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaign Splits --></label>
+            <name>SWOP Campaign Splits</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Thanks given by users --></description>
         <label><!-- Thanks given by users --></label>
         <name>Thanks_given_by_users</name>
@@ -11128,6 +11657,57 @@
         <sections>
             <label><!-- Topics --></label>
             <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Order with Order Product --></description>
+        <label><!-- UID Order with Order Product --></label>
+        <name>UID_Order_with_Order_Product</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- UID Order Products --></label>
+            <name>UID Order Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Sales Report --></description>
+        <label><!-- UID Sales Report --></label>
+        <name>UID_Sales_Report</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Order Products --></label>
+            <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Stocked Product Reports --></description>
+        <label><!-- UID Stocked Product Reports --></label>
+        <name>UID_Stocked_Product_Reports</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Stocked Product Summary --></label>
+            <name>Stocked Product Summary</name>
+        </sections>
+        <sections>
+            <label><!-- Stocked Products --></label>
+            <name>Stocked Products</name>
         </sections>
     </reportTypes>
     <reportTypes>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warehouse Committed Utilization Change Approval to Manager</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Warehouse Committed Capacity</name>
+    <style>none</style>
+    <subject>Notification : Warehouse Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_SAPName_s__c} - Action Required</subject>
+    <type>text</type>
+</EmailTemplate>

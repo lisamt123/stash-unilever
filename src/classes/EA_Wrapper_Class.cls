@@ -83,6 +83,32 @@ public class EA_Wrapper_Class {
             
             @AuraEnabled
             public string userPhotoUrl;
+            
+             @AuraEnabled
+            public string themeName;
+            
+             @AuraEnabled
+            public string activityName;
+            
+             @AuraEnabled
+             public decimal activityRating;
+            
+             @AuraEnabled
+             public string description;
+             
+            
+             
+               @AuraEnabled
+             public decimal minutestoComplete;
+             
+               @AuraEnabled
+             public decimal  peopleRequired;
+             
+               @AuraEnabled
+              public decimal activityPoints;
+              
+               @AuraEnabled
+              public List<string> userPhotoUrl1;
         }
 
 }

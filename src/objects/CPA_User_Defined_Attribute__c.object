@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(lkp_PWORF__r.auto_PWORF_ID__c + lkp_HLE_Request__r.Name + lkp_CR__r.Name + lkp_LOI__r.Name),(IF(ISBLANK(lkp_PWO__r.Name),(IF(ISPICKVAL(Type_of_COntract__c , &apos;PWO&apos;), lkp_PWO__r.PWORF_Number__c ,(IF(ISPICKVAL(Type_of_COntract__c , &apos;CNF&apos;),&apos;CNF-&apos;+ lkp_PWO__r.PWORF_Number__c ,(IF(ISPICKVAL(Type_of_COntract__c , &apos;TNF&apos;),&apos;TNF-&apos;+lkp_PWO__r.PWORF_Number__c,null)))))),(IF(ISPICKVAL(Type_of_COntract__c , &apos;PWO&apos;), lkp_PWO__r.Name ,(IF(ISPICKVAL(Type_of_COntract__c , &apos;CNF&apos;),&apos;CNF-&apos;+ lkp_PWO__r.Name ,(IF(ISPICKVAL(Type_of_COntract__c , &apos;TNF&apos;),&apos;TNF-&apos;+lkp_PWO__r.Name,null)))))))),(lkp_PWORF__r.auto_PWORF_ID__c + lkp_HLE_Request__r.Name + lkp_CR__r.Name + lkp_LOI__r.Name))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contract Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DS_Responsibility_Owner__c</fullName>
+        <externalId>false</externalId>
+        <label>DS Responsibility Owner</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DS_Responsibility_With__c</fullName>
+        <externalId>false</externalId>
+        <label>DS Responsibility With</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Accenture</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever Manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever Director</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DS_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>DS Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Being reviewed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Queried</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Declined in Docusign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Voided in Docusign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sent_in_Docusign__c</fullName>
+        <externalId>false</externalId>
+        <label>Sent in Docusign</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Type_of_COntract__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Contract</label>
+        <picklist>
+            <picklistValues>
+                <fullName>PWO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CNF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TNF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unique_value__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Attribute Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>chk_isDocusignedRecord__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isDocusignedRecord</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>lkp_CR__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CR</label>
+        <referenceTo>CPA_CR__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_HLE_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>HLE Request</label>
+        <referenceTo>CPA_HLE_Request__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_LOI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>LOI</label>
+        <referenceTo>CPA_LOI__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_PWORF__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWORF</label>
+        <referenceTo>CPA_PWORF__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_PWO__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWO</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Attribute_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Attribute Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Attribute_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Attribute type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>User Defined Attribute</label>
+    <listViews>
+        <fullName>CAP_ULPM_CAP_User_Defined_Attribute</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CAP_User_Defined_Attribute</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CAP_User_Defined_Attribute</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>UDA-{0000}</displayFormat>
+        <label>User Defined Attribute Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>User Defined Attributes</pluralLabel>
+    <recordTypes>
+        <fullName>CPA_CR</fullName>
+        <active>true</active>
+        <label>CR</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_HLE_Request</fullName>
+        <active>true</active>
+        <label>HLE Request</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_LOI</fullName>
+        <active>true</active>
+        <label>LOI</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_PWO</fullName>
+        <active>true</active>
+        <label>PWO</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_PWORF</fullName>
+        <active>true</active>
+        <label>PWORF</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CR_docusign</fullName>
+        <active>true</active>
+        <label>CR docusign</label>
+        <picklistValues>
+            <picklist>DS_Responsibility_With__c</picklist>
+            <values>
+                <fullName>Accenture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DS_Status__c</picklist>
+            <values>
+                <fullName>Being reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined in Docusign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Queried</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided in Docusign</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sent_in_Docusign__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_COntract__c</picklist>
+            <values>
+                <fullName>CNF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PWO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TNF</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>LOI_docusign</fullName>
+        <active>true</active>
+        <label>LOI docusign</label>
+        <picklistValues>
+            <picklist>DS_Responsibility_With__c</picklist>
+            <values>
+                <fullName>Accenture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DS_Status__c</picklist>
+            <values>
+                <fullName>Being reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined in Docusign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Queried</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided in Docusign</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sent_in_Docusign__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_COntract__c</picklist>
+            <values>
+                <fullName>CNF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PWO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TNF</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PWO_docusign</fullName>
+        <active>true</active>
+        <label>PWO docusign</label>
+        <picklistValues>
+            <picklist>DS_Responsibility_With__c</picklist>
+            <values>
+                <fullName>Accenture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DS_Status__c</picklist>
+            <values>
+                <fullName>Being reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined in Docusign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Queried</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided in Docusign</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sent_in_Docusign__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_COntract__c</picklist>
+            <values>
+                <fullName>CNF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PWO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TNF</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Other_Attribute_type</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(OR(AND(ISPICKVAL(pkl_Attribute_Type__c ,&apos;Other&apos;), ISBLANK( txt_Other_Attribute_type__c)),AND(NOT(ISPICKVAL(pkl_Attribute_Type__c ,&apos;Other&apos;)), NOT(ISBLANK( txt_Other_Attribute_type__c)))),true,false)</errorConditionFormula>
+        <errorMessage>Other Attribute type is mandatory when ‘Other’ Attribute is selected, other wise keep it blank.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_Attribute_Type</fullName>
+        <active>false</active>
+        <description>Validation to restrict Attribute</description>
+        <errorConditionFormula>IF(TEXT(pkl_Attribute_Type__c) = &apos;Cost&apos; , true,false)</errorConditionFormula>
+        <errorMessage>Error: You selected Cost</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>New_User_Defined_DocuSign_Attribute</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>DocuSign Attribute</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+
+var soql=&quot;&quot;;
+var result=&quot;&quot;;
+var RecTypeRegular=&quot;&quot;;
+var retURL=&quot;&quot;;
+var lkpField=&quot;&quot;;
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+var redirectFlag = 1;
+if( permissionSetName == &quot;CPA_SMT&quot;){
+
+	if(&quot;{!CPA_project_work_order__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_project_work_order__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in PWO&quot;);
+		soql =&quot;select Id,chk_isDocusignedRecord__c from CPA_User_Defined_Attribute__c where lkp_PWO__c =&apos;{!CPA_project_work_order__c.Id}&apos; AND chk_isDocusignedRecord__c = true&quot;;
+		result = sforce.connection.query(soql); 
+		createdRecords = result.getArray(&apos;records&apos;);
+		if(createdRecords.length &lt;3 ){
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;PWO docusign&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_project_work_order__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_PWO_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_UDA_PWO_Id}_lkid={!CPA_project_work_order__c.Id}&quot;;
+		}
+		else{
+			redirectFlag =0;
+			alert(&quot;This PWO already contains one User define DocuSign Attribute for each(i.e PWO/TNF/CNF). So please update the same.&quot;);
+		}
+	}
+	else if(&quot;{!CPA_LOI__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_LOI__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in LOI&quot;);
+		soql =&quot;select Id,chk_isDocusignedRecord__c from CPA_User_Defined_Attribute__c where lkp_LOI__c =&apos;{!CPA_LOI__c.Id}&apos; AND chk_isDocusignedRecord__c = true&quot;;
+		result = sforce.connection.query(soql); 
+		createdRecords = result.getArray(&apos;records&apos;);
+		if(createdRecords.length &lt;=0 ){
+			 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;LOI docusign&apos; limit 1&quot; ;
+			 result = sforce.connection.query(soql); 
+			 RecTypeRegular = result.getArray(&apos;records&apos;);
+			 retURL=&quot;%2F{!CPA_LOI__c.Id}&quot;;
+			 lkpField = &quot;{!$Label.CPA_UDA_LOI_Id}={!CPA_LOI__c.Name}&amp;{!$Label.CPA_UDA_LOI_Id}_lkid={!CPA_LOI__c.Id}&quot;;
+		}else{
+			redirectFlag =0;
+			alert(&quot;This LOI already contains one User define DocuSign Attribute. So please update the same.&quot;);
+		}
+	}
+	else if(&quot;{!CPA_CR__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_CR__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in CR&quot;);
+		soql =&quot;select Id,chk_isDocusignedRecord__c from CPA_User_Defined_Attribute__c where lkp_CR__c =&apos;{!CPA_CR__c.Id}&apos; AND chk_isDocusignedRecord__c = true&quot;;
+		result = sforce.connection.query(soql); 
+		createdRecords = result.getArray(&apos;records&apos;);
+		if(createdRecords.length &lt;=0 ){
+			 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;CR docusign&apos; limit 1&quot; ;
+			 result = sforce.connection.query(soql); 
+			 RecTypeRegular = result.getArray(&apos;records&apos;);
+			 retURL=&quot;%2F{!CPA_CR__c.Id}&quot;;
+			 lkpField = &quot;{!$Label.CPA_UDA_CR_Id}={!CPA_CR__c.Name}&amp;{!$Label.CPA_UDA_CR_Id}_lkid={!CPA_CR__c.Id}&quot;;	
+		}else{
+			redirectFlag =0;
+			alert(&quot;This CR already contains one User define DocuSign Attribute. So please update the same.&quot;);
+		}
+		 
+	}
+	else if(&quot;{!CPA_PWORF__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &quot;&quot; ){
+		redirectFlag =0;
+		alert(&quot;DocuSign Attribute can&apos;t be created for PWORF&quot;);
+	}
+	else if(&quot;{!CPA_HLE_Request__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_HLE_Request__c.Id}&quot; != &quot;&quot; ){
+		redirectFlag =0;
+		alert(&quot;DocuSign Attribute can&apos;t be created for PWORF&quot;);
+	}
+	if(redirectFlag == 1){
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_User_Defined_Attribute_Object_Id}/e?&amp;&quot;+lkpField+&quot;&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=&quot;+retURL,&quot;_parent&quot;);
+	}
+}
+else{
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_New_User_Defined_Attribute</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New User Defined Attribute</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+
+var soql=&quot;&quot;;
+var result=&quot;&quot;;
+var RecTypeRegular=&quot;&quot;;
+var retURL=&quot;&quot;;
+var lkpField=&quot;&quot;;
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
+
+	if(&quot;{!CPA_PWORF__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in PWORF&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;PWORF&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;); 
+		 retURL=&quot;%2F{!CPA_PWORF__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_PWORF_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_UDA_PWORF_Id}_lkid={!CPA_PWORF__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_project_work_order__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_project_work_order__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in PWO&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;PWO&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_project_work_order__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_PWO_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_UDA_PWO_Id}_lkid={!CPA_project_work_order__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_LOI__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_LOI__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in LOI&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;LOI&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_LOI__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_LOI_Id}={!CPA_LOI__c.Name}&amp;{!$Label.CPA_UDA_LOI_Id}_lkid={!CPA_LOI__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_HLE_Request__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_HLE_Request__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in HLE Req&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;HLE Request&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_HLE_Request__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_CR_Id}={!CPA_HLE_Request__c.Name}&amp;{!$Label.CPA_UDA_CR_Id}_lkid={!CPA_HLE_Request__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_CR__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_CR__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in CR&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;CR&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_CR__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_CR_Id}={!CPA_CR__c.Name}&amp;{!$Label.CPA_UDA_CR_Id}_lkid={!CPA_CR__c.Id}&quot;;
+	}
+	window.open(&quot;/&quot;+&quot;{!$Label.CPA_User_Defined_Attribute_Object_Id}/e?&amp;&quot;+lkpField+&quot;&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=&quot;+retURL,&quot;_parent&quot;);
+}
+else{
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+</CustomObject>

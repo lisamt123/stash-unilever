@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
     <description>To capture the POS score to RQS active question Mapping</description>
     <enableFeeds>false</enableFeeds>
     <fields>
@@ -38,5 +39,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM POS RQS Mapping</label>
-    <visibility>Public</visibility>
 </CustomObject>

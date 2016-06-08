@@ -17,11 +17,10 @@ public class IPM_RolloutPlansTableController_Test{
     //public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
   
     public static List<IPM_Project_Rollout__c> regionalRolloutList;
-    
     public static final String CANCEL_REDIRECT ='cancelRedirect' ;
     public static final String TESTPROJECT = 'TestComments1';
-    //public static String cancelRedirect;    
-    //public static String editMode='';
+    public static String cancelRedirect;    
+    public static String editMode='';
     public static List<IPM_Project__c> globalProjectList;
     public static List<IPM_Project__c> lstRegionalProjects;
     
@@ -47,15 +46,15 @@ public class IPM_RolloutPlansTableController_Test{
         
         IPM_TestFactory_Helper.getProjectMasterData();
 
-         System.runAs(stdUserForRollout)
-         {
+        System.runAs(stdUserForRollout)
+        {
            
-           projectList = IPM_TestFactory_Helper.projectSetUp(1, stdUserForRollout);
-           insert projectList;
+            projectList = IPM_TestFactory_Helper.projectSetUp(1, stdUserForRollout);
+            insert projectList;
            
            
            
-           regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForRollout,stdUserForRollout});
+            regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForRollout,stdUserForRollout});
             insert regionalRolloutList; // this will give me all regional rollout
             
             
@@ -117,31 +116,32 @@ public class IPM_RolloutPlansTableController_Test{
      /** Create project 
         *  Used for Testing Global Project Creation. 
         *  @name projectSetUp
-     */
+     
      
       public static testMethod void testProjectPhaseChange()
      {
          
         Set<String> projectNameSet = new Set<String>{TESTPROJECT};
-        //List<IPM_Project__c> updateRegionalProject = new List<IPM_Project__c>();
-        Test.startTest();
+        List<IPM_Project__c> updateRegionalProject = new List<IPM_Project__c>();
+        
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(globalUser)
         { 
             IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
             
            
-            /*List<IPM_Project__c> projectListNew = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,(Select Id from Project_Documents__r)
+            List<IPM_Project__c> projectListNew = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,(Select Id from Project_Documents__r)
                 from IPM_Project__c where Name in:projectNameSet limit 2];
             System.assertEquals(projectListNew[0].Name,TESTPROJECT,'project not created');
+            
             for(IPM_Project__c project : projectListNew)
             {
                 //System.assertEquals(project.Project_Documents__r.size(),1);
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // One for Global consolidated and 2 for Regional Consolidated.
                 updateRegionalProject.add(project);
             }
-            
-            update updateRegionalProject;*/
+            Test.startTest();
+            update updateRegionalProject;
            
             globalProjectList = [Select Id,IPM_Company_Card__c,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet limit 2];
             
@@ -163,7 +163,7 @@ public class IPM_RolloutPlansTableController_Test{
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalUser); 
             
             update projectListPhaseChange;
-            Test.stopTest();
+            
             Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);  
             
             lstRegionalProjects = new List<IPM_Project__c>();
@@ -173,7 +173,7 @@ public class IPM_RolloutPlansTableController_Test{
                lstRegionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
             }
 
-            /*List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :lstRegionalProjects limit 2];
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :lstRegionalProjects limit 2];
             
             updatedDocument = new List<IPM_Project_Document__c>();
             currDocuments= [Select IPM_GateDocuments__c,IPM_Document_Status__c from IPM_Project_Document__c limit 1000];
@@ -184,24 +184,28 @@ public class IPM_RolloutPlansTableController_Test{
                 updatedDocument.add(currDoc);
             }
             update updatedDocument;
-            */  
             
-           irp.isEditMode = true;
-           irp.isEditable = true;
-           irp.isStatusEditable = true;     
-           irp.editRollout();
-           irp.cancelRollout();
-           irp.checkRollouts();
-           irp.addRollout();
-           irp.saveRollout();
-           irp.deleteMCORollout(); 
+            
+            
+            Test.stopTest(); 
+            
+            irp.isEditMode = true;
+            irp.isEditable = true;
+            irp.isStatusEditable = true;     
+            irp.editRollout();
+            irp.cancelRollout();
+            irp.checkRollouts();
+            irp.addRollout();
+            irp.saveRollout();
+            irp.deleteMCORollout(); 
            
            
           }
          
      }
+     */
      
-    /* public static testmethod void testRolloutProject()
+    public static testmethod void testRolloutProject()
      {
         Set<String> projectNameSet = new Set<String>{TESTPROJECT};
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
@@ -209,7 +213,7 @@ public class IPM_RolloutPlansTableController_Test{
         // Create Regional Projects.
         System.runAs(globalUser)
         {
-            Test.startTest();
+            
             projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet for update];
             
             
@@ -243,15 +247,17 @@ public class IPM_RolloutPlansTableController_Test{
                 }
            
             }
+           Test.startTest();
            update projectRolloutList;
+           Test.stopTest();
                   
         }
-     }  */
+     }  
 
     /********************************************************************
     * @Description: This method is used to add method of the main class           
     * *******************************************************************/
-   /*static testMethod void RolloutMethodTest()
+   static testMethod void RolloutMethodTest()
    {
     
     
@@ -318,7 +324,7 @@ public class IPM_RolloutPlansTableController_Test{
   }
     
  
-/*static testMethod void RegionalOrignalTest()
+static testMethod void RegionalOrignalTest()
      {    
         User regionalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(regionalUser)
@@ -376,6 +382,6 @@ public class IPM_RolloutPlansTableController_Test{
        
         }
      
-    }*/
+    }
  
  }

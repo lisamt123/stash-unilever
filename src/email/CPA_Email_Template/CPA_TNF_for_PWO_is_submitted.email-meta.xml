@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>35.0</apiVersion>
+    <available>true</available>
+    <description>If ULPM initiates termination of a PWO, ADM will respond to it by submitting a TNF only if the PWO or any of its CRs are not yet delivered.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CPA TNF for PWO is submitted</name>
+    <style>none</style>
+    <subject>TNF for PWO  is Submitted by</subject>
+    <type>visualforce</type>
+</EmailTemplate>

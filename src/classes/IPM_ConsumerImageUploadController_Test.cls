@@ -59,7 +59,7 @@ public class IPM_ConsumerImageUploadController_Test{
     * @param : void
     * @return :void
     */
-    @testSetup public static void testDataSetup(){     
+  public static void testDataSetup(){     
 
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)

@@ -29,6 +29,7 @@
 	.slider1parent{color:#555 !important;}
 	.sliderparent{color:#222 !important;}
 	.sliderparent,.slider1parent,.addQuestion .inputField > select{font-weight:normal;}
+	.marginTB10{margin:10px 0px;}
 	
 /*ipmButton Styles */
 	
@@ -107,3 +108,5 @@
 	.buttonmarRightTen{margin-right:10px;}
 	.scoreDB {display:none;}
 	.ipmQuestTextarea {margin-top: 10px;width:51%;}
+	.proceedButton .ipmButton{margin-bottom:15px;}
+	.ipmButtonGroup .ipmButton{margin-bottom:15px;}

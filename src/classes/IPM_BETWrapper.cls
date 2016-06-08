@@ -5,8 +5,8 @@
 **/
 
 /*
-    This class has been declared withoput sharing as this is used in BET integartion which requires access 
-        to all related IPM and MDO data.
+    This class has been defined as Without Sharing as the methods are invoked via BET Integration service methods which needs to 
+    access  all MDO data for Categories and Brands.
 */    
 public without sharing class IPM_BETWrapper{  
     

@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="ipmFromAction pull-right">
                                     <apex:outputPanel >
-                                        <apex:commandButton value="{!$Label.IPM_ADD}" oncomplete="SubmitAdd(this);" onclick="SubmitOnClick(this);"  styleClass="ipmButton primary extrapadding" rendered="{! if(isPLEdit=true,'true','false')}"/>
+                                        <apex:commandButton value="{!$Label.IPM_ADD}" oncomplete="submitAdd(this);" onclick="submitOnClick(this);"  styleClass="ipmButton primary extrapadding" rendered="{! if(isPLEdit=true,'true','false')}"/>
                                     </apex:outputPanel>
                                 </div>
                             </div>                                      
@@ -181,8 +181,7 @@
             </apex:outputPanel>
                 
                 <!-- Rollouts Leader selection -->
-            
-             <apex:outputPanel rendered="{!isInvokedFromRollouts}">
+            <apex:outputPanel rendered="{!isInvokedFromRollouts}">
                  <div class="col-sm-12 noPadleft radioContainer">
                      <div class="col-sm-12">
                         <div class="categoryButtons">

@@ -5,5 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>CEC Manager - Italy</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>CEC_Manager_Europe</parentRole>
+    <parentRole>CEC_Manager_HGS_Europe</parentRole>
 </Role>

@@ -19,7 +19,8 @@ public with sharing class Core_CA_ApprovalDetailsController{
     Set<Id> cancelledApproverID = new Set<Id>();
     public integer total_sizeOpen;
     public integer total_sizeClose;
-   
+    string strGTES ='GTES';
+    
     public Core_CA_ApprovalDetailsController(){
         //Set the pagination Limit
         list_size=integer.ValueOf(CORE_Chatter_Approval__c.getinstance('PaginationLimit').Text_Value__c);
@@ -39,14 +40,14 @@ public with sharing class Core_CA_ApprovalDetailsController{
         
         //The Open Approval record shouldn't be recalled 
         cancelledApproverID = new Set<Id>();
-        List<Core_Approver_Details__c> cancelledApprover =[SELECT Approval_Header__c FROM Core_Approver_Details__c where  Role__c = 'EMP' AND Action__c = 'CANC' AND Source_System__c=:'GTES'];
+        List<Core_Approver_Details__c> cancelledApprover =[SELECT Approval_Header__c FROM Core_Approver_Details__c where  Role__c = 'EMP' AND Action__c = 'CANC' AND Source_System__c=: strGTES];
         for(Core_Approver_Details__c id: cancelledApprover)
             cancelledApproverID.add(id.Approval_Header__c);
             
         //Take the count of open appproval records.   
         total_sizeOpen = [SELECT count() FROM Core_Approver_Details__c where Interested_Party__c=:strUid 
                            AND ( (Is_Active__c=: true and Source_System__c=:'Ariba' AND Role__c = 'APP' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' )
-                                  OR (Source_System__c=:'GTES' AND Role__c = 'APP' AND Action__c = 'ACTV' AND  Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :cancelledApproverID))
+                                  OR (Source_System__c=: strGTES AND Role__c = 'APP' AND Action__c = 'ACTV' AND  Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :cancelledApproverID))
                                )  ]; //set the total size in the constructor
     }
     
@@ -56,14 +57,14 @@ public with sharing class Core_CA_ApprovalDetailsController{
         
         //The Open Approval record shouldn't be recalled 
         cancelledApproverID = new Set<Id>();
-        List<Core_Approver_Details__c> cancelledApprover =[SELECT Approval_Header__c FROM Core_Approver_Details__c where  Role__c = 'EMP' AND Action__c = 'CANC' AND Source_System__c=:'GTES'];
+        List<Core_Approver_Details__c> cancelledApprover =[SELECT Approval_Header__c FROM Core_Approver_Details__c where  Role__c = 'EMP' AND Action__c = 'CANC' AND Source_System__c=: strGTES];
         for(Core_Approver_Details__c id: cancelledApprover)
             cancelledApproverID.add(id.Approval_Header__c);
                    
         //Take the count of closed appproval records.                                    
         total_sizeClose =  [SELECT count() FROM Core_Approver_Details__c where Interested_Party__c=:strUid 
                              AND( (Role__c = 'APP' AND Source_System__c=:'Ariba' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')) OR
-                                  (Role__c = 'APP' AND Source_System__c=:'GTES' AND  (Action__c = 'APPR' OR Action__c = 'REJC'  OR Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in :cancelledApproverID)) )];
+                                  (Role__c = 'APP' AND Source_System__c=: strGTES AND  (Action__c = 'APPR' OR Action__c = 'REJC'  OR Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in :cancelledApproverID)) )];
     }
     
     public List<Core_Approver_Details__c>  getopenApproval() {
@@ -71,7 +72,7 @@ public with sharing class Core_CA_ApprovalDetailsController{
          //Retrive open approval records.
          List<Core_Approver_Details__c>  lstOpenApp=[SELECT Approval_Header__c,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:strUid 
                                                      AND ( (Is_Active__c=: true and Source_System__c=:'Ariba' AND Role__c = 'APP' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' )
-                                                           OR (Source_System__c=:'GTES' AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :cancelledApproverID)))  
+                                                           OR (Source_System__c=: strGTES AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :cancelledApproverID)))  
                                                            ORDER BY LastModifiedDate DESC limit :list_size offset :counterOpen ];
    
  
@@ -87,7 +88,7 @@ public with sharing class Core_CA_ApprovalDetailsController{
         //Retrive closed approval records.
          List<Core_Approver_Details__c>  lstCloseApp=[SELECT Approval_Header__c,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:strUid 
                                                      AND( (Role__c = 'APP' AND Source_System__c=:'Ariba' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')) OR
-                                                          (Role__c = 'APP' AND Source_System__c=:'GTES' AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in :cancelledApproverID) ))
+                                                          (Role__c = 'APP' AND Source_System__c=: strGTES AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in :cancelledApproverID) ))
                                                      ORDER BY LastModifiedDate DESC limit :list_size offset :counterClose ];
                                                    
  

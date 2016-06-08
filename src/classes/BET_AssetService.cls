@@ -80,10 +80,37 @@ global without sharing class BET_AssetService {
 		}
 	}
 
+	/********************************************************************
+		Purpose: Grants Access to file for given user
+		Parameters: Id fileId,Id userId
+        Returns: -
+        Throws: -
+	*********************************************************************/
+
+	public static void grantAccessToAsset(Id fileId,Id userId){
+		try{
+			List<ContentDocumentLink> linkedFiles = [select id from ContentDocumentLink where LinkedEntityId =: userId and ContentDocumentId =:fileId];
+			if(linkedFiles.isEmpty()){
+				ContentDocumentLink link = new ContentDocumentLink();
+				link.LinkedEntityId = userId;
+				link.ContentDocumentId = fileId;
+				link.ShareType = 'v';
+				link.Visibility = 'AllUsers';
+				if(!Test.isRunningTest()){
+					insert link;
+				}
+			}
+		}catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToAsset',
+                'Exception while granting access for ' + userId + ' for file ' + fileId,
+                new BET_CustomBETException(ex.getMessage()),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+		}
+	}
+
 	/************************************************************
         Purpose: Updates fileId field based on asset url
         Parameters: List<uw_Asset__c> assets
-        Returns: -
+        Returns: assets list
         Throws: -
     *************************************************************/
 	public static List<uw_Asset__c> updateFileId(List<uw_Asset__c> assets){
@@ -93,9 +120,7 @@ global without sharing class BET_AssetService {
 		Set<Id> identifiers = new Set<Id>();
 		for(uw_Asset__c asset : assets){
 			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
-				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
-	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
-	        	identifiers.add(identifier);
+	        	identifiers.add(getAssetFileIdentifier(asset));
         	}
         }
 
@@ -106,19 +131,25 @@ global without sharing class BET_AssetService {
 
 		for(uw_Asset__c asset : assets){
 			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
-				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
-	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
-				asset.File_Id__c = versionFileMap.get(identifier);
+				asset.File_Id__c = versionFileMap.get(getAssetFileIdentifier(asset));
 				if(asset.File_Id__c == null && !Test.isRunningTest() && asset.Related_Feed_Item__c != null){
-					ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c);      
-					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
-					if(ca != null){
-						asset.File_Id__c = ca.id;
-					}
+					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c).attachment;
+					asset.File_Id__c = ca == null ? null : ca.id;
 				}
 			}
 		}
 		return assets;
+	}
+
+	/************************************************************
+        Purpose: Retrieves identifier of an asset related file
+        Parameters: uw_Asset__c asset
+        Returns: Id
+        Throws: -
+    *************************************************************/
+	public static Id getAssetFileIdentifier(uw_Asset__c asset){
+		Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
+	    return (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
 	}
 
 	/************************************************************

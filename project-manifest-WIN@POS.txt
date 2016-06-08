@@ -1,0 +1,3 @@
+src
+src/staticresources
+src/staticresources/winatposapp.resource

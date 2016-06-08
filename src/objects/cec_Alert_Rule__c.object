@@ -59,7 +59,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Active__c</fullName>
-        <defaultValue>false</defaultValue>
+        <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Active</label>
         <trackTrending>false</trackTrending>
@@ -239,6 +239,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -248,6 +252,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Spain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -380,6 +388,15 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>X30_Days_Limit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC : This checkbox will be used to filter Alert Tracker Items based on the  Roll-up summary field on the Alert tracker</description>
+        <externalId>false</externalId>
+        <label>30 Days Limit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Alert Rule</label>
     <listViews>
         <fullName>Alert_Ansicht_Test</fullName>
@@ -399,6 +416,20 @@
     </listViews>
     <listViews>
         <fullName>All_Alert_Rules1</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>Market__c</columns>
+        <columns>Threshold__c</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Alert Rules</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_Alert_Rules2</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
         <columns>L5_Reason_Code__c</columns>
@@ -521,8 +552,10 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Alert_Rule</fullName>
+        <columns>NAME</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -593,6 +626,29 @@
             <value>sujeet,pankaj</value>
         </filters>
         <label>India Alerts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>NA_Alert_Rules</fullName>
+        <columns>NAME</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>Market__c</columns>
+        <columns>Threshold__c</columns>
+        <columns>Type__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <label>NA Alert Rules</label>
         <language>en_US</language>
     </listViews>
     <listViews>

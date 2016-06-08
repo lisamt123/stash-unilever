@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Asset_Scoring__c$Type__c</field>
+    </columns>
+    <columns>
+        <field>Asset_Scoring__c$Sub_Category__c</field>
+    </columns>
+    <columns>
+        <field>Asset_Scoring__c$Description__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>SWOP Pick Lists</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Oblix_Assets__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>Asset_Scoring__c$Type__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Asset_Scoring__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -2907,7 +2907,7 @@
         <name>IPM_Project_Name_Suffix__c</name>
     </fields>
     <fields>
-        <label><!-- Total OpCo Turnover --></label>
+        <label><!-- Total OpCo Turnover (&apos;000s Euros) --></label>
         <name>IPM_Total_OpCo_Turnover__c</name>
     </fields>
     <fields>

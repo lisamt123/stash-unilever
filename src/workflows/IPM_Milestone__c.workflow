@@ -16,8 +16,8 @@
             <field>IPM_Project_Leader_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Due_Date_in_the_past2</template>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_Due_Date_in_the_past2</template>
     </alerts>
     <fieldUpdates>
         <fullName>Due_Date</fullName>
@@ -63,12 +63,19 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>IPM_Milestone_Due_Date_In_Past__c = true</formula>
-        <triggerType>onAllChanges</triggerType>
+        <formula>AND(
+ IPM_Milestone_Due_Date_In_Past__c = true,
+ NOT(ISPICKVAL( IPM_Phase__c , &apos;Post Launch Evaluation&apos;)),
+ IPM_Project__r.Is_Archieved__c = false,
+ ISPICKVAL( IPM_Type_of_Milestone__c , &apos;Standard&apos;),
+ IPM_Completed__c = false,
+ CreatedDate  &lt;&gt;  LastModifiedDate   
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>IPM_BET_WF_Trigger_MS_StatusCheck</fullName>
-        <active>false</active>
+        <active>true</active>
         <formula>AND(IPM_Due_Date__c &lt;&gt;NULL, IPM_Due_Date__c&gt;= TODAY(),ISPICKVAL(IPM_Type_of_Milestone__c, &apos;BET&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
