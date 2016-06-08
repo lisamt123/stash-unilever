@@ -1,8 +1,4 @@
 src
-src/documents
-src/documents/Food_Solutions_Unilever/Hellmanns_Ketchup_2_1_5_GAL.jpg
-src/documents/Food_Solutions_Unilever/Kissan_Organic_Ketchup.jpg
-src
 src/flows
 src/flows/NAFS_Assign_Territory_Based_on_User_Custom_Setting-1.flow
 src/flows/NAFS_Assign_Territory_Based_on_User_Custom_Setting-2.flow
