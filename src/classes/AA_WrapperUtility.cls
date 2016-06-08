@@ -1,6 +1,11 @@
+/**
+ * Name:        -   AA_WrapperUtility()
+ * @description -   Contains the wrapper class to bundle required variables for Agent Report
+ * @Author      -   Aslesha R K     
+ */
 global with sharing class AA_WrapperUtility {
 
-    global class AgentReportDataResponse extends AA_BaseApplicationWrapperObj{
+global class AgentReportDataResponse extends AA_BaseApplicationWrapperObj{
            // public list<AllAgentReports> responseReports;
         }
         
@@ -48,7 +53,6 @@ global with sharing class AA_WrapperUtility {
             public String searchType;
             public List<String> usertomentionIds;
             public List<String> topicIds;
-
             /* Other brand and company names */
             public String OtherBrandName;
             public String OtherCompetitor; 
@@ -75,12 +79,9 @@ global with sharing class AA_WrapperUtility {
             public List<aa_Agent_App_Brand_Category__c> selectedCompetitorCategoryOnBrand;
             public List<aa_Topic__c> topicList;
             public String agentReportId;
-            public String googleApiVaue;
-            // public Map<String,String> usernamesMap;
+           // public String googleApiVaue;
             public List<sObject>  autocompleteList;
-          
-            
-        }
+    }
         
      
      /**
