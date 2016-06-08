@@ -793,7 +793,6 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
-    <fields>
         <fullName>DW_Order_Number__c</fullName>
         <description>TO: DW Order Number</description>
         <externalId>false</externalId>
