@@ -495,4 +495,4 @@ src/reports/WU_Warehouse_Excellence_Team-meta.xml
 src/reports/WU_Warehouse_Leadership_Team-meta.xml
 src
 src/profiles
-src/profiles/Unilever – Salesforce MultiApp Customer Development.profile
+src/profiles/Unilever - Salesforce MultiApp Customer Development.profile
