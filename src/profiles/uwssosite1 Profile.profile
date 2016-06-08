@@ -2941,6 +2941,16 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>TASKRAY__Project__c.Strategy</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>TASKRAY__Project__c.VIP</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Vep_Visitor__c.Request</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

@@ -700,6 +700,14 @@ One View Report Favourites</description>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>TASKRAY__Project__c.Strategy</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>TASKRAY__Project__c.VIP</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

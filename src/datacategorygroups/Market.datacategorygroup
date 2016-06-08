@@ -12,18 +12,6 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
-                <dataCategory>
-                    <label>Estonia</label>
-                    <name>Estonia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Latvia</label>
-                    <name>Latvia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Lithuania</label>
-                    <name>Lithuania</name>
-                </dataCategory>
                 <label>Baltics</label>
                 <name>Baltics</name>
             </dataCategory>
@@ -33,8 +21,8 @@
                     <name>Belgium</name>
                 </dataCategory>
                 <dataCategory>
-                    <label>Netherlands</label>
-                    <name>Netherlands</name>
+                    <label>Netherland</label>
+                    <name>Netherland</name>
                 </dataCategory>
                 <label>Benelux</label>
                 <name>Benelux</name>
@@ -147,38 +135,26 @@
                 <label>ANZ</label>
                 <name>ANZ</name>
             </dataCategory>
+            <dataCategory>
+                <label>Indonesia</label>
+                <name>Indonesia</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Philippines</label>
+                <name>Philippines</name>
+            </dataCategory>
             <label>SEAA</label>
             <name>SEAA</name>
         </dataCategory>
         <dataCategory>
             <dataCategory>
                 <dataCategory>
-                    <label>Peru</label>
-                    <name>Peru</name>
+                    <label>Colombia</label>
+                    <name>Colombia</name>
                 </dataCategory>
                 <dataCategory>
-                    <label>Bolivia</label>
-                    <name>Bolivia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Paraguay</label>
-                    <name>Paraguay</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Uruguay</label>
-                    <name>Uruguay</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Argentina</label>
-                    <name>Argentina</name>
-                </dataCategory>
-                <label>Southern Cone</label>
-                <name>Southern_Cone</name>
-            </dataCategory>
-            <dataCategory>
-                <dataCategory>
-                    <label>Venezula</label>
-                    <name>Venezula</name>
+                    <label>Venezuela</label>
+                    <name>Venezuela</name>
                 </dataCategory>
                 <dataCategory>
                     <label>Ecuador</label>
@@ -208,16 +184,40 @@
                     <label>El Salvador</label>
                     <name>El_Salvador</name>
                 </dataCategory>
-                <dataCategory>
-                    <label>Colombia</label>
-                    <name>Colombia</name>
-                </dataCategory>
                 <label>Middle Americas</label>
                 <name>Middle_Americas</name>
             </dataCategory>
             <dataCategory>
                 <label>Brazil</label>
                 <name>Brazil</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Peru</label>
+                    <name>Peru</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Bolivia</label>
+                    <name>Bolivia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Paraguay</label>
+                    <name>Paraguay</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Uruguay</label>
+                    <name>Uruguay</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Argentina</label>
+                    <name>Argentina</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Chile</label>
+                    <name>Chile</name>
+                </dataCategory>
+                <label>Southern Cone</label>
+                <name>Southern_Cone</name>
             </dataCategory>
             <label>South America</label>
             <name>South_America</name>
