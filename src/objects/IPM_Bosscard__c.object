@@ -2965,6 +2965,15 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000bvr8_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JETSKI W3_SEAA</label>
+        <queue>IPM_a7IE0000000bvr8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>

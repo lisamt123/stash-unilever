@@ -2920,6 +2920,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000bvr8_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JETSKI W3_SEAA</label>
+        <queue>IPM_a7IE0000000bvr8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

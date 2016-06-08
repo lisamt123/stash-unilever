@@ -3312,6 +3312,15 @@ Case(Global_Project_Phase__c,
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000bvr8_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JETSKI W3_SEAA</label>
+        <queue>IPM_a7IE0000000bvr8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Project Rollout Name</label>
         <trackHistory>false</trackHistory>
