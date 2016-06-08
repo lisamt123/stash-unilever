@@ -4,4 +4,3 @@ src/permissionsets/NAFS_AFM.permissionset
 src/permissionsets/NAFS_Admin.permissionset
 src/permissionsets/NAFS_Integration_User.permissionset
 src/permissionsets/NAFS_SCP_And_Corp.permissionset
-src/permissionsets/NAFS_Sales_Rep.permissionset
