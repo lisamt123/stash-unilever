@@ -28,23 +28,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_ExistingTradeProContractID__c</field>
+                <field>FS_ExistingTradeProContractID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>NAFSIndicator__c</field>
+                <field>FS_Indicator__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFSDealApproved__c</field>
+                <field>DealApproved__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_AverageGrossProfit__c</field>
+                <field>AverageGrossProfit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_MarketTarget__c</field>
+                <field>MarketTarget__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -62,11 +62,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>NFS_Reason__c</field>
+                <field>Reason__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NFS_ReasonDescription__c</field>
+                <field>FS_ReasonDescription__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -82,7 +82,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_LumpSum__c</field>
+                <field>FS_LumpSum__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -95,13 +95,13 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>NAFS_TotalNumberOfCases__c</field>
+                <field>FS_TotalNumberOfCases__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>NAFS_MSCS__c</field>
+                <field>FS_MSCS__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -205,14 +205,14 @@
     </relatedContent>
     <relatedLists>
         <fields>Product2</fields>
-        <fields>NAFS_Distributor__c</fields>
+        <fields>Distributor__c</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>ListPrice</fields>
-        <fields>NAFS_GPPercent__c</fields>
-        <fields>NAFS_MarketTarget__c</fields>
+        <fields>GPPercent__c</fields>
+        <fields>FS_MarketTarget__c</fields>
         <fields>ApprovalRequired__c</fields>
-        <fields>NAFS_ApprovalGranted__c</fields>
+        <fields>ApprovalGranted__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>

@@ -143,7 +143,7 @@
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
-            <field>NAFS_Region__c</field>
+            <field>Region__c</field>
             <value>
                 <stringValue>1</stringValue>
             </value>
@@ -173,7 +173,7 @@
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
-            <field>NAFS_Territory__c</field>
+            <field>Territory__c</field>
             <value>
                 <stringValue>1</stringValue>
             </value>
@@ -203,7 +203,7 @@
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
-            <field>NAFS_Zone__c</field>
+            <field>Zone__c</field>
             <value>
                 <stringValue>1</stringValue>
             </value>

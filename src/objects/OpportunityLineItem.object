@@ -35,6 +35,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>ApprovalGranted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Approval Granted</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ApprovalRequired__c</fullName>
         <defaultValue>false</defaultValue>
         <description>It is used in validating Approval if any discount is requested on Opportunity Product</description>
@@ -49,59 +56,7 @@
         <fullName>Discount</fullName>
     </fields>
     <fields>
-        <fullName>ListPrice</fullName>
-    </fields>
-    <fields>
-        <fullName>NAFS_ApprovalGranted__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Approval Granted</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_BR3__c</fullName>
-        <externalId>false</externalId>
-        <label>BR3</label>
-        <precision>7</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_DISTTMI__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_DSTMI__c * Quantity</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>DIST TMI</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_DSTMI__c</fullName>
-        <externalId>false</externalId>
-        <formula>UnitPrice *((IF( ISPICKVAL( NAFS_Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( NAFS_Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( NAFS_Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( NAFS_Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( NAFS_Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( NAFS_Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( NAFS_Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( NAFS_Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( NAFS_Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( NAFS_Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( NAFS_Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( NAFS_Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( NAFS_Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>DS TMI/Cs</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_DeltaBR1BR3__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_BR3__c  -    UnitPrice</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Delta BR1-BR3</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_Distributor__c</fullName>
+        <fullName>Distributor__c</fullName>
         <externalId>false</externalId>
         <label>Distributor</label>
         <picklist>
@@ -162,22 +117,196 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFS_FixedPrice__c</fullName>
+        <fullName>FS_BR3__c</fullName>
+        <externalId>false</externalId>
+        <label>BR3</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_DISTTMI__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_DSTMI__c * Quantity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DIST TMI</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_DSTMI__c</fullName>
+        <externalId>false</externalId>
+        <formula>UnitPrice *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DS TMI/Cs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_DeltaBR1BR3__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_BR3__c  -    UnitPrice</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Delta BR1-BR3</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_FixedPrice__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Fixed Price</label>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>NAFS_GPPercent__c</fullName>
+        <fullName>FS_HQRate__c</fullName>
         <externalId>false</externalId>
-        <formula>NAFS_GrossProfit__c  /  NAFS_Turnover__c</formula>
+        <label>HQ Rate</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_Installation_charges__c</fullName>
+        <externalId>false</externalId>
+        <label>Installation charges</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_MarketTarget__c</fullName>
+        <externalId>false</externalId>
+        <formula>PricebookEntry.Product2.ProfitabilityTarget__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Market Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_NSV__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Quantity &lt;&gt;0,  Quantity  *   UnitPrice   * 0.99, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NSV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_OpTMICs__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_Rate__c  +  FS_HQRate__c  +  Opportunity.FS_MSCS__c +  IF( FS_FixedPrice__c = TRUE,  FS_DeltaBR1BR3__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Op TMI/Cs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_OpTMI__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_OpTMICs__c  *  Quantity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Op TMI</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_ProductMarket__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(PricebookEntry.Product2.MarketType__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Market</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Rate</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_ServicePerYear__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Per Year</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1/4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1/2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>GPPercent__c</fullName>
+        <externalId>false</externalId>
+        <formula>GrossProfit__c  /  Turnover__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Profit %</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>GrossProfit__c</fullName>
+        <externalId>false</externalId>
+        <formula>Turnover__c - TotalCOGS__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross Profit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ListPrice</fullName>
     </fields>
     <fields>
         <fullName>NAFS_GrossProfitPercent__c</fullName>
@@ -189,26 +318,6 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>NAFS_GrossProfit__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_Turnover__c - NAFS_TotalCOGS__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Gross Profit</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_HQRate__c</fullName>
-        <externalId>false</externalId>
-        <label>HQ Rate</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>NAFS_ListPrice__c</fullName>
         <externalId>false</externalId>
         <label>List Price</label>
@@ -218,17 +327,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>NAFS_MarketTarget__c</fullName>
-        <externalId>false</externalId>
-        <formula>PricebookEntry.Product2.ProfitabilityTarget__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Market Target</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>NAFS_MrktTarget__c</fullName>
         <externalId>false</externalId>
         <label>NAFS MarketTarget</label>
@@ -236,39 +334,6 @@
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_NSV__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF( Quantity &lt;&gt;0,  Quantity  *   UnitPrice   * 0.99, 0)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>NSV</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_OpTMICs__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_Rate__c  +  NAFS_HQRate__c  +  Opportunity.FS_MSCS__c +  IF( NAFS_FixedPrice__c = TRUE,  NAFS_DeltaBR1BR3__c , 0)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Op TMI/Cs</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_OpTMI__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_OpTMICs__c  *  Quantity</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Op TMI</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>NAFS_OpportunityDistributor__c</fullName>
@@ -725,93 +790,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFS_ProductMarket__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(PricebookEntry.Product2.MarketType__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Product Market</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_Rate__c</fullName>
-        <externalId>false</externalId>
-        <label>Rate</label>
-        <precision>8</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_ServicePerYear__c</fullName>
-        <externalId>false</externalId>
-        <label>Service Per Year</label>
-        <picklist>
-            <picklistValues>
-                <fullName>0</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>1/4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>1/2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_TotalCOGS__c</fullName>
-        <externalId>false</externalId>
-        <formula>PricebookEntry.Product2.COGS__c  *  Quantity</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Total COGS</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_Turnover__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_NSV__c  -   NAFS_DISTTMI__c -  NAFS_OpTMI__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Turnover</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NFS_Installation_charges__c</fullName>
-        <externalId>false</externalId>
-        <label>Installation charges</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>Number__c</fullName>
         <externalId>false</externalId>
         <label>Number</label>
@@ -842,7 +820,29 @@
         <fullName>Subtotal</fullName>
     </fields>
     <fields>
+        <fullName>TotalCOGS__c</fullName>
+        <externalId>false</externalId>
+        <formula>PricebookEntry.Product2.COGS__c  *  Quantity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total COGS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>TotalPrice</fullName>
+    </fields>
+    <fields>
+        <fullName>Turnover__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_NSV__c  -   FS_DISTTMI__c -  FS_OpTMI__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Turnover</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>UnitPrice</fullName>

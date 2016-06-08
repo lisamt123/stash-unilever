@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>DisablePartnerPortalAccount</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
@@ -28,11 +27,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_BuyingGroup__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_MasterControllingAccount__c</field>
+                <field>FS_BuyingGroup__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -40,7 +35,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_DistributorProgram__c</field>
+                <field>DistributorProgram__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -48,7 +43,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>RUFS_SoldToCode__c</field>
+                <field>FS_SoldToCode__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -66,11 +61,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_ControllingAccount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_DistributorSegment__c</field>
+                <field>FS_ControllingAccountCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -78,11 +69,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_CHDNumber__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NFS_Operator__c</field>
+                <field>FS_CHDNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -104,7 +91,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_ChainTargetingModel__c</field>
+                <field>FS_ChainTargetingModel__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -215,6 +202,14 @@
         <relatedList>RelatedAccountContactRoleList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>OPPORTUNITY.NAME</fields>
+        <fields>PARTNER.ROLE</fields>
+        <fields>ACCOUNT.PC_TITLE</fields>
+        <fields>ACCOUNT.PC_EMAIL</fields>
+        <relatedList>RelatedPartnerList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
@@ -244,19 +239,6 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.PHONE1</fields>
-        <fields>PC_EMAIL</fields>
-        <fields>ACCOUNT.SITE</fields>
-        <fields>PC_ADDRESS2_CITY</fields>
-        <fields>PC_ADDRESS2_ZIP</fields>
-        <fields>UID_Region__c</fields>
-        <fields>UID_Branch__c</fields>
-        <fields>UID_Geography__c</fields>
-        <fields>UID_Segment__c</fields>
-        <relatedList>Account.ParentAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>
