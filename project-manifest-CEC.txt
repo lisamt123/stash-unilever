@@ -91,7 +91,7 @@ src/email/CEC_Emails_Indonesia-meta.xml
 src/email/CEC_Emails_Philippines-meta.xml
 src/email/CEC_Emails_South_Africa-meta.xml
 src/labels
-src/labels/CEC.labels
+src/labels/CustomLabels.labels
 src/layouts
 src/layouts/Case-Case Feed Layout.layout
 src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
