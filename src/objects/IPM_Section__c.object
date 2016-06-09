@@ -168,6 +168,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Is_Parent_Exist__c</fullName>
+        <description>To improve performance by eliminating !=null checks from query</description>
+        <externalId>false</externalId>
+        <formula>NOT( OR(ISBLANK(IPM_Parent_Section__c),ISNULL(IPM_Parent_Section__c)))</formula>
+        <label>Is Parent Exist</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Negotiable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
