@@ -1,3 +1,4 @@
 src
-src/permissionsets
-src/permissionsets/NAFS_Sales_Rep.permissionset
+src/workflows
+src/workflows/Account.workflow
+src/workflows/Opportunity.workflow
