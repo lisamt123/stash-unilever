@@ -1,6 +1,4 @@
 src
-src/groups
-src/groups/AFM_Approvers.group
-src
-src/workflows
-src/workflows/Opportunity.workflow
+src/approvalProcesses
+src/approvalProcesses/Account.NAFS_Operator_Account_Validation.approvalProcess
+src/approvalProcesses/Opportunity.NAFS_MABE_Opportunity_Process.approvalProcess
