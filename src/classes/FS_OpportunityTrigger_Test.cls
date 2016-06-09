@@ -22,7 +22,6 @@ private class FS_OpportunityTrigger_Test {
             //priceBookEntry pbn2=new priceBookEntry ( Product2Id = prod2.id, pricebook2id = pb.id, unitPrice = 1500, IsActive = true);
             //insert spbn1;
             //insert spbn2;         
-            
             Opportunity opp = new Opportunity();
             opp.AverageGrossProfit__c=0;
             opp.MarketTarget__c=0;
