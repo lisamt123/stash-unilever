@@ -7437,6 +7437,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Section__c.IPM_Is_Parent_Exist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Section__c.ProjectSpan__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7598,6 +7603,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_User_Profile__c.Export_Porfolio_Data__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_User_Profile__c.IPM_Is_RoleorFunction_Blank__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
