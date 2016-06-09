@@ -53,10 +53,6 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>burke.butler@accenture.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
                 <name>jyotirmoy.sharma@accenture.com</name>
                 <type>user</type>
             </approver>
@@ -77,7 +73,7 @@
         </rejectBehavior>
     </approvalStep>
     <description>Created for Margin evaluation at Opportunity object</description>
-    <emailTemplate>unfiled$public/NAFS_Opportunity_approval_request_email_template</emailTemplate>
+    <emailTemplate>NAFS_Email_Templates/NAFS_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
