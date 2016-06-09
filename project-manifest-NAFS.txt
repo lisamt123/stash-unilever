@@ -1,4 +1,3 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Account.NAFS_Operator_Account_Validation.approvalProcess
-src/approvalProcesses/Opportunity.NAFS_MABE_Opportunity_Process.approvalProcess
+src/permissionsets
+src/permissionsets/NAFS_Integration_User.permissionset
