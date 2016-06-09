@@ -1,13 +1,12 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Account.NAFS_Operator_Account_Validation.approvalProcess
+src/workflows
+src/workflows/Opportunity.workflow
 src
 src/classes
 src/classes/NAFS_OpportunityHelper.cls
 src/classes/NAFS_OpportunityHelper.cls-meta.xml
 src/classes/NAFS_Utility.cls
 src/classes/NAFS_Utility.cls-meta.xml
-src/classes/FS_OpportunityTrigger_Test.cls
 src
 src/triggers
 src/triggers/OpportunityTrigger.trigger
