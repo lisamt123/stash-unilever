@@ -81,7 +81,7 @@
     </fieldUpdates>
     <rules>
         <fullName>NAFS Email to opportunity owner when Deal approval exactly 60 days</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.DealApproved__c</field>
             <operation>equals</operation>
