@@ -1,7 +1,6 @@
 src
 src/approvalProcesses
 src/approvalProcesses/Account.NAFS_Operator_Account_Validation.approvalProcess
-src/approvalProcesses/Opportunity.NAFS_MABE_Opportunity_Process.approvalProcess
 src
 src/classes
 src/classes/NAFS_OpportunityHelper.cls
@@ -9,7 +8,6 @@ src/classes/NAFS_OpportunityHelper.cls-meta.xml
 src/classes/NAFS_Utility.cls
 src/classes/NAFS_Utility.cls-meta.xml
 src/classes/FS_OpportunityTrigger_Test.cls
-src/classes/FS_OpportunityTrigger_Test.cls-meta.xml
 src
 src/triggers
 src/triggers/OpportunityTrigger.trigger
