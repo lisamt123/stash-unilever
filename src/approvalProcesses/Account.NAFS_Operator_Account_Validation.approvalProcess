@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>false</active>
+    <active>true</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
         <type>owner</type>
@@ -35,7 +35,7 @@
         <name>Account_Process_Step_1</name>
     </approvalStep>
     <description>Operator Account Validations</description>
-    <emailTemplate>NAFS_Email_Templates/NAFS_Operator_Account_approval_request_email_template</emailTemplate>
+    <emailTemplate>unfiled$public/NAFS_Operator_Account_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>

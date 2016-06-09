@@ -9,9 +9,9 @@
         <field>Name</field>
         <field>Owner</field>
         <field>StageName</field>
-        <field>NAFS_AverageGrossProfit__c</field>
-        <field>NAFSDealApproved__c</field>
-        <field>NAFS_MarketTarget__c</field>
+        <field>AverageGrossProfit__c</field>
+        <field>DealApproved__c</field>
+        <field>MarketTarget__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>true</allowDelegate>
@@ -36,7 +36,7 @@
             <criteriaItems>
                 <field>Opportunity.RecordType</field>
                 <operation>equals</operation>
-                <value>NAFS MA-BE Tool</value>
+                <value>Opportunity with Pricing (MA-BE)</value>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
@@ -68,7 +68,7 @@
         </assignedApprover>
         <description>Send an approval request to Approvers</description>
         <entryCriteria>
-            <formula>NAFS_AverageGrossProfit__c  &lt;  NAFS_MarketTarget__c</formula>
+            <formula>AverageGrossProfit__c  &lt;  MarketTarget__c</formula>
         </entryCriteria>
         <label>Opportunity Process Step2</label>
         <name>Opportunity_Process_Step2</name>
@@ -77,7 +77,7 @@
         </rejectBehavior>
     </approvalStep>
     <description>Created for Margin evaluation at Opportunity object</description>
-    <emailTemplate>NAFS_Email_Templates/NAFS_Opportunity_approval_request_email_template</emailTemplate>
+    <emailTemplate>unfiled$public/NAFS_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>

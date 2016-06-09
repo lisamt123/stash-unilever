@@ -159,7 +159,7 @@
     <fields>
         <fullName>DealApproved__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>It is determined based on the actions when an approval request is approved or rejected.</description>
+        <description>It is determined based on the actions when an approval request is  approved or rejected .</description>
         <externalId>false</externalId>
         <label>DealApproved</label>
         <trackFeedHistory>false</trackFeedHistory>

@@ -29,21 +29,21 @@ public with sharing class NAFS_OpportunityHelper {
           }
           
           if(!listOppId.isEmpty()){    
-              OppLineItem = [select Id, NAFS_GPPercent__c, NAFS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
+              OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
               
           }
           For(Opportunity opp : listNewTrigger){
               For(OpportunityLineItem oli: OppLineItem ){
                   if(opp.id == oli.opportunityId){
-                      if(oli.NAFS_GPPercent__c != null){
-                          grossProfit = grossProfit + Integer.valueOf(oli.NAFS_GPPercent__c);
+                      if(oli.GPPercent__c!= null){
+                          grossProfit = grossProfit + Integer.valueOf(oli.GPPercent__c);
                       } 
-                      if(oli.NAFS_MarketTarget__c != null){   
-                          marketTarget = marketTarget + Integer.valueOf(oli.NAFS_MarketTarget__c);
+                      if(oli.FS_MarketTarget__c!= null){   
+                          marketTarget = marketTarget + Integer.valueOf(oli.FS_MarketTarget__c);
                       }    
                       recordCount = recordCount + 1;
-                  }
-              }
+                  } 
+              } 
               if(recordCount>0){
                   averageGrossProfit = grossProfit/recordCount;
                   averageMarketTarget = marketTarget/recordCount;
@@ -53,12 +53,12 @@ public with sharing class NAFS_OpportunityHelper {
                   GrossProfit = 0;
                   MarketTarget= 0;
               }         
-          }
-          List<Opportunity> oppList = [Select Id, NAFS_AverageGrossProfit__c, NAFS_MarketTarget__c from Opportunity where Id in :listOppId];
+          } 
+         List<Opportunity> oppList = [Select Id, AverageGrossProfit__c, MarketTarget__c from Opportunity where Id in :listOppId];
           for(Opportunity opp : oppList){
               if(mapOppIdGP.get(opp.Id)!=null){
-                  opp.NAFS_AverageGrossProfit__c = mapOppIdGP.get(opp.Id);
-                  opp.NAFS_MarketTarget__c = mapOppIdMT.get(opp.Id);
+                  opp.AverageGrossProfit__c= mapOppIdGP.get(opp.Id);
+                  opp.MarketTarget__c= mapOppIdMT.get(opp.Id);
                   oppToUpdate.add(opp);
               }    
           }
