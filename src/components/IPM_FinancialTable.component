@@ -85,10 +85,10 @@
                 <!--<td colspan="3"></td>-->
                 <td class="y0BorderGay">{!IF(isInnovation, 'Y0', '')}</td>
                 <apex:repeat value="{!finWrapper.lstYearNames}" var="yearName">
-                    <td class="{!IF(yearMisaligned, 'misaligned', '')}">{!yearName}</td>
+                    <td class="{!IF(AND(yearMisaligned,showMisalignment), 'misaligned', '')}">{!yearName}</td>
                 </apex:repeat>
                 <apex:repeat value="{!finWrapper.lstYearNames}" var="yearName">
-                    <td class="iPLBorderGay {!IF(yearMisaligned, 'misaligned', '')}">{!yearName}</td>
+                    <td class="iPLBorderGay {!IF(AND(yearMisaligned,showMisalignment), 'misaligned', '')}">{!yearName}</td>
                 </apex:repeat>
             </tr>
 
