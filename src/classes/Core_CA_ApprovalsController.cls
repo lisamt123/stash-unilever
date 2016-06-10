@@ -87,5 +87,35 @@ public class Core_CA_ApprovalsController {
     public static String getUserLanguage() {
     return userinfo.getLanguage();
     }
+    
+    @AuraEnabled
+    public static boolean findFeedbacks(String appName) {
+        return CORE_Feedback_App_Controller.findFeedbacks(appName);
+    }
+    
+    @AuraEnabled
+    public static boolean insertFeedback(String appName,Integer rating,String comment) {
+        return CORE_Feedback_App_Controller.insertFeedback(appName,rating,comment);
+    }
+    
+   @AuraEnabled
+    public static string getGAID(){      
+        string strgaid = CORE_CA_ApprovalReporting__c.getinstance('GA_ID').Text_Value__c;
+        return strgaid;      
+    }
+    /*
+    @AuraEnabled
+    public static String getGAID1(){      
+        string strgaid = EA_ReportingGA__c.getinstance('GA_Id').Text_value__c;
+        return strgaid;      
+    }
+    @AuraEnabled
+    public static string getSourceSystem(string ReqId) {
+    String sourceSystem;
+    Core_Approval_Header__c  lstApprover = [SELECT Source_System__c FROM Core_Approval_Header__c WHERE Id =: ReqId limit 1];   
+    if(lstApprover != null)
+       sourceSystem = lstApprover.Source_System__c ;
+    return sourceSystem;
+    }*/
    
 }
