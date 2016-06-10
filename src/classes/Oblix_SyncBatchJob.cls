@@ -727,7 +727,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
     public Iterable<JobComponent> start(Database.BatchableContext BC) {
         
         // set job is running to block workflows updating campaigns
-        updateJobRunningCustomSetting(true);
+        Oblix_Utils.updateJobRunningCustomSetting(true);
         sync_job = this;
         return sync_job.list_job_components;
     }
@@ -770,14 +770,14 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         addEvent(EVENT_ADD,NULL);
         addEvent('completed sync batch job',NULL);
         addEvent(EVENT_ADD,NULL);
-        resetJobStatusBackToNormalRunning();
+        Oblix_Utils.resetJobStatusBackToNormalRunning();
         finalise();
     }
 
     private void finalise(){
 
         // set job running back to false to allow workflows working again
-        updateJobRunningCustomSetting(false);
+        Oblix_Utils.updateJobRunningCustomSetting(false);
         
         system.debug(sync_job.process_result);
 
@@ -842,26 +842,6 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
     }
 
 
-	public void updateJobRunningCustomSetting(boolean new_value){
-
-		Oblix_Job_Orchestration__c job_is_running = Oblix_Job_Orchestration__c.getOrgDefaults();
-		job_is_running.Job_Is_Running__c = new_value;
-
-		update job_is_running;
-
-    }
-
-
-    public void resetJobStatusBackToNormalRunning(){
-
-        Oblix_Job_Orchestration__c job = Oblix_Job_Orchestration__c.getOrgDefaults();
-        job.Count_Failures__c = 0;
-        job.Requires_Manual_Attention__c = false;
-    
-        update job;
-
-    }
-
     public void incrementFailedJobsCustomSetting(Id job_id){
 
         Oblix_Job_Orchestration__c job = Oblix_Job_Orchestration__c.getOrgDefaults();
@@ -872,84 +852,13 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         // also set the requires attention flag if we reached 3 failures
         if (job.Count_Failures__c >= 3){
             job.Requires_Manual_Attention__c = true;
-            SendeNotificationEmail(job_id);
+            // notify admin about the job failures to manually resolve the issue
+            Oblix_Utils.sendNotificationEmail(Oblix_Utils.job_orchestration_email_subject, Oblix_Utils.job_orchestration_notification_email 
+                ,Oblix_Utils.job_orchestration_reply_to, Oblix_Utils.job_orchestration_email_display_name 
+                ,'Sync Job with Id: ' + job_id + ' failed. Please see the event log for this job as below:<br/>' + sync_job.process_result.replace('\n','<br/>'));
         }
 
         update job;
 
-    }
-
-
-    /********************************************************************
-    * @author       Execloud ©
-    * @date         2016-06-10
-    * @description  Send E-mail to notify about the failure
-    *********************************************************************/
-    Public void SendeNotificationEmail(Id batch_job_id){
-
-        system.debug('started sending notification email');
-
-        String sync_job_failure_subject = 'SWOP version control job failed';
-        String recipient = 'nikhil.pradhan@accenture.com';
-        String reply_to = 'support@accenture.com';
-        String display_name = 'SWOP Automated Job';
-
-        Oblix_Job_Orchestration__c job = Oblix_Job_Orchestration__c.getOrgDefaults();
-
-
-
-        recipient = NULL == job.Notification_Email__c
-            ? recipient
-            : job.Notification_Email__c;
-
-
-        sync_job_failure_subject = NULL == job.Sync_Job_Failure_Email_Subject__c
-            ? sync_job_failure_subject
-            : job.Sync_Job_Failure_Email_Subject__c;
-
-
-        display_name = NULL == job.Email_Sender_display_Name__c
-            ? display_name
-            : job.Email_Sender_display_Name__c;
-
-
-        reply_to = NULL == job.Reply_To_Email__c
-            ? reply_to
-            : job.Reply_To_Email__c;
-
-
-
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-
-    
-        String[] toAddresses = new String[] {recipient};
-        // Assign the addresses for the To and CC lists to the mail object.
-        mail.setToAddresses(toAddresses);
-        //mail.setCcAddresses(ccAddresses);
-        
-        // Specify the address used when the recipients reply to the email. 
-        mail.setReplyTo(reply_to);
-        
-        // Specify the name used as the display name.
-        mail.setSenderDisplayName(display_name);
-        
-        // Specify the subject line for your email address.
-        mail.setSubject(sync_job_failure_subject);
-        
-        // Set to True if you want to BCC yourself on the email.
-        mail.setBccSender(false);
-        
-        // Optionally append the salesforce.com email signature to the email.
-        // The email address of the user executing the Apex Code will be used.
-        mail.setUseSignature(false);
-        
-        
-        // Specify the text content of the email.
-        
-        mail.setHtmlBody('Sync Job with Id: ' + batch_job_id + ' failed. Please see the event log for this job as below:<br/>' + sync_job.process_result.replace('\n','<br/>'));
-        system.debug(mail);
-
-       Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.Email[] { mail } , False);   
-       System.debug('SendEmailResult @@ '+r);
     }
 }

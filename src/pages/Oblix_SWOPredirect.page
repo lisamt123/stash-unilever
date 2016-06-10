@@ -1,3 +1,5 @@
 <apex:page showHeader="true" sidebar="false"  standardController="Marketing_SOW__c" extensions="Oblix_SWOPredirectController"  standardStylesheets="true" action="{!redirectToSwop}">
 	<apex:detail rendered="{!hasPermissionToStandardPage}" inlineEdit="true"  />
 </apex:page>
+
+

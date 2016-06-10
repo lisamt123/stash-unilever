@@ -8,7 +8,6 @@ public with sharing class Oblix_NonCampaignRedirectController_Test {
 
     private static Marketing_SOW__c mSow;
     private static Marketing_Basics__c non_campaigns_to_test;
-    private static List<Oblix_Project_Assets__c> list_assets_in_basket;
 
     private static void initTestUsersAndSOW(){
 

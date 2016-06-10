@@ -18,6 +18,9 @@ public with sharing class Oblix_SOWRollOverLogic {
         
     }
 
+    private static final String SOW_OBJECT = 'Oblix_SOW_Projects__c';
+    private static final String ASSET_OBJECT = 'Oblix_Project_Assets__c';
+
     private static final String ERROR_SETPROCESSINGFLAG = 'ERROR IN setProcessingFlag() - ';
     private static final String STACK_TRACE = ' - STACK TRACE: ';
     private static final String SELECT_SOQL = 'SELECT ';
@@ -794,7 +797,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             //      attrib_5: Campaign_PFY__c
 
             String query_string = SELECT_SOQL;
-            query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_SOW_Projects__c'),',');
+            query_string += String.join(Oblix_Utils.getfieldsByObject(SOW_OBJECT),',');
             query_string += ', (SELECT ';
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
@@ -844,7 +847,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             Database.SaveResult[] list_database_save_result = Database.insert (list_campaigns_to_clone,false);
             
-            is_success = processSaveResult(list_database_save_result,'Oblix_SOW_Projects__c',list_campaigns_to_clone);
+            is_success = processSaveResult(list_database_save_result,SOW_OBJECT,list_campaigns_to_clone);
 
             //Set<Id> id_original_campaigns = map_original_id_original_campaign.keySet();
             //String query_string2 = SELECT_SOQL + job_component.attrib_4 + ', ' + job_component.attrib_5 + ' FROM Oblix_SOW_Projects__c WHERE ' + job_component.attrib_5 + ' in :id_original_campaigns ';
@@ -1050,7 +1053,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             //      attrib_5: 
             //      attrib_6: Type of process
             String query_string = SELECT_SOQL;
-            query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_SOW_Projects__c'),',');
+            query_string += String.join(Oblix_Utils.getfieldsByObject(SOW_OBJECT),',');
             query_string += ', (SELECT Project_Splits__r.Campaign_NFY__c, ';
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
@@ -1079,7 +1082,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             result_msg += '\n query1 result rows: ' + set_original_ids.size() + ' - original campaign: ' + JSON.serialize(map_original_ids_to_original);
 
             String query_string2 = SELECT_SOQL;
-            query_string2 += String.join(Oblix_Utils.getfieldsByObject('Oblix_SOW_Projects__c'),',');
+            query_string2 += String.join(Oblix_Utils.getfieldsByObject(SOW_OBJECT),',');
             query_string2 += ', (SELECT Project_Splits__r.Campaign_NFY__c, ';
             query_string2 += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string2 += ' FROM Marketing_SOW_Project_Splits__r)';
@@ -1105,7 +1108,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             Map<Id, Oblix_SOW_Projects__c> map_original_id_original_campaign = new Map<Id,Oblix_SOW_Projects__c>();
 
             // this map is used to copy over values from original to cloned campaigns
-            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject('Oblix_SOW_Projects__c');
+            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject(ASSET_OBJECT);
 
             Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>> map_original_id_splits_to_clone = new Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
 
@@ -1335,7 +1338,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             result_msg += '\n\n\n started clonning assets';
 
             String query_string = SELECT_SOQL;
-            query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
+            query_string += String.join(Oblix_Utils.getfieldsByObject(ASSET_OBJECT),',');
             query_string += ' FROM  Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3 + SOQL_AND + job_component.attrib_4 + ' = NULL '; 
             query_string += ' AND ' + job_component.attrib_2 + ' <> NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
 
@@ -1365,7 +1368,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             Database.SaveResult[] list_database_save_result = Database.insert (list_assets_to_clone,false);
             
-            is_success = processSaveResult(list_database_save_result,'Oblix_Project_Assets__c',list_assets_to_clone);
+            is_success = processSaveResult(list_database_save_result,ASSET_OBJECT,list_assets_to_clone);
 
             Set<Id> id_original_assets = map_original_id_original_asset.keySet();
             String query_string2 = SELECT_SOQL + job_component.attrib_4 + ', ' + job_component.attrib_5 + ' FROM Oblix_Project_Assets__c WHERE ' + job_component.attrib_5 + ' in :id_original_assets ';
@@ -1422,7 +1425,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             String step_name = 'sync assets';
 
             String query_string = SELECT_SOQL;
-            query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
+            query_string += String.join(Oblix_Utils.getfieldsByObject(ASSET_OBJECT),',');
             query_string += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3; 
             
             // exclude the NFY records
@@ -1452,7 +1455,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             // get the NFY related records for the selected parent campaign Ids
             String query_string2 = SELECT_SOQL;
-            query_string2 += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
+            query_string2 += String.join(Oblix_Utils.getfieldsByObject(ASSET_OBJECT),',');
             query_string2 += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Campaign_PFY__c in: set_original_parent_ids ORDER BY Id '; 
             
             result_msg += '\n query2: ' + query_string2;
@@ -1485,7 +1488,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             List<Oblix_Project_Assets__c> list_assets_to_clone = new List<Oblix_Project_Assets__c>();
 
             // this map is used to copy over values from original to cloned assets
-            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject('Oblix_Project_Assets__c');
+            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject(ASSET_OBJECT);
 
 
             for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){

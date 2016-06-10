@@ -1,3 +1,5 @@
 <apex:page showHeader="true" sidebar="false"  standardController="Oblix_Project_Assets__c" extensions="Oblix_AssetRedirectController"  standardStylesheets="true" action="{!redirectToAsset}">
 	<apex:detail rendered="{!hasPermissionToStandardPage}" inlineEdit="true"  />
 </apex:page>
+
+

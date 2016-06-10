@@ -1,3 +1,5 @@
 <apex:page showHeader="true" sidebar="false"  standardController="Oblix_SOW_Projects__c" extensions="Oblix_CampaignRedirectController"  standardStylesheets="true" action="{!redirectToCampaign}">
 	<apex:detail rendered="{!hasPermissionToStandardPage}" inlineEdit="true"  />
 </apex:page>
+
+
