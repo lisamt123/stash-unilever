@@ -1,4 +1,3 @@
 src
-src/classes
-src/classes/FS_OpportunityTrigger_Test.cls
-src/classes/FS_OpportunityTrigger_Test.cls-meta.xml
+src/permissionsets
+src/permissionsets/NAFS_Integration_User.permissionset
