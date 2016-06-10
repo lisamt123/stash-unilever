@@ -205,8 +205,11 @@ public with sharing class Oblix_PermissionHandler {
     	// only UL1, UL2, SuperUser and Sysadmin can set 
     	// the sow is not approved
     	if (isSystemAdmin() || (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet())
-    		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
+        		&& 
+        		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)
+            ||
+            (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status))
+        {
     		return true;
     	}
     	else{

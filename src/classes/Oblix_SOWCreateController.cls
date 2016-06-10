@@ -125,13 +125,25 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
 
         Boolean didSave = false;
 
+        // S.M. 2016-06-10 
+        // make sure this is not a duplicate SOW by checking the prefis
+        if ([SELECT count() FROM marketing_sow__c WHERE Name_Prefix__c =: selected_sow.Name_Prefix__c]>0){
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate SOW Name detected! Please give SOW a unique name'));
+            return didSave;
+        }
+        
         try{
             upsert selected_sow;
             didSave = true;
             //isEdit = true;
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'SOW saved successfully'));
         } catch (DmlException e){
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Error saving SOW: ' + e.getMessage()));
+            if (e.getMessage().contains('DUPLICATES_DETECTED') || e.getMessage().contains('DUPLICATE_VALUE')) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate found. Please enter a unique SOW name'));
+            } else{
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Error saving SOW: ' + e.getMessage()));
+            }
         }
 
         return didSave;

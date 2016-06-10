@@ -29,12 +29,24 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     }
     public Boolean can_delete_campaign{
         get{
-            return can_edit_campaign && !selected_project.Is_B_Fwd_Campaign__c && selected_sow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY;
+            return can_edit_campaign && NULL == selected_project.Original_Campaign__c && selected_sow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY;
         }
     }
     public Boolean can_adjust_fee{
         get{
             return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c, selected_sow.Name_Suffix__c);
+        }
+    }
+
+    public Boolean can_set_projected_stage{
+        get{
+            return Oblix_PermissionHandler.canSetProjectedStage(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_set_completion_stage{
+        get{
+            return Oblix_PermissionHandler.canSetCompletionStage(selected_sow.SOW_Status__c);
         }
     }
 
@@ -125,9 +137,9 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
         if (NULL != selected_project && NULL!= selected_sow){
             // get related stage identifier for the given selected project Id
-            stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign && !is_NFY_campaign_in_the_middle_of_rollover);
+            stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_set_projected_stage, can_set_completion_stage && !is_NFY_campaign_in_the_middle_of_rollover);
             //IR - do not move into getter!
-            stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project.clone(true, true, true, true),can_edit_campaign, can_edit_campaign && !is_NFY_campaign_in_the_middle_of_rollover);
+            stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project.clone(true, true, true, true),can_set_projected_stage, can_set_completion_stage && !is_NFY_campaign_in_the_middle_of_rollover);
         }
 
 
@@ -227,7 +239,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
  
                 // get related stage identifier for the given selected project Id
-                stage_identifier = new Oblix_CampaignStageLogic(selected_project, can_edit, can_edit);
+                stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_set_projected_stage, can_set_completion_stage);
             }
         }
         catch (Exception ex){
