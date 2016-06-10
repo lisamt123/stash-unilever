@@ -83,7 +83,7 @@ public class EmailHandler
                 }
                 
             }
-            if(!lstMails.isempty()) Messaging.sendEmail(lstMails);
+            if(!lstMails.isempty() && !Test.isRunningTest()) Messaging.sendEmail(lstMails);
         }
         catch(Exception e){ System.debug('The following exception has occurred: ' + e.getMessage()); }
     }

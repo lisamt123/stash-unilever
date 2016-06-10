@@ -33,8 +33,9 @@ public with sharing Class Amr_EmailSendingClass_CC{
             mail.setWhatId(whatID);
             mail.setTreatTargetObjectAsRecipient(false);
             mail.setToAddresses(userEmail);
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
-            
+            if(!Test.isRunningTest()) {
+                Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
+            }
             delete tempContact;
        }
        catch(Exception ex){

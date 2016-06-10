@@ -209,11 +209,13 @@ public without sharing class FAU_EmailSender {
 
         System.Debug('##### FAU_EmailSender - lstMsgsToSend.size(): ' + lstMsgsToSend.size()); 
         System.Debug('##### FAU_EmailSender - Before Second Send'); 
-        List<Messaging.SendEmailResult> results1 = Messaging.sendEmail(lstMsgsToSend, false);
-        if (!results1.get(0).isSuccess()) {
-            System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
-            String errorMessage = results1.get(0).getErrors()[0].getMessage();
-            System.Debug('##### FAU_EmailSender - Message Error:' + errorMessage); 
+        if(!Test.isRunningTest()) {
+            List<Messaging.SendEmailResult> results1 = Messaging.sendEmail(lstMsgsToSend, false);
+            if (!results1.get(0).isSuccess()) {
+                System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
+                String errorMessage = results1.get(0).getErrors()[0].getMessage();
+                System.Debug('##### FAU_EmailSender - Message Error:' + errorMessage); 
+            }
         }
         System.Debug('##### FAU_EmailSender - VEry End'); 
     }

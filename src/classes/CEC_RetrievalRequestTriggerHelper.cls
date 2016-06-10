@@ -191,7 +191,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
             Messaging.SendEmailResult[] resultMail;
             //send emails
             try{
-                if(!emailList.IsEmpty()){
+                if(!emailList.IsEmpty() && !Test.isRunningTest()){
                     resultMail = Messaging.sendEmail(emailList,true);
                 }else{
                     return false;

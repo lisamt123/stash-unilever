@@ -63,12 +63,14 @@ public with sharing class AF_Sendemail_categoryfinance
 			mail.setSaveAsActivity(false);
 			mail.setPlainTextBody('Hi');
 			mail.setHtmlBody(templatebody);
-			messaging.sendemailresult[] r =Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
-			if(r[0].issuccess())
-			{
-				ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,Label.AF_Sent_Email);
-				ApexPages.addMessage(myMsg);
-				displayPopup = true;
+			if(!Test.isRunningTest()) {
+				messaging.sendemailresult[] r =Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+				if(r[0].issuccess())
+				{
+					ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,Label.AF_Sent_Email);
+					ApexPages.addMessage(myMsg);
+					displayPopup = true;
+				}
 			}
 		}
 	}
