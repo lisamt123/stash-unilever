@@ -6,6 +6,7 @@
 var jq = jQuery.noConflict();
 /* Below function performs the Hover functionality. */
 function imageloadstatus() {
+    rld = false;
     jq('.uploadImage').hover(function() {
         jq(this).find('.updateDeletimg').toggle("slide", {
             direction: "left"
@@ -93,6 +94,9 @@ function deleteCountry(str1, str2) {
 }
 function selectCheckboxScript(elem1,elem2) {
     imageloadstatus();
+    jq(document).on('keypress', '.ceCommentBox .smallTextarea', function() {
+        rld = true;
+    });
     /* Below script works on click event. It shows the consumer evidence drop down list with the selected values. Also the checkboxes of selected values will be checked and disabled */
     jq(document).on('show.bs.dropdown', '.consumerDropdown', function() {
         jq('.channelList').show();

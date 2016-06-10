@@ -68,6 +68,9 @@ function selectCheckboxScript() {
             });
         }
     }
+    jq(document).on('keypress', '.commentBoxsmall', function() {
+        rld = true;
+    });
   /* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
     function checkBoxRec() {
         if (selectedValuesArr.length !== 0) {
@@ -185,6 +188,7 @@ function checkboxScript() {
 }
 /* Below function perfoms the Image hover animation for uploading image */
 function ccimageloadstatus() {
+    rld = false;
     jq('.uploadImage').hover(function() {
         jq(this).find('.updateDeletimg').toggle("slide", {
             direction: "left"
