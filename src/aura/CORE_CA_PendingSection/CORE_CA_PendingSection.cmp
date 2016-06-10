@@ -5,9 +5,8 @@
   Requirement/Description: Closed tab of the Approval APP.
 -->
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_Feedback_App_Controller">
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:attribute name="isFeedBackPopup" type="boolean" default="false"/>
-    <aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
+   <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+   <aura:attribute name="isFeedBackPopup" type="boolean" />
     <style>
         .hiddenClass{
         color: red;
@@ -103,7 +102,7 @@
                         <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                                 <div type="button" class="queryWithVendorIndicatorText queryWithVendorTextWidth right-class">
-                                    Query With Vendor
+                                    {!$Label.c.CORE_LBL_QUERY_WITH_VENDOR}
                                 </div>
                             </aura:if>
                         </aura:if>
@@ -116,10 +115,5 @@
         </span>       
         
     </div>
-    <!-- FeedBack popup -->
-    <aura:if isTrue="{!v.isFeedBackPopup}">          
-        <div class="slds-backdrop slds-backdrop--open">
-            <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" Pagename="Pending"></c:Feedback>
-        </div>  
-    </aura:if>
+    
 </aura:component>

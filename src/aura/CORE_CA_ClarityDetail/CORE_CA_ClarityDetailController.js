@@ -11,8 +11,11 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 component.set("v.ApprovalDetail",response.getReturnValue());
-                if(response.getReturnValue() == null || response.getReturnValue() == undefined)
-                	component.set("v.ApprovalHistoryLength",response.getReturnValue().ApprovalHistory.length);
+                if(response.getReturnValue() == null || response.getReturnValue() == undefined){
+                    
+                    component.set("v.ApprovalHistoryLength",response.getReturnValue().ApprovalHistory.length);
+                }    
+                component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus);
             	console.log('@@@output--------'+ response.getReturnValue());
                 if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'
                         || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverAction == 'APPR'
@@ -35,14 +38,6 @@
     component.set("v.isDetail",true);
 },
     goToProjectFinance : function(component, event, helper) { 
-        var PreTripDetails= component.get("v.ApprovalDetail")[0].PreTripDetails;
-        alert(PreTripDetails.PassengerInfo);
-        var PassengerInfo = [];
-        for(var i=0; i<1; i++)
-        {
-           // PassengerInfo.push(PreTripDetails.PassengerInfo.split(,)[i]);
-            alert(PassengerInfo);
-        }
         var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
         selectEvent.setParams({ "compName":  "ClaritySubDetail", "subDivision": "ProjectFinance", "ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage"),"filterValue": component.get("v.filterValue")}).fire();
 },
@@ -58,10 +53,10 @@
         component.set("v.showspinner",true);
         var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
         var sourcePage=component.get("v.sourcePage");
-        if(sourcePage == 'Pending')
-            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire();  
-        if(sourcePage == 'closed')
-           selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();              
+        if(sourcePage == 'Pending'){  
+            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire(); }
+        if(sourcePage == 'closed'){
+         selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();  }           
 },    
     ApproveAction : function(component, event, helper) {
         helper.scrollToLocation(component, "top");
@@ -83,12 +78,23 @@
         component.set("v.isFeedBack",true);
     },
     gotoApp :function(component, event, helper){       
-        if(event.getParam("Pagename") == "Detail")
-        	component.set("v.isFeedBack",false);
+        if(event.getParam("Pagename") == "Detail"){
+            component.set("v.isFeedBack",false);}
         else if(event.getParam("Pagename") == "Home"){
             component.set("v.showspinner",true); 
             var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
             selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire(); 
-        }       
+       }       
 	},
+    showHide : function(component, event, helper) {
+        var id =event.srcElement.id+"1";
+        if(document.getElementById(id).style.display == "none")
+        {	
+            document.getElementById(id).style.display = "block";
+        }
+        else
+        {
+            document.getElementById(id).style.display = "none";
+        }
+    },
 })

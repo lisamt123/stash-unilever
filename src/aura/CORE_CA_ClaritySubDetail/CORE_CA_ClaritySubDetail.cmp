@@ -3,18 +3,24 @@
   Author : Mindtree
   Date: 03 June 2016
   Requirement/Description: Clarity Sub Detail Page includes
-						   1.Project Finance.
+         1.Project Finance.
                            2.Financial Benefit.
                            3.Key Indicator.
 -->
 <aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
-	<aura:attribute name="subDivision" type="string" />
+    <aura:attribute name="subDivision" type="string" />
     <aura:attribute name="AddProFin1" type="string" />
     <aura:attribute name="filterValue" type="string"/>    
     <aura:attribute name="sourcePage" type="string"/>
+    <aura:attribute name="Passenger" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="Currentyear" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="compName" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="copData" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="RequestedBy" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>  
+    <aura:attribute name="RequestedByLang" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>  
     
-     
     <style>      
         .homePageHeader{
         background:#4F6A92;
@@ -38,6 +44,30 @@
         color: red;
         display: none;
         }
+        .valueAllign{
+        position: absolute;
+        right: 0px;
+        top: 54px;
+        padding-left: 0px !important;
+        }
+        .valueAllignCop{
+        position: absolute;
+        right: 0px;
+        top: 33px;
+        padding-left: 0px !important;
+        }
+        @media screen and (max-width:320px){
+        .propBudget{
+        width: 137px;
+        min-height: 48px;
+        }
+        .valueAllign,valueAllignCop{
+        width: 135px;
+        }
+        }
+        .cop{
+        min-height: 48px;
+        }
     </style>
     
     <div>
@@ -48,115 +78,334 @@
     
     <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
         <aura:if isTrue="{!v.subDivision == 'ProjectFinance'}">
-           <div class="approvalType"> {!detailData.AppType}</div>
+            <div class="approvalType"> {!detailData.AppType}</div>
             <div class="ProjectInformationSection">
-                        <div class="slds-section__title sectionTitle">{!$Label.c.CORE_LBL_PROPOSED_BUDGET}</div><hr></hr>
-                        <table class="DetailSectionTable">
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">Trade</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.ChargeTo != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.CompanyCode !=null) ? (detailData.CompanyCode) : 'NA')}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_CAPEX}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.ChargeTo != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.Capex !=null) ? (detailData.Capex) : 'NA')}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_RESTRUCTURING}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.PreTripDetails.Id != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.PreTripDetails.Id !=null) ? (detailData.PreTripDetails.Id) : 'NA')}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_TOTAL}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.PreTripDetails.LocationDetails != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.PreTripDetails.LocationDetails !=null) ? (detailData.PreTripDetails.LocationDetails) : 'NA')}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle propBudget">{!$Label.c.CORE_LBL_PROPOSED_BUDGET}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">Trade</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(detailData.CompanyCode != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((detailData.CompanyCode != null) ? (detailData.CompanyCode) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_CAPEX}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(detailData.ChargeTo != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((detailData.Capex !=null) ? (detailData.Capex) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_RESTRUCTURING}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(detailData.PreTripDetails.Id != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((detailData.PreTripDetails.Id !=null) ? (detailData.PreTripDetails.Id) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_TOTAL}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(detailData.PreTripDetails.LocationDetails != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((detailData.PreTripDetails.LocationDetails !=null) ? (detailData.PreTripDetails.LocationDetails) : 'NA')}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection valueAllign">
                 <aura:if isTrue="{!(detailData.ApprovalType == 'APPTYPE4') || (detailData.ApprovalType ==  'APPTYPE6') || (detailData.ApprovalType == 'APPTYPE9') || (detailData.ApprovalType == 'APPTYPE11')}">
-                        <div class="slds-section__title sectionTitle">{!$Label.c.CORE_LBL_PROJECT_FINANCES_BY_YEAR}</div><hr></hr>
-                        <table class="DetailSectionTable">
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!detailData.PreTripDetails.PassengerInfo}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.PreTripDetails.PassengerInfo != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.PreTripDetails.PassengerInfo !=null) ? (detailData.PreTripDetails.PassengerInfo) : 'NA')}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!detailData.Currentyear1}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.ChargeTo != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.Currentyear1 !=null) ? (detailData.Currentyear1) : 'NA')}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_ALL_OTHER_YEARS}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.YearAllOther != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.YearAllOther !=null) ? (detailData.YearAllOther) : 'NA')}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_TOTAL}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">
-                                    <aura:if isTrue="{!detailData.Toatl2 != null}"> 
-                                        {!detailData.Currencies} &nbsp;
-                                    </aura:if>
-                                    {!((detailData.Toatl2 !=null) ? (detailData.Toatl2) : 'NA')}
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="slds-section__title sectionTitle">{!$Label.c.CORE_LBL_PROJECT_FINANCES_BY_YEAR}</div><hr></hr>
+                    <table class="DetailSectionTable">
+                        <tr>
+                            <td class="slds-text-heading--small DetailHeading">{!v.Passenger[0]}</td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-body--regular DetailData">
+                                <aura:if isTrue="{!(v.Passenger[1] != null)}"> 
+                                    {!detailData.Currencies}&nbsp;
+                                </aura:if>
+                                {!((v.Passenger[1] !=null) ? (v.Passenger[1]) : 'NA')}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-heading--small DetailHeading ">{!v.Currentyear[0]}</td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-body--regular DetailData">
+                                <aura:if isTrue="{!(v.Currentyear[1] != null)}"> 
+                                    {!detailData.Currencies}&nbsp;
+                                </aura:if>
+                                {!((v.Currentyear[1] != null) ? (v.Currentyear[1]) : 'NA')}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_ALL_OTHER_YEARS}</td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-body--regular DetailData">
+                                <aura:if isTrue="{!(detailData.YearAllOther != null)}"> 
+                                    {!detailData.Currencies} &nbsp;
+                                </aura:if>
+                                {!((detailData.YearAllOther !=null) ? (detailData.YearAllOther) : 'NA')}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_TOTAL}</td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-body--regular DetailData">
+                                <aura:if isTrue="{!(detailData.Toatl2 != null)}"> 
+                                    {!detailData.Currencies} &nbsp;
+                                </aura:if>
+                                {!((detailData.Toatl2 !=null) ? (detailData.Toatl2) : 'NA')}
+                            </td>
+                        </tr>
+                    </table>
                 </aura:if>
-                    </div>
+            </div>
         </aura:if>
         <aura:if isTrue="{!v.subDivision == 'FincBenefit'}">        
-            Financial Benefits Code Here<br/>
-            {!detailData.ApprovalType}
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle propBudget">{!$Label.c.CORE_LBL_INCREMENT_TURNOVER}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!v.compName[0]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.compName[1] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.compName[1] !=null) ? (v.compName[1]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!v.compName[2]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.compName[3] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.compName[3] !=null) ? (v.compName[3]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!v.compName[4]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.compName[5] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.compName[5] !=null) ? (v.compName[5]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!v.compName[6]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.compName[7] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.compName[7] !=null) ? (v.compName[7]) : 'NA')}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection valueAllignCop">
+                <div class="slds-section__title sectionTitle cop">{!$Label.c.CORE_LBL_COP}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!v.copData[0]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.copData[1] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.copData[1] !=null) ? (v.copData[1]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!v.copData[2]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.copData[3] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.copData[3] !=null) ? (v.copData[3]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!v.copData[4]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.copData[5] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.copData[5] !=null) ? (v.copData[5]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!v.copData[6]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.compName[7] != null)}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.copData[7] !=null) ? (v.copData[7]) : 'NA')}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle">{!$Label.c.CORE_LBL_TOTAL_FTE_REDUCTIONS}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!v.RequestedBy[0]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedBy[1] !=null) ? (v.RequestedBy[1]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!v.RequestedBy[2]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedBy[3] !=null) ? (v.RequestedBy[3]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!v.RequestedBy[4]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedBy[5] !=null) ? (v.RequestedBy[5]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!v.RequestedBy[6]}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedBy[7] !=null) ? (v.RequestedBy[7]) : 'NA')}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle">{!$Label.c.CORE_LBL_NON_FINANCIAL_INDIACTORS}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_SERVICE_LINE}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((detailData.Purpose !=null) ? (detailData.Purpose) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_METRIC}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((detailData.Metric !=null) ? (detailData.Metric) : 'NA')}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </aura:if>
         <aura:if isTrue="{!v.subDivision == 'KeyIndc'}">
-           Key Indicators Code Here<br/>
-            {!detailData.ApprovalType}
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle">{!$Label.c.CORE_LBL_KEY_INDICATORS}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_DCF_CONSTANT_PRICE_FIVE_YEARS}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedByLang[0] !='') ? (v.RequestedByLang[0]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_DCF_CONSTANT_PRICE_SEVEN_YEARS}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedByLang[1] !='') ? (v.RequestedByLang[1]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_DCF_CONSTANT_PRICE_TEN_YEARS}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedByLang[2] !='') ? (v.RequestedByLang[2]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_NPV_FIVE_YEARS}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedByLang[3] !='') ? (v.RequestedByLang[3]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_NPV_SEVEN_YEARS}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.RequestedByLang[4] != '')}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.RequestedByLang[4] !='') ? (v.RequestedByLang[4]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">NPV – 10 Years</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:if isTrue="{!(v.RequestedByLang[5] != '')}"> 
+                                {!detailData.Currencies} &nbsp;
+                            </aura:if>
+                            {!((v.RequestedByLang[5] !='') ? (v.RequestedByLang[5]) : 'NA')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PAYBACK_PERIOD}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!((v.RequestedByLang[6] !='') ? (v.RequestedByLang[6]) : 'NA')}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </aura:if>       
     </aura:iteration>    
 </aura:component>

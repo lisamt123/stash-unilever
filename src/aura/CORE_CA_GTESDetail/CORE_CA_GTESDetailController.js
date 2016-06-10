@@ -11,9 +11,11 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 component.set("v.ApprovalDetail",response.getReturnValue());
-                component.set("v.PreTripDetails",response.getReturnValue().PreTripDetails);
-            	component.set("v.Detail",response.getReturnValue().LineItems);
                 
+                    component.set("v.PreTripDetails",response.getReturnValue().PreTripDetails);
+                    component.set("v.Detail",response.getReturnValue().LineItems);
+                    component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus);
+                   
                  if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'
                         || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverAction == 'APPR'
                         || component.get("v.ApprovalDetail")[0].ApproverAction == 'COPY' || component.get("v.ApprovalDetail")[0].isRecalled == true){
@@ -34,6 +36,7 @@
     component.set("v.isDetail",true);
 },
     goToLineItemDetail : function(component, event, helper) { 
+        helper.scrollToLocation(component, "top");
         var self = this
         var index = event.target.dataset.index;        
         var approvalDetailList =[];
@@ -50,10 +53,10 @@
         component.set("v.showspinner",true);
         var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
         var sourcePage=component.get("v.sourcePage");
-        if(sourcePage == 'Pending')
-            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire();  
-        if(sourcePage == 'closed')
-           selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();              
+        if(sourcePage == 'Pending'){
+            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire(); } 
+        if(sourcePage == 'closed'){
+            selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire(); }             
     },
     ApproveAction : function(component, event, helper) {
         helper.scrollToLocation(component, "top");
@@ -70,12 +73,23 @@
         component.set("v.isFeedBack",true);
     },
     gotoApp :function(component, event, helper){       
-        if(event.getParam("Pagename") == "Detail")
-        	component.set("v.isFeedBack",false);
+        if(event.getParam("Pagename") == "Detail"){
+            component.set("v.isFeedBack",false);}
         else if(event.getParam("Pagename") == "Home"){
             component.set("v.showspinner",true); 
             var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
             selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire(); 
         }       
 	},
+    showHide : function(component, event, helper) {
+        var id =event.srcElement.id+"1";
+        if(document.getElementById(id).style.display == "none")
+        {	
+            document.getElementById(id).style.display = "block";
+        }
+        else
+        {
+            document.getElementById(id).style.display = "none";
+        }
+    },
 })

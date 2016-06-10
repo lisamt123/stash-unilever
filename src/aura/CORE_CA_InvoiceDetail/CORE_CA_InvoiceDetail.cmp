@@ -29,9 +29,6 @@
         }
         .headerBarIconStyle{
         width: 40px;
-        margin-left: 152px;
-        float: left;
-        margin-right:20px;
         margin-top: -9px;
         }
         .backIconStyle{
@@ -80,7 +77,7 @@
     </div>
     <!-- Detail Header-->    
     <div class="homePageHeader">
-        <div class="defaultLeftSpace">
+        <div class="defaultLeftSpace" style="text-align:center;">
             <br/>
             <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
             <br/>
@@ -102,6 +99,7 @@
         </aura:iteration>
     </div>
     <!-- Detail Main Content -->
+    <aura:if isTrue="{!v.accessStatus}">
     <div>
     <!--Tab-->
     <div class="slds-tabs--default">
@@ -113,11 +111,11 @@
         </ul>
     </div>
     <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
-         <aura:if isTrue="{!detailData.accessStatus}">
+        
                     <!-- Detail Tab -->
                     <aura:if isTrue="{!v.isDetail}">
                         <div class="ProjectInformationSection">
-                            <div class="slds-section__title sectionTitle">
+                            <div class="slds-section__title sectionTitle" id="invDetails" onclick="{!c.showHide}">
                                 <aura:if isTrue="{!detailData.InvoiceType == 'INV'}">
                                     {!$Label.c.CORE_LBL_INV_INVOICE_DETAILS}
                                 </aura:if>
@@ -126,68 +124,72 @@
                                 </aura:if>
                             </div>
                             <hr></hr>
-                            <table class="DetailSectionTable">
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_DOCUMENT_NO}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!detailData.PreparedBy}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_DATE}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!detailData.CreatedOn}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_TOTAL_AMOUNT_INCL_TAX}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!detailData.Currencies}{!detailData.TotalAmount}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_TAX}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!detailData.Currencies} {!detailData.AdvanceAmount}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_VENDOR_NAME}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!detailData.CompanyName}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_COMPANY_CODE}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!detailData.CompanyCode}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_LAST_COMMENT}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">
+                            <div class="DetailSectionTable" id="invDetails1">
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_DOCUMENT_NO}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!detailData.PreparedBy}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_INV_DATE}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.CreatedOn}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_TOTAL_AMOUNT_INCL_TAX}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!detailData.Currencies}{!detailData.TotalAmount}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_INV_TAX}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.Currencies} {!detailData.AdvanceAmount}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_VENDOR_NAME}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!detailData.CompanyName}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_COMPANY_CODE}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!detailData.CompanyCode}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_LAST_COMMENT}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">
                                         <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData" indexVar="index">
                                             {!appHistoryData.Comment}
                                         </aura:iteration>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-section__title textHighlight" onclick="{!c.goToDocHistory}">{!$Label.c.CORE_LBL_INV_SEE_DOCUMENT_HISTORY}</td>
-                                </tr>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="slds-section__title textHighlight" onclick="{!c.goToDocHistory}">{!$Label.c.CORE_LBL_INV_SEE_DOCUMENT_HISTORY}</div>
+                                </div>
                                 
-                            </table>
+                            </div>
                             
                         </div>
                         <div class="ApprovalHistorySection">
-                            <div class="slds-section__title sectionTitle"> {!$Label.c.CORE_LBL_INV_LINE_ITEMS}</div><hr></hr>
+                            <div class="slds-section__title sectionTitle" id="lineItem" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_INV_LINE_ITEMS}</div><hr></hr>
+                            <div id="lineItem1">
                             <aura:iteration items="{!detailData.LineItems}" var="lineItem" indexVar="indx">
                                 <a class="slds-section__title textHighlight" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
-                                    {!lineItem.ItemName}  
-                                    {!lineItem.Currencies} {!lineItem.Amount}
-                                </a><br/>     
+                                    {!lineItem.ItemName}
+                                </a><hr></hr>
+                            <a class="slds-section__title textLineItem" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                            {!lineItem.Currencies} {!lineItem.Amount}
+                                        </a>   
                             </aura:iteration>
+                                </div>
                         </div>
                     </aura:if>                      
                     <!-- Feed Tab -->
@@ -196,20 +198,19 @@
                         <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
                         <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/>
                     </aura:if>                
-            </aura:if>            
+                    
             <!--Action Bar-->
         <div style="position:fixed; bottom:0;">
             <div class="action_bar">
                 <div class="actionBarHeight">                  
                     <table class="actionBarWidth">
-                        <tr class="alignCenter"> 
+                        <tr class="alignCenter">
                             <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/></td>
-                            <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
                             <aura:if isTrue="{!v.showQwv}">
-                            	<td class="alignCenter" onclick ="{!c.querywithvendor}"><img class="img" src="/resource/ApprovalsLightning/images/rework.png"/></td>
+                            	<td class="alignCenter" onclick ="{!c.querywithvendor}"><img class="img" src="/resource/ApprovalsLightning/images/querywithvendor.png"/></td>
                             </aura:if>
                             <aura:if isTrue="{!v.showRtap}">
-                                <td class="alignCenter" onclick ="{!c.returnToAP}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg" /></td>
+                                <td class="alignCenter" onclick ="{!c.returnToAP}"><img class="img" src="/resource/ApprovalsLightning/images/rework.png" /></td>
                             </aura:if>
                             <aura:if isTrue="{!v.showApprove}">   
                                 <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td>
@@ -235,4 +236,5 @@
                 <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent"></c:Feedback>
             </div>  
         </aura:if>
+   </aura:if> 
 </aura:component>

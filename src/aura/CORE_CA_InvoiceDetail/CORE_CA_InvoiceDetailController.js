@@ -13,17 +13,17 @@
                 component.set("v.ApprovalDetail",response.getReturnValue());
                 var approvalDetailList =[];
                 var approvalDetail= component.get("v.ApprovalDetail");
+                component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus);
+                  
                 for(var i=0; i<approvalDetail.length; i++){            
             		approvalDetailList.push(approvalDetail[i]);             
                 }
             	component.set("v.Detail",response.getReturnValue().LineItems);
-                /*if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'
-                   || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverAction == 'APPR'
-                   || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rework' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REWO'){
+                if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Return to AP'){
                 	component.set("v.showApprove",false); 
                     component.set("v.showRtap",false);
                     component.set("v.showQwv",false);
-                }*/
+                }
                 
             }
         });
@@ -38,7 +38,8 @@
     component.set("v.isFeed",false);
     component.set("v.isDetail",true);
 },
-    goToLineItemDetail : function(component, event, helper) { 
+    goToLineItemDetail : function(component, event, helper) {
+        helper.scrollToLocation(component, "top");
        var self = this
         var index = event.target.dataset.index;        
         var approvalDetailList =[];
@@ -79,17 +80,24 @@
         component.set("v.actTaken",'RTAP'); 
         component.set("v.isActionPopup",true);    
     },    
+    gotoApp :function(component, event, helper){      
+            component.set("v.showspinner",true); 
+            var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
+            selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();       
+	},
     gotoFeedback: function(component, event, helper) { 
         helper.scrollToLocation(component, "top"); 
         component.set("v.isFeedBack",true);
     },
-    gotoApp :function(component, event, helper){       
-        if(event.getParam("Pagename") == "Detail")
-        	component.set("v.isFeedBack",false);
-        else if(event.getParam("Pagename") == "Home"){
-            component.set("v.showspinner",true); 
-            var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
-            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire(); 
-        }       
-	},
+    showHide : function(component, event, helper) {
+        var id =event.srcElement.id+"1";
+        if(document.getElementById(id).style.display == "none")
+        {	
+            document.getElementById(id).style.display = "block";
+        }
+        else
+        {
+            document.getElementById(id).style.display = "none";
+        }
+    },
 })

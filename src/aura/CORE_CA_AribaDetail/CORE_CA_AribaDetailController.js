@@ -16,8 +16,8 @@
             var state = response.getState();
             if (state === "SUCCESS") { 
                 component.set("v.ApprovalDetail",response.getReturnValue());
+                component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus); 
                 var abc=component.get("v.ApprovalDetail");
-                alert(component.get("v.ApprovalDetail")[0].RequestType);
                 
                 if(component.get("v.ApprovalDetail")[0].IsActive == false){
                 	component.set("v.showApprove",false); 
@@ -64,12 +64,13 @@
         component.set("v.showspinner",true); 
         var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
         var sourcePage=component.get("v.sourcePage");
-        if(sourcePage == 'Pending'){ alert('ariba detail');  
+        if(sourcePage == 'Pending'){  
             selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire();  
         }
-        if(sourcePage == 'closed')
+        if(sourcePage == 'closed'){
            selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();              
-    },
+        }
+   },
     ApproveAction : function(component, event, helper) {
         helper.scrollToLocation(component, "top");
         component.set("v.actTaken",'Approve'); 
@@ -85,24 +86,23 @@
         if(document.getElementById(id).style.display == "none")
         {	
             document.getElementById(id).style.display = "block";
+            document.getElementById("down").style.display = "none";
+            document.getElementById("up").style.display = "block";
         }
         else
         {
             document.getElementById(id).style.display = "none";
+            document.getElementById("down").style.display = "block";
+            document.getElementById("up").style.display = "none";
         }
     },
     gotoFeedback: function(component, event, helper) { 
         helper.scrollToLocation(component, "top"); 
         component.set("v.isFeedBack",true);
     },
-    gotoApp :function(component, event, helper){       
-       /* if(event.getParam("Pagename") == "Detail")
-        	component.set("v.isFeedBack",false);
-        else if(event.getParam("Pagename") == "Home"){*/
-           alert('hi');
+    gotoApp :function(component, event, helper){      
             component.set("v.showspinner",true); 
             var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
-            selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire(); 
-        //}       
+            selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();       
 	},
 })

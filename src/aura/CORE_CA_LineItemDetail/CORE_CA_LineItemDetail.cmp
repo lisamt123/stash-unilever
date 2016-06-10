@@ -145,7 +145,7 @@
                     <hr></hr>
                     <div class="DetailSectionTable" id="SplitAccounting1">
                         <div>
-                            <div class="slds-text-body--regular splitAcc">{!lineItemData.SplitAccountingDetails}</div>
+                            <div class="slds-text-body--regular fieldValueRichTextFormate">{!lineItemData.SplitAccountingDetails}</div>
                         </div>
                     </div>
                 </div>
@@ -169,74 +169,74 @@
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DETAILS}
                     </div>
                     <hr></hr>
-                    <table class="DetailSectionTable">
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_EXPENSE_TYPE}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.ExpenseType}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.Amount}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.Currencies}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_CHARGE_TO}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.ChargeTo}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PAYMENT_TYPE}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.PaymentType}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.Reimbursable}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_CITY}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.City}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COUNTRY}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.Country}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.ExpenseDate}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_END_DATE}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.EndDate}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_RECEIPT}</td>
-                        </tr>
-                        <tr>
-                            <td class="slds-text-body--regular DetailData">{!ExpenseDetails.Receipt}</td>
-                        </tr>
-                    </table>
+                    <div class="DetailSectionTable">
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_EXPENSE_TYPE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.ExpenseType}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.Amount}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.Currencies}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CHARGE_TO}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.ChargeTo}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PAYMENT_TYPE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.PaymentType}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.Reimbursable}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_CITY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.City}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COUNTRY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.Country}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.ExpenseDate}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_END_DATE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.EndDate}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_RECEIPT}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.Receipt}</div>
+                        </div>
+                    </div>
                 </div>
             </aura:iteration>
             <div class="ProjectInformationSection">
@@ -371,10 +371,10 @@
                         <td class="slds-text-body--regular DetailData">{!lineItemData.Description}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_INV_NET_AMOUNT}</td>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_NET_AMOUNT}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-body--regular DetailData fieldValueAlign">{!lineItemData.Currencies}&nbsp;{!lineItemData.NetAmnt}</td>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.Currencies}&nbsp;{!lineItemData.NetAmnt}</td>
                     </tr>
                     <tr>
                         <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_INTERNAL_ORDER}</td>
@@ -387,10 +387,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_INV_GL_ACCOUNT}</td>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_GL_ACCOUNT}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-body--regular DetailData fieldValueAlign">{!lineItemData.GLAccount}</td>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.GLAccount}</td>
                     </tr>
                     <tr>
                         <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_COST_CENTER}</td>
@@ -399,10 +399,10 @@
                         <td class="slds-text-body--regular DetailData">{!lineItemData.CstCntr}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_INV_PROFIT_CENTER}</td>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_PROFIT_CENTER}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-body--regular DetailData fieldValueAlign">{!lineItemData.ProfitCntr}</td>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.ProfitCntr}</td>
                     </tr>
                 </table>
             </div>

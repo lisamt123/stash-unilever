@@ -31,7 +31,9 @@
     <aura:attribute name="ApproverId" type="String"/>
     <aura:attribute name="filterValue" type="String"/>
    
-    <aura:attribute name="isFeedBackPopup" type="boolean"/>
+    <!--<aura:attribute name="isFeedBackPopup" type="boolean"/>-->
+    <aura:attribute name="isFeedBackPopup" type="boolean" default="false"/>
+    <aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
     
     <style>      
         .homePageHeader{
@@ -163,6 +165,12 @@
             </span>
         </div>
         
+    <!-- FeedBack popup -->
+    <aura:if isTrue="{!v.isFeedBackPopup}">          
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" ></c:Feedback>
+        </div>  
+    </aura:if>
        
     </div>
     

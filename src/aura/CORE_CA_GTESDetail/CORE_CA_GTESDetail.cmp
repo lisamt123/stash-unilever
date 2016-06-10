@@ -28,9 +28,6 @@
         }
         .headerBarIconStyle{
         width: 40px;
-        margin-left: 152px;
-        float: left;
-        margin-right:20px;
         margin-top: -9px;
         }
         .backIconStyle{
@@ -78,7 +75,7 @@
     </div>
     <!-- Detail Header--> 
     <div class="homePageHeader">
-        <div class="defaultLeftSpace">
+        <div class="defaultLeftSpace" style="text-align:center;">
             <br/>
             <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
             <br/>
@@ -100,6 +97,7 @@
         </aura:iteration>
     </div>
     <!-- Detail Main Content --> 
+    <aura:if isTrue="{!v.accessStatus}">
     <div>
         <!-- Tab-->
         <div class="slds-tabs--default">
@@ -112,163 +110,167 @@
         </div>
         
         <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
-            <aura:if isTrue="{!detailData.accessStatus}">
+            
                 <!--Detail-->
                 <aura:if isTrue="{!v.isDetail}">
                     <div class="ProjectInformationSection">
-                        <div class="slds-section__title sectionTitle">
+                        <div class="slds-section__title sectionTitle" id="claim" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_DETAIL_CLAIM_DETAILS}
                         </div>
                         <hr></hr>
-                        <table class="DetailSectionTable">
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_REQUEST_ID}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.RequestName}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_STATUS}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.RequestStatus}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_REQUESTED_BY}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.RequestedBy}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_REPORT_NAME}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.ReportName}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.Purpose}</td>
-                            </tr>
-                        </table>
+                        <div class="DetailSectionTable" id="claim1">
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_REQUEST_ID}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData">{!detailData.RequestName}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading splitAcc">{!$Label.c.CORE_LBL_STATUS}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.RequestStatus}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_REQUESTED_BY}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData">{!detailData.RequestedBy}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_REPORT_NAME}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.ReportName}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData" style="width=100%">{!detailData.Purpose}</div>
+                            </div>
+                        </div>
                         
                     </div>
                     
                     <div class="ProjectInformationSection">
-                        <div class="slds-section__title sectionTitle">
+                        <div class="slds-section__title sectionTitle" id="amount" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT} &amp; {!$Label.c.CORE_LBL_INV_COST_CENTER}
                         </div>
                         <hr></hr>
-                        <table class="DetailSectionTable">
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_TOTAL_AMOUNT}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.TotalAmount}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.Currencies}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_ADVANCE_AMOUNT}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.AdvanceAmount}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_NET_AMOUNT}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.NetAmount}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_NON_REIMBURSABLE}</td>
-                            </tr>
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.NonReimbursable}</td>
-                            </tr>
-                        </table>
+                        <div class="DetailSectionTable" id="amount1">
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_TOTAL_AMOUNT}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData">{!detailData.TotalAmount}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.Currencies}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_ADVANCE_AMOUNT}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData">{!detailData.AdvanceAmount}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_NET_AMOUNT}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.NetAmount}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_NON_REIMBURSABLE}</div>
+                            </div>
+                            <div>
+                                <div class="slds-text-body--regular DetailData">{!detailData.NonReimbursable}</div>
+                            </div>
+                        </div>
                         
                     </div>
                     <div class="ApprovalHistorySection">
-                        <div class="slds-section__title sectionTitle"> {!$Label.c.CORE_LBL_EXP_DETAIL_LINE_ITEMS}</div><hr></hr>
+                        <div class="slds-section__title sectionTitle" id="line" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_EXP_DETAIL_LINE_ITEMS}</div><hr></hr>
+                        <div id="line1">
                         <aura:iteration items="{!detailData.LineItems}" var="lineItem" indexVar="indx">
                             <a class="slds-section__title textHighlight" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
-                                {!lineItem.ItemName} 
-                                {!lineItem.Currencies} {!lineItem.Amount}
-                            </a><br/>     
+                                {!lineItem.ItemName}
+                            </a><hr></hr>
+                            <a class="slds-section__title textLineItem" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                            {!lineItem.Currencies} {!lineItem.Amount}
+                                        </a>
                         </aura:iteration>
+                            </div>
                     </div>
                     <div class="ProjectInformationSection">
-                        <div class="slds-section__title sectionTitle">
+                        <div class="slds-section__title sectionTitle" id="claimexp" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_DETAIL_CLAIM_EXCEPTIONS}
                         </div>
                         <hr></hr>
-                        <table class="DetailSectionTable">
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.ClaimExceptions}</td>
-                            </tr>
-                        </table>
+                        <div class="DetailSectionTable" id="claimexp1">
+                            <div>
+                                <div class="slds-text-body--regular fieldValueRichTextFormate">{!detailData.ClaimExceptions}</div>
+                            </div>
+                        </div>
                         
                     </div>
                     <div class="ProjectInformationSection">
-                        <div class="slds-section__title sectionTitle">
+                        <div class="slds-section__title sectionTitle" id="preTrip" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_DETAILS}
                         </div>
                         <hr></hr>
                         <aura:iteration items="{!v.PreTripDetails}" var="PreTripDetails">
-                            <table class="DetailSectionTable">
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_ID} </td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!PreTripDetails.Id}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_PASSENGER_INFO} </td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!PreTripDetails.PassengerInfo}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_LOCATION_DETAILS}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!PreTripDetails.LocationDetails}</td>
-                                </tr>
-                            </table>
+                            <div class="DetailSectionTable" id="preTrip1">
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_ID} </div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!PreTripDetails.Id}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_PASSENGER_INFO} </div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!PreTripDetails.PassengerInfo}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_LOCATION_DETAILS}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!PreTripDetails.LocationDetails}</div>
+                                </div>
+                            </div>
                         </aura:iteration>
                     </div>
                     
                     <div class="ProjectInformationSection">
-                        <div class="slds-section__title sectionTitle">
+                        <div class="slds-section__title sectionTitle" id="comments" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
                         </div>
                         <hr></hr>
-                        <table class="DetailSectionTable">
-                            <tr>
-                                <td class="slds-text-body--regular DetailData">{!detailData.Comments}</td>
-                            </tr>
-                        </table>
+                        <div class="DetailSectionTable" id="comments1">
+                            <div>
+                                <div class="slds-text-body--regular DetailData">{!detailData.Comments}</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="ApprovalHistorySection">
-                        <div class="slds-section__title sectionTitle"> {!$Label.c.CORE_LBL_EXP_DETAIL_APPROVAL_HISTORY}</div><hr></hr>
+                        <div class="slds-section__title sectionTitle" id="approvalHist" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_EXP_DETAIL_APPROVAL_HISTORY}</div><hr></hr>
                         <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData">
-                            <table class="DetailSectionTable">
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!appHistoryData.ApproverName}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!appHistoryData.AribaRole}</td>
-                                </tr>
-                                <tr>
-                                    <td class="slds-text-body--regular DetailData">{!appHistoryData.ApproverAction}</td>
-                                </tr>
-                            </table>
+                            <div class="DetailSectionTable" id="approvalHist1">
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!appHistoryData.ApproverName}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!appHistoryData.AribaRole}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-body--regular DetailData">{!appHistoryData.ApproverAction}</div>
+                                </div>
+                            </div>
                             <br/>
                         </aura:iteration>
                     </div>
@@ -279,7 +281,7 @@
                     <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
                     <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> -->
                 </aura:if>
-            </aura:if>
+            
             <!--Action Bar-->
             <div style="position:fixed; bottom:0;">
             <div class="action_bar">
@@ -288,12 +290,12 @@
                         <tr class="alignCenter"> 
                             <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/></td>
                             <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
-                            <aura:if isTrue="{!v.showApprove}">   
-                                <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td>
-                            </aura:if>
                             <aura:if isTrue="{!v.showReject}">
                                 <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg" /></td>
-                            </aura:if> 
+                            </aura:if>
+                            <aura:if isTrue="{!v.showApprove}">   
+                                <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td>
+                            </aura:if>   
                         </tr>
                     </table>
                 </div>  
@@ -314,5 +316,6 @@
             <div class="slds-backdrop slds-backdrop--open">
                 <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent"></c:Feedback>
             </div>  
+        </aura:if>
         </aura:if>
 </aura:component>

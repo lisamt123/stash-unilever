@@ -1,14 +1,35 @@
 ({
     
-    onSubmit : function(component, event, helper) {  
+    onSubmit : function(component, event, helper) {   
         var approvalDetail = component.get("v.ApprovalDetail");
-        var RequestType = approvalDetail.RequestType;
-        var action= component.get("v.actionTaken");
+        var RequestType = approvalDetail.RequestType; 
+        var action= component.get("v.actionTaken"); 
+        var comment ='';
+        commentbox = document.getElementById("textarea-input-02");                                                 
+        if(commentbox != undefined || commentbox != null ){  
+           comment= document.getElementById("textarea-input-02").value; 
+           if(comment== '' && ((RequestType == 'Expense' && action == 'Reject')
+               || (RequestType == 'Purchase Request' && action == 'Reject')
+               || (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))
+               || (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV')))){
+        	   document.getElementById("textarea-input-02").style.borderColor="red"; 
+            }
+            else{
+                 helper.SubmitMethod(component, event,comment,approvalDetail);                                              
+            }                                               
+        }
+        else{
+            if(RequestType == 'Expense' && action == 'Approve'){
+               helper.SubmitMethod(component, event,comment,approvalDetail);    
+            }                                            
+        }                                           
+        
+        
         //if(component.find("textarea-input-02").get("v.value") != null && component.find("textarea-input-02").get("v.value") != undefined && RequestType == "Purchase Request" && action=="Approve"){
-            var action = component.get("c.updateApprovalAction");
+            /*var action = component.get("c.updateApprovalAction");
             action.setParams({
                 "action": component.get("v.actionTaken"),
-                "comment" : component.find("textarea-input-02").get("v.value"),
+                "comment" : comment,
                 "isVisibletoSupplier": component.get("v.isVisible"),
                 "ApproverId": approvalDetail.ApproverId,
             }); 
@@ -18,7 +39,7 @@
                     component.set("v.success_toast",true);
                 }
             });
-            $A.enqueueAction(action); 
+            $A.enqueueAction(action); */
         /*}
         else{ 	
             component.set("v.comment_mand",true);                

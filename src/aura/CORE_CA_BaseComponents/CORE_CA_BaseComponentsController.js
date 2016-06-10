@@ -1,7 +1,7 @@
 ({
-	doInit:function(component, event, helper) { 
-      /*  helper.feedBackMethod(component,event); */
-       var RequestId = component.get("v.RequestId");
+    doInit:function(component, event, helper) {  
+        /*  helper.feedBackMethod(component,event); */
+        var RequestId = component.get("v.RequestId");
         var ApproverId = component.get("v.ApproverId");
         if(RequestId == null && ApproverId== null){  
             var destination = "markup://c:CORE_CA_Pending";
@@ -21,12 +21,31 @@
             }, component);
         } 
         else{ 
-        	helper.navigateToDetailMethod(component,event,'onload');    
+            helper.navigateToDetailMethod(component,event,'onload');    
         }
-},
-
+        var action = component.get("c.getGAID");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state == "SUCCESS") {
+                if(response.getReturnValue()!=''){                                         
+                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+                    
+                    ga('create', action, 'auto');
+                    ga('send', 'pageview');
+                }
+                else {
+                    component.set("v.ErrorMessageFlag", true);
+                }
+            }                   
+        });
+        $A.enqueueAction(action);
+    },
+    
     getClosed:function(component, event, helper) {
-      //  alert(event.getParam("filterValue"));
+        //  alert(event.getParam("filterValue"));
         var destination = "markup://c:" + event.getParam("closednavigation");
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
@@ -35,15 +54,15 @@
             componentDef: destination,
             attributes: {
                 values: {
-                	filterValue : event.getParam("filterValue")       
+                    filterValue : event.getParam("filterValue")       
                 }
             }
         }, component); 
-},
+    },
     
     getDetail:function(component, event, helper) {
         helper.navigateToDetailMethod(component,event,'onclick');
-}, 
+    }, 
     getSubDetail :function(component, event, helper) {
         var destination = "markup://c:CORE_CA_" + event.getParam("compName") ;
         $A.componentService.newComponentAsync(this, function(view) {
@@ -53,16 +72,16 @@
             componentDef: destination,
             attributes: {
                 values: {
-                     subDivision : event.getParam("subDivision"),
-                     ApprovalDetail : event.getParam("ApprovalDetail"),
-                     lineItemId : event.getParam("lineItemId"),
-                     sourcePage : event.getParam("sourcePage"),
-                     filterValue : event.getParam("filterValue")
-                    }
+                    subDivision : event.getParam("subDivision"),
+                    ApprovalDetail : event.getParam("ApprovalDetail"),
+                    lineItemId : event.getParam("lineItemId"),
+                    sourcePage : event.getParam("sourcePage"),
+                    filterValue : event.getParam("filterValue")
+                }
             }
         }, component); 
-},
-      
+    },
+    
     /*
     getDetail :function(component, event, helper) {
          var destination = "markup://c:Core_CA_Approval_Home";
@@ -80,7 +99,7 @@
        
     },*/
     ApproveScreen1 :function(component, event, helper) {
-    
+        
         var destination = "markup://c:"+ event.getParam("ApproveScreen");
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
@@ -88,15 +107,15 @@
         }, {
             componentDef: destination,
             attributes: {
-              
+                
             }
         }, component);
-
+        
+        
+    },
     
-},
     
-   
-
+    
     /*ReturntoVendor :function(component, event, helper) {
                     var destination = "markup://c:"+ event.getParam("ReturntoVendorScreen");
         $A.componentService.newComponentAsync(this, function(view) {
@@ -134,7 +153,7 @@
         }, component);
     }
    */
-/*gotoApp :function(component, event, helper){ alert('hi');
+    /*gotoApp :function(component, event, helper){ alert('hi');
         //helper.navigateToDetailMethod(component,event,'onclick');
         component.set("v.showspinner",true); 
         var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
@@ -159,5 +178,5 @@
                         }, component);
      
     },*/
-   
+    
 })

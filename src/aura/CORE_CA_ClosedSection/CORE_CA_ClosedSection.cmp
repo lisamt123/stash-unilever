@@ -46,10 +46,10 @@
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='REJC'}"><span type="button" class="requestedBy rejectedText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REJECTED} </span></aura:if>
                             
                             
-                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='Rework'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REWORK} </span></aura:if>
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='Rework'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REWORK_CAPS} </span></aura:if>
                             
                             
-                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_RETURN_TO_AP} </span></aura:if>
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_RETURN_TO_AP_CAPS} </span></aura:if>
                             <br/>
                         </div>
                     </div>

@@ -1,0 +1,48 @@
+.THIS.close-button{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size: 18px;
+    color: #DCDCDC;
+    font-family: sans-serif;
+    width: 25px;
+}
+
+.THIS.Action_container{
+    padding: 15px;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    left: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+.THIS hr{
+    margin: 0.5rem -15px !important;
+}
+.THIS .slds-textarea {
+    height: 100px;
+}
+.THIS .Action-buttons{
+    text-align:right;
+    margin-left:10px;
+}
+.THIS .slds-button--neutral {
+    margin-left: 10px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.THIS .slds-button--neutral:hover, .THIS .slds-button--neutral:focus {
+    background-color: #0070d2;
+    color:white;
+}
+.THIS .slds-text-heading--small {
+    font-size: 1.3rem;
+}
+.THIS .feedback-comment-textarea{
+    padding-top:5px;
+}
+.THIS .success-box{
+   position: absolute;
+    top:151px;
+}

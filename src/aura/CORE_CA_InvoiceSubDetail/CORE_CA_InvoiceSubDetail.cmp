@@ -12,16 +12,62 @@
     <aura:attribute name="filterValue" type="string"/>    
     <aura:attribute name="sourcePage" type="string"/>
     
+    <style>      
+        .homePageHeader{
+        background:#4F6A92;
+        height: 150px;
+        padding-top: 13px;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 152px;
+        float: left;
+        margin-right:20px;
+        margin-top: -9px;
+        }
+        .backIconStyle{
+        width: 36px;
+        margin-top: 5px;
+        padding-left: 13px;
+        margin-bottom: 5px;
+        }
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+    </style>
+    
     <div>
         <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
-            Back
+            <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
         </div>
     </div>
     
 	<aura:iteration items="{!v.ApprovalDetail}" var="detailData"> 
         <aura:if isTrue="{!v.subDivision == 'DocHistory'}">
-               Document History Code Here<br/>
-                {!detailData.ApprovalType}
+            <aura:iteration items="{!detailData.ApprovalHistory}" var="approvalHistory"> 
+                <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle">{!approvalHistory.ApprovedDate}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">Performed By</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!approvalHistory.ApproverName}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">Last Comment</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!approvalHistory.Comment}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            </aura:iteration>
          </aura:if>
     </aura:iteration>
 </aura:component>

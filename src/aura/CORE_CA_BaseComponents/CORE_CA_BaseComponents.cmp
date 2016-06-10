@@ -4,7 +4,7 @@
   Date: 03 June 2016
   Requirement/Description: Main Component of the Approval APP.
 -->
-<aura:component implements="force:appHostable" controller="CORE_Feedback_App_Controller">
+<aura:component implements="force:appHostable" controller="Core_CA_ApprovalsController">
  
     <ltng:require styles="/resource/ApprovalsLightning,/resource/ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/>
  

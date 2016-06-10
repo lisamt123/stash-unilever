@@ -40,6 +40,12 @@
     color: #0070d2;
     font-size: 1rem;
 }
+.THIS .textLineItem{
+    font-size: 0.9rem;
+    color: #16325c;
+    float: right;
+    margin-top: -39px;
+}
 .THIS .clarity-header{
     clear: both;
     text-align: center;
@@ -79,10 +85,22 @@
 .THIS .DetailHeading{
     font-size: 0.9rem;
     color: #4F6A92;
+    width: 50%;
+    vertical-align: bottom;
 }
 .THIS .DetailData{
     padding-top: 0px;
     padding-bottom: 8px;
+    width: 50%;
+    vertical-align: top;
+}
+.THIS .fieldAlign{
+    float: right;
+    margin-top: -46px;
+}
+.THIS .fieldValueAlign{
+    float: right;
+    margin-top: -30px;
 }
 .THIS a#tab-default-3__item, .THIS a#tab-default-2__item {
     background-color: #FFFFFF;

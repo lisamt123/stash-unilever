@@ -2,12 +2,12 @@
 	doInit : function(component, event, helper) {
         component.set("v.spinnercompline",true);
         var sourceSystem = component.get("v.subDivision");   
-        if(sourceSystem == 'Ariba')
-        	var action = component.get("c.getAribaLineItemDetailPageData");
-        if(sourceSystem == 'GTES')
-            var action = component.get("c.getGTESLineItemDetailPageData");
-        if(sourceSystem == 'Invoice')  
-            var action = component.get("c.getInvoiceLineItemDetail");
+        if(sourceSystem == 'Ariba'){
+            var action = component.get("c.getAribaLineItemDetailPageData");}
+        if(sourceSystem == 'GTES'){
+            var action = component.get("c.getGTESLineItemDetailPageData");}
+        if(sourceSystem == 'Invoice'){  
+            var action = component.get("c.getInvoiceLineItemDetail");}
         action.setParams({
 			"LineItemID": component.get("v.lineItemId")
 		});

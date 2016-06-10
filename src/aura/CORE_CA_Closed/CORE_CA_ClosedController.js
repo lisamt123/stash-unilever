@@ -1,5 +1,18 @@
 ({ 
     doInit : function(component, event, helper) {
+        var action=component.get("c.findFeedbacks");  
+       action.setParams({"appName": "Approval"}); 
+        action.setCallback(this, function(response) { 
+            var state = response.getState(); 
+            if (state === "SUCCESS" && response.getReturnValue()!=='') { 
+                var response=response.getReturnValue();       
+                if(response === true){ 
+                    component.set("v.isFeedBackPopup",true);
+                }             
+            }
+        });
+       $A.enqueueAction(action);
+        
         var retainfilter =component.get("v.filterValue")
         if(retainfilter == null || retainfilter == undefined)
         {
@@ -97,4 +110,7 @@
     ShowMoreSelection : function(component, event, helper) {
         helper.loadMore(component,component.get("v.closedData"));
     },
+    gotoApp : function(component, event, helper) { 
+		component.set("v.isFeedBackPopup",false);    
+	},
 })

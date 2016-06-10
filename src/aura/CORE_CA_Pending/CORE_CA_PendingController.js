@@ -1,5 +1,19 @@
 ({ 
-    doInit : function(component, event, helper) {   
+    doInit : function(component, event, helper) {  
+       var action=component.get("c.findFeedbacks");  
+       action.setParams({"appName": "Approval"}); 
+        action.setCallback(this, function(response) { 
+            var state = response.getState(); 
+            if (state === "SUCCESS" && response.getReturnValue()!=='') { 
+                var response=response.getReturnValue();       
+                if(response === true){ 
+                    component.set("v.isFeedBackPopup",true);
+                }             
+            }
+        });
+       $A.enqueueAction(action); 
+       
+       
         var retainfilter =component.get("v.filterValue");                                     
         if(retainfilter == null || retainfilter == undefined)
         {
@@ -14,7 +28,7 @@
         var filter=filterOption.get("v.title");
         var filteroptions;
         if(filter== "Show All")
-        {  alert('pending show all');
+        {  
             filteroptions="All";
             document.getElementById('icon').classList.remove('icon-LockedState');
             document.getElementById('icon').classList.remove('icon-currentState');
@@ -84,5 +98,8 @@
     ShowMoreSelection : function(component, event, helper) {
         helper.loadMore(component,component.get("v.pendingData"));
     },
+    gotoApp : function(component, event, helper) { 
+		component.set("v.isFeedBackPopup",false);    
+	},
  
 })

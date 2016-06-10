@@ -18,12 +18,12 @@
         var destination;
         if(sourceSystem == 'Purchase Request' || sourceSystem == 'Ariba') { 
             destination = "markup://c:CORE_CA_AribaDetail";}
-        if(sourceSystem == 'Expense' || sourceSystem == 'GTES')
-            destination = "markup://c:CORE_CA_GTESDetail";
-        if(sourceSystem == 'Clarity')
-            destination = "markup://c:CORE_CA_ClarityDetail";
-        if(sourceSystem == 'Invoice')
-            destination = "markup://c:CORE_CA_InvoiceDetail";
+        if(sourceSystem == 'Expense' || sourceSystem == 'GTES'){
+            destination = "markup://c:CORE_CA_GTESDetail";}
+        if(sourceSystem == 'Clarity'){
+            destination = "markup://c:CORE_CA_ClarityDetail";}
+        if(sourceSystem == 'Invoice'){
+            destination = "markup://c:CORE_CA_InvoiceDetail";}
         
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
