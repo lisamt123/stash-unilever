@@ -59,6 +59,19 @@
     <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
   </target>
   <!-- ***************************************************************************** -->
+  <!-- QuickDeploy the meta-data from code Repository to salesforce your org     -->
+  <!-- ***************************************************************************** -->
+   <target name="quickdeploy">
+        <echo level="info">Performing the deploy</echo>
+        <sf:deploy username="${sf.username}"
+        password="${sf.password}"
+        serverurl="${sf.serverurl}"
+        recentValidationId = "${sf.validationid}"
+        deployRoot="${basedir}/src"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}"/>
+    </target>
+  <!-- ***************************************************************************** -->
   <!-- Deploy the meta-data from code Repository to salesforce your org     -->
   <!-- ***************************************************************************** -->
   <target name="deploy">
