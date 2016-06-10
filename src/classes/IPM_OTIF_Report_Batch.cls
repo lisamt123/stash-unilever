@@ -993,7 +993,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 					otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;
 				}
 				else {
-					otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.TurnOver_Regional__c;
+					otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
 				}
            } else if(p.IPMProject_Span__c == IPM_ConstantUtils.Local &&  p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                 otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;

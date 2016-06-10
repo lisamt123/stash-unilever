@@ -592,8 +592,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         //Adding alert for Regional-Local financial
         List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
-        RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
-                                                        FROM IPM_Financial__c WHERE Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
+        RegionalOrLocalFins = [SELECT Id, Name,Local_Project__r.Is_Archieved__c,Regional_Project__r.Is_Archieved__c, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
+                                FROM IPM_Financial__c WHERE (Regional_Project__c =: project.Id OR Local_Project__c=: project.Id) and Local_Project__r.Is_Archieved__c = false and Regional_Project__r.Is_Archieved__c = false limit 50000];
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();

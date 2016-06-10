@@ -167,9 +167,11 @@ public with sharing class IPM_HomePageController
         // Final local Misalignment
         List<IPM_Financial__c> regionalFins = new List<IPM_Financial__c>();
         Set<Id> ProjIds = new Map<Id,IPM_Project__c>(lstProjects).keySet();
-        regionalFins = [Select Id, Name, Misaligned__c,MisalignmentDateTime__c,Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c from IPM_Financial__c 
+        regionalFins = [Select Id, Name, Misaligned__c,MisalignmentDateTime__c,Misaligned_Date__c,Local_Project__r.Is_Archieved__c,Regional_Project__r.Is_Archieved__c,Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c from IPM_Financial__c 
         where (Regional_Project__c IN : ProjIds or Global_Project_Id__c IN : ProjIds 
-                                                or Local_Project__c IN : ProjIds) and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT and Misaligned__c = true Limit: IPM_ConstantUtils.MaxLimit];
+                                                or Local_Project__c IN : ProjIds) 
+                                                and Local_Project__r.Is_Archieved__c = false and Regional_Project__r.Is_Archieved__c = false
+                                                and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT and Misaligned__c = true Limit: IPM_ConstantUtils.MaxLimit];
         for(IPM_Financial__c fin: regionalFins ){  
              if(fin.Regional_Project__c != NULL && fin.Local_Project__c != NULL && fin.Misaligned__c && fin.Misaligned_Date__c < system.today().addDays(1)){
                  LstFinMisalignedMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Regional_Project__r.Name+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Regional.Project Name} and {Local.Project Name} are  misaligned.
