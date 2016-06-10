@@ -164,6 +164,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Ireland</masterLabel>
             <translation><!-- Ireland --></translation>
         </picklistValues>
@@ -226,6 +230,10 @@
         <picklistValues>
             <masterLabel>Peru</masterLabel>
             <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>

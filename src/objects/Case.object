@@ -4171,12 +4171,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>New</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
             <value>Ben &amp; Jerry&apos;s,Breyers,Fruttare,Good Humor,Klondike,Magnum,Popsicle,Starbucks</value>
         </filters>
         <filters>
-            <field>Case_Brand__c</field>
+            <field>Brand__c</field>
             <operation>equals</operation>
             <value>Talenti</value>
         </filters>
@@ -6891,7 +6891,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>America,Brazil,Cone</value>
+            <value>America,Brazil,Cone,Africa</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>

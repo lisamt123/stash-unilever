@@ -262,6 +262,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Ireland</masterLabel>
             <translation><!-- Ireland --></translation>
         </picklistValues>
@@ -312,6 +316,10 @@
         <picklistValues>
             <masterLabel>Peru</masterLabel>
             <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -663,6 +671,10 @@
             <translation><!-- Email India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Indonesia</masterLabel>
+            <translation><!-- Email Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Italy</masterLabel>
             <translation><!-- Email Italy --></translation>
         </picklistValues>
@@ -681,6 +693,10 @@
         <picklistValues>
             <masterLabel>Email North America CS</masterLabel>
             <translation><!-- Email North America CS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Philippines</masterLabel>
+            <translation><!-- Email Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Poland</masterLabel>
@@ -1522,5 +1538,9 @@
     <webLinks>
         <label><!-- Social_Response_URL --></label>
         <name>Social_Response_URL</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- TransferCase --></label>
+        <name>TransferCase</name>
     </webLinks>
 </CustomObjectTranslation>

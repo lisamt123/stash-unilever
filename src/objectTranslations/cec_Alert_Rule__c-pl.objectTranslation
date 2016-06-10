@@ -189,6 +189,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Italy</masterLabel>
             <translation><!-- Italy --></translation>
         </picklistValues>
@@ -203,6 +207,10 @@
         <picklistValues>
             <masterLabel>North America</masterLabel>
             <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -261,6 +269,10 @@
         <picklistValues>
             <masterLabel>3</masterLabel>
             <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>5</masterLabel>

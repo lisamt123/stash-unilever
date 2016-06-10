@@ -22576,6 +22576,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.Activity_Fee_UL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Agency_Department__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22667,6 +22672,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Resource_Fee_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.Resource_Fee_UL__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24037,6 +24047,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Asset_Deliverables__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.BET_Required_Yes_No__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.BET_Required__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -199,6 +199,10 @@
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
+        <sections>
+            <label><!-- Fulfilment Settings --></label>
+            <section>Fulfilment Settings</section>
+        </sections>
     </layouts>
     <nameFieldLabel><!-- Case Market Mapping Name --></nameFieldLabel>
 </CustomObjectTranslation>

@@ -361,6 +361,10 @@
             <translation><!-- Hungarian --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesian</masterLabel>
+            <translation><!-- Indonesian --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Italian</masterLabel>
             <translation><!-- Italian --></translation>
         </picklistValues>
@@ -635,6 +639,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Italy</masterLabel>
             <translation><!-- Italy --></translation>
         </picklistValues>
@@ -649,6 +657,10 @@
         <picklistValues>
             <masterLabel>North America</masterLabel>
             <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>

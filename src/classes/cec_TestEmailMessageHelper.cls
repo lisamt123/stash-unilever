@@ -140,7 +140,7 @@ public class cec_TestEmailMessageHelper{
             case c = new case();        
             cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c();
             
-            cbm.Inbound_Email__c='unknown@unilever.com';
+            cbm.Inbound_Email__c=CEC_Constants.unknownEmail;
             cbm.Country__c = cmm.Id;
             cbm.Brand__c ='Dove1';
             cbm.External_Image_Address__c ='http://unilever.com/central/img/so_logo.gif';
@@ -150,7 +150,7 @@ public class cec_TestEmailMessageHelper{
             insert cbm;
             cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
             
-            System.assertEquals(cbm.Inbound_Email__c,'unknown@unilever.com');          
+            System.assertEquals(cbm.Inbound_Email__c,CEC_Constants.unknownEmail);          
             
             c.Origin = 'Email';
             c.Status = 'New';
@@ -167,9 +167,9 @@ public class cec_TestEmailMessageHelper{
             EmailMessage e =  new EmailMessage();
             e.Status = '0';
             e.ParentId = c.id;
-            e.ToAddress = 'unknown@unilever.com';
-            e.CcAddress = 'unknown@unilever.com';
-            e.BccAddress = 'unknown@unilever.com';
+            e.ToAddress = CEC_Constants.unknownEmail;
+            e.CcAddress = CEC_Constants.unknownEmail;
+            e.BccAddress = CEC_Constants.unknownEmail;
             e.Incoming = true;
             em.add(e);
             
@@ -216,9 +216,9 @@ public class cec_TestEmailMessageHelper{
             EmailMessage e =  new EmailMessage();
             e.Status = '0';
             e.ParentId = c.id;
-            e.ToAddress = 'unknown@unilever.com';
-            e.CcAddress = 'unknown@unilever.com';
-            e.BccAddress = 'unknown@unilever.com';
+            e.ToAddress = CEC_Constants.unknownEmail;
+            e.CcAddress = CEC_Constants.unknownEmail;
+            e.BccAddress = CEC_Constants.unknownEmail;
             e.Incoming = true;
             em.add(e);
             
@@ -244,7 +244,7 @@ public class cec_TestEmailMessageHelper{
             mail.setToAddresses(new String[] {Notifymail.EmailId__c});
             mail.setSubject(emailSubject);
             mail.setHTMLBody(msgString);
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+            if(!Test.isRunningTest()){ Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}); }
             
             CEC_Util.sendNotificationEmail(msgString, emailSubject);
         }
