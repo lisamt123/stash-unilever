@@ -625,7 +625,7 @@
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of IPM Destructive chhanges meta-data before deployment                          -->
   <!-- ***************************************************************************** --> 
-     <target name="validate-undeploy">
+     <target name="validate-undeployIPM">
       <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
