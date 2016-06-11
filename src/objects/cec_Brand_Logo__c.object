@@ -109,6 +109,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_cec_Brand_Logo</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Middle_Americas_Queue_cec_Brand_Logo</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
@@ -122,6 +131,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_Queue_cec_Brand_Logo</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

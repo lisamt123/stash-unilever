@@ -2021,7 +2021,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>To display Last Name required message</shortDescription>
-        <value>Last Name: You must enter a value</value>
+        <value>Last Name:You must enter Last Name to search a Consumer</value>
     </labels>
     <labels>
         <fullName>CEC_Marketing_Opt_in</fullName>
@@ -2246,6 +2246,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>

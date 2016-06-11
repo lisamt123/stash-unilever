@@ -9833,6 +9833,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Cheque_Decimals__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Company_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -28899,6 +28904,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Fulfilment__c.ChequeBook__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.Cheque_Decimals__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

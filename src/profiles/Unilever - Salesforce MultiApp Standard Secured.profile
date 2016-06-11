@@ -9866,6 +9866,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Cheque_Decimals__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Company_Address__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28941,6 +28946,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Fulfilment__c.Cheque_Decimals__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Fulfilment__c.Cheque_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -34584,6 +34594,10 @@
         <startAddress>151.230.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>152.249.238.17</endAddress>
+        <startAddress>152.249.238.17</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>154.58.255.255</endAddress>
         <startAddress>154.58.0.0</startAddress>
     </loginIpRanges>
@@ -34614,6 +34628,14 @@
     <loginIpRanges>
         <endAddress>166.171.255.255</endAddress>
         <startAddress>166.171.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>170.65.204.25</endAddress>
+        <startAddress>170.65.204.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>170.65.206.25</endAddress>
+        <startAddress>170.65.206.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>170.252.255.255</endAddress>
@@ -34652,12 +34674,24 @@
         <startAddress>176.254.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>177.139.154.145</endAddress>
+        <startAddress>177.139.154.145</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>177.221.115.2</endAddress>
+        <startAddress>177.221.115.2</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>178.115.255.255</endAddress>
         <startAddress>178.115.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>178.191.255.255</endAddress>
         <startAddress>178.189.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>179.189.235.242</endAddress>
+        <startAddress>179.189.235.242</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>180.222.255.255</endAddress>
@@ -34672,8 +34706,36 @@
         <startAddress>184.72.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>187.32.117.193</endAddress>
+        <startAddress>187.32.117.193</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>188.23.255.255</endAddress>
         <startAddress>188.22.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>189.40.49.46</endAddress>
+        <startAddress>189.40.49.46</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>190.3.0.28</endAddress>
+        <startAddress>190.3.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>190.24.138.146</endAddress>
+        <startAddress>190.24.138.146</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>190.30.226.29</endAddress>
+        <startAddress>190.30.226.17</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>190.66.6.193</endAddress>
+        <startAddress>190.66.6.193</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>190.153.210.77</endAddress>
+        <startAddress>190.153.210.77</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>193.83.255.255</endAddress>
@@ -34686,6 +34748,10 @@
     <loginIpRanges>
         <endAddress>194.60.255.255</endAddress>
         <startAddress>194.60.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>194.60.106.102</endAddress>
+        <startAddress>194.60.106.102</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>194.118.255.255</endAddress>
@@ -34702,6 +34768,30 @@
     <loginIpRanges>
         <endAddress>195.212.255.255</endAddress>
         <startAddress>195.212.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>200.32.90.202</endAddress>
+        <startAddress>200.32.90.202</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>200.71.7.218</endAddress>
+        <startAddress>200.71.7.218</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>200.85.42.250</endAddress>
+        <startAddress>200.85.42.250</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>200.87.178.19</endAddress>
+        <startAddress>200.87.178.19</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>200.119.243.193</endAddress>
+        <startAddress>200.119.243.193</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>201.234.58.187</endAddress>
+        <startAddress>201.234.58.187</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>202.60.255.255</endAddress>

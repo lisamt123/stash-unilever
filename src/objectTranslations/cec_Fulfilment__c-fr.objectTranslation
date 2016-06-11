@@ -76,6 +76,10 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Cheque Decimals --></label>
+        <name>Cheque_Decimals__c</name>
+    </fields>
+    <fields>
         <label><!-- Cheque Number --></label>
         <name>Cheque_Number__c</name>
     </fields>

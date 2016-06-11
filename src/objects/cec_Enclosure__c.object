@@ -200,6 +200,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -261,6 +265,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -633,6 +641,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -698,6 +715,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Philippines_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -746,14 +772,8 @@
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Enclosure</fullName>
-        <columns>OBJECT_ID</columns>
-        <columns>NAME</columns>
-        <columns>MailItemName__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>LAST_UPDATE</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
-        <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -791,6 +811,8 @@
         <fullName>alle_DACH_Enclosures1</fullName>
         <columns>NAME</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Active__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <label>alle DACH-Enclosures</label>
         <language>de</language>

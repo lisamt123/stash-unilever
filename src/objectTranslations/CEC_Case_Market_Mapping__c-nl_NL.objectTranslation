@@ -37,6 +37,18 @@
         <name>CaseOrigin__c</name>
     </fields>
     <fields>
+        <label><!-- Cheque Decimals --></label>
+        <name>Cheque_Decimals__c</name>
+        <picklistValues>
+            <masterLabel>Display as fraction</masterLabel>
+            <translation><!-- Display as fraction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Display as text</masterLabel>
+            <translation><!-- Display as text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Company Address --></label>
         <name>Company_Address__c</name>
     </fields>

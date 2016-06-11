@@ -2,6 +2,7 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Add_Issue</customButtons>
     <customButtons>Social_Response_URL</customButtons>
+    <customButtons>TransferCase</customButtons>
     <customConsoleComponents>
         <subtabComponents>
             <containers>
@@ -435,10 +436,10 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
+            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
+            <quickActionName>Case.Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>

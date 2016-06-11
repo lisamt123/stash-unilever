@@ -123,6 +123,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Indonesia</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Indonesia</label>
+        <sharedTo>
+            <role>CEC_User_Indonesia</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Indonesia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Italy</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Italy</label>
@@ -146,6 +159,19 @@
             <field>Country_Name__c</field>
             <operation>equals</operation>
             <value>Finland,Denmark,Norway,Sweden</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Philippines</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Philippines</label>
+        <sharedTo>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -420,6 +446,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Indonesia_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Indonesia - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Italy_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Italy - Manager</label>
@@ -461,6 +498,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_North_America</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Philippines_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Philippines - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

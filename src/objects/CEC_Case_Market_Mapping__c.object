@@ -133,6 +133,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Cheque_Decimals__c</fullName>
+        <externalId>false</externalId>
+        <label>Cheque Decimals</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Display as text</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Display as fraction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Company_Address__c</fullName>
         <description>CEC: To capture the company address of the company.Used in retrieval report</description>
         <externalId>false</externalId>
@@ -387,8 +406,8 @@
         <columns>Account_Owner_Active_Flag__c</columns>
         <columns>DefaultAccountOwnerId__c</columns>
         <columns>DefaultCaseOwnerId__c</columns>
-        <columns>Tag__c</columns>
         <columns>CaseOrigin__c</columns>
+        <columns>Tag__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -520,6 +539,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
@@ -558,11 +586,21 @@
     <listViews>
         <fullName>CEC_North_America_Queue_CEC_Case_Market_Mapping</fullName>
         <columns>NAME</columns>
-        <columns>Language__c</columns>
+        <columns>CaseOrigin__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -609,11 +647,8 @@
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_CEC_Case_Market_Mapping</fullName>
-        <columns>NAME</columns>
-        <columns>CaseOrigin__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
-        <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

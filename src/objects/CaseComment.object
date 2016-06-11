@@ -57,6 +57,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Italy</fullName>
                 <default>false</default>
             </picklistValues>
@@ -74,6 +78,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Email North America CS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

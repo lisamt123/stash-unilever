@@ -157,6 +157,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Indonesia_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Indonesia - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>ID</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Italy_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Italy – Manager</label>
@@ -207,6 +220,19 @@
             <field>ISO_Country_Code__c</field>
             <operation>equals</operation>
             <value>CA,MX,US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Philippines_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Philippines - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>PH</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
