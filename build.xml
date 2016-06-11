@@ -737,6 +737,7 @@
         <runTest>IPM_PerformanceBreakdownController_Test</runTest>
         <runTest>IPM_ProjectDocumentSectionHandler_Test</runTest>
         <runTest>IPM_ValidationHelper_Test</runTest>
+        </sf:deploy>
     </target>
 <!-- ***************************************************************************** -->
   <!-- Validate the  set of BET meta-data before deployment                          -->
