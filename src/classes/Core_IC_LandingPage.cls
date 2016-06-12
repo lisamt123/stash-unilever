@@ -12,15 +12,20 @@ global with sharing class Core_IC_LandingPage{
     * @description This method get the wrapper data and send to the baseService application.
     * @param Core_CA_ApplicationWrapper wrapper 
     * @return Core_IC_WrapperUtility.IdeaLandingPageResponse wrapper
-    */     
+    */    
+          public static String strAll= 'All';
+          public static String strClosed='Closed';
+          public static String strActive='Active';
+          
+          
     global static Core_IC_WrapperUtility.IdeaLandingPageResponse getLandingPageDetail(Core_CA_ApplicationWrapper appWrapperObj) {
        Core_IC_WrapperUtility.IdeaLandingPageResponse objIdeaLandingPageResponse = new Core_IC_WrapperUtility.IdeaLandingPageResponse(); 
        try{
             objIdeaLandingPageResponse = processIdeaLandingPageResponse(appWrapperObj);
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+       /*   catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_LandingPage : getLandingPageDetail method ', ex);
        }    
@@ -37,7 +42,7 @@ global with sharing class Core_IC_LandingPage{
        try{
            Core_IC_WrapperUtility.IdeaLandingPageResponse objIdeaLandingPageResponseTemp=new Core_IC_WrapperUtility.IdeaLandingPageResponse();
            objIdeaLandingPageResponse.ActiveStatus=false;
-           if(appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit=='4' || appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit=='All'){
+           if(appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit=='4' || appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit==strAll){
                objIdeaLandingPageResponseTemp=processFeaturedCampaigns(appWrapperObj);
                objIdeaLandingPageResponse.FeaturedCampaigns=objIdeaLandingPageResponseTemp.FeaturedCampaigns;
                objIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns=objIdeaLandingPageResponseTemp.CampaignTypeForFeaturedCampaigns;
@@ -45,7 +50,7 @@ global with sharing class Core_IC_LandingPage{
                objIdeaLandingPageResponse.ActiveStatus=objIdeaLandingPageResponseTemp.ActiveStatus;
            }
            
-           if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4' || appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='All'){
+           if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4' || appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit==strAll){
                objIdeaLandingPageResponseTemp=processIdeasOfTheWeek(appWrapperObj);
                objIdeaLandingPageResponse.IdeasOfTheWeek=objIdeaLandingPageResponseTemp.IdeasOfTheWeek;
                objIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek=objIdeaLandingPageResponseTemp.CampaignTypeForIdeasOfTheWeek;
@@ -53,21 +58,21 @@ global with sharing class Core_IC_LandingPage{
                if(!objIdeaLandingPageResponse.ActiveStatus) objIdeaLandingPageResponse.ActiveStatus=objIdeaLandingPageResponseTemp.ActiveStatus;
            }
            
-           if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='4' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='5' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='All'){
+           if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='4' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='5' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit==strAll){
                objIdeaLandingPageResponseTemp=processMyUpdates(appWrapperObj);
                objIdeaLandingPageResponse.MyUpdates=objIdeaLandingPageResponseTemp.MyUpdates;
                objIdeaLandingPageResponse.CampaignTypeForMyUpdates=objIdeaLandingPageResponseTemp.CampaignTypeForMyUpdates;
                objIdeaLandingPageResponse.SeeAllLinkForMyUpdates=objIdeaLandingPageResponseTemp.SeeAllLinkForMyUpdates;
                if(!objIdeaLandingPageResponse.ActiveStatus) objIdeaLandingPageResponse.ActiveStatus=objIdeaLandingPageResponseTemp.ActiveStatus;
-               if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='All') objIdeaLandingPageResponse.IdeasOfTheWeek=objIdeaLandingPageResponseTemp.IdeasOfTheWeek;
+               if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit==strAll) objIdeaLandingPageResponse.IdeasOfTheWeek=objIdeaLandingPageResponseTemp.IdeasOfTheWeek;
            }
            objIdeaLandingPageResponse.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
            objIdeaLandingPageResponse.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
            ObjIdeaLandingPageResponse.ShowMoreLimit=(Integer)Core_Ideation_heirarchical__c.getInstance().Record_Display_Limit__c;
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+      /* catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_LandingPage : processIdeaLandingPageResponse method ', ex);
        }   
@@ -87,18 +92,18 @@ global with sharing class Core_IC_LandingPage{
            List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
            List<IdeaTheme> lstActiveIdeaTheme=new List<IdeaTheme>(); 
            ObjIdeaLandingPageResponse.ActiveStatus=False;
-           if(appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit!='All') lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:'Active' ORDER BY Promoted__c DESC,CreatedDate DESC Limit 4];//StartDate <=: System.now() AND EndDate >= :System.now()
-           else lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:'Active' ORDER BY Promoted__c DESC,CreatedDate DESC];
-           List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:'Closed' ORDER BY EndDate DESC];
+           if(appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit!=strAll) lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:strActive ORDER BY Promoted__c DESC,CreatedDate DESC Limit 4];//StartDate <=: System.now() AND EndDate >= :System.now()
+           else lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:strActive ORDER BY Promoted__c DESC,CreatedDate DESC];
+           List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:strClosed ORDER BY EndDate DESC];
            if(!lstActiveIdeaTheme.isEmpty()){
                 lstIdeaTheme=lstActiveIdeaTheme;
-                //ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns='Active';
+                //ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns=strActive;
                 ObjIdeaLandingPageResponse.SeeAllLinkForFeaturedCampaigns=True;
                 ObjIdeaLandingPageResponse.ActiveStatus=True;
            }
            else if(!lstClosedIdeaTheme.isEmpty()){
                 //lstIdeaTheme=lstClosedIdeaTheme;
-                //ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns='Closed';
+                //ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns=strClosed;
                 ObjIdeaLandingPageResponse.SeeAllLinkForFeaturedCampaigns=True;
            }
            else{
@@ -114,9 +119,9 @@ global with sharing class Core_IC_LandingPage{
                 ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns='NoClosed';
            }
            
-           if(appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit=='All'){
+           if(appWrapperObj.ideaLandingPageRequest.FeaturedCampaignsLimit==strAll){
                 if(!lstActiveIdeaTheme.isempty())
-                    lstIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:'Active' OR Status=:'Closed'  ORDER BY Status ASC,EndDate ASC];
+                    lstIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Description__c,CreatedDate,Status,Categories__c FROM IdeaTheme WHERE Status=:strActive OR Status=:strClosed  ORDER BY Status ASC,EndDate ASC];
                 else lstIdeaTheme=lstClosedIdeaTheme;
            }
            
@@ -156,7 +161,7 @@ global with sharing class Core_IC_LandingPage{
                     ObjFeaturedCampaigns.StatusType=i.Status;
                     String strDaysBetween=String.Valueof(DaysBetween);
                     strDaysBetween=strDaysBetween.replace('-', '10000');
-                    if(i.Status=='Closed') DaysBetween=Integer.valueof(strDaysBetween);
+                    if(i.Status==strClosed) DaysBetween=Integer.valueof(strDaysBetween);
                     ObjFeaturedCampaigns.DaysBetween=DaysBetween;
                     String strCategories=i.Categories__c.ReplaceAll(', ',',');
                     ObjFeaturedCampaigns.Categories=strCategories.split(',');
@@ -165,9 +170,9 @@ global with sharing class Core_IC_LandingPage{
                ObjIdeaLandingPageResponse.FeaturedCampaigns=lstFeaturedCampaigns;
            }
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+    /*   catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_LandingPage : processFeaturedCampaigns method ', ex);
        }   
@@ -186,8 +191,8 @@ global with sharing class Core_IC_LandingPage{
        List<Core_IC_WrapperUtility.IdeasOfTheWeek> lstIdeasOfTheWeek = new List<Core_IC_WrapperUtility.IdeasOfTheWeek>();
        List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
        try{
-            List<IdeaTheme> lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id FROM IdeaTheme WHERE Status=:'Active' ORDER BY Promoted__c DESC,CreatedDate DESC];
-            List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c FROM IdeaTheme WHERE Status=:'Closed' ORDER BY Promoted__c DESC,CreatedDate DESC];
+            List<IdeaTheme> lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id FROM IdeaTheme WHERE Status=:strActive ORDER BY Promoted__c DESC,CreatedDate DESC];
+            List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c FROM IdeaTheme WHERE Status=:strClosed ORDER BY Promoted__c DESC,CreatedDate DESC];
             List<Idea> lstIdea=new List<Idea>(); 
             Set<Id> setActiveId=new Set<Id>();
             for(IdeaTheme i:lstActiveIdeaTheme){
@@ -200,7 +205,7 @@ global with sharing class Core_IC_LandingPage{
             List<Idea> lstActiveIdea=new List<Idea>();
             List<Idea> lstActiveWeekIdea=new List<Idea>();
             DateTime dt=System.now().addDays(-6);
-            //if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All'){
+            //if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll){
                 //lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
                 //lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
                 lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC];
@@ -210,7 +215,7 @@ global with sharing class Core_IC_LandingPage{
             lstActiveIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
             List<Idea> lstClosedIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setClosedId ORDER BY VoteTotal DESC,CreatedDate DESC];
             
-            /*if(lstActiveWeekIdea.isempty() && !lstActiveIdea.isempty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All'){
+            /*if(lstActiveWeekIdea.isempty() && !lstActiveIdea.isempty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll){
                 List<Idea> lstTempIdea=new List<Idea>();
                 Integer Count=0;
                 for(Idea i:lstActiveIdea){
@@ -221,21 +226,21 @@ global with sharing class Core_IC_LandingPage{
                 lstActiveIdea=lstTempIdea;
             }*/
            ObjIdeaLandingPageResponse.ActiveStatus=False;
-           if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All'){
+           if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll){
                 lstIdea=lstActiveWeekIdea;
-                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='Active';
+                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek=strActive;
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
                 ObjIdeaLandingPageResponse.ActiveStatus=True;
            }
-           else if(!lstActiveIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All'){
+           else if(!lstActiveIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll){
                 lstIdea=lstActiveIdea;
-                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='Active';
+                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek=strActive;
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
                 ObjIdeaLandingPageResponse.ActiveStatus=True;
            }
-           else if(!lstClosedIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All'){
+           else if(!lstClosedIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll){
                 //lstIdea=lstClosedIdea;
-                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='Closed';
+                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek=strClosed;
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
            }
            else{
@@ -243,8 +248,8 @@ global with sharing class Core_IC_LandingPage{
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=False;
            }
            
-           if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All' && lstActiveWeekIdea.size()<4){
-           //if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All' && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4'){     
+           if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll && lstActiveWeekIdea.size()<4){
+           //if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4'){     
                 //setTempIdea.addAll(lstIdea);
                 lstIdea.addAll(lstActiveIdea);
                 Set<Idea> setTempIdea=new Set<Idea>(lstIdea);
@@ -269,7 +274,7 @@ global with sharing class Core_IC_LandingPage{
                 ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='NoClosed';
            }
            
-           if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='All'){
+           if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit==strAll){
                 if(!lstActiveIdea.isEmpty()) ObjIdeaLandingPageResponse.ActiveStatus=True;
                 lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId IN (Select Id FROM IdeaTheme WHERE Status IN ('Closed','Active')) ORDER BY CreatedDate DESC];
                 if(!lstIdea.isEmpty()) ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
@@ -279,9 +284,9 @@ global with sharing class Core_IC_LandingPage{
                 ObjIdeaLandingPageResponse.IdeasOfTheWeek=getIdeasList(lstIdea);
            }
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+    /*   catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_LandingPage : processIdeasOfTheWeek method ', ex);
        } 
@@ -300,8 +305,8 @@ global with sharing class Core_IC_LandingPage{
        List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
        try{
            
-            List<IdeaTheme> lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id FROM IdeaTheme WHERE Status=:'Active' ORDER BY Promoted__c DESC,CreatedDate DESC];
-            List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c FROM IdeaTheme WHERE Status=:'Closed' ORDER BY Promoted__c DESC,CreatedDate DESC];
+            List<IdeaTheme> lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id FROM IdeaTheme WHERE Status=:strActive ORDER BY Promoted__c DESC,CreatedDate DESC];
+            List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c FROM IdeaTheme WHERE Status=:strClosed ORDER BY Promoted__c DESC,CreatedDate DESC];
             List<Idea> lstIdea=new List<Idea>(); 
             
             Set<Id> setActiveId=new Set<Id>();
@@ -321,13 +326,13 @@ global with sharing class Core_IC_LandingPage{
             ObjIdeaLandingPageResponse.ActiveStatus=False;
             if(!lstActiveIdea.isEmpty()){
                 //lstIdea=lstActiveIdea;
-                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='Active';
+                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek=strActive;
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
                 ObjIdeaLandingPageResponse.ActiveStatus=True;
             }
             else if(!lstClosedIdea.isEmpty()){
                 //lstIdea=lstClosedIdea;
-                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='Closed';
+                //ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek=strClosed;
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
             }
             else{
@@ -336,7 +341,7 @@ global with sharing class Core_IC_LandingPage{
             }
             
             //if(ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek==True){
-                if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit!='All'){
+                if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit!=strAll){
                     Set<Id> setIdeaId=new Set<Id>();
                     for(Idea i:lstActiveIdea){
                         setIdeaId.add(i.Id);
@@ -416,7 +421,7 @@ global with sharing class Core_IC_LandingPage{
                    }
                    ObjIdeaLandingPageResponse.MyUpdates=lstFinalCombinedMyUpdates;
                }
-               else if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='All'){
+               else if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit==strAll){
                     List<Idea> lstIdeaForCurrentUser=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where CreatedById = :Userinfo.getuserId() AND  IdeaThemeId IN (Select Id FROM IdeaTheme WHERE Status IN ('Closed','Active')) ORDER BY CreatedDate DESC];
                     //system.debug('~~~~'+lstIdea);
                     if(!lstActiveIdea.isEmpty()) ObjIdeaLandingPageResponse.ActiveStatus=True;
@@ -425,9 +430,9 @@ global with sharing class Core_IC_LandingPage{
                }
            //}
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+   /*    catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_LandingPage : processMyUpdates method ', ex);
        }   
