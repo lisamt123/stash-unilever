@@ -3048,6 +3048,9 @@ Changed to Campaign on 26/10/2015</description>
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <lookupDialogsAdditionalFields>FULL_Description__c</lookupDialogsAdditionalFields>
         <searchFilterFields>OBJECT_ID</searchFilterFields>
         <searchFilterFields>NAME</searchFilterFields>

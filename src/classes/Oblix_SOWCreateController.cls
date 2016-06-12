@@ -127,7 +127,9 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
 
         // S.M. 2016-06-10 
         // make sure this is not a duplicate SOW by checking the prefis
-        if ([SELECT count() FROM marketing_sow__c WHERE Name_Prefix__c =: selected_sow.Name_Prefix__c]>0){
+        Map<Id, marketing_sow__c> existingSOWWithSameName = new Map<Id, marketing_sow__c>([SELECT Id FROM marketing_sow__c WHERE Name_Prefix__c =: selected_sow.Name_Prefix__c]);
+        if (!isEdit && existingSOWWithSameName.size() > 0 
+                || isEdit && (existingSOWWithSameName.size() != 1 || existingSOWWithSameName.size() == 1 && !existingSOWWithSameName.containsKey(selected_sow.Id))){
 
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate SOW Name detected! Please give SOW a unique name'));
             return didSave;
