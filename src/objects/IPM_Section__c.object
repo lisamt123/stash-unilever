@@ -110,6 +110,7 @@
     </fields>
     <fields>
         <fullName>IPM_FunctionalRole__c</fullName>
+        <description>contains the section functional role</description>
         <externalId>false</externalId>
         <label>IPM_FunctionalRole</label>
         <picklist>
@@ -162,8 +163,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_IS_Default_Section__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>To display the section in gate document</description>
+        <externalId>false</externalId>
+        <label>Default Section</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Negotiable__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Describing section negotiable or not</description>
         <externalId>false</externalId>
         <label>Negotiable?</label>
         <trackHistory>false</trackHistory>
@@ -173,6 +185,7 @@
     <fields>
         <fullName>IPM_Parent_Section__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Self relationship for parent section</description>
         <externalId>false</externalId>
         <label>IPM Parent Section</label>
         <referenceTo>IPM_Section__c</referenceTo>
@@ -196,6 +209,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Label_Type__c</fullName>
+        <description>Describe the type of section label</description>
         <externalId>false</externalId>
         <label>Section Label Type</label>
         <picklist>
@@ -219,6 +233,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Name__c</fullName>
+        <description>To store section name</description>
         <externalId>false</externalId>
         <label>Section Name</label>
         <length>80</length>
@@ -242,6 +257,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Type__c</fullName>
+        <description>Describes section type</description>
         <externalId>false</externalId>
         <label>Section Type</label>
         <picklist>
@@ -286,6 +302,7 @@
     <fields>
         <fullName>Is_IPM_Global_Consolidated__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>For displaying global consolidated components</description>
         <externalId>false</externalId>
         <label>Is IPM Global Consolidated</label>
         <trackHistory>false</trackHistory>

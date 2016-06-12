@@ -69,6 +69,7 @@
     </fields>
     <fields>
         <fullName>Clone_Record_Id__c</fullName>
+        <description>Id of cloned milestone.</description>
         <externalId>false</externalId>
         <label>Clone Record Id</label>
         <length>18</length>
@@ -81,6 +82,7 @@
     <fields>
         <fullName>ExternalField__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <description>External field to maintain uniqueness of standard milestones.</description>
         <externalId>true</externalId>
         <label>ExternalField</label>
         <length>100</length>
@@ -93,6 +95,7 @@
     <fields>
         <fullName>IPM_Active__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Active flag to identify the milestone is applicable for current project.</description>
         <externalId>false</externalId>
         <label>Active</label>
         <trackHistory>false</trackHistory>
@@ -101,6 +104,7 @@
     </fields>
     <fields>
         <fullName>IPM_Actual_Target_Launch_Month__c</fullName>
+        <description>Target launch month value</description>
         <externalId>false</externalId>
         <formula>CASE(MONTH( IPM_Completed_On__c ), 
 
@@ -128,7 +132,7 @@
 
 12, &quot;December&quot;, 
 
-&quot;None&quot;)</formula>
+&quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Actual Target Launch Month</label>
         <required>false</required>
@@ -139,6 +143,7 @@
     </fields>
     <fields>
         <fullName>IPM_Actual_Target_Launch_Year__c</fullName>
+        <description>Target launch year value</description>
         <externalId>false</externalId>
         <formula>text(YEAR( IPM_Completed_On__c ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -152,6 +157,7 @@
     <fields>
         <fullName>IPM_BET__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Flag to show the BET milestone.</description>
         <externalId>false</externalId>
         <label>BET</label>
         <trackHistory>false</trackHistory>
@@ -160,6 +166,7 @@
     </fields>
     <fields>
         <fullName>IPM_Bosscord_Approval_Date__c</fullName>
+        <description>Date when Bosscord was approved.</description>
         <externalId>false</externalId>
         <label>Bosscord Approval Date</label>
         <required>false</required>
@@ -169,6 +176,7 @@
     </fields>
     <fields>
         <fullName>IPM_Category__c</fullName>
+        <description>IPM Category of the project.</description>
         <externalId>false</externalId>
         <label>Category</label>
         <picklist>
@@ -197,6 +205,7 @@
     </fields>
     <fields>
         <fullName>IPM_Completed_On__c</fullName>
+        <description>Date when milestone is marked as completed.</description>
         <externalId>false</externalId>
         <label>Completed On</label>
         <required>false</required>
@@ -207,6 +216,7 @@
     <fields>
         <fullName>IPM_Completed__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Checkbox to identify milestone is completed.</description>
         <externalId>false</externalId>
         <label>Completed</label>
         <trackHistory>false</trackHistory>
@@ -233,6 +243,7 @@
     </fields>
     <fields>
         <fullName>IPM_Deputy_Project_Leader_Email__c</fullName>
+        <description>Field to store deputy project leader&apos;s email.</description>
         <externalId>false</externalId>
         <label>IPM Deputy Project Leader Email</label>
         <required>false</required>
@@ -243,6 +254,7 @@
     </fields>
     <fields>
         <fullName>IPM_Deputy_Project_Leader_Name__c</fullName>
+        <description>Formula field to store deputy project leader&apos;s email.</description>
         <externalId>false</externalId>
         <formula>IPM_Project__r.Deputy_Project_Leader__r.FirstName +&quot; &quot;+ IPM_Project__r.Deputy_Project_Leader__r.LastName</formula>
         <label>IPM Deputy Project Leader Name</label>
@@ -254,7 +266,9 @@
     </fields>
     <fields>
         <fullName>IPM_Due_Date_Capability__c</fullName>
+        <description>Snapshot of Capability Due Date</description>
         <externalId>false</externalId>
+        <inlineHelpText>Snapshot of Capability Due Date</inlineHelpText>
         <label>Due Date@Capability</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -318,6 +332,7 @@
     </fields>
     <fields>
         <fullName>IPM_Due_Date__c</fullName>
+        <description>Due date of milestone</description>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -327,6 +342,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gatekeeper_Email__c</fullName>
+        <description>Formula field to store Gatekeeper&apos;s email.</description>
         <externalId>false</externalId>
         <label>IPM Gatekeeper Email</label>
         <required>false</required>
@@ -337,6 +353,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gatekeeper_Name__c</fullName>
+        <description>Formula field to store Gatekeeperr&apos;s name.</description>
         <externalId>false</externalId>
         <formula>IPM_Project__r.IPM_Project_Gatekeeper__r.FirstName +&quot; &quot; + IPM_Project__r.IPM_Project_Gatekeeper__r.LastName</formula>
         <label>IPM Gatekeeper Name</label>
@@ -349,6 +366,7 @@
     <fields>
         <fullName>IPM_Key_Milestone__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To identify the key milestone which is driving the flow.</description>
         <externalId>false</externalId>
         <label>IPM Key Milestone</label>
         <trackHistory>false</trackHistory>
@@ -420,6 +438,7 @@
     </fields>
     <fields>
         <fullName>IPM_Market_Type__c</fullName>
+        <description>Market type that will be set based on the type of Rollout selected.</description>
         <externalId>false</externalId>
         <label>Market Type</label>
         <picklist>
@@ -450,6 +469,7 @@
     <fields>
         <fullName>IPM_Milestone__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Parent master milestone lookup.</description>
         <externalId>false</externalId>
         <label>IPM Milestone</label>
         <referenceTo>IPM_Milestone__c</referenceTo>
@@ -462,6 +482,7 @@
     </fields>
     <fields>
         <fullName>IPM_Name__c</fullName>
+        <description>Milestone name</description>
         <externalId>false</externalId>
         <label>Milestone Name</label>
         <length>200</length>
@@ -473,6 +494,7 @@
     </fields>
     <fields>
         <fullName>IPM_No_Of_Days_for_Developing_Emerging__c</fullName>
+        <description>Used for auto calculation of due date for developing market type.</description>
         <externalId>false</externalId>
         <label>No Of Days for Developing &amp; Emerging</label>
         <length>80</length>
@@ -484,6 +506,7 @@
     </fields>
     <fields>
         <fullName>IPM_No_Of_Days_for_Developing__c</fullName>
+        <description>Used for auto calculation of due date for market type milestone.</description>
         <externalId>false</externalId>
         <label>No Of Days for Developing</label>
         <length>80</length>
@@ -495,6 +518,7 @@
     </fields>
     <fields>
         <fullName>IPM_No_of_Days__c</fullName>
+        <description>No of days used for auto calculation the due date.</description>
         <externalId>false</externalId>
         <label>No of Days</label>
         <length>255</length>
@@ -535,6 +559,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Phase__c</fullName>
+        <description>phase of milestone.</description>
         <externalId>false</externalId>
         <label>Phase</label>
         <picklist>
@@ -570,6 +595,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Planned_Date__c</fullName>
+        <description>Planned date of milestone, which will be same as due date.</description>
         <externalId>false</externalId>
         <label>Suggested Planned Date</label>
         <required>false</required>
@@ -579,6 +605,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project_Launch_Date__c</fullName>
+        <description>This field will store the target launch date of the project.</description>
         <externalId>false</externalId>
         <label>Project Launch Date</label>
         <required>false</required>
@@ -588,6 +615,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project_Leader_Email__c</fullName>
+        <description>Field to store Project leader&apos;s email.</description>
         <externalId>false</externalId>
         <label>IPM Project Leader Email</label>
         <required>false</required>
@@ -598,6 +626,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project_Leader_Name__c</fullName>
+        <description>Field to store Project leader&apos;s name.</description>
         <externalId>false</externalId>
         <formula>IPM_Project__r.IPM_Project_Leader__r.FirstName + &quot; &quot; +  IPM_Project__r.IPM_Project_Leader__r.LastName</formula>
         <label>IPM Project Leader Name</label>
@@ -609,6 +638,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project_Name__c</fullName>
+        <description>Formula field to store project name.</description>
         <externalId>false</externalId>
         <formula>IPM_Project__r.IPM_Project_Name__c</formula>
         <label>IPM Project Name</label>
@@ -620,6 +650,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project_Started_Date__c</fullName>
+        <description>This field will store the start date of the project.</description>
         <externalId>false</externalId>
         <label>Project Started Date</label>
         <required>false</required>
@@ -629,6 +660,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project_Type__c</fullName>
+        <description>Project type will be stored at each milestone level.</description>
         <externalId>false</externalId>
         <label>Project Type</label>
         <picklist>
@@ -652,6 +684,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Project__c</fullName>
+        <description>IPM Project Master data</description>
         <externalId>false</externalId>
         <label>IPM Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -666,6 +699,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Proposed_Date__c</fullName>
+        <description>Proposed date of milestone.</description>
         <externalId>false</externalId>
         <label>Proposed Date</label>
         <required>false</required>
@@ -711,6 +745,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Month__c</fullName>
+        <description>Formula field to store the launch date month.</description>
         <externalId>false</externalId>
         <formula>CASE(MONTH( IPM_Due_Date__c ), 
 
@@ -749,6 +784,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Year__c</fullName>
+        <description>Formula field to store the launch date year.</description>
         <externalId>false</externalId>
         <formula>text(YEAR( IPM_Due_Date__c ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -761,6 +797,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Type_of_Milestone__c</fullName>
+        <description>Type of the milestone will be identified based on this field.</description>
         <externalId>false</externalId>
         <label>Type of Milestone</label>
         <picklist>
@@ -788,6 +825,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Type_of_gate__c</fullName>
+        <description>Type of the gate will be identified based on this field.</description>
         <externalId>false</externalId>
         <label>Type of Gate</label>
         <picklist>
@@ -807,6 +845,10 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
                 <fullName>Market Deployment</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -815,6 +857,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
     </fields>
     <fields>
         <fullName>IPM_Violate_Preferred_Date__c</fullName>
+        <description>Violated date calculation based on due date of Market ready milestone.</description>
         <externalId>false</externalId>
         <formula>IF( AND((((IPM_Project__r.IPM_Target_Launch_Dates__c - IPM_Due_Date__c) + 
 VALUE(IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developed&apos;, IPM_No_Of_Days_for_Developing__c, 
@@ -1012,6 +1055,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1120,6 +1167,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1217,6 +1268,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
             </values>
             <values>
                 <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PLE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

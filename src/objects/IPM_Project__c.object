@@ -143,6 +143,16 @@
         <label>IPM_BETProjectLeaders</label>
     </fieldSets>
     <fieldSets>
+        <fullName>IPM_Exclude_Fields</fullName>
+        <description>Its used in the IPM_Utils class for excluding fields from the generic SOQL method : prepareSOQLQuery.</description>
+        <displayedFields>
+            <field>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Exclude Fields</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>IPM_Project_Fields_EcoDesign</fullName>
         <description>Contains fields to sync to EcoDesign from IPM</description>
         <displayedFields>
@@ -1761,6 +1771,18 @@ OwnerId))</formula>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Postponed_Comments__c</fullName>
+        <description>For Storing Postponement Comments</description>
+        <externalId>false</externalId>
+        <label>IPM Postponed Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_ProjectJobType__c</fullName>

@@ -1881,7 +1881,7 @@
         <name>IPM_Assort_Distribution_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Assumption A&amp;P --></label>
+        <label><!-- IPM Assumption BMI --></label>
         <name>IPM_Assumption_A_P</name>
     </customLabels>
     <customLabels>
@@ -3273,10 +3273,6 @@
         <name>IPM_EcoDesign_Assessment_Section</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM_EcoDesign_Average --></label>
-        <name>IPM_EcoDesign_Average</name>
-    </customLabels>
-    <customLabels>
         <label><!-- IPM_EcoDesign_Change_vs --></label>
         <name>IPM_EcoDesign_Change_vs</name>
     </customLabels>
@@ -3303,10 +3299,6 @@
     <customLabels>
         <label><!-- IPM EcoDesign Country Deleted --></label>
         <name>IPM_EcoDesign_Country_Deleted</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_EcoDesign_Directional_View --></label>
-        <name>IPM_EcoDesign_Directional_View</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_EcoDesign_EI_Countries --></label>
@@ -3341,16 +3333,8 @@
         <name>IPM_EcoDesign_New_SKU</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM_EcoDesign_New_SKU_Impact --></label>
-        <name>IPM_EcoDesign_New_SKU_Impact</name>
-    </customLabels>
-    <customLabels>
         <label><!-- IPM_EcoDesign_Non_EI Countries --></label>
         <name>IPM_EcoDesign_Non_EI_Countries</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_EcoDesign_On_Category --></label>
-        <name>IPM_EcoDesign_On_Category</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_EcoDesign_Section_Text --></label>
@@ -4357,7 +4341,7 @@
         <name>IPM_Milestone_DueDate_Validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Milestone Due Date --></label>
+        <label><!-- Postponed Past Date Validation --></label>
         <name>IPM_Milestone_Due_Date</name>
     </customLabels>
     <customLabels>
@@ -6033,7 +6017,7 @@
         <name>IPM_TaskLabel</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Task Assign Text1 --></label>
+        <label><!-- IPM Task Assign Text --></label>
         <name>IPM_Task_Assign_Text1</name>
     </customLabels>
     <customLabels>
@@ -8678,6 +8662,10 @@
             <columns>
                 <label><!-- Auto Aligned Fin &amp; TLD --></label>
                 <name>Auto Aligned Fin &amp; TLD</name>
+            </columns>
+            <columns>
+                <label><!-- Auto Aligned Fin &amp; TLD for financial --></label>
+                <name>Auto Aligned Fin &amp; TLD for financial</name>
             </columns>
             <columns>
                 <label><!-- Brand Positioning --></label>

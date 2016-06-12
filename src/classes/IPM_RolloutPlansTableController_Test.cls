@@ -5,29 +5,26 @@
 *********************************************/
 
 @isTest
-public class IPM_RolloutPlansTableController_Test{
+private class IPM_RolloutPlansTableController_Test{
      
     /*
     * @description For Running Test Script
     */ 
-    public static User stdUserForRollout;
-    public static List<IPM_Project__c > projectList;
-    public static List<IPM_Project_Rollout__c> localRolloutList;
-    public static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
+    private static User stdUserForRollout;
+    private static List<IPM_Project__c > projectList;
+    private static List<IPM_Project_Rollout__c> localRolloutList;
+    private static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
     //public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
   
-    public static List<IPM_Project_Rollout__c> regionalRolloutList;
-    public static final String CANCEL_REDIRECT ='cancelRedirect' ;
-    public static final String TESTPROJECT = 'TestComments1';
-    public static String cancelRedirect;    
-    public static String editMode='';
-    public static List<IPM_Project__c> globalProjectList;
-    public static List<IPM_Project__c> lstRegionalProjects;
+    private static List<IPM_Project_Rollout__c> regionalRolloutList;
+    private static final String CANCEL_REDIRECT ='cancelRedirect' ;
+    private static final String TESTPROJECT = 'TestComments1';
+   
     
-    private static List<IPM_Project_Document__c> currDocuments;
-    private static List<IPM_Project_Document__c> updatedDocument;
+    private static final String ID_PARAMETER = 'Id';
+    private static  PageReference pageRef = Page.ipm_rolloutplansadd;
+    //PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
     
-    public static final String ID_PARAMETER = 'Id';
     @testSetup static void projectSetUp()  
     {
       System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
@@ -43,6 +40,10 @@ public class IPM_RolloutPlansTableController_Test{
         Test.startTest();
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
+       
+        List<IPM_Company_Card__c> companyCardAssertList = [select id from IPM_Company_Card__c where id in : companyCardList];
+        system.assertEquals(3,companyCardAssertList.size(),'Number of company card inserted is not 3 ');
+       
         
         IPM_TestFactory_Helper.getProjectMasterData();
 
@@ -52,7 +53,15 @@ public class IPM_RolloutPlansTableController_Test{
             projectList = IPM_TestFactory_Helper.projectSetUp(1, stdUserForRollout);
             insert projectList;
            
-           
+            set<Id> projId = new set<Id>();
+            for(IPM_Project__c proj : projectList)
+            {
+               projId.add(proj.id); 
+            }
+            
+            List<IPM_Project__c> projectAssertList = [select Name from IPM_Project__c where id in : projId];
+            system.assertEquals(1,projectAssertList.size(),'No project created');
+            
            
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForRollout,stdUserForRollout});
             insert regionalRolloutList; // this will give me all regional rollout
@@ -112,99 +121,6 @@ public class IPM_RolloutPlansTableController_Test{
     }
   
     
-     
-     /** Create project 
-        *  Used for Testing Global Project Creation. 
-        *  @name projectSetUp
-     
-     
-      public static testMethod void testProjectPhaseChange()
-     {
-         
-        Set<String> projectNameSet = new Set<String>{TESTPROJECT};
-        List<IPM_Project__c> updateRegionalProject = new List<IPM_Project__c>();
-        
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
-        System.runAs(globalUser)
-        { 
-            IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
-            
-           
-            List<IPM_Project__c> projectListNew = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,(Select Id from Project_Documents__r)
-                from IPM_Project__c where Name in:projectNameSet limit 2];
-            System.assertEquals(projectListNew[0].Name,TESTPROJECT,'project not created');
-            
-            for(IPM_Project__c project : projectListNew)
-            {
-                //System.assertEquals(project.Project_Documents__r.size(),1);
-                System.assertEquals(project.IPM_Phase__c,'Ideas'); // One for Global consolidated and 2 for Regional Consolidated.
-                updateRegionalProject.add(project);
-            }
-            Test.startTest();
-            update updateRegionalProject;
-           
-            globalProjectList = [Select Id,IPM_Company_Card__c,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet limit 2];
-            
-            system.assertEquals(globalProjectList.size(),1);
-            List<Id> globalProjectIdList = new List<Id>();
-            
-            for(IPM_Project__c projecttemp : globalProjectList)
-            {
-                globalProjectIdList.add(projecttemp.Id);
-            }
-            
-            
-            PageReference pageRef=Page.IPM_RolloutPlans;
-            ApexPages.currentPage().getParameters().put('ID_PARAMETER',globalProjectList[0].Id);
-            Test.setCurrentPage(pageRef);   
-            
-           
-            
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalUser); 
-            
-            update projectListPhaseChange;
-            
-            Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);  
-            
-            lstRegionalProjects = new List<IPM_Project__c>();
-            
-            for(Id gbProjectId : globalToRegionalMap.keySet())
-            {
-               lstRegionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
-            }
-
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :lstRegionalProjects limit 2];
-            
-            updatedDocument = new List<IPM_Project_Document__c>();
-            currDocuments= [Select IPM_GateDocuments__c,IPM_Document_Status__c from IPM_Project_Document__c limit 1000];
-            for(IPM_Project_Document__c currDoc:currDocuments)
-            {
-                if(currDoc.IPM_GateDocuments__c == IPM_ConstantUtils.CHARTER_GATE)
-                currDoc.IPM_Document_Status__c =IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS;
-                updatedDocument.add(currDoc);
-            }
-            update updatedDocument;
-            
-            
-            
-            Test.stopTest(); 
-            
-            irp.isEditMode = true;
-            irp.isEditable = true;
-            irp.isStatusEditable = true;     
-            irp.editRollout();
-            irp.cancelRollout();
-            irp.checkRollouts();
-            irp.addRollout();
-            irp.saveRollout();
-            irp.deleteMCORollout(); 
-           
-           
-          }
-         
-     }
-     */
-     
     public static testmethod void testRolloutProject()
      {
         Set<String> projectNameSet = new Set<String>{TESTPROJECT};
@@ -217,16 +133,18 @@ public class IPM_RolloutPlansTableController_Test{
             projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet for update];
             
             
-            System.assertEquals(projectList[0].IPM_Phase__c,'Ideas');
+            System.assertEquals(projectList[0].IPM_Phase__c,'Ideas','Project Phase is not ideas');
            
-            PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
-            Test.setCurrentPage(pageRef); 
+            Test.setCurrentPage(pageRef);
+            ApexPages.currentPage().getParameters().put(ID_PARAMETER,projectList[0].Id);
+           
+            
             IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
             irp.addRollout();
             irp.saveRollout();
             
             List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-            Set<Id> projectDocumentSet = new Set<Id>();
+           
                      
             for(IPM_Project__c project : projectList)
             {
@@ -240,15 +158,12 @@ public class IPM_RolloutPlansTableController_Test{
                        projectRolloutList.add(rollout);
                    }
                 }
-                
-                for(IPM_Project_Document__c projectDocument : project.Project_Documents__r)
-                {
-                    projectDocumentSet.add(projectDocument.Id);
-                }
-           
             }
+           
            Test.startTest();
            update projectRolloutList;
+           List<IPM_Project_Rollout__c> rolloutAssertList = [Select Id from IPM_Project_Rollout__c where IPM_Project_Job_Status__c =:IPM_ConstantUtils.JOB_STATUS_ELIGIBLE];
+           system.assertEquals(2,rolloutAssertList.size(),'Rollout is not eligible for job run');
            Test.stopTest();
                   
         }
@@ -269,27 +184,30 @@ public class IPM_RolloutPlansTableController_Test{
             Test.startTest();
             
             String bool  = IPM_RolloutPlansTableController.BOOLEAN_TRUE;
-            System.assertEquals('true', bool);
+            System.assertEquals('true', bool,'It is false');
             
             String ChkRollout =IPM_RolloutPlansTableController.CHECK_ROLLOUTS ;
-            System.assertEquals('checkRollouts', ChkRollout);
+            System.assertEquals('checkRollouts', ChkRollout,'CheckRollout not called');
             
             String idParam = IPM_RolloutPlansTableController.ID_PARAMETER ;
-            System.assertEquals('Id', idParam);
+            System.assertEquals('Id', idParam,'Id not matched');
             
             String addRollout = IPM_RolloutPlansTableController.ADD_ROLLOUT;
-            System.assertEquals('addRollout', addRollout);
+            System.assertEquals('addRollout', addRollout,'Add Rollout not called');
             
             String saveRollout =IPM_RolloutPlansTableController.SAVE_ROLLOUT;
-            System.assertEquals('saveRollout', saveRollout);
+            System.assertEquals('saveRollout', saveRollout,'Save Rollout not called');
             
             String cancelRedrct = IPM_RolloutPlansTableController.CANCEL_REDIRECT;
-            System.assertEquals('cancelRedirect', cancelRedrct);
+            System.assertEquals('cancelRedirect', cancelRedrct,'Cancel Redirect not called');
             
             projectList = [Select Id, Name from IPM_Project__c where Name in:projectNameSet];
        
-            PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
             Test.setCurrentPage(pageRef);
+            ApexPages.currentPage().getParameters().put(ID_PARAMETER,projectList[0].Id);
+            
+            
+            
             IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
             irp.isEditMode = true;
             irp.isEditable = true;
@@ -297,15 +215,11 @@ public class IPM_RolloutPlansTableController_Test{
             irp.doShowPLName = true;
             irp.doShowFLName = true;
             
-            
-            editMode=''; 
              
             system.currentPageReference().getParameters().put(CANCEL_REDIRECT, 'cancelRedirect');
             
-            cancelRedirect = ApexPages.currentPage().getParameters().get(CANCEL_REDIRECT);
             irp.checkRollouts();
             system.currentPageReference().getParameters().put(IPM_ConstantUtils.EDITMODE,IPM_ConstantUtils.EDITMODE_TRUE);
-            editMode = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.EDITMODE);
             irp.editRollout();
             irp.cancelRollout();
             system.currentPageReference().getParameters().put(ID_PARAMETER , projectList[0].Id);
@@ -334,8 +248,10 @@ static testMethod void RegionalOrignalTest()
            List<IPM_Project__c> regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(1,regionalUser); //create a regional project
            insert regionalProjectList;
               
-           PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+regionalProjectList[0].Id);
-           Test.setCurrentPageReference(pageRef); 
+           Test.setCurrentPage(pageRef);
+           ApexPages.currentPage().getParameters().put(ID_PARAMETER,regionalProjectList[0].Id);
+           
+           
            IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
            irp.isEditMode = true;
            irp.isEditable = true;
@@ -347,7 +263,7 @@ static testMethod void RegionalOrignalTest()
            irp.saveRollout();
            irp.deleteMCORollout();
            List<IPM_Project_Rollout__c>proRoll=[select Id,IPM_Project__c from IPM_Project_Rollout__c where Id=:irp.selectedMCORollout];
-           System.assertEquals(proRoll.size(),0,'rollout deleted');
+           System.assertEquals(proRoll.size(),0,'rollout not deleted');
          
            Test.stopTest();
          }
@@ -364,9 +280,11 @@ static testMethod void RegionalOrignalTest()
             Test.startTest();
             
             projectList = [Select Id, Name from IPM_Project__c where Name in:projectNameSet];
-       
-            PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
+           
             Test.setCurrentPage(pageRef);
+            ApexPages.currentPage().getParameters().put(ID_PARAMETER,projectList[0].Id);
+           
+            
             IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
             
             irp.editRollout();
@@ -376,9 +294,9 @@ static testMethod void RegionalOrignalTest()
             irp.saveRollout();
             irp.deleteMCORollout();
             List<IPM_Project_Rollout__c>proRoll=[select Id,IPM_Project__c from IPM_Project_Rollout__c where Id=:irp.selectedMCORollout];
-           System.assertEquals(proRoll.size(),0,'rollout deleted');
+            System.assertEquals(proRoll.size(),0,'rollout not deleted');
            
-           Test.stopTest();
+            Test.stopTest();
        
         }
      

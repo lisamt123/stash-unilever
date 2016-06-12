@@ -30,12 +30,12 @@ This componet used for regional rollout project
                         <a class="ipmButton localRollout primary pull-right" data-toggle="modal" data-target="#ipmLocalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
                      <!-- This render condition will check for edit mode(true/false) and project type is local project -->
-                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
+                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                     
                      
-                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                 </div>
@@ -125,7 +125,7 @@ This componet used for regional rollout project
                                             <div class="incHeight">
                                                 
                                                 <apex:outputField value="{!localProject.Rollout_Plan_Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].Rollout_Plan_Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
+                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].Rollout_Plan_Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
@@ -173,6 +173,13 @@ This componet used for regional rollout project
                                                            </div>
                                         </td>
                                         <td class="text-right" width="26%">
+                                            <div class="mr15 inlineBlk">
+                                                <div class="SecButtonSet">
+                                                    <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus"> 
+                                                        <apex:param name="p1" assignTo="{!selectedMCORollout}" value="{!localRolloutId}"/> 
+                                                    </apex:commandLink>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>                                
                                 </table>
@@ -191,6 +198,7 @@ This componet used for regional rollout project
                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap}" var="localRolloutId">
                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[localRolloutId]}" var="localRolloutDuplicateId">
                     <apex:variable var="localrollout" value="{!lstcompleteRollout[localRolloutDuplicateId]}"/>
+                    <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
                     <div class="projectContainer">
                         <!-- Local Rollout Header -->
                         <div class="pHead">
@@ -222,8 +230,9 @@ This componet used for regional rollout project
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
+												<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
+                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}"  rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
                                         </th>
                                        
@@ -244,7 +253,7 @@ This componet used for regional rollout project
                                         <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                                                                    
                                             <apex:outputPanel id="countryLeaderPanel" rendered="{!isEditMode}">
-                                                <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Country_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Country_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                     <span class="" >{!$Label.IPM_Select_Country_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
@@ -261,7 +270,7 @@ This componet used for regional rollout project
                                         <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                             
                                             <apex:outputPanel id="financeLeaderPanel" rendered="{!isEditMode}">
-                                                <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                     <span class="" >{!$Label.IPM_Select_Finance_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
@@ -327,11 +336,11 @@ This componet used for regional rollout project
                         <a class="ipmButton localRollout primary pull-right" data-toggle="modal" data-target="#ipmLocalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
                      
-                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
+                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                                                            
-                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="Cancel" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="Cancel" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                 </div>
@@ -352,10 +361,7 @@ This componet used for regional rollout project
                         <div class="row">    
                             <div class="col-sm-12"> 
                                 <span class="skipDesc">
-                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>
-                                    <apex:outputPanel layout="block" styleClass="localModalDesc">
-                                        {!$Label.IPM_PhaseChangeBKProcessSecondWarning_Local}
-                                    </apex:outputPanel>
+                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>                                    
                                 </span> 
                             </div>            
                             <div class="skipButtoncontainer txtAlignright pull-right">
@@ -367,7 +373,7 @@ This componet used for regional rollout project
                                 <apex:actionStatus startText="" id="Loading1" startStyleClass="proInit"/>
                                 <div class="pull-left noPadright">                                  
                                     
-                                    <apex:commandLink value="{!$Label.IPM_SAVE}"  onComplete="reRenderPanels();" reRender="createNewProject" styleClass="ipmButton primary" html-data-dismiss="modal"  action="{!saveRollout}" status="Loading1" >
+                                    <apex:commandLink value="{!$Label.IPM_SAVE}"  onComplete="reRenderPanels();" reRender="createNewProject" styleClass="ipmButton primary" html-data-dismiss="modal"  action="{!saveRollout}" status="Loading1" onclick="skipValidation();">
                                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}" />
                                     </apex:commandLink> 
                                 </div> 
@@ -395,38 +401,17 @@ This componet used for regional rollout project
                             </div>
                             <div class="buttonMarginRight noPadright pull-left" >
                                 <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();skipValidation();" oncomplete="hideTldWarningDialog();" reRender="fakeId">
                     </apex:commandLink>
-                        
-                            </div>
+                     
+                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}" rerender=""/>
+                               </div>
                         </div>
                     </div>        
                 </div>
             </div>
         </div>
     </div>
-<script>
-    function TLDDateCheck(param){
 
-        selectedDateInputBox = param;
-        var newTLDValue = param.defaultValue;
-        tldOrignalValue = param.value;
-        if(newTLDValue != tldOrignalValue){
-            jq('#tldWarningDialog').modal('show'); 
-            return false;
-        }
-        return true;
-    }
-    function revertTLDValue(){
-       // jq('.dateInputBox').val(tldOrignalValue);
-       selectedDateInputBox.value = selectedDateInputBox.defaultValue;
-    }
-    function hideTldWarningDialog(){
-        jq('#tldWarningDialog').modal('hide'); 
-    }
-    var selectedDateInputBox = "";
-    
-</script>   
-      
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_LocalRolloutPlans.js')}" type="text/javascript"></script>    
 </apex:component>

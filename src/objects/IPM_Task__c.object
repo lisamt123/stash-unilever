@@ -59,6 +59,7 @@
     <fields>
         <fullName>ExternalField__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>External field for the task</description>
         <externalId>true</externalId>
         <label>ExternalField</label>
         <length>255</length>
@@ -71,6 +72,7 @@
     <fields>
         <fullName>IPM_Active__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check whether the task is active</description>
         <externalId>false</externalId>
         <label>Active</label>
         <trackHistory>false</trackHistory>
@@ -80,6 +82,7 @@
     <fields>
         <fullName>IPM_Assignee__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>User to whom the task is assigned</description>
         <externalId>false</externalId>
         <label>Assignee</label>
         <referenceTo>User</referenceTo>
@@ -92,6 +95,7 @@
     <fields>
         <fullName>IPM_AutoCompletedBySystem__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Value is checked when the task is completed by the system</description>
         <externalId>false</externalId>
         <label>AutoCompleted By System</label>
         <trackHistory>false</trackHistory>
@@ -100,6 +104,7 @@
     </fields>
     <fields>
         <fullName>IPM_Completed_Date__c</fullName>
+        <description>The date of task completion</description>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -110,6 +115,7 @@
     <fields>
         <fullName>IPM_Completed__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Value is checked when the task is completed</description>
         <externalId>false</externalId>
         <label>Completed</label>
         <trackHistory>true</trackHistory>
@@ -118,6 +124,7 @@
     </fields>
     <fields>
         <fullName>IPM_Due_Date1__c</fullName>
+        <description>The date by which the task should be completed</description>
         <externalId>false</externalId>
         <label>Due Date1</label>
         <required>false</required>
@@ -127,6 +134,7 @@
     </fields>
     <fields>
         <fullName>IPM_Due_Date__c</fullName>
+        <description>Due date of the milestone</description>
         <externalId>false</externalId>
         <label>Milestone Due Date</label>
         <required>false</required>
@@ -181,6 +189,7 @@
     <fields>
         <fullName>IPM_Is_Master__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check whether it is a master task</description>
         <externalId>false</externalId>
         <label>is Master</label>
         <trackHistory>false</trackHistory>
@@ -189,6 +198,7 @@
     </fields>
     <fields>
         <fullName>IPM_Master_Section_Name__c</fullName>
+        <description>Field for the master section name</description>
         <externalId>false</externalId>
         <formula>IPM_Section__r.IPM_Section_Name__c</formula>
         <label>Master Section Name</label>
@@ -200,6 +210,7 @@
     </fields>
     <fields>
         <fullName>IPM_Master_Section_Sequence__c</fullName>
+        <description>Vaue for storing the section number of the master data</description>
         <externalId>false</externalId>
         <formula>IPM_Section__r.IPM_Section_Sequence__c</formula>
         <label>Master Section Sequence</label>
@@ -212,6 +223,7 @@
     <fields>
         <fullName>IPM_Master_Task__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Field for the master task</description>
         <externalId>false</externalId>
         <label>Master Task</label>
         <referenceTo>IPM_Task__c</referenceTo>
@@ -223,7 +235,20 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_Phase_Task_Added__c</fullName>
+        <description>The phase at which future task was added</description>
+        <externalId>false</externalId>
+        <label>IPM Phase Task Added</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Phase__c</fullName>
+        <description>Field for the phase of the task</description>
         <externalId>false</externalId>
         <label>Phase</label>
         <picklist>
@@ -265,9 +290,11 @@
     <fields>
         <fullName>IPM_Project_Document_Section__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The project document section for which the task is created</description>
         <externalId>false</externalId>
         <label>IPM Project Document Section</label>
         <referenceTo>IPM_Project_Document_Section__c</referenceTo>
+        <relationshipLabel>IPM Tasks</relationshipLabel>
         <relationshipName>Tasks</relationshipName>
         <required>false</required>
         <trackHistory>true</trackHistory>
@@ -277,9 +304,11 @@
     <fields>
         <fullName>IPM_Project_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The template for the project for which task is created</description>
         <externalId>false</externalId>
         <label>IPM Project Template</label>
         <referenceTo>IPM_Project_Template__c</referenceTo>
+        <relationshipLabel>IPM Tasks</relationshipLabel>
         <relationshipName>Tasks</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -288,6 +317,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project__c</fullName>
+        <description>The project for which the task is created</description>
         <externalId>false</externalId>
         <label>IPM Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -301,7 +331,20 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>IPM_SectionExternalIDFormula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Section__r.External_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SectionExternalIDFormula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Section_Number__c</fullName>
+        <description>The field for the section associated with the task</description>
         <externalId>false</externalId>
         <label>Section Number</label>
         <length>10</length>
@@ -314,9 +357,11 @@
     <fields>
         <fullName>IPM_Section__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The section of the document for which the task is created</description>
         <externalId>false</externalId>
         <label>IPM Section</label>
         <referenceTo>IPM_Section__c</referenceTo>
+        <relationshipLabel>IPM Tasks</relationshipLabel>
         <relationshipName>Tasks</relationshipName>
         <required>false</required>
         <trackHistory>true</trackHistory>
@@ -324,7 +369,31 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_TaskSpan__c</fullName>
+        <externalId>false</externalId>
+        <label>Task Span</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Task_Complexity__c</fullName>
+        <description>The complexity of the task</description>
         <externalId>false</externalId>
         <label>Task Complexity</label>
         <picklist>
@@ -344,11 +413,23 @@
     </fields>
     <fields>
         <fullName>IPM_Task_Name__c</fullName>
+        <description>The name of the task created</description>
         <externalId>false</externalId>
         <label>Task Name</label>
         <length>225</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Task_Section_External_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Task Section ExternalID</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -367,6 +448,7 @@
     </fields>
     <fields>
         <fullName>IPM_Task_Type__c</fullName>
+        <description>The type of the task created</description>
         <externalId>false</externalId>
         <label>Task Type</label>
         <picklist>
@@ -386,6 +468,7 @@
     </fields>
     <fields>
         <fullName>IPM_Type_of_Gate__c</fullName>
+        <description>The gate associated with the task</description>
         <externalId>false</externalId>
         <label>Type of Gate</label>
         <picklist>
@@ -416,7 +499,36 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Type_of_Task__c</fullName>
+        <description>Type of the task whether it is system generated ,ad hoc or future ad hoc</description>
+        <externalId>false</externalId>
+        <label>IPM Type of Task</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Future Adhoc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adhoc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Future Standard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Version_Number__c</fullName>
+        <description>The version number for the section</description>
         <externalId>false</externalId>
         <label>Version Number</label>
         <length>20</length>
@@ -429,6 +541,7 @@
     <fields>
         <fullName>IsSystemGenerated__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if it is system generated task</description>
         <externalId>false</externalId>
         <label>IsSystemGenerated</label>
         <trackHistory>false</trackHistory>

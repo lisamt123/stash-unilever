@@ -125,7 +125,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CurrencyIsoCode</field>
+                <field>IPM_GK_Answers_Multiselect__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

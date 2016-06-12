@@ -1098,8 +1098,8 @@ private class IPM_ProjectOverviewCtrl_Test
 	        
 	        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
 	        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
-	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is not blank.');
-	        Test.stopTest();
+	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains('Please provide the name of the MCO Rollout Leader for'), 'Project Leader name not provided');
+		Test.stopTest();
         }
     }  
     

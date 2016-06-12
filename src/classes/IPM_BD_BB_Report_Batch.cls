@@ -269,16 +269,26 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             for(IPM_Project_Rollout__c pr:projRolloutList){
                    
                   if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c)){
-                    if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id)){
+                  	// create map for the Rollouts of the Global Original Project
+                    if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){
                         projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
-                    }else if(pr.IPM_Project__r.id != null && projRolloutMap.containskey(pr.IPM_Project__r.id)){                            
+                    }else if(pr.IPM_Project__r.id != null && projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){                            
                         List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.IPM_Project__r.id);
                         rolloutList.add(pr);
                         projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);                                          
                     }
+                    // create map for the Rollouts of the Regional Original Project
                     else if(pr.IPM_Project__r.id == null && pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
                        projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
                     }else if(pr.IPM_Project__r.id == null && pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
+                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
+                        rolloutList.add(pr);
+                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
+                    }
+                    // create map for the Rollouts of the Regional Rollout Project
+                    else if(pr.IPM_Project__r.id != null && pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
+                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
+                    }else if(pr.IPM_Project__r.id != null && pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
                         List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
                         rolloutList.add(pr);
                         projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
@@ -290,7 +300,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     }
                     else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){ 
                 
-                      ID regionalRolloutID=pr.Regional_Rollout__r.id != null?pr.Regional_Rollout__r.id:pr.Regional_Project__r.Id;
+                      ID regionalRolloutID=pr.Regional_Project__r.id != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.Id;
                       regionalRolloutset.add(regionalRolloutID); 
                       localRolloutIDSet.add(pr.Id);                        
                     }
@@ -322,6 +332,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             WHERE isActive__c=true AND (IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset)  Limit 50000]);
                                                 
             for(IPM_Financial__c fir:projRolloutFinList){
+              
                 if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});  
                 }else{
@@ -340,6 +351,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                
                 finIdSet.add(fir.id);
             }
+            
         }   
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR,null,null,null,null); 
@@ -400,13 +412,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 if(ic.Country_Name__c != null){ 
                         if(ic.IPM_Local_Project__r.Id != null){
                             if(ipmCountryMap.containsKey(ic.IPM_Local_Project__r.Id)){
-                            string countries = ipmCountryMap.get(ic.IPM_Local_Project__r.Id) + ', ' + ic.Country_Name__c;
-                            ipmCountryMap.put(ic.IPM_Local_Project__r.Id, countries);
+                                string countries = ipmCountryMap.get(ic.IPM_Local_Project__r.Id) + ', ' + ic.Country_Name__c;
+                                ipmCountryMap.put(ic.IPM_Local_Project__r.Id, countries);
+                            }
+                            else{
+                                ipmCountryMap.put(ic.IPM_Local_Project__r.Id, ic.Country_Name__c);                        
+                            }
                         }
-                        else{
-                            ipmCountryMap.put(ic.IPM_Local_Project__r.Id, ic.Country_Name__c);                        
-                        }
-                    }
                     // Process countries for rollouts
                     if(ic.IPM_Local_Project__r.Id == null && ic.Local_Rollout__r.id != null){
                         if(ipmCountryMap.containsKey(ic.Local_Rollout__r.id)){
@@ -503,7 +515,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     a.IPM_Target_Launch_Year_BB__c = integer.valueOf(p.IPM_Target_Launch_Year__c);
                 }
                 //if(String.isNotBlank(string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
-            if(String.isNotBlank(string.valueof(p.IPM_Project_Rollout__r.Target_Launch_Date__c))){
+                if(String.isNotBlank(string.valueof(p.IPM_Project_Rollout__r.Target_Launch_Date__c))){
                     a.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(p.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
                     a.IPM_Target_Launch_Year_BD__c = p.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
                 }                  
@@ -598,13 +610,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
                     
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-                  		regionalrolloutid = pr.Id;                                     
-              		}else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
-              			
-                 		 regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
-                 		 Boolean bdGlobal=pr.IPM_Project__c != null?(pr.Regional_Project__c != null?false:true):false; 
-                 		 analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal); 
-                 	} 
+                      regionalrolloutid = pr.Id;                                     
+                  }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
+                      regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
+                      Boolean bdGlobal=pr.IPM_Project__c != null?(pr.Regional_Project__c != null?false:true):false; 
+                      String localFinExternalID=pr.name;
+                      analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal,localFinExternalID); 
+                   } 
               
                     string finExtId = '';
                     if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
@@ -763,18 +775,19 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/     
-    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid, Decimal companyCardTurnOver, Boolean bdGlobal){
-    	string CPP;
-  	  	if(regionalrolloutid != null && rolloutFinancialmap.containsKey(regionalrolloutid)){
-	  		for(IPM_Financial__c tempFin : rolloutFinancialmap.get(regionalrolloutid)){
-	  			if(bdGlobal)
-	  			{
-	  				CPP =calculateCPP(tempFin.Year_1_iTO_Global__c, companyCardTurnOver);
-	  			}
-	  			else
-	  			{
-	  				CPP =calculateCPP(tempFin.Year_1_iTO_Regional__c, companyCardTurnOver);
-	  			}
+    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid, Decimal companyCardTurnOver, Boolean bdGlobal, String localFinExternalID){
+      string CPP=EMPTY_STRING;
+        if(regionalrolloutid != null && rolloutFinancialmap.containsKey(regionalrolloutid)){
+        for(IPM_Financial__c tempFin : rolloutFinancialmap.get(regionalrolloutid)){
+          if(bdGlobal && tempFin.Financial_External_ID__c==localFinExternalID)
+          { 
+            CPP =calculateCPP(tempFin.Year_1_iTO_Global__c, companyCardTurnOver);
+          }
+          else if(!bdGlobal && tempFin.Financial_External_ID__c==localFinExternalID)
+          {
+            CPP =calculateCPP(tempFin.Year_1_iTO_Regional__c, companyCardTurnOver); 
+          
+          }                 
 	  			
 	  			 
 	  			//analyticObj.IPM_Company_Priority__c = tempFin.IPM_CPP_Regional__c;
@@ -807,7 +820,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	    		return BRONZE;
 	    		}
     		}	    	
-	    	else{
+	    	else if(companyCardTurnOver/1000 <200){
 	    		if((year1BDNumber/1000) >= (companyCardTurnOver/1000)*0.001)
 	    		{
 	    			return SILVER;
@@ -815,6 +828,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	    		else if((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.001){
 	    			return BRONZE;
 	    		}
+	    	}
+	    	else{
+	    		return N_A;
 	    	}
     	}
     	return EMPTY_STRING;
@@ -833,29 +849,29 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             for(IPM_Milestone__c mile : projMilestoneMap.get(p.id)){ 
                 if (String.isNotBlank(mile.IPM_Type_of_gate__c)){                       
 
-                        if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.Charter)){
-                            a.IPM_Expected_Charter_Approval_Date__c = mile.IPM_Due_Date__c;
-                            a.IPM_Charter_Approved_Date__c = mile.IPM_Completed_on__c;  
-                            a.IPM_Charter_Proposed_Date__c = mile.IPM_Proposed_Date__c;
+                    if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.Charter)){
+                        a.IPM_Expected_Charter_Approval_Date__c = mile.IPM_Due_Date__c;
+                        a.IPM_Charter_Approved_Date__c = mile.IPM_Completed_on__c;  
+                        a.IPM_Charter_Proposed_Date__c = mile.IPM_Proposed_Date__c;
 
-                        }
-                        else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.Contract)){
-                            a.IPM_Expected_Contract_Approval_Date__c = mile.IPM_Due_Date__c;
-                            a.IPM_Contract_Approved_Date__c = mile.IPM_Completed_on__c;
-                            a.IPM_Contract_Proposed_Date__c = mile.IPM_Proposed_Date__c;
-                        }
-                        else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.MarketReady)){
-                            a.IPM_Expected_Market_Ready_Approval_Date__c = mile.IPM_Due_Date__c;
-                            a.IPM_Market_Ready_Approved_Date__c = mile.IPM_Completed_on__c;
-                            a.IPM_Market_Ready_Proposed_Date__c = mile.IPM_Proposed_Date__c;
-                        }
-                        else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.MarketDeployment)){
-                            a.IPM_Expected_Market_Deployment_App_Date__c = mile.IPM_Due_Date__c;
-                            a.IPM_Market_Deployment_Approved_Date__c = mile.IPM_Completed_on__c;
-                            a.IPM_Market_Deployment_Proposed_Date__c = mile.IPM_Proposed_Date__c;
-                        }
+                    }
+                    else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.Contract)){
+                        a.IPM_Expected_Contract_Approval_Date__c = mile.IPM_Due_Date__c;
+                        a.IPM_Contract_Approved_Date__c = mile.IPM_Completed_on__c;
+                        a.IPM_Contract_Proposed_Date__c = mile.IPM_Proposed_Date__c;
+                    }
+                    else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.MarketReady)){
+                        a.IPM_Expected_Market_Ready_Approval_Date__c = mile.IPM_Due_Date__c;
+                        a.IPM_Market_Ready_Approved_Date__c = mile.IPM_Completed_on__c;
+                        a.IPM_Market_Ready_Proposed_Date__c = mile.IPM_Proposed_Date__c;
+                    }
+                    else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.MarketDeployment)){
+                        a.IPM_Expected_Market_Deployment_App_Date__c = mile.IPM_Due_Date__c;
+                        a.IPM_Market_Deployment_Approved_Date__c = mile.IPM_Completed_on__c;
+                        a.IPM_Market_Deployment_Proposed_Date__c = mile.IPM_Proposed_Date__c;
+                    }
 
-                    }                   
+                }                   
 
                 if(mile.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
                     if(mile.IPM_Actual_Target_Launch_Year__c != null){
@@ -865,15 +881,15 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     a.IPM_Actual_Launch_Date__c = mile.IPM_Completed_on__c; 
                 }
 
-                    if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FIRST_RELEASE)){
-                        a.IPM_BET_First_Release_Due_Date__c = mile.IPM_Due_Date__c;
-                        a.IPM_BET_First_Released_On_Date__c = mile.IPM_Completed_on__c;     
-                    }
+                if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FIRST_RELEASE)){
+                    a.IPM_BET_First_Release_Due_Date__c = mile.IPM_Due_Date__c;
+                    a.IPM_BET_First_Released_On_Date__c = mile.IPM_Completed_on__c;     
+                }
 
-                    if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FINAL_RELEASE)){
-                        a.IPM_BET_Final_Release_Due_date__c = mile.IPM_Due_Date__c;
-                        a.IPM_BET_Final_Released_On_date__c = mile.IPM_Completed_on__c;  
-                    }
+                if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FINAL_RELEASE)){
+                    a.IPM_BET_Final_Release_Due_date__c = mile.IPM_Due_Date__c;
+                    a.IPM_BET_Final_Released_On_date__c = mile.IPM_Completed_on__c;  
+                }
 
             }
         } //end of Milestone loop           

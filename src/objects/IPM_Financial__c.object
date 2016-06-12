@@ -51,7 +51,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
@@ -1052,7 +1052,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
 
  IF(OR(Year_1_iTO_Local__c/1000&gt;=10, Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))
 , &quot;Gold&quot;,  
-IF(OR(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
+IF(AND(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
   ,  IF((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &lt;200, 
  IF(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Silver&quot;, &quot;Bronze&quot;) , &quot;NA&quot;) )</formula>
         <inlineHelpText>Capture Local Projects CPP value based on the BB numbers</inlineHelpText>
@@ -1071,7 +1071,7 @@ IF(OR(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Tot
 
  IF(OR( Year_1_iTO_Regional__c /1000&gt;=10, Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))
 , &quot;Gold&quot;,  
-IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
+IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
   ,  IF((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &lt;200, 
  IF(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Silver&quot;, &quot;Bronze&quot;) , &quot;NA&quot;) )</formula>
         <label>IPM CPP Regional</label>
@@ -1544,6 +1544,17 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>IsFinancialInvalid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>use this field for the hard validation from the gate document.</description>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalid</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Is_BC_Confirmed_Capability__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To capture the Business Case Confirmation at Capability Phase</description>
@@ -1637,7 +1648,7 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
     </fields>
     <fields>
         <fullName>Local_Project__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>Local Project associated with the financial.</description>
         <externalId>false</externalId>
         <label>Local Project</label>
@@ -1851,6 +1862,35 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OpCo_Local__c</fullName>
+        <description>This field holds the Local Project&apos;s Company Card Total_OpCo_Turnover__c</description>
+        <externalId>false</externalId>
+        <formula>Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OpCo Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OpCo_Regional__c</fullName>
+        <externalId>false</externalId>
+        <formula>Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OpCo Regional</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>OpCo__c</fullName>
@@ -2216,6 +2256,80 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Status_Global__c</fullName>
+        <externalId>false</externalId>
+        <label>Status(Global)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status_Local__c</fullName>
+        <description>Status from local financial</description>
+        <externalId>false</externalId>
+        <label>Status(Local)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status_Regional__c</fullName>
+        <description>Status from regional financial</description>
+        <externalId>false</externalId>
+        <label>Status(Regional)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Status__c</fullName>
         <description>Status of financial.</description>
         <externalId>false</externalId>
@@ -2562,6 +2676,21 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <externalId>false</externalId>
         <label>Year_1_iTO_Global</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Incremental</value>
+        </summaryFilterItems>
         <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -2609,7 +2738,7 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>innovation</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>

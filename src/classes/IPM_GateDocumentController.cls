@@ -124,6 +124,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     
     public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
     public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
+    public string regionalCPP {get;set;}
+    public string localCPP {get;set;}
+    public string brandPosition {get; set;}
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -760,9 +763,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
 	try{
 		
+			brandPosition=IPM_ConstantUtils.BLANK;
 			String nam=project.IPM_Project_Name__c; 
-            globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
-            country=new IPM_Country__c();
+	        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+	        country=new IPM_Country__c();
+            for(String bPostion:project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA)){
+                if(String.isBlank(brandPosition)){
+                    brandPosition=bPostion;
+                }
+                else{
+                    brandPosition=brandPosition+IPM_ConstantUtils.COMMA+IPM_ConstantUtils.IPM_SPACE+bPostion;
+                }
+            }	
 			// For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
 			if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 			{
@@ -773,7 +785,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 					            IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					globalbusinessImpactStr = fin.Business_Impact_Global__c;
+ 			            globalbusinessImpactStr = gateDocument==IPM_ConstantUtils.CHARTER_GATE? fin.Business_Impact_Global__c:fin.Business_Impact_Regional__c;
 				}
 				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
 				{		
@@ -791,16 +803,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 								Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						 globalbusinessImpactStr = finRegional.Business_Impact_Global__c;
+						 globalbusinessImpactStr = finRegional.Business_Impact_Regional__c;
 					}
 				}
 				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 				{
 					
-					fin = [SELECT ipm_cpp_local__c,Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
+					fin = [SELECT ipm_cpp_local__c,ipm_cpp_regional__c, Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
 								   Year_3_iTO_MD__c,Business_Impact_Local__c 
 							FROM IPM_Financial__c 
 							WHERE Financial_External_ID__c =: nam limit 1];
+					localCPP = fin.ipm_cpp_local__c;
+					regionalCPP = fin.ipm_cpp_regional__c;
 							
 					string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;					
 					if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
@@ -813,12 +827,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 					else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
 					{
 						IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
-						finLocal=[SELECT Business_Impact_Global__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+						finLocal=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
 								 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
 								 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 						 
 						 
-						 globalbusinessImpactStr = finLocal.Business_Impact_Global__c;
+						 globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
 					}
 					
 				}
@@ -1197,6 +1211,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
            for(String tempParSeq : parentSequenceList.keyset()){
                 projSubSectionList.add(parentSequenceList.get(tempParSeq));
            }
+           showAttchSection();// used to show Attachments in gd page. DONOT REMOVE
            // End Fix - DEF3031
         }
         catch(Exception ex){
@@ -1223,7 +1238,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     FROM IPM_Project_Document_Section__c 
                                     WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:parentSectionId AND IPM_Default_Section__c=true  
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+                                    showAttchSection();// used to show Attachments in gd page. DONOT REMOVE
             }
+            
             catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                    'getDynamicSection',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);

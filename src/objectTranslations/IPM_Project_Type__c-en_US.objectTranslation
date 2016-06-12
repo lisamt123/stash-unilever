@@ -97,6 +97,10 @@
         <name>IPM_FinancialsUpdatePostfix__c</name>
     </fields>
     <fields>
+        <label><!-- Future Task Scope --></label>
+        <name>IPM_Future_Task_Scope__c</name>
+    </fields>
+    <fields>
         <label><!-- GateKeeping Model --></label>
         <name>IPM_GateKeeping_Model__c</name>
     </fields>

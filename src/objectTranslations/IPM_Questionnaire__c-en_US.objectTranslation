@@ -37,6 +37,26 @@
         <name>IPM_Contract_Score__c</name>
     </fields>
     <fields>
+        <label><!-- IPM_GK_Answers_Multiselect --></label>
+        <name>IPM_GK_Answers_Multiselect__c</name>
+        <picklistValues>
+            <masterLabel>NA~Not Applicable</masterLabel>
+            <translation><!-- NA~Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No~No</masterLabel>
+            <translation><!-- No~No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partly~Partly</masterLabel>
+            <translation><!-- Partly~Partly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes~Yes</masterLabel>
+            <translation><!-- Yes~Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- IPM GK Answers --></label>
         <name>IPM_GK_Answers__c</name>
         <picklistValues>

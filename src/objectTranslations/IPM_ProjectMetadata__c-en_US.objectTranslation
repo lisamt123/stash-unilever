@@ -21,6 +21,10 @@
         <name>IPM_ApplicableGateKeepingModels__c</name>
     </fields>
     <fields>
+        <label><!-- Applicable Gates --></label>
+        <name>IPM_Applicable_Gate__c</name>
+    </fields>
+    <fields>
         <label><!-- Applicable Phases --></label>
         <name>IPM_Applicable_Phases__c</name>
     </fields>

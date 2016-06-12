@@ -60,6 +60,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>To load data from external source</description>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>100</length>
@@ -83,6 +84,7 @@
     </fields>
     <fields>
         <fullName>IPM_Approved_Comments__c</fullName>
+        <description>To capture gate document approved comments</description>
         <externalId>false</externalId>
         <label>IPM Approved Comments</label>
         <length>32768</length>
@@ -94,6 +96,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comments__c</fullName>
+        <description>To capture document comments</description>
         <externalId>false</externalId>
         <label>IPM Comments</label>
         <length>32768</length>
@@ -105,6 +108,7 @@
     </fields>
     <fields>
         <fullName>IPM_Contract_GateKeeper_Model__c</fullName>
+        <description>To capture contract gate document gatekeeping model</description>
         <externalId>false</externalId>
         <label>IPM Contract GateKeeper Model</label>
         <length>255</length>
@@ -117,6 +121,7 @@
     </fields>
     <fields>
         <fullName>IPM_Document_Complexity__c</fullName>
+        <description>To describe the gate document complexity</description>
         <externalId>false</externalId>
         <label>Document Complexity</label>
         <picklist>
@@ -193,6 +198,7 @@
     <fields>
         <fullName>IPM_Document_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Relationship to document template</description>
         <externalId>false</externalId>
         <label>IPM Document Template</label>
         <referenceTo>IPM_Document_Template__c</referenceTo>
@@ -206,6 +212,7 @@
     </fields>
     <fields>
         <fullName>IPM_GateDocuments__c</fullName>
+        <description>To capture gate document name</description>
         <externalId>false</externalId>
         <label>IPM_GateDocuments</label>
         <picklist>
@@ -234,6 +241,7 @@
     </fields>
     <fields>
         <fullName>IPM_Postponed_Comments__c</fullName>
+        <description>To capture postponed comments</description>
         <externalId>false</externalId>
         <label>IPM Postponed Comments</label>
         <length>32768</length>
@@ -245,6 +253,7 @@
     </fields>
     <fields>
         <fullName>IPM_Postponement_Date__c</fullName>
+        <description>To store gate document postponed date</description>
         <externalId>false</externalId>
         <label>IPM Postponement Date</label>
         <required>false</required>
@@ -268,6 +277,7 @@
     <fields>
         <fullName>IPM_Project_Document_External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>To identify the document when data load from external system</description>
         <externalId>true</externalId>
         <label>Project Document External Id</label>
         <length>255</length>
@@ -293,6 +303,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Span__c</fullName>
+        <description>To capture project span</description>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Project__r.IPMProject_Span__c)</formula>
         <label>IPM Project Span</label>
@@ -315,6 +326,7 @@
     <fields>
         <fullName>IPM_Project_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Relationship to Project Template</description>
         <externalId>false</externalId>
         <label>IPM Project Template</label>
         <referenceTo>IPM_Project_Template__c</referenceTo>
@@ -344,6 +356,7 @@
     </fields>
     <fields>
         <fullName>IPM_Proposed_Date__c</fullName>
+        <description>To capture gate document proposed date</description>
         <externalId>false</externalId>
         <label>IPM Proposed Date</label>
         <required>false</required>
@@ -354,6 +367,7 @@
     </fields>
     <fields>
         <fullName>IPM_Status_Icon__c</fullName>
+        <description>To show document status icon</description>
         <externalId>false</externalId>
         <formula>CASE(  IPM_Document_Status__c , &quot;Not Started&quot;,  IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,30,30), 
 &quot;In Progress&quot;, IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,30,30),
@@ -372,6 +386,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>IPM_Stopped_Comments__c</fullName>
+        <description>To store comments when project stopped</description>
         <externalId>false</externalId>
         <label>IPM Stopped Comments</label>
         <length>32768</length>
@@ -383,6 +398,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>IPM_Stopped_Date__c</fullName>
+        <description>To store project document stopped date</description>
         <externalId>false</externalId>
         <label>IPM Stopped Date</label>
         <required>false</required>

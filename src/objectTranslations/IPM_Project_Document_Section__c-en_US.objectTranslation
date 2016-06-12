@@ -330,6 +330,10 @@
         <name>IPM_PDP_Document_Summary__c</name>
     </fields>
     <fields>
+        <label><!-- IPM ProjectTemplate --></label>
+        <name>IPM_ProjectTemplate__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Project Document --></label>
         <name>IPM_Project_Document__c</name>
         <relationshipLabel><!-- IPM Project Document Sections --></relationshipLabel>

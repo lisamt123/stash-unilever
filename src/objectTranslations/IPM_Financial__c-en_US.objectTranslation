@@ -380,6 +380,10 @@
         <name>Incremental_Y1_Turnover_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- IsFinancialInvalid --></label>
+        <name>IsFinancialInvalid__c</name>
+    </fields>
+    <fields>
         <label><!-- Is BC Confirmed Capability --></label>
         <name>Is_BC_Confirmed_Capability__c</name>
     </fields>
@@ -476,6 +480,14 @@
         <name>NPV_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- OpCo Local --></label>
+        <name>OpCo_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- OpCo Regional --></label>
+        <name>OpCo_Regional__c</name>
+    </fields>
+    <fields>
         <label><!-- OpCo --></label>
         <name>OpCo__c</name>
     </fields>
@@ -568,6 +580,54 @@
     <fields>
         <label><!-- Sorting Order --></label>
         <name>Sorting_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status(Global) --></label>
+        <name>Status_Global__c</name>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status(Local) --></label>
+        <name>Status_Local__c</name>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status(Regional) --></label>
+        <name>Status_Regional__c</name>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Status --></label>

@@ -116,7 +116,7 @@
                         </apex:outputPanel> 
                      </apex:outputPanel>
                       <!-- Rendered condition for showing output text -->
-                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c!='OTIF_Status',isEditable,Iseditable),true,false)}"><div class="gkcStatus {!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
+                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c!='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
   
                     </td>       
                   </tr>

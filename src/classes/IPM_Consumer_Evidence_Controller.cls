@@ -25,7 +25,8 @@ public with sharing class IPM_Consumer_Evidence_Controller{
         }
     }
     public IPM_Project_Document_Section__c projDocSec{get;set;} //object of project document section
-    public transient List<IPM_Country__c> countryList{get; set;}//list of the country
+    public transient List<IPM_Country__c> countryList{get; set;}//list of the active country
+    public List<IPM_Country__c> cList{get; set;}//list of the country
     public List<IPM_Project_Document_Section_Content__c> consumerEvidenceList{get; set;} //list of consumer evidences
     public List<String> couyName{get; set;}//to get the country name in list
     public String countryName{get; set;}//string to store the country name from the UI(jQuery)
@@ -36,6 +37,8 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     public Boolean isEditable{get;set;}//for security
     public string gateType{get; set;} //For cureent project gate
     public Integer priorityNumber{get; set;} //For getting deleted concept priority number
+    public map<String,String> mapCountryNameWithCode {get;set;} //To map country code with name
+    public string urlCountry{get; set;} //For getting country from url
     private static string IPM_CONSUMER_EVIDENCE_CONTROLLER_STR=IPM_Consumer_Evidence_Controller.class.getName();
     /************************************************************************************************************************
     *  Description For showing the countries in picklist
@@ -51,18 +54,34 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             countryName=IPM_Constantutils.BLANK;
             couyName=new List<String>();
             countryList=new List<IPM_Country__c>();
+            cList=new List<IPM_Country__c>();
+            String selCountryName=IPM_Constantutils.BLANK;
+            urlCountry = apexpages.currentpage().getparameters().get('country');
             if(!String.isBlank(projDocSecId)){
                 projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c,IPM_Selected_Consumer_Evidence_Countries__c 
                             FROM IPM_Project_Document_Section__c 
                             WHERE Id=:projDocSecId];
-                countryList=[SELECT Id,Country_Name__c,IPM_Project__c 
-                             FROM IPM_Country__c 
-                             WHERE isActive__c=true AND (IPM_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c OR IPM_Regional_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c) 
-                             ORDER BY Country_Name__c asc];
+                cList=[SELECT Id,Country_Name__c,IPM_Project__c,Country_Code__c,isActive__c
+                       FROM IPM_Country__c 
+                       WHERE  IPM_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c OR IPM_Regional_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c
+                       ORDER BY Country_Name__c asc];
+                mapCountryNameWithCode=new map<String,String>();
+                for(IPM_Country__c c:cList){
+                    mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
+                    if(c.isActive__c){
+                        countryList.add(c);
+                    }
+                }             
                 //Getting selected country names for selection in picklist    
                 consumerEvidenceList=new List<IPM_Project_Document_Section_Content__c>();       
                 if(!String.isBlank(projDocSec.IPM_Selected_Consumer_Evidence_Countries__c)){
-                    couyName=projDocSec.IPM_Selected_Consumer_Evidence_Countries__c.split(IPM_ConstantUtils.SEMICOLON);
+                    for(IPM_Country__c c:cList){
+                        for(String cou:projDocSec.IPM_Selected_Consumer_Evidence_Countries__c.split(IPM_ConstantUtils.SEMICOLON)){
+                            if(c.Country_Code__c==cou){
+                                couyName.add(cou);
+                            }       
+                        }
+                    }
                     for(Integer i=0;i<couyName.size();i++){
                         if(!String.isBlank(countryName)){
                             countryName=countryName+IPM_ConstantUtils.COMMA+couyName[i];

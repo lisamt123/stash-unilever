@@ -68,6 +68,7 @@
     <fields>
         <fullName>IPM_Business_Partner__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select business partner.</description>
         <externalId>false</externalId>
         <label>Business Partner</label>
         <trackHistory>false</trackHistory>
@@ -76,6 +77,7 @@
     </fields>
     <fields>
         <fullName>IPM_Category__c</fullName>
+        <description>To store the category of the project.</description>
         <externalId>false</externalId>
         <label>Category</label>
         <length>255</length>
@@ -88,6 +90,7 @@
     <fields>
         <fullName>IPM_Central_Team__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select central team.</description>
         <externalId>false</externalId>
         <label>Central Team</label>
         <trackHistory>false</trackHistory>
@@ -97,6 +100,7 @@
     <fields>
         <fullName>IPM_Company_Card__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is to associate the User Profile to Company card.</description>
         <externalId>false</externalId>
         <inlineHelpText>This field is to associate the User Profile to Company card</inlineHelpText>
         <label>Company Card</label>
@@ -111,6 +115,7 @@
     <fields>
         <fullName>IPM_Deputy_Business_Partner__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select deputy business partner.</description>
         <externalId>false</externalId>
         <label>Deputy Business Partner</label>
         <trackHistory>false</trackHistory>
@@ -120,6 +125,7 @@
     <fields>
         <fullName>IPM_Finance_Member__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select the finance member.</description>
         <externalId>false</externalId>
         <label>IPM Finance Member</label>
         <trackHistory>false</trackHistory>
@@ -129,6 +135,7 @@
     <fields>
         <fullName>IPM_GateKeeper__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select the gatekeeper.</description>
         <externalId>false</externalId>
         <label>GateKeeper</label>
         <trackHistory>false</trackHistory>
@@ -170,6 +177,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     <fields>
         <fullName>IPM_Project_Leader__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select the project leader.</description>
         <externalId>false</externalId>
         <label>IPM Project Leader</label>
         <trackHistory>false</trackHistory>
@@ -178,7 +186,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     </fields>
     <fields>
         <fullName>IPM_Region__c</fullName>
-        <description>store user region&apos;s</description>
+        <description>To store user region&apos;s</description>
         <externalId>false</externalId>
         <label>Region</label>
         <length>80</length>
@@ -199,6 +207,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     </fields>
     <fields>
         <fullName>IPM_User_Category__c</fullName>
+        <description>To select the category of the project.</description>
         <externalId>false</externalId>
         <label>Category</label>
         <picklist>
@@ -223,6 +232,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     </fields>
     <fields>
         <fullName>IPM_User_Function__c</fullName>
+        <description>To select the user function associated to the user profile.</description>
         <externalId>false</externalId>
         <label>User Role</label>
         <picklist>
@@ -250,6 +260,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     </fields>
     <fields>
         <fullName>IPM_User_Role__c</fullName>
+        <description>To select the user role associated to the user profile.</description>
         <externalId>false</externalId>
         <label>User Function</label>
         <picklist>
@@ -298,6 +309,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     <fields>
         <fullName>IPM_User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>To store the user associated.</description>
         <externalId>false</externalId>
         <label>User</label>
         <referenceTo>User</referenceTo>
@@ -328,6 +340,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     </fields>
     <fields>
         <fullName>Justification__c</fullName>
+        <description>To give additional information about the user profile.</description>
         <externalId>false</externalId>
         <label>Justification</label>
         <required>false</required>
@@ -338,6 +351,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     <fields>
         <fullName>Unique_User_Company_Card__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Unique key provided to avoid duplicate records.</description>
         <externalId>false</externalId>
         <label>Unique User Company Card</label>
         <length>40</length>
@@ -371,6 +385,31 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <type>Picklist</type>
     </fields>
     <label>IPM User Profile</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>IPM_User__c</columns>
+        <columns>IPM_User_Role__c</columns>
+        <columns>IPM_User_Function__c</columns>
+        <columns>IPM_User_Category__c</columns>
+        <columns>IPM_Company_Card__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_User__c</columns>
+        <columns>IPM_User_Role__c</columns>
+        <columns>Unique_User_Company_Card__c</columns>
+        <columns>IPM_Company_Card__c</columns>
+        <columns>OBJECT_ID</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>UP-{00000}</displayFormat>
         <label>ObjectUser ProfileIPM Name</label>
