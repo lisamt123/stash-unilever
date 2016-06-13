@@ -38,7 +38,7 @@
 
         <apex:define name="top_option_links">
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}">Edit Campaign</apex:outputLink>&nbsp;|&nbsp;
+                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&sowId={!selected_sow.Id}">Edit Campaign</apex:outputLink>&nbsp;|&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
                 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
@@ -49,7 +49,7 @@
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;|&nbsp;
+                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&sowId={!selected_sow.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;|&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
