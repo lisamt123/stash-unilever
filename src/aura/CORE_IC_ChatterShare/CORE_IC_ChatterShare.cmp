@@ -85,7 +85,6 @@
                                 <div class="groupNameList"><span onclick="{!c.clearGroupNames}" class="applyButton">Clear Groups</span></div><br/>
                             </aura:if>                                                
                             <aura:if isTrue="{!v.UserGroupFlag}">
-                               <!-- <span class="errorMessageColor" >*Add altelast 1 Group Name</span>-->
                                <div class="slds-box slds-theme--error">
                                     <p>Add altelast <strong>1 Group</strong></p>
                                 </div>

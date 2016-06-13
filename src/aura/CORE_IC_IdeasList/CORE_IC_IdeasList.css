@@ -5,7 +5,20 @@
     margin-left: 10px;
     padding-left: 6px;
 }
-
+.THIS.topBarStyle{
+       height: 42px;
+    padding-left: 0px;
+    padding-top: 8px;  
+}
+.THIS .topBackBar{ 
+    height: 40px;    
+    padding-left: 10px;   
+    width: 50px;
+}
+.THIS .topBackBarIcon{
+    height:22px;
+    width:22px; 
+}
 .THIS .shareTop{
     top: -38px;
     right: -14px;
@@ -13,11 +26,6 @@
 .THIS .slds-button{
     float: right;
 }
-
-.THIS .sort{
-   right: 0px;
-}
-
 .THIS .slds-dropdown--right {
 	top: 84px;
     position: absolute;
@@ -32,6 +40,7 @@
 }
 .THIS .sort {
     right: 15px;
+    width:150px;
 }
 .THIS .filter{
     right: 16px;

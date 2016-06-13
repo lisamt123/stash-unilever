@@ -1,11 +1,17 @@
-.THIS.mainContent{
-    background-color:white;
-    padding-left: 8px;
-    padding-right: 8px;
+.THIS.mainFrame{
+padding:10px;
+    background: white;
+}
+.THIS .buttonSize{
+    width: 35px;
+    height: 35px;
+}
+.THIS .shareSize{
+   width: 0.85rem;
+   height: 0.85rem;
 }
 
-.THIS .commentdetail{
-     
+.THIS .commentdetail{  
      background:#EEF1F6;
 }
 
@@ -15,7 +21,6 @@
     padding-right: 5px;
     padding-bottom: 20px;
 
-    
 }
 
 .THIS hr{
@@ -31,21 +36,7 @@
     border:1px solid #D1D1D4;
     border-radius:5px;
     max-width: 400px;
-    width: 100%;
-}
-
-.THIS .topBarStyle{
-       height: 42px;
-    padding-left: 0px;
-    padding-top: 8px;
-   
-}
-
-/*applying style for the top back aroow bar of the page*/ 
-.THIS .topBackBar{ 
-    height: 40px;    
-    padding-left: 10px;   
-    width: 50px;
+    width: 75%;
 }
 
 /*applying style for the top back aroow bar Icon of the page*/ 
@@ -62,9 +53,25 @@
 .THIS .tilePadding{
     padding-bottom: 15px;
     padding-top: 15px;
-    color:#4F6A92 ;
+    color:#0070d2 ;
 }
   
 .THIS .tilePaddingTitle{
     padding-bottom: 0px;
+}
+
+.THIS .category > a{
+text-decoration:none;
+}
+.THIS .spacing{
+    margin:10px 0;
+}
+.THIS .shade-new{
+    margin: auto -12px;    
+}
+.THIS .button-vote{
+    margin-top: 10px;
+}
+.THIS .margin{
+    margin-top:5px;
 }

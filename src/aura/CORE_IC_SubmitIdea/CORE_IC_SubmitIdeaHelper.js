@@ -6,7 +6,6 @@
         if (file.size > this.MAX_FILE_SIZE) {
             component.set("v.showspinner",false);
             component.set("v.errorMessageFileUpload",true);
-            //alert('File size exceeds ' + ' 512KB\n' + 'Please Try Re-uploading' );
     	    return;
         }        
 		var self = this;
@@ -47,7 +46,8 @@
             if (state === "SUCCESS") {                    
                 component.set("v.showspinner",false);
                 if(response.getReturnValue()!=false){
-                	component.set("v.displaySucessNotification",true);  
+                	component.set("v.displaySucessNotification",true);
+                    component.set("v.pannelType","ideasListPannel");                    
                 }                    
             } else {
                 component.set("v.showspinner",false);

@@ -29,6 +29,10 @@
 .THIS .file {
     margin-bottom: 5px;
     display: block;
+    background-color: #EEF1F6;
+    border-style: hidden;
+   padding-right: 33px;
+    border-radius: 4px;
 }
 .THIS .paddingTop{
     padding-top:25px;
@@ -51,4 +55,29 @@
     .THIS .fullPadding{
         width:50%;
     }
+    
+ 
+}
+ @media screen and (min-width:768px) {
+      .THIS .file{
+        padding-right: 20.5%;
+    }
+ 
+}
+
+
+ @media screen and (min-width:1024px) {
+      .THIS .file{
+        padding-right: 61.5%;
+    }
+ 
+}
+
+
+
+ .THIS .clearFileIcon{   
+    width: 17px;
+    float: right;
+   margin-right: 2px;
+    margin-top: -24px;
 }

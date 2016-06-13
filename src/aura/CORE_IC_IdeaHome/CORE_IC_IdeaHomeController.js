@@ -4,27 +4,18 @@
         	helper.updatePannelStyle(component, "campaignsListPannel");  
         }
         console.log('-------campaign---2----'+component.get("v.pannelType"));
-        console.log('-------campaignsListPannel----1---'+component.get("v.campaignsListPannel"));
-        console.log('-------ideasListPannel----1---'+component.get("v.ideasListPannel"));
-        console.log('-------myUpdatesPannel----1---'+component.get("v.myUpdatesPannel"));
 	},
     ideasListDisplay: function(component, event, helper) {
         if(component.get("v.pannelType")!="ideasListPannel"){
         	helper.updatePannelStyle(component, "ideasListPannel");  
         }
         console.log('-------idea---2----'+component.get("v.pannelType"));
-        console.log('-------campaignsListPannel----1---'+component.get("v.campaignsListPannel"));
-        console.log('-------ideasListPannel----1---'+component.get("v.ideasListPannel"));
-        console.log('-------myUpdatesPannel----1---'+component.get("v.myUpdatesPannel"));
 	},
     myUpdatesDisplay: function(component, event, helper) {    
         if(component.get("v.pannelType")!="myUpdatesPannel"){
         	helper.updatePannelStyle(component, "myUpdatesPannel");  
         }
         console.log('-------myupdats----2---'+component.get("v.pannelType"));
-        console.log('-------campaignsListPannel----1---'+component.get("v.campaignsListPannel"));
-        console.log('-------ideasListPannel----1---'+component.get("v.ideasListPannel"));
-        console.log('-------myUpdatesPannel----1---'+component.get("v.myUpdatesPannel"));
 	},
    /*navigateToFaq: function(component, event, helper) { 
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");

@@ -8,10 +8,10 @@
     margin: 0rem;
     border-top: 1px solid #cfd7E6;
 }
-.THIS .bottomPadding{
-}
+
 .THIS .topPadding{
     padding-top:10px;
+    padding-bottom:10px;
 }
 .THIS .mediumFont{
     font-size:14px;

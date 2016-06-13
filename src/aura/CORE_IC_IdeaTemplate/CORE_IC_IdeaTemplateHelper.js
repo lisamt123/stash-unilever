@@ -31,6 +31,24 @@
         
         return scroller;
     },
+    loadDetailPageComponent : function(component,componentName,recordDetailInfo,recordTypeInfo,parentRecord,pannelTypeInfo,articleIdInfo) {
+        console.log('-------------------------'+articleIdInfo);
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("IdeasPannel");
+            content.set("v.body", view);
+        }, {
+            componentDef: componentName,
+            attributes: {
+                values: {
+                    recordDetail: recordDetailInfo,
+                    recordType: recordTypeInfo,
+                    pannelType: pannelTypeInfo,
+                    articleId: articleIdInfo,
+                    parentRecordDetail: parentRecord
+                }
+            }
+        }, component);
+    },
     loadNewComponent : function(component,componentName,pannelType) {
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("IdeasPannel");

@@ -10,7 +10,7 @@
 .THIS .backImageStyle {
     height: 10px;
     width: 10px;
-    display:inline;
+   /* display:inline;*/
     float: right;
     margin-top:5px;
 }
@@ -32,7 +32,7 @@
     margin: 1.3rem 0;
 }
 
-/*toggleCss.css*/
+/*toggleCss.css
 
 
 .THIS .toggle {
@@ -41,4 +41,4 @@
 
 .THIS .upFaq{
      display: block;
-}
+}*/

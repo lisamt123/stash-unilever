@@ -6,5 +6,7 @@
     <aura:attribute name="recordType" type="String"/>
     
     <aura:attribute name="Pagename" type="string"/>
-    
+    <aura:attribute name="displayCampaignIdea" type="Boolean"/>
+        
+    <aura:attribute name="ParentPageDetail" type="string"/>
 </aura:event>

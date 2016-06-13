@@ -19,46 +19,78 @@
 	},
     
     loadIdeasListData : function(component, event, helper) {
-        component.set("v.showspinner",true);
-        var action = component.get("c.getIdeaList");
-        action.setParams({
-            "ideaLimit": "ALL"
-        });
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {    
-                if(response.getReturnValue().IdeasOfTheWeek!=null){
-                	component.set("v.showMoreLimit",response.getReturnValue().ShowMoreLimit);
-                    var ideasList = response.getReturnValue().IdeasOfTheWeek;    
-                    component.set("v.ideaTitle","All Ideas");
-                    var activeIdeasArray = [];
-                    var closedIdeasArray = [];
-                    for(var count=0;count<ideasList.length ;count++){
-                        if(ideasList[count].CampaignStatus=="Active"){
-                            activeIdeasArray.push(ideasList[count]);
-                        } else {
-                            closedIdeasArray.push(ideasList[count]);
-                        }
-                    }
-                    component.set("v.activeIdeasList",activeIdeasArray);
-                    component.set("v.closedIdeasList",closedIdeasArray);
-                    component.set("v.campaignStatus",response.getReturnValue().ActiveStatus);
-                    if(response.getReturnValue().ActiveStatus==true){
-                        helper.displayTrenddingIdeas(component,activeIdeasArray,"openCampaign");  
-                        //helper.checkSelectedSort(component,"v.activeIdeasList","mostVotedIdea","openCampaign");
-                    	//component.set("v.showspinner",false);  
-                    } else {
-                        helper.checkSelectedSort(component,"v.closedIdeasList","mostVotedIdea","closedCampaign");  
-                    }                      
-                } else {                    
-                    component.set("v.displayErrorMessage",true);
+        component.set("v.showspinner",true);              
+        component.set("v.showFilterSort",true);  
+        console.log('------------IDea List----1---------'+component.get("v.displayCampaignIdea"));              
+        if(component.get("v.displayCampaignIdea")==true) {         
+            console.log('------------IDea List-----2--------'+component.get("v.recordDetail.FeaturedCampaigns.IdeaThemeId"));  
+            var action = component.get("c.getCampaignDetail");
+            action.setParams({
+                "ideaThemeId":component.get("v.recordDetail.FeaturedCampaigns.IdeaThemeId"), 
+                "latestIdeasLimit": "ALL"
+            });
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if (state === "SUCCESS") {    
+                    if(response.getReturnValue().IdeasOfTheWeek!=null){
+                        component.set("v.ideasList",response.getReturnValue().IdeasOfTheWeek);    
+                        component.set("v.showspinner",false);              
+                    } else {                    
+                        component.set("v.displayErrorMessage",true);
+                        component.set("v.showspinner",false);
+                    }                   
+                } else {
                     component.set("v.showspinner",false);
-                }                   
-            } else {
-                component.set("v.showspinner",false);
-            }     	                   
-        });
-        $A.enqueueAction(action);
+                }     	                   
+            });
+        	$A.enqueueAction(action);
+        } else {               
+            var action = component.get("c.getIdeaList");
+            action.setParams({
+                "ideaLimit": "ALL"
+            });
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if (state === "SUCCESS") {    
+                    if(response.getReturnValue().IdeasOfTheWeek!=null){                        
+            			console.log('------------IDea List-----5--------');
+                        console.log('----------'+response.getReturnValue().ShowMoreLimit);
+                        component.set("v.showMoreLimit",response.getReturnValue().ShowMoreLimit);
+                        var ideasList = response.getReturnValue().IdeasOfTheWeek; 
+                        if(ideasList.length>0) {                            
+                            component.set("v.ideaTitle","All Ideas");
+                            var activeIdeasArray = [];
+                            var closedIdeasArray = [];
+                            for(var count=0;count<ideasList.length ;count++){
+                                if(ideasList[count].CampaignStatus=="Active"){
+                                    activeIdeasArray.push(ideasList[count]);
+                                } else {
+                                    closedIdeasArray.push(ideasList[count]);
+                                }
+                            }
+                            component.set("v.activeIdeasList",activeIdeasArray);
+                            component.set("v.closedIdeasList",closedIdeasArray);
+                            component.set("v.campaignStatus",response.getReturnValue().ActiveStatus);
+                            if(response.getReturnValue().ActiveStatus==true){
+                                helper.displayTrenddingIdeas(component,activeIdeasArray,"openCampaign");  
+                                //helper.checkSelectedSort(component,"v.activeIdeasList","mostVotedIdea","openCampaign");
+                                //component.set("v.showspinner",false);  
+                            } else {
+                                helper.checkSelectedSort(component,"v.closedIdeasList","mostVotedIdea","closedCampaign");  
+                            }           
+                        } else {        
+                            helper.defaultOnCancel(component);
+                        }          
+                    } else {                                   
+                        helper.defaultOnCancel(component);
+                    }                   
+                } else {                    
+                    component.set("v.showFilterSort",false);
+                    component.set("v.showspinner",false);
+                }     	                   
+            });
+        	$A.enqueueAction(action);
+        }
 	},    
     loadMoreIdeaList: function(component, event, helper) {        
         if(component.get("v.selectedFilterType")=="openCampaign"){                                
@@ -135,7 +167,7 @@
         	$A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign'); 
         }
     },
-    updateCommentCount : function(component, event, helper) {
+    updateCommentCount : function(component, event, helper) {        
         var ideaListType;
         if(event.getParam("selectedSortType") == "trendingIdea"){
             ideaListType = "v.activeIdeasList";
@@ -149,7 +181,7 @@
                 ideaList[count].Voted = "True";
             }
         }
-        component.set(ideaListType,ideaList); 
+        component.set(ideaListType,ideaList);        
     },
     
     displayLatest : function(component, event, helper) {
@@ -189,7 +221,7 @@
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaFaqs","pannelType":component.get("v.pannelType")}).fire();
     },
-        navigateToFeedback: function(component, event, helper) { 
+    navigateToFeedback: function(component, event, helper) { 
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaTemplate","Pagename":"Feedback","pannelType":component.get("v.pannelType"),"componentName":"IdeaHome"}).fire();
     },
@@ -197,5 +229,10 @@
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_SubmitIdea","pannelType":component.get("v.pannelType")}).fire(); 
     },
+    navigateToCampaignsDetail : function(component, event, helper) { 
+    	var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
+        selectEvent.setParams({"componentName":"markup://c:CORE_IC_CampaignDetail","recordType":"Campaign","recordDetail":component.get("v.recordDetail.FeaturedCampaigns"),"pannelType":component.get("v.pannelType")}).fire(); 
+	},
+
     
 })

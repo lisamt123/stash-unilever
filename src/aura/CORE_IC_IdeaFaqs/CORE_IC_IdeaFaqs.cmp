@@ -30,7 +30,6 @@
                </div> 
         </div>
          <aura:set attribute="else">
-           <!--  <center><img class="spinner-img " src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center>-->
                <div class="slds-spinner_container">
                   <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
                      <div class="slds-spinner__dot-a"></div>

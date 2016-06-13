@@ -112,7 +112,7 @@
         $A.enqueueAction(action);
     },
     hidePostAnIdea : function(component,ideasList){
-        if(ideasList.length==0 && component.get("v.campaignStatus")){
+        if(ideasList.length==0){
             component.set("v.displayPostIdea",true);
         } else {
             component.set("v.displayPostIdea",false);
@@ -127,5 +127,11 @@
     setDefaultSortFilter : function(component,selectedSortType,selectedFilterType) {  
         component.set("v.selectedSortType",selectedSortType);   
         component.set("v.selectedFilterType",selectedFilterType);
+    },
+    defaultOnCancel : function(component) {
+        component.set("v.displayPostIdea",true);
+        component.set("v.displayErrorMessage",true);  	
+        component.set("v.showFilterSort",false);                          
+        component.set("v.showspinner",false);
     },
 })

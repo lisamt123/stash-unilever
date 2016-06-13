@@ -18,6 +18,7 @@
 .THIS .category{
     margin-top: 10px;
     color: #0C8EFF;
+    width:250px;
 }
 
 .THIS .titlePadding{
@@ -51,4 +52,18 @@
 }
 .THIS .margin-botton{
     margin-bottom: -6px;
+}
+.THIS .bodyDescriptionHeight{
+   word-break: break-all;
+}
+.THIS .share{
+  margin-top:7px;      
+}
+@media screen and (min-width:768px)and (max-width:1000px){
+	.THIS .ideaListShare{
+    right: auto;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(177px);
+    }
 }

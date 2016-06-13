@@ -7,7 +7,6 @@
     <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="showspinner" type="boolean" default="true"/> 
     <aura:attribute name="displayErrorMessage" type="Boolean" default="false"/>
-    
     <aura:attribute name="campaignNameList" type="List"/>
     <aura:attribute name="campaignNameMap" type="List"/>
     <aura:attribute name="campaignCategoryList" type="List"/>
@@ -30,21 +29,21 @@
     </style>
   <aura:if isTrue="{!v.errorMessageFileUpload}">
          <div>
-                                <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
-                                <div class="slds-modal__container slds-modal--prompt">
-                                        <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
-                                            <button class="slds-button slds-button--icon-inverse slds-modal__close">
-                                             <span class="slds-assistive-text">Close</span>
-                                           </button>
-                                            <h1 class="slds-text-heading--small helpText">File size exceeds 512KB.Please Try Re-uploading</h1>
-                                         </div>
-                                           <div class="slds-modal__footer slds-theme--default">
-                                          <button class="slds-button slds-button--neutral" onclick="{!c.okayButton}">Okay</button>
-                                          </div>
-                             </div>
-                     </div>
-                   <div class="slds-backdrop slds-backdrop--open"></div>
-                   </div>
+             <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
+                    <div class="slds-modal__container slds-modal--prompt">
+                         <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                            <button class="slds-button slds-button--icon-inverse slds-modal__close">
+                             <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h1 class="slds-text-heading--small helpText">File size exceeds 512KB.Please Try Re-uploading</h1>
+                         </div>
+                           <div class="slds-modal__footer slds-theme--default">
+                             <button class="slds-button slds-button--neutral" onclick="{!c.okayButton}">Okay</button>
+                          </div>
+                    </div>
+              </div>
+             <div class="slds-backdrop slds-backdrop--open"></div>
+      </div>
     </aura:if>
     <aura:if isTrue="{!v.displaySucessNotification}">
         <div onclick="{!c.cancelButton}">
@@ -111,8 +110,12 @@
                 </div>
                 
                 <div class="paddingTop">
-                	<input type="file" class="file" aura:id="file" />
-                    <img class="successIcon" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg" onclick="{!c.clearAttachment}"></img>
+                	<input type="file" class="file " aura:id="file" >
+                    </input>
+                    <div>
+                         <img class="clearFileIcon " src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" onclick="{!c.clearAttachment}"></img>
+                    </div>
+                   
                 </div>
               	<!--<div aura:id="uploading" class="notUploading">
                  	<img src="/resource/NC_StaticResource/assets/images/spinners/slds_spinner.gif" alt="uploading" class="small-spinner" /> Uploading...
@@ -129,27 +132,14 @@
                             </aura:iteration>
                         </select>
                     </div>
-                </div>
+                </div> 
             </div>                        
             <div class="displayErrorMessage paddingTop">
                 <aura:if isTrue="{!v.displayErrorMessage}">
                     <!-- Please enter all the mandatory fields... -->
-                         <div>
-                                <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
-                                <div class="slds-modal__container slds-modal--prompt">
-                                        <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
-                                            <button class="slds-button slds-button--icon-inverse slds-modal__close">
-                                             <span class="slds-assistive-text">Close</span>
-                                           </button>
-                                            <h1 class="slds-text-heading--small helpText">Please enter all the mandatory fields.</h1>
-                                         </div>
-                                           <div class="slds-modal__footer slds-theme--default">
-                                          <button class="slds-button slds-button--neutral" onclick="{!c.okayButton}">Okay</button>
-                                          </div>
-                             </div>
-                     </div>
-                   <div class="slds-backdrop slds-backdrop--open"></div>
-                   </div>
+                        <div class="slds-box slds-theme--error">
+                             <p>Please enter all the<strong> mandatory fields.</strong></p>
+                        </div>
                 </aura:if>
             </div>
         </div>    

@@ -85,7 +85,7 @@
         </td></tr>
         <tr><td>
             <aura:if isTrue="{!v.displayLoadMore}">
-                <div class="loadMoreBar paddingBottom slds-container--center slds-container--small">    
+                <div class="loadMoreBar">    
                     <div class="loadMoreButton" onclick="{!c.loadMoreCampaignList}">  Load More  </div>
                 </div>
             </aura:if>

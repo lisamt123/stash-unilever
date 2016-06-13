@@ -9,12 +9,14 @@
          component.set("v.MailToBody1",label1);
          component.set("v.MailToBody2",label2);
          component.set("v.MailToBody3",label3);
-        //component.set("v.share",!component.get("v.share"));
-        component.set("v.share",true);
-        $("#showOptions").toggle(function(){
-            component.set("v.share",false);
+         component.set("v.share",!component.get("v.share"));
+         var toggleView = component.find("showOptions");
+         component.set("v.shareCampaign",true);
+         $A.util.toggleClass(toggleView, "slds-hide");
+    	/*$("#showOptions").toggle(function(){
+            component.set("v.shareCampaign",false);
         });
-        event.stopPropagation();
+        event.stopPropagation();*/
    
 	},
     navigateToChatter : function(component, event, helper) {

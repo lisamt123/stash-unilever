@@ -11,7 +11,7 @@
 .THIS .paddingBottom{
     margin-top: -13px;
     padding-bottom:50px !important;
-        margin-bottom: 75px;
+        margin-bottom: 50px;
 }
 .THIS table.homePageMenuWidth, .THIS .homePageMenuWidth, .THIS .listHeaderWidth, .THIS .campaignsListItemStyle{
     width:100%;    
@@ -41,7 +41,7 @@
 /*applying style for the load more bar*/ 
 .THIS .loadMoreBar{
    text-align:center;
-    padding-bottom:10px;
+    /*padding-bottom:10px;*/
     padding-left: 20%;
     padding-right: 20%;
 }
@@ -68,7 +68,8 @@
         width:400px !important;
     }*/
     .THIS .loadMoreBar{
-        width: 800px; 
+        width: 100%; 
+    	padding-bottom:30px;
     }
     .THIS .bodyDescriptionHeight{
         height: 60px;
@@ -81,4 +82,8 @@
     /* .THIS .listHeaderWidth, .THIS .loadMoreBar{
         width: 1200px; 
     }*/
+    
+    .THIS .loadMoreBar{
+        width: 1200px;
+    }
 }

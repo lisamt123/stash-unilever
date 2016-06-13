@@ -1,5 +1,8 @@
 <aura:component controller="Core_IC_IdeaController">
     <aura:attribute name="ideasListItem" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="campaignItem" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="displayCampaignIdea" type="Boolean"/>    
+    
     <aura:attribute name="pannelType" type="String"/>
     <aura:attribute name="MailSubjectIdea" type="String" />
     <aura:attribute name="MailToBody3" type="String" />
@@ -19,7 +22,7 @@
         }
         @media screen and (min-width:768px){
         .cCORE_IC_IdeasListItem .ideaTitleMargin{
-            width: 310px;
+            width: 280px;
         }
         }
     </style>
@@ -31,17 +34,17 @@
                 </div>
             </div>
             <a>
-              <div class="slds-text-body--small titlePadding " onclick="{!c.displayIdeaDetails}">
+              <div class="slds-text-body--small titlePadding " onclick="{!c.displayCampaignDetails}">
                 {!v.ideasListItem.CampaignTitle}
                </div>
              </a>   
-            <div class="slds-no-flex">
+            <div class="slds-no-flex share">
                 <aura:if isTrue="{!v.selectedFilterType!='closedCampaign'}">
-                    <button class="share-button slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none shareTop" onclick="{!c.ideaShare}">
+                    <button class="share-button slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none shareTop" id="clicker" onclick="{!c.ideaShare}">
                         <img src="/resource/CORE_IC_IdeasLigthtning/utility/share_60.png" class="slds-button__icon slds-button__icon--hint slds-button__icon--small"/>
                     </button>
                     <aura:if isTrue="{!v.shareIdea}">
-                        <div  id="showideaOptions" class="slds-dropdown ideaListShare" >
+                        <div  aura:id="showideaOptions" class="slds-dropdown ideaListShare" >
                             <ul class="dropdown__list" role="menu">
                                 <li class="slds-dropdown__item">
                                     <a  role="menuitem" onclick="{!c.navigateToChatter}" >
@@ -80,11 +83,11 @@
                 </p>
             </div>
         </div>
-        <div class="slds-text-body--regular topPadding bottomPadding" >
+        <div class="slds-text-body--regular topPadding bottomPadding" onclick="{!c.displayIdeaDetails}">
             <div class="bodyDescriptionHeight">
                 	{!v.ideasListItem.IdeaBody}
                 </div>
-            <p class="slds-truncate category">
+            <p class="slds-truncate category" onclick="{!c.displayIdeaDetails}">
                 <span class="slds-icon_container">
                     <img aria-hidden="true" class="slds-icon slds-icon-text-warning slds-icon--x-small" src="/resource/CORE_IC_IdeasLigthtning/img/tabset.svg"/>
                 </span>&nbsp;{!v.ideasListItem.Categories}  
@@ -92,7 +95,7 @@
         </div>
         <hr/>
         <div class="slds-grid margin-botton">
-            <div class="slds-media slds-media--center slds-has-flexi-truncate" >
+            <div class="slds-media slds-media--center slds-has-flexi-truncate" onclick="{!c.displayIdeaDetails}">
                 <div class="slds-button fontStyle">{!v.ideasListItem.VoteCount} Votes,</div>&nbsp;
             
                 <div class="slds-button fontStyle">{!v.ideasListItem.CommentCount} Comment</div>

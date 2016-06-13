@@ -9,7 +9,7 @@
     <aura:attribute name="MailToBody2" type="String" />
     <aura:attribute name="MailToBody3" type="String" />
     <aura:attribute name="pannelType" type="String"/>
-    <aura:attribute name="share" type="Boolean"/>
+    <aura:attribute name="shareCampaign" type="Boolean"/>
 	<style>
 	@media screen and (min-width:767px){
         .THIS.slds-card {
@@ -30,8 +30,8 @@
                         <button class="share-button slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none" onclick="{!c.showShare}">
                             <img src="/resource/CORE_IC_IdeasLigthtning/utility/share_60.png" class="slds-button__icon slds-button__icon--hint slds-button__icon--small"/>
                         </button>
-                        <aura:if isTrue="{!v.share}">
-                          <div  id="showOptions" class="slds-dropdown slds-dropdown--right sort " >
+                        <aura:if isTrue="{!v.shareCampaign}">
+                          <div  aura:id="showOptions" class="slds-dropdown slds-dropdown--right sort " >
                             <ul class="dropdown__list" role="menu">
                                 <li class="slds-dropdown__item">
                                        <a  role="menuitem" onclick="{!c.navigateToChatter}" >
