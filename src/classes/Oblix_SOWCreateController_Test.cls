@@ -109,6 +109,7 @@ private class Oblix_SOWCreateController_Test {
 
         PageReference saveAndClose = controller.saveAndClose();
         PageReference sowDetailPage = new PageReference('/apex/Oblix_SOWMainDetail?sowId='+ mSow.Id);
+        System.assertNotEquals(null, saveAndClose);
         System.assertEquals(sowDetailPage.getUrl(), saveAndClose.getUrl());
 
         controller.cancelAction();

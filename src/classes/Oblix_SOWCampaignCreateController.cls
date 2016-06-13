@@ -24,7 +24,6 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         
         campaignHelper = new Oblix_CampaignCreateHelper();
         
-        campaignHelper = new Oblix_CampaignCreateHelper();
         selected_sow = campaignHelper.selectedSow;
         selected_project = campaignHelper.selectedProject;
         if (campaignHelper.isEdit) {
