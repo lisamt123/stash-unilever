@@ -1,7 +1,15 @@
+/**
+ * Name:        -   AA_RemoteServiceCallController_Test
+ * @description -   This is the test class for AA_RemoteServiceCallController Class to verify the code While invoking a service.
+ * @Author      -   Aslesha R K     
+ */
 @isTest
 private class AA_RemoteServiceCallController_Test {
-
+/********************************************************************************
+Purpose: Method to test if we could invoke a service with and without URL pattern.
+**********************************************************************************/
     static testMethod void invokeServiceTest() {
+    	
         String responseA = AA_RemoteServiceCallController.invokeService('','getCompetitorSourceRetailerTopicCountry','post');
         String responseB = AA_RemoteServiceCallController.invokeServiceWithURLParameter('','getCompetitorSourceRetailerTopicCountry','post','');
         

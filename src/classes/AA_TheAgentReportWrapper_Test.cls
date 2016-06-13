@@ -1,6 +1,19 @@
 @isTest
+/**
+ * Name:        -   AA_TheAgentReportWrapper_Test
+ * @description -   This is test class for AA_TheAgentReportWrapper class which includes all functionalities related to chatter
+ * @Author      -   Aslesha R K     
+ */
+
 private class AA_TheAgentReportWrapper_Test {
 
+    /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method upsertOperation
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */   
     static testMethod void myUnitTest() {
        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
@@ -19,13 +32,33 @@ private class AA_TheAgentReportWrapper_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
        insert countryData;
+   
        aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
-       insert unileverReport;
+       
+       insert unileverReport;  
+       
+        ContentVersion contentVersionObj = new ContentVersion();
+        contentVersionObj.ContentURL='http://www.google.com/';
+        contentVersionObj.Title = 'test';           
+        insert contentVersionObj;
+      
+        
+          FeedItem fi2 = new FeedItem();
+            fi2.body = 'New Agent File uploaded';
+            fi2.RelatedRecordId =   contentVersionObj.id;
+            fi2.Type = 'ContentPost' ;
+            fi2.Title = 'Agent File';           
+            fi2.ParentId = unileverReport.Id;
+            system.debug('feed iem to be inserted '+fi2);
+            insert fi2;
+        
+        unileverReport.Chatter_Post_ID__c=fi2.Id;
+        update unileverReport;
        
        
        AA_TheAgentReportWrapper obj = new AA_TheAgentReportWrapper();
        AA_TheAgentReportWrapper obj1 = new AA_TheAgentReportWrapper(unileverReport);
-       system.assert(obj != null);
+     
        
        aa_Agent_Report__c report=new aa_Agent_Report__c(Report__c='test test');
        obj.display_report_summary(report);
@@ -34,15 +67,18 @@ private class AA_TheAgentReportWrapper_Test {
        obj.display_report_summary(report1);
       
        aa_Agent_Report__c report2=new aa_Agent_Report__c(report_title__c='test');
-      // ContentDocumentLink =new ContentDocumentLink(LinkedEntityId=report2.Id);
-       StaticResource res=new StaticResource(Name='test'); 
-     
+      
+       StaticResource res=new StaticResource(Name='test');     
+       
+      
       AA_TheAgentReportWrapper.GetResourceURL('test');
       AA_TheAgentReportWrapper.GetResourceURL('tesForceTK');
       
-      obj.first_chatter_pic_content_id(unileverReport);
+      String response =obj.first_chatter_pic_content_id(unileverReport);
       obj.first_chatter_pic_id(unileverReport);
-     // obj1.get_number_of_likes(unileverReport);
-    
+          
+      system.assert(response.length()<=18);
+      
+     
     }
 }

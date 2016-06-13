@@ -14,11 +14,12 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }
         catch(DMLException dmlEx){ 
-          //  throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);            
+          //  throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);         
+           System.debug(AA_Constants.StringException + dmlEx);   
         }
         catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
-            
+             System.debug(AA_Constants.StringException + genEx);
         }  
         return idList;
     }
@@ -37,48 +38,135 @@ public with sharing class AA_DatabaseServiceUtil {
                 idList.add(upsertResult.getId());            
             }
         }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);         
+          System.debug(AA_Constants.StringException + dmlEx); 
         }
         catch(Exception genEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx); 
+           System.debug(AA_Constants.StringException + genEx); 
         }  
         return idList;
     } 
     
-     /* Performs DB upsert operation with Sobject passed */
+      /* Performs DB upsert operation with Sobject passed */
     public static List<String> insertOperation(String varAgentReportId,String contentID){
-        system.debug('******************* in feed insert');
+       
         List<String> idList = new List<String>();   
         try{
-            system.debug('******7');    
+           
             FeedItem fi2 = new FeedItem();
             fi2.body = 'New Agent File uploaded';
             fi2.Type = 'TextPost' ;
             if(contentID !=null && contentID != ''){
-                system.debug('******8'); 
+                 
                 fi2.RelatedRecordId = contentID;
                 fi2.Type = 'ContentPost' ;
             }
             fi2.Title = 'Agent File';           
             fi2.ParentId = varAgentReportId;
-            system.debug('feed iem to be inserted '+fi2);
-            insert fi2;
+           
+            insert fi2;           
             
             
-            system.debug('New Feed Created --> '+ fi2.id +' With Content Id as '+contentID);
             aa_Agent_Report__c c = [select Chatter_Post_ID__c from aa_Agent_Report__c where id = :varAgentReportId];
             c.Chatter_Post_ID__c = fi2.id;
             update c;
-            system.debug('Chatter_Post_ID__c inserted --> ');
+           
             idList.add(varAgentReportId);
+            
+            
+            aa_Agent_Report__c objReport=[select id,Report_Title__c, TF_Mention_User__c, TF_Topic_Name__c, Country__c,status__c, CreatedById from aa_Agent_Report__c where id =: varAgentReportId];
+           
+             if(objReport.status__c =='Published (Public)')
+             {
+            
+                AA_DatabaseServiceUtil.sendToChatter(Id.valueof(objReport.id),objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c,objReport.TF_Topic_Name__c);
+             }
+        
+            
         }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);     
+           System.debug(AA_Constants.StringException + dmlEx);       
         }
         catch(Exception genEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
+           System.debug(AA_Constants.StringException + genEx);
         }  
      
         return idList;
+    }
+    
+    
+    public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country,string userIds,string topicNames) {    
+        
+        String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
+        String reportName=[Select name from aa_Agent_Report__c where id=:reportId].name;
+        ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
+        feedItemInput.body = new ConnectApi.MessageBodyInput();
+        
+        feedItemInput.body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
+
+        //intro
+        ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
+        textSegment.text = 'New Agent Report by '+reportCreatorName ;
+        feedItemInput.body.messageSegments.add(textSegment);
+        ConnectApi.TextSegmentInput textSegment2 = new ConnectApi.TextSegmentInput();
+        textSegment2.text = ': ' + postText+' ';
+        feedItemInput.body.messageSegments.add(textSegment2);
+        
+        // add the mention
+        if(userIds !=null){
+            string[] splittedids=userIds.split(',');
+            for(String ids:splittedids)
+            {
+              
+                if(ids !=',')
+                {
+              
+                ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
+                mentionSegment.id = Id.ValueOf(ids);
+                feedItemInput.body.messageSegments.add(mentionSegment);
+                }
+               
+            }
+            }
+        //Add Topics
+        if(topicNames !=null)
+        {
+        string[] splittedTopics=topicNames.split(',');
+        for(string topic:splittedTopics)
+        {
+           
+            if(topic !=','){
+            ConnectApi.Topics.assignTopic(null,reportId,topic);
+            }
+         }
+        }
+
+        // add the text segment  
+           ConnectApi.TextSegmentInput textSegment3 = new ConnectApi.TextSegmentInput();
+          textSegment3.text = ' ' ;
+          feedItemInput.body.messageSegments.add(textSegment3);     
+        
+        
+        // add inline link
+        ConnectApi.LinkSegmentInput report_link = new ConnectApi.LinkSegmentInput();
+        String fullRecordURL = URL.getSalesforceBaseUrl().toExternalForm() + '/' + reportId;
+        report_link.url = fullRecordURL;
+        feedItemInput.body.messageSegments.add(report_link);
+        
+        //Adding Attachment            
+        List<ContentDocumentLink> documentlist=[SELECT ContentDocument.id FROM ContentDocumentLink WHERE LinkedEntityId = :reportId LIMIT 1];
+        if(!documentlist.IsEmpty()){
+             ConnectApi.ContentAttachmentInput attachmentInput = new ConnectApi.ContentAttachmentInput(); 
+             attachmentInput.contentDocumentId=documentlist[0].ContentDocument.id;
+             system.debug('attachmentInput.contentDocumentId===='+attachmentInput.contentDocumentId);  
+             feedItemInput.attachment = attachmentInput;
+        } 
+                    
+        // post it!
+         ConnectApi.FeedItem new_chat = ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);
+    
     } 
     
     /* Performs DB delete operation on List<SObject> passed */
@@ -96,9 +184,11 @@ public with sharing class AA_DatabaseServiceUtil {
             idList.add(deleteResult.getId());
             }
        }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);   
+           System.debug(AA_Constants.StringException + dmlEx);         
        }catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', genEx);  
+        System.debug(AA_Constants.StringException+ genEx);  
        }  
        return idList;
     }
@@ -115,10 +205,12 @@ public with sharing class AA_DatabaseServiceUtil {
                 idList.add(deleteResult.getId());            
             }
         }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);  
+           System.debug(AA_Constants.StringException+ dmlEx);           
         }
         catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', genEx);  
+            System.debug(AA_Constants.StringException + genEx); 
         }  
         return idList;
     }  
@@ -138,6 +230,7 @@ public with sharing class AA_DatabaseServiceUtil {
             rtId = recordTypeInfo.get(RecordTypeLabel).getRecordTypeId();//particular RecordId by  Name
         }catch(Exception ex){ 
           //  throw new BaseServiceException('Exception occured: Utility : getRecordTypeId method ',ex);
+          System.debug(AA_Constants.StringException + ex);
         }
         
         return rtId;
@@ -149,7 +242,8 @@ public with sharing class AA_DatabaseServiceUtil {
     **********************************************************************************/
     public list<String> getPickListValues(String ObjectType, String PickListFieldAPIName)
     {
-        list<String> pickListValues = null;
+        //list<String> pickListValues = null;
+        List<String> pickListValues =new List<String>();
         try{
             SObjectType sObjType = Schema.getGlobalDescribe().get(ObjectType);
             Map<String,Schema.SObjectField> mfields = sObjType.getDescribe().fields.getMap();
@@ -163,6 +257,7 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }catch(Exception ex){ 
            // throw new BaseServiceException('Exception occured: Utility : getPickListValues method ',ex);
+           System.debug(AA_Constants.StringException + ex);
         }  
         return pickListValues;
     }
@@ -174,5 +269,7 @@ public with sharing class AA_DatabaseServiceUtil {
         }
         return false;
     }
+    
+    
 
 }
