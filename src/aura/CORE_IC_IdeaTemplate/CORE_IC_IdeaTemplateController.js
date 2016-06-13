@@ -33,7 +33,7 @@
     	component.set("v.showspinner",false); 
 	},
     navigateWithinComponent: function(component, event, helper) {
-        //helper.scrollToLocation(component, "top"); 
+        helper.scrollToLocation(component, "top"); 
         $A.get('e.force:refreshView'); 
         console.log('-------template---------'+event.getParam("pannelType"));
         if(event.getParam("recordType")=="Campaign" || event.getParam("recordType")=="Idea"){
