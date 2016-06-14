@@ -1,5 +1,0 @@
-<aura:event type="APPLICATION" description="Event template">
-    <aura:attribute name="deviceId" type="string"/>
-    <aura:attribute name="month" type="string"/>
-    <aura:attribute name="deviceName" type="string"/>
-</aura:event>
