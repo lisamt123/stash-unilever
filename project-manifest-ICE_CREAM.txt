@@ -53,13 +53,13 @@ src/aura/ICB_CheckInCheckOut_APP/ICB_CheckInCheckOut_APP.css
 src/aura/ICB_CheckInCheckOut_APP/ICB_CheckInCheckOut_APPController.js
 src/aura/ICB_CheckInCheckOut_APP/ICB_CheckInCheckOut_APPHelper.js
 src/aura/ICB_StaticGoogleMaps_Lat_Lng/ICB_StaticGoogleMaps_Lat_Lng.evt
-src/aura/ICB_StaticGoogleMaps_Lat_Lng/ICB_StaticGoogleMaps_Lat_Lng.evt-
+src/aura/ICB_StaticGoogleMaps_Lat_Lng/ICB_StaticGoogleMaps_Lat_Lng.evt-meta.xml
 src/aura/modalButton/modalButton.cmp
 src/aura/modalButton/modalButton.cmp-meta.xml
 src/aura/modalButton/modalButton.css
 src/aura/modalButton/modalButtonController.js
 src/aura/modalButton/modalButtonHelper.js
-src/aura/ICB_StaticGoogleMaps/StaticGoogleMaps.cmp
+src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMaps.cmp
 src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMaps.cmp-meta.xml
 src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMapsController.js
 src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMapsHelper.js
