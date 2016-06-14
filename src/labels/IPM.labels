@@ -12,8 +12,36 @@
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
     </labels>
-	
-	 <labels>
+    <labels>
+        <fullName>IPM_CURRENT_GATE_DOCUMENT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CURRENT_GATE_DOCUMENT</shortDescription>
+        <value>Current Gate Document</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CURRENT_GATE_DOCUMENT_STATUS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CURRENT_GATE_DOCUMENT_STATUS</shortDescription>
+        <value>Current Gate Document Status</value>
+    </labels>
+    <labels>
+        <fullName>IPM_KEY_MCO_NEEDS_GKM3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Key MCO Needs GKM3</shortDescription>
+        <value>An MCO is marked as Key if it has a large contribution to the Business Case. Consolidation of the Key MCOs should make up at least 75% of the Business Case and only Key MCOs need to confirm the Business Case at Contract and Market Ready Gates. MCOs not indicated as Key will have a consolidated Business Case (per Market Cluster) and the Local Rollout Projects will only be created after Market Ready Gate.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_NonKey_BusinessCase_Changed_Alert</fullName>
+        <categories>IPM Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM NonKey BusinessCase Changed Alert</shortDescription>
+        <value>The MCOs included in this Non-Key Business Case have changed. Please review the Business Case</value>
+    </labels>		
+    <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
