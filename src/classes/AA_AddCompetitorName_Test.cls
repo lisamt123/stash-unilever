@@ -13,7 +13,7 @@ private class AA_AddCompetitorName_Test {
        insert brandcat;
         system.assert(brandcat != null);
        //without comp name
-       
+       //Comment for Testing - TestD
        aa_Agent_App_Competitor_Brand__c compbrand1=new aa_Agent_App_Competitor_Brand__c(Name='testcompbrand');
        insert compbrand1;
        aa_Agent_App_Brand_Category__c brandcat1 =new aa_Agent_App_Brand_Category__c(Brand_Id__c=compbrand.id);
