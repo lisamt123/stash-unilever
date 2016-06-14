@@ -110,7 +110,8 @@
     </fieldSets>
     <fields>
         <fullName>AccountCurrency__c</fullName>
-        <description>Currency</description>
+        <description>Purpose : Currency
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Currency</label>
         <precision>18</precision>
@@ -962,7 +963,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>CustomerLegalCode__c</fullName>
-        <description>To display the Customer Legal Code</description>
+        <description>Purpose : To display the Customer Legal Code
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Customer Legal Code</label>
         <length>10</length>
@@ -974,7 +976,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>CustomerLegalName__c</fullName>
-        <description>To display the Customer Legal Name</description>
+        <description>Purpose : To display the Customer Legal Name
+ Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Customer Legal Name</label>
         <length>50</length>
@@ -1199,7 +1202,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>DistributorProgram__c</fullName>
-        <description>Distributor Program</description>
+        <description>Purpose : Distributor Program
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Distributor Program</label>
         <picklist>
@@ -1241,7 +1245,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <fields>
         <fullName>FS_BuyingGroup__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>A BG is an overriding organization that can consolidate purchasing for other org. to get better rebates/discounts.</description>
+        <description>Purpose : A BG is an overriding organization that can consolidate purchasing for other org. to get better rebates/discounts. 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Buying Group</label>
         <referenceTo>Account</referenceTo>
@@ -1254,7 +1259,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_CHDNumber__c</fullName>
-        <description>CHD Number</description>
+        <description>Purpose : CHD Number
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>CHD Number</label>
         <precision>18</precision>
@@ -1267,7 +1273,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_ChainTargetingModel__c</fullName>
-        <description>This is the classification of your account</description>
+        <description>Purpose : This is the classification of your account 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Chain Targeting Model</label>
         <picklist>
@@ -1284,7 +1291,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_ControllingAccountCode__c</fullName>
-        <description>A control account is a summary account in the general ledger</description>
+        <description>Purpose : A control account is a summary account in the general ledger
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Controlling Account</label>
         <precision>8</precision>
@@ -1297,7 +1305,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_MasterCode__c</fullName>
-        <description>To display Legal Entitiy code</description>
+        <description>Purpose : To display Legal Entity code
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Master Code</label>
         <length>10</length>
@@ -1309,7 +1318,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_MasterName__c</fullName>
-        <description>To display Legal Entity name</description>
+        <description>Purpose : To display Legal Entity name
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Master Name</label>
         <length>50</length>
@@ -1321,7 +1331,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_Payer__c</fullName>
-        <description>To display Payer</description>
+        <description>Purpose : To display Payer
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Payer</label>
         <length>10</length>
@@ -1333,7 +1344,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>FS_SoldToCode__c</fullName>
-        <description>Legal entity which receive goods</description>
+        <description>Purpose : Legal entity which receive goods  
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Sold-to code</label>
         <length>10</length>
@@ -1359,7 +1371,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>GFS_Customer_Number__c</fullName>
-        <description>Auto Number to create Account ID for Food Solutions</description>
+        <description>Purpose : Auto Number to create Account ID for Food Solutions
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <inlineHelpText>Auto Number to create Account ID for Food Solutions</inlineHelpText>
         <label>FS Customer Number</label>
@@ -1548,7 +1561,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>KeyCustomerLevel1Name__c</fullName>
-        <description>To display Key Customer Level 1 Name</description>
+        <description>Purpose :To display Key Customer Level 1 Name 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Key Customer Level 1 Name</label>
         <length>50</length>
@@ -1560,7 +1574,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>KeyCustomerLevel1__c</fullName>
-        <description>To display the Key Customer Level 1</description>
+        <description>Purpose : To display the Key Customer Level 1
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Key Customer Level 1</label>
         <length>10</length>
@@ -1748,7 +1763,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <fields>
         <fullName>Master__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Master Account (Banner for Russia)</description>
+        <description>Purpose : Master Account (Banner for Russia)
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Master Account</label>
         <referenceTo>Account</referenceTo>
@@ -1855,9 +1871,9 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <lookupFilter>
             <active>true</active>
             <filterItems>
-                <field>Account.RecordType.DeveloperName</field>
-                <operation>contains</operation>
-                <value>Operator</value>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <valueField>Account.RecordTypeId</valueField>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
@@ -2162,7 +2178,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>Region__c</fullName>
-        <description>Created to display region value from user object</description>
+        <description>Purpose : Created to display region value from user object 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>NFS Region</label>
         <picklist>
@@ -2459,7 +2476,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <fields>
         <fullName>SAP_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <description>External ID</description>
+        <description>Purpose : External ID
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>true</externalId>
         <label>SAP ID</label>
         <length>255</length>
@@ -2471,7 +2489,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>Segment__c</fullName>
-        <description>This field describes the operator segment (important for reporting)</description>
+        <description>Purpose : This field describes the operator segment (important for reporting)
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Operator Segment</label>
         <picklist>
@@ -2543,7 +2562,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>Status</description>
+        <description>Purpose : Status
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -2566,6 +2586,10 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             <picklistValues>
                 <fullName>Temporary</fullName>
                 <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Type Unknown</fullName>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2595,7 +2619,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>SubSegment__c</fullName>
-        <description>The value of this field are depended from Operator Segment</description>
+        <description>Purpose : The value of this field are depended from Operator Segment
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Operator Sub Segment</label>
         <picklist>
@@ -2853,7 +2878,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>Territory__c</fullName>
-        <description>Created to display territory value from user object</description>
+        <description>Purpose : Created to display territory value from user object
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>NFS Territory</label>
         <picklist>
@@ -3486,7 +3512,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>Zone__c</fullName>
-        <description>Created to display user Zone value from user object</description>
+        <description>Purpose : Created to display user Zone value from user object
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>NFS Zone</label>
         <picklist>
