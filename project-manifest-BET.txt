@@ -2,5 +2,7 @@ src
 src/classes
 src/classes/BET_Team_MemberHandlerCls.cls
 src/classes/BET_Team_MemberHandlerCls.cls-meta.xml
+src/classes/BET_Team_MemberHandlerClsHelper
+src/classes/BET_Team_MemberHandlerClsHelper-meta.xml
 
 
