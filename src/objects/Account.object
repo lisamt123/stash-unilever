@@ -401,6 +401,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Bazaarvoice_Username__c</fullName>
+        <description>CEC: To capture the bazaar voice user name</description>
+        <externalId>false</externalId>
+        <label>Bazaarvoice Username</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BillingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
