@@ -656,11 +656,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_User_Permission__c.Oblix_Agency_User</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_User_Permission__c.Oblix_Unilever_User</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Order.UID_Primary_Sales</recordType>
