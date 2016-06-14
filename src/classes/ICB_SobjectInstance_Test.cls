@@ -12,7 +12,8 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Antonio Raul 14/06/2016  Class creation  
 ***********************************************************************/
 @IsTest
-public class ICB_SobjectInstance_Test {
+public class ICB_SobjectInstance_Test 
+{
     /*******************************************************************
     Purpose: Insert Event for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
