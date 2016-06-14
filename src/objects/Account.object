@@ -966,6 +966,37 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Debit_Card_Expiry_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Expiry_Date__c</formula>
+        <label>Debit Card Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC This will hold debit card number</description>
+        <externalId>false</externalId>
+        <label>Debit Card Number</label>
+        <referenceTo>CEC_Debit_Card_Detail__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Active__c</formula>
+        <label>Debit Card Status</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Demandware_ID__c</fullName>
         <description>TO: Unique identifier of Demandware Customer Id</description>
         <externalId>true</externalId>
@@ -1124,6 +1155,30 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Document_Number__c</fullName>
+        <description>CEC: To capture the document number</description>
+        <externalId>false</externalId>
+        <label>Document Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document_Type__c</fullName>
+        <description>CEC: To capture the document type of the consumer. Ex: Passport, National Id</description>
+        <externalId>false</externalId>
+        <label>Document Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Drinking_frequency__c</fullName>
@@ -1473,6 +1528,30 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Local_Identifier_No_Special_Char__c</fullName>
+        <description>CEC This field will hold 11 digits for Brazil user and for other users it will hold as value as Local Identifier</description>
+        <externalId>false</externalId>
+        <label>Local Identifier No Special Char</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Local_Identifier__c</fullName>
+        <description>CEC Local Identifier  will hold CPF (government issued ID) for consumers</description>
+        <externalId>false</externalId>
+        <label>Local Identifier</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Machine_Id__c</fullName>
