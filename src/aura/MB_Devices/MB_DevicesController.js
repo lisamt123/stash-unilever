@@ -2,7 +2,7 @@
     //Pageload method gets total usage of current user 
     doinit:function(component, event, helper) {
         //Getting current Month and Year
-        
+        console.log("in devices"+component.get("v.selectedMonth"));
         var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         
         var d;
@@ -32,7 +32,9 @@
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var result=response.getReturnValue();
+                console.log("image url"+result.length );
                 if(result.length > 0){
+                    console.log("image url"+result[0].deviceImageUrl);
                    component.set("v.showDevice",true);
                    component.set("v.Device_Details",response.getReturnValue());
                    component.set("v.userName",result[0].userName);
@@ -42,9 +44,10 @@
                     {
                       usertotalUsage=usertotalUsage+result[i].totalUsage;
                     }
+                    usertotalUsage=Number(usertotalUsage).toFixed(2);
                    component.set("v.totalUsage",usertotalUsage);
                 }
-                
+               
                 //Get the current username if the current user does not have any spend for current month
                 else{
                     var action1=component.get("c.getUserName");
@@ -58,6 +61,7 @@
                   $A.enqueueAction(action1);  
                }
             }
+            component.set("v.showspinner","false"); 
           });
        $A.enqueueAction(action);
                 
@@ -65,9 +69,20 @@
     
     //This method redirects selected device's spend details page
     gotoDetailSummary:function(component, event, helper){
-        var dataid = document.getElementById("outerdiv");
-        var datavalue = dataid.getAttribute("data-deviceId");
-        var devicename=dataid.getAttribute("data-deviceName")
+        //var dataid = document.getElementById("outerdiv");
+        //var datavalue = dataid.getAttribute("data-deviceId");
+       //var devicename=dataid.getAttribute("data-deviceName")
+        var index = event.target.dataset.index;
+        console.log("index"+index);
+        var data=component.get("v.Device_Details");
+        var dataList=[];
+        for(var i=0; i<data.length; i++)
+        {            
+            dataList.push(data[i]);             
+        }
+        console.log(dataList[index].deviceId);
+        var datavalue=dataList[index].deviceId;
+        var devicename=dataList[index].deviceName;
         var detailpage_event=$A.get("e.c:MB_DetailSummary_Event");   
         detailpage_event.setParams({"deviceId":datavalue,"month":component.get("v.CurrentMonth"),"deviceName":devicename}).fire();
     },

@@ -24,7 +24,7 @@
         .Mobile_billing{
         color:#033A69;
         padding-left: 20px;
-        padding-top: 30px;
+        padding-top: 15px;
         } 
         .Change_month
         {
@@ -34,7 +34,7 @@
         background: #68CAE3; 
         border-radius: 20px;
         color: #fff;
-        margin: 20px auto;     
+        margin: 15px auto;     
         }
         .main-container1{
         	background-color:white;
@@ -46,7 +46,7 @@
     <aura:attribute name="selectedmonth" type="String"></aura:attribute> 
     <aura:attribute name="CurrentMonth" type="String"></aura:attribute>
     <aura:attribute name="pagename" type="String"></aura:attribute>
-    <div class="main-container1"><div class="slds-text-heading--medium Mobile_billing slds-scrollable--y">Mobile billing</div>
+    <div class="main-container1"><div class="slds-text-heading--medium Mobile_billing slds-scrollable--y">Mobile Billing</div>
     <div class="main_bill">
         <div class="slds-text-heading--label Change_month"><div class="Change_month_span">Change month</div>
             <div class="slds-form-element">

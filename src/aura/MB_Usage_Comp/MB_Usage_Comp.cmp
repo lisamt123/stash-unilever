@@ -10,6 +10,7 @@
     <aura:attribute name="pageName" type="string" default="MB_Usage_Comp"/>
     <aura:attribute name="usageData" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
     <style>
         .message_body{
         	background:#eef1f6;
@@ -54,7 +55,7 @@
             height: 42px;
         }
         .usage-text-summary{
-        	padding: 10px 20px 10px 20px;
+        	padding: 15px 20px 0px 20px;
         }
         .drop-down{
             width: 14px;
@@ -69,15 +70,16 @@
         }
        .usage-box{
         margin:10px;
+        margin-top:3px;
         }
     </style>
-
+ <aura:if isTrue="{!v.showspinner=='false'}">  
    <c:MB_Mobile_billing_Common pagename="{!v.pageName}" selectedmonth="{!v.selectedMonth}"/>
    <c:MB_SpendSummary_headerCommon month="{!v.CurrentMonth}" />
    <aura:if isTrue="{!v.showDetails==true}">
     <div class="slds-text-heading--small message_body">
         <div class="usage-text-summary">
-            Hi {!v.userName},<br/>Your total spend for {!v.CurrentMonth} is <span class="amount">{!v.usageData.userCurrency}{!v.usageData.totalUsage}</span><br/><br/>Usage
+            Hi {!v.userName},<br/>Your total spend for {!v.CurrentMonth} is <span class="amount">{!v.usageData.userCurrency}{!v.totalSpend}</span><br/><br/>Usage
         </div>
         <div class="usage-box">
                 <div class="slds-text-body--small Data">Data<br/><br/>
@@ -120,16 +122,25 @@
         </div>
         <div  class="usage-text-summary">Insights</div>
         <c:MB_Usage_Insights deviceId="{!v.deviceId}" CurrentMonth="{!v.CurrentMonth}" /> 
-        <c:MB_Action_bar />
+        
     </div>
    </aura:if>
     <aura:if isTrue="{!v.showDetails == false}">
-        <div style="padding:15px;">
+        <div class="slds-text-heading--small" style="padding:15px;" >
                 <span>Hi {!v.userName}, 
                    You don’t have any spend for {!v.CurrentMonth}.  
                 </span>
               </div>
       
     </aura:if>
-    
+     <aura:set attribute="else">
+               <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+         </aura:set>
+    </aura:if>	
+    <c:MB_Action_bar componentName="MB_Usage_Comp" selectedMonth="{!v.CurrentMonth}"/>
 </aura:component>

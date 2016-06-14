@@ -2,9 +2,10 @@
     text-align: center;
 }
 .THIS .feedback-text{
-    margin-bottom: 25px;
+    margin-bottom: -13px;
     line-height: 1rem;
-    word-spacing: 0.1rem;
+    word-spacing: .1rem;
+    padding-top: 5px;
 }
 .THIS .feedback-comment-text{
     clear:both;
@@ -51,8 +52,8 @@
 }
 .THIS .slds-button--neutral {
     margin-left: 10px;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .THIS .slds-text-heading--small {
     font-size: 1.3rem;
@@ -74,7 +75,7 @@
 .THIS .slds-notify--toast {
     min-width: auto;
 }
-.THIS ::-webkit-input-placeholder { 
+/*.THIS ::-webkit-input-placeholder { 
     color: #CFD7E6;
 }
 .THIS :-ms-input-placeholder { 
@@ -87,7 +88,7 @@
 .THIS :-moz-placeholder { 
     color: #CFD7E6;
     opacity: 1;
-}
+}*/
 .THIS .slds-notify-container, .THIS .slds-notify_container{
     top:40%;
 }
@@ -95,4 +96,37 @@
     width:10%;
     position: absolute;
     top:50%;
+}
+.THIS .slds-box {
+    border: 0px solid rgb(216, 221, 230);
+}
+.THIS.close-button{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size: 18px;
+    color: #DCDCDC;
+    font-family: sans-serif;
+    width: 25px;
+}
+.THIS.feedback_container{
+    padding: 15px;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    left: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+.THIS hr{
+    margin: 1rem -15px !important;
+}
+.THIS form .stars {
+    margin: 0px !important;
+    margin-left: -3px !important;
+}
+.THIS.success-icon{
+    width: 6%;
+    margin-right: 13px;
+    margin-top: -2px;
 }

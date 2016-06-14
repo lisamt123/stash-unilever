@@ -1,8 +1,29 @@
 ({  
 	doinit : function(component, event, helper) {
+        helper.helperMethodforpieCharts(component);
+        setTimeout(function() {
+            $A.run(function() {
+                $('.carousel').slick({            
+                    dots: true,
+                    arrows: false,
+                    infinite: false,
+                }); 
+                $('.carousel').focusout(); 
+            });
+        });
+         setTimeout(function() {
+            $A.run(function() {
+                $('.carousel_column').slick({            
+                    dots: true,
+                    arrows: false,
+                    infinite: false,
+                });
+            });
+        });
      /*This code is for charts and graphs*/
-      helper.helperMethodforCharts(component);
-    },
+      
+       component.set("v.showspinner","false");
+},
 
 	MyAction : function(component, event, helper) {
 		component.get("v.modelNumber");
@@ -10,8 +31,9 @@
     gotoDetailesText: function(component, event, helper) {
         var monthArray=component.get("v.CurrentMonth").split(' ');
         var month=monthArray[0];
+        
 		var detailedTextEcent=$A.get("e.c:MB_Detail_text_Event");  
-        detailedTextEcent.setParams({"month":month,"deviceName":component.get("v.deviceName"),"deviceId":component.get("v.deviceId")}).fire();
+        detailedTextEcent.setParams({"CurrentMonth":component.get("v.CurrentMonth"),"deviceName":component.get("v.deviceName"),"deviceId":component.get("v.deviceId")}).fire();
 	}, 
     //This method redirects to previous screen
     gotoDevices:function(component, event, helper) {

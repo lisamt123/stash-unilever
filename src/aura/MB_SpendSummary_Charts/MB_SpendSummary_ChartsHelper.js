@@ -1,45 +1,21 @@
 ({
-	helperMethodforCharts : function(component) {
-		/*------------------------------------------charts starts here----------------------------------------------------------*/        
-        
-        setTimeout(function() {
-            $A.run(function() {
-                $('.carousel').slick({            
-                    dots: true,
-                    arrows: false,
-                    infinite: false,
-                    
-                });
-                $('.carousel').focusout(); 
-            });
-        });
-            
-         setTimeout(function() {
-            $A.run(function() {
-                $('.carousel_column').slick({            
-                    dots: true,
-                    arrows: false,
-                    infinite: false,
-                    
-                });
-            });
-        });
+	helperMethodforpieCharts : function(component) {
         var Domestic= $A.get("$Label.c.MB_Domestic");
         var International= $A.get("$Label.c.MB_International");
         var You= $A.get("$Label.c.MB_You");
         var Colleague= $A.get("$Label.c.MB_Your_Colle");
         var res;
+         console.log("month--"+component.get("v.CurrentMonth")+"id--"+component.get("v.deviceId"));
         var action = component.get("c.getChargeType");
         action.setParams({ "month" : component.get("v.CurrentMonth"),"deviceId" : component.get("v.deviceId")});
         action.setCallback(this, function(response){
             var state = response.getState();
             if (component.isValid() && state === "SUCCESS") {
                 res= response.getReturnValue(); 
-               
+                console.log("result length"+res.totalDomesticDataUsage);
             } 
  /*---------------------------for pie charts-----------------------------------------------------------------------*/        
-
-$("#pie1").CanvasJSChart({ 
+   $("#pie1").CanvasJSChart({ 
                         axisY: { 
                       		  title: Domestic
                         }, 
@@ -49,7 +25,7 @@ $("#pie1").CanvasJSChart({
                         legend :{ 
                               verticalAlign: "center", 
                               horizontalAlign: "right",
-                              fontSize: 15,
+                              fontSize: 12,
                         }, 
                         data: [	
                         {
@@ -58,13 +34,11 @@ $("#pie1").CanvasJSChart({
                                 showInLegend: true, 
                         dataPoints: [
                         
-                        {  y: parseInt(res.totalDomesticDataUsage),legendText:Domestic, color:'#4E6990'},
+                        {  y: (res.totalDomesticDataUsage),legendText:Domestic, color:'#4F6A92'},
+                                                
+                        { y: (res.totalInternationalDataUsage),legendText:International, color:'#0C8EFF'},
                                                    
-                        { y: parseInt(res.totalInternationalDataUsage),legendText:International, color:'#EEF1F6'},
-                                                   
-                        ]
-                        }
-                        ]
+                        ]  } ]
                     });            
 $("#pie2").CanvasJSChart({ 
                         axisY: { 
@@ -76,7 +50,7 @@ $("#pie2").CanvasJSChart({
                         legend :{ 
                             verticalAlign: "center", 
                             horizontalAlign: "right" ,
-                            fontSize: 15,
+                            fontSize: 12,
                         }, 
                         data: [	
                             {
@@ -85,8 +59,8 @@ $("#pie2").CanvasJSChart({
                                 showInLegend: true,
                                 dataPoints: [
                                     
-                                    { x: 10, y: parseInt(res.totalDomesticCallUsage),legendText:Domestic,color:'#4E6990' },
-                                    { x: 20, y: parseInt(res.totalInternationalCallUsage),legendText:International,color:'#EEF1F6' }                            
+                                    { x: 10, y: (res.totalDomesticCallUsage),legendText:Domestic,color:'#4F6A92' },
+                                    { x: 20, y: (res.totalInternationalCallUsage),legendText:International,color:'#0C8EFF' }                            
                                 ]
                             }
                         ]
@@ -101,7 +75,7 @@ $("#pie2").CanvasJSChart({
                         legend :{ 
                               verticalAlign: "center", 
                               horizontalAlign: "right" ,
-                              fontSize: 15,
+                              fontSize: 12,
                         }, 
                         data: [	
                         {
@@ -110,13 +84,10 @@ $("#pie2").CanvasJSChart({
                                 showInLegend: true, 
                         dataPoints: [
                         
-                        { x: 50, y: parseInt(res.totalDomesticSMSUsage),legendText:Domestic, color:'#4E6990'},
+                        { x: 50, y: (res.totalDomesticSMSUsage),legendText:Domestic, color:'#4F6A92'},
                                                    
-                        { x: 20, y: parseInt(res.totalInternationalSMSUsage),legendText:International, color:'#EEF1F6'},
-                                                   
-                        ]
-                        }
-                        ]
+                        { x: 20, y: (res.totalInternationalSMSUsage),legendText:International, color:'#0C8EFF'},
+                       ]}]
                     });            
  $("#pie4").CanvasJSChart({ 
                         axisY: { 
@@ -128,7 +99,7 @@ $("#pie2").CanvasJSChart({
                         legend :{ 
                               verticalAlign: "center", 
                               horizontalAlign: "right",
-                              fontSize: 15,
+                              fontSize: 12,
                         }, 
                         data: [	
                         {
@@ -136,27 +107,22 @@ $("#pie2").CanvasJSChart({
                                 indexLabel: "{y}",
                                 showInLegend: true, 
                         dataPoints: [
-                        
-                        { x: 10, y: parseInt(res.totalDomesticIpassUsage),legendText:Domestic, color:'#4E6990'},
+                        { x: 10, y: (res.totalDomesticIpassUsage),legendText:Domestic, color:'#4F6A92'},                          
+                        { x: 20, y: (res.totalInternationalIpassUsage),legendText:International, color:'#0C8EFF'},
                                                    
-                        { x: 20, y: parseInt(res.totalInternationalIpassUsage),legendText:International, color:'#EEF1F6'},
-                                                   
-                        ]
-                        }
-                        ]
-                        });   
-       });
+                        ]   }    ]     }); 
+});
 		 $A.enqueueAction(action);
- /*--------------------------------for column or line charts----------------------------------------------------------------------*/        
-          var action1 = component.get("c.getyourCollegueChargeType");
+        var action1 = component.get("c.getyourCollegueChargeType");
         action1.setParams({"month" : component.get("v.CurrentMonth")});
         action1.setCallback(this, function(response){
             var res1;
             var state = response.getState();
             if (component.isValid() && state === "SUCCESS") {
                res1= response.getReturnValue(); 
-            }    
- $("#column1").CanvasJSChart({ 
+            } 
+/*--------------------------------for column or line charts----------------------------------------------------------------------*/        
+  $("#column1").CanvasJSChart({ 
                         axisY: { 
                             title: "" ,
                             gridThickness: 0,
@@ -180,14 +146,9 @@ $("#pie2").CanvasJSChart({
                             indexLabel: "{y}",
                              
                         dataPoints: [
-                             
-                                {label:You,  y: parseInt(res1.totalDataUsage) },
-                                { label:Colleague, y: parseInt(res1.totalAverageDataUsage)},
-                                             
-                            
-                        ]
-                    }
-                    ]
+                                {label:You,  y: (res1.totalDataUsage),color:'#D72C32' },
+                                { label:Colleague, y: (res1.totalAverageDataUsage),color:'#0C8EFF'},
+                           ]}]
                 });
  $("#column2").CanvasJSChart({ 
                         axisY: { 
@@ -207,16 +168,10 @@ $("#pie2").CanvasJSChart({
                         {
                         type: "column", //change it to column, spline, line, pie, etc
                             indexLabel: "{y}",
-                             
                         dataPoints: [
-                             
-                                {label:You,  y: parseInt(res1.totalCallUsage) },
-                                { label:Colleague, y: parseInt(res1.totalAverageCallUsage)},
-                                             
-                            
-                        ]
-                    }
-                    ]
+                                {label:You,  y: (res1.totalCallUsage),color:'#D72C32' },
+                                { label:Colleague, y: (res1.totalAverageCallUsage),color:'#0C8EFF'},
+                        ]}]
                 });   
  $("#column3").CanvasJSChart({ 
                         axisY: { 
@@ -236,16 +191,10 @@ $("#pie2").CanvasJSChart({
                         {
                         type: "column", //change it to column, spline, line, pie, etc
                             indexLabel: "{y}",
-                             
                         dataPoints: [
-                             
-                                {label:You,  y: parseInt(res1.totalMessageUsage) },
-                                { label:Colleague, y: parseInt(res1.totalAverageMessageUsage)},
-                                             
-                            
-                        ]
-                    }
-                    ]
+                                {label:You,  y: (res1.totalMessageUsage),color:'#D72C32' },
+                                { label:Colleague, y: (res1.totalAverageMessageUsage),color:'#0C8EFF'}                           
+                        ]  }   ]
                 });
  $("#column4").CanvasJSChart({ 
                         axisY: { 
@@ -255,7 +204,7 @@ $("#pie2").CanvasJSChart({
                         axisX: { 
                              title: "" ,
                             gridThickness: 0
-                        },
+                        }, 
                         legend :{ 
                             verticalAlign: "center", 
                             horizontalAlign: "right" ,
@@ -265,24 +214,14 @@ $("#pie2").CanvasJSChart({
                         {
                         type: "column", //change it to column, spline, line, pie, etc
                             indexLabel: "{y}",
-                             
                         dataPoints: [
-                             
-                                {label:You,  y: parseInt(res1.totalIpassUsage) },
-                                { label:Colleague, y: parseInt(res1.totalAverageIpassUsage)},
-                                             
-                            
-                        ]
-                    }
-                    ]
+                                {label:You,  y: (res1.totalIpassUsage),color:'#D72C32' },
+                                { label:Colleague, y: (res1.totalAverageIpassUsage),color:'#0C8EFF'},
+                          ] } ]
                 });
- /*--------------------------------------------------------------------------------------------------------------*/        
-            
- });
-		 $A.enqueueAction(action1);
-         
-
-	}
-/*-------------------------------------------End of charts-------------------------------------------------------*/        
- 
+                                                           
+});    
+        $A.enqueueAction(action1);
+       
+    }
 })

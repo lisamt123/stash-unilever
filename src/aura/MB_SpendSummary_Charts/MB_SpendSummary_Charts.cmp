@@ -1,9 +1,10 @@
 <aura:component controller="MB_Controller_Charts" >
-     <ltng:require styles="/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css"
-                  
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
+    <ltng:require styles="/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css"
                   scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,
                            /resource/EA_StaticResource/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
-    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
+    
     <style>
         body{
             background:#D1D1D1; 
@@ -18,10 +19,11 @@
             border-radius: 5px;
         }	
     </style>
-   
+   <aura:attribute name="showspinner" type="boolean" default="true"/>
     <aura:attribute name="deviceName" type="String"/>
     <aura:attribute name="CurrentMonth" type="String"/>
     <aura:attribute name="deviceId" type="String"/>
+    <aura:if isTrue="{!v.showspinner=='false'}">
     <div>
         <img class="back-button" src="/resource/EA_StaticResource/assets/icons/utility/back_60.png" onclick="{!c.gotoDevices}"></img>
         <div class="sectiona_a">
@@ -102,4 +104,14 @@
             </div>
         </div><br/> 
     </div>
+    <aura:set attribute="else">
+               <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+         </aura:set>
+    </aura:if>	
+    
 </aura:component>

@@ -2,13 +2,13 @@
     width:50%;
     float:left;
     text-align:center;
-    font-size: 0.8rem;
+    font-size: 15px;
 }
 .THIS .s_tab{
     width:50%;
     float:left;
     text-align:center;
-    font-size: 0.8rem;
+    font-size: 15px;
 }
 .THIS .f_tab_a:focus{
     border:0px;
