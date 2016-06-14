@@ -17,6 +17,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isy0TurnoverInvalid {get;set;} //Boolean variable to highlight the y0Turnover cell if the value is invalid
     public Boolean isy0ProfitInvalid {get;set;} //Boolean variable to highlight the y0Profit cell if the value is invalid
     public Boolean isy0GrossProfitInvalid {get;set;} //Boolean variable to highlight the y0GrossProfit cell if the value is invalid
+    public Boolean showNonKeyBusinessCaseChangedAlert {get;set;} //Boolean variable to highlight that the Non Key Business Case has been changed in GKM3 model
     
     public List<RolloutWrapper> lstRolloutWrappers {get; set;} //List of Rollout Wrappers that becomes visible for the current view
     public  Map<String, IPM_Financial__c> mapConsolidatedFinancials {get; set;} //Map of All CONSOLIDATED type financials.
@@ -244,7 +245,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
         milestoneFinanceDataValidationMessage = '';
-        exRate=1;            
+        exRate=1;
+        showNonKeyBusinessCaseChangedAlert = false;  //initiating the variable to false          
                 
         try{
             if (projectId != null) 
@@ -750,7 +752,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              
         
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeId,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c FROM IPM_Financial__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeId,Financial_External_ID__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -801,7 +803,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String firstFinancialId = '';
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         
-        lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name,recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c   
+        lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  
                                                             FROM IPM_Financials__r
                                                             WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
@@ -942,7 +944,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String firstFinancialId = '';
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         
-        List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  
+        List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  
                                                             FROM IPM_Financials_Regional__r
                                                             WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true                                                          
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
@@ -1011,7 +1013,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         // No need to display Non Key financials in case of Regional View. Only needs to be displayed in Global Charter
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id AND isActive__c = true
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
@@ -1064,7 +1066,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalOriginalTopDownWrappers()
     {
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM IPM_Financial__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
                                                             AND Charter_Approved__c = true 
@@ -1119,7 +1121,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     {
     	// Get the regional Rollout from where regional Projects got created.Get associated financials from those regional Rollouts.
         IPM_Project_Rollout__c regionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                                    (SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+                                                    (SELECT Id, Name, recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                         FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Charter_Approved__c = true
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
@@ -1182,7 +1184,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalRollupWrappers()
     {
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
-        List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+        List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name,recordTypeID, Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c
                                                             FROM IPM_Financial__c   
                                                             WHERE Regional_Project__c =: project.Id AND isActive__c = true
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
@@ -1246,7 +1248,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void getLocalMyViewWrappers(){
-        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
                                                             WHERE Local_Project__c =: project.Id
                                                                 AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true 
@@ -1413,6 +1415,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                }
             }
             getCountryList();
+            calculateIsNonKeyBusinessCaseChanged();
         }
             setMisalignedValue();        
         
@@ -2806,5 +2809,22 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             isCopyfromSTDBC=true;   
         }
-    } 
+    }
+    
+    //called via action support on click of the deleteicon image. this value then makes the flag Is_Nonkey_Business_Case_Changed__c on financial to false
+    //also showNonKeyBusinessCaseChangedAlert is made false to hide the alert message
+    public void resetNonKeyBusinessCaseChangedFlag(){
+    	update new IPM_Financial__c (id = currentFinancialId, Is_Nonkey_Business_Case_Changed__c= false );
+    	showNonKeyBusinessCaseChangedAlert = false;
+    }
+    
+    // Calculate whether the Non Key Business case Alert message should be shown or not.
+    // If Non key business case is changed in GKM3 model then the flag showNonKeyBusinessCaseChangedAlert is set to true
+    public void calculateIsNonKeyBusinessCaseChanged(){
+    	if(currentFinancial.Is_Nonkey_Business_Case_Changed__c && currentFinancial.Gate_Keeping_Model__c == IPM_Utils.GATE_KEEPING_MODEL_3){
+    		showNonKeyBusinessCaseChangedAlert = true;
+    	}
+    }
+    
+    
 }
