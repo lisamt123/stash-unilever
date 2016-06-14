@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    <labels>
+   <labels>
         <fullName>ICB_ALERT_CHECKIN_OUT_CUSTOMER</fullName>
         <categories>ICB</categories>
         <language>en_US</language>
@@ -296,4 +294,3 @@
         <shortDescription>ICB_WARNING_CHECKOUT_SUCCESSFULLY</shortDescription>
         <value>Warning! Check-Out it has been performed!</value>
     </labels>
-</CustomLabels>
