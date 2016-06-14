@@ -280,9 +280,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
         List<CPA_CR__c> lstCR = [Select pkl_Status__c,Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
         /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */
         for(CPA_CR__c objCR : lstCR){
-            if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
+            if(objCR!=null && objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
                 objCR.chk_Contract_Attached__c = false;
-                system.debug('objCR-->'+objCR.id + '  '+'objCR-->'+objCR.pkl_Status__c);
                 lstTempCR.add(objCR);
             }
             else{
@@ -294,7 +293,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             }            
         }
         for(CPA_project_work_order__c objPWO :lstPWO ){
-            if(objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
+            if(objPWO!= null && objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
                objPWO.chk_PDF_Attached__c = false;
                lstTemp.add(objPWO);
             }else {
@@ -306,9 +305,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
         }
           /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */     
         if(lstTemp!=null && lstTemp.size()>0){
-        system.debug('lstCR-->'+lstTemp+ '  '+'lstCR-->');
             update lstTemp;
-        }
+        } 
         if(lstTemp !=null && lstTemp.size()>0){
             update lstTemp;
         }
@@ -447,7 +445,6 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             
             for(CPA_project_work_order__c objPWO : lstPWO){
                 Decimal  intTotalmandays = 0;
-                //Decimal  intEstimatedValue = 0;
                 Decimal  intIndicativeExpenses  = 0;
                 Decimal  intNonPayroll   = 0;
                 Decimal  intPMOTax = 0;
@@ -458,10 +455,10 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                 Decimal  intRMS = 0;
                 Decimal  intOther = 0;
                 Decimal  intCostResource = 0;
-                //Decimal  intTotalcost = 0;
                 Decimal  intoffshower = 0;
                 Decimal  intOnshower = 0;
                 Decimal  intNoOfResources = 0;
+
                 for(CPA_Commercial_Details__c objCOm : mapPWOComDetai.get(objPWO.id)){
                     if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RESOURCE || objCOm.num_Entity_Type__c ==1 ){
                         intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
@@ -561,7 +558,6 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             }
             for(CPA_CR__c objCR : lstCR){
                 Decimal  intTotalmandays = 0;
-                //Decimal  intEstimatedValue = 0;
                 Decimal  intIndicativeExpenses  = 0;
                 Decimal  intNonPayroll   = 0;
                 Decimal  intPMOTax = 0;
@@ -572,7 +568,6 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                 Decimal  intRMS = 0;
                 Decimal  intOther = 0;
                 Decimal  intCostResource = 0;
-                //Decimal  intTotalcost = 0;
                 Decimal  intoffshower = 0;
                 Decimal  intOnshower = 0;
                 Decimal  intNoOfResources = 0;
