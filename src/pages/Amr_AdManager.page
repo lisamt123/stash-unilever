@@ -233,7 +233,7 @@
                             <div class="form-field margin-left-minus30">
                                 <apex:actionRegion >
                                     <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick" class="categorySelected"></select>
-                                    <apex:actionSupport event="onchange" reRender="brandPosPick" status="counterStatus11" />
+                                    <apex:actionSupport event="onchange" reRender="brandPosPick,brandPick" status="counterStatus11" />
                                     <!-- <apex:selectList value="{!categoryName}" size="1">
                                 <apex:selectOptions value="{!CategoryList}" />
                                 </apex:selectList> -->
@@ -1192,7 +1192,7 @@
                 <apex:actionFunction action="{!getSubmitForm}" name="callContrlProjectName" reRender="listRefresh1">
                     <apex:param name="param" value="" id="y" assignTo="{!projectNameFromPage}" />
                 </apex:actionFunction>
-                <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick" oncomplete="closeloading()">
+                <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick,brandPick" oncomplete="closeloading()">
                     <apex:param id="catname" assignTo="{!categoryName}" name="categoryName" value="{!categoryName}" />
                 </apex:actionFunction>                
                 <apex:actionFunction name="sendProductionActivity" action="{!prodActivity}" reRender="showmsg1" oncomplete="submitData()" status="actStatusId">

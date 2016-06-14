@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -546,7 +547,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <description>CEC Retrieval Message. To capture any error message from the downstream system</description>
         <externalId>false</externalId>
         <label>Retrieval Message</label>
-        <length>100</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -570,7 +571,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <externalId>false</externalId>
         <label>Retrieval Quantity</label>
         <precision>10</precision>
-        <required>true</required>
+        <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1053,8 +1054,7 @@ function refreshRetrivalSubTab(result) {
 //Refresh Fulfilment tab 
 sforce.console.refreshSubtabById(result.id); 
 }</url>
-    </webLinks>
-    <webLinks>
+    </webLinks><webLinks>
         <fullName>New_Retrieval_Request</fullName>
         <availability>online</availability>
         <description>CEC New Retrieval Request is used to add new  Retrieval Request.</description>
@@ -1064,38 +1064,38 @@ sforce.console.refreshSubtabById(result.id);
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
-{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
-{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+        <url>{!REQUIRESCRIPT("/soap/ajax/32.0/connection.js")} 
+{!REQUIRESCRIPT("/support/console/30.0/integration.js")}
+{!REQUIRESCRIPT("/soap/ajax/30.0/apex.js")}
 
-sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+sforce.connection.sessionId = "{!$Api.Session_ID}";
 
 var caseQuery;
 if ({!$Permission.CEC_Retrieval_Process}) {
-    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.Phone,Account.PersonMobilePhone,Account.PersonOtherPhone,Account.PersonHomePhone,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c  From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
-	
-	var retrivalRequestId;
-	var retrivalRequestName;
-	var records = caseQuery.getArray(&quot;records&quot;);
-	var caseRecord = records[0];
+    caseQuery = sforce.connection.query("Select Id,AccountId,Account.Phone,Account.PersonMobilePhone,Account.PersonOtherPhone,Account.PersonHomePhone,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c  From Case Where Id = '{!Case.Id}'");
+  
+  var retrivalRequestId;
+  var retrivalRequestName;
+  var records = caseQuery.getArray("records");
+  var caseRecord = records[0];
 
-	if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
-		alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
-	} else if (caseRecord != null &amp;&amp;
-		caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
-		alert(&apos;{!$Label.CEC_CaseAccountPersonAddressMissing}&apos;);
-	} else if (caseRecord != null &amp;&amp;
-		(caseRecord.Account.Phone == null || caseRecord.Account.PersonMobilePhone == null || caseRecord.Account.PersonOtherPhone == null || caseRecord.Account.PersonHomePhone == null) ) {
-		alert(&apos;{!$Label.CEC_CaseAccountPersonPhoneMissing}&apos;);	
-	} else {
+  if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
+    alert('{!$Label.CEC_CaseAccountMissing_retrieval}');
+  } else if (caseRecord != null &amp;&amp;
+    caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
+    alert('{!$Label.CEC_CaseAccountPersonAddressMissing}');
+  } else if (caseRecord != null &amp;&amp;
+    (caseRecord.Account.Phone == null &amp;&amp; caseRecord.Account.PersonMobilePhone == null &amp;&amp; caseRecord.Account.PersonOtherPhone == null &amp;&amp; caseRecord.Account.PersonHomePhone == null) ) {
+    alert('{!$Label.CEC_CaseAccountPersonPhoneMissing}');  
+  } else {
 
-		var newRetrievelRequest = new sforce.SObject(&quot;CEC_Retrieval_Request__c&quot;);
-		newRetrievelRequest.Case__c = caseRecord.Id;
+    var newRetrievelRequest = new sforce.SObject("CEC_Retrieval_Request__c");
+    newRetrievelRequest.Case__c = caseRecord.Id;
                 newRetrievelRequest.Case_Country_Name__c = caseRecord.Country_Name__c;
-		sforce.connection.create([newRetrievelRequest], success);
-	}	
+    sforce.connection.create([newRetrievelRequest], success);
+  }  
 } else {
-    alert(&apos;{!$Label.CEC_NoAccessForRetrievalProcess}&apos;);
+    alert('{!$Label.CEC_NoAccessForRetrievalProcess}');
 }
 
 
@@ -1110,7 +1110,7 @@ var openSubtab = function openSubtab(result) {
     //Now that we have the primary tab ID, we can open a new subtab in it
     var primaryTabId = result.id;
     sforce.console.refreshPrimaryTabById(primaryTabId, false);
-    sforce.console.openSubtab(primaryTabId, &apos;/&apos; + retrivalRequestId, true, retrivalRequestName, null);
+    sforce.console.openSubtab(primaryTabId, '/' + retrivalRequestId, true, retrivalRequestName, null);
 };</url>
     </webLinks>
     <webLinks>

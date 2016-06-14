@@ -68,7 +68,7 @@ public class CEC_ClearAlertData_BatchScheduler_Test {
         System.runAs(u) {
            
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
-            List<Case> caseList = [SELECT Id,Reason_Code__c,CreatedDate FROM Case];
+            List<Case> caseList = [SELECT Id,Reason_Code__c,CreatedDate FROM Case limit 100];
             System.assertEquals(caseList.size(), 50);
             // Update Case to create alert data.
             for(Case caseObj : caseList){
@@ -77,7 +77,7 @@ public class CEC_ClearAlertData_BatchScheduler_Test {
             update caseList;
             
             List<cec_Alert_Tracker__c> alertTrackerObjList= [SELECT Id,Alert_Tracker_Item_count__c 
-                                                            FROM cec_Alert_Tracker__c];
+                                                            FROM cec_Alert_Tracker__c limit 100];
             System.assertEquals(alertTrackerObjList.size(), 1);
             System.assertEquals(alertTrackerObjList[0].Alert_Tracker_Item_count__c, 50);
             Set<Id> alertTrackerSetIds = (new Map<Id,cec_Alert_Tracker__c>(alertTrackerObjList)).keySet();
@@ -96,7 +96,7 @@ public class CEC_ClearAlertData_BatchScheduler_Test {
             database.executeBatch(scheduler);
             Test.stopTest();
             // Retrieve the data to assert the Alerts.
-            alertTrackerObjList= [SELECT Id,Alert_Tracker_Item_count__c FROM cec_Alert_Tracker__c];
+            alertTrackerObjList= [SELECT Id,Alert_Tracker_Item_count__c FROM cec_Alert_Tracker__c limit 100];
             alertTrackerItemList = [SELECT Id,CreatedDate FROM cec_Alert_Tracker_Item__c 
                                     WHERE Alert_Tracker_Id__c IN : alertTrackerSetIds];
             System.assertEquals(alertTrackerItemList.size(), 0);
@@ -117,7 +117,7 @@ public class CEC_ClearAlertData_BatchScheduler_Test {
         System.runAs(u) {
            
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
-            List<Case> caseList = [SELECT Id,Reason_Code__c,CreatedDate FROM Case];
+            List<Case> caseList = [SELECT Id,Reason_Code__c,CreatedDate FROM Case limit 100];
             System.assertEquals(caseList.size(), 50);
             // Update Case to create alert data.
             for(Case caseObj : caseList){
@@ -126,7 +126,7 @@ public class CEC_ClearAlertData_BatchScheduler_Test {
             update caseList;
             
             List<cec_Alert_Tracker__c> alertTrackerObjList= [SELECT Id,Alert_Tracker_Item_count__c 
-                                                            FROM cec_Alert_Tracker__c];
+                                                            FROM cec_Alert_Tracker__c limit 100];
             System.assertEquals(alertTrackerObjList.size(), 1);
             System.assertEquals(alertTrackerObjList[0].Alert_Tracker_Item_count__c, 50);
             Set<Id> alertTrackerSetIds = (new Map<Id,cec_Alert_Tracker__c>(alertTrackerObjList)).keySet();
@@ -146,7 +146,7 @@ public class CEC_ClearAlertData_BatchScheduler_Test {
             database.executeBatch(scheduler);
             Test.stopTest();
             // Retrieve the data to assert the Alerts.
-            alertTrackerObjList= [SELECT Id,Alert_Tracker_Item_count__c FROM cec_Alert_Tracker__c];
+            alertTrackerObjList= [SELECT Id,Alert_Tracker_Item_count__c FROM cec_Alert_Tracker__c limit 100];
             alertTrackerItemList = [SELECT Id,CreatedDate FROM cec_Alert_Tracker_Item__c 
                                     WHERE Alert_Tracker_Id__c IN : alertTrackerSetIds];
             System.assertEquals(alertTrackerItemList.size(), 30);

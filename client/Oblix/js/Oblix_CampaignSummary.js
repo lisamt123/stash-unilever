@@ -44,9 +44,10 @@ $(document).ready(function() {
     console.log('in here');
     var table = $('#sowListTable').DataTable({
         "dom": 'lrtip',
-        'pageLength': 100,
-        'lengthChange': false,
-        'pagingType': 'full_numbers'
+        //'pageLength': 100,
+        //'lengthChange': false,
+        'pagingType': 'full_numbers',
+        'bPaginate' : false
     });
     $('#sowListTable tbody').on('click', 'td', function() {
         if ($(this).hasClass("redirect_td")) {

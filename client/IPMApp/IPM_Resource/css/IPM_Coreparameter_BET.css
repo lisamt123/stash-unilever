@@ -1,0 +1,151 @@
+/************** CSS HEADER INFORMATION******************************************************
+	- File Name     : IPM_Coreparameter_BET
+	- Description   : This file is used for BET styles in Coreparameters 
+	- Client        : Unilever
+	- Last Modified : 29-10-15
+	- Author        : Cognizant Technology Solutions  
+*******************************************************************************************/
+/* ===GLOBAL STYLES=== */
+.paracont
+{
+  float:left; 
+  padding:10px; 
+  width:100% 
+}
+.paracont p, fullWidth
+{  
+   width:100%;
+}
+.floatR
+{
+   float:right;
+}
+.noBetMsg{float:left;width:100%;}
+.toolkitContainer .searchBox{margin-top:10px;}
+.paddingB15 { padding-bottom:15px}
+.floatL
+{
+   float:left;
+}
+.paracont div a:first-child
+{
+   margin-right:10px;
+}
+.inlineB
+{
+   display:inline-block;
+}
+.marginT20
+{
+   margin-top:20px;
+}
+.marginT0
+{
+   margin-top:0;
+}
+.marginB15
+{
+   margin-bottom:15px;
+}
+.fontB
+{ 
+   font-weight: bold ;
+}
+.searchmag
+{
+    position: absolute;
+    left: 180px;
+    height: 17px;
+    width: 17px;
+	top:15px;
+	cursor:pointer;
+}
+.padL0
+{
+   padding-left:0;
+}
+.searchBoxx
+{
+    border: #ccc solid 1px;
+    height: 27px;
+    border-radius: 2px;
+    padding: 0 8px;
+    font-size: 12px;
+    width: 200px;
+}
+
+.ipmTable tr.active1 {
+    background-color: #E5F2F8 ;   
+}
+.ipmTable .active1 td
+{
+     border-bottom:1px solid #007DBB;
+    border-top:1px solid #007DBB;	
+}
+
+.radioGridTable
+{
+   margin: 0; 
+   padding: 0; 
+   border-collapse: collapse; 
+   width: 101%; 
+   max-height: 254px; 
+   overflow: auto; 
+   margin-bottom:20px;
+}
+.icoButton.smallllinfo
+{
+    height:16px ;
+	width:16px ;
+	top:3px;
+	left:5px;
+}
+
+.ui-tooltip {
+	-webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    border: none;
+    text-align: left;
+	color:#fff;
+	padding:3px 7px;
+	opacity:0.9;
+	width:200px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0;    
+	font-size:12px;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+    top: -10px;
+    left: 44%;
+    border-color: #01B1A6 transparent;
+    border-width: 0 10px 10px;
+}
+.tooltip > .tooltip-inner {
+    width: 500px;
+    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    text-align: left;
+	position: relative;
+    left: 48px;
+}
+.tooltip.left .tooltip-arrow {
+    border-left-color: #00b1a5;
+}
+.tooltip.top .tooltip-arrow {
+    border-top-color: #00b1a5;
+}

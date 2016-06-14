@@ -104,7 +104,7 @@
 
                 <!-- <p class="navbar-text pull-right">
                     <apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>
-                    <a href="{!$Page.MyProfile}" class="navbar-link">{!loggedUsername}</a>
+                    <a href="{!$Page.PBS_MyProfile}" class="navbar-link">{!loggedUsername}</a>
                 </p> -->
             </nav>
         </div>

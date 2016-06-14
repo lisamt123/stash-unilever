@@ -302,7 +302,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
             Test.startTest();
             Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING JOB STEPS STEPS******************************',NULL);
             Oblix_SyncBatchJob batch_job = new Oblix_SyncBatchJob(1,1,1);
-            batch_job.updateJobRunningCustomSetting(true);
+            Oblix_Utils.updateJobRunningCustomSetting(true);
 
             for (Oblix_SyncBatchJob.jobComponent job_component : job_process_batch.list_job_components){
                 system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
@@ -317,7 +317,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
                     Oblix_SOWRolloverLogic.processStep(job_component);
                 }
             }
-            batch_job.updateJobRunningCustomSetting(false);
+            Oblix_Utils.updateJobRunningCustomSetting(false);
 
             Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING JOB STEPS******************************',NULL);
 
@@ -377,7 +377,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
             //processJobComponents(job_process_batch_secondary.list_job_components);
             Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING JOB STEPS STEPS******************************',NULL);
             Oblix_SyncBatchJob batch_job = new Oblix_SyncBatchJob(1,1,1);
-            batch_job.updateJobRunningCustomSetting(true);
+            Oblix_Utils.updateJobRunningCustomSetting(true);
 
             for (Oblix_SyncBatchJob.jobComponent job_component : job_process_batch_secondary.list_job_components){
                 system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
@@ -392,7 +392,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
                     Oblix_SOWRolloverLogic.processStep(job_component);
                 }
             }
-            batch_job.updateJobRunningCustomSetting(false);
+            Oblix_Utils.updateJobRunningCustomSetting(false);
 
             Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING JOB STEPS******************************',NULL);
             Test.stopTest();
@@ -432,7 +432,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
     	Test.startTest();
 	        Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING JOB STEPS STEPS******************************',NULL);
 	        Oblix_SyncBatchJob batch_job = new Oblix_SyncBatchJob(1,1,1);
-	        batch_job.updateJobRunningCustomSetting(true);
+	        Oblix_Utils.updateJobRunningCustomSetting(true);
 
 	        for (Oblix_SyncBatchJob.jobComponent job_component : job_components){
 	            system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
@@ -447,7 +447,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	                Oblix_SOWRolloverLogic.processStep(job_component);
 	            }
 	        }
-	        batch_job.updateJobRunningCustomSetting(false);
+	        Oblix_Utils.updateJobRunningCustomSetting(false);
 
 	        Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING JOB STEPS******************************',NULL);
 	    Test.stopTest();

@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:Used for the CMI section functionality for Gate Document
 *@Author: Cognizant
@@ -12,12 +12,14 @@
 <apex:attribute name="Editable" description="Used for security" type="Boolean" assignTo="{!isEditable}"/>
 <apex:attribute name="getGate" description="For getting gate type" type="String" assignTo="{!gateType}"/>
 <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
-<apex:actionFunction name="selectTest" action="{!createCMISections}" status="Loading" reRender="scriptToRerender,showCMIArea,cmiInputTable" onComplete="skipTestrender();" >
+<apex:actionFunction name="selectTest" action="{!createCMISections}" status="Loading" reRender="scriptToRerender,showCMIArea,cmiInputTable" onComplete="skipTestrender('{!openAccordian}','addNew','');" >
     <apex:param name="selectTest" assignTo="{!cmiName}" value="" />
+    <apex:param name="openAccord" assignTo="{!openAccordian}" value="" />
 </apex:actionFunction>
-<apex:actionFunction name="selectCountry" action="{!createCountryCMI}" status="Loading" onComplete="skipTestrender();" reRender="scriptToRerender,showCMIArea,cmiInputTable" >
+<apex:actionFunction name="selectCountry" action="{!createCountryCMI}" status="Loading" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="scriptToRerender,showCMIArea,cmiInputTable" >
     <apex:param name="selectCountries" assignTo="{!countryName}" value="" />
     <apex:param name="cmiid" assignTo="{!gateCMIId}" value="" />
+    <apex:param name="openAccord" assignTo="{!openAccordian}" value="" />
 </apex:actionFunction>
 <apex:outputPanel id="showCMIArea" styleClass="contentWrapper"> 
     <apex:outputPanel >
@@ -25,15 +27,15 @@
             <apex:outputPanel >
                 <div class="ipmAccordian CMIGateDoc" id="MainTable">                                               
                     <div class="col-xs-12 ipmAccordianDiv">
-                        <div class="row aHead">
+                        <div class="row aHead {!types.value}">
                             <span class='expico fa fa-minus'></span><span> {!types.value}</span>
                         </div>
                             
-                        <div class="row ipmAcrdnExpand">
+                        <div class="row ipmAcrdnExpand {!types.value}">
                             <div class="col-xs-12 ipmAcrdnExpandDiv">
                                 <span class="conceptHeading">{!$Label.IPM_CMI_Select_Concept_Tests}</span>
                                 <apex:outputPanel styleClass="row" layout="block" id="checkboxes">
-                                	<!-- Condition for checking editable -->
+                                    <!-- Condition for checking editable -->
                                     <apex:outputPanel layout="block" rendered="{!isEditable}">
                                         <div class="row noMargin">
                                             <div class="col-sm-12 selectBackground noPaddingNbg">
@@ -80,7 +82,7 @@
                                                         <apex:outputPanel rendered="{!isEditable}" >                    
                                                             <li class="filterActionscc">
                                                                 <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
-                                                                    <apex:commandLink onclick="addTest();"  styleClass="ipmDropbuttonscc" value="Done" id="gatecmiDone" reRender="showCMIArea,cmiInputTable" />  
+                                                                    <apex:commandLink onclick="addTest('{!types.value}');"  styleClass="ipmDropbuttonscc" value="Done" id="gatecmiDone" reRender="showCMIArea,cmiInputTable" />  
                                                                 </div>
                                                                 <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
                                                                     <a value="Reset" class="ipmDropresetcc cmiListreset">{!$Label.IPM_Reset}</a>
@@ -96,33 +98,33 @@
                                 </apex:outputPanel> 
                                 <div class="row">
                                     <apex:outputPanel styleClass="{!IF(cmiList.size>0,'cmiListcont','')}" layout="block" id="refreshid">                 
-                                        <apex:repeat value="{!cmiList}" var="cmi">                  
-                                        	<!-- Condition for checking cmi type with gate -->             
+                                        <apex:repeat value="{!cmiList}" var="cmi">     
+                                            <!-- Condition for checking cmi type with gate -->             
                                             <apex:outputPanel layout="block" rendered="{!cmi.Gate__c=types.value}">
-                                                <div class="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">                                          
+                                                <div class="col-xs-12 ipmAcrdnHeader {!cmi.Id} aHead SecButtonSet">                                          
                                                     <div class="col-xs-8 checkMarginTop txtalignLeft"><span class='expico fa fa-minus'></span><span class="conceptTitle">{!cmi.Element__c}/{!cmi.Test__c}</span></div>
                                                     <!-- Condition for checking editable -->
                                                     <apex:outputPanel rendered="{!isEditable}">
                                                         <div class="pull-left checkMarginTop">  
                                                            <div class="ipmCheckbox skipCheck">
                                                                
-                                                               <input class="ccListbox" type="checkbox" value="{!cmi.IPM_Skip_Test__c}" id="{!cmi.Id}" onclick="skipTestScript('{!cmi.id}',this.value)" />
+                                                               <input class="ccListbox" type="checkbox" value="{!cmi.IPM_Skip_Test__c}" id="{!cmi.Id}" data-val="{!types.value}"/>
                                                                <label for="{!cmi.Id}"></label>
                                                            </div>                                          
                                                            <div class="skipTestLabel">{!$Label.IPM_CMI_Skip_Test}</div>
                                                        </div>
-                                                    </apex:outputPanel>   
+                                                    </apex:outputPanel>
                                                 <!-- Condition for checking editable -->       
                                                 <apex:outputPanel layout="block" rendered="{!isEditable}">    
-                                                   <div class="deletBtnDiv pull-right" ><a class="icoButton delete deleteCMITest" title="Remove Concept Test" onClick="deleteCMITest('{!cmi.ID}')" /></div>
+                                                   <div class="deletBtnDiv pull-right" ><a class="icoButton delete deleteCMITest" title="Remove Concept Test" onClick="deleteCMITest('{!cmi.ID}','{!types.value}')" /></div>
                                                 </apex:outputPanel>
                                                 </div>
-                                            <div class="col-xs-12 ipmAcrdnExpand">
+                                            <div class="col-xs-12 ipmAcrdnExpand {!cmi.Id}">
                                                 <div class="row">
-                                                	<!-- Condition for checking skipping cmi test -->
+                                                    <!-- Condition for checking skipping cmi test -->
                                                     <apex:outputPanel styleClass="col-xs-12" layout="block" rendered="{!cmi.IPM_Skip_Test__c}">
                                                         <span class="skipCommentHead">{!$Label.IPM_CMI_Please_provide_the_reason_for_skipping_the_test}</span>
-                                                            <apex:inputTextarea styleClass="skipCommentBox" value="{!cmi.IPM_Skip_Test_Reason__c}"  onchange="skipComment('{!cmi.Id}',this.value);"/>
+                                                            <apex:inputTextarea styleClass="skipCommentBox" value="{!cmi.IPM_Skip_Test_Reason__c}"  onchange="skipComment('{!cmi.Id}',this.value,'{!types.value}');"/>
                                                     </apex:outputPanel>
                                                     <!-- condition for displaying countries list -->
                                                     <apex:outputPanel rendered="{!AND(isEditable,!cmi.IPM_Skip_Test__c)}">
@@ -137,8 +139,8 @@
                                                         <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList CMICountryList">
                                                             <apex:dataList value="{!countries}" var="cou" id="CMICountryList" styleClass="cccmiList">                                                               
                                                                         <div class="col-xs-1 ipmCheckbox">
-                                                                            <input class="countrycListbox" type="checkbox" value="{!cou.value}" id="{!cmi.id}{!cou.value}" />
-                                                                            <label for="{!cmi.id}{!cou.value}"></label>
+                                                                            <input class="countrycListbox" type="checkbox" value="{!cou.Label}" id="{!cmi.Id}{!cou.Label}" />
+                                                                            <label for="{!cmi.Id}{!cou.Label}"></label>
                                                                         </div>
                                                                         <div class="col-xs-10 noPadleft cmiLabel">{!cou.value}</div>
                                                                    
@@ -147,7 +149,7 @@
                                                             <apex:outputPanel rendered="{!isEditable}" >
                                                                 <li class="filterActionscc">
                                                                     <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
-                                                                        <apex:commandLink styleClass="ipmDropbuttonscc" value="Done" onclick="addCountry('{!cmi.Id}')" rerender="cmiInputTable"/>
+                                                                        <apex:commandLink styleClass="ipmDropbuttonscc" value="Done" onclick="addCountry('{!cmi.Id}','{!types.value}')" rerender="cmiInputTable"/>
                                                                     </div>
                                                                     <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
                                                                         <a value="Reset" class="ipmDropresetcc cmiCountryreset">{!$Label.IPM_Reset}</a>
@@ -159,18 +161,18 @@
                                                     </apex:outputPanel>
                                                     <apex:outputPanel id="cmiInputTable">   
                                                         <apex:repeat value="{!countryNameList}" var="selCon">
-                                                        	<!-- Condition for checking cmi country -->
+                                                            <!-- Condition for checking cmi country -->
                                                             <apex:outputPanel layout="block" styleClass="CMIcountryAccordian" rendered="{!AND(cmi.Country__c!=null,cmi.Country__c!='',CONTAINS(cmi.Country__c,selCon))}">
                                                                 <apex:outputPanel layout="block" styleClass="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
                                                                     <div class="col-xs-10">
                                                                         <span class='expico fa fa-minus'></span>
-                                                                        <span class="conceptTitle">{!selCon}</span>
+                                                                        <span class="conceptTitle">{!mapCountryNameWithCode[selCon]}</span>
                                                                     </div>
                                                                     <!-- Condition for checking editable -->
                                                                     <apex:outputPanel rendered="{!isEditable}" >
                                                                    
                                                                     <div class="deletBtnDiv pull-right" >
-                                                                        <a class="icoButton delete deleteCountry" title="Remove Country" onClick="deleteCountry('{!cmi.Id}','{!selCon}');"/>                     
+                                                                        <a class="icoButton delete deleteCountry" title="Remove Country" onClick="deleteCountry('{!cmi.Id}','{!selCon}','{!types.value}');"/>                     
                                                                     </div>
                                                                       
                                                                     </apex:outputPanel>  
@@ -178,13 +180,13 @@
                                                                 <apex:outputPanel layout="block" styleClass="col-xs-12 ipmAcrdnExpand">
                                                                     <div class="row">
                                                                          <apex:repeat value="{!resList}" var="res" id="resListt"> 
-                                                                         	<!-- Condition for displaying cmi result timing --> 
+                                                                            <!-- Condition for displaying cmi result timing --> 
                                                                             <apex:outputPanel layout="block" rendered="{!AND(resList!=null,resList.size>0,cmi.Id=res.IPM_Gate_CMI__c,res.IPM_CMI_Country__c=selCon)}">
                                                                                 <div class="cmiResultTime fieldLabel">{!$Label.IPM_CMI_Result_Timings}</div>
                                                                                 <!-- Condition for checking editable -->
                                                                                 <apex:outputPanel layout="block" rendered="{!isEditable}" styleClass="col-xs-5 noPadleft">
                                                                                     <div class="inputField">
-                                                                                        <apex:inputField value="{!res.IPM_CMI_Result_Timing__c}" styleClass="dateInputBox calendar" onchange="updateTiming(this.value,'{!res.IPM_Gate_CMI__c}','{!res.IPM_CMI_Country__c}',false,'{res.IPM_CMI_Overall_Comments__c}')" />
+                                                                                        <apex:inputField value="{!res.IPM_CMI_Result_Timing__c}" styleClass="dateInputBox calendar" onchange="updateTiming(this.value,'{!res.IPM_Gate_CMI__c}','{!res.IPM_CMI_Country__c}',false,'{res.IPM_CMI_Overall_Comments__c}','{!cmi.id}','{!types.value}')" />
                                                                                     </div>
                                                                                 </apex:outputPanel>
                                                                                 <!-- Condition for checking read only -->
@@ -194,7 +196,7 @@
                                                                             </apex:outputPanel> 
                                                                         </apex:repeat> 
                                                                     </div>
-                                                                    <div class="table-responsive cmiTableDiv" id="ipmTableDiv">
+                                                                    <div class="table-responsive cmiTableDiv ipmTableDiv" id="ipmTableDiv">
                                                                         <div class="cmiTabHeaderContainer">
                                                                             <span class="cmiTabHeadBlock">
                                                                                 {!$Label.IPM_CMI_Inputs}
@@ -207,32 +209,32 @@
                                                                             </span>
                                                                         </div>
                                                                         <apex:repeat value="{!sectionList}" var="sec" id="secList">
-                                                                        	<!-- Condition for checking cmi records -->
+                                                                            <!-- Condition for checking cmi records -->
                                                                             <apex:outputPanel styleClass="cmigTable" layout="block" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}">
-                                                                            	<!-- Condition for checking cmi country -->
+                                                                                <!-- Condition for checking cmi country -->
                                                                                 <apex:outputPanel layout="block" rendered="{!sec.IPM_CMI_Country__c=selCon}">
                                                                                     <div class="rContainer">
                                                                                         <div class="cmiInputContainer">
-                                                                                        	<!-- Condition for checking editable -->
+                                                                                            <!-- Condition for checking editable -->
                                                                                             <apex:outputPanel rendered="{!isEditable}">
-                                                                                            	<!-- Condition for checking input free text or not -->
+                                                                                                <!-- Condition for checking input free text or not -->
                                                                                                 <apex:inputField id="inputSelectList" styleClass="cmiSelectBox" html-disabled="disabled" value="{!sec.IPM_CMI_Input__c}"  rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
                                                                                                 <!-- Condition for displaying input free text  -->
-                                                                                                <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false);"/>
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,'{!cmi.id}','{!types.value}');"/>
                                                                                             </apex:outputPanel>   
                                                                                             <!-- Condition for checking read only -->
                                                                                             <apex:outputPanel rendered="{!!isEditable}">
-                                                                                            	<!-- Condition for checking input free text or not -->
+                                                                                                <!-- Condition for checking input free text or not -->
                                                                                                 <apex:outputField value="{!sec.IPM_CMI_Input__c}" rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
                                                                                                  <!-- Condition for displaying free text  -->
                                                                                                 <apex:outputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}"/>
                                                                                             </apex:outputPanel>  
                                                                                         </div>
                                                                                         <div class="cmiResultContainer">
-                                                                                        	 <!-- Condition for checking editable  -->
+                                                                                             <!-- Condition for checking editable  -->
                                                                                             <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left" rendered="{!isEditable}">
-                                                                                            	<!-- Condition for displaying cmi result  -->
-                                                                                                <apex:inputField value="{!sec.IPM_CMI_Result__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c)}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false);"/>
+                                                                                                <!-- Condition for displaying cmi result  -->
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Result__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c)}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,'{!cmi.id}','{!types.value}');"/>
                                                                                             </apex:outputPanel>   
                                                                                             <!-- Condition for checking editable  -->
                                                                                             <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!AND(!isEditable,!sec.IPM_CMI_Is_Free_Text__c)}">
@@ -241,10 +243,10 @@
                                                                                             <span class="{!sec.IPM_CMI_Outcome_Color__c}"></span>
                                                                                         </div>
                                                                                         <div class="cmiCommentContainer">
-                                                                                        	<!-- Condition for checking editable  -->
+                                                                                            <!-- Condition for checking editable  -->
                                                                                             <apex:outputPanel rendered="{!isEditable}">
-                                                                                            	<!-- Condition for checking cmi record  -->
-                                                                                                <apex:inputField styleClass="cmiCommentBox" value="{!sec.IPM_CMI_Comments__c}" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}" onchange="updateCMIContent('{!sec.Id}','{!sec.IPM_CMI_Result__c}',this.value,true);" />
+                                                                                                <!-- Condition for checking cmi record  -->
+                                                                                                <apex:inputField styleClass="cmiCommentBox" value="{!sec.IPM_CMI_Comments__c}" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}" onchange="updateCMIContent('{!sec.Id}','{!sec.IPM_CMI_Result__c}',this.value,true,'{!cmi.id}','{!types.value}');" />
                                                                                             </apex:outputPanel>
                                                                                             <!-- Condition for checking read only  -->
                                                                                             <apex:outputPanel rendered="{!!isEditable}">
@@ -256,27 +258,27 @@
                                                                             </apex:outputPanel>
                                                                         </apex:repeat>
                                                                         <apex:repeat value="{!resList}" var="os" id="oslist">
-                                                                        	<!-- Condition for checking result list empty or not -->
+                                                                            <!-- Condition for checking result list empty or not -->
                                                                             <apex:outputPanel styleClass="cmigTable" layout="block" rendered="{!AND(resList!=null,resList.size>0,cmi.Id=os.IPM_Gate_CMI__c,os.IPM_CMI_Country__c=selCon,!os.IPM_CMI_Is_Free_Text__c,os.IPM_CMI_Overall_Colour_Coding_Method__c!='Not Applicable')}">
                                                                                 <div class="rContainer">
                                                                                     <div class="cmiInputContainer">
-                                                                                    	<!-- Condition for displaying overall score label  -->
+                                                                                        <!-- Condition for displaying overall score label  -->
                                                                                         <apex:outputLabel Value="{!os.IPM_CMI_Overall_Score_Label__c}" styleClass="overallText" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',os.IPM_CMI_Overall_Colour_Coding_Method__c='System')}"/>
                                                                                     </div>
                                                                                     <div class="cmiResultContainer">
                                                                                         <apex:outputPanel layout="block" styleClass="overallSubtext">
-                                                                                        	<!-- Condition for checking cmi color coding method  -->
-                                                                                            <apex:inputField value="{!os.IPM_CMI_Overall_Score__c}" onchange="updateScore('{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',this.value)" rendered="{!AND(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',isEditable)}"/>
+                                                                                            <!-- Condition for checking cmi color coding method  -->
+                                                                                            <apex:inputField value="{!os.IPM_CMI_Overall_Score__c}" onchange="updateScore('{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',this.value,'{!types.value}')" rendered="{!AND(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',isEditable)}"/>
                                                                                             <!-- Condition for checking cmi color coding method system  -->
-                                                                                            <apex:outputField value="{!os.IPM_CMI_Overall_Score__c}" rendered="{!os.IPM_CMI_Overall_Colour_Coding_Method__c='System'}"/>  
+                                                                                            <apex:outputField value="{!os.IPM_CMI_Overall_Score__c}" rendered="{!os.IPM_CMI_Overall_Colour_Coding_Method__c='System'}"/>
                                                                                              <!-- Condition for checking cmi color coding method manual  -->  
                                                                                             <apex:outputField value="{!os.IPM_CMI_Overall_Score__c}" rendered="{!AND(!isEditable,os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual')}"/>                                                                                       
                                                                                         </apex:outputPanel>
                                                                                         <span class="{!os.IPM_CMI_Overall_Colour__c}"></span>
                                                                                     </div>
                                                                                     <div class="cmiCommentContainer">
-                                                                                    	 <!-- Condition for checking editable  -->
-                                                                                        <apex:inputField styleClass="cmiCommentBox" value="{!os.IPM_CMI_Overall_Comments__c}" rendered="{!isEditable}" onchange="updateTiming('{!os.IPM_CMI_Result_Timing__c}','{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',true,this.value)"/>
+                                                                                         <!-- Condition for checking editable  -->
+                                                                                        <apex:inputField styleClass="cmiCommentBox" value="{!os.IPM_CMI_Overall_Comments__c}" rendered="{!isEditable}" onchange="updateTiming('{!os.IPM_CMI_Result_Timing__c}','{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',true,this.value,'{!cmi.id}','{!types.value}')"/>
                                                                                         <!-- Condition for checking read only  -->
                                                                                         <apex:outputField value="{!os.IPM_CMI_Overall_Comments__c}" rendered="{!!isEditable}"/>
                                                                                     </div>
@@ -286,71 +288,12 @@
                                                                     </div>                                                                  
                                                                 </apex:outputPanel>
                                                             </apex:outputPanel>
-                                                            <div id="ipmCountryModalDelete" class="modal fade">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                            <div class="modal-title"></div>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div class="container-fluid">
-                                                                                <div class="row">    
-                                                                                    <div class="col-sm-12">
-                                                                                        <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
-                                                                                        <span>{!$Label.IPM_CMI_NOTE}</span>
-                                                                                    </div>
-                                                                                    <div class="deleteButtoncontainer txtAlignright pull-right"> 
-                                                                                        <div class="noPadright buttonMarginRight pull-left">
-                                                                                            <input type="button" class="ipmButton" data-dismiss="modal" value="Cancel"/>
-                                                                                        </div> 
-                                                                                        <apex:outputPanel >
-                                                                                            <div class="fleft noPadright">
-                                                                                                <input type="button" class="confirmCountry ipmButton primary" value="Remove" data-dismiss="modal"/>
-                                                                                            </div> 
-                                                                                        </apex:outputPanel>
-                                                                                    </div>  
-                                                                                </div>  
-                                                                            </div>          
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            
                                                         </apex:repeat>
                                                     </apex:outputPanel>
                                                 </div>
                                             </div>
                                         </apex:outputPanel>
-                                        <div id="ipmCMIModalDelete" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        <div class="modal-title"></div>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container-fluid">
-                                                            <div class="row">    
-                                                                <div class="col-sm-12">
-                                                                    <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
-                                                                    <span>{!$Label.IPM_CMI_NOTE}</span>
-                                                                </div>
-                                                                <div class="deleteButtoncontainer txtAlignright pull-right"> 
-                                                                    <div class="noPadright buttonMarginRight pull-left">
-                                                                        <input type="button" class="ipmButton" data-dismiss="modal" value="Cancel"/>
-                                                                    </div> 
-                                                                    <apex:outputPanel >
-                                                                        <div class="fleft noPadright">
-                                                                            <input type="button" class="confirmCMI ipmButton primary" value="Remove" data-dismiss="modal"/>
-                                                                        </div> 
-                                                                    </apex:outputPanel>
-                                                                </div>  
-                                                            </div>  
-                                                        </div>          
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </apex:repeat>
                                     </apex:outputPanel> 
                                 </div>   
@@ -362,68 +305,123 @@
         </apex:repeat>  
     </apex:outputPanel>
 </apex:outputPanel>
+<div id="ipmCMIModalDelete" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title"></div>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">    
+                        <div class="col-sm-12">
+                            <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
+                            <span>{!$Label.IPM_CMI_NOTE}</span>
+                        </div>
+                        <div class="deleteButtoncontainer txtAlignright pull-right"> 
+                            <div class="noPadright buttonMarginRight pull-left">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="Cancel"/>
+                            </div> 
+                            <apex:outputPanel >
+                                <div class="fleft noPadright">
+                                    <input type="button" class="confirmCMI ipmButton primary" value="Remove" data-dismiss="modal"/>
+                                </div> 
+                            </apex:outputPanel>
+                        </div>  
+                    </div>  
+                </div>          
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ipmCountryModalDelete" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title"></div>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">    
+                        <div class="col-sm-12">
+                            <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
+                            <span>{!$Label.IPM_CMI_NOTE}</span>
+                        </div>
+                        <div class="deleteButtoncontainer txtAlignright pull-right"> 
+                            <div class="noPadright buttonMarginRight pull-left">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="Cancel"/>
+                            </div> 
+                            <apex:outputPanel >
+                                <div class="fleft noPadright">
+                                    <input type="button" class="confirmCountry ipmButton primary" value="Remove" data-dismiss="modal"/>
+                                </div> 
+                            </apex:outputPanel>
+                        </div>  
+                    </div>  
+                </div>          
+            </div>
+        </div>
+    </div>
+</div>
 <script>
-function updateScore(cmiId,country,score)
+function updateScore(cmiId,country,score,typeval)
 {
-    updateOverall(cmiId,country,score);
+    var gate=typeval.split(" ");
+    updateOverall(cmiId,country,score,gate[0]);
 }
-function skipTestScript(cmiId,skipTest)
+function skipTestScript(cmiId,skipTest,typeval)
 {
-    skipTestConcept(cmiId,skipTest);
+    skipTestConcept(cmiId,skipTest,typeval);
 }
-function deletCMI(cmiId)
+function updateCMIContent(cId,resCMI,commCMI,isComments,gId,typeval)
 {
-    delCMI(cmiId);
-}
-function deleteContry(cmiId,country)
-{
-    delContry(cmiId,country);
-}    
-function updateCMIContent(cId,resCMI,commCMI,isComments)
-{
-    updateContent(cId,resCMI,commCMI,isComments);
-}
-function skipComment(cmiId,reason)
-{
-    skipTestComment(cmiId,reason);
-}
-function updateTiming(timingDate,cId,country,isComm,overallComm)
-{
-    updateResultTime(timingDate,cId,country,isComm,overallComm);
+    var gate=typeval.split(" ");
+    updateContent(cId,resCMI,commCMI,isComments,gId,gate[0]);
 }
 </script>  
-<apex:actionFunction name="updateOverall" status="Loading" action="{!updateOverallScore}" onComplete="skipTestrender();" reRender="scriptToRerender,showCMIArea,refreshid">
+<apex:actionFunction name="updateOverall" status="Loading" action="{!updateOverallScore}" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="scriptToRerender,showCMIArea,refreshid">
 <apex:param name="paramf" assignTo="{!gateCMIId}" value="" />
 <apex:param name="params" assignTo="{!countryNameStr}" value="" />
 <apex:param name="paramt" assignTo="{!overallScore}" value="" />
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" />  
 </apex:actionFunction>
-<apex:actionFunction name="updateResultTime" status="Loading" action="{!updateResultTiming}" reRender="scriptToRerender,">
+<apex:actionFunction name="updateResultTime" status="Loading" action="{!updateResultTiming}" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="scriptToRerender,showCMIArea,refreshid">
 <apex:param name="fPar" assignTo="{!resultTiming}" value=""/>
 <apex:param name="sPar" assignTo="{!gateCMIId}" value=""/>
 <apex:param name="tPar" assignTo="{!countryNameStr}" value="" />
 <apex:param name="fpar" assignTo="{!isComment}" value=""/>
 <apex:param name="fiParam" assignTo="{!overallComments}" value=""/>
+<apex:param name="cmiId" assignTo="{!gateCMIId}" value="" />
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" /> 
 </apex:actionFunction>
-<apex:actionFunction name="skipTestConcept" status="Loading" action="{!skipTest}" onComplete="skipTestrender();" reRender="scriptToRerender,showCMIArea,refreshid">
+<apex:actionFunction name="skipTestConcept" status="Loading" action="{!skipTest}" onComplete="skipTestrender('{!openAccordian}','addNew','');" reRender="scriptToRerender,showCMIArea,refreshid">
 <apex:param name="firstPar" assignTo="{!gateCMIId}" value=""/>
 <apex:param name="secondPar" assignTo="{!isSkip}" value=""/>
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" />  
 </apex:actionFunction>
-<apex:actionFunction name="updateContent" status="Loading" action="{!updateCMI}" reRender="skipTestrender,showCMIArea,refreshid">
+<apex:actionFunction name="updateContent" status="Loading" action="{!updateCMI}" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="skipTestrender,showCMIArea,refreshid">
 <apex:param name="coId" assignTo="{!secConId}" value="" />
 <apex:param name="res" assignTo="{!resultCMI}" value="" />
 <apex:param name="comm" assignTo="{!commentsCMI}" value="" />
 <apex:param name="iscom" assignTo="{!isComment}" value="" />
-</apex:actionFunction>
-<apex:actionFunction name="delCMI" status="Loading" action="{!deleteCMI}" onComplete="skipTestrender();" reRender="scriptToRerender,showCMIArea,cmiInputTable">
 <apex:param name="cmiId" assignTo="{!gateCMIId}" value="" />
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" />  
 </apex:actionFunction>
-<apex:actionFunction name="delContry" status="Loading" action="{!deleteCountry}" reRender="scriptToRerender,showCMIArea,refreshid">
+<apex:actionFunction name="delCMI" status="Loading" action="{!deleteCMI}" onComplete="skipTestrender('{!openAccordian}','addNew','');" reRender="scriptToRerender,showCMIArea,cmiInputTable">
+<apex:param name="cmiId" assignTo="{!gateCMIId}" value="" />
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" />
+</apex:actionFunction>
+<apex:actionFunction name="delContry" status="Loading" action="{!deleteCountry}" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="scriptToRerender,showCMIArea,refreshid">
 <apex:param name="CountryId" assignTo="{!gateCMIId}" value="" />
-<apex:param name="countryname" assignTo="{!countryNameStr}" value="" />    
+<apex:param name="countryname" assignTo="{!countryNameStr}" value="" />   
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" />   
 </apex:actionFunction>  
-<apex:actionFunction name="skipTestComment" status="Loading" action="{!updateSkipTestReason}" reRender="">
+<apex:actionFunction name="skipTestComment" status="Loading" action="{!updateSkipTestReason}" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="">
 <apex:param name="fParaam" assignTo="{!gateCMIId}" value="" />
 <apex:param name="sParam" assignTo="{!skipComment}" value="" /> 
+<apex:param name="openAccord" assignTo="{!openAccordian}" value="" />  
 </apex:actionFunction>
  <apex:outputPanel id="scriptToRerender">
 <script> 

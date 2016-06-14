@@ -4,7 +4,7 @@
 * @description  This class is used to test the functionality of IPM_GetHelpDoc class 
 */
 @isTest
-public class IPM_GetHelpDoc_Test{
+private class IPM_GetHelpDoc_Test{
     public static IPM_GetHelpDoc ipmHelpDoc = null;
     public static PageReference  pRef;
     public static User globalUser;
@@ -13,8 +13,11 @@ public class IPM_GetHelpDoc_Test{
     public static String docName='IPM_HomePage';
     public static List<IPM_Milestone__c> mileList=new List<IPM_Milestone__c>();
     public static IPM_Project__c project;// Project object initialization
-     private static final string TEST_COMMENTS_STR='TestComments1';
-     public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    private static final string HELP_DOCUMENT_ERROR = 'Help Docoument PDF File Error';
+    private static final string HELP_DOCUMENT = 'Help Docoument PDF File Opening';
+    
+    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
       /*************************************************************************************************************************
     * @description Test Data
     */
@@ -34,7 +37,7 @@ public class IPM_GetHelpDoc_Test{
         insert companyCardList;
         
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card insertion fails');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         List<IPM_Project__c>projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForGetHelpDoc);
@@ -43,7 +46,7 @@ public class IPM_GetHelpDoc_Test{
             
             project=projectList[0];
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name is not validate');//positive test
         }
     }
     
@@ -141,7 +144,7 @@ public class IPM_GetHelpDoc_Test{
         
         String str=ipmHelpDoc.getURL();
         List<Document> lstDocument = [Select Id,Name from Document where Name =:ipmHelpDoc.helpDocName  limit 1];
-        System.assertEquals(lstDocument[0].Name,docName,'func not caled');
+        System.assertEquals(lstDocument[0].Name,docName, HELP_DOCUMENT_ERROR);// Positive Test
         
         Test.stopTest();
         }
@@ -162,7 +165,7 @@ public class IPM_GetHelpDoc_Test{
         ipmHelpDoc.helpDocName='docName11';
         String str=ipmHelpDoc.getURL();
         List<Document> lstDocument = [Select Id,Name from Document where Name =:ipmHelpDoc.helpDocName  limit 1];
-        System.assertEquals(lstDocument.size(),0,'negative scenario called');
+        System.assertEquals(lstDocument.size(),0,HELP_DOCUMENT);// Negative Test
         Test.stopTest();
         }
     }

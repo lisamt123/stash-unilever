@@ -1,7 +1,7 @@
-<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true">
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true"  action="{!checkUserHasPermissionToSOW}">
     <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
-            <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!IF(campaignHelper.isEdit,  campaignHelper.selectedProject.Financial_Year__c, campaignHelper.selectedSow.Id)}">{!IF(campaignHelper.isEdit,  campaignHelper.selectedProject.Financial_Year__r.Name, campaignHelper.selectedSow.Name)}</a>&nbsp;<span>&#9658;</span>&nbsp;{!campaignHelper.selectedProject.Name}
+            <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!IF(campaignHelper.isEdit,  selected_project.Financial_Year__c, campaignHelper.selectedSow.Id)}">{!IF(campaignHelper.isEdit,  selected_project.Financial_Year__r.Name, campaignHelper.selectedSow.Name)}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
         </apex:define>
         <apex:define name="header_text" />
 
@@ -14,8 +14,8 @@
 
             <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" reRender="investmentPriority" immediate="true">
                 <apex:param name="mainRegion" assignTo="{!selectedMainRegions}" value="" />
-                <apex:param name="region" assignTo="{!campaignHelper.selectedProject.OblixRegion__c}" value="" />
-                <apex:param name="countries" assignTo="{!campaignHelper.selectedProject.Campaign_Countries__c}" value="" />
+                <apex:param name="region" assignTo="{!selected_project.OblixRegion__c}" value="" />
+                <apex:param name="countries" assignTo="{!selected_project.Campaign_Countries__c}" value="" />
             </apex:actionFunction>
 
             <apex:actionFunction name="setAgencyHubAndSavePage" action="{!setAgencyHubSplit}" rerender="jqueryId">
@@ -32,12 +32,12 @@
             </apex:actionFunction>
 
             <!-- <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" reRender="false">
-                <apex:param name="innovation" assignTo="{!campaignHelper.selectedProject.Innovation_Projects__c}" value="" />
+                <apex:param name="innovation" assignTo="{!selected_project.Innovation_Projects__c}" value="" />
                 <apex:param name="innov" assignTo="{!campaignHelper.selectedBrandInnovation}" value="{!campaignHelper.selectedBrandInnovation}" />
                 <apex:param name="brand" assignTo="{!campaignHelper.selectedBrandBrand}" value="{!campaignHelper.selectedBrandBrand}" />
-                <apex:param name="idea" assignTo="{!campaignHelper.selectedProject.Campaign_Idea__c}" value="" />
-                <apex:param name="scale1" assignTo="{!campaignHelper.selectedProject.Project_Scale_1__c}" value="" />
-                <apex:param name="scale2" assignTo="{!campaignHelper.selectedProject.Project_Scale_2__c}" value="" />
+                <apex:param name="idea" assignTo="{!selected_project.Campaign_Idea__c}" value="" />
+                <apex:param name="scale1" assignTo="{!selected_project.Project_Scale_1__c}" value="" />
+                <apex:param name="scale2" assignTo="{!selected_project.Project_Scale_2__c}" value="" />
             </apex:actionFunction> -->
 
             <apex:outputPanel rendered="{!campaignHelper.doClone}">
@@ -52,8 +52,8 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <apex:outputText rendered="{!campaignHelper.isEdit && !campaignHelper.doClone}"><h1 class="SOW_header_title">Edit {!campaignHelper.selectedProject.Name}</h1></apex:outputText>
-                    <apex:outputText rendered="{!campaignHelper.isEdit && campaignHelper.doClone}"><h1 class="SOW_header_title">Clone {!campaignHelper.selectedProject.Name}</h1></apex:outputText>
+                    <apex:outputText rendered="{!campaignHelper.isEdit && !campaignHelper.doClone}"><h1 class="SOW_header_title">Edit {!selected_project.Name}</h1></apex:outputText>
+                    <apex:outputText rendered="{!campaignHelper.isEdit && campaignHelper.doClone}"><h1 class="SOW_header_title">Clone {!selected_project.Name}</h1></apex:outputText>
                     <apex:outputText rendered="{!!campaignHelper.isEdit}"><h1 class="SOW_header_title">Add campaign to {!campaignHelper.selectedSow.Name}</h1></apex:outputText>
                 </div>
 
@@ -65,18 +65,18 @@
                         <div>
                             <div class="form-group" id="campaignNameLabel">
                                 <label for="SOWName" class="create_SOW_form_titles">Campaign Name*</label>
-                                <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name_Prefix__c}" rendered="{!!campaignHelper.doClone}"/>
+                                <apex:inputField styleClass="form-control" id="CampaignName" value="{!selected_project.Name_Prefix__c}" rendered="{!!campaignHelper.doClone}"/>
                                 <apex:inputText styleClass="form-control" id="CloneName" value="{!cloneName}" rendered="{!campaignHelper.doClone}"/>
                             </div>
                             <!-- <div class="form-group" id="campaignNameLabel">
                                 <label for="SOWName" class="create_SOW_form_titles">Campaign Name*</label>
-                                <apex:outputText styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" rendered="{!!campaignHelper.doClone}"/>
+                                <apex:outputText styleClass="form-control" id="CampaignName" value="{!selected_project.Name}" rendered="{!!campaignHelper.doClone}"/>
                                 <apex:inputText styleClass="form-control" id="CloneName" value="{!cloneName}" rendered="{!campaignHelper.doClone}"/>
                             </div> -->
                             <div class="form-group">
                                 <p>Description&nbsp;<span class="form_bracket_text">(Optional)</span>
                                 </p>
-                                <apex:inputField styleClass="form-control multi_line_form_style" value="{!campaignHelper.selectedProject.Description__c}" />
+                                <apex:inputField styleClass="form-control multi_line_form_style" value="{!selected_project.Description__c}" />
                             </div>
                             <div id="agencyHubSplitLabel">
                                 <apex:actionRegion >
@@ -121,18 +121,19 @@
                             <div class="form-group">
                                 <p>Platform&nbsp;<span class="form_bracket_text">(Optional)</span>
                                 </p>
-                                <apex:inputField styleClass="form-control" id="platform" value="{!campaignHelper.selectedProject.Platform__c}" />
+                                <apex:inputField styleClass="form-control" id="platform" value="{!selected_project.Platform__c}" />
                             </div>
                             <div class="form-group">
                                 <p>Jobs to be done&nbsp;<span class="form_bracket_text">(Optional)</span>
                                 </p>
-                                <apex:inputField styleClass="form-control multi_line_form_style" value="{!campaignHelper.selectedProject.Jobs_to_be_Done__c}" />
+                                <apex:inputField styleClass="form-control multi_line_form_style" value="{!selected_project.Jobs_to_be_Done__c}" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 status_completion_chevron_bar campaign_create_chevron">
+                        <a id="stagesPopover" class="text-info campaignCreateChevronTooltip" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover">See recommended %</a>
                         <div class="chevron_width_control">
                             <div class="status_completion_chevron_bar_main_styling">
                                 <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
@@ -220,60 +221,69 @@
                             <div class="create_SOW_form_titles_investment">
                                 <div id="campaignIdeaLabel" class="margin_top20">
                                     <p class="create_SOW_form_titles">{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label}*</p>
-                                    <apex:inputField value="{!campaignHelper.selectedProject.Campaign_Idea__c}" style="width:80%" styleClass="investment_project_dropdowns_right projCampaignIdea" />
+                                    <apex:inputField value="{!selected_project.Campaign_Idea__c}" style="width:80%" styleClass="investment_project_dropdowns_right projCampaignIdea" />
                                 </div>
                                 <apex:actionRegion >
                                     <apex:outputPanel id="investmentPriority">
                                         <div id="geographicCoverage" class="margin_top40">
                                             <p class="create_SOW_form_titles" id="geographicCoverage">{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_1__c.label}*</p>
-                                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Scale_1__c}" style="width:80%" styleClass="input_init projScale1" />
+                                            <apex:inputField value="{!selected_project.Project_Scale_1__c}" style="width:80%" styleClass="input_init projScale1" />
                                         </div>
                                     </apex:outputPanel>
                                     <apex:outputPanel id="agencyScale">
                                         <div id="campaignScaleLabel" class="margin_top40">
                                             <p class="create_SOW_form_titles" id="campaignScaleLabel">{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_2__c.label}*</p>
-                                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Scale_2__c}" style="width:80%" styleClass="input_init projScale2" />
+                                            <apex:inputField value="{!selected_project.Project_Scale_2__c}" style="width:80%" styleClass="input_init projScale2" />
                                         </div>
                                     </apex:outputPanel>
                                 </apex:actionRegion>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8 create_campaign_priority">
+                    <div class="col-lg-8 create_campaign_priority no_padding">
+                        <div class="col-lg-6 no_padding">
                             <p>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
-                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Priority__c}" />
+                            <apex:inputField value="{!selected_project.Project_Priority__c}" styleClass="priority_input"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            </p>
+                            <apex:inputField value="{!selected_project.BET_Required__c}" styleClass="priority_input"/>
+                        </div>
+                        <div class="col-lg-12 no_padding">
                             <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8 no_padding">
                             <p>Dates to show on the campaign timeline&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
                             <table>
                                 <tr>
                                     <td class="campaign_create_agency_hub_split_table_subtitle">Campaign start</td>
                                     <td class="table_date_formatting">
-                                        <apex:inputField value="{!campaignHelper.selectedProject.Project_Start_Date__c}" />
+                                        <apex:inputField value="{!selected_project.Project_Start_Date__c}" />
                                     </td>
                                     <td class="campaign_create_agency_hub_split_table_subtitle">First air date</td>
                                     <td class="table_date_formatting">
-                                        <apex:inputField value="{!campaignHelper.selectedProject.First_Air_Date__c}" styleclass="dateFAD" />
+                                        <apex:inputField value="{!selected_project.First_Air_Date__c}" styleclass="dateFAD" />
                                     </td>
                                     <td class="campaign_create_agency_hub_split_table_subtitle">Preview date</td>
                                     <td class="table_date_formatting">
-                                        <apex:inputField value="{!campaignHelper.selectedProject.Preview_Date__c}" styleclass="dateProjPREV" />
+                                        <apex:inputField value="{!selected_project.Preview_Date__c}" styleclass="dateProjPREV" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="campaign_create_agency_hub_split_table_subtitle">Campaign completion</td>
                                     <td class="table_date_formatting">
-                                        <apex:inputField value="{!campaignHelper.selectedProject.Project_Completion_Date__c}" styleclass="dateProjCD" />
+                                        <apex:inputField value="{!selected_project.Project_Completion_Date__c}" styleclass="dateProjCD" />
                                     </td>
                                     <td class="campaign_create_agency_hub_split_table_subtitle">BET first release</td>
                                     <td class="table_date_formatting">
-                                        <apex:inputField value="{!campaignHelper.selectedProject.BET_first_release__c}" styleclass="dateProjBFR" />
+                                        <apex:inputField value="{!selected_project.BET_first_release__c}" styleclass="dateProjBFR" />
                                     </td>
                                     <td class="campaign_create_agency_hub_split_table_subtitle">BET final release</td>
                                     <td class="table_date_formatting">
-                                        <apex:inputField value="{!campaignHelper.selectedProject.Final_release__c}" styleclass="dateProjFR" />
+                                        <apex:inputField value="{!selected_project.Final_release__c}" styleclass="dateProjFR" />
                                     </td>
                                 </tr>
                             </table>
@@ -297,7 +307,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="campaign_create_buttons">
-                        <apex:commandButton value="SAVE CAMPAIGN" rendered="{!NOT(campaignHelper.onlyShowProjectedChevron)}" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check" disabled="{!IF(can_edit,FALSE,TRUE)}"/>
+                        <apex:commandButton value="SAVE CAMPAIGN" rendered="{!NOT(campaignHelper.onlyShowProjectedChevron)}" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check" disabled="{!IF(can_edit,FALSE,TRUE)}" oncomplete="window.scrollTo(0,0);"/>
                         <apex:commandButton value="SAVE CAMPAIGN" rendered="{!campaignHelper.onlyShowProjectedChevron}" action="{!saveProjectAction}" styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check" disabled="{!IF(can_edit,FALSE,TRUE)}"/>
                         <apex:commandButton value="CANCEL" action="{!backAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cancel btn_cross" immediate="true" html-formnovalidate="formnovalidate" />
                     </div>
@@ -323,6 +333,7 @@
                 var selectedRegions = [];
                 var currentUnion = [];
                 console.log(unileverRegions);
+                window.scrollTo(0,0);
             </script>
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignCreate.js')}" type="text/javascript"></script>
         </apex:define>

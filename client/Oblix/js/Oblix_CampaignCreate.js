@@ -42,6 +42,8 @@ $(document).ready(function() {
         $('.projBrandInnov').attr('disabled', 'disabled');
     }
 
+    $("[data-toggle=popover]").popover();
+
     $.unblockUI();
 });
 
@@ -288,16 +290,13 @@ function validateCountrySplit() {
     var isGobal = false;
     $(".percentage").each(function() {
         sum = sum + Number($(this).val());
-        //alert(sum);
-
     });
-
     console.log('Sum : ' + sum);
-
     var campaignName = $('input[id$=CampaignName]').length === 1 ? $('input[id$=CampaignName]').val() : $("input[id$=CloneName]").val();
-
-    if (campaignName === 'undefined' || campaignName.length == 0) {
+    if (campaignName.trim() === 'undefined' || campaignName.trim().length == 0) {
         $('#campaignNameLabel').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('#campaignNameLabel')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#campaignNameLabel').removeClass('mandatory_form_info_missing');
@@ -305,68 +304,66 @@ function validateCountrySplit() {
     if (sum != 100) {
         alert('Agency hubsplit values must be equal to 100');
         $('#agencyHubSplitLabel').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('#agencyHubSplitLabel')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#agencyHubSplitLabel').removeClass('mandatory_form_info_missing');
     }
     if (selectedBrandInnov.length == 0 && selectedBrandBrand.length == 0) {
         $('#investmentPriorityLabel').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('.countries_global_checkbox')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#investmentPriorityLabel').removeClass('mandatory_form_info_missing');
     }
     if (campaignIdea.length == 0) {
         $('#campaignIdeaLabel').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('#campaignIdeaLabel')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#campaignIdeaLabel').removeClass('mandatory_form_info_missing');
     }
     if (geographicCoverage.length == 0) {
         $('#geographicCoverage').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('#geographicCoverage')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#geographicCoverage').removeClass('mandatory_form_info_missing');
     }
     if (agencyHub.length == 0) {
         $('#campaignScaleLabel').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('#campaignScaleLabel')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#campaignScaleLabel').removeClass('mandatory_form_info_missing');
     }
     if (regionsUnion.length == 0) {
         $('.campaign_region_picklist').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('.campaign_region_picklist')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('.campaign_region_picklist').removeClass('mandatory_form_info_missing');
     }
     if ($(".projBrandInnov").val().length == 0 && $(".projBrandBrand").val().length == 0) {
         $('#innovationLabel').addClass('mandatory_form_info_missing');
+        // scroll to take the user to the first error message on the page
+        if (!validationFail) {$('#innovationLabel')[0].scrollIntoView( true );}
         validationFail = true;
     } else {
         $('#innovationLabel').removeClass('mandatory_form_info_missing');
     }
     if (!validationFail) {
         var innovation = $('input[name="innovation"]:checked').val();
-        console.dir(innovation);
-        console.dir($(".projBrandInnov").val());
-        console.dir($(".projBrandBrand").val());
-        console.log('Counter Asset : ' + counter);
-
-        /*console.log(agencySplitHubArray);
-        if ($('.global_region_picklist input:checked').length === 0) {
-            isGlobal = false;
-        } else {
-            isGlobal = true;
-        }*/
-        if (!validationFail) {
-            setAgencyHubSplits();
-            //setCampaignScaleOne(selectedRegions[0]);
-        }
-        if (validationFail == true) {
-            return !validationFail;
-        } else {
-            return true;
-        }
-        //setAgencyHub(listItems,isGlobal);
+        setAgencyHubSplits();
+        return true;
+    }
+    else{
+        return false;
     }
 }
