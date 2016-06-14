@@ -79,7 +79,7 @@ getDetail:function(component, event, helper) {
        
     },
     handleFeedback : function(component, event, helper) {
-        helper.scrollToLocation(component, "top");
+        //helper.scrollToLocation(component, "top");
         console.log("in base"+event.getParam("Pagename"));
         component.set("v.showspinner",true);
         var destination ="markup://c:Feedback";
@@ -139,7 +139,7 @@ getDetail:function(component, event, helper) {
          
 	},
     MB_gotoSummary_chart: function(component, event, helper) {
-        helper.scrollToLocation(component, "top");
+        //helper.scrollToLocation(component, "top");
 		var destination = "markup://c:MB_SpendSummary_Charts";
         
         $A.componentService.newComponentAsync(this, function(view) {
@@ -230,7 +230,6 @@ getDetail:function(component, event, helper) {
         }, component);
     },
     gotoFaqPage :function(component, event, helper){
-        helper.scrollToLocation(component, "top");
         var destination = "markup://c:MB_Faq_Main";
         console.log("in base"+event.getParam("selectedMonth"));
         $A.componentService.newComponentAsync(this, function(view) {
@@ -249,7 +248,6 @@ getDetail:function(component, event, helper) {
     },
     
     gotoUsageTypeDetail:function(component, event, helper){
-         helper.scrollToLocation(component, "top");
         var destination = "markup://c:MB_SpendSummary_Details";
         $A.componentService.newComponentAsync(this, function(view) {
            console.log(event.getParam("deviceName")+"-->"+event.getParam("usageType"));
@@ -268,7 +266,6 @@ getDetail:function(component, event, helper) {
         }, component);
     },
     gotoSummarySpend:function(component, event, helper){
-         helper.scrollToLocation(component, "top");
         console.log(event.getParam("deviceId")+"88"+event.getParam("month"));
         var destination = "markup://c:MB_SpendSummary";
         $A.componentService.newComponentAsync(this, function(view) {

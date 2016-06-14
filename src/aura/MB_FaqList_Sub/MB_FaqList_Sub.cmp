@@ -5,8 +5,8 @@
          <div class="itemPanel" > 
                 <div id="clicker" class="slds-text-body--regular title" onclick="{!c.showDiv}">
                  	<div class="faq-arrow">
-                    	<img class="backImageStyle" aura:id="myimg" src="/resource/CORE_IC_IdeasLigthtning/utility/downFaq.svg"/> 
-                    	<img class="backImageStyle toggle " aura:id="myimg2" src="/resource/CORE_IC_IdeasLigthtning/utility/upFaq.svg" /> 
+                    	<img class="backImageStyle" aura:id="myimg" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"/> 
+                    	<img class="backImageStyle toggle " aura:id="myimg2" src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png" /> 
                     </div>
                     {!v.faqListItem.Title__c} 
                     

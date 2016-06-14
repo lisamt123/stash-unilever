@@ -1,47 +1,131 @@
-<labels>
-	<fullName>MB_Domestic</fullName>
-	<categories>Chart labels</categories>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>MB_Domestic</shortDescription>
-	<value>DOMESTIC</value>
-</labels>
-<labels>
-	<fullName>MB_International</fullName>
-	<categories>Chart labels</categories>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>MB_International</shortDescription>
-	<value>INTERNATIONAL</value>
-</labels>
-<labels>
-	<fullName>MB_Mobile_billing</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>MB Mobile billing</shortDescription>
-	<value>Mobile Billing</value>
-</labels>
-<labels>
-	<fullName>MB_Username</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Current User Name</shortDescription>
-	<value>$user.name</value>
-</labels>
-<labels>
-	<fullName>MB_You</fullName>
-	<categories>Chart labels</categories>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>MB_You</shortDescription>
-	<value>YOU</value>
-</labels>
-<labels>
-	<fullName>MB_Your_Colle</fullName>
-	<categories>Chart labels</categories>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>MB_Your_Colleagues</shortDescription>
-	<value>YOUR COLLEAGUES</value>
-</labels>
 
+    <labels>
+        <fullName>CORE_FB_App_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_App_Name</shortDescription>
+        <value>App Feedback</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Cancel</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Comment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Comment</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Comment_Box</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Comment_Box</shortDescription>
+        <value>Type your comments here, be as descriptive as you can be. was this app Easy, Fast, Intuitive</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Error_Alert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Error_Alert</shortDescription>
+        <value>Please rate the app to submit your feedback</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Message</shortDescription>
+        <value>Please rate and comment on your experience of using this app</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Rate_App</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Rate_App</shortDescription>
+        <value>Rate this app</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Rate_Later</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Rate_Later</shortDescription>
+        <value>Rate later</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Thanks</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Thanks</shortDescription>
+        <value>Thanks for the feedback</value>
+    </labels>
+    <labels>
+        <fullName>MB_Domestic</fullName>
+        <categories>Chart labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MB_Domestic</shortDescription>
+        <value>DOMESTIC</value>
+    </labels>
+    <labels>
+        <fullName>MB_FAQ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MB_FAQ</shortDescription>
+        <value>FAQ&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>MB_International</fullName>
+        <categories>Chart labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MB_International</shortDescription>
+        <value>INTERNATIONAL</value>
+    </labels>
+    <labels>
+        <fullName>MB_Mobile_billing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MB Mobile billing</shortDescription>
+        <value>Mobile Billing</value>
+    </labels>
+    <labels>
+        <fullName>MB_Username</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current User Name</shortDescription>
+        <value>$user.name</value>
+    </labels>
+    <labels>
+        <fullName>MB_You</fullName>
+        <categories>Chart labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MB_You</shortDescription>
+        <value>YOU</value>
+    </labels>
+    <labels>
+        <fullName>MB_Your_Colle</fullName>
+        <categories>Chart labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MB_Your_Colleagues</shortDescription>
+        <value>YOUR COLLEAGUES</value>
+    </labels>

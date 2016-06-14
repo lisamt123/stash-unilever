@@ -1,7 +1,8 @@
 <aura:component controller="MB_Controller_Class">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"></meta>
-    <ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
+<!--<ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
     <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
+-->
     <aura:attribute name="showDevice" type="boolean"></aura:attribute>
     <aura:attribute name="userName" type="string"></aura:attribute>
     <aura:attribute name="localCurrency" type="string"></aura:attribute>
@@ -105,7 +106,7 @@
                         <div class="slds-text-body--regular device_desc_a" >{!device.deviceName}</div>
                         <div class="slds-text-heading--small device_desc_b">{!v.localCurrency}  {!device.totalUsage}
                             <span class="Seemore_image">
-                                <img src="/resource/EA_StaticResource/assets/icons/utility/chevronright_60.png"></img>
+                                <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
                             </span><span class="slds-text-body--small see_more" data-index="{!indx}" onclick="{!c.gotoDetailSummary}">see more</span>
                         </div>
                      </div>

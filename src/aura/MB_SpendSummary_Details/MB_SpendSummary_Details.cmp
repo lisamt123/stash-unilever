@@ -3,7 +3,7 @@
 <aura:handler name="init" value="{!this}" action="{!c.doinit}"></aura:handler>    
 <aura:attribute name="AllData" type="MB_Wrapper_Class.UsageAmountType_Wraper[]"></aura:attribute>
 <aura:attribute name="AllHeadData" type="MB_Wrapper_Class.UsageAmountType_Wraper"></aura:attribute>
-<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+ <!--<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />-->
 <aura:attribute name="deviceId" type="string"/>
 <aura:attribute name="month" type="string"/>
 <aura:attribute name="deviceName" type="string"/>
@@ -47,7 +47,7 @@
         padding-bottom:15px;
         }
     </style>
-    <div class="main_detail" onclick="{!c.gotoSummarySpend}"> <img  class="back-button" src="/resource/EA_StaticResource/assets/icons/utility/back_60.png" ></img> </div>
+    <div class="main_detail" onclick="{!c.gotoSummarySpend}"> <img  class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" ></img> </div>
      <aura:if isTrue="{!v.showspinner=='false'}"> 
         <div class="section_a">
             <div class="slds-text-body--regular head_a">All {!v.AllHeadData.chargeTypeName}</div>

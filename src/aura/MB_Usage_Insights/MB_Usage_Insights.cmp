@@ -1,8 +1,7 @@
 <aura:component controller="MB_Controller_Charts">
-    <ltng:require styles="/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css"
+    <ltng:require styles="/resource/charts/slick/slick.css,/resource/charts/slick/slick-theme.css"
                   scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,
-                           /resource/EA_StaticResource/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
-    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
+                           /resource/charts/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
     <aura:attribute name="DataYou" type="Decimal"></aura:attribute>
     <aura:attribute name="DataColleagues" type="Decimal"></aura:attribute>
     <aura:attribute name="CallsYou" type="Decimal"></aura:attribute>

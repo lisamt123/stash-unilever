@@ -80,7 +80,7 @@
         {            
             dataList.push(data[i]);             
         }
-        console.log(dataList[index].deviceId);
+        
         var datavalue=dataList[index].deviceId;
         var devicename=dataList[index].deviceName;
         var detailpage_event=$A.get("e.c:MB_DetailSummary_Event");   

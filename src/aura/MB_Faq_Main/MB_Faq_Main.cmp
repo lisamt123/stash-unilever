@@ -1,7 +1,8 @@
 <aura:component controller="MB_Controller_UsageDetailClass" >
-    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+    <!--<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts"/>
+  -->
      <aura:attribute name="pannelType" type="String"/>
      <aura:handler name="init" value="{!this}" action="{!c.getFaqListData}"/>
      <aura:attribute name="faqList" type="TEM_FAQ_List__c[]"/>
@@ -26,7 +27,7 @@
     </style>
       <aura:if isTrue="{!v.showspinner=='false'}">  
         <div class="main-content" style="width:100%;background:#f5f6f7">
-            <div class="headerBarRowAlign" onclick="{!c.gotoDevices}"> <img  class="back-button" src="/resource/EA_StaticResource/assets/icons/utility/back_60.png" ></img> 
+            <div class="headerBarRowAlign" onclick="{!c.gotoDevices}"> <img  class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" ></img> 
                    <div class="slds-text-heading--medium homePageSectionTitle">{!$Label.c.MB_FAQ}</div>               	                                             
                </div> 
               <hr/>

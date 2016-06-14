@@ -1,8 +1,10 @@
 <aura:component implements="force:appHostable" controller="CORE_Feedback_App_Controller">
-     <ltng:require scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,/resource/EA_StaticResource/slick/slick.min.js"/>
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system-ltng.min.css" />
-        <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+   
+    
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:MB_BaseEvent" action="{!c.getDetail}" />
     <aura:handler event="c:Feedback_Back_Event" action="{!c.gotoLandingpage}" />

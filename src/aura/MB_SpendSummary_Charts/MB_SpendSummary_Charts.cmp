@@ -1,9 +1,7 @@
 <aura:component controller="MB_Controller_Charts" >
-    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
-    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
-    <ltng:require styles="/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css"
+    <ltng:require styles="/resource/charts/slick/slick.css,/resource/charts/slick/slick-theme.css"
                   scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,
-                           /resource/EA_StaticResource/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
+                           /resource/charts/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
     
     <style>
         body{
@@ -25,7 +23,7 @@
     <aura:attribute name="deviceId" type="String"/>
     <aura:if isTrue="{!v.showspinner=='false'}">
     <div>
-        <img class="back-button" src="/resource/EA_StaticResource/assets/icons/utility/back_60.png" onclick="{!c.gotoDevices}"></img>
+        <img class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.gotoDevices}"></img>
         <div class="sectiona_a">
             <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
             <div class="head_d-1">
