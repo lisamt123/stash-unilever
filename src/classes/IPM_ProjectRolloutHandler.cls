@@ -41,7 +41,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         //@@Design Review - Data Sharing Change - Update ownerid of rollouts to project ownerid
         
         if(System.Trigger.isInsert){
-            
+            IPM_Utils.generateMarketClusterShortName((List<IPM_Project_Rollout__c>) Trigger.new);
+            IPM_Utils.generateMCOShortName((List<IPM_Project_Rollout__c>) Trigger.new);
             handler.OnBeforeInsert((List<IPM_Project_Rollout__c>) Trigger.new);
            handler.assignCompanyCard((List<IPM_Project_Rollout__c>) Trigger.new);
             
@@ -152,10 +153,24 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
             
+            /*if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
+            {   
+                phaseChangeProjects.add(newRollout.Regional_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
+            }*/
+            if(newRollout.IPM_Project__r.IPM_ProjectGKM__c != null && newRollout.IPM_Project__r.IPM_ProjectGKM__c.equalsIgnoreCase(IPM_ConstantUtils.GATE_KEEPING_MODEL_3)){
+				if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null && newRollout.keyMCO__c)
+				{   
+					phaseChangeProjects.add(newRollout.IPM_Project__c);
+					phaseChangeRolloutSet.add(newRollout.Id);
+				}
+			}
+			else{
             if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
+				}
             }
         } 
     }
@@ -182,10 +197,24 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
         
+            /*if( LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null )
+            {   
+                phaseChangeProjects.add(newRollout.Regional_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
+            }*/
+            if(newRollout.IPM_Project__r.IPM_ProjectGKM__c != null && newRollout.IPM_Project__r.IPM_ProjectGKM__c.equalsIgnoreCase(IPM_ConstantUtils.GATE_KEEPING_MODEL_3)){
+				if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null)
+				{   
+					phaseChangeProjects.add(newRollout.IPM_Project__c);
+					phaseChangeRolloutSet.add(newRollout.Id);
+				}
+			}
+			else{
             if( LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null )
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
+            }
             }
         }
         if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ||  oldRollout.isActive__c != newRollout.isActive__c){

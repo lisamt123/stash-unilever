@@ -215,6 +215,20 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Local_Rollout_Label__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISPICKVAL(IPM_Project__r.IPM_ProjectGKM__c, &apos;GKM3&apos;), RecordType.DeveloperName == &apos;Local_Rollouts&apos;),  IPM_Project__r.IPM_Project_Name__c  &amp; &quot;_&quot; &amp; 
+IPM_MCO_Short_Name__c, IF(IPM_Market_Cluster_Short_Name__c != NULL &amp;&amp; IPM_MCO_Short_Name__c != NULL, IPM_Project__r.IPM_Project_Name__c  &amp; &quot;_&quot; &amp; IPM_Market_Cluster_Short_Name__c &amp; &quot;_&quot; 
+&amp; IPM_MCO_Short_Name__c, IPM_Rollout_Project__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Local Rollout Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Local_Rollout_Status__c</fullName>
         <description>Status of local rollout like not created.</description>
         <externalId>false</externalId>
@@ -229,6 +243,28 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_MCO_Short_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>MCO Short Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Cluster_Short_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Cluster Short Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_PhaseChangeQueueJobId__c</fullName>
@@ -327,6 +363,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Regional_Rollout_Label__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(IPM_Project__r.IPM_ProjectGKM__c, &apos;GKM3&apos;),  Market_Cluster_Name__c , IF(IPM_Market_Cluster_Short_Name__c != NULL, 
+IPM_Project__r.IPM_Project_Name__c &amp; &quot;_&quot; &amp; IPM_Market_Cluster_Short_Name__c, IPM_Rollout_Project__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Regional Rollout Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Regional_Rollout_Status__c</fullName>

@@ -77,11 +77,20 @@
                                         <div class="col-sm-4 countrybg">
                                             <div class="subheader">
                                                 {!$Label.IPM_COUNTRY}
+                                                <!-- This panel will render for gatekeeping model other than GKM3 -->
+                                                <apex:outputPanel rendered="{!!isGKM3}">
                                                  <span class="SecButtonSet infoMarTop infoFloatR">
+                                                    {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
                                                  <a class="icoButton info" title="{!$Label.IPM_KEY_MCO_NEEDS}"></a>
                                              </span>
+                                                 </apex:outputPanel>
                                                 <span class="btext pull-right ieAlign">
+                                                <!-- This panel will render for gatekeeping model GKM3 as per REQ03120 -->
+                                                <apex:outputPanel rendered="{!onHoverChange}"> <!--rendered="{!AND(isGKM3, OR(project.IPM_Phase__c == 'Ideas', project.IPM_Phase__c == 'Feasibility', project.IPM_Phase__c == 'Capability'))-->
+                                                    <span class="info" title="{!$Label.IPM_KEY_MCO_NEEDS_GKM3}" >
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
+                                                     </span>
+                                                 </apex:outputPanel>
                                                     <div class="btm2 ipmCheckbox">
                                                         <input class="notselected {!IF( OR (mapMCOWrappers[selectedMCO].key,AND(NOT(mapMCOWrappers[selectedMCO].mcoDisabled),project.IPM_Phase__c !='Ideas') ), 'selected', '')} {!IF(OR(mapMCOWrappers[selectedMCO].mcoDisabled,project.IPM_Phase__c !='Ideas'), 'disabled', '')}" id="keyMCO" type="checkbox"/> 
                                                         <label class="notselected left13" for="keyMCO"></label>

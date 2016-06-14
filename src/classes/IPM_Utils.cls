@@ -1463,4 +1463,26 @@ public without sharing class IPM_Utils {
                     UPDATE_FINANCIAL_YEAR_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
     	}            
     }    	
+    /*******************************************************************************************************
+    * @description          Method to generate Market Cluster Short Name for rollout
+    * @param List<IPM_Project_Rollout__c>    Rollout Records
+    */
+    public static void  generateMarketClusterShortName(List<IPM_Project_Rollout__c> NewProjectRollouts){
+		for(IPM_Project_Rollout__c temp : NewProjectRollouts){
+			if(temp.IPM_Market_Cluster_Short_Name__c == null && temp.Market_Cluster__c != null && IPM_Market_Cluster_Short_Names__c.getValues(temp.Market_Cluster__c).short_name__c != null){
+				temp.IPM_Market_Cluster_Short_Name__c = IPM_Market_Cluster_Short_Names__c.getValues(temp.Market_Cluster__c).short_name__c;
+			}
+		}
+	}
+	/*******************************************************************************************************
+    * @description          Method to generate MCO Short Name for rollout
+    * @param List<IPM_Project_Rollout__c>     Rollout Records
+    */
+	public static void  generateMCOShortName(List<IPM_Project_Rollout__c> NewProjectRollouts){
+		for(IPM_Project_Rollout__c temp : NewProjectRollouts){
+			if(temp.IPM_MCO_Short_Name__c == null && temp.MCO__c != null && IPM_MCO_Short_Names__c.getValues(temp.MCO__c).short_name__c != null){
+				temp.IPM_MCO_Short_Name__c = IPM_MCO_Short_Names__c.getValues(temp.MCO__c).short_name__c;
+			}
+		}
+	}    	
 }

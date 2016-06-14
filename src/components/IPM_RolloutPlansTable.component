@@ -77,6 +77,8 @@
                             <div class="colPhase incHeight"><span>{!$Label.IPM_Status}</span></div>
                         </div>
                     </th>
+                    <!-- for GKM3 below will be not displayed - EPIC 196 -->
+                    <apex:outputPanel rendered="{!showLeadersLabel}">
                     <th scope="col" width="180px" colspan="1">
                         <div>
                             <div class="colTasks incHeight"><span>{!$Label.IPM_Project_Leader}</span></div>
@@ -87,6 +89,7 @@
                             <div class="colSection incHeight"><span>{!$Label.IPM_FINANACE_LEADER}</span></div>
                         </div>
                     </th>  
+                    </apex:outputPanel> 
                 </tr>
             </thead>
         </table>
@@ -254,7 +257,7 @@
                                         </th>
                                         <th scope="col" width="150px" colspan="">                                                    
                                                 <span class="rollsubhead">
-                                                    <strong>{!regionalRollout.IPM_Rollout_Project__c}</strong>
+                                                    <strong>{!regionalRollout.IPM_Regional_Rollout_Label__c}</strong>
                                                 </span>                                       
                                         </th> 
                                         <th scope="col" width="60px" colspan="">                                                
@@ -263,11 +266,13 @@
                                                 </span>                                        
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
-                                            <apex:outputField value="{!regionalRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>                                            
+                                            <!-- Target Launch will not be displayed in GKM3 - EPIC 196 -->
+                                            <apex:outputField value="{!regionalRollout.Target_Launch_Date__c}" rendered="{!targetLaunchDateVisible}"/>     <!-- rendered="{!IF(!isGKM3, NOT(isEditMode), false) -->                                       
                                         </th>
                                         <th scope="col" width="100px" colspan="1">                                          
                                         </th>
-                                         
+                                         <!-- for GKM3 below will be not displayed - EPIC 196 -->
+                                        <apex:outputPanel rendered="{!showLeaders}" >
                                         <th scope="col" width="180px" colspan="1">
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
@@ -299,6 +304,7 @@
                                                 <apex:outputField value="{!regionalRollout.Finance_Member__r.Name}" /><!--rendered="{!NOT(isEditMode)}"/>--> 
                                             </apex:outputPanel>
                                         </th>
+                                        </apex:outputPanel>
                                     </tr>
                                 </thead>
                             </table>
@@ -321,7 +327,7 @@
                                             <td scope="col" width="150px">
                                                 <div>              
                                                     <span class="rollsubhead wordwrap">
-                                                        {!localRollout.IPM_Rollout_Project__c}
+                                                        {!localRollout.IPM_Local_Rollout_Label__c}
                                                     </span>
                                                 </div>
                                             </td>
@@ -344,14 +350,38 @@
                                                 <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
                                             </td>
+                                            <apex:outputPanel rendered="{!AND(showLeadersLabel, NOT(showLeaders))}"  >
                                             <td scope="col" width="180px">
                                                 <div class="incHeight">
+	                                                    <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+	                                                <!-- <apex:image styleClass="rounded" url="{!localRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/> -->
+	                                            </apex:outputPanel>
+	                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
+	                                               <apex:outputPanel id="projectLeaderPanel" rendered="{!isEditMode}">
+	                                                    <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Regional_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Project_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
+	                                                        <span class="" >{!$Label.IPM_Select_Project_Leader}</span>
                                                 </div>
+	                                                </apex:outputPanel>
+	                                               <apex:outputField value="{!localRollout.IPM_Regional_PL__r.Name}" /> 
+	                                            </apex:outputPanel>    
+	                                                </div>
                                             </td>
                                             <td scope="col" width="130px">
                                                 <div>
+	                                                    <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+	                                                <!-- <apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/> -->
+	                                            </apex:outputPanel>
+	                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">   
+	                                                <apex:outputPanel id="financeLeaderPanel" rendered="{!isEditMode}"> 
+	                                                    <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
+	                                                        <span class="">{!$Label.IPM_Select_Finance_Leader}</span>
                                                 </div>
+	                                                </apex:outputPanel>
+	                                                <apex:outputField value="{!localRollout.Finance_Member__r.Name}" /><!--rendered="{!NOT(isEditMode)}"/>--> 
+	                                            </apex:outputPanel>
+	                                                </div>
                                             </td>                
+                                            </apex:outputPanel>                
                                         </tr>                                    
                                         <tr class="secrow">
                                             <td width="3%"> </td>

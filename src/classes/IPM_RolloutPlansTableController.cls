@@ -61,7 +61,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     @TestVisible private static final String LOCAL_COMPANYCARD_RECORDTYPE =Schema.SObjectType.IPM_Company_Card__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL).getRecordTypeId(); //Recordtype Id for Local Company card on IPM_Company_Card__c object cant delete it using in the query below
     @TestVisible private static final String REGIONAL_COMPANYCARD_RECORDTYPE =Schema.SObjectType.IPM_Company_Card__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL).getRecordTypeId(); //Recordtype Id for Regional Company card on IPM_Company_Card__c object cant delete it using in the query below
     @TestVisible private static final String CLASS_NAME = IPM_RolloutPlansTableController.class.getName();//Class Name for Exception Logging
-     
+    public boolean isGKM3{get;set;} //variable to check gatekeeping model 
+    public boolean showLeaders{get;set;}
+    public boolean showLeadersLabel{get;set;}
+    public boolean targetLaunchDateVisible{get;set;} 
     
     /*******************************************************************************************************
     * @description  Constructor
@@ -74,6 +77,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
        
 
         initialise();
+        if(project.IPM_ProjectGKM__c != null && project.IPM_ProjectGKM__c.equalsIgnoreCase(IPM_ConstantUtils.GATE_KEEPING_MODEL_3)){
+            isGKM3 = true;   // for check on page for GKM3 gatekeeping model - EPIC 196
+        }
         
     }
    
@@ -145,7 +151,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                            IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
                            IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
                            IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c,
-                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,  
+                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,  IPM_ProjectGKM__c,
                            (SELECT Id, Is_Archieved__c,IPM_Project_Name__c FROM IPM_Projects__r),
                            (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
                            FROM IPM_Project__c 
@@ -218,6 +224,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 {
                     doShowFLName = true;   
                 }
+                checkLeadersVisibility();
+                checkTargetLaunchDateVisibility();
             }
         } 
         catch (Exception ex) 
@@ -566,7 +574,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id FROM Local_Rollouts__r';
+            queryString+= ' IPM_Regional_PL__r.Name, Finance_Member__r.Name, Id, IPM_Regional_PL__r.SmallPhotoUrl FROM Local_Rollouts__r';
             queryString+= ' WHERE Regional_Project__c =: nullRegionalProject AND isActive__c = true';
             queryString+= ' ORDER BY IPM_Rollout_Project__c),';
             queryString+= ' IPM_Project__r.IPM_Phase__c, IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setRegionalProjectNames) AND isActive__c = true';

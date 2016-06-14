@@ -1,0 +1,1611 @@
+<!--  
+    *************************************************************************************************************************************************************
+    *@Description:This page is for regional project leader where he can see the countries and local rollouts related to the regional rollout
+    *@Author: Cognizant
+    *@Created Date: 05/03/2015 
+    *@Copyright © 2015  Unilever  
+    *************************************************************************************************************************************************************
+    -->
+    <apex:page controller="IPM_RolloutPlansAddController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc">
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RolloutPlansAdd.css')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_MilestonesAndTasks.css')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>   
+        <!--<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RolloutPlansRegional.css')}"/>-->
+        <style>
+         /* header new styles */
+
+.ipmFunnelPanel {
+    bottom: 4px;
+}
+.pull-right{float:right;}
+/** radio custom styles **/
+
+.ml25 label:hover{
+background:#e5f8ff;
+}
+.ml25 .selected+label {
+    border: 2px solid #007DBD;
+}
+.SecButtonSet.delete{margin-top:0px ;margin-right:10px ;margin-bottom:0px ;}
+.ml25 .selected+label:after {
+    opacity: 1;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #007DBD;
+    top: 50%;
+    left: 50%;
+    margin-top: -3px;
+    margin-left: -3px;
+    border: 1px solid #007DBD;
+    border-radius: 40px;
+}
+.width4 {
+    width: 19%;
+}
+.headingBorder {
+    padding-left: 12px;
+}
+.pagemessageBox {
+    color: #0f81bb;
+    background: #dbefff;
+    margin-top: -20px;
+    border: 1px solid #007DBB;
+    position: relative;
+    border-radius: 3px;
+    padding: 8px;
+}
+.smallinfo {
+    width: 20px ;
+    height: 20px ;
+    float: left;
+    margin: 5px 5px ;
+    border: 2px solid #1568b6 ;
+}
+.listmsgTxt {
+    line-height: 30px;
+    color: #3b516d;
+    font-weight: normal;
+}
+.pagemessageBoxDiv .SecButtonSet {
+    text-align: left ;
+}
+.mSpacing {
+    margin: 10px 0px;
+}
+.textRight {
+    text-align: right;
+}
+.indicationTxt {
+    color: #666;
+    font-size: 1.003em;
+    font-style: italic;
+    margin-top: 0px;
+}
+.noitalic {
+    font-style: normal ;
+}
+.pagemessageBoxDiv>label {
+    width: 100%;
+}
+/*Table*/
+
+.ipmTable.table-bordered {
+    table-layout: fixed;
+    border-bottom: 1px solid #7fa19e;
+    border-top: 1px solid #ddd ;
+    margin-bottom: 10px;
+}
+.ipmTable .dropdown-menu {
+    margin-top: -8px ;
+    z-index: 9 ;
+}
+.ipmTable .open .dropdown-toggle a {
+    margin: -7px -2px;
+}
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    padding: 10px 0px;
+}
+.fa {
+    cursor: pointer;
+}
+.filterIcon {
+    padding-top: 2px;
+    cursor: pointer;
+    display: inline-block;
+    width: 15px;
+    margin: -6px 0px;
+    height: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+.filterActions a {
+    cursor: pointer;
+}
+.phaseFilter .dropdown-menu {
+    border: 1px solid #252525;
+    z-index: 0;
+    min-width: 190px;
+    border-radius: 4px 0px 4px 4px;
+    background: #f9f9f9;
+    margin-top: 0px;
+    margin-right: -3px;
+}
+.ipmTable .open .dropdown-toggle {
+    background: #f9f9f9;
+    padding: 7px;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 0px;
+    border-radius: 4px 4px 0px 0px;
+    position: relative;
+    bottom: -1px;
+    z-index: 10;
+    left: 3px;
+}
+.phaseFilter .dropdown-menu>li {
+    padding: 10px 0px 36px 10px ;
+    border-bottom: 1px solid #ddd;
+}
+.ipmTable .open .dropdown-toggle {
+    background: #f9f9f9;
+    padding: 7px;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 0px;
+    border-radius: 4px 4px 0px 0px;
+    position: relative;
+    bottom: -1px;
+    z-index: 10;
+    left: 3px;
+}
+.ipmTable .dropdown-menu .ipmCheckbox label {
+    top: 4px;
+}
+li .ipmButtonGroup {
+    margin-top: 4px;
+}
+.sortIcon {
+    font-size: 1.2em;
+    margin-left: 8px;
+    cursor: pointer;
+}
+.deleteTask {
+    display: none;
+}
+.deleteTask div {
+    padding: 20px;
+}
+.ipmTableDiv .SecButtonSet .icoButton {
+    display: inline-block;
+    width: 30px;
+    margin: 0px 5px;
+    height: 30px;
+    border: 1px solid #1568b6;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+.dropdown-toggle {
+    padding: 7px;
+    position: relative;
+    left: 2px;
+}
+.toggleContainer {
+    border: 1px solid #1568b6;
+    border-radius: 20px;
+    margin-top: 0px ;
+}
+.toggleContainer .icoButton {
+    border: 0px;
+    margin: 0px;
+}
+.incHeight {
+    height: 17px;
+}
+.noPadleft .icoButton {
+    margin: -9px -1px;
+    border: 0px;
+}
+.noPadright {
+    padding-right: 0px ;
+}
+.table>thead>tr>th:first-child {
+    padding-left: 4px ;
+}
+.keep-open {
+    height: 18px;
+    width: 25px;
+}
+.accrdionTd {
+    border: 0px;
+    text-align: left ;
+}
+.tableAccrdion {
+    padding: 15px 0px;
+}
+.noPadleft {
+    padding-left: 0px ;
+}
+.ipmAccordion .projectContainer .pHead > span.expico {
+    display: inline-block;
+    cursor: pointer;
+    font-family: FontAwesome;
+    width: 21px;
+    height: 21px;
+    text-align: center;
+    font-weight: normal;
+    line-height: 23px;
+    background: #81bd42;
+    position: relative;
+    margin-right: 5px;
+    font-size: 0.8em;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color: #fff;
+}
+.todoSubhead {
+    color: #1797C0;
+    font-weight: bold;
+    border-right: 1px solid #A7A7A7;
+    padding: 0px 10px;
+    margin-right: 10px;
+}
+.myListTable {
+    margin-bottom: 5px;
+}
+.projectContainer .pHead {
+    padding-bottom: 15px;
+    border-bottom: 4px solid #E6E534 ;
+    padding-top: 15px;
+}
+.ipmAcrdnExpand .ipmTable td.serialNum {
+    width: 6%;
+    padding: 6px;
+    text-align: left;
+    font-size: 1.2em;
+}
+.ipmAcrdnExpand .ipmTable td.serialNum>div {
+    margin-right: 10px;
+}
+.showallbutton {
+    font-family: Arial;
+    font-size: 1em;
+    font-weight: bold;
+    color: #007DBB;
+    border-right: 1px solid #ddd;
+    padding: 5px 10px;
+}
+.table>tbody>tr.paginationRow:last-child {
+    background: #fff;
+}
+.table>tbody > tr.paginationRow > td.paginationCol input.btnDisabled,
+.table>tbody > tr.paginationRow > td.paginationCol input.btn {
+    background: none ;
+    border: none ;
+}
+.paginationLink {
+    margin-left: 3px ;
+    margin-right: 3px ;
+}
+td.colCompleted {
+    width: 8%;
+}
+.searchBox input {
+    width: 100%;
+    border: 1px solid #858585;
+    border-radius: 4px;
+    height: 30px;
+    padding-left: 5px;
+}
+.srchImage {
+    cursor: pointer;
+    width: 18px;
+    position: relative;
+    right: 7px;
+    top: -23px;
+    float: right;
+}
+ul.project > li:first-child {
+    padding: 10px 10px 11px 10px 
+}
+h3.pageTitle {
+    margin-top: 0px ;
+    color: #253b78 ;
+    text-transform: none;
+    font-size: 1.7em;
+    font-weight: normal;
+}
+.pageHeadToolbar {
+    border-bottom: 1px #7fa19e solid;
+    padding: 0px 0px 5px;
+}
+.panel-group {
+    margin-bottom: 4px ;
+}
+.rollouttable {
+    table-layout: fixed;
+    width: 100%;
+    max-width: 100%;
+}
+.rollouttable th {
+    font-weight: normal ;
+    color: #666 ;
+}
+span.expico {
+    display: inline-block;
+    cursor: pointer;
+    font-family: FontAwesome;
+    width: 21px;
+    height: 21px;
+    text-align: center;
+    font-weight: normal;
+    line-height: 23px;
+    background: #81bd42;
+    position: relative;
+    margin-right: 5px;
+    font-size: 0.8em;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color: #fff;
+}
+.rollsubhead {
+    padding: 0 10px;
+}
+.editsec {
+    display: inline-block;
+    position: relative;
+    left: 54px;
+    top: 9px;
+}
+.statetext {
+    margin-bottom: 10px;
+    padding: 3px 10px 3px 0 ;
+    display: inline-block;
+    border-right: 1px #7fa19e solid;
+}
+.fa-star:before {
+    color: #81bd42;
+}
+.ipmAcrdnExpand {
+    margin-top: 10px;
+}
+.noBackground {
+    background: #fff ;
+}
+.secrow td {
+    border-top: 0px ;
+    border-bottom: 1px solid #ddd ;
+}
+.greyborleft {
+    border-left: 1px solid #ddd ;
+}
+.greyborright {
+    border-right: 1px solid #ddd ;
+}
+.greyColr {
+    background: #f8f8f8;
+}
+.panel {
+    background-color: none ;
+}
+.regpos {
+    position: relative;
+    bottom: 5px;
+}
+.drpfield {
+    padding: 6px;
+    border-radius: 4px;
+}
+.searchBox {
+    width: 28%;float: left;
+}
+.rollRegInfo{
+    float: left;
+    width: 69%;
+    
+    border: 1px solid #B0D2E6;
+    padding: 10px;
+    color: #007DBB;
+    border-radius: 4px;
+    text-indent: 30px;
+    background: url(../images/info_icon.png) no-repeat 12px 10px #E5F8FF;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+.pb20 {
+    padding-bottom: 36px;
+}
+.mt20 {
+    margin-top: 10px;
+}
+.pt20 {
+    padding-top: 20px;
+}
+.dateInputBox {
+    width: 105% ;
+    height: 30px ;
+}
+.date-icon {
+    position: relative;
+    top: -21px;
+    left: 92px;
+}
+.right-column {
+    position: relative;
+    top: 120px;
+}
+.rollsubhead {
+    padding: 0 10px;
+}
+.inline {
+    display: inline-block;
+}
+.countrytext {
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+.inline-text {
+    position: relative;
+    bottom: 6px;
+}
+.bottonsec {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    float: right;
+}
+.ortext {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.greytext {
+    color: #666;
+}
+.addrolloutsec {
+    background-color: #f8f8f8;
+}
+.editsection {
+    display: none;
+}
+.dblock {
+    display: block;
+}
+.rounded {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.table>thead>tr>th>div {
+    border-right: 0px ;
+}
+.table>tbody>tr>td {
+    padding: 10px 10px ;
+}
+.fa-star:before {
+    margin-left: 5px;
+}
+.w200 {
+    width: 200px;
+}
+.countrytxt {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.ml30 {
+    margin-left: 30px;
+}
+.pl30 {
+    padding-left: 30px;
+}
+.countrytable {
+    text-align: left ;
+}
+.searchBox input {
+    width: 224px ;
+}
+.table-bordered>thead>tr>th {
+    border-bottom-width: 1px ;
+}
+a.icoButton.delete {
+    background-size: 48%;
+}
+.icoButton-delete {
+    width: 25px ;
+    height: 23px ;
+}
+.searchBox label {
+    float: left;
+}
+.editsectn {
+    text-align: right;
+    margin-right: 13px;
+}
+.editblock tr td {
+    border-top: 0px;
+}
+table .editblock {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
+    border: 1px solid #2262A0;
+}
+.fa-chevron-right {
+    color: #A2A697;
+}
+ul.messageFilter {
+    padding: 0;
+    margin: 0px 0 0;
+    list-style: none;
+    height: 365px;
+    overflow: auto;
+}
+ul.messageFilter li {
+    margin-left: 0;
+    display: block;
+    color: #555555;
+    border-top: 1px dotted #bec3af;
+    cursor: pointer;
+}
+ul.messageFilter li:hover,
+ul.messageFilter li.isSelected {
+    background: #B4D096;
+    color: #ffffff ;
+}
+ul.messageFilter li:hover .fa-chevron-right,
+ul.messageFilter li.isSelected .fa-chevron-right {
+    color: #fff;
+}
+ul.messageFilter li span {
+    float: right;
+}
+ul.messageFilter li a {
+    color: #555;
+    padding: 12px;
+    display: block;
+}
+ul.messageFilter li.isSelected a {
+    color: #fff ;
+}
+ul.messageFilter li a:hover {
+    color: #fff ;
+    display: block;
+}
+.subheader {
+    font-size: 17px;
+    font-weight: bold;
+    color: #253b78;
+    margin-left: 10px;
+    padding-bottom: 10px;
+}
+.searchBox {
+    margin: 20px 0px;
+}
+.srchImage {
+    height: 20px;
+    cursor: pointer;
+    width: 18px;
+    position: relative;
+    left: -26px ;
+    top: -1px;
+    float: none ;
+}
+.width30 {
+    width: 30% ;
+}
+ul.mcoFilter {
+    padding: 0;
+    margin: 0px 0 0;
+    list-style: none;
+    height: 365px;
+    overflow: auto;
+}
+ul.mcoFilter li {
+    margin-left: 0;
+    display: block;
+    color: #555555;
+    border-top: 1px dotted #9da7aa;
+    cursor: pointer;
+}
+ul.mcoFilter li:hover,
+ul.mcoFilter li.isSelected {
+    background: #90CCDF;
+    color: #ffffff ;
+}
+ul.mcoFilter li:hover .fa-chevron-right,
+ul.mcoFilter li.isSelected .fa-chevron-right {
+    color: #fff;
+}
+ul.mcoFilter li span {
+    float: right;
+}
+ul.mcoFilter li a {
+    color: #555;
+    padding: 12px;
+    display: block;
+}
+ul.mcoFilter li.isSelected a {
+    color: #fff ;
+}
+ul.mcoFilter li a:hover {
+    color: #fff ;
+    display: block;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+ul.countryFilter {
+    padding: 0;
+    margin-left: 10px;
+    list-style: none;
+    height: 365px;
+    overflow: auto;
+}
+ul.countryFilter li {
+    margin-left: 0;
+    display: block;
+    color: #555555;
+    border-top: 1px dotted #acacac;
+    padding: 12px;
+}
+ul.countryFilter li span {
+    float: right;
+}
+ul.countryFilter li {
+    color: #555;
+}
+.left13 {
+    left: -13px;
+}
+.left51 {
+    left: 51px;
+    margin-left: 7px;
+}
+.btext {
+    color: #0084C7;
+    font-size: 12px;
+    font-weight: bold;
+    width: 170px;
+}
+.ipmCheckbox label {
+    top: 2px;
+}
+.innertext {
+    font-size: 12px;
+    margin-right: 6px;
+    margin-top: 2px;
+}
+ul.countryFilter li:first-child {
+    border-top: 1px solid #c3c3c3;
+    background: #ebebeb;
+}
+.projectRadioButton input[type=radio] {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+}
+.projectRadioButton label {
+    position: relative;
+    margin-right: 20px;
+        margin-left: 20px;
+    text-indent: 30px;
+    font-weight: normal;
+    color: #555555;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    overflow: visible;
+    white-space: nowrap;
+    background: #fff;
+}
+
+.projectRadioButton label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #007DBD;
+    top: 50%;
+    left: 50%;
+    margin-top: -3px;
+    margin-left: -3px;
+    border: 1px solid #007DBD;
+    border-radius: 40px;
+}
+.table>thead>tr>th {
+    padding: 0px 5px;
+    vertical-align: middle;
+    border-top: 1px solid #7fa19e ;
+    border-bottom: 1px dotted #2e2e2e;
+}
+.mr20 {
+    margin-right: 20px;
+}
+.clusterbg {
+    background-size: 100% 100% !i;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.mb20 .mcobg {
+    background-size: 100% 100%;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.mb20 .countrybg {
+    background-size: 100% 100%;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.mb20 .pl40 {
+    padding-left: 40px;
+}
+.mb20 .pr40 {
+    padding-right: 40px ;
+}
+.ml10 {
+    margin-left: 10px;
+}
+.ml25 {
+    margin-left: 25px;
+}
+;
+.ml25 input[type=radio] {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+}
+.ml25 label {
+    position: relative;
+    margin-right: 30px;
+    margin-left: 30px;
+    text-indent: 30px;
+    font-weight: normal;
+    color: #555;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    overflow: visible;
+    white-space: nowrap;
+}
+.ml25 input[type=radio]:checked + label {
+    border: 2px solid #007DBD;
+}
+.ml25 label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #007DBD;
+    top: 50%;
+    left: 50%;
+    margin-top: -3px;
+    margin-left: -3px;
+    border: 1px solid #007DBD;
+    border-radius: 40px;
+}
+.ml25 input[type=radio]:checked + label:after {
+    opacity: 1;
+}
+.ml25 input[type=radio]:disabled + label {
+    border: 1px solid #DDD;
+    background: #EEE;
+}
+.ml25 input[type=radio]:disabled + label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #DDD;
+    top: 50%;
+    left: 50%;
+    margin-top: -3px;
+    margin-left: -3px;
+    border: 1px solid #DDD;
+    border-radius: 40px;
+}
+a.noDecoration,
+a.noDecoration:hover {
+    text-decoration: none;
+}
+.regionaltable thead tr th {
+    background-color: #ebebeb;
+    border-top: 1px solid #c3c3c3 ;
+    border-bottom: 1px dotted #acacac ;
+}
+.regionaltable thead tr td {
+    border-top: 1px dotted #acacac ;
+}
+/* error styles */
+
+.finGreyBG {
+    background: #E8E8E8;
+    color: #374454;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    width: 640px;
+    margin: 0 auto;
+    border-radius: 4px;
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.placeholder {
+    color: #aaa ;
+}
+.delTaskGatebtn{margin-right:15px;}
+
+.SecButtonSet .icoButton.smalllinfo, .SecButtonSet .icoButton.smalllinfo1, .SecButtonSet .icoButton.smalllinfo2
+{
+    height: 16px ;
+    width: 16px ;
+}
+.SecButtonSet .icoButton.smalllinfo, .SecButtonSet .icoButton.smalllinfo1, .SecButtonSet .icoButton.smalllinfo2
+{ 
+    top: 2px;
+}
+.pull-right
+{
+   float:right ;
+}
+
+
+
+          .tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
+    .tooltip > .tooltip-arrow {border-top-color:#00b1a5;}
+    .tooltip.fade.bottom .tooltip-arrow {border-bottom-color:#00b1a5;}
+      .ui-tooltip {
+    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    border: none;
+    text-align: left;
+    color:#fff;
+    padding:3px 7px;
+    opacity:0.9;
+    width:200px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0px;    
+    font-size:12px;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+    top: -10px;
+    left: 44%;
+    border-color: #01B1A6 transparent;
+    border-width: 0 10px 10px;
+}
+.ui-lefttip .ui-tooltip-content::after{left: 20px ;}
+.ui-lefttip{left: 10px ;}
+
+.rollinfotitle{float:left;}
+.prl10{
+padding:0 0 0 10px;
+height: 360px;
+overflow: auto;
+}
+.textL{
+  text-align:left
+}
+div.projectRadioButton table:first-child th.countrytitle
+{
+    border-top: 1px solid #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;
+    padding: 5px;
+    font-weight: normal;
+    color: #555;
+    
+    }
+    .SecButtonSet {
+    display: inline-block;
+    text-align: right;
+    margin-top: 0;
+}
+.infoFloatR {
+    float: right;
+}
+.infoFloatR a.icoButton {
+    height: 16px;
+    width: 16px;
+    top: 10px;
+    right: 14px;
+}
+
+.btext {
+    color: #666;
+    font-size: 12px;
+    font-weight: normal;
+    text-indent: -5px;
+    width: 170px;
+    display: block;
+    background: #FFF372;
+    padding: 10px;
+    margin-right: 17px;
+    margin-top: -3px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.ieAlign {
+    width: 158px;
+    padding: 10px 5px;
+    margin-right: 15px;
+}
+.ipmCheckbox {
+    width: 20px;
+    position: relative;
+    padding: 0 10px 0 0;
+}
+.ipmCheckbox label {
+    z-index: 10;
+    cursor: pointer;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    border-radius: 4px;
+    border: 1px #a8a8a8 solid;
+    background: #fff;
+}
+.left13 {
+    left: -13px;
+}
+.textC{
+text-align:center;
+margin-left:0px;
+}
+div.projectRadioButton table tr td.noborders
+{
+  border:none
+}
+div.projectRadioButton table tr td.borderOn
+{
+border-bottom: 1px solid #c3c3c3;
+border-top: none;
+width:33.3%
+}
+.font12{
+   min-height:45px;
+   clear:both
+}
+        </style>
+        <apex:composition template="IPM_TemplateRevamp">
+            <apex:define name="body">
+                <apex:form id="theForm">
+                <!-- Apex Error Message coming at regional level will be displayed error at Global Page  -->
+                    <apex:pageMessages />
+                    <div class="gradientbg">                        
+                    <!-- Project Details Component added to the Rollout Page -->                        
+                        <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                        
+                    </div>
+                    <apex:outputPanel rendered="{!isError}">
+                        <div class="finGreyBG">
+                            <apex:outputText value="{!errorMessage}" />
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" rendered="{!NOT(isError)}">
+                        <div class="ipmContent">
+                            <div class="row finwrapper">
+                                <div class="col-sm-12">
+                                    <div class="panel-group pageHeadToolbar clearfix">
+                                        <div class="row">
+                                        
+                                        <!-- To place the help symbol in the top right hand corner of page -->
+                                        <!--<apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                                        </apex:outputPanel>-->
+                                        
+                                            <div class="col-sm-5 pull-left">
+                                                <h3 class="pageTitle">{!$Label.IPM_ADD_ROLLOUT}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="searchBox"><label class="greytext"></label> 
+                                    <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/>
+                                    <img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/>
+                                </div>
+                                <!--<div class="rollRegInfo">{!$Label.IPM_REGIONAL_ROLLOUT_ADD_HELP}</div>-->
+                            </div>
+                             <!-- Function display all the countries matched with the search criteria -->
+                            <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
+                            <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
+                            <apex:outputPanel rendered="{!!isNoResult}">
+                                <div class="row">
+                                    
+                                    <div class="col-sm-12 mb20">            
+                    <div class="col-sm-4 clusterbg">
+                                            <div class="subheader">{!$Label.IPM_MARKET_CLUSTER}</div>
+                                            <ul class="messageFilter">
+                                                <apex:repeat value="{!lstClusterWrappers}" var="cluster">
+                                                    <li class="{!IF(cluster.code == selectedCluster, 'isSelected', '')}">
+                                                        <a class="noDecoration changeClusterTab" id="{!cluster.code}">
+                                                            {!cluster.name}
+                                                            <span><i class="fa fa-chevron-right"></i></span>
+                                                        </a>
+                                                    </li>
+                                                </apex:repeat>
+                                            </ul>
+                                        </div>
+                                        <apex:outputPanel id="mcoPanel">
+                                            <div class="col-sm-3 mcobg">
+                                                <div class="subheader">{!$Label.IPM_MCO}</div>
+                                                <ul class="mcoFilter">
+                                                    <apex:repeat value="{!lstMCOWrappers}" var="mco">
+                                                        <li class="{!IF(mco.code == selectedMCO, 'isSelected', '')}">
+                                                            <a class="noDecoration changeMCOTab" id="{!mco.code}">
+                                                                {!mco.name}
+                                                                <span><i class="fa fa-chevron-right"></i></span>
+                                                                <apex:param name="p1" assignTo="{!selectedMCO}" value="{!mco.code}"/>
+                                                            </a>
+                                                        </li>
+                                                    </apex:repeat>
+                                                </ul>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel id="countryPanel">
+                                            <div class="col-sm-5 countrybg">
+                                                <div class="subheader">{!$Label.IPM_COUNTRY}
+                                                <span class="SecButtonSet infoMarTop infoFloatR">
+                                                 <a class="icoButton info" title="KEY MCOs need detailed business cases before Charter can be approved. NON-KEY MCOs need to be grouped together into one business case per market cluster. After Charter approval, every MCO needs to have a detailed business case."></a>
+                                             </span>
+                                                <span class="btext pull-right ieAlign">
+                                                    Mark this MCO as Key
+                                                    <div class="btm2 ipmCheckbox">
+                                                        <input class="notselected  " id="keyMCO" type="checkbox"/> 
+                                                        <label class="notselected left13" for="keyMCO"></label>
+                                                    </div>
+                                                </span>
+                                                </div>
+                                                <div class="projectRadioButton prl10">
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="table regionaltable">    
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="3" class="countrytitle">
+                                                                    <div>Rollout As</div>
+                                                                </th>
+                                                                <!--<th width="20%">
+                                                                    <div class="noborder rollinfotitle">
+                                                                        <div>{!$Label.IPM_Rollout_AS}</div>
+                                                                        <div class="rollinfotitle">{!$Label.IPM_PART_MCO}</div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_THE_BELOW_SELECTED_COUNTRIES}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
+                                                                    </div>  
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div class="rollinfotitle">
+                                                                        <div>{!$Label.IPM_Rollout_AS}</div>
+                                                                        <div class="rollinfotitle">{!$Label.IPM_SEPERATE_COUNTRY}</div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo1" data-original-title="{!$Label.IPM_BELOW_SELECTED_COUNTRIES_INNOVATION}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
+                                                                    </div>    
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div class="rollinfotitle">
+                                                                        <div class="rollinfotitle">{!$Label.IPM_NO_ROLLOUT}</div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo2" data-original-title="{!$Label.IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
+                                                                    </div>
+                                                                </th>--> 
+                                                                                                                                    
+                                                            </tr>
+                                                            <apex:repeat value="{!lstCountryWrappers}" var="country">
+                                                                <tr>
+                                                                    <td  colspan="3" class="noborders">
+                                                                        <div class="pl10 ml10 textL">{!country.name}</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>    
+                                                                    <td class="borderOn">
+                                                                        <div class="ml25 textC">
+                                                                            <apex:outputPanel rendered="{!isEditable}">
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp1{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'With MCO'),'checked','')} {!IF(country.mcoDisabled == true,'disabled','')}"/>
+                                                                                <label for="grp1{!country.code}" > </label>
+                                                                                <div class="font12">Rollout as part of an MCO</div>
+                                                                            </apex:outputPanel>
+                                                                         
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="borderOn">
+                                                                        <div class="ml25 textC">
+                                                                            <apex:outputPanel rendered="{!isEditable}">
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp2{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'Seperate'),'checked','')} {!IF(country.countryDisabled == true,'disabled','')}"/>
+                                                                                <label for="grp2{!country.code}"> </label>
+                                                                                <div class="font12">Rollout as a separate country</div>
+                                                                            </apex:outputPanel>
+                                                                           
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="borderOn">
+                                                                        <div class="ml25 textC">
+                                                                            <apex:outputPanel rendered="{!isEditable}">
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')} {!IF(country.noRolloutDisabled == true,'disabled','')}" />
+                                                                                <label for="grp3{!country.code}"> </label>
+                                                                                <div class="font12">No Rollout</div>
+                                                                            </apex:outputPanel>
+                                                                          
+                                                                        </div>
+                                                                    </td>     
+                                                                </tr>
+                                                            </apex:repeat>                                                       
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>  
+                                        </apex:outputPanel> 
+                                    </div>
+                                    
+                                    <div class="col-sm-12 text-right">
+                                        <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}" onClick="skipValidation();"/>
+                                        
+                                        <apex:outputPanel rendered="{!isEditable}" >
+                                            <div class="ipmButton primary generateRolloutBtn" >{!$Label.IPM_GENERATE_ROLLOUTS}</div>
+                                        </apex:outputPanel>    
+                                    </div>
+                                </div> 
+                            </apex:outputPanel>    
+                        </div>
+                    </apex:outputPanel>
+
+                   <c:IPM_ConfirmModal />
+                   <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="theForm,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
+                    <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
+                    <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
+                    <apex:param name="p3" assignTo="{!selectedCluster}" value=""/>
+                    <apex:param name="p4" assignTo="{!previouselectedMCO}" value=""/>
+                    <apex:param name="p5" assignTo="{!selectedKey}" value=""/>
+                </apex:actionFunction>
+                   <!-- function will used for change MCO and generate rollout -->
+                    <apex:actionFunction name="changeMCO" action="{!changeMCO}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" onComplete="regionalscriptpanel();retainVal();">
+                        <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
+                        <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
+                        <apex:param name="p3" assignTo="{!regionalMco}" value=""/>
+                        <apex:param name="p4" assignTo="{!regionalUnselectedMco}" value=""/>
+                        <apex:param name="p5" assignTo="{!regionalCountry}" value=""/>
+                        <apex:param name="p6" assignTo="{!regionalUnselectedCountry}" value=""/>
+                        <apex:param name="p7" assignTo="{!regionalNoRoll}" value=""/>
+                        <apex:param name="p8" assignTo="{!regionalUnselectedNoRoll}" value=""/>
+                        <apex:param name="p9" assignTo="{!selectedMCO}" value=""/>
+                        <apex:param name="p10" assignTo="{!previouselectedMCO}" value=""/>
+                        <apex:param name="p11" assignTo="{!retainedCountries}" value=""/>
+                    </apex:actionFunction>
+                    <apex:actionFunction name="generateRollouts" action="{!generateRollouts}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" oncomplete="setRedirect();" >
+                        <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
+                        <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
+                        <apex:param name="p3" assignTo="{!regionalMco}" value=""/>
+                        <apex:param name="p4" assignTo="{!regionalUnselectedMco}" value=""/>
+                        <apex:param name="p5" assignTo="{!regionalCountry}" value=""/>
+                        <apex:param name="p6" assignTo="{!regionalUnselectedCountry}" value=""/>
+                        <apex:param name="p7" assignTo="{!regionalNoRoll}" value=""/>
+                        <apex:param name="p8" assignTo="{!regionalUnselectedNoRoll}" value=""/>
+                        <apex:param name="p9" assignTo="{!selectedKey}" value=""/>
+                    </apex:actionFunction>                
+                    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
+                    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
+                    <apex:outputPanel id="scriptPanel">
+                        <script>
+                          var IPMregionalApp = {retainedCountries:'{!JSENCODE(retainedCountries)}',SelectedMCO:'{!JSENCODE(selectedMCO)}',completed: '{!isCompleted}',wmessage:'{!$Label.IPM_Unsaved_Alert}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',warningMsg:'{!$Label.IPM_RemoveCountryMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}'};
+                          var IPMRollOutAdd = {SelectedMCO:'{!JSENCODE(selectedMCO)}',rolloutURL:'{!URLFOR($Page.IPM_RolloutPlans)}',proId:'{!projectId}'};
+                          /*var jq= jQuery.noConflict();
+                            jq(document).ready(function(){
+                                    jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
+                                    
+                                            var selectedCountries=[];
+                                            var unselectedCountries=[];
+                                            
+                                            /* jq(document).off('click', '.changeMCOTab').on('click','.changeMCOTab', function(){
+                                                var changeMCOTab = jq(this);
+                                                // passed from front end
+                                                var previousMcoCode = IPMRollOutAdd.SelectedMCO;
+                                                var mcoCode = changeMCOTab.attr('id');
+                                                var keyMCO = jq('#keyMCO').is(":checked");
+                                                
+                                                jq('.countryFilter .countryList input:checkbox').each(function(){
+                                                    var cntryInput = jq(this);
+                                                    if(cntryInput.is(":checked")){
+                                                        selectedCountries.push(cntryInput.attr('id'));
+                                                    } else {
+                                                        unselectedCountries.push(cntryInput.attr('id'));
+                                                    }
+                                                });
+                                                changeMCO(selectedCountries.toString(),unselectedCountries.toString(),mcoCode,previousMcoCode,keyMCO);
+                                            });*/
+                                            
+                                           /*jq(document).off('click', '.changeClusterTab').on('click','.changeClusterTab', function(){
+                                                var previousMcoCode = IPMRollOutAdd.SelectedMCO;
+                                                var clusterCode = jq(this).attr('id');
+                                                var keyMCO = jq('#keyMCO').is(":checked");
+                                                
+                                                jq('.countryFilter .countryList input:checkbox').each(function(){
+                                                    var cntryInput = jq(this);
+                                                    if(cntryInput.is(":checked")){
+                                                        selectedCountries.push(cntryInput.attr('id'));
+                                                    } else {
+                                                        unselectedCountries.push(cntryInput.attr('id'));
+                                                    }
+                                                });
+                                                changeCluster(selectedCountries.toString(),unselectedCountries.toString(),clusterCode,previousMcoCode,keyMCO);
+                                            });
+                            });*/
+                            
+                            
+                            var jq=jQuery.noConflict();
+    var selectedMCOs=[];
+    var unselectedMCOs=[];
+    var selectedCountries=[];
+    var unselectedCountries=[];
+    var selectedNoRollouts=[];
+    var unselectedNoRollouts=[];                        
+    var intiallySelectedMCOs =[];
+    var intiallySelectedCountries=[];
+    var intiallySelectedNoRollouts=[]; 
+                        var selectedCountries1=[];
+                                            var unselectedCountries1=[];
+                                            var retainedCountries=[];
+    
+    function retainVal(){
+        alert('in1');
+        alert(retainedCountries);
+        var rollVal = [];
+        //var rName;
+        jq('.textC input:radio[name ^=grp]').each(function() {
+            if (jq(this).is(":checked")) {
+            alert('in3');
+                rollVal.push(jq(this).attr('id'));
+            }
+            retainedCountries = rollVal.toString();
+           // getInitialCountrySelection(rName);
+        });
+    }
+    
+    jq(document).ready(function(){
+        alert('entry --> ' + "{!retainedCountries}");
+        regionalscriptpanel();
+        hilightTaskScript();
+        jq(document).off('click', '.changeClusterTab').on('click','.changeClusterTab', function(){
+            //alert('changing cluster');
+            var previousMcoCode = IPMregionalApp.SelectedMCO;
+            var clusterCode = jq(this).attr('id');
+            var keyMCO = jq('#keyMCO').is(":checked");
+            
+            jq('.countryFilter .countryList input:checkbox').each(function(){
+                var cntryInput = jq(this);
+                if(cntryInput.is(":checked")){
+                    selectedCountries1.push(cntryInput.attr('id'));
+                    //alert('selectedCountries ---> ' +selectedCountries1);
+                } else {
+                    unselectedCountries1.push(cntryInput.attr('id'));
+                }
+            });
+            changeCluster(selectedCountries1.toString(),unselectedCountries1.toString(),clusterCode,previousMcoCode,keyMCO);
+        });
+    });
+    
+/* Below code is to check or disable the checkboxes */
+    function regionalscriptpanel()
+    {   
+        jq('input:radio[name ^=grp]').each(function(){
+        var $this = jq(this);
+        if($this.hasClass('checked')){
+            $this.prop('checked', 'true');
+        }
+        
+        if($this.hasClass('disabled')){
+            $this.prop('disabled', 'true');
+            }
+        });
+        var srchTxt = jq('#srchTxt');
+        srchTxt.addClass('placeholder');
+        srchTxt.val(srchTxt.attr('placeholder'));
+        jq(document).on('keypress, keydown','[placeholder]',function() {
+            var input = jq(this);
+            if (input.val() === input.attr('placeholder')) {
+                input.val('');
+                input.removeClass('placeholder');
+            }
+        })
+        jq('[placeholder]').blur(function() {
+            var input = jq(this);
+            if (input.val() === '' || input.val() === input.attr('placeholder')) {
+                input.addClass('placeholder');
+                input.val(input.attr('placeholder'));
+            }
+        }).blur();
+        
+    getInitialCountrySelection();
+    
+    /* Below code is to push the selected values */
+    jq(document).off('click', '.changeMCOTab').on('click','.changeMCOTab', function()
+    {
+        //alert('changing mco');
+        var mcoCode = jq(this).attr('id')
+        var previousMcoCode = IPMregionalApp.SelectedMCO;
+        //alert('changing mco ---> '  + previousMcoCode);
+        getRecentCountrySelection();
+        retainVal();
+        changeMCO(selectedCountries1.toString(), unselectedCountries1.toString(), selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(),mcoCode, previousMcoCode, retainedCountries.toString());
+    });
+}
+    function invokeRolloutGeneration()
+    {
+        generateRollouts(selectedCountries1.toString(), unselectedCountries1.toString(),selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(), keyMCO);
+    }
+    
+/* Below code is to redirect to regional page */
+    function setRedirect()
+    {
+        if(IPMregionalApp.completed)
+        {
+            window.top.location = IPMregionalApp.url+'?Id='+IPMregionalApp.proid+'&EditMode=false';
+        }
+    }
+    
+    function getInitialCountrySelection()
+    {
+    alert('in getInitialCountrySelection retainedCountries --> ' );
+    var abc  = IPMregionalApp.retainedCountries;
+    alert('aa ja yaar ' + abc);
+        jq('input:radio[name ^=grp]').each(function()
+        {
+            var $radio = jq(this);
+            //alert('$radio --> '  + $radio);  
+            if($radio.is(":checked"))
+            {
+                //MCO
+                if($radio.attr('id').indexOf('grp1') > -1)
+                {
+                    intiallySelectedMCOs.push($radio.val());
+                }
+                
+                //Country
+                if($radio.attr('id').indexOf('grp2') > -1)
+                {
+                    intiallySelectedCountries.push($radio.val());
+                } 
+                
+                //No Rollouts
+                if($radio.attr('id').indexOf('grp3') > -1)
+                {
+                    intiallySelectedNoRollouts.push($radio.val());
+                }           
+            }
+        });
+    }
+    var keyMCO;
+    function getRecentCountrySelection()
+    {
+        //alert('in getRecentCountrySelection');
+        selectedNoRollouts=[];
+        keyMCO = jq('#keyMCO').is(":checked");
+        //alert('keyMCO --> ' + keyMCO);
+        jq('input:radio[name ^=grp]').each(function()
+        {
+            var $radio = jq(this); 
+            //alert('in getRecentCountrySelection ' + $radio);
+            if($radio.is(":checked"))
+            {
+                var countryCode = $radio.val();
+                //alert('in getRecentCountrySelection ' + countryCode);
+                // Override the previous Selections if any present      
+                //alert('selectedMCOs --> ' + selectedMCOs);
+                if(jq.inArray(countryCode, selectedMCOs) > -1)
+                {
+                    //alert('in if selectedMCOs --> ' + selectedMCOs);
+                    selectedMCOs.splice(jq.inArray(countryCode, selectedMCOs),1);
+                    //alert('in if 2 selectedMCOs --> ' + selectedMCOs);
+                    //alert('selectedCountries11111 --> ' );
+                    //selectedCountries1.push(countryCode);
+                    //alert('selectedCountries1 --> ' + selectedCountries1);
+                }                   
+                if(jq.inArray(countryCode, selectedCountries) > -1)
+                {
+                    selectedCountries.splice(jq.inArray(countryCode, selectedCountries),1); 
+                    //selectedCountries1.push(countryCode);
+                    //alert('selectedCountries1 --> ' + selectedCountries1);
+                }
+                
+                if(jq.inArray(countryCode, selectedNoRollouts) > -1)
+                {
+                    selectedNoRollouts.splice(jq.inArray(countryCode, selectedNoRollouts),1); 
+                    //selectedCountries1.push(countryCode);
+                    //alert('selectedCountries1 --> ' + selectedCountries1);
+                }
+                
+                //MCO
+                if($radio.attr('id').indexOf('grp1') !==-1)
+                {
+                    //alert('in1 --> ' + countryCode);
+                    selectedMCOs.push(countryCode);
+                    selectedCountries1.push(countryCode);
+                    //alert('selectedMCOs --> ' + selectedMCOs);
+                    //alert('selectedCountries1 --> ' + selectedCountries1);
+                }
+                
+                //Country
+                if($radio.attr('id').indexOf('grp2') !==-1)
+                {
+                    //alert('group 2 --> ' + countryCode);
+                    selectedCountries.push(countryCode);
+                    selectedCountries1.push(countryCode);
+                    //alert('selectedCountries --> ' + selectedCountries);
+                    //alert('selectedCountries1 --> ' + selectedCountries1);
+                }
+                
+                //No Rollouts
+                if($radio.attr('id').indexOf('grp3') !==-1)
+                {
+                    //alert('group 3 --> ' + countryCode);
+                    selectedNoRollouts.push(countryCode);
+                    selectedCountries1.push(countryCode);
+                    //alert('selectedNoRollouts --> ' + selectedNoRollouts);
+                    //alert('selectedCountries1 --> ' + selectedCountries1);
+                }           
+            }
+        });
+        //changeMCO(selectedCountries1.toString(), unselectedCountries1.toString(), selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(),mcoCode);
+    }
+    
+    function validateNoRolloutSelectionChange() 
+    { 
+        var noRolloutAdded = false;
+        
+        for(counter=0;counter<selectedNoRollouts.length;counter++)
+        {
+            var selectedNoRollout = selectedNoRollouts[counter];
+            if(jq.inArray(selectedNoRollout,intiallySelectedNoRollouts) === -1)
+            {
+                noRolloutAdded = true;
+                break;
+            }
+        }
+        return noRolloutAdded
+    }
+     
+    function getChangedCountries() 
+    {
+        for(counter=0;counter<intiallySelectedMCOs.length;counter++)
+        {
+            var countryCode = intiallySelectedMCOs[counter];
+            
+            if(jq.inArray(countryCode,selectedMCOs) === -1)
+            {
+                unselectedMCOs.push(countryCode);
+            }
+        }
+        
+        for(counter=0;counter<intiallySelectedCountries.length;counter++)
+        {
+            var countryCode = intiallySelectedCountries[counter];
+            
+            if( jq.inArray(countryCode,selectedCountries) === -1)
+            {
+                unselectedCountries.push(countryCode);
+            }
+        }
+        
+        for(counter=0;counter<intiallySelectedNoRollouts.length;counter++)
+        {
+            var countryCode = intiallySelectedNoRollouts[counter];
+            if( jq.inArray(countryCode,selectedNoRollouts) === -1)
+            {
+                unselectedNoRollouts.push(countryCode);
+            }
+        }
+    }
+    
+    jq(document).off('click', '.generateRolloutBtn').on('click','.generateRolloutBtn', function(e)
+    {
+        e.stopPropagation();
+        getRecentCountrySelection();
+        getChangedCountries();
+        
+        if(!validateNoRolloutSelectionChange())
+        {
+            invokeRolloutGeneration();
+        }
+        else
+        {
+            jq('#ipmDeleteModal').modal('show');
+            jq('#ipmDeleteModal .modal-title').text(IPMregionalApp.warningTitle);
+            if(jq(':radio[name ^=grp]').length/3 === selectedNoRollouts.length) {
+                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeAllCountriesWarningMsg); 
+            }
+            else{
+                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeCountryWarningMsg);
+            }
+            jq('#ipmDeleteModal .cancelAction').text(IPMregionalApp.cancelBtnText);
+            jq('#ipmDeleteModal .confirmAction').text(IPMregionalApp.acceptBtnText);
+            
+            jq('#ipmDeleteModal .modal-body').css({
+            "height": "120px",
+            "margin-right": "15px"
+            });
+            
+            jq('#ipmDeleteModal .confirmAction').on("click",function(){invokeRolloutGeneration();});
+            jq('#ipmDeleteModal .cancelAction').on("click",function(){
+                window.top.location = IPMregionalApp.baseUrl+'?Id='+IPMregionalApp.proid;
+            });
+        }
+    });
+    
+    
+    function hilightTaskScript(){
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+    jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+}
+
+var unsaved = false;
+
+jq(function(){
+ /* DOM ready */
+    jq(':input').change(function() {
+        unsaved = true;
+    });
+ });     
+function unloadPage()
+{ 
+    if(unsaved){
+        return IPMregionalApp.wmessage;             
+    }
+} 
+
+window.onbeforeunload = unloadPage;
+
+/* Below code is to skip the unsaved changes*/
+function skipValidation() {
+    unsaved = false;
+}
+
+jq("[id*=srchTxt]").keypress(function(){
+    var keyCode = (event.keyCode ? event.keyCode : event.which);
+    if (keyCode === 13) {
+        callsearch();
+        skipValidation();
+        return false;
+    }
+});
+                        </script>
+                    </apex:outputPanel> 
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+</apex:page>
