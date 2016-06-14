@@ -1,0 +1,137 @@
+<aura:component controller="MB_Controller_Class">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"></meta>
+<!--<ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
+    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
+-->
+    <aura:attribute name="showDevice" type="boolean"></aura:attribute>
+    <aura:attribute name="userName" type="string"></aura:attribute>
+    <aura:attribute name="localCurrency" type="string"></aura:attribute>
+    <aura:attribute name="totalUsage" type="decimal"></aura:attribute>
+    <aura:attribute name="CurrentMonth" type="string"></aura:attribute>
+    <aura:attribute name="selectedMonth" type="string"/>
+    <aura:attribute name="Device_Details" type="MB_Wrapper_Class.MB_Device_Wrapper_Class[]"></aura:attribute>
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"></aura:handler>
+    <aura:attribute name="pageName" type="String" default="MB_Devices"/>
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
+    <style>
+        .message_body{
+        background: #eef1f6;
+        min-height:450px;
+        color:#033A69;
+        }
+        .amount{
+        font-weight:bold;
+        }
+        .navbar-fixed-top{
+        height: 42px;
+        }
+        .usage-text-summary{
+        padding: 15px 20px 0px 20px;
+        }
+        .drop-down{
+        width: 14px;
+        background: white;
+        position: absolute;
+        right: 5%;
+        top: 93px;
+        }
+        .device_section{
+        width: 94%;
+        margin: 0 auto;
+        }
+        .Device_main{
+        padding: 0 11px 14px 9px;
+        }
+        .Device_main_sub{
+            background: #fff;
+            height: 125px;
+            border-radius: 4px;
+            padding-top: 10px;
+        }
+        .device_desc{
+        float:left;
+        width:74%;
+        }
+        .device_img{
+        float: left;
+        width: 25%;
+        text-align: center;
+        }
+        .device_desc_a {
+        border-bottom: 1px solid #CFD7E6;
+        padding: 17px 0px;
+        margin: 0 10px;
+        height: 52px;
+        }
+        .device_desc_b{
+        padding: 10px;
+        }
+        .see_more{
+        float: right;
+        padding: 4px 6px;
+        margin-right: 5px;
+        }
+        .info_icon{
+        width: 30px;
+        display: inline-block;
+        margin-right: 6px;
+        }
+        .Seemore_image{
+        float: right;
+        width: 15px;
+        }
+    </style>
+    <aura:if isTrue="{!v.showspinner=='false'}"> 
+      <c:MB_Mobile_billing_Common pagename="{!v.pageName}" selectedmonth="{!v.selectedMonth}"/>
+  
+      <c:MB_SpendSummary_headerCommon month="{!v.CurrentMonth}" />
+    
+      <div class="slds-text-heading--small message_body slds-scrollable--y">
+       <aura:if isTrue="{!v.showDevice ==true}">
+        <div class="usage-text-summary">
+            Hi {!v.userName},<br/>Your total spend for {!v.CurrentMonth} is <span class="amount"> {!v.localCurrency}  {!v.totalUsage}</span><br/><br/>
+        </div>
+        <div class="device_section">
+            <div class="slds-text-heading--small Device_main"><span class="info_icon">
+                <img src="/resource/TEM_icons/TEM_Icons/info_60.png"></img>
+                </span>Devices
+            </div> 
+            <aura:iteration items="{!v.Device_Details}" var="device" indexVar="indx" >
+              
+                <div class="Device_main_sub"  >
+                    <div class="device_img">
+                       <!--  <img src="/resource/Device/Apple.jpg"> </img> -->
+                    <img src="{!device.deviceImageUrl}"> </img></div>
+                    <div class="device_desc">
+                        <div class="slds-text-body--regular device_desc_a" >{!device.deviceName}</div>
+                        <div class="slds-text-heading--small device_desc_b">{!v.localCurrency}  {!device.totalUsage}
+                            <span class="Seemore_image">
+                                <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                            </span><span class="slds-text-body--small see_more" data-index="{!indx}" onclick="{!c.gotoDetailSummary}">see more</span>
+                        </div>
+                     </div>
+                  </div> <br/>
+                </aura:iteration>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!v.showDevice ==false}">
+              <div class="slds-text-heading--small" style="padding:15px;" >
+                <span>Hi {!v.userName}, 
+                   You don’t have any spend for {!v.CurrentMonth}.  
+                </span>
+              </div>
+           </aura:if>
+         
+        <br/>
+        <c:MB_Action_bar componentName="MB_Devices" selectedMonth="{!v.CurrentMonth}"/>
+    </div>   
+        <aura:set attribute="else">
+            <div class="slds-spinner_container">
+                <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>	
+</aura:component>

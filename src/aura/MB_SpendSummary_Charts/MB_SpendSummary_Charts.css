@@ -1,0 +1,73 @@
+.THIS .sectiona_a{
+            padding: 1.5rem 0.9rem;
+}
+.THIS .head_c-1{
+            float:left;
+            color:#033A69;
+            width:50%;
+}
+.THIS .head_d-1{
+            float:right;
+            width:7rem;	
+            color:#033A69;
+}
+.THIS  .icon-styles-1{
+            width: 56px;
+            float: left;
+            background: transparent;  
+            border: 1px solid grey;
+           	border-right:0px;
+            padding: 4.5px 18px;
+            border-radius: 5px 0px 0px 5px;
+}
+.THIS   .icon-styles-2{
+            width: 56px;
+            float: left;
+            background: white;
+            border: 1px solid grey;
+            padding: 5px 18px;
+            border-radius: 0px 5px 5px 0px;
+}
+.THIS .usage{
+            color:#033A69;
+            padding:1.5rem 0.9rem;
+}
+.THIS .insights{
+            color:#033A69;
+            padding:4rem 0 1rem 2rem;
+}
+.THIS .sub_carousel{
+            width:95%;
+            height:150px;
+            margin: 0 auto;
+}
+.THIS .a.canvasjs-chart-credit{
+            display:none;
+}
+.THIS .chart_sub{
+	border-bottom: 1px solid #CFD7E6;
+    color: #033a69;
+    padding: .2rem 0 .5rem 0rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.THIS .chart_main{
+    color:#033A69;
+    padding: .5rem .5rem 0 .5rem;
+}
+.THIS .main_carousel{
+    width:95%;
+    margin:0 auto;
+    background:#fff;
+}
+.THIS .car_main{
+    float:left;
+    width:50%;
+    left:0px;
+    top:200px;
+}
+.THIS .back-button{
+    width: 5%;
+    margin-left: 18px;
+    margin-top: 10px;
+}

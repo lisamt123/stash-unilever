@@ -1,0 +1,123 @@
+<aura:component implements="force:appHostable" Controller="MB_Controller_UsageDetailClass">
+<aura:attribute name="showspinner" type="boolean" default="true"/>
+<aura:handler name="init" value="{!this}" action="{!c.doinit}"></aura:handler>    
+<aura:attribute name="AllData" type="MB_Wrapper_Class.UsageAmountType_Wraper[]"></aura:attribute>
+<aura:attribute name="AllHeadData" type="MB_Wrapper_Class.UsageAmountType_Wraper"></aura:attribute>
+ <!--<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />-->
+<aura:attribute name="deviceId" type="string"/>
+<aura:attribute name="month" type="string"/>
+<aura:attribute name="deviceName" type="string"/>
+<aura:attribute name="usageType" type="string"/>
+    <style>
+        body{
+         background:#D1D1D1;
+        }
+       .head_a{
+        float:left;
+        color:#033A69;
+        padding: 8px 0;
+        }
+        .head_b{
+        float:right;
+        color:#033A69;
+        text-align: right;	
+        padding: 8px 0;
+        }
+        .head_d{
+            float: left;
+            margin-left: 12px;
+            margin-top: 0px;
+            margin-bottom: 4px;
+            padding:0;
+        }
+        .head_e{
+        float: right;
+        text-align: right;
+        padding: 5px 0;
+        }
+        .trend{
+        width: 20px;
+        margin-right:10px;
+        }
+        .section_a{
+        padding: 0rem 1.5rem;
+        border-bottom: 1px solid #CFD7E6;
+        }
+        .main_detail{
+        padding-bottom:15px;
+        }
+    </style>
+    <div class="main_detail" onclick="{!c.gotoSummarySpend}"> <img  class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" ></img> </div>
+     <aura:if isTrue="{!v.showspinner=='false'}"> 
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">All {!v.AllHeadData.chargeTypeName}</div>
+            <div class="slds-text-body--regular head_b">{!v.AllHeadData.userCurrency}&nbsp;{!v.AllHeadData.UsageCurrentAmount}</div><div style="clear:both"></div>
+        
+            <div class="slds-text-body--small head_d">Previous</div>
+            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}&nbsp;{!v.AllHeadData.UsagePreviousAmount}</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Change</div>
+            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}&nbsp;{!v.AllHeadData.UsageChangeAmount}</div><div style="clear:both"></div>
+          
+            <aura:if isTrue="{!v.AllHeadData.UsageVarience>0}">  
+                <div class="slds-text-body--small head_d">Variance</div>
+                <div class="slds-text-body--small head_e">
+                    <aura:if isTrue="{!v.AllHeadData.VarianceArrow==1}"> 
+                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                    </aura:if>
+                    <aura:if isTrue="{!v.AllHeadData.VarianceArrow==2}"> 
+                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                    </aura:if>
+                    {!v.AllHeadData.UsageVarience}%</div>
+                <aura:set attribute="else">
+                    <div class="slds-text-body--small head_d">Variance</div>
+                    <div class="slds-text-body--small head_e">
+                       
+                        NA</div>
+                </aura:set>
+            </aura:if> 
+             <div style="clear:both"></div>
+        </div>
+               
+
+    <aura:iteration items="{!v.AllData}" var="data">
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">{!data.chargeTypeName}</div>
+            <div class="slds-text-body--regular head_b">{!v.AllHeadData.userCurrency}{!data.UsageCurrentAmount}</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Previous</div>
+            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}{!data.UsagePreviousAmount}</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Change</div>
+            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}{!data.UsageChangeAmount}</div><div style="clear:both"></div>
+         <aura:if isTrue="{!data.UsageVarience>0}">   
+            <div class="slds-text-body--small head_d">Variance</div>
+            <div class="slds-text-body--small head_e">
+            <aura:if isTrue="{!data.VarianceArrow==1}"> 
+                    <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                </aura:if>
+                <aura:if isTrue="{!data.VarianceArrow==2}"> 
+                    <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                </aura:if>    
+              {!data.UsageVarience}%</div>
+             <aura:set attribute="else">
+                 <div class="slds-text-body--small head_d">Variance</div>
+                 <div class="slds-text-body--small head_e">
+                         
+                     NA</div>    
+             </aura:set>
+         </aura:if>
+             <div style="clear:both"></div>
+        </div>
+    </aura:iteration>
+         <aura:set attribute="else">
+               <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+         </aura:set>
+    </aura:if>	
+    
+</aura:component>

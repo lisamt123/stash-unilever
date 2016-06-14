@@ -1,0 +1,71 @@
+<aura:component >
+    <style>
+        .selected_month {
+        float: right;
+        width: 35%;
+        background: #1766A6;
+        height: 42px;
+        border-radius: 20px;
+        }
+        .Change_month_span {
+        float:left;margin: 14px 31px;
+        }
+        .selected_month_span {
+        margin: 5px 31px;
+        }
+        .Select_month_option{
+        background: #1766A6;
+        border: none;
+        width: 100%; 
+        outline: none;
+        margin: 9px 0;
+        color: #fff;
+        }
+        .Mobile_billing{
+        color:#033A69;
+        padding-left: 20px;
+        padding-top: 15px;
+        } 
+        .Change_month
+        {
+        text-transform: capitalize;
+        width: 90%;
+        height: 42px;
+        background: #68CAE3; 
+        border-radius: 20px;
+        color: #fff;
+        margin: 15px auto;     
+        }
+        .main-container1{
+        	background-color:white;
+        	border:1px solid white;
+        }
+    </style>
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"></aura:handler>
+    <aura:attribute name="months" type="String[]"></aura:attribute>
+    <aura:attribute name="selectedmonth" type="String"></aura:attribute> 
+    <aura:attribute name="CurrentMonth" type="String"></aura:attribute>
+    <aura:attribute name="pagename" type="String"></aura:attribute>
+    <div class="main-container1"><div class="slds-text-heading--medium Mobile_billing slds-scrollable--y">Mobile Billing</div>
+    <div class="main_bill">
+        <div class="slds-text-heading--label Change_month"><div class="Change_month_span">Change month</div>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container"><span class="dropdown_chevron"><img src="/resource/EA_StaticResource/assets/icons/utility/chevrondown.svg"></img></span>
+                        <select id="select-01" onchange="{!c.changeMonth}" class="slds-select select_option">
+                            <aura:iteration items="{!v.months}" var="month"> 
+                               <aura:if isTrue="{!v.selectedmonth==month}">
+                                  <option value="{!month}" id="{!month}" selected="selected">{!month}</option>
+                               </aura:if>
+                                <aura:if isTrue="{!v.selectedmonth != month}">
+                                  <option value="{!month}" id="{!month}" >{!month}</option>
+                               </aura:if>
+                                
+                            </aura:iteration>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div></div>
+</aura:component>

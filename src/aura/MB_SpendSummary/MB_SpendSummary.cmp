@@ -1,0 +1,261 @@
+<aura:component implements="force:appHostable" controller="MB_Controller_Class">
+ <!--<ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
+<ltng:require scripts="/resource/EA_StaticResource/jquery/jquery.js"/>
+    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />   
+-->
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
+    <style>
+        body{
+        background:#D1D1D1;
+        }
+        .head_a-1{
+        float:left;
+        color:#033A69;
+        }
+        .head_b-1{
+        float:right;
+        color:#033A69;
+        }
+        .head_a{
+        float:left;
+        color:#033A69;
+        }
+        .head_b{
+        float:right;
+        color:#033A69;
+        text-align: right;	
+        margin-right:18px;
+        }
+        .head_d{
+            float: left;
+            margin-left: 12px;
+            margin-top: 0px;
+            margin-bottom: 4px;
+        }
+        .head_e{
+        float: right;
+        text-align: right;
+        margin-right:18px;
+        }
+        .trend{
+        width: 20px;
+        margin-right:10px;
+        }
+        .section_a{
+			padding: 1rem;
+    		border-bottom: 1px solid #CFD7E6;
+    		padding-bottom: 1.9rem;
+            position:relative;
+        }
+        .section_a-new{
+        clear: both;
+    	margin-bottom: -24px;
+            padding-top: 8px;
+        }
+        .icon-style-1{
+        width: 56px;
+        float: left;
+        background: white;
+        border: 1px solid grey;
+        padding: 5px 18px;
+        border-radius: 5px 0px 0px 5px;
+        }
+        .icon-style-2{
+            width: 56px;
+            float: left;
+            background: transparent;
+            border: 1px solid grey;
+            padding: 5px 18.5px;
+            border-left: 0px;
+            border-radius: 0px 5px 5px 0px;
+        }	
+    </style>
+    
+    <aura:attribute name="deviceName" type="String"/>
+    <aura:attribute name="CurrentMonth" type="String"/>
+    <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="spendDetails" type="MB_Wrapper_Class"/>
+    <aura:attribute name="deviceDetails" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!v.showspinner=='false'}">
+        
+    <div>
+        
+               <div onclick="{!c.gotoDevices}"> <img  class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" ></img></div> 
+         
+        <div class="sectiona_a">
+            <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
+            <div class="head_d-1">
+                <div> 
+                    <div onclick="{!c.gotoSummary_charts}"><img class="icon-style-1" src="/resource/TEM_icons/TEM_Icons/chart_60.png" /></div>
+                    <div><img class="icon-style-2" src="/resource/TEM_icons/TEM_Icons/list_60.png" /></div>
+                </div>
+            </div><div style="clear:both"></div>
+        </div>
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">Total</div>
+            <div class="slds-text-body--regular head_b">
+              <aura:if isTrue="{!v.deviceDetails.totalSpendVariance==true}"> 
+                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+              </aura:if>
+              <aura:if isTrue="{!v.deviceDetails.totalSpendVariance==false}"> 
+                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+              </aura:if>
+                {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalUsage}
+            </div>
+                
+        </div>
+       <aura:if isTrue="{!v.deviceDetails.totalCallUsage > 0}">
+           <div onclick="{!c.gotoDetailSummaryCalls}" data-deviceName="Calls"  id="outerdiv">
+               <div class="section_a">
+                   <div class="slds-text-body--regular head_a">Calls</div>
+                   <div class="slds-text-body--regular head_b">
+                       <aura:if isTrue="{!v.deviceDetails.callVariance==true}"> 
+                           <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       </aura:if>
+                       <aura:if isTrue="{!v.deviceDetails.callVariance==false}"> 
+                           <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       </aura:if>
+                       {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalCallUsage}
+                   </div>
+                   <div class="section_a-new" >
+                       <aura:iteration items="{!v.spendDetails.callsWrapperList}" var="data">
+                         <aura:if isTrue="{!data.totalSpend >0}">
+                           <div class="slds-text-body--small head_d">{!data.chargeTypeName}</div>
+                           <div class="slds-text-body--small head_e">{!v.deviceDetails.userCurrency}{!data.totalSpend}</div><div style="clear:both"></div>
+                         </aura:if>
+                       </aura:iteration>
+                   </div>               
+               <div class="Right_cevro">
+                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+               </div>
+            </div>
+           </div>
+      </aura:if>
+      <aura:if isTrue="{!v.deviceDetails.totalDataUsage > 0}">
+         <div onclick="{!c.gotoDetailSummaryData}" data-deviceName="Data"  id="outerdiv">
+             <div class="section_a">
+                 <div class="slds-text-body--regular head_a">Data</div>
+                 <div class="slds-text-body--regular head_b">
+                     <aura:if isTrue="{!v.deviceDetails.dataVariance==true}"> 
+                         <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                     </aura:if>
+                     <aura:if isTrue="{!v.deviceDetails.dataVariance==false}"> 
+                         <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                     </aura:if>
+                     {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalDataUsage}
+                 </div>
+                 <div class="section_a-new">
+                     <aura:iteration items="{!v.spendDetails.dataWrapperList}" var="data">
+                       <aura:if isTrue="{!data.totalSpend >0}">
+                         <div class="slds-text-body--small head_d">{!data.chargeTypeName}</div>
+                         <div class="slds-text-body--small head_e">{!v.deviceDetails.userCurrency}{!data.totalSpend}</div><div style="clear:both"></div>
+                       </aura:if>
+                     </aura:iteration> 
+                 </div>              
+             
+             <div class="Right_cevro">
+                 <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+             </div>
+          </div>
+        </div>
+       </aura:if>
+       <aura:if isTrue="{!v.deviceDetails.totalMessageUsage > 0}">
+           <div onclick="{!c.gotoDetailSummaryMessage}" data-deviceName="Data"  id="outerdiv">
+           <div class="section_a">
+               <div class="slds-text-body--regular head_a">Messaging</div>
+               <div class="slds-text-body--regular head_b">
+                   <aura:if isTrue="{!v.deviceDetails.smsVariance==true}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                   </aura:if>
+                   <aura:if isTrue="{!v.deviceDetails.smsVariance==false}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                   </aura:if>
+                   {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalMessageUsage}
+               </div>
+           <div class="section_a-new">
+               <aura:iteration items="{!v.spendDetails.messageWrapperList}" var="data">
+                 <aura:if isTrue="{!data.totalSpend >0}">
+                   <div class="slds-text-body--small head_d">{!data.chargeTypeName}</div>
+                   <div class="slds-text-body--small head_e">{!v.deviceDetails.userCurrency}{!data.totalSpend}</div><div style="clear:both"></div>
+                 </aura:if>
+               </aura:iteration>  
+           </div>  
+          <div class="Right_cevro">
+                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+          </div>
+           </div>
+
+           </div>
+      </aura:if>
+      <aura:if isTrue="{!v.deviceDetails.totalIpassUsage > 0}">
+          <div onclick="{!c.gotoDetailSummaryIpass}" data-deviceName="Data"  id="outerdiv">
+          <div class="section_a">
+              <div class="slds-text-body--regular head_a">Ipass</div>
+              <div class="slds-text-body--regular head_b">
+                  <aura:if isTrue="{!v.deviceDetails.ipassVariance==true}"> 
+                      <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                  </aura:if>
+                  <aura:if isTrue="{!v.deviceDetails.ipassVariance==false}"> 
+                      <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                  </aura:if>
+                  {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalIpassUsage}
+              </div>
+              <div class="section_a-new">
+                  <aura:iteration items="{!v.spendDetails.ipassWrapperList}" var="data">
+                    <aura:if isTrue="{!data.totalSpend >0}">
+                      <div class="slds-text-body--small head_d">{!data.chargeTypeName}</div>
+                      <div class="slds-text-body--small head_e">{!v.deviceDetails.userCurrency}{!data.totalSpend}</div>
+                      <div style="clear:both"></div>
+                   </aura:if>
+                  </aura:iteration> 
+              </div>
+           <div class="Right_cevro">
+                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+           </div>
+          </div>
+
+          </div>
+       </aura:if>
+       <aura:if isTrue="{!v.deviceDetails.totalnonUsage > 0}">
+           <div onclick="{!c.gotoDetailSummarynonUsage}" data-deviceName="Data"  id="outerdiv">
+           <div class="section_a">
+               <div class="slds-text-body--regular head_a">Non Usage</div>
+               <div class="slds-text-body--regular head_b">
+                   <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==true}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                   </aura:if>
+                   <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                   </aura:if>
+                   {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalnonUsage}
+               </div>
+               <div class="section_a-new">
+                   <aura:iteration items="{!v.spendDetails.nonusageWrapperList}" var="data">
+                     <aura:if isTrue="{!data.totalSpend >0}">
+                       <div class="slds-text-body--small head_d">{!data.chargeTypeName}</div>
+                       <div class="slds-text-body--small head_e">{!v.deviceDetails.userCurrency}{!data.totalSpend}</div>
+                       <div style="clear:both"></div>
+                       </aura:if>
+                   </aura:iteration> 
+               </div>
+            <div class="Right_cevro">
+                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+            </div>
+           </div>
+           
+
+           </div>
+      </aura:if>
+    </div>
+ <aura:set attribute="else">
+               <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+         </aura:set>
+    </aura:if>	
+    
+</aura:component>
