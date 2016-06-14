@@ -255,18 +255,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>ICB_RelatedVisitManagement__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Informs the Visit Management code related to the visit.</description>
-        <externalId>false</externalId>
-        <label>Visit Management</label>
-        <referenceTo>ICB_VisitManagement__c</referenceTo>
-        <relationshipLabel>Activities</relationshipLabel>
-        <relationshipName>Activities</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>ICB_RouteEffectivenessIndex__c</fullName>
         <externalId>false</externalId>
         <formula>IF(OR(ICB_PlannedDistance__c &lt;= 0, ICB_ExecutedDistance__c &lt;=0), null, (ICB_ExecutedDistance__c - ICB_PlannedDistance__c) / ICB_PlannedDistance__c)</formula>
