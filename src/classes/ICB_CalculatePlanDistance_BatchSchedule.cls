@@ -17,7 +17,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Carlos Carvalho 12/06/2016  Class creation  
 ***********************************************************************/
-global class ICB_CalculatePlanDistance_BatchSchedule implements Schedulable
+global with sharing class ICB_CalculatePlanDistance_BatchSchedule implements Schedulable
 {
     
     /*******************************************************************

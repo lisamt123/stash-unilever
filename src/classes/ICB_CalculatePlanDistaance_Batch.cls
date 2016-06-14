@@ -13,7 +13,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Carlos Carvalho 12/06/2016  Class creation  
 ***********************************************************************/
-global class ICB_CalculatePlanDistaance_Batch implements Database.Batchable<sObject>
+global with sharing class ICB_CalculatePlanDistaance_Batch implements Database.Batchable<sObject>
 {
     
     //Static variables
@@ -99,6 +99,6 @@ global class ICB_CalculatePlanDistaance_Batch implements Database.Batchable<sObj
      ********************************************************************/
     global void finish (Database.Batchablecontext bc)
     {
-        
+        System.debug('');
     }
 }

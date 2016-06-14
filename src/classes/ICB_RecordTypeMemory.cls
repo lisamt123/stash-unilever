@@ -11,7 +11,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Carlos Carvalho 13/06/2016  Class creation  
 ***********************************************************************/
-public class ICB_RecordTypeMemory {
+public with sharing class ICB_RecordTypeMemory {
   
     //Static variables
     private static Map< String, Map< String, Id > > fRecTypes = new Map< String, Map< String, Id > >();
@@ -39,10 +39,12 @@ public class ICB_RecordTypeMemory {
      ********************************************************************/
     public static id getRecType( String aObj, String aDevName )
     {
+        system.debug('Entering <getRecType>: aObj: '+aObj + ' | aDevName: '+aDevName );
         Map< String, Id > lObjMap = fRecTypes.get( aObj );
         if ( lObjMap == null ) {
             return null;
         }
+        system.debug('Entering <getRecType>: lObjMap.get( aDevName ): '+lObjMap.get( aDevName ) );
         return lObjMap.get( aDevName );
     }
 }

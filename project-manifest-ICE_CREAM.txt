@@ -4,7 +4,7 @@ src/groups/ICB_IceCreamBRSalesRepresentative.group
 src/homePageLayout
 src/homePageLayouts/ICB Layout home page.homePageLayout
 src/labels
-src/labels/CustomLabels.labels
+src/labels/ICB.labels
 src/layouts
 src/layouts/ICB_VisitManagement__c-ICB_VisitManagement_ADMLayout.layout
 src/layouts/ICB_VisitManagement__c-ICB_VisitManagement_SalesRepLayout.layout
@@ -26,6 +26,7 @@ src/permissionsets
 src/permissionsets/ICB_BackOffice.permissionset
 src/permissionsets/ICB_SalesRepresentative.permissionset
 src/reports
+src/reports/ICB_Reports
 src/reports/ICB_Reports-meta.xml
 src/reports/ICB_Reports/DisciplinaEmLoja.report
 src/reports/ICB_Reports/EfetividadeDaRota.report
@@ -58,10 +59,10 @@ src/aura/modalButton/modalButton.cmp-meta.xml
 src/aura/modalButton/modalButton.css
 src/aura/modalButton/modalButtonController.js
 src/aura/modalButton/modalButtonHelper.js
-src/aura/StaticGoogleMaps/StaticGoogleMaps.cmp
-src/aura/StaticGoogleMaps/StaticGoogleMaps.cmp-meta.xml
-src/aura/StaticGoogleMaps/StaticGoogleMapsController.js
-src/aura/StaticGoogleMaps/StaticGoogleMapsHelper.js
+src/aura/ICB_StaticGoogleMaps/StaticGoogleMaps.cmp
+src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMaps.cmp-meta.xml
+src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMapsController.js
+src/aura/ICB_StaticGoogleMaps/ICB_StaticGoogleMapsHelper.js
 src/classes
 src/classes/ICB_CalculatePlanDistaance_Batch_Test.cls
 src/classes/ICB_CalculatePlanDistaance_Batch_Test.cls-meta.xml
@@ -79,6 +80,7 @@ src/classes/ICB_RecordTypeMemory_Test.cls
 src/classes/ICB_RecordTypeMemory_Test.cls-meta.xml
 src/classes/ICB_RecordTypeMemory.cls
 src/classes/ICB_RecordTypeMemory.cls-meta.xml
+src/classes/ICB_SobjectInstance_Test.cls
+src/classes/ICB_SobjectInstance_Test.cls-meta.xml
 src/applications
 src/applications/ICB_IceCream.app
-

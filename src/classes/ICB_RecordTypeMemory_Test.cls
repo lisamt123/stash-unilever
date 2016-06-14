@@ -21,9 +21,9 @@ public class ICB_RecordTypeMemory_Test {
 	Throws [Exceptions]: [NONE]  
     ********************************************************************/
     private static testMethod void recordTypeMemory_Test(){
-        List< RecordType > lstRT = [Select SobjectType, DeveloperName From RecordType Where isActive = true limit 1];
+        List< RecordType > lstRT = [Select Id, SobjectType, DeveloperName From RecordType Where isActive = true limit 1];
         if( !lstRT.isEmpty() ){
-        	ICB_RecordTypeMemory.getRecType( lstRT[0].SobjectType, lstRT[0].DeveloperName );
+        	system.assert(lstRT[0].Id == ICB_RecordTypeMemory.getRecType( lstRT[0].SobjectType, lstRT[0].DeveloperName ));
         }
     }
     

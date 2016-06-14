@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ComposeGmail</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LogCall</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MailMerge</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SendEmail</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewAll</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Activity_Record_Count__c</fullName>
+        <description>CEC this formula field puts the number 1 on the record for counting advantages on reports</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Activity Record Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Call_Type__c</fullName>
+        <description>CEC this picklist field gives values of different call types which can be selected on an activity</description>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Inbound Call - Primary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inbound Call - Follow Up</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound call - Answered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound Call - Not Available</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound Call - Answerphone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound Call - Not Answered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Secondary Contact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound Recontact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Claims Recontacts</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recommended Alternative Products / Stores</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inbound Mail - Follow Up</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Planned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Out-of-Route</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_AccountIDReference__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(WhatId)), WhatId, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account ID Reference</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_CustomerGeolocation__c</fullName>
+        <description>Customer (Operator or Point of Sales) geographic location. Expressed in Latitude and Longitude.</description>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Customer Geolocation</label>
+        <required>false</required>
+        <scale>6</scale>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>ICB_End_Executed_Visit__c</fullName>
+        <description>End date and time of the executed visit.</description>
+        <externalId>false</externalId>
+        <label>End Executed Visit</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ICB_ExecutedDistance__c</fullName>
+        <description>Distance covered to perform the visit.</description>
+        <externalId>false</externalId>
+        <label>Executed Distance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_ExecutedVisitDurationTime__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(DurationInMinutes) , null, TEXT(FLOOR(DurationInMinutes/60))  &amp; &quot;:&quot; &amp; TEXT(MOD(DurationInMinutes, 60)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Executed Visit Duration Time</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_ExecutedVisitDuration__c</fullName>
+        <description>Calculates the visit duration (End Executed Visit - Start Executed Visit)</description>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(DurationInMinutes)), DurationInMinutes/60, null)</formula>
+        <label>Executed Visit Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_ExecutedVisit__c</fullName>
+        <description>Flag for executed visit.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(TEXT(ICB_Status__c) = $Label.ICB_CONCLUDED_VISIT_STATUS), 1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Executed Visit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_GeolocationCheckOut__c</fullName>
+        <description>Sales Representative geographic location. Expressed in Latitude and Longitude.</description>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Geolocation Check-Out</label>
+        <required>false</required>
+        <scale>7</scale>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>ICB_GeolocationCheckin__c</fullName>
+        <description>Sales Representative geographic location. Expressed in Latitude and Longitude.</description>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Geolocation Check-In</label>
+        <required>false</required>
+        <scale>6</scale>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>ICB_InStoreDisciplineIndex__c</fullName>
+        <description>Duration of executed visit in comparison with the planned visit. Used for report&apos;s KPI.</description>
+        <externalId>false</externalId>
+        <formula>IF(OR(ICB_ExecutedVisitDuration__c &lt;= 0, DurationInMinutes &lt;= 0), null, (ICB_ExecutedVisitDuration__c - DurationInMinutes) / DurationInMinutes)</formula>
+        <label>In-store Discipline Index</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ICB_OutOfRouteVisit__c</fullName>
+        <description>Flag for visits executed out of the planned route.</description>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(Call_Type__c) = $Label.ICB_OUT_OF_ROUTE_VISIT, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Out-of-Route Visit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_PlannedDistance__c</fullName>
+        <description>The distance planned for the visit.</description>
+        <externalId>false</externalId>
+        <label>Planned Distance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_PlannedVisit__c</fullName>
+        <description>Flag for planned visit.</description>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(Call_Type__c) = $Label.ICB_PLANNED_VISIT, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Planned Visit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_RelatedVisitManagement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Informs the Visit Management code related to the visit.</description>
+        <externalId>false</externalId>
+        <label>Visit Management</label>
+        <referenceTo>ICB_VisitManagement__c</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ICB_RouteEffectivenessIndex__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OR(ICB_PlannedDistance__c &lt;= 0, ICB_ExecutedDistance__c &lt;=0), null, (ICB_ExecutedDistance__c - ICB_PlannedDistance__c) / ICB_PlannedDistance__c)</formula>
+        <label>Route Effectiveness Index</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Sequence__c</fullName>
+        <description>Visit code.</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_Start_Executed_Visit__c</fullName>
+        <description>Start date and time of the executed visit.</description>
+        <externalId>false</externalId>
+        <label>Start Executed Visit</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Concluded</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <listViews>
+        <fullName>All_Events</fullName>
+        <columns>TASK.SUBJECT</columns>
+        <columns>EVENT.START_DATE_TIME</columns>
+        <columns>EVENT.END_DATE_TIME</columns>
+        <columns>TASK.LAST_UPDATE</columns>
+        <columns>TASK.CREATED_DATE</columns>
+        <filterScope>Team</filterScope>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>All Events</label>
+    </listViews>
+    <listViews>
+        <fullName>MyActivities</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>MyDelegatedActivities</fullName>
+        <filterScope>Delegated</filterScope>
+        <label>My Delegated Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>MyTeamsActivities</fullName>
+        <filterScope>Team</filterScope>
+        <label>My Team&apos;s Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>TodaysTasks</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>TASK.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>lessThan</operation>
+            <value>TOMORROW</value>
+        </filters>
+        <label>Today&apos;s Tasks</label>
+    </listViews>
+    <listViews>
+        <fullName>UpcomingEvents</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>greaterThan</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <label>Upcoming Events</label>
+    </listViews>
+    <searchLayouts>
+        <searchResultsAdditionalFields>TASK.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.WHO_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.WHAT_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.DUE_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

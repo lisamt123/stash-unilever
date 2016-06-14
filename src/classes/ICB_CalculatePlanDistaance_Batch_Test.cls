@@ -23,62 +23,19 @@ private class ICB_CalculatePlanDistaance_Batch_Test
     ********************************************************************/
     private static testMethod void calculatePlanDistaance_Batch_Test()
     {
-        System.Test.startTest();
-   		insertEvent();
-        ICB_CalculatePlanDistaance_Batch batch = new ICB_CalculatePlanDistaance_Batch();
-        Id batchId = Database.executeBatch(batch);
-        System.assert(batchId != null);
-        System.Test.stopTest();
-        
-    }
-     private static testMethod void calculatePlanDistaance_Batch_Test2()
-    {
-        System.Test.startTest();
-   		        ICB_CalculatePlanDistaance_Batch batch = new ICB_CalculatePlanDistaance_Batch();
-        Id batchId = Database.executeBatch(batch);
-        System.assert(batchId != null);
-        System.Test.stopTest();
-        
-    }
-    /*******************************************************************
-    Purpose: Inser Event for using in test methods
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    private static Event insertEvent()
-    {
         Id recordTypeId = ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_EVENT, Label.ICB_REC_TYPE_ICE_CREAM_VISIT);
-        Event event = new Event(Subject = 'Call',
-                                StartDateTime = System.now(),
-                                EndDateTime = System.now(),
-                                OwnerId = insertUser().Id,
-                                RecordTypeId = recordTypeId); 
-        insert event;
-        return event;
+        User user =  ICB_SobjectInstance_Test.insertUser('System Administrator', 'Test', 'User', 'tUser', 'testUser@email.com', 'testUser@email.com.unilever', 
+                                                         'testUser', 'America/Los_Angeles', 'en_US', 'UTF-8', 'en_US');
+        System.Test.startTest();
+        
+        ICB_SobjectInstance_Test.insertEvent('Call', System.now(), System.now(), user.Id, recordTypeId);
+   		ICB_CalculatePlanDistaance_Batch batch = new ICB_CalculatePlanDistaance_Batch();
+        Id batchId = Database.executeBatch(batch);
+        System.assert(batchId != null);
+        
+        System.Test.stopTest();
+        
     }
-    /*******************************************************************
-    Purpose: Inser User for using in test methods
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    private static User insertUser()
-    {
-        Profile profile = [Select Id From Profile Where Name = 'System Administrator'];
-        User user = new User(FirstName = 'Test',
-                             LastName = 'User',
-                             Alias = 'tUser',
-                             Email = 'testUser@email.com',
-                             UserName = 'testUser@email.com.unilever',
-                             CommunityNickname = 'testUser',
-                             TimeZoneSidKey = 'America/Los_Angeles',
-                             LocaleSidKey = 'en_US',
-                             EmailEncodingKey = 'UTF-8',
-                             LanguageLocaleKey='en_US',
-                             ProfileId = profile.id
-                            );
-        insert user;
-        return user;
-    }
+   
+   
 }

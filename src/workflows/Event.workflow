@@ -15,13 +15,4 @@
         <description>The auto created visit name should be composed by Company Name + SAP code.</description>
         <triggerType>onAllChanges</triggerType>
     </rules>
-    <rules>
-        <fullName>TEste event</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>Event.AccountId</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
 </Workflow>
