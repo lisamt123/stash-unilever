@@ -16,8 +16,8 @@ public with sharing class AA_Follow_Unfollow_class {
      */  	
 public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
 /*   
-   Here we have not created sepearte method for follow / Unfollow as we are using the same set of result we got from the particular queries 
-   If we seperate the methods same code will repeated & makes it unmanagable in future
+   Here we have not created sepearte method for follow / Unfollow as we are using the same set of result we got from the particular queries e.g UserSet, set created for each cluster with country ids names etc 
+   If we seperate the methods same code will repeated & makes it unmanagable in future.complexity of this class can be reduce in future changes as per the feedback from users 
      
 */
 	    Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
