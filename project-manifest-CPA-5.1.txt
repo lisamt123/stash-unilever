@@ -1,0 +1,16 @@
+src/classes
+src/classes/CPA_AttachmentUtil.cls
+src/classes/CPA_AttachmentUtil.cls-meta
+src/classes/CPA_attachment_Trigger_Handler.cls
+src/classes/CPA_attachment_Trigger_Handler.cls-meta
+src/objects
+src/objects/CPA_CR__c.object
+src/objects/CPA_HLE_Request__c.object
+src/objects/CPA_Key_Contacts__c.object
+src/objects/CPA_LOI__c.object
+src/objects/CPA_PWORF__c.object
+src/objects/CPA_Query_comment__c.object
+src/objects/CPA_Requirements_and_Deliverables__c.object
+src/objects/CPA_Resource_Requirement__c.object
+src/objects/CPA_User_Defined_Attribute__c.object
+src/objects/CPA_project_work_order__c.object
