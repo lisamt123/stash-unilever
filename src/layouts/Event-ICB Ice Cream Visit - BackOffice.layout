@@ -137,7 +137,7 @@
             <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Event.CheckIn</actionName>
+            <actionName>Event.ICB_CheckIn</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
@@ -154,9 +154,6 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.LinkPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Event.ICB_CheckIn</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedContent>
