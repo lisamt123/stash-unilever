@@ -76,6 +76,12 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
             
+            // Manual Misalignment
+            List<IPM_Financial__c> newFinancial = IPM_FinancialHelper.updateManualMisalignment(newFinancialList);
+           
+            if(!newFinancial.isEmpty()){
+                update newFinancial;
+            } 
             
             if(Trigger.isInsert)
             {
@@ -353,10 +359,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             upsert upsertConsolidatedFinancialMap.values() Financial_External_ID__c;
         }
         
-        if(Trigger.isUpdate)
-        {
-            IPM_FinancialHelper.checkIfMisAligned((List<IPM_Financial__c>)Trigger.New,financialDetailMap);
-        }
     }
     /**
     * @description:beforeInsert

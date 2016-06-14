@@ -354,7 +354,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
         Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
-        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
+        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,IPM_ProjectGKM__c,IPM_Company_Card__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
         IPM_Project__c
@@ -590,22 +590,49 @@ public with sharing class IPM_ProjectOverviewCtrl {
         }
         }
         
-        //Adding alert for Regional-Local financial
+      
+     //Adding alert for Financial Misalignment For Global - Regional - Local business cases
+     //Adding alert for if Regional-Local financial is misaligned (Other than GKM3) 
+    if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
+    {
         List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
-        RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
-                                                        FROM IPM_Financial__c WHERE Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
+        RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c, Gate_Keeping_Model__c,Global_External_Id__c 
+        FROM IPM_Financial__c WHERE  Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();
                 lstFinDataMissingAlertMessage = new list<String>();
 
         for(IPM_Financial__c fin: RegionalOrLocalFins ){  
-            if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c && (system.today() > fin.Misaligned_Date__c)){               
+            
+            if(fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c ){               
                 lstFinAlertMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Regional_Project__r.Name+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Regional.Project Name} and {Local.Project Name} are  misaligned.
                 ++noOfNotifications;                
+            } 
+        }  
+    //Adding alert for if Global-Local financial is misaligned (for GKM3)   
+    }else if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
+    {
+
+        List<IPM_Financial__c> GlobalOrLocalFins = new List<IPM_Financial__c>();
+        GlobalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c, Gate_Keeping_Model__c,Global_External_Id__c 
+        FROM IPM_Financial__c WHERE  Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
+        lstFinAlertMessage = new list<String>();       
+        lstFinTLDAlertMessage = new list<String>();
+        LstLocalFinTLDMisalignedMessage = new List<String>();
+        lstFinDataMissingAlertMessage = new list<String>();
+    
+        for(IPM_Financial__c fin: GlobalOrLocalFins ){  
+            
+
+            if(fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c){               
+                lstFinAlertMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Global_External_Id__c+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Global.Project Name} and {Local.Project Name} are  misaligned.
+                ++noOfNotifications;                
             }
-     
-        }        
+        }
+
+
+    }
         
         //Adding alert for TLD misalignment
         if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))

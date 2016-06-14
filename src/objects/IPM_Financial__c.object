@@ -143,13 +143,7 @@
         <fullName>BIC_Difference__c</fullName>
         <description>This field is the difference between BIC regional and BIC local.</description>
         <externalId>false</externalId>
-        <formula>IF(BIC_Regional__c &lt;&gt; 0, 
-	IF((ABS(BIC_Regional__c - BIC_Local__c)/BIC_Regional__c) &gt; 0.05, 
-		ABS(BIC_Regional__c - BIC_Local__c), 
-		0
-	), 
-	ABS(BIC_Regional__c - BIC_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(BIC_Global__c &lt;&gt;0,IF((ABS(BIC_Global__c-BIC_Local__c)/BIC_Global__c)&gt;0.1,ABS(BIC_Global__c - BIC_Local__c),0),ABS(BIC_Global__c - BIC_Local__c)),IF(BIC_Regional__c &lt;&gt;0,IF((ABS(BIC_Regional__c- BIC_Local__c)/BIC_Regional__c) &gt; 0.05,ABS(BIC_Regional__c - BIC_Local__c),0),ABS(BIC_Regional__c - BIC_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>BIC Difference</label>
         <precision>18</precision>
@@ -331,13 +325,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <fullName>CAPEX_Difference__c</fullName>
         <description>This captures difference between Regional and local CAPEX field.</description>
         <externalId>false</externalId>
-        <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
-	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
-		ABS(CAPEX_Regional__c - CAPEX_Local__c), 
-		0
-	), 
-	ABS(CAPEX_Regional__c - CAPEX_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(CAPEX_Global__c &lt;&gt;0,IF((ABS(CAPEX_Global__c-CAPEX_Local__c)/CAPEX_Global__c)&gt;0.1,ABS(CAPEX_Global__c- CAPEX_Local__c),0),ABS(CAPEX_Global__c-CAPEX_Local__c)),IF(CAPEX_Regional__c&lt;&gt;0,IF((ABS(CAPEX_Regional__c-CAPEX_Local__c)/CAPEX_Regional__c)&gt;0.05,ABS(CAPEX_Regional__c- CAPEX_Local__c),0),ABS(CAPEX_Regional__c-CAPEX_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>CAPEX Difference</label>
         <precision>18</precision>
@@ -686,6 +674,18 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gate_Keeping_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Gate Keeping Model</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1213,13 +1213,8 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <fullName>IRR_Difference__c</fullName>
         <description>This field holds IRR  difference between value of IRR regional and local fields.</description>
         <externalId>false</externalId>
-        <formula>IF(IRR_Regional__c &lt;&gt; 0, 
-	IF((ABS(IRR_Regional__c - IRR_Local__c)/IRR_Regional__c) &gt; 0.05, 
-		ABS(IRR_Regional__c - IRR_Local__c), 
-		0
-	), 
-	ABS(IRR_Regional__c - IRR_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(IRR_Global__c&lt;&gt;0,IF((ABS(IRR_Global__c-IRR_Local__c)/IRR_Global__c)&gt;0.1, 
+ABS(IRR_Global__c-IRR_Local__c),0),ABS(IRR_Global__c-IRR_Local__c)),IF(IRR_Regional__c&lt;&gt;0,IF((ABS(IRR_Regional__c-IRR_Local__c)/IRR_Regional__c)&gt;0.05,ABS(IRR_Regional__c-IRR_Local__c),0),ABS(IRR_Regional__c-IRR_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IRR Difference</label>
         <precision>18</precision>
@@ -1718,14 +1713,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <fullName>Misaligned__c</fullName>
         <description>This shows the misalignment between regional and local business case.</description>
         <externalId>false</externalId>
-        <formula>IF(
-( Volume_Unit_Difference__c +  
- NPV_Difference__c +
- IRR_Difference__c +
- Payback_Difference__c +
- CAPEX_Difference__c +
- BIC_Difference__c +
- Total_FY_Difference__c ) &gt; 0, TRUE, FALSE)</formula>
+        <formula>IF(MisalignmentManual__c, TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Misaligned</label>
         <trackHistory>false</trackHistory>
@@ -1742,6 +1730,16 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MisalignmentManual__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Misalignment Manual</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>NPV_Charter__c</fullName>
@@ -1775,13 +1773,8 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <fullName>NPV_Difference__c</fullName>
         <description>Difference between NPV regional and local NPV&apos;s.</description>
         <externalId>false</externalId>
-        <formula>IF(NPV_Regional__c &lt;&gt; 0, 
-	IF((ABS(NPV_Regional__c - NPV_Local__c)/NPV_Regional__c) &gt; 0.05, 
-		ABS(NPV_Regional__c - NPV_Local__c), 
-		0
-	), 
-	ABS(NPV_Regional__c - NPV_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(NPV_Global__c&lt;&gt;0,IF((ABS(NPV_Global__c-NPV_Local__c)/NPV_Global__c)&gt;0.1, 
+ABS(NPV_Global__c-NPV_Local__c),0),ABS(NPV_Global__c-NPV_Local__c)),IF(NPV_Regional__c&lt;&gt;0,IF((ABS(NPV_Regional__c-NPV_Local__c)/NPV_Regional__c)&gt;0.05,ABS(NPV_Regional__c-NPV_Local__c),0),ABS(NPV_Regional__c-NPV_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NPV Difference</label>
         <precision>18</precision>
@@ -2077,13 +2070,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <fullName>Payback_Difference__c</fullName>
         <description>Payback_Regional - payback_Local = payback_Difference.</description>
         <externalId>false</externalId>
-        <formula>IF(Payback_Regional__c &lt;&gt; 0, 
-	IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05, 
-		ABS(Payback_Regional__c - Payback_Local__c), 
-		0
-	), 
-	ABS(Payback_Regional__c - Payback_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(Payback_Global__c &lt;&gt; 0,IF((ABS(Payback_Global__c - Payback_Local__c)/Payback_Global__c)&gt; 0.1,ABS(Payback_Global__c - Payback_Local__c), 0), ABS(Payback_Global__c - Payback_Local__c)),IF(Payback_Regional__c &lt;&gt; 0,IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05,ABS(Payback_Regional__c - Payback_Local__c),0),ABS(Payback_Regional__c - Payback_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Payback Difference</label>
         <precision>18</precision>
@@ -2239,6 +2226,18 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Source_Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(NOT(ISBLANK(Parent_Project__c)),Parent_Project__r.Id,IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.IPM_Parent_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__r.Id)),IF(NOT(ISBLANK(Regional_Project__c)),Regional_Project__r.Id,&apos;&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Source Project</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Status_Global__c</fullName>
         <externalId>false</externalId>
         <label>Status(Global)</label>
@@ -2372,6 +2371,18 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Target_Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>Local_Project__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Project</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Threshold_Status_Global__c</fullName>
@@ -2508,7 +2519,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <fullName>Volume_Unit_Difference__c</fullName>
         <description>Regional-local difference of Volume unit.</description>
         <externalId>false</externalId>
-        <formula>IF(TEXT(Volume_Unit_Regional__c) == TEXT(Volume_Unit_Local__c), 0, 1)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(TEXT(Volume_Unit_Global__c)==TEXT(Volume_Unit_Local__c),0,1),IF(TEXT(Volume_Unit_Regional__c)==TEXT(Volume_Unit_Local__c),0,1))</formula>
         <label>Volume Unit Difference</label>
         <precision>18</precision>
         <required>false</required>

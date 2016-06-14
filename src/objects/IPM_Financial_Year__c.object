@@ -394,13 +394,7 @@
         <fullName>Advertising_Promotions_Difference__c</fullName>
         <description>Stores Advertising &amp; Promotions difference between regioanl span and local span</description>
         <externalId>false</externalId>
-        <formula>IF(Advertising_Promotions_Regional__c &lt;&gt; 0, 
-	IF((ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)/Advertising_Promotions_Regional__c) &gt; 0.05, 
-		ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c), 
-		0
-	), 
-	ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(Advertising_Promotions_Global__c&lt;&gt;0,IF((ABS(Advertising_Promotions_Global__c- Advertising_Promotions_Local__c)/Advertising_Promotions_Global__c)&gt;0.1,ABS(Advertising_Promotions_Global__c- Advertising_Promotions_Local__c),0),ABS(Advertising_Promotions_Global__c-Advertising_Promotions_Local__c)),IF(Advertising_Promotions_Regional__c&lt;&gt;0,IF((ABS(Advertising_Promotions_Regional__c- Advertising_Promotions_Local__c)/Advertising_Promotions_Regional__c)&gt;0.05,ABS(Advertising_Promotions_Regional__c- Advertising_Promotions_Local__c),0),ABS(Advertising_Promotions_Regional__c-Advertising_Promotions_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Advertising &amp; Promotions Difference</label>
         <precision>18</precision>
@@ -727,6 +721,18 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>Gate_Keeping_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Gate Keeping Model</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Global_External_Id__c</fullName>
         <description>Stores related financial record&apos;s Global project external id.</description>
         <externalId>false</externalId>
@@ -784,13 +790,7 @@
         <fullName>Gross_Profit_Difference__c</fullName>
         <description>Calculates difference between Regional gross profit and Local gross profit</description>
         <externalId>false</externalId>
-        <formula>IF(Gross_Profit_Regional__c &lt;&gt; 0, 
-	IF((ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)/Gross_Profit_Regional__c) &gt; 0.05, 
-		ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c), 
-		0
-	), 
-	ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(Gross_Profit_Global__c&lt;&gt;0,IF((ABS(Gross_Profit_Global__c-Gross_Profit_Local__c)/Gross_Profit_Global__c)&gt;0.1,ABS(Gross_Profit_Global__c-Gross_Profit_Local__c),0),ABS(Gross_Profit_Global__c- Gross_Profit_Local__c)),IF(Gross_Profit_Regional__c&lt;&gt;0,IF((ABS(Gross_Profit_Regional__c-Gross_Profit_Local__c)/Gross_Profit_Regional__c)&gt;0.05,ABS(Gross_Profit_Regional__c-Gross_Profit_Local__c),0),ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Profit Difference</label>
         <precision>18</precision>
@@ -1151,13 +1151,8 @@
         <fullName>Profit_Before_Overheads_Difference__c</fullName>
         <description>To store difference between Profit Before Overheads Regional and Profit Before Overheads Local</description>
         <externalId>false</externalId>
-        <formula>IF(Profit_Before_Overheads_Regional__c &lt;&gt; 0, 
-	IF((ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)/Profit_Before_Overheads_Regional__c) &gt; 0.05, 
-		ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c), 
-		0
-	), 
-	ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(Profit_Before_Overheads_Global__c&lt;&gt;0,IF((ABS(Profit_Before_Overheads_Global__c- Profit_Before_Overheads_Local__c)/Profit_Before_Overheads_Global__c)&gt;0.1, 
+ABS(Profit_Before_Overheads_Global__c-Profit_Before_Overheads_Local__c),0),ABS(Profit_Before_Overheads_Global__c- Profit_Before_Overheads_Local__c)),IF(Profit_Before_Overheads_Regional__c&lt;&gt;0,IF((ABS(Profit_Before_Overheads_Regional__c- Profit_Before_Overheads_Local__c)/Profit_Before_Overheads_Regional__c)&gt;0.05,ABS(Profit_Before_Overheads_Regional__c- Profit_Before_Overheads_Local__c),0),ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Profit Before Overheads Difference</label>
         <precision>18</precision>
@@ -1314,13 +1309,7 @@
         <fullName>Turnover_Difference__c</fullName>
         <description>Shows difference between Regional turnover and  Local turnover</description>
         <externalId>false</externalId>
-        <formula>IF(Turnover_Regional__c &lt;&gt; 0, 
-	IF((ABS(Turnover_Regional__c - Turnover_Local__c)/Turnover_Regional__c) &gt; 0.05, 
-		ABS(Turnover_Regional__c - Turnover_Local__c), 
-		0
-	), 
-	ABS(Turnover_Regional__c - Turnover_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(Turnover_Global__c&lt;&gt;0,IF((ABS(Turnover_Global__c-Turnover_Local__c)/Turnover_Global__c)&gt; 0.1,ABS(Turnover_Global__c-Turnover_Local__c),0),ABS(Turnover_Global__c-Turnover_Local__c)),IF(Turnover_Regional__c&lt;&gt;0,IF((ABS(Turnover_Regional__c-Turnover_Local__c)/Turnover_Regional__c)&gt;0.05,ABS(Turnover_Regional__c-Turnover_Local__c),0),ABS(Turnover_Regional__c - Turnover_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Turnover Difference</label>
         <precision>18</precision>
@@ -1552,13 +1541,7 @@
         <fullName>Volume_Difference__c</fullName>
         <description>Shows difference between volume at regional span and volume at local span</description>
         <externalId>false</externalId>
-        <formula>IF(Volume_Regional__c &lt;&gt; 0, 
-	IF((ABS(Volume_Regional__c - Volume_Local__c)/Volume_Regional__c) &gt; 0.05, 
-		ABS(Volume_Regional__c - Volume_Local__c), 
-		0
-	), 
-	ABS(Volume_Regional__c - Volume_Local__c)
-)</formula>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,IF(Volume_Global__c&lt;&gt;0,IF((ABS(Volume_Global__c-Volume_Local__c)/Volume_Global__c)&gt;0.1,ABS(Volume_Global__c-Volume_Local__c),0),ABS(Volume_Regional__c-Volume_Local__c)),IF(Volume_Regional__c&lt;&gt;0,IF((ABS(Volume_Regional__c-Volume_Local__c)/Volume_Regional__c)&gt;0.05,ABS(Volume_Regional__c-Volume_Local__c),0),ABS(Volume_Regional__c-Volume_Local__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Volume Difference</label>
         <precision>18</precision>
