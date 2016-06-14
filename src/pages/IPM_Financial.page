@@ -117,7 +117,7 @@
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />
                                                                                 </span>
                                                                             
-                                                                            <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                            <apex:commandLink value="{!financial.MCO_Tab_Display_Name__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                                 <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
                                                                             </apex:commandLink>
                                                                             </div>
@@ -214,6 +214,29 @@
                                                         <div class="col-sm-6 wid40P">
                                                                 <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                           
                                                          </div>
+                                                         
+                                                         <!-- This is the alert message to be shown when the Non-Key Business case of the GKM3 model is changed
+                                                         	  showNonKeyBusinessCaseChangedAlert: is the boolean flag which determines that th alert is to be shown or not. this flag is set to false once the cancel/delete image is clicked 
+                                                          -->
+                                                         <apex:outputPanel id="nonKeybusinessCaseChanged" rendered="{!showNonKeyBusinessCaseChangedAlert}">
+													        <div class="finAlertBox">
+													            <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
+													            <div class="col-sm-11 finalerttext">
+													              <p><apex:outputText value="{!$Label.IPM_NonKey_BusinessCase_Changed_Alert}" /></p>  
+													                
+													            </div>
+													            <apex:outputPanel styleClass="col-sm-1">
+													            	<!-- apex:image styleClass="alertimg" alt="Alert" value="{!URLFOR($Resource.IPM_Resource, 'images/deleteIcon.png')}"/ -->
+													            		<button type="button" class="close ipmModalGetStartedClose" data-target="#nonKeybusinessCaseChanged"  aria-hidden="true" style = "background: #fff; border: 1px #007dbb solid; border-radius: 50%; padding: 3px 5px; color: #007dbb; margin-top: -5px; opacity: 1; width: 30px" >&times;</button>
+														            	<!-- Action support called on click of the deleteicon image. this value then makes the flag Is_Nonkey_Business_Case_Changed__c on financial to false -->
+														            	<apex:actionSupport event="onclick" action="{!resetNonKeyBusinessCaseChangedFlag}" rerender="tabContentPanel" status="counterStatus" >
+														            		<apex:param name="currentFinancialId" value="{!currentFinancial.Id}" assignTo="{!currentFinancialId}"/>
+														            	</apex:actionSupport>
+													            </apex:outputPanel>
+													            
+													        </div>
+													     </apex:outputPanel>
+
                                                                 <!-- Rendered only in edit mode -->
                                                                 <apex:outputPanel id="msgss" rendered="{!isEditMode}">
                                                                     <div class="misAlignedTLD">

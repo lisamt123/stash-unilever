@@ -179,7 +179,9 @@ public without sharing class IPM_Utils {
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
     public static String GATE_KEEPING_MODEL_1 = 'GKM1';
     public static String GATE_KEEPING_MODEL_2 = 'GKM2';
-	public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
+    public static String GATE_KEEPING_MODEL_3 = 'GKM3';
+    public static String GATE_KEEPING_MODEL_4 = 'GKM4';
+    public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
     public static final String UPDATE_FINANCIAL_YEAR_STR='updateFinancialYear';
     
     /*******************************************************************************************************

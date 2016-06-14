@@ -501,7 +501,10 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
     SUBSTITUTE(Financial_External_ID__c, &apos;_CONSOLIDATED&apos;, &apos; (Consolidated)&apos;), 
     IF(CONTAINS(Financial_External_ID__c , &apos;NONKEY&apos;), 
         SUBSTITUTE(Financial_External_ID__c, &apos;_NONKEY&apos;, &apos; (Non Key)&apos;), 
+        IF(Gate_Keeping_Model__c=&apos;GKM3&apos;,
+        SUBSTITUTE(Financial_External_ID__c, &apos;_&apos;+IPM_Project_Rollout__r.IPM_Market_Cluster_Short_Name__c, &apos;&apos;),
         Financial_External_ID__c
+        )
     )
 )</formula>
         <label>Display Name</label>
@@ -1559,6 +1562,17 @@ ABS(IRR_Global__c-IRR_Local__c),0),ABS(IRR_Global__c-IRR_Local__c)),IF(IRR_Regio
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Is_Nonkey_Business_Case_Changed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To indicate if the non key business case has been modified</description>
+        <externalId>false</externalId>
+        <label>Is Nonkey Business Case Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Last_Saved_By_Global__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>This field saves the user who saved the Global fields.</description>
@@ -1653,6 +1667,25 @@ ABS(IRR_Global__c-IRR_Local__c),0),ABS(IRR_Global__c-IRR_Local__c)),IF(IRR_Regio
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MCO_Tab_Display_Name__c</fullName>
+        <description>For GKM3 the Market cluster short name must not be in MCO Tab Display Name. This Formula prepares the text.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(
+    Gate_Keeping_Model__c=&apos;GKM3&apos;,
+    NOT(CONTAINS(Financial_External_ID__c, &apos;CONSOLIDATED&apos;)),
+    NOT(CONTAINS(Financial_External_ID__c, &apos;NONKEY&apos;))
+  ),
+  SUBSTITUTE(Financial_External_ID__c, &apos;_&apos;+IPM_Project_Rollout__r.IPM_Market_Cluster_Short_Name__c, &apos;&apos;),
+  Financial_External_ID__c
+)</formula>
+        <label>MCO Tab Display Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MD_Approved__c</fullName>

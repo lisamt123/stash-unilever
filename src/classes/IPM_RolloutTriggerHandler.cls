@@ -157,6 +157,9 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         } 
         
+        if(!mapUpsertFinancials.isEmpty()){
+            upsert mapUpsertFinancials.values() IPM_Financial__c.Financial_External_Id__c;
+        } 
         
         // Delete Associated Financials.
         deleteAssociatedFinancials();
@@ -195,12 +198,13 @@ public with sharing class IPM_RolloutTriggerHandler
         // Process financials only when Rollout has a parent project attached to it. 
         // For regional Rollouts it would be Global Project and For local Rollouts it would be parent Project plus regional project 
         
-        Map<String,Schema.SObjectField> fieldTypeMap = Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap();
+        Map<String,Schema.SObjectField> projRolloutFieldTypeMap = Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap();
+		Map<String,Schema.SObjectField> financialFieldTypeMap = Schema.SObjectType.IPM_Financial__c.fields.getMap();
 
         String rolloutQuery = ' SELECT ';        
-        for(String fieldAPIName : fieldTypeMap.keySet())
+        for(String fieldAPIName : projRolloutFieldTypeMap.keySet())
         {
-            Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
+            Schema.DescribeFieldResult fieldDescribe = projRolloutFieldTypeMap.get(fieldAPIName).getDescribe();
             
             if(fieldDescribe.isCustom()  && fieldAPIName != 'Id')
             {
@@ -213,6 +217,53 @@ public with sharing class IPM_RolloutTriggerHandler
         
         lstProjectRollouts = database.query(rolloutQuery);
         
+        
+        // Get the associated Financials...
+        Set<Id> regionalLevelIDs = new Set<Id>();
+        
+        for(IPM_Project_Rollout__c projectRollout : lstProjectRollouts)
+        {   
+            if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE && projectRollout.IPM_Project__c !=null)
+            {
+                regionalLevelIDs.add(projectRollout.Id);
+            }
+            else if(projectRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+            {
+                if(projectRollout.Regional_Project__c !=null)
+                {
+                    regionalLevelIDs.add(projectRollout.Regional_Project__c);
+                }
+                else  
+                {   // If it is associated with Regional Rollout, It means we are working with Global Original Rollout Project and no regional Projects have been created.
+                    regionalLevelIDs.add(projectRollout.Regional_Rollout__c);
+                }
+            }
+        }
+        
+        String financialQuery = ' SELECT ';        
+        for(String fieldAPIName : financialFieldTypeMap.keySet())
+        {
+            Schema.DescribeFieldResult fieldDescribe = financialFieldTypeMap.get(fieldAPIName).getDescribe();
+            
+            if(fieldDescribe.isCustom()  && fieldAPIName != 'Id')
+            {
+                financialQuery += ' '+fieldAPIName+',';
+            }
+        }
+        
+        financialQuery = financialQuery.removeEnd(',');
+        
+        financialQuery = financialQuery +' FROM IPM_Financial__c where IPM_Project_Rollout__c in :regionalLevelIDs OR Regional_Project__c in :regionalLevelIDs';
+        
+        List<IPM_Financial__c> existingFinancialList = database.query(financialQuery);
+        
+        Map<String,IPM_Financial__c> existingFinancialMap = new Map<String,IPM_Financial__c>();
+        
+        for(IPM_Financial__c financial : existingFinancialList)
+        {
+            existingFinancialMap.put(financial.Financial_External_Id__c,financial);
+        }
+        
         for (IPM_Project_Rollout__c projectRollout : lstProjectRollouts)
         {       
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
@@ -220,13 +271,13 @@ public with sharing class IPM_RolloutTriggerHandler
             {
                 String financialExternalId = projectRollout.IPM_Rollout_Project__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                 
-                createRolloutFinancials(financialExternalId,CONSOLIDATED_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);
+                createRolloutFinancials(financialExternalId,CONSOLIDATED_FINANCIAL_RECORDTYPE,projectRollout,existingFinancialMap);
             }             
             else 
             {
                 String financialExternalId = IPM_Utils.getFinancialExternalId(projectRollout); 
-
-                createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);
+            
+                createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,projectRollout,existingFinancialMap);
                 
                 //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
                 if(projectRollout.IPM_Project__c != null)
@@ -507,8 +558,12 @@ public with sharing class IPM_RolloutTriggerHandler
 
         for(IPM_Project_Rollout__c localRollout : associatedlocalRollouts)
         {
-            String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout);             
-            IPM_Project_Rollout__c oldProjectRollout = oldRolloutsMap.get(localRollout.Id);
+            String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout);  
+            IPM_Project_Rollout__c oldProjectRollout;
+            if(oldRolloutsMap.containsKey(localRollout.Id))
+            {           
+            	oldProjectRollout = oldRolloutsMap.get(localRollout.Id);
+            }
             
             if(!localRollout.KeyMCO__c && localRollout.isActive__c)
             {
@@ -565,6 +620,13 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             setDeleteFinancialExternalIds.add(financialNonKeyExternalId);
         }
+        else if(nonkeyActiveRolloutExists && nonKeyFinancial != null){
+            
+            //flag Is_Nonkey_Business_Case_Changed__c is set to true which indicates that the Non Key business case has been changed.
+            //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
+            nonKeyFinancial.Is_Nonkey_Business_Case_Changed__c = true;
+            mapUpsertFinancials.put(nonKeyFinancial.Financial_External_Id__c,nonKeyFinancial);
+        }
     }
     
     
@@ -581,6 +643,11 @@ public with sharing class IPM_RolloutTriggerHandler
     {
         IPM_Financial__c projectFinancials = null;
         
+        if(mapUpsertFinancials!=null && mapUpsertFinancials.containsKey(financialExternalId))
+        {
+            projectFinancials =  financialExistingMap.get(financialExternalId);
+        }
+        
         if(financialExistingMap!=null && financialExistingMap.containsKey(financialExternalId))
         {
            projectFinancials =  financialExistingMap.get(financialExternalId);
@@ -595,7 +662,14 @@ public with sharing class IPM_RolloutTriggerHandler
            {
                projectFinancials.isActive__c = true;
                mapUpsertFinancials.put(financialExternalId, projectFinancials);
-           } 
+           }
+           
+           if(!projectRollout.KeyMCO__c){
+            //flag Is_Nonkey_Business_Case_Changed__c is set to true which indicates that the Non Key business case has been changed.
+            //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
+            projectFinancials.Is_Nonkey_Business_Case_Changed__c = true;
+            mapUpsertFinancials.put(financialExternalId, projectFinancials);
+           }
         }
         else
         {
@@ -654,7 +728,14 @@ public with sharing class IPM_RolloutTriggerHandler
         
         Map<Id,IPM_Project_Rollout__c> deletedNonKeyRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
         Map<Id,IPM_Project_Rollout__c> deleteKeyRolloutMap = new Map<Id,IPM_Project_Rollout__c>(); 
-        Map<Id,IPM_Project_Rollout__c> completeNonKeyRolloutMap = new Map<Id,IPM_Project_Rollout__c>();        
+        Map<Id,IPM_Project_Rollout__c> completeNonKeyRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+        
+        Map<String,IPM_Financial__c> financialExtIdFinancialMap = new Map<String,IPM_Financial__c>();
+        IPM_Financial__c survivingNonkeyFinancial = new IPM_Financial__c();
+        
+        for(IPM_Financial__c regionalRolloutFinancial : regionalRollout.IPM_Financials__r ){
+            financialExtIdFinancialMap.put(regionalRolloutFinancial.Financial_External_ID__c,regionalRolloutFinancial);
+        }      
         
         Boolean activeNonKeyRolloutPresent = false;
         Boolean activeRolloutPresent = false;
@@ -725,6 +806,14 @@ public with sharing class IPM_RolloutTriggerHandler
                if(nonKeyRollout.isActive__c)
                {
                    activeNonKeyRolloutPresent = true;
+                   
+                   //fetch the nonKeyFinancial which still exist after deletion of Non key rollouts
+                   survivingNonkeyFinancial = financialExtIdFinancialMap.get(financialNonKeyExternalId);
+                   
+                   //flag Is_Nonkey_Business_Case_Changed__c is set to true which indicates that the Non Key business case has been changed.
+            	   //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
+                   survivingNonkeyFinancial.Is_Nonkey_Business_Case_Changed__c = true;
+                   mapUpsertFinancials.put(financialNonKeyExternalId, financialExtIdFinancialMap.get(financialNonKeyExternalId));
                    break;
                }
            } 
