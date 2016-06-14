@@ -3001,6 +3001,24 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000bxr7_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TO BE DELETED</label>
+        <queue>IPM_a7IE0000000bxr7</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000bxrC_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000bxrC</label>
+        <queue>IPM_a7IE0000000bxrC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>

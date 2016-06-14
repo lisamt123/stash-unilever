@@ -3250,6 +3250,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>Country_Name__c</columns>
         <columns>Language__c</columns>
         <columns>Brand__c</columns>
+        <columns>CASES.ORIGIN</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -6163,24 +6164,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC Southern Cone Peru Escalation</label>
         <language>es</language>
         <sharedTo>
-            <role>CEC_Manager_Southern_Cone</role>
-            <role>CEC_User_Southern_Cone</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Southern_Cone_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>CEC Southern Cone Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Southern_Cone_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_South_America</role>
             <role>CEC_Manager_Southern_Cone</role>
             <role>CEC_User_Southern_Cone</role>
         </sharedTo>
