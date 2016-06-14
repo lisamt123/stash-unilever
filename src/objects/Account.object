@@ -401,18 +401,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Bazaarvoice_Username__c</fullName>
-        <description>CEC: To capture the bazaar voice user name</description>
-        <externalId>false</externalId>
-        <label>Bazaarvoice Username</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>BillingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1205,6 +1193,19 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_CNPJ__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Number of the Cadastro Nacional de Pessoa Jurídica of the customer.</description>
+        <externalId>false</externalId>
+        <label>CNPJ</label>
+        <length>14</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Industry</fullName>
@@ -2003,38 +2004,38 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             <controllingField>Industry</controllingField>
             <picklistValues>
                 <fullName>Apple Farms</fullName>
-                <controllingFieldValues>Agriculture</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Agriculture</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cable</fullName>
-                <controllingFieldValues>Communications</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Communications</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Corn Fields</fullName>
-                <controllingFieldValues>Agriculture</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Agriculture</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Internet</fullName>
-                <controllingFieldValues>Communications</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Communications</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Radio</fullName>
-                <controllingFieldValues>Communications</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Communications</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Television</fullName>
-                <controllingFieldValues>Communications</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Communications</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Winery</fullName>
-                <controllingFieldValues>Agriculture</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Agriculture</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2527,6 +2528,26 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <filterScope>Everything</filterScope>
         <label>Tous les comptes</label>
         <language>fr</language>
+    </listViews>
+    <listViews>
+        <fullName>ICB_TodasContas</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>PC_EMAIL</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard</value>
+        </filters>
+        <label>Todas Contas</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>ICB_IceCreamBRBackOffice</group>
+            <group>ICB_IceCreamBRSalesRepresentative</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>NewThisWeek</fullName>
@@ -10517,6 +10538,16 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <searchResultsAdditionalFields>PC_ADDRESS2_ZIP</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>LocalIdentifier_Length_Validation</fullName>
+        <active>true</active>
+        <description>CEC : This will validate the  Local Identifier Length for Brazil user. It should contain 11 digits numbers</description>
+        <errorConditionFormula>IF( ( ( $UserRole.Name  = &apos;CEC Manager - Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User -  Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User - Planitox Brazil&apos;)) &amp;&amp;  Local_Identifier__c  &lt;&gt; null ,
+	(NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
+	false)</errorConditionFormula>
+        <errorDisplayField>Local_Identifier__c</errorDisplayField>
+        <errorMessage>Invalid CPF number (Should contain 11 digit numeric value)</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Pitch_Email_or_Phone_Mandatory</fullName>
         <active>true</active>

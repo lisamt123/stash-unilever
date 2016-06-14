@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Visit Management</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Visits Management</value>
+    </caseValues>
+    <fields>
+        <label><!-- Executed Total Distance --></label>
+        <name>ICB_ExecutedTotalDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Total Duration --></label>
+        <name>ICB_ExecutedTotalDuration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Total Distance --></label>
+        <name>ICB_PlannedTotalDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Total Duration --></label>
+        <name>ICB_PlannedTotalDuration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit Management Code --></label>
+        <name>ICB_VisitManagementCode__c</name>
+    </fields>
+    <layouts>
+        <layout>ICB_VisitManagement_ADMLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ICB_VisitManagement_SalesRepLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
