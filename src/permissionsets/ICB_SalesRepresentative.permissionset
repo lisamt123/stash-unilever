@@ -301,7 +301,7 @@
         <field>User.ICB_CPF__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>ICB SalesRepresentative</label>
+    <label>ICB Sales Representative</label>
     <pageAccesses>
         <apexPage>ICB_CheckInCheckOut</apexPage>
         <enabled>true</enabled>

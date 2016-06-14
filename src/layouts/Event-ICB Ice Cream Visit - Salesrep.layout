@@ -165,7 +165,7 @@
             <quickActionName>FeedItem.LinkPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Event.CheckIn</quickActionName>
+            <quickActionName>Event.ICB_CheckIn</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedContent>

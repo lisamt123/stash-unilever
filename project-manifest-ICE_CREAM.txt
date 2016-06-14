@@ -1,3 +1,6 @@
+src/quickActions
+src/quickActions/Event.ICB_CheckIn.quickAction
+src/quickActions/Account.ICB_NewVisit.quickAction
 src/groups/
 src/groups/ICB_IceCreamBRBackOffice.group
 src/groups/ICB_IceCreamBRSalesRepresentative.group
