@@ -11,7 +11,6 @@ VERSION     AUTHOR         DATE              DETAIL Description
 1.0         Mindtree       25/04/2016        controller class For Feedback app
 ***************************************************************/
 
-
 public with sharing class CORE_Feedback_App_Controller{
   /*******************************************************************************************************
 * @description This method returns whether the user has visited this app before or not.
@@ -54,16 +53,20 @@ public with sharing class CORE_Feedback_App_Controller{
       if((Integer)rating > 0 ){
          Date feedbackagainDate=Date.today().addDays((Integer)App_Feedback__c.getInstance(appName).Feedback_Again_Days__c);
          CORE_Feedback__c newObj=new CORE_Feedback__c ( App_Name__c=appName,Rating__c=(Integer)rating,Feedback_Comments__c=comment,Feedback_Date__c=System.today(),Rate_Later_Date__c=feedbackagainDate,User__c=userinfo.getUserid());
+         system.debug('@@@@ inside rating >0');
          insert newObj;
          return true;
       }
       if((Integer)rating <= 0 || (Integer)rating==0 || (Integer)rating ==null){
          Date feedbacklaterDate=Date.today().addDays((Integer)App_Feedback__c.getInstance(appName).Rate_Later_Days__c);
          CORE_Feedback__c newObj=new CORE_Feedback__c ( App_Name__c=appName,Feedback_Date__c=System.today(),Rate_Later_Date__c=feedbacklaterDate,User__c=userinfo.getUserid());
+         system.debug('@@@@ inside rating >0');
          insert newObj;
          return true;
       } 
      
      return false;
   }
+  
+
 }

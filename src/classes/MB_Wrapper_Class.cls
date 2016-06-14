@@ -11,13 +11,20 @@ VERSION     AUTHOR         DATE              DETAIL Description
 1.0         Mindtree       12/05/2016        Wrapper class For TEM app
 ***************************************************************/
 
-public class MB_Wrapper_Class{
 
+public class MB_Wrapper_Class{
+   
+    @AuraEnabled
     public List<DataChargeType_Wraper> dataWrapperList;
+    @AuraEnabled
     public List<CallsChargeType_Wraper> callsWrapperList;
+    @AuraEnabled
     public List<MessagingChargeType_Wraper> messageWrapperList;
+    @AuraEnabled
     public List<IpassChargeType_Wraper> ipassWrapperList;
+    @AuraEnabled
     public List<NonUsageChargeType_Wrapper> nonusageWrapperList;
+    @AuraEnabled
     public MB_Device_Wrapper_Class objdeviceWrapper;
    /*******************************************************************************************************
     * @description This class  contains fields for  user spend with particular device.
@@ -100,6 +107,9 @@ public class MB_Wrapper_Class{
      public decimal totalAverageIpassUsage;
      
      @AuraEnabled
+     public boolean totalSpendVariance;
+     
+     @AuraEnabled
      public boolean dataVariance;
      
      @AuraEnabled
@@ -110,6 +120,9 @@ public class MB_Wrapper_Class{
      
      @AuraEnabled
      public boolean ipassVariance ;
+     
+     @AuraEnabled
+     public boolean nonUsageVariance ;
     }
     
      public class DataChargeType_Wraper{
@@ -148,7 +161,7 @@ public class MB_Wrapper_Class{
      public decimal totalSpend;
     }
     
-     public class IpassChargeType_Wraper{
+     public class IpassChargeType_Wraper{ 
      
      @AuraEnabled
      public string chargeTypeName;
@@ -157,5 +170,28 @@ public class MB_Wrapper_Class{
      public decimal totalSpend;
   
     }
-    
- }
+    public class UsageAmountType_Wraper{ 
+     
+     @AuraEnabled
+     public string chargeTypeName;
+     
+     @AuraEnabled
+     public decimal UsageCurrentAmount;
+     
+     @AuraEnabled
+     public decimal UsagePreviousAmount;
+     
+     @AuraEnabled
+     public decimal UsageChangeAmount;
+     
+     @AuraEnabled
+     public Integer UsageVarience;
+     
+     @AuraEnabled
+     public Integer VarianceArrow;
+     
+     @AuraEnabled
+     public string userCurrency;
+  
+    }
+  }

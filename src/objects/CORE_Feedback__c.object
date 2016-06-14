@@ -151,7 +151,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>FDBK-{000000}</displayFormat>
+        <displayFormat>FDBK-{MM}-{YYYY}-{000000}</displayFormat>
         <label>Feedback Name</label>
         <type>AutoNumber</type>
     </nameField>
