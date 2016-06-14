@@ -8,10 +8,10 @@
         commentbox = document.getElementById("textarea-input-02");                                                 
         if(commentbox != undefined || commentbox != null ){  
            comment= document.getElementById("textarea-input-02").value; 
-           if(comment== '' && ((RequestType == 'Expense' && action == 'Reject')
-               || (RequestType == 'Purchase Request' && action == 'Reject')
-               || (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))
-               || (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV')))){
+           if(comment=== '' && ((RequestType === 'Expense' && action === 'Reject')
+               || (RequestType === 'Purchase Request' && action == 'Reject')
+               || (RequestType === 'Clarity' && (action === 'Rework' || action === 'Reject'))
+               || (RequestType === 'Invoice' && (action === 'RTAP' || action === 'QWV')))){
         	   document.getElementById("textarea-input-02").style.borderColor="red"; 
             }
             else{
@@ -66,7 +66,7 @@
     },
     handleCheckTask : function(cmp, event, helper) {
             var checkCmp = cmp.find("taskCheckBox");
-            alert("value : " + checkCmp.get("v.value"));
+           // alert("value : " + checkCmp.get("v.value"));
             console.log("value : " + checkCmp.get("v.value"))
     },
     
