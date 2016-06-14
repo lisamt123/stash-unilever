@@ -596,6 +596,26 @@
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1770,6 +1790,48 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    
+    <fields>
+        <fullName>IPM_ProjectGKM__c</fullName>
+        <description>To tell which GKM the project follows.</description>
+        <externalId>false</externalId>
+        <label>IPM_ProjectGKM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>IPM_ProjectJobType__c</fullName>
         <description>To store the project job type.</description>
@@ -2934,8 +2996,28 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
+                <fullName>GIC Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3031,6 +3113,10 @@ OwnerId))</formula>
             <values>
                 <fullName>Home Care</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3195,6 +3281,37 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_ProjectGKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3394,8 +3511,28 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
+                <fullName>GIC Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3491,6 +3628,10 @@ OwnerId))</formula>
             <values>
                 <fullName>Home Care</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3655,6 +3796,37 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_ProjectGKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

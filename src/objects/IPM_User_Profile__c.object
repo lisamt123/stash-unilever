@@ -232,6 +232,26 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
                 <fullName>Ice Cream</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Hair Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>

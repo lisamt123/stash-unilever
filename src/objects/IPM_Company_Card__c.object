@@ -3020,7 +3020,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Cleansing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -3036,7 +3036,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -3044,11 +3044,15 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>HAIR</fullName>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -4949,7 +4953,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HAIR</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4965,7 +4973,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4973,11 +4981,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Cleansing</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7789,7 +7797,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HAIR</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7805,7 +7817,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7813,11 +7825,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Cleansing</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9653,7 +9665,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HAIR</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9669,7 +9685,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9677,11 +9693,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Cleansing</fullName>
                 <default>false</default>
             </values>
             <values>

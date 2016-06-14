@@ -523,7 +523,7 @@ public without sharing class IPM_Utils {
     
     public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects, Boolean includeSystemFields) 
     { 
-        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','recordtypeid'};
         
         Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
         Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
@@ -576,7 +576,7 @@ public without sharing class IPM_Utils {
             }
         }
                     
-        queryStr += 'Id,Name from '+SObjectName+' ';
+        queryStr += 'Id from '+SObjectName+' ';
 
         return queryStr;
     } 
@@ -584,7 +584,7 @@ public without sharing class IPM_Utils {
     public static String getChildRelationshipFields(String SObjectName,Set<String> includededChildObjects,Boolean includeSystemFields)
     {
     	String queryStr = '';
-    	Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','recordtypeid'};
     	// Get Child Relationships
         for(Schema.ChildRelationship cr : Schema.getGlobalDescribe().get(SObjectName).getDescribe().getChildRelationships())
         {
@@ -617,7 +617,7 @@ public without sharing class IPM_Utils {
                         }
                     }
                 }
-                queryStr += 'Id,Name from '+childRelationshipName;
+                queryStr += 'Id from '+childRelationshipName;
                 queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
                 queryStr += '  ),'; 
             }
@@ -908,48 +908,13 @@ public without sharing class IPM_Utils {
     * @param1 project : Project Object containing Company Card information
     */
     
-    public static List<IPM_ProjectMetadata__c> getProjectTypeMetadata(List<IPM_Project__c> projectList)
+    public static List<IPM_Project_Metadata__mdt> getProjectTypeMetadata(List<IPM_Project__c> projectList)
     {
-        List<IPM_ProjectMetadata__c> projectTypeMetadataList = new List<IPM_ProjectMetadata__c>();
+        List<IPM_Project_Metadata__mdt> projectTypeMetadataList = new List<IPM_Project_Metadata__mdt>();
         
-        // Projects which have valid company card Lookup information.
-        Set<Id> companyCardSet = new Set<Id>();
-        
-        for(IPM_Project__c project: projectList)
-        {
-            if(project.IPM_CompanyCardText__c == null &&  project.IPM_Company_Card__c !=null)
-            {
-                companyCardSet.add(project.IPM_Company_Card__c);  
-            }
-            
-        }
-
-        if(!companyCardSet.isEmpty())
-        {
-            Map<Id,IPM_Company_Card__c> companyCardMap = new Map<Id,IPM_Company_Card__c>([Select Id,Name,RecordTypeId,RecordType.Name FROM IPM_Company_Card__c 
-                                                                                            WHERE Id in :companyCardSet limit 50000]);  
-            
-            for(IPM_Project__c project : projectList)
-            {
-                if(project.IPM_CompanyCardText__c == null &&  project.IPM_Company_Card__c !=null && 
-                    companyCardMap.containsKey(project.IPM_Company_Card__c) && companyCardMap.get(project.IPM_Company_Card__c) !=null)
-                {
-                    project.IPM_CompanyCardText__c = companyCardMap.get(project.IPM_Company_Card__c).RecordType.Name;
-                }       
-            }
-        }
-         
         for(IPM_Project__c project : projectList)
-        {
-            if(project.IPM_CompanyCardText__c != null && !String.isBlank(project.IPM_CompanyCardText__c) )
-            {
-                // Invoke Project Metadata Util to get information
-                projectTypeMetadataList.add(retrieveProjectMetadata(project));
-            }
-            else
-            {
-                projectTypeMetadataList.add(new IPM_ProjectMetadata__c() ); 
-            }
+        { 
+            projectTypeMetadataList.add(retrieveProjectMetadata(project));  
         }
         
         return  projectTypeMetadataList;
@@ -961,32 +926,38 @@ public without sharing class IPM_Utils {
     * @param1 project : Project Object containing Company Card information
     */
     
-    public static IPM_ProjectMetadata__c retrieveProjectMetadata(IPM_Project__c project)
+    public static IPM_Project_Metadata__mdt retrieveProjectMetadata(IPM_Project__c project)
     {
-        IPM_ProjectMetadata__c selectedProjectMetadata = null;
+        IPM_Project_Metadata__mdt selectedProjectMetadata = null;
+        List<IPM_Project_Metadata__mdt> selectedProjectMetadataList = new List<IPM_Project_Metadata__mdt>();
         
-        if(project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null)
+        String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
+        List<IPM_Project_Metadata__mdt> projectMetadataList = (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery);
+        // Do the First Level of filtering based on Mandatory fields.
+        if(project.IPM_Company_Card__c !=null  && String.isNotBlank(project.IPM_CompanyCardText__c) !=null && String.isNotBlank(project.IPM_Category_Text__c) && String.isNotBlank(project.IPM_ProjectSubType__c) )
         {
-            
-            for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
+            for(IPM_Project_Metadata__mdt projectMetadata : projectMetadataList)
             {
-                if(projectMetadata.IPM_Project_Type__c == project.IPM_SourceProjectType__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+
+                if( projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c &&  
+                    projectMetadata.IPM_ApplicableCategories__c.containsIgnoreCase(project.IPM_Category_Text__c) && 
+                    (projectMetadata.IPM_ProjectSubType__c.containsIgnoreCase(project.IPM_ProjectSubType__c) ) )
                 {
-                    selectedProjectMetadata = projectMetadata;
-                    
-                    break;
+                    selectedProjectMetadataList.add(projectMetadata); 
                 } 
             }
         }
         
-        if(selectedProjectMetadata == null && project.IPM_ProjectSubType__c !=null && project.IPM_CompanyCardText__c !=null)
+        // Check if GateKeeping Questions are applicable. If yes then it is the fourth parameter on which filtering should happen.
+        for(IPM_Project_Metadata__mdt shortListedMetadata : selectedProjectMetadataList)            
         {
-           
-            for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
+            if(shortListedMetadata.IPM_GKMQuestionsApplicable__c && String.isNotBlank(shortListedMetadata.IPM_GMKQuesiton__c))
             {
-                if(projectMetadata.IPM_ProjectSubType__c.contains(project.IPM_ProjectSubType__c) && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                String gateKeepingFieldAPI = shortListedMetadata.IPM_GMKQuesiton__c; 
+                String projectGKMAnswer = (String)project.get(gateKeepingFieldAPI);
+                if(String.isNotBlank(projectGKMAnswer) &&  projectGKMAnswer.equalsIgnoreCase(shortListedMetadata.IPM_GMKQuestionAns__c))
                 {
-                    selectedProjectMetadata = projectMetadata;
+                    selectedProjectMetadata = shortListedMetadata;
                     break;
                 } 
             }
@@ -994,7 +965,14 @@ public without sharing class IPM_Utils {
 
         if(selectedProjectMetadata == null)
         {
-            selectedProjectMetadata = new IPM_ProjectMetadata__c(); 
+            if(!selectedProjectMetadataList.isEmpty())
+            {
+                selectedProjectMetadata = selectedProjectMetadataList.get(0);                 
+            }
+            else
+            {
+                selectedProjectMetadata = new IPM_Project_Metadata__mdt();         
+            }
         }
         return selectedProjectMetadata;
     }
@@ -1004,15 +982,19 @@ public without sharing class IPM_Utils {
     * @param1 project : Project Object containing Company Card information
     */
     
-    public static List<IPM_ProjectMetadata__c> getProjectTypesBasedOnCompanyCard(IPM_Project__c project)
+    public static List<IPM_Project_Metadata__mdt> getProjectTypesBasedOnCompanyCard(IPM_Project__c project)
     {
-        List<IPM_ProjectMetadata__c> projectMetadataList = new List<IPM_ProjectMetadata__c>();
+        List<IPM_Project_Metadata__mdt> projectMetadataList = new List<IPM_Project_Metadata__mdt>();
        
-        if(project.IPM_Company_Card__c !=null && project.IPM_CompanyCardText__c!=null && !String.isBlank(project.IPM_CompanyCardText__c))
+        String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
+        
+        // As per the new logic, add CAtegory and Sub Project Type to the filtering to get Project Metadata.
+        if(project.IPM_Company_Card__c !=null && !String.isBlank(project.IPM_CompanyCardText__c) && !String.isBlank(project.IPM_Category_Text__c) )
         {
-            for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
+            for(IPM_Project_Metadata__mdt projectMetadata : (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery) ) 
             {
-                if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && 
+                    projectMetadata.IPM_ApplicableCategories__c.containsIgnoreCase(project.IPM_Category_Text__c)) 
                 {
                     projectMetadataList.add(projectMetadata); 
                 } 

@@ -7778,7 +7778,10 @@
         <tab>IPM_User_Profile__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-	
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>EditableFastTrack</name>
+    </customPermissions>	
     <userPermissions>
         <enabled>true</enabled>
         <name>ExportReport</name>

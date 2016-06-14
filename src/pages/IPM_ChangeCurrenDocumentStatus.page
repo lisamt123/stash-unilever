@@ -269,7 +269,7 @@
                                     <!-- Below rendered condition is used for charter gate -->
                                     <apex:outputPanel rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                         <!-- Below rendered condition is used to provide output label for non operational projects -->
-                                        <apex:outputPanel layout="block" rendered="{!!isOperational}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
+                                        <apex:outputPanel layout="block" rendered="{!NOT(OR(isOperational,project.IPM_ProjectGKM__c=='GKM3'))}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
                                             <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel setupBlock" />
                                             <div class="ipmApproveButtons gkm">
                                                 <apex:selectRadio value="{!project.IPM_GateKeeping_Model__c}" >
@@ -302,7 +302,7 @@
                                         </div>
                                         <!-- Below rendered condition is used to provide fast track checkbox for non operational projects -->
                                         <apex:outputPanel layout="block" styleClass="col-sm-12 yellowBox noPadleft"  rendered="{!!isOperational}">
-                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
+                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                             <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                         </apex:outputPanel>
                                     </apex:outputPanel>   
@@ -325,8 +325,8 @@
                                 <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}"/>        
                                  <!-- Below rendered condition will execute for charter gate document -->
                                 <apex:outputPanel layout="block" rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
-                                     <!-- Below rendered condition will execute for non operational projects -->
-                                    <apex:outputPanel layout="block" rendered="{!!isOperational}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
+                                    <!-- Below rendered condition will execute for non operational projects -->
+                                    <apex:outputPanel layout="block" rendered="{!NOT(OR(isOperational,project.IPM_ProjectGKM__c=='GKM3'))}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
                                         <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel setupBlock" />
                                         <div class="ipmApproveButtons gkm">
                                             <apex:selectRadio value="{!project.IPM_GateKeeping_Model__c}" >
@@ -357,7 +357,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12 yellowBox noPadleft">
-                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
+                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                             <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                     </div>
                                 </apex:outputPanel>  
