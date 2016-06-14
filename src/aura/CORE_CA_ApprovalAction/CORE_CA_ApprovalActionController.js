@@ -63,5 +63,11 @@
     isVisibleMethod : function(component, event, helper) {
         if(component.get("v.isVisible") == true ){ component.set("v.isVisible",false); }
         else if(component.get("v.isVisible") == false ){ component.set("v.isVisible",true); }
-    }
+    },
+    handleCheckTask : function(cmp, event, helper) {
+            var checkCmp = cmp.find("taskCheckBox");
+            alert("value : " + checkCmp.get("v.value"));
+            console.log("value : " + checkCmp.get("v.value"))
+    },
+    
 })

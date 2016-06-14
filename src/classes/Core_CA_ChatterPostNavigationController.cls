@@ -5,7 +5,7 @@ public with sharing class Core_CA_ChatterPostNavigationController{
     public String sourceSystem {get;set;}
    
     public Core_CA_ChatterPostNavigationController(ApexPages.StandardController controller) {
-        String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();   
+        //String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();   
         string urlId = ApexPages.currentPage().getParameters().get('id'); 
         List<Core_Approver_Details__c> lstApprover = [SELECT Id,Source_System__c FROM Core_Approver_Details__c WHERE Approval_Header__c =: urlId];           
         

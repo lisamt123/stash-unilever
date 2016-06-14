@@ -1,5 +1,6 @@
 ({
 		doInit : function(component, event, helper) {    
+        component.set("v.spinnercompClarity",true);
         var action = component.get("c.getApprovalDetailPageData");
         var RequestId = component.get("v.RequestId");        
         var ApproverId = component.get("v.ApproverId"); 
@@ -11,10 +12,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 component.set("v.ApprovalDetail",response.getReturnValue());
-                if(response.getReturnValue() == null || response.getReturnValue() == undefined){
-                    
-                    component.set("v.ApprovalHistoryLength",response.getReturnValue().ApprovalHistory.length);
-                }    
+                component.set("v.ApprovalHistoryLength",response.getReturnValue().ApprovalHistory.length);
                 component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus);
             	console.log('@@@output--------'+ response.getReturnValue());
                 if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'
@@ -24,6 +22,7 @@
                     component.set("v.showReject",false);
                     component.set("v.showReWork",false);
                 }
+                component.set("v.spinnercompClarity",false);
             }
         });
         $A.enqueueAction(action);  
@@ -38,14 +37,17 @@
     component.set("v.isDetail",true);
 },
     goToProjectFinance : function(component, event, helper) { 
+        helper.scrollToLocation(component, "top");
         var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
         selectEvent.setParams({ "compName":  "ClaritySubDetail", "subDivision": "ProjectFinance", "ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage"),"filterValue": component.get("v.filterValue")}).fire();
 },
     goToFincBenefit : function(component, event, helper) {
+        helper.scrollToLocation(component, "top");
        var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
         selectEvent.setParams({ "compName":  "ClaritySubDetail", "subDivision": "FincBenefit", "ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage"),"filterValue": component.get("v.filterValue")}).fire();
 },
     goToKeyIndc : function(component, event, helper) { 
+        helper.scrollToLocation(component, "top");
        var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
        selectEvent.setParams({ "compName":  "ClaritySubDetail", "subDivision": "KeyIndc","ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage"),"filterValue": component.get("v.filterValue")}).fire();
 },
@@ -87,14 +89,20 @@
        }       
 	},
     showHide : function(component, event, helper) {
+        var idd =event.srcElement.id+"2";
+        var iid =event.srcElement.id+"3";
         var id =event.srcElement.id+"1";
         if(document.getElementById(id).style.display == "none")
         {	
             document.getElementById(id).style.display = "block";
+            document.getElementById(iid).style.display = "none";
+            document.getElementById(idd).style.display = "block";
         }
         else
         {
             document.getElementById(id).style.display = "none";
+            document.getElementById(iid).style.display = "block";
+            document.getElementById(idd).style.display = "none";
         }
     },
 })

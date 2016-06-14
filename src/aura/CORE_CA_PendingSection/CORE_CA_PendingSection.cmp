@@ -70,13 +70,13 @@
                                 <aura:if isTrue="{!v.ApprovalData.Status !='Query With Vendor'}">
                                     <aura:if isTrue="{!v.ApprovalData.ExpenseType !='Clarity'}">
                                         <div class="slds-text-body--small right-class">
-                                            {!v.ApprovalData.Currencies}
+                                            {!v.ApprovalData.Currencies}&nbsp;
                                             {!v.ApprovalData.Amount} 
                                         </div>
                                     </aura:if>
                                     <aura:if isTrue="{!v.ApprovalData.ExpenseType =='Clarity'}">
                                         <div class="slds-text-body--small right-class">
-                                            {!v.ApprovalData.Currencies}
+                                            {!v.ApprovalData.Currencies}&nbsp;
                                             {!v.ApprovalData.ProjectBug} 
                                         </div>
                                     </aura:if>
@@ -85,13 +85,13 @@
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                                 <aura:if isTrue="{!v.ApprovalData.ExpenseType !='Clarity'}">
                                     <div class="slds-text-body--small right-class">
-                                        {!v.ApprovalData.Currencies}
+                                        {!v.ApprovalData.Currencies}&nbsp;
                                         {!v.ApprovalData.Amount} 
                                     </div>
                                 </aura:if>
                                 <aura:if isTrue="{!v.ApprovalData.ExpenseType =='Clarity'}">
                                     <div class="slds-text-body--small right-class">
-                                        {!v.ApprovalData.Currencies}
+                                        {!v.ApprovalData.Currencies}&nbsp;
                                         {!v.ApprovalData.ProjectBug} 
                                     </div>
                                 </aura:if> 

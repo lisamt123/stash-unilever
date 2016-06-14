@@ -96,6 +96,14 @@
     min-width: 100px;
     min-height: 28px;
 }
+.THIS .purpose{
+    padding-top: 0px;
+    padding-bottom: 8px;
+    width: 320px;
+    vertical-align: top;
+    min-width: 100px;
+    min-height: 28px;
+}
 .THIS .splitAcc{
     float: right;
     margin-top: -47px;
@@ -121,4 +129,10 @@
 }
 .THIS .fieldValueRichTextFormate {
     white-space: pre-line;
+}
+.THIS .up{
+    width:17px;
+    position: absolute;
+    right: 24px;
+    margin-top: -20px;
 }

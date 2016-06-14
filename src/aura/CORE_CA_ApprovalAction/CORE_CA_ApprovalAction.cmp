@@ -16,6 +16,7 @@
     <aura:attribute name="filterValue" type="string"/>
     <aura:attribute name="actionTaken" type="string"/>
     
+    <aura:attribute name="myBool" type="Boolean"/>
     <style>
        body{
         	font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
@@ -37,7 +38,7 @@
         }       
     </style>
   
-    <div class="close-button" onclick="{!c.onCancel}"><img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img></div>    
+    <div class="close-button" onclick="{!c.onCancel}"><img class="image" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg"></img></div>    
     <div class="Action_container">
         <aura:if isTrue="{!v.success_toast == false}">
             <div class="slds-text-heading--medium slds-text-align--center">
@@ -45,8 +46,10 @@
             </div>    
             <hr></hr>           
             <aura:if isTrue="{!(v.actionTaken == 'Approve' &amp;&amp; v.ApprovalDetail.RequestType =='Expense')}">
+                <div>
                 <img class="img" src="/resource/ApprovalsLightning/images/warning.svg"/>
-                <span > {!$Label.c.CORE_LBL_APPREJ_WARN_MSG}  </span> 
+                <span > {!$Label.c.CORE_LBL_APPREJ_WARN_MSG} </span> 
+                </div>
                 <aura:set attribute="else">       
                      <div class="feedback-comment">
                     <div class="slds-text-heading--small feedback-comment-text"></div>
@@ -65,12 +68,16 @@
                 </div>
                 </aura:set>
             </aura:if> 
-            <hr></hr> 
+             <!--<hr></hr> -->
             <div> 
                 <aura:if isTrue="{!(v.actionTaken == 'Approve' &amp;&amp; v.ApprovalDetail.RequestType =='Purchase Request')}">
-                	<span class="slds-text-body--regular">{!$Label.c.CORE_LBL_PUR_VISIBLE_TO_SUPPLIER} &nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <aura:if isTrue="{!v.isVisible == false}"> <img style="width:10%;position: absolute;" src="/resource/ApprovalsLightning/images/false.png" onclick="{!c.isVisibleMethod}"></img> </aura:if>
-                    <aura:if isTrue="{!v.isVisible}"> <img style="width:10%;position: absolute;" src="/resource/ApprovalsLightning/images/true.png" onclick="{!c.isVisibleMethod}"></img> </aura:if>
+                	<span class="slds-text-body--regular">{!$Label.c.CORE_LBL_PUR_VISIBLE_TO_SUPPLIER} </span>
+                    <span class="slds-form-element">
+                        <label class="slds-checkbox--toggle slds-grid slds-grid--vertical-align-center checkbox">
+                            <ui:inputCheckbox aura:id="taskCheckBox" value=""/>
+                            <span class="slds-checkbox--faux" data-check-on="On" data-check-off="Off"></span>
+                        </label>
+                    </span>
                 </aura:if>  
                 <aura:if isTrue="{!((v.ApprovalDetail.RequestType =='Clarity' &amp;&amp; (v.actionTaken == 'Rework' ||v.actionTaken == 'Reject' ||v.actionTaken == 'Approve')) || v.ApprovalDetail.RequestType =='Expense')}">
                 	<span class="slds-text-body--regular">{!$Label.c.CORE_LBL_APPREJ_LEGAL_DISCLAIMER}</span> 

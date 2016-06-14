@@ -20,6 +20,7 @@
     <aura:attribute name="copData" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
     <aura:attribute name="RequestedBy" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>  
     <aura:attribute name="RequestedByLang" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>  
+    <aura:attribute name="spinnercompClaritySub" type="boolean" default="true"/>
     
     <style>      
         .homePageHeader{
@@ -47,7 +48,7 @@
         .valueAllign{
         position: absolute;
         right: 0px;
-        top: 54px;
+        top: 33px;
         padding-left: 0px !important;
         }
         .valueAllignCop{
@@ -75,6 +76,16 @@
             <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
         </div>
     </div>
+    <aura:if isTrue="{!v.spinnercompClaritySub}">
+            <center>
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </center>
+        </aura:if>
     
     <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
         <aura:if isTrue="{!v.subDivision == 'ProjectFinance'}">

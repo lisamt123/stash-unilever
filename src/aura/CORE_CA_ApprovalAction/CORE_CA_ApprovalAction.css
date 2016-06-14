@@ -18,8 +18,9 @@
     border-radius: 5px;
 }
 .THIS hr{
-    margin: 0.5rem -15px !important;
+    margin: 0.7rem -15px !important;
 }
+
 .THIS .slds-textarea {
     height: 100px;
 }
@@ -45,4 +46,16 @@
 .THIS .success-box{
    position: absolute;
     top:151px;
+}
+.THIS .checkbox{
+   margin-left: 253px;
+    margin-top: -23px;
+}
+.THIS .slds-box{
+   border: 1px solid #04844b;
+   padding: 0.5rem; 
+}
+.THIS .img{
+   width: 25px;
+    height: 25px;
 }

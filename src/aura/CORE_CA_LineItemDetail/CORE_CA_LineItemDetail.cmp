@@ -51,7 +51,6 @@
                     </div>
                 </div>
             </center>
-            <div class="loading">Loading</div>
         </aura:if>
     <aura:iteration items="{!v.LineItemDetail}" var="lineItemData">
         <aura:if isTrue="{!(v.subDivision=='Ariba' || v.subDivision=='GTES')}">
@@ -61,6 +60,12 @@
             <div class="ProjectInformationSection">
                 <div class="slds-section__title sectionTitle" id="ProductDescription" onclick="{!c.showHide}">
                     Product Description
+                    <div style="display:block;" class="up" id="ProductDescription2">
+                            <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                    </div>
+                    <div style="display:none;" class="up" id="ProductDescription3">
+                            <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                    </div>
                 </div>
                 <hr></hr>
                 <div class="DetailSectionTable" id="ProductDescription1" >
@@ -73,6 +78,12 @@
                 <div class="ProjectInformationSection">
                     <div class="slds-section__title sectionTitle" id="Pricing" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_PRICING_SUPPLIER_DETAILS}
+                        <div style="display:block;" class="up" id="Pricing2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="Pricing3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
                     <div class="DetailSectionTable" id="Pricing1">
@@ -98,7 +109,7 @@
                             <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
                         </div>
                         <div>
-                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!pricingSuplierDetails.Currencies}</div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!pricingSuplierDetails.Currencies}&nbsp;</div>
                         </div>
                         <div>
                             <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT}</div>
@@ -141,6 +152,12 @@
                 <div class="ProjectInformationSection">
                     <div class="slds-section__title sectionTitle" style="width:100%" id="SplitAccounting" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_SPLIT_ACCOUNTING}
+                        <div style="display:block;" class="up" id="SplitAccounting2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="SplitAccounting3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
                     <div class="DetailSectionTable" id="SplitAccounting1">
@@ -152,6 +169,12 @@
                 <div class="ProjectInformationSection">
                     <div class="slds-section__title sectionTitle" id="Comments" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
+                        <div style="display:block;" class="up" id="Comments2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="Comments3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
                     <div class="DetailSectionTable" id="Comments1">
@@ -165,11 +188,17 @@
         <aura:if isTrue="{!v.subDivision=='GTES'}">
             <aura:iteration items="{!v.ExpenseDetails}" var="ExpenseDetails">
                 <div class="ProjectInformationSection">
-                    <div class="slds-section__title sectionTitle">
+                    <div class="slds-section__title sectionTitle" id="expnseDetails" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DETAILS}
+                        <div style="display:block;" class="up" id="expnseDetails2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="expnseDetails3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
-                    <div class="DetailSectionTable">
+                    <div class="DetailSectionTable" id="expnseDetails1">
                         <div>
                             <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_EXPENSE_TYPE}</div>
                         </div>
@@ -186,7 +215,7 @@
                             <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
                         </div>
                         <div>
-                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.Currencies}</div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.Currencies}&nbsp;</div>
                         </div>
                         <div>
                             <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CHARGE_TO}</div>
@@ -240,11 +269,17 @@
                 </div>
             </aura:iteration>
             <div class="ProjectInformationSection">
-                <div class="slds-section__title sectionTitle">
+                <div class="slds-section__title sectionTitle" id="purposeReason" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE_REASON}
+                    	<div style="display:block;" class="up" id="purposeReason2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="purposeReason3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                 </div>
                 <hr></hr>
-                <table class="DetailSectionTable">
+                <table class="DetailSectionTable" id="purposeReason1">
                     <tr>
                         <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE}</td>
                     </tr>
@@ -260,22 +295,34 @@
                 </table>
             </div>
             <div class="ProjectInformationSection">
-                <div class="slds-section__title sectionTitle">
+                <div class="slds-section__title sectionTitle" id="expDescrp" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DESCRIPTION}
+                    	<div style="display:block;" class="up" id="expDescrp2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="expDescrp3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                 </div>
                 <hr></hr>
-                <table class="DetailSectionTable">
+                <table class="DetailSectionTable" id="expDescrp1">
                     <tr>
                         <td class="slds-text-body--regular DetailData">{!lineItemData.ExpenseDescription}</td>
                     </tr>
                 </table>
             </div>
             <div class="ProjectInformationSection">
-                <div class="slds-section__title sectionTitle">
+                <div class="slds-section__title sectionTitle" id="attendees" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_ATTENDEES}
+                    <div style="display:block;" class="up" id="attendees2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="attendees3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                 </div>
                 <hr></hr>
-                <table class="DetailSectionTable">
+                <table class="DetailSectionTable" id="attendees1">
                     <tr>
                         <td class="slds-text-body--regular DetailData">{!lineItemData.Attendees}</td>
                     </tr>
@@ -283,33 +330,51 @@
             </div>
             <aura:iteration items="{!v.TravelDetails}" var="TravelDetails">
                 <div class="ProjectInformationSection">
-                    <div class="slds-section__title sectionTitle">
+                    <div class="slds-section__title sectionTitle" id="carDetails" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINETEMS_DETAIL_CAR_DETAILS}
+                        <div style="display:block;" class="up" id="carDetails2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="carDetails3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
-                    <table class="DetailSectionTable">
+                    <table class="DetailSectionTable" id="carDetails1">
                         <tr>
                             <td class="slds-text-body--regular DetailData">{!TravelDetails.CarDetails}</td>
                         </tr>
                     </table>
                 </div>
                 <div class="ProjectInformationSection">
-                    <div class="slds-section__title sectionTitle">
+                    <div class="slds-section__title sectionTitle" id="flightDetails" onclick="{!c.showHide}"> 
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_FLIGHT_DETAILS}
+                        <div style="display:block;" class="up" id="flightDetails2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="flightDetails3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
-                    <table class="DetailSectionTable">
+                    <table class="DetailSectionTable" id="flightDetails1">
                         <tr>
                             <td class="slds-text-body--regular DetailData">{!TravelDetails.FlightDetails}</td>
                         </tr>
                     </table>
                 </div>
                 <div class="ProjectInformationSection">
-                    <div class="slds-section__title sectionTitle">
+                    <div class="slds-section__title sectionTitle" id="hotel" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_ROOM_DETAILS}
+                        <div style="display:block;" class="up" id="hotel2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="hotel3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                     </div>
                     <hr></hr>
-                    <table class="DetailSectionTable">
+                    <table class="DetailSectionTable" id="hotel1">
                         <tr>
                             <td class="slds-text-body--regular DetailData">{!TravelDetails.RoomDetails}</td>
                         </tr>
@@ -317,11 +382,17 @@
                 </div>
             </aura:iteration>
             <div class="ProjectInformationSection">
-                <div class="slds-section__title sectionTitle">
+                <div class="slds-section__title sectionTitle" id="preDime" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS}
+                    <div style="display:block;" class="up" id="preDime2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="preDime3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                 </div>
                 <hr></hr>
-                <table class="DetailSectionTable">
+                <table class="DetailSectionTable" id="preDime1">
                     <aura:if isTrue="{!(lineItemData.IsPerDiem == false)}">
                         <tr>
                             <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT}</td>
@@ -339,22 +410,34 @@
                 </table>
             </div>
             <div class="ProjectInformationSection">
-                <div class="slds-section__title sectionTitle">
+                <div class="slds-section__title sectionTitle" id="commentsGtes" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
+                    <div style="display:block;" class="up" id="commentsGtes2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="commentsGtes3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                 </div>
                 <hr></hr>
-                <table class="DetailSectionTable">
+                <table class="DetailSectionTable" id="commentsGtes1">
                     <tr>
                         <td class="slds-text-body--regular DetailData">{!lineItemData.Comments}</td>
                     </tr>
                 </table>
             </div>
             <div class="ProjectInformationSection">
-                <div class="slds-section__title sectionTitle">
+                <div class="slds-section__title sectionTitle" id="policy" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_POLICY_EXCEPTIONS}
+                    <div style="display:block;" class="up" id="policy2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                        </div>
+                        <div style="display:none;" class="up" id="policy3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                        </div>
                 </div>
                 <hr></hr>
-                <table class="DetailSectionTable">
+                <table class="DetailSectionTable" id="policy1">
                     <tr>
                         <td class="slds-text-body--regular DetailData">{!lineItemData.PolicyExceptions}</td>
                     </tr>

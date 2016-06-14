@@ -37,6 +37,8 @@
         {
             filteroptions="Expense";
             document.getElementById('icon').classList.add('icon-LockedState');
+
+
         }
             else if(filter== "Show Only Purchase Requests")
             {

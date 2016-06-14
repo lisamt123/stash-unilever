@@ -27,13 +27,13 @@
                             <div class="expenseName">{!v.ApprovalData.ExpenseName} </div>
                             <aura:if isTrue="{!v.ApprovalData.ExpenseType =='Clarity'}">
                                 <div class="slds-text-body--small requestedBy">
-                                    {!v.ApprovalData.Currencies}
+                                    {!v.ApprovalData.Currencies}&nbsp;
                                     {!v.ApprovalData.ProjectBug} 
                                 </div>
                             </aura:if>
                             <aura:if isTrue="{!v.ApprovalData.ExpenseType !='Clarity'}">
                                 <div class="slds-text-body--small requestedBy">
-                                    {!v.ApprovalData.Currencies}
+                                    {!v.ApprovalData.Currencies}&nbsp;
                                     {!v.ApprovalData.Amount} 
                                 </div>
                             </aura:if>

@@ -63,6 +63,9 @@
         left: 12.6rem !important;
         
         } 
+        .filterSelected{
+    font-weight:bold;
+}
     </style>
     
     
@@ -104,12 +107,12 @@
                         <ul class="dropdown__list" role="menu" >
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" ><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="ariba"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}" /></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
@@ -144,7 +147,6 @@
                     </div>
                 </div>
             </center>
-            <div class="loading">Loading</div>
         </aura:if>
         <div class = "padding-pending">
             <aura:if isTrue="{!v.ApprovalDataCount}"> 

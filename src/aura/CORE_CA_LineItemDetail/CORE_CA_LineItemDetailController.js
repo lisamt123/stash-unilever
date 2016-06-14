@@ -43,14 +43,20 @@
                                "filterValue": component.get("v.filterValue")}).fire();
     },
     showHide : function(component, event, helper) {
+        var idd =event.srcElement.id+"2";
+        var iid =event.srcElement.id+"3";
         var id =event.srcElement.id+"1";
         if(document.getElementById(id).style.display == "none")
         {	
             document.getElementById(id).style.display = "block";
+            document.getElementById(iid).style.display = "none";
+            document.getElementById(idd).style.display = "block";
         }
         else
         {
             document.getElementById(id).style.display = "none";
+            document.getElementById(iid).style.display = "block";
+            document.getElementById(idd).style.display = "none";
         }
-    }
+    },
 })

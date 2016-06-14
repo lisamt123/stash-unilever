@@ -42,7 +42,7 @@
     text-overflow: ellipsis;
 }
 .THIS .queryWithVendorTextWidth {
-    width: 164px !important;
+    width: 162px !important;
     margin-top: -22px;
 }
 .THIS .cls {
@@ -143,4 +143,7 @@
     font-size: 1rem;
     color: #00396B;
     font-weight: bold;
+}
+.THIS .filterSelected{
+    font-weight:bold;
 }

@@ -1,5 +1,6 @@
 ({
-		doInit : function(component, event, helper) {      
+		doInit : function(component, event, helper) { 
+        component.set("v.spinnercompInvoice",true);
         var action = component.get("c.getApprovalDetailPageData");
         var RequestId = component.get("v.RequestId");        
         var ApproverId = component.get("v.ApproverId");        
@@ -19,11 +20,18 @@
             		approvalDetailList.push(approvalDetail[i]);             
                 }
             	component.set("v.Detail",response.getReturnValue().LineItems);
+                var LastComment=[];
+                for(var i=0; i<response.getReturnValue().ApprovalHistory.length; i++)
+                {
+                    LastComment.push(response.getReturnValue().ApprovalHistory[i].Comment);
+                }
+                component.set("v.LastComment",LastComment[0]);
                 if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Return to AP'){
                 	component.set("v.showApprove",false); 
                     component.set("v.showRtap",false);
                     component.set("v.showQwv",false);
                 }
+                component.set("v.spinnercompInvoice",false);
                 
             }
         });
@@ -60,10 +68,10 @@
         component.set("v.showspinner",true);
         var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
         var sourcePage=component.get("v.sourcePage");
-        if(sourcePage == 'Pending')
-            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire();  
-        if(sourcePage == 'closed')
-           selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();              
+        if(sourcePage == 'Pending'){
+            selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire();}  
+        if(sourcePage == 'closed'){
+            selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();}              
 },
     ApproveAction : function(component, event, helper) {
         helper.scrollToLocation(component, "top");
@@ -90,14 +98,20 @@
         component.set("v.isFeedBack",true);
     },
     showHide : function(component, event, helper) {
+        var idd =event.srcElement.id+"2";
+        var iid =event.srcElement.id+"3";
         var id =event.srcElement.id+"1";
         if(document.getElementById(id).style.display == "none")
         {	
             document.getElementById(id).style.display = "block";
+            document.getElementById(iid).style.display = "none";
+            document.getElementById(idd).style.display = "block";
         }
         else
         {
             document.getElementById(id).style.display = "none";
+            document.getElementById(iid).style.display = "block";
+            document.getElementById(idd).style.display = "none";
         }
     },
 })

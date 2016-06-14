@@ -54,3 +54,9 @@
 .THIS .fieldValueRichTextFormate {
     white-space: pre-line;
 }
+.THIS .up{
+    width:17px;
+    position: absolute;
+    right: 24px;
+    margin-top: -20px;
+}

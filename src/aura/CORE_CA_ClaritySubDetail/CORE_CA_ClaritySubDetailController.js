@@ -1,5 +1,6 @@
 ({
-    doInit : function(component, event, helper) {       
+    doInit : function(component, event, helper) {
+        component.set("v.spinnercompClaritySub",true);
         var PreTripDetails= component.get("v.ApprovalDetail")[0].PreTripDetails;
         var Currentyear1= component.get("v.ApprovalDetail")[0].Currentyear1;
         var CompanyName= component.get("v.ApprovalDetail")[0].CompanyName;
@@ -35,6 +36,7 @@
         {
             RequestedByLang.push(RequestedByLang1.split(',')[i]);
         }
+        component.set("v.spinnercompClaritySub",false);
         component.set("v.RequestedByLang",RequestedByLang);
     },
     gotoPreviousPage : function(component, event, helper) {    
