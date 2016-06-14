@@ -24,9 +24,12 @@
     <div aura:id="content"></div>
    
     <aura:if isTrue="{!v.showspinner}">
-        <center>
-            <img style="width:10%;position: absolute;top:50%;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img>
-        </center>
+        <div class="slds-spinner_container">
+            <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
     </aura:if> 
     
 </aura:component>

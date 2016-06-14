@@ -1,8 +1,4 @@
 <aura:component controller="MB_Controller_Class">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"></meta>
-<!--<ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
-    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />
--->
     <aura:attribute name="showDevice" type="boolean"></aura:attribute>
     <aura:attribute name="userName" type="string"></aura:attribute>
     <aura:attribute name="localCurrency" type="string"></aura:attribute>
@@ -64,7 +60,7 @@
         height: 52px;
         }
         .device_desc_b{
-        padding: 10px;
+        padding: 20px 10px;
         }
         .see_more{
         float: right;
@@ -78,7 +74,7 @@
         }
         .Seemore_image{
         float: right;
-        width: 15px;
+        width: 24px;
         }
     </style>
     <aura:if isTrue="{!v.showspinner=='false'}"> 

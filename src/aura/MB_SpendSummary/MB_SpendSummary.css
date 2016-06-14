@@ -1,5 +1,5 @@
 .THIS .sectiona_a{
-    padding: 1.5rem 0.9rem;
+    padding: 0.5rem 0.9rem 1.2rem .9rem;
     border-bottom: 1px solid #CFD7E6;
 }
 .THIS .head_c-1{
@@ -19,8 +19,8 @@
 }
 .THIS .Right_cevro{
     float: right;
-    width: 15px;
+    width: 24px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 5px;
 }

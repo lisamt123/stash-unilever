@@ -51,7 +51,7 @@
         <div class="slds-text-heading--label Change_month"><div class="Change_month_span">Change month</div>
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
-                    <div class="slds-select_container"><span class="dropdown_chevron"><img src="/resource/EA_StaticResource/assets/icons/utility/chevrondown.svg"></img></span>
+                    <div class="slds-select_container"><span class="dropdown_chevron"><img src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown.svg"></img></span>
                         <select id="select-01" onchange="{!c.changeMonth}" class="slds-select select_option">
                             <aura:iteration items="{!v.months}" var="month"> 
                                <aura:if isTrue="{!v.selectedmonth==month}">

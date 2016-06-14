@@ -16,6 +16,10 @@
                      component.set("v.totalSpend",totalUsage);
                     component.set("v.showDetails",true);
                     component.set("v.userName",res.userName);
+                    var hours=parseInt(res.totalCallUsage/60);
+                           var min=parseInt(res.totalCallUsage%60);
+                           component.set("v.hours",hours);
+                            component.set("v.minutes",min);
                 }
                 
                    if(res ==null ){
@@ -24,7 +28,8 @@
                     action1.setCallback(this, function(response) {
                        var state = response.getState();
                        if (state === "SUCCESS" && response.getReturnValue()!=='') {
-                          
+                         
+                           
                            component.set("v.userName",response.getReturnValue());
                            component.set("v.showDetails",false);
                            
