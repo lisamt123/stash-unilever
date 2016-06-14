@@ -549,6 +549,7 @@ public class IPM_ConstantUtils {
     
     //Team Assignment variables
     public static final String TEAM_MYCATEGORY='mycategory';
+    public static final String TEAM_MYMCO='myMCOLeader';
     public static final String TEAM_PL='PLeader';
     public static final String TEAM_DPL='DPLeader';
     public static final String TEAM_TRUE='true';
@@ -564,6 +565,7 @@ public class IPM_ConstantUtils {
     public static final String TEAM_RND='RND';
     public static final String TEAM_GUEST='Guest';
     public static final String TEAM_ALLCATEGORY='allcategory';
+    public static final String TEAM_ALLMCOLEADER='allMCOLeader'; 
     public static final String TEAM_DEPUTY_PROJECT_LEADER='Deputy Project Leader';
     public static final String TEAM_TECHNICAL_PROJECT_LEADER='Technical Project Leader';
     public static final String TEAM_COREDPL='DPL';

@@ -182,6 +182,7 @@
                 
                 <!-- Rollouts Leader selection -->
             <apex:outputPanel rendered="{!isInvokedFromRollouts}">
+              <apex:outputPanel rendered="{!!isFilterdByMCO}">
                  <div class="col-sm-12 noPadleft radioContainer">
                      <div class="col-sm-12">
                         <div class="categoryButtons">
@@ -194,6 +195,7 @@
                            </apex:actionFunction>
                            <span class="categoryLabel">{!$Label.IPM_FROM_MY_CATAGRY}</span>
                         </div>
+                        <apex:outputPanel rendered="{!rolloutSpan != 'Regional'}">
                         <div class="categoryButtons">
                            <div class="ipmRadioButton">
                               <input id="allcategory" class="rbutton" type="radio" name="category" onclick="callsearch({!isInvokedFromRollouts});"></input>
@@ -204,6 +206,7 @@
                            </apex:actionFunction>
                            <span class="categoryLabel">{!$Label.IPM_FROM_ALL_CATAGRY}</span>
                         </div>
+                        </apex:outputPanel>
                     </div>
                     <div class="col-sm-12 pull-left">
                          <span class="categoryTitle">
@@ -214,8 +217,48 @@
                          </span>
                       </div> 
                  </div>
+               </apex:outputPanel>  
+               
+               <!-- Users filtered by MCO of rollout  -->
+               <apex:outputPanel rendered="{!isFilterdByMCO}">
+                 <div class="col-sm-12 noPadleft radioContainer">
+                     <div class="col-sm-12">
+                        <div class="categoryButtons">
+                           <div class="ipmRadioButton">
+                              <input id="mycategory" checked="checked" class="rbutton" type="radio" name="category" onclick="callsearch({!isInvokedFromRollouts});"></input>
+                              <label for="mycategory"></label>
+                           </div>
+                           <apex:actionFunction action="{!getSameMCOProfiles}" name="searchLeaderMem" reRender="SearchLeader,selectFromMCOandAll">
+                              <apex:param name="myMCOLeader" assignTo="{!searchLeaderbyMCO}" value="myMCOLeader"/>
+                           </apex:actionFunction>
+                           <span class="categoryLabel">Select users from this MCO</span>
+                        </div>
+                  <!--       <div class="categoryButtons">
+                           <div class="ipmRadioButton">
+                              <input id="allcategory" class="rbutton" type="radio" name="category" onclick="callsearch({!isInvokedFromRollouts});"></input>
+                              <label for="allcategory"></label>
+                           </div>
+                           <apex:actionFunction action="{!getSameMCOProfiles}" name="searchallLeaderMem" reRender="searchMCOLeader,selectFromMCOandAll">
+                              <apex:param name="allMCOLeader" assignTo="{!searchLeaderbyMCO}" value="allMCOLeader"/>
+                           </apex:actionFunction>
+                           <span class="categoryLabel">Select from all of Unilever</span>
+                        </div>  -->
+                    </div>
+                    <div class="col-sm-12 pull-left">
+                         <span class="categoryTitle">
+                            <apex:outputPanel id="selectFromMCOandAll">
+                               <apex:outputText value="Select members from this MCO" rendered="{! if(searchLeaderbyMCO='myMCOLeader','true','false')}" id="myMCOUserProfiles"/>
+                               <apex:outputText value="Select members from all of Unilever" rendered="{! if(searchLeaderbyMCO='allMCOLeader','true','false')}" id="allMCOUserProfiles"/>
+                            </apex:outputPanel>
+                         </span>
+                      </div> 
+                 </div>
+               </apex:outputPanel>  
+              
               </apex:outputPanel>
             <apex:outputPanel rendered="{!isInvokedFromRollouts}">
+            
+            <apex:outputPanel rendered="{!!isFilterdByMCO}">
                 <div class="cust-overlay"></div>
                 <div class="greyContainer">
                     <div class="col-sm-12 greybg">
@@ -226,6 +269,53 @@
                             <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"  />
                         </div>
                         <apex:outputPanel layout="block" id="SearchLeader">
+                           <div class="editList ipmRadioButton">
+                              <table class="ipmTable table table-bordered">
+                                  <tbody>
+                                      <apex:repeat value="{!leaderUsers}" var="leader">
+                                          <tr>
+                                             <td>
+                                                <input type="radio" class="rbutton" name="leaderUser" id="{!leader.id}" value="{!leader.id}" onclick="selectedLeaderMem('{!leader.IPM_User__r.id}')"/>
+                                                <label for="{!leader.id}"></label>
+                                             </td>
+                                             <td>
+                                                <apex:image styleClass="rounded" url="{!leader.IPM_User__r.SmallPhotoUrl}"/>
+                                             </td>
+                                             <td>
+                                                <apex:outputText styleClass="teamMemberName" value="{!leader.IPM_User__r.name} | "/>
+                                                <apex:outputLink styleClass="teamMembermail" value="mailto:{!leader.IPM_User__r.email}">{!leader.IPM_User__r.email}</apex:outputLink>
+                                             </td>
+                                          </tr>
+                                      </apex:repeat>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <apex:outputText rendered="{! if(IsNoMatchfound !='','true','false')}" value="No Matches Found" id="mcoLeaderNotFound" />
+                      </apex:outputPanel>
+                      <apex:actionFunction action="{!holdLeader}" name="selectedLeaderMem" reRender="none">
+                         <apex:param name="selectedLeader" assignTo="{!SelectedLeaderMember}" value=""/>
+                      </apex:actionFunction>
+                   </div>
+               </div>
+              
+               <div class="addButtonContainer editbContainer pull-right">
+                  <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton cancelButton" onclick="dismissModal();" value="Cancel"/>
+                  <apex:commandLink styleClass="convertLowercase ipmButton primary" action="{!assignLeaderMember}" value="Select {!ButtonLabel}" html-data-dismiss="modal" rerender="redirectToRolloutsPage" onComplete="backToRollouts()"/>
+               </div>
+            </apex:outputPanel>
+            
+            <!-- To display the MCO filtered users  -->
+            <apex:outputPanel rendered="{!isFilterdByMCO}">
+                <div class="cust-overlay"></div>
+                <div class="greyContainer">
+                    <div class="col-sm-12 greybg">
+                        <div class="col-sm-12 noPadleft categorySearch teamSearch3">
+                            <apex:inputtext html-placeholder="Search name, email ID" value="{!SearchLeader}">
+                                <apex:actionSupport event="onkeyup" action="{!FilterLeaderMember}" reRender="searchMCOLeader,mcoLeaderNotFound"/>
+                            </apex:inputtext>
+                            <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"  />
+                        </div>
+                        <apex:outputPanel layout="block" id="searchMCOLeader">
                            <div class="editList ipmRadioButton">
                               <table class="ipmTable table table-bordered">
                                   <tbody>
@@ -260,6 +350,8 @@
                   <apex:commandLink styleClass="convertLowercase ipmButton primary" action="{!assignLeaderMember}" value="Select {!ButtonLabel}" html-data-dismiss="modal" rerender="redirectToRolloutsPage" onComplete="backToRollouts()"/>
                </div>
             </apex:outputPanel>
+          </apex:outputPanel>
+            
             <apex:outputPanel id="redirectToRolloutsPage">
              <script>
                 function backToRollouts(){
