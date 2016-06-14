@@ -3,7 +3,7 @@
 *@Description:Used in project initiation wizard to complete core parameter.
 *@Author: Cognizant
 *@Created Date: 27/01/2015 
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *******************************************************************************************
 -->
 <apex:component controller="IPM_Coreparameters" allowDML="true"
@@ -481,11 +481,52 @@
                                                  <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
                                              </span>
                                                                 </div>
+                                                                <apex:outputPanel rendered="{!IPM_Coreparameter.IPM_ProjectGKM__c!='GKM3'}">
                                                                 <label class="ipmSelect"> <apex:selectList size="1" multiselect="false" styleClass="subSectorSTR"
                                                                         disabled="{!!editSubSector}" value="{!subSector_STR}" onchange="changelist();">
                                                                         <apex:selectOptions value="{!lstsubsector}" />
                                                                     </apex:selectList>
                                                                 </label>
+                                                                </apex:outputPanel>
+                                                                
+                                                               
+                                                                 <apex:outputPanel rendered="{!IPM_Coreparameter.IPM_ProjectGKM__c=='GKM3'}">
+                                                                <apex:outputPanel layout="block" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
+                                                                            
+                                                                            <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
+                                                                                <div class="ipmDropDownSelect">
+                                                                                
+                                                                                    <span class='brandSelValues'>{!$label.IPM_SelectSubSector}</span>
+                                                                                    <a class="listArrow"></a>    
+                                                                                </div>
+                                                                            </apex:outputPanel>
+                                                                
+                                                                
+                                                                                <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList brandposList" id="multiBPositions">
+                                                                               <apex:inputText value="{!IPM_Coreparameter.IPM_Sub_sector__c}"  id="brandHiddenField" styleClass="hiddenBrand"/>
+                                                                                <!-- To display below outputPanel when current user has edit access on page   -->
+                                                                                <apex:dataList value="{!lstsubsectorGKM3}" var="cou" id="brandposListUL" styleClass="cccmiList ccm-new"  >                                                                
+                                                                                    <div class="col-xs-1 ipmCheckbox">
+                                                                                     <input class="ccCheck" type="checkbox" value="{!cou.value}" id="{!cou.value}" />
+                                                                                        <label for="{!cou.value}"></label>   
+                                                                                    </div>
+                                                                                        <div class="col-xs-8 noPadleft brandPosLabel">{!cou.label}</div>                                                            
+                                                                                </apex:dataList>
+                                                                                <!-- To display below outputPanel when current user has edit access on page   -->
+                                                                                <apex:outputPanel >
+                                                                                    <li class="filterActionscc">
+                                                                                        <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+                                                                                            <a value="Done" class="ipmDropbuttonscc" onClick="">Done</a>
+                                                                                        </div>
+                                                                                        <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
+                                                                                            <a value="Reset" class="ipmDropresetcc">Reset</a>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                </apex:outputPanel>
+                                                                            </apex:outputPanel>
+                                                                                </apex:outputPanel>
+                                                                               
+                                                                 </apex:outputPanel>
                                                             </div>
                                                         </apex:outputPanel>
                                                     </apex:outputPanel>
@@ -930,6 +971,8 @@
             src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}"
             type="text/javascript"></script>
         <script>
+            var IPMAppPS = {selectLabel: '{!$Label.IPM_SelectSubSector}'};
+            
             var IPMProAppCP = {select: '{!$Label.IPM_Select_Text}',iscompleted:'{!IPM_Coreparameter.IPM_IsCompleted__c}', setupurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', projectUrl:'{!URLFOR($Page.IPM_CoreparameterPage)}', projectName:'{!projectID}', prosubtype:'{!Project.IPM_ProjectSubType__c}', oprtnLabel:'{!$Label.IPM_Operational}', blgLabel:'{!$Label.IPM_Brand_Led_Growth}', addtnlParameter:'{!isAdditionalCoreparameter}', coreParameter: '{!isEditCoreparameter}', bduser: '{!editCPVByBD}', tpluser: '{!editETByTPL}'};
       </script>
     </apex:outputPanel>

@@ -208,9 +208,20 @@
                             
                                 <div class="row">
                                     <div class="col-sm-7 pr0">
+                                    <apex:outputPanel layout="block" rendered="{!IF(project.IPM_ProjectGKM__c!='GKM3',true,false)}">
                                         <div class="keycontent">
                                             {!$Label.IPM_CurrentDocument}
                                         </div>
+                                        </apex:outputPanel>
+                                        
+                                         <apex:outputPanel layout="block" rendered="{!IF(project.IPM_ProjectGKM__c=='GKM3',true,false)}">
+                                        <div class="keycontent">
+                                        
+                                            {!$Label.IPM_CURRENT_GATE_DOCUMENT}
+                                            
+                                        </div>
+                                        </apex:outputPanel>
+                                        
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
@@ -226,9 +237,17 @@
 
                                 
                                 <div class="col-sm-12 pr0">
+                                 <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_ProjectGKM__c!='GKM3',true,false)}">
                                     <div class="keycontent">
                                         {!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
                                     </div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_ProjectGKM__c=='GKM3',true,false)}">
+                                    <div class="keycontent">
+                                    
+                                        {!$Label.IPM_CURRENT_GATE_DOCUMENT_STATUS} 
+                                    </div>
+                                    </apex:outputPanel>
                                 </div>
                                  <!-- Display below outputPanel when project phase is in progress-->
                                 <apex:outputPanel rendered="{!bPhaseChangeInProgress}">

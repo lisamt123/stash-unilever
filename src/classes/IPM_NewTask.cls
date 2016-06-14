@@ -31,7 +31,7 @@ public with sharing class IPM_NewTask {
     public list<SelectOption> FuntionalRolelist;
     public Map<Id,Id> projectDocSectionToSectionMap {get;set;}
     public Map<Id,String> SectionToExtenalIdSectionMap {get;set;}
-    
+    public Boolean IsPersonalCareFeasibility{get;set;}
     
     private Map<String,String> phaseGateMapping;
     
@@ -50,6 +50,7 @@ public with sharing class IPM_NewTask {
     {
         try{
             IPM_IECompatible.ieFix();
+            IsPersonalCareFeasibility=false;
             phaseGateMapping =  new Map<String,String>();
             projectDocSectionToSectionMap = new Map<Id,Id>();
             SectionToExtenalIdSectionMap = new Map<Id,String>();
@@ -406,6 +407,11 @@ public with sharing class IPM_NewTask {
     public void getGateSections()
     {
         tasks.IPM_Type_of_Gate__c = phaseGateMapping.get(tasks.IPM_Phase__c);
+        IsPersonalCareFeasibility=false;
+         
+          if(tasks.IPM_Phase__c==IPM_ConstantUtils.FEASIBILITY_PHASE && projectObject.IPM_ProjectGKM__c=='GKM3' ){
+            IsPersonalCareFeasibility=true;
+          }
         
         // If Task Type is Adhoc or Future adhoc, Validate if phase has changed.
         if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS)
@@ -656,5 +662,21 @@ public with sharing class IPM_NewTask {
             }
         }
         return funcAssigneeId;
+    }
+    
+    
+    
+     /********************************************************************************
+     *@Description : create custome picklist field for current and future phases
+     *@Return : List of options
+    *********************************************************************************/
+    public List<SelectOption> getPhaselistForFeasPC()
+    {
+        List<SelectOption> options = new List<SelectOption>();
+       options.add(new SelectOption(IPM_ConstantUtils.CONTRACT_GATE,IPM_ConstantUtils.CONTRACT_GATE));
+       options.add(new SelectOption(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK));
+       
+          
+        return options;
     }
 }

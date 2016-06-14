@@ -39,7 +39,7 @@
                            <apex:actionRegion > 
                                <apex:selectList size="1" value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
                                         <apex:selectOptions value="{!Phaselist}" /> 
-                                        <apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender" status="gateloading" />  
+                                        <apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender,GateText,GateTextFeasibility" status="gateloading" />  
                                </apex:selectList>
                            </apex:actionRegion>
                            <apex:inputText value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" disabled="true" rendered="{!redirectToGateDocument}"/>
@@ -48,7 +48,22 @@
                         </div>
                         <div class="phaseModal">
                              <div class="inputField"> 
+                           <apex:outputPanel id="GateText">
+                             <apex:outputPanel rendered="{!IF(IsPersonalCareFeasibility=false,true,false)}">
                            <apex:inputText id="GatedocumentText" value="{!tasks.IPM_Type_of_Gate__c}" rendered="{!!redirectToGateDocument}" disabled="true"/>  
+                          </apex:outputPanel>
+                          </apex:outputPanel>
+                         
+                         <apex:outputPanel id="GateTextFeasibility">
+                             <apex:outputPanel rendered="{!IF(IsPersonalCareFeasibility=true,true,false)}">
+                          <apex:selectList size="1" value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
+                                        <apex:selectOptions value="{!PhaselistForFeasPC}" /> 
+                                        
+                               </apex:selectList>
+                          </apex:outputPanel>
+                          </apex:outputPanel>
+                         
+                         
                            <apex:inputText value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont"  disabled="true" rendered="{!redirectToGateDocument}"/>
                            </div>
                         </div> 

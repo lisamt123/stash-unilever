@@ -450,6 +450,13 @@ public with sharing class IPM_TaskHelper {
             newTask.RecordTypeId = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
             newTask.IPM_Task_Section_External_ID__c = masterTask.IPM_SectionExternalIDFormula__c;	
             
+            
+            
+             if(masterTask.isPDLMile__c && projectRec.IPM_ProjectGKM__c=='GKM3'&& masterTask.IPM_Phase__c=='Feasibility'){
+              newTask.IPM_Type_of_Gate__c=IPM_ConstantUtils.PRODUCT_DESIGN_LOCK;
+              newTask.IPM_Section_Number__c=masterTask.PDLSetionNumber__c;
+            }
+            
             getTypeOfTask(masterTask,newTask);
 
          	Map<Id,IPM_Section__c> sectionDetailMap =  new Map<Id,IPM_Section__c>();
