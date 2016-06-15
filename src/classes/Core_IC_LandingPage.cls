@@ -248,7 +248,7 @@ global with sharing class Core_IC_LandingPage{
                 ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=False;
            }
            
-           if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll && lstActiveWeekIdea.size()<4){
+          /* if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll && lstActiveWeekIdea.size()<4){
            //if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!=strAll && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4'){     
                 //setTempIdea.addAll(lstIdea);
                 lstIdea.addAll(lstActiveIdea);
@@ -259,8 +259,7 @@ global with sharing class Core_IC_LandingPage{
                     if(lstIdea.Size()>=4) break;
                 }
                 //lstIdea.addAll(setTempIdea);
-           }
-           
+           }*/
            
            ObjIdeaLandingPageResponse.CampaignTypeForIdeasOfTheWeek='None';
            /*if(lstActiveWeekIdea.isEmpty() &&(!lstActiveIdea.isEmpty() || !lstClosedIdea.isEmpty())){
@@ -282,6 +281,10 @@ global with sharing class Core_IC_LandingPage{
            
            if(ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek){
                 ObjIdeaLandingPageResponse.IdeasOfTheWeek=getIdeasList(lstIdea);
+           }                      
+           
+           if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4' && lstActiveWeekIdea.isEmpty()){
+               ObjIdeaLandingPageResponse.IdeasOfTheWeek = new List<Core_IC_WrapperUtility.IdeasOfTheWeek>();
            }
        }
     /*   catch(Core_CA_BaseServiceException baseServEx){ 

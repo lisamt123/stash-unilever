@@ -50,7 +50,7 @@
             <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
                 <div class="slds-modal__container slds-modal--prompt">
                     <div class="slds-box slds-theme--success">
-                        <div>Your Post is success...<a><img class="successIcon" onclick="{!c.cancelButton}" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg"></img></a></div>
+                        <div>Idea Posted <strong>Successfully</strong>...<a><img class="successIcon" onclick="{!c.cancelButton}" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg"></img></a></div>
                     </div>
                 </div>
             </div>

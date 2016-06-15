@@ -307,14 +307,6 @@ public class Core_IC_Test_IdeationApp {
         test.stoptest();
     }
     
-  /* public static testMethod void TestFAQData(){        
-        Core_IC_WrapperUtility wrapper=new Core_IC_WrapperUtility();
-        test.starttest();
-        RemoteServiceCallController.invokeService('','GetFAQValues',strGet);
-        RemoteServiceCallController.invokeServiceWithURLParameter('','GetFAQValues',strGet,faqId);
-        test.stoptest();                               
-    }
-    */ 
     public static testMethod void TestBaseServiceExceptionForIdeation(){
         Core_IC_WrapperUtility wrapper=new Core_IC_WrapperUtility();
         Core_IC_AppConstants appConstants=new Core_IC_AppConstants();

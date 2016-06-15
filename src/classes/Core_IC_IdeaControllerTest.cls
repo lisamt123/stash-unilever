@@ -62,8 +62,10 @@ public class Core_IC_IdeaControllerTest {
         Core_IC_IdeaController.getMyUpdatesList('4');
          Core_IC_IdeaController.getIdeaDetail(idea1.id); 
          Core_IC_IdeaController.postCommentAnIdea(idea1.id,'abc');
+        List<String> IdeaCategories = new List<String>();
+        IdeaCategories .add('General');
         
-        //Core_IC_IdeaController.postSubmitAnIdea(ideaTheme1.Id,'Test4','Test', 'Innovation','','','');
+       Core_IC_IdeaController.postSubmitAnIdea(ideaTheme1.Id,'Test4','Test', IdeaCategories,'','','');
         System.runAs(usr) { 
             Core_IC_IdeaController.postVoteForIdea(idea1.id);
         }

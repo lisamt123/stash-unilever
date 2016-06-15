@@ -76,6 +76,8 @@
                  }
                  .comment-area{
                      border-left: 1px solid #cfd7e6;
+        			 margin-bottom: 66px !important;
+    				 overflow-x: hidden;
                  }
                  .shareIdeaDetail   
                  {

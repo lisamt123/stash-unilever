@@ -30,7 +30,7 @@
             <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
                 <div class="slds-modal__container slds-modal--prompt">
                     <div class="slds-box slds-theme--success">
-                        <div>Your Share is success...<img class="successIcon" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg" onclick="{!c.BackButton}"></img></div>
+                        <div>Chatter post was <strong>successfull..</strong><img class="successIcon" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg" onclick="{!c.BackButton}"></img></div>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                             </aura:if>                                                
                             <aura:if isTrue="{!v.UserGroupFlag}">
                                <div class="slds-box slds-theme--error">
-                                    <p>Add altelast <strong>1 Group</strong></p>
+                                    <p>Add alteast <strong>1 Group</strong></p>
                                 </div>
                             </aura:if>                         
                         </div>                        

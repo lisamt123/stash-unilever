@@ -14,6 +14,7 @@
             var state = response.getState();
         	console.log('-----------my update Flag-----------'+state);
             if (state === "SUCCESS") {    
+                 component.set("v.myUpdatesData",response.getReturnValue());
                 if(response.getReturnValue().MyUpdates.length>0){
                     component.set("v.myUpdatesList",response.getReturnValue().MyUpdates);
                     component.set("v.UpdateTitle","My Updates");
