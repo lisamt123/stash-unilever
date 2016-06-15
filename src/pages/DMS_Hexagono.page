@@ -3,19 +3,11 @@
     
     <html>
         <head>
-            <script>
-             
-            /* function myfunction(){
-            document.getElementById("KRAI").style.display= "none";
-            }
-            
-            function displaySpinner(){
-            document.getElementById("KRAI").style.display= "inline";
-            }*/
-            </script>
-            
-            
             <style>
+                .botoesHexagon {
+                margin-top: 11px;
+                }
+                
                 @media screen and (min-width: 320px) and (max-width: 768px) {
                 .hegaxono-export {
                 display: none;
@@ -24,17 +16,9 @@
                 
             </style>
         </head>
-        <body onload="myfunction()">
+        <body>
             
             <apex:form >
-                <!-- <apex:outputPanel id="dimitri" rendered="true" >
-                    <div class="slds-spinner_container" id="KRAI">
-                        <div class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
-                            <div class="slds-spinner__dot-a"></div>
-                            <div class="slds-spinner__dot-b"></div>
-                        </div>
-                    </div>
-                </apex:outputPanel>-->
                 <div class="slds-page-header" role="banner">
                     <div class="slds-grid slds-wrap">
                         <div class="slds-grid slds-wrap slds-grid--align-spread">
@@ -46,24 +30,39 @@
                         </div>
                         <div class="slds-grid slds-wrap slds-container--left">
                             <section style="width: auto" >
-                                <span style="width: 100%;" >Distribuidor</span>  
-                                <apex:selectList style="width: 90%;" value="{!selectedDistributor}" size="1" label="Distribuidor">
-                                    <apex:selectOptions value="{!distributorOption}"/>
+                                <span style="width: 100%;" >{!$Label.DMS_HEXAGON_COUNTRY}</span>  
+                                <apex:selectList style="width: 90%;" value="{!selectedDistributorCountry}" size="1" label="Distribuidor">
+                                    <apex:selectOptions value="{!distributorCountry}"/>
+                                    <apex:actionSupport id="actSupC" reRender="sclDis,sclSel,sclDat" event="onchange"/>
+                                </apex:selectList>
+                            </section>                            
+                            <section style="width: auto" >
+                                <span style="width: 100%;" >{!$Label.DMS_HEXAGON_DISTRIBUTOR}</span>  
+                                <apex:selectList id="sclDis" style="width: 90%;" value="{!selectedDistributor}" size="1" label="Distribuidor">
+                                    <apex:selectOptions value="{!optionDistributor}"/>
+                                    <apex:actionSupport id="actSupD" reRender="sclSel,sclDat" event="onchange"/>
                                 </apex:selectList>
                             </section>
+                           <!-- <section style="width: auto" >
+                                <span style="width: 100%;" >{!$Label.DMS_HEXAGON_SELLER}</span>  
+                                <apex:selectList id="sclSel" style="width: 90%;" value="{!selectedSeller}" size="1" label="Distribuidor">
+                                    <apex:selectOptions value="{!optionSeller}"/>
+                                     <apex:actionSupport id="actSupSell" reRender="sclDat" event="onchange"/>
+                                </apex:selectList>
+                            </section>-->
                             <section style="width: auto" >
-                                <span style="width: 100%;" >Periodo</span>    
-                                <apex:selectList style="width: 90%;" value="{!selectedDate}" size="1" label="Distributor">
-                                    <apex:selectOptions value="{!datePicklistOption}"/>
+                                <span style="width: 100%;" >{!$Label.DMS_HEXAGON_PERIOD}</span>    
+                                <apex:selectList id="sclDat" style="width: 90%;" value="{!selectedDate}" size="1" label="Distributor">
+                                    <apex:selectOptions value="{!optionDate}"/>
                                 </apex:selectList>
                             </section>
                             <section style="width: auto;" >
-                                <span style="width: 100%;" >SalesChannel</span>     
+                                <span style="width: 100%;" >{!$Label.DMS_HEXAGON_SALES_CHANNEL}</span>     
                                 <apex:selectList style="width: 90%;"  value="{!selectedSalesChannel}" size="1" label="Sales Channel">
                                     <apex:selectOptions value="{!salesChannelOption}"/>                     
                                 </apex:selectList>                 
                             </section>
-                            <div class="slds-grid slds-container--left">
+                            <div class="slds-grid slds-container--left botoesHexagon">
                                 <div style="margin: 2% 0 3% 0">
                                     <apex:commandButton onclick="displaySpinner();" action="{!submitRequest}" id="test"  styleClass="slds-button slds-button--neutral" title="Submit button" value="Submit"/> 
                                 </div>  
@@ -78,14 +77,6 @@
                         </div>
                     </div>
                 </div>
-                <!--<apex:pageBlock >
-<section style="width: auto" >
-<span style="width: 20%;" >Distributor</span>  
-<apex:selectList style="width: 90%;" value="{!selectedDistributor}" size="1" label="Distributoor">
-<apex:selectOptions value="{!distributorOption}"/>
-</apex:selectList>
-</section>
-</apex:pageBlock>-->
             </apex:form>
             <apex:form >
                 <apex:repeat value="{!hexagonMap}" var="seller">
@@ -101,7 +92,7 @@
                                     <div class="slds-media__body">
                                         <p class="slds-text-heading--label">{!selectedSalesChannel}</p>                           
                                         <div class="slds-grid">
-                                            <h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="SalesMan">{!seller}</h1>                              
+                                            <h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="SalesMan">{!hexagonMap[seller].dsSalesRep}</h1>                              
                                         </div>
                                     </div>                        
                                 </div>
@@ -115,7 +106,7 @@
                     <div style="width: 100%" class="slds-grid slds-wrap">
                         <section style="width: 50%" class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
                             <c:DMS_RadarDataComponent idChart="{!seller}" atualValues="{!actualValuesGraphicMap[seller]}" previousValues="{!previousValuesGraphicMap[seller]}" labels="{!label}" ></c:DMS_RadarDataComponent>
-           
+                            
                             
                         </section>
                         <section  class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-2">
@@ -123,19 +114,19 @@
                                 <thead>
                                     <tr class="slds-text-heading--label">
                                         <th scope="col">
-                                            <span style="text-align: center" class="slds-truncate">INDICADOR TYPE</span>       
+                                            <span style="text-align: center" class="slds-truncate">{!$Label.DMS_HEXAGON_TABLE_INDICATOR}</span>       
                                         </th>
                                         <th style="text-align: center" scope="col">
-                                            <span style="text-align: center" class="slds-truncate">ACTUAL</span>
+                                            <span style="text-align: center" class="slds-truncate">{!$Label.DMS_HEXAGON_TABLE_ACTUAL}</span>
                                         </th>
                                         <th style="text-align: center" scope="col">
-                                            <span style="text-align: center" class="slds-truncate">PREVIOUS</span>
+                                            <span style="text-align: center" class="slds-truncate">{!$Label.DMS_HEXAGON_TABLE_PREVIOUS}</span>
                                         </th>
                                         <th style="text-align: center" scope="col">
-                                            <span style="text-align: center" class="slds-truncate">META</span>
+                                            <span style="text-align: center" class="slds-truncate">{!$Label.DMS_HEXAGON_TABLE_TARGET}</span>
                                         </th>
                                         <th style="text-align: center" scope="col">
-                                            <span class="slds-truncate">VARIAÇÃO</span>
+                                            <span class="slds-truncate">{!$Label.DMS_HEXAGON_TABLE_VARIATION}</span>
                                         </th>
                                     </tr>
                                 </thead>
@@ -149,27 +140,109 @@
                                     </div>
                                     <br/>
                                     <!--inicio od repeate aqui-->
-                                    <apex:repeat value="{!hexagonMap[seller]}" var="actual">
+                                  
                                         <tr class="slds-hint-parent">
                                             <td data-label="indicatorType" > 
-                                                <span class="slds-truncate">{!actual}</span>
+                                                <span class="slds-truncate">{!$Label.DMS_HEXAGON_IMPACTED_STORES}</span>
                                             </td>
                                             <td style="text-align: center" data-label="actualValues">
-                                                <span class="slds-truncate">{!hexagonMap[seller][actual].actual}</span>
+                                                <span class="slds-truncate">{!hexagonMap[seller].impactedStoreAc}</span>
                                             </td>
                                             <td style="text-align: center" data-label="previusValues">
-                                                <span class="slds-truncate">{!hexagonMap[seller][actual].previous}</span>
+                                                <span class="slds-truncate">{!hexagonMap[seller].impactedStorePrev}</span>
                                             </td>
                                             <td style="text-align: center" data-label="Target">
-                                                <span class="slds-truncate">{!hexagonMap[seller][actual].target}</span>
+                                                <span class="slds-truncate">{!hexagonMap[seller].targetImpactedStoreAc}</span>
                                             </td>
                                             <td style="text-align: center" data-label="variacion">
-                                                <span style="color: {!IF(hexagonMap[seller][actual].variation < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller][actual].variation}</span>
+                                                <span style="color: {!IF(hexagonMap[seller].variacImpactedStore < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller].variacImpactedStore}</span>
                                             </td>
                                         </tr>
-                                    </apex:repeat>
-                                    
-                                    <!--fim do repeate aqui-->
+                                     <tr class="slds-hint-parent">
+                                            <td data-label="indicatorType" > 
+                                                <span class="slds-truncate">{!$Label.DMS_HEXAGON_DEVOLUTION}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="actualValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].devolutionAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="previusValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].devolutionPrev}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="Target">
+                                                <span class="slds-truncate">{!hexagonMap[seller].targetDevolutionAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="variacion">
+                                                <span style="color: {!IF(hexagonMap[seller].variacDevolution < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller].variacDevolution}</span>
+                                            </td>
+                                        </tr>
+                                     <tr class="slds-hint-parent">
+                                            <td data-label="indicatorType" > 
+                                                <span class="slds-truncate">{!$Label.DMS_HEXAGON_DROPSIZE}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="actualValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].dropsizeAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="previusValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].dropsizePrev}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="Target">
+                                                <span class="slds-truncate">{!hexagonMap[seller].targetDropsizeAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="variacion">
+                                                <span style="color: {!IF(hexagonMap[seller].variacDropsize < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller].variacDropsize}</span>
+                                            </td>
+                                        </tr>
+                                     <tr class="slds-hint-parent">
+                                            <td data-label="indicatorType" > 
+                                                <span class="slds-truncate">{!$Label.DMS_HEXAGON_FREQUENCY}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="actualValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].frequencyAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="previusValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].frequencyPrev}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="Target">
+                                                <span class="slds-truncate">{!hexagonMap[seller].targetFrequencyAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="variacion">
+                                                <span style="color: {!IF(hexagonMap[seller].variacFrequency < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller].variacFrequency}</span>
+                                            </td>
+                                        </tr>
+                                     <tr class="slds-hint-parent">
+                                            <td data-label="indicatorType" > 
+                                                <span class="slds-truncate">{!$Label.DMS_HEXAGON_ORDERS}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="actualValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].ordersAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="previusValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].ordersPrev}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="Target">
+                                                <span class="slds-truncate">{!hexagonMap[seller].targetOrderAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="variacion">
+                                                <span style="color: {!IF(hexagonMap[seller].variacOrders < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller].variacOrders}</span>
+                                            </td>
+                                        </tr>
+                                     <tr class="slds-hint-parent">
+                                            <td data-label="indicatorType" > 
+                                                <span class="slds-truncate">{!$Label.DMS_HEXAGON_SELLOUT}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="actualValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].selloutAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="previusValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller].selloutPrev}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="Target">
+                                                <span class="slds-truncate">{!hexagonMap[seller].targetSelloutAc}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="variacion">
+                                                <span style="color: {!IF(hexagonMap[seller].variacSellout < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller].variacSellout}</span>
+                                            </td>
+                                        </tr>                                    
                                 </tbody>
                             </table>
                         </section>

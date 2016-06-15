@@ -1,12 +1,10 @@
 /**********************************************************************
 Name: DMS_Hexagon_CC
 Copyright © 2016 Salesforce
-====================================================== 
-====================================================== 
+
 Purpose: 
 Class used to constructor of visual force DMS_Hexagono
-====================================================== 
-======================================================
+
 History 
 
 VERSION 	AUTHOR		 		DATE  		Description
@@ -16,58 +14,40 @@ VERSION 	AUTHOR		 		DATE  		Description
 public class DMS_Hexagon_CC 
 {        
     private List<DMS_WaveHexagonRestCall.Records> recordsList;
-    private Map<String,String> distributorsMap = new Map<String,String>();
-    
-    public List<SelectOption> datePicklistOption{get; set;}
-    public List<SelectOption> distributorOption{get;set;}
-    public List<SelectOption> salesChannelOption{get;set;}    
+    private Map<String,String> distributorsMap = new Map<String,String>();        
+    public List<SelectOption> distributorCountry{get;set;}
+    public List<SelectOption> salesChannelOption{get;set;}     
     public String selectedDistributor {get;set;} 
+    public String selectedDistributorCountry {get;set;} 
     public String selectedDate {get;set;} 
+    public String selectedSeller {get;set;} 
     public String selectedSalesChannel {get;set;} 
-    public MAP<String,Map<String,IndicatorType>> hexagonMap {get;set;}
+    public Map<String,DMS_WaveHexagonRestCall.Records> hexagonMap {get;set;}
     public Map<String,List<Decimal>> actualValuesGraphicMap {get;set;}
     public Map<String,List<Decimal>> previousValuesGraphicMap {get;set;}
-    public List<String>label {get;set;}  	    
+    public static List<String>label {get;set;}  
     
-     //GRAFICO APEX    
-    public List<RadarData> data {get;set;}
+    private List<Account> distributorList; 
     
-    /*******************************************************************
-    * Purpose: contructor  
-    ********************************************************************/
-    public DMS_Hexagon_CC()
-    { 
-        try{
-            fillLabel();
-            defineMeta();           
-            optionDistributor();
-            optionDate();
-            optionSalesChannel(); 
-        }catch(Exception e){            
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_FILL_LABEL + e.getCause() + e.getMessage() + e.getLineNumber());            
-        }
-        
-        
-        
-        //GRAFICO APEX
-           data = new List<RadarData>();                        
-            data.add(new RadarData('macucxi', 100, 50, 45));
-            data.add(new RadarData('macucxi2', 60, 50, 45)); 
-            data.add(new RadarData('macucxi3', 85, 50, 45)); 
-            data.add(new RadarData('macucxi4', 90, 40, 35)); 
-            data.add(new RadarData('macucxi5', 70, 70, 45)); 
-            data.add(new RadarData('macucxi6', 80, 50, 45));
+    static{
+        label = new List<String>();
+        label.add('"'+System.Label.DMS_HEXAGON_IMPACTED_STORES +'"');
+        label.add('"'+System.Label.DMS_HEXAGON_DEVOLUTION+'"');
+        label.add('"'+System.Label.DMS_HEXAGON_DROPSIZE+'"');
+        label.add('"'+System.Label.DMS_HEXAGON_FREQUENCY+'"');
+        label.add('"'+System.Label.DMS_HEXAGON_ORDERS+'"');
+        label.add('"'+System.Label.DMS_HEXAGON_SELLOUT+'"');
     }
     
-    private void fillLabel()
-    {
-        label = new List<String>();
-        label.add(DMS_GlobalConstants.HEXAGON_LABEL_CLIENTES);
-        label.add(DMS_GlobalConstants.HEXAGON_LABEL_DEVOLUCIONES);
-        label.add(DMS_GlobalConstants.HEXAGON_LABEL_DROPSIZE);
-        label.add(DMS_GlobalConstants.HEXAGON_LABEL_FRECUENCIA);
-        label.add(DMS_GlobalConstants.HEXAGON_LABEL_PEDIDOS);
-        label.add(DMS_GlobalConstants.HEXAGON_LABEL_SELLOUT);        
+    /*******************************************************************
+* Purpose: contructor  
+********************************************************************/
+    public DMS_Hexagon_CC()
+    {        
+        
+        defineMeta();                      
+        optionDistributorCountry();                     
+        optionSalesChannel();        
     }
     
     private void defineMeta() 
@@ -78,55 +58,82 @@ public class DMS_Hexagon_CC
         }
         catch(Exception e)
         {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_DEFINE_META + e.getCause() + e.getMessage() + e.getLineNumber());            
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());            
         }
     }
     
     /*******************************************************************
-    * Purpose: submit Request for wave (DMS_WaveHexagonRestCall)  
-    ********************************************************************/
+* Purpose: submit Request for wave (DMS_WaveHexagonRestCall)  
+********************************************************************/
     public void submitRequest()
     {
         defineMeta();
         try
-        {        
+        {  
+            System.debug('Filtro aqui!!!!'+selectedDistributor+selectedDate+selectedSalesChannel);
             DMS_WaveHexagonRestCall hexagono = new DMS_WaveHexagonRestCall();
-            recordsList = hexagono.getRecords('0Fb19000000A3yOCAS',selectedDistributor,selectedDate,selectedSalesChannel); 
+            recordsList = hexagono.getRecords('0Fb19000000A45oCAC',selecteddistributorCountry,selectedDistributor,selectedDate,selectedSalesChannel); 
         }
         catch(Exception e){
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON_SUBMIT + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         generateHexagon();
     }
     
     /*******************************************************************
-    * Purpose: Create pickList of Distributor for filter
-    ********************************************************************/
-    private void optionDistributor()
+* Purpose: Create pickList of Distributor for filter
+********************************************************************/
+    public List<SelectOption> getOptionDistributor()
     {        
-        distributorOption = new List<SelectOption>();
+        List<SelectOption> distributorOption = new List<SelectOption>();
         try
-        {
-            List<Account> distributorList = selectDistributor();        
+        {            	
+            distributorList = selectDistributor();        
             distributorOption.add(new SelectOption('','--'));        
             if(distributorList !=null){
                 for(Account distributor : distributorList){
-                    distributorOption.add(new SelectOption(distributor.ExternalCode__c ,distributor.name));                
+                    if(selectedDistributorCountry !=null && selectedDistributorCountry.equals(distributor.Country__c)){
+                        distributorOption.add(new SelectOption(distributor.ExternalCode__c ,distributor.name));                
+                    }
                 }
             }
         }
         catch(Exception e)
         {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_OPTION_DISTRIBUTOR + e.getCause() + e.getMessage() + e.getLineNumber());
-        }        
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }  
+        return distributorOption;
     }
     
     /*******************************************************************
-    * Purpose: Create pickList of Date for filter
-    ********************************************************************/
-    private void optionDate()
+* Purpose: Create pickList of Distributor country for filter
+********************************************************************/
+    private void optionDistributorCountry()
+    {        
+        distributorCountry = new List<SelectOption>();
+        distributorList = selectDistributor();
+        try
+        {                  
+            distributorCountry.add(new SelectOption('','--'));        
+            if(distributorList !=null){
+               checkDuplicated(distributorList,'country__c');
+                for(Account distributor : distributorList){                    
+                        distributorCountry.add(new SelectOption(distributor.country__c ,distributor.country__c));                        
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }        
+    }        
+    
+    /*******************************************************************
+* Purpose: Create pickList of Date for filter
+********************************************************************/
+    public List<SelectOption> getOptionDate()
     {
-        datePicklistOption = new List<SelectOption>();
+        List<SelectOption> datePicklistOption = new List<SelectOption>();
         List<Target__c> target;
         Date firstDate;
         try
@@ -135,28 +142,37 @@ public class DMS_Hexagon_CC
             if(target != null && !target.isEmpty())
             {
                 datePicklistOption.add(new SelectOption('','--'));
-                firstDate = target[0].TargetDate__c;
-                
-                while(firstDate.addMonths(1).addDays(-1) < Date.today())
-                {                
-                    datePicklistOption.add(new SelectOption(String.valueOf(firstDate),firstDate.format() + ' - ' + firstDate.addMonths(1).addDays(-1).format()));
-                    firstDate = firstDate.addMonths(1);               
-                }
-                if(firstDate.addMonths(1).addDays(-1) > Date.today())
-                {
-                    datePicklistOption.add(new SelectOption( String.valueOf(firstDate),firstDate.format() + ' - ' + Date.today().format()));                
-                }                                                                    
+                checkDuplicated(target,'TargetDate__c');
+                for( Target__c t: target){                    
+                    //if(selectedSeller != null && selectedSeller.equals(t.SalesRep__r.Seller_Key__c)){
+                                                                       
+                    datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '/' + t.TargetDate__c.Year()));
+                    
+                      //}
+                }                                                                                   
             }
         }
         catch(Exception e)
         {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_OPTION_DATE + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
         }
+        return datePicklistOption;
     }    
-    
+    public void checkDuplicated(List<SObject> optionList,String field){
+         
+        boolean check = false;
+        for(Integer x=0; x<optionList.size(); x++){
+            for(Integer y=x+1; y<optionList.size(); y++){               
+                if(String.valueOf(optionList.get(x).get(field)).equals(String.valueOf(optionList.get(y).get(field)))){
+                    optionList.remove(y); 
+                    y--;
+                }
+            }
+        }       
+    }
     /*******************************************************************
-    * Purpose: Create picklist of Sales Channel for filter
-    ********************************************************************/
+* Purpose: Create picklist of Sales Channel for filter
+********************************************************************/
     private void optionSalesChannel()
     {        
         salesChannelOption = new List<SelectOption>();
@@ -173,9 +189,94 @@ public class DMS_Hexagon_CC
     }    
     
     /*******************************************************************
-    * Purpose: Select all distributors Account in salesforce   
-    * Returns: List<Accoun> 
-    ********************************************************************/
+* Purpose: Create picklist of Sales Channel for filter
+********************************************************************/
+    public List<SelectOption> getOptionSeller()
+    {     
+        List<Contact> sellerList = new List<Contact>();
+        sellerList = selectContactSeller();
+        List<SelectOption> sellerOption = new List<SelectOption>();       
+        
+        sellerOption.add(new SelectOption('','--'));
+        
+        for(Contact seller : sellerList)
+        {                           
+            if(selectedDistributor != null && selectedDistributor.equals(seller.Account.ExternalCode__c)){
+                sellerOption.add(new SelectOption(seller.Seller_Key__c,seller.name)); 
+            }
+        }    
+        return sellerOption;
+    }    
+    
+    /*******************************************************************
+* Purpose: mapping data for hexagon
+********************************************************************/
+    private void generateHexagon()
+    {
+        hexagonMap = new Map<String,DMS_WaveHexagonRestCall.Records>();        
+        try
+        {
+            for(DMS_WaveHexagonRestCall.Records record : recordsList)
+            {
+                hexagonMap.put(record.cdSalesRep,record);                
+            }  
+        }
+        catch(Exception e)
+        {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }            
+        System.debug(DMS_GlobalConstants.HEXAGON_VALUES + Json.serialize(hexagonMap));
+        dataForGraphic();
+    }
+    /*******************************************************************
+* Purpose: mapping data for graphic of hexagon
+********************************************************************/
+    private void dataForGraphic()
+    {
+        Decimal previousPerformance;   
+        Decimal actualPerformance; 
+        actualValuesGraphicMap = new Map<String,List<Decimal>>();
+        previousValuesGraphicMap = new Map<String,List<Decimal>>();
+        
+        List<Decimal> actualValuesList;
+        List<Decimal> previousValuesList;
+        try
+        {
+            if(!hexagonMap.isEmpty())
+            {
+                for(String seller : hexagonMap.keySet())
+                {
+                    actualValuesList = new  List<Decimal>();
+                    previousValuesList = new  List<Decimal>();
+                    actualValuesGraphicMap.put(seller, actualValuesList);
+                    previousValuesGraphicMap.put(seller, previousValuesList);                                        
+                    
+                    actualValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforImpactedStoreAc);                                                                                                                                                                                                                                                                                                                                    
+                    actualValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforDevolutionAc);
+                    actualValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforDropsizeAc);
+                    actualValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforFrequencyAc);
+                    actualValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforOrdersAc);
+                    actualValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforSelloutAc);                    
+                    
+                    previousValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforImpactedStorePrev);
+                    previousValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforDevolutionPrev);
+                    previousValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforDropsizePrev);                             
+                    previousValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforFrequencyPrev);
+                    previousValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforOrdersPrev);  
+                    previousValuesGraphicMap.get(seller).add(hexagonMap.get(seller).perforSelloutPrev);                     					                                        
+                }
+            }
+        }catch(Exception e)
+        {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }   
+        
+    }
+    
+    /*******************************************************************
+* Purpose: Select all distributors Account in salesforce   
+* Returns: List<Accoun> 
+********************************************************************/
     private  List<Account> selectDistributor()
     {
         List<Account> distributorList;
@@ -183,7 +284,7 @@ public class DMS_Hexagon_CC
         
         try
         {
-            for(Account distributor :[SELECT id,name,ExternalCode__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
+            for(Account distributor :[SELECT id,name,ExternalCode__c,country__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
             {
                 distributorList.add(distributor);
             }            
@@ -191,16 +292,16 @@ public class DMS_Hexagon_CC
         catch(QueryException e)
         {
             distributorList = null;
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_OPTION_DISTRIBUTOR + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         
         return distributorList;        
     }
     
     /*******************************************************************
-    * Purpose: Select All Sales Channel   
-    * Returns: List<AggregateResult> 
-    ********************************************************************/
+* Purpose: Select All Sales Channel   
+* Returns: List<AggregateResult> 
+********************************************************************/
     private List<AggregateResult> selectSalesChannel()
     {
         
@@ -216,170 +317,46 @@ public class DMS_Hexagon_CC
         catch(QueryException e)
         {
             aggSalesChannel = null;
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_QUERY_SALES_CHANNEL + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         return aggSalesChannel;        
     }
     
     /*******************************************************************
-    * Purpose: Get a list of Records containing the Account Owner and DistributorCode through Dataset Id
-    * Parameters: Dataset Id 1, Dataset Id 2
-    * Returns: List<Records> 
-    ********************************************************************/
+* Purpose: Get a list of Records containing the Account Owner and DistributorCode through Dataset Id
+* Parameters: Dataset Id 1, Dataset Id 2
+* Returns: List<Records> 
+********************************************************************/
     private List<Target__c> selectDateTarget()
     {
         List<Target__c> target;        
         try
         {             
-            target = [SELECT id,name,TargetDate__c FROM Target__c Where TargetDate__c != null Order by TargetDate__c LIMIT 1];
+            target = [SELECT id,name,TargetDate__c, SalesRep__r.Seller_Key__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c];
         }
         catch(QueryException e)
         {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_QUERY_TARGET_DATE + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON  + e.getCause() + e.getMessage() + e.getLineNumber());
         }       
         return target;
-    }    
+    }  
     
     /*******************************************************************
-	* Purpose: mapping data for hexagon
-	********************************************************************/
-    private void generateHexagon()
+* Purpose: Get a list of Records containing the Account Owner and DistributorCode through Dataset Id
+* Parameters: Dataset Id 1, Dataset Id 2
+* Returns: List<Records> 
+********************************************************************/
+    private List<Contact> selectContactSeller()
     {
-        hexagonMap = new MAP<String,Map<String,IndicatorType>>();
-        Map<String,Map<String,IndicatorType>> indicatorTypeCategoryMap = new Map<String,Map<String,IndicatorType>>();
-        Map<String,IndicatorType> indicatorTypeValuesMap = new Map<String,IndicatorType>();
-        List<IndicatorType> indicatorTypesValuesList = new List<IndicatorType>();
-        IndicatorType indicatorTypeValues;
+        List<Contact> contactSeller;        
         try
-        {
-            for(DMS_WaveHexagonRestCall.Records record : recordsList)
-            {
-                if(!record.Indicator_Type.equalsIgnoreCase('DEVOLUCIONES ($)'))
-                {
-                    indicatorTypeValues = new IndicatorType();
-                    indicatorTypeValuesMap = new Map<String,IndicatorType>();
-                    indicatorTypeCategoryMap = new Map<String,Map<String,IndicatorType>>();                
-                    indicatorTypeValues.actual = Decimal.valueOf(record.Actual);
-                    indicatorTypeValues.previous = Decimal.valueOf(record.Previous);
-                    indicatorTypeValues.target = Decimal.valueOf(record.target);
-                    indicatorTypeValues.performance = Decimal.valueOf(record.Performance);
-                    indicatorTypeValues.variation = Decimal.valueOf(record.Variation);
-                    indicatorTypeValues.targetPrevious = Decimal.valueOf(record.Target_Previous);
-                    
-                    if(record.Indicator_Type.equalsIgnoreCase('DEVOLUCIONES (%)'))
-                    {
-                        if(indicatorTypeValues.previous > 0)
-                        {
-                            indicatorTypeValues.preformancePrevious = 100 - indicatorTypeValues.previous;
-                        } 
-                        else
-                        {
-                            indicatorTypeValues.preformancePrevious =0;
-                        }    
-                    }
-                    else if(indicatorTypeValues.targetPrevious > 0)
-                    {
-                        indicatorTypeValues.preformancePrevious = (indicatorTypeValues.previous/indicatorTypeValues.targetPrevious)*100;
-                    }
-                    else
-                    {
-                        indicatorTypeValues.preformancePrevious =0;
-                    }                
-                    if(hexagonMap.containsKey(record.SalesRep))
-                    {
-                        if(!hexagonMap.get(record.SalesRep).containsKey(record.Indicator_Type))
-                        {
-                            hexagonMap.get(record.SalesRep).put(record.Indicator_Type,indicatorTypeValues);
-                        }
-                    }
-                    else
-                    {
-                        indicatorTypeValuesMap.put(record.Indicator_Type, indicatorTypeValues);
-                        hexagonMap.put(record.SalesRep,indicatorTypeValuesMap); 
-                    }  
-                }   
-            }  
+        {             
+            contactSeller = [SELECT id,name,SellerCode__c,Seller_Key__c,Account.ExternalCode__c FROM Contact Where SellerCode__c !=null and Seller_Key__c!=null AND AccountiD != null];
         }
-        catch(Exception e)
+        catch(QueryException e)
         {
             System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
-        }            
-        System.debug(DMS_GlobalConstants.HEXAGON_VALUES + Json.serialize(hexagonMap));
-        dataForGraphic();
-    }
-    /*******************************************************************
-	* Purpose: mapping data for graphic of hexagon
-	********************************************************************/
-    private void dataForGraphic()
-    {
-        Decimal previousPerformance;   
-        Decimal actualPerformance; 
-        actualValuesGraphicMap = new Map<String,List<Decimal>>();
-        previousValuesGraphicMap = new Map<String,List<Decimal>>();
-        List<Decimal> actualValuesList;
-        List<Decimal> previousValuesList;
-        try
-        {
-            if(!hexagonMap.isEmpty())
-            {
-                for(String seller : hexagonMap.keySet())
-                {
-                    actualValuesList = new  List<Decimal>();
-                    previousValuesList = new  List<Decimal>();
-                    actualValuesGraphicMap.put(seller, actualValuesList);
-                    previousValuesGraphicMap.put(seller, previousValuesList);            
-                    
-                    for(String indicatorType : label)
-                    {
-                        actualPerformance=100;
-                        previousPerformance = 100;
-                        indicatorType = indicatorType.replace('"','');
-                        IndicatorType values = hexagonMap.get(seller).get(indicatorType);                                        
-                        
-                        if(values.performance < 100){
-                            actualPerformance = values.performance;
-                        }
-                        if(values.preformancePrevious < 100){
-                            previousPerformance = values.preformancePrevious;
-                        }
-                        actualValuesGraphicMap.get(seller).add(actualPerformance);
-                        previousValuesGraphicMap.get(seller).add(previousPerformance);                    
-                    }                
-                }
-            }
-        }catch(Exception e)
-        {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON_GRAPHIC + e.getCause() + e.getMessage() + e.getLineNumber());
         }       
-    }
-    
-    /*******************************************************************
-	* Purpose: Inner Class for values of hexagon
-	********************************************************************/
-    public Class IndicatorType
-    {
-        public Decimal actual {get;set;}
-        public Decimal previous {get;set;}
-        public Decimal target{get;set;}
-        public Decimal performance {get;set;}
-        public Decimal variation {get;set;}
-        public Decimal targetPrevious {get;set;}
-        public Decimal preformancePrevious {get;set;}
-    }
-    
-    
-    
-    public class RadarData {
-        String memName {get;set;}
-        Decimal tenthPercent {get;set;}
-        Decimal twelthPercent {get;set;}
-        Decimal age {get;set;}
-        
-        public RadarData(String memName, Decimal tenthPercent, Decimal twelthPercent, Decimal age) {
-            this.memName = memName;
-            this.tenthPercent = tenthPercent;
-            this.twelthPercent = twelthPercent;
-            this.Age = age;
-        }
-    }
+        return contactSeller;
+    }      
 }

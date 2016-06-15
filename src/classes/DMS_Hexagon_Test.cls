@@ -23,9 +23,14 @@ public class DMS_Hexagon_Test
     {        
         DMS_Hexagon_CC hexagon = new DMS_Hexagon_CC();         
         hexagon.selectedDistributor = DMS_GlobalConstants.ACCOUNT_NAME;        
-        hexagon.selectedDate = '2016-05-01';
+        hexagon.selectedDate = '2016-06-01';
         hexagon.selectedSalesChannel = DMS_GlobalConstants.ACCOUNT_SALES_CHANNEL;
-                        
+        hexagon.selectedDistributorCountry = 'El Salvador';
+        hexagon.selectedSeller = '';
+        hexagon.getOptionDistributor();
+        hexagon.getOptionSeller();
+        hexagon.getOptionDate();
+        
         Test.setMock(HttpCalloutMock.class, new DMS_WaveHexagonRestMock_Test());
         
         Test.startTest();

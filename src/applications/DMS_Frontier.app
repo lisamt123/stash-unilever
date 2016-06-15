@@ -9,5 +9,6 @@
     <tab>Target__c</tab>
     <tab>DMSDashboards</tab>
     <tab>Hexagono</tab>
-    <tab>Wave_Dashboards_Mobile</tab>
+    <tab>DMS_Dashboards_Mobile</tab>
+    <tab>Portal</tab>
 </CustomApplication>

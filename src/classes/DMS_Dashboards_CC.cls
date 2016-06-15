@@ -21,9 +21,6 @@ public class DMS_Dashboards_CC
     public boolean exibirEco {get;set;}
     public boolean exibirImpac {get;set;}
     
-    /*******************************************************************
-    * Purpose: contructor  
-    ********************************************************************/
     public DMS_Dashboards_CC()
     {
         exibirEco = true;
@@ -34,13 +31,9 @@ public class DMS_Dashboards_CC
     * Purpose: Change report for display in visualforce
     ********************************************************************/
     public void changeDashboard()
-    {        
-        if(exibirEco){
-            exibirEco = false;
-            exibirImpac = true;            
-        }else{
-            exibirEco = true;
-            exibirImpac = false;
-        }
+    {       
+        exibirEco = !exibirEco;
+     	exibirImpac = !exibirImpac;
+       
     }
 }
