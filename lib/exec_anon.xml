@@ -94,7 +94,7 @@
 		<sequential>
 				<echo level="info">Login @{server-url}</echo>
 			<!-- Obtain Session Id via Login SOAP service -->
-				<http url="@{server-url}/services/Soap/c/30.0" method="POST" failonunexpected="false" entityProperty="loginResponse" statusProperty="loginResponseStatus">
+				<http url="@{server-url}/services/Soap/c/37.0" method="POST" failonunexpected="false" entityProperty="loginResponse" statusProperty="loginResponseStatus">
 		    	<headers>
 		    		<header name="Content-Type" value="text/xml"/>
 		    		<header name="SOAPAction" value="login"/>
