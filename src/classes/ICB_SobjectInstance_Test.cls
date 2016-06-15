@@ -38,22 +38,19 @@ public class ICB_SobjectInstance_Test
     Returns: User
     Throws [Exceptions]: [NONE] 
     ********************************************************************/
-    public static User insertUser(String profileName, String firstName, String lastName,
-                                  String alias, String email, String userName, String communityNickName,
-                                  String timeZoneSidKey, String localeSidKey, String emailEncodingKey,
-                                  String languageLocaleKey)
+    public static User insertUser(String profileName)
     {
         Profile profile = [Select Id From Profile Where Name =: profileName];
-        User user = new User(FirstName = firstName,
-                             LastName = lastName,
-                             Alias = alias,
-                             Email = email,
-                             UserName = userName,
-                             CommunityNickname = communityNickName,
-                             TimeZoneSidKey = timeZoneSidKey,
-                             LocaleSidKey = localeSidKey,
-                             EmailEncodingKey = emailEncodingKey,
-                             LanguageLocaleKey=languageLocaleKey,
+        User user = new User(FirstName = 'Test',
+                             LastName = 'USER',
+                             Alias = 'tUser',
+                             Email = 'testUser@email.com',
+                             UserName = 'testUser@email.com.unilever',
+                             CommunityNickname = 'testUser',
+                             TimeZoneSidKey = 'America/Los_Angeles',
+                             LocaleSidKey = 'en_US',
+                             EmailEncodingKey = 'UTF-8',
+                             LanguageLocaleKey='en_US',
                              ProfileId = profile.id
                             );
         insert user;

@@ -13,7 +13,7 @@
                 compEventLatLng.fire();
                 
                 //Attribute map
-                component.set("v.mapsrc",'https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Clabel:A%7C' + position.coords.latitude + ',' + position.coords.longitude + '&center=' + position.coords.latitude + ',' + position.coords.longitude + '&zoom=16&size=720x720&sensor=false');
+                component.set("v.mapsrc", $A.get("$Label.c.ICB_URL_GOOGLE_MAP")+ position.coords.latitude + ',' + position.coords.longitude + '&center=' + position.coords.latitude + ',' + position.coords.longitude + '&zoom=16&size=720x720&sensor=false');
                 
             }, function(error){console.debug(error)}));
     }
