@@ -21,8 +21,6 @@ src/objects/ICB_VisitManagement__c.object
 src/objects/User.object
 src/objectTranslations
 src/objectTranslations/ICB_Territory_Management__c-en_US.objectTranslation
-src/objectTranslations/ICB_VisitManagement__c-en_US.objectTranslation
-src/objectTranslations/ICB_VisitManagement__c-pt_BR.objectTranslation
 src/pages
 src/pages/ICB_CheckInCheckOut.page
 src/pages/ICB_CheckInCheckOut.page-meta.xml
