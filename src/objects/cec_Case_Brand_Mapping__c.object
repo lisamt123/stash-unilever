@@ -629,8 +629,14 @@
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Default_Outbound_Email__c</columns>
+        <columns>Outbound_Email_Address__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
+        <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
