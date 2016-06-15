@@ -198,4 +198,116 @@
         <shortDescription>DMS_WaveDashboard</shortDescription>
         <value>https://acfrdmsld-unilever.cs24.force.com/UID/apex/DMS_Dashboards</value>
     </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_COUNTRY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_COUNTRY</shortDescription>
+        <value>COUNTRY</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_DEVOLUTION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_DEVOLUTION</shortDescription>
+        <value>DEVOLUTION (%)</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_DISTRIBUTOR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_DISTRIBUTOR</shortDescription>
+        <value>DISTRIBUTOR</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_DROPSIZE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_DROPSIZE</shortDescription>
+        <value>DROPSIZE ($/ORDER)</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_FREQUENCY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_FREQUENCY</shortDescription>
+        <value>FREQUENCY (UN / STORE)</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_IMPACTED_STORES</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_IMPACTED_STORES</shortDescription>
+        <value>IMPACTED STORES (UN)</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_ORDERS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_ORDERS</shortDescription>
+        <value>ORDERS (UN)</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_PERIOD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_PERIOD</shortDescription>
+        <value>PERIOD</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_SALES_CHANNEL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_SALES_CHANNEL</shortDescription>
+        <value>SALES CHANNEL</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_SELLER</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_SELLER</shortDescription>
+        <value>SELLER</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_SELLOUT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_SELLOUT</shortDescription>
+        <value>SELLOUT ($)</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_TABLE_ACTUAL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_TABLE_ACTUAL</shortDescription>
+        <value>ACTUAL</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_TABLE_INDICATOR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_TABLE_INDICATOR</shortDescription>
+        <value>INDICATOR TYPE</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_TABLE_PREVIOUS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_TABLE_PREVIOUS</shortDescription>
+        <value>PREVIOUS AVERAGE</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_TABLE_TARGET</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_TABLE_TARGET</shortDescription>
+        <value>TARGET</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_TABLE_VARIATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_TABLE_VARIATION</shortDescription>
+        <value>VARIATION</value>
+    </labels>
     

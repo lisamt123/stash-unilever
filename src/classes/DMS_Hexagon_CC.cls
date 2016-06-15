@@ -14,7 +14,6 @@ VERSION 	AUTHOR		 		DATE  		Description
 public with sharing class DMS_Hexagon_CC 
 {        
     private List<DMS_WaveHexagon.Records> recordsList;
-    private Map<String,String> distributorsMap = new Map<String,String>();        
     public List<SelectOption> distributorCountry{get;set;}
     public List<SelectOption> salesChannelOption{get;set;}     
     public String selectedDistributor {get;set;} 
@@ -89,11 +88,9 @@ public with sharing class DMS_Hexagon_CC
         try
         {                        
             distributorOption.add(new SelectOption('','--'));
-            if(selectedDistributorCountry != null && !String.isBlank(selectedDistributorCountry)){              
-            }
             if(distributorList !=null){
                 for(Account distributor : distributorList){
-                    if(selectedDistributorCountry.equals(distributor.Country__c)){
+                    if(selectedDistributorCountry != null && selectedDistributorCountry.equals(distributor.Country__c)){
                         distributorOption.add(new SelectOption(distributor.ExternalCode__c ,distributor.name));                
                     }
                 }
@@ -144,7 +141,7 @@ public with sharing class DMS_Hexagon_CC
     {
         List<SelectOption> datePicklistOption = new List<SelectOption>();
         List<Target__c> targetList = new List<Target__c>();
-        Date firstDate;
+
         try
         {            
             for(Target__c target : [SELECT id,name,TargetDate__c, SalesRep__r.SellerCode__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c])
@@ -271,8 +268,6 @@ public with sharing class DMS_Hexagon_CC
 ********************************************************************/
     private void dataForGraphic()
     {
-        Decimal previousPerformance;   
-        Decimal actualPerformance; 
         actualValuesGraphicMap = new Map<String,List<Decimal>>();
         previousValuesGraphicMap = new Map<String,List<Decimal>>();
         
