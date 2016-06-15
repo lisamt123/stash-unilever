@@ -45,7 +45,7 @@
 				<propertyregex property="instance" input="${iurl}" regexp="(https://[^/]+)/" select="\1" casesensitive="false" />
 	
 				<echo level="info">instance ${instance}</echo>
-				<http url="${instance}/services/data/v32.0/tooling/executeAnonymous" method="GET" entityProperty="executeAnonymousResponse" statusProperty="loginResponseStatus" printrequestheaders="true" printresponseheaders="true">
+				<http url="${instance}/services/data/v37.0/tooling/executeAnonymous" method="GET" entityProperty="executeAnonymousResponse" statusProperty="loginResponseStatus" printrequestheaders="true" printresponseheaders="true">
 		    	<headers>
 		    		<header name="Authorization" value="Bearer ${sessionId}"/>
 		    	</headers>
