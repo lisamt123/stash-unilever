@@ -88,5 +88,3 @@ src/classes/ICB_SobjectInstance_Test.cls
 src/classes/ICB_SobjectInstance_Test.cls-meta.xml
 src/applications
 src/applications/ICB_IceCream.app
-ICB/ICB_CheckInCheckOut_CSS.resource
-ICB/ICB_CheckInCheckOut_CSS.resource-meta.xml
