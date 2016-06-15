@@ -9319,3 +9319,24 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
+    <labels>
+        <fullName>IPM_ContractGate_Milestone_Before_PDL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ContractGate_Milestone_Before_PDL</shortDescription>
+        <value>The Contract Gate due date must be the same as, or after, the Product Design Lock due date.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_PDL_Due_Date_After_Charter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PDL_Due_Date_After_Charter</shortDescription>
+        <value>The Product Design Lock due date must be on or after the Charter Gate due date.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_PDL_Due_Date_Before_Contract_Milestone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PDL_Due_Date_Before_Contract_Milestone</shortDescription>
+        <value>The Product Design Lock due date must be the same as, or before, the Contract Gate due date.</value>
+    </labels>
