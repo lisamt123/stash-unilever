@@ -332,7 +332,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 						Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
 						FROM IPM_Financial__c 
 						WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						globalbusinessImpactStr = finRegional.Business_Impact_Global__c;
+						globalbusinessImpactStr = project.IPM_Phase__C!= IPM_ConstantUtils.PHASE_IDEAS?finRegional.Business_Impact_Regional__c:finRegional.Business_Impact_Global__c;
 					}
 				}
 				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
@@ -355,7 +355,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 						finLocal=[SELECT Business_Impact_Global__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
 						WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
 						AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						globalbusinessImpactStr = finLocal.Business_Impact_Global__c;
+						globalbusinessImpactStr =  project.IPM_Phase__C!= IPM_ConstantUtils.PHASE_IDEAS?finLocal.Business_Impact_Regional__c:finLocal.Business_Impact_Global__c;
 					}
 				}
 			}
