@@ -27,7 +27,8 @@ public with sharing class DMS_Hexagon_CC
     public Map<String,List<Decimal>> previousValuesGraphicMap {get;set;}
     public static List<String>label {get;set;}  
     
-    private List<Account> distributorList; 
+    private List<Account> distributorList;
+    private Map<String,id> contactCodeIdMap = new Map<String,id>();
     
     static{
         label = new List<String>();
@@ -69,8 +70,7 @@ public with sharing class DMS_Hexagon_CC
     {
         defineMeta();
         try
-        {  
-            System.debug('Filtro aqui!!!!'+selectedDistributor+selectedDate+selectedSalesChannel);
+        {              
             DMS_WaveHexagon hexagono = new DMS_WaveHexagon();
             recordsList = hexagono.getRecords('0Fb19000000A45oCAC',selecteddistributorCountry,selectedDistributor,selectedDate,selectedSalesChannel); 
         }
@@ -147,17 +147,17 @@ public with sharing class DMS_Hexagon_CC
         Date firstDate;
         try
         {            
-            for(Target__c target : [SELECT id,name,TargetDate__c, SalesRep__r.Seller_Key__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c])
+            for(Target__c target : [SELECT id,name,TargetDate__c, SalesRep__r.SellerCode__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c])
             {
                 targetList.add(target);
             }        
             
             if(targetList != null && !targetList.isEmpty())
             {
-                datePicklistOption.add(new SelectOption('Todos','--'));
+                datePicklistOption.add(new SelectOption('','--'));
                 checkDuplicated(targetList,'TargetDate__c');
                 for( Target__c t: targetList){                    
-                    if(selectedSeller != null && (selectedSeller.equals(t.SalesRep__r.Seller_Key__c) || selectedSeller.equals('Todos'))){
+                    if(selectedSeller != null && (selectedSeller.equals(t.SalesRep__r.SellerCode__c) || selectedSeller.equals('Todos'))){
                     
                     datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '-' + t.TargetDate__c.Year()));
                     
@@ -225,17 +225,18 @@ public with sharing class DMS_Hexagon_CC
         List<Contact> sellerList = new List<Contact>();        
         List<SelectOption> sellerOption = new List<SelectOption>();       
         
-        sellerOption.add(new SelectOption('','--'));
+        sellerOption.add(new SelectOption('Todos','Todos'));
         try{
             if(selectedDistributor != null && !String.isBlank(selectedDistributor)){
-                for(Contact cont : [SELECT id,name,SellerCode__c,Seller_Key__c,Account.ExternalCode__c FROM Contact Where SellerCode__c !=null and Seller_Key__c!=null AND AccountiD != null]){
+                for(Contact cont : [SELECT id,name,SellerCode__c,Account.ExternalCode__c FROM Contact Where SellerCode__c !=null AND AccountiD != null]){
                     sellerList.add(cont);
+                    contactCodeIdMap.put(cont.SellerCode__c, cont.id);
                 }
             }
             for(Contact seller : sellerList)
             {                           
                 if(selectedDistributor.equals(seller.Account.ExternalCode__c)){
-                    sellerOption.add(new SelectOption(seller.Seller_Key__c,seller.name)); 
+                    sellerOption.add(new SelectOption(seller.SellerCode__c,seller.name)); 
                 }
             }  
         }catch(Exception e)

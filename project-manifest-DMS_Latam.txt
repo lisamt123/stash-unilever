@@ -69,6 +69,8 @@ src/classes/DMS_TargetCountActiveStore_Test.cls
 src/classes/DMS_TargetCountActiveStore_Test.cls-meta.xml
 src/classes/DMS_WaveHexagon.cls
 src/classes/DMS_WaveHexagon.cls-meta.xml
+src/classes/DMS_UserCreation.cls
+src/classes/DMS_UserCreation.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml

@@ -13,7 +13,7 @@ public class DMS_ActiveStore_Test {
             Contact contact1 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'Test', null,true);
             Contact contact2 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'contactError', null,true);
             User createdUser = DMS_SObjectInstance_Test.createUserPartner(contact1.Id,'testCountStore@test.com',true); 
-            Target__c target;
+
             Set<id> contactIds = new Set<id>();
             Map<String,Map<String,Set<id>>> numberStoresSeller;
             DMS_ActiveStore countAcStore = new DMS_ActiveStore();

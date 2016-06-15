@@ -1,11 +1,9 @@
 public with sharing class DMS_RecordTypeMemory {
     
-    private static Map<String, Map<String, Id>> fRecTypes = new Map<String, Map<String, Id>>();
-    private static Map<String, Map<String, Id>> fRecTypesNames = new Map<String, Map<String, Id>>();
-    
-    //get values for API Name(DeveloperName)
+    private static Map<String, Map<String, Id>> fRecTypes = new Map<String, Map<String, Id>>();  
+   
     static {
-        List<RecordType> lList = [select id, SobjectType, DeveloperName from RecordType LIMIT 50000];
+        List<RecordType> lList = [select id, SobjectType, DeveloperName from RecordType LIMIT 5000];
         
         for(RecordType lRec : lList) {
             Map<String, Id> lObjMap = fRecTypes.get(lRec.SobjectType);

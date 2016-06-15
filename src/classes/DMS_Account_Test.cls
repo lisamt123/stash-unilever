@@ -21,6 +21,8 @@ public class DMS_Account_Test {
         account.Name = 'Teste';
         
         database.update(account);
+         System.assertNotEquals(null, account);
+
     }
     
     private static testMethod void testTriggerUpdateTarget()

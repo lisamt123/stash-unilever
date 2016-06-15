@@ -1,10 +1,13 @@
 /**********************************************************************
 Name: DMS_PostChatter_Schedule
-
+Copyright © 2016 Salesforce
+====================================================== 
+====================================================== 
 Purpose: 
 Class that run every day to send to the Sellers the info about his performance of sell. If 15 days pass and they're
 still without 'Invoices'. A post on Chatter will mention the seller informing about that.
-
+====================================================== 
+======================================================
 History 
 
 VERSION AUTHOR DATE DETAIL Description
@@ -20,10 +23,10 @@ global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCal
     
     static {
        
-       /* List<DatasetId__c> customList = DMS_DatasetId__c.getAll().values();
-        for(DatasetId__c values : customList) {
+       List<DMS_DatasetId__c> customList = DMS_DatasetId__c.getAll().values();
+        for(DMS_DatasetId__c values : customList) {
             customSetting.put(values.name, values.ID__c);   
-        }*/
+        }
     }
     
     public DMS_PostChatter_Schedule() 
