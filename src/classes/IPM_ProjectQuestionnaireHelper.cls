@@ -417,7 +417,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
             
             if(recordTypeId == recTypeRnDFeasibility || recordTypeId == recTypeSCFeasibility  || recordTypeId == recTypeRnD ||recordTypeId==recTypeGK || recordTypeId==recTypeTradeMark)
             {
-                tempQuestionare.IPM_GK_Answers__c = questionMasterObj.IPM_GK_Answers__c;    
+                tempQuestionare.IPM_Sequence_Number__c = questionMasterObj.IPM_Sequence_Number__c; 
+		tempQuestionare.IPM_GK_Answers__c = questionMasterObj.IPM_GK_Answers__c;    
             }
             else if(recordTypeId == recTypeIDCR)
             {                   
