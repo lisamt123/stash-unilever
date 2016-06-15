@@ -12,7 +12,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Carlos Carvalho 22/05/2016  Class creation  
 ***********************************************************************/
-public class ICB_CheckInCheckOut_CC 
+public with sharing class ICB_CheckInCheckOut_CC 
 {
     private static Id idRecTypeIceCream = ICB_RecordTypeMemory.getRecType( Label.ICB_SOBJECT_EVENT, 
                                                                                    Label.ICB_REC_TYPE_ICE_CREAM_VISIT );

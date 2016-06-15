@@ -7,6 +7,13 @@
         <value>Alert! Check-In out of the customer address! Wish continue?</value>
     </labels>
     <labels>
+        <fullName>GoogleAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GoogleAPIKey</shortDescription>
+        <value>gme-unilever</value>
+    </labels>
+    <labels>
         <fullName>ICB_ALERT_CHECKOUT_OUT_CUSTOMER</fullName>
         <categories>ICB</categories>
         <language>en_US</language>

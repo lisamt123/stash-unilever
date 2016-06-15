@@ -24,8 +24,7 @@ private class ICB_CalculatePlanDistaance_Batch_Test
     private static testMethod void calculatePlanDistaance_Batch_Test()
     {
         Id recordTypeId = ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_EVENT, Label.ICB_REC_TYPE_ICE_CREAM_VISIT);
-        User user =  ICB_SobjectInstance_Test.insertUser('System Administrator', 'Test', 'User', 'tUser', 'testUser@email.com', 'testUser@email.com.unilever', 
-                                                         'testUser', 'America/Los_Angeles', 'en_US', 'UTF-8', 'en_US');
+        User user =  ICB_SobjectInstance_Test.insertUser('System Administrator');
         System.Test.startTest();
         
         ICB_SobjectInstance_Test.insertEvent('Call', System.now(), System.now(), user.Id, recordTypeId);

@@ -55,8 +55,7 @@ public class ICB_CheckInCheckOut_CC_Test
     ********************************************************************/
     private static testMethod void getCognosFile_Test()
     {
-        User userCognos =  ICB_SobjectInstance_Test.insertUser('System Administrator', 'Test', 'User', 'tUser', 'testUser@email.com', 'testUser@email.com.unilever', 
-                                                         'testUser', 'America/Los_Angeles', 'en_US', 'UTF-8', 'en_US');
+        User userCognos =  ICB_SobjectInstance_Test.insertUser('System Administrator');
         System.Test.startTest();
         
         System.runAs(userCognos)
@@ -182,8 +181,7 @@ public class ICB_CheckInCheckOut_CC_Test
     ********************************************************************/
     private static void createInstances()
     {
-        user =  ICB_SobjectInstance_Test.insertUser('System Administrator', 'Test', 'User', 'tUser', 'testUser@email.com', 'testUser@email.com.unilever', 
-                                                    'testUser', 'America/Los_Angeles', 'en_US', 'UTF-8', 'en_US');
+        user =  ICB_SobjectInstance_Test.insertUser('System Administrator');
         event = ICB_SobjectInstance_Test.insertEvent('Call', System.now(), System.now(), user.Id, recordTypeId);
     }
 }

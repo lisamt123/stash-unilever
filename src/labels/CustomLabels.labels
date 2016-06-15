@@ -3999,6 +3999,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Unplanned</value>
     </labels>
     <labels>
+        <fullName>ICB_URL_GOOGLE_MAP</fullName>
+        <categories>ICB</categories>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>ICB URL GOOGLE MAP</shortDescription>
+        <value>https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Clabel:A%7C</value>
+    </labels>
+    <labels>
         <fullName>ICB_WARNING_CANT_POSSIBLE_RETURN_GEO</fullName>
         <categories>ICB</categories>
         <language>en_US</language>
