@@ -99,6 +99,18 @@
         <label>BET Members to add</label>
     </fieldSets>
     <fields>
+        <fullName>ICB_CPF__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>CPF (Cadastro de Pessoa Fisica) of the user.</description>
+        <externalId>false</externalId>
+        <label>CPF</label>
+        <length>14</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>AF_Agency_Fees_User_Type__c</fullName>
         <externalId>false</externalId>
         <label>Agency Fees User Type</label>
