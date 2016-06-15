@@ -1,0 +1,35 @@
+<apex:page standardController="Lead"  extensions="AF_Assigncategories">
+
+ <apex:form >
+  <apex:pagemessages ></apex:pagemessages>
+ 
+  <apex:pageBlock title="Associate Category/Brand for User" >
+
+       <apex:actionRegion >
+          <apex:pageBlockSection id="accinfo" columns="1">
+         <apex:inputField value="{!lead1.User__c}">
+            <apex:actionSupport event="onchange" action="{!categories_brands}" rerender="accinfo, msgs"/> 
+         </apex:inputField>
+           <apex:inputField value="{!lead1.Category_Brands__c}" label="Category"/>
+           
+           <apex:inputField value="{!lead1.brand__c}" label="Brand"/>
+         <apex:outputPanel id="msgs" rendered="{!catpanel}">
+             <apex:pageBlockSection columns="1" title="Exsting Category/Brand Information">
+              <apex:outputtext value="{!ulist.AF_Category__c}" id="categories"/>
+             <apex:outputtext value="{!ulist.AF_Brand__c }" id="brands"/>
+             
+             </apex:pageBlockSection>
+         </apex:outputPanel>
+        </apex:pageBlockSection>
+        
+      </apex:actionRegion>
+       
+          <apex:pageBlockButtons >
+              
+              <apex:commandButton value="Update" action="{!update_user}" />
+ 
+         <!-- <apex:commandButton value="Go" action="{!categories_brands}"/>-->
+       </apex:pageBlockButtons>
+    </apex:pageBlock>
+ </apex:form>
+</apex:page>

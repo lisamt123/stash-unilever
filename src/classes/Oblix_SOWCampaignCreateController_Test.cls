@@ -22,6 +22,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             Test.startTest();
@@ -60,6 +61,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -103,6 +105,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -123,6 +126,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -187,6 +191,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             insert testSplit1;
             insert testSplit;
             insert testGeography;
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -235,6 +240,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             project.OblixRegion__c = GLOBAL_REGION;
             update project;
             
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -270,6 +276,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -288,6 +295,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
             
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -309,6 +317,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             insert testGeography;
             MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
             insert testGeography1;
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -338,6 +347,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             insert testGeography;
             MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
             insert testGeography1;
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
@@ -359,6 +369,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             insert testGeography;
             MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
             insert testGeography1;
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
             ApexPages.currentPage().getParameters().put(CLONE_TXT, 'true');
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
@@ -372,7 +383,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             // S.M. added limit to pass sonar test
             List<Oblix_SOW_Projects__c> projects = [SELECT Id FROM Oblix_SOW_Projects__c LIMIT 1000];
             System.assertEquals(2, projects.size());
-            System.assertEquals((new PageReference('/apex/oblix_campaignsummary?projectId=' + campaignCreateController.campaignHelper.selectedProject.Id)).getUrl(), redirectPage.getUrl());
+            System.assertEquals((new PageReference('/apex/oblix_campaignsummary?projectId=' + campaignCreateController.selected_Project.Id)).getUrl(), redirectPage.getUrl());
 
         }
     }
