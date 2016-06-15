@@ -1,18 +1,15 @@
 /**********************************************************************
-Name: DMS_ConnectApiHelper_CC
-ConfigureOpportunity() Copyright © 2016 Salesforce
-====================================================== 
-====================================================== 
+Name: DMS_ConnectApiHelper
+
 Purpose: 
 Helper class that makes it easier to do common operations with the classes in the ConnectApi namespace.
-====================================================== 
-======================================================
+
 History 
 
 VERSION AUTHOR DATE DETAIL Description
 1.0 	CHACL  25/05/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
-global class DMS_ConnectApiHelper_CC 
+global class DMS_ConnectApiHelper 
 {
     
     public class InvalidParameterException extends Exception {}
@@ -34,7 +31,7 @@ global class DMS_ConnectApiHelper_CC
             input.body = messageInput;
             input.subjectId = subjectId;
         }catch(Exception e){
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER_SEGMENT_SPECIAL_FORMATTING + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         
         return ConnectApi.ChatterFeeds.postFeedElement(communityId, input);
@@ -87,7 +84,7 @@ global class DMS_ConnectApiHelper_CC
                 addTextSegment(messageSegmentInputs, trailingText);
             }
         }catch(Exception e){
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER_SEGMENT_INPUTS + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         return messageSegmentInputs;
     }
@@ -100,19 +97,21 @@ global class DMS_ConnectApiHelper_CC
                 messageSegmentInputs.add(textSegmentInput);
             }
         }catch(Exception e){
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER_TEXT_SEGMENT + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER + e.getCause() + e.getMessage() + e.getLineNumber());
         }
     }
     
     private static ConnectApi.TextSegmentInput makeTextSegmentInput(String text) 
     {   
         ConnectApi.TextSegmentInput textSegment;
-        try{
-        textSegment = new ConnectApi.TextSegmentInput();
-        textSegment.text = text;
-        }catch(Exception e){
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER_TEXT_SEGMENT_INPUT + e.getCause() + e.getMessage() + e.getLineNumber());    
-            }
+        try {
+            
+            textSegment = new ConnectApi.TextSegmentInput();
+            textSegment.text = text;
+            
+        } catch(Exception e) {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER + e.getCause() + e.getMessage() + e.getLineNumber());    
+        }
         return textSegment;
     }
     
@@ -120,10 +119,10 @@ global class DMS_ConnectApiHelper_CC
     {	
         ConnectApi.MentionSegmentInput mentionSegment;
         try{
-        mentionSegment = new ConnectApi.MentionSegmentInput();
-        mentionSegment.id = mentionId;
+            mentionSegment = new ConnectApi.MentionSegmentInput();
+            mentionSegment.id = mentionId;
         }catch(Exception e){
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER_MENTIONS_SEGMENT_INPUT + e.getCause() + e.getMessage() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_API_HELPER + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         return mentionSegment;
     }    

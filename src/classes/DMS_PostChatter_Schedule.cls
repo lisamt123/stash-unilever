@@ -1,31 +1,30 @@
 /**********************************************************************
-Name: DMS_PostChatter_BatchSchedule
-ConfigureOpportunity() Copyright © 2016 Salesforce
-====================================================== 
-====================================================== 
+Name: DMS_PostChatter_Schedule
+
 Purpose: 
 Class that run every day to send to the Sellers the info about his performance of sell. If 15 days pass and they're
 still without 'Invoices'. A post on Chatter will mention the seller informing about that.
-====================================================== 
-======================================================
+
 History 
 
 VERSION AUTHOR DATE DETAIL Description
 1.0     CHACL  25/05/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
-global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.AllowsCallouts
+global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCallouts
 {
     
     private static Map<String, String> mapUsers = new Map<String, String>();
     private String sessionId;
+    private static Network community;
     
-    public DMS_PostChatter_BatchSchedule() 
+    public DMS_PostChatter_Schedule() 
      {
         this(UserInfo.getSessionId());
+         system.debug('UserInfo:'+ UserInfo.getSessionId());
      }
     
     
-     public DMS_PostChatter_BatchSchedule(String vSessionId) 
+     public DMS_PostChatter_Schedule(String vSessionId) 
      {
         this.sessionId = vSessionId;
      }
@@ -40,22 +39,22 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     {
          postChatter(sessionId);
         
-    }
+    } 
     
     @future(callout=true)
     public static void postChatter(String mySession) {
-        
+        	system.debug('mySession:'+mySession);
         try {
-            
-            DMS_WaveRestCall_CC.getRecords(DMS_GlobalConstants.ID_Dataset1,DMS_GlobalConstants.ID_Dataset2, mySession); //call the method 
-        
-            for(DMS_WaveRestCall_CC.Records waveRecord :  DMS_WaveRestCall_CC.listRecords) 
+			getIdCommunity();
+            DMS_WaveRestCall.getRecords(DMS_GlobalConstants.ID_Dataset1,DMS_GlobalConstants.ID_Dataset2, mySession); //call the method 
+        	
+            for(DMS_WaveRestCall.Records waveRecord :  DMS_WaveRestCall.listRecords) 
             {
                 mapUsers.put(waveRecord.Account_Owner, waveRecord.DistributorCode);    
             }
-            
+            system.debug('mapUsers:'+ mapUsers);
             Map<Id, Set<String>> mapUserGroupId = new Map<Id, Set<String>>(getMapUserGroupId(mapUsers)); //Separete the UserId by GroupMember that he's part
-            
+			system.debug('mapUserGroupId:'+ mapUserGroupId);
             for(Id vId : mapUserGroupId.keySet()) {
                 String groupId = vId;
                 String mentionIds;
@@ -64,14 +63,18 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
                     mentionIds += vStrings;           
                 }          
                 //Post on chatter for the specific group/user the message with @mention, and the link of the report.
-                DMS_ConnectApiHelper_CC.postFeedItemWithMentions(DMS_GlobalConstants.ID_COMMUNITY, groupId, Label.DMS_Hello + formatString(mentionIds) + Label.DMS_CommunityMSG + Label.DMS_WaveDashboard); 
+                DMS_ConnectApiHelper.postFeedItemWithMentions(community.Id, groupId, Label.DMS_Hello + formatString(mentionIds) + Label.DMS_CommunityMSG + ' ' + Label.DMS_WaveDashboard); 
+                }
+            } 
+            catch (Exception e) 
+            {
+                System.debug(DMS_GlobalConstants.exceptionPostChatter + e.getMessage());
             }
-        } 
-        catch (Exception e) 
-        {
-            System.debug(DMS_GlobalConstants.exceptionPostChatter + e.getMessage());
-        }
         
+    }
+    
+    private static void getIdCommunity() {
+        community = [SELECT Id FROM Network WHERE UrlPathPrefix = 'dms'][0];
     }
     
     /*******************************************************************
@@ -87,7 +90,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
         try {
 
             List<CollaborationGroupMember> tempList = [SELECT Id, MemberId, CollaborationGroupId FROM CollaborationGroupMember Where MemberId =: mapIdUsers.keySet()];
-            
+            system.debug('tempList:'+ tempList);
             for(CollaborationGroupMember collabMember : tempList) 
             { 
                 if(vMap.containsKey(collabMember.CollaborationGroupId)) 
@@ -104,7 +107,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
           } 
         catch (Exception e) 
         {
-            System.debug(DMS_GlobalConstants.exceptionMsg + e.getMessage());
+            System.debug(DMS_GlobalConstants.EXCEPTION_MESSAGE + e.getMessage());
         }
         return vMap;
     }
@@ -118,14 +121,14 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     {
         String userMentioned = null;
         try {
-            if(Id != null || Id != DMS_GlobalConstants.VALUE_NULL) 
+            if(Id != 'null') 
             {
-                userMentioned = DMS_GlobalConstants.VALUE_BLANK + DMS_GlobalConstants.VALUE_CURLY_BRACKET_OPEN + Id + DMS_GlobalConstants.VALUE_CURLY_BRACKET_CLOSE + DMS_GlobalConstants.VALUE_BLANK;
+                userMentioned = ' ' + '{' + Id + '}' + ' ';
             }        
         }
         catch (Exception e) 
         {
-            System.debug(DMS_GlobalConstants.exceptionMsg + e.getMessage());
+            System.debug(DMS_GlobalConstants.EXCEPTION_MESSAGE + e.getMessage());
         }
         return userMentioned;
 
@@ -140,11 +143,11 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     {
         try {
             
-            vString = vString.replace(DMS_GlobalConstants.VALUE_NULL, DMS_GlobalConstants.VALUE_BLANK);
+            vString = vString.replace('null', ' ');
         }
         catch (Exception e) 
         {
-            System.debug(DMS_GlobalConstants.exceptionMsg + e.getMessage());
+            System.debug(DMS_GlobalConstants.EXCEPTION_MESSAGE + e.getMessage());
         }
         return vString;
     }

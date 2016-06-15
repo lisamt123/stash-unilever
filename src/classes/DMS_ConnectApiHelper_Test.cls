@@ -1,12 +1,12 @@
-@IsTest(SeeAllData=true)
+@isTest 
 public class DMS_ConnectApiHelper_Test {
 
     
-    @IsTest(SeeAllData=true)
+    @isTest(SeeAlldata=true)
     static void testInvalidMentionType() {
         Boolean exceptionThrown = false;
         try {
-            DMS_ConnectApiHelper_CC.postFeedItemWithMentions(null, 'me', '{001x00000000D7m}'); // not a group or user id
+            DMS_ConnectApiHelper.postFeedItemWithMentions(null, 'me', '{001x00000000D7m}'); // not a group or user id
         }
         catch (ConnectApi.ConnectApiException e) {
             System.assertEquals('Only user and group IDs may be used in inline mentions.', e.getMessage());
@@ -15,16 +15,16 @@ public class DMS_ConnectApiHelper_Test {
         System.assert(exceptionThrown);
     }
     
-    @IsTest(SeeAllData=true)
+    @isTest
     static void testEmptyString() {
-        List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper_CC.getMessageSegmentInputs('');
+        List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper.getMessageSegmentInputs('');
         System.assertEquals(0, segments.size());
     }
 
-    @IsTest(SeeAllData=true)
+    @isTest
     static void testNoMentions() {
         String text = 'hey there';
-        List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper_CC.getMessageSegmentInputs(text);
+        List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper.getMessageSegmentInputs(text);
         
         System.assertEquals(1, segments.size());
         System.assert(segments.get(0) instanceof ConnectApi.TextSegmentInput);
@@ -32,11 +32,13 @@ public class DMS_ConnectApiHelper_Test {
         System.assertEquals(text, textSegment.text);
     }
 
-    @IsTest(SeeAllData=true)
+    User userCognos =  DMS_SObjectInstance_Test.createUserRunTest();
+    
+    @isTest
     static void testMentionOnly() {
         String mentionId = '005x0000000URNP';
         String text = '{' + mentionId + '}';
-        List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper_CC.getMessageSegmentInputs(text);
+        List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper.getMessageSegmentInputs(text);
         
         System.assertEquals(1, segments.size());
         System.assert(segments.get(0) instanceof ConnectApi.MentionSegmentInput);
