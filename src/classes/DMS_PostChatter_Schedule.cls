@@ -20,10 +20,10 @@ global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCal
     
     static {
        
-        List<DatasetId__c> customList = DatasetId__c.getAll().values();
+       /* List<DatasetId__c> customList = DMS_DatasetId__c.getAll().values();
         for(DatasetId__c values : customList) {
             customSetting.put(values.name, values.ID__c);   
-        }
+        }*/
     }
     
     public DMS_PostChatter_Schedule() 

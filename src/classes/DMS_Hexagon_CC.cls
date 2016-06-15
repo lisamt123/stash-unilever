@@ -44,7 +44,7 @@ public with sharing class DMS_Hexagon_CC
 ********************************************************************/
     public DMS_Hexagon_CC()
     {        
-        
+        selectedSeller = 'Todos';
         defineMeta();                      
         optionDistributorCountry();                     
         optionSalesChannel();        
@@ -87,12 +87,13 @@ public with sharing class DMS_Hexagon_CC
     {        
         List<SelectOption> distributorOption = new List<SelectOption>();
         try
-        {            	
-            distributorList = selectDistributor();        
-            distributorOption.add(new SelectOption('','--'));        
+        {                        
+            distributorOption.add(new SelectOption('','--'));
+            if(selectedDistributorCountry != null && !String.isBlank(selectedDistributorCountry)){              
+            }
             if(distributorList !=null){
                 for(Account distributor : distributorList){
-                    if(selectedDistributorCountry !=null && selectedDistributorCountry.equals(distributor.Country__c)){
+                    if(selectedDistributorCountry.equals(distributor.Country__c)){
                         distributorOption.add(new SelectOption(distributor.ExternalCode__c ,distributor.name));                
                     }
                 }
@@ -109,16 +110,24 @@ public with sharing class DMS_Hexagon_CC
 * Purpose: Create pickList of Distributor country for filter
 ********************************************************************/
     private void optionDistributorCountry()
-    {        
+    {    
+        List<Account> distributorCountryList;
         distributorCountry = new List<SelectOption>();
-        distributorList = selectDistributor();
+        
+        distributorList = new List<Account>();
         try
-        {                  
+        {           
+            for(Account distributor :[SELECT id,name,ExternalCode__c,country__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
+            {
+                distributorList.add(distributor);
+            }      
+            
             distributorCountry.add(new SelectOption('','--'));        
             if(distributorList !=null){
-               checkDuplicated(distributorList,'country__c');
-                for(Account distributor : distributorList){                    
-                        distributorCountry.add(new SelectOption(distributor.country__c ,distributor.country__c));                        
+                distributorCountryList = distributorList.clone();
+                checkDuplicated(distributorCountryList,'country__c');
+                for(Account distributor : distributorCountryList){                    
+                    distributorCountry.add(new SelectOption(distributor.country__c ,distributor.country__c));                        
                 }
             }
         }
@@ -134,23 +143,28 @@ public with sharing class DMS_Hexagon_CC
     public List<SelectOption> getOptionDate()
     {
         List<SelectOption> datePicklistOption = new List<SelectOption>();
-        List<Target__c> target;
+        List<Target__c> targetList = new List<Target__c>();
         Date firstDate;
         try
-        {
-            target = selectDateTarget();
-            if(target != null && !target.isEmpty())
+        {            
+            for(Target__c target : [SELECT id,name,TargetDate__c, SalesRep__r.Seller_Key__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c])
             {
-                datePicklistOption.add(new SelectOption('','--'));
-                checkDuplicated(target,'TargetDate__c');
-                for( Target__c t: target){                    
-                    //if(selectedSeller != null && selectedSeller.equals(t.SalesRep__r.Seller_Key__c)){
-                                                                       
+                targetList.add(target);
+            }        
+            
+            if(targetList != null && !targetList.isEmpty())
+            {
+                datePicklistOption.add(new SelectOption('Todos','--'));
+                checkDuplicated(targetList,'TargetDate__c');
+                for( Target__c t: targetList){                    
+                    if(selectedSeller != null && (selectedSeller.equals(t.SalesRep__r.Seller_Key__c) || selectedSeller.equals('Todos'))){
+                    
                     datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '-' + t.TargetDate__c.Year()));
                     
-                      //}
+                    }
                 }                                                                                   
             }
+            
         }
         catch(Exception e)
         {
@@ -159,16 +173,21 @@ public with sharing class DMS_Hexagon_CC
         return datePicklistOption;
     }    
     public void checkDuplicated(List<SObject> optionList,String field){
-         
+        
         boolean check = false;
-        for(Integer x=0; x<optionList.size(); x++){
-            for(Integer y=x+1; y<optionList.size(); y++){               
-                if(String.valueOf(optionList.get(x).get(field)).equals(String.valueOf(optionList.get(y).get(field)))){
-                    optionList.remove(y); 
-                    y--;
+        try{
+            for(Integer x=0; x<optionList.size(); x++){
+                for(Integer y=x+1; y<optionList.size(); y++){               
+                    if(String.valueOf(optionList.get(x).get(field)).equals(String.valueOf(optionList.get(y).get(field)))){
+                        optionList.remove(y); 
+                        y--;
+                    }
                 }
             }
-        }       
+        } catch(Exception e)
+        {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }         
     }
     /*******************************************************************
 * Purpose: Create picklist of Sales Channel for filter
@@ -176,16 +195,26 @@ public with sharing class DMS_Hexagon_CC
     private void optionSalesChannel()
     {        
         salesChannelOption = new List<SelectOption>();
-        List<AggregateResult> aggSalesChannel = selectSalesChannel();
-        salesChannelOption.add(new SelectOption('','--'));
-        
-        if(aggSalesChannel != null)
-        {
-            for(AggregateResult agg : aggSalesChannel)
+        List<AggregateResult> aggSalesChannel =new List<AggregateResult>();
+        try{
+            for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
             {
-                salesChannelOption.add(new SelectOption(String.valueOf(agg.get('salesChannel')),String.valueOf(agg.get('salesChannel'))));                
+                aggSalesChannel.add(agg);                
+            }         
+            
+            salesChannelOption.add(new SelectOption('','--'));
+            
+            if(aggSalesChannel != null)
+            {
+                for(AggregateResult agg : aggSalesChannel)
+                {
+                    salesChannelOption.add(new SelectOption(String.valueOf(agg.get('salesChannel')),String.valueOf(agg.get('salesChannel'))));                
+                }
             }
-        }        
+        } catch(Exception e)
+        {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }                 
     }    
     
     /*******************************************************************
@@ -193,18 +222,26 @@ public with sharing class DMS_Hexagon_CC
 ********************************************************************/
     public List<SelectOption> getOptionSeller()
     {     
-        List<Contact> sellerList = new List<Contact>();
-        sellerList = selectContactSeller();
+        List<Contact> sellerList = new List<Contact>();        
         List<SelectOption> sellerOption = new List<SelectOption>();       
         
         sellerOption.add(new SelectOption('','--'));
-        
-        for(Contact seller : sellerList)
-        {                           
-            if(selectedDistributor != null && selectedDistributor.equals(seller.Account.ExternalCode__c)){
-                sellerOption.add(new SelectOption(seller.Seller_Key__c,seller.name)); 
+        try{
+            if(selectedDistributor != null && !String.isBlank(selectedDistributor)){
+                for(Contact cont : [SELECT id,name,SellerCode__c,Seller_Key__c,Account.ExternalCode__c FROM Contact Where SellerCode__c !=null and Seller_Key__c!=null AND AccountiD != null]){
+                    sellerList.add(cont);
+                }
             }
-        }    
+            for(Contact seller : sellerList)
+            {                           
+                if(selectedDistributor.equals(seller.Account.ExternalCode__c)){
+                    sellerOption.add(new SelectOption(seller.Seller_Key__c,seller.name)); 
+                }
+            }  
+        }catch(Exception e)
+        {
+            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
+        }         
         return sellerOption;
     }    
     
@@ -271,92 +308,5 @@ public with sharing class DMS_Hexagon_CC
             System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
         }   
         
-    }
-    
-    /*******************************************************************
-* Purpose: Select all distributors Account in salesforce   
-* Returns: List<Accoun> 
-********************************************************************/
-    private  List<Account> selectDistributor()
-    {
-        List<Account> distributorList;
-        distributorList = new List<Account>();
-        
-        try
-        {
-            for(Account distributor :[SELECT id,name,ExternalCode__c,country__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
-            {
-                distributorList.add(distributor);
-            }            
-        }
-        catch(QueryException e)
-        {
-            distributorList = null;
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
-        }
-        
-        return distributorList;        
-    }
-    
-    /*******************************************************************
-* Purpose: Select All Sales Channel   
-* Returns: List<AggregateResult> 
-********************************************************************/
-    private List<AggregateResult> selectSalesChannel()
-    {
-        
-        List<AggregateResult> aggSalesChannel; 
-        aggSalesChannel = new List<AggregateResult>();
-        try
-        {
-            for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
-            {
-                aggSalesChannel.add(agg);                
-            }           
-        }
-        catch(QueryException e)
-        {
-            aggSalesChannel = null;
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
-        }
-        return aggSalesChannel;        
-    }
-    
-    /*******************************************************************
-* Purpose: Get a list of Records containing the Account Owner and DistributorCode through Dataset Id
-* Parameters: Dataset Id 1, Dataset Id 2
-* Returns: List<Records> 
-********************************************************************/
-    private List<Target__c> selectDateTarget()
-    {
-        List<Target__c> target;        
-        try
-        {             
-            target = [SELECT id,name,TargetDate__c, SalesRep__r.Seller_Key__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c];
-        }
-        catch(QueryException e)
-        {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON  + e.getCause() + e.getMessage() + e.getLineNumber());
-        }       
-        return target;
-    }  
-    
-    /*******************************************************************
-* Purpose: Get a list of Records containing the Account Owner and DistributorCode through Dataset Id
-* Parameters: Dataset Id 1, Dataset Id 2
-* Returns: List<Records> 
-********************************************************************/
-    private List<Contact> selectContactSeller()
-    {
-        List<Contact> contactSeller;        
-        try
-        {             
-            contactSeller = [SELECT id,name,SellerCode__c,Seller_Key__c,Account.ExternalCode__c FROM Contact Where SellerCode__c !=null and Seller_Key__c!=null AND AccountiD != null];
-        }
-        catch(QueryException e)
-        {
-            System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
-        }       
-        return contactSeller;
     }      
 }

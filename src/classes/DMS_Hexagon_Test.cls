@@ -1,12 +1,9 @@
 /**********************************************************************
 Name: DMS_Hexagon_Test
-Copyright © 2016 Salesforce
-====================================================== 
-====================================================== 
+
 Purpose: 
 Class used to test the controller DMS_Hexagon_CC
-====================================================== 
-======================================================
+
 History 
 
 VERSION		AUTHOR			 DATE 	 	 Description
@@ -16,15 +13,15 @@ VERSION		AUTHOR			 DATE 	 	 Description
 public class DMS_Hexagon_Test 
 {
     
-    public static Account accountDistributor = DMS_SObjectInstance_Test.createAccount(DMS_GlobalConstants.ACCOUNT_NAME,DMS_GlobalConstants.ACCOUNT_EXTERNAL_CODE, null, null, DMS_RecordTypeMemory.getRecType('Account', 'Distributor'), UserInfo.getUserId(),NULL, true);
-    public static Account accountStore = DMS_SObjectInstance_Test.createAccount(DMS_GlobalConstants.ACCOUNT_NAME,DMS_GlobalConstants.ACCOUNT_EXTERNAL_CODE, accountDistributor.id, DMS_GlobalConstants.ACCOUNT_STATUS_APROV, DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer'), UserInfo.getUserId(), DMS_GlobalConstants.ACCOUNT_SALES_CHANNEL, true);  
+    public static Account accountDistributor = DMS_SObjectInstance_Test.createAccount('account Test','DMS_test_test', null, null, DMS_RecordTypeMemory.getRecType('Account', 'Distributor'), UserInfo.getUserId(),NULL, true);
+    public static Account accountStore = DMS_SObjectInstance_Test.createAccount('account Test','DMS_test_test', accountDistributor.id, 'APROV', DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer'), UserInfo.getUserId(), '001', true);  
     
     private static testMethod void testHexagon()
     {        
         DMS_Hexagon_CC hexagon = new DMS_Hexagon_CC();         
-        hexagon.selectedDistributor = DMS_GlobalConstants.ACCOUNT_NAME;        
+        hexagon.selectedDistributor = 'account Test';        
         hexagon.selectedDate = '2016-06-01';
-        hexagon.selectedSalesChannel = DMS_GlobalConstants.ACCOUNT_SALES_CHANNEL;
+        hexagon.selectedSalesChannel = '001';
         hexagon.selectedDistributorCountry = 'El Salvador';
         hexagon.selectedSeller = '';
         hexagon.getOptionDistributor();
