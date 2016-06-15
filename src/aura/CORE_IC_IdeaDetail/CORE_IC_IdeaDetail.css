@@ -75,3 +75,9 @@ text-decoration:none;
 .THIS .margin{
     margin-top:5px;
 }
+.THIS .para{
+     margin-bottom: .05rem;
+}
+.THIS .listitem{
+     padding: 2px;    
+}

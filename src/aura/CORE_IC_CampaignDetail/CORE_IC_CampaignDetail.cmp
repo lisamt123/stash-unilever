@@ -112,6 +112,7 @@
             margin-left: 0px;
             margin-top: 10px;
             margin-right: 7px;
+            margin-bottom: 11px;
         }
         .side_link {
             float: right;
@@ -219,7 +220,7 @@
             			<aura:if isTrue="{!v.latestIdeaItems.length>0}"> 
                             <div class="side_link" style="margin-left: 87px" onclick="{!c.gotoIdeaListPage}">
                                 <a>See all Ideas</a>
-                                <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png" class="seeAllIcon"></img>
+                                <img src="/resource/CORE_IC_IdeasLigthtning/utility/right_light_blue.svg" class="seeAllIcon"></img>
                             </div>
                         </aura:if>
                     </td>
@@ -228,7 +229,7 @@
             <aura:if isTrue="{!v.latestIdeaItems.length>0}">            
                 <div class="slds-card ">                    
                     <div class="slds-grid">
-                        <div class="slds-media slds-media--center slds-has-flexi-truncate" onclick="{!c.displayIdeaDetails}">
+                        <div class="slds-media slds-media--center slds-has-flexi-truncate" onclick="{!c.gotoIdeaDetailPage}">
                             <div onclick="{!c.displayIdeaDetails}">
                                <a> <h2 class="slds-text-heading--small ideaTitleMargin " >{!v.latestIdeaItems[0].IdeaTitle}</h2></a>
                             </div>
@@ -257,10 +258,10 @@
                                 </aura:if>
                             </aura:if>
                         </div>    
-                    </div>                                
-                    <div class="slds-text-body--small titlePadding " onclick="{!c.displayCampaignDetails}">
-                        {!v.latestIdeaItems[0].CampaignTitle}
-                    </div>                                  
+                    </div>  
+                    
+                     
+                                                  
                     <hr/>
                     <div class="slds-media slds-comment slds-hint-parent" >
                         <div class="slds-media__figure">

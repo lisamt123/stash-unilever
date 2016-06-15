@@ -34,6 +34,10 @@
    padding-right: 33px;
     border-radius: 4px;
 }
+.THIS .closeButtonStyle{
+    background-color: #EEF1F6;
+    border-radius: 4px;
+}
 .THIS .paddingTop{
     padding-top:25px;
 }

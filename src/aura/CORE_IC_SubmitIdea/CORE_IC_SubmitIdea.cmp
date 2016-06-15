@@ -110,10 +110,12 @@
                 </div>
                 
                 <div class="paddingTop">
-                	<input type="file" class="file " aura:id="file" >
-                    </input>
-                    <div>
-                         <img class="clearFileIcon " src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" onclick="{!c.clearAttachment}"></img>
+                    <div class="closeButtonStyle">                        	
+                        <input type="file" class="file " aura:id="file" >
+                        </input>
+                        <div>
+                             <img class="clearFileIcon " src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" onclick="{!c.clearAttachment}"></img>
+                        </div>
                     </div>
                    
                 </div>

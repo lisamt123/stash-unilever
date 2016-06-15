@@ -38,7 +38,7 @@
             </span>
         </div>
         <div class="tilePaddingTitle leftSpaceing">
-            <h2 class="slds-text-body--regular" onclick="{!c.gotoIdeaDetail}" style="margin-top: -14px"><a> {!v.leader.IdeaTitle}</a></h2><br/>
+            <h2 class="slds-text-body--regular campaignIdeaTitle" onclick="{!c.gotoIdeaDetail}" style="margin-top: -14px"><a> {!v.leader.IdeaTitle}</a></h2><br/>
             <p class="slds-truncate user">by {!v.leader.CreatorName}</p>
         </div>
         <div class="voteSection">
