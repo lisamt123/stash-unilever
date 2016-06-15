@@ -3008,11 +3008,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <label>Managed Category</label>
         <picklist>
             <picklistValues>
-                <fullName>SAVORY</fullName>
+                <fullName>Savoury</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ICE CREAM</fullName>
+                <fullName>Ice Cream</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -3020,15 +3020,15 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Cleansing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SPREADS</fullName>
+                <fullName>Spreads</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BEVERAGES</fullName>
+                <fullName>Beverages</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -3036,23 +3036,39 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>DRESSINGS</fullName>
+                <fullName>Dressings</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>HAIR</fullName>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>DEODARANTS</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Coffee &amp; Snacks</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Water Purification Category</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -3144,7 +3160,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <fullName>IPM_Unique_Company_Card_Name__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>to store value as unique company card</description>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Unique Company Card Name</label>
         <length>100</length>
         <required>false</required>
@@ -4937,19 +4953,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Managed_Category__c</picklist>
             <values>
-                <fullName>BEVERAGES</fullName>
+                <fullName>Beverages</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>DEODARANTS</fullName>
+                <fullName>Coffee %26 Snacks</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>DRESSINGS</fullName>
+                <fullName>Deodorants %26 Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HAIR</fullName>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4957,7 +4977,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ICE CREAM</fullName>
+                <fullName>Ice Cream</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4965,23 +4985,35 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAVORY</fullName>
+                <fullName>Other Foods</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Savoury</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SPREADS</fullName>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Purification Category</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7777,19 +7809,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Managed_Category__c</picklist>
             <values>
-                <fullName>BEVERAGES</fullName>
+                <fullName>Beverages</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>DEODARANTS</fullName>
+                <fullName>Coffee %26 Snacks</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>DRESSINGS</fullName>
+                <fullName>Deodorants %26 Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HAIR</fullName>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7797,7 +7833,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ICE CREAM</fullName>
+                <fullName>Ice Cream</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7805,23 +7841,35 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAVORY</fullName>
+                <fullName>Other Foods</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Savoury</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SPREADS</fullName>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Purification Category</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9641,19 +9689,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Managed_Category__c</picklist>
             <values>
-                <fullName>BEVERAGES</fullName>
+                <fullName>Beverages</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>DEODARANTS</fullName>
+                <fullName>Coffee %26 Snacks</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>DRESSINGS</fullName>
+                <fullName>Deodorants %26 Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HAIR</fullName>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9661,7 +9713,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ICE CREAM</fullName>
+                <fullName>Ice Cream</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9669,23 +9721,35 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORAL CARE</fullName>
+                <fullName>Oral Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAVORY</fullName>
+                <fullName>Other Foods</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CARE</fullName>
+                <fullName>Savoury</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SKIN CLEANSING</fullName>
+                <fullName>Skin Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SPREADS</fullName>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Purification Category</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

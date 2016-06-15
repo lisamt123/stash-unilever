@@ -985,6 +985,18 @@
                 <fullName>Home Care</fullName>
                 <default>true</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2467,7 +2479,7 @@ OwnerId))</formula>
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>18</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3032,6 +3044,18 @@ OwnerId))</formula>
                 <fullName>Home Care</fullName>
                 <default>true</default>
             </values>
+	    <values>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>	
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Child_Complexity__c</picklist>
@@ -3491,6 +3515,18 @@ OwnerId))</formula>
             <values>
                 <fullName>Home Care</fullName>
                 <default>true</default>
+            </values>
+	    <values>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
