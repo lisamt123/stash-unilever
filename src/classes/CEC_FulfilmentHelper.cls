@@ -13,7 +13,8 @@ VERSION  AUTHOR              DATE            DETAIL                        Descr
 1.0 -     Esther             16/10/2014      INITIAL DEVELOPMENT            CSR
 2.0       samrin Shaikh      15/12/2015      CSC - 2765                    US-009 Letter/Enclosure auto population
 3.0       mahesh konar       2nd june 2016   CSC-4518                      To calculate Total Enclosure Value
-                                                                           added method calcTotalEnclosure
+                                                                           added method beforeInsUpdCalcEnclosure,
+																		   getEnclosureIds and calcTotalEnclosure
 
 ***********************************************************************/
 
@@ -763,83 +764,96 @@ public with sharing class CEC_FulfilmentHelper {
     Param: fulfilmentList
     ********************************************************************/
 
-    public void calcTotalEnclosure(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap) {
+    public void beforeInsUpdCalcEnclosure(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap) {
 
         //2nd june 2016 - mahesh - To calculate Total Enclosure Value
         Set<Id> enclosureIds = new Set<Id>();
-        Map<Id, cec_Enclosure__c> enclosureById;
 
         for (cec_Fulfilment__c fulfilmentObj : fulfilmentList) {
-            
-            if(fulfilmentOldMap != null && (  fulfilmentObj.Enclosure1__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure1__c
-                                           || fulfilmentObj.Enclosure2__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure2__c 
-                                           || fulfilmentObj.Enclosure3__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure3__c
-                                           || fulfilmentObj.Enclosure4__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure4__c
-                                           || fulfilmentObj.Enclosure5__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure5__c)){
-                
-                if (fulfilmentObj.Enclosure1__c != null)
-                	enclosureIds.add(fulfilmentObj.Enclosure1__c);
-                if (fulfilmentObj.Enclosure2__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure2__c);
-                if (fulfilmentObj.Enclosure3__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure3__c);
-                if (fulfilmentObj.Enclosure4__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure4__c);
-                if (fulfilmentObj.Enclosure5__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure5__c);
-            }else{
-                
-                if (fulfilmentObj.Enclosure1__c != null)
-                	enclosureIds.add(fulfilmentObj.Enclosure1__c);
-                if (fulfilmentObj.Enclosure2__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure2__c);
-                if (fulfilmentObj.Enclosure3__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure3__c);
-                if (fulfilmentObj.Enclosure4__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure4__c);
-                if (fulfilmentObj.Enclosure5__c != null)
-                    enclosureIds.add(fulfilmentObj.Enclosure5__c);
+
+            if (fulfilmentOldMap != null && (  fulfilmentObj.Enclosure1__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure1__c
+                                               || fulfilmentObj.Enclosure2__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure2__c
+                                               || fulfilmentObj.Enclosure3__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure3__c
+                                               || fulfilmentObj.Enclosure4__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure4__c
+                                               || fulfilmentObj.Enclosure5__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure5__c)) {
+
+                enclosureIds.addAll(getEnclosureIds(fulfilmentObj));
+            } else {
+
+                enclosureIds.addAll(getEnclosureIds(fulfilmentObj));
             }
-            
+
         }
 
         if (!enclosureIds.isEmpty()) {
-            enclosureById = new Map<Id, cec_Enclosure__c>([SELECT Id, ItemValue__c FROM cec_Enclosure__c WHERE Id IN:enclosureIds ]);
+            calcTotalEnclosure(enclosureIds, fulfilmentList);
+        }
+    }
+	/*******************************************************************
+    Purpose: To get all the enclosure Id on fulfillment.
+    Param: fulfilmentObj
+    Return: set<Id>
+    ********************************************************************/
+    public set<Id> getEnclosureIds(cec_Fulfilment__c fulfilmentObj) {
+		 //2nd june 2016 - mahesh - To calculate Total Enclosure Value
+		 
+        set<Id> enclosureIds = new set<Id>();
+        if (fulfilmentObj.Enclosure1__c != null)
+            enclosureIds.add(fulfilmentObj.Enclosure1__c);
+        if (fulfilmentObj.Enclosure2__c != null)
+            enclosureIds.add(fulfilmentObj.Enclosure2__c);
+        if (fulfilmentObj.Enclosure3__c != null)
+            enclosureIds.add(fulfilmentObj.Enclosure3__c);
+        if (fulfilmentObj.Enclosure4__c != null)
+            enclosureIds.add(fulfilmentObj.Enclosure4__c);
+        if (fulfilmentObj.Enclosure5__c != null)
+            enclosureIds.add(fulfilmentObj.Enclosure5__c);
 
-            System.debug('*********enclosureIds************' + enclosureIds);
-            System.debug('*********enclosureById ************' + enclosureById );
+        return enclosureIds;
+    }
+    
+	/*******************************************************************
+    Purpose: To calculate Total Enclosure Value.
+    Param: fulfilmentList
+    Param: enclosureIds
+    ********************************************************************/
+    public void calcTotalEnclosure(set<Id> enclosureIds, List<cec_Fulfilment__c> fulfilmentList) {
+		 //2nd june 2016 - mahesh - To calculate Total Enclosure Value
+		 
+        Map<Id, cec_Enclosure__c> enclosureById = new Map<Id, cec_Enclosure__c>([SELECT Id, ItemValue__c FROM cec_Enclosure__c WHERE Id IN:enclosureIds ]);
 
-            for (cec_Fulfilment__c fulfilmentObj : fulfilmentList) {
+        System.debug('*********enclosureIds************' + enclosureIds);
+        System.debug('*********enclosureById ************' + enclosureById );
 
-                fulfilmentObj.TotalEnclosureValue__c = 0;
+        for (cec_Fulfilment__c fulfilmentObj : fulfilmentList) {
 
-                if (fulfilmentObj.Enclosure1__c != null && enclosureById.get(fulfilmentObj.Enclosure1__c).ItemValue__c != null
-                        && String.isNotBlank(fulfilmentObj.Enclosure1_Quantity__c)) {
-                    fulfilmentObj.TotalEnclosureValue__c = enclosureById.get(fulfilmentObj.Enclosure1__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure1_Quantity__c);
+            fulfilmentObj.TotalEnclosureValue__c = 0;
 
-                    System.debug('*********enclose1************' + fulfilmentObj.TotalEnclosureValue__c);
-                } if (fulfilmentObj.Enclosure2__c != null && enclosureById.get(fulfilmentObj.Enclosure2__c).ItemValue__c != null
-                        && String.isNotBlank(fulfilmentObj.Enclosure2_Quantity__c)) {
-                    fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure2__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure2_Quantity__c);
+            if (fulfilmentObj.Enclosure1__c != null && enclosureById.get(fulfilmentObj.Enclosure1__c).ItemValue__c != null
+                    && String.isNotBlank(fulfilmentObj.Enclosure1_Quantity__c)) {
+                fulfilmentObj.TotalEnclosureValue__c = enclosureById.get(fulfilmentObj.Enclosure1__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure1_Quantity__c);
 
-                    System.debug('*********enclose2************' + fulfilmentObj.TotalEnclosureValue__c);
-                } if (fulfilmentObj.Enclosure3__c != null && enclosureById.get(fulfilmentObj.Enclosure3__c).ItemValue__c != null
-                        && String.isNotBlank(fulfilmentObj.Enclosure3_Quantity__c)) {
-                    fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure3__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure3_Quantity__c);
+                System.debug('*********enclose1************' + fulfilmentObj.TotalEnclosureValue__c);
+            } if (fulfilmentObj.Enclosure2__c != null && enclosureById.get(fulfilmentObj.Enclosure2__c).ItemValue__c != null
+                    && String.isNotBlank(fulfilmentObj.Enclosure2_Quantity__c)) {
+                fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure2__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure2_Quantity__c);
 
-                    System.debug('*********enclose3************' + fulfilmentObj.TotalEnclosureValue__c);
-                } if (fulfilmentObj.Enclosure4__c != null && enclosureById.get(fulfilmentObj.Enclosure4__c).ItemValue__c != null
-                        && String.isNotBlank(fulfilmentObj.Enclosure4_Quantity__c)) {
-                    fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure4__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure4_Quantity__c);
+                System.debug('*********enclose2************' + fulfilmentObj.TotalEnclosureValue__c);
+            } if (fulfilmentObj.Enclosure3__c != null && enclosureById.get(fulfilmentObj.Enclosure3__c).ItemValue__c != null
+                    && String.isNotBlank(fulfilmentObj.Enclosure3_Quantity__c)) {
+                fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure3__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure3_Quantity__c);
 
-                    System.debug('*********enclose4************' + fulfilmentObj.TotalEnclosureValue__c);
-                } if (fulfilmentObj.Enclosure5__c != null && enclosureById.get(fulfilmentObj.Enclosure5__c).ItemValue__c != null
-                        && String.isNotBlank(fulfilmentObj.Enclosure5_Quantity__c)) {
-                    fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure5__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure5_Quantity__c);
+                System.debug('*********enclose3************' + fulfilmentObj.TotalEnclosureValue__c);
+            } if (fulfilmentObj.Enclosure4__c != null && enclosureById.get(fulfilmentObj.Enclosure4__c).ItemValue__c != null
+                    && String.isNotBlank(fulfilmentObj.Enclosure4_Quantity__c)) {
+                fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure4__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure4_Quantity__c);
 
-                    System.debug('*********enclose5************' + fulfilmentObj.TotalEnclosureValue__c);
-                }
+                System.debug('*********enclose4************' + fulfilmentObj.TotalEnclosureValue__c);
+            } if (fulfilmentObj.Enclosure5__c != null && enclosureById.get(fulfilmentObj.Enclosure5__c).ItemValue__c != null
+                    && String.isNotBlank(fulfilmentObj.Enclosure5_Quantity__c)) {
+                fulfilmentObj.TotalEnclosureValue__c += enclosureById.get(fulfilmentObj.Enclosure5__c).ItemValue__c * Integer.valueOf(fulfilmentObj.Enclosure5_Quantity__c);
 
+                System.debug('*********enclose5************' + fulfilmentObj.TotalEnclosureValue__c);
             }
 
         }

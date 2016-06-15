@@ -87,6 +87,34 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Category__c</fullName>
+        <description>To select the type of Enclosure.</description>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Coupon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Money Order</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -101,6 +129,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Austria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bangladesh</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -256,6 +288,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Panama</fullName>
                 <default>false</default>
             </picklistValues>
@@ -312,6 +348,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
@@ -325,6 +365,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>

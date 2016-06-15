@@ -14,6 +14,7 @@ VERSION  AUTHOR            DATE              DETAIL                  Description
    1.1 -   Pavan Kumar      09/02/2015       CR                      Email Message  
    1.2 -   Sathish          05/08/2015       Notification Email      Email Notification for missing CBM
    1.3 -   Nagesh           05/18/2016       Sonar Issue             Sonar Issue
+   1.4 -   Nagesh           06/14/2016       CSC-4748                Exclude email replies
 ****************************************************************************/
 public with sharing class cec_EmailMessageHelper{
 
@@ -97,8 +98,15 @@ public with sharing class cec_EmailMessageHelper{
                 String[] emailList = allEmailStr.split(';');
                 System.debug('Email Addresses:: '+ emailList);
                 
-                // Get the first occurrence of branded email from the To list and update related case
-                caseAssociated = updateRelatedCase(brandEmailSet, emailList, em);
+                
+                //To exclude case with email replies
+                if(caseObj.Country__c == null){                  
+                   // Get the first occurrence of branded email from the To list and update related case
+                   caseAssociated = updateRelatedCase(brandEmailSet, emailList, em);
+                }
+                else{
+                    caseAssociated = true;                
+                }
                 
                 
                 if(!caseAssociated){
@@ -111,6 +119,7 @@ public with sharing class cec_EmailMessageHelper{
                     if(CMMMap.get(caseObj.Origin) != null){
                         Case cs = new Case(id=em.parentId);
                         cs.Country__c = CMMMap.get(caseObj.Origin);
+                        cs.CMMFlag__c = TRUE;
                         casesToUpdate.add(cs);
                         break;
                     }
@@ -118,6 +127,8 @@ public with sharing class cec_EmailMessageHelper{
                 }
             }
         }
+        
+        
         // Send the email to the configured mail if there is missing CaseBrandMapping.
         if (emailNotificationContent != '') {
             String finalContent = Label.CEC_CBM_NotificationBodyHeader + emailNotificationContent + Label.CEC_CBM_NotificationBodyFooter;
@@ -144,7 +155,7 @@ public with sharing class cec_EmailMessageHelper{
     private void createCaseOriginAndCmmMap(){
         // fetch parent cases
         if(caseIdSet.size()>0){
-            caseMap = new Map<Id, Case>([Select Id, Case_Brand__c, Origin, CaseNumber FROM Case WHERE ID =: caseIdSet]);
+            caseMap = new Map<Id, Case>([Select Id, Case_Brand__c, Origin, CaseNumber, Country__c FROM Case WHERE ID =: caseIdSet]);
         }
         // store case origins
         for(case caseRec: caseMap.values()){
