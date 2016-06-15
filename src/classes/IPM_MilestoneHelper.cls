@@ -135,63 +135,63 @@ public with sharing class IPM_MilestoneHelper
                     /* Milestone snapshot due date changes ---- starts here */
                     
                     // Map to current Milestone to all milestones related to that project
-					Map<IPM_Milestone__c, List<IPM_Milestone__c>> currentMSToAllMilestonesMap  = new Map<IPM_Milestone__c, List<IPM_Milestone__c>>();
-					
-					// process all the milestone related to the project and populate the Map with current Phase to all related milestone records
-					for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
-					{
-						if(existingProjectMilestone.IPM_Phase__c !=null && previousPhases.contains(existingProjectMilestone.IPM_Phase__c))
-						{
-							if(upsertedProjectMilestones != null && upsertedProjectMilestones.get(existingProjectMilestone.ExternalField__c) != null)
-							{
-								currentMSToAllMilestonesMap.put(upsertedProjectMilestones.get(existingProjectMilestone.ExternalField__c), IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id));
-								break;
-							}
-						}
-					}                 
-					
-					// process all the milestones to store the snapshot due date of milestones at all standard milestones
-					if(!currentMSToAllMilestonesMap.isEmpty())
-					{
-						// Map to store phase and corresponding Field Api Name which will store the Due date snap shot of milestone
-				    	Map<String,String> MILESTONE_PHASE_FIELDMAPPING = new Map<String,String>{
-				        IPM_ConstantUtils.PHASE_IDEAS => 'IPM_Due_Date_Idea__c',
-				        IPM_ConstantUtils.PHASE_FEASIBILITY  => 'IPM_Due_Date_Feasibility__c',
-				        IPM_ConstantUtils.PHASE_CAPABILITY => 'IPM_Due_Date_Capability__c',
-				        IPM_ConstantUtils.PHASE_MARKET_READY => 'IPM_Due_Date_Market_Ready__c',
-				        IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT => 'IPM_Due_Date_Market_Deployment__c',
-				        IPM_ConstantUtils.PHASE_POSTLAUNCHEVAL => 'IPM_Due_Date_Post_Launch_Evaluation__c'
-				    	};
-				    	
-				    	for(IPM_Milestone__c milestone : currentMSToAllMilestonesMap.keySet())
-				    	{
-				    		for(IPM_Milestone__c projectSpecificMilestone : currentMSToAllMilestonesMap.get(milestone))
-				    		{
-								if(milestone.IPM_Phase__c != null && MILESTONE_PHASE_FIELDMAPPING.containsKey(milestone.IPM_Phase__c))
-								{
-									String phaseFieldAPIName = MILESTONE_PHASE_FIELDMAPPING.get(milestone.IPM_Phase__c);
-									if(projectSpecificMilestone.IPM_Phase__c != null && milestone.IPM_Phase__c != projectSpecificMilestone.IPM_Phase__c)
-									{
-										if(projectSpecificMilestone.IPM_Due_Date__c != null)
-										{
-											projectSpecificMilestone.put(phaseFieldAPIName, projectSpecificMilestone.IPM_Due_Date__c);
-											upsertedProjectMilestones.put(projectSpecificMilestone.ExternalField__c,projectSpecificMilestone);
-										}
-									}
-									else if(milestone.IPM_Phase__c == projectSpecificMilestone.IPM_Phase__c) 
-									{
-										if(milestone.IPM_Due_Date__c != null)
-										{
-											milestone.put(phaseFieldAPIName, milestone.IPM_Due_Date__c);	
-											upsertedProjectMilestones.put(milestone.ExternalField__c,milestone);
-										}
-									}
-								}
-				    		}
-				    		break;
-				    	}
-						/* Milestone snapshot due date changes ---- ends here */
-					}			
+                    Map<IPM_Milestone__c, List<IPM_Milestone__c>> currentMSToAllMilestonesMap  = new Map<IPM_Milestone__c, List<IPM_Milestone__c>>();
+                    
+                    // process all the milestone related to the project and populate the Map with current Phase to all related milestone records
+                    for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
+                    {
+                        if(existingProjectMilestone.IPM_Phase__c !=null && previousPhases.contains(existingProjectMilestone.IPM_Phase__c))
+                        {
+                            if(upsertedProjectMilestones != null && upsertedProjectMilestones.get(existingProjectMilestone.ExternalField__c) != null)
+                            {
+                                currentMSToAllMilestonesMap.put(upsertedProjectMilestones.get(existingProjectMilestone.ExternalField__c), IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id));
+                                break;
+                            }
+                        }
+                    }                 
+                    
+                    // process all the milestones to store the snapshot due date of milestones at all standard milestones
+                    if(!currentMSToAllMilestonesMap.isEmpty())
+                    {
+                        // Map to store phase and corresponding Field Api Name which will store the Due date snap shot of milestone
+                        Map<String,String> MILESTONE_PHASE_FIELDMAPPING = new Map<String,String>{
+                        IPM_ConstantUtils.PHASE_IDEAS => 'IPM_Due_Date_Idea__c',
+                        IPM_ConstantUtils.PHASE_FEASIBILITY  => 'IPM_Due_Date_Feasibility__c',
+                        IPM_ConstantUtils.PHASE_CAPABILITY => 'IPM_Due_Date_Capability__c',
+                        IPM_ConstantUtils.PHASE_MARKET_READY => 'IPM_Due_Date_Market_Ready__c',
+                        IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT => 'IPM_Due_Date_Market_Deployment__c',
+                        IPM_ConstantUtils.PHASE_POSTLAUNCHEVAL => 'IPM_Due_Date_Post_Launch_Evaluation__c'
+                        };
+                        
+                        for(IPM_Milestone__c milestone : currentMSToAllMilestonesMap.keySet())
+                        {
+                            for(IPM_Milestone__c projectSpecificMilestone : currentMSToAllMilestonesMap.get(milestone))
+                            {
+                                if(milestone.IPM_Phase__c != null && MILESTONE_PHASE_FIELDMAPPING.containsKey(milestone.IPM_Phase__c))
+                                {
+                                    String phaseFieldAPIName = MILESTONE_PHASE_FIELDMAPPING.get(milestone.IPM_Phase__c);
+                                    if(projectSpecificMilestone.IPM_Phase__c != null && milestone.IPM_Phase__c != projectSpecificMilestone.IPM_Phase__c)
+                                    {
+                                        if(projectSpecificMilestone.IPM_Due_Date__c != null)
+                                        {
+                                            projectSpecificMilestone.put(phaseFieldAPIName, projectSpecificMilestone.IPM_Due_Date__c);
+                                            upsertedProjectMilestones.put(projectSpecificMilestone.ExternalField__c,projectSpecificMilestone);
+                                        }
+                                    }
+                                    else if(milestone.IPM_Phase__c == projectSpecificMilestone.IPM_Phase__c) 
+                                    {
+                                        if(milestone.IPM_Due_Date__c != null)
+                                        {
+                                            milestone.put(phaseFieldAPIName, milestone.IPM_Due_Date__c);    
+                                            upsertedProjectMilestones.put(milestone.ExternalField__c,milestone);
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                        /* Milestone snapshot due date changes ---- ends here */
+                    }           
                 }
                 // This part will clone the milestone records for the projects from its parent Project's Milestones
                 if(!existingMilestonesPresent)
@@ -235,12 +235,12 @@ public with sharing class IPM_MilestoneHelper
                                 
                                 // Set the Target launch date of milestone of project to Market Deployment Phase milestone planned/due date
                                 if(newProjectMilestone.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE)
-								{
-									if(project.IPM_Target_Launch_Dates__c!=null)
-									{
-										newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c;
-									}
-								}
+                                {
+                                    if(project.IPM_Target_Launch_Dates__c!=null)
+                                    {
+                                        newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c;
+                                    }
+                                }
                                 upsertedProjectMilestones.put(newProjectMilestone.ExternalField__c,newprojectMilestone);
                             }
                         }
@@ -262,6 +262,12 @@ public with sharing class IPM_MilestoneHelper
                                 newProjectMilestone.IPM_Type_of_Milestone__c = masterMilestone.IPM_Type_of_Milestone__c;
                                 newProjectMilestone.IPM_Project_Type__c = masterMilestone.IPM_Project_Type__c;
                                 newProjectMilestone.IPM_Active__c = masterMilestone.IPM_Active__c;
+                                
+                                // Added as part of Phase 2.0 , To make PDL milestone Active, Inactive based on the Category group.
+                                if (IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.equals(masterMilestone.IPM_Name__c) && String.isNotBlank(project.IPM_Category_Group__c) && !project.IPM_Category_Group__c.contains(IPM_ConstantUtils.PERSONAL_CARE)){
+                                    newProjectMilestone.IPM_Active__c = false;
+                                }
+                                
                                 newProjectMilestone.IPM_No_Of_Days_for_Developing__c = masterMilestone.IPM_No_Of_Days_for_Developing__c;
                                 newProjectMilestone.IPM_No_Of_Days_for_Developing_Emerging__c = masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c;
                                 newProjectMilestone.IPM_Project__c = project.Id;
@@ -519,6 +525,31 @@ public with sharing class IPM_MilestoneHelper
             {
                  update finalMilestoneMap.values();
             }    
+        }
+    }
+    
+    // Needed if the user has an option to change the category from one to another
+    // Phase 2.0  REQ03113.
+    
+    public static void markActiveOrInActiveMiles(Map<id,String>projectCategoryMap){
+        List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Active__c,IPM_Name__c,IPM_Project__c,IPM_Category__c FROM IPM_Milestone__c  
+        WHERE  IPM_Type_of_Milestone__c =:IPM_ConstantUtils.STANDARD AND IPM_Project__c =:projectCategoryMap.keyset() AND IPM_Name__c=:IPM_ConstantUtils.PRODUCT_DESIGN_LOCK LIMIT 50000];
+        
+        for(IPM_Milestone__c miles:projectSpecificMilestoneList){
+            if(projectCategoryMap.containskey(miles.IPM_Project__c) && IPM_ConstantUtils.PERSONAL_CARE.equals(projectCategoryMap.get(miles.IPM_Project__c))){
+                miles.IPM_Active__c=true;
+            }else if(projectCategoryMap.containskey(miles.IPM_Project__c) && !IPM_ConstantUtils.PERSONAL_CARE.equals(projectCategoryMap.get(miles.IPM_Project__c))){
+                miles.IPM_Active__c=false;
+            }   
+        }
+        try 
+        {
+        update  projectSpecificMilestoneList;
+        }
+        catch(Exception ex){
+          
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MilestoneHelper.class.getName(),
+                        'markActiveOrInActiveMiles',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
         }
     }
 }

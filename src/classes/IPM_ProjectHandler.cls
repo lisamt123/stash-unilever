@@ -186,7 +186,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            
            // Stores information for Country Feedback Updates.
            Map<Id,IPM_Project__c> countryFeedbackProjects = new Map<Id,IPM_Project__c>();
-           
+           //product design lock milestone active/inactive , Added for phase 2.0 
+           Map<id,string>projectMilesMap=new Map<id,string>();
            //EcoDesign
            List<IPM_Project__c> projectsWithPhaseChanged = new List<IPM_Project__c>();
            List<IPM_Project__c> projectsWithChangedExistsAtLeastOneAssmntFlag = new List<IPM_Project__c>();
@@ -211,13 +212,21 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         phaseChangeProjects.add(incomingProject.Id);
                     }   
                 }
-               
+                if( Trigger.isInsert){
+                    //milestones active/inactive phase 2 , REQ03113 WIP Code
+                    if(incomingProject.IPM_Category_Group__c!=null){
+                        projectMilesMap.put(incomingProject.id,incomingProject.IPM_Category_Group__c);
+                    }   
+               	}
                 
                 if(Trigger.isUpdate)
                 {
                     
                     oldProject = ( (Map<Id,IPM_Project__c>)Trigger.OldMap).get(incomingProject.Id);
-                    
+                    //milestones active/inactive phase 2 , REQ03113 WIP Code
+                    if(incomingProject.IPM_Category_Group__c!=null && incomingProject.IPM_Category_Group__c!=oldProject.IPM_Category_Group__c){
+                        projectMilesMap.put(incomingProject.id,incomingProject.IPM_Category_Group__c);
+                    }
                     //Notify the project is created
                     if(oldProject.IPM_Project_Name__c == null && String.IsBlank(oldProject.IPM_Project_Name__c) && incomingProject.IPM_Project_Name__c != null && String.IsNotBlank(incomingProject.IPM_Project_Name__c) )
                     {
@@ -358,7 +367,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 }               
            }
            
-           
+           //milestone updates phase 2.0 , REQ03113 WIP Code.
+           if(!projectMilesMap.isEmpty()){
+                IPM_MilestoneHelper.markActiveOrInActiveMiles(projectMilesMap);
+           }
            /* Actual transactional management Project specific process starts */
            if(!masterProjectMap.isEmpty())
            {

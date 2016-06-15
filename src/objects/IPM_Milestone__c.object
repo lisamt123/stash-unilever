@@ -176,21 +176,22 @@
         <fullName>IPM_Category__c</fullName>
         <description>IPM Category of the project.</description>
         <externalId>false</externalId>
-        <label>Category</label>
+        <label>Category Group</label>
         <picklist>
             <picklistValues>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_Charter_Gate_Approval_Charter_Gate__c</fullName>

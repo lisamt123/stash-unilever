@@ -1220,4 +1220,15 @@ public class IPM_ConstantUtils {
    public static final string MISALIGNED_CSS='misalignedField'; 
    
    public static final string SIX_THREE='6.3'; 
+      // Phase 2.0 , Constant Declaration
+   public static final string PERSONAL_CARE='Personal Care';
+   public static final string ADDITIONAL_MILSTONE_PDL = 'Product Design Lock Milestone (Mandatory for Personal Care)';
+   public static final string PRODUCT_DESIGN_LOCK ='Product Design Lock';
+   public static final string DEO_FRAGRANCES='Deodorants & Fragrances';
+   public static final string HAIR_CARE='Hair Care';
+   public static final string ORAL_CARE='Oral Care';
+   public static final string SKIN_CARE='Skin Care';
+   public static final string SKIN_CLEANSING='Skin Cleansing';
+   public static final string GATEKEEPING_MODEL_GKM3 = 'GKM3';
+
 }

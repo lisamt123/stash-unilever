@@ -100,7 +100,7 @@ private class IPM_Milestone_Test
         Test.startTest();
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         //Get the project data
-        IPM_Project__c proj = [SELECT Id, Name from IPM_project__c WHERE Name IN: projectNameSet ];
+        IPM_Project__c proj = [SELECT Id,IPM_Category_Text__c, Name from IPM_project__c WHERE Name IN: projectNameSet ];
         
         // get the running user information
         User globalUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];  
@@ -115,6 +115,42 @@ private class IPM_Milestone_Test
             
             proj.IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
             update proj;
+            
+            //create PDL standard milestones
+                
+            
+            IPM_Milestone__c milesPro=IPM_TestFactory_Helper.createIPMMilestone(proj.id, false);
+            milesPro.IPM_Active__c=true;
+            milesPro.RecordTypeId = mileStoneRecordType;
+            milesPro.IPM_Name__c=IPM_ConstantUtils.PRODUCT_DESIGN_LOCK;
+            milesPro.IPM_Category__c =IPM_ConstantUtils.PERSONAL_CARE;
+            milesPro.IPM_Type_of_Milestone__c =IPM_ConstantUtils.STANDARD;
+            milesPro.IPM_Phase__c='Feasibility';
+            milesPro.IPM_Due_Date__c=system.today().adddays(-4);
+            milesPro.IPM_Planned_Date__c=system.today().adddays(-4);
+            milesPro.IPM_Project__c = proj.Id;
+            insert milesPro;
+            List<IPM_Milestone__c> masterPDLMilestones = [Select Id, IPM_Name__c from IPM_Milestone__c WHERE id =: milesPro.id];
+            System.assertEquals(masterPDLMilestones[0].IPM_Name__c,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK, 'PDL Milestone successfully not created');
+            
+            proj.IPM_Category_Text__c='Skin Care';
+            update proj;
+            
+            IPM_Project__c projectCat = [SELECT IPM_Category_Text__c from IPM_project__c WHERE Name IN: projectNameSet ];
+            system.assertEquals(projectCat.IPM_Category_Text__c,proj.IPM_Category_Text__c,'Project category is not skin care');
+            
+            
+            Test.setCurrentPageReference(Page.IPM_EditMilestone);
+            apexpages.currentpage().getparameters().put(PROJECTID_STRING,proj.id);
+            apexpages.currentpage().getparameters().put('taskId',milesPro.id);
+            IPM_Milestone pdlMilestoneCtrlvalidate = new IPM_Milestone(new ApexPages.StandardController(milesPro));
+            pdlMilestoneCtrlvalidate.validateMilestone();
+            
+            proj.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
+            update proj;
+            IPM_Project__c projectCategory = [SELECT IPM_Category_Text__c from IPM_project__c WHERE Name IN: projectNameSet ];
+            system.assertEquals(projectCategory.IPM_Category_Text__c,proj.IPM_Category_Text__c,'Project category is not Household Care');
+           
             
             IPM_Milestone__c milestoneobj1 = IPM_TestFactory_Helper.createIPMMilestone(proj.id, false);
             milestoneobj1.RecordTypeId = mileStoneRecordType;

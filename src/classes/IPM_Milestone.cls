@@ -59,6 +59,7 @@ public with sharing class IPM_Milestone {
         ProjectWizard=ApexPages.currentPage().getParameters().get(IPM_Utils.Wizard);
         milestoneObj = (IPM_Milestone__c)controller.getRecord();
         showError = false;
+        projectObject = new IPM_Project__c();
         
         if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.IPM_NewTaskprojectId)))
         {
@@ -355,7 +356,12 @@ public with sharing class IPM_Milestone {
     public List<MilestoneWrapper> getCategories() {
         milestones = new List<MilestoneWrapper>();
         for (IPM_Milestone__c mile : (List<IPM_Milestone__c>)con.getRecords()){
-            milestones.add(new MilestoneWrapper(mile,projectObject.IPM_Target_Launch_Dates__c));
+           //   Added as part of phase 2.0 , added just the If condition to hide PDL milestone for Personal Care category group.
+            if (!(projectObject.IPM_Category_Group__c!= null && IPM_ConstantUtils.PERSONAL_CARE.equals(projectObject.IPM_Category_Group__c) && mile.IPM_Name__c.equals(IPM_ConstantUtils.ADDITIONAL_MILSTONE_PDL)))
+            {
+             milestones.add(new MilestoneWrapper(mile,projectObject.IPM_Target_Launch_Dates__c));
+            }
+             
         }
         return milestones;
     }
@@ -447,7 +453,7 @@ public with sharing class IPM_Milestone {
                 WHERE Id =:milestoneId ];
                 
                             
-                List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
+                List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Name__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
                 WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId AND IPM_Active__c =: true];
                 
@@ -518,32 +524,61 @@ public with sharing class IPM_Milestone {
                         
                         for(IPM_Milestone__c milestone : projectSpecificMilestoneList)
                         {
-                        	if(milestone.IPM_Phase__c != milestonePhase)
-                        	{
-                        		// Due date validation check with previous milestones 
-	                        	if(previousPhases.contains(milestone.IPM_Phase__c))
-	                        	{
-	                        		if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > milestoneDueDate)
-	                        		{
-	                        			String errorMessage = Label.IPM_Milestone_DueDate_Validation;
-			                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
-			                            ApexPages.addMessage(myMsg);
-			                            return false;
-	                        		}
-	                        		
-	                        	}
-	                        	else
-	                        	{
-	                        		// Due date validation check with next milestones 
-	                        		if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c < milestoneDueDate)
-	                        		{
-	                        			String errorMessage = Label.IPM_Milestone_FutureDueDate_Validation;
-			                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
-			                            ApexPages.addMessage(myMsg);
-			                            return false;
-	                        		}
-	                        	}
-                        	}
+                            // Phase 2.0 changes - To accomodate Due date validations for PDL milestone
+                            if(milestone.IPM_Phase__c.equals(milestonePhase) && milestone.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK) && !milestoneObj.IPM_Name__c.equals(milestone.IPM_Name__c)){
+                                if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > milestoneDueDate)
+                                {
+                                    String errorMessage = Label.IPM_ContractGate_Milestone_Before_PDL;
+                                    ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                    ApexPages.addMessage(myMsg);
+                                    return false;
+                                }
+                                
+                                
+                            }
+                            // Due date validation check with next milestones 
+                            if(milestone.IPM_Phase__c.equals(milestonePhase) && milestone.IPM_Name__c.equals(IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE) && milestone.IPM_Due_Date__c != null && !milestoneObj.IPM_Name__c.equals(milestone.IPM_Name__c) && milestone.IPM_Due_Date__c < milestoneDueDate)
+                            {
+                                String errorMessage = Label.IPM_PDL_Due_Date_Before_Contract_Milestone;
+                                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                ApexPages.addMessage(myMsg);
+                                return false;
+                            }
+                            if(milestone.IPM_Phase__c != milestonePhase)
+                            {
+                                // Due date validation check with previous milestones 
+                                if(previousPhases.contains(milestone.IPM_Phase__c))
+                                {
+                                    if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > milestoneDueDate)
+                                    {
+                                       String errorMessage = Label.IPM_Milestone_DueDate_Validation;
+                                       // Phase 2.0 changes related to REQ03115.
+                                       if(milestone.IPM_Name__c.equals(IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE) && milestoneObj.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK)){
+                                            errorMessage=Label.IPM_PDL_Due_Date_After_Charter;
+                                        }
+                                        
+                                        ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                        ApexPages.addMessage(myMsg);
+                                        return false;
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    // Due date validation check with next milestones 
+                                    if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c < milestoneDueDate)
+                                    {
+                                        String errorMessage = Label.IPM_Milestone_FutureDueDate_Validation;
+                                        //Phase 2.0 changes related to REQ03115.
+                                        if(milestoneObj.IPM_Name__c.equals(IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE) && milestone.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK)){
+                                            errorMessage=Label.IPM_Charter_Due_Date_Before_PDL;
+                                        }
+                                        ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                        ApexPages.addMessage(myMsg);
+                                        return false;
+                                    }
+                                }
+                            }
                         }
                         
                     }
