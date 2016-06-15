@@ -1226,7 +1226,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>L0_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L0 Products.</description>
         <externalId>false</externalId>
@@ -1560,7 +1560,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
     </fields>
     <fields>
         <fullName>Origin</fullName>
-        <inlineHelpText></inlineHelpText>
         <picklist>
             <picklistValues>
                 <fullName>Chat</fullName>
@@ -1570,12 +1569,16 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email</fullName>
                 <default>false</default>
             </picklistValues>
-			<picklistValues>
+            <picklistValues>
                 <fullName>Email ANZ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email Baltics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Bangladesh</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1639,6 +1642,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Philippines</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1650,7 +1657,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Portugal</fullName>
                 <default>false</default>
             </picklistValues>
-			<picklistValues>
+            <picklistValues>
                 <fullName>Email South Africa</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1667,11 +1674,19 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1764,41 +1779,47 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
             <controllingField>Country_Name__c</controllingField>
             <picklistValues>
                 <fullName>bertolli@mizkan.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>bertollioliveoilusa@deoleo.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>carapelliusa@deoleo.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>carbonellusa@deoleo.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Comments.Canada@benjerry.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>comments@talentigelato.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumer.affairs-za@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>consumerproduct@mizkan.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>consumidor@sac-unilever.com</fullName>
+                <default>false</default>
                 <controllingFieldValues>Colombia</controllingFieldValues>
                 <controllingFieldValues>Costa Rica</controllingFieldValues>
                 <controllingFieldValues>Ecuador</controllingFieldValues>
@@ -1808,97 +1829,96 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Panama</controllingFieldValues>
                 <controllingFieldValues>Venezuela</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>consumidor@sac-unilever.com.ar</fullName>
+                <default>false</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
                 <controllingFieldValues>Chile</controllingFieldValues>
                 <controllingFieldValues>Paraguay</controllingFieldValues>
                 <controllingFieldValues>Peru</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>info@bertolli.ca</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>info@bluewater.ca</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>info@carapelli.ca</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>info@gortons.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Product.Contactus@benjerry.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ragu.ca@mizkan.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ragu.us@mizkan.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>reply.canada@sunproductscorp.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>reply.us@sunproductscorp.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>sac@atendimentounilever.com.br</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brazil</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>t2customercare@t2tea.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UnileverConsumercare.CA@unilever.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>unileverconsumercare.usa@unilever.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>unileverservices.auxconsommateurs@unilever.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UnileverServicioalConsumidor.MX@unilever.com</fullName>
-                <controllingFieldValues>Mexico</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Mexico</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>unileverservicioalconsumidor.usa@unilever.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
@@ -2224,33 +2244,33 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <picklist>
             <picklistValues>
                 <fullName>Existing problem</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Enquiry</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Praise</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Complaint</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Suggestion</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Duplicate</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2485,53 +2505,58 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <picklist>
             <picklistValues>
                 <fullName>New</fullName>
-                <closed>false</closed>
                 <default>true</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>In Progress</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>On Hold</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Escalated</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Review Needed</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Pending with Courier</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Awaiting Factory Response</fullName>
+                <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Awaiting Knowledge Response</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Awaiting Information from Consumer</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Closed</fullName>
-                <closed>true</closed>
                 <default>false</default>
+                <closed>true</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Closed as Duplicate</fullName>
-                <closed>true</closed>
                 <default>false</default>
+                <closed>true</closed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -6979,7 +7004,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>true</default>
             </values>
             <values>
-                <fullName>SMS %2F text Messages</fullName>
+                <fullName>SMS %2F Text Messages</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7047,6 +7072,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>comments%40talentigelato%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumer%2Eaffairs-za%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7313,6 +7342,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Bolivia</fullName>
                 <default>false</default>
             </values>
@@ -7337,11 +7374,39 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ecuador</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7353,7 +7418,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7362,6 +7455,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7374,6 +7471,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7443,6 +7572,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>true</default>
             </values>
             <values>
+                <fullName>SMS %2F Text Messages</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Social</fullName>
                 <default>false</default>
             </values>
@@ -7503,6 +7636,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>comments%40talentigelato%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumer%2Eaffairs-za%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8118,7 +8255,7 @@ var openSuccess = function openSuccess(result) {
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
     </webLinks>
-	<webLinks>
+    <webLinks>
         <fullName>TransferCase</fullName>
         <availability>online</availability>
         <displayType>button</displayType>
