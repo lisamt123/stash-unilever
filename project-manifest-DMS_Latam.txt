@@ -71,6 +71,8 @@ src/classes/DMS_WaveHexagon.cls
 src/classes/DMS_WaveHexagon.cls-meta.xml
 src/classes/DMS_UserCreation.cls
 src/classes/DMS_UserCreation.cls-meta.xml
+src/classes/DMS_Home_CC.cls
+src/classes/DMS_Home_CC.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
@@ -86,6 +88,12 @@ src/pages/DMS_Dashboards_Mobile.page
 src/pages/DMS_Dashboards_Mobile.page-meta.xml
 src/pages/DMS_Hexagono.page
 src/pages/DMS_Hexagono.page-meta.xml
+src/pages/DMS_AccountList.page
+src/pages/DMS_ContactList.page-meta.xml
+src/pages/DMS_ContactList.page
+src/pages/DMS_ContactList.page-meta.xml
+src/pages/DMS_CommunityHome.page
+src/pages/DMS_CommunityHome.page-meta.xml
 src/applications
 src/applications/DMS_Frontier.app
 src/objects

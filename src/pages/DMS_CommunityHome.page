@@ -1,0 +1,188 @@
+<apex:page controller="DMS_Home_CC" docType="html-5.0"  sidebar="false" showHeader="false">
+    
+    <apex:includeScript value="{!URLFOR($Resource.DMS_CommunityCSS, '/dist/js/jquery-1.11.3.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.DMS_CommunityCSS, '/dist/js/app.js')}"/>
+    
+    <head>
+        <title>Unilever Community</title>
+        <meta charset="utf-8"/>
+        
+        
+<!--[if lte IE 8]>
+<script type="text/javascript">
+var htmlshim='abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,mark,meter,nav,output,progress,section,summary,time,video'.split(',');
+var htmlshimtotal=htmlshim.length;
+for(var i=0;i<htmlshimtotal;i++) document.createElement(htmlshim[i]);
+</script>
+<![endif]--> 
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <!-- or, set /favicon.ico for IE10 win -->
+        <meta name="msapplication-TileColor" content="#000000"/>
+        <meta name="msapplication-TileImage" content=""/>
+        <meta name="news_keywords" content="Unilever Community, ecommerce"/>
+        <meta name="description" content="Unilever Community"/>
+        
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        
+        <meta property="og:locale" content="pt_BR"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Unilever Community."/>
+        <meta property="og:description" content="Unilever Community."/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content="Unilever Community."/>
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:description" content="Unilever Community"/>
+        <meta name="twitter:title" content="Unilever Community"/>
+        <meta name="twitter:site" content="@site"/>
+        <meta name="twitter:domain" content="www.unilever.com"/>
+        <meta name="twitter:creator" content="@Unilever"/>
+        
+        <link rel="publisher" href=""/>
+        
+        <!-- icons & favicons -->
+        <link rel="apple-touch-icon" href=""/>
+        <link rel="icon" href=""/>
+        
+        <!-- css -->
+        <apex:stylesheet value="{!URLFOR($Resource.DMS_CommunityCSS, '/dist/css/main.css')}"/>
+        <style>
+            #texto2 {
+            display: none;
+            }
+            
+            @media screen and (min-width: 320px) and (max-width: 768px) {
+            .hegaxono-export {
+            display: none;
+            }
+            
+            #texto2 {
+            display: block;
+            }
+            #texto1 {
+            display: none;
+            }
+            }
+            
+            .tab-pane{
+            display: none;
+            }
+            
+            .tab-pane.active{
+            display: block;
+            }
+            
+        </style>
+        <script> 
+        $(document).ready(function() {
+            $('#myTabs a').click(function (e) {
+                e.preventDefault()
+                var tab = $(this).attr("href");
+                $("#myTabs a").removeClass("active");
+                $(this).addClass("active");
+                $(".tab-pane").hide();
+                $(tab).fadeIn();
+            });
+        });      
+        </script> 
+        
+    </head>
+    <body id="home-container">
+        <div class="content">
+            <header class="header">
+                <a class="unilever" href="/dms/DMS_CommunityHome" title="{!$Label.DMS_Community_LogoUnilever}">
+                    <apex:image value="{!URLFOR($Resource.DMS_CommunityCSS, '/dist/img/unilever.jpg')}" alt="Unilever"/>
+                </a>
+                <nav class="navigation">
+                    <ul>
+                        <li class="photo" style="margin: 3% auto auto auto;">
+                        </li>
+                        <li class="photo">
+                            <apex:image value="{!currentUser.fullphotourl}"/>
+                        </li>
+                        
+                        <li class="hegaxono-export">
+                            
+                            <a href="/dms/_ui/core/chatter/ui/ChatterPage" title="{!$Label.DMS_Community_Menu_Portal}"><i class="fa fa-reply-all"></i></a>
+                        </li>
+                        
+                        <li>
+                            <a href="javascript:sfdcPage.openPersonalSetup(%27/apex/_ui/common/setup/PersonalSetup%27);" title="{!$Label.DMS_Community_Menu_Settings}"><i class="fa fa-cog"></i></a>
+                        </li>
+                        
+                        <li class="logout">
+                            <a href="{!$Site.Prefix}/secur/logout.jsp" title="{!$Label.DMS_Community_Menu_Logout}"><i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <article class="wrapper">
+                <div class="col-1">
+                    <section class="webdoor">
+                        <apex:image value="{!URLFOR($Resource.DMS_CommunityCSS, '/dist/img/webdoor.jpg')}" alt="unilever - " /> 
+                    </section>
+                    
+                    <section class="panel">
+                        <div class="user">
+                            <apex:image value="{!currentUser.fullphotourl}"/>
+                        </div>
+                        <nav id="nav-panel" class="nav-panel">
+                            <ul id="myTabs">
+                                <li>
+                                    <a href="#home" title="{!$Label.DMS_Community_Nav_Home} " class="home active">
+                                        {!$Label.DMS_Community_Nav_Home} 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#ECO" title="{!$Label.DMS_Community_Nav_Dashboard}" class="dashboard">
+                                        {!$Label.DMS_Community_Nav_Dashboard}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#Accounts" title="{!$Label.DMS_Community_Nav_Account}" class="rsvp">
+                                        {!$Label.DMS_Community_Nav_Account} 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#Contacts" title="{!$Label.DMS_Community_Nav_Contact}" class="profile">
+                                        {!$Label.DMS_Community_Nav_Contact}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#hexagon" title="{!$Label.DMS_Community_Nav_Hexagon}" class="hexagono">
+                                        {!$Label.DMS_Community_Nav_Hexagon}
+                                    </a>
+                                </li>
+                                <li class="logout">
+                                    <a href="{!$Site.Prefix}/secur/logout.jsp" title="{!$Label.DMS_Community_Menu_Logout}"><i class="fa fa-sign-out"></i> {!$Label.DMS_Community_Menu_Logout}</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </section>
+                    
+                </div>
+                
+            </article>
+            <div class="tab-content">
+                <div style="font-size:80%" role="tabpanel" class="tab-pane active" id="home">
+                    <section class="panel panel-feed">
+                        <chatter:newsfeed rendered="true"/>
+                    </section>          		
+                </div>
+                <div role="tabpanel" class="tab-pane" id="ECO">
+                    <apex:iframe src="/dms/DMS_Dashboards" scrolling="true" /> 
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Accounts">
+                    <apex:iframe src="/dms/DMS_AccountList" scrolling="true"/>     
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Contacts">
+                    <apex:iframe src="/dms/DMS_ContactList" scrolling="true"/>    
+                </div>
+                <div role="tabpanel" class="tab-pane" id="hexagon">
+                    <apex:iframe src="/dms/DMS_Hexagono" scrolling="true"/>    
+                </div> 
+            </div>
+        </div>
+    </body>
+</apex:page>

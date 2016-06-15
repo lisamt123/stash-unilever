@@ -40,8 +40,8 @@ public with sharing class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-* Purpose: contructor  
-********************************************************************/
+    * Purpose: contructor  
+    ********************************************************************/
     public DMS_Hexagon_CC()
     {        
         selectedSeller = 'Todos';
@@ -63,8 +63,8 @@ public with sharing class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-* Purpose: submit Request for wave (DMS_WaveHexagon)  
-********************************************************************/
+    * Purpose: submit Request for wave (DMS_WaveHexagon)  
+    ********************************************************************/
     public void submitRequest()
     {
         defineMeta();
@@ -104,8 +104,8 @@ public with sharing class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-* Purpose: Create pickList of Distributor country for filter
-********************************************************************/
+    * Purpose: Create pickList of Distributor country for filter
+    ********************************************************************/
     private void optionDistributorCountry()
     {    
         List<Account> distributorCountryList;
@@ -135,8 +135,8 @@ public with sharing class DMS_Hexagon_CC
     }        
     
     /*******************************************************************
-* Purpose: Create pickList of Date for filter
-********************************************************************/
+    * Purpose: Create pickList of Date for filter
+    ********************************************************************/
     public List<SelectOption> getOptionDate()
     {
         List<SelectOption> datePicklistOption = new List<SelectOption>();
@@ -264,8 +264,8 @@ public with sharing class DMS_Hexagon_CC
         dataForGraphic();
     }
     /*******************************************************************
-* Purpose: mapping data for graphic of hexagon
-********************************************************************/
+    * Purpose: mapping data for graphic of hexagon
+    ********************************************************************/
     private void dataForGraphic()
     {
         actualValuesGraphicMap = new Map<String,List<Decimal>>();

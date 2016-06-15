@@ -43,13 +43,13 @@
                                     <apex:actionSupport id="actSupD" reRender="sclSel,sclDat" event="onchange"/>
                                 </apex:selectList>
                             </section>
-                           <!-- <section style="width: auto" >
+                            <section style="width: auto" >
                                 <span style="width: 100%;" >{!$Label.DMS_HEXAGON_SELLER}</span>  
                                 <apex:selectList id="sclSel" style="width: 90%;" value="{!selectedSeller}" size="1" label="Distribuidor">
                                     <apex:selectOptions value="{!optionSeller}"/>
                                      <apex:actionSupport id="actSupSell" reRender="sclDat" event="onchange"/>
                                 </apex:selectList>
-                            </section>-->
+                            </section>
                             <section style="width: auto" >
                                 <span style="width: 100%;" >{!$Label.DMS_HEXAGON_PERIOD}</span>    
                                 <apex:selectList id="sclDat" style="width: 90%;" value="{!selectedDate}" size="1" label="Distributor">
