@@ -61,10 +61,14 @@ src/classes/DMS_ActiveStore_Test.cls
 src/classes/DMS_ActiveStore_Test.cls-meta.xml
 src/classes/DMS_WebServiceMockGenerator_Test.cls
 src/classes/DMS_WebServiceMockGenerator_Test.cls-meta.xml
-src/classes/DMS_CountActiveStores.cls
-src/classes/DMS_CountActiveStores.cls-meta.xml
+src/classes/DMS_AtiveStores.cls
+src/classes/DMS_ActiveStores.cls-meta.xml
+src/classes/DMS_ActiveStore_Test.cls
+src/classes/DMS_ActiveStore_Test.cls-meta.xml
 src/classes/DMS_TargetCountActiveStore_Test.cls
 src/classes/DMS_TargetCountActiveStore_Test.cls-meta.xml
+src/classes/DMS_WaveHexagon.cls
+src/classes/DMS_WaveHexagon.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
@@ -85,6 +89,7 @@ src/applications/DMS_Frontier.app
 src/objects
 src/objects/Account.object
 src/objects/Target__c.object
+src/objects/DMS_DataSetId__c.object
 src/documents
 src/documents/DMS_Files-meta.xml
 src/documents/DMS_Files/Header_Communities.png

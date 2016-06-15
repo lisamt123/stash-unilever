@@ -27,8 +27,8 @@ trigger DMS_TargetCountActiveStore on Target__c (before insert,before update) {
             sellerContactIds.add(target.SalesRep__c);  
         }
     }
-    DMS_CountActiveStore countActiveStore = new DMS_CountActiveStore();
-    numberStoresSeller = countActiveStore.countStores(sellerContactIds);
+    DMS_ActiveStore countActiveStore = new DMS_ActiveStore();
+    numberStoresSeller = countActiveStore.countStoresUpdateTarget(sellerContactIds);
    
     System.debug('numero de lojas aqui!!! ' +numberStoresSeller);
     for(Target__c target : Trigger.New) 

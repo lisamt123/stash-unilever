@@ -9,15 +9,15 @@ History
 VERSION AUTHOR 				DATE 		DETAIL Description
 1.0 	CARLOS HENRIQUE  23/05/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
-public class DMS_AccountUserRole 
+public with sharing class DMS_AccountUserRole 
 { 
     
     /*
-    * Purpose: Create a Partner User when the option "Enable as Partner" is configured
-    * on the Account Object
-    * Parameters: AccountId
-    * Returns: void 
-    */
+* Purpose: Create a Partner User when the option "Enable as Partner" is configured
+* on the Account Object
+* Parameters: AccountId
+* Returns: void 
+*/
     @Future
     public static void createPartner(List<Id> idAccount) 
     {
@@ -25,8 +25,8 @@ public class DMS_AccountUserRole
         {
             Boolean isPartner = false;
             List<UserRole> userRole = new List<UserRole>();
-            List<UserRole> userAccount = getUserRole(idAccount);
-            List<Account> listAccount = getPartnerResult(idAccount);
+            List<UserRole> userAccount = [SELECT Id, PortalAccountId FROM UserRole WHERE PortalAccountId =: idAccount];  
+            List<Account> listAccount = [SELECT id, IsPartner FROM Account WHERE Id =: idAccount];
             
             for(Account vAccounts : listAccount) 
             {
@@ -51,38 +51,5 @@ public class DMS_AccountUserRole
         {
             SYSTEM.debug(DMS_GlobalConstants.EXCEPTION_MESSAGE + e.getCause() + e.getMessage() + e.getLineNumber());
         }
-    }
-    
-    /*
-    * Purpose: Retrieve the information from the UserRole
-    * Parameters: List<Id>
-    * Returns: List<UserRole> 
-    */
-    private static List<UserRole> getUserRole(List<Id> id) 
-    {
-        List<UserRole> returnGetUserRole;
-        try {
-            returnGetUserRole = [SELECT Id, PortalAccountId FROM UserRole WHERE PortalAccountId =: id];    
-        } catch(QueryException e) {
-            SYSTEM.debug(DMS_GlobalConstants.ERROR_GET_USER_ROLE + e.getCause() + e.getMessage() + e.getLineNumber());
-        }
-
-            return returnGetUserRole;
-    }
-    
-    /*
-    * Purpose: Return the result from the Account, if is Partner or not.
-    * Parameters: List<Id>
-    * Returns: List<Account> 
-    **/
-    private static List<Account> getPartnerResult(List<Id> id) 
-    {
-        List<Account> returnGetPartnerResult;
-        try {
-            returnGetPartnerResult = [SELECT IsPartner FROM Account WHERE Id =: id];
-        } catch(QueryException e) {
-            SYSTEM.debug(DMS_GlobalConstants.ERROR_PARTNER_RESULT + e.getCause() + e.getMessage() + e.getLineNumber());
-        }
-        	return returnGetPartnerResult;
-    }
+    }           
 }

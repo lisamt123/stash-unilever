@@ -11,9 +11,9 @@ VERSION 	AUTHOR		 		DATE  		Description
 1.0		DIMITRI M. SANTANA	 25/05/2016		INITIAL DEVELOPMENT
 
 ***********************************************************************/
-public class DMS_Hexagon_CC 
+public with sharing class DMS_Hexagon_CC 
 {        
-    private List<DMS_WaveHexagonRestCall.Records> recordsList;
+    private List<DMS_WaveHexagon.Records> recordsList;
     private Map<String,String> distributorsMap = new Map<String,String>();        
     public List<SelectOption> distributorCountry{get;set;}
     public List<SelectOption> salesChannelOption{get;set;}     
@@ -22,7 +22,7 @@ public class DMS_Hexagon_CC
     public String selectedDate {get;set;} 
     public String selectedSeller {get;set;} 
     public String selectedSalesChannel {get;set;} 
-    public Map<String,DMS_WaveHexagonRestCall.Records> hexagonMap {get;set;}
+    public Map<String,DMS_WaveHexagon.Records> hexagonMap {get;set;}
     public Map<String,List<Decimal>> actualValuesGraphicMap {get;set;}
     public Map<String,List<Decimal>> previousValuesGraphicMap {get;set;}
     public static List<String>label {get;set;}  
@@ -63,7 +63,7 @@ public class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-* Purpose: submit Request for wave (DMS_WaveHexagonRestCall)  
+* Purpose: submit Request for wave (DMS_WaveHexagon)  
 ********************************************************************/
     public void submitRequest()
     {
@@ -71,7 +71,7 @@ public class DMS_Hexagon_CC
         try
         {  
             System.debug('Filtro aqui!!!!'+selectedDistributor+selectedDate+selectedSalesChannel);
-            DMS_WaveHexagonRestCall hexagono = new DMS_WaveHexagonRestCall();
+            DMS_WaveHexagon hexagono = new DMS_WaveHexagon();
             recordsList = hexagono.getRecords('0Fb19000000A45oCAC',selecteddistributorCountry,selectedDistributor,selectedDate,selectedSalesChannel); 
         }
         catch(Exception e){
@@ -146,7 +146,7 @@ public class DMS_Hexagon_CC
                 for( Target__c t: target){                    
                     //if(selectedSeller != null && selectedSeller.equals(t.SalesRep__r.Seller_Key__c)){
                                                                        
-                    datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '/' + t.TargetDate__c.Year()));
+                    datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '-' + t.TargetDate__c.Year()));
                     
                       //}
                 }                                                                                   
@@ -213,10 +213,10 @@ public class DMS_Hexagon_CC
 ********************************************************************/
     private void generateHexagon()
     {
-        hexagonMap = new Map<String,DMS_WaveHexagonRestCall.Records>();        
+        hexagonMap = new Map<String,DMS_WaveHexagon.Records>();        
         try
         {
-            for(DMS_WaveHexagonRestCall.Records record : recordsList)
+            for(DMS_WaveHexagon.Records record : recordsList)
             {
                 hexagonMap.put(record.cdSalesRep,record);                
             }  

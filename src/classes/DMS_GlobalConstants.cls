@@ -1,9 +1,5 @@
 public class DMS_GlobalConstants {
     
-    /*IDs used*/
-    public static final String ID_Dataset1 = '0Fb19000000A42BCAS';
-    public static final String ID_Dataset2 = '0Fb19000000A3xaCAC';
-    
     //Exception Message
     public static final String EXCEPTION_MESSAGE = 'Exception occured on the code: ';
     public static final String exceptionPostChatter = 'Exception occured on the Post Chatter';
@@ -66,10 +62,6 @@ public class DMS_GlobalConstants {
     public static final String USER_TEST_LOCALE_KEY = 'en_US';			 
     public static final String USER_TEST_EMAIL_KEY = 'UTF-8'; 
     public static final String CONTACT_TEST_EMAIL = 'contactEmail@test.com';
-    public static final String ACCOUNT_SALES_CHANNEL = '001';
-    public static final String ACCOUNT_EXTERNAL_CODE = 'DMS_DISTRIBUTOR';
-    public static final String ACCOUNT_EXTERNAL_CODE_STORE = 'DMS_STORE';
-    public static final String ACCOUNT_NAME = 'account Test';
     public static final String ACCOUNT_STATUS_APROV = 'APROV';
     
 }

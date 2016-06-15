@@ -135,8 +135,8 @@
                                     <div class="slds-grid slds-wrap" style="height:40px;">
                                         
                                         <h1 class="slds-text-heading--medium slds-container--center slds-container--small" title="title page">SALESREP</h1>
-                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small">{!selectedSalesChannel}</h1>
-                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small">{!selectedDate}</h1>
+                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small">{!selectedSalesChannel}</h1>                                        
+                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small">{!RIGHT(LEFT(selectedDate,7),2)}-{!LEFT(selectedDate,4)}</h1>
                                     </div>
                                     <br/>
                                     <!--inicio od repeate aqui-->

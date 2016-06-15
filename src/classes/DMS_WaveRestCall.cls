@@ -32,11 +32,10 @@ global class DMS_WaveRestCall
             headerValues.put(DMS_GlobalConstants.HEADER_CONTENT_TYPE, DMS_GlobalConstants.CONTENT_TYPE_JSON);
                        
             DMS_RestApiHelper dmsWaveRest = new DMS_RestApiHelper(DMS_GlobalConstants.ENDPOINT_QUERY, DMS_GlobalConstants.METHOD_POST, headerValues,body);
-            
             JSONParser parser = Json.createParser(dmsWaveRest.responseBody);
             Distribuidor distribuidor = (DMS_WaveRestCall.Distribuidor) parser.readValueAs(DMS_WaveRestCall.Distribuidor.class);
             listRecords = distribuidor.results.records;
-           
+
         } 
         catch (Exception e) 
         {

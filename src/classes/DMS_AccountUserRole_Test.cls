@@ -4,42 +4,20 @@ public class DMS_AccountUserRole_Test {
     
     public static testMethod void testCreatePartner(){
         system.runAs(ownerUser){
-            Account accountDistributor = DMS_SObjectInstance_Test.createAccount('name','DMS_Distributor', null, null, '01219000000CiAT', ownerUser.id,NULL, true);
-            Account accountStore = DMS_SObjectInstance_Test.createAccount('name','DMS_Account', accountDistributor.id, 'APROV', '01219000000CiAY', ownerUser.id, '001', true);
+            Account accountDistributor = DMS_SObjectInstance_Test.createAccount('name','DMS_Distributor', null, null, DMS_RecordTypeMemory.getRecType('Account', 'Distributor'), ownerUser.id,NULL, true);
+            Account accountStore = DMS_SObjectInstance_Test.createAccount('name','DMS_Account', accountDistributor.id, 'APROV', DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer'), ownerUser.id, '001', true);
             
             List<id> idAccount = new List<id>();
             idAccount.add(accountStore.Id);
             idAccount.add(accountDistributor.id);
             
-            Contact contact1 = new Contact(
-                FirstName = 'Test',
-                Lastname = 'McTesty',
-                AccountId = accountDistributor.Id,
-                Email = System.now().millisecond() + 'test@test.com'
-            );
-            Database.insert(contact1);
+            Contact contact1 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'TestMcTesty', null,true);
+            User user1 = DMS_SObjectInstance_Test.createUserPartner(contact1.id, 'testUser@Roletest.com',true);
+            List<UserRole> userAccount =[SELECT Id, PortalAccountId FROM UserRole WHERE PortalAccountId =: idAccount];  
             
-            
-            //Create user
-            UserRole portalRole = [Select Id From UserRole Where PortalType = 'None' Limit 1];
-            Profile portalProfile = [SELECT Id FROM Profile WHERE Name LIKE '%Portal User%' Limit 1];
-            User user1 = new User(
-                Username = System.now().millisecond() + 'test@test.com',
-                ContactId = contact1.Id,
-                ProfileId = portalProfile.Id,
-                Alias = 'test123',
-                Email = System.now().millisecond()+'test@test.com',
-                EmailEncodingKey = 'UTF-8',
-                LastName = System.now().millisecond()+'McTesty',
-                CommunityNickname = System.now().millisecond()+ 'test',
-                TimeZoneSidKey = 'America/Los_Angeles',
-                LocaleSidKey = 'en_US',
-                LanguageLocaleKey = 'en_US',
-                UserRole = portalRole
-            );
-            Database.insert(user1);
-            
+            System.assert(userAccount.size()>0);            
             DMS_AccountUserRole.createPartner(idAccount);
+            DMS_AccountUserRole.createPartner(idAccount);                        
         }
     }
 }

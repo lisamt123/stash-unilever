@@ -13,14 +13,22 @@ VERSION AUTHOR DATE DETAIL Description
 global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCallouts
 {
     
-    private static Map<String, String> mapUsers = new Map<String, String>();
     private String sessionId;
     private static Network community;
+    private static Map<String, String> mapUsers = new Map<String, String>();    
+    private static Map<String, String> customSetting = new Map<String, String>();
+    
+    static {
+       
+        List<DatasetId__c> customList = DatasetId__c.getAll().values();
+        for(DatasetId__c values : customList) {
+            customSetting.put(values.name, values.ID__c);   
+        }
+    }
     
     public DMS_PostChatter_Schedule() 
      {
         this(UserInfo.getSessionId());
-         system.debug('UserInfo:'+ UserInfo.getSessionId());
      }
     
     
@@ -43,18 +51,18 @@ global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCal
     
     @future(callout=true)
     public static void postChatter(String mySession) {
-        	system.debug('mySession:'+mySession);
+
         try {
 			getIdCommunity();
-            DMS_WaveRestCall.getRecords(DMS_GlobalConstants.ID_Dataset1,DMS_GlobalConstants.ID_Dataset2, mySession); //call the method 
+            DMS_WaveRestCall.getRecords(customSetting.get('ECO'),customSetting.get('Impacted'), mySession); //call the method 
         	
             for(DMS_WaveRestCall.Records waveRecord :  DMS_WaveRestCall.listRecords) 
             {
                 mapUsers.put(waveRecord.Account_Owner, waveRecord.DistributorCode);    
             }
-            system.debug('mapUsers:'+ mapUsers);
+
             Map<Id, Set<String>> mapUserGroupId = new Map<Id, Set<String>>(getMapUserGroupId(mapUsers)); //Separete the UserId by GroupMember that he's part
-			system.debug('mapUserGroupId:'+ mapUserGroupId);
+
             for(Id vId : mapUserGroupId.keySet()) {
                 String groupId = vId;
                 String mentionIds;

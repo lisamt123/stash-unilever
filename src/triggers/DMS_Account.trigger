@@ -12,7 +12,7 @@ trigger DMS_Account on Account (after insert,after update)
         DMS_AccountUserRole.createPartner(listId);
     }
         
-    DMS_CountActiveStore countAcStore = new DMS_CountActiveStore();
+    DMS_ActiveStore countAcStore = new DMS_ActiveStore();
     
     for(AccountTeamMember atm : [SELECT id,User.ContactId From AccountTeamMember Where AccountId =: listId AND UserId !=null AND User.ContactId !=null])
     {            
