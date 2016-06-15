@@ -17,6 +17,16 @@
         <enabled>false</enabled>
         <externalDataSource>Unilever_SFDev</externalDataSource>
     </externalDataSourceAccesses>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Retrieval_Request__c.Email_Subject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Retrieval_Request__c.Factory_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>CEC - Thunderhead Email</label>
     <recordTypeVisibilities>
         <recordType>CEC_Retrieval_Request__c.Default</recordType>
