@@ -69,14 +69,12 @@ src/classes/DMS_TargetCountActiveStore_Test.cls
 src/classes/DMS_TargetCountActiveStore_Test.cls-meta.xml
 src/classes/DMS_WaveHexagon.cls
 src/classes/DMS_WaveHexagon.cls-meta.xml
-src/classes/DMS_UserCreation.cls
-src/classes/DMS_UserCreation.cls-meta.xml
 src/classes/DMS_Home_CC.cls
 src/classes/DMS_Home_CC.cls-meta.xml
 src/classes/DMS_ContactTriggerHelper.cls
 src/classes/DMS_ContactTriggerHelper.cls-meta.xml
-src/classes/DMS_UserCreation_Test.cls
-src/classes/DMS_ContactTriggerHelper.cls-meta.xml
+src/classes/DMS_ContactTriggerHelper_Test.cls
+src/classes/DMS_ContactTriggerHelper_Test.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
@@ -112,6 +110,7 @@ src/documents/DMS_Files/Logo_Unilever_Communities.png
 src/documents/DMS_Files/Logo_Unilever_Communities.png-meta.xml
 src/documents/DMS_Files/DMS_Footer.html
 src/documents/DMS_Files/DMS_Footer.html-meta.xml
+src/documents/SharedDocuments-meta.xml
 src/labels
 src/labels/DMS.labels
 src/staticresources

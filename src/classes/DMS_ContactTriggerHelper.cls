@@ -13,8 +13,15 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 2.0		DIMITRI MENEZES	 15/06/2016	 UPDATE METHOD FOR ACCOUNT TEAM MEMBERS.. 
 3.0		CARLOS HENRIQUE	 16/06/2016  CLASS NAME CHANGED.
 ***********************************************************************/
-public with sharing class DMS_ContactTriggerHelper {
+public with sharing class DMS_ContactTriggerHelper 
+{
     private Map<String,String> contactMap = new Map<String,String>();
+	private static Profile myProfile;
+	
+    static 
+    {
+      myProfile =  [SELECT id FROM Profile WHERE name = 'Partner Community User'][0];
+    }
     
     public DMS_ContactTriggerHelper() {}
     
@@ -31,7 +38,8 @@ public with sharing class DMS_ContactTriggerHelper {
         {
             for(Contact con : [SELECT id, email, firstName, lastname, accountId FROM Contact WHERE Id =: contact]) 
             {
-                if(!String.isEmpty(con.Email)) {
+                if(!String.isEmpty(con.Email)) 
+                {
                     //create the users
                     users.add(create(con));
                 }
@@ -155,7 +163,7 @@ public with sharing class DMS_ContactTriggerHelper {
             timezonesidkey = 'America/New_York', 
             Username = userName,
             CommunityNickname = userName,
-            ProfileId = '00eE00000011JZ6',
+            ProfileId = myProfile.Id,
             IsActive = true);
         newUser.setOptions(dmo); 
         

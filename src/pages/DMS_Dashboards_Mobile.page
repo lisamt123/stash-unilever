@@ -27,6 +27,6 @@
             </apex:form>
         </body>
     </html>
-    <wave:dashboard rendered="{!exibirImpac}"  showTitle="true" height="700" width="1000" dashboardId="0FK190000004CZLGA2"></wave:dashboard> 
-    <wave:dashboard rendered="{!exibirEco}"  showTitle="true" height="800" width="1050" dashboardId="0FK190000004CZuGAM"></wave:dashboard>
+    <wave:dashboard rendered="{!exibirImpac}"  showTitle="true" height="1000" width="10000" dashboardId="0FK190000004CZLGA2"></wave:dashboard> 
+    <wave:dashboard rendered="{!exibirEco}"  showTitle="true" height="1000" width="10000" dashboardId="0FK190000004CZuGAM"></wave:dashboard>
 </apex:page>

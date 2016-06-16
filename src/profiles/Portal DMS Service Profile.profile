@@ -38,6 +38,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>DMS_ContactTriggerHelper_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DMS_Dashboards_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -95,10 +99,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>DMS_TargetCountActiveStore_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>DMS_UserCreation_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
