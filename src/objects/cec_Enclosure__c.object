@@ -77,16 +77,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Company__c</fullName>
-        <externalId>false</externalId>
-        <label>Company</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <<fields>
         <fullName>Category__c</fullName>
         <description>To select the type of Enclosure.</description>
         <externalId>false</externalId>
@@ -117,6 +107,16 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Company__c</fullName>
+        <externalId>false</externalId>
+        <label>Company</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Country__c</fullName>
