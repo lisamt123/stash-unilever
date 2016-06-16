@@ -56,7 +56,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             List<Account> masterAccountList = new List<Account>();
             masterAccountList.addAll(CEC_TestDataFactory.createTestAccounts(1, 'Test Account1', 
-                                                                            '1cecTestForCase@UnileverTest.com', null, null, 'Rio', , null));
+                                                                            '1cecTestForCase@UnileverTest.com', null, null, null, null, null));
             
             masterAccountList.addAll(CEC_TestDataFactory.createTestAccounts(1, 'Test Account2', 
                                                                             '2cecTestForCase@UnileverTest.com', null, null, null, null, null));
