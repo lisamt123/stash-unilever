@@ -11,10 +11,17 @@ private class IPM_BD_BB_Report_BatchSchedule_Test {
     static testmethod void ReportScheduler(){
         test.starttest();
         
+<<<<<<< HEAD
         //Insert data for Custom setting
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting();
         List<IPM_Reporting__c>reportParameterlist=[SELECT Id FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
         system.assertNotEquals(reportParameterlist[0].Id,null,'Report Parameter record is not created'); //Negative test
+=======
+            //Insert data for Custom setting
+            IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting('BD BB Report', true);
+            List<IPM_Reporting__c>reportParameterlist=[SELECT Id FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
+            system.assertNotEquals(reportParameterlist[0].Id,null,'Report Parameter record is not created'); //Negative test
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 
         IPM_BD_BB_Report_BatchSchedule sch=new IPM_BD_BB_Report_BatchSchedule();
         

@@ -58,6 +58,10 @@ private with sharing class IPM_MilestoneHandler_Test {
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList; 
+<<<<<<< HEAD
+=======
+            System.assert(projectList.size() > 0, 'project successfully not created');
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         }
      }
      

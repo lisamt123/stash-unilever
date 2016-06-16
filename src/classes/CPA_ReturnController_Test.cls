@@ -132,7 +132,7 @@ public class CPA_ReturnController_Test {
        CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c,CNF_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];
     Test.stopTest();
         System.assert(CPA_ConstantsForContractingAppClasses.SentForClosure== objPWOFinal.pkl_Status__c);
-        System.assert(CPA_ConstantsForContractingAppClasses.RETURNED == objPWOFinal.CNF_Status__c);
+        System.assert(CPA_ConstantsForContractingAppClasses.RETURNED== objPWOFinal.CNF_Status__c);
         
     }
     /*******************************************************************

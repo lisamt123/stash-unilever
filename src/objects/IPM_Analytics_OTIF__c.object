@@ -53,7 +53,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -62,7 +61,7 @@
         <description>Comm: BET Final Release Availability</description>
         <externalId>false</externalId>
         <label>Comm: BET Final Release Availability</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -73,7 +72,7 @@
         <description>Communication: Full Think Big Pack Available</description>
         <externalId>false</externalId>
         <label>Comm: Full Think Big Pack Available</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -84,7 +83,7 @@
         <description>Actual Launch Month</description>
         <externalId>false</externalId>
         <label>Actual Launch Month</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -95,10 +94,11 @@
         <description>Actual Launch Year - YYYY</description>
         <externalId>false</externalId>
         <label>Actual Launch Year</label>
-        <length>4</length>
+        <precision>4</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -106,7 +106,7 @@
         <description>Attractive Business Case</description>
         <externalId>false</externalId>
         <label>Attractive Business Case</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -117,7 +117,7 @@
         <description>Base II value at Contract gate document</description>
         <externalId>false</externalId>
         <label>Bases II</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -128,7 +128,7 @@
         <description>Base I value at Contract gate document</description>
         <externalId>false</externalId>
         <label>Bases I</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -139,7 +139,7 @@
         <description>Bases III</description>
         <externalId>false</externalId>
         <label>Bases III</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -161,7 +161,7 @@
         <description>Business Impact- From Financial</description>
         <externalId>false</externalId>
         <label>Business Impact</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -172,7 +172,7 @@
         <description>Capex Approved</description>
         <externalId>false</externalId>
         <label>Capex Approved</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -205,7 +205,7 @@
         <description>Charter Target Launch Month</description>
         <externalId>false</externalId>
         <label>Charter Target Launch Month</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -273,7 +273,7 @@
         <description>Concept Test at Charter gate Document</description>
         <externalId>false</externalId>
         <label>Concept Test</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -295,7 +295,7 @@
         <description>Contract Target Launch Month</description>
         <externalId>false</externalId>
         <label>Contract Target Launch Month</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -352,7 +352,7 @@
         <description>Customer Appeal</description>
         <externalId>false</externalId>
         <label>Customer Appeal</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -406,7 +406,7 @@
         <description>IC/NBU</description>
         <externalId>false</externalId>
         <label>IC NBU</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -417,7 +417,7 @@
         <description>MD Target Launch Month</description>
         <externalId>false</externalId>
         <label>MD Target Launch Month</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -474,7 +474,7 @@
         <description>MR Target Launch Month</description>
         <externalId>false</externalId>
         <label>MR Target Launch Month</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -552,7 +552,7 @@
         <description>Materials Sourcing Strategies Agreed</description>
         <externalId>false</externalId>
         <label>Materials Sourcing Strategies Agreed</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -700,7 +700,7 @@
         <description>Scoping Complete</description>
         <externalId>false</externalId>
         <label>Scoping Complete</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -722,7 +722,7 @@
         <description>Target Launch Month (BB)</description>
         <externalId>false</externalId>
         <label>Target Launch Month (BB)</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -733,7 +733,7 @@
         <description>Target Launch Month (BD)</description>
         <externalId>false</externalId>
         <label>Target Launch Month (BD)</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -744,10 +744,11 @@
         <description>Target Launch Year (BB) - YYYY</description>
         <externalId>false</externalId>
         <label>Target Launch Year (BB)</label>
-        <length>4</length>
+        <precision>4</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -755,10 +756,11 @@
         <description>Target Launch Year (BD) - YYYY</description>
         <externalId>false</externalId>
         <label>Target Launch Year (BD)</label>
-        <length>4</length>
+        <precision>4</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -766,7 +768,7 @@
         <description>Technical Feasibility</description>
         <externalId>false</externalId>
         <label>Technical Feasibility</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -825,7 +827,7 @@
         <description>Ist Production Conf. &amp; Specs Finalised</description>
         <externalId>false</externalId>
         <label>Ist Production Conf. &amp; Specs Finalised</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -836,7 +838,7 @@
         <description>Spec/Bills of Materials in Interspec</description>
         <externalId>false</externalId>
         <label>Spec/Bills of Materials in Interspec</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -847,7 +849,7 @@
         <description>Tech Action STD Achieved by Lead Region</description>
         <externalId>false</externalId>
         <label>Tech Action STD Achieved by Lead Region</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -858,7 +860,7 @@
         <description>Technical &amp; Production Capability Conf at Main Plant</description>
         <externalId>false</externalId>
         <label>Tech &amp; Prod Capability Conf @ Main Plant</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -869,7 +871,7 @@
         <description>Tech &amp; Prod Capability Confirmed</description>
         <externalId>false</externalId>
         <label>Tech &amp; Prod Capability Confirmed</label>
-        <length>10</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

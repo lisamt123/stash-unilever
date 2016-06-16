@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_$CPA_project_work_order__c.pkl_Status__c</field>
+    </columns>
+    <columns>
+        <field>FK_$CPA_project_work_order__c.txt_PWO_title__c</field>
+    </columns>
+    <columns>
+        <field>CPA_TAT__c.fml_Final_TAT__c</field>
+    </columns>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$CPA_project_work_order__c.mpkl_Project_Classification__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$CPA_project_work_order__c.mpkl_Project_Phases__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CPA WO Status Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$CPA_TAT__c@CPA_TAT__c.lkp_PWO_ID__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CPA_TAT__c.dat_Latest_Update_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

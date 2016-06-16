@@ -149,6 +149,7 @@ public with sharing class IPM_MyList{
     public static final String ERROR_STR = 'Error';
     public static final String ISARCHIEVED_FALSE_STR =' AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =  \'Internal\' ';
     public static final String QUERY_WHERE_ASSIGNEE_STR=' WHERE IPM_Assignee__c = ';
+    private static final String LIMIT_STR=' LIMIT 2000 ';
     public List<IPM_Task__c> lstTasks{get;set;}
     public String taskcountValue;
     private final Integer DAY_VALUE = 7;
@@ -291,10 +292,9 @@ public with sharing class IPM_MyList{
             soql += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR ;
         }
         soql +=' Limit 1000';
-        System.debug('soql==>'+soql);
         try{
             tasksToReturn = Database.query(soql);
-            standardSetCon = new ApexPages.StandardSetController(Database.getQueryLocator(soql));
+            standardSetCon = new ApexPages.StandardSetController(tasksToReturn);
         }catch(Exception ex){  catchBlockContent(LOAD_TASKS,ex);  }        
         
         projectsSet =new Set<String>();
@@ -354,7 +354,6 @@ public with sharing class IPM_MyList{
     
     public void markComplete() {
         try{
-            system.debug('Total Number of SOQL Queries allowed in this apex code context: ' +  Limits.getLimitDMLStatements());
             IPM_Task__c tObj = [SELECT IPM_Completed__c FROM IPM_Task__c WHERE Id =:taskId];
             tObj.IPM_Completed__c = isChecked == IPM_Utils.truevalue ? true : false; 
             tObj.IPM_Completed_Date__c = isChecked == IPM_Utils.truevalue ? system.today() : null;
@@ -370,11 +369,14 @@ public with sharing class IPM_MyList{
     *********************************************************************************/
     public Boolean isBosscard {get; set;}
     
+<<<<<<< HEAD
     public PageReference project()
     {
         return new PageReference(IPM_Utils.apexipmproject_1);
     }
     
+=======
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     public Integer size{get;set;}
     public Integer overduesize{get;set;}   
     public Integer overduesize1{get;set;}    
@@ -407,7 +409,7 @@ public with sharing class IPM_MyList{
                 } else {
                     query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                 }
-                
+                query += LIMIT_STR;
                 try{
                     setCon = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     if(isCompleteTasks != IPM_Utils.Yes){
@@ -476,7 +478,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    
+                    query += LIMIT_STR;
                     setControl = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setControl.setPageSize(showtodaySize);
                     
@@ -541,6 +543,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
+                    query += LIMIT_STR;
                     setCont = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setCont.setPageSize(nextSevensize);
                     
@@ -610,7 +613,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    
+                    query += LIMIT_STR;
                     setContr = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setContr.setPageSize(laterSize);
                     totallatertaskpages= Integer.valueof(math.ceil((double)setContr.getResultSize()/(double)setContr.getPageSize()));
@@ -673,7 +676,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    
+                    query += LIMIT_STR;
                     setController= new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setController.setPageSize(completedSize);
                     totalcompletedpages= Integer.valueof(math.ceil((double)setController.getResultSize()/(double)setController.getPageSize()));
@@ -896,7 +899,7 @@ public with sharing class IPM_MyList{
     *********************************************************************************/
     public void catchBlockContent(string methodName,Exception ex){
     	ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage)); 
-        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,methodName,ex.getMessage(),ex, ERROR_STR, null, null, null,null);
+        //ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,methodName,ex.getMessage(),ex, ERROR_STR, null, null, null,null);
     }
     
     

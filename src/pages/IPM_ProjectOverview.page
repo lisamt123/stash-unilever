@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:This page is used to display the overall information about the project.
 *@Author: Cognizant
@@ -93,6 +93,15 @@
                                         <apex:commandLink value="{!message}" action="{!$Page.IPM_Tasklist}?id={!project.Id}"/>
                                     </li>
                                     </apex:repeat>
+<<<<<<< HEAD
+=======
+                                 <apex:repeat var="message" value="{!lstFinDataMissingAlertMessage}">
+                                    <li>
+                                            <apex:commandLink value="{!message}" action="{!$Page.IPM_Financial}?id={!project.Id}"/>
+                                    </li>
+                                </apex:repeat>
+                            <!-- Display below outputPanel when current user has some document alert message-->
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                             <apex:outputPanel rendered="{!documentAlertMessage != null}">
                                <li>
                                     {!documentAlertMessage}
@@ -243,7 +252,12 @@
                             
                             <div class="greyborder"></div>
                             </apex:outputPanel>
+<<<<<<< HEAD
                             <apex:outputPanel layout="block" styleClass="charterApprover" rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0}">
+=======
+                            <!-- Display below outputPanel when rolloutProjectRecentMilestone is not null-->
+                            <apex:outputPanel layout="block" styleClass="charterApprover" rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0 && !rolloutProjectRecentMilestone[0].IPM_Project__r.Is_Archieved__c}">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                 <a href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
                                                        
 			    </apex:outputPanel>
@@ -300,8 +314,13 @@
                             </div>
                             <div class="greyborder"></div>
                             </apex:outputpanel>
+<<<<<<< HEAD
                             
                             <apex:outputpanel rendered="{!projectPriority != null}">
+=======
+                            <!-- Display below outputPanel when projectPriority is not null-->
+                            <apex:outputpanel rendered="{!project.IPMProject_Span__c==$Label.IPM_Local}">  
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                 <div class="row">
                                     <div class="col-sm-8 pr0">
                                         <div class="keycontent">{!$Label.IPM_ProjectPriority}</div>
@@ -339,7 +358,12 @@
                             </div>
                         </div>
                             <apex:actionFunction name="movethePLE" action="{!moveToPLE}" reRender=""/>
+<<<<<<< HEAD
                             <div id="ipmMoveFeasibility" class="modal fade">
+=======
+                            <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
+                            <div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -524,7 +548,7 @@
                 </apex:outputPanel>
                 
                 <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , project.IPM_Phase__c='PLE')}">                          
-                    <div class="col-sm-6 text-center" id="stopsection">
+                    <div class="col-sm-6 text-center stopsection" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_ple.png')}" alt="PLE" /></div>                                   
                         <div class="successStyle">{!$Label.IPM_ProjectLaunchMeassage}</div>
                         <div class="launchDate">on&nbsp;<apex:outputField value="{!projectDoc.IPM_Approval_Date__c }"/></div>                                   
@@ -532,7 +556,7 @@
                 </apex:outputPanel>  
                                      
                 <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , if(project.Is_Archieved__c==true,true,false))}">            
-                    <div class="col-sm-6 text-center" id="stopsection">
+                    <div class="col-sm-6 text-center stopsection" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_g.png')}" alt="Stop" /></div>        
                         <div>{!$Label.IPM_PROJECT_STOPPED}</div>
                         <div>On &nbsp;<apex:outputfield value=" {!project.IPM_Stopped_Date_Time__c}"/> by {!project.IPM_Project_Stopped_By__c} </div>
@@ -544,7 +568,7 @@
                 </apex:outputPanel>
                 
                 <apex:outputPanel rendered="{!bPhaseChangeInProgress}">                        
-                    <div class="col-sm-6 text-center" id="stopsection">
+                    <div class="col-sm-6 text-center stopsection" id="stopsection">
                        <div class="successStyle">{!$Label.IPM_PhaseChangeInProgressMsg}</div>
                     </div>
                 </apex:outputPanel> 
@@ -659,8 +683,13 @@
                                         </div>
                                     <div class="createNewBrandExp">
                                         <div class="italicTxt">{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
+<<<<<<< HEAD
                                         <div id="ipmGetStartedTab" class="modal-body">
                                         
+=======
+                                        <div id="ipmGetStartedTab" class="modal-body ipmGetStartedTab">
+                                        <!-- Display below outputPanel when showSuggestedMembers is false--> 
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                         <apex:outputpanel rendered="{!!showSuggestedMembers}" >   
                                             <ul class="ipmStartedTabs">
                                                 <li class="betdetails tabOdd active"><a href="#betdetails"  >{!$Label.IPM_BETDetails}</a></li>

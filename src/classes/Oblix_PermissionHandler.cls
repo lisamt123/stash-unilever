@@ -85,14 +85,39 @@ public with sharing class Oblix_PermissionHandler {
     				then has edit access. UL1 should not be able to edit if SOW is
                     locked by approval process.
     ********************************************************************************/
-    public static Boolean hasEditAccess(Id sow_id){
+    public static Boolean hasEditAccess(Marketing_SOW__c sow){
+        Id sowId = sow == null ? null : sow.Id;
         // SS 20160214 - added check if a record is locked. Only system administrator should be able to edit locked records
+<<<<<<< HEAD
         if ( !isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin() ){
+=======
+        if ( !isLocked(sowId) && ( (hasUL1permissionSet() || hasUL2permissionSet() ) && hasEditSWOPPermissionLevel(sow) || hasSuperUserpermissionSet()) || isSystemAdmin() ){
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     		return true;
     	}
     	else{
     		return false;
     	}
+    }
+
+    private static Boolean hasEditSWOPPermissionLevel(Marketing_SOW__c sow){
+        if(hasSuperUserpermissionSet()){
+            return true;
+        } else if(sow == null){
+            return true;
+        } else {
+            List<Oblix_User_Permission__c> allUserPermissions = [SELECT Id, Level_of_Access__c FROM Oblix_User_Permission__c 
+                                                                    WHERE User_id__c = :UserInfo.getUserId() 
+                                                                    AND CategoryBrand_id__r.Product_Category_Id__c =:sow.SmallProductCategory__c
+                                                                    AND CategoryBrand_id__r.Brand_id__c = :sow.OblixBrand__c];
+
+            for(Oblix_User_Permission__c up : allUserPermissions){
+                if(up.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_ACCESS_EDIT || up.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_APPROVER || up.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_SUPERUSER){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 
@@ -103,7 +128,8 @@ public with sharing class Oblix_PermissionHandler {
     ********************************************************************************/
     public static Boolean canCreateSOW(){
     	// only UL1, UL2, SuperUser and Sysadmin can create SOW
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasUL3permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
+        // IR 18/05/2016: DE401 - UL1/2 should not be able to create SOWs
+    	if (hasSuperUserpermissionSet() || isSystemAdmin()){
     		return true;
     	}
     	else{
@@ -120,9 +146,19 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSeeFinancialField(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can see financial fields
     	// or if the sow is approved by Unilever/awaiting agency approval
+<<<<<<< HEAD
     	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
     		|| 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER == sow_status)){
+=======
+    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasUL3permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    		|| Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY == sow_status
+            || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status
+            || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC == sow_status
+            || Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status
+            || Oblix_Utils.SOW_STATUS_FINALISED == sow_status
+            || null != sow_approved_version){
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     		
     		return true;
     	}
@@ -131,16 +167,18 @@ public with sharing class Oblix_PermissionHandler {
     	}
     }
 
+
     /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-02-02
     * @description  Depending on the assigned permission sets and status of SOW
-    				determine if the user can delete SOW
+                    determine if the user can delete SOW
     ********************************************************************************/
     public static Boolean canDeleteSOW(String sow_status, Id sow_id){
-    	// only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
-    	// the sow is not approved or locked
+        // only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
+        // the sow is not approved or locked
         // SS 20160214 added check if a record is locked
+<<<<<<< HEAD
     	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
@@ -149,6 +187,32 @@ public with sharing class Oblix_PermissionHandler {
     	else{
     		return false;
     	}
+=======
+        // IR 18/05/2016: DE401 - UL1/2 should not be able to delete SOWs
+        if ( isSystemAdmin() || (!isLocked(sow_id) && hasSuperUserpermissionSet())
+            && 
+            (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+    /*******************************************************************************
+    * @author       Ivan Ribakov
+    * @date         2016-05-18
+    * @description  Depending on the assigned permission sets 
+                    determine if the user can edit key SOW fields
+    ********************************************************************************/
+    public static Boolean canEditKeySOWFields() {
+        if (isSystemAdmin() || hasSuperUserpermissionSet()) {
+            return true;
+        } else {
+            return false;
+        }
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     }
 
 
@@ -161,9 +225,18 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSetCompletionStage(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can set 
     	// the sow is not approved
+<<<<<<< HEAD
     	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
+=======
+    	if (isSystemAdmin() || (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet())
+        		&& 
+        		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)
+            ||
+            (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status))
+        {
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     		return true;
     	}
     	else{
@@ -197,15 +270,15 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets 
     				allow user to see geographic scale
     ********************************************************************************/
-    public static Boolean canSeeGeographicScale(){
-    	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    }
+    //public static Boolean canSeeGeographicScale(){
+    //	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
+    //	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
+    //		return true;
+    //	}
+    //	else{
+    //		return false;
+    //	}
+    //}
 
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -213,15 +286,15 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets 
     				allow user to see agency hub fields
     ********************************************************************************/
-    public static Boolean canSeeAgencyHubFields(){
-    	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    }
+    //public static Boolean canSeeAgencyHubFields(){
+    //	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
+    //	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
+    //		return true;
+    //	}
+    //	else{
+    //		return false;
+    //	}
+    //}
 
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -248,6 +321,7 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to adjust fee
     ********************************************************************************/
+<<<<<<< HEAD
     public static Boolean canAdjustFee(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can adjust fee
     	// if not already approved
@@ -259,6 +333,24 @@ public with sharing class Oblix_PermissionHandler {
     	else{
     		return false;
     	}
+=======
+    public static Boolean canAdjustFee(String sow_status, Id sow_id, String campaign_status, String sow_nameSuffix){
+        // only UL1, UL2, SuperUser and Sysadmin can adjust fee
+        // if not already approved
+        if (isSystemAdmin() || 
+            (!isLocked(sow_id) 
+                && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED 
+                && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet())
+                && (Oblix_Utils.NAME_SUFFIX_FINALISED != sow_nameSuffix)
+                && (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) 
+                && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     }
 
     /*******************************************************************************
@@ -305,12 +397,27 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to Add/Update/Delete Asset Basket Items
     ********************************************************************************/
+<<<<<<< HEAD
     public static Boolean canManageAssetBasket(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
     	// if not already approved
     	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
+=======
+    public static Boolean canManageAssetBasket(String sow_status, Id sow_id, String campaign_status, String pfy_sow_status){
+    	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
+    	// if not already approved
+    	if (isSystemAdmin() || hasSuperUserpermissionSet() ||  
+                (
+                    !isLocked(sow_id) && 
+                    (campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED)  && 
+                    (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) && 
+                    (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status) && 
+                    (pfy_sow_status == null || pfy_sow_status == Oblix_Utils.SOW_STATUS_FINALISED) 
+                )
+            ) {
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     		return true;
     	}
     	else{
@@ -324,7 +431,11 @@ public with sharing class Oblix_PermissionHandler {
     * @date         2016-02-02
     * @description  Depending on the assigned permission sets and sow status
     				allow user to submit SOW for approval
+                    S.M. 2016-05-13 added additional check for approval to be hidden
+                    until the PFY sow has been finalised to make sure EOY approval 
+                    is completed before NFY sow is submitted for initial approval
     ********************************************************************************/
+<<<<<<< HEAD
     public static Boolean canSubmitForApproval(String sow_status){
     	// only UL2, UL1, SuperUser and Sysadmin can send sow for approval
     	// if not already approved
@@ -334,11 +445,124 @@ public with sharing class Oblix_PermissionHandler {
                 && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status
                 && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC != sow_status)){
     		return true;
+=======
+    public static Boolean canSubmitForApproval(String sow_status, String pfy_sow_status, String sow_sync_status){
+    	
+        if (canSeeSubmitForApprovalButton(sow_status, pfy_sow_status, sow_sync_status) &&
+            (
+                //Either SOW is before Initial approval
+                String.isBlank(sow_sync_status) ||
+                (   //Or SOW is before EoY approval AND Sync is COMPLETE
+                    String.isNotBlank(sow_sync_status) && 
+                    Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status
+                )
+            )
+        ) {
+
+
+        // 1- only UL2, UL1, SuperUser and Sysadmin can send sow for approval
+        // 2- can only see whe sow status is open for updates or draft with unilever
+        // 3- if it needs to be submitted for initial approval
+        // 4- if it needs to be submitted for EOY approval
+        //if ((hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
+        //    && 
+        //    (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status || Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER == sow_status || Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status|| Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status)
+        //    &&
+        //    (
+        //        (Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status)
+        //        ||
+        //        (Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status)
+        //        ||
+        //        (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status)
+        //        ||
+        //        (Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER == sow_status && (String.isBlank(pfy_sow_status) || (String.isNotBlank(pfy_sow_status) && Oblix_Utils.SOW_STATUS_FINALISED == pfy_sow_status)))
+        //    )
+        //){
+      //  if ( (hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
+    		//&& 
+    		//(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status
+      //          && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status
+      //          && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC != sow_status)
+      //      &&
+      //      (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES != sow_status || (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status))
+      //      &&
+      //      (String.isBlank(pfy_sow_status) || (String.isNotBlank(pfy_sow_status) && Oblix_Utils.SOW_STATUS_FINALISED == pfy_sow_status))) {
+                system.debug('#### canSubmitForApproval - sow_status: ' + sow_status + ' - pfy_sow_status: ' + pfy_sow_status + ' - sow_sync_status: ' + sow_sync_status + ' - return TRUE' );
+    		
+            return true;
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     	}
     	else{
+                system.debug('#### canSubmitForApproval - sow_status: ' + sow_status + ' - pfy_sow_status: ' + pfy_sow_status + ' - sow_sync_status: ' + sow_sync_status + ' - return FALSE' );
     		return false;
     	}
     }
+
+
+
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-02-02
+    * @description  Depending on the assigned permission sets and sow status
+                    allow user to submit SOW for approval
+                    S.M. 2016-05-13 added additional check for approval to be hidden
+                    until the PFY sow has been finalised to make sure EOY approval 
+                    is completed before NFY sow is submitted for initial approval
+    ********************************************************************************/
+    public static Boolean canSeeSubmitForApprovalButton(String sow_status, String pfy_sow_status, String sow_sync_status){
+        // 1- only UL2, UL1, SuperUser and Sysadmin can send sow for approval
+        // 2- can only see whe sow status is open for updates or draft with unilever or rejected by unilever or rejected by agency
+        if ((hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
+            && 
+            (
+                (   //Either SOW is before initial approval
+                    String.isBlank(sow_sync_status) &&
+                    (
+                        Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER == sow_status || 
+                        Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status|| 
+                        Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status
+                    )
+                ) ||
+                (   //Or SOW is past rollover and before EoY approval
+                    String.isNotBlank(sow_sync_status) && 
+                    (
+                        Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status ||
+                        Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status || 
+                        Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status
+                    )        
+                )
+            )
+            &&
+            (   //Either SOW is brand new (no related PFY record)
+                String.isBlank(pfy_sow_status) ||
+                (   //Or PFY SOW has passed EoY approval (PFY Status == FINALISED)
+                    String.isNotBlank(pfy_sow_status) &&
+                    Oblix_Utils.SOW_STATUS_FINALISED == pfy_sow_status
+                )
+            )
+
+        ){
+      //  if ( (hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
+            //&& 
+            //(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status
+      //          && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status
+      //          && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC != sow_status)
+      //      &&
+      //      (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES != sow_status || (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status))
+      //      &&
+      //      (String.isBlank(pfy_sow_status) || (String.isNotBlank(pfy_sow_status) && Oblix_Utils.SOW_STATUS_FINALISED == pfy_sow_status))) {
+                system.debug('#### canSubmitForApproval - sow_status: ' + sow_status + ' - pfy_sow_status: ' + pfy_sow_status + ' - sow_sync_status: ' + sow_sync_status + ' - return TRUE' );
+            
+            return true;
+        }
+        else{
+                system.debug('#### canSubmitForApproval - sow_status: ' + sow_status + ' - pfy_sow_status: ' + pfy_sow_status + ' - sow_sync_status: ' + sow_sync_status + ' - return FALSE' );
+            return false;
+        }
+    }
+
+
 
 
     /*******************************************************************************
@@ -378,7 +602,11 @@ public with sharing class Oblix_PermissionHandler {
                 && 
                 (Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status)
             ||
+<<<<<<< HEAD
                 (hasAG1permissionSet() && isNextApprover(sow_id))
+=======
+                (hasSuperUserpermissionSet() || isSystemAdmin() || (hasAG1permissionSet() && isNextApprover(sow_id)))
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 &&
                 (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status)
         ){
@@ -433,9 +661,13 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canAddNewAttachment(String sow_status){
     	// only UL1, UL2, SuperUser, AG1, AG2 and Sysadmin can add attachment to SOW
     	// if not already approved
+<<<<<<< HEAD
     	if (hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasAG2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
+=======
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() || hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasUL3permissionSet()) {
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     		return true;
     	}
     	else{
@@ -452,9 +684,13 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canDeleteAttachment(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can delete other people's attachments on SOW 
     	// if not already approved
+<<<<<<< HEAD
     	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
+=======
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasUL3permissionSet()){
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     		return true;
     	}
     	else{
@@ -476,6 +712,17 @@ public with sharing class Oblix_PermissionHandler {
     	else{
     		return false;
     	}
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-05-10
+    * @description  checks if a SOW record is locked.
+    ********************************************************************************/
+    public static Boolean canSeeDashboards(){
+
+        return !(hasAG1permissionSet() || hasAG2permissionSet());
+
     }
 
     /*******************************************************************************

@@ -107,7 +107,14 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         if (!b_initiated_from_vf_page)
             Oblix_SOWHandlerLogic.adjustBrandCategoriesForSOW((Marketing_SOW__c) so, mids_campaign_id_category_brand);
         // set approvers to SOWs in this scope
+<<<<<<< HEAD
         Oblix_SOWHandlerLogic.setSOWApprovers((Marketing_SOW__c) so, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+=======
+        Oblix_SOWHandlerLogic.setSOWApprovers((Marketing_SOW__c) so, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
+
+        // adjust SOW name Prefix + Suffix
+        Oblix_SOWHandlerLogic.setSOWname((Marketing_SOW__c) so);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
@@ -123,6 +130,18 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c)){
             Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
         }
+<<<<<<< HEAD
+=======
+
+        // adjust SOW name Prefix + Suffix
+        Oblix_SOWHandlerLogic.setSOWname((Marketing_SOW__c) so);
+        
+        ////if sow has just been approved,  initiate versioniong process
+        //if(sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY && oldSow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY){
+        //    Id sowCloneId = Oblix_SOWHandlerLogic.copySOW(sow.Id);
+        //    sow.Name += Oblix_SOWHandlerLogic.ORIGINAL_SUFFIX;
+        //}
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     }
      
 

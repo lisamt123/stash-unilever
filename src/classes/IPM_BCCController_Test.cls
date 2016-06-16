@@ -5,10 +5,17 @@
 *************************************************************/
 
 @isTest
+<<<<<<< HEAD
 public class  IPM_BCCController_Test {
     public static IPM_Project__c project;// Project object initialization
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static PageReference pRef;
+=======
+private class  IPM_BCCController_Test {
+    private static IPM_Project__c project;// Project object initialization
+    private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    private static PageReference pRef;
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     private static user testUser;
     public static List<IPM_Country__c> countryList=new List<IPM_Country__c>();
     private static IPM_BCCController ipmBcc;
@@ -21,7 +28,11 @@ public class  IPM_BCCController_Test {
     @Description : to Intialize(insert) the data for Project, 
         IPM_Project_Rollout__c, IPM_Financial__c objects
 ***************************************************************************/
+<<<<<<< HEAD
     public static void initializeData(){
+=======
+    static void initializeData(){
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -48,7 +59,11 @@ public class  IPM_BCCController_Test {
             insert projectList;
             project=projectList[0];
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+<<<<<<< HEAD
             System.assertEquals(projlList1[0].Name,'TestComments1','project inserted');//positive test
+=======
+            System.assertEquals(projlList1[0].Name,'TestComments1','project not created successfully');//positive test
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{testUser,testUser,testUser});
             insert regionalRolloutList;

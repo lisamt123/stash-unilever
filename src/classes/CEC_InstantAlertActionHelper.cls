@@ -14,7 +14,7 @@ VERSION    AUTHOR            DATE            DETAIL
 1.1      Koti              Dec-2015      Added updateInactiveAlertTrackerItems() method.
 1.2      Sathish           Feb-2016      Updated getMatchingAlertRules() method for CSC-4037
 *************************************************************************************/
-public without sharing class CEC_InstantAlertActionHelper {
+public with sharing class CEC_InstantAlertActionHelper {
     
     // A wrapper class which holds all the alert related data for a case. Key - CaseId, Value - CaseAlertWrapper.
     private Map<Id, AlertRuleWrapper> alertRuleWrapperMap = new Map<Id, AlertRuleWrapper>();
@@ -168,6 +168,7 @@ public without sharing class CEC_InstantAlertActionHelper {
         
         // Get all the Alert Rule ID's matching for all the cases available in newCaseMap.
         Case caseObj;        
+<<<<<<< HEAD
         String caseMarket; 
         Set<Id> allAlertRuleIdSet = null;
         List<String> caseL0ProductCategoryList = new List<String>();
@@ -175,6 +176,21 @@ public without sharing class CEC_InstantAlertActionHelper {
         List<String> caseL4ProductCategoryList = new List<String>();
         List<String> caseNoProdSizeDescList = new List<String>();        
         List<String> caseR5ReasonCodeList = new List<String>();
+=======
+        String caseMarket;
+        // set of Alertrule Ids
+        Set<Id> allAlertRuleIdSet = null;
+        // set of L0 Product category
+        Set<String> caseL0ProductCategoryList = new Set<String>();
+        // set of L2 Product category
+        Set<String> caseL2ProductCategoryList = new Set<String>();
+        // set of L4 Product category
+        Set<String> caseL4ProductCategoryList = new Set<String>();
+        // 
+        Set<String> caseNoProdSizeDescList = new Set<String>();
+        // set of R5 reason code
+        Set<String> caseR5ReasonCodeList = new Set<String>();
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         String l0ProductCategoryConcatValue, l2ProductCategoryConcatValue, l4ProductCategoryConcatValue, r5ReasonCodeConcatValue; 
         
         for(Id caseIdItr : caseIds){
@@ -296,7 +312,11 @@ public without sharing class CEC_InstantAlertActionHelper {
                     (aRule.Case_Product__c != null &&
                         aRule.Consumer_Product_Descriptor_no_size__c == caseObj.Consumer_Product_Descriptor_no_size__c)) && 
                     aRule.ReasonCode_Concat_Value__c == r5ReasonCodeConcatValue && 
+<<<<<<< HEAD
                     (aRule.Market__c == caseMarket || aRule.All_Market__c == true)){
+=======
+                    (aRule.Market__c == caseMarket || aRule.All_Market__c)){
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                        
                        if (alertRuleWrapperMap.get(aRule.Id) == null) {
                            alertRuleWrapperMap.put(aRule.Id, new AlertRuleWrapper(aRule.Id, aRule));
@@ -369,6 +389,9 @@ public without sharing class CEC_InstantAlertActionHelper {
                 
                 if(alertWrapper.caseList != null && !alertWrapper.caseList.IsEmpty()) {
                     for(Case caseObj : alertWrapper.caseList) {
+                    
+                        uniqueId = null;
+                        
                         // Create Unique Id based on the daycode check on the alert rule.
                         if(!alertRule.Group_By_Day_Code__c && caseObj.DayCode__c == null){
                             uniqueId = alertRule.Id + caseObj.Consumer_Product_Descriptor_no_size__c;
@@ -395,9 +418,9 @@ public without sharing class CEC_InstantAlertActionHelper {
                                 alertTracker.Trigger_Batch__c = TRUE;
                                 // Add the alert tracker in the master list to do the insert
                                 masterAlertTrackerList.add(alertTracker);
-                                // Add the alert tracker to the map in the wrapper per Case Id.
-                                alertWrapper.addAlertTracker(caseObj.Id, alertTracker);
                             }
+                            // Add the alert tracker to the map in the wrapper per Case Id.
+                            alertWrapper.addAlertTracker(caseObj.Id, alertTracker);
                         }                        
                     }
                 }
@@ -415,7 +438,7 @@ public without sharing class CEC_InstantAlertActionHelper {
         Method to create the Alert Tracker Items records for the cases.
     ********************************************************************/
     private void createAlertTrackerItems() {
-        System.debug('Entering createAlertTrackerItems() method');
+        System.debug('Entering createAlertTrackerItems() method. alertRuleWrapperMap = ' + alertRuleWrapperMap);
         if(alertRuleWrapperMap.size()> 0) {
             cec_Alert_Tracker_Item__c alertTrackerItem;
             List<cec_Alert_Tracker_Item__c> masterAlertTrackerItemList = new List<cec_Alert_Tracker_Item__c>();

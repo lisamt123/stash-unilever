@@ -43,21 +43,21 @@ public class PBS_LMSHeaderController_Test {
           PBS_TestUtilClass.addPermissionSet(adminUsers,'PBS_LMS_Admin');
       }
 
-      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.almond__MyTraining.getUrl(), STR_TRAINGING);
-      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.almond__TrainingCatalogHome.getUrl(), STR_CATALOG);
-      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.almond__MyProfile.getUrl(), STR_PROFILE);
+      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.PBS_MyTraining.getUrl(), STR_TRAINGING);
+      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.PBS_TrainingCatalogHome.getUrl(), STR_CATALOG);
+      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.PBS_MyProfile.getUrl(), STR_PROFILE);
 
       Test.startTest();
 
         System.runAs(adminUsers.get(0)){
             PBS_LMSHeaderController_CC cont;
-            Test.setCurrentPageReference(Page.almond__MyTraining);
+            Test.setCurrentPageReference(Page.PBS_MyTraining);
             cont = new PBS_LMSHeaderController_CC ();
             System.assertEquals(STR_TRAINGING,cont.section);
-            Test.setCurrentPageReference(Page.almond__MyProfile);
+            Test.setCurrentPageReference(Page.PBS_MyProfile);
             cont = new PBS_LMSHeaderController_CC ();
             System.assertEquals(STR_PROFILE,cont.section);
-            Test.setCurrentPageReference(Page.almond__TrainingCatalogHome);
+            Test.setCurrentPageReference(Page.PBS_TrainingCatalogHome);
             cont = new PBS_LMSHeaderController_CC ();
             System.assertEquals(STR_CATALOG,cont.section);
         }
@@ -78,21 +78,21 @@ public class PBS_LMSHeaderController_Test {
           PBS_TestUtilClass.addPermissionSet(lmsUsers,'PBS_LMS_User');
       }
 
-      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.almond__MyTraining.getUrl(), STR_TRAINGING);
-      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.almond__TrainingCatalogHome.getUrl(), STR_CATALOG);
-      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.almond__MyProfile.getUrl(), STR_PROFILE);
+      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.PBS_MyTraining.getUrl(), STR_TRAINGING);
+      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.PBS_TrainingCatalogHome.getUrl(), STR_CATALOG);
+      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.PBS_MyProfile.getUrl(), STR_PROFILE);
 
       Test.startTest();
 
           System.runAs(lmsUsers.get(0)){
               PBS_LMSHeaderController_CC cont;
-              Test.setCurrentPageReference(Page.almond__MyTraining);
+              Test.setCurrentPageReference(Page.PBS_MyTraining);
               cont = new PBS_LMSHeaderController_CC ();
               System.assertEquals(STR_TRAINGING,cont.section);
-              Test.setCurrentPageReference(Page.almond__MyProfile);
+              Test.setCurrentPageReference(Page.PBS_MyProfile);
               cont = new PBS_LMSHeaderController_CC ();
               System.assertEquals(STR_PROFILE,cont.section);
-              Test.setCurrentPageReference(Page.almond__TrainingCatalogHome);
+              Test.setCurrentPageReference(Page.PBS_TrainingCatalogHome);
               cont = new PBS_LMSHeaderController_CC ();
               System.assertEquals(STR_CATALOG,cont.section);
           }

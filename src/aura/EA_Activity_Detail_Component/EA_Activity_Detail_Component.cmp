@@ -3,15 +3,17 @@
                   scripts="/resource/EA_StaticResource/jquery/jquery.js,/resource/EA_StaticResource/slick/slick.min.js" afterScriptsLoaded="{!c.doInit}"/>
     <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />
 
+         
     <aura:attribute name="EAactivityid" type="String"/>
+    <aura:attribute name="booleanValue" type="List"/>
     <aura:attribute name="check_image" type="Boolean" default="false"/>
-    <aura:attribute name="activity" type="Everyday_Activity__c"/>
+    <aura:attribute name="activity" type="EA_Wrapper_Class.EA_RecentlyCompletedUsers"/>
     <aura:attribute name="showcontent" type="boolean" default="true"></aura:attribute>
     <aura:attribute name="index" type="Integer" />
     <aura:attribute name="pageIndex" type="Integer" />
     <aura:attribute name="themeColors" type="Map"/>
     <aura:attribute name="themecolor" type="String" />
-    <aura:attribute name="themerecordtype" type="String" default="{!v.activity.RecordType.Name}"/>
+    <aura:attribute name="themerecordtype" type="String" default="{!v.activity.themeName}"/>
     <aura:attribute name="numbers" type="integer[]"/>
     <aura:attribute name="remain" type="integer[]" default="[]"/>
     <aura:attribute name="showdetail" type="boolean" default="true"></aura:attribute>
@@ -22,7 +24,7 @@
     <aura:attribute name="showswipecard" type="boolean" default="true"></aura:attribute>
     <aura:attribute name="detailPage" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="ActivityDesc" type="string" default=""/>
-    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
+  <!--  <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
     
     <style>
         .spacer-pull-to-load-more{
@@ -70,17 +72,22 @@
     </style>
     <div class="slds">
         <div  style="margin-top:12px;">
+            <div onclick="{!c.callShowDetailCard}" >
+               
+                
         <div class="outer_sec">
+            
             <div class="activity-sec" style="{!'background:'+ v.themecolor +';'}">
-                    <div class="a-title"><p><ui:outputText value="{!v.activity.RecordType.Name}"/></p></div>
-                    <div class="t-title"><h4><ui:outputText value="{!v.activity.Name}"/></h4></div>
+               
+                    <div class="a-title"><p><ui:outputText value="{!v.activity.themeName}"/></p></div>
+                    <div class="t-title"><h4><ui:outputText value="{!v.activity.activityName}"/></h4></div>
                     
                     <aura:if isTrue="{!v.check_image}">
                         <span class="check_image_auto"><img src="/resource/EA_StaticResource/assets/images/check.svg"></img></span>
                         
                     </aura:if>     
                     <div class="default-rating" style="margin-left:-5px;">
-                        <aura:if isTrue="{!v.activity.Rating__c != null}">
+                        <aura:if isTrue="{!v.activity.activityRating != null}">
                             <aura:iteration items="{!v.numbers}" var="rating">
                                 <span>
                                     <img  value="{!rating}" class="starfill" src="/resource/EA_StaticResource/assets/images/fil_star.svg" alt="person name" />
@@ -93,7 +100,7 @@
                                 </span>
                             </aura:iteration>
                         </aura:if>
-                        <aura:if isTrue="{!v.activity.Rating__c == null}">
+                        <aura:if isTrue="{!v.activity.activityRating == null}">
                             <aura:iteration var="rating1" items="[1,2,3,4,5]"  indexVar="index">
                                 <span  style="margin-left=12px;" >
                                     <img   value="{!rating1}" class="starfill" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
@@ -104,29 +111,30 @@
                 </div>
                 <div class="section"><br/>
                     <div style="margin-left:5px;">
-                        <p class="desc" ><ui:outputText value="{!v.ActivityDesc}"/></p>
-                         <span class="see_more" onclick="{!c.callShowDetailCard}" >See more...</span>
+                        <p class="desc slds-text-body--regular" ><ui:outputText value="{!v.ActivityDesc}"/></p>
+                        <span class="see_more" onclick="{!c.callShowDetailCard}" >See more...</span>
                     </div>
                     
                    
                     <div style="margin-left:5px;height:72px">
-                        <p class="recent">Recently completed by</p>
+                        <p class="recent slds-text-body--small">Recently completed by</p>
                         <div>
                             
-                            <c:ImageComponent recentactivityid="{!v.activity.Id}"/>
+                            <c:ImageComponent recentactivityid="{!v.activity.Id}" recentUsers="{!v.activity.userPhotoUrl1}"/>
                         </div>
                     </div>
                     <div class="min-sec">
                        <table class="min-table"><tr>
                             <td class="td_img_icon"> <img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/clock.svg" alt="tick" /></td>
-                            <td class="tdFont"><ui:outputText value="{!v.activity.Minutes_to_Complete_Action__c}"/>   min  </td>
+                            <td class="tdFont"><ui:outputText value="{!v.activity.minutestoComplete}"/>   min  </td>
                             <td class="td_img_icon"><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/user.svg" alt="tick" /></td>
-                            <td class="tdFont"><ui:outputText value="{!v.activity.Participants_Required__c}"/>  people</td>
+                            <td class="tdFont"><ui:outputText value="{!v.activity.peopleRequired}"/>  people</td>
                             <td class="td_img_icon"><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/badge.svg" alt="tick" /></td>
-                            <td class="tdFont"><ui:outputText value="{!v.activity.Activity_Points__c}"/>  points</td>
+                            <td class="tdFont"><ui:outputText value="{!v.activity.activityPoints}"/>  points</td>
                             </tr>
                         </table>
                     </div>
+             
                    <!-- <span class="see_more" onclick="{!c.callShowDetailCard}" >see activity details...</span> -->
                    <!-- <aura:if isTrue="{!v.showcontent}">
                         <c:EverydayAction_Faturedcontent_component EAactivityid="{!v.activity.Id}"/>
@@ -141,11 +149,11 @@
                     
                 </div>      
             
-        </div>
-        
+        </div> 
+      </div>  
         
         <aura:if isTrue="{!v.showtodoactpage}">
-            <c:EA_ToDoActivityPage activityId="{!v.activity.Id}" themeColors="{!v.themeColors}"></c:EA_ToDoActivityPage>
+            <c:EA_ToDoActivityPage activityId="{!v.activity.activityId}" themeColors="{!v.themeColors}"></c:EA_ToDoActivityPage>
         </aura:if>
         
         

@@ -1,94 +1,18 @@
+<!--  
+   *************************************************************************
+   *@Description:This page is used to input AnnualBonus Figures 
+   *@Author: Cognizant
+   *@Created Date: 20/07/2014 
+   *************************************************************************
+   -->
 <apex:page controller="AF_AnnualBonus" showHeader="false" sidebar="false" docType="HTML-5.0">
 
 <!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
 <!-- jquery library Start-->
-    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"/>
     <!-- jquery library End-->
-    
-
-<script>  
- $( function() {
-    $('.two-digits').keyup(function(){
-        //alert('Hi');
-        if($(this).val().indexOf('.')!=-1){         
-            if($(this).val().split(".")[1].length > 2){                
-                if( isNaN( parseFloat( this.value ) ) ) return;
-                this.value = parseFloat(this.value).toFixed(2);
-            }  
-         }            
-         return this; //for chaining
-    });
-    
-    
-     
-  $(".two-digits").keypress(function (e) {
-      
-     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
-        
-        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
-        alert("Please enter numbers only.");
-               return false;
-    }
-   });
-});
-</script>
-
- <script>
- 
-  function isNumberKey(evt)
-       {
-          var charCode = (evt.which) ? evt.which : event.keyCode;
-          var result = false;
-          var errorMsg = document.getElementById("regTitle");
-          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)&& charCode != 45)
-          {
-             errorMsg.innerHTML = "<b>Please use numerical characters only.</b>";
-             result = false;
-          }
-          else
-          {
-           errorMsg.innerHTML = "";
-           result = true;         
-          }             
-          return result;
-       }
- 
- function isNumberKeyforRenum(evt)
-       {
-          var charCode = (evt.which) ? evt.which : event.keyCode;
-          var result = false;
-          var errorMsg = document.getElementById("regTitle1");
-          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57 && charCode != 45))
-          {
-             errorMsg.innerHTML = "<b>Please use numerical characters only.</b>";
-             result = false;
-          }
-          else
-          {
-           errorMsg.innerHTML = "";
-           result = true;         
-          }             
-          return result;
-       }
- 
-  function emptybox(id)
-     {
-       var temp=document.getElementById(id).value;
-       var errorMsg = document.getElementById("regTitle");
-       
-       if(temp==null||temp==''){
-         errorMsg.innerHTML = "<b>Please enter</b>";
-         return false;
-       }else{
-         return true;
-       }
-     }
-  
-     
- </script>
-
  <div class="AF_AnnualBonus">
   <apex:message />
   <div class="row">           
@@ -112,7 +36,7 @@
   <apex:outputPanel >
   <div class="digitalCont">
     
-      <span class="marginL4P">Digital 
+      <span class="marginL4P">{!$Label.AF_Digital} 
         <span class="marginL61P">&euro;</span>
         <apex:outputText value="{0,number,###,###,###}" >
         <apex:param value="{!Totals_BonusMeasureDigital}"/>
@@ -120,7 +44,7 @@
   </div>
   <div class="traditionalCont">
          
-          <span class="marginL2P">Traditional
+          <span class="marginL2P">{!$Label.AF_Traditional}
            <span class="marginL30P">&euro;</span>
          <apex:outputText value="{0,number,###,###,###}">
           <apex:param value="{!Totals_BonusMeasureTrad}"/>
@@ -134,7 +58,6 @@
   <div class="fontSize16P overflowA">
  
  <apex:pageblockTable value="{!QuartelyBonus}" styleClass="quartelyBonusGrid tableSection" var="QB" id="pbt" rowClasses="even,odd">
- 
   <apex:column headerValue="Bonus Measure" rendered="{!!AF_Pilot_Model}">
    <apex:outputText value="{!QB.bonusMeasureMatrix}"/>
   </apex:column>
@@ -145,9 +68,7 @@
   </apex:facet>
  </apex:column>
  <apex:column headerValue="Bonusable Fees" styleClass="wid50P">
-<!--<apex:outputText value="{0,number,###,###,###}">
-          <apex:param value="{!QB.total_bonus_fees}"/>
- </apex:outputText>-->
+
  <apex:outputPanel >
  <apex:outputPanel rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}">
  <apex:inputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount>1,'true','false')}">
@@ -302,11 +223,11 @@
  <div class="NoteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
  <br/>
  <br/>
- <apex:outputPanel rendered="{!AND(IsEditable,NOT(isAgency))}" styleClass="floatR wid222P">
+ <apex:outputPanel id="outButtons" rendered="{!AND(IsEditable,NOT(isAgency))}" styleClass="floatR wid222P">
  <div id="Savebutton">
- <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg" styleClass="submit_btn1" rendered="{!IsDraft}" status="status"/>
+ <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,outButtons,pmsg" styleClass="submit_btn1" rendered="{!IsDraft}" status="status"/>
  </div>
- <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2" oncomplete="calldisable()" status="status"/>
+ <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2" oncomplete="calldisable()" status="status" rendered="{!showSubmit}"/>
  </apex:outputPanel>
  </apex:form>
  
@@ -315,7 +236,7 @@
  <apex:form >
     <apex:outputpanel rendered="{!AF_Pilot_Model}">
     <apex:pageBlock id="pg2">
-    <div class="bonusableFeesLabel2">Bonusable Fees </div>
+    <div class="bonusableFeesLabel2">{!$Label.AF_Annual_Bonus_Fees}</div>
         
   
 
@@ -332,8 +253,7 @@
                
                 <apex:inputtext value="{!renum.renumRating}" rendered="{!AND(NOT(renum.Locked),NOT(isAgency))}" onFocus="javascript:this.maxLength=2;"   id="renum2" onkeypress="return isNumberKey(event)"  style="text-align: center;font-size: 16px;width:60px;">
                     <div class="regTitlecont2" id="renum3"></div>
-                       <!-- <apex:actionSupport event="onchange" action="{!Calculate_Remun2}" reRender="renum4,renum6" >
-                        </apex:actionSupport>-->
+                       
                 </apex:inputtext>
             </apex:outputpanel>
         </apex:column>
@@ -375,16 +295,5 @@
         </apex:ActionStatus>
  </apex:form>
 </div>
-  <script>
-  function calldisable(){
-          
-            document.getElementById('Savebutton').style.visibility = "hidden";
-            console.log('hi');
-  }
-  function callcalculateBonus(){
-    alert('Hi');
-    call_calculate_bonus();
-    alert('Hi2');
-  }
-  </script>
+  <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'AF_AnnualBonus.js')}"/>
 </apex:page>

@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_AttchemntCommerical_util</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_AttchemntUtilController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -49,7 +53,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_Commercials_Threshold_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_ConstantsForContractingAppClasses</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_ConstantsForPworfAging</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -113,11 +125,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_PWORFAgeing</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_PWORFInformationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_PWORFTrigger_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_PWORF_Aging_Schedular_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -197,6 +217,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_ScheduleBatchProrfAgeUpdate</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_SelectRecordTypeController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -209,7 +233,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_TotalWorkingDyasBetweenTwoDates</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_TriggerFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_UserDefineAttribute_Util</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_User_Defined_Attribute_Handler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -218,6 +254,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_attachment_Trigger_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_batchProrfAgeUpdate</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_batchProrfAgeUpdate_test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_getThreshold</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -702,6 +750,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_CR__c.dat_Sent_for_Signature_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_CR__c.dat_Submitted_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -747,12 +800,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_CR__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_CR__c.eml_Unilever_Budget_Approver_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_CR__c.eml_Unilever_Content_Approver_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_CR__c.eml_VDM_group_email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -767,12 +830,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_CR__c.fur_Project_Scale__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_CR__c.fur_per_Variance__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.fur_pworfrecord_type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_CR__c.isValidated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_CR__c.lkp_Owner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -827,7 +905,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_CR__c.num_Contingency_Charges__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_CR__c.num_Delta_Efforts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_CR__c.num_Discounts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -918,6 +1006,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_CR__c.pec_Expense__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_CR__c.per_Variance__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1096,94 +1189,94 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.CR__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.Delta__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Commercial_Details__c.Fees__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Commercial_Details__c.Fees_del__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.Project_Work_Order__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Commercial_Details__c.Resource_Location__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Commercial_Details__c.fcur_Cost_of_resource__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.num_Efforts__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.num_Entity_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.num_Rate__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.num_Value__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.num_Year__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.txt_Cost_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.txt_Entity_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.txt_Level__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.txt_Location__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.txt_Role__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Commercial_Details__c.txt_month__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1312,6 +1405,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_HLE_Request__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_HLE_Request__c.eml_UBPR_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1327,7 +1425,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_HLE_Request__c.eml_VDM_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_HLE_Request__c.isValidated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_HLE_Request__c.lkp_Owner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1701,6 +1809,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_LOI__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CPA_LOI__c.eml_Unilever_Budget_Approver_Email__c</field>
         <readable>true</readable>
@@ -1711,6 +1824,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_LOI__c.eml_VDM_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CPA_LOI__c.fml_PWORF_Clarity_ID__c</field>
         <readable>true</readable>
@@ -1718,6 +1836,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.isValidated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_LOI__c.lkp_Owner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1861,23 +1984,28 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_PWORF_Ageing__c.dat_Latest_Update_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CPA_PWORF_Ageing__c.dat_Resubmitted_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CPA_PWORF_Ageing__c.dat_Submitted_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_PWORF_Ageing__c.fml_Fianl_PWORF_Ageing__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF_Ageing__c.fml_Resubmitted_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF_Ageing__c.fml_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF_Ageing__c.fml_Submitted_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1888,11 +2016,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_PWORF_Ageing__c.num_Total_PWORF_Ageing_Days__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CPA_PWORF_Ageing__c.txt_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2317,6 +2440,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_PWORF__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_PWORF__c.eml_Unilever_Budget_Approver_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2333,6 +2461,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_PWORF__c.eml_Unilever_Project_Manager_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_PWORF__c.eml_VDM_group_email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2358,6 +2491,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_PWORF__c.isValidated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_PWORF__c.lkp_Owner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2791,6 +2929,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_Queries__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_Queries__c.eml_VDM_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.CR_ID__c</field>
         <readable>true</readable>
@@ -2828,6 +2976,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.Responded_By__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_Query_comment__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_Query_comment__c.eml_VDM_group_email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2912,12 +3070,82 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_User_Defined_Attribute__c.Contract_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.DS_Responsibility_Owner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.DS_Responsibility_With__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.DS_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.Sent_in_Docusign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.Type_of_COntract__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.Unique_value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.chk_isDocusignedRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_User_Defined_Attribute__c.lkp_CR__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.lkp_HLE_Request__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.lkp_LOI__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.lkp_PWORF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.lkp_PWO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_User_Defined_Attribute__c.pkl_Attribute_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_User_Defined_Attribute__c.txt_Other_Attribute_type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2978,11 +3206,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_project_work_order__c.Related_CRs__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CPA_project_work_order__c.Standalone_PWO_clarity_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3236,17 +3459,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_project_work_order__c.em_PWORFDeltaUnileverprojectmanagerEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.eml_CNF_Unilever_Budget_Approver_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.eml_CNF_Unilever_Content_Approver_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3259,6 +3482,11 @@
         <editable>false</editable>
         <field>CPA_project_work_order__c.eml_Project_requestor_Email__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.eml_SMT_group_email__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3284,6 +3512,11 @@
         <editable>false</editable>
         <field>CPA_project_work_order__c.eml_Unilever_project_manager_Email__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.eml_VDM_group_email__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3332,6 +3565,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_project_work_order__c.fur_PWORFRecord_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.fur_Project_Scale__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.fur_Unilever_Project_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3348,6 +3591,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_project_work_order__c.lkp_Linked_PWO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.lkp_Owner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3493,6 +3741,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_project_work_order__c.num_CNF_Variance_number_in_man_days__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.num_Contingency_Charges__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.num_Discounts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3686,7 +3944,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.txt_CNF_Unilever_Budget_Approver_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3696,7 +3954,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.txt_CNF_Unilever_Content_Approver_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3741,7 +3999,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_project_work_order__c.txt_PWORFDeltaUnileverprojectmanagerName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3774,6 +4032,11 @@
         <editable>false</editable>
         <field>CPA_project_work_order__c.txt_Project_requestor_Name__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.txt_Standalone_PWO_clarity_ID__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -4019,10 +4282,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
+        <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>CPA_User_Defined_Attribute__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -4196,6 +4459,38 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_CR</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_HLE_Request</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_LOI</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.LOI_docusign</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.PWO_docusign</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CPA_project_work_order__c.CPA_PWO</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -4270,7 +4565,67 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>CanUseNewDashboardBuilder</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CreateCustomizeDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CreateCustomizeReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CreateDashboardFolders</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CreateReportFolders</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditMyDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditMyReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ManageDashbdsInPubFolders</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ManageDynamicDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ManageReportsInPubFolders</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>NewReportBuilder</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewMyTeamsDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

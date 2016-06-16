@@ -13,6 +13,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     private static final List<String> DEFAULT_MANDATORY_FIELDS = new List<String>{'IPM_Project_Name__c','IPM_Category_Text__c','IPM_Brand_Positioning__c','IPM_Company_Card__c','IPM_ProjectSubType__c','IPM_Target_Launch_Dates__c'};
     private static final String DEFAULT_CHARTER_APPROVER = 'RCLT';  
     
+    //*@Description: TLD restriction in effect
+    public  Boolean tldRestriction {get;set;}
+    
     //*@Description: Project Resource list
     list<IPM_Project_Resource__c> lstProuser = new list<IPM_Project_Resource__c>();
     //*@Description: Project Metadata information
@@ -32,7 +35,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Boolean isSavedDB {get;set;} 
     public string isRollout{get;set;} 
     //*@Description: Specifies list of project names
-    public List<IPM_Project__c> listofProjectName {get; set;}
+    public set<string> listofProjectName {get; set;}
     //*@Description: Flag for Image
     public Boolean isImage {get; set;}
     //*@Description: Store Image Id
@@ -97,7 +100,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     *****************************************************************************/
     public IPM_ProjectSetUpController(ApexPages.StandardController controller){
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
-        initialise();
+        if(project!=null){
+           initialise();
+        }
     }
     /****************************************************************************
     @Description : To initialize all variables
@@ -172,6 +177,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             isEditable=false;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_BACKGROUNDPROCESS_INPROGRESS));
         }
+        
+         IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
+         tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
     }  
     /****************************************************************************
     @Description : Inner class to get date
@@ -735,7 +743,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }
                 isDupProjectname=IPM_WithoutShareController.duplicateProjectList(projectId,project.IPM_Project_Name__c,bossId);
             }
-            if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c < System.today()){
+            if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c <= System.today()){
                 isTLDLessThnToday= true;
             }     
             else if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c < System.today().addDays(Integer.valueOf(projectMetadata.IPM_TargetLaunchDateDuration__c)  ))
@@ -744,7 +752,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
         }
         
+<<<<<<< HEAD
         if(!isBusinessError && !isContainSpecialChars && !isTLDLessThnSixMnth && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
+=======
+        if(!isBusinessError && !isContainSpecialChars && !(isTLDLessThnSixMnth && tldRestriction) && !isTLDBeforeGates && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         
         {
             processProjectSave();
@@ -763,7 +775,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     {
         try
         {
-            project.IPM_Project_Leader__c=UserInfo.getUserId();
+           
             project.IPM_Project_Navigate__c = true;
             if(!isSavedDB && !skipValidation && projectMetadata!=null )
             {
@@ -788,7 +800,16 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	            if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
 	            	project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;	
 	            } 
+<<<<<<< HEAD
             }	               
+=======
+            }	
+            
+			if(String.isBlank(project.IPM_Approver_of_Charter__c ) )
+			{
+				project.IPM_Approver_of_Charter__c= projectMetadata.IPM_DefaultCharterQuestionAnswer__c;
+			}                    
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             update project;
             
             if(!skipValidation)
@@ -1080,7 +1101,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : search duplicate project name
     *****************************************************************************/
     public void searchDuplicateProject(){
-        listofProjectName=new List<IPM_Project__c>(); 
+        listofProjectName=new Set<string>(); 
         listofProjectName=IPM_WithoutShareController.allProjectList(projectId,project.IPM_Project_Name__c); 
         if(listofProjectName.isEmpty()){
             isProjectNameBlank=true;
@@ -1142,6 +1163,27 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     *********************************************************************************/
     public void hideProjectSuggetion(){
         isProjectNameBlank=true;
+<<<<<<< HEAD
     }  
+=======
+    }
+    /*******************************************************************************************************
+    * @description  Method to get a date prior to any of mandatory project Milestones (except PLE and Target Launch Date).
+    * @param        NONE
+    * @return       Date
+    */
+    @Testvisible private Boolean isProjectTLDBeforeMilestoneGates( Date tld ){
+        Boolean result = false;
+        List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
+        List<IPM_Milestone__c> milestones = [Select IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Name__c in: milestoneNames limit 1000];
+        for(IPM_Milestone__c milestone : milestones) {
+        	if(milestone.IPM_Due_Date__c != null && tld<milestone.IPM_Due_Date__c) {
+        		result = true;
+        		break;
+        	}
+        }
+        return result;
+    }        
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     
 }

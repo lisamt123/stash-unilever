@@ -204,6 +204,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Project__r.IPM_Current_Document_Status__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,IPM_Project__r.IPM_Phase__c,';
+               soql += 'IPM_Section__c,IPM_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Section_Name__c, ';
                soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c FROM IPM_Task__c ';
                soql += 'WHERE IPM_Active__c = true  AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
                

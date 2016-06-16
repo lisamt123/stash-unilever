@@ -43,12 +43,24 @@ public class CEC_Util {
         return finalStr;
     }   
     
+<<<<<<< HEAD
     static String[] to_19 = new string[]{ 'zero', 'One',  'Two', 'Three', 'Four',  'Five',  'Six', 'Seven','Eight', 'Nine', 'Ten',  'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen' }; 
     static String[] tens = new string[]{ 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'}; 
     static string[] denom = new string[]{ '','Thousand',   'Million',     'Billion',    'trillion',    'quadrillion',  'quintillion', 's!xtillion',   'septillion',  'octillion',   'nonillion',  'decillion',  'undecillion',   'duodecillion', 'tredecillion',  'quattuordecillion',  's!xdecillion', 'septendecillion', 'octodecillion', 'novemdecillion', 'vigintillion' }; 
 
     
     // convert a value < 100 to English.   
+=======
+    static String[] to_19 = new string[]{'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+                                        'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'}; 
+    static String[] tens = new string[]{'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'}; 
+    static string[] denom = new string[]{ '','Thousand', 'Million', 'Billion', 'trillion', 'quadrillion', 'quintillion', 'sixtillion', 'septillion',
+                                        'octillion',   'nonillion',  'decillion',  'undecillion',   'duodecillion', 'tredecillion',  'quattuordecillion',
+                                        'sixdecillion', 'septendecillion', 'octodecillion', 'novemdecillion', 'vigintillion'};
+
+    
+    // convert a value < 100 to English.
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     public static string convertTwoDigitToWord(integer val) { 
         System.debug('In convertTwoDigitToWord val is  ' + val ); 
         if (val < 20) 
@@ -56,6 +68,7 @@ public class CEC_Util {
         if (val == 100) 
             return 'One Hundred'; 
         
+<<<<<<< HEAD
         for (integer v = 0; v < tens.size(); v++) { 
             String dcap = tens[v]; 
             System.debug('dcap is  ' + dcap ); 
@@ -63,15 +76,30 @@ public class CEC_Util {
             System.debug('dval is  ' + dval ); 
             
             if (dval + 10 > val) { 
+=======
+        for(integer v = 0; v < tens.size(); v++) {
+            String dcap = tens[v]; 
+            System.debug('dcap is  ' + dcap ); 
+            integer dval = 20 + 10 * v; 
+            System.debug('dval is  ' + dval );
+            
+            if (dval + 10 > val) {
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 System.debug('in loop 1' ); 
                 if (Math.Mod(val,10) != 0) {
                     System.debug('in loop 2' ); 
                     system.debug('to_19[Math.Mod(val,10)] ' + to_19[Math.Mod(val,10)] );
                     return dcap + ' ' + to_19[Math.Mod(val,10)]; 
                 }
+<<<<<<< HEAD
                 return dcap; 
             }     
         } 
+=======
+                return dcap;
+            }
+        }
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         return null; 
     } 
     // convert a value < 1000 to english, special cased because it is the level that kicks   
@@ -101,6 +129,7 @@ public class CEC_Util {
     // 1) Number to be converted in words
     // 2) Textual version of currency, e.g. DOLLARS
     // 3) Textual version of decimal currency, e.g. CENTS
+<<<<<<< HEAD
     public static String convertAllDigitsToWord(decimal val, string currencyText, string currencyDecimalText ) { 
         if (val < 100) { 
             System.debug('In englishNumber val is < 100 ' + val ); 
@@ -130,6 +159,56 @@ public class CEC_Util {
                 return convertThreeDigitToWord(val.intValue())+ ' ' + currencyText ; 
             }
         } 
+=======
+    public static String convertAllDigitsToWord(decimal val, string currencyText, string currencyDecimalText, string decimalFormatCMM ) {
+        string amountInWords = '';
+        string decimalFormat = 'Text'; //default output as text
+        
+        if(decimalFormatCMM == 'Display as fraction'){
+            decimalFormat = 'Fraction';
+        }
+        
+        if (val < 100) {
+            System.debug('In englishNumber val is < 100 ' + val ); 
+            
+            if ((val - val.intValue()) > 0){
+                if (val.intValue() > 0){
+                    if(decimalFormat == 'Text'){
+                        amountInWords = convertTwoDigitToWord(val.intValue())+ ' ' + currencyText + ' and ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+                    }else if(decimalFormat == 'Fraction'){
+                        amountInWords = convertTwoDigitToWord(val.intValue())+ ' and ' + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                    }
+                }
+                else{
+                    if(decimalFormat == 'Text'){
+                        amountInWords = convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText;
+                    }else if(decimalFormat == 'Fraction'){
+                        amountInWords = string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                    }
+                }               
+            }
+            else {
+                amountInWords = convertTwoDigitToWord(val.intValue())+ ' ' + currencyText ; 
+            }
+            return amountInWords.toUpperCase();                
+        }
+        
+        if (val < 1000) {
+            System.debug('In englishNumber val is < 1000 ' + val ); 
+            
+            if ((val - val.intValue()) > 0){
+                if(decimalFormat == 'Text'){
+                    amountInWords = convertThreeDigitToWord(val.intValue())+ ' ' + currencyText + ' and ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText;
+                }else if(decimalFormat == 'Fraction'){
+                    amountInWords = convertThreeDigitToWord(val.intValue())+ ' and ' + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                }
+            }else{
+                amountInWords = convertThreeDigitToWord(val.intValue())+ ' ' + currencyText;
+            }
+            return amountInWords.toUpperCase();
+        }
+        
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         for (integer v = 0; v < denom.size(); v++) { 
             integer didx = v - 1; 
             integer dval = (integer)Math.pow(1000, v); 
@@ -151,6 +230,7 @@ public class CEC_Util {
                 
                 if (r > 0) { 
                     System.debug('in loop value of r ' + r ); 
+<<<<<<< HEAD
                     ret += ', ' + convertAllDigitsToWord(r,currencyText,currencyDecimalText); 
                     
                 } 
@@ -167,6 +247,29 @@ public class CEC_Util {
         return null; 
     } 
 
+=======
+                    ret += ', ' + convertAllDigitsToWord(r,currencyText,currencyDecimalText,decimalFormatCMM); 
+                    
+                } 
+                System.debug('in loop value of ret ' + ret ); 
+                if ((val - val.intValue()) > 0){
+                    if(decimalFormat == 'Text'){
+                        amountInWords = ret + ' ' + currencyText+ ' ' + 'and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+                    }else if(decimalFormat == 'Fraction'){
+                        amountInWords = ret + ' and ' + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                    }
+                }
+                else{
+                    amountInWords = ret + ' ' + currencyText; 
+                }
+                return amountInWords.toUpperCase();
+            } 
+        } 
+        return amountInWords.toUpperCase(); 
+    }
+    
+    
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
      //Method to Construct final Prod Category String.
     public static String constructFinalProdCategoryValue(String initialProductCategory, 
                                                 String prodCategory1, String prodCategory2){
@@ -188,6 +291,7 @@ public class CEC_Util {
                                                 String reason3, String reason4){
         String finalReasonCodeConcatValue = initialReasonCode;
         // Concatenate reason1 if it is not null.
+<<<<<<< HEAD
         finalReasonCodeConcatValue = (String.isNotBlank(reason1))?
                                          (finalReasonCodeConcatValue + reason1):finalReasonCodeConcatValue;
                                                              
@@ -204,5 +308,38 @@ public class CEC_Util {
                                          (finalReasonCodeConcatValue + reason4):finalReasonCodeConcatValue;                                         
         return finalReasonCodeConcatValue;
     }
+=======
+		finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason1);
+                                                                     
+        // Concatenate reason2 if it is not null.
+		finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason2);
+		
+        // Concatenate reason3 if it is not null.
+        finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason3);
+
+        // Concatenate reason4 if it is not null.
+        finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason4);
+		
+        return finalReasonCodeConcatValue;
+    }
+	
+	private static string stingConcatenate(String finalReasonCodeConcatValue, String reason){
+		finalReasonCodeConcatValue = (String.isNotBlank(reason))? (finalReasonCodeConcatValue + reason):finalReasonCodeConcatValue;
+		return finalReasonCodeConcatValue;
+	}
+    
+   public static Boolean isValidEmailAddress(String emailAddress){
+        if(emailAddress != null && emailAddress.trim() != null && emailAddress.trim().length() > 0){
+            String[] split = emailAddress.split('@');
+            if(split != null && split.size() == 2){
+                split = split[1].split('\\.');
+                if(split != null && split.size() >= 2){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         
 }

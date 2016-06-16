@@ -154,9 +154,12 @@ private class IPM_UpdateGlobalProjectName_Test {
           finYear.Copy_Global_to_Regional__c=true;
           finYear.Copy_Local_to_Regional__c=true;
           finYear.Copy_Regional_to_Local__c=true;       
+<<<<<<< HEAD
           
           insert finYear;        
           system.assertNotEquals(finYear.id, null);  
+=======
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         }
     }
     

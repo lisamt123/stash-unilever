@@ -435,10 +435,12 @@ public class IPM_ProjDocSectionController_Test{
             
             projDocSecControl.isFlagedNext = 'true';
             projDocSecControl.pagination();
+            system.assertEquals(projDocSecControl.showNext, true, 'pagination functionality failed');
             
             projDocSecControl.isFlagedNext = '';
             projDocSecControl.isFlagedPre = 'true';
             projDocSecControl.pagination();
+            system.assertEquals(projDocSecControl.showPre, true, 'pagination functionality failed');
             
         }
         Test.stopTest();

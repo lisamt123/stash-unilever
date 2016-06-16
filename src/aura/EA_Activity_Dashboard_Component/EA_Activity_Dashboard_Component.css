@@ -15,25 +15,31 @@
 }
 .THIS .list_name  {
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1;
   margin-left: 15px;
   margin-top: -20px;
   color: black;
-  width: 45%;
+  width: 52%;
   float: left;
   padding-top:18px;
 }
 .THIS .regular_font {
-  font-weight: 100;
-  font-size: 1.2rem;
-  margin-top: 50px;
-  padding-bottom: 20px;
-  padding-top:1rem;
- color: #4F6A92;
-  margin-left: 15px;
-  width: 100%;
-  text-transform: uppercase;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    padding-top: 1rem;
+    color: #4f6a92;
+    margin-left: 15px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+    padding-top: 1rem;
+    color: #4f6a92;
+    margin-left: 15px;
+    width: 100%;
+    text-transform: uppercase;
 }
 .THIS .right_arrow_img{
     float: right;

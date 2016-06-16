@@ -65,9 +65,9 @@ public without sharing class PBS_TestHelper
      * @param Id jobProfileId Job Profile Id
      * @return Training_Track__c new Training Track
      */
-    public static Almond__Training_Track__c createTrainingTrack(String name, String workLevel, String geography, Id jobProfileId)
+    public static PBS_Training_Track__c createTrainingTrack(String name, String workLevel, String geography, Id jobProfileId)
     {
-        Almond__Training_Track__c obj = new Almond__Training_Track__c(
+        PBS_Training_Track__c obj = new PBS_Training_Track__c(
             Name                        = name,
             Work_Level__c               = workLevel,
             Geography__c                = geography,

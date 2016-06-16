@@ -95,9 +95,22 @@ public with sharing class Oblix_CampaignAddAssetController extends Oblix_SWOPpar
     
     
 
+<<<<<<< HEAD
     public String mapRelatedCntriesJSON { get; set; }
     public String mapRelatedCntriesJSONMap { get; set; }
     public List<String> mapAllCountries { get; set; }
+=======
+    public Boolean can_manage_asset{
+        get{
+            String pfy_sow_status = null;
+            if (selected_project.Campaign_PFY__c != null) {
+                pfy_sow_status = selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c;
+            }
+            return Oblix_PermissionHandler.canManageAssetBasket(selected_project.Financial_Year__r.SOW_Status__c, selected_project.Financial_Year__c, selected_project.Campaign_Status__c, pfy_sow_status);
+        }
+    }
+
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 
     public String sowName { get; set; }
     public Marketing_SOW__c selected_sow{get;set;}

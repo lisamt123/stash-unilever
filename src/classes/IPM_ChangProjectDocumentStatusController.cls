@@ -3,7 +3,7 @@
 @Created Date: 2014/12/15
 @Author: Cognizant 
 @Referenced: ipmChangeCurrenDocumentStatus Page
-******************************************************************/
+******************************************************************/ 
 public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_ProjectIntermediateController
 {  
     // Variables Declaration
@@ -20,7 +20,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Integer rolloutFilledCount; //used to store the count of IPM_Project_Rollout__c and where regional PL is null or TLD is  equal to null   
     public List<IPM_Questionnaire__c> riskQuesList; //used to store query result from IPM_Questionnaire__c object
     public List<IPM_Milestone__c> milestoneList{get;set;}
-    public IPM_Financial__c fin{get;set;}
+    public List<IPM_Milestone__c> pendingMilestoneList{get;set;} // List of milestones which are not completed, it will be used to show on Postponed Tab Screen
     public IPM_Project__C ParentProject{get;set;} //used to fetch parent id of current project
     public string isCapability{get;set;} 
     public IPM_Project_Type__c associatedProjectType{get;set;}
@@ -50,11 +50,27 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean ecoDesignNoAssessmentError{get;set;}
     public String ecoDesignSectionId{get;set;}
     public string finExternalID{get;set;}
+    public String tldMilestoneName{get; set;}
     public static final String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
     public static final String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
     public Boolean isRiskComplete{get;set;}//boolean to check if Risk section is complete
     public static final string ENVIRONMENTAL_IMPACT=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
-    
+    public boolean businessCasePending{get;set;}//validation check for business case confirmation
+    public List<IPM_Financial__c> finList{get;set;}//list out local project names while checking the validation
+    public integer totalLocalProjects{get;set;}//total local projects
+    public set<String>localBCProjectName{get;set;}//set of Business unconfirmed local project name
+    public set<String>localFinProjectName{get;set;}//set of misAligned local project name
+    public set<String>localTLDProjectName{get;set;}//set of misAligned local project name
+    public boolean financialAlignment{get;set;}//check for financial alignment
+    public boolean tldAlignment{get;set;}//check for TLD alignment
+    public integer totalFinProject{get;set;}//total financial misAligned local project name
+    public integer totalTLDProject{get;set;}//total TLD misAligned local project name
+    public boolean isBDBBAlignment{get;set;}
+    public string bd_BBAlignmentSequence{get;set;}
+    public id documentSectionId{get;set;}
+    //REQ03006
+    public Integer invalidFinancialsCount;
+    private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
@@ -67,6 +83,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         showStop=true;
         showPostpone=true;
         showApprove=true;
+        totalLocalProjects=0;
+        totalFinProject=0;
+        totalTLDProject=0;
+        businessCasePending=false;
+        financialAlignment=false;
+        tldAlignment=false; 
+        isBDBBAlignment=false;   
+        bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT;  
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
@@ -98,16 +122,32 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 
                 String standardType = IPM_ConstantUtils.STANDARD;// variable used in query below NO SONAR
                 String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null,true);
-                String milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true LIMIT 50000';
+                String milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true order by IPM_Phase_Order__c LIMIT 50000';
                 milestoneQuery = milestoneQuery + milestoneWhereClause;
                 milestoneList = database.query(milestoneQuery);
                 
                 if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL==project.IPMProject_Span__c) ){
                     isOperational=true;
                 }
-                               
+                
                 // Show all Validations on selecting Propose
                 showValidationMethod();               
+                
+                // Logic to prepare the incomplete standard milestone list 
+                if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){ // for original projects
+                    tldMilestoneName = IPM_ConstantUtils.Original_SHIPTO_TRADE_TLD;
+                }else if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){ // for Operational projects
+                    tldMilestoneName = IPM_ConstantUtils.SHIPTO_TRADE_TLD;
+                }
+                
+                pendingMilestoneList = new List<IPM_Milestone__c>();
+                if(!MilestoneList.isEmpty()){
+                    for(IPM_Milestone__c milestone : milestoneList){
+                        if(!milestone.IPM_Completed__c){
+                            pendingMilestoneList.add(milestone);    
+                        }
+                    }               
+                }
             }
         }
     }
@@ -138,6 +178,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             showValidation=true;
             rolloutFilledCount=0;
             rolloutCount=0;
+            invalidFinancialsCount=0; //req03006
             finExternalID=IPM_ConstantUtils.BLANK;
             riskQuesList=new List<IPM_Questionnaire__c >();//instantiate questionnaire List
                               
@@ -280,7 +321,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     **********************************************************************/
     public void validateRolloutAndFin()
     {
-        fin=new IPM_Financial__c();//instantiate financial object
+        DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
         if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
                 {
                     finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
@@ -288,9 +329,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND  isActive__c=true];
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
                     
-                    if(rolloutCount>0)
+                    if(rolloutCount>0 && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
                     {
-                        fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c,Year_3_iTO_Local__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
+            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Global_External_Id__c=:project.IPM_Project_Name__c AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+                
                     }
                 }
                 else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
@@ -301,16 +343,17 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE Regional_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
                     if(rolloutCount>0)
                     {
-                        fin=[SELECT Year_3_iTO_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
-                    }
+            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Regional_Project__c=:projectId AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+                
+            }
                     
                 }
-                else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+        else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                   
                     finExternalID=project.IPM_Project_Name__c;
-                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c,Year_3_iTO_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
-                  
+            invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            
                 }
     }
     
@@ -404,7 +447,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 // Risk Question Validation Check
                    validateRisk();
                 //ecoDesign validation check
-                   ecoDesignAssessmentValidate();   
+                   ecoDesignAssessmentValidate(); 
+				//Regional project propose validation check
+				   getLocalProjectDetails(); 
             }
            
      //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
@@ -427,13 +472,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showValidation=false;
                     rolloutNotExistsError=true;
                 }
-                
-                if(fin.Year_3_iTO_Global__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
+            if(invalidFinancialsCount>0)
+            {
+                showValidation=false;
+                financialError=true;
                 }   
-            }
+        }
             
             if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
@@ -448,15 +492,16 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showValidation=false;
                     rolloutCountryPLFilledError=true;
                 }
-                if(fin.Year_3_iTO_Regional__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
-                }
-                
+           
+            if(invalidFinancialsCount>0)
+            {
+                showValidation=false;
+                financialError=true;
             }
+        }
             
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && fin.Year_3_iTO_Local__c==0.00)
+        
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && invalidFinancialsCount>0)
             {
                 showValidation=false;
                 financialError=true;
@@ -576,111 +621,133 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     **********************************************************************/
     public void postponeProject()
     {
-      showPostpone = false;
-            showErrorMsg=IPM_ConstantUtils.BLANK; 
-            Boolean validPostpone=true;
-            System.SavePoint sp = Database.setSavePoint();
-            IPM_Milestone__c currentPhaseMilestone = null;
-            String currentPhase = project.IPM_Phase__c;
-            Integer currentProjectPhaseSequence = 0;
-                    
-            try
+        showPostpone = false;
+        showErrorMsg=IPM_ConstantUtils.BLANK; 
+        Boolean validPostpone=true;
+        System.SavePoint sp = Database.setSavePoint();
+        IPM_Milestone__c currentPhaseMilestone = null;
+        String currentPhase = project.IPM_Phase__c;
+        Integer currentProjectPhaseSequence = 0;
+        
+        try
+        {
+            if(String.isBlank(projectDoc.IPM_Postponed_Comments__c))
             {
-                if(String.isBlank(projectDoc.IPM_Postponed_Comments__c) || projectDoc.IPM_Postponement_Date__c == null)
-                {
-                    showErrorMsg=IPM_ConstantUtils.BLANK;
-                    validPostpone=false;
-                }
+                showErrorMsg=IPM_ConstantUtils.BLANK;
+                validPostpone=false;
+            }
             
-                if(String.isBlank(showErrorMsg) && projectDoc.IPM_Postponement_Date__c!=null && projectDoc.IPM_Postponement_Date__c <= System.today())
-                {
-                    showErrorMsg=system.label.IPM_PostponeDate_Validation;
-                }
-                
-                if(String.isBlank(showErrorMsg))
-                {
-                    if(currentPhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(currentPhase))
-                    {
-                        currentProjectPhaseSequence = IPM_ConstantUtils.phaseSequence.get(currentPhase);
-                    }
-                    
-                    for(IPM_Milestone__c milestone : milestoneList)
-                    {
-                        String milestonePhase = milestone.IPM_Phase__c;
-                        Integer mileStonePhaseSequence = 0;
-                        if(milestonePhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(milestonePhase))
-                        {
-                            mileStonePhaseSequence = IPM_ConstantUtils.phaseSequence.get(milestonePhase);
-                        }
-                        
-                        if(mileStonePhaseSequence >= currentProjectPhaseSequence)
-                        {
-                           if(mileStonePhaseSequence == currentProjectPhaseSequence)
-                           {
-                               currentPhaseMilestone = milestone;
-                           }
-                        }
-                    }
-                    
-                    // get the set of previos phases
-                    Set<String> previousPhases = new Set<String>();
-                    for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
-                        if(currentPhaseMilestone.IPM_Phase__c!= null && phase == currentPhaseMilestone.IPM_Phase__c)
-                        {
-                            break;
-                        }
-                        previousPhases.add(phase);      
-                    }
-                    
-                    for(IPM_Milestone__c milestone : milestoneList)
-                    {
-                        if(currentPhaseMilestone.IPM_Phase__c != null && milestone.IPM_Phase__c != currentPhaseMilestone.IPM_Phase__c)
-                        {   
-                            // Due date validation check with previous milestones 
-                            if(previousPhases.contains(milestone.IPM_Phase__c))
-                            {
-                                if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > projectDoc.IPM_Postponement_Date__c)
-                                {
-                                    showErrorMsg = Label.IPM_Milestone_Due_Date;
-                                    break;
-                                }
-                                
-                            }
-                            else
-                            {
-                                // Due date validation check with next milestones 
-                                if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c < projectDoc.IPM_Postponement_Date__c)
-                                {
-                                    showErrorMsg = Label.IPM_Postponed_Future_Date_Validation;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null && validPostpone)
-                {
-                    validPostpone=true;
-                    project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
-                    project.IPM_Document_Update_Comments__c = projectDoc.IPM_Postponed_Comments__c;  
-                    project.IPM_Document_Update_Date__c = projectDoc.IPM_Postponement_Date__c;
-                    update project;
-                    
-                    currentPhaseMilestone.IPM_Planned_Date__c = projectDoc.IPM_Postponement_Date__c;
-                    currentPhaseMilestone.IPM_Due_Date__c = projectDoc.IPM_Postponement_Date__c;
-                    update currentPhaseMilestone;
-                    
-                    showPostpone = true;    
-                }
-            } 
-            catch (Exception ex)
+            if(String.isBlank(showErrorMsg))
             {
-                Database.Rollback(sp);
-                showErrorMsg = Label.IPM_Generic_ErrorMessage;
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-            }  
+                if(currentPhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(currentPhase))
+                {
+                    currentProjectPhaseSequence = IPM_ConstantUtils.phaseSequence.get(currentPhase);
+                }
+                
+                
+                for(IPM_Milestone__c milestone : pendingMilestoneList)
+                {
+                    String milestonePhase = milestone.IPM_Phase__c;
+                    Integer mileStonePhaseSequence = 0;
+                    if(milestonePhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(milestonePhase))
+                    {
+                        mileStonePhaseSequence = IPM_ConstantUtils.phaseSequence.get(milestonePhase);
+                    }
+                    
+                    if(mileStonePhaseSequence >= currentProjectPhaseSequence)
+                    {
+                        if(mileStonePhaseSequence == currentProjectPhaseSequence)
+                        {
+                            currentPhaseMilestone = milestone;
+                        }
+                    }
+                }
+                
+                // get the set of previos phases
+                Set<String> previousPhases = new Set<String>();
+                for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
+                    if(currentPhaseMilestone.IPM_Phase__c!= null && phase == currentPhaseMilestone.IPM_Phase__c)
+                    {
+                        break;
+                    }
+                    previousPhases.add(phase);      
+                }
+                // This milestone list will contain recent changes of milestone and completed milestones of previous phases
+                List<IPM_Milestone__c> combinedmilestoneList = new List<IPM_Milestone__c>();
+                
+                for(IPM_Milestone__c milestone : milestoneList){
+                    if(!previousPhases.isEmpty() && previousPhases.contains(milestone.IPM_Phase__c)){
+                        combinedmilestoneList.add(milestone);
+                    }
+                }
+                
+                // Adding the list of pending milestones
+                combinedmilestoneList.addAll(pendingMilestoneList);
+                
+                for(IPM_Milestone__c pendingMilestone : pendingMilestoneList){
+                    
+                    Boolean flag = false;
+                    if(pendingMilestone.IPM_Planned_Date__c == null){
+                        showErrorMsg = system.label.IPM_PostponeDate_Required; 
+                        break;
+                    } 
+                    
+                    if(pendingMilestone.IPM_Planned_Date__c < System.today()){
+                        showErrorMsg = system.label.IPM_PostponeDate_Validation; 
+                        break;
+                    }
+                    
+
+                    for(IPM_Milestone__c milestone : combinedmilestoneList){
+                        
+                        if(previousPhases.contains(milestone.IPM_Phase__c)){
+                            
+                            if(pendingMilestone.IPM_Planned_Date__c != null && pendingMilestone.IPM_Planned_Date__c < milestone.IPM_Planned_Date__c){
+                                showErrorMsg = Label.IPM_Milestone_Due_Date;
+                                flag = true;
+                                break;
+                            }
+                        }
+                        else{
+                            if(pendingMilestone.IPM_Planned_Date__c != null && pendingMilestone.IPM_Planned_Date__c > milestone.IPM_Planned_Date__c){
+                                showErrorMsg = Label.IPM_Postponed_Future_Date_Validation;
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
+                    previousPhases.add(pendingMilestone.IPM_Phase__c);
+                    if(flag){
+                        break;
+                    }
+                }
+                
+            }
+            
+            if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null && validPostpone)
+            {
+                validPostpone=true;
+                project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
+                project.IPM_Document_Update_Comments__c = projectDoc.IPM_Postponed_Comments__c;  
+                project.IPM_Postponed_Comments__c=projectDoc.IPM_Postponed_Comments__c;
+                project.IPM_Document_Update_Date__c = currentPhaseMilestone.IPM_Planned_Date__c;
+                projectDoc.IPM_Postponement_Date__c = currentPhaseMilestone.IPM_Planned_Date__c;
+                update project;
+                
+                if(!pendingMilestoneList.isEmpty()){
+                    update pendingMilestoneList;
+                }
+                
+                showPostpone = true;    
+            }
+        } 
+        catch (Exception ex)
+        {
+            Database.Rollback(sp);
+            showErrorMsg = Label.IPM_Generic_ErrorMessage;
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
+            SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }  
     }
     
     /***********************************************************************
@@ -800,7 +867,70 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 
             }
     }
+	/***********************************************************************
+    @Description :validation of regional project.if all local project of BB document got confirmed 
+    then only capability phase(Regional project) will proposed.
+    @param: Not Applicable
+    @Referenced: ipmChangeCurrenDocumentStatus(Page)
+    @Release:1.2
+    **********************************************************************/
+    @testvisible private void getLocalProjectDetails(){
+        localBCProjectName=new set<String>();
+        localFinProjectName=new set<String>();
+        localTLDProjectName=new set<String>();
+        documentSectionId=null;
+        if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c))){
+            finList=new List<IPM_Financial__c>();
+            finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Local_Project__r.Is_Archieved__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
+            Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
+            Local_Project__r.IPM_Project_Name__c,Local_Project__c FROM IPM_Financial__c WHERE isActive__c=true AND 
+            Local_Project__r.IPM_Parent_Project__c=:projectId AND RecordType.Name=:IPM_ConstantUtils.DEFAULT_FINANCIAL_RT LIMIT 1000];
+            if(!finList.isEmpty()){
+                for(IPM_Financial__c fin:finList){
+                    //Business case alignment
+                    if(IPM_ConstantUtils.PHASE_FEASIBILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.IPM_Business_Case_Confirmed__c && !fin.Local_Project__r.Is_Archieved__c ){
+                        totalLocalProjects=totalLocalProjects+1;
+                        businessCasePending=true;
+                        showValidation=false;
+                        localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                    }else if(IPM_ConstantUtils.PHASE_CAPABILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.Is_BC_Confirmed_Capability__c && !fin.Local_Project__r.Is_Archieved__c ){
+                        totalLocalProjects=totalLocalProjects+1;
+                        businessCasePending=true;
+                        showValidation=false;
+                        localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                    }  
+                    //Financial alignment
+                    if(fin.Misaligned__c){
+                        localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                        showValidation=false;  
+                        financialAlignment=true;
+                        totalFinProject=totalFinProject+1;
+                        
+                    }
+                    //Target launch date alignment
+                    if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
+                        localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                        showValidation=false;  
+                        tldAlignment=true;  
+                        totalTLDProject=totalTLDProject+1;
+                    }
+                }
+                //to display bd/bb alignment section on page
+                List<IPM_Project_Document_Section__c> projectSectionList=new List<IPM_Project_Document_Section__c>();
+                if(tldAlignment || financialAlignment || businessCasePending){
+                    isBDBBAlignment=true; 
+                    projectSectionList=[SELECT Id  FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Sequence__c=:bd_BBAlignmentSequence LIMIT 1 ];
+                }
+                if(!projectSectionList.isEmpty()){
+                    documentSectionId=projectSectionList[0].id;
+                }
+            }
+        }
+    }
     
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 }

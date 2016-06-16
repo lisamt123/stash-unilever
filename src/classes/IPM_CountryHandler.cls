@@ -33,8 +33,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
     */
     public void bulkBefore()
     {
-        Set<Id> localRolloutIdSet = new Set<Id>();
-        Map<Id,IPM_Project_Rollout__c> localRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+        
         
         if(trigger.isDelete)
         {    
@@ -126,6 +125,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isInsert)
         {
+        	IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
             for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New)
             {
                 countryListIds.add(c.Id);
@@ -176,7 +176,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isUpdate)
         {
-            countryListIds=new Set<Id>();
+            IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
+			countryListIds=new Set<Id>();
             oldCountriesMap = ((Map<Id,IPM_Country__c>)Trigger.OldMap);
             projectIdSet.clear();
             for(IPM_Country__c coun:(List<IPM_Country__c>)Trigger.New)

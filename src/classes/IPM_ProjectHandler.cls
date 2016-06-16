@@ -12,7 +12,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                                                                 'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Member__c'};
                                                                                 
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
-
+  	public static Boolean stopProjExecute = true;
+    public static Boolean SKIP_TRANSACTION_MNG = false;
    
     // Constructor
     public IPM_ProjectHandler() 
@@ -91,7 +92,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             for(Integer counter=0;counter < projectAssociatedWithProjectTypesList.size();counter++)
             {
                 IPM_ProjectMetadata__c projectMetadata = projectMetadataList.get(counter);
-                IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);
+                IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);   
                 if(project.IPM_IsSaved__c){
                     Set<String> projectmandatoryFieldErrorSet = new Set<String>();
                     if(projectMetadata!=null && projectMetadata.IPM_Project_Type__c !=null && !String.isBlank(projectMetadata.IPM_Project_Type__c))
@@ -203,7 +204,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 
                 if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                 {
-                    if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null)
+                    if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
+                    && incomingProject.IPM_Project_Name__c != null && incomingProject.IPM_Project_Name__c != IPM_ConstantUtils.MASTER_PROJECT_NAME)
                     {   
                         phaseChangeProjects.add(incomingProject.Id);
                     }   
@@ -334,11 +336,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         processTasksMap.put(incomingProject.Id,incomingProject);
                     }
                         
-                    if(String.isNotBlank(incomingProject.IPM_Phase__c) &&  incomingProject.Is_Archieved__c  && (incomingProject.Is_Archieved__c != oldProject.Is_Archieved__c ) )
-                    {
-                        masterProjectMap.put(incomingProject.Id,incomingProject);
-                        processTasksMap.put(incomingProject.Id,incomingProject);
-                    }
+                    
                          
                     if(String.isNotBlank(incomingProject.IPM_Phase__c) &&  incomingProject.IPM_Project_Leader__c != null  && (incomingProject.IPM_Project_Leader__c != oldProject.IPM_Project_Leader__c ) )
                     {   
@@ -601,7 +599,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             map<string, ipm_project__c> mapProjBETupdate = new map<string, ipm_project__c>();
             
             Map<Id, IPM_Project__c> ipmFastTrackProjectMap = new Map<Id, IPM_Project__c>(); // Fast Track Marked project Map 
+            Map<Id, String> stoppedProjectMap = new Map<Id, String>(); // Fast Track Marked project Map 
             
+			
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
                     IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
@@ -657,7 +657,22 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     if(!lstBETaccessIds.isEmpty())
                     {
                         IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
-                    }         
+                    }  
+                    
+                    if(String.isNotBlank(p.IPM_Phase__c) && (p.Is_Archieved__c != proj.Is_Archieved__c ) && stopProjExecute)
+                    {   
+                        
+                        if(p.Is_Archieved__c  )
+                        {
+                            stoppedProjectMap.put(p.id,p.IPM_Stopped_Comments__c);
+                        }
+                        else
+                        {
+                            stoppedProjectMap.put(p.id,IPM_ConstantUtils.BLANK);
+                        }
+                   }  
+                    
+                         
                 }
                
                  // Fast Track Global Original Project 
@@ -665,8 +680,13 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 {
                     IPM_ProjectHelper.processFastTrackProjects(ipmFastTrackProjectMap);
                 }
-            
-           
+                
+                if(!stoppedProjectMap.isEmpty()) 
+                {
+                   IPM_ProjectHelper.updateStoppedProject(stoppedProjectMap);
+                }
+                
+                      
            //call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
@@ -855,7 +875,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //process incoming project status
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
-   
+   		if(!IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountryVar && oldProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c != incomingProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c){
+   			incomingProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c = oldProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c;	
+   		}
     }
     
     /***********************************************************************************************************************************
@@ -908,7 +930,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */    
     public void andFinally()
     {
-        if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
+        if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter && !SKIP_TRANSACTION_MNG)
         {
             if(!phaseChangeProjects.isEmpty())
             {
@@ -916,6 +938,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
                 Id asyncJobId = System.enqueueJob(phaseChangeAsyncHandler); 
                 IPM_ProjectHelper.udpateAsyncJobId(phaseChangeProjects,asyncJobId);
+                SKIP_TRANSACTION_MNG = true;
             }           
         }
         

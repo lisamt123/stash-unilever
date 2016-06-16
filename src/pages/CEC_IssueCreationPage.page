@@ -11,9 +11,9 @@
 <!-- VERSION  AUTHOR        DATE            DETAIL                    RELEASE/CSR     -->
 <!-- 1.0 -    Shruti        01/10/2014      INITIAL DEVELOPMENT        Sprint II       -->
 <!--====================================================-->
-<apex:page standardController="cec_Issue__c" showHeader="false" extensions="CEC_IssueCreationPageController">
+ <apex:page standardController="cec_Issue__c" showHeader="false" extensions="CEC_IssueCreationPageController">
 
-    <apex:includeScript value="/support/console/30.0/integration.js"/>
+   <!-- <apex:includeScript value="/support/console/30.0/integration.js"/>
     <script src="/soap/ajax/28.0/connection.js" type="text/javascript"></script>
 
 
@@ -85,12 +85,12 @@
     <apex:pageMessages ></apex:pageMessages>        
     <apex:form >
 
-    <apex:pageBlock title="Enter Case Reason and Product" mode="edit">
+  <!--  <apex:pageBlock title="Enter Case Reason and Product" mode="edit">
       <apex:pageBlockButtons location="bottom" >
         <apex:commandButton value="Add to Case" action="{!saveAndContinue}" reRender="messages,knowledgeButton,questionnaireButton" oncomplete="javascript:refreshPrimaryTab()"/>
         <apex:outputPanel id="buttons">
          <!-- <apex:commandButton value="View in Knowledge" action="{!setKnowledgeUrl}" disabled="{!NOT(showKnowledgeLink)}" reRender="knowledgeButton" oncomplete="javascript:openKnowledgeTab('{!knowledgeLink}')" id="knowledgeButton"/> -->
-        </apex:outputPanel>
+       <!-- </apex:outputPanel>
         <apex:commandButton value="Close" action="{!validateCloseTab}" reRender="messages" oncomplete="javascript:closeTab()"/>        
       </apex:pageBlockButtons>
         <apex:inputHidden value="{!cec_Issue__c.Case__c}"/>
@@ -176,7 +176,7 @@
         <apex:pageBlockSection columns="3">
         <apex:pageBlockSectionItem >
            <!-- Verbatim <apex:inputText value="{!cec_Issue__c.Verbatim__c}" size="102"/> -->
-           Verbatim <apex:inputTextArea value="{!cec_Issue__c.Verbatim__c}" rows="3" cols="25"/>
+          <!-- Verbatim <apex:inputTextArea value="{!cec_Issue__c.Verbatim__c}" rows="3" cols="25"/>
            </apex:pageBlockSectionItem>
            <apex:pageBlockSectionItem >
             </apex:pageBlockSectionItem>
@@ -238,5 +238,5 @@
     <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" />
     
     
-  </apex:form>
+  </apex:form>-->
 </apex:page>

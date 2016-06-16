@@ -29,4 +29,5 @@
     <standardLabel>New</standardLabel>
     <targetObject>CollaborationGroup</targetObject>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

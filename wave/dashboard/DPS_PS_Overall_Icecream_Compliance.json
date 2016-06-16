@@ -1,0 +1,2123 @@
+{
+    "label": "Overall PS Compliance for Ice Cream",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [],
+        "steps": {
+            "Customer_type_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "SKU_17": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "SKU"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_OSA_ICECREAM_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_22": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_ICECREAM_AGGREGATED\"; b = load \"DPS_DPS_PS_ICECREAM_ENROLLED_STORES\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; b = filter b by 'Cluster' in {{ selection(Cluster_2) }};  b = filter b by 'Country' in {{ selection(Country_3) }}; b = filter b by 'Region' in {{ selection(Region_4) }}; b = filter b by 'Province' in {{ selection(Province_5) }}; b = filter b by 'City' in {{ selection(City_6) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_33) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_32) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_7) }}; b = filter b by 'Channel' in {{ selection(Channel_8) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_9) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; b = filter b by 'Customer_type' in {{ selection(Customer_type_11) }}; b = filter b by 'Customer' in {{ selection(Customer_12) }}; b = filter b by 'Banner' in {{ selection(Banner_13) }}; b = filter b by 'Product_division' in {{ selection(Product_division_30) }}; b = filter b by 'Product_category' in {{ selection(Product_category_31) }}; a = cogroup a by 'X4P_5P_6P', b by 'X4P_5P_6P'; a = foreach a generate a.'X4P_5P_6P' as 'X4P_5P_6P', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled';",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Subchannel_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Subchannel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_12": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_market_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_market"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_OSA_ICECREAM_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_26": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "compliance = load \"DPS_ICECREAM_AGGREGATED\"; score = load \"DPS_ICECREAM_AGGREGATED\"; scoreSOF = load \"DPS_ICECREAM_AGGREGATED\"; compliance = filter compliance by 'Cluster' in {{ selection(Cluster_2) }};  compliance = filter compliance by 'Country' in {{ selection(Country_3) }}; compliance = filter compliance by 'Region' in {{ selection(Region_4) }}; compliance = filter compliance by 'Province' in {{ selection(Province_5) }}; compliance = filter compliance by 'City' in {{ selection(City_6) }}; compliance = filter compliance by 'Sales_territory' in {{ selection(Sales_territory_33) }}; compliance = filter compliance by 'Sales_area' in {{ selection(Sales_area_32) }}; compliance = filter compliance by 'Trade_Format' in {{ selection(Trade_Format_7) }}; compliance = filter compliance by 'Channel' in {{ selection(Channel_8) }}; compliance = filter compliance by 'Subchannel' in {{ selection(Subchannel_9) }}; compliance = filter compliance by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; compliance = filter compliance by 'Customer_type' in {{ selection(Customer_type_11) }}; compliance = filter compliance by 'Customer' in {{ selection(Customer_12) }}; compliance = filter compliance by 'Banner' in {{ selection(Banner_13) }}; compliance = filter compliance by 'Product_division' in {{ selection(Product_division_30) }}; compliance = filter compliance by 'Product_category' in {{ selection(Product_category_31) }}; score = filter score by 'Cluster' in {{ selection(Cluster_2) }};  score = filter score by 'Country' in {{ selection(Country_3) }}; score = filter score by 'Region' in {{ selection(Region_4) }}; score = filter score by 'Province' in {{ selection(Province_5) }}; score = filter score by 'City' in {{ selection(City_6) }}; score = filter score by 'Sales_territory' in {{ selection(Sales_territory_33) }}; score = filter score by 'Sales_area' in {{ selection(Sales_area_32) }}; score = filter score by 'Trade_Format' in {{ selection(Trade_Format_7) }}; score = filter score by 'Channel' in {{ selection(Channel_8) }}; score = filter score by 'Subchannel' in {{ selection(Subchannel_9) }}; score = filter score by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; score = filter score by 'Customer_type' in {{ selection(Customer_type_11) }}; score = filter score by 'Customer' in {{ selection(Customer_12) }}; score = filter score by 'Banner' in {{ selection(Banner_13) }}; score = filter score by 'Product_division' in {{ selection(Product_division_30) }}; score = filter score by 'Product_category' in {{ selection(Product_category_31) }}; scoreSOF = filter scoreSOF by 'Cluster' in {{ selection(Cluster_2) }};  scoreSOF = filter scoreSOF by 'Country' in {{ selection(Country_3) }}; scoreSOF = filter scoreSOF by 'Region' in {{ selection(Region_4) }}; scoreSOF = filter scoreSOF by 'Province' in {{ selection(Province_5) }}; scoreSOF = filter scoreSOF by 'City' in {{ selection(City_6) }}; scoreSOF = filter scoreSOF by 'Sales_territory' in {{ selection(Sales_territory_33) }}; scoreSOF = filter scoreSOF by 'Sales_area' in {{ selection(Sales_area_32) }}; scoreSOF = filter scoreSOF by 'Trade_Format' in {{ selection(Trade_Format_7) }}; scoreSOF = filter scoreSOF by 'Channel' in {{ selection(Channel_8) }}; scoreSOF = filter scoreSOF by 'Subchannel' in {{ selection(Subchannel_9) }}; scoreSOF = filter scoreSOF by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; scoreSOF = filter scoreSOF by 'Customer_type' in {{ selection(Customer_type_11) }}; scoreSOF = filter scoreSOF by 'Customer' in {{ selection(Customer_12) }}; scoreSOF = filter scoreSOF by 'Banner' in {{ selection(Banner_13) }}; scoreSOF = filter scoreSOF by 'Product_division' in {{ selection(Product_division_30) }}; scoreSOF = filter scoreSOF by 'Product_category' in {{ selection(Product_category_31) }};  compliance = filter compliance by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; score  = filter score by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; scoreSOF  = filter scoreSOF by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; compliance = group compliance by all; score = group score by all; scoreSOF = group scoreSOF by all; productcompliance = foreach compliance generate \"Product Compliance\" as 'Measure', avg(Product_Compliance) as 'PS_Comp', \"0\" as '+-'; productscore = foreach score generate \"OSA Score\" as 'Measure', (avg(Sum_of_OSA_Count)/avg(Sum_of_OSA_Audited)) as 'PS_Comp', \"0\" as '+-'; packcompliance = foreach compliance generate \"Pack Compliance\" as 'Measure', avg(Pack_Compliance) as 'PS_Comp', \"0\" as '+-'; packscore = foreach score generate \"NPD Score\" as 'Measure', (avg(Sum_of_NPD_Count)/avg(Sum_of_NPD_Audited)) as 'PS_Comp', \"0\" as '+-'; pricecompliance = foreach compliance generate \"Price Compliance\" as 'Measure', avg(Price_Compliance) as 'PS_Comp', \"0\" as '+-'; spscore = foreach score generate \"SP Score\" as 'Measure', (avg(Sum_of_SP_Count)/avg(Sum_of_SP_Audited)) as 'PS_Comp', \"0\" as '+-'; pvscore = foreach score generate \"PV Score\" as 'Measure', (avg(Sum_of_PV_Count)/avg(Sum_of_PV_Audited)) as 'PS_Comp', \"0\" as '+-'; promocompliance = foreach compliance generate \"Promo Compliance\" as 'Measure', avg(Promo_Compliance) as 'PS_Comp', \"0\" as '+-'; promoscore = foreach score generate \"Promo Score\" as 'Measure', (avg(Sum_of_Promo_Count)/avg(Sum_of_Promo_Audited)) as 'PS_Comp', \"0\" as '+-'; placecompliance = foreach compliance generate \"Place Compliance\" as 'Measure', avg(Place_Compliance) as 'PS_Comp', \"0\" as '+-'; shareofcabinetscore = foreach compliance generate \"Share of Cabinet Score\" as 'Measure', (avg(Sum_of_SOC_UL)/avg(Sum_of_SOC_Audited)) as 'PS_Comp', \"0\" as '+-'; cabinetcarescore = foreach compliance generate \"Cabinet Care Score\" as 'Measure', (avg(CC_Answer)/avg(CC_Audited)) as 'PS_Comp', \"0\" as '+-'; locationscore = foreach compliance generate \"Location Score\" as 'Measure', (avg(Location_in_UL)/avg(Location_Audited)) as 'PS_Comp', \"0\" as '+-'; cabinettypescore = foreach compliance generate \"Cabinet Type Score\" as 'Measure', (avg(Cabinet_Type_in_UL)/avg(Cabinet_Type_Audited)) as 'PS_Comp', \"0\" as '+-'; cabinetfillscore = foreach compliance generate \"Cabinet Fill Score\" as 'Measure', avg(Average_of_Cabinet_Fill) as 'PS_Comp', \"0\" as '+-'; planogramscore = foreach compliance generate \"Planogram Score\" as 'Measure', (avg(Planogram_Guideline_UL)/avg(Planogram_Guidelines_Audited)) as 'PS_Comp', \"0\" as '+-'; propositioncompliance = foreach compliance generate \"Proposition Compliance\" as 'Measure', avg(Proposition_Compliance) as 'PS_Comp', \"0\" as '+-'; ctascore = foreach compliance generate \"CTA Score\" as 'Measure', (avg(CTA_UL)/avg(CTA_expected)) as 'PS_Comp', \"0\" as '+-'; poskitsscore = foreach compliance generate \"POS Kits Score\" as 'Measure', (avg(POS_Kits_available)/avg(POS_Kits_expected)) as 'PS_Comp', \"0\" as '+-'; u = group productcompliance by all, productscore by all, packcompliance by all, packscore by all, pricecompliance by all, spscore by all, pvscore by all, promocompliance by all, placecompliance by all, promoscore by all, shareofcabinetscore by all, cabinetcarescore by all, locationscore by all, cabinettypescore by all, cabinetfillscore by all, planogramscore by all, propositioncompliance by all, ctascore by all, poskitsscore by all; u = union productcompliance, productscore, packcompliance, packscore, pricecompliance, spscore, pvscore, promocompliance, promoscore, placecompliance, shareofcabinetscore, cabinetcarescore, locationscore, cabinettypescore, cabinetfillscore, planogramscore, propositioncompliance, ctascore, poskitsscore;",
+                    "measures": [
+                        [
+                            "PS",
+                            "Comp",
+                            "PS_Comp",
+                            {
+                                "display": "Compliance and Score for Latest Month",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Measure",
+                        "+-"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ENROLLMENT_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_27": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "compliance = load \"DPS_ICECREAM_AGGREGATED\"; score = load \"DPS_ICECREAM_AGGREGATED\"; scoreSOF = load \"DPS_ICECREAM_AGGREGATED\"; compliance = filter compliance by 'Cluster' in {{ selection(Cluster_2) }};  compliance = filter compliance by 'Country' in {{ selection(Country_3) }}; compliance = filter compliance by 'Region' in {{ selection(Region_4) }}; compliance = filter compliance by 'Province' in {{ selection(Province_5) }}; compliance = filter compliance by 'City' in {{ selection(City_6) }}; compliance = filter compliance by 'Sales_territory' in {{ selection(Sales_territory_33) }}; compliance = filter compliance by 'Sales_area' in {{ selection(Sales_area_32) }}; compliance = filter compliance by 'Trade_Format' in {{ selection(Trade_Format_7) }}; compliance = filter compliance by 'Channel' in {{ selection(Channel_8) }}; compliance = filter compliance by 'Subchannel' in {{ selection(Subchannel_9) }}; compliance = filter compliance by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; compliance = filter compliance by 'Customer_type' in {{ selection(Customer_type_11) }}; compliance = filter compliance by 'Customer' in {{ selection(Customer_12) }}; compliance = filter compliance by 'Banner' in {{ selection(Banner_13) }}; compliance = filter compliance by 'Product_division' in {{ selection(Product_division_30) }}; compliance = filter compliance by 'Product_category' in {{ selection(Product_category_31) }}; score = filter score by 'Cluster' in {{ selection(Cluster_2) }};  score = filter score by 'Country' in {{ selection(Country_3) }}; score = filter score by 'Region' in {{ selection(Region_4) }}; score = filter score by 'Province' in {{ selection(Province_5) }}; score = filter score by 'City' in {{ selection(City_6) }}; score = filter score by 'Sales_territory' in {{ selection(Sales_territory_33) }}; score = filter score by 'Sales_area' in {{ selection(Sales_area_32) }}; score = filter score by 'Trade_Format' in {{ selection(Trade_Format_7) }}; score = filter score by 'Channel' in {{ selection(Channel_8) }}; score = filter score by 'Subchannel' in {{ selection(Subchannel_9) }}; score = filter score by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; score = filter score by 'Customer_type' in {{ selection(Customer_type_11) }}; score = filter score by 'Customer' in {{ selection(Customer_12) }}; score = filter score by 'Banner' in {{ selection(Banner_13) }}; score = filter score by 'Product_division' in {{ selection(Product_division_30) }}; score = filter score by 'Product_category' in {{ selection(Product_category_31) }}; scoreSOF = filter scoreSOF by 'Cluster' in {{ selection(Cluster_2) }};  scoreSOF = filter scoreSOF by 'Country' in {{ selection(Country_3) }}; scoreSOF = filter scoreSOF by 'Region' in {{ selection(Region_4) }}; scoreSOF = filter scoreSOF by 'Province' in {{ selection(Province_5) }}; scoreSOF = filter scoreSOF by 'City' in {{ selection(City_6) }}; scoreSOF = filter scoreSOF by 'Sales_territory' in {{ selection(Sales_territory_33) }}; scoreSOF = filter scoreSOF by 'Sales_area' in {{ selection(Sales_area_32) }}; scoreSOF = filter scoreSOF by 'Trade_Format' in {{ selection(Trade_Format_7) }}; scoreSOF = filter scoreSOF by 'Channel' in {{ selection(Channel_8) }}; scoreSOF = filter scoreSOF by 'Subchannel' in {{ selection(Subchannel_9) }}; scoreSOF = filter scoreSOF by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; scoreSOF = filter scoreSOF by 'Customer_type' in {{ selection(Customer_type_11) }}; scoreSOF = filter scoreSOF by 'Customer' in {{ selection(Customer_12) }}; scoreSOF = filter scoreSOF by 'Banner' in {{ selection(Banner_13) }}; scoreSOF = filter scoreSOF by 'Product_division' in {{ selection(Product_division_30) }}; scoreSOF = filter scoreSOF by 'Product_category' in {{ selection(Product_category_31) }};  lastmonthcompliance = filter compliance by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"4 months ago\"..\"4 months ago\"]; lastmonthscore  = filter score by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"4 months ago\"..\"4 months ago\"]; thismonthcompliance = filter compliance by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; thismonthscore  = filter score by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; lastmonthscoreSOF  = filter scoreSOF by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"4 months ago\"..\"4 months ago\"]; thismonthscoreSOF  = filter scoreSOF by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; thismonthcompliance = group thismonthcompliance by all;thismonthscore = group thismonthscore by all; lastmonthcompliance = group lastmonthcompliance by all; lastmonthscore = group lastmonthscore by all; productCompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all; osascore = cogroup lastmonthscore by all, thismonthscore by all; productCompliance = foreach productCompliance generate \"Product Compliance\" as 'Measure', avg(thismonthcompliance.Product_Compliance) - avg(lastmonthcompliance.Product_Compliance) as 'PS_Comp'; osascore = foreach osascore generate \"OSA Score\" as 'Measure', (avg(thismonthscore.Sum_of_OSA_Count)/avg(thismonthscore.Sum_of_OSA_Audited)) - (avg(lastmonthscore.Sum_of_OSA_Count)/avg(lastmonthscore.Sum_of_OSA_Audited)) as 'PS_Comp'; productCompliance = foreach productCompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ; osascore = foreach osascore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; packcompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;npdscore = cogroup lastmonthscore by all, thismonthscore by all; packcompliance = foreach packcompliance generate \"Pack Compliance\" as 'Measure', avg(thismonthcompliance.Pack_Compliance) - avg(lastmonthcompliance.Pack_Compliance) as 'PS_Comp'; npdscore = foreach npdscore generate \"NPD Score\" as 'Measure', (avg(thismonthscore.Sum_of_NPD_Count)/avg(thismonthscore.Sum_of_NPD_Audited)) - (avg(lastmonthscore.Sum_of_NPD_Count)/avg(lastmonthscore.Sum_of_NPD_Audited)) as 'PS_Comp'; packcompliance = foreach packcompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; npdscore = foreach npdscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; pricecompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;spscore = cogroup lastmonthscore by all, thismonthscore by all; pvscore = cogroup lastmonthscore by all, thismonthscore by all; pricecompliance = foreach pricecompliance generate \"Price Compliance\" as 'Measure', avg(thismonthcompliance.Price_Compliance) - avg(lastmonthcompliance.Price_Compliance) as 'PS_Comp'; spscore = foreach spscore generate \"SP Score\" as 'Measure', (avg(thismonthscore.Sum_of_SP_Count)/avg(thismonthscore.Sum_of_SP_Audited)) - (avg(lastmonthscore.Sum_of_SP_Count)/avg(lastmonthscore.Sum_of_SP_Audited))  as 'PS_Comp'; pvscore = foreach pvscore generate \"PV Score\" as 'Measure', (avg(thismonthscore.Sum_of_PV_Count)/avg(thismonthscore.Sum_of_PV_Audited)) - (avg(lastmonthscore.Sum_of_PV_Count)/avg(lastmonthscore.Sum_of_PV_Audited))  as 'PS_Comp'; pricecompliance = foreach pricecompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ; spscore = foreach spscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; pvscore = foreach pvscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; promoCompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all; promoScore = cogroup lastmonthscore by all, thismonthscore by all; promoCompliance = foreach promoCompliance generate \"Promo Compliance\" as 'Measure', avg(thismonthcompliance.Promo_Compliance) - avg(lastmonthcompliance.Promo_Compliance) as 'PS_Comp'; promoScore = foreach promoScore generate \"Promo Score\" as 'Measure', (avg(thismonthscore.Sum_of_Promo_Count)/avg(thismonthscore.Sum_of_Promo_Audited)) - (avg(lastmonthscore.Sum_of_Promo_Count)/avg(lastmonthscore.Sum_of_Promo_Audited)) as 'PS_Comp'; promoCompliance = foreach promoCompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ;promoScore = foreach promoScore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';placeCompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;placeCompliance = foreach placeCompliance generate \"Place Compliance\" as 'Measure', avg(thismonthcompliance.Place_Compliance) - avg(lastmonthcompliance.Place_Compliance) as 'PS_Comp';placeCompliance = foreach placeCompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ;shareofcabinetscore = cogroup lastmonthscore by all, thismonthscore by all;shareofcabinetscore = foreach shareofcabinetscore generate \"Share of Cabinet Score\" as 'Measure', (avg(thismonthscore.Sum_of_SOC_UL)/avg(thismonthscore.Sum_of_SOC_Audited)) - (avg(lastmonthscore.Sum_of_SOC_UL)/avg(lastmonthscore.Sum_of_SOC_Audited)) as 'PS_Comp';shareofcabinetscore = foreach shareofcabinetscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';cabinetcarescore = cogroup lastmonthscore by all, thismonthscore by all;cabinetcarescore = foreach cabinetcarescore generate \"Cabinet Care Score\" as 'Measure', (avg(thismonthscore.CC_Answer)/avg(thismonthscore.CC_Audited)) - (avg(lastmonthscore.CC_Answer)/avg(lastmonthscore.CC_Audited)) as 'PS_Comp';cabinetcarescore = foreach cabinetcarescore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';locationscore = cogroup lastmonthscore by all, thismonthscore by all;locationscore = foreach locationscore generate \"Location Score\" as 'Measure', (avg(thismonthscore.Location_in_UL)/avg(thismonthscore.Location_Audited)) - (avg(lastmonthscore.Location_in_UL)/avg(lastmonthscore.Location_Audited)) as 'PS_Comp';locationscore = foreach locationscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';cabinettypescore = cogroup lastmonthscore by all, thismonthscore by all;cabinettypescore = foreach cabinettypescore generate \"Cabinet Type Score\" as 'Measure', (avg(thismonthscore.Cabinet_Type_in_UL)/avg(thismonthscore.Cabinet_Type_Audited)) - (avg(lastmonthscore.Cabinet_Type_in_UL)/avg(lastmonthscore.Cabinet_Type_Audited)) as 'PS_Comp';cabinettypescore = foreach cabinettypescore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';cabinetfillscore = cogroup lastmonthscore by all, thismonthscore by all;cabinetfillscore = foreach cabinetfillscore generate \"Cabinet Fill Score\" as 'Measure', avg(thismonthscore.Average_of_Cabinet_Fill) - avg(lastmonthscore.Average_of_Cabinet_Fill) as 'PS_Comp';cabinetfillscore = foreach cabinetfillscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';planogramscore = cogroup lastmonthscore by all, thismonthscore by all;planogramscore = foreach planogramscore generate \"Planogram Score\" as 'Measure', (avg(thismonthscore.Planogram_Guideline_UL)/avg(thismonthscore.Planogram_Guidelines_Audited)) - (avg(lastmonthscore.Planogram_Guideline_UL)/avg(lastmonthscore.Planogram_Guidelines_Audited)) as 'PS_Comp';planogramscore = foreach planogramscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';propositioncompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;propositioncompliance = foreach propositioncompliance generate \"Proposition Compliance\" as 'Measure', avg(thismonthcompliance.Proposition_Compliance) - avg(lastmonthcompliance.Proposition_Compliance) as 'PS_Comp';propositioncompliance = foreach propositioncompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ;ctascore = cogroup lastmonthscore by all, thismonthscore by all;ctascore = foreach ctascore generate \"CTA Score\" as 'Measure', (avg(thismonthscore.CTA_UL)/avg(thismonthscore.CTA_expected)) - (avg(lastmonthscore.CTA_UL)/avg(lastmonthscore.CTA_expected)) as 'PS_Comp';ctascore = foreach ctascore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';poskitsscore = cogroup lastmonthscore by all, thismonthscore by all;poskitsscore = foreach poskitsscore generate \"POS Kits Score\" as 'Measure', (avg(thismonthscore.POS_Kits_available)/avg(thismonthscore.POS_Kits_expected)) - (avg(lastmonthscore.POS_Kits_available)/avg(lastmonthscore.POS_Kits_expected)) as 'PS_Comp';poskitsscore = foreach poskitsscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';u = group productCompliance by all, osascore by all, packcompliance by all, npdscore by all, pricecompliance by all, spscore by all, pvscore by all, promoCompliance by all, placeCompliance by all, promoScore by all, shareofcabinetscore by all, cabinetcarescore by all, locationscore by all, cabinettypescore by all, cabinetfillscore by all, planogramscore by all, propositioncompliance by all, ctascore by all, poskitsscore by all;u = union productCompliance, osascore, packcompliance, npdscore, pricecompliance, spscore, pvscore, promoCompliance, promoScore, placeCompliance, shareofcabinetscore, cabinetcarescore, locationscore, cabinettypescore, cabinetfillscore, planogramscore, propositioncompliance, ctascore, poskitsscore;",
+                    "measures": [
+                        [
+                            "PS",
+                            "Comp",
+                            "PS_Comp",
+                            {
+                                "display": "% Difference Compared to Previous Month",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Measure",
+                        "+-"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ICECREAM_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_29": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_OSA_ICECREAM_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Availability",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "OSA"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -6
+                                            ],
+                                            [
+                                                "month",
+                                                -6
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ],
+                                [
+                                    "COTC",
+                                    [
+                                        [
+                                            1
+                                        ]
+                                    ],
+                                    "=="
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_10) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_3) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_4) }}"
+                                ],
+                                [
+                                    "Province",
+                                    "{{ selection(Province_5) }}"
+                                ],
+                                [
+                                    "City",
+                                    "{{ selection(City_6) }}"
+                                ],
+                                [
+                                    "Sales_territory",
+                                    "{{ selection(Sales_territory_33) }}"
+                                ],
+                                [
+                                    "Sales_area",
+                                    "{{ selection(Sales_area_32) }}"
+                                ],
+                                [
+                                    "Trade_Format",
+                                    "{{ selection(Trade_Format_7) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_8) }}"
+                                ],
+                                [
+                                    "Subchannel",
+                                    "{{ selection(Subchannel_9) }}"
+                                ],
+                                [
+                                    "Banner",
+                                    "{{ selection(Banner_13) }}"
+                                ],
+                                [
+                                    "Customer_type",
+                                    "{{ selection(Customer_type_11) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_12) }}"
+                                ],
+                                [
+                                    "Cluster",
+                                    "{{ selection(Cluster_2) }}"
+                                ],
+                                [
+                                    "Product_division",
+                                    "{{ selection(Product_division_30) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_31) }}"
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_OSA_ICECREAM_RAW\"; q = filter q by 'COTC' == 1; q = filter q by 'Cluster' in {{ selection(Cluster_2) }};  q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_33) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_32) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_7) }}; q = filter q by 'Channel' in {{ selection(Channel_8) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_9) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer' in {{ selection(Customer_12) }}; q = filter q by 'Banner' in {{ selection(Banner_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }};  cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"7 months ago\"..\"7 months ago\"]; diff = group cur by 'SKU', last by 'SKU'; diff = foreach diff generate last.SKU as 'SKU', avg(cur['OSA'])-avg(last['OSA']) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff",
+                                    "Percent_Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        },
+                        "showBars": false
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_OSA_ICECREAM_RAW\";  q = filter q by 'COTC' == 1; q = filter q by 'Cluster' in {{ selection(Cluster_2) }};  q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_33) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_32) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_7) }}; q = filter q by 'Channel' in {{ selection(Channel_8) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_9) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer' in {{ selection(Customer_12) }}; q = filter q by 'Banner' in {{ selection(Banner_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }};  cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"7 months ago\"..\"7 months ago\"]; diff = group cur by 'SKU', last by 'SKU'; diff = foreach diff generate last.SKU as 'SKU', avg(cur['OSA'])-avg(last['OSA']) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff",
+                                    "Percent_Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Product_sector_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_sector"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_OSA_ICECREAM_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_division_30": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_division"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_28": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "City_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "City"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Trade_Format_7": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Trade_Format"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_31": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_territory_33": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_territory"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Province_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Province"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_brand_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_brand"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_OSA_ICECREAM_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Month_21": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_ICECREAM_AGGREGATED\"; b = load \"DPS_PS_ICECREAM_ENROLLED_STORES\"; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; b = filter b by 'Cluster' in {{ selection(Cluster_2) }};  b = filter b by 'Country' in {{ selection(Country_3) }}; b = filter b by 'Region' in {{ selection(Region_4) }}; b = filter b by 'Province' in {{ selection(Province_5) }}; b = filter b by 'City' in {{ selection(City_6) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_33) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_32) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_7) }}; b = filter b by 'Channel' in {{ selection(Channel_8) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_9) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; b = filter b by 'Customer_type' in {{ selection(Customer_type_11) }}; b = filter b by 'Customer' in {{ selection(Customer_12) }}; b = filter b by 'Banner' in {{ selection(Banner_13) }}; b = filter b by 'Product_division' in {{ selection(Product_division_30) }}; b = filter b by 'Product_category' in {{ selection(Product_category_31) }}; c = cogroup a by 'Date_of_audit_Month', b by 'Date_of_audit_Month'; c = foreach c generate a.'Date_of_audit_Month' as 'Date_of_audit_Month', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled';",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Channel_20": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_ICECREAM_AGGREGATED\"; b = load \"DPS_PS_ICECREAM_ENROLLED_STORES\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; b = filter b by 'Cluster' in {{ selection(Cluster_2) }};  b = filter b by 'Country' in {{ selection(Country_3) }}; b = filter b by 'Region' in {{ selection(Region_4) }}; b = filter b by 'Province' in {{ selection(Province_5) }}; b = filter b by 'City' in {{ selection(City_6) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_33) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_32) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_7) }}; b = filter b by 'Channel' in {{ selection(Channel_8) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_9) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; b = filter b by 'Customer_type' in {{ selection(Customer_type_11) }}; b = filter b by 'Customer' in {{ selection(Customer_12) }}; b = filter b by 'Banner' in {{ selection(Banner_13) }}; b = filter b by 'Product_division' in {{ selection(Product_division_30) }}; b = filter b by 'Product_category' in {{ selection(Product_category_31) }}; a = cogroup a by 'Channel', b by 'Channel'; a = foreach a generate a.'Channel' as 'Channel', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled';",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Banner_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Banner"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_24": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*",
+                            {
+                                "display": "Perfect Store Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Region_23": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_ICECREAM_AGGREGATED\"; d = load \"DPS_PS_ICECREAM_TARGET\";  u = load \"DPS_ICECREAM_AGGREGATED\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; d = filter d by 'Cluster' in {{ selection(Cluster_2) }}; d = filter d by 'Country' in {{ selection(Country_3) }}; d = filter d by 'Region' in {{ selection(Region_4) }}; d = filter d by 'Cluster' in {{ selection(City_6) }}; d = filter d by 'Cluster' in {{ selection(Sales_territory_33) }}; d = filter d by 'Cluster' in {{ selection(Sales_area_32) }}; d = filter d by 'Cluster' in {{ selection(Trade_Format_7) }}; d = filter d by 'Cluster' in {{ selection(Channel_8) }}; d = filter d by 'Cluster' in {{ selection(Subchannel_9) }}; d = filter d by 'Cluster' in {{ selection(X4P_5P_6P_10) }}; d = filter d by 'Cluster' in {{ selection(Customer_type_11) }}; d = filter d by 'Cluster' in {{ selection(Customer_12) }}; d = filter d by 'Cluster' in {{ selection(Banner_13) }}; d = filter d by 'Cluster' in {{ selection(Product_division_30) }}; d = filter d by 'Cluster' in {{ selection(Product_category_31) }}; c = group a by 'Region'; c = foreach c generate 'Region' as 'Region', avg(a.PS_Compliance) as 'ps_comp', \"Actual\" as 'Measure'; d = group d by 'Region'; d = foreach d generate 'Region' as 'Region', avg(d.Compliance_Target) as 'ps_comp', \"Target\" as 'Measure'; u = group c by 'Region', d by 'Region'; u = union d, c; u = order u by 'Region' asc;",
+                    "measures": [
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "Perfect Store Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ENROLLMENT_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "start": [
+                    [
+                        [
+                            "month",
+                            -6
+                        ],
+                        [
+                            "month",
+                            -6
+                        ]
+                    ]
+                ],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_25": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_ICECREAM_AGGREGATED\"; b = load \"DPS_PS_ICECREAM_ENROLLED_STORES\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; b = filter b by 'Cluster' in {{ selection(Cluster_2) }};  b = filter b by 'Country' in {{ selection(Country_3) }}; b = filter b by 'Region' in {{ selection(Region_4) }}; b = filter b by 'Province' in {{ selection(Province_5) }}; b = filter b by 'City' in {{ selection(City_6) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_33) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_32) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_7) }}; b = filter b by 'Channel' in {{ selection(Channel_8) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_9) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; b = filter b by 'Customer_type' in {{ selection(Customer_type_11) }}; b = filter b by 'Customer' in {{ selection(Customer_12) }}; b = filter b by 'Banner' in {{ selection(Banner_13) }}; b = filter b by 'Product_division' in {{ selection(Product_division_30) }}; b = filter b by 'Product_category' in {{ selection(Product_category_31) }}; c = cogroup a by 'Customer', b by 'Customer'; c = foreach c generate a.'Customer' as 'Customer', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled'; c = order c by 'ps_comp' desc; c = limit c 10;",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Sales_area_32": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_area"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_18": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_ICECREAM_ENROLLED_STORES\"; d = load \"DPS_PS_ICECREAM_TARGET\";  a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; d = filter d by 'Cluster' in {{ selection(Cluster_2) }}; d = filter d by 'Country' in {{ selection(Country_3) }}; d = filter d by 'Region' in {{ selection(Region_4) }}; d = filter d by 'Cluster' in {{ selection(City_6) }}; d = filter d by 'Cluster' in {{ selection(Sales_territory_33) }}; d = filter d by 'Cluster' in {{ selection(Sales_area_32) }}; d = filter d by 'Cluster' in {{ selection(Trade_Format_7) }}; d = filter d by 'Cluster' in {{ selection(Channel_8) }}; d = filter d by 'Cluster' in {{ selection(Subchannel_9) }}; d = filter d by 'Cluster' in {{ selection(X4P_5P_6P_10) }}; d = filter d by 'Cluster' in {{ selection(Customer_type_11) }}; d = filter d by 'Cluster' in {{ selection(Customer_12) }}; d = filter d by 'Cluster' in {{ selection(Banner_13) }}; d = filter d by 'Cluster' in {{ selection(Product_division_30) }}; d = filter d by 'Cluster' in {{ selection(Product_category_31) }}; a = group a by 'Country'; a = foreach a generate 'Country' as 'Country', count(a) as 'ps_record', \"Actual\" as 'Measure'; d = group d by 'Country'; d = foreach d generate 'Country' as 'Country', sum(d.Enrollment_Target) as 'ps_record', \"Target\" as 'Measure'; u = group a by 'Country', d by 'Country'; u = union d, a; u = order u by 'Country' asc;",
+                    "measures": [
+                        [
+                            "ps",
+                            "record",
+                            "ps_record",
+                            {
+                                "display": "Perfect Stores Enrolled"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ENROLLMENT_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Cluster_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_ICECREAM_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_19": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_ICECREAM_AGGREGATED\"; d = load \"DPS_PS_ICECREAM_TARGET\"; u = load \"DPS_ICECREAM_AGGREGATED\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_2) }}; a = filter a by 'Country' in {{ selection(Country_3) }}; a = filter a by 'Region' in {{ selection(Region_4) }}; a = filter a by 'Province' in {{ selection(Province_5) }}; a = filter a by 'City' in {{ selection(City_6) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_33) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_32) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_7) }}; a = filter a by 'Channel' in {{ selection(Channel_8) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_9) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_10) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_11) }}; a = filter a by 'Customer' in {{ selection(Customer_12) }}; a = filter a by 'Banner' in {{ selection(Banner_13) }}; a = filter a by 'Product_division' in {{ selection(Product_division_30) }}; a = filter a by 'Product_category' in {{ selection(Product_category_31) }}; d = filter d by 'Cluster' in {{ selection(Cluster_2) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_of_audit_Year_Date_of_audit_Month_1) }}; d = filter d by 'Country' in {{ selection(Country_3) }}; d = filter d by 'Region' in {{ selection(Region_4) }}; d = filter d by 'Cluster' in {{ selection(City_6) }}; d = filter d by 'Cluster' in {{ selection(Sales_territory_33) }}; d = filter d by 'Cluster' in {{ selection(Sales_area_32) }}; d = filter d by 'Cluster' in {{ selection(Trade_Format_7) }}; d = filter d by 'Cluster' in {{ selection(Channel_8) }}; d = filter d by 'Cluster' in {{ selection(Subchannel_9) }}; d = filter d by 'Cluster' in {{ selection(X4P_5P_6P_10) }}; d = filter d by 'Cluster' in {{ selection(Customer_type_11) }}; d = filter d by 'Cluster' in {{ selection(Customer_12) }}; d = filter d by 'Cluster' in {{ selection(Banner_13) }}; d = filter d by 'Cluster' in {{ selection(Product_division_30) }}; d = filter d by 'Cluster' in {{ selection(Product_category_31) }}; c = group a by 'Country'; c = foreach c generate 'Country' as 'Country', avg(a.PS_Compliance) as 'ps_record', \"Actual\" as 'Measure'; d = group d by 'Country'; d = foreach d generate 'Country' as 'Country', avg(d.Compliance_Target) as 'ps_record', \"Target\" as 'Measure'; u = group c by 'Country', d by 'Country'; u = union d, c; u = order u by 'Country' asc;",
+                    "measures": [
+                        [
+                            "ps",
+                            "record",
+                            "ps_record",
+                            {
+                                "display": "Perfect Store Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ENROLLMENT_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            }
+        },
+        "widgets": {
+            "text_18": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4480,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars)\nand the actual Perfect Store Compliance percentage (line),\ngrouped by channels, for the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_17": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4000,
+                    "zIndex": 23
+                },
+                "parameters": {
+                    "text": "PS Enrollment and Compliance by Channel"
+                }
+            },
+            "text_19": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4570,
+                    "zIndex": 25
+                },
+                "parameters": {
+                    "text": "PS Enrollment and Compliance by Top Customers"
+                }
+            },
+            "text_14": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2310,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars)\nand the actual Perfect Store Compliance percentage (line),\ngrouped by 4P, 5P or 6P Perfect Stores, for the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_13": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1930,
+                    "zIndex": 18
+                },
+                "parameters": {
+                    "text": "PS Enrollment and Compliance by 4P/5P/6P"
+                }
+            },
+            "text_16": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3920,
+                    "zIndex": 22
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the actual Perfect Store compliance percentage (bars),\nand the target Perfect Store compliance percentage (line), for each region,\nfor the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_15": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3450,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "text": "PS Compliance vs. Target by Region"
+                }
+            },
+            "text_10": {
+                "type": "text",
+                "position": {
+                    "x": 720,
+                    "y": 1280,
+                    "zIndex": 12
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the target and actual Perfect Store Compliance\npercentage for each country, for the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_25": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 510,
+                    "zIndex": 100019
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Sales_area_32"
+                }
+            },
+            "dimfilter_26": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 570,
+                    "zIndex": 100020
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Sales_territory_33"
+                }
+            },
+            "text_12": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1830,
+                    "zIndex": 17
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the 12 month trend of actual number of\nEnrolled Perfect Stores (bars) and the actual Perfect Store\nCompliance percentage (line).",
+                    "textAlignment": "left",
+                    "textColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_23": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 940,
+                    "y": 210,
+                    "zIndex": 100017
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Product_division_30"
+                }
+            },
+            "datefilter_1": {
+                "type": "dateselector",
+                "position": {
+                    "h": 70,
+                    "w": 370,
+                    "x": 70,
+                    "y": 80,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_1",
+                    "title": "Date"
+                }
+            },
+            "text_11": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1350,
+                    "zIndex": 13
+                },
+                "parameters": {
+                    "text": "PS Enrollment and Compliance Trend"
+                }
+            },
+            "dimfilter_24": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 940,
+                    "y": 270,
+                    "zIndex": 100018
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Product_category_31"
+                }
+            },
+            "box_17": {
+                "type": "box",
+                "position": {
+                    "h": 80,
+                    "w": 280,
+                    "x": 150,
+                    "y": 5650,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_6": {
+                "type": "chart",
+                "position": {
+                    "h": 380,
+                    "w": 650,
+                    "x": 40,
+                    "y": 3520,
+                    "zIndex": 20
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Region_23",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "text_2": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 150,
+                    "zIndex": 2
+                },
+                "parameters": {
+                    "text": "Geography"
+                }
+            },
+            "chart_5": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 1990,
+                    "zIndex": 16
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "X4P_5P_6P_22",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_13": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 350,
+                    "x": 0,
+                    "y": 5830,
+                    "zIndex": 46
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(255, 255, 255, 0)"
+                }
+            },
+            "text_5": {
+                "type": "text",
+                "position": {
+                    "x": 580,
+                    "y": 150,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "text": "Customer"
+                }
+            },
+            "box_12": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 4000,
+                    "zIndex": 43
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_7": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 4630,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Customer_25",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_11": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 4570,
+                    "zIndex": 42
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_7": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 810,
+                    "zIndex": 8
+                },
+                "parameters": {
+                    "text": "PS Enrollment vs. Target by Country"
+                }
+            },
+            "chart_2": {
+                "type": "chart",
+                "position": {
+                    "h": 400,
+                    "w": 500,
+                    "x": 720,
+                    "y": 870,
+                    "zIndex": 10
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Country_19",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "box_10": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 5040,
+                    "zIndex": 41
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_6": {
+                "type": "text",
+                "position": {
+                    "x": 1000,
+                    "y": 150,
+                    "zIndex": 4
+                },
+                "parameters": {
+                    "text": "Product"
+                }
+            },
+            "chart_1": {
+                "type": "chart",
+                "position": {
+                    "h": 400,
+                    "w": 500,
+                    "x": 40,
+                    "y": 870,
+                    "zIndex": 7
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Country_18",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "text_9": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1280,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the target and actual number of Enrolled\nPerfect Stores for each country, for the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_4": {
+                "type": "chart",
+                "position": {
+                    "h": 400,
+                    "w": 500,
+                    "x": 40,
+                    "y": 1410,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Date_of_audit_Month_21",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "text_8": {
+                "type": "text",
+                "position": {
+                    "x": 720,
+                    "y": 810,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "text": "PS Compliance vs. Target by Country"
+                }
+            },
+            "chart_3": {
+                "type": "chart",
+                "position": {
+                    "h": 400,
+                    "w": 500,
+                    "x": 40,
+                    "y": 4060,
+                    "zIndex": 14
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Channel_20",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "comparetable_1": {
+                "type": "comparetable",
+                "position": {
+                    "h": 340,
+                    "w": 500,
+                    "x": 40,
+                    "y": 5120,
+                    "zIndex": 46
+                },
+                "parameters": {
+                    "step": "compare_29",
+                    "selectModeOverride": "single"
+                }
+            },
+            "dimfilter_7": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 210,
+                    "zIndex": 100007
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Trade_Format_7"
+                }
+            },
+            "dimfilter_8": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 270,
+                    "zIndex": 100008
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Channel_8"
+                }
+            },
+            "text_1": {
+                "type": "text",
+                "position": {
+                    "x": 100,
+                    "y": 30,
+                    "zIndex": 1
+                },
+                "parameters": {
+                    "text": "Period"
+                }
+            },
+            "dimfilter_9": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 330,
+                    "zIndex": 100009
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Subchannel_9"
+                }
+            },
+            "box_3": {
+                "type": "box",
+                "position": {
+                    "h": 100,
+                    "w": 260,
+                    "x": 960,
+                    "y": 30,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0)",
+                    "stretch": true,
+                    "imageUrl": "01523000000Hvz6"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 780,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 20,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_3": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 270,
+                    "zIndex": 100003
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Country_3"
+                }
+            },
+            "dimfilter_4": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 330,
+                    "zIndex": 100004
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Region_4"
+                }
+            },
+            "dimfilter_5": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 390,
+                    "zIndex": 100005
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Province_5"
+                }
+            },
+            "dimfilter_16": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 940,
+                    "y": 390,
+                    "zIndex": 100016
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Product_brand_16"
+                }
+            },
+            "dimfilter_6": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 450,
+                    "zIndex": 100006
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "City_6"
+                }
+            },
+            "dimfilter_17": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 940,
+                    "y": 510,
+                    "zIndex": 100017
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "SKU_17"
+                }
+            },
+            "dimfilter_14": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 940,
+                    "y": 330,
+                    "zIndex": 100014
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Product_market_14"
+                }
+            },
+            "dimfilter_15": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 940,
+                    "y": 450,
+                    "zIndex": 100015
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Product_sector_15"
+                }
+            },
+            "dimfilter_12": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 510,
+                    "zIndex": 100012
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Customer_12"
+                }
+            },
+            "dimfilter_2": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 210,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Cluster_2"
+                }
+            },
+            "dimfilter_13": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 570,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Banner_13"
+                }
+            },
+            "number_2": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 40,
+                    "y": 5650,
+                    "zIndex": 46
+                },
+                "parameters": {
+                    "measureField": "count",
+                    "step": "all_28",
+                    "textColor": "rgb(248, 77, 77)",
+                    "title": " "
+                }
+            },
+            "chart_12": {
+                "type": "chart",
+                "position": {
+                    "h": 900,
+                    "w": 570,
+                    "x": 720,
+                    "y": 2450,
+                    "zIndex": 31
+                },
+                "parameters": {
+                    "step": "all_27",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_11": {
+                "type": "chart",
+                "position": {
+                    "h": 900,
+                    "w": 570,
+                    "x": 40,
+                    "y": 2450,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "step": "all_26",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_38": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 5490,
+                    "zIndex": 47
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the list of percentages of COTC availability for the\nlatest month, and also the percentage increase or decrease\ncompared to the previous month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_37": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 5590,
+                    "zIndex": 44
+                },
+                "parameters": {
+                    "text": "Count of Audited Perfect Stores"
+                }
+            },
+            "text_32": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4950,
+                    "zIndex": 33
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars)\nand the actual Perfect Store Compliance percentage (line),\ngrouped by customers, for the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_31": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 3370,
+                    "zIndex": 32
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the difference in percentage compared to\nprevious month for the respective P compliance and KPI score",
+                    "textAlignment": "left"
+                }
+            },
+            "text_33": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 5040,
+                    "zIndex": 34
+                },
+                "parameters": {
+                    "text": "COTC Availability"
+                }
+            },
+            "dimfilter_10": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 390,
+                    "zIndex": 100010
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "X4P_5P_6P_10",
+                    "title": "Tier"
+                }
+            },
+            "dimfilter_11": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 540,
+                    "y": 450,
+                    "zIndex": 100011
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Customer_type_11"
+                }
+            },
+            "text_30": {
+                "type": "text",
+                "position": {
+                    "x": 720,
+                    "y": 2390,
+                    "zIndex": 30
+                },
+                "parameters": {
+                    "text": "% Difference Compared to Previous Month"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 1350,
+                    "zIndex": 36
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_4": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 810,
+                    "zIndex": 35
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_7": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 2390,
+                    "zIndex": 38
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_6": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 3450,
+                    "zIndex": 37
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_9": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 5590,
+                    "zIndex": 40
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_8": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1300,
+                    "x": 20,
+                    "y": 1930,
+                    "zIndex": 39
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_29": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3370,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the compliance and score percentage for each KPI, \nfor the latest month.",
+                    "textAlignment": "left",
+                    "textColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_28": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2390,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "text": "Compliance and Score for Latest Month"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000ST1SAM",
+            "name": "DPS_ICECREAM_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SSwSAM",
+            "name": "DPS_OSA_ICECREAM_RAW"
+        },
+        {
+            "id": "0Fb8A0000000SSISA2",
+            "name": "DPS_PS_ENROLLMENT_TARGET"
+        },
+        {
+            "id": "0Fb8A0000000ST6SAM",
+            "name": "DPS_PS_ICECREAM_ENROLLED_STORES"
+        },
+        {
+            "id": "0Fb8A0000000STBSA2",
+            "name": "DPS_PS_ICECREAM_TARGET"
+        }
+    ]
+}

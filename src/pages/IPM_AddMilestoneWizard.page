@@ -15,7 +15,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_PageHeader.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_AddTaskWizard.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/datepicker.css')}"/> 
-    <div class="container-fluid" id="ipmAddMilestoneTab">
+    <div class="container-fluid ipmAddMilestoneTab" id="ipmAddMilestoneTab">
         <!-- To place the help symbol in the top right hand corner of page -->
         <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
@@ -41,19 +41,27 @@
                         <apex:outputfield value="{!p.mile.IPM_Phase__c}" />
                     </apex:column>
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" styleClass="col-xs-3">
+<<<<<<< HEAD
                         <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar">
+=======
+                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox listDate calendar" onchange="selectMiniMs('{!p.mile.Id}');">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                         <apex:pageMessage summary="{!$Label.IPM_Milestone_Due_Date_Error}" severity="error" id="messages" strength="0" rendered="{!p.errorRecord}"/> 
                         </apex:inputField>
                     </apex:column>                         
                 </apex:dataTable>
                 <div class="ipmButtonGroup pull-right">
+<<<<<<< HEAD
                     <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="tskPanel" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
+=======
+                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="form1" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 </div>
             </apex:form>
         </div>
         
         <div class="ipmMilestoneContent" id="newMstone"> 
-            <div class="row" id="EditTask">
+            <div class="row EditTask" id="EditTask">
                 <apex:form id="form">
                     <apex:actionStatus id="stat">
                         <apex:facet name="start"> 
@@ -91,8 +99,8 @@
                                     </div>
                                 </apex:outputPanel>
                                 <div class="marginTop buttonmarRight ipmButtonGroup pull-right">
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};"/>                      
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onComplete="pagecloseProSetUp();"/>
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};"/>                      
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onclick="skipValidation();" onComplete="pagecloseProSetUp();"/>
                                 </div>
                             </apex:outputPanel>
                         </apex:facet>
@@ -115,7 +123,11 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap-datepicker.js')}" type="text/javascript"></script>
         <script type="text/javascript">
+<<<<<<< HEAD
           var IPMAppComp = { projectId:'{!projectId}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
+=======
+          	var IPMAppComp = { projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         </script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddMilestone.js')}" type="text/javascript"></script>
 </apex:page>

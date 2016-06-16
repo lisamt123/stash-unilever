@@ -1,0 +1,3109 @@
+{
+    "label": "Promo Dashboard",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [],
+        "steps": {
+            "Customer_type_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_65": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by 'X4P_5P_6P'; q = foreach q generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_21": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avgCompliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_66": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_61": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by 'Country'; q = foreach q generate 'Country' as 'Country', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "SKU_79": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "SKU"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Trade_Format_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Trade_Format"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "SKU_84": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "SKU"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_59": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "header": "Total Promo",
+                        "query": {
+                            "measures": [
+                                [
+                                    "count",
+                                    "*"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Total Stores Auditied",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Promo"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Promo % Availability of Product",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Promo"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "formula": "B/A"
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Promo % Availability of Product",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Promo"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "formula": "B/A"
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Cluster_60": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by 'Cluster'; q = foreach q generate 'Cluster' as 'Cluster', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Province_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Province"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_27": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avgCompliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_68": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by 'Channel'; q = foreach q generate 'Channel' as 'Channel', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Score_72": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "Percent",
+                            "Diff",
+                            "Percent_Diff"
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"1 month ahead\"];r = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"2 month ago\"];w = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"];c = cogroup q by all, r by all, w by all; c = foreach c generate sum(r.Score)/sum(r.Audited_SKUs)*100  as 'r_Scores', sum(w.Score)/sum(w.Audited_SKUs)*100  as 'w_Scores', ( (sum(w.Score)/sum(w.Audited_SKUs))*100) - ((sum(r.Score)/sum(r.Audited_SKUs))*100) as 'Percent_Diff';"
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_sector_82": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_sector"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Banner_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Banner"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Score_70": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score"
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\";q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by all;  q = foreach q generate sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;"
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Audited_SKUs_88": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Audited_SKUs"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Score_71": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score"
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\";q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"]; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by all; q = foreach q generate sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;"
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_87": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Availability",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Promo"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -2
+                                            ],
+                                            [
+                                                "month",
+                                                -2
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_80) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_21) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_3) }}"
+                                ],
+                                [
+                                    "Province",
+                                    "{{ selection(Province_4) }}"
+                                ],
+                                [
+                                    "City",
+                                    "{{ selection(City_5) }}"
+                                ],
+                                [
+                                    "Sales_territory",
+                                    "{{ selection(Sales_territory_7) }}"
+                                ],
+                                [
+                                    "Sales_area",
+                                    "{{ selection(Sales_area_6) }}"
+                                ],
+                                [
+                                    "Trade_Format",
+                                    "{{ selection(Trade_Format_8) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_9) }}"
+                                ],
+                                [
+                                    "Subchannel",
+                                    "{{ selection(Subchannel_10) }}"
+                                ],
+                                [
+                                    "Banner",
+                                    "{{ selection(Banner_14) }}"
+                                ],
+                                [
+                                    "Customer_type",
+                                    "{{ selection(Customer_type_11) }}"
+                                ],
+                                [
+                                    "Customer_subtype",
+                                    "{{ selection(Customer_subtype_12) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_69) }}"
+                                ],
+                                [
+                                    "Cluster",
+                                    "{{ selection(Cluster_1) }}"
+                                ],
+                                [
+                                    "Cluster",
+                                    "{{ selection(Country_2) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_61) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_67) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_27) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_68) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_13) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_31) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_85) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_86) }}"
+                                ],
+                                [
+                                    "Product_division",
+                                    "{{ selection(Product_division_15) }}"
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_66) }}"
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_65) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_16) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_26) }}"
+                                ],
+                                [
+                                    "Product_market",
+                                    "{{ selection(Product_market_81) }}"
+                                ],
+                                [
+                                    "Product_sector",
+                                    "{{ selection(Product_sector_82) }}"
+                                ],
+                                [
+                                    "Product_brand",
+                                    "{{ selection(Product_brand_83) }}"
+                                ],
+                                [
+                                    "SKU",
+                                    "{{ selection(SKU_84) }}"
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_PROMO_RAW\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'SKU', last by 'SKU'; diff = foreach diff generate last.SKU as 'SKU',avg(last['Promo']) as 'Last Month', avg(cur['Promo']) as 'Current Month', (avg(cur['Promo'])-avg(last['Promo'])) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_PROMO_RAW\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'SKU', last by 'SKU'; diff = foreach diff generate last.SKU as 'SKU',avg(last['Promo']) as 'Last Month', avg(cur['Promo']) as 'Current Month', (avg(cur['Promo'])-avg(last['Promo'])) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Country_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Compliance_74": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -1
+                                    ],
+                                    [
+                                        "month",
+                                        -1
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_territory_7": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_territory"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Compliance_73": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -2
+                                    ],
+                                    [
+                                        "month",
+                                        -2
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_Region_62": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by ('Country', 'Region'); q = foreach q generate 'Country' as 'Country', 'Region' as 'Region', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "Country",
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            },
+            "Compliance_75": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"1 month ahead\"];r = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"2 month ago\"];w = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"];c = cogroup q by all, r by all, w by all; c = foreach c generate  ( (sum(w.Compliance)/count(w))*100) - ((sum(r.Compliance)/count(r))*100) as 'Percent_Diff';",
+                    "measures": [
+                        [
+                            "Percent",
+                            "Diff",
+                            "Percent_Diff",
+                            {
+                                "format": "percentage"
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_18": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Year"
+                    ]
+                },
+                "selectMode": "single",
+                "start": [
+                    [
+                        [
+                            "month",
+                            -6
+                        ],
+                        [
+                            "month",
+                            -6
+                        ]
+                    ]
+                ],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_80": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_brand_83": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_brand"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "City_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "City"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Subchannel_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Subchannel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_63": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by ('Date_of_audit_Year', 'Date_of_audit_Month'); q = foreach q generate 'Date_of_audit_Year' as 'Date_of_audit_Year', 'Date_of_audit_Month' as 'Date_of_audit_Month', 'Date_of_audit_Year' + \"~~~\" + 'Date_of_audit_Month' as 'Date_of_audit_Year~~~Date_of_audit_Month', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score'; q = limit q 2000;",
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_64": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -12
+                                    ],
+                                    [
+                                        "month",
+                                        0
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_80) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_21) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_3) }}"
+                        ],
+                        [
+                            "Province",
+                            "{{ selection(Province_4) }}"
+                        ],
+                        [
+                            "City",
+                            "{{ selection(City_5) }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ selection(Sales_territory_7) }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ selection(Sales_area_6) }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ selection(Trade_Format_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_9) }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ selection(Subchannel_10) }}"
+                        ],
+                        [
+                            "Banner",
+                            "{{ selection(Banner_14) }}"
+                        ],
+                        [
+                            "Customer_type",
+                            "{{ selection(Customer_type_11) }}"
+                        ],
+                        [
+                            "Customer_subtype",
+                            "{{ selection(Customer_subtype_12) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_69) }}"
+                        ],
+                        [
+                            "Cluster",
+                            "{{ selection(Cluster_1) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_2) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_61) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_67) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_27) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_68) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_13) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_31) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_85) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_86) }}"
+                        ],
+                        [
+                            "Product_division",
+                            "{{ selection(Product_division_15) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_66) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_65) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_26) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ selection(Product_market_81) }}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{ selection(Product_sector_82) }}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{ selection(Product_brand_83) }}"
+                        ],
+                        [
+                            "SKU",
+                            "{{ selection(SKU_84) }}"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Country_Region_54": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avgCompliance",
+                            {
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Region"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "year",
+                                        0
+                                    ],
+                                    [
+                                        "year",
+                                        1
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            },
+            "Customer_subtype_12": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_subtype"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_26": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avgCompliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_67": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = filter q by 'SKU' in {{ selection(SKU_79) }}; q = group q by 'Product_category'; q = foreach q generate 'Product_category' as 'Product_category', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_20": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avgCompliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_85": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "display": "Promo Compliance"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Region_86": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by 'Region'; q = foreach q generate 'Region' as 'Region', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 2000;",
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Customer_69": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "avg_Score",
+                            {
+                                "display": "Promo Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_PROMO_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_1) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_18) }}; q = filter q by 'Country' in {{ selection(Country_2) }}; q = filter q by 'Region' in {{ selection(Region_3) }}; q = filter q by 'Province' in {{ selection(Province_4) }}; q = filter q by 'City' in {{ selection(City_5) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_7) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_6) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_8) }}; q = filter q by 'Channel' in {{ selection(Channel_9) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_10) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_11) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_12) }}; q = filter q by 'Customer' in {{ selection(Customer_13) }}; q = filter q by 'Product_division' in {{ selection(Product_division_15) }}; q = filter q by 'Product_category' in {{ selection(Product_category_16) }}; q = filter q by 'Banner' in {{ selection(Banner_14) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_80) }}; q = filter q by 'Product_market' in {{ selection(Product_market_81) }}; q = filter q by 'Product_sector' in {{ selection(Product_sector_82) }}; q = filter q by 'Product_brand' in {{ selection(Product_brand_83) }}; q = filter q by 'SKU' in {{ selection(SKU_84) }}; q = group q by 'Customer'; q = foreach q generate 'Customer' as 'Customer', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'avg_Score';  q = limit q 10;",
+                    "limit": [
+                        [
+                            10
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "year",
+                                        0
+                                    ],
+                                    [
+                                        "year",
+                                        1
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Product_market_81": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_market"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_division_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_division"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_31": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avgCompliance",
+                            {
+                                "display": "Promo Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "limit": [
+                        [
+                            10
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "all_89": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_area_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_area"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PROMO_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "widgets": {
+            "text_18": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 3460,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "text": "Promo Score by Top Customers"
+                }
+            },
+            "text_17": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 3020,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "text": "Promo Score by Category"
+                }
+            },
+            "text_19": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 2480,
+                    "zIndex": 31
+                },
+                "parameters": {
+                    "text": "Promo Score by Channel"
+                }
+            },
+            "text_13": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 2000,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "text": "Promo Score by Region"
+                }
+            },
+            "text_16": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 1080,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "text": "Promo Score by Trend"
+                }
+            },
+            "dimfilter_27": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 350,
+                    "zIndex": 100021
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "X4P_5P_6P_80",
+                    "title": "Tier"
+                }
+            },
+            "dimfilter_25": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 600,
+                    "y": 410,
+                    "zIndex": 100020
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_brand_83"
+                }
+            },
+            "text_54": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4450,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart lists all the audited SKUs for Promo compliance in the country,\nthe % of enrolled stores that they were Promo compliance in the latest month,\nand the variance from the previous month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_26": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 600,
+                    "y": 470,
+                    "zIndex": 100021
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "SKU_84"
+                }
+            },
+            "text_12": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 750,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "text": "Promo Score by Country"
+                }
+            },
+            "dimfilter_23": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 600,
+                    "y": 290,
+                    "zIndex": 100018
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_market_81"
+                }
+            },
+            "datefilter_1": {
+                "type": "dateselector",
+                "position": {
+                    "h": 60,
+                    "w": 300,
+                    "x": 160,
+                    "y": 20,
+                    "zIndex": 100018
+                },
+                "parameters": {
+                    "expanded": false,
+                    "step": "Date_of_audit_Year_18"
+                }
+            },
+            "dimfilter_24": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 600,
+                    "y": 350,
+                    "zIndex": 100019
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_sector_82"
+                }
+            },
+            "text_55": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4550,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "text": "Count of Audited Stores"
+                }
+            },
+            "text_50": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3890,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores for Top Customers\nwithin a country which were Promo Compliant in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "box_19": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 60,
+                    "y": 4760,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(248, 250, 251, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0)"
+                }
+            },
+            "chart_9": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 3070,
+                    "zIndex": 10
+                },
+                "parameters": {
+                    "step": "Product_category_26",
+                    "visualizationType": "hbar"
+                }
+            },
+            "box_17": {
+                "type": "box",
+                "position": {
+                    "h": 80,
+                    "w": 250,
+                    "x": 100,
+                    "y": 4620,
+                    "zIndex": 62
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(246, 249, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_15": {
+                "type": "box",
+                "position": {
+                    "h": 100,
+                    "w": 260,
+                    "x": 880,
+                    "y": 50,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(251, 251, 251, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.08)",
+                    "stretch": true,
+                    "imageUrl": "01523000000Hvz6"
+                }
+            },
+            "text_3": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1080,
+                    "zIndex": 10
+                },
+                "parameters": {
+                    "text": "Promo Compliance Trend"
+                }
+            },
+            "box_14": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 4550,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(251, 251, 251, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_2": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3020,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "text": "Promo Compliance by Category"
+                }
+            },
+            "box_12": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 2480,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(250, 251, 251, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_4": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2000,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "text": "Promo Compliance by Region"
+                }
+            },
+            "box_11": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 3020,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(251, 251, 251, 0.01)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_7": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2480,
+                    "zIndex": 14
+                },
+                "parameters": {
+                    "text": "Promo Compliance by Channel"
+                }
+            },
+            "box_10": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 3970,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(250, 251, 251, 0.02)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_6": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 750,
+                    "zIndex": 13
+                },
+                "parameters": {
+                    "text": "Promo Compliance by Country"
+                }
+            },
+            "chart_4": {
+                "type": "chart",
+                "position": {
+                    "h": 190,
+                    "w": 500,
+                    "x": 40,
+                    "y": 810,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "step": "Country_21",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_8": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3460,
+                    "zIndex": 16
+                },
+                "parameters": {
+                    "text": "Promo Compliance by Top Customers"
+                }
+            },
+            "chart_20": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 1130,
+                    "zIndex": 37
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_64",
+                    "visualizationType": "time"
+                }
+            },
+            "dimfilter_7": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 530,
+                    "zIndex": 100006
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_territory_7"
+                }
+            },
+            "dimfilter_8": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 170,
+                    "zIndex": 100007
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Trade_Format_8"
+                }
+            },
+            "dimfilter_9": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 230,
+                    "zIndex": 100008
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Channel_9"
+                }
+            },
+            "comparetable_2": {
+                "type": "comparetable",
+                "position": {
+                    "h": 390,
+                    "w": 500,
+                    "x": 40,
+                    "y": 4040,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "step": "compare_87",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 700,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 10,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(251, 251, 251, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_3": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 290,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Region_3"
+                }
+            },
+            "text_47": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 3380,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and\n% of Product categories that were SOF compiant in MT enrolled\nstores across all the Product categories in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_4": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 350,
+                    "zIndex": 100003
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Province_4"
+                }
+            },
+            "text_46": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2940,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant\nacross all the Channels in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_5": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 410,
+                    "zIndex": 100004
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "City_5"
+                }
+            },
+            "dimfilter_16": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 600,
+                    "y": 170,
+                    "zIndex": 100015
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_division_15"
+                }
+            },
+            "text_49": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 3890,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and\n% of Product categories that were SOF compiant in the enrolled stores\nfor Top Customers within a country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_6": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 470,
+                    "zIndex": 100005
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_area_6"
+                }
+            },
+            "dimfilter_17": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 600,
+                    "y": 230,
+                    "zIndex": 100016
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_category_16"
+                }
+            },
+            "text_48": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3380,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of MT enrolled stores that were Promo compliant\nacross all the Product categories in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_14": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 590,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Banner_14"
+                }
+            },
+            "text_43": {
+                "type": "text",
+                "position": {
+                    "x": 30,
+                    "y": 2400,
+                    "zIndex": 51
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant\nin different regions of the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_42": {
+                "type": "text",
+                "position": {
+                    "x": 620,
+                    "y": 1910,
+                    "zIndex": 64
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant,\nand % of Product categories that were SOF compiant in\n4P, 5P and 6P stores in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_1": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 170,
+                    "zIndex": 100000
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Cluster_1"
+                }
+            },
+            "dimfilter_12": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 470,
+                    "zIndex": 100011
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_subtype_12"
+                }
+            },
+            "text_45": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 2940,
+                    "zIndex": 53
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and\n% of Product categories that were SOF compiant in the enrolled\nstores across all the Channels in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_2": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 30,
+                    "y": 230,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Country_2"
+                }
+            },
+            "dimfilter_13": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 530,
+                    "zIndex": 100012
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_13"
+                }
+            },
+            "text_44": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 2400,
+                    "zIndex": 52
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and\n% of Product categories that were SOF compiant in enrolled\nstores in different regions of the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_41": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1910,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of 4P, 5P and 6P stores that were\nPromo compliant for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "number_2": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 40,
+                    "y": 4620,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "measureField": "count",
+                    "step": "all_89",
+                    "textColor": "rgb(239, 67, 67)",
+                    "title": " "
+                }
+            },
+            "chart_19": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 610,
+                    "y": 1130,
+                    "zIndex": 36
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_63",
+                    "exploreLink": false,
+                    "visualizationType": "time"
+                }
+            },
+            "chart_15": {
+                "type": "chart",
+                "position": {
+                    "h": 190,
+                    "w": 500,
+                    "x": 610,
+                    "y": 810,
+                    "zIndex": 32
+                },
+                "parameters": {
+                    "step": "Country_61",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_11": {
+                "type": "chart",
+                "position": {
+                    "h": 360,
+                    "w": 480,
+                    "x": 40,
+                    "y": 3520,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "step": "Customer_31",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_10": {
+                "type": "chart",
+                "position": {
+                    "h": 380,
+                    "w": 500,
+                    "x": 40,
+                    "y": 2540,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "step": "Channel_27",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_39": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 1450,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant, \nand % of Product categories that were SOF compiant in the\nenrolled stores for the country over a period of last 12 months.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_36": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 1010,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of SKUs that were Promo compliant, \nand % of Product categories that were SOF compiant\nin the enrolled stores for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_38": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1450,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant\nfor the country over a period of last 12 months.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_37": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1010,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were\nPromo compliant for the latest month.",
+                    "textAlignment": "left",
+                    "textColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_31": {
+                "type": "text",
+                "position": {
+                    "x": 600,
+                    "y": 120,
+                    "zIndex": 45
+                },
+                "parameters": {
+                    "text": "Product"
+                }
+            },
+            "text_33": {
+                "type": "text",
+                "position": {
+                    "x": 30,
+                    "y": 40,
+                    "zIndex": 47
+                },
+                "parameters": {
+                    "text": "Period"
+                }
+            },
+            "dimfilter_10": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 290,
+                    "zIndex": 100009
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Subchannel_10"
+                }
+            },
+            "dimfilter_11": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 320,
+                    "y": 410,
+                    "zIndex": 100010
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_type_11"
+                }
+            },
+            "text_30": {
+                "type": "text",
+                "position": {
+                    "x": 320,
+                    "y": 120,
+                    "zIndex": 44
+                },
+                "parameters": {
+                    "text": "Customer"
+                }
+            },
+            "chart_28": {
+                "type": "chart",
+                "position": {
+                    "h": 360,
+                    "w": 480,
+                    "x": 610,
+                    "y": 3520,
+                    "zIndex": 43
+                },
+                "parameters": {
+                    "step": "Customer_69",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 1540,
+                    "zIndex": 51
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(241, 244, 246, 0.04)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_27": {
+                "type": "chart",
+                "position": {
+                    "h": 380,
+                    "w": 500,
+                    "x": 610,
+                    "y": 2540,
+                    "zIndex": 42
+                },
+                "parameters": {
+                    "step": "Channel_68",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "box_4": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 750,
+                    "zIndex": 50
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(250, 250, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_7": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 1080,
+                    "zIndex": 53
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(248, 250, 251, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_26": {
+                "type": "chart",
+                "position": {
+                    "h": 310,
+                    "w": 500,
+                    "x": 40,
+                    "y": 2070,
+                    "zIndex": 65
+                },
+                "parameters": {
+                    "step": "Region_85",
+                    "visualizationType": "vbar"
+                }
+            },
+            "chart_25": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 610,
+                    "y": 3070,
+                    "zIndex": 41
+                },
+                "parameters": {
+                    "step": "Product_category_67",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_24": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 1600,
+                    "zIndex": 40
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_66",
+                    "visualizationType": "vbar"
+                }
+            },
+            "box_9": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 3460,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(242, 247, 250, 0.01)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_23": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 610,
+                    "y": 1590,
+                    "zIndex": 39
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_65",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "box_8": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1250,
+                    "x": 10,
+                    "y": 2000,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(242, 247, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_22": {
+                "type": "chart",
+                "position": {
+                    "h": 310,
+                    "w": 500,
+                    "x": 610,
+                    "y": 2070,
+                    "zIndex": 50
+                },
+                "parameters": {
+                    "step": "Region_86",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "text_29": {
+                "type": "text",
+                "position": {
+                    "x": 30,
+                    "y": 120,
+                    "zIndex": 43
+                },
+                "parameters": {
+                    "text": "Geography"
+                }
+            },
+            "text_25": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1540,
+                    "zIndex": 35
+                },
+                "parameters": {
+                    "text": "Promo Compliance by 4P / 5P / 6P"
+                }
+            },
+            "text_27": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3970,
+                    "zIndex": 39
+                },
+                "parameters": {
+                    "text": "Promo Availability"
+                }
+            },
+            "text_26": {
+                "type": "text",
+                "position": {
+                    "x": 610,
+                    "y": 1540,
+                    "zIndex": 34
+                },
+                "parameters": {
+                    "text": "Promo Score by 4P / 5P / 6P"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000SRoSAM",
+            "name": "DPS_PROMO_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SRtSAM",
+            "name": "DPS_PROMO_RAW"
+        }
+    ]
+}

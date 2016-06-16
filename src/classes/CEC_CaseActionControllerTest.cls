@@ -10,63 +10,75 @@ Purpose: This is the Test class for CEC_CaseActionController Apex class
 History                                                            
 -------                                                            
 VERSION    AUTHOR            DATE            DETAIL                   
-1.0       Koti             Dec-2015      INITIAL DEVELOPMENT   
+1.0       Koti             Dec-2015      INITIAL DEVELOPMENT
+1.1       Sathish           MAR-2016        Code Refactoring.   
 ***********************************************************************/
 
 @isTest(SeeAllData=false)
 public class CEC_CaseActionControllerTest{
     
-    public static User insertUser()
-    {
-        Profile p = [SELECT Id FROM Profile WHERE Name='Unilever - Salesforce MultiApp Standard'];
-        User u = new User(LastName = 'Testing', 
-                          Username = 'cectestuser@test00DE0000000bbLj.org', 
-                          Email = 'cectestuser@test00DE0000000bbLj.org', 
-                          Alias = 'utest', 
-                          TimeZoneSidKey = 'Europe/London', 
-                          LocaleSidKey = 'en_GB', 
-                          EmailEncodingKey = 'UTF-8', 
-                          ProfileId = p.Id, 
-                          LanguageLocaleKey = 'en_US',
-                          UserPermissionsKnowledgeUser = true);  
-        
-        insert u;
-        List<PermissionSet> pslist = [SELECT Id FROM PermissionSet WHERE Name IN ('CEC_User','CEC_Manager','CEC_CRUD','CEC_Business_Admin','CEC_Knowledge_Manager','CEC_Automated_User')];
-        List<PermissionSetAssignment> psalist = new List<PermissionSetAssignment>();
-        for(PermissionSet ps:pslist)
-        {
-            PermissionSetAssignment psa = new PermissionSetAssignment();
-            psa.AssigneeId = u.Id;
-            psa.PermissionSetId = ps.Id;
+    @testSetup static void setUpTestData() {
+        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        System.runAs(u) {
+            List<cec_Alert_Action__c> masterAlertActionList = new List<cec_Alert_Action__c>();
+            List<mdm_Product_Category__c> prodCategoryList = 
+                                                CEC_TestDataFactory.createProductCategory(1);
+            insert prodCategoryList;
+
+            List<mdm_Case_Product__c> caseProductList = 
+                                                CEC_TestDataFactory.createCaseProduct(1, prodCategoryList.get(0).Id);
+            insert caseProductList;
+
+            List<mdm_Global_Listening_Tree__c> globalListeningTreeList = 
+                                                CEC_TestDataFactory.createGlobalListeningTree(1);
+            insert globalListeningTreeList;
             
-            psalist.add(psa);
+            List<mdm_Reason_Code__c> reasonCodeList = 
+                                                CEC_TestDataFactory.createReasonCode(1, globalListeningTreeList.get(0).Id);
+            insert reasonCodeList;
+
+            List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
+            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
+            for(CEC_Case_Market_Mapping__c cmm : cmmList) {
+                if (cmm.Market__c == 'United Kingdom') {
+                    cmmUK = cmm;
+                    break;
+                }
+            }
+
+            List<cec_Alert_Rule__c> dayCodeAlertRuleList = 
+                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5','United Kingdom',
+                                                                    reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
+                                                                    null,false,true,false,1);
+            insert dayCodeAlertRuleList;
             
+            List<cec_Alert_Action__c> dayCodeQuestionAlertActionList = 
+                                                CEC_TestDataFactory.createQuestionnaireAlertAction(1, 
+                                                'abcdefgh','Test Survey Name', 'CaseOrigin', 'CaseOwner',
+                                                'ProductCode','ProductionCode','ReasonCodeDesc',
+                                                'ShortCode','Verbatim','UsedProdPreviously','CaseOpenedDate',
+                                                null,'CaseOwner', dayCodeAlertRuleList[0].Id);
+            insert dayCodeQuestionAlertActionList;
+
+            List<Case> caseList = CEC_TestDataFactory.createTestCases(1, 'New', 'Email', 'L1234', '1234',
+                                                        caseProductList.get(0).Id, reasonCodeList.get(0).Id, 
+                                                        null, cmmUK.Id, true);
+            insert caseList;
+
+            cec_Org_Settings__c custsett = new cec_Org_Settings__c();
+            custsett.Safety_Alert_Email_Id__c = 'test123@gmailxyz567.com';
+            insert custsett;
         }
-        
-        insert psalist;
-        
-        Group GR = [SELECT Id,name FROM Group WHERE Name = 'CEC - Knowledge Manager'];
-        GroupMember GM = new GroupMember();
-        GM.GroupId = GR.id;
-        GM.UserOrGroupId = u.Id;
-        insert GM;
-        
-        return u;
-        
     }
-    
-    /**
-      Test method for constructor
-    */  
-    public static testMethod void TestConstructor(){
-        Test.startTest();
-        User u = insertUser();
+
+    // Test Method for Alert Action type 'Questionnaire' in the case Action Controller
+    static testMethod void testSurveyAlertAction(){
+        User u = CEC_TestDataFactory.getStandardCECTestUser();
         
-        System.runAs(u)
-        {
-            String CurrentCaseId = '';
-            
+        System.runAs(u) {
+            Test.startTest();
             PageReference pageRef = Page.CEC_CaseActions;
+<<<<<<< HEAD
             //Test data creation for 'Case Market Mapping'
             CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
             cmm.Market__c = 'India';
@@ -100,61 +112,33 @@ public class CEC_CaseActionControllerTest{
             caseObj.Production_Code__c = 'L1234';
             caseObj.DayCode__c ='1234';
             insert caseObj;
+=======
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             
+            Case caseObj = [SELECT Id, CEC_Product__c FROM Case LIMIT 1];              
             caseObj.CEC_Product__c = null;
             update caseObj;
             
-            /*case caseTest2 = [Select DayCode__c, Case_Market__c from case Where DayCode__c ='1234'];
+            Case caseToAssert = [SELECT DayCode__c, Case_Market__c FROM Case WHERE DayCode__c ='1234'];           
+            System.assertEquals('United Kingdom', caseToAssert.Case_Market__c);
             
-            System.assertEquals(cmm.Market__c, caseTest2.Case_Market__c);*/
-            
-            //Test data creation for 'Alert Rule'
-            cec_Alert_Rule__c alertRule = new cec_Alert_Rule__c(Name = 'Rule 1', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='India',  All_Market__c = false, Threshold__c = 1, Product_Category__c = pCategory.Id, Product_Level__c = '0', Reason_Level__c = '5', Group_By_Day_Code__c = true);
-            insert alertRule;
-            
-            //Test data creation for 'Person Account'
-            Id personAccountRecordId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
-            Account newConsumer = new Account();
-            newConsumer.FirstName = 'John.Smith@test00DE0000000bbLj.com';
-            newConsumer.LastName = 'John.Smith@test00DE0000000bbLj.com';
-            newConsumer.PersonEmail = 'John.Smith@test00DE0000000bbLj.com';
-            newConsumer.RecordTypeId = personAccountRecordId;
-            String accountString = JSON.serialize(newConsumer);
-            accountString = accountString.subString( 0, accountString.length() - 1 ) + ',"IsPersonAccount":true}';
-            newConsumer = (Account)JSON.deserialize( accountString, Account.class );
-            insert newconsumer;
-            
-            
-            //List to store the 'Alert Action' records
-            List<cec_Alert_Action__c> alertActionList = new List<cec_Alert_Action__c>();
-            
-            //Test data creation for 'Alert Action'
-            cec_Alert_Action__c alertAction = new cec_Alert_Action__c( Type__c = 'Questionnaire', Alert_Rule_Id__c = alertRule.id,
-                                                            Q12__c = 'CaseNumber', Q2__c = 'CaseOrigin', Q3__c = 'CaseOwner', 
-                                                            Q4__c = 'ProductCode', Q5__c = 'ProductionCode', Q6__c = 'ReasonCodeDesc',
-                                                            Q7__c = 'ShortCode', Q8__c = 'Verbatim',
-                                                            Q9__c = 'UsedProdPreviously', Q10__c = 'CaseOpenedDate',
-                                                            Survey_Id__c = 'abcdefgh', Survey_Name__c = 'Test Survey Name');
-
-  
-            alertActionList.add(alertAction);
-            insert alertActionList;
-            
+            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];  
             caseObj.CEC_Product__c = productObj.id;
             update caseObj;
-            //Storing the case id to a string
-            CurrentCaseId = caseObj.Id;
+
+            String currentCaseId = caseObj.Id;
             
-            //check whether the 'Alert Tracker Item' is created or not
-            Integer atCount = [SELECT COUNT() FROM cec_Alert_Tracker__c WHERE Alert_Rule_Id__c = :alertRule.Id];
-            System.assertEquals(1,atCount);
+            cec_Alert_Rule__c alertRule = [SELECT Id FROM cec_Alert_Rule__c WHERE Group_By_Day_Code__c = true LIMIT 1];
             
-            // Fetch the Case Action Records related to the 'caseObj' case record.
+            Integer alertTrackerCount = [SELECT Count() FROM cec_Alert_Tracker__c WHERE Alert_Rule_Id__c = :alertRule.Id];
+            System.assertEquals(1, alertTrackerCount);
+            
+            // Check the Case Action result 1
             List<cec_Case_Action__c> surveyCaseActionList = [Select Id, Q12_Data__c, Q2_Data__c, Q3_Data__c, Q4_Data__c, 
                                                         Q5_Data__c, Q6_Data__c, Q7_Data__c, Q8_Data__c, Q9_Data__c,
-                                                        Q10_Data__c, Q11_Data__c, Survey_Id__c, Survey_Name__c From cec_Case_Action__c WHERE Case_Id__c = :CurrentCaseId];
-       
-            System.assertEquals(surveyCaseActionList[0].Q8_Data__c, '&q8=Complaint on Dove Soap');
+                                                        Q10_Data__c, Q11_Data__c, Survey_Id__c, Survey_Name__c From cec_Case_Action__c WHERE Case_Id__c = :currentCaseId];
+
+            System.assertEquals(surveyCaseActionList[0].Q8_Data__c, '&q8=This is case subject 1');
             System.assertEquals(surveyCaseActionList[0].Q2_Data__c, '&q2=Email');   
             System.assertEquals(surveyCaseActionList[0].Survey_Id__c, 'abcdefgh');
             
@@ -162,13 +146,15 @@ public class CEC_CaseActionControllerTest{
             pageRef.getParameters().put('id', CurrentCaseId);
             //Create a new instance of the class
             CEC_CaseActionController controller = new CEC_CaseActionController();
-            System.assertEquals(controller.CaseActionList[0].Q8_Data__c, '&q8=Complaint on Dove Soap');
+            System.assertEquals(controller.CaseActionList[0].Q8_Data__c, '&q8=This is case subject 1');
             System.assertEquals(controller.CaseActionList[0].Q2_Data__c, '&q2=Email'); 
             System.assertEquals(controller.CaseActionList[0].Q5_Data__c, '&q5=L1234');
             System.assertEquals(controller.CaseActionList[0].Survey_Id__c, 'abcdefgh');
             System.assertEquals(controller.CaseActionList[0].Survey_Name__c, 'Test Survey Name');
+
+            Test.stopTest();
         }
-        Test.stopTest();
+        
     }
     
 }

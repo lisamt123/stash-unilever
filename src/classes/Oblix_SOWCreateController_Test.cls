@@ -91,23 +91,25 @@ private class Oblix_SOWCreateController_Test {
 
         Test.startTest();
 
-        controller.pageAttachment.Name='Unit Test Attachment';
-        controller.pageAttachment.Body=Blob.valueOf('Unit Test Attachment Body');
-        controller.uploadAttachment();
+        // S.S. 2016-06-06 ATTACHMENT UPLOAD IS NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+        //controller.pageAttachment.Name='Unit Test Attachment';
+        //controller.pageAttachment.Body=Blob.valueOf('Unit Test Attachment Body');
+        //controller.uploadAttachment();
 
-        List<Attachment> attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
-        System.assertEquals(1, attachments.size());
+        //List<Attachment> attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
+        //System.assertEquals(1, attachments.size());
 
 
-        controller.deleteAttachmentId = attachments[0].Id;
-        controller.deleteAttachment();
+        //controller.deleteAttachmentId = attachments[0].Id;
+        //controller.deleteAttachment();
 
-        attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
-        System.assertEquals(0, attachments.size());
+        //attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
+        //System.assertEquals(0, attachments.size());
 
 
         PageReference saveAndClose = controller.saveAndClose();
         PageReference sowDetailPage = new PageReference('/apex/Oblix_SOWMainDetail?sowId='+ mSow.Id);
+        System.assertNotEquals(null, saveAndClose);
         System.assertEquals(sowDetailPage.getUrl(), saveAndClose.getUrl());
 
         controller.cancelAction();
