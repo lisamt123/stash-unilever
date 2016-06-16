@@ -8,12 +8,20 @@
         commentbox = document.getElementById("textarea-input-02");                                                 
         if(commentbox != undefined || commentbox != null ){  
            comment= document.getElementById("textarea-input-02").value; 
-           if(comment=== '' && ((RequestType === 'Expense' && action === 'Reject')
-               || (RequestType === 'Purchase Request' && action == 'Reject')
-               || (RequestType === 'Clarity' && (action === 'Rework' || action === 'Reject'))
-               || (RequestType === 'Invoice' && (action === 'RTAP' || action === 'QWV')))){
-        	   document.getElementById("textarea-input-02").style.borderColor="red"; 
-            }
+           
+           if(comment== '' && (RequestType == 'Expense' && action == 'Reject')){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+           }
+           if(comment== '' && (RequestType == 'Purchase Request' && action == 'Reject')){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+           }
+           if(comment== '' && (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+           }
+           if(comment== '' && (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV'))){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+           }
+            
             else{
                  helper.SubmitMethod(component, event,comment,approvalDetail);                                              
             }                                               
