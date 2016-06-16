@@ -1,28 +1,40 @@
 ({
     doInit:function(component, event, helper) {  
         /*  helper.feedBackMethod(component,event); */
-        var RequestId = component.get("v.RequestId");
-        var ApproverId = component.get("v.ApproverId");
-        if(RequestId == null && ApproverId== null){  
-            var destination = "markup://c:CORE_CA_Pending";
-            $A.componentService.newComponentAsync(this, function(view) {
-                var content = component.find("content");
-                content.set("v.body", view);
-            }, {
-                componentDef: destination,
-                attributes: {
-                    values: {
-                        message: "{!v.message}",
-                        RequestId: "{!v.RequestId}",
-                        ApproverId: "{!v.ApproverId}"
-                        
-                    }
+       var action=component.get("c.findFeedbacks");
+       var response; 
+       action.setParams({"appName": "Approval"}); 
+       action.setCallback(this, function(response) {  
+                response=response.getReturnValue();
+                var RequestId = component.get("v.RequestId");
+                var ApproverId = component.get("v.ApproverId");
+                if(RequestId == null && ApproverId== null){  
+                    var destination = "markup://c:CORE_CA_Pending";
+                    $A.componentService.newComponentAsync(this, function(view) {
+                        var content = component.find("content");
+                        content.set("v.body", view);
+                    }, {
+                        componentDef: destination,
+                        attributes: {
+                            values: {
+                                message: "{!v.message}",
+                                RequestId: "{!v.RequestId}",
+                                ApproverId: "{!v.ApproverId}",
+                                isFeedBackPopup : response
+                            }
+                        }
+                    }, component);
+                } 
+                else{ 
+                    helper.navigateToDetailMethod(component,event,'onload',response);    
                 }
-            }, component);
-        } 
-        else{ 
-            helper.navigateToDetailMethod(component,event,'onload');    
-        }
+        });
+       $A.enqueueAction(action);    
+        
+        /*Sonar Explanation:
+         "https://www.google-analytics.com/analytics.js" is used for Google Analytics functionlaity.
+          below code snippet is provided by Google analtics and cannot do modification in the code.
+        */
         var action = component.get("c.getGAID");
         action.setCallback(this, function(response) {
             var state = response.getState();

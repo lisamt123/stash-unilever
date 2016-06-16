@@ -1,5 +1,5 @@
 ({
-    navigateToDetailMethod : function(component, event, type) {
+    navigateToDetailMethod : function(component, event, type, isFeedBack) {
         var sourceSystem = event.getParam("Sourcesystem");
         if(type == 'onclick'){
             var sourceSystem = event.getParam("Sourcesystem");
@@ -35,14 +35,14 @@
                     RequestId : RequestId,
                     ApproverId : ApproverId,
                     sourcePage : sourcePage,
-                    filterValue : filterValue
+                    filterValue : filterValue,
+                    isFeedBack : isFeedBack
                 }
             }
         }, component);
     },
     /*
-    feedBackMethod : function(component, event) {  
-        
+    feedBackMethod : function(component, event) {       
         var action=component.get("c.findFeedbacks");         
         action.setCallback(this, function(response) {
             var state = response.getState();
