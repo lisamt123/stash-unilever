@@ -7,8 +7,8 @@
     <aura:attribute name="userName" type="String"/> 
     <aura:attribute name="showDetails" type="boolean"/>
     <aura:attribute name="totalSpend" type="decimal"/>
-    <aura:attribute name="hours" type="decimal"/>
-    <aura:attribute name="minutes" type="decimal"/>
+    <aura:attribute name="hours" type="string"/>
+    <aura:attribute name="minutes" type="string"/>
     <aura:attribute name="selectedMonth" type="string"/>
     <aura:attribute name="pageName" type="string" default="MB_Usage_Comp"/>
     <aura:attribute name="usageData" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>

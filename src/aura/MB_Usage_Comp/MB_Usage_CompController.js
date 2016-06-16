@@ -10,16 +10,31 @@
                 res= response.getReturnValue(); 
                  
                 if(res !==null ){
-                 
+                   
                     component.set("v.usageData",res);
                     var totalUsage=Number(res.totalUsage).toFixed(2);
                      component.set("v.totalSpend",totalUsage);
                     component.set("v.showDetails",true);
                     component.set("v.userName",res.userName);
-                    var hours=parseInt(res.totalCallUsage/60);
-                           var min=parseInt(res.totalCallUsage%60);
-                           component.set("v.hours",hours);
-                            component.set("v.minutes",min);
+                    var hours;
+                    var min;
+                    if(res.totalCallUsage>60){
+                      hours=parseInt(res.totalCallUsage/60);
+                        if(hours < 10){
+                            hours="0"+hours;
+                        }
+                        
+                      min=parseInt(res.totalCallUsage%60);
+                         if(min < 10){
+                            min="0"+min;
+                        }
+                    }
+                    else {
+                      hours="0"+"0";
+                       min=res.totalCallUsage;
+                    }
+                        component.set("v.hours",hours);
+                        component.set("v.minutes",min);
                 }
                 
                    if(res ==null ){

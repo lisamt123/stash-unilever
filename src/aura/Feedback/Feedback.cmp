@@ -36,7 +36,7 @@
         	color: #A8B8D0;  
         }
     </style>
-    <div class="close-button" onclick="{!c.close}"><img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img></div>
+    <div class="close-button" onclick="{!c.rateLater}"><img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img></div>
     <div class="feedback_container">
       <aura:if isTrue="{!v.showspinner}"><center><img class="spinner-img" src="/resource/Lightning_designing_style/assets/images/spinners/slds_spinner.gif"></img></center></aura:if> 
       <aura:if isTrue="{!v.showTranslation==true}">
