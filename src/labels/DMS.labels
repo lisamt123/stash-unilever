@@ -297,17 +297,17 @@
         <value>PREVIOUS AVERAGE</value>
     </labels>
     <labels>
-        <fullName>DMS_HEXAGON_TABLE_TARGET</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>DMS_HEXAGON_TABLE_TARGET</shortDescription>
-        <value>TARGET</value>
-    </labels>
-    <labels>
         <fullName>DMS_HEXAGON_TABLE_VARIATION</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>DMS_HEXAGON_TABLE_VARIATION</shortDescription>
         <value>VARIATION</value>
+    </labels>
+    <labels>
+        <fullName>DMS_HEXAGON_TABLE_TARGET</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS_HEXAGON_TABLE_TARGET</shortDescription>
+        <value>TARGET</value>
     </labels>
     
