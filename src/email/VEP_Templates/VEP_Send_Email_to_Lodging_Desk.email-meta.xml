@@ -7,12 +7,7 @@
     <subject>Factory Lodging Request</subject>
     <textOnly>Hi,
 
-Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} and approved by {!Vep_Visitor__c.Factory_Manager_Name__c}
-
-Please Approve/Reject the request
-Approve: {!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&amp;LodgingStatus=Approved
-
-Reject: {!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&amp;LodgingStatus=Rejected
+Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} and approved by {!Vep_Visitor__c.Person_to_Meet__c}
 
 Thanks&amp;Regards,
 {!Visitor__c.Name}

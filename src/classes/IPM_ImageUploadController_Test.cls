@@ -67,7 +67,13 @@ public class IPM_ImageUploadController_Test
      * ***********************************************/
     static testMethod void testImageUploadProject(){ 
         
+<<<<<<< HEAD
         initializeData();
+=======
+
+        plUser=[SELECT lastName FROM user WHERE lastName=:PLATFORM_USER LIMIT 1];
+        System.AssertEquals(plUser.lastName, PLATFORM_USER,'user lastName is not a Platform User:'+plUser.lastName);//positive test
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         test.startTest();
         system.runAs(plUser)
         {  
@@ -85,10 +91,17 @@ public class IPM_ImageUploadController_Test
         	imgCtrl.document.name='InvalidImage';
             imgCtrl.isError = false;
             imgCtrl.upload();
+<<<<<<< HEAD
             List<IPM_Project__c>projLists=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:proj.id LIMIT 1];
         	System.AssertEquals(projLists[0].IPM_Project_Logo_Id__c,projList[0].IPM_Project_Logo_Id__c, 'Project logo should be inserted'+projLists[0].IPM_Project_Logo_Id__c); //Negative test
 			 
             
+=======
+            List<IPM_Project__c>projLists=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:project.id LIMIT 1];
+            System.AssertEquals(projLists[0].IPM_Project_Logo_Id__c,projList[0].IPM_Project_Logo_Id__c, 'Project logo insertion fails'+projLists[0].IPM_Project_Logo_Id__c); //Negative test
+
+
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             
         } 
         test.stopTest();  
@@ -99,7 +112,19 @@ public class IPM_ImageUploadController_Test
      * ***********************************************/
     static testMethod void testImageUploadBosscard(){ 
         
+<<<<<<< HEAD
         initializeData();
+=======
+
+        plUser=[SELECT lastName FROM user WHERE lastName=:PLATFORM_USER LIMIT 1];
+        System.AssertEquals(plUser.lastName, PLATFORM_USER,'user lastName is not a Platform User:'+plUser.lastName);//positive test
+        
+        readUser= IPM_TestFactory_Helper.createUser(false);
+        insert readUser;
+        List<User>userLists=[SELECT lastName FROM user WHERE id=:readUser.id LIMIT 1];
+        System.AssertEquals(userLists[0].lastName, readUser.lastName,'user lastName is mismatch :'+userLists[0].lastName);//positive test
+        
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         test.startTest();
         system.runAs(plUser)
         {  

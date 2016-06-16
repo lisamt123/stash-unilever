@@ -5,6 +5,7 @@
 @isTest
 private class IPM_Utils_Test {
     
+<<<<<<< HEAD
     private static IPM_Project__c project;// Project object initialization
     private static list<MDO_Geography__c> geographyList;
     private static list<MDO_Geography__c> geographyDetailList;
@@ -265,3 +266,7 @@ private class IPM_Utils_Test {
         
     }
 }
+=======
+  
+}
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b

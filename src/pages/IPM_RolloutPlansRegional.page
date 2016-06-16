@@ -44,8 +44,10 @@
                             </div>
                             
                             <div>
-                                <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
-                                <div class="rollRegInfo">{!$Label.IPM_REGIONAL_ROLLOUT_ADD_HELP}</div>
+                                <div class="searchBox"><label class="greytext"></label> 
+                                    <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/>
+                                    <img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/>
+                                </div>
                             </div>
                             <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                             <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
@@ -80,6 +82,7 @@
                                                                     <div></div>
                                                                 </th>
                                                                 <th width="20%">
+<<<<<<< HEAD
                                                                     <div class="noborder">{!$Label.IPM_Rollout_AS} <div>{!$Label.IPM_PART_MCO}</div></div>
                                                                 </th>
                                                                 <th width="20%">
@@ -88,6 +91,34 @@
                                                                 <th width="20%">
                                                                     <div>{!$Label.IPM_NO_ROLLOUT}</div>
                                                                 </th>            
+=======
+                                                                    <div class="noborder rollinfotitle">
+                                                                        <div>{!$Label.IPM_Rollout_AS}</div>
+                                                                        <div class="rollinfotitle">{!$Label.IPM_PART_MCO}</div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_THE_BELOW_SELECTED_COUNTRIES}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
+                                                                    </div>  
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div class="rollinfotitle">
+                                                                        <div>{!$Label.IPM_Rollout_AS}</div>
+                                                                        <div class="rollinfotitle">{!$Label.IPM_SEPERATE_COUNTRY}</div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo1" data-original-title="{!$Label.IPM_BELOW_SELECTED_COUNTRIES_INNOVATION}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
+                                                                    </div>    
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div class="rollinfotitle">
+                                                                        <div class="rollinfotitle">{!$Label.IPM_NO_ROLLOUT}</div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo2" data-original-title="{!$Label.IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
+                                                                    </div>
+                                                                </th> 
+                                                                                                                                    
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                                             </tr>
                                                             <apex:repeat value="{!lstCountryWrappers}" var="country">
                                                                 <tr>
@@ -132,7 +163,7 @@
                                     </div>
                                     
                                     <div class="col-sm-12 text-right">
-                                        <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}"/>
+                                        <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}" onClick="skipValidation();"/>
                                         
                                         <apex:outputPanel rendered="{!isEditable}" >
                                             <div class="ipmButton primary generateRolloutBtn" >{!$Label.IPM_GENERATE_ROLLOUTS}</div>
@@ -166,7 +197,7 @@
                     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
                     <apex:outputPanel id="scriptPanel">
                         <script>
-                          var IPMregionalApp = {completed: '{!isCompleted}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',warningMsg:'{!$Label.IPM_RemoveCountryMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}'};
+                          var IPMregionalApp = {completed: '{!isCompleted}',wmessage:'{!$Label.IPM_Unsaved_Alert}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',removeCountryWarningMsg:'{!$Label.IPM_RemoveCountryMsg}',removeAllCountriesWarningMsg:'{!$Label.IPM_RemoveAllCountriesMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}'};
                         </script>
                     </apex:outputPanel>
             </apex:form>

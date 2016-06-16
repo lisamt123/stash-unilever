@@ -4,12 +4,21 @@
 * @description  This class is used to test the functionality of IPM_FileUploadController class 
 */
 @isTest
+<<<<<<< HEAD
 public with sharing class IPM_FunnelController_Test {
     public static IPM_Project__c project;
     private static user testUser;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static List<user>userList=new List<user>();
     private static string projectId;
+=======
+private with sharing class IPM_FunnelController_Test {
+    private static IPM_Project__c project;
+    private static user testUser;
+    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
+    private static List<user>userList=new List<user>();
+    
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     
     private static void initializeData(){
         testUser=IPM_TestFactory_Helper.createUser(false);
@@ -42,8 +51,18 @@ public with sharing class IPM_FunnelController_Test {
             IPM_FunnelController funnelController = new IPM_FunnelController ();
             funnelController.project = project;
             List<string> projectPhases = funnelController.getAssociatedProjectPhases();
+<<<<<<< HEAD
             system.assertEquals(funnelController.project, project, 'project record should be same');
         }
         test.stopTest();
     } 
 }
+=======
+            system.assertEquals(funnelController.ipmProject, project, 'project record should be same');
+            
+        }
+        test.stopTest();
+    } 
+
+}
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b

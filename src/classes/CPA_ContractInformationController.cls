@@ -18,8 +18,9 @@ global with sharing class CPA_ContractInformationController {
     public CPA_project_work_order__c pwoRec;
     public Map<String,String> RequiredFieldMap {get; set;}
     public String mandatoryStringFlag {get; set;}   
-
+    public map<String,double> mapThreshold;
     boolean callFromVF = false;
+    public String tableformat {get; set;}  
     
     /*******************************************************************
     Purpose: Below constructor will be call from VF page
@@ -58,11 +59,14 @@ global with sharing class CPA_ContractInformationController {
     boolean CPA_Messages(id pwoRecId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
+        tableformat = null;
         Id StandaloneRecordtype ;
         Id PWORecordtype ;
         Id CNFRecordtype ;
         Id TNFRecordtype ;
-        pwoRec = [select chk_First_PWO__c,mpkl_CNF_Currency__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,txt_CNF_Unilever_Clarity_ID__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid, txt_CNF_Other_Currency__c,chk_isStandalone_PWO__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_TNF_Unilever_Contact_Email__c, txt_TNF_Unilever_Contact_Name__c, eml_CNF_Unilever_Budget_Approver_Email__c, txt_CNF_Unilever_Budget_Approver_Name__c, eml_CNF_Unilever_Content_Approver_Email__c, txt_CNF_Unilever_Content_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c,  txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  ,txt_Other_PWORFDelta_Request_Type__c,pkl_PWORFDelta_Process_Office_Area_E2E__c,pkl_PWORFDelta_Request_Type__c,PWORFDelta_OtherProcess_Office_Area_E2E__c from CPA_project_work_order__c where id =:pwoRecId];
+        mapThreshold = new map<String,double>();
+        
+        pwoRec = [select chk_First_PWO__c,mpkl_CNF_Currency__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,txt_CNF_Unilever_Clarity_ID__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid, txt_CNF_Other_Currency__c,chk_isStandalone_PWO__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_TNF_Unilever_Contact_Email__c, txt_TNF_Unilever_Contact_Name__c, eml_CNF_Unilever_Budget_Approver_Email__c, txt_CNF_Unilever_Budget_Approver_Name__c, eml_CNF_Unilever_Content_Approver_Email__c, txt_CNF_Unilever_Content_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c,  txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  ,txt_Other_PWORFDelta_Request_Type__c,pkl_PWORFDelta_Process_Office_Area_E2E__c,pkl_PWORFDelta_Request_Type__c,PWORFDelta_OtherProcess_Office_Area_E2E__c,dat_CNF_Sent_for_Signature_Date__c,dat_Sent_for_Signature_Date__c,dat_TNF_Sent_for_Signature__c,txt_Standalone_PWO_clarity_ID__c,Comments__c,fur_Project_Scale__c,fur_PWORFRecord_Type__c from CPA_project_work_order__c where id =:pwoRecId];
 
             
         StandaloneRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_Standalone_PWO_RecordTypeId).getRecordTypeId();        
@@ -70,6 +74,7 @@ global with sharing class CPA_ContractInformationController {
         CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();        
         TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
        // if(pwoRec.RecordTypeid == label.CPA_PWO_RecordTypeId || pwoRec.RecordTypeid == label.CPA_Standalone_PWO_RecordTypeId){ //Replaceing Custom label with query : Shreyas 10th March 2016
+       
         if(pwoRec.RecordTypeid == PWORecordtype || pwoRec.RecordTypeid == StandaloneRecordtype){            
             if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || !callFromVF){
                 pWOReqFields(pwoRec,RequiredFieldMap);
@@ -89,12 +94,16 @@ global with sharing class CPA_ContractInformationController {
         
         Map<string,CPA_Status_Msg__c> customSettingStatusMsg = CPA_Status_Msg__c.getAll();
         CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
-            
+        string PWOreturnFromDocSign = 'PWO' + CPA_ConstantsForContractingAppClasses.RETURNFROMDOCSIGN;
+        string CNFreturnFromDocSign = 'CNF' + CPA_ConstantsForContractingAppClasses.RETURNFROMDOCSIGN;
+        string TNFreturnFromDocSign = 'TNF' + CPA_ConstantsForContractingAppClasses.RETURNFROMDOCSIGN;  
+        
         if(customSettingStatusMsg.get(pwoRec.pkl_Status__c).PWO_Status_Msg__c != null && callFromVF && (pwoRec.CNF_Status__c == null) && (pwoRec.TNF_Status__c == null)){
             if(customSettingStatusMsg1 !=null && customSettingStatusMsg1.PWO_Status_Msg__c != null  && RequiredFieldMap.isEmpty() && pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.PWO_Status_Msg__c));
-            }
-            else{
+            }else if(callFromVF && PWOreturnFromDocSign != null && pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED && pwoRec.dat_Sent_for_Signature_Date__c !=null){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, PWOreturnFromDocSign));
+            }else{
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.pkl_Status__c).PWO_Status_Msg__c));
             }
         } 
@@ -102,6 +111,8 @@ global with sharing class CPA_ContractInformationController {
             
             if(customSettingStatusMsg1 !=null && customSettingStatusMsg1.CNF_Status_Msg__c != null  && RequiredFieldMap.isEmpty() && pwoRec.CNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.CNF_Status_Msg__c));
+            }else if(callFromVF && CNFreturnFromDocSign != null && pwoRec.CNF_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED && pwoRec.dat_CNF_Sent_for_Signature_Date__c !=null){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, CNFreturnFromDocSign));
             }
             else{           
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.CNF_Status__c).CNF_Status_Msg__c));
@@ -111,17 +122,26 @@ global with sharing class CPA_ContractInformationController {
             
             if(customSettingStatusMsg1 !=null && customSettingStatusMsg1.TNF_Status_Msg__c != null  && RequiredFieldMap.isEmpty() && pwoRec.TNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.TNF_Status_Msg__c));
-            }
-            else{           
+            }else if(callFromVF && TNFreturnFromDocSign != null && pwoRec.TNF_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED && pwoRec.dat_TNF_Sent_for_Signature__c !=null){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, TNFreturnFromDocSign));
+            }else{           
                  ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c));
             }
         } 
-
+        if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED ||pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED){
+           mapThreshold = CPA_getThreshold.getThresholdPWO(pwoRec);
+           mandatoryStringFlag = commercialThreshold(mapThreshold,pwoRec);
+           system.debug('mandatoryStringFlag>>'+mandatoryStringFlag);
+       }
         if(!RequiredFieldMap.isEmpty()){ 
-            mandatoryStringFlag = System.Label.CPA_Mandatory_Fields_Message;
+            mandatoryStringFlag = mandatoryStringFlag + System.Label.CPA_Mandatory_Fields_Message;
+            tableformat = System.Label.CPA_Mandatory_Fields_Message;
+            system.debug('mandatoryStringFlag>>'+mandatoryStringFlag);
          return false;
-        }  
-        return true;    
+        }
+        
+        return true;
+        
     }
     /* Justification: We need to show warning messages at the top of the page for all mandatory fields, so for that
      * we have used multiple if conditions. If that field is null, flag warning message.
@@ -169,7 +189,7 @@ global with sharing class CPA_ContractInformationController {
             RequiredFieldMap.put( 'Reason For Additional PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }                
         if(pwoRecord.txt_Accenture_Project_Manager__c == null){
-            RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            RequiredFieldMap.put( 'Vendor Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         if(pwoRecord.num_Estimated_Man_days_of_PWO__c == null){
             RequiredFieldMap.put( 'Estimated Man-days of PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -194,7 +214,7 @@ global with sharing class CPA_ContractInformationController {
         }
         if(pwoRecord.txt_Unilever_Finance_BP_Contact_Name__c == null){
             RequiredFieldMap.put('Unilever Finance BP/Contact Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
-        }       
+        }      
         if(pwoRecord.dt_Project_Initiation_Date__c == null){
             RequiredFieldMap.put( 'Project Initiation Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
@@ -242,10 +262,10 @@ global with sharing class CPA_ContractInformationController {
         }
         if(pwoRecord.Currency__c != null && pwoRecord.Currency__c != CPA_ConstantsForContractingAppClasses.OTHER && pwoRecord.txt_Other_Currency__c != null){
             RequiredFieldMap.put( 'Other Currency' ,'"Other Currency" should be only entered when "Currency" is Other');
-        }
+        }/*
         if(pwoRecord.txt_Unilever_Reference__c == null && pwoRecord.fml_Clarity_ID__c == null && !pwoRecord.chk_isStandalone_PWO__c){
             RequiredFieldMap.put( 'Unilever Reference ' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-        }
+        }*/
         if(!pwoRecord.chk_Excel_Attached__c){
             RequiredFieldMap.put( 'Commercial CSV file not attached. Please attach Commercial CSV file with filename prefix with Commercial ' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }                   
@@ -255,11 +275,14 @@ global with sharing class CPA_ContractInformationController {
         if(pwoRecord.pkl_Region__c == null){
             RequiredFieldMap.put( 'Region' ,CPA_ConstantsForContractingAppClasses.MANDATORY); 
         }
-        if(pwoRecord.dt_Expected_Start_Date__c == null || pwoRecord.dt_Expected_Start_Date__c < System.today() ){
-            RequiredFieldMap.put( 'Expected Start Date' ,'Its mandatory and should not be before today');
+        if(pwoRecord.dt_Expected_Start_Date__c == null){
+            RequiredFieldMap.put( 'Expected Start Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
-        if(pwoRecord.dt_Expected_End_date__c == null || pwoRecord.dt_Expected_End_date__c < pwoRecord.dt_Expected_Start_Date__c){
-            RequiredFieldMap.put( 'Expected End date' ,'Its mandatory and should not be before Expected Start Date');
+        if(pwoRecord.dt_Expected_End_date__c == null){
+            RequiredFieldMap.put( 'Expected End date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+        }
+        if(pwoRecord.dt_Expected_Start_Date__c != null && pwoRecord.dt_Expected_End_date__c != null && pwoRecord.dt_Expected_End_date__c < pwoRecord.dt_Expected_Start_Date__c){
+            RequiredFieldMap.put( 'Expected End date' ,CPA_ConstantsForContractingAppClasses.ENDDATECANNOTBEBEFORESTARTDATE);
         }
         if(pwoRecord.chk_isStandalone_PWO__c){
             if(pwoRecord.pkl_PWORFDelta_Request_Type__c != null && pwoRecord.txt_Other_PWORFDelta_Request_Type__c  == null && pwoRecord.pkl_PWORFDelta_Request_Type__c ==CPA_ConstantsForContractingAppClasses.OTHER){ 
@@ -274,6 +297,14 @@ global with sharing class CPA_ContractInformationController {
             if((pwoRecord.pkl_PWORFDelta_Process_Office_Area_E2E__c == null || pwoRecord.pkl_PWORFDelta_Process_Office_Area_E2E__c != CPA_ConstantsForContractingAppClasses.OTHER) && pwoRecord.PWORFDelta_OtherProcess_Office_Area_E2E__c != null){
                 RequiredFieldMap.put( 'other Process Office Area E2E' ,' It should be only entered when "Process Office Area E2E" is Other');
             }
+
+            if(pwoRecord.txt_Standalone_PWO_clarity_ID__c == null){
+                RequiredFieldMap.put( 'Clarity ID' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            }
+            /*if(pwoRecord.Comments__c == null){
+                RequiredFieldMap.put( 'Comments' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            }*/
+        
         }
     }
     /* Justification: We need to show warning messages at the top of the page for all mandatory fields, so for that
@@ -289,7 +320,7 @@ global with sharing class CPA_ContractInformationController {
     ********************************************************************/
     static void cNFReqFields(CPA_project_work_order__c cnfRecord,Map<String,String> RequiredFieldMap) {
         if(cnfRecord.txt_CNF_Accenture_Project_Manager__c== null) {
-            RequiredFieldMap.put('CNF Accenture Project Manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            RequiredFieldMap.put('CNF Vendor Project Manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         if(cnfRecord.num_CNF_Actual_Day_rate__c== null) {
             RequiredFieldMap.put('CNF Actual Day rate',CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -312,7 +343,7 @@ global with sharing class CPA_ContractInformationController {
         if(cnfRecord.num_CNF_Actual_total_charges__c== null) {
             RequiredFieldMap.put('CNF Actual total charges',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
-        if(cnfRecord.num_CNF_Planned_Day_rate__c== null) {
+        /*if(cnfRecord.num_CNF_Planned_Day_rate__c== null) {
             RequiredFieldMap.put('CNF Planned Day rate',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         if(cnfRecord.num_CNF_Planned_expenses__c== null) {
@@ -323,16 +354,16 @@ global with sharing class CPA_ContractInformationController {
         }
         if(cnfRecord.num_CNF_Planned_man_days__c== null){ 
             RequiredFieldMap.put('CNF Planned man-days',CPA_ConstantsForContractingAppClasses.MANDATORY);
-        }
+        }*/
         if(cnfRecord.num_CNF_Planned_PMO_tax__c== null){ 
             RequiredFieldMap.put('CNF Planned PMO tax',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
-        if(cnfRecord.dt_CNF_Planned_PWO_End_Date__c== null) {
+       /* if(cnfRecord.dt_CNF_Planned_PWO_End_Date__c== null) {
             RequiredFieldMap.put('CNF Planned PWO End Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         if(cnfRecord.num_CNF_Planned_total_charges__c== null){ 
             RequiredFieldMap.put('CNF Planned total charges',CPA_ConstantsForContractingAppClasses.MANDATORY);
-        }
+        }*/
         if(cnfRecord.eml_CNF_Unilever_Budget_Approver_Email__c == null){
             RequiredFieldMap.put('CNF Unilever Budget Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
@@ -437,7 +468,29 @@ global with sharing class CPA_ContractInformationController {
             RequiredFieldMap.put( 'TNF Other Currency' ,' It should be only entered when "TNF Currency" is Other');
         }
     }
-    
+
+    /*******************************************************************
+    Purpose: This method validate commertial threshold
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static String commercialThreshold(map<String,double> mapThreshold,CPA_project_work_order__c pwoRecordValues) {
+        String mandatoryStringFlag1 = '';
+        system.debug('mapThreshold>>'+mapThreshold);
+        system.debug('pwoRecordValues.pec_Estimated_Off_shore__c>>'+pwoRecordValues.pec_Estimated_Off_shore__c);
+        system.debug('pwoRecordValues.pec_Estimated_On_shore__c>>'+pwoRecordValues.pec_Estimated_On_shore__c);
+        system.debug('pwoRecordValues.pec_Expense__c>>'+pwoRecordValues.pec_Expense__c);
+        if(mapThreshold != null){
+            if(mapThreshold.get(CPA_ConstantsForContractingAppClasses.ESTOFF)<pwoRecordValues.pec_Estimated_Off_shore__c)
+                mandatoryStringFlag1 = 'Off-Shore % is more then threshold' + '\n';
+            if(mapThreshold.get(CPA_ConstantsForContractingAppClasses.ESTON)<pwoRecordValues.pec_Estimated_On_shore__c)
+                mandatoryStringFlag1 = mandatoryStringFlag1 + 'ON-Shore % is more then threshold' + '\n';
+            if(mapThreshold.get(CPA_ConstantsForContractingAppClasses.EXP)<pwoRecordValues.pec_Expense__c)
+                mandatoryStringFlag1 = mandatoryStringFlag1 + 'Expense % is more then threshold' + '\n';            
+        }
+        return mandatoryStringFlag1;
+    }
     /*******************************************************************
     Purpose: This method check whether all fields data is entered. This is getting called from custom button javascript code
     Parameters: objId

@@ -1,21 +1,45 @@
+<<<<<<< HEAD
 <apex:page sidebar="false" controller="Oblix_SowMainController" docType="html-5.0" showHeader="false" standardStylesheets="false">
+=======
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="false" controller="Oblix_SowMainController" >
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 
     <apex:composition template="Oblix_OuterPageTemplate">
 
-        <apex:define name="top_breadcrumb"/>
+        <apex:define name="top_breadcrumb"/> 
         <apex:define name="header_text">
             SOW List
+            <br/>
         </apex:define>
 
-        <apex:define name="top_option_links"/>
+        <apex:define name="top_option_links" />
 
         <apex:define name="top_right_panel">
+            
             <apex:commandButton value="CREATE SOW" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_create_sow" onclick="blockme()" rendered="{!IF(can_create_sow,true,false)}" reRender="jqueryId,jqueryId2" />
+                
         </apex:define>
+
 
         <apex:define name="body_content">
 
+<<<<<<< HEAD
             <apex:outputPanel rendered="{!IF(thousandBlocks.size == 0,true,false)}" id="welcomeMessage">
+=======
+        <style>
+            .table_blocked {
+                border: none;
+                padding: 15px;
+                background-color: #000;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                opacity: .5;
+                color: #fff;
+            }
+        </style>
+
+            <apex:outputPanel rendered="{!IF(liliso_sow.size == 0,true,false)}" id="welcomeMessage">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 <div class="row SOW_homepage_welcome_message">
                     <div class="col-lg-8 col-lg-offset-3">
                         <h1>Hi {!userConnected.Name}</h1>
@@ -47,6 +71,12 @@
                         </div>
 
                         <div class="Oblix_table" id="Oblix_DashId">
+
+                             <!-- Table blocking elements: copy-pasted HTML/CSS from BlockUI plugin for faster loading -->
+                            <div class="blockUI_table" style="display:none"></div>
+                            <div class="blockUI_table" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.6; cursor: wait; position: absolute; background-color: rgb(0, 0, 0);"></div>
+                            <div class="blockUI_table table_blocked" style="z-index: 1011; position: absolute; padding: 0px; margin: 0px; width: 30%; top: 82.5px; left: 398.5px; text-align: center; cursor: wait;"><h1>Please wait...</h1></div>
+                        
                             <table class="table table-striped" id="sowListTable">
                                 <thead>
                                     <tr>
@@ -69,8 +99,18 @@
                                                 <td>{!sow.OblixBrand__r.Name}</td>
                                                 <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
                                                 <td>
+<<<<<<< HEAD
                                                     <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
                                                         <apex:param value="{!sow.LastModifiedDate}" /></apex:outputText>
+=======
+                                                    <span style="display: none;">
+                                                    <!-- Needed for locale-independent DataTables sorting -->
+                                                        <apex:outputText value="{0, date, yyyy/MM/dd-HH:mm:ss}">
+                                                            <apex:param value="{!sowWrapper.sow.LastModifiedDate}" /> 
+                                                        </apex:outputText>
+                                                    </span>
+                                                    <apex:outputText value="{!sowWrapper.localeDate}" />
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                                 </td>
                                                 <td>{!sow.SOW_Status__c}</td>
                                                 <td>€&nbsp;
@@ -81,8 +121,10 @@
                                             </tr>
                                         </apex:repeat>
                                     </apex:repeat>
+
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -94,6 +136,7 @@
         </apex:define>
         <apex:define name="page_scripts">
             <script type="text/javascript">
+<<<<<<< HEAD
             $(document).ready(function() {
                 $.unblockUI();
                 var table = $('#sowListTable').DataTable({
@@ -112,6 +155,25 @@
                         return item[0];
                     });
                     redirectToSOWDetailPage(ids);
+=======
+                $(document).ready(function() {
+                    var table = $('#sowListTable').on( 'init.dt', function () {
+                        $('#Oblix_DashId .blockUI_table').hide();
+                    } ).DataTable({"dom": 'lrtip', 'pagingType': 'full_numbers', 'order': [[ 5, "desc" ]], 'bPaginate': false});
+                    //setTimeout(function(){ $('#Oblix_DashId .blockUI1').hide(); console.log('Test123')}, 3000);
+                    $('#searchBox').on('keyup', function() {
+                        table.search(this.value).draw();
+                    });
+                    $('#sowListTable tbody').on('click', 'tr', function() {
+                        blockme();
+                        $(this).toggleClass('selected');
+                        $(this).addClass('bg_selected');
+                        var ids = $.map(table.rows('.selected').data(), function(item) {
+                            return item[0];
+                        });
+                        redirectToSOWDetailPage(ids);
+                    });
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 });
 
             });

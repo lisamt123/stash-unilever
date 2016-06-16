@@ -1,0 +1,155 @@
+   <labels>
+        <fullName>WP_Download_Item_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Download Item Text</shortDescription>
+        <value>Download image of this item with description</value>
+    </labels>
+    <labels>
+        <fullName>WP_Download_Range_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Download Range Text</shortDescription>
+        <value>Download image range with descriptions</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Download</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Download</shortDescription>
+        <value>Download</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Generated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Generated</shortDescription>
+        <value>Generated</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Image</shortDescription>
+        <value>Image</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Toolkit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Toolkit</shortDescription>
+        <value>Toolkit</value>
+    </labels>
+    <labels>
+        <fullName>WP_In_Store_Executions_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP In Store Executions Mode</shortDescription>
+        <value>In Store Execution</value>
+    </labels>
+    <labels>
+        <fullName>WP_In_Store_Executions_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP In Store Executions Page</shortDescription>
+        <value>WINatPOS_InStoreExecutions</value>
+    </labels>
+    <labels>
+        <fullName>WP_Innovations_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Innovations Mode</shortDescription>
+        <value>Innovation</value>
+    </labels>
+    <labels>
+        <fullName>WP_Innovations_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Innovations Page</shortDescription>
+        <value>WINatPOS_Innovations</value>
+    </labels>
+    <labels>
+        <fullName>WP_Masterbrand_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Masterbrand Mode</shortDescription>
+        <value>Masterbrand</value>
+    </labels>
+    <labels>
+        <fullName>WP_Masterbrand_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Masterbrand Page</shortDescription>
+        <value>WINatPOS_Masterbrand</value>
+    </labels>
+    <labels>
+        <fullName>WP_No_File_Specified</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP No File Specified</shortDescription>
+        <value>No upload file was specified</value>
+    </labels>
+    <labels>
+        <fullName>WP_Repeatable_Models_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Repeatable Models Mode</shortDescription>
+        <value>Repeatable Model</value>
+    </labels>
+    <labels>
+        <fullName>WP_Repeatable_Models_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Repeatable Models Page</shortDescription>
+        <value>WINatPOS_RepeatableModels</value>
+    </labels>
+    <labels>
+        <fullName>WP_Search_String_Too_Short</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Search String Too Short</shortDescription>
+        <value>Search term must be longer than 2 characters. Please update and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WP_Select_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Select Brand</shortDescription>
+        <value>Select a Brand</value>
+    </labels>
+    <labels>
+        <fullName>WP_Select_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Select Category</shortDescription>
+        <value>Select a Category</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Error_Saving_Changes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Error Saving Changes</shortDescription>
+        <value>One or more errors occurred while applying these updates. Please refresh your search results and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Help_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Help Text</shortDescription>
+        <value>Search for active Salesforce Platform users and apply permission sets using the lower pane.</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Too_Many_Results_Part_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Too Many Results Part 1</shortDescription>
+        <value>Your search returned more than</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Too_Many_Results_Part_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Too Many Results Part 2</shortDescription>
+        <value>results. Please refine your search criteria and try again.</value>
+    </labels>
+    

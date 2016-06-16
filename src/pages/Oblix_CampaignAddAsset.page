@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController" standardStylesheets="true">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -8,6 +9,9 @@
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignAddAsset.js')}" />
     <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.sticky.js')}"></script>
+=======
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController" action="{!checkUserHasPermissionToProject}">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     <style>
         .removeAssetCss {
             background-image: url("{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}") !important;
@@ -25,6 +29,7 @@
         .hide_button {
             display: none;
         }
+
     </style>
     <apex:form >
 
@@ -96,11 +101,19 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="heading{!accordianCounter}">
                                         <h4 class="panel-title">
+<<<<<<< HEAD
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!accordianCounter}" aria-expanded="{!if(accordianCounter == 1,'true','false')}" aria-controls="collapse{!accordianCounter}"><apex:outputText value="{!recordType}" styleClass="recordTypeValue" /> {!mapRecordTypeDescription[recordType]}<img alt="Add" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
                                 </h4>
                                     </div>
                                     <div id="collapse{!accordianCounter}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{!accordianCounter}">
                                         <div class="panel-body" id="{!mapRTIdCSS[recordType]}_tabs">
+=======
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!offeringWrapper.index}" aria-expanded="false" aria-controls="collapse{!offeringWrapper.index}">{!offeringWrapper.type_name}<img alt="add assets plus" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse{!offeringWrapper.index}" class="oblix-type-container panel-collapse collapse" role="tabpanel">
+                                        <div class="oblix-sub-category-navigation panel-body">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                             <ul class="nav nav-tabs assets_tab_background" data-tabs="tabs">
                                                 <apex:variable var="count" value="{!1}" />
                                                 <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
@@ -189,10 +202,19 @@
 
                                                                                             </apex:actionRegion>
 
+<<<<<<< HEAD
                                                                                         </apex:outputPanel>
                                                                                         <apex:variable var="selectionCount" value="{!selectionCount + 1}" />
                                                                                     </div>
                                                                                     <!--/div-->
+=======
+                                                                                                        <apex:outputText rendered="{!can_manage_asset}">
+                                                                                                            <button id="addButton-{!optionSelector}" class="btn btn-primary btn_plus btn_asset_add" onclick="checkAddValuesForBasket(this); return false;">ADD</button>
+                                                                                                            <button id="updateButton-{!optionSelector}" class="btn btn-primary hidden" onclick="checkUpdateValuesForBasket(this); return false;">UPDATE</button>
+                                                                                                        </apex:outputText>
+                                                                                                    </apex:actionRegion>
+                                                                                                </apex:outputPanel>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 
                                                                                 </apex:repeat>
                                                                             </div>
@@ -231,6 +253,7 @@
                                 <div class="asset_shopping_basket_body">
                                     <div class="asset_shopping_basket_item_title ">
 
+<<<<<<< HEAD
                                         <!--
                                 <apex:repeat value="{!lstAssetsForCard}" var="asset">
                                         <div class="Oblix_card_elmt">
@@ -267,6 +290,36 @@
                                             </div>
 
                                         </apex:repeat>
+=======
+                        <apex:outputPanel id="campaignBasket">
+                            <div class="asset_shopping_basket_title_bar">
+                                <h2>Campaign Basket ({!helper.quantity_in_basket} asset{!IF(helper.quantity_in_basket == 1, '', 's')})</h2>
+                            </div>
+                            <input type="hidden" value="{!helper.map_assets_in_basket_json}" id="basketJSON" />
+                            <!--<apex:repeat value="{!helper.set_basket_AssetNames}" var="basketItemMDMID">-->
+                            <apex:repeat value="{!helper.list_reverese_order}" var="basketItemMDMID">
+                                <apex:variable value="{!helper.map_assets_in_basket[basketItemMDMID]}" var="basketAssetWrapper" />
+                                <apex:variable value="{!basketAssetWrapper.type_index}_{!basketAssetWrapper.sub_category_index}_{!basketAssetWrapper.option_index}" var="indexSelector" />
+                                <div class="asset_shopping_basket_item">
+                                    <div class="campaign_create_agency_hub_split_table_subtitle" id="{!indexSelector}">
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <apex:commandButton action="{!removeAssetFromBasket}" rendered="{!can_manage_asset}" reRender="campaignBasket, campaignBasketSummary, page_message_id" onclick="blockBasket(); assetToBeRemovedMDMId = '{!basketItemMDMID}';" oncomplete="unblockBasket(); handleBasketChange()" styleClass="removeAssetCss btn" style="width:12px;height:12px" value="">
+                                                    <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="{!basketItemMDMID}" />
+                                                </apex:commandButton>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
+                                                </apex:commandLink>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
+                                                    {!basketAssetWrapper.quantity_in_basket}
+                                                </apex:commandLink>
+                                            </div>
+                                        </div>
+                                        <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""></apex:commandLink>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                     </div>
                                 </div>
 

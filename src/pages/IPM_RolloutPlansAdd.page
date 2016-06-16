@@ -39,7 +39,12 @@
                                 </div>
                             </div>
                         </div>                        
+<<<<<<< HEAD
                         <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
+=======
+                        <!-- Display list of countries matching search criteria -->                       
+                        <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/></div>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                         <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                         <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
                         <apex:outputPanel rendered="{!!isNoResult}">
@@ -114,8 +119,8 @@
                                     </div>
                                 </apex:outputPanel>
                                 <div class="col-sm-12 text-right">
-                                    <apex:commandLink styleClass="ipmButton buttonMarginRight" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus"/>
-                                    <apex:commandButton styleClass="ipmButton buttonMarginRight primary generateRolloutBtn" oncomplete="GotoParentPage();" value="{!$Label.IPM_GENERATE_ROLLOUTS}" />                                    
+                                    <apex:commandLink styleClass="ipmButton buttonMarginRight" action="{!cancel}" onClick="skipValidation();" value="{!$Label.IPM_CANCEL}" status="loadingStatus"/>
+                                    <apex:commandButton styleClass="ipmButton buttonMarginRight primary generateRolloutBtn" onClick="skipValidation();" oncomplete="GotoParentPage();" value="{!$Label.IPM_GENERATE_ROLLOUTS}" />                                    
                                     
                                 </div>
                             </div>
@@ -145,8 +150,9 @@
                 </apex:actionFunction>      
                           
                 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script> 
-                <apex:outputPanel id="scriptPanel">
+				<apex:outputPanel id="scriptPanel">
                     <script>
+<<<<<<< HEAD
                            var IPMRollOutAdd = {SelectedMCO:'{!JSENCODE(selectedMCO)}'};
                            
                             var jq= jQuery.noConflict();
@@ -271,7 +277,11 @@
                                    window.top.location = '{!URLFOR($Page.IPM_RolloutPlans)}?Id={!projectId}&EditMode=false';
                                }
                            }
+=======
+                          var IPMRollOutAdd = {SelectedMCO:'{!JSENCODE(selectedMCO)}',proId:'{!projectId}',completed:'{!isCompleted}',rolloutURL:'{!URLFOR($Page.IPM_RolloutPlans)}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                     </script>
+					<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansAdd.js')}" type="text/javascript"></script>
                  </apex:outputPanel>
              </apex:outputPanel>
         </apex:form>

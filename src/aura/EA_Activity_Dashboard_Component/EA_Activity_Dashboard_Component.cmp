@@ -135,13 +135,13 @@ img.user_badge.active {
   
     
  
-  <div class="Container" style="background-color: white; height: 100%;">  
+  <div class="Container" style="background-color: white;">  
       
       <ul >
           <li class="slds-list__item">
               <aura:if isTrue="{!v.showbody}">
             
-           <div class="regular_font" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.theme_name}"/></div>
+           <div class="regular_font slds-text-heading--label" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.theme_name}"/></div>
               
              <div class="list_name" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.activity_name}"/></div>
               <aura:if isTrue="{!v.showfeedback}">

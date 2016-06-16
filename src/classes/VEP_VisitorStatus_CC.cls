@@ -30,7 +30,10 @@ Public with sharing class VEP_VisitorStatus_CC{
                 if(!listVisitor.isEmpty()){
                     vRec = listvisitor[0];
                 }
-                if(TravelStatus!=null && vRec!=null){
+                else{
+                    message = label.VEP_Access_Err;
+                }
+                if(TravelStatus!=null && vRec!=null && (!listVisitor.isEmpty())){
                     if(TravelStatus == 'Approved' || TravelStatus == 'Rejected'){
                     if(VRec.Travel_Approval_Status__c == 'Approved' || VRec.Travel_Approval_Status__c == 'Rejected'){
                     message = 'Travel request is already ' + VRec.Travel_Approval_Status__c ;
@@ -46,7 +49,7 @@ Public with sharing class VEP_VisitorStatus_CC{
                         message = label.VEP_Status_ERR;
                     }   
                 }
-                if(LodgingStatus!=null && vRec!=null){
+                if(LodgingStatus!=null && vRec!=null && (!listVisitor.isEmpty())){
                     if(LodgingStatus == 'Approved' || LodgingStatus == 'Rejected'){
                     if(VRec.Lodging_Approval_Status__c== 'Approved' || VRec.Lodging_Approval_Status__c== 'Rejected'){
                     message = 'Lodging request is already ' + VRec.Lodging_Approval_Status__c;

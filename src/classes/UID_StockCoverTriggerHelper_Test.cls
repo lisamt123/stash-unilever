@@ -265,6 +265,11 @@ public class UID_StockCoverTriggerHelper_Test{
         
         update stockedProducts;
         
+        for(UID_Stocked_Product__c sp: stockedProducts) {
+            sp.UID_Summarized_Invoice_Ranking_Flag__c = true;
+        }        
+        update stockedProducts;
+        
         for(UID_Stocked_Product_Summary__c sps: stockedProductSummaries) {
             if(sps.id == null) {
                 allStockedProductSummariesSaved = false;

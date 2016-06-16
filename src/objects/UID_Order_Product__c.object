@@ -107,7 +107,18 @@
         <scale>3</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UID_ISO_Currency__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( CurrencyIsoCode )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ISO Currency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

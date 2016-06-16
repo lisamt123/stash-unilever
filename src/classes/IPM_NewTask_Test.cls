@@ -20,6 +20,10 @@ public class IPM_NewTask_Test{
     private static final String PROJ_ID_STR = 'projectId';
     private static final String PROJDOCSEC_ID_STR='projDocSecId';
     private static final String  USER_NAME ='PLATFORM_USER';
+<<<<<<< HEAD
+=======
+	private static final String  TASK_NAME ='Test task modified';
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     private static final Id PROJECT_TASK_ID = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     
     /***********************************
@@ -50,6 +54,15 @@ public class IPM_NewTask_Test{
          System.runAs(platformUser)
          { 
             insert projectList;
+<<<<<<< HEAD
+=======
+            //check if the created projects are having the same complexity type as assigned while creating
+            list<IPM_Project__c> projectsResultList = [SELECT Id,IPM_Phase__c,IPM_Complexity__c FROM IPM_Project__c where Name IN:projectNameSet];
+            for(IPM_Project__c project : projectsResultList)
+            {
+                system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_FULL,'Projects are not created');
+            }
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
          }  
          system.assertEquals(projectList.size(),8,'Projects are not created');
          
@@ -120,6 +133,10 @@ public class IPM_NewTask_Test{
         projRes.IPM_Role_Type__c =IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
         insert projRes;
             
+<<<<<<< HEAD
+=======
+		//check if project resources are created
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         list<IPM_Project_Resource__c> projResList = [SELECT Id,IPM_User__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_User__c=:userId];
         system.assertEquals(projResList[0].IPM_Project__c,projectId);
             
@@ -154,6 +171,10 @@ public class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
             
+<<<<<<< HEAD
+=======
+			//create task
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
              task.IPM_Task_Name__c = 'Test Task';
              task.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
@@ -172,6 +193,10 @@ public class IPM_NewTask_Test{
             task.IPM_Function__c = string.valueOf(optionList[0]);
             taskview.doSaveTasks();
            
+<<<<<<< HEAD
+=======
+			//check if task are creted from milestone and todospage and has project leader as defult assignee
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Assignee__c,IPM_Active__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
             for(IPM_Task__c tsk: taskResult)
             {
@@ -194,6 +219,10 @@ public class IPM_NewTask_Test{
             initializedData();
             
                              
+<<<<<<< HEAD
+=======
+			//create task from associated todos             
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
              task.IPM_Task_Name__c = 'Test Task associated Todos';
              task.RecordTypeId = PROJECT_TASK_ID;
@@ -207,6 +236,10 @@ public class IPM_NewTask_Test{
              taskview.tasks = task;
              taskview.doSaveTasks();
            
+<<<<<<< HEAD
+=======
+			 //check if task is created through associated todo's page default values shouled be assigned
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Active__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              for(IPM_Task__c tsk: taskResult)
              {
@@ -229,20 +262,36 @@ public class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
             
+<<<<<<< HEAD
             list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=true];
             IPM_Task__c task11 = taskList[0];
             system.assertEquals(task11.IPM_Task_Name__c!='Test task modified',true, 'IPM_Task_Name__c Not Matched');
+=======
+			//create task
+            list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=true];
+            IPM_Task__c task11 = taskList[0];
+            // check if tasks are present
+            system.assertEquals(task11.IPM_Task_Name__c!=TASK_NAME,true, 'IPM_Task_Name__c Not Matched');
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             
             putCurrentPageParameter(TASK_ID_STR,task11.Id);
             putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
             
             ApexPages.StandardController sc = new ApexPages.StandardController(task11);
             
+<<<<<<< HEAD
+=======
+			//change task name and save
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             IPM_NewTask taskview =new IPM_NewTask(sc);
             taskview.tasks = task11;
             task11.IPM_Task_Name__c = 'Test task modified';
             taskview.doSaveTasks();
            
+<<<<<<< HEAD
+=======
+			//check if the task is modified
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             list<IPM_Task__c> taskResult = [SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE id=:task11.id];
             system.assertEquals(taskResult[0].IPM_Task_Name__c,'Test task modified', 'IPM_Task_Name__c Not Matched');
            
@@ -292,6 +341,10 @@ public class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
             
+<<<<<<< HEAD
+=======
+			// create task
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
              
              task.IPM_Function__c = IPM_Utils.SupplyChain;
@@ -305,12 +358,20 @@ public class IPM_NewTask_Test{
             
              ApexPages.StandardController sc = new ApexPages.StandardController(task);
             
+<<<<<<< HEAD
+=======
+			//save task with task name null
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              IPM_NewTask taskview =new IPM_NewTask(sc);
              taskview.tasks = task;
              List<SelectOption> optionSectionList = taskview.getSectionlist();
              system.assertEquals(optionSectionList.size()>0,true,'Task List not populated as expected');
              taskview.doSaveTasks();
         
+<<<<<<< HEAD
+=======
+			 // check if task with name null is not saved 
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c 
                                             WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              system.assertEquals(taskResult.size(),0 , 'Record Size Not Matched');
@@ -328,6 +389,10 @@ public class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
              
+<<<<<<< HEAD
+=======
+			//create task with due date in past
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
             
              task.IPM_Function__c = 'PL';
@@ -341,6 +406,10 @@ public class IPM_NewTask_Test{
             
              ApexPages.StandardController sc = new ApexPages.StandardController(task);
             
+<<<<<<< HEAD
+=======
+			// save task with past due date
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              IPM_NewTask taskview =new IPM_NewTask(sc);
              taskview.tasks = task;
              taskview.doSaveTasks();
@@ -377,6 +446,10 @@ public class IPM_NewTask_Test{
             }
             update updatedMilestoneList;
             
+<<<<<<< HEAD
+=======
+			//check if milestone has been created with assigend due date
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             list<IPM_Milestone__c> mileList =[SELECT Id,Name,IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c=: projectDetailList[0].Id and IPM_Phase__c = :projectDetailList[0].IPM_Phase__c];
             
             for(IPM_Milestone__c milestone :mileList)
@@ -392,13 +465,23 @@ public class IPM_NewTask_Test{
             
             ApexPages.StandardController sc = new ApexPages.StandardController(taskList[0]);
             
+<<<<<<< HEAD
+=======
+		   //update the task daue date greater than milestone due date
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             IPM_NewTask taskview =new IPM_NewTask(sc);
             taskview.tasks = taskList[0];
             taskList[0].IPM_Due_Date1__c = System.today() + 30;
             taskview.doSaveTasks();
            
+<<<<<<< HEAD
            /*list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=true and IPM_Due_Date1__c=:(System.today() + 30)];
            system.assertEquals(taskResult.size(),0 , system.label.IPM_TaskDueDateErrorMsg);*/
+=======
+			//check if task is updated with due date as per milestone due date
+           list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IPM_Due_Date1__c=:(System.today() + 30)];
+           system.assertEquals(taskResult.isEmpty(),true, system.label.IPM_TaskDueDateErrorMsg);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
           
         Test.stopTest();
         }
@@ -441,6 +524,7 @@ public class IPM_NewTask_Test{
         Test.stopTest();
         }
     } 
+<<<<<<< HEAD
     
     /***********************************
       @name: createTaskWithFunctionalOwner
@@ -485,6 +569,10 @@ public class IPM_NewTask_Test{
         Test.stopTest();
     } 
     */
+=======
+              
+                
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     /***********************************
       @name: createTaskFromAssociatedToDosTabByFO
       @Description: Functional owner should be able to insert task in system at associated todos tab. should have default values
@@ -514,6 +602,10 @@ public class IPM_NewTask_Test{
                  taskview.tasks = task;
                  taskview.doSaveTasks();
                
+<<<<<<< HEAD
+=======
+	          // check if the task is inserted with defult assigned values
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                  list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Active__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
                  for(IPM_Task__c tsk: taskResult)
                  {
@@ -524,15 +616,21 @@ public class IPM_NewTask_Test{
             }
         Test.stopTest();
     } 
+<<<<<<< HEAD
     /***********************************
       @name: testProjectWithExternalApproach
       @Description: when project approach is external then message should be shown on UI.
+=======
+    
+     /***********************************
+      @name: testTodoWithFuturePhase
+      @Description: when future phase is selected for the ToDos 
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     ***********************************/
-    public static TestMethod void testProjectWithExternalApproach(){
-       User globalUser = [Select Id,LastName from User where LastName=:USER_NAME limit 1];
-        system.runAs(globalUser)
-        {
+    private static TestMethod void testTodoWithFuturePhase(){
+        
         Test.startTest();
+<<<<<<< HEAD
             initializedData();
             IPM_Project__c project = projectDetailList[1];
             project.IPM_PM_Approach__c = IPM_Utils.External;
@@ -547,11 +645,139 @@ public class IPM_NewTask_Test{
             ApexPages.StandardController sc = new ApexPages.StandardController(taskList[0]);
             
             IPM_NewTask taskview = new IPM_NewTask(sc);
+=======
+        
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
+            initializedData(); 
+            createProjectResource(projectDetailList[0].Id,userBD.id);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             
-            system.assertEquals(taskview.displayDueDate,false, 'Due Date Not Matched');
+            system.runAs(userBD)
+            {
+                 list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
+                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
+                 task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                 task.IPM_Task_Name__c = 'Feasibility Task';
+                 task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 task.IPM_TaskSpan__c = 'Regional';
+                 task.IPM_Section__c = ipmSection.id;
+                 task.IPM_Function__c = 'BD';
+                 task.RecordTypeId = PROJECT_TASK_ID;
+                 
+                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+                
+                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.tasks = task;
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.getPhaselist();
+                 newTask.getGateSections();
+                 newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 newTask.getGateSpecificSpan();
+                 newTask.getFuntionalRolelist();
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.getSections();
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 newTask.doSaveTasks(); 
+               
+                 list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Task__c FROM IPM_Task__c WHERE IPM_Project__c =:projDetailList11[0].Id AND IsSystemGenerated__c=false and IPM_Task_Name__c =: 'Feasibility Task' ];
+                 for(IPM_Task__c tsk: taskList)
+                 {
+                     system.assertEquals(tsk.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS, 'Future AdHoc Task not saved');
+                 }
+            }
+      Test.stopTest();               
+    }    
+    
+    /***********************************
+      @name: testTodoWithStandardTasks
+      @Description: test tasks with standard tasks
+    ***********************************/
+    private static TestMethod void testTodoWithStandardTasks(){
+        
+        Test.startTest();
+        
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
+            initializedData(); 
+            createProjectResource(projectDetailList[0].Id,userBD.id);
             
-            Test.stopTest();
-        }
+            system.runAs(userBD)
+            {
+                 list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
+                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
+                 task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                 task.IPM_Task_Name__c = 'Current Task';
+                 task.IPM_Section__c = ipmSection.id;
+                 task.IPM_Function__c = 'BD';
+                 task.RecordTypeId = PROJECT_TASK_ID;
+                 task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 
+                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+                
+                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.tasks = task;
+                 newTask.projectObject = projDetailList11[0];
+                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
+                 List<SelectOption> optionPhaseList= newTask.getPhaselist();
+                 system.assertEquals(!optionPhaseList.isEmpty(),true,'Task Phase List for standard tasks not populated as expected');
+                 List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
+             	 system.assertEquals(!optionSpanList.isEmpty(),true,'Task Span List for standard tasks not populated as expected'); 
+            }  
+            
+        Test.stopTest();      
     }
     
+    /***********************************
+      @name: testTodoWithStandardTasks
+      @Description: test tasks with standard tasks
+    ***********************************/
+    private static TestMethod void testTodoWithIncorrectProjectMetaData(){
+        
+        Test.startTest();
+        
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
+            initializedData(); 
+            createProjectResource(projectDetailList[0].Id,userBD.id);
+            List<IPM_ProjectMetadata__c> metaDataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
+            List<IPM_ProjectMetadata__c> updatedMetaDataList = new List<IPM_ProjectMetadata__c>();
+            try{
+	            for(IPM_ProjectMetadata__c metaData:metaDataList)
+	            {
+	            	metaData.IPM_Applicable_Gate__c = null;
+	            	updatedMetaDataList.add(metaData);
+	            }	
+	            update updatedMetaDataList;
+	            
+	            system.runAs(userBD)
+	            {
+	                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+	                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
+	                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+	                  
+	                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+	                 newTask.tasks = task;
+	                 newTask.projectObject = projectDetailList[0];
+	                 List<SelectOption> optionPhaseList= newTask.getPhaselist();
+	                 system.assertEquals(optionPhaseList.isEmpty(),true,'Task Phase List for standard tasks not populated as expected');
+	                 List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
+	             	 system.assertEquals(!optionSpanList.isEmpty(),true,'Task Span List for standard tasks not populated as expected'); 
+	            }  
+            }
+            catch(Exception ex)
+            {
+            	system.assertEquals(ex.getMessage(),'Attempt to de-reference a null object','Exception not thrown');
+            }   
+        Test.stopTest();         
+    }
+ 
 }

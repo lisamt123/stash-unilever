@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>CPA Auto Accept a PWORF</name>
     <style>none</style>
-    <subject>PWORF: {!CPA_PWORF__c.Id} Auto Accepted  by {!CPA_PWORF__c.ftxt_Unilever_Project_Manager_Name__c}</subject>
+    <subject>{!CPA_PWORF__c.auto_PWORF_ID__c} : {!CPA_PWORF__c.txta_Title__c} :{!CPA_PWORF__c.pkl_Status__c}</subject>
     <type>custom</type>
 </EmailTemplate>

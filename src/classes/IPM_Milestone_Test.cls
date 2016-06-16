@@ -7,7 +7,7 @@
   */
 
 @isTest(SeeAllData=false)
-public class IPM_Milestone_Test
+private class IPM_Milestone_Test
 {
     
     private static User stdUserForMilestone;
@@ -46,6 +46,10 @@ public class IPM_Milestone_Test
         List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProject'];
         
         List<IPM_Milestone__c> masterMilestones = [Select Id, IPM_Phase__c from IPM_Milestone__c WHERE IPM_Project__c =: masterProjectList[0].Id];
+<<<<<<< HEAD
+=======
+        System.assert(masterMilestones.size() > 0, 'Milestone successfully not created');
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         
         // Insert Master MINI Milestone Data 
         List<IPM_Milestone__c> miniMilestoneList = new List<IPM_Milestone__c>();
@@ -153,6 +157,20 @@ public class IPM_Milestone_Test
                 msWrapList.add(ipmMSWrap);
             } 
             ipmMSCtrl.milestones = msWrapList; 
+<<<<<<< HEAD
+=======
+            system.assertEquals(ipmMSCtrl.milestones[0].mile.IPM_phase_order__c, 1.00, 'Mini milestone not created properly.');
+            
+            Apexpages.currentpage().getparameters().put(MINIMSID_STRING, miniMSList[0].Id);
+	        ipmMSCtrl.selectMiniMs();
+	        system.assertNotEquals(miniMSList[0].IPM_Due_Date__c, null, 'Due Date field is filled');
+	        system.assertEquals(ipmMSCtrl.milestones[0].checked, true, 'Milestone is checked');
+	        
+           	Apexpages.currentpage().getparameters().put(MINIMSID_STRING, miniMSList1[0].Id);
+	       	ipmMSCtrl.selectMiniMs();
+            system.assertEquals(miniMSList1[0].IPM_Due_Date__c, null, 'Due Date field is empty');
+            system.assertEquals(ipmMSCtrl.milestones[4].checked, false, 'Milestone is checked');          
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             
             ipmMSCtrl.createMileStones();
             

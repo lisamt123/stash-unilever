@@ -332,10 +332,20 @@ public class IPM_ProjectOverviewCtrl_Test
         overCtrl.taskId=tskList[0].Id;
         project.IPM_Fast_Track_Project__c = false;
         update project;
+<<<<<<< HEAD
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         overCtrl1.getTasks();
         System.assert(overCtrl1.project != NULL);
+=======
+                
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
+        overCtrl1.getTasks();
+        
+        System.assertEquals(false , [Select Id, IPM_Fast_Track_Project__c from  IPM_Project__c where Id =: project.Id limit 100][0].IPM_Fast_Track_Project__c , 'Project is failed to update as fast track.' );
+        
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         Test.stopTest();
         }
     }
@@ -1079,6 +1089,7 @@ public class IPM_ProjectOverviewCtrl_Test
          
             insert rProject;
             
+<<<<<<< HEAD
          IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
          rollout.Regional_Project__c= rProject.id;
          rollout.IPM_Regional_PL__c = null;
@@ -1092,6 +1103,22 @@ public class IPM_ProjectOverviewCtrl_Test
         IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
         System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is blank.');
         Test.stopTest();
+=======
+	         IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
+	         rollout.Regional_Project__c= rProject.id;
+	         rollout.IPM_Regional_PL__c = null;
+	         insert rollout;
+	         System.assertEquals(rProject.id, [Select Id,Regional_Project__c from IPM_Project_Rollout__c where Id=: rollout.Id limit 100][0].Regional_Project__c , 'Regional rollout is not created successfully.');
+	         
+	        Test.startTest();
+	        PageReference pRef1 = new PageReference(sPageRefURL+rProject.ID);
+	        Test.setCurrentPage(pRef1);
+	        
+	        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+	        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains('Please provide the name of the MCO Rollout Leader for'), 'Project Leader name not provided');
+		Test.stopTest();
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
         }
     }  
     

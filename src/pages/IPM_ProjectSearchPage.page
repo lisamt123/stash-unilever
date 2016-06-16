@@ -345,7 +345,7 @@
                                                 <span class="ipmAcrdnExpand"> 
                                                     <ul class="docFilter accordionFilters">
                                                         <li>
-                                                            <div class='input-group date' id='datetimepickerFromDate' >
+                                                            <div class='input-group date datetimepickerFromDate' id='datetimepickerFromDate' >
                                                                 <div class="tldLable">{!$Label.IPM_From}</div>
                                                                 <apex:inputField value="{!projectForTLD.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
                                                             </div>
@@ -576,9 +576,9 @@
                                     <apex:outputPanel id="paginationSec">
                                         <apex:panelGrid columns="7">
                                             <apex:commandButton id="first" status="fetchStatus" reRender="checkBoxScript,statsPanel,jsLoad,prjPanel,paginationSec" value="<<" action="{!first}" disabled="{!!hasPrevious}" title="First Page" styleClass="paginationLink"/>
-                                            <apex:commandButton id="prev" status="fetchStatus" reRender="checkBoxScript,statsPanel,jsLoad,prjPanel,paginationSec" value="<" action="{!previous}" disabled="{!!hasPrevious}" title="Previous Page" styleClass="paginationLink"/>
+                                            <apex:commandButton id="prev" status="fetchStatus" reRender="checkBoxScript,statsPanel,jsLoad,prjPanel,paginationSec" value="<" action="{!previous}" disabled="{!!hasPrevious}" title="Previous Page" styleClass="paginationLink prev"/>
                                             <apex:outputText id="pageno"  styleClass="paginationLink">Records {!IF(noOfRecords>0,(pageNumber * size)+1-size,0)}-{!IF((pageNumber * size)>noOfRecords, noOfRecords,(pageNumber * size))} of {!noOfRecords}</apex:outputText>
-                                            <apex:commandButton id="next" status="fetchStatus" reRender="checkBoxScript,statsPanel,jsLoad,prjPanel,paginationSec" value=">" action="{!next}" disabled="{!!hasNext}" title="Next Page" styleClass="paginationLink"/>
+                                            <apex:commandButton id="next" status="fetchStatus" reRender="checkBoxScript,statsPanel,jsLoad,prjPanel,paginationSec" value=">" action="{!next}" disabled="{!!hasNext}" title="Next Page" styleClass="paginationLink next"/>
                                             <apex:commandButton id="last" status="fetchStatus" reRender="checkBoxScript,statsPanel,jsLoad,prjPanel,paginationSec" value=">>" action="{!last}" disabled="{!!hasNext}" title="Last Page" styleClass="paginationLink"/>
                                             <apex:outputPanel styleClass="pgFetch">
                                                 <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>

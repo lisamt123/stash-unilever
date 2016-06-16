@@ -376,7 +376,11 @@ public class IPM_MyList_Test{
                     ipm.catchBlockContent('test class',exp);
                     exceptn =true;
                  }
+<<<<<<< HEAD
                  system.assertEquals(exceptn ,true,'page messages are added');
+=======
+                 system.assertEquals(exceptn ,false,'page messages are added');
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
              }
         Test.stopTest();
      }

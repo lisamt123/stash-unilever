@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>true</active>
+    <active>false</active>
     <allowRecall>false</allowRecall>
     <allowedSubmitters>
         <submitter>CAP_VDM_Group</submitter>
@@ -24,6 +24,10 @@
             <action>
                 <name>CPA_Project_Work_Order_Accepted_date</name>
                 <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>CPA_Project_Work_Order_Accepted_Email_Alert</name>
+                <type>Alert</type>
             </action>
             <action>
                 <name>CPA_PWO_Previous_Status_value</name>
@@ -83,6 +87,10 @@
                 <name>CPA_Closure_Notification_Form_Accepted</name>
                 <type>FieldUpdate</type>
             </action>
+            <action>
+                <name>CPA_PWO_CNF_Accepted_email_alert</name>
+                <type>Alert</type>
+            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
@@ -92,15 +100,20 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <booleanFilter>1 AND 2</booleanFilter>
-            <criteriaItems>
-                <field>CPA_project_work_order__c.CNF_Status__c</field>
-                <operation>equals</operation>
-                <value>Submitted,Resubmitted</value>
-            </criteriaItems>
+            <booleanFilter>1 AND( 2 OR 3)</booleanFilter>
             <criteriaItems>
                 <field>CPA_project_work_order__c.num_CNF_Planned_man_days__c</field>
                 <operation>notEqual</operation>
+            </criteriaItems>
+            <criteriaItems>
+                <field>CPA_project_work_order__c.CNF_Status__c</field>
+                <operation>equals</operation>
+                <value>Submitted</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>CPA_project_work_order__c.CNF_Status__c</field>
+                <operation>equals</operation>
+                <value>Resubmitted</value>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
@@ -122,15 +135,15 @@
                 <name>CPA_Closure_Notification_Returned_date</name>
                 <type>FieldUpdate</type>
             </action>
-            <action>
-                <name>CPA_Record_type_CPA_PWO_CNF</name>
-                <type>FieldUpdate</type>
-            </action>
         </rejectionActions>
     </approvalStep>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <approvalActions>
+            <action>
+                <name>CPA_PWO_TNF_Accepted_email_alert</name>
+                <type>Alert</type>
+            </action>
             <action>
                 <name>CPA_Termination_Notification_Accept_date</name>
                 <type>FieldUpdate</type>
@@ -198,6 +211,20 @@
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>CPA_PWO_CNF_Send_for_signature_null</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>CPA_PWO_Send_for_signature_null</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>CPA_PWO_TNF_Send_for_signature_null</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
     <label>CPA Project work order Approval</label>
     <recallActions>
         <action>

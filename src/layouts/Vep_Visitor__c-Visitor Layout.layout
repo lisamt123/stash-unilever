@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>Clone</excludeButtons>
+    <excludeButtons>Delete</excludeButtons>
+    <excludeButtons>Share</excludeButtons>
+    <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
@@ -12,7 +15,7 @@
                 <field>Progress_Bar__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Status__c</field>
             </layoutItems>
         </layoutColumns>
@@ -37,7 +40,7 @@
                 <field>Date_From__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Base_Location__c</field>
             </layoutItems>
             <layoutItems>
@@ -49,7 +52,7 @@
                 <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Person_to_Meet__c</field>
             </layoutItems>
         </layoutColumns>

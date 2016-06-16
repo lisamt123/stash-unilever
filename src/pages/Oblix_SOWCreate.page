@@ -53,29 +53,60 @@
 	                        <label for="SOWName" class="create_SOW_form_titles">SOW Name*</label>
 	                        <apex:inputField value="{!selected_sow.Name}"  styleClass="form-control" required="true" id="sowName"/>
 
+<<<<<<< HEAD
 	                    </div>
 	                    <apex:actionRegion >
+=======
+        <apex:define name="body_content">
+    		<div class="row" hidden="hidden">
+    			<div class="col-lg-8 col-md-8 mandatory_form_info_missing mandatory_form_info_missing_message">
+    				<label for="Error" class="create_SOW_form_titles">Please fill in missing information:</label>
+    			</div>
+    		</div>
+    		<div class="row new_sow_form">
+            	<div class="col-lg-4 col-md-4">
+                    <div class="form-group" id="SOWName">
+                        <label for="SOWName" class="create_SOW_form_titles">SOW Name*</label>
+                        <apex:inputField value="{!selected_sow.Name_Prefix__c}"  styleClass="form-control" required="true" id="sowName" rendered="{!can_edit_key_sow_fields}"/>
+                        <div class="SOW_create_display_flex">
+                            <apex:outputField value="{!selected_sow.Name_Prefix__c}" id="output_sowName" rendered="{!NOT(can_edit_key_sow_fields)}"/>
+                        </div>
+                    </div>
+                    <apex:actionRegion >
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 	                    <div class="form-group " id="Brand">
 	                        <label for="SOWName" class="create_SOW_form_titles">Brand*</label>
 	                        <div class="SOW_create_display_flex">
 	                            <!--input type="text" class="form-control" id="Brand" placeholder="" /-->
+<<<<<<< HEAD
 	                            <apex:inputField value="{!selected_sow.OblixBrand__c}"  required="true" id="oblixBrand">
 	                            	
 	                            		<apex:actionSupport event="onchange" action="{!getCategoryBrand}" rerender="sowNewIdWrapper"/>
+=======
+	                            <apex:inputField value="{!selected_sow.OblixBrand__c}"  required="true" id="oblixBrand" rendered="{!can_edit_key_sow_fields}">
+	                            	<apex:actionSupport event="onchange" action="{!getCategoryBrand}" rerender="sowNewIdWrapper"/>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 	                            </apex:inputField>
+                                <apex:outputField value="{!selected_sow.OblixBrand__r.name}" id="output_oblixBrand" rendered="{!NOT(can_edit_key_sow_fields)}" />
 	                        </div>
 	                    </div>
 	                    <apex:outputPanel id="sowNewIdWrapper">
 		                    <div class="form-group" id="BigCategory">
 		                        <p class="create_SOW_form_titles">Big Category*</p>
 		                        <div class="SOW_create_display_flex">
+<<<<<<< HEAD
 		                            <apex:inputField value="{!selected_sow.BigOblixProductCategory__c}"     />
 		                            
+=======
+		                            <apex:inputField value="{!selected_sow.BigOblixProductCategory__c}" id="bigC" rendered="{!can_edit_key_sow_fields}"/>
+                                    <apex:outputField value="{!selected_sow.BigOblixProductCategory__r.Name}" id="output_bigC" rendered="{!NOT(can_edit_key_sow_fields)}"/>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 		                        </div>
 		                    </div>
 		                    <div class="form-group" id="SmallCategory" >
 		                        <p class="create_SOW_form_titles">Small Category*</p>
 		                        <div class="SOW_create_display_flex">
+<<<<<<< HEAD
 		                            <apex:inputField value="{!selected_sow.SmallProductCategory__c}"    />
 		                        </div>
 		                    </div>
@@ -125,10 +156,64 @@
                             <apex:repeat value="{!liso_attachments}" var="eachAttachment">
                                 <div id="{!eachAttachment.Id}">
                                 	<div id="attachmentContainer">
+=======
+		                            <apex:inputField value="{!selected_sow.SmallProductCategory__c}" id="smallC" rendered="{!can_edit_key_sow_fields}"/>
+                                    <apex:outputField value="{!selected_sow.SmallProductCategory__r.Name}" id="output_smallC" rendered="{!NOT(can_edit_key_sow_fields)}"/>
+		                        </div>
+		                    </div>
+	    				</apex:outputPanel>
+    				</apex:actionRegion>
+                    <div class="form-group" id="FinancialYear" >
+                        <p class="create_SOW_form_titles">Financial Year*</p>
+                        <apex:selectList size="1" value="{!selected_sow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}" id="financialYear" styleClass="Oblix_picklist" rendered="{!can_edit_key_sow_fields}">
+                            <apex:selectOptions value="{!FYSelectOptions}"></apex:selectOptions>
+                        </apex:selectList>
+                        <apex:outputField value="{!selected_sow.Financial_Year__c}" id="output_financialYear" rendered="{!NOT(can_edit_key_sow_fields)}" />
+                    </div>
+            	</div>
+	            <div class="col-lg-4 col-md-4">
+                    <div class="form-group " id="agency">
+                        <label for="Agency" class="create_SOW_form_titles">Agency*</label>
+                        <div class="SOW_create_display_flex">
+                            <apex:inputField value="{!selected_sow.Oblix_AgencyEstimate__c}" id="agencyField" styleClass="" required="true" rendered="{!can_edit_key_sow_fields}"/>
+                            <apex:outputField value="{!selected_sow.Oblix_AgencyEstimate__r.Name}" id="output_agencyField" styleClass="" rendered="{!NOT(can_edit_key_sow_fields)}"/>
+                        </div>
+                    </div>
+                    <div class="form-group " id="inlineRadioBD">
+                        <label for="BDBB" class="create_SOW_form_titles SOW_create_display_block">BD/BB*</label>
+                        <apex:inputField value="{!selected_sow.BB_or_BD__c}" id="bdbb" rendered="{!can_edit_key_sow_fields}"/>
+                        <apex:outputField value="{!selected_sow.BB_or_BD__c}" id="output_bdbb" rendered="{!NOT(can_edit_key_sow_fields)}"/>
+                    </div>
+                    <div class="form-group" id="AgencyContact" >
+                        <p>Agency Contact&nbsp;<span class="form_bracket_text">(Optional)</span>
+                        </p>
+                        <div class="SOW_create_display_flex SOW_create_contact_box_width" >
+                            <apex:inputField value="{!selected_sow.Agency_Contact__c}" styleClass=""/>
+                        </div>
+                    </div>
+                    <div class="form-group" id="UnileverContact" >
+                        <p>Unilever Contact&nbsp;<span class="form_bracket_text">(Optional)</span>
+                        </p>
+                        <div class="SOW_create_display_flex SOW_create_contact_box_width">
+                            <apex:inputField value="{!selected_sow.Unilever_Lead__c}"  styleClass=""/>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                    	<p>Attachment&nbsp;<span class="form_bracket_text">(Optional)</span></p>
+                    	<apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" rendered="{!IF(can_add_attachment,true,false)}" />
+                        <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" onclick="return validateFormEntries();" rendered="{!IF(can_add_attachment,true,false)}"/>
+                        <br/>
+                        <br/>
+                        <apex:actionRegion >
+                            <apex:outputPanel id="attachmentsBlock">
+    	                        <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                                    <div id="attachmentContainer">
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                 		<apex:outputPanel rendered="{!IF(can_delete_attachment,true,false)}">
                                         	<a  class="attachment_item"  href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments('{!eachAttachment.Id}'); return false;"></a>&nbsp;
                                         </apex:outputPanel>
                                         <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank"> {!eachAttachment.Name}</a>
+<<<<<<< HEAD
                                 	</div>
                                 </div>
                             </apex:repeat>
@@ -161,6 +246,21 @@
 	                        </div>
 	                    </div>
 	                </div>
+=======
+                                    </div>
+    	                        </apex:repeat>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                        <apex:outputPanel id="attachment_createmode" rendered="{!isEdit == false && selected_sow.Id == null}">
+                    		<div class="alert alert-info" role="alert">SOW will be automatically saved when you upload an attachment</div>
+                    	</apex:outputPanel>
+                    </div>-->
+                    <div class="SOW_create_buttons">
+                        <apex:commandButton value="SAVE SOW" action="{!saveAndClose}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" onclick="return validateFormEntries();" styleClass="btn btn-primary btn-sm pull-right btn_check btn_save_sow" immediate="false" rendered="{!IF(can_edit,true,false)}"/>
+                        <apex:commandButton value="CANCEL" action="{!cancelAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cross btn_cancel" immediate="true" html-formnovalidate="formnovalidate"/>
+                        
+                    </div>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 	            </div>
 	        </div>
 	    </apex:actionRegion>

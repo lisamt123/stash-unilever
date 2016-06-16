@@ -161,6 +161,7 @@ public class IPM_ConstantUtils {
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
     
+    
     // financial constant
     
     public static final string YEAR_3='3';
@@ -435,6 +436,7 @@ public class IPM_ConstantUtils {
      public static final String FIELD_LITERAL_BIC = 'BIC_';
      public static final String FIELD_LITERAL_CAPEX = 'CAPEX_';
      public static final String FIELD_LITERAL_PAYBACK = 'Payback_';
+     public static final String FIELD_LITERAL_STATUS = 'Status_';
 
      public static final String FIELD_LITERAL_GM_BPS = 'GM_Y1_bps_vs_DNDS_';
      public static final String FIELD_LITERAL_PBO_BPS = 'PBO_Y1_bps_vs_DNDS_';
@@ -689,6 +691,11 @@ public class IPM_ConstantUtils {
     
     //Task share
     public static final String IPM_TASK_RECORDTYPE='IPM Project Tasks';
+    public static final String FUTURE_ADHOC_TASKS = 'Future Adhoc';
+    public static final String FUTURE_STANDARD_TASKS = 'Future Standard';
+    public static final String STANDARD_TASKS = 'Standard';
+    public static final String TEMPLATE_TASKS = 'Template Task';
+    
     // Task Object
     
      public static String INVALIDPROJECT ='Invalid project';
@@ -1023,6 +1030,8 @@ public class IPM_ConstantUtils {
   //For Financial Action Standards Component
    public static final String IPM_FINANCIAL_ACTION_STANDARD='Business_Case_Action_Standards';
    public static final Decimal IPM_FINANCIAL_ACTION_STANDARD_VALUE=0;
+   public static final String IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS='Global Action Standards';
+   public static final String IPM_FINANCIAL_ACTION_STANDARDS='Action Standards';
    
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
@@ -1175,5 +1184,23 @@ public class IPM_ConstantUtils {
    public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
    public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
+<<<<<<< HEAD
    public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+=======
+   public static final String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
+   
+   public static final Integer KB_TO_BYTES = 1024;
+   public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
+   
+   //Market performance field names
+   
+   public static final string PERFORMANCE_PERIOD='Period__c';   
+   public static final string BREAKELINE='<br/>';
+   public static final string EURO='EUR';
+   public static final string MONITONING_PER_EXTERNAL_ID='Monitoring_Performance_in_Market';
+   public static final string MISALIGNED_CSS='misalignedField'; 
+   
+   public static final string SIX_THREE='6.3'; 
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 }

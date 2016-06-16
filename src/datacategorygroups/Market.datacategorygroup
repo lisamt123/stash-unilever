@@ -4,94 +4,14 @@
     <dataCategory>
         <dataCategory>
             <dataCategory>
-                <dataCategory>
-                    <label>Peru</label>
-                    <name>Peru</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Bolivia</label>
-                    <name>Bolivia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Paraguay</label>
-                    <name>Paraguay</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Uruguay</label>
-                    <name>Uruguay</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Argentina</label>
-                    <name>Argentina</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Chile</label>
-                    <name>Chile</name>
-                </dataCategory>
-                <label>Southern Cone</label>
-                <name>Southern_Cone</name>
+                <label>South Africa</label>
+                <name>South_Africa</name>
             </dataCategory>
-            <dataCategory>
-                <dataCategory>
-                    <label>Colombia</label>
-                    <name>Colombia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Venezuela</label>
-                    <name>Venezuela</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Ecuador</label>
-                    <name>Ecuador</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Guatemala</label>
-                    <name>Guatemala</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Nicaragua</label>
-                    <name>Nicaragua</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Panama</label>
-                    <name>Panama</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Costa Rica</label>
-                    <name>Costa_Rica</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Honduras</label>
-                    <name>Honduras</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>El Salvador</label>
-                    <name>El_Salvador</name>
-                </dataCategory>
-                <label>Middle Americas</label>
-                <name>Middle_Americas</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Brazil</label>
-                <name>Brazil</name>
-            </dataCategory>
-            <label>South America</label>
-            <name>South_America</name>
+            <label>Africa</label>
+            <name>Africa</name>
         </dataCategory>
         <dataCategory>
             <dataCategory>
-                <dataCategory>
-                    <label>Estonia</label>
-                    <name>Estonia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Latvia</label>
-                    <name>Latvia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Lithuania</label>
-                    <name>Lithuania</name>
-                </dataCategory>
                 <label>Baltics</label>
                 <name>Baltics</name>
             </dataCategory>
@@ -101,8 +21,8 @@
                     <name>Belgium</name>
                 </dataCategory>
                 <dataCategory>
-                    <label>Netherlands</label>
-                    <name>Netherlands</name>
+                    <label>Netherland</label>
+                    <name>Netherland</name>
                 </dataCategory>
                 <label>Benelux</label>
                 <name>Benelux</name>
@@ -201,6 +121,106 @@
             </dataCategory>
             <label>North America</label>
             <name>North_America</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Australia</label>
+                    <name>Australia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>New Zealand</label>
+                    <name>New_Zealand</name>
+                </dataCategory>
+                <label>ANZ</label>
+                <name>ANZ</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Indonesia</label>
+                <name>Indonesia</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Philippines</label>
+                <name>Philippines</name>
+            </dataCategory>
+            <label>SEAA</label>
+            <name>SEAA</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Colombia</label>
+                    <name>Colombia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Venezuela</label>
+                    <name>Venezuela</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Ecuador</label>
+                    <name>Ecuador</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Guatemala</label>
+                    <name>Guatemala</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Nicaragua</label>
+                    <name>Nicaragua</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Panama</label>
+                    <name>Panama</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Costa Rica</label>
+                    <name>Costa_Rica</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Honduras</label>
+                    <name>Honduras</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>El Salvador</label>
+                    <name>El_Salvador</name>
+                </dataCategory>
+                <label>Middle Americas</label>
+                <name>Middle_Americas</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Brazil</label>
+                <name>Brazil</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Peru</label>
+                    <name>Peru</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Bolivia</label>
+                    <name>Bolivia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Paraguay</label>
+                    <name>Paraguay</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Uruguay</label>
+                    <name>Uruguay</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Argentina</label>
+                    <name>Argentina</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Chile</label>
+                    <name>Chile</name>
+                </dataCategory>
+                <label>Southern Cone</label>
+                <name>Southern_Cone</name>
+            </dataCategory>
+            <label>South America</label>
+            <name>South_America</name>
         </dataCategory>
         <dataCategory>
             <dataCategory>

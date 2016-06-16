@@ -7,6 +7,8 @@
     <enableListViewReskin>true</enableListViewReskin>
     <enableMultiMonitorComponents>true</enableMultiMonitorComponents>
     <enablePinTabs>true</enablePinTabs>
+    <enableTabHover>false</enableTabHover>
+    <enableTabLimits>false</enableTabLimits>
     <isServiceCloudConsole>true</isServiceCloudConsole>
     <keyboardShortcuts>
         <defaultShortcut>

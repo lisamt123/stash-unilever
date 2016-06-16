@@ -2,7 +2,10 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>CancelEdit</actionName>
@@ -10,7 +13,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -18,7 +24,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
@@ -28,12 +35,16 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
@@ -42,11 +53,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -97,11 +114,23 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Brand Technical &amp;/or Infrastructure Reviews</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -113,11 +142,11 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -128,7 +157,11 @@ Renamed to Other SOW items in reviews</description>
                 <fullName>USLP</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -142,7 +175,21 @@ Renamed to Other SOW items in reviews</description>
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, OblixOtherItemFee__c)</formula>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL))</formula>
+        <label>Activity Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Fee_UL__c</fullName>
+        <description>For use in the Unilever Non Campaign report, to hide values from the field if the record type is not &apos;Activity&apos;</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL)</formula>
         <label>Activity Fee</label>
         <precision>18</precision>
         <required>false</required>
@@ -217,9 +264,10 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <description>Field was not being used, so has been relabelled for use in Non Campaign table</description>
         <externalId>false</externalId>
         <inlineHelpText>Please enter a full description of the Tasks / Activities required</inlineHelpText>
-        <label>Description</label>
+        <label>Other Info</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -236,6 +284,18 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FTE_report__c</fullName>
+        <description>For use in non campaign reports only</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, TEXT(No_of_Hours_Required__c)+&quot;%&quot;)</formula>
+        <label>FTE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Financial_Year__c</fullName>
@@ -312,7 +372,7 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL ,Oblix_Hourly_Rate__c)</formula>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL , Hourly_Rate_or_FTE__c)</formula>
         <label>Hourly Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -322,14 +382,41 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Hourly_Rate_or_FTE__c</fullName>
+        <description>Field for storing actual hourly rate or FTE (not calculated from &quot;Total Amount&quot; divided by &quot;Hours required&quot;) from Calculator Role Rate record.</description>
+        <externalId>false</externalId>
+        <label>Hourly Rate or FTE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Hours_Required_Activity__c</fullName>
+        <description>Used in Non Campaign reports in order to exclude the field value from any records that are of type dedicated resource, since they should have a value for FTE not no of hours</description>
+        <externalId>false</externalId>
+        <formula>IF(RecordType.DeveloperName = &quot;Activity&quot;,  No_of_Hours_Required__c   , NULL)</formula>
+        <label>No of Hours Required</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>No_of_Hours_Required__c</fullName>
         <description>The No of hours to complete these</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the number or hours this activity is estimated to take.</inlineHelpText>
         <label>No of Hours Required</label>
-        <precision>4</precision>
+        <precision>6</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -390,8 +477,11 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <externalId>false</externalId>
         <formula>IF(
     No_of_Hours_Required__c = 0, 
-    0, 
-    OblixOtherItemFee__c /  No_of_Hours_Required__c
+    0,
+    IF( RecordType.DeveloperName == &apos;Activity&apos;,
+        OblixOtherItemFee__c /  No_of_Hours_Required__c,
+        Hourly_Rate_or_FTE__c
+    )    
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Hourly Rate</label>
@@ -443,7 +533,20 @@ OR(
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
-Oblix_FTE_Real_Price__c)</formula>
+IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL,OblixOtherItemFee__c ))</formula>
+        <label>Resource Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Fee_UL__c</fullName>
+        <description>For use in Unilever user Non Campaign report. Shows the Resource Fee for a Dedicated Resource</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, OblixOtherItemFee__c )</formula>
         <label>Resource Fee</label>
         <precision>18</precision>
         <required>false</required>
@@ -1011,6 +1114,10 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Brand Technical %26%2For Infrastructure Reviews</fullName>
                 <default>false</default>
             </values>
@@ -1019,7 +1126,15 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1035,7 +1150,11 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1645,7 +1764,19 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Other</fullName>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2235,6 +2366,10 @@ Oblix_FTE_Real_Price__c)</formula>
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

@@ -247,8 +247,8 @@ public with sharing class IPM_RolloutPlanTLDSync {
             IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
             emailOutNotification.To_Address__c = projIdFinanceLeaderMap.get(projId).IPM_User__r.Email;
             emailOutNotification.Project_Name__c = globalProjIdRollout.get(projId).Name;
-            emailOutNotification.Previous_Target_Launch_Date__c =  globalProjIdRollout.get(projId).previous_Target_Launch_Date__c.format();
-            emailOutNotification.Target_Launch_Date__c = globalProjIdRollout.get(projId).Target_Launch_Date__c.format();
+            emailOutNotification.Previous_Target_Launch_Date__c =  globalProjIdRollout.get(projId).previous_Target_Launch_Date__c != null ? globalProjIdRollout.get(projId).previous_Target_Launch_Date__c.format() : null;
+            emailOutNotification.Target_Launch_Date__c = globalProjIdRollout.get(projId).Target_Launch_Date__c != null ? globalProjIdRollout.get(projId).Target_Launch_Date__c.format() : null;
             emailOut.add(emailOutNotification);       
         }
         // removed exception handling as any exceptions/Messages  would be handled at controller 

@@ -30,6 +30,10 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RecordTypeId</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Status</field>
             </layoutItems>
@@ -95,6 +99,7 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>NAME</fields>
         <fields>UID_Product__c</fields>
         <fields>UID_Category__c</fields>
         <fields>UID_Brand__c</fields>

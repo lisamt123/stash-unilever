@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
     About
     -----
@@ -13,80 +14,103 @@
     --------------
 */
 public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparentController {
+=======
+public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDetalControllerExt {
 
-    public Boolean can_delete_sow{
-        get{
-            return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c, selected_sow.Id);
-        }
-    }
+    // attributes are contained in the parent Oblix_SOWMainDetalControllerExt class
 
-    public Boolean can_delete_attachment{
-        get{
-            return Oblix_PermissionHandler.canDeleteAttachment(selected_sow.SOW_Status__c);
-        }
-    }
+    //public void getSyncRequestedFromParameter(){
+    //    if (NULL!=ApexPAges.currentPage().getParameters().get('sync_requested')){
+    //        is_sync_requested = true;
+    //    }
+    //    else
+    //    {
+    //        is_sync_requested = false;
+    //    }
+    //}
 
-    public Boolean can_add_attachment{
-        get{
-            return Oblix_PermissionHandler.canAddNewAttachment(selected_sow.SOW_Status__c);
-        }
-    }
+    public Oblix_SOWMainDetailController() {
 
+        //is_sync_requested = false;
+        //getSyncRequestedFromParameter();
+        // S.M. 2016-05-21 get the latest full page refreh datetime. Used for the sow page messages logic 
+        pageLastRefreshed = Datetime.now();
+        getSOW();
+        pageAttachment = new Attachment();
+        map_att_locale = new Map <Id, String>();
+        last_updated = '';
+        uploadedAtt = ApexPAges.currentPage().getParameters().get('att');
+        is_sync_requested = false;
+
+        if (selected_sow != null && selected_sow.Id != null) {
+            liso_attachments = getSOWAttachments(selected_sow.Id);
+            
+            li_campaign_and_non_campaign_items = new List<Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems>();
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
+
+            // get campaigns
+            for(Oblix_SOW_Projects__c campaign : [SELECT Campaign_PFY__r.Sync_Status__c,Id, Name, OblixRegion__c, Selected_Countries__c, First_3_selected_countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
+                Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c, Campaign_Total_Fees__c, Percentage_of_Fee_for_this_FY__c, 
+                Sync_Required_NFY__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Campaign_PFY__c, Percentage_of_Fees_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c  
+                FROM Oblix_SOW_Projects__c 
+                WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
+                li_campaign_and_non_campaign_items.add(new Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems('Campaign', campaign, can_edit));
+                
+            }
+
+            hasCampaigns = !li_campaign_and_non_campaign_items.isEmpty();
+
+            // get non-campaigns
+            /*for(Marketing_Basics__c nonCampaign : [SELECT Id, Name, OblixCountry__r.Name, OblixOtherItemFee__c FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c = : selected_sow.Id LIMIT 500]){
+                li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', nonCampaign, can_edit));
+            }*/
+
+<<<<<<< HEAD
     public Boolean can_manage_campaign{
         get{
             return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
+=======
+            Map<String, Oblix_BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignPageHelper.initBasketSections(selected_sow.Id);
+            for (Oblix_BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
+                li_campaign_and_non_campaign_items.add(new Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems('Non Campaign', sectionWrapper));
+            }
+            
+            // get attachments
+            liso_attachments = getSOWAttachments(selected_sow.Id);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 
-    public Boolean can_manage_non_campaign{
-        get{
-            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
+            if(!liso_attachments.isEmpty()){
+                for(Attachment att:liso_attachments){
+                    map_att_locale.put(att.Id, date.valueof(att.CreatedDate).format());
+                }
+            }
+
+            last_updated = Oblix_Utils.toLocaleDate(selected_sow.LastModifiedDate);
+
+            scoresFYFeeDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.SOW_SCORES_FY_FEE, selected_sow.Id);
+            scoresFullFeeDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.SOW_SCORES_FULL_FEE, selected_sow.Id);
+
+            checkIsSyncRequestedOnChildrenCampaign();
+
         }
+        
     }
 
-    public Boolean sow_approvers_defined{
-        get{
-            // until the agency users are live, agency approvers aren't mandatory
-            return selected_sow.Unilever_SOW_Approver_Name__c != null;// && selected_sow.Agency_SOW_Approver_Name__c != null;
-        }
-    }
+    public void checkIsSyncRequestedOnChildrenCampaign(){
 
-    public Boolean can_submit_for_approval{
-        get{
-            return Oblix_PermissionHandler.canSubmitForApproval(selected_sow.SOW_Status__c);
-        }
-    }
 
-    public Boolean can_reject_sow{
-        get{
-            return Oblix_PermissionHandler.canRejectSOW(selected_sow.SOW_Status__c, selected_sow.Id);
-        }
-    }
+        try{
+            if ([SELECT count() FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =:selected_sow.SOW_PFY__c AND Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED] > 0){
+                is_sync_requested = true;
+            }
+            else
+            {
+                is_sync_requested = false;
+            }
 
-    public Boolean can_approve_sow{
-        get{
-            return Oblix_PermissionHandler.canApproveSOW(selected_sow.SOW_Status__c, selected_sow.Id);
-        }
-    }
-
-    public Boolean is_sole_editor{
-        get{
-            return Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
-        }
-    }
-
-    public Boolean is_with_ul2{
-        get{
-            return (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
-        }
-    }
-
-    public Boolean show_submit{
-        get{
-            return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
-        }
-    }
-
+<<<<<<< HEAD
     //public Marketing_SOW__c selected_sow {get; set;}
     public id sow_id {get; set;}
     public id project_id {get; set;}
@@ -336,6 +360,18 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         
         return options;
         
+=======
+        }catch (DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not fetch campaign sync status'));
+            
+        }
+    }
+
+    public PageReference getSOW(){
+        String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
+        selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL), NULL);
+        return null;
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     }
     
 
@@ -508,7 +544,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         // not a DML exception
         } catch (Exception e){
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'There was an issue while trying to delete this SOW: ' + e.getMessage()));
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'You are not allowed to delete this SOW'));
+            return null;
         }
 
         return sow_details_page;
@@ -874,6 +911,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         return null;
     }
 
+<<<<<<< HEAD
     /*******************************************************************
         Purpose: calculates the number of attachements
         Parameters: none
@@ -992,66 +1030,170 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         } set;
     }
 
-
+=======
     /*******************************************************************************
-    * @author       Slavko Skular
-    * @date         2016-02-08
-    * @description  submit SOW for approval
+    * @author       Ignacio Llorca
+    * @date         2016-04-25
+    * @description  Slavko's method to attach a file to an existing SOW. If the page is in create mode,
+    *               inserts a SOW first (on cancel it will be deleted). Migrated to Main Detail page.
     ********************************************************************************/
-    public PageReference submitForApproval(){
+    public PageReference uploadAttachment(){
 
-        Id submitterId = UserInfo.getUserId();
+        PageReference uploadedAtt = new PageReference('/apex/oblix_sowmaindetail?sowId=' + selected_sow.Id + '&att=true');
+        uploadedAtt.setRedirect(true);
 
-        // skip unilever approval if creator is approver
-        if(submitterId == selected_sow.Unilever_SOW_Approver_Name__c){
-            selected_sow.SOW_Creator_is_Approver__c = true;
-            selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC;
+        if(pageAttachment.body == null){
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'No file selected. Select a file you would like to attach to this SOW.'));
+            return null;
         } else {
-            selected_sow.SOW_Creator_is_Approver__c = false;
-            selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL;
-        }
-        
-        selected_sow.OwnerId = submitterId;
-        selected_sow.Approval_Submitter__c = submitterId;
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 
-        //update selected_sow;
-        update selected_sow;
-
-        if(selected_sow.SOW_Creator_is_Approver__c){
-
-            // just lock the record
-            try{
-                Approval.lock(new List<Marketing_SOW__c>{selected_sow});
-            } catch (Exception e){
-                system.debug(e);
+            pageAttachment.OwnerId = UserInfo.getUserId();
+            pageAttachment.ParentId = selected_sow.id;
+            if(String.isEmpty(pageAttachment.ContentType)){
+                pageAttachment.ContentType = 'SOW';
             }
+            //IR - Comented out as far of DE330 defect fix
+            //pageAttachment.IsPrivate = true;
 
-        } else {
+            try{
 
-            // Create an approval request for the SOW
-            Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
-            req1.setComments(sowSubmitComments);
-            req1.setObjectId(selected_sow.Id);
-
-            // Submit on behalf of a specific submitter
-            req1.setSubmitterId(submitterId);
-
-            // Submit the record to specific process and skip the criteria evaluation
-            req1.setProcessDefinitionNameOrId(Oblix_Utils.APPROVAL_PROCESS_NAME);
-            //req1.setSkipEntryCriteria(true);
-
-            // Submit the approval request for the account
-            Approval.ProcessResult result = Approval.process(req1);
-
-            // Verify the result
-            //System.assert(result.isSuccess());
-
+                insert pageAttachment;
+                //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
+                // clear blob data from viewstate
+                pageAttachment.body = null;
+                List<Attachment> insertedAtt = [SELECT Id, Name, CreatedDate, Createdby.Name, Description 
+                                                FROM Attachment WHERE Id =: pageAttachment.Id limit 1];
+                if(!insertedAtt.isEmpty())
+                    liso_attachments.add(insertedAtt[0]);
+                // create new attachemnt instance for page upload
+                map_att_locale = new Map<Id, String>();
+                for(Attachment att:liso_attachments){
+                    map_att_locale.put(att.Id, date.valueof(att.CreatedDate).format());
+                }
+                pageAttachment = new Attachment();
+                return uploadedAtt;
+            } catch(DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'There was an error while uploading the attachment. '));
+                return null;
+            }
         }
-
-        PageReference ref = new PageReference('/apex/oblix_sowmain');
-        return ref;
 
     }
+
+    /*******************************************************************************
+    * @author       Ignacio Llorca
+    * @date         2016-02-26
+    * @description  deletes a single attachment attached to this SOW
+    ********************************************************************************/
+    public PageReference deleteAtt(){
+        PageReference uploadedAtt = new PageReference('/apex/oblix_sowmaindetail?sowId=' + selected_sow.Id + '&att=true');
+        uploadedAtt.setRedirect(true);
+
+        if(deleteAttachmentId != null){
+            try{
+                delete new Attachment(Id = deleteAttachmentId);
+                liso_attachments = getSOWAttachments(selected_sow.Id);
+                return uploadedAtt;
+            } catch (DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'You do not have permission to delete this attachment'));
+                return null;
+            }
+        }
+        return uploadedAtt;
+    }
+
+    /*******************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  sets  SOW.Sync_Status__c to "Sync Requested"
+    ********************************************************************************/
+    public PageReference initiateRollOver(){
+        System.DEBUG('In Here');
+        selected_sow.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+        try{
+            update selected_sow;
+        }catch (DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not initiate roll over'));
+            return null;
+        }
+        return null;
+    }
+
+    /******************************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  If no campaign Id is passed in - syncs all the child campaigns that have "Sync Required" to "Sync Reqeusted"
+    *               If campaign Id is passed in - only that single campaign is set to sync required 
+    *******************************************************************************************/
+    public PageReference syncCampaigns(){
+        System.DEBUG('In Here');
+        System.DEBUG(campaignIDSync);
+        PageReference sow_sync_requested = Page.Oblix_SOWMainDetail;
+        sow_sync_requested.setRedirect(true);
+        //sow_sync_requested.getParameters().put('sync_requested', 'true');
+        sow_sync_requested.getParameters().put('sowId', selected_sow.Id);
+
+        List<Oblix_SOW_Projects__c> campaignsToUpdate = new List<Oblix_SOW_Projects__c>();
+        if(campaignIDSync == null){
+            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
+                                                        FROM Oblix_SOW_Projects__c 
+                                                        WHERE Financial_Year__c =:selected_sow.SOW_PFY__c 
+                                                        AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
+                                                        LIMIT 1000]){
+                eachCampaign.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+                campaignsToUpdate.add(eachCampaign);
+            }
+        }else{
+            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
+                                                    FROM Oblix_SOW_Projects__c 
+                                                    WHERE Id =:campaignIDSync 
+                                                    AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
+                                                    LIMIT 1]){
+                eachCampaign.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+                campaignsToUpdate.add(eachCampaign);
+            }            
+        }
+        try{
+
+            update campaignsToUpdate;
+            campaignIDSync = null;
+        }catch (DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not update related Campaigns'));
+            return null;
+        }
+        return sow_sync_requested;
+    }
+
+    /******************************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  If min 1 campaign is sync required then send true otherwise false
+    *******************************************************************************************/
+    public Boolean shouldSyncAllCampaigns{
+
+        get{
+            Boolean sync_required = false;
+
+            try{
+                if ([SELECT count() FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =:selected_sow.SOW_PFY__c AND Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUIRED] > 0){
+                    sync_required = true;
+                }
+                else
+                {
+                    sync_required = false;
+                }
+
+                return sync_required;
+            }catch (DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not fetch campaign sync status'));
+                return sync_required;
+            }
+        }
+    }
+
+
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -1091,6 +1233,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         return ref;
 
     }
+<<<<<<< HEAD
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -1129,5 +1272,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     }
 
+=======
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
     
 }

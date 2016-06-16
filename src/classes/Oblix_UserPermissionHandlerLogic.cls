@@ -8,6 +8,8 @@
 *    --------------------------------------------------------------------------
 *   
 *    Slavko Skular              2016-02-07          Created
+*    Slavko Skular              2016-05-03          Updated to reassign an active
+													approval process
 
 ******************************************************************************************/
 public with sharing class Oblix_UserPermissionHandlerLogic {
@@ -47,7 +49,11 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 			brandCatKeys.add(cb.brand_id__c + '_' + cb.product_Category_Id__c);
 		}
 
+<<<<<<< HEAD
 		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c, OwnerId
+=======
+		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c, OwnerId, Oblix_AgencyEstimate__c, SOW_Status__c
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 												FROM Marketing_SOW__c 
 												WHERE OblixBrand__c IN :brandIds 
 													AND SmallProductCategory__c IN :categoryIds];
@@ -87,17 +93,40 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
     ********************************************************************************/
 	public static void updateSOWApprovers(List<Marketing_SOW__c> affectedSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
 
-		List<Marketing_SOW__c> sowsToUpdate = new List<Marketing_SOW__c>();
+		Map<Id, Marketing_SOW__c> sowsToUpdateMap = new Map<Id, Marketing_SOW__c>();
 
 		for(Marketing_SOW__c sow : affectedSOWs){
+<<<<<<< HEAD
 			if(Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map)){
 				sowsToUpdate.add(sow);
+=======
+			if(Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map)){
+				sowsToUpdatemap.put(sow.Id, sow);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 			}
 		}
 
 		// first exclude any SOWs that are currently being approved
-		List<ProcessInstance> pendingApprovals = [Select Id, TargetObjectId From ProcessInstance WHERE TargetObjectId IN :sowsToUpdate AND Status = 'Pending'];
-		Set<Id> lockedSOWIds = new Set<Id>();
+		List<ProcessInstanceWorkItem> pendingApprovalsToUpdate = new List<ProcessInstanceWorkItem>();
+		List<ProcessInstanceWorkItem> pendingApprovals = [Select Id, ActorId, ProcessInstance.TargetObjectId From ProcessInstanceWorkItem WHERE ProcessInstance.TargetObjectId IN :sowsToUpdateMap.values()];
+		for(ProcessInstanceWorkItem pis : pendingApprovals){
+			Marketing_SOW__c targetSOW = sowsToUpdateMap.get(pis.ProcessInstance.TargetObjectId);
+			if(targetSOW.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL && targetSOW.Unilever_SOW_Approver_Name__c != pis.ActorId && targetSOW.Unilever_SOW_Approver_Name__c != null){
+				pis.ActorId = targetSOW.Unilever_SOW_Approver_Name__c;
+				pendingApprovalsToUpdate.add(pis);
+			} else if(targetSOW.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL && targetSOW.Agency_SOW_Approver_Name__c != pis.ActorId && targetSOW.Agency_SOW_Approver_Name__c != null){
+				pis.ActorId = targetSOW.Agency_SOW_Approver_Name__c;
+				pendingApprovalsToUpdate.add(pis);
+			}
+		}
+
+		if(!sowsToUpdateMap.isEmpty())
+			update sowsToUpdateMap.values();
+
+		if(!pendingApprovalsToUpdate.isEmpty())
+			update pendingApprovalsToUpdate;
+
+		/*Set<Id> lockedSOWIds = new Set<Id>();
 		for(ProcessInstance pi : pendingApprovals)
 			lockedSOWIds.add(pi.TargetObjectId);
 
@@ -107,7 +136,7 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 
 		// after all related approvals have been aborted, no sowsToUpdate in scope should be locked anymore
 		if(!sowsToUpdate.isEmpty())
-			update sowsToUpdate;
+			update sowsToUpdate;*/
 
 	}
 
@@ -116,20 +145,21 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
     * @date         2016-02-07
     * @description  Aborts approvals in progress to unlock SOW records.
     ********************************************************************************/
-	public static void abortRelatedApprovals(Set<Id> lockedSOWIds){
+	/*public static void abortRelatedApprovals(Set<Id> lockedSOWIds){
 
-		List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :lockedSOWIds];
+		List<ProcessInstanceWorkitem> workItems = [Select Id, ActorId from ProcessInstanceWorkitem where ProcessInstance.TargetObjectId = :lockedSOWIds];
 
 		for(ProcessInstanceWorkitem wi : workItems){
 
 			Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
-			pwr.setComments('Approval automatically aborted due to a change in the list of users authorised for approving this brand and category.');
-			pwr.setAction('Removed');
+			//pwr.setComments('Approval automatically aborted due to a change in the list of users authorised for approving this brand and category.');
+			//pwr.setAction('Reassigned');
 			pwr.setWorkitemId(wi.Id);
+			//pwr.setNextApproverIds();
 			Approval.ProcessResult result =  Approval.process(pwr);
 
 		}
 
-	}
+	}*/
 
 }

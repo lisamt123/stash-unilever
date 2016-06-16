@@ -32,8 +32,25 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
                 lstCountryBoxNumberCalculator  = Oblix_TR04ProjectBusinessDriverScore.getOblixCalculators(Trigger.New, lstSplitProject);
                 lstCalculatorBoxRange = Oblix_TR04ProjectBusinessDriverScore.getCalculatorBoxRange();
 
+<<<<<<< HEAD
                 // get a map of project parent and the related project splits in scope
                 mid_liso_projects_ids_with_related_project_splits = Oblix_TR04ProjectBusinessDriverScore.getProjectAndTheRelatedProjectSplits(Trigger.New);
+=======
+                Oblix_ProjectHandlerLogic.retrieveCampaignForAdjustment(Trigger.New, true);
+
+                //System.debug('Entering Trigger beforeInsert'); 
+                //mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
+                //mids_campaign_id_asset_deliverables_text = Oblix_ProjectHandlerLogic.retrieveAssetDeliverables(Trigger.New);
+
+                //Oblix_ProjectHandlerLogic.populateCampaignsWithRelatedSplits(Trigger.New);                
+                //lstCampaignsWithQueryField = Oblix_TR04ProjectBusinessDriverScore.getCampaignsByIds(Trigger.New);
+                //lstSplitProject = Oblix_TR04ProjectBusinessDriverScore.getSplitsByProjects(Trigger.New);
+                //lstCountryBoxNumberCalculator  = Oblix_TR04ProjectBusinessDriverScore.getOblixCalculators(Trigger.New, lstSplitProject);
+                //lstCalculatorBoxRange = Oblix_TR04ProjectBusinessDriverScore.getCalculatorBoxRange();
+
+                //// get a map of project parent and the related project splits in scope
+                //mid_liso_projects_ids_with_related_project_splits = Oblix_TR04ProjectBusinessDriverScore.getProjectAndTheRelatedProjectSplits(Trigger.New);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
 
             }
         }
@@ -41,6 +58,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
         if(Oblix_ProjectHandler.triggerShouldExecute){
             if(Trigger.isUpdate) {
                 System.debug('Entering Trigger beforeUpdate'); 
+<<<<<<< HEAD
                 mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
                 mids_campaign_id_asset_deliverables_text = Oblix_ProjectHandlerLogic.retrieveAssetDeliverables(Trigger.New);
                 lstCampaignsWithQueryField = Oblix_TR04ProjectBusinessDriverScore.getCampaignsByIds(Trigger.New);
@@ -50,6 +68,23 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
 
                 // get a map of project parent and the related project splits in scope
                 mid_liso_projects_ids_with_related_project_splits = Oblix_TR04ProjectBusinessDriverScore.getProjectAndTheRelatedProjectSplits(Trigger.New);
+=======
+
+                Oblix_ProjectHandlerLogic.retrieveCampaignForAdjustment(Trigger.New, false);
+
+                //mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
+                //mids_campaign_id_asset_deliverables_text = Oblix_ProjectHandlerLogic.retrieveAssetDeliverables(Trigger.New);
+                //Oblix_ProjectHandlerLogic.populateCampaignsWithRelatedSplits(Trigger.New);                
+
+
+                //lstCampaignsWithQueryField = Oblix_TR04ProjectBusinessDriverScore.getCampaignsByIds(Trigger.New);
+                //lstSplitProject = Oblix_TR04ProjectBusinessDriverScore.getSplitsByProjects(Trigger.New);
+                //lstCountryBoxNumberCalculator  = Oblix_TR04ProjectBusinessDriverScore.getOblixCalculators(Trigger.New, lstSplitProject);
+                //lstCalculatorBoxRange = Oblix_TR04ProjectBusinessDriverScore.getCalculatorBoxRange();
+
+                //// get a map of project parent and the related project splits in scope
+                //mid_liso_projects_ids_with_related_project_splits = Oblix_TR04ProjectBusinessDriverScore.getProjectAndTheRelatedProjectSplits(Trigger.New);
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
             }
         }
     }

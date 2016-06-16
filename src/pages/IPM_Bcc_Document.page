@@ -55,8 +55,15 @@
                                         {!$Label.IPM_CURRENT_DOCUMENT_STATUS}
                                         <apex:outputPanel id="confirmBCC">
                                             <span class="status">
+<<<<<<< HEAD
                                                 <apex:outputText value="In Progress" rendered="{!!finance.IPM_Business_Case_Confirmed__c }"/>
                                                 <apex:outputText value="Confirmed" rendered="{!finance.IPM_Business_Case_Confirmed__c }"/>
+=======
+                                                 <!-- Below rendered condition is used to show the below output text -->
+                                                <apex:outputText value="In Progress" rendered="{!showConfirmButton}"/>
+                                                 <!-- Below rendered condition is used to show the below output text -->
+                                                <apex:outputText value="Confirmed" rendered="{!!showConfirmButton}"/>
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                             </span>
                                         </apex:outputPanel>                                        
                                     </div>
@@ -152,7 +159,7 @@
                 </apex:form>
             </div>
             <apex:outputPanel rendered="{!isEditable}">
-                <div id="ipmModalConfirmBcc" class="modal fade">
+                <div id="ipmModalConfirmBcc" class="ipmModalConfirmBcc modal fade">
                     <apex:form >
                         <div class="modal-dialog">
                             <div class="modal-content">

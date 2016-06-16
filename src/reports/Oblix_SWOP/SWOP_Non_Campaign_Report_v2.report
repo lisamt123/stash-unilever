@@ -28,19 +28,22 @@
         <field>Marketing_Basics__c.Role_Title__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.No_of_Hours_Required__c</field>
+        <field>Marketing_Basics__c.Description__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
     </columns>
     <columns>
         <field>Marketing_Basics__c.Oblix_Hourly_Rate__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.FTE__c</field>
+        <field>Marketing_Basics__c.FTE_report__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.OblixOtherItemFee__c</field>
+        <field>Marketing_Basics__c.Activity_Fee_UL__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.Oblix_FTE_Real_Price__c</field>
+        <field>Marketing_Basics__c.Resource_Fee_UL__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -59,6 +62,8 @@
     <reportType>CustomEntityCustomEntity$Marketing_SOW__c$Marketing_Basics__c@Marketing_Basics__c.OblixCountry__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
+    <sortColumn>CUST_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

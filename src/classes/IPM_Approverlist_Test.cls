@@ -4,24 +4,19 @@
 *
 */
 @isTest
-public class IPM_Approverlist_Test {
-
-    public static id sf_Id;
-    public static String BossCardInserted = 'The Bosscard inserted';
-    public static String BossCardupdated = 'The Bosscard Updated';
-    public static string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
-    public static IPM_Bosscard__c boss = new IPM_Bosscard__c();
-    public static User loginUser = new User();
-    public static User readUser = new User();
-    public static IPM_User_Profile__c up = new IPM_User_Profile__c();
-    public static IPM_approverlist BosscardApprover;
-    
+private class IPM_Approverlist_Test { 
+    private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
+    private static final string PLATFORM_LASTNAME='PLATFORM_USER';
+    private static IPM_Bosscard__c boss = new IPM_Bosscard__c();
+    private static User loginUser = new User();
+    private static User readUser = new User();
+    private static IPM_User_Profile__c up = new IPM_User_Profile__c();
+    private static IPM_approverlist BosscardApprover;
+    private static string bosscarName='TestApprBoss';
     /*************************************************
      * @Description: Test data initilaization
      * ***********************************************/
-    static void initializeData(){
-    
-        
+    @TestSetup static void initializeData(){
         readUser = IPM_TestFactory_Helper.createUser(false);
         insert readUser;
         List<User>userLists=[SELECT LastName FROM user WHERE id=:readUser.id LIMIT 1];
@@ -35,7 +30,7 @@ public class IPM_Approverlist_Test {
         system.runAs(loginUser){
             //Insert Bosscard
             boss = IPM_TestFactory_Helper.createIPMBosscard(false);
-            boss.IPM_BosscardName__c='TestApprBoss';
+            boss.IPM_BosscardName__c=bosscarName;
             insert boss;
             List<IPM_Bosscard__c>bossCardList=[SELECT IPM_BosscardName__c FROM IPM_Bosscard__c WHERE id=:boss.id LIMIT 1];
             System.AssertEquals(bossCardList[0].IPM_BosscardName__c, boss.IPM_BosscardName__c,'bosscard name is:'+bossCardList[0].IPM_BosscardName__c);//positive test
@@ -46,18 +41,19 @@ public class IPM_Approverlist_Test {
             insert up;
             List<IPM_User_Profile__c>usrProfileList=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_User__c=:loginUser.id LIMIT 1];
             System.AssertEquals(usrProfileList[0].IPM_User__c, loginUser.id,'userprofile user id is:'+usrProfileList[0].IPM_User__c);//positive test
-            BosscardApprover = new IPM_approverlist();
+            
         }
     }
 
     /*************************************************
-    * @Description: Test method to run test script
+    * @Description: after filter of approver name user should select one user from list 
+    * then select approver button will be enabled.
     * ***********************************************/
     Static testMethod void testSearchApprover()
     {
-            
+        loginUser=[SELECT ID FROM USER WHERE LastName=:PLATFORM_LASTNAME LIMIT 1];  
+        BosscardApprover = new IPM_approverlist();  
         Test.startTest();
-        initializeData();
         system.runAs(loginUser){
             BosscardApprover.searchapprover_STR = IPMUSER_LASTNAME;
             BosscardApprover.searchApproverUser();//search user
@@ -72,17 +68,21 @@ public class IPM_Approverlist_Test {
             IPM_approverlist BossApprover = new IPM_approverlist();
             BossApprover.approverid=loginUser.Id;
             BossApprover.holdApproverID();//hold selected user id only
-            System.Assert(BossApprover.displayApproveBtn,true);//just holding user id with true or flase
+            System.AssertEquals(BossApprover.displayApproveBtn,true,'display the approve button');//just holding user id with true or flase
         
             
         }
         Test.stopTest();
     }
     /*************************************************
-    * @Description: Test method to testsaveApprover
+    * @Description: once bosscard owner has selected an approver then he/she has to click on select approver button.
+    * here we are validating with two type of user.one has edit access and another has no access on bosscard record.
     * ***********************************************/
     Static testMethod void testSaveApprover(){
-        initializeData();
+        loginUser=[SELECT ID FROM USER WHERE LastName=:PLATFORM_LASTNAME LIMIT 1];  
+        readUser=[SELECT ID FROM USER WHERE LastName=:IPMUSER_LASTNAME LIMIT 1];
+        boss=[SELECT IPM_BosscardName__c FROM IPM_Bosscard__c WHERE IPM_BosscardName__c=:bosscarName LIMIT 1];
+        BosscardApprover = new IPM_approverlist(); 
         Test.startTest();
         system.runAs(loginUser){
             BosscardApprover.bosscardId=boss.id;

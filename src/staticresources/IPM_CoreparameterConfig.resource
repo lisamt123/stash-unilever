@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 IPM_Additional_Parameters__c,IPM_BET__c,IPM_CVP__c,IPM_ET__c,IPM_Help_Text_Two__c,IPM_Help_Text__c,IPM_MPA__c,IPM_Strategic_Intent__c,Name
 TRUE,TRUE,TRUE,TRUE,already exists in the market.,A physical change to the product or pack that is perceived as an upgrade or variation to an existing offering in the market and uses technology that,TRUE,TRUE,Renovation
 TRUE,TRUE,TRUE,TRUE,and claim strength utilizing technology that does not already exist in the market.,A physical change to the product or pack that brings new consumer benefits and/or significant improvements in performance,TRUE,TRUE,Innovation
 TRUE,TRUE,TRUE,FALSE,change to any product or pack (this includes artwork changes).,Activity that builds market penetration and/or consumption of the current product range without making a physical,TRUE,TRUE,BLG
 TRUE,TRUE,TRUE,TRUE,,,TRUE,TRUE,Innovation/Renovation
 TRUE,FALSE,FALSE,TRUE,"Examples: Value Improvement Program (VIP), Regulatory/Compliance, Supply Chain (changing production location).",Relaunch of products usually with no consumer perceivable change to the brand mix. A project the business enters to account for resource allocation (people and/or monetary e.g. Capex) and gatekeeping.,TRUE,TRUE,Operational
+=======
+"IPM_Additional_Parameters__c","IPM_BET__c","IPM_CPV__c","IPM_CVP__c","IPM_ET__c","IPM_FastTrack__c","IPM_Help_Text_Two__c","IPM_Help_Text__c","IPM_MPA__c","IPM_Strategic_Intent__c","IPM_WhiteSpace__c","Name","Project_Type__c"
+"true","true","true","true","true","false","already exists in the market.","A physical change to the product or pack that is perceived as an upgrade or variation to an existing offering in the market and uses technology that","true","true","false","Renovation","Renovation"
+"true","true","true","true","true","false","and claim strength utilizing technology that does not already exist in the market.","A physical change to the product or pack that brings new consumer benefits and/or significant improvements in performance","true","true","false","Innovation","Innovation"
+"true","true","true","true","false","true","change to any product or pack (this includes artwork changes).","Activity that builds market penetration and/or consumption of the current product range without making a physical","false","true","true","BLG","Brand Led Growth(BLG)"
+"true","true","true","true","true","true","","","true","true","true","Innovation/Renovation","Innovation/Renovation"
+"true","false","false","false","true","false","Examples: Value Improvement Program (VIP), Regulatory/Compliance, Supply Chain (changing production location).","Relaunch of products usually with no consumer perceivable change to the brand mix. A project the business enters to account for resource allocation (people and/or monetary e.g. Capex) and gatekeeping.","true","true","false","Operational","Operational"
+>>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
