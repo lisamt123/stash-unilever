@@ -3,6 +3,8 @@ src/classes/CPA_AttachmentUtil.cls
 src/classes/CPA_AttachmentUtil.cls-meta.xml
 src/classes/CPA_attachment_Trigger_Handler.cls
 src/classes/CPA_attachment_Trigger_Handler.cls-meta.xml
+src/classes/CPA_getThreshold.cls
+src/classes/CPA_getThreshold.cls-meta.xml
 src/objects
 src/objects/CPA_CR__c.object
 src/objects/CPA_HLE_Request__c.object
