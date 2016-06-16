@@ -86,7 +86,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+    <<fields>
         <fullName>Category__c</fullName>
         <description>To select the type of Enclosure.</description>
         <externalId>false</externalId>
@@ -106,6 +106,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E-Voucher</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>

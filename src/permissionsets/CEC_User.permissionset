@@ -361,6 +361,10 @@
         <apexPage>CEC_NewAccountContact</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>CEC_CaseTransfer</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Case.None</recordType>
         <visible>true</visible>
