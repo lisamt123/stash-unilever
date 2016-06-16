@@ -18,11 +18,11 @@
 
 public with sharing class Oblix_Utils {
 
-    private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
-    private static final String DIGITAL = 'digital';
-    private static final String AUDIO_VISUAL = 'Audio_Visual';
-    private static final String EXPERIENTIAL = 'Experiential';
-    private static final String STATIC_IMAGERY = 'Static_Imagery';
+    //private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
+    //private static final String DIGITAL = 'digital';
+    //private static final String AUDIO_VISUAL = 'Audio_Visual';
+    //private static final String EXPERIENTIAL = 'Experiential';
+    //private static final String STATIC_IMAGERY = 'Static_Imagery';
     private static Map<String, List<String>> ms_lis_fields_in_fieldset = new  Map<String, List<String>>();
     private static Map<String, Map<String, Schema.SObjectField>> fieldsByObject = new Map<String, Map<String, Schema.SObjectField>>();
 
@@ -45,29 +45,6 @@ public with sharing class Oblix_Utils {
         return MapRTCaseToDeveloperName;
     }
     
-    // Added by AES to get the list of subcategories 
-    public static list<string> getlstSubCat() {
-
-        list<string> lst = new list<string>();
-        lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
-        lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
-
-        return lst;
-
-    }
     
 
     /********************************************************************
@@ -139,341 +116,6 @@ public with sharing class Oblix_Utils {
         
         
         return lis_fields;
-    }
-
-    // Added by AES to get the list of subcategories related to recType 
-    public static list<string> lstSubCatPerRecT(string recType) {
-
-        list<string> lst = new list<string>();
-        if (recType == Label.Oblix_Lbl_UIUX_AudioVisuel) {
-            lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory);
-        }else
-        if (recType == Label.Oblix_Lbl_UIUX_Digital) {
-            lst.add(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory);
-        }else
-        if (recType == Label.Oblix_Lbl_UIUX_Experiential) {
-            lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory);
-        }else
-        if (recType == Label.Oblix_Lbl_UIUX_Static_Img) {
-            lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
-            lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
-        }else
-        if (recType == Label.Oblix_Lbl_UIUX_Stimulus_Materials) {
-            lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
-        }
-        
-        return lst;
-    }
-    
-    // Added by AES to get the list of stages 
-    public static list<string> getStageList() {
-        list<string> lstStage = new list<string>();
-        Schema.DescribeFieldResult lstProjectStage = Oblix_SOW_Projects__c.Project_Stage__c.getDescribe();
-        List<Schema.PicklistEntry> lstStageValues = lstProjectStage.getPicklistValues();
-        for (Schema.PicklistEntry a : lstStageValues) {
-            lstStage.add(a.getLabel());
-        }
-        return lstStage;
-    }
-
-    // Added by AES to get the map of options by Sub category  
-    public static map<string, list<string>> getMapSubCategOption() {
-        map<string, list<string>> mapSubCategOption = new map<string, list<string>>();
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('4');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('5');
-
-        mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory).add('3');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory).add('4');
-
-        return mapSubCategOption;
-    }
-
-    // Added by AES to get the map of options description by Sub category  
-    public static map<string, string> getmapSubCategOptionDescription() {
-        map<string, string> mapSubCategOptionDescription = new map<string, string>();
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 1, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 2, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 3, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 3, Label.Oblix_Lbl_UIUX_Audio_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 4, Label.Oblix_Lbl_UIUX_Audio_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 5, Label.Oblix_Lbl_UIUX_Audio_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory + 1, Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory + 2, Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory + 3, Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory + 4, Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory + 5, Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score5);
-
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory + 2, Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory + 3, Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory + 4, Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory + 5, Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score5);
-
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory + 1, Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory + 2, Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory + 3, Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory + 4, Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory + 5, Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score5);
-
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory + 1, Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory + 2, Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory + 3, Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory + 4, Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory + 5, Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score5);
-
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory + 1, Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory + 2, Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory + 3, Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory + 4, Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory + 5, Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory + 1, Label.Oblix_Lbl_UIUX_Specialist_Digital_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory + 2, Label.Oblix_Lbl_UIUX_Specialist_Digital_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory + 3, Label.Oblix_Lbl_UIUX_Specialist_Digital_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory + 4, Label.Oblix_Lbl_UIUX_Specialist_Digital_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory + 5, Label.Oblix_Lbl_UIUX_Specialist_Digital_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory + 1, Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory + 2, Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory + 3, Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory + 4, Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory + 5, Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score5);
-
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 3, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 4, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 5, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 2, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 3, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 4, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 5, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 3, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 4, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 5, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score5);
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 1, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 2, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 3, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 4, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score4);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 5, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score5);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory + 2, Label.Oblix_Lbl_UIUX_Stim_require_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory + 3, Label.Oblix_Lbl_UIUX_Stim_require_Score3);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory + 4, Label.Oblix_Lbl_UIUX_Stim_require_Score4);
-
-        return mapSubCategOptionDescription;
-    }
-    
-    // Added by AES to get the map of Sub categories definition
-    public static map<string, string> getmapSubCategOptionDefinition() {
-
-        map<string, string> mapSubCategOptionDefinition = new map<string, string>();
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, Label.Oblix_Lbl_UIUX_Audio_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory, Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Definition);
-
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory, Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory, Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory, Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory, Label.Oblix_Lbl_UIUX_Specialist_Digital_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory, Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory, Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Definition);
-
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Definition);
-
-        mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory, Label.Oblix_Lbl_UIUX_Stim_require_Definition);
-
-        return mapSubCategOptionDefinition;
-
-    }
-	@testVisible
-    private static String getProjectedItems2(String projected){
-        
-        List<String> projectedSetRetVal = new List<String>();
-        if(!String.isEmpty(projected)){// == false
-            
-            Set<String> projectedSet = new Set<String>(projected.split(','));
-            
-            List<String> stages = getStageList();
-             
-            if(projectedSet.contains(stages[0])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing);
-            if(projectedSet.contains(stages[1])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning);
-            if(projectedSet.contains(stages[2])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation);
-            if(projectedSet.contains(stages[3])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution);
-            if(projectedSet.contains(stages[4])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Production); 
-                
-        }
-        
-        return String.join(projectedSetRetVal,',');
-        
-    }
-    @testVisible
-    private static String getCompletedItems2(String completed){
-        
-        List<String> completedSetRetVal = new List<String>();
-        if(!String.isEmpty(completed)){// == false
-            
-            Set<String> completedSet = new Set<String>(completed.split(','));
-            
-            List<String> stages = getStageList();
-            
-            if(completedSet.contains(stages[0])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing);
-            if(completedSet.contains(stages[1])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning);
-            if(completedSet.contains(stages[2])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation);
-            if(completedSet.contains(stages[3])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution);
-            if(completedSet.contains(stages[4])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Production);
-                
-        }
-        
-        return String.join(completedSetRetVal,',');
-        
-    }
-   
-    // Added by AES 
-    public static string getSelectedStageCheckbox(string projected, string Completed) {
-        string lstProjectedItems = '';
-        string lstCompletedItems = '';
-
-        lstProjectedItems = getProjectedITems2(projected);
-        lstCompletedItems = getCompletedItems2(Completed);
-
-        system.debug('###lst Stage :' + lstCompletedItems + ',' + lstProjectedItems);
-        if (lstProjectedItems != '' && lstCompletedItems != '') {
-            return (lstCompletedItems + ',' + lstProjectedItems) ;
-        }
-        if (lstProjectedItems == '') {
-            return lstCompletedItems ;
-        }
-        if (lstCompletedItems == '') {
-            return lstProjectedItems ;
-        }
-        return '';
-
     }
     // Added by AES to get the abreviation for each sub category
     public static map<string, string> getAbreViationByRTBySubCatgForCardAssets() {
@@ -547,28 +189,6 @@ public with sharing class Oblix_Utils {
         return mapAbreviation;
     }
     
-    // Added by AES to get the description for each record type
-    // Could be moved to Custom Settings ? - Nimil
-    public static map<string, string> getMapRecordTypeDescription() {
-        map<string, string> mapRecordTypeDescription = new map<string, string>();
-        mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_AudioVisuel, ' - ' + Label.Oblix_Lbl_UIUX_AudioVisuel_Description);
-        mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Digital, ' - ' + Label.Oblix_Lbl_UIUX_Digital_Description);
-        mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Experiential, ' - ' + Label.Oblix_Lbl_UIUX_Experiential_Decription);
-        mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Static_Img, ' - ' + Label.Oblix_Lbl_UIUX_Static_Img_Description);
-        mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials, '');
-        return mapRecordTypeDescription;
-    }
-    
-    // Added by AES to return the list of %Fee 
-    public static map<string, integer> getFeePercentages(list<string> lstStage) {
-        map<string, integer> feePercentages = new map<string, integer>();
-        feePercentages.put(lstStage[0], 10);
-        feePercentages.put(lstStage[1], 20);
-        feePercentages.put(lstStage[2], 30);
-        feePercentages.put(lstStage[3], 25);
-        feePercentages.put(lstStage[4], 15);
-        return feePercentages;
-    }
     
     //VF09 Non Campaign Items
     public static id CountrryGetId(String country_name) {
@@ -583,44 +203,6 @@ public with sharing class Oblix_Utils {
         else{ 
             return null; 
         }
-    }
-
-    public static set<String> CountriesByFYear(String fYear_loc) {
-        List<Oblix_Calculator__c> lstCalculatorBoxNumber = [Select Name from Oblix_Calculator__c  where RecordTypeId = : Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and Financial_Year__c = :fYear_loc];
-        set<String> setCountries = new set<String>();
-        if (!lstCalculatorBoxNumber.isEmpty()) {
-            for (Oblix_Calculator__c calc : lstCalculatorBoxNumber) {
-                setCountries.add(calc.Name);
-            }
-        }
-        return setCountries;
-    }
-    
-    // Added by AES to get the record type for each sub category 
-    public static map<string, string> getMapRTforSubCat() {
-
-        map<string, string> mapRTforSubCat = new map<string, string>();
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
-
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
-
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(EXPERIENTIAL));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(EXPERIENTIAL));
-
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(STATIC_IMAGERY));
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(STATIC_IMAGERY));
-
-        mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Stimulus_Materials_Research_requirements'));
-
-        return mapRTforSubCat;
     }
 
     public static list<selectOption> selectOptionSortByLabel(list<selectOption> selectOptionsToSort) {
@@ -867,6 +449,22 @@ public with sharing class Oblix_Utils {
         return map_string_settings.get(label_value).Attribute_1__c;
     }
 
+    public static Boolean is_sync_job_running{
+
+        get{
+            Boolean job_is_running = false;
+
+            Oblix_Job_Orchestration__c jobIsRunning = Oblix_Job_Orchestration__c.getInstance(UserInfo.getOrganizationId());
+
+            if (NULL!=jobIsRunning){
+                job_is_running = jobIsRunning.Job_Is_Running__c;
+            }
+            system.debug('## checking job is running: ' + job_is_running);
+            //checkJobIsRunning = Oblix_VersionControl.checkIsJobRunning();
+            return job_is_running;
+        }
+
+    }
 
     public static List<Oblix_Settings__c> getOblixSettingsListNameStartsWith(String setting_name_prefix){
         
@@ -899,6 +497,119 @@ public with sharing class Oblix_Utils {
         return matchingValues;
     }
 
+    public static Oblix_Job_Orchestration__c job_orchestraion{
+            get{
+                return Oblix_Job_Orchestration__c.getOrgDefaults();
+            }
+        } 
+
+
+    public static String job_orchestration_notification_email{
+        get{
+            job_orchestration_notification_email = NULL == job_orchestraion.Notification_Email__c
+            ? 'nikhil.pradhan@accenture.com'
+            : job_orchestraion.Notification_Email__c;
+
+            return job_orchestration_notification_email;
+        }
+    }
+
+
+    public static String job_orchestration_email_subject{
+        get{
+            job_orchestration_email_subject = NULL == job_orchestraion.Sync_Job_Failure_Email_Subject__c
+            ? 'SWOP version control job failed'
+            : job_orchestraion.Sync_Job_Failure_Email_Subject__c;
+
+            return job_orchestration_email_subject;
+        }
+    }
+
+    public static String job_orchestration_email_display_name{
+        get{
+            job_orchestration_email_display_name = NULL == job_orchestraion.Email_Sender_display_Name__c
+            ? 'SWOP version control job failed'
+            : job_orchestraion.Email_Sender_display_Name__c;
+
+            return job_orchestration_email_display_name;
+        }
+    }
+
+
+    public static String job_orchestration_reply_to{
+        get{
+            job_orchestration_reply_to = NULL == job_orchestraion.Reply_To_Email__c
+            ? 'support@accenture.com'
+            : job_orchestraion.Reply_To_Email__c;
+
+            return job_orchestration_reply_to;
+        }
+    }
+
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-06-10
+    * @description  Send single email to a recipient
+    *********************************************************************/
+    public static void sendNotificationEmail(String email_subject, String recipient,String reply_to,String display_name,String email_body_text){
+
+        system.debug('started sending notification email');
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+    
+        String[] toAddresses = new String[] {recipient};
+        // Assign the addresses for the To and CC lists to the mail object.
+        mail.setToAddresses(toAddresses);
+        //mail.setCcAddresses(ccAddresses);
+        
+        // Specify the address used when the recipients reply to the email. 
+        mail.setReplyTo(reply_to);
+        
+        // Specify the name used as the display name.
+        mail.setSenderDisplayName(display_name);
+        
+        // Specify the subject line for your email address.
+        mail.setSubject(email_subject);
+        
+        // Set to True if you want to BCC yourself on the email.
+        mail.setBccSender(false);
+        
+        // Optionally append the salesforce.com email signature to the email.
+        // The email address of the user executing the Apex Code will be used.
+        mail.setUseSignature(false);
+        
+        
+        // Specify the text content of the email.
+        
+        mail.setHtmlBody(email_body_text);
+        system.debug(mail);
+
+       Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.Email[] { mail } , False);   
+       System.debug('SendEmailResult @@ '+r);
+    }
+
+
+    public static void updateJobRunningCustomSetting(boolean new_value){
+
+        job_orchestraion.Job_Is_Running__c = new_value;
+
+        update job_orchestraion;
+
+    }
+
+
+    public static void resetJobStatusBackToNormalRunning(){
+
+        job_orchestraion.Count_Failures__c = 0;
+        job_orchestraion.Requires_Manual_Attention__c = false;
+    
+        update job_orchestraion;
+
+    }
+
+
+
     /********************************************************************************
     *                                                                               *
     *                                  CONSTANTS                                    *
@@ -909,8 +620,10 @@ public with sharing class Oblix_Utils {
 
     public static final String CAMPAIGN_STAGES_ALL = 'Briefing;Strategy & Planning;Creative Ideation;Creative Execution;Production';
 
-    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v6';
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v8';
 
+    public static final String TOTAL_PROJECT_SCORE_CFY_FILED = 'Total_Project_Score__c';
+    public static final String TOTAL_PROJECT_SCORE_PFY_FILED = 'Total_Project_Score_PFY__c';
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
     public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';
     public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL = 'Awaiting Agency Approval';
@@ -919,6 +632,8 @@ public with sharing class Oblix_Utils {
     public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Returned by Agency';
     public static final String SOW_STATUS_DRAFT_WITH_UNILEVER = 'Draft - with Unilever';
     public static final String SOW_STATUS_OPEN_FOR_UPDATES = 'Open for Updates';
+    public static final String SOW_STATUS_FINALISED = 'Finalised';
+    public static final String SOW_STATUS_CAMPAIGN_SYNC_REQUIRED = 'Campaign Sync Required';
 
     public static final String CAMPAIGN_STATUS_CANCELLED = 'Cancelled';
     public static final String SWOP_REPORT_FOLDER = 'SWOP Reporting';
@@ -947,12 +662,17 @@ public with sharing class Oblix_Utils {
     public static final Integer MAX_ASSETS_PER_CONTEXT = 200;
     public static final Integer MAX_ATTACHMENTS_PER_CONTEXT = 10;
 
+    public static final String JOB_PROCESS_SET_SYNC_REQUESTED = 'Sync Requested';
     public static final String JOB_PROCESS_SET_STATUS = 'Set Job Status';
     public static final String JOB_PROCESS_CLONE_SOW = 'Clone SOW';
     public static final String JOB_PROCESS_CLONE_CAMPAIGN = 'Clone Campaigns';
     public static final String JOB_PROCESS_CLONE_NON_CAMPAIGN = 'Clone Non Campaigns';
     public static final String JOB_PROCESS_CLONE_ATTACHMENTS = 'Clone Attachments';
     public static final String JOB_PROCESS_CLONE_ASSETS = 'Clone Assets';
+    public static final String JOB_PROCESS_SYNC_ASSETS = 'Sync Assets';
+    public static final String JOB_PROCESS_CLONE_ATTACHMENT_FLAG = 'Set Clone Attachment Flag';
+    public static final String JOB_PROCESS_SET_PROCESSING_FLAG = 'Set sync job flag';
+    public static final String JOB_PROCESS_RECALCULATE_FEES_PFY = 'Recalculate PFY fees using CFY calculator';
 
     //public static final String JOB_PROCESS_SYNC_SOW = 'Sync SOW';
     public static final String JOB_PROCESS_SYNC_ADJUST_CAMPAIGN = 'Sync Adjust Campaigns';

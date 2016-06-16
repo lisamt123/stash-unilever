@@ -30,8 +30,8 @@ public with sharing class CEC_UserTriggerHelperTest{
             Profile p = [Select Id From profile Where name='Unilever Way - Marketing - Standard Marketing User' LIMIT 1]; 
             system.assert(p != null);
             User u = new User(alias = 'standt', email='pawan1234@capgemini.com', 
-            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US', 
-            localesidkey='en_US', profileid = p.Id, 
+            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey=CEC_Constants.languageUS, 
+            localesidkey=CEC_Constants.languageUS, profileid = p.Id, 
             timezonesidkey='America/Los_Angeles', username='standarduser23@testorg.com',Language__c='French');
             insert u;
             u.Language__c='Dutch';
@@ -49,8 +49,8 @@ public with sharing class CEC_UserTriggerHelperTest{
             Profile p = [Select Id From profile Where name='Unilever Way - Marketing - Standard Marketing User' LIMIT 1]; 
             system.assert(p != null);
             User u = new User(alias = 'standt', email='pawan1234@capgemini.com', 
-            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US', 
-            localesidkey='en_US', profileid = p.Id, 
+            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey=CEC_Constants.languageUS, 
+            localesidkey=CEC_Constants.languageUS, profileid = p.Id, 
             timezonesidkey='America/Los_Angeles', username='standarduser23@testorg.com');
             u.Language__c='Bosnian;Bulgarian;Croatian;Czech;Danish;Dutch;English;Finnish;Flemish;French;German;Greek;Hungarian;Italian;Moldavian;Norwegian;Polish;Portuguese;Serbian;Slovak;Slovenian;Spanish;Swedish;Bosnian;Bulgarian;Croatian;Czech;Danish;Dutch;English;Finnish;Flemish;French;German;Greek';
             insert u;
@@ -71,8 +71,8 @@ public with sharing class CEC_UserTriggerHelperTest{
             system.assert(p != null);
             
             User u = new User(alias = 'standt', email='pawan234@capgemini.com', 
-            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US', 
-            localesidkey='en_US', profileid = p.Id, 
+            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey=CEC_Constants.languageUS, 
+            localesidkey=CEC_Constants.languageUS, profileid = p.Id, 
             timezonesidkey='America/Los_Angeles', username='standarduser24@testorg.com',Product_Category__c='Dressings');
             insert u;
             
@@ -94,8 +94,8 @@ public with sharing class CEC_UserTriggerHelperTest{
             system.assert(p != null);
         
             User u = new User(alias = 'standt', email='pawan123@capgemini.com', 
-            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US', 
-            localesidkey='en_US', profileid = p.Id, 
+            emailencodingkey='UTF-8', lastname='Testing', languagelocalekey=CEC_Constants.languageUS, 
+            localesidkey=CEC_Constants.languageUS, profileid = p.Id, 
             timezonesidkey='America/Los_Angeles', username='standarduser24@testorg.com');
             u.Product_Category__c='Hair Care;Household Care;Ice Cream;Laundry;Non Corporate Home Care Category;Non Corporate Personal Care Cat;Parent and Finance Category;Plantations;Prestige Legacy;Professional Cleaning Category;Savoury;Skin Cleansing;Spreads;Skin Care;Hair Care;Household Care;Ice Cream;Laundry;Non Corporate Home Care';
             insert u;

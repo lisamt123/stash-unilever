@@ -25,9 +25,6 @@
         <field>CREATED_DATE</field>
     </columns>
     <columns>
-        <field>OLDVAL</field>
-    </columns>
-    <columns>
         <field>NEWVAL</field>
     </columns>
     <filter>

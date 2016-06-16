@@ -110,7 +110,7 @@ public class Amr_CAPJobPortfolioController_Test{
     User u = new User(Alias = 'standt12', Email='standarduser12@testorg.com', 
             EmailEncodingKey='UTF-8', LastName='Testing12', LanguageLocaleKey='en_US', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
-            TimeZoneSidKey='America/Los_Angeles', UserName='standarduser12@testorg.com');
+            TimeZoneSidKey='America/Los_Angeles', UserName='stanuseramrms12@amrorg.com');
             insert u;
          Amr_Project_Details__c projDetail = new Amr_Project_Details__c(Name='testProject');
         insert projDetail;    

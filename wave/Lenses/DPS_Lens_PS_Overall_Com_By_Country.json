@@ -1,0 +1,40 @@
+{
+    "name": "Lens_PS_Overall_Com_By_Country",
+    "label": "Lens: PS Overall (Com By Country)",
+    "visualizationType": "vbar",
+    "state": {
+        "query": {
+            "measures": [
+                [
+                    "avg",
+                    "PS_Compliance"
+                ]
+            ],
+            "groups": [
+                "Country"
+            ],
+            "filters": [
+                [
+                    "Date of audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -6
+                            ],
+                            [
+                                "month",
+                                -6
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SS8SAM",
+        "name": "PS_COMPLIANCE_AGGREGATED",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SS8SAM"
+    }
+}

@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>a Detailed object to Project and a Master object to the the Project Section object.</description>
@@ -53,12 +52,12 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IPM_Category__c</fullName>
+        <description>To store the category of the project.</description>
         <externalId>false</externalId>
         <inlineHelpText>To hold the Categories</inlineHelpText>
         <label>Category</label>
@@ -114,6 +113,7 @@
     </fields>
     <fields>
         <fullName>IPM_Template_Complexity__c</fullName>
+        <description>To store the complexity of the project.</description>
         <externalId>false</externalId>
         <label>IPM_Template_Complexity</label>
         <picklist>
@@ -133,6 +133,7 @@
     </fields>
     <fields>
         <fullName>IPM_Template_Name__c</fullName>
+        <description>To store the name of the template.</description>
         <externalId>false</externalId>
         <label>IPM Template Name</label>
         <length>60</length>

@@ -14,7 +14,7 @@ Purpose:
 @isTest
 public with sharing class Amr_ReportTrigger_Test{
     
-    static testMethod void testReportTrigger() {
+    static testMethod void testMethod1() {
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
          insert customSetting;
           
@@ -69,10 +69,10 @@ public with sharing class Amr_ReportTrigger_Test{
         handler.bulkBefore();
         handler.bulkAfter();
         sObject s = new Amr_Job_Details__c();
-        handler.beforeInsert(s);
-        handler.beforeUpdate(s,s);
-        handler.beforeDelete(s);
-        handler.afterDelete(s);
+        handler.beforeInsert();
+        handler.beforeUpdate();
+        handler.beforeDelete();
+        handler.afterDelete();
         handler.andFinally();
         system.assert(jobDetailsObj1!=null);
     }

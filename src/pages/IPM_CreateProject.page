@@ -19,11 +19,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 noPadleft noPadright custMarginTop newProjectOption">
+                    <!-- Render condition is to verify if the current logged in user has edit/create access on BOSSCARD  -->
                     <apex:outputPanel rendered="{!isBoosEdtable='true'}">                    
                         <div class="col-xs-6 noPadleft radioButton">
                             <div class="bosscardbutton-grey bosscardbutton-blue radioIcon"></div>
                             <div class="selectradioButton">
-                                <input id="bosscardbutton" class="rbutton" type="radio" name="bosscard" value="/apex/IPM_Bosscard" checked="checked" ></input>
+                                <input id="bosscardbutton" class="rbutton" type="radio" name="bosscard" value="{!URLFOR($Page.IPM_Bosscard,null)}" checked="checked" ></input>
                                 <label class="selected" for="bosscardbutton"></label>
                             </div> 
                             <div class="rlabel fontBold">
@@ -32,6 +33,7 @@
                             </div>
                         </div>
                         </apex:outputPanel>
+                        <!-- Render condition is to verify if the current logged in user has edit/create access on Project  -->
                         <apex:outputPanel rendered="{!isProEditable='true'}">                        
                         <div class="col-xs-6 radioButton">
                         
@@ -43,7 +45,7 @@
                             <div class="projectbutton-grey radioIcon">
                             </div>
                             <div class="selectradioButton">
-                                <input id="projectbutton" class="rbutton" type="radio"  name="bosscard" value="/apex/IPM_ProjectSetupView"></input>  
+                                <input id="projectbutton" class="rbutton" type="radio"  name="bosscard" value="{!URLFOR($Page.IPM_ProjectSetupView,null)}"></input>  
                                 <label for="projectbutton"></label>
                             </div> 
                             <div class="rlabel">

@@ -64,10 +64,12 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean flag{get;set;}
     public boolean display{get;set;}
     public boolean displayRap{get;set;}
+    public boolean boolIsProductionActivityError{get;set;}
     public String CheckWithCMI{get;set;}
 
     public Amr_AdManagerController_CC(){
         try{
+        	boolIsProductionActivityError = false;
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             jobDetails = new Amr_Job_Details__c();
             r = [SELECT Introduction__c, Header__c, Footer__c, Allocation__c, Automatic_Allocation_On__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
@@ -122,8 +124,7 @@ public with sharing class Amr_AdManagerController_CC{
 
    ********************************************************************/ 
     
-    public String getMethodToPassProjectNames(){
-       
+    public String getMethodToPassProjectNames(){       
         return JSON.serialize(listString);
     }
     
@@ -139,13 +140,24 @@ public with sharing class Amr_AdManagerController_CC{
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
             Set<String> brnadPosNameSet = new Set<String>();
+            
+            /* start Added later */
+            brandNameFromPage 	= null;
+            
+            listOfBrandPosition = new List<SelectOption>(); 
+        	listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        	listOfBrand = new List<SelectOption>();
+         	listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+         	
+        	/* end Added later */
+        	
             system.debug('inside brand postition======>'+listOfBrandPosition);
             for(MDO_BrandPositions__c bps : brandPositionlst){
                 if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
                     listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
                     brnadPosNameSet.add(bps.brand_position_id__r.name);
                 }
-            }
+            }            
            }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -380,7 +392,8 @@ public with sharing class Amr_AdManagerController_CC{
             if(jobDetails.Stage_of_Production_Activity__c == null){
                 StageProductionActivity = true;           
             }
-            //okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
+            okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
+            boolIsProductionActivityError = true;
            
             if( !okayToSave || CheckWithCMIflag || yourEmailAddressFlag || unileverFinanceMemberEmailFlag || projectLeaderCountryClusterFlag || finalApproverMaterialEmailFlag || functionYouArePartFlag
                  || budgetResponsibilityFlag || budgetAllocatedCountryFlag || budgetAllocatedInputFlag || categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag || agencyDirectorEmailFlag

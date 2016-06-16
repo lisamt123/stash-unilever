@@ -25,8 +25,8 @@ public with sharing class Amr_SubmittedSavingController_CC {
     public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
     public String savingId {get;set;}
     public String acceptedQuoteId{get;set;}
-    public List<FeedItem> feedItemAcceptedList{get;set;}
-    public List<FeedItem> feedItemAdditionalList {get;set;}
+    public List<Amr_Quote__Feed> feedItemAcceptedList{get;set;}
+    public List<Amr_Saving__Feed> feedItemAdditionalList {get;set;}
     public String chosenFileId {get;set;}
     public String jobId{get;set;}
     //Appraisal
@@ -74,14 +74,14 @@ public with sharing class Amr_SubmittedSavingController_CC {
     public Amr_SubmittedSavingController_CC(){
         try{
     savingIdFromPage = ApexPages.currentPage().getParameters().get('id');
-    feedItemAcceptedList = new List <FeedItem>();
-    feedItemAdditionalList = new List <FeedItem>();
+    feedItemAcceptedList = new List <Amr_Quote__Feed>();
+    feedItemAdditionalList = new List <Amr_Saving__Feed>();
     if(savingIdFromPage!=null){
         editedSavingMode = false;
         viewSavingMode = true;
         savObj = new Amr_Saving__c();
         savObj = [select PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
+                               No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films_List__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Id=:savingIdFromPage limit 1];
                     
         savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:savingIdFromPage limit 1];
@@ -95,7 +95,7 @@ public with sharing class Amr_SubmittedSavingController_CC {
         shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
             }
             
-           
+           shootLocation.sort(); 
                      
              userId = userinfo.getuserid(); 
              quoteInformation();
@@ -203,7 +203,7 @@ Returns:
     public void getFeedItemAcceptedData(){
         try{
         feedItemAcceptedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                          FROM FeedItem where ParentId =:acceptedQuote.Id];
+                                          FROM Amr_Quote__Feed where ParentId =:acceptedQuote.Id];
        
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -271,7 +271,7 @@ Returns:
     public void getFeedItemAdditionalData(){
         try{
         feedItemAdditionalList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                          FROM FeedItem where ParentId =:savingIdFromPage];
+                                          FROM Amr_Saving__Feed where ParentId =:savingIdFromPage];
        
     }catch(Exception ex){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -349,7 +349,7 @@ Checking mandatory object field validation, which can not be break down into mul
                 savingMessages = true;
                  okayToSave=false;
             }
-            if(acceptedQuote.PC_Costs_Euro_Amount__c == 0 || acceptedQuote.PPC_Costs_Euro_Amount__c == 0 || acceptedQuote.CA_Costs_Euro_Amount__c == 0){
+           /* if(acceptedQuote.PC_Costs_Euro_Amount__c == 0 || acceptedQuote.PPC_Costs_Euro_Amount__c == 0 || acceptedQuote.CA_Costs_Euro_Amount__c == 0){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Quote (Opening and Closing Quote 1)'));
                  savingMessages = true;
                  okayToSave=false;
@@ -363,7 +363,7 @@ Checking mandatory object field validation, which can not be break down into mul
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter What type of Savings is this?'));
                 savingMessages = true;
                  okayToSave=false;
-            }
+            }*/
             if(!okayToSave){
             system.debug('inside error');
             return null;
@@ -384,7 +384,61 @@ Checking mandatory object field validation, which can not be break down into mul
             }
          
             }
-  
+          
+          
+                List<String> masterLength = savObj.No_of_Masters_List__c.split(',');
+                List<String> masterLengthDuration = savObj.Duration_of_Masters__c.split(',');
+                
+                
+                List<String> masterLengthAdditionalFilm = savObj.No_of_Additional_Films_List__c.split(',');
+                List<String> masterLengthAdditionalDuration = savObj.Duration_of_Additional_Films__c.split(',');
+                
+                Integer masterSize = masterLength.size();
+                Integer masterDurationSize = masterLengthDuration.size();
+                
+                Integer masterSizeAdditionalFilms = masterLengthAdditionalFilm.size();
+                Integer masterAdditionalDurationSize = masterLengthAdditionalDuration.size();
+          
+          
+          
+          
+          for(integer i=1;i<=50;i++){
+                    String fieldNameNumOfMaster = 'Number_Of_Masters_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameDurationOfMaster = 'Duration_of_Masters_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameNumOfAdditionalFilm = 'No_of_Additional_Films_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameValueDurationOfAdditionalFilm = 'Duration_of_Additional_Films_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    savObj.put(fieldNameNumOfMaster,0);
+                    savObj.put(fieldNameDurationOfMaster,0);
+                    savObj.put(fieldNameNumOfAdditionalFilm,0);
+                    savObj.put(fieldNameValueDurationOfAdditionalFilm,0);
+                }
+                
+                for(integer i=0;i<masterSize;i++){
+                    String fieldName = 'Number_Of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    system.debug('field name=='+fieldName);
+                    savObj.put(fieldName,Integer.valueOf(masterLength.get(i)));
+                }
+                
+                for(integer i=0;i<masterDurationSize;i++){
+                    String fieldNameValue = 'Duration_of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    system.debug('field name=='+fieldNameValue);
+                    savObj.put(fieldNameValue,Integer.valueOf(masterLengthDuration.get(i)));
+                } 
+                
+                
+                for(integer i=0;i<masterSizeAdditionalFilms;i++){
+                    String fieldName = 'No_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    system.debug('field name=='+fieldName);
+                    savObj.put(fieldName,Integer.valueOf(masterLengthAdditionalFilm.get(i)));
+                }
+                
+                for(integer i=0;i<masterAdditionalDurationSize;i++){
+                    String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    system.debug('field name=='+fieldNameValue);
+                    savObj.put(fieldNameValue,Integer.valueOf(masterLengthAdditionalDuration.get(i)));
+                } 
+          
+          
         update savObj;
    
         update acceptedQuote;

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>WWP_LossType_DC_FU</fullName>
+        <field>Loss_Type__c</field>
+        <literalValue>Dispatch Compliance</literalValue>
+        <name>WWP LossType DC FU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>WWP_LossType_OR_FU</fullName>
+        <field>Loss_Type__c</field>
+        <literalValue>Output Reliability</literalValue>
+        <name>WWP_LossType_OR_FU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>WWP_Loss_Type_DC_FU</fullName>
         <field>Loss_Type__c</field>
         <literalValue>Dispatch Compliance</literalValue>
@@ -11,6 +29,15 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>WWP_Loss_Type_MRP_FU</fullName>
+        <field>Loss_Type__c</field>
+        <literalValue>MRP Compliance</literalValue>
+        <name>WWP Loss Type MRP FU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>WWP_Loss_Type_MRP_FU1</fullName>
         <field>Loss_Type__c</field>
         <literalValue>MRP Compliance</literalValue>
         <name>WWP Loss Type MRP FU</name>
@@ -48,10 +75,11 @@
     <rules>
         <fullName>WWP Loss Type MRP WF</fullName>
         <actions>
-            <name>WWP_Loss_Type_MRP_FU</name>
+            <name>WWP_Loss_Type_MRP_FU1</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>(1 AND 3) OR ( 2 AND 4)</booleanFilter>
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Actual_Receipt__c</field>
             <operation>notEqual</operation>
@@ -59,6 +87,16 @@
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Planned_Receipt__c</field>
             <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Actual_Receipt__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Planned_Receipt__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -108,11 +146,11 @@
     <rules>
         <fullName>WWP_LossType_DC_WF</fullName>
         <actions>
-            <name>WWP_Loss_Type_DC_FU</name>
+            <name>WWP_LossType_DC_FU</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1 OR 2) AND (3 AND 4)</booleanFilter>
+        <booleanFilter>((1 AND 5)  OR (2 AND 6)) AND ((3 OR 7) AND (4 OR 8))</booleanFilter>
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
             <operation>notEqual</operation>
@@ -128,17 +166,37 @@
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Planned_Production__c</field>
             <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Planned_Dispatch__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Actual_Production__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Planned_Production__c</field>
+            <operation>equals</operation>
+            <value>0</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>WWP_LossType_OR_WF</fullName>
         <actions>
-            <name>WWP_Loss_Type_OR_FU</name>
+            <name>WWP_LossType_OR_FU</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1 OR 2) AND (3 AND 4)</booleanFilter>
+        <booleanFilter>((1 AND 5)  OR (2 AND 6)) AND ((3 OR 7) AND (4 OR 8))</booleanFilter>
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Actual_Production__c</field>
             <operation>notEqual</operation>
@@ -154,6 +212,26 @@
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Planned_Dispatch__c</field>
             <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Actual_Production__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Planned_Production__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Planned_Dispatch__c</field>
+            <operation>equals</operation>
+            <value>0</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

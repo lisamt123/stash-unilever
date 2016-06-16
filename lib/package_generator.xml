@@ -456,7 +456,7 @@
 		<antcall target="generatePackageMembersAura" />
 		<antcall target="generatePackageMembersLabels" />		
 
-		<echo file="${stage.dir}/${target}" append="true"><![CDATA[	<version>35.0</version>
+		<echo file="${stage.dir}/${target}" append="true"><![CDATA[	<version>37.0</version>
 </Package>]]></echo>
 	</target>
 	

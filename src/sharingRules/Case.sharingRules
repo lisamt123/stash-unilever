@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_ANZ</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals ANZ</label>
+        <sharedTo>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Australia,New Zealand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Indonesia</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Indonesia</label>
+        <sharedTo>
+            <role>CEC_User_Indonesia</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Indonesia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Philippines</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Philippines</label>
+        <sharedTo>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_South_Africa</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals South Africa</label>
+        <sharedTo>
+            <role>CEC_User_South_Africa</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>South Africa</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_ANZ_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals ANZ - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Indonesia_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Indonesia - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Philippines_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Philippines - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_South_Africa_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals South Africa - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_Africa_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Role Equals Africa - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_Africa</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_Africa</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_SEAA_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Role Equals SEAA - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_SEAA</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_SEAA</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

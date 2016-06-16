@@ -2,7 +2,7 @@
 <!-- 
     <apex:include pageName="Amr_common" />
      -->
-     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/new-saving.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_new_saving.js')}"/>
     <style type="text/css">        
         .minusclass {
             background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ExpandArrow.png')}");                           
@@ -31,11 +31,17 @@
             right: -10px;
             top: -7px;
             width: 15px;
-        }        
+        }
+        .summary-values-label {
+        	width:140px; 
+        }
+        .input-symbol-euro input {
+		    padding: 0 10px !important;
+		}  		            
     </style>
     <apex:outputPanel rendered="{!if(fileUploadMessage==true,true,false)}">
         <script type="text/javascript">         
-            alertDocumentSubmission();
+            alertDocumentSubmission();            
         </script>
     </apex:outputPanel>
     
@@ -96,6 +102,90 @@
                                     <apex:inputField value="{!savingObj.Production_Type__c}" />
                                 </div>
                             </div>
+                            <div class="displayIB VATop margin-right20" style="margin-top:8px;">
+	                            <div style="margin-bottom:5px;">
+	                                Masters
+	                            </div>
+	                            <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:90%;">
+	                                <div class="row1MainParent">
+	                                    <apex:inputField value="{!savingObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
+	                                    <apex:inputField value="{!savingObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
+	                                    <apex:inputField value="{!savingObj.No_of_Masters__c}" styleClass="noOfMastersAddition hide"/>
+	                                    <div class="row1" style="margin-bottom:5px;">
+	                                        <div class="displayIB" style="width:170px;">
+	                                            Duration                                        
+	                                        </div>
+	                                        <div class="displayIB VATop">
+	                                            Number                                      
+	                                        </div>
+	                                    </div>
+	                                    <div class="row1Main">
+	                                        <div class="displayIB VATop" style="width:140px;">                                      
+	                                            <div class="job-field-input" style="font-weight:bold;">
+	                                                <input type="text" class="duration-of-masters-class" placeholder="In Seconds" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="displayIB VATop" style="margin:10px 18px 0 0;">                                     
+	                                            X
+	                                        </div>
+	                                        <div class="displayIB VATop" style="width:140px;">                                      
+	                                            <div class="job-field-input" style="font-weight:bold;">
+	                                                <input type="text" class="no-of-masters-class" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="displayIB remove_master_durationrows pointer" style="margin:6px 0 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                      
+	                                            x
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                <div style="margin-top:20px;">
+	                                    <input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
+	                                </div>
+	                                <div class="clear"></div>
+	                            </div>
+                            </div>
+                            <div class="displayIB VATop margin-right20" style="margin-top:8px;">
+	                            <div style="margin-bottom:5px;">
+	                                Additional Films
+	                            </div>
+	                            <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:90%;">
+	                                <div class="row1AdditionalMainParent">
+	                                    <apex:inputField value="{!savingObj.Duration_of_Additional_Films__c}" styleClass="durationOfAdditionalFilmsMain hide"/>
+	                                    <apex:inputField value="{!savingObj.No_of_Additional_Films_List__c}" styleClass="noOfAdditionalFilmsMain hide"/>
+	                                    <apex:inputField value="{!savingObj.No_of_Additional_Films__c}" styleClass="noOfAdditionalFilmsAddition hide"/>
+	                                    <div class="row1Additional" style="margin-bottom:5px;"> 
+	                                        <div class="displayIB" style="width:170px;">
+	                                            Duration                                        
+	                                        </div>
+	                                        <div class="displayIB VATop">
+	                                            Number                                      
+	                                        </div>
+	                                    </div>
+	                                    <div class="row1MainAdditional">
+	                                        <div class="displayIB VATop" style="width:140px;">                                      
+	                                            <div class="job-field-input" style="font-weight:bold;">
+	                                                <input type="text" class="duration-of-additional-films-class" placeholder="In Seconds" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="displayIB VATop" style="margin:10px 18px 0 0;">                                     
+	                                            X
+	                                        </div>
+	                                        <div class="displayIB VATop" style="width:140px;">                                      
+	                                            <div class="job-field-input" style="font-weight:bold;">
+	                                                <input type="text" class="no-of-additional-films-class" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="displayIB remove_additional_films_durationrows pointer" style="margin:6px 0 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                      
+	                                            x
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                <div style="margin-top:20px;">
+	                                    <input type="button" value="Add More" class="commonbtn add_additional_films_durationrows pointer" />
+	                                </div>
+	                                <div class="clear"></div>
+	                            </div>
+                            </div>
                             <!--
                             <div class="job-field-parent displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label">{!$Label.Amr_No_Of_Masters}</div>
@@ -108,8 +198,7 @@
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.Duration_of_Masters__c}" html-placeholder="{!$Label.Amr_Duration_Of_Master_Example}"/>
                                 </div>
-                            </div>
-                            -->
+                            </div>                              
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label">{!$Label.Amr_No_of_Additional_Films}</div>
                                 <div class="job-field-input" style="font-weight:bold;">
@@ -122,12 +211,13 @@
                                     <apex:inputField value="{!savingObj.Duration_of_Additional_Films__c}" html-placeholder="{!$Label.Amr_Duration_Of_Master_Example}"/>
                                 </div>
                             </div>
+                            -->
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label">{!$Label.Amr_No_of_Shoot_Days}</div>
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.No_of_shoot_days__c}" />
                                 </div>
-                            </div>
+                            </div> 
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label compulsory-field"><span>{!$Label.Amr_Stage_RAP_engaged}<strong></strong></span></div>
                                 <div class="job-field-input" style="font-weight:bold;">
@@ -146,112 +236,73 @@
                                     <apex:inputField value="{!savingObj.Scope_re_brief__c}" />
                                 </div>
                             </div>
-                            <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
-                                <div class="job-field-label compulsory-field"><span>{!$Label.Amr_Shoot_Location}<strong></strong></span></div>
+                            <div class="job-field-parent job-field-parent-smaller displayIB VATop margin-bottom20" style="margin-top:8px;">
+                                <div class="job-field-label"><span>{!$Label.Amr_Shoot_Location}<strong></strong></span></div>
                                 <div class="job-field-input job-field-input-multiselect" style="font-weight:bold;">
                                     <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
                                         <apex:selectOptions value="{!shootLocation}" />
                                     </apex:selectList>
                                 </div>
                             </div>
-                            <div class="clear"></div>
-                            <div style="margin-bottom:5px;margin-top:20px;">
-                                Masters
-                            </div>
-                            <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:30%;">
-                                <div class="row1MainParent">
-                                    <apex:inputField value="{!savingObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
-                                    <apex:inputField value="{!savingObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
-                                    <apex:inputField value="{!savingObj.No_of_Masters__c}" styleClass="noOfMastersAddition hide"/>
-                                    <div class="row1" style="margin-bottom:5px;">
-                                        <div class="displayIB" style="width:170px;">
-                                            Duration                                        
-                                        </div>
-                                        <div class="displayIB VATop">
-                                            Number                                      
-                                        </div>
-                                    </div>
-                                    <div class="row1Main">
-                                        <div class="displayIB VATop" style="width:140px;">                                      
-                                            <div class="job-field-input" style="font-weight:bold;">
-                                                <input type="text" class="duration-of-masters-class" placeholder="In Seconds" />
-                                            </div>
-                                        </div>
-                                        <div class="displayIB VATop" style="margin:5px 18px 0 0;">                                     
-                                            X
-                                        </div>
-                                        <div class="displayIB VATop" style="width:140px;">                                      
-                                            <div class="job-field-input" style="font-weight:bold;">
-                                                <input type="text" class="no-of-masters-class" />
-                                            </div>
-                                        </div>
-                                        <div class="displayIB remove_master_durationrows pointer" style="margin:10px 18px 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                      
-                                            x
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="margin-top:20px;">
-                                    <input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
-                                </div>
-                                <div class="clear"></div>
-                            </div>
+                            <div class="clear"></div>                            
+                            
                             <div class="margin-left12 text-camel-case" style="font-size:14px;margin-bottom:12px;">
                                 {!$Label.Amr_Your_saving_review}
                                 <span style="color:red;font-size:10px;text-transform: none;">(These fields will be auto populated after submitting the saving)</span>
                             </div>                            
                             <div class="bg-g1 padding12">
                                 <div class="displayIB VATop summary-values-quotes  margin-bottom10">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Saving_Average_of_Quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Saving_Average_of_Quotes}</div>
                                     <div class="left" style="font-weight:bold;">
                                         &euro;&nbsp;<apex:inputText value="{!savingObj.Saving_Average_of_Quotes__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Percentage_Saving_Average_of_Quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Percentage_Saving_Average_of_Quotes}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Percentage_Saving_Average_of_Quotes__c}" html-readonly="true"/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Percentage_Saving_Average_of_Quotes__c}" html-readonly="true"/>
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Euro_Saving_Accepted_Quote}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Euro_Saving_Accepted_Quote}</div>
                                     <div class="left input-symbol-euro" style="font-weight:bold;">
                                         &euro;&nbsp;<apex:inputtext value="{!savingObj.Saving_Accepted_Quote_Euro__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Percentage_Saving_Accepted_Quote}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Percentage_Saving_Accepted_Quote}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputtext value="{!savingObj.Percentage_Saving_Accepted_Quote__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputtext value="{!savingObj.Percentage_Saving_Accepted_Quote__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Cost_Per_Master}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Cost_Per_Master}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Cost_Per_Master__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Cost_Per_Master__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12 text-camel-case">{!$Label.Amr_Cost_per_master_per_shoot_day}</div>
+                                    <div class="left margin-top8 margin-right12 text-camel-case summary-values-label">{!$Label.Amr_Cost_per_master_per_shoot_day}</div>
                                     <div class="left" style="font-weight:bold;">
                                         &euro;&nbsp;<apex:inputText value="{!savingObj.Cost_per_master_per_shoot_day__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_No_of_Quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_No_of_Quotes}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Number_Of_Quotes__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Number_Of_Quotes__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Average_of_all_total_opening_quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Average_of_all_total_opening_quotes}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Average_Total_Opening_Quotes__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Average_Total_Opening_Quotes__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Total_No_of_Films}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Total_No_of_Films}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Total_no_of_films__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Total_no_of_films__c}" html-readonly="true" />
                                     </div>
                                 </div>
                             </div>
@@ -297,13 +348,13 @@
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                            <div class="left compulsory-field"><span> {!$Label.Amr_Local_Currency_Of_PC_Cost} <strong></strong> </span> </div>
+                            <div class="left "><span> {!$Label.Amr_Local_Currency_Of_PC_Cost} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Currency_of_PC_Costs__c}" styleclass="PCCurrency" onchange="PCEuroAmount()" />
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-currency  displayIB VATop" style="width:180px !important;">
-                            <div class="left compulsory-field"><span>{!$Label.Amr_Local_Amount_Of_PC} <strong></strong> </span> </div>
+                            <div class="left "><span>{!$Label.Amr_Local_Amount_Of_PC} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Amount_of_PC__c}" html-placeholder="0.00" styleclass="PCLocalAmount" onkeypress="return isCurrency(event)" onkeyup="PCEuroAmount()" />
                             </div>
@@ -333,14 +384,14 @@
                                 <apex:inputField value="{!acceptedQuote.PPC_Country__c}" />
                             </div>
                         </div>
-                        <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                            <div class="left compulsory-field"><span>{!$Label.Amr_Local_Currency_of_PPC_Costs} <strong></strong></span> </div>
+                        <div class="job-field-parent job-field-parent-smaller  displayIB VATop" style="margin-left: 220px;">
+                            <div class="left "><span>{!$Label.Amr_Local_Currency_of_PPC_Costs} <strong></strong></span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Currency_of_PPC_Costs__c}" styleclass="PPCCurrency" onchange="PPCEuroAmount()" />
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-currency  displayIB VATop" style="width:180px !important;">
-                            <div class="left compulsory-field"><span> {!$Label.Amr_Local_Amount_of_PPC} <strong></strong> </span> </div>
+                            <div class="left "><span> {!$Label.Amr_Local_Amount_of_PPC} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Amount_of_PPC__c}" html-placeholder="0.00" styleclass="PPCLocalAmount" onkeypress="return isCurrency(event)" onkeyup="PPCEuroAmount()" />
                             </div>
@@ -364,14 +415,14 @@
                                 <apex:inputField value="{!acceptedQuote.CA_Location__c}" />
                             </div>
                         </div>
-                        <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                            <div class="left compulsory-field"> <span>{!$Label.Amr_Local_Currency_of_CA_Costs} <strong></strong></span> </div>
+                        <div class="job-field-parent job-field-parent-smaller  displayIB VATop" style="margin-left: 423px;">
+                            <div class="left "> <span>{!$Label.Amr_Local_Currency_of_CA_Costs} <strong></strong></span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Currency_of_CA_Costs__c}" styleclass="CACurrency" onchange="CAEuroAmount()" />
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-currency  displayIB VATop" style="width:180px !important;">
-                            <div class="left compulsory-field"><span>{!$Label.Amr_Local_Amount_of_CA} <strong></strong> </span> </div>
+                            <div class="left "><span>{!$Label.Amr_Local_Amount_of_CA} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Amount_of_CA__c}" html-placeholder="0.00" styleclass="CALocalAmount" onkeypress="return isCurrency(event)" onkeyup="CAEuroAmount()" />
                             </div>
@@ -395,13 +446,13 @@
                         <div class="subheader-quotes bold" style="margin-bottom:0px;">Accepted Final cost</div>
                         <div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left compulsory-field"><span>{!$Label.Amr_PC_only_Currency}<strong></strong></span></div>
+                                <div class="left "><span>{!$Label.Amr_PC_only_Currency}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="PCEuroAmountAccepted()" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-currency  displayIB VATop">
-                                <div class="left compulsory-field"><span>{!$Label.Amr_PC_only_Local_Amount}<strong></strong></span></div>
+                                <div class="left "><span>{!$Label.Amr_PC_only_Local_Amount}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" html-placeholder="0.00" styleclass="PCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="PCEuroAmountAccepted()" />
                                 </div>
@@ -413,13 +464,13 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left compulsory-field"><span>{!$Label.Amr_PPC_only_Currency}<strong></strong></span></div>
+                                <div class="left "><span>{!$Label.Amr_PPC_only_Currency}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="PPCEuroAmountAccepted()" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-currency  displayIB VATop">
-                                <div class="left compulsory-field"><span>{!$Label.Amr_PPC_only_Local_Amount}<strong></strong></span></div>
+                                <div class="left "><span>{!$Label.Amr_PPC_only_Local_Amount}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" html-placeholder="0.00" styleclass="PPCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="PPCEuroAmountAccepted()" />
                                 </div>
@@ -431,13 +482,13 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left compulsory-field"><span> {!$Label.Amr_CA_only_Currency}<strong></strong></span></div>
+                                <div class="left "><span> {!$Label.Amr_CA_only_Currency}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted" onchange="CAEuroAmountAccepted()" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-currency  displayIB VATop">
-                                <div class="left compulsory-field"><span>{!$Label.Amr_CA_only_Local_Amount}<strong></strong></span></div>
+                                <div class="left "><span>{!$Label.Amr_CA_only_Local_Amount}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" html-placeholder="0.00" styleclass="CALocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="CAEuroAmountAccepted()" />
                                 </div>
@@ -494,7 +545,7 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left compulsory-field"><span>{!$Label.Amr_What_type_of_Savings_is_this}<strong></strong></span></div>
+                                <div class="left "><span>{!$Label.Amr_What_type_of_Savings_is_this}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Saving_Type__c}" />
                                 </div>
@@ -510,12 +561,17 @@
             <!-- end of inner accepted final -->
 
             <script type="text/javascript">
-                var stringArray = JSON.parse('{!lstcov }');
-                currencyPopup();
+                var stringArray = JSON.parse('{!lstcov}');
+                currencyPopup();               
                 loadMasterProcess();
                 noOfmasterdurationkeypress();
-                remove_master_durationrows();
+                removeMasterDurationRows();
                 addMasterDurationrowsCall();
+                
+                loadAdditionalFilmProcess(); //
+                noOfAdditionalFilmdurationkeypress(); //
+                removeAdditionalFilmDurationRows(); //
+                addAdditionalFilmsDurationrowsCall(); //
             </script>
 
             <apex:repeat value="{!quoteList}" var="quoteObj">
@@ -589,7 +645,7 @@
                                         <apex:inputField value="{!quoteObj.PPC_Country__c}" />
                                     </div>
                                 </div>
-                                <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
+                                <div class="job-field-parent job-field-parent-smaller  displayIB VATop" style="margin-left:220px;">
                                     <div class="left">{!$Label.Amr_Local_Currency_of_PPC_Costs}</div>
                                     <div class="left">
                                         <apex:inputField value="{!quoteObj.Local_Currency_of_PPC_Costs__c}" styleclass="commonCurrencyRelatedPPC commonCurrencyRelatedPPC{!quoteObj.Quote_Number__c}" html-data-id="{!quoteObj.Quote_Number__c}" />
@@ -620,7 +676,7 @@
                                         <apex:inputField value="{!quoteObj.CA_Location__c}" />
                                     </div>
                                 </div>
-                                <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
+                                <div class="job-field-parent job-field-parent-smaller  displayIB VATop" style="margin-left:423px;">
                                     <div class="left">{!$Label.Amr_Local_Currency_of_CA_Costs}</div>
                                     <div class="left">
                                         <apex:inputField value="{!quoteObj.Local_Currency_of_CA_Costs__c}" styleclass="commonCurrencyRelatedCA commonCurrencyRelatedCA{!quoteObj.Quote_Number__c}" html-data-id="{!quoteObj.Quote_Number__c}" />

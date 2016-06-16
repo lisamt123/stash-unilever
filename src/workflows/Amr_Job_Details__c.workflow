@@ -5,7 +5,7 @@
         <description>AMR_CAPNotificationAlert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vaibhav.vora@unilever.com</recipient>
+            <recipient>michael.tun@unilever.com</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>

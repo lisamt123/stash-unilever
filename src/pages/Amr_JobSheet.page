@@ -2,26 +2,27 @@
     
     <apex:include pageName="Amr_common" />
     <apex:include pageName="Amr_common_header" />
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/jobsheet.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_production_activity.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_jobsheet.js')}"/>
     <script type="text/javascript">                     
         $j(document).ready(function() {           
            var strArrJobSheet = {!CategoryList};           
            var selectedCategoryJobSheet = '{!selectedCategory}';
            var stringArrayJobSheet = JSON.parse('{!MethodToPassProjectNames}');           
            var projFormPageJobSheet = '{!projectNameFromPage}';           
-           catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);                      
+           catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);                        		                                  
         });
-                
-        function openDefaultEmailClient() {                       	
-        	var subject = '{!jobList.AdManagerText__c}';
+                        
+        function openDefaultEmailClient() {                         
+            var subject = '{!jobList.AdManagerText__c}';
             var emailAddress = '{!createdByUserEmail}';               
             var emailTo = emailAddress.replace(/null/g, "").replace(/"/g, "").replace('[','').replace(']','').replace(',,',',');            
             if(subject && emailTo ) {              
-               openDefaultEmailClientCall(subject, emailTo); 	
-               makeAcceptanceEmailFalse();               	     
-    		}  
-        }                                                                 
+               openDefaultEmailClientCall(subject, emailTo);    
+               makeAcceptanceEmailFalse();                       
+            }  
+        }
+                                                                         
     </script>   
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/jobsheet.css')}" />
     <style type="text/css">        
@@ -46,12 +47,12 @@
     </style>
     
     <apex:form >
-    	<apex:actionFunction name="makeAcceptanceEmailFalse" action="{!makeAcceptanceEmailFalse}" reRender="statusDefaultEmailClient">        
-    	</apex:actionFunction>
+        <apex:actionFunction name="makeAcceptanceEmailFalse" action="{!makeAcceptanceEmailFalse}" reRender="statusDefaultEmailClient">        
+        </apex:actionFunction>
     </apex:form>
         
     <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}" id="statusDefaultEmailClient">    
-        <script type="text/javascript">        	
+        <script type="text/javascript">         
             openDefaultEmailClient();
             makeAcceptanceEmailFalse();
         </script>
@@ -65,7 +66,7 @@
         <script type="text/javascript">
             showPopupJobsheet();
         </script>
-        <div class="absolute padding10-10-0-0 pointer" id="showAlertPopup" style="right:25px;top:265px;display:{!IF(strTabName<>null,'none','')}">                  
+        <div class="absolute padding10-10-0-0 pointer" id="showAlertPopup" style="right:25px;top:130px;display:{!IF(strTabName<>null,'none','')}">                  
             <div class="left bold bell-text-label">
                 {!totalAlertCount}
             </div>
@@ -188,10 +189,9 @@
                 
                 
                     
-    <div class="allocation-main margin-btwn-container12">
-       
+    <div class="allocation-main"> <!-- margin-btwn-container12 -->  
         <!-- start of CAP section -->
-        <div id="newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}" class="margin-top20">                        
+        <div id="newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}" class="padding-top20">                        
             <div class="box_content filteralert jobsallocation allocation-id">
                 <div class="subbox margin-btwn-container12">
                     <div class="subbox-first left margin-right12" >
@@ -215,10 +215,13 @@
         <!-- End of CAP section -->
         
         <!-- Start of RAP section -->
-        <div id="rapDivNew" style="position: absolute; right: 100px; top: 265px; width: 45%;display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+        <div id="rapDivNew" style="position: absolute; right: 100px; top: 135px; width: 45%;display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
             <div>
+                <div>    <!-- style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}" -->
+                    <apex:commandButton styleClass="commonbtn-modified right" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>
+                </div>
                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}">              <!--  -->                
-                    <apex:commandButton styleClass="show-change-status-popup commonbtn-modified right" value="Set Status" status="setstatus-status" />
+                    <apex:commandButton styleClass="show-change-status-popup commonbtn-modified right margin-right12" value="Set Status" status="setstatus-status" />
                     <apex:actionStatus id="setstatus-status" >
                        <apex:facet name="start" >
                            <img src="/img/loading.gif" alt="loading.."/>                    
@@ -232,10 +235,7 @@
                            <img src="/img/loading.gif" alt="loading.."/>                    
                        </apex:facet>
                    </apex:actionStatus>
-                </div>
-                <div>    <!-- style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}" -->
-                    <apex:commandButton styleClass="commonbtn-modified right margin-right12" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>
-                </div>
+                </div>                
                 <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
                     <apex:commandButton styleClass="show-allocate-popup commonbtn-modified right margin-right12"  value="Re-Allocate" status="reallocate-status-button" />
                     <apex:actionStatus id="reallocate-status-button" >
@@ -251,7 +251,7 @@
                            <img src="/img/loading.gif" alt="loading.."/>                    
                        </apex:facet>
                    </apex:actionStatus>
-                </div>                
+                </div>                                                                                
                 <div class="clear">
                 </div>
             </div>
@@ -283,10 +283,10 @@
                             <div class="left margin-left20">
                                 <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateRAP}" value="Apply" status="reallocate-status" />
                                 <apex:actionStatus id="reallocate-status" >
-			                       <apex:facet name="start" >
-			                           <img src="/img/loading.gif" alt="loading.."/>                    
-			                       </apex:facet>
-			                   </apex:actionStatus>
+                                   <apex:facet name="start" >
+                                       <img src="/img/loading.gif" alt="loading.."/>                    
+                                   </apex:facet>
+                               </apex:actionStatus>
                             </div>
                             <div class="clear">
                             </div>
@@ -322,10 +322,10 @@
                             <div class="right">
                                 <apex:commandButton action="{!recordShare}" value="Share" styleClass="rellocate-apply commonbtn" status="record-share-status" />
                                 <apex:actionStatus id="record-share-status" >
-			                       <apex:facet name="start" >
-			                           <img src="/img/loading.gif" alt="loading.."/>                    
-			                       </apex:facet>
-			                   </apex:actionStatus>
+                                   <apex:facet name="start" >
+                                       <img src="/img/loading.gif" alt="loading.."/>                    
+                                   </apex:facet>
+                               </apex:actionStatus>
                             </div>
                             <div class="clear">
                             </div>                            
@@ -393,10 +393,10 @@
                         
                         <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn commonbtn" reRender="msgs" status="cancel-status" />
                         <apex:actionStatus id="cancel-status" >
-	                       <apex:facet name="start" >
-	                           <img src="/img/loading.gif" alt="loading.."/>                    
-	                       </apex:facet>
-	                   </apex:actionStatus>
+                           <apex:facet name="start" >
+                               <img src="/img/loading.gif" alt="loading.."/>                    
+                           </apex:facet>
+                       </apex:actionStatus>
                     </apex:outputPanel>
                     <div>                                
                     </div>
@@ -454,24 +454,24 @@
     </apex:actionFunction>    
 </apex:form>
     <!-- End Popup functionality -->
-    <div class="main_inner_section margin-btwn-container12 bg-g1 clear">
+    <div class="main_inner_section margin-btwn-container12 bg-g1 clear padding-top20 bg-w8">
         <h4 class="main_inner_sectionh4" hashId="jobdetails">
             Job Details
-            <div data-id="job_detail_main" class="commonall openclass">                                     
+            <div data-id="job_detail_main" class="commonall openclass">                      
             </div>
         </h4>
         <div class="submain_inner_section job_detail_main hide">
             <apex:form >
                 <div class="inner_section">
-                    <div style = "display:{!if(jobsheetErrorCheck != true, 'none','')}">
-                        <apex:pagemessages id="msgs" />
+                    <div style = "display:{!if(jobsheetErrorCheck != true, 'none','')}" class="job_detail_main_error_visibility">
+                        <apex:pagemessages id="msgs" rendered="{!if(boolIsProductionActivityError == false,true,false)}"> </apex:pagemessages>
                     </div>
                     <div class="savings_file_download inner_sub_section" style="display: block;">
                         <div class="inner_sub2_section">
                             <div class="jobsection jobsection-id">
                             <span style="font-weight:bold;">Date Logged:</span>&nbsp;
                             <apex:outputText value="{0,date,dd/MM/yy}">
-                                   <apex:param value="{!jobList.CreatedDate}" />
+                                   <apex:param value="{!jobList.CreatedDate}" /> 
                            </apex:outputText><br/><br/>
                            
                            <span style="font-weight:bold;">RAP Allocated And Accepted:</span>&nbsp;
@@ -983,7 +983,8 @@
                                 <div class="production-activity-section">    
                                     <!--  <h2 class="margintop25" style="margin-bottom:10px;">Production Activity Detail</h2> -->
                     <div class="production-activity-sub-section pos-rel" style="margin-left:20px;margin-bottom:15px;position:relative;">
-                    	<div class="setinactivemask">&nbsp;</div>
+                    	<apex:pagemessages id="msgsPA" rendered="{!if(boolIsProductionActivityError == true,true,false)}"> </apex:pagemessages>
+                        <div class="setinactivemask">&nbsp;</div>
                         <div id="productionactivitytypegroup">
                             <div class="form-field" style="padding:5px 0; margin-bottom: 3px;">
                                 <label style="text-align:left;position:relative;">
@@ -1649,10 +1650,10 @@
                                         <apex:commandButton value="Update" action="{!UpdateJob}" onclick="return enableTextJobSheet()" styleClass="commonbtn-blue" status="enable-text-status" />
                                         
                                         <apex:actionStatus id="enable-text-status" >
-					                       <apex:facet name="start" >
-					                           <img src="/img/loading.gif" alt="loading.."/>                    
-					                       </apex:facet>
-					                   </apex:actionStatus>
+                                           <apex:facet name="start" >
+                                               <img src="/img/loading.gif" alt="loading.."/>                    
+                                           </apex:facet>
+                                       </apex:actionStatus>
                                                                   
                                   <!-- <apex:commandLink value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="anchorsubmitbtn commonbtn-blue" reRender="msgs"/>-->                               
                                 </div>
@@ -1712,7 +1713,7 @@
                                     <div class="left" style="margin-left:12px;">
                                         <apex:inputFile value="{!document.body}"  filename="{!document.name}" />
                                     </div> 
-                                    <div class="left">
+                                    <div class="left margin-left20">
                                         <apex:commandButton action="{!uploadDocument}" value="Upload" styleClass="commonbtn-blue" style="width: 100px;" status="actStatusIdDoc"/>
                                         <apex:actionStatus id="actStatusIdDoc" >
                                             <apex:facet name="start" >
@@ -1786,7 +1787,7 @@
                 
                 <div class="submain_inner_section job_saving_details hide">
                     <div class="inner_section">                     
-                        <div class="tabsection">
+                        <div class="tabsection tabsectionJobsheet">
                             <apex:tabPanel switchType="client" >
                                 <apex:tab label="Savings" name="savings" id="saving_input"> <!-- rerender="refreshCTP" -->                                       
                                        <apex:outputPanel id="refreshCTP">
@@ -1795,8 +1796,8 @@
                                 </apex:tab>
                                 <apex:tab label="Submitted Savings" name="saving_submitted" id="saving_submitted" >
                                     <div class="submitted-savings-list">
-                                    <apex:pageBlock >
-                                    <apex:pageBlockTable value="{!quoteList}"  var="obj">
+                                    <apex:pageBlock id="pageBlockIdPage">
+                                    <apex:pageBlockTable value="{!savingJobsToShow}"  var="obj">
                                     <!--Job Information-->
                                     <apex:column headerValue="View">
                                         <apex:outputlink target="_blank" value="Amr_SubmittedSavingPage?id={!obj.id}">View</apex:outputlink>
@@ -1821,7 +1822,7 @@
                                         <apex:outputText value="{!obj.Duration_of_Masters__c}"/>
                                     </apex:column>                                    
                                     <apex:column headerValue="No. of Additional Films">
-                                    <apex:outputText value="{!obj.No_of_Additional_Films__c}"/> 
+                                    <apex:outputText value="{!obj.No_of_Additional_Films_List__c}"/> 
                                     </apex:column>
                                     <apex:column headerValue="Duration of Additional Films">
                                     <apex:outputText value="{!obj.Duration_of_Additional_Films__c}"/>
@@ -2216,6 +2217,20 @@
                                      </apex:column>
                                     <!--end-->                                  
                                     </apex:pageBlockTable>
+                                    <apex:form >
+                                    <apex:outputPanel styleClass="pagination" id="joblistpagination">
+                                        <!--  <apex:outputPanel styleClass="pagination"> -->
+                                        <apex:actionStatus id="actStatusId3">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" alt="loading image" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                        <apex:commandButton value="<<" action="{!beginningForSavingJobs}" status="actStatusId3" disabled="{!DisablePreviousForSavingJobs}" reRender="pageBlockIdPage,joblistpagination" />
+                                        <apex:commandButton value="<" action="{!previousForSavingJobs}" status="actStatusId3" disabled="{!DisablePreviousForSavingJobs}" reRender="pageBlockIdPage,joblistpagination" />
+                                        <apex:commandButton value=">" action="{!nextForSavingJobs}" status="actStatusId3" disabled="{!DisableNextForSavingJobs}" reRender="pageBlockIdPage,joblistpagination" />
+                                        <apex:commandButton value=">>" action="{!lastForSavingJobs}" status="actStatusId3" disabled="{!DisableNextForSavingJobs}" reRender="pageBlockIdPage,joblistpagination" /> &nbsp;{!currentPageNumber}&nbsp;out of&nbsp;{!totalSavingJobPages}
+                                    </apex:outputPanel>
+                                     </apex:form>
                                      </apex:pageBlock>
                                      </div>                                                                      
                                 </apex:tab>
@@ -2227,6 +2242,5 @@
            
         </div>
         
-    </div>
-   
+    </div>   
 </apex:page>

@@ -1,0 +1,97 @@
+{
+	"organizations": [],
+	"labels": {
+		"dimensions": {
+			"Customer_type": "Customer type",
+			"Customer": "Customer",
+			"Sales_route": "Sales route",
+			"Local_Outlet_Name": "Local Outlet Name",
+			"Outlet_classification": "Outlet classification",
+			"Date_of_audit_Hour": "Date_of_audit_Hour",
+			"Trade_Format": "Trade Format",
+			"Date_of_audit_Month": "Date_of_audit_Month",
+			"Compliance_Level": "Compliance Level",
+			"Date_of_audit_Minute": "Date_of_audit_Minute",
+			"Date_of_audit_Day": "Date_of_audit_Day",
+			"Product_category": "Product category",
+			"Commune": "Commune",
+			"Local_Sales_Workforce_2": "Local Sales Workforce 2",
+			"Date_of_audit": "Date of audit",
+			"DT_route_type": "DT route type",
+			"Local_Sales_Workforce_1": "Local Sales Workforce 1",
+			"Cabinet": "Cabinet",
+			"Banner": "Banner",
+			"Channel": "Channel",
+			"Date_of_audit_Year": "Date_of_audit_Year",
+			"Store_location": "Store location",
+			"Cluster": "Cluster",
+			"Sales_territory": "Sales territory",
+			"City": "City",
+			"Local_Customer_Name": "Local Customer Name",
+			"Province": "Province",
+			"Date_of_audit_Week": "Date_of_audit_Week",
+			"X4P_5P_6P": "4P/5P/6P",
+			"Date_of_audit_Quarter": "Date_of_audit_Quarter",
+			"Date_of_audit_Second": "Date_of_audit_Second",
+			"Product_division": "Product division",
+			"Customer_subtype": "Customer subtype",
+			"Subchannel": "Subchannel",
+			"Sales_area": "Sales area",
+			"Store_area": "Store area",
+			"Country": "Country",
+			"Region": "Region",
+			"Sales_region": "Sales region"
+		},
+		"measures": {
+			"Date_of_audit_day_epoch": "Date_of_audit_day_epoch",
+			"Date_of_audit_sec_epoch": "Date_of_audit_sec_epoch"
+		},
+		"measure_filters": {},
+		"keys": {}
+	},
+	"formats": {
+		"measures": {
+			"comp": [
+				"#,##.00%",
+				"100"
+			],
+			"ps": [
+				"#,##.00%",
+				"100"
+			],
+			"Measure": [
+				"#,##.00%",
+				"100"
+			],
+			"ps_comp": [
+				"#,##.00%",
+				"1"
+			]
+		}
+	},
+	"types": {
+		"Date of audit": {
+			"dims": {
+				"week": "Date_of_audit_Week",
+				"hour": "Date_of_audit_Hour",
+				"month": "Date_of_audit_Month",
+				"year": "Date_of_audit_Year",
+				"day": "Date_of_audit_Day",
+				"fullField": "Date_of_audit",
+				"minute": "Date_of_audit_Minute",
+				"quarter": "Date_of_audit_Quarter",
+				"second": "Date_of_audit_Second"
+			},
+			"meas": {
+				"epoch_second": "Date_of_audit_sec_epoch",
+				"epoch_day": "Date_of_audit_day_epoch"
+			},
+			"type": "date"
+		}
+	},
+	"colors": {},
+	"values_query_columns": [],
+	"hide_dimensions": [],
+	"hide_measures": [],
+	"dimensions": []
+}

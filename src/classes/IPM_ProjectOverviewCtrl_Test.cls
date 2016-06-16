@@ -328,12 +328,13 @@ private class IPM_ProjectOverviewCtrl_Test
         overCtrl.taskId=tskList[0].Id;
         project.IPM_Fast_Track_Project__c = false;
         update project;
-        System.assertEquals(false , [Select Id, IPM_Fast_Track_Project__c from  IPM_Project__c where Id =: project.Id limit 100][0].IPM_Fast_Track_Project__c , 'Project is failed to update as fast track.' );
-        
+                
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         overCtrl1.getTasks();
-        System.assertEquals(0, overCtrl1.getTasks().size(), 'Tasks are not getting assigned to logged-in user.');
+        
+        System.assertEquals(false , [Select Id, IPM_Fast_Track_Project__c from  IPM_Project__c where Id =: project.Id limit 100][0].IPM_Fast_Track_Project__c , 'Project is failed to update as fast track.' );
+        
         Test.stopTest();
         }
     }
@@ -1097,8 +1098,8 @@ private class IPM_ProjectOverviewCtrl_Test
 	        
 	        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
 	        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
-	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is not blank.');
-	        Test.stopTest();
+	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains('Please provide the name of the MCO Rollout Leader for'), 'Project Leader name not provided');
+		Test.stopTest();
         }
     }  
     

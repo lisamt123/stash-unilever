@@ -45,7 +45,7 @@
                               <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
                             </td>
                             <td>
-                            <apex:outputText value="{!IF(finance.Local_Project__r.Rollout_Plan_Target_Launch_Date__c=finance.Local_Project__r.IPM_Target_Launch_Dates__c,If(finance.Local_Project__r.IPM_Target_Launch_Dates__c=finance.Regional_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned'),'Misaligned')}"></apex:outputText>
+                            <apex:outputText value="{!IF(finance.Local_Project__r.Rollout_Plan_Target_Launch_Date__c=finance.Local_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned')}"></apex:outputText>
                             </td>
                         </tr>
                     </apex:repeat>

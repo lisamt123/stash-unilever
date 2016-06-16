@@ -1,0 +1,191 @@
+<!--  
+*************************************************************************
+*@Description:This component is used to display a financial section in the Gate document
+*@Author: Cognizant
+*@Created Date: 12/03/2016 
+*@Copyright © 2015  Unilever    
+*************************************************************************
+-->
+<apex:component controller="IPM_FinancialActionStandards" allowDML="true" >
+<apex:attribute name="isEditable" type="boolean" assignTo="{!editTable}" description="Passing parameter to check is table editable or not"/>
+<apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
+<apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
+<apex:attribute name="gate" type="string" assignTo="{!gateType}" description="passing gate name"/>
+   <!-- Render condition for checking editable to display url to financial page -->     
+   <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
+       <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
+   </apex:outputPanel>
+   <div class="gatefinTabContainer">
+    <!-- Action Standards -->
+    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable inverse fintable table table-bordered textareabig ipmFintableAlign">
+        <thead>
+            <tr>
+                <th scope="col" width="10%">                    
+                    <span class="finproject"></span>
+                </th>
+                <th colspan="5">
+                   <span class="finproject">{!$Label.IPM_FirstFullYear}</span>
+                </th>
+                <th colspan="3">
+                    <span class="finproject">{!$Label.IPM_Fin_Business}</span>
+                </th>
+            </tr>
+            <tr>
+                <th scope="col" width="10%">                    
+                    <span class="finproject"></span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.ipmFinTableASInnovationValueShare}</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.ipmFinTableASIncrementalValueShare}</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.ipmFinTableGDgTO} €'000</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.ipmFinTableGDiTO} €'000</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject"> {!$Label.ipmFinTableGMofTO} %</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.ipmFinSummaryNPV} € '000</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.IPM_IRR}</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.IPM_Payback_Years}</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="fintleblubg fleft pl10">
+                    <div class="col-sm-7"><apex:outputText Value="{!If(AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original'),'Global Action Standards',if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c='Rollout'),projDocSecCon.IPM_Section_Name__c,$Label.IPM_ActionStandards))}"/></div>
+                </td>
+                 <td class="fintlewhitebg">
+                    <!-- Condition for checking gate document phase is ideas -->
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" />
+                    </apex:outputText>
+                    <!-- Render condition for checking gate document phase ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation',this.value,'{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <td class="fintlewhitebg">
+                    <!-- Condition for checking phase other than ideas or read only -->
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" />
+                    </apex:outputText>
+                    <!-- Render condition for checking gate document phase ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental',this.value,'{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <td class="fintlewhitebg">
+                    <!-- Condition for checking phase other than ideas or read only -->
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <!-- Condition for checking phase ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO',this.value,'{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                 <td class="fintlewhitebg">
+                    <!-- Condition for checking phase other than ideas or read only -->
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <!-- Condition for checking phase ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO',this.value,'{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <td class="fintlewhitebg">
+                    <!-- Condition for checking phase other than ideas or read only -->
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" />
+                    </apex:outputText> 
+                    <!-- Condition for checking phase ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM',this.value,'{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <td class="fintlewhitebg">
+                    <!-- Condition for checking phase other than ideas or read only -->
+                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <!-- Condition for checking phase ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV',this.value,'{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.###}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <!-- Condition for checking gate document phase Ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR',this.value,'{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <td class="fintlewhitebg">
+                    <!-- Condition for checking gate document phase ideas or read only -->
+                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" />
+                    </apex:outputText> 
+                    <!-- Condition for checking gate document phase Ideas and editable -->
+                    <apex:inputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack',this.value,'{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+            </tr>
+            <apex:variable var="i" value="{!0}"/>
+            <apex:repeat value="{!lstGateNames}" var="gateName">
+                <tr>
+                    <td class="fintleblubg fleft pl10">
+                        <div class="col-sm-7"> {!If(AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original'),'Global',LEFT(projDocSecCon.IPM_Section_Name__c,(FIND(' ', projDocSecCon.IPM_Section_Name__c))))} {!$Label.IPM_RESULTS} at {!gateName}</div>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!innovationValueShareWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!incrementalValueShareWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!gTOWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!iTOWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!GMWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
+                            <apex:param value="{!NPVWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
+                            <apex:param value="{!IRRWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
+                            <apex:param value="{!PaybackWrapper.lstGateValues[i]}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+                <apex:variable var="i" value="{!i+1}"/>
+            </apex:repeat>
+        </tbody>    
+    </table>
+    </div>
+    <apex:actionFunction name="updateStandard" action="{!updateActionStandards}" reRender="">
+        <apex:param name="firstParam" assignTo="{!conId}" value=""/>
+        <apex:param name="secondParam" assignTo="{!commentField}" value=""/>
+        <apex:param name="thirdParam" assignTo="{!numValue}" value=""/>
+        <apex:param name="fourthParam" assignTo="{!comments}" value=""/>
+        <apex:param name="fifthParam" assignTo="{!isComment}" value=""/>
+    </apex:actionFunction>
+</apex:component>

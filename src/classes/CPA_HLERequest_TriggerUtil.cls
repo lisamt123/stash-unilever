@@ -10,7 +10,7 @@ Purpose: This Class is used to perform various operations for HLE request
 History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
-1.0         Name       12/01/2016     INITIAL DEVELOPMENT CSR:
+1.0         Pooja K       12/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_HLERequest_TriggerUtil{
 
@@ -265,7 +265,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     {       
       // If no comment exists, then prevent the object from saving.                 
 
-           approvalStatements.get(pi.TargetObjectId).addError('<br/><br/><Strong style= "color:red">Error: </Strong><b>HLE request Can be Accepted/Returned by Vendor only.</b><br/><br/>');
+           approvalStatements.get(pi.TargetObjectId).addError('<br/><br/><Strong style= "color:red">Error: </Strong><b>HLE request can be Accepted/Returned/Recall by Vendor only.<br/>Please raise a query with vendor for recalling this form using Query section. </b><br/><br/>');
        }
     }                                       
   }

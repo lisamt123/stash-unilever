@@ -16,15 +16,63 @@ private class IPM_BD_BB_Report_Batch_Test {
     public static user systemAdmin;
     public static User testUser;
     public static List<User> userList;
+    public static Id projid;
     public static set<id> projidset = new set<id>();
     public static final String YEAR_1 = 'Y1';
     public static final String GROSS = 'Gross';
     public static final String INCREMENTAL = 'Incremental';
     public static final String CALENDAR = 'Calendar';
     private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
+    private static final string BD_BB_REPORT = 'BD BB Report';
     
-    
-    
+     /**********************************************************************
+    *  @Description: Test Method to create project data for the other test methods
+    *  @name : createProject
+    *  @param : none
+    *  @return : none
+    *************************************************************************/
+    static void createProject(){
+      systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
+        system.runAs(systemAdmin){
+            testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
+            userList = IPM_TestFactory_Helper.createUserList(); 
+            system.assertEquals(userList[0].LastName,IPMUSER_LASTNAME,'Error in User Creation');
+        }
+        
+        //Insert data for Custom setting
+        reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, true);
+        List<IPM_Reporting__c>reportParameterlist=[SELECT Id,Name FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
+        system.assertEquals(reportParameterlist[0].Name,reportParameter.Name,'Error in IPMReporting Custom Setting Creation'); //positive test
+        
+        // Being used Below in Code. Sonar 
+        system.runAs(testUser)
+        {
+          //Test project creation
+            projectList = IPM_TestFactory_Helper.insertIPMProjectList();
+            
+            for(IPM_Project__c p:projectList){
+                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
+                    p.IPM_Project_Type__c = IPM_Utils.Original;
+                    p.IPM_Category_Text__c = IPM_ConstantUtils.HHC_CONSTANT;
+                    p.IPM_Project_Leader__c = testUser.Id;
+                    projid = p.Id;                  
+
+                }
+                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
+                    p.IPM_Project_Type__c = IPM_Utils.Rollout; 
+                }
+                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
+                    p.IPM_Project_Type__c = IPM_Utils.Rollout;
+                }
+                p.Project_External_ID__c = p.id + p.IPMProject_Span__c;
+                projidset.add(p.id);                
+            }
+            update projectList;
+            
+            list<IPM_Project__c> projectListtest = new list<IPM_Project__c>([SELECT id,Name,IPMProject_Span__c FROM IPM_Project__c WHERE id IN:projectList Limit 100]);
+            system.assertEquals(projectList[0].Name,projectListtest[0].Name,'Name doesnt matched');
+      }
+    }
     /**********************************************************************
     *  @Description: Test Method to initialize data for the other test methods
     *  @name : initializeData1
@@ -33,63 +81,50 @@ private class IPM_BD_BB_Report_Batch_Test {
     *************************************************************************/
     static void initializeData1(){
               
-            systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
-            system.runAs(systemAdmin){
-                testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
-                userList = IPM_TestFactory_Helper.createUserList(); 
-                system.assertEquals(userList[0].LastName,IPMUSER_LASTNAME,'Error in User Creation');
-            }
-            
-            
-            //Insert data for Custom setting
-            reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting();
-            List<IPM_Reporting__c>reportParameterlist=[SELECT Id,Name FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
-            system.assertEquals(reportParameterlist[0].Name,reportParameter.Name,'Error in IPMReporting Custom Setting Creation'); //positive test
-            
-            Id projid;
-            // Being used Below in Code. Sonar
-           
-            
-            system.runAs(testUser)
-            {
-            
-            //Test project creation
-            projectList = IPM_TestFactory_Helper.insertIPMProjectList();
-                       
-                      
-            for(IPM_Project__c p:projectList){
-                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
-                    p.IPM_Project_Type__c = IPM_Utils.Original;
-                    p.IPM_Category_Text__c = IPM_ConstantUtils.HHC_CONSTANT;
-                    p.IPM_Project_Leader__c = testUser.Id;
-                    projid = p.Id;                  
-                }
-                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-                    p.IPM_Project_Type__c = IPM_Utils.Rollout; 
-                    
-                }
-                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-                    p.IPM_Project_Type__c = IPM_Utils.Rollout;
-                    
-                }
-                
-                p.Project_External_ID__c = p.id + p.IPMProject_Span__c;
-                projidset.add(p.id);                
-            }
-            update projectList;
-            
-            list<IPM_Project__c> projectListtest = new list<IPM_Project__c>([SELECT id,Name FROM IPM_Project__c WHERE id IN:projectList Limit 100]);
-            system.assertEquals(projectList[0].Name,projectListtest[0].Name,'Name doesnt matched');
-            
+       createProject();
+       system.runAs(testUser){
             List<IPM_Analytics__c> analyticsRecDelList = new list<IPM_Analytics__c>();
-            
+            for(IPM_Project__c projRec: projectList){
+              IPM_Analytics__c analyticsRec =  new IPM_Analytics__c();
+              analyticsRec.IPM_Project_Id__c = projRec.Id;
+              analyticsRecDelList.add(analyticsRec);
+            }
             if(!analyticsRecDelList.isEmpty()){
                 insert analyticsRecDelList;
             }
             
             //Test Finance data creation            
             lstFinancial = IPM_TestFactory_Helper.insertIPMFinancialList(true);
-            list<IPM_Financial__c> insertedfinancialrecord = new list <IPM_Financial__c> ([SELECT id,Name,Target_Launch_Date__c FROM IPM_Financial__c WHERE id IN:lstFinancial Limit 100]);
+            
+            map<Id,IPM_Financial__c> updatededFinancialrecord = new map <Id,IPM_Financial__c> ();
+            list<IPM_Financial__c> insertedfinancialrecord = new list <IPM_Financial__c> ([SELECT id,Name,Target_Launch_Date__c,Parent_Project__c,Local_Project__c,Financial_External_ID__c,Regional_Project__c
+                                                    FROM IPM_Financial__c WHERE id IN:lstFinancial Limit 100]);
+            
+            
+           for(IPM_Project__c p : projectList){
+              if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
+                insertedfinancialrecord[0].Parent_Project__c = p.id;      
+                insertedfinancialrecord[0].Financial_External_ID__c = p.Name + IPM_Utils.CONSOLIDATED ;
+                insertedfinancialrecord[0].isActive__c=true;
+                updatededFinancialrecord.put(insertedfinancialrecord[0].id,insertedfinancialrecord[0]);            
+              }
+              if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
+                  insertedfinancialrecord[1].Regional_Project__c = p.id;     
+                  insertedfinancialrecord[1].Financial_External_ID__c = p.Name + IPM_Utils.CONSOLIDATED ;
+                  insertedfinancialrecord[1].isActive__c=true;
+                  updatededFinancialrecord.put(insertedfinancialrecord[1].id,insertedfinancialrecord[1]);
+              }
+              if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
+                 insertedfinancialrecord[2].Local_Project__c = p.id;   
+                 insertedfinancialrecord[2].Financial_External_ID__c = p.Name ;  
+                 insertedfinancialrecord[2].isActive__c=true;
+                 updatededFinancialrecord.put(insertedfinancialrecord[2].id,insertedfinancialrecord[2]); 
+              }
+            }
+                        
+            system.debug('updatededFinancialrecord==>>'+updatededFinancialrecord);
+            update updatededFinancialrecord.values();  
+            
             system.assertEquals(insertedfinancialrecord[0].Target_Launch_Date__c,lstFinancial[0].Target_Launch_Date__c,'Project Financials TLD differs');
 
             //Test Financial Year Data creation/update
@@ -160,52 +195,21 @@ private class IPM_BD_BB_Report_Batch_Test {
     *  @return : none
     *************************************************************************/
     static void initializeData2(){
-        systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
-            system.runAs(systemAdmin){
-                testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
-                userList = IPM_TestFactory_Helper.createUserList(); 
-                system.assertEquals(userList[0].LastName,IPMUSER_LASTNAME,'Error in User Creation');
-            }
-        //Insert data for Custom setting
-            reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting();
-            List<IPM_Reporting__c>reportParameterlist=[SELECT Id,Name FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
-            system.assertEquals(reportParameterlist[0].Name,reportParameter.Name,'Error in IPMReporting Custom setting Creation'); //positive test
-            
-        system.runAs(testUser ){
-         
-        
-        List<IPM_Project__c> globalprojectlist = new List<IPM_Project__c>();
-            //Test project creation
-            projectList = IPM_TestFactory_Helper.insertIPMProjectList();                      
-            id projid;          
+      
+      createProject();
+        system.runAs(testUser){
+          
+          List<IPM_Project__c> globalprojectlist = new List<IPM_Project__c>();
             for(IPM_Project__c p:projectList){
-                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
-                    p.IPM_Project_Type__c = IPM_Utils.Original;
-                    p.IPM_Category_Text__c = IPM_ConstantUtils.HHC_CONSTANT;
-                    p.IPM_Project_Leader__c = testUser.Id;
-                    projid = p.Id;
-                    globalprojectlist.add(p);                  
-                }
-                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-                    p.IPM_Project_Type__c = IPM_Utils.Rollout; 
-                    
-                }
-                if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-                    p.IPM_Project_Type__c = IPM_Utils.Rollout;                     
-                }
-                
-                p.Project_External_ID__c = p.id + p.IPMProject_Span__c;
-                projidset.add(p.id);                
+              if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
+                globalprojectlist.add(p);  
+              }
             }
-            update projectList;
-            
-            list<IPM_Project__c> projectListtest = new list<IPM_Project__c>([SELECT id,Name FROM IPM_Project__c WHERE id IN:projectList Limit 100]);
-            system.assertEquals(projectList[0].Name,projectListtest[0].Name,'Project Name Differs');
-            
-        // Create Regional Rollouts for Created Global project.
+            // Create Regional Rollouts for Created Global project.
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalprojectlist,new List<User>{userList[1],userList[1],userList[1]});
             insert regionalRolloutList;
             
+            //check regional rollouts have been created
             list<IPM_Project_Rollout__c> insertedregionalRolloutrecords = new list <IPM_Project_Rollout__c> ([SELECT id,Name FROM IPM_Project_Rollout__c WHERE id IN:regionalRolloutList Limit 100]);
             system.assertEquals(insertedregionalRolloutrecords[0].Name,regionalRolloutList[0].Name,'Project Regional Rollout Name differs');
             
@@ -224,6 +228,8 @@ private class IPM_BD_BB_Report_Batch_Test {
             // Create local Rollouts for Created regional Rollouts.
             List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{userList[2]});  
             insert localRolloutList;
+            
+            //check local rollouts have been created 
             list<IPM_Project_Rollout__c> insertedlocalRolloutrecords = new list <IPM_Project_Rollout__c> ([SELECT id,Name FROM IPM_Project_Rollout__c WHERE id IN:localRolloutList Limit 100]);
             system.assertEquals(insertedlocalRolloutrecords[0].Name,localRolloutList[0].Name,'Project Local Rollout differs');             
                         
@@ -266,6 +272,7 @@ private class IPM_BD_BB_Report_Batch_Test {
             finList.add(finRegional);
             
             IPM_Financial__c finlocal = new IPM_Financial__c();
+            finRegional.Parent_Project__c = projid;
             finlocal.IPM_Project_Rollout__c = localRolloutList[0].id;
             finlocal.RecordTypeId = strRecordTypeConId;
             finlocal.Financial_External_ID__c = localRolloutList[0].name;
@@ -353,7 +360,27 @@ private class IPM_BD_BB_Report_Batch_Test {
         system.runAs(testUser){
             string  query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,Is_Archieved__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c FROM IPM_Project__c'; 
             IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
-            database.executebatch(batchs,100);            
+            database.executebatch(batchs,100);  
+            
+            string cppRec ;
+            cppRec = batchs.calculateCPP(40000.00, 400000000.00);
+            system.assertequals(cppRec,'Gold','CPP value is not Gold'); 
+            
+            cppRec = batchs.calculateCPP(2.00, 1000.00);
+            system.assertequals(cppRec,'Silver','CPP value is not SILVER'); 
+            
+            cppRec = batchs.calculateCPP(0.20, 1000.00);
+            system.assertequals(cppRec,'Bronze','CPP value is not BRONZE'); 
+            
+            double turnOverVal;
+            IPM_Financial_Year__c fr = lstFinancialYear[0];
+            
+            turnOverVal = batchs.getTurnOver(fr, True, 'TURNOVER' );
+            system.assertequals(fr.Turnover_Global__c,turnOverVal,'Turnover value for global is same'); 
+            
+            turnOverVal = batchs.getTurnOver(fr, false, 'TURNOVER' );
+            system.assertequals(fr.Turnover_Regional__c,turnOverVal,'Turnover value for Regional is same');
+            
         }  
          
         List<IPM_Reporting__c>reportParameterlist1=[SELECT Id, Last_Batch_RunDate__c FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
