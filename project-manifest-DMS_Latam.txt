@@ -73,6 +73,10 @@ src/classes/DMS_UserCreation.cls
 src/classes/DMS_UserCreation.cls-meta.xml
 src/classes/DMS_Home_CC.cls
 src/classes/DMS_Home_CC.cls-meta.xml
+src/classes/DMS_ContactTriggerHelper.cls
+src/classes/DMS_ContactTriggerHelper.cls-meta.xml
+src/classes/DMS_UserCreation_Test.cls
+src/classes/DMS_ContactTriggerHelper.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
@@ -106,6 +110,8 @@ src/documents/DMS_Files/Header_Communities.png
 src/documents/DMS_Files/Header_Communities.png-meta.xml
 src/documents/DMS_Files/Logo_Unilever_Communities.png
 src/documents/DMS_Files/Logo_Unilever_Communities.png-meta.xml
+src/documents/DMS_Files/DMS_Footer.html
+src/documents/DMS_Files/DMS_Footer.html-meta.xml
 src/labels
 src/labels/DMS.labels
 src/staticresources
@@ -119,3 +125,12 @@ src/tabs/Wave_Dashboards_Mobile.tab
 src/components
 src/components/DMS_RadarDataComponent.component
 src/components/DMS_RadarDataComponent.component-meta.xml
+src/networks
+src/networks/Portal DMS Service.network
+src/profiles
+src/profiles/Portal DMS Service Profile.profile
+src/layouts
+src/layouts/Account-DMS Distribuitor.layout
+src/layouts/Account-DMS Stores.layout
+src/layouts/Target__c-DMS ECO.layout
+src/layouts/Target__c-DMS Hexagon.layout

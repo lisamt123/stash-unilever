@@ -450,6 +450,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CodRegion__c</fullName>
+        <description>Region code of the Store.</description>
+        <externalId>false</externalId>
+        <label>Cod Region</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Company_Structure__c</fullName>
         <externalId>false</externalId>
         <label>Company Structure</label>
@@ -1998,18 +2008,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>RegionCode__c</fullName>
-        <description>Region Code of the client.</description>
-        <externalId>false</externalId>
-        <label>RegionCode</label>
-        <length>40</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Registration_Date__c</fullName>
         <description>TO: Date of Website Registration</description>
         <externalId>false</externalId>
@@ -2134,6 +2132,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <fields>
         <fullName>StoreKey__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Field used by integration to concatenate the values of the Store.</description>
         <externalId>true</externalId>
         <label>Store Key</label>
         <length>40</length>

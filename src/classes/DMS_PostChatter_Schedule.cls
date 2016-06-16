@@ -13,7 +13,7 @@ History
 VERSION AUTHOR DATE DETAIL Description
 1.0     CHACL  25/05/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
-global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCallouts
+global with sharing class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCallouts
 {
     
     private String sessionId;
@@ -69,9 +69,9 @@ global class DMS_PostChatter_Schedule implements Schedulable, Database.AllowsCal
             for(Id vId : mapUserGroupId.keySet()) {
                 String groupId = vId;
                 String mentionIds;
-                for(String vStrings : mapUserGroupId.get(vId)) 
+                for(String mentionValues : mapUserGroupId.get(vId)) 
                 {
-                    mentionIds += vStrings;           
+                    mentionIds += mentionValues;           
                 }          
                 //Post on chatter for the specific group/user the message with @mention, and the link of the report.
                 DMS_ConnectApiHelper.postFeedItemWithMentions(community.Id, groupId, Label.DMS_Hello + formatString(mentionIds) + Label.DMS_CommunityMSG + ' ' + Label.DMS_WaveDashboard); 

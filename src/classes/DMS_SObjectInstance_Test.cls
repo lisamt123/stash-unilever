@@ -10,6 +10,7 @@ public class DMS_SObjectInstance_Test {
         acc.SalesChannel__c = salesChannel;
         acc.OwnerId = ownerId;
         acc.ExternalCode__c = externalCode;
+        acc.CodRegion__c='testCode';        
         if(isCreate) Database.insert(acc);        
         return acc;
     }
@@ -92,14 +93,14 @@ public class DMS_SObjectInstance_Test {
         
     }
     
-    public static Contact createContact(id accountId,String name, String email, Boolean isCreate){
+    public static Contact createContact(id accountId,String name, String email, Boolean isCreate){                 
         
-        //Contact cont1 = new Contact(LastName= name, Email=email);
         Contact cont1 = new Contact(
             FirstName = name,
             Lastname = name,
             AccountId = accountId,
-            Email =email 
+            Email =email,
+            CodRegion__c = 'testCode'
         );
         if(isCreate)
         {

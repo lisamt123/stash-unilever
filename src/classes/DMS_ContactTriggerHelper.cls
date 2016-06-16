@@ -10,11 +10,13 @@ History
 
 VERSION AUTHOR 				DATE 		DETAIL Description
 1.0 	CARLOS HENRIQUE  12/06/2016  INITIAL DEVELOPMENT.
+2.0		DIMITRI MENEZES	 15/06/2016	 UPDATE METHOD FOR ACCOUNT TEAM MEMBERS.. 
+3.0		CARLOS HENRIQUE	 16/06/2016  CLASS NAME CHANGED.
 ***********************************************************************/
-public class DMS_UserCreation {
+public with sharing class DMS_ContactTriggerHelper {
     private Map<String,String> contactMap = new Map<String,String>();
     
-    public DMS_UserCreation() {}
+    public DMS_ContactTriggerHelper() {}
     
     /*********************************************************
     * Purpose: Create new User when new contact is created
@@ -30,11 +32,13 @@ public class DMS_UserCreation {
             for(Contact con : [SELECT id, email, firstName, lastname, accountId FROM Contact WHERE Id =: contact]) 
             {
                 if(!String.isEmpty(con.Email)) {
+                    //create the users
                     users.add(create(con));
                 }
             } 
             insert users;
             
+            //add the users on the contact members team to the related Store
             accountTeamMemberInsert(contact);
         }  
         catch (Exception e)
@@ -59,6 +63,7 @@ public class DMS_UserCreation {
             usersList.add(users);
             
         }
+        
         List<AccountTeamMember> aTeamList = new List<AccountTeamMember>();
         List<Account> accList = [SELECT id FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =:codeRegionList ];
         
@@ -76,6 +81,12 @@ public class DMS_UserCreation {
          
     }
     
+    
+    /*
+    * Purpose: Retreive all stores from the distributor with the Region Code.
+    * Parameters: Map with Contacts and Ids
+    * Returns: none 
+    */
     private Map<Id, String> getStores(Map<Contact, Id> mapAccount) 
     {
         
@@ -92,10 +103,10 @@ public class DMS_UserCreation {
     }
     
     /*
-* Purpose: Create new User when contacts updated with an Email.
-* Parameters: oldTrigger & newTrigger values
-* Returns: none 
-*/
+    * Purpose: Create new User when contacts updated with an Email.
+    * Parameters: oldTrigger & newTrigger values
+    * Returns: none 
+    */
     public void createtUserUpdate(List<Contact> contactOld, List<Contact> contactNew) 
     {
         try {

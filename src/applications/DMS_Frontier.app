@@ -9,5 +9,4 @@
     <tab>Target__c</tab>
     <tab>DMSDashboards</tab>
     <tab>Hexagono</tab>
-    <tab>Portal</tab>
 </CustomApplication>

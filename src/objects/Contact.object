@@ -120,6 +120,15 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>CodRegion__c</fullName>
+        <description>Cod Region of the Seller.</description>
+        <externalId>false</externalId>
+        <label>Cod Region</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>CurrencyIsoCode</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -868,7 +877,7 @@
         <description>Field used as key.</description>
         <externalId>true</externalId>
         <label>Seller Key</label>
-        <length>25</length>
+        <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>

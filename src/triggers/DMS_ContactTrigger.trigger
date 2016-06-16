@@ -1,6 +1,6 @@
 trigger DMS_ContactTrigger on Contact (after insert, after update) { 
     
-    DMS_UserCreation vClassContact = new DMS_UserCreation();
+    DMS_ContactTriggerHelper vClassContact = new DMS_ContactTriggerHelper();
     
     if(Trigger.isAfter && Trigger.isInsert) 
     {
