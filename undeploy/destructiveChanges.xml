@@ -104,10 +104,4 @@
 		<members>FA_SG_Wall_Room<members>
 		<name>CustomLabel</name>  
     </types>
-	<types>
-		<members>NavigationElement__c<members> 
-		<members>FA_FBQuestionSet__c<members>
-		<members>FA_Config_Settings__c<members>
-		<name>CustomSetting</name>
-	</types>	
-</Package>
+	</Package>
