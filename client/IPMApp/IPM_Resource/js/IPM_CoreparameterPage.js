@@ -80,3 +80,78 @@ function hilightTaskScript(){
     jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 
+jq('.ccCheck').change(function(e) {
+    if (jq('.brandposList input[type=checkbox]:checked').length > 20) {
+        jq(this).prop('checked', false);
+        jq(this).next('label').removeClass('selected');
+    }
+});
+
+jq(document).on('click', '.brandposList input[type="checkbox"], .brandposList li', function(e){
+   e.stopPropagation();
+});
+
+   
+jq(document).on('show.bs.dropdown', '.brandposListContainer', function(){
+    jq(this).find('.brandposList').show(); 
+});
+
+jq(document).click(function(e) {
+    if( e.target.id !== 'brandposListUL') {
+        jq(".brandposList").hide();    
+    }   
+});
+
+jq('.ipmDropbuttonscc').click(function(e) {           
+    var brandPositionValue = '';
+    jq(".brandposList  input[type=checkbox]").each(function(e){
+        if(jq(this).prop('checked') === true){   
+            if(brandPositionValue.length > 0)
+            {
+                brandPositionValue = brandPositionValue +','+jq(this).val();
+            }
+            else
+            {
+                brandPositionValue = jq(this).val();
+            }
+        } 
+    });
+    jq('.hiddenBrand').val(brandPositionValue);
+    if(brandPositionValue === ''){
+        jq('.brandSelValues').text(IPMAppPS.selectLabel);
+    }
+    else{
+        jq('.brandSelValues').text(brandPositionValue);
+    }
+    jq(".brandposList").hide(); 
+});
+  
+ jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
+        e.stopPropagation();
+        jq(".brandposList input:checkbox").each(function() {
+             jq(this).prop('checked', false);
+           jq(this).next('label').removeClass('selected');
+            jq('.brandSelValues').text(IPMAppPS.selectLabel);
+        });
+    }); 
+    
+if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) !== 'undefined') 
+{
+    var brandPicklist = jq('.hiddenBrand').val();   
+    if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
+    {
+        jq('.brandSelValues').text(brandPicklist);
+        var brandArray = brandPicklist.split(',');  
+        jq(".brandposList  input[type=checkbox]").each(function(e){
+            var checkboxObj = jq(this);
+            jq.each( brandArray, function( i, savedBrandPosition ){
+                if(checkboxObj.val() === savedBrandPosition)
+                    {
+                     checkboxObj.prop('checked',true);
+                        return false;
+                    }
+            }); 
+        });
+    }
+}
+
