@@ -106,15 +106,13 @@
 		<members>FA_SG_Surf_and_Flora_Room<members>
 		<members>FA_SG_Taste_Cafeteria<members>
 		<members>FA_SG_Wall_Room<members>
-
-
-        <name>CustomLabel</name>  
+		<name>CustomLabel</name>  
     </types>
-<types>
-	<members>NavigationElement__c<members> 
-	<members>FA_FBQuestionSet__c<members>
-	<members>FA_Config_Settings__c<members>
-	<name>CustomSetting</name>
+	<types>
+		<members>NavigationElement__c<members> 
+		<members>FA_FBQuestionSet__c<members>
+		<members>FA_Config_Settings__c<members>
+		<name>CustomSetting</name>
 	</types>
       
 	<types>
@@ -160,6 +158,4 @@
 	<members>FA Course Images/hp4 logo<members>
 	<name>Document</name>
 	</types>
-	  
-    </types>	
 </Package>
