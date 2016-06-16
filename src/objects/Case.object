@@ -2535,7 +2535,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <closed>false</closed>
             </picklistValues>
             <picklistValues>
-                <fullName>Pending with Courier</fullName>
+                <fullName>Pending With Courier</fullName>
                 <default>false</default>
                 <closed>false</closed>
             </picklistValues>
@@ -2563,11 +2563,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Closed as Duplicate</fullName>
                 <default>false</default>
                 <closed>true</closed>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Awaiting Factory Response</fullName>
-                <default>false</default>
-                <closed>false</closed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
