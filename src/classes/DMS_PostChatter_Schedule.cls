@@ -150,17 +150,17 @@ global with sharing class DMS_PostChatter_Schedule implements Schedulable, Datab
     * Parameters: The String (Id) from the User
     * Returns: The String formated.
     ********************************************************************/
-    private static String formatString(String vString) 
+    private static String formatString(String myString) 
     {
         try {
             
-            vString = vString.replace('null', ' ');
+            myString = myString.replace('null', ' ');
         }
         catch (Exception e) 
         {
             System.debug(DMS_GlobalConstants.EXCEPTION_MESSAGE + e.getMessage());
         }
-        return vString;
+        return myString;
     }
     
 }

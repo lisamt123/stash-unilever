@@ -15,7 +15,6 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 ***********************************************************************/
 public with sharing class DMS_ContactTriggerHelper 
 {
-    private Map<String,String> contactMap = new Map<String,String>();
 	private static Profile myProfile;
 	
     static 
@@ -73,10 +72,11 @@ public with sharing class DMS_ContactTriggerHelper
         }
         
         List<AccountTeamMember> aTeamList = new List<AccountTeamMember>();
-        List<Account> accList = [SELECT id FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =:codeRegionList ];
+        List<Account> accList = [SELECT id FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =: codeRegionList ];
         
         for(Account acc : [SELECT id,ParentId FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =:codeRegionList AND RecordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer')]){
-            for(User userTeam : usersList){
+            for(User userTeam : usersList) 
+            {
                 if(userTeam.Contact.accountId == acc.ParentId){
                     AccountTeamMember aTeam = new AccountTeamMember();
                     aTeam.AccountId = acc.id;
