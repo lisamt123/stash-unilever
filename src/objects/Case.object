@@ -100,7 +100,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Pending With Courier</fullName>
+            <fullName>Pending with Courier</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2535,7 +2535,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <closed>false</closed>
             </picklistValues>
             <picklistValues>
-                <fullName>Pending With Courier</fullName>
+                <fullName>Pending with Courier</fullName>
                 <default>false</default>
                 <closed>false</closed>
             </picklistValues>
