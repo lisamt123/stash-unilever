@@ -133,3 +133,5 @@ src/layouts/Account-DMS Distribuitor.layout
 src/layouts/Account-DMS Stores.layout
 src/layouts/Target__c-DMS ECO.layout
 src/layouts/Target__c-DMS Hexagon.layout
+src/sites
+src/sites/Portal_DMS_Service.site
