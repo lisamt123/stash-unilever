@@ -1,5 +1,5 @@
 /*
-Class Name: MB_DeleteBillingData_Batch
+Class Name: MB_DeleteBillingData_Test
 Author : Mindtree
 Date: 15 May 2016
 Requirement/Project Name: Unilever Salesforce Engagement
@@ -62,13 +62,17 @@ public class MB_DeleteBillingData_Test {
   billingEntityList.add(billingEntityObject1);
   billingEntityList.add(billingEntityObject2);
       
-  MB_DeleteBillingData_Batch batchObject = new MB_DeleteBillingData_Batch();   
-  Database.BatchableContext batchContext;
+ 
+      MB_ScheduleBillingDataDeletion_Batch batchObj =new MB_ScheduleBillingDataDeletion_Batch();
+      string jobid = system.schedule('my batch job', '0 0 0 1 4 ?', new MB_ScheduleBillingDataDeletion_Batch() );
       
-  batchObject.start(batchContext);
+       MB_DeleteBillingData_Batch batchObject1 = new MB_DeleteBillingData_Batch();
+  		//Database.BatchableContext batchContext;
+      	Database.executeBatch(batchObject1);
+      
   System.assert(billingEntityList != null,'billingEntityList cannot be null');
-  batchObject.execute(batchContext,billingEntityList);
-  batchObject.finish(batchContext);  
+  //batchObject.start(batchContext);
+  //batchObject.finish(batchContext);  
   }
       
   Test.stopTest();
