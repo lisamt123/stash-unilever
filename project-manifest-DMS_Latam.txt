@@ -124,6 +124,8 @@ src/tabs/Wave_Dashboards_Mobile.tab
 src/components
 src/components/DMS_RadarDataComponent.component
 src/components/DMS_RadarDataComponent.component-meta.xml
+src/networks
+src/networks/Portal DMS Service.network
 src/profiles
 src/profiles/Portal DMS Service Profile.profile
 src/layouts
