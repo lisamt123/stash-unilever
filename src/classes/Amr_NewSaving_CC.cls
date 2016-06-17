@@ -497,7 +497,7 @@ public with sharing class Amr_NewSaving_CC {
     
     public void getCaProcessMangCategory(){
         Amr_Saving__c savingObjTemp = new Amr_Saving__c();
-		savingObjTemp = NULL;
+		savingObjTemp.Production_Type__c = '';
     }
     
     
