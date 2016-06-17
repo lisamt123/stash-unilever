@@ -3,5 +3,5 @@
     <label>Agency Fees</label>
     <mobileReady>false</mobileReady>
     <motif>Custom31: Car</motif>
-    <page>AgencyHomePage</page>
+    <page>AF_AgencyHomePage</page>
 </CustomTab>

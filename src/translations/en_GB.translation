@@ -8313,10 +8313,6 @@
         <name>All_Projects</name>
     </customTabs>
     <customTabs>
-        <label><!-- Assign Category --></label>
-        <name>Assign_Category</name>
-    </customTabs>
-    <customTabs>
         <label><!-- Brand Centres --></label>
         <name>Brand_Centres</name>
     </customTabs>
