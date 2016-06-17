@@ -1,5 +1,4 @@
 <aura:component controller="Core_IC_IdeaController">
-    <!-- <aura:attribute name="campaignsListItem" type="Core_CA_BaseApplicationWrapper"/> -->  
     <aura:handler name="init" value="{!this}" action="{!c.getCampaignDetail}"/>
     <aura:attribute name="activeCampaignsList" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="recordType" type="String"/>
@@ -50,7 +49,7 @@
             <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
                 <div class="slds-modal__container slds-modal--prompt">
                     <div class="slds-box slds-theme--success">
-                        <div>Idea Posted <strong>Successfully</strong>...<a><img class="successIcon" onclick="{!c.cancelButton}" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg"></img></a></div>
+                        <div>Idea Posted Successfully...<a><img class="successIcon" onclick="{!c.cancelButton}" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg"></img></a></div>
                     </div>
                 </div>
             </div>
@@ -116,19 +115,14 @@
                         <div>
                              <img class="clearFileIcon " src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" onclick="{!c.clearAttachment}"></img>
                         </div>
-                    </div>
-                   
+                    </div>   
                 </div>
-              	<!--<div aura:id="uploading" class="notUploading">
-                 	<img src="/resource/NC_StaticResource/assets/images/spinners/slds_spinner.gif" alt="uploading" class="small-spinner" /> Uploading...
-    	      	</div>-->
-                
                 <div class="slds-form-element paddingTop">
                     <label class="slds-form-element__label" for="select-01">
-                        <img src="/resource/Lightning_designing_style/assets/icons/utility/tabset_60.png" class="smallIcon"/>  Categories
+                        <abbr class="slds-required" title="required">*</abbr> <img src="/resource/Lightning_designing_style/assets/icons/utility/tabset_60.png" class="smallIcon"/>  Categories
                     </label>
                     <div class="slds-form-element__control">
-                        <select id="choice" multiple="multiple">
+                        <select id="choice" multiple="multiple" >
                             <aura:iteration items="{!v.campaignCategoryList}" var="categoryList" >
                                 <option text="{!categoryList}" />
                             </aura:iteration>

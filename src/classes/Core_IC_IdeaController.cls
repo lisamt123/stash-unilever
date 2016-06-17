@@ -86,11 +86,6 @@ public class Core_IC_IdeaController {
     /**** Post Submit an Idea****/
     @AuraEnabled
     public static Core_CA_BaseApplicationWrapper postSubmitAnIdea(String IdeaCampaignId,String IdeaTitle,String IdeaDescription,List<String> IdeaCategories,String AttachmentName,String AttachmentBody,String AttachmentContentType) {
-        system.debug(IdeaCampaignId+'----------anki-----------'+IdeaTitle);
-        system.debug(IdeaDescription+'----------anki-----------'+IdeaCategories);
-        system.debug(AttachmentName+'---------anki------------'+AttachmentContentType);
-        system.debug('---------anki------------'+AttachmentBody);
-        
         Core_CA_ApplicationWrapper appWrapperObj = new Core_CA_ApplicationWrapper();       
         Core_IC_WrapperUtility.submitIdeaRequest submitIdeaObject = new Core_IC_WrapperUtility.submitIdeaRequest();
         submitIdeaObject.IdeaCampaignId = IdeaCampaignId;
@@ -110,4 +105,10 @@ public class Core_IC_IdeaController {
     public static Core_CA_BaseApplicationWrapper getFaqList() {
         return (Core_CA_BaseApplicationWrapper)Core_IC_FAQData.GetFAQValues();
     } 
+     /**** Get Google Analytics  Value****/
+      @AuraEnabled
+    public static string getIdeasGAID(){      
+        string strgaid = Core_Ideation__c.getinstance('CORE_IC_GA_VALUE').IdeasLigthningGA__c;
+        return strgaid;      
+    }    
 }

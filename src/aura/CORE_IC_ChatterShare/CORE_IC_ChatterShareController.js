@@ -31,7 +31,7 @@
         if(component.get("v.recordType")=="Campaign"){
      		component.set("v.LinkURL", window.location.origin+"/apex/CORE_IC_NavigateToApp?articleId="+recordDetail.IdeaThemeId+"&articleType="+component.get("v.recordType"));           
         	component.set("v.LinkName", recordDetail.CampaignTitle);
-        	component.set("v.LinkPost", "Share ideas for Campaigns" );
+        	component.set("v.LinkPost", "Share ideas for Campaign" );
         } else {
      		component.set("v.LinkURL", window.location.origin+"/apex/CORE_IC_NavigateToApp?articleId="+recordDetail.IdeaId+"&articleType="+component.get("v.recordType"));                    	
         	component.set("v.LinkName", recordDetail.IdeaTitle);

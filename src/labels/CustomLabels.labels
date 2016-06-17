@@ -12,7 +12,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EmailBodyForCampaigns</shortDescription>
-        <value>interesting. Please share your ideas on this!! More information could be found here</value>
+        <value>interesting. Please submit your ideas on this!! More information could be found here</value>
     </labels>
     <labels>
         <fullName>CORE_IC_CampaignSubject</fullName>
@@ -47,6 +47,6 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EmailSubjectForIdeas</shortDescription>
-        <value>Vote for the Idea-</value>
+        <value>Vote for the Idea</value>
     </labels>
 </CustomLabels>

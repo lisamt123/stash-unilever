@@ -399,7 +399,6 @@ global with sharing class Core_IC_LandingPage{
                         ObjIdeaLandingPageResponse.CampaignTypeForMyUpdates='NoUpdates';
                         //ObjIdeaLandingPageResponse.SeeAllLinkForMyUpdates='True';
                    }
-                   
                    if(!lstCombinedMyUpdates.isempty()) lstCombinedMyUpdates.sort();
                    List<Core_IC_WrapperUtility.MyUpdates> lstFinalCombinedMyUpdates = new List<Core_IC_WrapperUtility.MyUpdates>();
                    for(Core_IC_WrapperUtility.MyUpdates myUpdates:lstCombinedMyUpdates){
@@ -420,7 +419,7 @@ global with sharing class Core_IC_LandingPage{
                             ObjSingleMyUpdates.IdeaId=myUpdates.IdeaId;
                             ObjSingleMyUpdates.MyUpdatesType=myUpdates.MyUpdatesType;
                             lstFinalCombinedMyUpdates.add(ObjSingleMyUpdates);
-                            if(lstFinalCombinedMyUpdates.size()>=4) break;
+                            if(lstFinalCombinedMyUpdates.size()>=5) break;
                    }
                    ObjIdeaLandingPageResponse.MyUpdates=lstFinalCombinedMyUpdates;
                }
