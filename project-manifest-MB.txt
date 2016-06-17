@@ -113,6 +113,16 @@ src/classes/MB_Wrapper_Class.cls
 src/classes/MB_Wrapper_Class.cls-meta.xml
 src/classes/MB_Wrapper_Class_Test.cls
 src/classes/MB_Wrapper_Class_Test.cls-meta.xml
+
+src/classes/MB_DeleteBillingData_Batch.cls
+src/classes/MB_DeleteBillingData_Batch.cls-meta.xml
+src/classes/MB_ScheduleBillingDataDeletion_Batch.cls
+src/classes/MB_ScheduleBillingDataDeletion_Batch.cls-meta.xml
+src/classes/MB_DeleteBillingData_Test.cls
+src/classes/MB_DeleteBillingData_Test.cls-meta.xml
+
+src/objects/MB_Billing_Currency__c.object
+
 src/documents/MB_Folder-meta.xml
 src/documents/MB_Icon.png
 src/documents/MB_Icon.png-meta
