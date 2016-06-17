@@ -13,4 +13,5 @@ public with sharing class MB_Constants{
  public static final String Usage_Type_Calls= 'Calls';
  public static final String Usage_Type_Messaging= 'Messaging';
  public static final String Usage_Type_iPass= 'iPass';
+ public static final String Usage_Type_Recurring='Recurring';
  }

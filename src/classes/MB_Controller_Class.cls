@@ -170,34 +170,32 @@ public with sharing class MB_Controller_Class{
               totalSpend=totalSpend+CurrentUserData.Local_Net_Amount__c; 
                 wrprobj.userCurrency=CurrencySym();
               }
-          if(CurrentUserData.Usage_Type__r.Name =='Data'){
+          if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data){
                 DataUsage +=CurrentUserData.Data_Consumed_In_MB__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name =='Calls'){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls){
               CallUsage +=CurrentUserData.Call_Minutes__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name =='Messaging'){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging){
               MessageUsage +=CurrentUserData.Messages__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name == 'Ipass'){
+           if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass){
               IpassUsage +=CurrentUserData.iPass_Consumed_In_MB__c;
             }
-           
-           
           }
            
            if(CurrentUserData.Billing_Month__c ==previousMonth){
            
-           if(CurrentUserData.Usage_Type__r.Name =='Data'){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data){
                previousDataUsage +=CurrentUserData.Data_Consumed_In_MB__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name =='Calls'){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls){
              previousCallUsage +=CurrentUserData.Call_Minutes__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name =='Messaging'){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging){
              previousMessageUsage +=CurrentUserData.Messages__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name == 'Ipass'){
+           if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass){
               previousIpassUsage +=CurrentUserData.iPass_Consumed_In_MB__c; 
             }
          
@@ -281,7 +279,7 @@ public with sharing class MB_Controller_Class{
        
        for(MB_Billing_Entity__c entity:currentmonthBillingList)
        {
-        if(entity.Usage_Type__r.Name =='Data')
+        if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data)
         {
           
           if(!dataMap.containsKey(entity.Charge_Type__r.Name)){
@@ -309,7 +307,7 @@ public with sharing class MB_Controller_Class{
         
        }
        
-       if(entity.Usage_Type__r.Name =='Calls')
+       if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls)
         {
           if(!callsMap.containsKey(entity.Charge_Type__r.Name)){
               MB_Wrapper_Class.CallsChargeType_Wraper objData=new MB_Wrapper_Class.CallsChargeType_Wraper();
@@ -339,7 +337,7 @@ public with sharing class MB_Controller_Class{
         
        }
        
-       if(entity.Usage_Type__r.Name =='Messaging')
+       if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging)
         {
           if(!messagingMap.containsKey(entity.Charge_Type__r.Name)){
               MB_Wrapper_Class.MessagingChargeType_Wraper objData=new MB_Wrapper_Class.MessagingChargeType_Wraper();
@@ -363,7 +361,7 @@ public with sharing class MB_Controller_Class{
         
        }
        
-        if(entity.Usage_Type__r.Name =='ipass')
+        if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_iPass)
         {
           if(!ipassMap.containsKey(entity.Charge_Type__r.Name)){
               system.debug('coming'+entity.Charge_Type__r.Name);
@@ -387,7 +385,7 @@ public with sharing class MB_Controller_Class{
         }
        }
        
-       if(entity.Usage_Type__r.Name =='Recurring')
+       if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Recurring)
         {
           if(!nonusageMap.containsKey(entity.Charge_Type__r.Name)){
               MB_Wrapper_Class.NonUsageChargeType_Wrapper objData=new MB_Wrapper_Class.NonUsageChargeType_Wrapper();
@@ -430,21 +428,21 @@ public with sharing class MB_Controller_Class{
         Decimal previousnonUsage =0;
         Decimal previouSpend =0;
         
-         previousDataUsage=totalDeviceUsageSpend(previousmonthBillingList,'Data');
-         previousCallUsage=totalDeviceUsageSpend(previousmonthBillingList,'Calls');
-         previousMessageUsage=totalDeviceUsageSpend(previousmonthBillingList,'Messaging');
-         previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,'Ipass');
-         previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,'Recurring');
+         previousDataUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Data);
+         previousCallUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Calls);
+         previousMessageUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Messaging);
+         previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_iPass);
+         previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Recurring);
          previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId);
         
         MB_Wrapper_Class.MB_Device_Wrapper_Class objdevice=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
         objdevice.userCurrency=CurrencySym();
         objdevice.userName=userinfo.getfirstname();
-        objdevice.totalDataUsage=totalDeviceUsageSpend(currentmonthBillingList,'Data').setScale(2);
-        objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,'Calls').setScale(2);
-        objdevice.totalMessageUsage=totalDeviceUsageSpend(currentmonthBillingList,'Messaging').setScale(2);
-        objdevice.totalIpassUsage=totalDeviceUsageSpend(currentmonthBillingList,'Ipass').setScale(2);
-        objdevice.totalnonUsage=totalDeviceUsageSpend(currentmonthBillingList,'Recurring').setScale(2);
+        objdevice.totalDataUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Data).setScale(2);
+        objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);
+        objdevice.totalMessageUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Messaging).setScale(2);
+        objdevice.totalIpassUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
+        objdevice.totalnonUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
         objdevice.totalUsage=totalDeviceSpend(currentmonthBillingList,deviceId).setScale(2);
         objdevice.dataVariance=getVariance(objdevice.totalDataUsage,previousDataUsage);
         objdevice.callVariance=getVariance(objdevice.totalCallUsage,previousCallUsage);

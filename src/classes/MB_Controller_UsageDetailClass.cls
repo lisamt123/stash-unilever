@@ -82,7 +82,7 @@ public with sharing class MB_Controller_UsageDetailClass{
      else if(change<0){VarianceArrow=2;}
      else{VarianceArrow=3;}
      MB_Wrapper_Class.UsageAmountType_Wraper wprClass=new MB_Wrapper_Class.UsageAmountType_Wraper();
-     wprClass.userCurrency=[Select Billing_Currency__c FROM MB_Billing_Entity__c LIMIT 1].Billing_Currency__c ;
+     wprClass.userCurrency='£';//[Select Billing_Currency__c FROM MB_Billing_Entity__c LIMIT 1].Billing_Currency__c ;
      wprClass.chargeTypeName=usagetype;System.debug('%%%%$$$$'+wprClass.ChargeTypeName);
      wprClass.UsageCurrentAmount=usageamount.setScale(2);
      wprClass.UsagePreviousAmount=previoususageamount.setScale(2);
@@ -105,12 +105,13 @@ public with sharing class MB_Controller_UsageDetailClass{
     for(MB_Billing_Entity__c chargelst:billingEntityList){
          chargelist.add(chargelst.Charge_Type__r.Name);
     }
-    System.debug('@@@!!@'+billingEntityList.size()+'$$$'+usagetype);
+    Decimal  previoususageamount=0;
     List<MB_Wrapper_Class.UsageAmountType_Wraper> lst=new List<MB_Wrapper_Class.UsageAmountType_Wraper>(); 
     for(string chargelstforUsage:chargelist){System.debug('####$$$$'+chargelstforUsage);
      Decimal usageamount=getSpendDetailsforchargetype(deviceId,month,chargelstforUsage);
      string previousMonth= getPreviousMonth(month);
-     Decimal  previoususageamount=getSpendDetailsforchargetype(deviceId,previousMonth,chargelstforUsage);
+     previoususageamount=getSpendDetailsforchargetype(deviceId,previousMonth,chargelstforUsage);
+     System.debug('@@@!!@$$$'+previoususageamount+'----'+usageamount+'------'+chargelstforUsage);
      Decimal change=(usageamount-previoususageamount);
      
      Integer varience=0;
@@ -125,7 +126,7 @@ public with sharing class MB_Controller_UsageDetailClass{
      else if(change<0){VarianceArrow=2;}
      else{VarianceArrow=3;}
      MB_Wrapper_Class.UsageAmountType_Wraper wprClass=new MB_Wrapper_Class.UsageAmountType_Wraper();
-     if(usageamount>0 && previoususageamount>0){
+     if(usageamount>0 || previoususageamount>0){
      wprClass.chargeTypeName=chargelstforUsage; 
      wprClass.UsageCurrentAmount=usageamount.setScale(2);
      wprClass.UsagePreviousAmount=previoususageamount.setScale(2);

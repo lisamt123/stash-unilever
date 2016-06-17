@@ -13,7 +13,9 @@ VERSION     AUTHOR         DATE              DETAIL Description
 
 @IsTest
 public class MB_Controller_Charts_Test{
-  static testMethod void testControllerChartsWithCollegue(){
+  public static final String Month_April = 'April 2016';
+  
+  static testMethod void testControllerCharts(){
    
   Test.startTest();
        
@@ -62,23 +64,22 @@ public class MB_Controller_Charts_Test{
       
   MB_Charge_Type__c chargeTypeObject1 = new MB_Charge_Type__c(Name = 'Domestic Outgoing Calls');
   insert chargeTypeObject1;
-  MB_Charge_Type__c chargeTypeObject2 = new MB_Charge_Type__c(Name = 'International Outgoing Calls');
+  MB_Charge_Type__c chargeTypeObject2 = new MB_Charge_Type__c(Name = 'Roaming Outgoing Calls');
   insert chargeTypeObject2;
   MB_Charge_Type__c chargeTypeObject3 = new MB_Charge_Type__c(Name = 'Domestic Wi-Fi Offloading');
   insert chargeTypeObject3;
-  MB_Charge_Type__c chargeTypeObject4 = new MB_Charge_Type__c(Name = 'International Wi-Fi Offloading');
+  MB_Charge_Type__c chargeTypeObject4 = new MB_Charge_Type__c(Name = 'Roaming Wi-Fi Offloading');
   insert chargeTypeObject4;
   MB_Charge_Type__c chargeTypeObject5 = new MB_Charge_Type__c(Name = 'Domestic Data');
   insert chargeTypeObject5;
-  MB_Charge_Type__c chargeTypeObject6 = new MB_Charge_Type__c(Name = 'International Data');
+  MB_Charge_Type__c chargeTypeObject6 = new MB_Charge_Type__c(Name = 'Roaming Data');
   insert chargeTypeObject6;
   MB_Charge_Type__c chargeTypeObject7 = new MB_Charge_Type__c(Name = 'Domestic Outgoing SMS');
   insert chargeTypeObject7;
-  MB_Charge_Type__c chargeTypeObject8 = new MB_Charge_Type__c(Name = 'International Outgoing SMS');
+  MB_Charge_Type__c chargeTypeObject8 = new MB_Charge_Type__c(Name = 'Roaming Outgoing SMS');
   insert chargeTypeObject8;    
-      
-      
-  MB_Billing_Entity__c billingEntityObject1 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC1', Billing_Month__c = 'April 2016', Call_Minutes__c = 50.00, Data_Consumed_In_MB__c = 0.00, 
+           
+  MB_Billing_Entity__c billingEntityObject1 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC1', Billing_Month__c = Month_April, Call_Minutes__c = 50.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 10.00, Local_Net_Amount__c = 25.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN1');
   billingEntityObject1.Device_Details__c = deviceDetailsObject.Id;
@@ -87,7 +88,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject1.User__c = UserInfo.getUserId();
   insert billingEntityObject1;
             
-  MB_Billing_Entity__c billingEntityObject2 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC1', Billing_Month__c = 'April 2016', Call_Minutes__c = 50.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject2 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC1', Billing_Month__c = Month_April, Call_Minutes__c = 50.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 10.00, Local_Net_Amount__c = 25.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN1');
   billingEntityObject2.Device_Details__c = deviceDetailsObject.Id;
@@ -96,7 +97,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject2.User__c = UserInfo.getUserId();
   insert billingEntityObject2;
             
-  MB_Billing_Entity__c billingEntityObject3 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject3 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 100.00, Item_Count__c = 10.00, Local_Net_Amount__c = 50.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN2');
   billingEntityObject3.Device_Details__c = deviceDetailsObject.Id;
@@ -105,7 +106,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject3.User__c = UserInfo.getUserId();
   insert billingEntityObject3;
       
-  MB_Billing_Entity__c billingEntityObject4 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject4 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 100.00, Item_Count__c = 10.00, Local_Net_Amount__c = 50.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN2');
   billingEntityObject4.Device_Details__c = deviceDetailsObject.Id;
@@ -114,7 +115,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject4.User__c = UserInfo.getUserId();
   insert billingEntityObject4;
      
-  MB_Billing_Entity__c billingEntityObject5 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC3', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 500.00, 
+  MB_Billing_Entity__c billingEntityObject5 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC3', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 500.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 25.00, Local_Net_Amount__c = 175.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN3');
   billingEntityObject5.Device_Details__c = deviceDetailsObject.Id;
@@ -123,7 +124,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject5.User__c = UserInfo.getUserId();
   insert billingEntityObject5;
       
-   MB_Billing_Entity__c billingEntityObject6 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC3', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 500.00, 
+   MB_Billing_Entity__c billingEntityObject6 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC3', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 500.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 25.00, Local_Net_Amount__c = 175.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN3');
   billingEntityObject6.Device_Details__c = deviceDetailsObject.Id;
@@ -132,7 +133,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject6.User__c = UserInfo.getUserId();
   insert billingEntityObject6;
       
-  MB_Billing_Entity__c billingEntityObject7 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject7 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 30.00, Local_Net_Amount__c = 75.00, Messages__c = 90.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN4');
   billingEntityObject7.Device_Details__c = deviceDetailsObject.Id;
@@ -141,7 +142,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject7.User__c = UserInfo.getUserId();
   insert billingEntityObject7;
       
-  MB_Billing_Entity__c billingEntityObject8 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject8 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 30.00, Local_Net_Amount__c = 75.00, Messages__c = 90.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN4');
   billingEntityObject8.Device_Details__c = deviceDetailsObject.Id;
@@ -151,7 +152,7 @@ public class MB_Controller_Charts_Test{
   insert billingEntityObject8;
   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject1 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject1 = MB_Controller_Charts.getChargeType('April 2016', deviceDetailsObject.Id);
+  deviceWrapperClassObject1 = MB_Controller_Charts.getChargeType(Month_April, deviceDetailsObject.Id);
 
   System.assertEquals(deviceWrapperClassObject1.totalDomesticDataUsage,500.00); 	
   System.assertEquals(deviceWrapperClassObject1.totalInternationalDataUsage,500.00); 	
@@ -162,7 +163,7 @@ public class MB_Controller_Charts_Test{
   System.assertEquals(deviceWrapperClassObject1.totalInternationalCallUsage,50.00); 	
   System.assertEquals(deviceWrapperClassObject1.totalInternationalIpassUsage,100.00); 
       
-  MB_Billing_Entity__c billingEntityObject9 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC1', Billing_Month__c = 'April 2016', Call_Minutes__c = 50.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject9 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC1', Billing_Month__c = Month_April, Call_Minutes__c = 50.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 10.00, Local_Net_Amount__c = 25.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN1');
   billingEntityObject9.Device_Details__c = deviceDetailsObject.Id;
@@ -171,7 +172,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject9.User__c =  userObject2.Id;
   insert billingEntityObject9;
             
-  MB_Billing_Entity__c billingEntityObject10 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject10 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 100.00, Item_Count__c = 10.00, Local_Net_Amount__c = 50.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN2');
   billingEntityObject10.Device_Details__c = deviceDetailsObject.Id;
@@ -180,7 +181,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject10.User__c = userObject2.Id;
   insert billingEntityObject10;
       
-   MB_Billing_Entity__c billingEntityObject11 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC3', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 500.00, 
+   MB_Billing_Entity__c billingEntityObject11 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC3', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 500.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 25.00, Local_Net_Amount__c = 175.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN3');
   billingEntityObject11.Device_Details__c = deviceDetailsObject.Id;
@@ -189,7 +190,7 @@ public class MB_Controller_Charts_Test{
   billingEntityObject11.User__c = userObject2.Id;
   insert billingEntityObject11;
       
-  MB_Billing_Entity__c billingEntityObject12 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = 'April 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+  MB_Billing_Entity__c billingEntityObject12 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
                                     iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 30.00, Local_Net_Amount__c = 75.00, Messages__c = 90.00, Non_Usage_Consumed__c = 0.00, 
                                     Service_Name__c = 'SN4');
   billingEntityObject12.Device_Details__c = deviceDetailsObject.Id;
@@ -217,12 +218,11 @@ public class MB_Controller_Charts_Test{
   insert billingEntityObject14;
       
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject2 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType('April 2016'); 
-      
-  System.assertEquals(deviceWrapperClassObject2.totalAverageCallUsage,25.00); 
-  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,250.00); 	
-  System.assertEquals(deviceWrapperClassObject2.totalAverageIpassUsage,50.00);	
-  System.assertEquals(deviceWrapperClassObject2.totalAverageMessageUsage,45.00); 	
+  deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType(Month_April);
+  System.assertEquals(deviceWrapperClassObject2.totalAverageCallUsage,50.00); 
+  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,500.00); 	
+  System.assertEquals(deviceWrapperClassObject2.totalAverageIpassUsage,100.00);	
+  System.assertEquals(deviceWrapperClassObject2.totalAverageMessageUsage,90.00); 	
   System.assertEquals(deviceWrapperClassObject2.totalCallUsage,100.00); 
   System.assertEquals(deviceWrapperClassObject2.totalDataUsage,1000.00); 	  
   System.assertEquals(deviceWrapperClassObject2.totalMessageUsage,180.00);
@@ -230,11 +230,10 @@ public class MB_Controller_Charts_Test{
          
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject3 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject3 = MB_Controller_Charts.getyourCollegueChargeType('March 2016');
-  
-  System.assertEquals(deviceWrapperClassObject3.totalAverageCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject3.totalAverageDataUsage,0.00); 	
-  System.assertEquals(deviceWrapperClassObject3.totalAverageIpassUsage,0.00);	
-  System.assertEquals(deviceWrapperClassObject3.totalAverageMessageUsage,90.00); 	
+  System.assertEquals(deviceWrapperClassObject3.totalAverageCallUsage,50.00); 
+  System.assertEquals(deviceWrapperClassObject3.totalAverageDataUsage,500.00); 	
+  System.assertEquals(deviceWrapperClassObject3.totalAverageIpassUsage,100.00);	
+  System.assertEquals(deviceWrapperClassObject3.totalAverageMessageUsage,180.00); 	
   System.assertEquals(deviceWrapperClassObject3.totalCallUsage,0.00); 
   System.assertEquals(deviceWrapperClassObject3.totalDataUsage,0.00); 	  
   System.assertEquals(deviceWrapperClassObject3.totalMessageUsage,0.00);
@@ -242,11 +241,10 @@ public class MB_Controller_Charts_Test{
         
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject4 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject4 = MB_Controller_Charts.getyourCollegueChargeType('February 2016');
-  
-  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsage,0.00); 	
-  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsage,100.00);	
-  System.assertEquals(deviceWrapperClassObject4.totalAverageMessageUsage,0.00); 	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsage,50.00); 
+  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsage,500.00); 	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsage,200.00);	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageMessageUsage,180.00); 	
   System.assertEquals(deviceWrapperClassObject4.totalCallUsage,0.00); 
   System.assertEquals(deviceWrapperClassObject4.totalDataUsage,0.00); 	  
   System.assertEquals(deviceWrapperClassObject4.totalMessageUsage,0.00);
