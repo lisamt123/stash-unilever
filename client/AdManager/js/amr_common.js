@@ -443,7 +443,7 @@ function additionalFilmProcess() {
 					removeMasterDurationRows();
 					noOfmasterdurationkeypress();        		
 				} else {
-					alert('Maximum 50 masters can be added');
+					alert('maximum 50 masters can be added');
 				}
         	});
         }
@@ -457,10 +457,25 @@ function additionalFilmProcess() {
 					removeAdditionalFilmDurationRows();
 					noOfAdditionalFilmdurationkeypress();
 				} else {
-					alert('Maximum 50 additional films can be added');
+					alert('maximum 50 additional films can be added');
 				}       		
         	});
         }
+
+function multiSelectShootLocation() {
+    var multiselectJq_selected = $j('.job-field-input-multiselectJq select').attr('datalist');
+    //	alert(multiselectJq_selected_array);
+    if (multiselectJq_selected) {
+        var multiselectJq_selected_array = multiselectJq_selected.split(",");
+        $j.each(multiselectJq_selected_array, function(i) {
+            var multiselectJq_selected_arrayvalue = multiselectJq_selected_array[i];
+            $j('.job-field-input-multiselectJq select option[value="' + multiselectJq_selected_arrayvalue + '"]').attr('selected', 1);
+            //system.debug(multiselectJq_selected_arrayvalue);
+            //	alert(multiselectJq_selected_arrayvalue);
+        });
+    }
+}
+
 
 $j(function() {
 	
