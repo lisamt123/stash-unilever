@@ -15,6 +15,7 @@
     <inactiveIndexPage>CommunitiesLogin</inactiveIndexPage>
     <indexPage>CommunitiesLanding</indexPage>
     <masterLabel>Portal DMS Service</masterLabel>
+    <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <siteAdmin>carlos.h.lima@accenture.com.prod</siteAdmin>
     <siteType>ChatterNetwork</siteType>
