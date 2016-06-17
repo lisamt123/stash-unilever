@@ -7594,6 +7594,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Web North America</fullName>
+                <default>false</default>
+            </values>            
+            <values>
                 <fullName>White Mail</fullName>
                 <default>false</default>
             </values>
