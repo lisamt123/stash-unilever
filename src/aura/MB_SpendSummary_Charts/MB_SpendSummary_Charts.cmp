@@ -101,6 +101,7 @@
                 </div>              
             </div>
         </div><br/> 
+        <c:MB_Action_bar componentName="MB_Devices" selectedMonth="{!v.CurrentMonth}"/>
     </div>
     <aura:set attribute="else">
                <div class="slds-spinner_container">

@@ -7,7 +7,9 @@
             var state = response.getState();  
             if (component.isValid() && state === "SUCCESS") {
                 var res= response.getReturnValue(); 
-                component.set("v.AllData",res); 
+ 
+                component.set("v.AllData",res);
+                
             } 
         });
         $A.enqueueAction(action);

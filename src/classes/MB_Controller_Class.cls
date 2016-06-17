@@ -12,7 +12,13 @@ VERSION     AUTHOR         DATE              DETAIL Description
 ***************************************************************/
 
 public with sharing class MB_Controller_Class{
-  
+     public static string CurrencySym()
+     {
+      MB_Billing_Currency__c CurrencySymbol = MB_Billing_Currency__c.getInstance('GBP');
+      String CurrencyS=String.valueof(CurrencySymbol.Symbol__c);
+      System.debug('#######'+CurrencySymbol);
+      return CurrencyS;
+     }
      public static String getPreviousMonth(String month) {
       Map<String, String> monthsMap = new Map<String, String>{'January' => 'December', 'February' => 'January', 'March' => 'February', 'April' => 'March', 
             'May' => 'April', 'June' => 'May', 'July' => 'June', 'August' => 'July', 'September' => 'August', 
@@ -46,24 +52,30 @@ public with sharing class MB_Controller_Class{
       set<Id> deviceIds=new set<Id>();
       Map<Id,MB_Billing_Entity__c> deviceMap=new Map<Id,MB_Billing_Entity__c>();
       for(MB_Billing_Entity__c entity:billingEntityList){
-          deviceIds.add(Id.valueof(entity.Device_Details__c));
+         
         if(!deviceMap.containsKey(entity.Device_Details__c)){
           deviceMap.put(entity.Device_Details__c,entity);
         }
       }
+      for(MB_Billing_Entity__c entity:billingEntityList){
+       if(entity.Device_Details__c !=null){
+          deviceIds.add(Id.valueof(entity.Device_Details__c));
+         }
+        }
+      
       List<MB_Device_Details__Feed> contentIdList=[SELECT Id, ParentId,RelatedRecordId FROM MB_Device_Details__Feed where ParentId in :deviceIds];
       Map<Id,Id> imageIdMap=new Map<Id,Id>();
     
-    /*  for(MB_Device_Details__Feed document:contentIdList){
+    for(MB_Device_Details__Feed document:contentIdList){
        if(!imageIdMap.containsKey(document.ParentId)){
-         if(document.RelatedRecordId !=' ' || document.RelatedRecordId !=null){
+         if( document.RelatedRecordId !=null){
          system.debug('parentid'+document.ParentId+'recordid'+document.RelatedRecordId);
           imageIdMap.put(id.valueof(document.ParentId),id.valueof(document.RelatedRecordId));
           
        }
       }
-     } */
-      string sfcBaseUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/'+'sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId=' ;
+     } 
+      string sfcBaseUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/'+'sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId=';
 
   
       List<MB_Billing_Entity__c> billingEntityDistinctList=deviceMap.values();
@@ -71,16 +83,15 @@ public with sharing class MB_Controller_Class{
         MB_Wrapper_Class.MB_Device_Wrapper_Class objWrapper=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
         objWrapper.userName=userinfo.getFirstName();
         objWrapper.deviceId=entity.Device_Details__c;
-        objWrapper.userCurrency=entity.Billing_Currency__c;
+        objWrapper.userCurrency=CurrencySym();
         objWrapper.deviceName=entity.Device_Details__r.Name;
-        //objWrapper.deviceImageUrl=entity.Device_Details__r.Photo_URL__c;
-        //system.debug('image url'+sfcBaseUrl+string.valueof(imageIdMap.get(entity.Device_Details__c)));
+        
         if(imageIdMap.size() > 0){
           objWrapper.deviceImageUrl=sfcBaseUrl+string.valueof(imageIdMap.get(entity.Device_Details__c));
         }
-        system.debug('###'+entity.Device_Details__c+'$$$'+billingEntityList.size());
-        objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Device_Details__c).setScale(2);
-        system.debug('###'+objWrapper.totalUsage);
+        system.debug('###'+ objWrapper.deviceImageUrl);
+        objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Device_Details__c);
+     
         wrapperList.add(objWrapper);
       }
       
@@ -126,7 +137,7 @@ public with sharing class MB_Controller_Class{
     
     @AuraEnabled
     public static MB_Wrapper_Class.MB_Device_Wrapper_Class getUsageDetails(String month) {
-        Integer UserCount=0;
+        
         Decimal AverageDataUsage=0;
         Decimal AverageCallUsage=0;
         Decimal AverageMessageUsage=0;
@@ -140,33 +151,8 @@ public with sharing class MB_Controller_Class{
         Decimal previousMessageUsage =0;
         Decimal previousIpassUsage =0;
         Decimal totalSpend =0;
-
-        System.debug('!@!@');
-        List<MB_Billing_Entity__c> lstCollegueChargeType=[Select Usage_Type__r.Name,Billing_Currency__c, Data_Consumed_In_MB__c,Call_Minutes__c,Messages__c,iPass_Consumed_In_MB__c from MB_Billing_Entity__c where  Billing_Month__c =: month and User__c !=:UserInfo.getUserId()];   
-         system.debug('***'+lstCollegueChargeType.size());
-        MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class();  
-         for(MB_Billing_Entity__c AvgofCollegueData:lstCollegueChargeType)
-         {  
-           UserCount++;
-           if(AvgofCollegueData.Usage_Type__r.Name =='Data'){
-               AverageDataUsage+=AvgofCollegueData.Data_Consumed_In_MB__c; System.debug('%%%1'+AverageDataUsage);
-           }
-           if(AvgofCollegueData.Usage_Type__r.Name =='Calls'){
-              AverageCallUsage+=AvgofCollegueData.Call_Minutes__c; System.debug('%%%2');
-           }
-           if(AvgofCollegueData.Usage_Type__r.Name =='Messaging'){
-              AverageMessageUsage+=AvgofCollegueData.Messages__c;
-           }
-           if(AvgofCollegueData.Usage_Type__r.Name == 'Ipass'){
-               AverageIpassUsage+=AvgofCollegueData.iPass_Consumed_In_MB__c ;
-            }
-        }
-          
-        //wrprobj.totalAverageDataUsage=AverageDataUsage/UserCount;
-        //wrprobj.totalAverageCallUsage=AverageCallUsage/UserCount;
-        //wrprobj.totalAverageMessageUsage=AverageMessageUsage/UserCount;
-        //wrprobj.totalAverageIpassUsage=AverageIpassUsage/UserCount; 
-       
+        MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
+              
         
         string previousMonth=getPreviousMonth(month);
         List<MB_Billing_Entity__c> lstyourChargeType=[Select Usage_Type__r.Name, Billing_Currency__c,Data_Consumed_In_MB__c,Call_Minutes__c,Messages__c,Local_Net_Amount__c,iPass_Consumed_In_MB__c,Billing_Month__c from MB_Billing_Entity__c where Billing_Month__c in (:month,:previousMonth) and User__c=:UserInfo.getUserId()];   
@@ -182,7 +168,7 @@ public with sharing class MB_Controller_Class{
           if(CurrentUserData.Billing_Month__c ==month){
              if(CurrentUserData.Local_Net_Amount__c !=null){
               totalSpend=totalSpend+CurrentUserData.Local_Net_Amount__c; 
-                wrprobj.userCurrency=CurrentUserData.Billing_Currency__c;
+                wrprobj.userCurrency=CurrencySym();
               }
           if(CurrentUserData.Usage_Type__r.Name =='Data'){
                 DataUsage +=CurrentUserData.Data_Consumed_In_MB__c;
@@ -307,20 +293,18 @@ public with sharing class MB_Controller_Class{
             }
           }
           
-       else if(dataMap.containsKey(entity.Charge_Type__r.Name)){
+          else if(dataMap.containsKey(entity.Charge_Type__r.Name)){
              decimal amount=0;
-             MB_Wrapper_Class.DataChargeType_Wraper objData1=new MB_Wrapper_Class.DataChargeType_Wraper ();
-             objData1=dataMap.get(entity.Charge_Type__r.Name);
-             system.debug('$$$'+objData1.totalSpend);
-             dataMap.remove(entity.Charge_Type__r.Name);
+             MB_Wrapper_Class.DataChargeType_Wraper objData=dataMap.get(entity.Charge_Type__r.Name);
+             dataMap.remove(entity.Usage_Type__r.Name);
              if(entity.Local_Net_Amount__c !=null  )
              {
-             
-               amount=objData1.totalSpend+entity.Local_Net_Amount__c.setScale(2);
+              
+               amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
              }
-             objData1.totalSpend=amount.setScale(2);
-             objData1.chargeTypeName=entity.Charge_Type__r.Name;
-             dataMap.put(entity.Charge_Type__r.Name,objData1);
+             objData.totalSpend=amount.setScale(2);
+             objData.chargeTypeName=entity.Charge_Type__r.Name;
+             dataMap.put(entity.Charge_Type__r.Name,objData);
         }
         
        }
@@ -454,7 +438,7 @@ public with sharing class MB_Controller_Class{
          previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId);
         
         MB_Wrapper_Class.MB_Device_Wrapper_Class objdevice=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-        objdevice.userCurrency=billingEntityList[0].Billing_Currency__c;
+        objdevice.userCurrency=CurrencySym();
         objdevice.userName=userinfo.getfirstname();
         objdevice.totalDataUsage=totalDeviceUsageSpend(currentmonthBillingList,'Data').setScale(2);
         objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,'Calls').setScale(2);

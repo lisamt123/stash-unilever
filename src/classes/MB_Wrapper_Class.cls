@@ -15,17 +15,17 @@ VERSION     AUTHOR         DATE              DETAIL Description
 public class MB_Wrapper_Class{
    
     @AuraEnabled
-    public List<DataChargeType_Wraper> dataWrapperList;
+    public List<DataChargeType_Wraper> dataWrapperList{get;set;}
     @AuraEnabled
-    public List<CallsChargeType_Wraper> callsWrapperList;
+    public List<CallsChargeType_Wraper> callsWrapperList{get;set;}
     @AuraEnabled
-    public List<MessagingChargeType_Wraper> messageWrapperList;
+    public List<MessagingChargeType_Wraper> messageWrapperList{get;set;}
     @AuraEnabled
-    public List<IpassChargeType_Wraper> ipassWrapperList;
+    public List<IpassChargeType_Wraper> ipassWrapperList{get;set;}
     @AuraEnabled
-    public List<NonUsageChargeType_Wrapper> nonusageWrapperList;
+    public List<NonUsageChargeType_Wrapper> nonusageWrapperList{get;set;}
     @AuraEnabled
-    public MB_Device_Wrapper_Class objdeviceWrapper;
+    public MB_Device_Wrapper_Class objdeviceWrapper{get;set;}
    /*******************************************************************************************************
     * @description This class  contains fields for  user spend with particular device.
     * @param  month
@@ -35,163 +35,163 @@ public class MB_Wrapper_Class{
     public class MB_Device_Wrapper_Class{
     
      @AuraEnabled
-     public string userName;
+     public string userName{get;set;}
      
      @AuraEnabled
-     public string deviceName;
+     public string deviceName{get;set;}
      
      @AuraEnabled
-     public string deviceId;
+     public string deviceId{get;set;}
      
      @AuraEnabled
-     public string deviceImageUrl;
+     public string deviceImageUrl{get;set;}
      
      @AuraEnabled
-     public string userCurrency;
+     public string userCurrency{get;set;}
      
      @AuraEnabled
-     public decimal totaldeviceUsage;
+     public decimal totaldeviceUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalUsage;
+     public decimal totalUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalDomesticCallUsage;
+     public decimal totalDomesticCallUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalInternationalCallUsage;
+     public decimal totalInternationalCallUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalDomesticSMSUsage;
+     public decimal totalDomesticSMSUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalInternationalSMSUsage;
+     public decimal totalInternationalSMSUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalDomesticDataUsage;
+     public decimal totalDomesticDataUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalInternationalDataUsage;
+     public decimal totalInternationalDataUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalDomesticIpassUsage;
+     public decimal totalDomesticIpassUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalInternationalIpassUsage;
+     public decimal totalInternationalIpassUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalDataUsage;
+     public decimal totalDataUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalCallUsage;
+     public decimal totalCallUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalMessageUsage;
+     public decimal totalMessageUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalIpassUsage;
+     public decimal totalIpassUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalnonUsage;
+     public decimal totalnonUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalAverageDataUsage;
+     public decimal totalAverageDataUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalAverageCallUsage;
+     public decimal totalAverageCallUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalAverageMessageUsage;
+     public decimal totalAverageMessageUsage{get;set;}
      
      @AuraEnabled
-     public decimal totalAverageIpassUsage;
+     public decimal totalAverageIpassUsage{get;set;}
      
      @AuraEnabled
-     public boolean totalSpendVariance;
+     public boolean totalSpendVariance{get;set;}
      
      @AuraEnabled
-     public boolean dataVariance;
+     public boolean dataVariance{get;set;}
      
      @AuraEnabled
-     public boolean callVariance;
+     public boolean callVariance{get;set;}
      
      @AuraEnabled
-     public boolean smsVariance;
+     public boolean smsVariance{get;set;}
      
      @AuraEnabled
-     public boolean ipassVariance ;
+     public boolean ipassVariance{get;set;}
      
      @AuraEnabled
-     public boolean nonUsageVariance ;
+     public boolean nonUsageVariance{get;set;}
     }
     
      public class DataChargeType_Wraper{
      
      @AuraEnabled
-     public string chargeTypeName;
+     public string chargeTypeName{get;set;}
      
      @AuraEnabled
-     public decimal totalSpend;
+     public decimal totalSpend{get;set;}
     }
     
     public class CallsChargeType_Wraper{
      
      @AuraEnabled
-     public string chargeTypeName;
+     public string chargeTypeName{get;set;}
      
      @AuraEnabled
-     public decimal totalSpend;
+     public decimal totalSpend{get;set;}
     }
     
     public class MessagingChargeType_Wraper{
      
      @AuraEnabled
-     public string chargeTypeName;
+     public string chargeTypeName{get;set;}
      
      @AuraEnabled
-     public decimal totalSpend;
+     public decimal totalSpend{get;set;}
     }
     
     public class NonUsageChargeType_Wrapper{
      
      @AuraEnabled
-     public string chargeTypeName;
+     public string chargeTypeName{get;set;}
      
      @AuraEnabled
-     public decimal totalSpend;
+     public decimal totalSpend{get;set;}
     }
     
      public class IpassChargeType_Wraper{ 
      
      @AuraEnabled
-     public string chargeTypeName;
+     public string chargeTypeName{get;set;}
      
      @AuraEnabled
-     public decimal totalSpend;
+     public decimal totalSpend{get;set;}
   
     }
     public class UsageAmountType_Wraper{ 
      
      @AuraEnabled
-     public string chargeTypeName;
+     public string chargeTypeName{get;set;}
      
      @AuraEnabled
-     public decimal UsageCurrentAmount;
+     public decimal UsageCurrentAmount{get;set;}
      
      @AuraEnabled
-     public decimal UsagePreviousAmount;
+     public decimal UsagePreviousAmount{get;set;}
      
      @AuraEnabled
-     public decimal UsageChangeAmount;
+     public decimal UsageChangeAmount{get;set;}
      
      @AuraEnabled
-     public Integer UsageVarience;
+     public Integer UsageVarience{get;set;}
      
      @AuraEnabled
-     public Integer VarianceArrow;
+     public Integer VarianceArrow{get;set;}
      
      @AuraEnabled
-     public string userCurrency;
+     public string userCurrency{get;set;}
   
     }
   }

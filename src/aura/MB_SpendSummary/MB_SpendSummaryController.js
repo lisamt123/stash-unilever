@@ -49,7 +49,7 @@
     
     gotoDetailSummaryIpass:function(component, event, helper) {
         var summaryEvent=$A.get("e.c:MB_UsageTypeSummary_Event"); 
-        summaryEvent.setParams({"month":component.get("v.CurrentMonth"),"deviceId":component.get("v.deviceId"),"usageType":"Ipass","deviceName":component.get("v.deviceName")}).fire();
+        summaryEvent.setParams({"month":component.get("v.CurrentMonth"),"deviceId":component.get("v.deviceId"),"usageType":"iPass","deviceName":component.get("v.deviceName")}).fire();
     },
     
     gotoDetailSummarynonUsage:function(component, event, helper) {

@@ -34,9 +34,9 @@
                                 showInLegend: true, 
                         dataPoints: [
                         
-                        {  y: (res.totalDomesticDataUsage),legendText:Domestic, color:'#4F6A92'},
+                        {  y: (res.totalDomesticDataUsage),legendText:"Domestic", color:'#4F6A92'},
                                                 
-                        { y: (res.totalInternationalDataUsage),legendText:International, color:'#0C8EFF'},
+                        { y: (res.totalInternationalDataUsage),legendText:"Roaming", color:'#0C8EFF'},
                                                    
                         ]  } ]
                     });            
@@ -59,8 +59,8 @@ $("#pie2").CanvasJSChart({
                                 showInLegend: true,
                                 dataPoints: [
                                     
-                                    { x: 10, y: (res.totalDomesticCallUsage),legendText:Domestic,color:'#4F6A92' },
-                                    { x: 20, y: (res.totalInternationalCallUsage),legendText:International,color:'#0C8EFF' }                            
+                                    { x: 10, y: (res.totalDomesticCallUsage),legendText:"Domestic",color:'#4F6A92' },
+                                    { x: 20, y: (res.totalInternationalCallUsage),legendText:"Roaming",color:'#0C8EFF' }                            
                                 ]
                             }
                         ]
@@ -84,9 +84,9 @@ $("#pie2").CanvasJSChart({
                                 showInLegend: true, 
                         dataPoints: [
                         
-                        { x: 50, y: (res.totalDomesticSMSUsage),legendText:Domestic, color:'#4F6A92'},
+                        { x: 50, y: (res.totalDomesticSMSUsage),legendText:"Domestic", color:'#4F6A92'},
                                                    
-                        { x: 20, y: (res.totalInternationalSMSUsage),legendText:International, color:'#0C8EFF'},
+                        { x: 20, y: (res.totalInternationalSMSUsage),legendText:"Roaming", color:'#0C8EFF'},
                        ]}]
                     });            
  $("#pie4").CanvasJSChart({ 
@@ -107,8 +107,8 @@ $("#pie2").CanvasJSChart({
                                 indexLabel: "{y}",
                                 showInLegend: true, 
                         dataPoints: [
-                        { x: 10, y: (res.totalDomesticIpassUsage),legendText:Domestic, color:'#4F6A92'},                          
-                        { x: 20, y: (res.totalInternationalIpassUsage),legendText:International, color:'#0C8EFF'},
+                        { x: 10, y: (res.totalDomesticIpassUsage),legendText:"Domestic", color:'#4F6A92'},                          
+                        { x: 20, y: (res.totalInternationalIpassUsage),legendText:"Roaming", color:'#0C8EFF'},
                                                    
                         ]   }    ]     }); 
 });

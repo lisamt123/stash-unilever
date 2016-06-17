@@ -51,13 +51,13 @@
      <aura:if isTrue="{!v.showspinner=='false'}"> 
         <div class="section_a">
             <div class="slds-text-body--regular head_a">All {!v.AllHeadData.chargeTypeName}</div>
-            <div class="slds-text-body--regular head_b">{!v.AllHeadData.userCurrency}&nbsp;{!v.AllHeadData.UsageCurrentAmount}</div><div style="clear:both"></div>
+            <div class="slds-text-body--regular head_b">{!v.AllHeadData.userCurrency}{!v.AllHeadData.UsageCurrentAmount}</div><div style="clear:both"></div>
         
             <div class="slds-text-body--small head_d">Previous</div>
-            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}&nbsp;{!v.AllHeadData.UsagePreviousAmount}</div><div style="clear:both"></div>
+            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}{!v.AllHeadData.UsagePreviousAmount}</div><div style="clear:both"></div>
             
             <div class="slds-text-body--small head_d">Change</div>
-            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}&nbsp;{!v.AllHeadData.UsageChangeAmount}</div><div style="clear:both"></div>
+            <div class="slds-text-body--small head_e">{!v.AllHeadData.userCurrency}{!v.AllHeadData.UsageChangeAmount}</div><div style="clear:both"></div>
           
             <aura:if isTrue="{!v.AllHeadData.UsageVarience>0}">  
                 <div class="slds-text-body--small head_d">Variance</div>
@@ -110,6 +110,7 @@
              <div style="clear:both"></div>
         </div>
     </aura:iteration>
+         <c:MB_Action_bar componentName="MB_Devices" selectedMonth="{!v.CurrentMonth}"/>
          <aura:set attribute="else">
                <div class="slds-spinner_container">
                   <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
