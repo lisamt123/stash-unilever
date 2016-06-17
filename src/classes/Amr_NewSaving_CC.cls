@@ -144,7 +144,7 @@ public with sharing class Amr_NewSaving_CC {
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Saving Id')); 
         }
         
-        if(!String.isBlank(savingObjId) && IsCloneSaved == false){
+        if(!String.isBlank(savingObjId) && !IsCloneSaved){
                 
         acceptedQuoteNew=[select Saving__r.Saving_Average_of_Quotes__c,Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
                                            Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
@@ -178,7 +178,7 @@ public with sharing class Amr_NewSaving_CC {
    ********************************************************************/ 
     public Pagereference SaveQuoteAndSavingData(){
 
-        alertValue = 'Please anjali!!!';
+        alertValue = '';
                 
         try{
            boolean okayToSave = true;
@@ -496,6 +496,7 @@ public with sharing class Amr_NewSaving_CC {
     }
     
     public void getCaProcessMangCategory(){
+        System.debug('Process Management Category');
     }
     
     
