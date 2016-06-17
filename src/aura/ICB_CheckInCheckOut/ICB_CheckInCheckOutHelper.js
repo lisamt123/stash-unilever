@@ -48,7 +48,12 @@
                     console.log('$A.get("$Label.c.ICB_PREFIX_SOBJECT_EVENT")='+returnMSG);
                     if( returnMSG.indexOf($A.get("$Label.c.ICB_TEXT_CHECK_IN")) > -1 ){
                         console.log('ENTROU RETORNO MSERIES');
-                    	sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), false);
+                        var codcustomer;
+                        if( codcustomer != null && codcustomer != "undefined" ){
+                    		sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES")+codcustomer, false);
+                        }else {
+                            sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), false);
+                        }
                     }else{
                         console.log('ENTROU RETORNO TELA VISITAS');
                         sforce.one.navigateToURL($A.get("$Label.c.ICB_PREFIX_SOBJECT_EVENT"), true);
@@ -110,7 +115,8 @@
             var currentDate = year+'-'+month+'-'+day;
             
             if( currentDate == gmDate || confirm == 'true' ){
-                sforce.one.navigateToURL('/'+goldenMinute.Id, false);
+                sforce.one.navigateToURL('/'+goldenMinute.Id);
+                
             }else{
                 component.set('v.statusGM', $A.get("$Label.c.ICB_STATUS_GOLDEN_MINUTE_NOT_UPDATE"));
                 component.set('v.isStatusGM', true);

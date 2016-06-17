@@ -6,7 +6,7 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>ICB_CalculatePlanDistaance_Batch</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_CalculatePlanDistaance_Batch_Test</apexClass>
@@ -18,7 +18,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_CalculatePlanDistance_BatchSchedule</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_CheckInCheckOut_CC</apexClass>
@@ -54,7 +54,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.Description</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -189,7 +189,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Description</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

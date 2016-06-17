@@ -22,7 +22,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_CheckInCheckOut_CC</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_CheckInCheckOut_CC_Test</apexClass>
@@ -304,7 +304,7 @@
     <label>ICB Back Office</label>
     <pageAccesses>
         <apexPage>ICB_CheckInCheckOut</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Event.ICB_IceCreamVisit</recordType>

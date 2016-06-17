@@ -12,8 +12,9 @@ global with sharing class Oblix_VersionControl implements Schedulable {
     public static void checkAndInitialiseBatchJob(){
 
         // if there is no other batch job currently running and we have some records to process
+        // S.M. 2016-06-10 and job does not require manual attention
         // then initiate the batch job
-        if (!checkIsJobRunning()){
+        if (!checkIsJobRunning() && !checkJobRequiresManualAttention()){
             // how many SOWs require Cloning? 
             Integer sow_requested_clone_size = [SELECT count() FROM Marketing_SOW__c 
                 WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS];
@@ -56,6 +57,12 @@ global with sharing class Oblix_VersionControl implements Schedulable {
         else{
             return true;
         }
+    }
+
+    public static Boolean checkJobRequiresManualAttention(){
+
+        Oblix_Job_Orchestration__c requires_manual_attention = Oblix_Job_Orchestration__c.getOrgDefaults();
+        return requires_manual_attention.Requires_Manual_Attention__c;
     }
 
     public static void scheduleJobs() {

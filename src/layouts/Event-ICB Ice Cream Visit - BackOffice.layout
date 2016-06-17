@@ -85,7 +85,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Location</field>
+                <field>Phone</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -170,18 +170,6 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
-    <relatedLists>
-        <relatedList>RelatedEventAttendeeAccept</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedEventAttendeeNotDecided</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedEventAttendeeDecline</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedActivityAttachmentList</relatedList>
-    </relatedLists>
     <relatedObjects>WhoId</relatedObjects>
     <relatedObjects>WhatId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
