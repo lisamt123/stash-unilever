@@ -4,8 +4,8 @@ Name:  Amr_AdManagerController_CC ()  Copyright © 2015  Salesforce
 ====================================================== 
 Purpose:                                                           
 -------   This class is holds the  business logic for Creation Of New Saving,Quote and Accepted Quote.                                                         
- ====================================================== 
- ====================================================== 
+ =======================================================
+ =======================================================
  History                                                             
  -------                                                             
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
