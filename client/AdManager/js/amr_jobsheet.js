@@ -236,13 +236,16 @@ function defaultParamCall() {
 	
 	var isJobdetail = false;
 	isJobdetail 	= ($j('.loadErrorParent').length > 0 || (($j('.job_detail_main .messageText').length > 0)&& $j('.job_detail_main_error_visibility').is(":visible"))|| ($j('.job_detail_main .message').length > 0 && $j('.tabsection .messageText').is(':hidden')));
-    if (defaultParam) {
+    if($j('.mask').is(":visible")){
+		//do nothing
+		return false;
+	}else if (defaultParam) {
         $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('class', 'commonall foldclass');
         var data_id_selected = $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('data-id');
         if (data_id_selected) {
             $j('.' + data_id_selected).show();
         }
-    } else if($j('.form-field2 .errorMsg').length > 0 || $j('.production-activity-sub-section .errorM3').length > 0){
+    }else if($j('.form-field2 .errorMsg').length > 0 || $j('.production-activity-sub-section .errorM3').length > 0){
 		$j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('class', 'commonall foldclass');
 
         var data_id_selected = $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('data-id');
@@ -317,6 +320,11 @@ $j(document).ready(function() {
 	
 	//var outputIdClassValue = $j('.outputIdClass').val();
 	//$j('.outputIdClass').val('\u20AC'+' '+outputIdClassValue);
+	
+	$j('.mask').click(function(event){
+		event.preventDefault();
+		return false;
+	}); 
 	
     $j('body').attr('style', 'pointer-events:auto;');
 	
