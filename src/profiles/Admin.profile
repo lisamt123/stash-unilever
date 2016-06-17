@@ -737,6 +737,10 @@
         <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Event-ICB Ice Cream Visit - Salesrep</layout>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Event_Member__c-Event Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -894,6 +898,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Home_Page_Feed__c-HomePage Feed Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ICB_VisitManagement__c-Visit Management Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Analytics_OTIF__c-Analytics OTIF Layout</layout>
@@ -2604,6 +2611,12 @@
     <recordTypeVisibilities>
         <default>true</default>
         <personAccountDefault>true</personAccountDefault>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Everyday_Activity__c.Boosting_Wellbeing</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -3714,6 +3727,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewMyTeamsDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPlatformEvents</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

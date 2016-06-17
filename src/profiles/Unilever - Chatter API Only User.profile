@@ -737,6 +737,10 @@
         <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Event-Event Layout</layout>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Event_Member__c-Event Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -894,6 +898,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Home_Page_Feed__c-HomePage Feed Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ICB_VisitManagement__c-Visit Management Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Analytics_OTIF__c-Analytics OTIF Layout</layout>
@@ -2593,6 +2600,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Everyday_Activity__c.Boosting_Wellbeing</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -3222,6 +3234,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPlatformEvents</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

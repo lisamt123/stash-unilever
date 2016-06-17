@@ -406,6 +406,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Everyday_Activity__c.Boosting_Wellbeing</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

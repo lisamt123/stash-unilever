@@ -24,6 +24,11 @@
             <operation>contains</operation>
             <value>Ronaldo</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FeedItem.CreatedById</field>
+            <operation>contains</operation>
+            <value>Thiago</value>
+        </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

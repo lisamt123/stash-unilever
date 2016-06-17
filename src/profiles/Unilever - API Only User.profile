@@ -730,6 +730,10 @@
         <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Event-Event Layout</layout>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Event_Member__c-Event Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -887,6 +891,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Home_Page_Feed__c-HomePage Feed Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ICB_VisitManagement__c-Visit Management Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Analytics_OTIF__c-Analytics OTIF Layout</layout>
@@ -2583,6 +2590,11 @@
         <default>false</default>
         <recordType>Core_Approver_Details__c.Invoice</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Event.ICB_IceCreamVisit</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
