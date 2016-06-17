@@ -30,12 +30,12 @@ public with sharing Class MB_Controller_Charts{
      public static Map<String,Decimal> getTotalData(MB_Billing_Entity__c beObj, Map<Id,string> chargeType ){ 
  
   Map<String,Decimal> datamap=new  Map<String,Decimal>();
-     if(string.valueOf(chargeType.get(beObj.Charge_Type__c)).contains('Domestic')==true){
+     if(string.valueOf(chargeType.get(beObj.Charge_Type__c)).contains('Domestic')){
          if(beObj.Data_Consumed_In_MB__c!=null){
              DomesticDataUsage +=(beObj.Data_Consumed_In_MB__c).setScale(2);
          }
      }
-     if(string.valueOf(chargeType.get(beObj.Charge_Type__c)).contains('Roaming')==true){
+     if(string.valueOf(chargeType.get(beObj.Charge_Type__c)).contains('Roaming')){
         if(beObj.Data_Consumed_In_MB__c!=null){
              InternationalDataUsage +=(beObj.Data_Consumed_In_MB__c).setScale(2);
           }
@@ -49,12 +49,12 @@ public with sharing Class MB_Controller_Charts{
  public static Map<String,Decimal> getTotalCalls(MB_Billing_Entity__c beObj, Map<Id,string> chargeTypeMap){
  
   Map<String,Decimal> datamap=new  Map<String,Decimal>();
-     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic')==true){
+     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic')){
           if(beObj.Call_Minutes__c!=null){
             totalDomesticCallUsage +=(beObj.Call_Minutes__c).setScale(2);
         }
      }
-     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')==true){
+     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')){
             if(beObj.Call_Minutes__c!=null){
                totalInternationalCallUsage += (beObj.Call_Minutes__c).setScale(2);
          }
@@ -67,12 +67,12 @@ public with sharing Class MB_Controller_Charts{
  public static Map<String,Decimal> getTotalMessage(MB_Billing_Entity__c beObj, Map<Id,string> chargeTypeMap){
   
   Map<String,Decimal> datamap=new  Map<String,Decimal>();
-     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic')==true && string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('SMS')==true){
+     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic') && string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('SMS')){
           if(beObj.Messages__c!=null){
             totalDomesticSMSUsage += (beObj.Messages__c).setScale(2);
              }
      }
-          if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')==true && string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('SMS')==true){
+          if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming') && string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('SMS')){
          if(beObj.Messages__c!=null){
             totalInternationalSMSUsage += (beObj.Messages__c).setScale(2);
           }
@@ -85,12 +85,12 @@ public with sharing Class MB_Controller_Charts{
  public static Map<String,Decimal> getTotaliPass(MB_Billing_Entity__c beObj, Map<Id,string> chargeTypeMap){
   
   Map<String,Decimal> datamap=new  Map<String,Decimal>();
-     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic')==true){
+     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic')){
          if(beObj.iPass_Consumed_In_MB__c!=null){
              totalDomesticIpassUsage+= (beObj.iPass_Consumed_In_MB__c).setScale(2);
           }
      }
-         if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')==true){
+         if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')){
         if(beObj.iPass_Consumed_In_MB__c!=null){
              totalInternationalIpassUsage+= (beObj.iPass_Consumed_In_MB__c).setScale(2);
             }

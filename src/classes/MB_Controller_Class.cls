@@ -111,10 +111,10 @@ public with sharing class MB_Controller_Class{
         for(MB_Billing_Entity__c beObj : billingList){
             if(beObj.Device_Details__c == deviceId)
               if(beObj.Local_Net_Amount__c !=null ){
-                totalDeviceAmount += beObj.Local_Net_Amount__c;
+                totalDeviceAmount += beObj.Local_Net_Amount__c.setScale(2);
                 }
         }
-        return totalDeviceAmount;
+        return totalDeviceAmount.setScale(2);
     }  
      
      /*******************************************************************************************************
@@ -253,6 +253,7 @@ public with sharing class MB_Controller_Class{
       @AuraEnabled
    public static MB_Wrapper_Class  getSpendDetails(string deviceId,string month){
   // public static  MB_Wrapper_Class.MB_Device_Wrapper_Class  getSpendDetails(string deviceId,string month){
+  System.debug('deviceId--->'+deviceId+',,,month--->'+month);
        string previous=getPreviousMonth(month);
        List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
@@ -440,6 +441,7 @@ public with sharing class MB_Controller_Class{
         objdevice.userName=userinfo.getfirstname();
         objdevice.totalDataUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Data).setScale(2);
         objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);
+       System.debug('Total Call Usage-->'+objdevice.totalCallUsage);
         objdevice.totalMessageUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Messaging).setScale(2);
         objdevice.totalIpassUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
         objdevice.totalnonUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
