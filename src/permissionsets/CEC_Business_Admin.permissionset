@@ -152,7 +152,7 @@
         <application>standard__ServiceConsole</application>
         <visible>false</visible>
     </applicationVisibilities>
-	<classAccesses>
+    <classAccesses>
         <apexClass>CEC_CaseTransferController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4748,6 +4748,11 @@
         <editable>false</editable>
         <field>cec_Enclosure__c.Brand__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Category__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

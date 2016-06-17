@@ -574,6 +574,7 @@
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
@@ -584,6 +585,7 @@
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -678,6 +680,16 @@
                 <fullName>Swedish</fullName>
                 <default>false</default>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thai</fullName>
+                <default>false</default>
+                <controllingFieldValues>Thailand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnamese</fullName>
+                <default>false</default>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
@@ -915,6 +927,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Benelux</fullName>
                 <default>false</default>
             </picklistValues>
@@ -967,6 +983,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
@@ -995,7 +1015,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -1088,6 +1116,7 @@
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1101,6 +1130,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1108,13 +1138,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Food</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1128,6 +1161,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1135,13 +1169,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Coffee &amp; Snacks</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1155,6 +1192,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1162,13 +1200,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1182,6 +1223,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1189,13 +1231,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dressings</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1209,6 +1254,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1216,13 +1262,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hair Care</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1236,6 +1285,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1243,13 +1293,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Household Care</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1263,6 +1316,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1270,13 +1324,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ice Cream</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1290,6 +1347,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1297,13 +1355,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Laundry</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1317,6 +1378,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1324,13 +1386,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Corporate Home Care Category</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1344,6 +1409,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1351,13 +1417,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Corporate Personal Care Cat</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1371,6 +1440,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1378,13 +1448,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Oral Care</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1398,6 +1471,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1405,13 +1479,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Foods</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1425,6 +1502,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1432,13 +1510,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Parent and Finance Category</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1452,6 +1533,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1459,13 +1541,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Plantations</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1479,6 +1564,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1486,13 +1572,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Prestige Legacy</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1506,6 +1595,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1513,13 +1603,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Professional Cleaning Category</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1533,6 +1626,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1540,13 +1634,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Savoury</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1560,6 +1657,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1567,13 +1665,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Care</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1587,6 +1688,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1594,13 +1696,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Cleansing</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1614,6 +1719,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1621,13 +1727,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spreads</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1641,6 +1750,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1648,13 +1758,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1668,6 +1781,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1675,13 +1789,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Water Purification Category</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1695,6 +1812,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1702,13 +1820,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Weight Management</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1722,6 +1843,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1729,13 +1851,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Social Media</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1749,6 +1874,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1756,13 +1882,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Creative Solutions</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1776,6 +1905,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1783,13 +1913,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Food Solutions</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1803,6 +1936,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1810,13 +1944,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sun</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1830,6 +1967,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1837,13 +1975,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deoleo</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1857,6 +1998,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1864,13 +2006,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>R &amp; B Foods</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1884,6 +2029,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1891,13 +2037,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bluewater</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1911,6 +2060,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1918,13 +2068,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Gortons</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1938,6 +2091,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1945,13 +2099,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dove</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1965,6 +2122,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1972,13 +2130,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lux</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -1992,6 +2153,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -1999,13 +2161,16 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lynx</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
@@ -2019,6 +2184,7 @@
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
@@ -2026,7 +2192,9 @@
                 <controllingFieldValues>Southern Cone</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
