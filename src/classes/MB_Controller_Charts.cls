@@ -23,10 +23,7 @@ public with sharing Class MB_Controller_Charts{
  public static Decimal AverageCallUsage=0;
  public static Decimal AverageMessageUsage=0;
  public static Decimal AverageIpassUsage=0;
- public static Decimal DataUsage =0;
- public static Decimal CallUsage =0;
- public static Decimal MessageUsage =0;
- public static Decimal IpassUsage =0;
+
      public static Map<String,Decimal> getTotalData(MB_Billing_Entity__c beObj, Map<Id,string> chargeType ){ 
  
   Map<String,Decimal> datamap=new  Map<String,Decimal>();
@@ -122,7 +119,10 @@ public with sharing Class MB_Controller_Charts{
      return getColleagueTotalMap;
  }
   public static Map<String,Decimal> getUserTotalUsage(MB_Billing_Entity__c AvgofCollegueData, Map<Id,string> usageTypeMap){
- 
+   Decimal DataUsage =0;
+  Decimal CallUsage =0;
+  Decimal MessageUsage =0;
+  Decimal IpassUsage =0;
          if(AvgofCollegueData.Data_Consumed_In_MB__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data){  
            DataUsage +=AvgofCollegueData.Data_Consumed_In_MB__c;
            System.debug('-------$$----'+DataUsage );

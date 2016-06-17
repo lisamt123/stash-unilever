@@ -90,7 +90,7 @@ public with sharing class MB_Controller_Class{
           objWrapper.deviceImageUrl=sfcBaseUrl+string.valueof(imageIdMap.get(entity.Device_Details__c));
         }
         system.debug('###'+ objWrapper.deviceImageUrl);
-        objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Device_Details__c);
+        objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Device_Details__c).setScale(2);
      
         wrapperList.add(objWrapper);
       }
@@ -111,10 +111,10 @@ public with sharing class MB_Controller_Class{
         for(MB_Billing_Entity__c beObj : billingList){
             if(beObj.Device_Details__c == deviceId)
               if(beObj.Local_Net_Amount__c !=null ){
-                totalDeviceAmount += beObj.Local_Net_Amount__c.setScale(2);
+                totalDeviceAmount += beObj.Local_Net_Amount__c;
                 }
         }
-        return totalDeviceAmount.setScale(2);
+        return totalDeviceAmount;
     }  
      
      /*******************************************************************************************************
@@ -434,7 +434,7 @@ public with sharing class MB_Controller_Class{
          previousMessageUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Messaging);
          previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_iPass);
          previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Recurring);
-         previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId);
+         previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId).setScale(2);
         
         MB_Wrapper_Class.MB_Device_Wrapper_Class objdevice=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
         objdevice.userCurrency=CurrencySym();
