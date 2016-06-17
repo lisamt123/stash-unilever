@@ -315,7 +315,8 @@ Returns:
     }
     
      public void getCaProcessMangCategory(){
-         System.debug('Process Management Category');
+        Amr_Saving__c savingObjTemp = new Amr_Saving__c();
+		savingObjTemp = NULL;
     }
     
     /***********************************************************************************************************************************
