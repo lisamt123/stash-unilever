@@ -257,10 +257,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AFBrandEstimateStCtrlExtSummary</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>AF_AdjustQuater_Homepage_lightbox</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -806,10 +802,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AbstractStandardSetExtension</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AgencyHomePageController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -3821,14 +3813,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>af_SendCurrencyReminder</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>af_usersearch</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>cec_EmailMessageHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -3846,18 +3830,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>cec_TestSmartTemplateLoaderHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>checkRecursive</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>checkRecursiveBonusQuarterly</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>checkRecursivePOReport</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

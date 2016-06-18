@@ -4839,6 +4839,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000bzxw_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ANTWOORD 2</label>
+        <queue>IPM_a7IE0000000bzxw</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>SecCon-{0000}</displayFormat>
         <label>Section Content Id</label>
