@@ -19,6 +19,7 @@
             <type>OutboundMessage</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
         <criteriaItems>
             <field>FeedItem.CreatedById</field>
             <operation>contains</operation>
@@ -28,6 +29,16 @@
             <field>FeedItem.CreatedById</field>
             <operation>contains</operation>
             <value>Thiago</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FeedItem.CreatedById</field>
+            <operation>contains</operation>
+            <value>Antonio</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FeedItem.CreatedById</field>
+            <operation>contains</operation>
+            <value>Jessica</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
