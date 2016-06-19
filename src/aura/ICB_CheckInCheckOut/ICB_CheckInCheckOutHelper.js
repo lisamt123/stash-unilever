@@ -43,19 +43,19 @@
                     component.set('v.status', returnMSG);
                     component.set('v.checkinReady', false);
                     component.set('v.showSpinnerCI',false);
-                    console.log('returnMSG='+returnMSG);
-                    console.log('$A.get("$Label.c.ICB_TEXT_CHECK_IN")='+$A.get("$Label.c.ICB_TEXT_CHECK_IN"));
-                    console.log('$A.get("$Label.c.ICB_PREFIX_SOBJECT_EVENT")='+returnMSG);
+                    
                     if( returnMSG.indexOf($A.get("$Label.c.ICB_TEXT_CHECK_IN")) > -1 ){
-                        console.log('ENTROU RETORNO MSERIES');
-                        var codcustomer;
+                        
+                        var lVisit = component.get('v.visit');
+                        var codcustomer = lVisit.Account.SAP_ID__c;
+                		
                         if( codcustomer != null && codcustomer != "undefined" ){
+                            console.log('URI MSERIES= '+$A.get("$Label.c.ICB_SCHEMA_MSERIES")+codcustomer);
                     		sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES")+codcustomer, false);
                         }else {
                             sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), false);
                         }
                     }else{
-                        console.log('ENTROU RETORNO TELA VISITAS');
                         sforce.one.navigateToURL($A.get("$Label.c.ICB_PREFIX_SOBJECT_EVENT"), true);
                     }
                 }
@@ -66,10 +66,38 @@
         return;
     },
     
-    locateGoldenMinute : function(component, event, helper){
-        
-        var action = component.get('c.getCognosFile');
+    locateVisit : function(component, event, helper){
+		console.log('Entering <locateVisit>');
+    	var action = component.get('c.getVisit');
         var idReg = component.get('v.recordId');
+        
+        action.setParams({ visitId : idReg });
+        
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            
+            if( state === $A.get("$Label.c.ICB_STATE_RESPONSE_SUCCESS") ){
+                var lReturn = response.getReturnValue();
+                
+                component.set('v.visit', lReturn);
+                var lVisit = component.get('v.visit');
+                console.log('lVisit= '+JSON.stringify(lVisit));
+                
+                if( (lVisit.ICB_GeolocationCheckin__Latitude__s != null &&
+                     lVisit.ICB_GeolocationCheckin__Latitude__s != 'undefined') || 
+                     lVisit.ICB_GoldenMinuteOpen__c ){
+                    component.set('v.goldenMinuteOpen', true);
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        return;
+        console.log('Exit <locateVisit>');
+    },
+    locateGoldenMinute : function(component, event, helper){
+        console.log('Entering <locateGoldenMinute>');
+        var action = component.get('c.getCognosFile');
+        var idReg = component.get('v.visitId');
         
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -88,12 +116,14 @@
         });
         $A.enqueueAction(action);
         return;
+        console.log('Exit <locateGoldenMinute>');
     },
     mseries : function(componente, event, helper){
         sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), true);
     },
     
     goldenMinute : function(component, event, helper, confirm){
+        console.log('Entering <goldenMinute>');
         var goldenMinute = component.get('v.golden');
         
         if( goldenMinute != null ){
@@ -115,8 +145,9 @@
             var currentDate = year+'-'+month+'-'+day;
             
             if( currentDate == gmDate || confirm == 'true' ){
+                //********* CHAMAR O SET GOLDEN MINUTE
+                helper.setGMinute(component, event, helper, 'c.setGoldenMinuteOpen');
                 sforce.one.navigateToURL('/'+goldenMinute.Id);
-                
             }else{
                 component.set('v.statusGM', $A.get("$Label.c.ICB_STATUS_GOLDEN_MINUTE_NOT_UPDATE"));
                 component.set('v.isStatusGM', true);
@@ -126,5 +157,27 @@
             component.set('v.statusGM', $A.get("$Label.c.ICB_STATUS_GOLDEN_MINUTE_NOT_UPLOADED"));
             component.set('v.isStatusGM', true);
         }
+        console.log('Exit <goldenMinute>');
+    },
+    setGMinute : function(component, event, helper, method){
+        console.log('Entering <setGMinute>');
+        var action = component.get(method);
+        var idReg = component.get('v.recordId');
+        action.setParams({ idVisit : idReg });
+    	
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if( state === $A.get("$Label.c.ICB_STATE_RESPONSE_SUCCESS") ){
+                var isChecked = response.getReturnValue();
+                console.log('isChecked= '+isChecked);
+                if( isChecked == 'true' )
+                {
+                    component.set('v.isStatusGM', true);
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('Exit <setGMinute>');
+        return;
     }
 })

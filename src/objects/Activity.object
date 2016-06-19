@@ -207,6 +207,14 @@
         <type>Location</type>
     </fields>
     <fields>
+        <fullName>ICB_GoldenMinuteOpen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When Golden Minute was open set this field equals true</description>
+        <externalId>false</externalId>
+        <label>ICB Golden Minute Open</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ICB_InStoreDisciplineIndex__c</fullName>
         <description>Duration of executed visit in comparison with the planned visit. Used for report&apos;s KPI.</description>
         <externalId>false</externalId>
@@ -263,6 +271,16 @@
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Sales_Area__c</fullName>
+        <description>Sales are ID.</description>
+        <externalId>false</externalId>
+        <label>Sales Area</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ICB_Sequence__c</fullName>

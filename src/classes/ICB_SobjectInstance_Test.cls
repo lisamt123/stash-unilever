@@ -63,12 +63,11 @@ public class ICB_SobjectInstance_Test
     Returns: ICB_Territory_Management__c
     Throws [Exceptions]: [NONE] 
     ********************************************************************/
-    public static ICB_Territory_Management__c insertTerritory(Id userId,String name, String code)
+    public static Territory__c insertTerritory(Id userId,String code)
     {
-        ICB_Territory_Management__c territory = new ICB_Territory_Management__c(Name = name,
-                                                                                SetupOwnerId = userId,
-                                                                                ICB_Territory_Code__c = code 
-                                                                               );
+        Territory__c territory = new Territory__c(User__c = userId,
+                                                  Territory_ID__c = code 
+                                                 ); 
         insert territory;
         return territory;
     }
@@ -79,11 +78,11 @@ public class ICB_SobjectInstance_Test
     Returns: [VOID]
     Throws [Exceptions]: [NONE]  
     ********************************************************************/
-    public static ContentVersion insertContentVersion(ICB_Territory_Management__c territory)
+    public static ContentVersion insertContentVersion(Territory__c territory)
     {
-        ContentVersion doc = new ContentVersion(Title = territory.ICB_Territory_Code__c,
-                                                PathOnClient = territory.ICB_Territory_Code__c,
-                                                VersionData = Blob.valueOf(territory.ICB_Territory_Code__c)
+        ContentVersion doc = new ContentVersion(Title = territory.Territory_ID__c,
+                                                PathOnClient = territory.Territory_ID__c,
+                                                VersionData = Blob.valueOf(territory.Territory_ID__c)
                                                );
         insert doc;
         return doc;

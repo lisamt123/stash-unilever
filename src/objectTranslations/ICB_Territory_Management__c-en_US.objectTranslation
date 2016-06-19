@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>Territory Management</value>
     </caseValues>
-    <fields>
-        <label><!-- Territory Code --></label>
-        <name>ICB_Territory_Code__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -2849,7 +2849,7 @@
         <name>ICB_ROADNET_CREATED_BY_NAME</name>
     </customLabels>
     <customLabels>
-        <label>mseries://</label>
+        <label>mseries://?cdStore=</label>
         <name>ICB_SCHEMA_MSERIES</name>
     </customLabels>
     <customLabels>

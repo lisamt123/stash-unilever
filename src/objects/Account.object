@@ -401,18 +401,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Bazaarvoice_Username__c</fullName>
-        <description>CEC: To capture the bazaar voice user name</description>
-        <externalId>false</externalId>
-        <label>Bazaarvoice Username</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>BillingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1263,7 +1251,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>ICB_CNPJ__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>Number of the Cadastro Nacional de Pessoa Jurídica of the customer.</description>
         <externalId>false</externalId>
         <label>CNPJ</label>
@@ -1272,7 +1259,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Industry</fullName>
@@ -2046,6 +2033,19 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Purpose: External ID | Data Source: NA | Integration: NA | Level: Restricted</description>
+        <externalId>true</externalId>
+        <label>SAP ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>ShippingAddress</fullName>
