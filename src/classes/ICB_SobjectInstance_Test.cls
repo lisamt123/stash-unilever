@@ -57,9 +57,9 @@ public class ICB_SobjectInstance_Test
         return user;
     }
     /*******************************************************************
-    Purpose: Insert ICB_Territory_Management__c for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
+    Purpose: Insert Territory__c for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
-    Parameters: userId
+    Parameters: userID : User ID, code : Territory code
     Returns: ICB_Territory_Management__c
     Throws [Exceptions]: [NONE] 
     ********************************************************************/
@@ -74,7 +74,7 @@ public class ICB_SobjectInstance_Test
     /*******************************************************************
     Purpose: Insert ContentVersion for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
-    Parameters: territory
+    Parameters: Territory__c
     Returns: [VOID]
     Throws [Exceptions]: [NONE]  
     ********************************************************************/
