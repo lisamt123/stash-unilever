@@ -1,6 +1,7 @@
 src
-src/labels
-src/labels/EA.labels
 src/classes
 src/classes/EA_ControllerClass.cls
 src/classes/EA_ControllerClass.cls-meta.xml
+src/labels
+src/labels/EA.labels
+
