@@ -9,6 +9,7 @@ src/globalPicklists/Country.globalPicklist
 src/objects
 src/objects/TASKRAY__Project_Task__c.object
 src/objects/TASKRAY__Project__c.object
+src/objects/User.object
 src/reportTypes
 src/reportTypes/Taskray_User_Usage.reportType
 src/reports
