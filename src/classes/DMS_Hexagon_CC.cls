@@ -24,8 +24,7 @@ public with sharing class DMS_Hexagon_CC
     public Map<String,DMS_WaveHexagon.Records> hexagonMap {get;set;}
     public Map<String,List<Decimal>> actualValuesGraphicMap {get;set;}
     public Map<String,List<Decimal>> previousValuesGraphicMap {get;set;}
-    public static List<String>label {get;set;}  
-    
+    public static List<String>label {get;set;}      
     private List<Account> distributorList;
     private Map<String,id> contactCodeIdMap = new Map<String,id>();
     
@@ -40,8 +39,8 @@ public with sharing class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-    * Purpose: contructor  
-    ********************************************************************/
+* Purpose: contructor  
+********************************************************************/
     public DMS_Hexagon_CC()
     {        
         selectedSeller = 'Todos';
@@ -63,8 +62,8 @@ public with sharing class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-    * Purpose: submit Request for wave (DMS_WaveHexagon)  
-    ********************************************************************/
+* Purpose: submit Request for wave (DMS_WaveHexagon)  
+********************************************************************/
     public void submitRequest()
     {
         defineMeta();
@@ -104,8 +103,8 @@ public with sharing class DMS_Hexagon_CC
     }
     
     /*******************************************************************
-    * Purpose: Create pickList of Distributor country for filter
-    ********************************************************************/
+* Purpose: Create pickList of Distributor country for filter
+********************************************************************/
     private void optionDistributorCountry()
     {    
         List<Account> distributorCountryList;
@@ -117,8 +116,7 @@ public with sharing class DMS_Hexagon_CC
             for(Account distributor :[SELECT id,name,ExternalCode__c,country__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
             {
                 distributorList.add(distributor);
-            }      
-            
+            }                  
             distributorCountry.add(new SelectOption('','--'));        
             if(distributorList !=null){
                 distributorCountryList = distributorList.clone();
@@ -135,33 +133,31 @@ public with sharing class DMS_Hexagon_CC
     }        
     
     /*******************************************************************
-    * Purpose: Create pickList of Date for filter
-    ********************************************************************/
+* Purpose: Create pickList of Date for filter
+********************************************************************/
     public List<SelectOption> getOptionDate()
     {
         List<SelectOption> datePicklistOption = new List<SelectOption>();
         List<Target__c> targetList = new List<Target__c>();
-
+        
         try
         {            
             for(Target__c target : [SELECT id,name,TargetDate__c, SalesRep__r.SellerCode__c FROM Target__c Where TargetDate__c != null and SalesRep__c != null Order by TargetDate__c])
             {
                 targetList.add(target);
-            }        
-            
+            }                    
             if(targetList != null && !targetList.isEmpty())
             {
                 datePicklistOption.add(new SelectOption('','--'));
                 checkDuplicated(targetList,'TargetDate__c');
                 for( Target__c t: targetList){                    
                     if(selectedSeller != null && (selectedSeller.equals(t.SalesRep__r.SellerCode__c) || selectedSeller.equals('Todos'))){
-                    
-                    datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '-' + t.TargetDate__c.Year()));
-                    
+                        
+                        datePicklistOption.add(new SelectOption(String.valueOf(t.TargetDate__c),t.TargetDate__c.Month() + '-' + t.TargetDate__c.Year()));
+                        
                     }
                 }                                                                                   
-            }
-            
+            }            
         }
         catch(Exception e)
         {
@@ -169,8 +165,7 @@ public with sharing class DMS_Hexagon_CC
         }
         return datePicklistOption;
     }    
-    public void checkDuplicated(List<SObject> optionList,String field){
-        
+    public void checkDuplicated(List<SObject> optionList,String field){        
         boolean check = false;
         try{
             for(Integer x=0; x<optionList.size(); x++){
@@ -197,10 +192,8 @@ public with sharing class DMS_Hexagon_CC
             for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
             {
                 aggSalesChannel.add(agg);                
-            }         
-            
-            salesChannelOption.add(new SelectOption('','--'));
-            
+            }                     
+            salesChannelOption.add(new SelectOption('','--'));            
             if(aggSalesChannel != null)
             {
                 for(AggregateResult agg : aggSalesChannel)
@@ -264,8 +257,8 @@ public with sharing class DMS_Hexagon_CC
         dataForGraphic();
     }
     /*******************************************************************
-    * Purpose: mapping data for graphic of hexagon
-    ********************************************************************/
+* Purpose: mapping data for graphic of hexagon
+********************************************************************/
     private void dataForGraphic()
     {
         actualValuesGraphicMap = new Map<String,List<Decimal>>();
@@ -302,7 +295,6 @@ public with sharing class DMS_Hexagon_CC
         }catch(Exception e)
         {
             System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());
-        }   
-        
+        }           
     }      
 }

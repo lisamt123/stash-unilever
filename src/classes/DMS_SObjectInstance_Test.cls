@@ -10,7 +10,8 @@ public class DMS_SObjectInstance_Test {
         acc.SalesChannel__c = salesChannel;
         acc.OwnerId = ownerId;
         acc.ExternalCode__c = externalCode;
-        acc.CodRegion__c='testCode';        
+        acc.CodRegion__c='testCode';
+		acc.Country__c = 'testCountry';        
         if(isCreate) Database.insert(acc);        
         return acc;
     }
@@ -100,7 +101,8 @@ public class DMS_SObjectInstance_Test {
             Lastname = name,
             AccountId = accountId,
             Email =email,
-            CodRegion__c = 'testCode'
+            CodRegion__c = 'testRegion',
+            SellerCode__c = 'testCode'
         );
         if(isCreate)
         {
