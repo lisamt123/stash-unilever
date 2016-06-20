@@ -13,7 +13,7 @@
                  </div>
              <aura:if isTrue="{!v.showDiv}">
                     <div   aura:id="text" class="slds-text-body--regular bodyText " >
-                          {!v.faqListItem.Description__c} 
+                          {!v.faqListItem.Description__c} <a href="{!v.faqListItem.URL__c}">{!v.faqListItem.URL__c} </a>
                    </div>
              </aura:if>
             <hr></hr>

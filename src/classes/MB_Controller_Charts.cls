@@ -11,6 +11,11 @@ VERSION     AUTHOR         DATE              DETAIL Description
 1.0         Mindtree       17/05/2016        controller class For TEM app charts
 ***************************************************************/
 public with sharing Class MB_Controller_Charts{
+ public static final String Roaming_Type = 'Roaming';
+ public static final String Colleague_Data = 'ColleagueData';
+ public static final String Colleague_Calls = 'ColleagueCalls';
+ public static final String Colleague_SMS = 'ColleagueSMS';
+ 
  public static Decimal DomesticDataUsage=0;
  public static Decimal InternationalDataUsage=0;
  public static Decimal totalDomesticCallUsage =0;
@@ -19,7 +24,6 @@ public with sharing Class MB_Controller_Charts{
  public static Decimal totalInternationalSMSUsage =0;
  public static Decimal totalDomesticIpassUsage=0;
  public static Decimal totalInternationalIpassUsage=0; 
- 
 
      public static Map<String,Decimal> getTotalData(MB_Billing_Entity__c beObj, Map<Id,string> chargeType ){ 
  
@@ -29,7 +33,7 @@ public with sharing Class MB_Controller_Charts{
              DomesticDataUsage +=(beObj.Data_Consumed_In_MB__c).setScale(2);
          }
      }
-     if(string.valueOf(chargeType.get(beObj.Charge_Type__c)).contains('Roaming')){
+     if(string.valueOf(chargeType.get(beObj.Charge_Type__c)).contains(Roaming_Type)){
         if(beObj.Data_Consumed_In_MB__c!=null){
              InternationalDataUsage +=(beObj.Data_Consumed_In_MB__c).setScale(2);
              System.debug('-----##--$$----'+InternationalDataUsage);
@@ -49,7 +53,7 @@ public with sharing Class MB_Controller_Charts{
             totalDomesticCallUsage +=(beObj.Call_Minutes__c).setScale(2);
         }
      }
-     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')){
+     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains(Roaming_Type)){
             if(beObj.Call_Minutes__c!=null){
                totalInternationalCallUsage += (beObj.Call_Minutes__c).setScale(2);
          }
@@ -67,7 +71,7 @@ public with sharing Class MB_Controller_Charts{
             totalDomesticSMSUsage += (beObj.Messages__c).setScale(2);
              }
      }
-          if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming') && string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('SMS')){
+          if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains(Roaming_Type) && string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('SMS')){
          if(beObj.Messages__c!=null){
             totalInternationalSMSUsage += (beObj.Messages__c).setScale(2);
           }
@@ -85,7 +89,7 @@ public with sharing Class MB_Controller_Charts{
              totalDomesticIpassUsage+= (beObj.iPass_Consumed_In_MB__c).setScale(2);
           }
      }
-         if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Roaming')){
+         if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains(Roaming_Type)){
         if(beObj.iPass_Consumed_In_MB__c!=null){
              totalInternationalIpassUsage+= (beObj.iPass_Consumed_In_MB__c).setScale(2);
              System.debug('$$$$$'+totalInternationalIpassUsage);
@@ -113,9 +117,9 @@ public with sharing Class MB_Controller_Charts{
                 AverageIpassUsage+=AvgofCollegueData.iPass_Consumed_In_MB__c ; 
            }
      Map<String,Decimal> getColleagueTotalMap=new Map<String,Decimal>();
-     getColleagueTotalMap.put('ColleagueData',AverageDataUsage);
-     getColleagueTotalMap.put('ColleagueCalls',AverageCallUsage);
-     getColleagueTotalMap.put('ColleagueSMS',AverageMessageUsage);
+     getColleagueTotalMap.put(Colleague_Data,AverageDataUsage);
+     getColleagueTotalMap.put(Colleague_Calls,AverageCallUsage);
+     getColleagueTotalMap.put(Colleague_SMS,AverageMessageUsage);
      getColleagueTotalMap.put('Colleagueipass',AverageIpassUsage);
      
      return getColleagueTotalMap;
@@ -205,6 +209,7 @@ public with sharing Class MB_Controller_Charts{
              }  
            if(string.valueOf(usageTypeMap.get(beObj.Usage_Type__c)) == MB_Constants.Usage_Type_Calls){
            datamap=getTotalCalls(beObj,chargeTypeMap);
+           
             wrprobj.totalDomesticCallUsage=datamap.get('DomesticCalls');
             wrprobj.totalInternationalCallUsage=datamap.get('InternationalCalls');
             System.debug('----#---test--'+datamap.get('InternationalCalls'));
@@ -277,24 +282,24 @@ public with sharing Class MB_Controller_Charts{
      getColleagueTotalMap = getColleagueTotalUsage(AvgofCollegueData,usageTypeMap);
        
         if(UserCount>0){
-             wrprobj.totalAverageDataUsage +=(getColleagueTotalMap.get('ColleagueData')/UserCount).setScale(2);
+             wrprobj.totalAverageDataUsage +=(getColleagueTotalMap.get(Colleague_Data)/UserCount).setScale(2);
         }
         else{ 
-             wrprobj.totalAverageDataUsage +=getColleagueTotalMap.get('ColleagueData').setScale(2);   
+             wrprobj.totalAverageDataUsage +=getColleagueTotalMap.get(Colleague_Data).setScale(2);   
         }   
         if(UserCount>0){
-                 wrprobj.totalAverageCallUsage +=(getColleagueTotalMap.get('ColleagueCalls')/UserCount).setScale(2); 
+                 wrprobj.totalAverageCallUsage +=(getColleagueTotalMap.get(Colleague_Calls)/UserCount).setScale(2); 
         }
         else{
-             wrprobj.totalAverageCallUsage +=getColleagueTotalMap.get('ColleagueCalls').setScale(2);
+             wrprobj.totalAverageCallUsage +=getColleagueTotalMap.get(Colleague_Calls).setScale(2);
         }
         if(UserCount>0){
               System.debug('----&---4--'+UserCount);
-             wrprobj.totalAverageMessageUsage +=(getColleagueTotalMap.get('ColleagueSMS')/UserCount).setScale(2); 
+             wrprobj.totalAverageMessageUsage +=(getColleagueTotalMap.get(Colleague_SMS)/UserCount).setScale(2); 
              System.debug('----&---5--'+wrprobj.totalAverageMessageUsage);
         }
         else{
-             wrprobj.totalAverageMessageUsage +=getColleagueTotalMap.get('ColleagueSMS').setScale(2);
+             wrprobj.totalAverageMessageUsage +=getColleagueTotalMap.get(Colleague_SMS).setScale(2);
         }
        
       
@@ -306,7 +311,7 @@ public with sharing Class MB_Controller_Charts{
                   wrprobj.totalCallUsage +=(getUserTotalMap.get('UserCalls')).setScale(2) ; 
                   wrprobj.totalMessageUsage +=(getUserTotalMap.get('UserSMS')).setScale(2) ; 
                   
-             if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains('Roaming')) {
+             if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains(Roaming_Type)) {
             if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
             wrprobj.totalIpassUsage +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
              }  
@@ -376,24 +381,24 @@ public with sharing Class MB_Controller_Charts{
      getColleagueTotalMap = getColleagueTotalUsage(AvgofCollegueData,usageTypeMap);
        
         if(UserCount>0){
-             wrprobj.totalAverageDataUsageIn +=(getColleagueTotalMap.get('ColleagueData')/UserCount).setScale(2);
+             wrprobj.totalAverageDataUsageIn +=(getColleagueTotalMap.get(Colleague_Data)/UserCount).setScale(2);
         }
         else{ 
-             wrprobj.totalAverageDataUsageIn +=getColleagueTotalMap.get('ColleagueData').setScale(2);   
+             wrprobj.totalAverageDataUsageIn +=getColleagueTotalMap.get(Colleague_Data).setScale(2);   
         }   
         if(UserCount>0){
-                 wrprobj.totalAverageCallUsageIn +=(getColleagueTotalMap.get('ColleagueCalls')/UserCount).setScale(2); 
+                 wrprobj.totalAverageCallUsageIn +=(getColleagueTotalMap.get(Colleague_Calls)/UserCount).setScale(2); 
         }
         else{
-             wrprobj.totalAverageCallUsageIn +=getColleagueTotalMap.get('ColleagueCalls').setScale(2);
+             wrprobj.totalAverageCallUsageIn +=getColleagueTotalMap.get(Colleague_Calls).setScale(2);
         }
         if(UserCount>0){
               System.debug('----&---4--'+UserCount);
-             wrprobj.totalAverageMessageUsageIn +=(getColleagueTotalMap.get('ColleagueSMS')/UserCount).setScale(2); 
+             wrprobj.totalAverageMessageUsageIn +=(getColleagueTotalMap.get(Colleague_SMS)/UserCount).setScale(2); 
              System.debug('----&---5--'+wrprobj.totalAverageMessageUsage);
         }
         else{
-             wrprobj.totalAverageMessageUsageIn +=getColleagueTotalMap.get('ColleagueSMS').setScale(2);
+             wrprobj.totalAverageMessageUsageIn +=getColleagueTotalMap.get(Colleague_SMS).setScale(2);
         }
        
       
@@ -405,7 +410,7 @@ public with sharing Class MB_Controller_Charts{
                   wrprobj.totalCallUsageIn +=(getUserTotalMap.get('UserCalls')).setScale(2) ; 
                   wrprobj.totalMessageUsageIn +=(getUserTotalMap.get('UserSMS')).setScale(2) ; 
                   
-             if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains('Roaming')) {
+             if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains(Roaming_Type)) {
             if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
             wrprobj.totalIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
              }  
