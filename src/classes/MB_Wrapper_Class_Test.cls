@@ -41,10 +41,12 @@ public with sharing class MB_Wrapper_Class_Test {
     deviceWrapperClassObject.totalAverageCallUsage = 30.00;
     deviceWrapperClassObject.totalAverageMessageUsage = 30.00;
     deviceWrapperClassObject.totalAverageIpassUsage = 30.00;
+    deviceWrapperClassObject.totalSpendVariance = true;
     deviceWrapperClassObject.dataVariance = true;
     deviceWrapperClassObject.callVariance = true;
     deviceWrapperClassObject.smsVariance = true;
     deviceWrapperClassObject.ipassVariance = true;
+    deviceWrapperClassObject.nonUsageVariance = true;
     
     System.assertEquals(deviceWrapperClassObject.userName,'UN');
     System.assertEquals(deviceWrapperClassObject.deviceName,'DN');
@@ -74,6 +76,8 @@ public with sharing class MB_Wrapper_Class_Test {
     System.assertEquals(deviceWrapperClassObject.callVariance,true);
     System.assertEquals(deviceWrapperClassObject.smsVariance,true);
     System.assertEquals(deviceWrapperClassObject.ipassVariance,true);
+    System.assertEquals(deviceWrapperClassObject.totalSpendVariance,true);
+    System.assertEquals(deviceWrapperClassObject.nonUsageVariance,true);
             
     MB_Wrapper_Class.DataChargeType_Wraper dataChargeTypeWraperObject = new MB_Wrapper_Class.DataChargeType_Wraper();
     dataChargeTypeWraperObject.chargeTypeName = 'DCT';
@@ -104,7 +108,41 @@ public with sharing class MB_Wrapper_Class_Test {
     ipassChargeTypeWraperObject.totalSpend = 10.00;
     System.assertEquals(ipassChargeTypeWraperObject.chargeTypeName, 'ICT');
     System.assertEquals(ipassChargeTypeWraperObject.totalSpend, 10.00);
-    
+      
+    MB_Wrapper_Class.UsageAmountType_Wraper usageAmountTypeWraperObject = new MB_Wrapper_Class.UsageAmountType_Wraper();
+    usageAmountTypeWraperObject.chargeTypeName = 'RD';
+    usageAmountTypeWraperObject.UsageCurrentAmount = 50.00;
+    usageAmountTypeWraperObject.UsagePreviousAmount = 40.00;
+    usageAmountTypeWraperObject.UsageChangeAmount = 10.00;
+    usageAmountTypeWraperObject.UsageVarience = 25;
+    usageAmountTypeWraperObject.VarianceArrow = 1;
+    usageAmountTypeWraperObject.userCurrency = 'USD';
+    System.assertEquals(usageAmountTypeWraperObject.chargeTypeName,'RD');
+    System.assertEquals(usageAmountTypeWraperObject.UsageCurrentAmount,50.00);
+    System.assertEquals(usageAmountTypeWraperObject.UsagePreviousAmount,40.00);
+    System.assertEquals(usageAmountTypeWraperObject.UsageChangeAmount,10.00);
+    System.assertEquals(usageAmountTypeWraperObject.UsageVarience,25);
+    System.assertEquals(usageAmountTypeWraperObject.VarianceArrow,1);
+    System.assertEquals(usageAmountTypeWraperObject.userCurrency,'USD');
+      
+    MB_Wrapper_Class wrapperClassObject = new  MB_Wrapper_Class();
+    List<MB_Wrapper_Class.DataChargeType_Wraper> list1 = new List<MB_Wrapper_Class.DataChargeType_Wraper>();
+    list1.add(dataChargeTypeWraperObject);
+    wrapperClassObject.dataWrapperList = list1;
+    List<MB_Wrapper_Class.CallsChargeType_Wraper> list2 = new List<MB_Wrapper_Class.CallsChargeType_Wraper>();
+    list2.add(callsChargeTypeWraperObject);
+    wrapperClassObject.callsWrapperList = list2;
+    List<MB_Wrapper_Class.MessagingChargeType_Wraper> list3 = new List<MB_Wrapper_Class.MessagingChargeType_Wraper>();
+    list3.add(messagingChargeTypeWraperObject);
+    wrapperClassObject.messageWrapperList = list3;
+    List<MB_Wrapper_Class.IpassChargeType_Wraper> list4 = new List<MB_Wrapper_Class.IpassChargeType_Wraper>();
+    list4.add(ipassChargeTypeWraperObject);
+    wrapperClassObject.ipassWrapperList = list4;
+    List<MB_Wrapper_Class.NonUsageChargeType_Wrapper> list5 = new List<MB_Wrapper_Class.NonUsageChargeType_Wrapper>();
+    list5.add(nonUsageChargeTypeWrapperObject);
+    wrapperClassObject.nonusageWrapperList = list5;
+    wrapperClassObject.objdeviceWrapper = deviceWrapperClassObject;
+      
     Test.stopTest();
   }
 }

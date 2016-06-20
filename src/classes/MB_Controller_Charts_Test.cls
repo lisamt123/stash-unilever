@@ -219,21 +219,21 @@ public class MB_Controller_Charts_Test{
       
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject2 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType(Month_April);
-  System.assertEquals(deviceWrapperClassObject2.totalAverageCallUsage,50.00); 
-  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,500.00); 	
-  System.assertEquals(deviceWrapperClassObject2.totalAverageIpassUsage,100.00);	
+  System.assertEquals(deviceWrapperClassObject2.totalAverageCallUsage,0.00); 
+  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,0.00); 	
+  System.assertEquals(deviceWrapperClassObject2.totalAverageIpassUsage,0.00);	
   System.assertEquals(deviceWrapperClassObject2.totalAverageMessageUsage,90.00); 	
-  System.assertEquals(deviceWrapperClassObject2.totalCallUsage,100.00); 
-  System.assertEquals(deviceWrapperClassObject2.totalDataUsage,1000.00); 	  
-  System.assertEquals(deviceWrapperClassObject2.totalMessageUsage,180.00);
-  System.assertEquals(deviceWrapperClassObject2.totalIpassUsage,200.00);
+  System.assertEquals(deviceWrapperClassObject2.totalCallUsage,0.00); 
+  System.assertEquals(deviceWrapperClassObject2.totalDataUsage,0.00); 	  
+  System.assertEquals(deviceWrapperClassObject2.totalMessageUsage,90.00);
+  System.assertEquals(deviceWrapperClassObject2.totalIpassUsage,0.00);
          
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject3 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject3 = MB_Controller_Charts.getyourCollegueChargeType('March 2016');
-  System.assertEquals(deviceWrapperClassObject3.totalAverageCallUsage,50.00); 
-  System.assertEquals(deviceWrapperClassObject3.totalAverageDataUsage,500.00); 	
-  System.assertEquals(deviceWrapperClassObject3.totalAverageIpassUsage,100.00);	
-  System.assertEquals(deviceWrapperClassObject3.totalAverageMessageUsage,180.00); 	
+  System.assertEquals(deviceWrapperClassObject3.totalAverageCallUsage,0.00); 
+  System.assertEquals(deviceWrapperClassObject3.totalAverageDataUsage,0.00); 	
+  System.assertEquals(deviceWrapperClassObject3.totalAverageIpassUsage,0.00);	
+  System.assertEquals(deviceWrapperClassObject3.totalAverageMessageUsage,90.00); 	
   System.assertEquals(deviceWrapperClassObject3.totalCallUsage,0.00); 
   System.assertEquals(deviceWrapperClassObject3.totalDataUsage,0.00); 	  
   System.assertEquals(deviceWrapperClassObject3.totalMessageUsage,0.00);
@@ -241,17 +241,18 @@ public class MB_Controller_Charts_Test{
         
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject4 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject4 = MB_Controller_Charts.getyourCollegueChargeType('February 2016');
-  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsage,50.00); 
-  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsage,500.00); 	
-  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsage,200.00);	
-  System.assertEquals(deviceWrapperClassObject4.totalAverageMessageUsage,180.00); 	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsage,0.00); 
+  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsage,0.00); 	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsage,100.00);	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageMessageUsage,0.00); 	
   System.assertEquals(deviceWrapperClassObject4.totalCallUsage,0.00); 
   System.assertEquals(deviceWrapperClassObject4.totalDataUsage,0.00); 	  
   System.assertEquals(deviceWrapperClassObject4.totalMessageUsage,0.00);
   System.assertEquals(deviceWrapperClassObject4.totalIpassUsage,0.00);
+ 
       
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject5 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject5 = MB_Controller_Charts.getyourCollegueChargeType('January 2016');
+  deviceWrapperClassObject5 = MB_Controller_Charts.getyourCollegueChargeType('November 2015');
   System.assertEquals(deviceWrapperClassObject5,null);
   }    
                          

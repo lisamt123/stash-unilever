@@ -20,12 +20,14 @@ public with sharing class  MB_Constants_Test {
   String usageTypeCalls = MB_Constants.Usage_Type_Calls;
   String usageTypeMessaging = MB_Constants.Usage_Type_Messaging;
   String usageTypeiPass = MB_Constants.Usage_Type_iPass;
+  String usageTypeRecurring = MB_Constants.Usage_Type_Recurring;
 
   System.assertEquals(usageTypeData,'Data');  
   System.assertEquals(usageTypeCalls,'Calls');  
   System.assertEquals(usageTypeMessaging,'Messaging');  
   System.assertEquals(usageTypeiPass,'iPass');  
-
+  System.assertEquals(usageTypeRecurring,'Recurring');  
+      
   Test.stopTest();
   }
 }

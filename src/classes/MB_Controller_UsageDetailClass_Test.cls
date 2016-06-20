@@ -91,7 +91,6 @@ public class MB_Controller_UsageDetailClass_Test{
       System.assertEquals(wraperObject1.UsagePreviousAmount,0.00); 
       System.assertEquals(wraperObject1.UsageChangeAmount,25.00); 
       System.assertEquals(wraperObject1.UsageVarience,0); 
-      System.assertEquals(wraperObject1.userCurrency,'BC1'); 
       System.assertEquals(wraperObject1.VarianceArrow,1); 
       
       MB_Wrapper_Class.UsageAmountType_Wraper wraperObject2 = MB_Controller_UsageDetailClass.getUsageTotalAmount(deviceDetailsObject.Id,billingEntityObject2.Billing_Month__c ,usageTypeObject1.Name);
@@ -100,7 +99,6 @@ public class MB_Controller_UsageDetailClass_Test{
       System.assertEquals(wraperObject2.UsagePreviousAmount,25.00); 
       System.assertEquals(wraperObject2.UsageChangeAmount,19.00); 
       System.assertEquals(wraperObject2.UsageVarience,76); 
-      System.assertEquals(wraperObject2.userCurrency,'BC1'); 
       System.assertEquals(wraperObject2.VarianceArrow,1); 
       
       MB_Wrapper_Class.UsageAmountType_Wraper wraperObject3 = MB_Controller_UsageDetailClass.getUsageTotalAmount(deviceDetailsObject.Id,billingEntityObject4.Billing_Month__c ,usageTypeObject1.Name);
@@ -109,14 +107,13 @@ public class MB_Controller_UsageDetailClass_Test{
       System.assertEquals(wraperObject3.UsagePreviousAmount,30.00); 
       System.assertEquals(wraperObject3.UsageChangeAmount,0.00); 
       System.assertEquals(wraperObject3.UsageVarience,0); 
-      System.assertEquals(wraperObject3.userCurrency,'BC1'); 
       System.assertEquals(wraperObject3.VarianceArrow,3); 
       
       List<TEM_FAQ_List__c> list1 = MB_Controller_UsageDetailClass.getFaqList();
       System.assertEquals(list1.size(),0); 
       
       List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList1 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);
-      System.assertEquals(wraperList1.size(),0); 
+      System.assertEquals(wraperList1.size(),1); 
       
       List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList2 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject2.Billing_Month__c ,usageTypeObject1.Name);
       System.assertEquals(wraperList2.get(0).chargeTypeName,'Domestic Outgoing Calls'); 
