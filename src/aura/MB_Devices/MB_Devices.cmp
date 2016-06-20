@@ -50,7 +50,7 @@
         }
         .device_img{
         float: left;
-        width: 25%;
+        width: 79px;
         text-align: center;
         }
         .device_desc_a {
@@ -97,7 +97,9 @@
                 <div class="Device_main_sub"  >
                     <div class="device_img">
                        <!--  <img src="/resource/Device/Apple.jpg"> </img> -->
-                    <img src="{!device.deviceImageUrl}"> </img></div>
+                        <img src="{!device.deviceImageUrl}" />
+                        
+                    </div>
                     <div class="device_desc">
                         <div class="slds-text-body--regular device_desc_a" >{!device.deviceName}</div>
                         <div class="slds-text-heading--small device_desc_b">{!v.localCurrency}  {!device.totalUsage}
