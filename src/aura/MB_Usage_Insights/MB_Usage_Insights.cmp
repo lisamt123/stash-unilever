@@ -18,7 +18,7 @@
             background: #fff;
             padding: 15px 25px; 
             width: 93%;
-            margin: 0 auto;
+            margin: 4px auto;
         	border-radius: 6px;
     }
         .slick-dots {
@@ -79,16 +79,16 @@
             </div> 
         </div>
          <div class="slds-text-body--regular">
-            <div class="slds-text-body--regular">Total iPass usage compared with your colleagues</div><br/>
+            <div class="slds-text-body--regular">Total Roaming Data compared with Total Roaming iPass</div><br/>
             <div>
-                <span class="bar_chart">Yours</span>
+                <span class="bar_chart">Data</span>
                 <div class="linechart">
                     <span class="line_bar_iPass"></span>
                 </div>
                 <span>{!v.iPassYou} MB</span>
             </div><br/>
             <div>
-                <span class="bar_chart">Avg</span>
+                <span class="bar_chart">iPass</span>
                 <div  class="linechart">
                     <span class="line_bars_iPass"></span>
                 </div >

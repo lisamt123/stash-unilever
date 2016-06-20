@@ -3,7 +3,7 @@
                   scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,
                            /resource/charts/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
     
-    <style>
+     <style>
         body{
             background:#D1D1D1; 
         }
@@ -42,26 +42,26 @@
                 
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">DATA (in mb)</div>
-                    <div class="slds-text-body--regular chart_sub">Domestic -vs- International</div>
+                    <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div id="pie1" class="sub_carousel">
                     </div>
                 </div>
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">VOICE (in min)</div>
-                    <div class="slds-text-body--regular chart_sub">Domestic -vs- International</div>
+                    <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div id="pie2" class="sub_carousel">
                     </div>
                 </div>
                 
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">SMS (Count)</div>
-                    <div class="slds-text-body--regular chart_sub">Domestic -vs- International</div>
+                    <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div id="pie3" class="sub_carousel">
                     </div>
                 </div>
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">I-PASS (in mb)</div>
-                    <div class="slds-text-body--regular chart_sub">Domestic -vs- International</div>
+                    <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div id="pie4" class="sub_carousel">
                     </div>
                 </div>              
@@ -95,7 +95,7 @@
                 </div>
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">I-PASS  (in mb)</div>
-                    <div class="slds-text-body--regular chart_sub">You -vs- Your Colleagues</div>
+                    <div class="slds-text-body--regular chart_sub">Roaming Data -vs- Roaming iPass</div>
                     <div id="column4" class="sub_carousel">
                     </div>
                 </div>              

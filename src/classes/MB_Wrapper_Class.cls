@@ -86,6 +86,9 @@ public class MB_Wrapper_Class{
      public decimal totalCallUsage{get;set;}
      
      @AuraEnabled
+     public String totalCallUsagePattern{get;set;}
+     
+     @AuraEnabled
      public decimal totalMessageUsage{get;set;}
      
      @AuraEnabled
@@ -105,6 +108,30 @@ public class MB_Wrapper_Class{
      
      @AuraEnabled
      public decimal totalAverageIpassUsage{get;set;}
+     
+     @AuraEnabled
+     public decimal totalDataUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalCallUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalMessageUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalIpassUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalAverageDataUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalAverageCallUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalAverageMessageUsageIn{get;set;}
+     
+     @AuraEnabled
+     public decimal totalAverageIpassUsageIn{get;set;}
      
      @AuraEnabled
      public boolean totalSpendVariance{get;set;}

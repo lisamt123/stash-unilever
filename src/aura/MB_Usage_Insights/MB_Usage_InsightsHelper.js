@@ -1,6 +1,6 @@
 ({
 	helperMethod : function(component) {
-		var action = component.get("c.getyourCollegueChargeType"); 
+		var action = component.get("c.getInsights"); 
        action.setParams({ "month" : component.get("v.CurrentMonth")});
         action.setCallback(this, function(response){
             var state = response.getState();  
@@ -8,8 +8,8 @@
                 res= response.getReturnValue();
             }  
 /*--------------------------------------------------------------------------*/       
-        var actdata=(res.totalDataUsage);
-        var avgdata=(res.totalAverageDataUsage);
+        var actdata=(res.totalDataUsageIn);
+        var avgdata=(res.totalAverageDataUsageIn);
         component.set("v.DataYou",actdata);
         component.set("v.DataColleagues",avgdata);
         var actdata1=component.get("v.DataYou"); 
@@ -19,8 +19,8 @@
         $('.line_bar_data').width(actdata2+'px');
         $('.line_bars_data').width(avgdata2+'px'); 
 /*--------------------------------------------------------------------------*/                 
-        var actCalls=(res.totalCallUsage);
-        var avgCalls=(res.totalAverageCallUsage);
+        var actCalls=(res.totalCallUsageIn);
+        var avgCalls=(res.totalAverageCallUsageIn);
         component.set("v.CallsYou",actCalls);
         component.set("v.CallsColleagues",avgCalls);
         var actCalls1=component.get("v.CallsYou"); 
@@ -30,8 +30,8 @@
         $('.line_bar_calls').width(actCalls2+'px');
         $('.line_bars_calls').width(avgCalls2+'px'); 
 /*--------------------------------------------------------------------------*/                  
-    var actSMS=(res.totalMessageUsage);
-        var avgSMS=(res.totalAverageMessageUsage);
+    var actSMS=(res.totalMessageUsageIn);
+        var avgSMS=(res.totalAverageMessageUsageIn);
         component.set("v.SMSYou",actSMS);
         component.set("v.SMSColleagues",avgSMS); 
         var actSMS1=component.get("v.SMSYou");
@@ -41,8 +41,8 @@
         $('.line_bar_SMS').width(actSMS2+'px');
         $('.line_bars_SMS').width(avgSMS2+'px'); 
 /*--------------------------------------------------------------------------*/        
-       var actiPass=(res.totalIpassUsage);
-        var avgiPass=(res.totalAverageIpassUsage);  
+       var actiPass=(res.totalIpassUsageIn);
+        var avgiPass=(res.totalAverageIpassUsageIn);  
          component.set("v.iPassYou",actiPass);
          component.set("v.iPassColleagues",avgiPass);
         var actiPass1=component.get("v.iPassYou");

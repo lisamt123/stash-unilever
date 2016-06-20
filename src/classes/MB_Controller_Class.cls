@@ -202,9 +202,16 @@ public with sharing class MB_Controller_Class{
              }    
 
         }
-          
-          wrprobj.totalDataUsage=DataUsage.setScale(2) ;
-          wrprobj.totalCallUsage=CallUsage.setScale(2);
+          system.debug('!@#$');
+          wrprobj.totalCallUsagePattern='';
+          Decimal callusageinmin=CallUsage.setScale(2);
+          system.debug('!@#$--'+callusageinmin);
+          if(getMinsSecond(callusageinmin)!=null && callusageinmin!=null)
+          {
+             wrprobj.totalCallUsagePattern=getMinsSecond(callusageinmin);
+              system.debug('!@#$---'+wrprobj.totalCallUsagePattern);
+          }
+          wrprobj.totalDataUsage=DataUsage.setScale(2);
           wrprobj.totalMessageUsage=MessageUsage.setScale(2) ;
           wrprobj.totalIpassUsage=IpassUsage.setScale(2) ;
           wrprobj.totalUsage=totalSpend.setScale(2);
@@ -477,5 +484,68 @@ public with sharing class MB_Controller_Class{
         return totalusageAmount;
     }  
    
-     
+    public static String getMinsSecond(Decimal Mins){
+      String tempHours;
+String tempMin;
+String min='00';
+String sec='00';
+String hours='00';
+String a='1';
+String b='1';
+          Decimal m=Mins;
+          tempHours=String.valueof(m/60);
+          String[] res=tempHours.split('\\.');
+          System.debug('--'+res);
+      if(res[0]!='0'){
+          if(res[0].length()>1){
+          hours=res[0];
+          }
+          else{
+              hours='0'+res[0];
+          }
+      }
+          System.debug('-hours-'+hours);
+          System.debug('-res-'+res);
+if(res.size()>1){
+    for(Integer i=0;i<res[1].length();i++){
+        a=a+'0';
+    }
+    System.debug('-res-'+a);
+          tempMin =String.valueof((((Decimal.valueof(res[1]))/Decimal.valueof(a))*60));
+          String[] res1 =tempMin.split('\\.');
+          System.debug('--'+res1);
+          if(res1[0]!='0'){
+              if(res1[0].length()>1){
+          min=res1[0].Substring(0,2);
+              }else{
+                  min='0'+res1[0];
+              }
+          }
+          System.debug('-min-'+min);
+    if(res1.size()>1){
+          for(Integer j=0;j<res1[1].length();j++){
+        b=b+'0';
+    }
+          String secc=string.valueof(((Decimal.valueof(res1[1])/Decimal.valueof(b))*60));
+        if(secc.length()>1){
+        System.debug('-secc-'+secc);
+        Decimal sece=decimal.valueOf(secc);
+         if(string.valueOf(Math.round(sece)).length()>1)
+         {
+           sec=string.valueOf(Math.round(sece)).Substring(0,2);             
+         }
+            else{
+                sec='0'+string.valueOf(Math.round(sece));
+            }
+        }
+        else{
+            sec='0'+secc;
+        }
+          System.debug('-sec-'+sec);
+    }  }
+
+     String str=hours+':'+min+':'+sec;
+     System.debug('--'+str);
+     return str;
+    }
 }
