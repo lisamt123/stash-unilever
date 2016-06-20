@@ -15,6 +15,7 @@ VERSION     AUTHOR         DATE              DETAIL Description
 public with sharing class MB_Controller_Class_Test {
   public static final String Month_April = 'April 2016';
   public static final String Month_May = 'May 2016';
+  public static final String Local_Key = 'en_US';
     
   static testMethod void testMBControllerWithoutCollegue(){
   Test.startTest();
@@ -27,8 +28,8 @@ public with sharing class MB_Controller_Class_Test {
                                   firstname = 'fufn',
                                   lastname = 'fuln',
                                   CommunityNickname = 'fucn',
-                                  languagelocalekey = 'en_US',
-                                  localesidkey = 'en_US',                                            
+                                  languagelocalekey = Local_Key,
+                                  localesidkey = Local_Key,                                            
                                   profileid = adminProfileID,
                                   timezonesidkey = 'Europe/Berlin',
                                   country = 'India'
@@ -204,8 +205,8 @@ static testMethod void testMBControllerWithCollegue(){
                                   emailencodingkey = 'UTF-8',
                                   lastname = 'suln',
                                   CommunityNickname = 'sucn',
-                                  languagelocalekey = 'en_US',
-                                  localesidkey = 'en_US',                                            
+                                  languagelocalekey = Local_Key,
+                                  localesidkey = Local_Key,                                            
                                   profileid = adminProfileID,
                                   timezonesidkey = 'Europe/Berlin',
                                   country = 'India'
@@ -218,8 +219,8 @@ static testMethod void testMBControllerWithCollegue(){
                                   emailencodingkey = 'UTF-8',
                                   lastname = 'tuln',
                                   CommunityNickname = 'tucn',
-                                  languagelocalekey = 'en_US',
-                                  localesidkey = 'en_US',                                            
+                                  languagelocalekey = Local_Key,
+                                  localesidkey = Local_Key,                                            
                                   profileid = adminProfileID,
                                   timezonesidkey = 'Europe/Berlin',
                                   country = 'India'
@@ -365,12 +366,12 @@ static testMethod void testMBControllerWithCollegue(){
   insert billingEntityObject12;
 
   MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperObject2 = MB_Controller_Class.getUsageDetails(Month_May);
-  System.assertEquals(wrapperObject2.totalCallUsage,50.00);
+  System.assertEquals(wrapperObject2.totalCallUsagePattern,'00:49:60');
   System.assertEquals(wrapperObject2.totalDataUsage,500.00);
   System.assertEquals(wrapperObject2.totalIpassUsage,100.00);
   System.assertEquals(wrapperObject2.totalMessageUsage,90.00);
   System.assertEquals(wrapperObject2.totalUsage,325.00);
-      
+ 
   MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperObject3 = MB_Controller_Class.getUsageDetails('November 2015');
  }
          
