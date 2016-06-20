@@ -12,7 +12,7 @@
         .font1{
         font-size:12px;
         }
-    .action_bar>div {
+       .action_bar>div {
         width: 50%;
         float: left;
         }
@@ -26,7 +26,7 @@
         }
     </style>
 	  <div class="action_bar">
-            <div class="feedback" onclick="{!c.gotoFeedback}"> <img src="/resource/charts/TEM_icon-01.svg"/><div class="font1">Feedback</div></div>
+            <div class="feedback" onclick="{!c.gotoFeedback}"> <img src="/resource/charts/TEM_icon-01.svg"/><div class="font1"> App Feedback</div></div>
             <!--<div class="question"><img src="/resource/charts/TEM_icon-03.svg"/></div>-->
             <div class="information" onclick="{!c.gotoFaq}"><img src="/resource/charts/TEM_icon-02.svg"/><div class="font1">Information</div></div>
         </div>

@@ -277,24 +277,24 @@ public with sharing Class MB_Controller_Charts{
      getColleagueTotalMap = getColleagueTotalUsage(AvgofCollegueData,usageTypeMap);
        
         if(UserCount>0){
-             wrprobj.totalAverageDataUsage=(getColleagueTotalMap.get('ColleagueData')/UserCount).setScale(2);
+             wrprobj.totalAverageDataUsage +=(getColleagueTotalMap.get('ColleagueData')/UserCount).setScale(2);
         }
         else{ 
-             wrprobj.totalAverageDataUsage=getColleagueTotalMap.get('ColleagueData').setScale(2);   
+             wrprobj.totalAverageDataUsage +=getColleagueTotalMap.get('ColleagueData').setScale(2);   
         }   
         if(UserCount>0){
-                 wrprobj.totalAverageCallUsage=(getColleagueTotalMap.get('ColleagueCalls')/UserCount).setScale(2); 
+                 wrprobj.totalAverageCallUsage +=(getColleagueTotalMap.get('ColleagueCalls')/UserCount).setScale(2); 
         }
         else{
-             wrprobj.totalAverageCallUsage=getColleagueTotalMap.get('ColleagueCalls').setScale(2);
+             wrprobj.totalAverageCallUsage +=getColleagueTotalMap.get('ColleagueCalls').setScale(2);
         }
         if(UserCount>0){
               System.debug('----&---4--'+UserCount);
-             wrprobj.totalAverageMessageUsage=(getColleagueTotalMap.get('ColleagueSMS')/UserCount).setScale(2); 
+             wrprobj.totalAverageMessageUsage +=(getColleagueTotalMap.get('ColleagueSMS')/UserCount).setScale(2); 
              System.debug('----&---5--'+wrprobj.totalAverageMessageUsage);
         }
         else{
-             wrprobj.totalAverageMessageUsage=getColleagueTotalMap.get('ColleagueSMS').setScale(2);
+             wrprobj.totalAverageMessageUsage +=getColleagueTotalMap.get('ColleagueSMS').setScale(2);
         }
        
       
@@ -376,24 +376,24 @@ public with sharing Class MB_Controller_Charts{
      getColleagueTotalMap = getColleagueTotalUsage(AvgofCollegueData,usageTypeMap);
        
         if(UserCount>0){
-             wrprobj.totalAverageDataUsageIn=(getColleagueTotalMap.get('ColleagueData')/UserCount).setScale(2);
+             wrprobj.totalAverageDataUsageIn +=(getColleagueTotalMap.get('ColleagueData')/UserCount).setScale(2);
         }
         else{ 
-             wrprobj.totalAverageDataUsageIn=getColleagueTotalMap.get('ColleagueData').setScale(2);   
+             wrprobj.totalAverageDataUsageIn +=getColleagueTotalMap.get('ColleagueData').setScale(2);   
         }   
         if(UserCount>0){
-                 wrprobj.totalAverageCallUsageIn=(getColleagueTotalMap.get('ColleagueCalls')/UserCount).setScale(2); 
+                 wrprobj.totalAverageCallUsageIn +=(getColleagueTotalMap.get('ColleagueCalls')/UserCount).setScale(2); 
         }
         else{
-             wrprobj.totalAverageCallUsageIn=getColleagueTotalMap.get('ColleagueCalls').setScale(2);
+             wrprobj.totalAverageCallUsageIn +=getColleagueTotalMap.get('ColleagueCalls').setScale(2);
         }
         if(UserCount>0){
               System.debug('----&---4--'+UserCount);
-             wrprobj.totalAverageMessageUsageIn=(getColleagueTotalMap.get('ColleagueSMS')/UserCount).setScale(2); 
+             wrprobj.totalAverageMessageUsageIn +=(getColleagueTotalMap.get('ColleagueSMS')/UserCount).setScale(2); 
              System.debug('----&---5--'+wrprobj.totalAverageMessageUsage);
         }
         else{
-             wrprobj.totalAverageMessageUsageIn=getColleagueTotalMap.get('ColleagueSMS').setScale(2);
+             wrprobj.totalAverageMessageUsageIn +=getColleagueTotalMap.get('ColleagueSMS').setScale(2);
         }
        
       
