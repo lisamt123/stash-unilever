@@ -178,5 +178,53 @@ private class IPM_List_Milestones_Test {
         }
 
     }
+    
+    /******************************************************
+    * @name: testExportFunctionality
+    * @description: test milestone export to excel functionality
+
+   ****************************************************/
+   public static testmethod void testMilestoneExportToExcel()
+   {
+   	//get user
+       User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
+       
+       Set<String> projectNameSet = new Set<String>{'TestComments1'};
+       
+       //Get the project data
+        IPM_Project__c proj = [SELECT Id, Name, IPM_Target_Launch_Dates__c from IPM_project__c WHERE Name IN: projectNameSet ];
+        
+       //run as PL
+       System.runAs(globalUser) 
+       {
+	        Test.startTest();
+	        
+	        PageReference pg = Page.IPM_ProjectSetupView;
+            Test.setCurrentPageReference(pg);
+            ApexPages.CurrentPage().getparameters().put('Pid', proj.id); // NO SONAR. Pid has been used at mutiple places to cover multiple scenarios
+            System.Assert(ApexPages.CurrentPage().getparameters().get('Pid') == proj.id, SHOULDBESAME);
+            IPM_List_Milestones mileList = new IPM_List_Milestones();
+            mileList.isCompleteMilestones = 'f'; 
+            
+            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
+            System.assert(milestoneList.size() > 0, 'milestones succeefully not created');
+            
+	   		mileList.exportToExcel();
+	   		
+	   		Test.setCurrentPageReference(new PageReference('Page.IPM_ExportToExcel'));
+	   		
+	   		System.currentPageReference().getParameters().put('currentObject','IPM_Milestone__c');
+        	System.currentPageReference().getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
+        	System.currentPageReference().getParameters().put('whereClause','');
+        
+			IPM_ExportDataController exportCtrl= new IPM_ExportDataController();
+	   		exportCtrl.getFields();
+	   		
+	   		List<IPM_Milestone__c> listOfMilestonesExported = [Select IPM_Project__r.IPM_Project_Name__c,Name,IPM_Phase__c,IPM_Due_Date__c,IPM_Completed_On__c from IPM_Milestone__c];
+	   		
+	   		system.assert(listOfMilestonesExported.size() != null,'Milestones to be exported not queried');
+	   		Test.stopTest();
+       }
+   }
 
 }

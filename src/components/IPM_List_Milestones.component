@@ -33,6 +33,10 @@
                         data-keyboard="false">
                         <span class="fa fa-plus" />&nbsp;<span class="addLinkText">{!$label.IPM_ADD_MILESTONE}</span>
                     </div> 
+					<div class=" col-xs-2 SecButtonSet pull-right downloadbtnmilestone">
+                       <!-- Below commandlink is used to provide excel download button -->   
+                        <apex:commandLink styleClass="icoButton download" target="_blank" action="{!exportToExcel}" oncomplete="window.close();" title="{!$Label.IPM_Export_Milestones }"  />   
+                     </div> 
                     </apex:outputpanel>  
                     <apex:outputpanel rendered="{! if(AND(isEditable=true,isBDuser=false),'false','true')}">
                         <div class="col-xs-5 toggleContainer SecButtonSet pull-right">

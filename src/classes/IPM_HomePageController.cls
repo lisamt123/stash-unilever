@@ -304,8 +304,37 @@ public with sharing class IPM_HomePageController
    }    
     
     public String getTaskcountValue(){
-        Integer taskcount =[SELECT count() FROM IPM_Task__c WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false LIMIT 50000];
-        String taskcountValue =String.valueOf(taskcount);
+		//create map of task type and task list
+    	map<string,List<IPM_Task__c>> updatedTaskListMap = new map<string,List<IPM_Task__c>>{'overdue'=> new List<IPM_Task__c>(),'today'=> new List<IPM_Task__c>(),'nextseven'=> new List<IPM_Task__c>(),'later'=> new List<IPM_Task__c>() };
+    	Integer taskCount =0;
+    	
+    	//get all task list 
+    	list<IPM_Task__c> existingTaskList = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Project__c,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_PM_Approach__c,IPM_Assignee__c,IPM_Due_Date1__c
+    										  FROM IPM_Task__c 
+											  WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false  LIMIT 50000];
+		
+		//map tasks as per task type
+		for(IPM_Task__c  taskRec :  existingTaskList){
+			if(taskRec.IPM_Due_Date1__c < System.now()){
+				updatedTaskListMap.get('overdue').add(taskRec);
+			}
+			if(taskRec.IPM_Due_Date1__c == System.now()){
+				updatedTaskListMap.get('today').add(taskRec);
+			}
+			if(taskRec.IPM_Due_Date1__c > System.now() && taskRec.IPM_Due_Date1__c <= System.now().addDays(7)){
+				updatedTaskListMap.get('nextseven').add(taskRec);
+			}
+			if(taskRec.IPM_Due_Date1__c > System.now().addDays(7) || taskRec.IPM_Due_Date1__c == NULL){
+				updatedTaskListMap.get('later').add(taskRec);
+			}
+		}
+		
+		//	remove all duplicates from each set of tasks and get all tasks count 
+		for(string taskDate : updatedTaskListMap.keySet()){
+			list<IPM_Task__c> updatedTaskList = IPM_TaskHelper.removeDuplicateTaskForUser(updatedTaskListMap.get(taskDate));
+			taskCount = taskCount + updatedTaskList.size();
+		}
+		String taskcountValue = String.valueOf(taskCount);
         return taskcountValue;
     }
    

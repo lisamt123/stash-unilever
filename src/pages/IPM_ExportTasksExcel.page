@@ -1,0 +1,9 @@
+<apex:page controller="IPM_ExportDataController" contentType="application/vnd.ms-excel#ExcelDataExport.xls" cache="true">
+	<apex:pageBlock >
+			<apex:pageBlockTable value="{!objectsToBeExported}" var="object">
+			  <apex:repeat value="{!Fields}" var="f">
+		      	<apex:column value="{!object[f.fieldPath]}"/> 
+		     </apex:repeat>		 
+		    </apex:pageBlockTable>    	 
+	    </apex:pageBlock> 
+</apex:page>

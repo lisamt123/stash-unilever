@@ -494,4 +494,22 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         }
     }    
     
+    /********************************************************************************
+    *@Description :Method to send the parameters required (i.e the object, fields required for the object and the where condition for the query) 
+    for the excel download
+    *@return:Returns the IPM_ExportToExcel page 
+    *********************************************************************************/
+    public pagereference exportToExcel(){
+        
+        PageReference url = Page.IPM_ExportToExcel;
+        url.getParameters().put('currentObjectName','Task');
+        url.getParameters().put('currentObject','IPM_Task__c');
+        url.getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
+        url.getParameters().put('whereClause','where IPM_Project__c =\''+projectId+'\' and IPM_Active__c= true and (NOT IPM_Type_of_Task__c LIKE \'%' + String.escapeSingleQuotes('Future Adhoc') + '%\') AND (NOT IPM_Type_of_Task__c LIKE \'%' + String.escapeSingleQuotes('Future Standard') + '%\')');
+        
+        url.setRedirect(true);
+        return url;
+    }    
+    
+    
 }

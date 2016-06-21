@@ -734,11 +734,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	*/
 	public void getAssociatedTask(){
 		lsttask=new list<IPM_Task__c >();
-		lsttask=[SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Due_Date1__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,
-		IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,
-		IPM_Completed__c,IPM_Task_Type__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,LastModifiedBy.Name 
+		list<IPM_Task__c > lstUpdatedtask = [SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Due_Date1__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,
+		IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Completed_Date__c,
+		IPM_Completed__c,IPM_Task_Type__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,LastModifiedBy.Name,IPM_Master_Task__c,
+		IPM_Assignee__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c 
 		FROM IPM_Task__c 
 		WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName AND IPM_Function__c=:Frole AND IPM_Active__c = true order by IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC ];
+		lsttask = IPM_TaskHelper.removeDuplicateTaskForUser(lstUpdatedtask);
 		countOfTask =  [SELECT count() FROM IPM_Task__c WHERE IPM_Project__c=:projectId and IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName and IPM_Project_Document_Section__r.IPM_Negotiable__c=true];                                      
 	}
 
@@ -763,7 +765,18 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	*/
 	Public void UpdateTask(){
 		try{
-			update lsttask;
+			List<IPM_Task__c> updatedTaskList = new  List<IPM_Task__c>();
+        	
+            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskid limit 50000];
+            
+            Boolean isTaskComplete = tObj[0].IPM_Completed__c;
+            tObj[0].IPM_Completed__c = isTaskComplete == true ? false : true; 
+            tObj[0].IPM_Completed_Date__c = isTaskComplete == true ? null :system.today() ;
+            
+            updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
+            updatedTaskList.add(tObj[0]);
+            
+            update updatedTaskList;
 		}
 		catch(Exception ex){    
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

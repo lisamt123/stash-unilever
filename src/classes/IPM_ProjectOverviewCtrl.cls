@@ -357,7 +357,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
-        IPM_Project__c
+        IPM_Project__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c
         FROM Tasks__r 
         WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
         ORDER BY IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c limit 10000),
@@ -637,12 +637,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
         //Calculate nearest Gate Due date for Rollout 
 
        //process for Tasks RL
+		list<IPM_Task__c> duplicateTasksList =  new list<IPM_Task__c>();
         for(IPM_Task__c eachTask : project.Tasks__r) {
             if(!eachTask.IPM_Completed__c) {
-                tasksList.add(eachTask);
+                duplicateTasksList.add(eachTask);
             }
             projectTasksSet.add(eachTask.Id);
         }
+        tasksList = IPM_TaskHelper.removeDuplicateTaskForUser(duplicateTasksList);
+        
         // Identify the due date for the Gate document for the project
         allIncompleteTasks = tasksList.size();
         
@@ -1004,10 +1007,17 @@ public with sharing class IPM_ProjectOverviewCtrl {
     */
     public void markComplete() {
         try{
-            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
+			List<IPM_Task__c> updatedTaskList = new  List<IPM_Task__c>();
+        	
+            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
             tObj[0].IPM_Completed__c = isChecked == 'true' ? true : false; 
             tObj[0].IPM_Completed_Date__c = isChecked == 'true' ? system.today() : null;
-            update tObj[0];
+
+            	
+            updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
+            updatedTaskList.add(tObj[0]);
+            
+            update updatedTaskList;
         }
         catch (DmlException ex)
         {

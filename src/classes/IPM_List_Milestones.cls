@@ -377,6 +377,23 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         getWrapperRecords();
     }
 
+	/********************************************************************************
+    *@Description :Method to send the parameters required (i.e the object, fields required for the object and the where condition for the query) 
+    for the excel download
+    *@return:Returns the IPM_ExportToExcel page 
+    *********************************************************************************/
+    public pagereference exportToExcel(){
+        
+        PageReference url = Page.IPM_ExportToExcel;
+        url.getParameters().put('currentObjectName','Milestone');
+        url.getParameters().put('currentObject','IPM_Milestone__c');
+        url.getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
+        url.getParameters().put('whereClause','where IPM_Project__c =\''+projectId+'\'');
+        
+        url.setRedirect(true);
+        return url;
+    }    
+    
     /***************************************************
      @Description: Display Warning Message depending on for Market Ready Gate Milestone if gap between the due date of Market Ready Gate 
                     and Target Launch Date is 6 months/4 months based on Market Type of Project .  

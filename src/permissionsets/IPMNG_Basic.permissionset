@@ -8291,6 +8291,16 @@
         <field>MDO_Subscriptions__c.subscriber__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Task__c.IPM_Multiple_Functional_Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Task__c.IPM_Task_Is_Completed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     
     <label>IPMNG Basic</label>
 

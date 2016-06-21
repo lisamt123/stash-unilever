@@ -54,6 +54,56 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>IPM_Export_List_FieldSet</fullName>
+        <description>It is used in the page IPM_ExportTasksExcel.page</description>
+        <displayedFields>
+            <field>IPM_Project__r.IPM_Project_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Task_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Type_of_Gate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Due_Date1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Task_Is_Completed__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Completed_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Assignee__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Function__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Task Export List FieldSet</label>
+    </fieldSets>
     <fields>
         <fullName>ExternalField__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -178,6 +228,10 @@
                 <fullName>PL</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>TPL</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>true</trackHistory>
@@ -231,6 +285,55 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Multiple_Functional_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Multiple Functional Role</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CMI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R&amp;D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TPL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_Phase_Task_Added__c</fullName>
@@ -408,6 +511,17 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Task_Is_Completed__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Completed__c  = true, &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <label>Status(Completed)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Task_Name__c</fullName>
@@ -629,6 +743,49 @@
                 <fullName>Supply Chain</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>TPL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Multiple_Functional_Role__c</picklist>
+            <values>
+                <fullName>BB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CMI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TPL</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Phase__c</picklist>
@@ -740,6 +897,49 @@
             </values>
             <values>
                 <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TPL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Multiple_Functional_Role__c</picklist>
+            <values>
+                <fullName>BB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CMI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TPL</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

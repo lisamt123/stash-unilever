@@ -9291,3 +9291,17 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
+    <labels>
+        <fullName>IPM_Export_Milestones</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export Milestones</shortDescription>
+        <value>Export Milestones</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Export_ToDos</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export ToDos</shortDescription>
+        <value>Export To-do&apos;s</value>
+    </labels>

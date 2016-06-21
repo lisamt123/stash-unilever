@@ -55,6 +55,36 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>IPM_Export_List_FieldSet</fullName>
+        <description>Field set for the fields to be exported in excel sheet</description>
+        <displayedFields>
+            <field>IPM_Project__r.IPM_Project_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Due_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Completed_On__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Export List FieldSet</label>
+    </fieldSets>
     <fields>
         <fullName>BET_Status_Check_Trigger__c</fullName>
         <defaultValue>false</defaultValue>

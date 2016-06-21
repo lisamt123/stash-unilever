@@ -7701,6 +7701,16 @@
         <field>IPM_User_Profile__c.WL__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Task__c.IPM_Task_Is_Completed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Task__c.IPM_Multiple_Functional_Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     
     <label>IPM ProjectLeader</label>
     
