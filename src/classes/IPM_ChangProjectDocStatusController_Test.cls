@@ -222,8 +222,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
        test.stopTest();
         
         List<IPM_Project__c>lstNewPhaseProj=new List<IPM_Project__c>();
-        system.runAs(globalUser){
-        	  childProj.IPM_Project_Type__c=ROLLOUT_STR;
+        system.runAs(IPM_TestFactory_Helper.createUserAdmin(false)){
+              childProj.IPM_Project_Type__c=ROLLOUT_STR;
               childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
               update childProjs;
               list<ipm_project__c>localProjectList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];

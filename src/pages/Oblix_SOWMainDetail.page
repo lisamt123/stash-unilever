@@ -628,12 +628,12 @@
                                 <p></p>
                             </div-->
                             <div class="{!IF(uploadedAtt=='true', 'tab-pane active','tab-pane')}" id="blue">
-                                <apex:outputPanel >
+                                <apex:outputPanel rendered="{!IF(can_add_attachment,true,false)}">
                                     <apex:actionRegion >
                                         <apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" contentType="{!pageAttachment.ContentType}"/>
                                     </apex:actionRegion>
                                         <apex:actionRegion >
-                                        <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" rerender="" rendered="{!IF(can_add_attachment,true,false)}"></apex:commandButton>
+                                        <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" rerender=""></apex:commandButton>
                                         <br/>
                                         Description
                                         &nbsp;
