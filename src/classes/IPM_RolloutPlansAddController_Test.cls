@@ -83,6 +83,7 @@ private class IPM_RolloutPlansAddController_Test
     private static final string FINANCIAL_NOT_CREATED='financial not created';
     private static final string PHASE_NOT_FEASIBILITY='project phase is not feasibility'; 
     private static final string FAILED_ASSERT_MSG = 'Url is not as expected and failed processsing .' ;
+    private static final String WRAPPER_NOT_CREATED = 'Market Cluster/MCO wrapper not created successfully.';
     
     /***************************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test          
@@ -419,6 +420,9 @@ private class IPM_RolloutPlansAddController_Test
 			  
 			  irp2.searchCountry=null;
 			  irp2.searchRolloutCountry();
+			  system.assert(irp2.updateRollouts == true, WRAPPER_NOT_CREATED);
+			  system.assert(irp2.mapMCOWrappers.get(LV4_GEO0085).rolloutPresentAtMCO  == true, WRAPPER_NOT_CREATED);
+			  system.assert(irp2.mapClusterWrappers.get(GEO0060).rolloutPresentAtCluster == true, WRAPPER_NOT_CREATED);
 			  irp2.lstClusterWrappers.add(geoWrp);
 
 			  /********************************All the wrappers are populated************************************************/
