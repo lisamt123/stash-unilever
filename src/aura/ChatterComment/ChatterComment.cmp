@@ -1,0 +1,58 @@
+<aura:component controller="ChatterPublisherHandler">
+    
+	<aura:attribute name="currentComment" type="ChatterAuraFeedComment" /> 
+    <aura:attribute name="commentId" type="String" />
+	<aura:method name="doRefreshComment" action="{!c.doRefreshComment}" access="PUBLIC"> 
+        <aura:attribute name="currentCommentId" type="String" /> 
+    </aura:method>
+
+
+    
+    <li class="slds-timeline__item">
+        
+          <div class="spinningComment"><center><ui:spinner aura:id="CommentSpinner" isVisible="false"/></center></div>
+                  <span class="slds-assistive-text"></span>
+                  <div class="slds-media">
+                    <div class="slds-media__body">
+                      <div class="slds-media slds-media--timeline slds-timeline__comment_li">
+                        <div class="slds-media__figure">
+                          	<div class="slds-avatar slds-avatar--circle slds-avatar--medium">
+                          		<img src="{!v.currentComment.userSmallPhotoUrl}" alt="{!v.currentComment.userDisplayName}" />
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                          <div class="slds-tile">
+                            <p class="slds-tile__title">
+          
+                                <c:ChatterOpenRef refId="{!v.currentComment.userId}" refName="{!v.currentComment.userDisplayName}"/>
+                              </p>
+                            <div class="slds-tile__detail">
+                              <p > {!v.currentComment.text}</p>
+                              <ul class="slds-list--horizontal slds-text-body--small">
+                                <li class="slds-list__item slds-m-right--large">
+                                  <span><a href="javascript:void(0)" onclick="{!c.handleLikeComment}">
+                                      		<aura:if isTrue="{!v.currentComment.myLikeId == null}">Like</aura:if>
+                                        	<aura:if isTrue="{!v.currentComment.myLikeId != null}">Unlike</aura:if>
+                                      </a></span>
+                                </li>
+                                <li class="slds-list__item">
+                                  <span>{!v.currentComment.relativeCreatedDate}</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-media__figure slds-media__figure--reverse">
+                      <div class="slds-timeline__actions">
+                        <p class="slds-timeline__date"></p>
+                        <button class="slds-button slds-button--icon-border-filled">
+                          <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#switch" class="slds-button__icon" ariaHidden="true"/>
+                          <span class="slds-assistive-text"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+</aura:component>

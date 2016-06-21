@@ -1,0 +1,31 @@
+<aura:component controller="ChatterPublisherHandler"> 
+	<ltng:require styles="/resource/SLDS100/assets/styles/salesforce-lightning-design-system-ltng.css" />
+    <ltng:require scripts="/resource/JqueryResources/jquery.js"/>
+    <aura:attribute name="subjectId" type="String" description="Id of element to display related feed, use 'me' to display the feed of current user"/>
+    <aura:attribute name="feedType" type="String" description="Feed type"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    <aura:attribute name="feedElements" type="ChatterAuraFeedItem[]" />
+    <aura:handler event="c:ChatterRefreshFeed" action="{!c.doInit}"/>
+    <aura:attribute name="onclose" type="Aura.Action" default="{!c.defaultCloseAction}"/>
+    <div class="slds" style="margin-top:10px;margin-left:10px;" id="feeddiv">
+    <div class="slds-feed">
+    <ul class="slds-feed__list">
+        <li class="slds-feed__item">
+            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+            <p></p>
+            <ui:button class="slds-button slds-button--icon-border slds-button--icon-small slds-m-right--small" label="" press="{!c.doInit}">
+            <span class="slds-icon_container">
+                <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#refresh" class="slds-icon slds-icon-text-default slds-icon--x-small" ariaHidden="true"/>
+              <span class="slds-assistive-text">Refresh This Feed</span>
+            </span>
+            </ui:button>
+            </div>
+        </li>
+   		<aura:iteration items="{!v.feedElements}" var="element">
+            <c:ChatterFeedElement element="{!element}" feedElementId="{!element.elementId}" />
+        </aura:iteration>
+        </ul>
+    </div>
+    </div>
+    
+</aura:component>
