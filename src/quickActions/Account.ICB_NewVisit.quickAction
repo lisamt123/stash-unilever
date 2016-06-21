@@ -47,4 +47,5 @@
     <targetParentField>What</targetParentField>
     <targetRecordType>Event.ICB_IceCreamVisit</targetRecordType>
     <type>Create</type>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

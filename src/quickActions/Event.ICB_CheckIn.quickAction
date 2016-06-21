@@ -4,5 +4,6 @@
     <label>Check-In</label>
     <page>ICB_CheckInCheckOut</page>
     <type>VisualforcePage</type>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <width>-100</width>
 </QuickAction>
