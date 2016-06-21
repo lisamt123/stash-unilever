@@ -70,7 +70,9 @@ src/objects/User.object
 src/objects/Territory__c.object
 src/objects/Sales_Area__c.object
 src/objectTranslations
-src/objectTranslations/ICB_Territory_Management__c-en_US.objectTranslation
+src/objectTranslations/Account-pt_BR.objectTranslation
+src/objectTranslations/Activity-pt_BR.objectTranslation
+src/objectTranslations/Event-pt_BR.objectTranslation
 src/pages
 src/pages/ICB_CheckInCheckOut.page
 src/pages/ICB_CheckInCheckOut.page-meta.xml
@@ -94,4 +96,3 @@ src/staticresources/ICB_CheckInCheckOut_CSS.resource-meta.xml
 src/translations/pt_BR.translation
 src/workflows
 src/workflows/Event.workflow
-src/workflows/FeedItem.workflow
