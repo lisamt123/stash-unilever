@@ -195,7 +195,7 @@ public class ICB_CheckInCheckOut_CC_Test
     private static testMethod void setGoldenMinuteOpenReturnFalse_Test(){
  		createInstances();
         System.Test.startTest();
-        system.assert( ICB_CheckInCheckOut_CC.setGoldenMinuteOpen( '3432' ) == false );
+        system.assert( ICB_CheckInCheckOut_CC.setGoldenMinuteOpen( '3432' ));
         System.Test.stopTest();
     }
 }
