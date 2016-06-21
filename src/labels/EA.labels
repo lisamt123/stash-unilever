@@ -1,4 +1,11 @@
 <labels>
+	<fullName>EA_Invite</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>EA_Invite</shortDescription>
+	<value>More information can be found here http://inside.unilever.com/hr/Talent%20Plus/Pages/Everyday-Actions-App.aspx  Salesforce1 is available in App store for Android and iOs devices.</value>
+</labels>
+<labels>
 	<fullName>EA_Chatter2</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
@@ -19,4 +26,5 @@
 	<shortDescription>EA_ShareEmail6</shortDescription>
 	<value>For more information navigate to Inside.Unilever>Human Resources>Talent Plus>Employee. Salesforce1 is available in App store for Android and iOs devices.</value>
 </labels>
+
 
