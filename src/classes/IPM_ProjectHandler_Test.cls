@@ -105,7 +105,7 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT; 
         project.IPM_Target_Launch_Dates__c = System.today()+50;
         project.IPM_Project_Leader__c = standardUser.Id;
-        project.IPM_Finance_Member__c = user2.Id; 
+        project.IPM_Finance_Lead__c = user2.Id; 
         project.Deputy_Project_Leader__c = deputyPLUser.Id; 
         project.IPM_Technical_Project_Leader__c = technicalPLUser.Id; 
         project.IPM_Project_Gatekeeper__c = gatekeeperUser.Id; 
@@ -278,7 +278,7 @@ private class IPM_ProjectHandler_Test {
         betProjectList[6].IPM_Project_Leader__c = UserInfo.getUserId();
         betProjectList[6].Deputy_Project_Leader__c = null;
         betProjectList[6].IPM_Parent_Project__c = betProjectList[1].id;
-        betProjectList[6].IPM_Finance_Member__c = UserInfo.getUserId();
+        betProjectList[6].IPM_Finance_Lead__c = UserInfo.getUserId();
         betProjectList[7].name = 'testPrj6';
         betProjectList[7].IPM_Project_Type__c = Rollout;
         betProjectList[7].IPMProject_Span__c = LOCAL;
@@ -360,7 +360,7 @@ private class IPM_ProjectHandler_Test {
         
         system.runAs(globalUser){ 
             
-            project.IPM_Finance_Member__c = UserInfo.getUserId(); 
+            project.IPM_Finance_Lead__c = UserInfo.getUserId(); 
             Test.StartTest();
             update project;
             Test.StopTest();
@@ -430,7 +430,7 @@ private class IPM_ProjectHandler_Test {
             betProjectList[5].IPM_Fast_Track_Project__c = true;
             
             betProjectList[6].IPMProject_Span__c = LOCAL;
-            betProjectList[6].IPM_Finance_Member__c = financeuser.id;
+            betProjectList[6].IPM_Finance_Lead__c = financeuser.id;
             betProjectList[6].IPM_Project_Name__c = 'testProj';
             betProjectList[6].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             betProjectList[6].IPM_BET_Toolkit__c = Label.IPM_BET_NoBET;

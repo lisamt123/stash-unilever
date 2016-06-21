@@ -48,7 +48,7 @@ public with sharing class IPM_CreateRolloutProjects
                         Deputy_Project_Leader__c = rollout.IPM_Regional_PL__c,
                         IPM_Technical_Project_Leader__c = rollout.IPM_Regional_PL__c,
                         IPM_Project_Gatekeeper__c = rollout.IPM_Rollout_Gatekeeper__c,
-                        IPM_Finance_Member__c = rollout.Finance_Member__c,
+                        IPM_Finance_Lead__c = rollout.Finance_Member__c,
                         Market_Cluster_Name__c=rollout.Market_Cluster_Name__c,
                         IPM_Rollout_Status__c = rollout.IPM_Status__c,
                         IPMProject_Span__c = rollout.IPM_Rollout_Span__c,

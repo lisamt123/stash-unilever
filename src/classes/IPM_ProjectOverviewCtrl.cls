@@ -176,7 +176,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         isAcessDuetoTeam=false;
         lstofuser=new list<IPM_Project__c>();
-        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Member__c FROM IPM_Project__c 
+        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Lead__c FROM IPM_Project__c 
                                        WHERE Id=:projectId  limit 1];
          if(lstofuser!=null && !lstofuser.isEmpty()) {
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
@@ -192,7 +192,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
             }
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
              (lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid() && lstofuser[0].Deputy_Project_Leader__c !=null) || (lstofuser[0].IPM_Project_Gatekeeper__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Gatekeeper__c !=null)||
-             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Member__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Member__c !=null) ){
+             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Lead__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Lead__c !=null) ){
              isAcessDuetoTeam=true;
             }
         }
@@ -352,7 +352,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
         IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
-        Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
+        Deputy_Project_Leader__c, IPM_Finance_Lead__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
         IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
@@ -421,7 +421,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
              }                                                  
          }                
          if(projResList != NULL && projResList.isEmpty() && project.IPM_Project_Leader__c != UserInfo.getUserId() && project.IPM_Technical_Project_Leader__c != UserInfo.getUserId()
-            && project.Deputy_Project_Leader__c != UserInfo.getUserId() && project.IPM_Finance_Member__c != UserInfo.getUserId() && project.IPM_Project_Gatekeeper__c != UserInfo.getUserId()){
+            && project.Deputy_Project_Leader__c != UserInfo.getUserId() && project.IPM_Finance_Lead__c != UserInfo.getUserId() && project.IPM_Project_Gatekeeper__c != UserInfo.getUserId()){
             rolloutProjectRecentMilestone = null;
          }
          else if( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c ==  IPM_ConstantUtils.PHASE_IDEAS){

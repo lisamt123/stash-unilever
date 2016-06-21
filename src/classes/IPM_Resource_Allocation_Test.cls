@@ -96,7 +96,7 @@ private class  IPM_Resource_Allocation_Test {
             project=projectList[0];
             project.Deputy_Project_Leader__c=globalUser.Id;
             project.IPM_Technical_Project_Leader__c=globalUser.Id;
-            project.IPM_Finance_Member__c=globalUser.id;
+            project.IPM_Finance_Lead__c=globalUser.id;
             project.IPM_Project_Leader__c=globalUser.id;
             project.IPM_Company_Card__c=globalCompanyCard.id;
             project.IPM_Category_Text__c=CATE_LAUNDRY;

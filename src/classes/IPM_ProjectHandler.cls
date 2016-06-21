@@ -9,7 +9,7 @@
 public with sharing class IPM_ProjectHandler implements ITrigger
 {       
     public static final List<String> ProjectMembersAPINames = new List<String>{'IPM_Technical_Project_Leader__c','IPM_Project_Leader__c','IPM_Project_Gatekeeper__c',
-                                                                                'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Member__c'};
+                                                                                'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Lead__c'};
                                                                                 
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
   	public static Boolean stopProjExecute = true;
@@ -497,8 +497,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 }
             
                 if((proj.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || proj.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) && proj.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT 
-                        && proj.IPM_Finance_Member__c!=null && proj.IPM_Finance_Member__c!=proj.IPM_Project_Leader__c){
-                        regionalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Member__c);
+                        && proj.IPM_Finance_Lead__c!=null && proj.IPM_Finance_Lead__c!=proj.IPM_Project_Leader__c){
+                        regionalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Lead__c);
                 }
             }
             
@@ -613,12 +613,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                    
                    
                    if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && p.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT 
-                       && p.IPM_Finance_Member__c!=null && p.IPM_Finance_Member__c!=p.IPM_Project_Leader__c && p.IPM_Finance_Member__c!=proj.IPM_Finance_Member__c)
+                       && p.IPM_Finance_Lead__c!=null && p.IPM_Finance_Lead__c!=p.IPM_Project_Leader__c && p.IPM_Finance_Lead__c!=proj.IPM_Finance_Lead__c)
                    {
-                       localRolloutProjectMap.put(p.Id, p.IPM_Finance_Member__c);
-                       if(proj.IPM_Finance_Member__c!=null)
+                       localRolloutProjectMap.put(p.Id, p.IPM_Finance_Lead__c);
+                       if(proj.IPM_Finance_Lead__c!=null)
                        {
-                           deleteLocalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Member__c);
+                           deleteLocalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Lead__c);
                        }
                     }
                     

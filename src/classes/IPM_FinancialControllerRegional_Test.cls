@@ -242,6 +242,14 @@ private class IPM_FinancialControllerRegional_Test {
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+             
+             system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, 'isConsolidatedOrNonkey is true');
+             system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , 'Null Value found');
+             system.assert(ipmFinCon.showNext!= null , 'Null Value found');
+             system.assert(ipmFinCon.showPrevious!= null , 'Null Value found');
+             system.assert(ipmFinCon.tldAcceptFromValue == 'Accept Local TLD' , 'TLD accept value not returned as required');
+             
+             
             Test.stopTest();
          }  
      }

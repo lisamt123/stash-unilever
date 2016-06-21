@@ -342,7 +342,7 @@ private with sharing class IPM_ProjectHelper_Test
             addnewValue.IPM_Technical_Project_Leader__c=globalUser.id;
             addnewValue.Deputy_Project_Leader__c=globalUser.id;
             addnewValue.IPM_Project_Gatekeeper__c=globalUser.id;
-            addnewValue.IPM_Finance_Member__c=globalUser.id;
+            addnewValue.IPM_Finance_Lead__c=globalUser.id;
             projNewList.add(addnewValue);
             oldProjectMap.put(proj.id,addnewValue);
             IPM_ProjectTriggerHandler.getProjectUsersMap(projNewList, oldProjectMap, false) ;

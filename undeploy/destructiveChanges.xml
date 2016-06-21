@@ -127,7 +127,11 @@
 		<members>IPM_EcoDesign_New_SKU_Impact</members>
 		<members>IPM_EcoDesign_On_Category</members>
 		<members>IPM_EcoDesign_Average</members>
-        <name>CustomLabel</name>
+        	<name>CustomLabel</name>
+    	</types>
+	<types>
+        	<members>IPM_Project__c.IPM_Finance_Member__c</members>
+        <name>CustomField</name>
     </types>
 	
 </Package>

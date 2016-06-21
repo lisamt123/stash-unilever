@@ -1564,7 +1564,7 @@ OwnerId))</formula>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
         <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
+        <formula>ISBLANK(IPM_Finance_Lead__c)</formula>
         <label>IPM Is Finance Member Null</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2502,7 +2502,7 @@ OwnerId))</formula>
         <fullName>IsFinanceMemberNull__c</fullName>
         <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
+        <formula>ISNULL(IPM_Finance_Lead__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IsFinanceMemberNull</label>
         <trackHistory>false</trackHistory>

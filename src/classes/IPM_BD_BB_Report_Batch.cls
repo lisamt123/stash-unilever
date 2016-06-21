@@ -459,7 +459,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Parent_Project_Name__c = p.IPM_Parent_Project__r.Name;  
             a.IPM_Project_Leader__c = p.IPM_Project_Leader__r.Name;
             a.IPM_Deputy_Project_Leader__c = p.Deputy_Project_Leader__r.Name;
-            a.IPM_Finance_Member__c = p.IPM_Finance_Member__r.Name;
+            a.IPM_Finance_Member__c = p.IPM_Finance_Lead__r.Name;
             a.IPM_Technical_Project_Leader__c = p.IPM_Technical_Project_Leader__r.Name;  
             a.IPM_Project_Span__c = p.IPMProject_Span__c;
             a.IPM_Project_Type__c = p.IPM_Project_Type__c;

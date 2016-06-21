@@ -481,7 +481,7 @@ public class IPM_TestFactory_Helper
             'IPM_Business_Partner__c' => new List<Object>{false,false,false},
             'IPM_Category__c' => new List<Object>{HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE},
             IPM_CENTRAL_TEAM => new List<Object>{false,false,false},
-            'IPM_Finance_Member__c' => new List<Object>{false,false,false},
+            'IPM_Finance_Lead__c' => new List<Object>{false,false,false},
             'IPM_GateKeeper__c' => new List<Object>{false,false,false},
             'IPM_Project_Leader__c' => new List<Object>{false,false,false},
             'IPM_User_Category__c' => new List<Object>{IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT},

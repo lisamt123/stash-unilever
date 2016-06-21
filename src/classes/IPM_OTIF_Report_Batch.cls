@@ -902,7 +902,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
        otifAnalyticProj.IPM_Parent_Project_Name__c = proj.IPM_Parent_Project__r.Name;  
        otifAnalyticProj.IPM_Project_Leader__c = proj.IPM_Project_Leader__r.Name;
        otifAnalyticProj.IPM_Deputy_Project_Leader__c = proj.Deputy_Project_Leader__r.Name;
-       otifAnalyticProj.IPM_Finance_Member__c = proj.IPM_Finance_Member__r.Name;
+       otifAnalyticProj.IPM_Finance_Member__c = proj.IPM_Finance_Lead__r.Name;
        otifAnalyticProj.IPM_Project_Span__c = proj.IPMProject_Span__c;
        otifAnalyticProj.IPM_Project_Type__c = proj.IPM_Project_Type__c;
        otifAnalyticProj.IPM_Company__c = proj.IPM_Company_Card__r.Name;

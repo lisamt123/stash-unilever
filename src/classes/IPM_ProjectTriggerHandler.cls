@@ -32,8 +32,8 @@ public with sharing class IPM_ProjectTriggerHandler
                 if(eachproject.IPM_Project_Gatekeeper__c != null) {
                     tmpStr.add(eachproject.IPM_Project_Gatekeeper__c);
                 }
-                if(eachproject.IPM_Finance_Member__c != null) {
-                    tmpStr.add(eachproject.IPM_Finance_Member__c);
+                if(eachproject.IPM_Finance_Lead__c != null) {
+                    tmpStr.add(eachproject.IPM_Finance_Lead__c);
                 }
             }else if(!isFollow && oldProjectsMap != null) {
                 IPM_Project__c oldProject = oldProjectsMap.get(eachproject.Id);
@@ -49,8 +49,8 @@ public with sharing class IPM_ProjectTriggerHandler
                 if(checkChangedUser(eachproject.IPM_Project_Gatekeeper__c, oldProject.IPM_Project_Gatekeeper__c)) {
                     tmpStr.add(oldProject.IPM_Project_Gatekeeper__c);
                 }
-                if(checkChangedUser(eachproject.IPM_Finance_Member__c, oldProject.IPM_Finance_Member__c)) {
-                    tmpStr.add(oldProject.IPM_Finance_Member__c);
+                if(checkChangedUser(eachproject.IPM_Finance_Lead__c, oldProject.IPM_Finance_Lead__c)) {
+                    tmpStr.add(oldProject.IPM_Finance_Lead__c);
                 }
             }
             if(tmpStr != null && !tmpStr.isEmpty()) {

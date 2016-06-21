@@ -142,9 +142,9 @@ This componet used for regional rollout project
                                       
                                         <th scope="col" width="120px" colspan="1">
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                <apex:image styleClass="rounded" url="{!localProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                <apex:image styleClass="rounded" url="{!localProject.IPM_Finance_Lead__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
-                                            <apex:outputField value="{!localProject.IPM_Finance_Member__c}"/>
+                                            <apex:outputField value="{!localProject.IPM_Finance_Lead__c}"/>
                                         </th>
                                     </tr>
                                 </thead>

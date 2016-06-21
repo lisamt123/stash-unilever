@@ -293,6 +293,13 @@ public class IPM_FinancialController_Test {
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
              //Load Tab Rollup
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+             
+             system.assertEquals(true, ipmFinCon.isConsolidatedOrNonkey, 'isConsolidatedOrNonkey is false');
+             system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , 'Null Value found');
+             system.assert(ipmFinCon.showNext!= null , 'Null Value found');
+             system.assert(ipmFinCon.showPrevious!= null , 'Null Value found');
+             
+             
         }
          
      }
@@ -381,6 +388,11 @@ public class IPM_FinancialController_Test {
          loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
          //Load Tab Rollup
          loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+         
+         system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, 'isConsolidatedOrNonkey is true');
+         system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , 'Null Value found');
+         system.assert(ipmFinCon.showNext!= null , 'Null Value found');
+         system.assert(ipmFinCon.showPrevious!= null , 'Null Value found');
          
      }
      
