@@ -16,10 +16,9 @@
             } 
  /*---------------------------for pie charts-----------------------------------------------------------------------*/        
    $("#pie1").CanvasJSChart({ 
-       		legend: {fontFamily: "Salesforce Sans",},
+       		legend: {fontFamily: "Salesforce Sans",verticalAlign: "center", horizontalAlign: "right",fontSize: 15,},
                         axisY: {title: Domestic}, 
                         axisX: {title: International},
-                        legend :{ verticalAlign: "center", horizontalAlign: "right",fontSize: 15,}, 
                         data: [	{type: "pie", //change it to column, spline, line, pie, etc
                                 indexLabel: "{y}",showInLegend: true, indexLabelFontSize: 15,dataPoints: [{  y: (res.totalDomesticDataUsage),legendText:"Domestic", color:'#4F6A92'},{ y: (res.totalInternationalDataUsage),legendText:"Roaming", color:'#0C8EFF'},]  } ]});            
 $("#pie2").CanvasJSChart({axisY: {title: Domestic,}, 
