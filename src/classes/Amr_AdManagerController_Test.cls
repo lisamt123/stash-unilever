@@ -218,7 +218,6 @@ public class Amr_AdManagerController_Test {
         insert setting;
        
           
-        system.debug('jobDetail!!'+jobDetail1);
         Amr_AdManagerController_CC controller = new Amr_AdManagerController_CC();
         controller.categoryName = Amr_ConstantForAdManager.NONE;
         controller.brandPosName =Amr_ConstantForAdManager.NONE;
