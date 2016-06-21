@@ -32300,7 +32300,7 @@
         <field>uw_Terms_Conditions__c.uw_BET__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>Analytics Cloud User</label>
+    <label>Wave Admin User</label>
     <recordTypeVisibilities>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
         <visible>false</visible>
@@ -32995,6 +32995,34 @@
     </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
+        <name>InsightsAppAdmin</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>InsightsAppDashboardEditor</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>InsightsAppEQLEditor</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>InsightsAppEltEditor</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>InsightsAppUploadUser</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>InsightsAppUser</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>InsightsCreateApplication</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>WaveTabularDownload</name>
     </userPermissions>
 </PermissionSet>
