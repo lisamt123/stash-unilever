@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>MyTeamUser</dashboardType>
+    <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Wide</columnSize>
@@ -71,7 +71,7 @@
             <useReportChart>true</useReportChart>
         </components>
     </rightSection>
-    <runningUser>hebert.a.oliveira@unilever.com</runningUser>
+    <runningUser>sergio.mello@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>KPIs de Visita</title>
     <titleColor>#000000</titleColor>
