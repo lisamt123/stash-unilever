@@ -6343,6 +6343,34 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>es</language>
     </listViews>
     <listViews>
+        <fullName>DACH_Training_Queue</fullName>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>MoTilge</value>
+        </filters>
+        <label>DACH Training Queue</label>
+        <language>de</language>
+        <sharedTo>
+            <role>CEC_Manager_DACH</role>
+            <role>CEC_User_DACH</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Denmark_V2</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -7035,7 +7063,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
+        <booleanFilter>2 AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7053,16 +7081,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>HoRosent</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>EvKniesb</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>JuStedin</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>

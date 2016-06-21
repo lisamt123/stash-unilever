@@ -5411,6 +5411,15 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c0MT_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c0MT</label>
+        <queue>IPM_a7IE0000000c0MT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>
