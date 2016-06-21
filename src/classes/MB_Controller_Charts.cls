@@ -194,8 +194,6 @@ public with sharing Class MB_Controller_Charts{
                                     Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c
                                     FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND User_Country__c=:country AND Device_Details__c =:deviceId AND Billing_Month__c =: month]; 
                               
-  
-    List<MB_Wrapper_Class.MB_Device_Wrapper_Class> lst=new List<MB_Wrapper_Class.MB_Device_Wrapper_Class>();
     List<ID> usageIDlist=new  List<ID>();
     List<ID> chargeIDlist=new  List<ID>();
     for(MB_Billing_Entity__c Idlist:billingEntityList)
