@@ -73,6 +73,7 @@ public abstract class AbstractStandardSetExtension
     {
         if(sourcesObjectList!=null && sourcesObjectList.size() > 0)
         {
+        	sortMilestones(sourcesObjectList);
             setCon = new  ApexPages.StandardSetController(sourcesObjectList);
         }
         else
@@ -226,6 +227,15 @@ public abstract class AbstractStandardSetExtension
     
     public abstract String getQuery();
     
+     /***************************************************************************
+    * @description Method to be implemented by Implementing Class to provide sorted Milestone list.
+    */
+    
+ 	public virtual void sortMilestones(List<sObject> sourcesObjectList)
+ 	{
+ 	
+ 	}
+     
      /****************************************************************************
     * @description Used for getting Selected Records.
     */

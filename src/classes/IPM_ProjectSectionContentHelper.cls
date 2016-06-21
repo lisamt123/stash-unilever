@@ -74,6 +74,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                            projectDocSecContent.IPM_OTIF_HelpText_NA__c = os.OTIF_Help_Text__c;
                                            projectDocSecContent.IPM_OTIF_Sequence__c = os.OTIF_Sequence_Number__c; //sequence number for OTIF
                                            projectDocSecContent.Section_Content_Ext_Id__c=os.IPM_External_Id__c;
+                                           projectDocSecContent.DependentFieldAPIName__c = os.Dependent_Field__c;
                                            
                                            if(sectionInformation.get(os.IPM_External_Id__c)!=null){
                                                projectDocSecContent.IPM_Section_Id__c = sectionInformation.get(os.IPM_External_Id__c).Id;

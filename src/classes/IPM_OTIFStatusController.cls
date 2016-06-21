@@ -45,13 +45,49 @@ public with sharing class IPM_OTIFStatusController{
             projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Master_Section_External_Id__c FROM IPM_Project_Document_Section__c WHERE Id=:projDocSecId];
             
             //For Displaying OTIF Questions and Status Based on Type (Section or Table)
-            query='SELECT Id,IPM_OTIF_No_of_Status__c,IPM_OTIF_Measure__c,IPM_OTIF_Responsibility__c,IPM_OTIF_Status__c,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Master_Section_External_Id__c,IPM_Section_type__c,IPM_OTIF_HelpText_Red__c,IPM_OTIF_HelpText_NA__c,IPM_OTIF_HelpText_Green__c,IPM_OTIF_HelpText_Amber__c,IPM_Section_Number__c,IPM_OTIF_Sequence__c,IPM_Section_Id__c,IPM_Section_Name__c,Section_Content_Ext_Id__c FROM IPM_Project_Document_Section_Content__c'; 
+            query='SELECT Id,IPM_OTIF_No_of_Status__c,IPM_OTIF_Measure__c,IPM_OTIF_Responsibility__c,IPM_OTIF_Status__c,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Master_Section_External_Id__c,IPM_Section_type__c,IPM_OTIF_HelpText_Red__c,IPM_OTIF_HelpText_NA__c,IPM_OTIF_HelpText_Green__c,IPM_OTIF_HelpText_Amber__c,IPM_Section_Number__c,IPM_OTIF_Sequence__c,IPM_Section_Id__c,IPM_Section_Name__c,Section_Content_Ext_Id__c,BETCurrentStatus__c,DependentFieldAPIName__c FROM IPM_Project_Document_Section_Content__c'; 
             if(otifType==IPM_ConstantUtils.OTIF_TABLE){
                 secConList=Database.query(query+'  WHERE IPM_Project_Document_Section__c=\''+ string.escapeSingleQuotes(projDocSecId) +'\' '+' order by IPM_OTIF_Sequence__c ASC');
             }
             else if(otifType==IPM_ConstantUtils.OTIF_SECTION){
                 secConList=Database.query(query+'  WHERE IPM_Section_Id__c=\''+ string.escapeSingleQuotes(projDocSecId) +'\' '+' order by IPM_OTIF_Sequence__c ASC');                           
-            }                 
+            }
+            
+            // Update BET OTIF answer on BET stastus value
+            List<IPM_OTIF_Status__c> otifCustomSettings = IPM_OTIF_Status__c.getAll().values();
+                     
+        	for(IPM_OTIF_Status__c eachOtif : otifCustomSettings)
+            {
+        		if(String.isNotBlank(eachOtif.Dependent_Field__c))
+        		{
+        			String dependentPicklistAPIName = eachOtif.Dependent_Field__c;
+            			for(IPM_Project_Document_Section_Content__c docSectionContent : secConList)
+            		{       		
+            				if(docSectionContent.DependentFieldAPIName__c == dependentPicklistAPIName )
+            				{
+            					if(docSectionContent.BETCurrentStatus__c == IPM_ConstantUtils.BET_UNRELEASED)
+            					{
+            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_STATUS_RED;
+            						
+            					}else if(docSectionContent.BETCurrentStatus__c == IPM_ConstantUtils.BET_FIRST_RELEASE)
+            					{
+            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_STATUS_AMBER;
+            						
+            					}else if(docSectionContent.BETCurrentStatus__c == IPM_ConstantUtils.BET_FINAL_RELEASE)
+            					{
+            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_STATUS_GREEN;
+            						
+            					}else if(String.isBlank(docSectionContent.BETCurrentStatus__c))
+            					{
+            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_NOT_APPLICABLE;
+            					}
+            					
+            				}
+	
+            		}
+        		}	
+            }
+                             
         }
         catch (QueryException ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

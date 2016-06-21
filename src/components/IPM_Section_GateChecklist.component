@@ -29,19 +29,20 @@
                             <apex:outputPanel layout="block" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==gk.IPM_Section_External_Id__c,true,false)}">
                             <tr>   
                                 <td>
-                                    <apex:outputText value="{!gk.IPM_Question__c}"/> 
+                                    <apex:outputText rendered="{!IF(AND(gk.DependentFieldAPIName__c!='BETCurrentStatus__c'),true, false)}" value="{!gk.IPM_Question__c}"/>
+                                    <apex:outputText rendered="{!IF(AND(gk.DependentFieldAPIName__c =='BETCurrentStatus__c'),true, false)}" styleClass="info" title="{!$Label.IPM_Question_Readonly_Help}" value="{!gk.IPM_Question__c}"/>
                                 </td>
                             </tr>
                             <tr>     
                                 <td> 
                                 <!--Below rendered condition is used to show slider for checklist question-->
                                     <apex:outputPanel rendered="{!isEditable}">                                        
-                                        <apex:outputPanel id="gkSecSlide" styleClass="sliderGk sliderDynamic">
-                                            <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
-                                            <div class="legendSld gateKeeperSlider" id="legendSldGK{!counter}">
+                                         <apex:outputPanel id="gkSecSlide" styleClass="sliderGk sliderDynamic">
+                                            <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}" disabled="disabled"  />
+                                            <div class="legendSld gateKeeperSlider" id="legendSldGK{!counter}" >
                                                 <apex:variable var="counter" value="{!counter+1}" /> 
-                                                <apex:selectRadio value="{!ans}"  onclick="updateSecGateKeeperList('{!gk.Id}',this.value,'{!JSENCODE(gk.IPM_Comments__c)}',false);" styleClass="info" id="radioResponseGK" >
-                                                    <apex:selectOptions value="{!gkChecklistAnsMap[gk.Id]}" id="selectoptionsGK"/> 
+                                                <apex:selectRadio value="{!ans}" onclick="updateSecGateKeeperList('{!gk.Id}',this.value,'{!JSENCODE(gk.IPM_Comments__c)}',false);" styleClass="info" id="radioResponseGK" readonly="true">
+                                                    <apex:selectOptions html-new="{!IF(AND(gk.DependentFieldAPIName__c =='BETCurrentStatus__c'),'ReadonlySlider', 'EditableSlider')}" value="{!gkChecklistAnsMap[gk.Id]}" id="selectoptionsGK"/> 
                                                 </apex:selectRadio><br/>  
                                             </div> 
                                         </apex:outputPanel>

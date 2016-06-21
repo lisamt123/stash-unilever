@@ -206,6 +206,18 @@
         <label>IPM Project Fields EcoDesign</label>
     </fieldSets>
     <fields>
+        <fullName>BETCurrentStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>BET Current Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BET_Archive_Status__c</fullName>
         <description>To store BET status when BET is archived (first release, final release, unreleased).</description>
         <externalId>false</externalId>

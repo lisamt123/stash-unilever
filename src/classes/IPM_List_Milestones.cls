@@ -229,7 +229,10 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         Set<String> phaseMsSet = new Set<String>();
         String strQuery = getQuery();
         sourcesObjectList = database.query(strQuery);
-        if(sourcesObjectList!=null && !sourcesObjectList.isEmpty())
+		
+		sortMilestones(sourcesObjectList);
+		
+    	if(sourcesObjectList!=null && !sourcesObjectList.isEmpty())
         {
             milestoneCnt = sourcesObjectList.size();
         }
@@ -239,6 +242,27 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         }
         phaseMsList.addAll(phaseMsSet);
         return sourcesObjectList;                    
+    }
+      /*******************************************************************************************************
+    * @description: TO sort Milestone First by phase and then by date
+    */
+    public override void sortMilestones(List<sObject> incomingMilestoneList)
+    {
+    	List<MilestoneWrapper> milestoneWrapperList = new List<MilestoneWrapper>();
+		
+		for(IPM_Milestone__c milestone : (List<IPM_Milestone__c>)incomingMilestoneList)
+		{
+			milestoneWrapperList.add(new MilestoneWrapper(milestone));		
+		}
+		
+		milestoneWrapperList.sort();
+		
+		incomingMilestoneList.clear();
+		
+		for(MilestoneWrapper milestoneWrap : milestoneWrapperList)
+		{
+			incomingMilestoneList.add(milestoneWrap.milestone);		
+		}
     }
     
     /***************************************************************
@@ -269,11 +293,11 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
 
         if(isAsc)
         {
-            sortString +=  currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' DESC '; 
+            sortString +=  currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' DESC, IPM_Due_Date__c ASC' ; 
         } 
         else
         {
-            sortString += currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' ASC ';
+            sortString += currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' ASC,  IPM_Due_Date__c ASC';
         }
 
         soql += sortString + limitString;
@@ -437,4 +461,77 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             isFuture = f;
         }
     }
+    
+     /*******************************************************************************************************
+    * @description: Wrapper list to compare Milestone
+    */
+    public class MilestoneWrapper implements Comparable 
+    {
+    	public IPM_Milestone__c milestone;
+	
+		public MilestoneWrapper(IPM_Milestone__c pMilestone)
+		{
+			milestone = pMilestone;
+		}
+		
+	    // Implement the compareTo() method
+	    public Integer compareTo(Object pMilestoneObject) 
+	    {
+	    	
+	    	
+	        MilestoneWrapper incomingMilestoneWrapperObj = (MilestoneWrapper)pMilestoneObject;
+	        IPM_Milestone__c incomingMilestoneObject = incomingMilestoneWrapperObj.milestone;
+	        
+	        
+	        // If Incoming Milestone Phase is Blank, Validate against Due Date.All Milestones will lower Due Dates Get Priority.
+	        if(String.isBlank(incomingMilestoneObject.IPM_Phase__c))
+	        {
+				if(incomingMilestoneObject.IPM_Due_Date__c < milestone.IPM_Due_Date__c || milestone.IPM_Due_Date__c == null )
+		        {
+		        	return 1; 	
+		        }	        		
+	        } // In Case incoming Gate is Blank.
+	        else if(incomingMilestoneObject.IPM_Due_Date__c == null)
+	        {
+	        	// check if the incoming Milestone Phase is less than current Milestone,then Phase incoming Milestones Phase takes less.
+	        	if(incomingMilestoneObject.IPM_Phase_Order__c < milestone.IPM_Phase_Order__c)
+	        	{
+	        		return 1;
+	        	} // if Phase is same, then If current Milestone has due date, make current Milestone is less.
+	        	else if(incomingMilestoneObject.IPM_Phase_Order__c == milestone.IPM_Phase_Order__c && milestone.IPM_Due_Date__c != null)
+	        	{
+	        		return -1;
+	        	}
+	        }
+	        else
+	        {   // At this stage, we expect that incoming has both Phase and Due Date.
+	        	// If Current Milestone doesnt have Phase,then Treat on Due date.
+	        	// If Due date of incoming milestone is less than current milestone, incoming milestone is less. 
+        	  	if(String.isBlank(milestone.IPM_Phase__c))
+		        {
+					if(milestone.IPM_Due_Date__c != null && incomingMilestoneObject.IPM_Due_Date__c < milestone.IPM_Due_Date__c)
+			        {
+			        	return 1; 	
+			        }	        		
+		        }
+		        else if (milestone.IPM_Due_Date__c == null)
+		       	{
+		       		if(incomingMilestoneObject.IPM_Phase_Order__c <= milestone.IPM_Phase_Order__c)
+		        	{
+		        		return 1;
+		        	}
+		       	}
+	        	else if(milestone.IPM_Phase__c != null && milestone.IPM_Due_Date__c !=null)
+	        	{
+        			if(incomingMilestoneObject.IPM_Phase_Order__c <= milestone.IPM_Phase_Order__c && incomingMilestoneObject.IPM_Due_Date__c < milestone.IPM_Due_Date__c)
+					{
+						return 1;
+					}
+	        	}	
+	        }
+	        
+	        return -1;
+	    }
+    
+	}
 }

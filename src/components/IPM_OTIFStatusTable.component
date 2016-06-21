@@ -68,7 +68,8 @@
                    </td>
                     <td>
                     
-                      <apex:outputText value="{!con.IPM_OTIF_Measure__c}"/>
+                       <apex:outputText rendered="{!IF(AND(con.DependentFieldAPIName__c!='BETCurrentStatus__c'),true,false)}" value="{!con.IPM_OTIF_Measure__c}"/>
+                       <apex:outputText rendered="{!IF(AND(con.DependentFieldAPIName__c=='BETCurrentStatus__c'),true,false)}"  title="{!$Label.IPM_Question_Readonly_Help}" styleClass="info" value="{!con.IPM_OTIF_Measure__c}" />
                     </td>
                     <td>
                      <apex:outputText value="{!con.IPM_OTIF_Responsibility__c}"/>
@@ -79,45 +80,9 @@
                     </td>
                     
                     <td>
-                     <!-- Rendered condition for showing slider -->
-                     <apex:outputPanel rendered="{!IF(AND(con.Section_Content_Ext_Id__c='OTIF_Status',isEditable) ,true,false)}">
-                         <!-- Rendered condition for showing slider -->
-                        <apex:outputPanel rendered="{!Iseditable}">
-                           <!-- Rendered condition for showing slider -->
-                            <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF">
-                             <input type="hidden" name="answer" value="{!con.IPM_OTIF_Status__c}"/>
-                                 <div class="sld5 legendSld">
-                                   <label for="s0" onclick="changeStatus('{!con.Id}','');" class="info" title="Select">{!$Label.IPM_SELECT}</label>
-                                   <input type="radio" name="score" id="s0" value="{!$Label.IPM_OTIF_N_A}" />
-                                   <label for="s1" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_GREEN}');" class="info" title="{!con.IPM_OTIF_HelpText_Green__c}">{!$Label.IPM_OTIF_GREEN}</label>
-                                   <input type="radio" name="score" id="s1" value="{!$Label.IPM_OTIF_GREEN}"/>
-                                   <label for="s2" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_AMBER}');" class="info" title="{!con.IPM_OTIF_HelpText_Amber__c}">{!$Label.IPM_OTIF_AMBER}</label>
-                                   <input type="radio" name="score" id="s2" value="{!$Label.IPM_OTIF_AMBER}"  />
-                                   <label for="s3" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_RED}');" class="info" title="{!con.IPM_OTIF_HelpText_Red__c}">{!$Label.IPM_OTIF_RED}</label>
-                                   <input type="radio" name="score" id="s3" value="{!$Label.IPM_OTIF_RED}"  />  
-                                   <label for="s4" onclick="changeStatus('{!con.Id}','{!$Label.IPM_NO_APPLICABLE}');" class="info" title="{!con.IPM_OTIF_HelpText_NA__c}">{!$Label.IPM_OTIF_N_A}</label>
-                                   <input type="radio" name="score" id="s4" value="{!$Label.IPM_NO_APPLICABLE}" />
-                                 </div> 
-                             </apex:outputPanel>
-                                <!-- Rendered condition for showing slider -->
-                             <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=3}" styleClass="sliderOTIF" >
-                             <input type="hidden" name="answer" value="{!con.IPM_OTIF_Status__c}"/>                             
-                                        <div class="sld4 legendSld">
-                                           <label for="s0" onclick="changeStatus('{!con.Id}','');" class="info" title="Select">{!$Label.IPM_SELECT}</label>
-                                           <input type="radio" name="score" id="s0" value="{!$Label.IPM_OTIF_N_A}" />
-                                           <label for="s1" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_GREEN}');" class="info" title="{!con.IPM_OTIF_HelpText_Green__c}">{!$Label.IPM_OTIF_GREEN}</label>
-                                           <input type="radio" name="score" id="s1" value="{!$Label.IPM_OTIF_GREEN}"/>
-                                           <label for="s2" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_RED}');" class="info" title="{!con.IPM_OTIF_HelpText_Red__c}">{!$Label.IPM_OTIF_RED}</label>
-                                           <input type="radio" name="score" id="s2" value="{!$Label.IPM_OTIF_RED}"  /> 
-                                           <label for="s3" onclick="changeStatus('{!con.Id}','{!$Label.IPM_NO_APPLICABLE}');" class="info" title="{!con.IPM_OTIF_HelpText_NA__c}">{!$Label.IPM_OTIF_N_A}</label>
-                                           <input type="radio" name="score" id="s3" value="{!$Label.IPM_NO_APPLICABLE}" />                   
-                                     </div> 
-                             </apex:outputPanel>
-                        </apex:outputPanel> 
-                     </apex:outputPanel>
                       <!-- Rendered condition for showing output text -->
                     <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c!='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
-  
+                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c=='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)} widmax40P">{!con.BETCurrentStatus__c}</div></apex:outputtext>
                     </td>       
                   </tr>
                   </apex:repeat>

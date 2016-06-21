@@ -56,6 +56,26 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>BETCurrentStatus__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c</formula>
+        <label>BET Current Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DependentFieldAPIName__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependent Field API Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Assort_Channel_Name__c</fullName>
         <description>for displaying channel name in assortment strategy</description>
         <externalId>false</externalId>
