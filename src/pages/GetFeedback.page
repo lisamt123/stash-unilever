@@ -1,0 +1,30 @@
+<apex:page controller="userFeedbackCTRL" showChat="false" showHeader="false" docType="html-5.0" standardStylesheets="false">
+   
+    <apex:includeLightning />
+    <apex:stylesheet value="{!URLFOR($Resource.lds, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}"/> 
+	<div class="slds">
+        <div id="feedbackDiv">
+            <div class="slds-spinner_container" id="tempspinner">
+                <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+   
+        $Lightning.use("c:UserFeedback", function() {
+          $Lightning.createComponent("c:UserFeedbackCMP",
+          { feedbackUrl : '{!$CurrentPage.URL}', userId : '{!$user.Id}', recordId : '{!$CurrentPage.parameters.id}'},
+          "feedbackDiv", function(cmp){
+          	document.getElementById('tempspinner').style.display = 'none';
+          });
+        });
+    	
+    
+    
+    </script>
+</apex:page>
