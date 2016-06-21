@@ -53,21 +53,21 @@
             padding-top: 8px;
         }
         .icon-style-1{
-        width: 56px;
-        float: left;
-        background: white;
-        border: 1px solid #cfd7e6;
-        padding: 5px 18px;
-        border-radius: 5px 0px 0px 5px;
+    width: 35px;
+    float: left;
+    background: transparent;
+    border: 1px solid #cfd7e6;
+    border-right: 0;
+    padding: 8.5px;
+    border-radius: 5px 0 0 5px;
         }
         .icon-style-2{
-            width: 56px;
-            float: left;
-            background: transparent;
-            border: 1px solid #cfd7e6;
-            padding: 5px 18.5px;
-            border-left: 0px;
-            border-radius: 0px 5px 5px 0px;
+width: 36px;
+    float: left;
+    background: white;
+    border: 1px solid #cfd7e6;
+    padding: 9.5px;
+    border-radius: 0 5px 5px 0;
         }	
     </style>
     

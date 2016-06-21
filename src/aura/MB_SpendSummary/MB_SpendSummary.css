@@ -8,9 +8,10 @@
             color:#033A69;
 }
 .THIS .head_d-1{
-    float: right;
-    width: 7rem;
+    width: 4.9rem;
     color: #033a69;
+    position: absolute;
+    right: 0;
 }
 .THIS .back-button{
     width: 5%;

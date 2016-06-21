@@ -16,26 +16,27 @@
             } 
  /*---------------------------for pie charts-----------------------------------------------------------------------*/        
    $("#pie1").CanvasJSChart({ 
+       		legend: {fontFamily: "Salesforce Sans",},
                         axisY: {title: Domestic}, 
                         axisX: {title: International},
-                        legend :{ verticalAlign: "center", horizontalAlign: "right",fontSize: 13,}, 
+                        legend :{ verticalAlign: "center", horizontalAlign: "right",fontSize: 15,}, 
                         data: [	{type: "pie", //change it to column, spline, line, pie, etc
-                                indexLabel: "{y}",showInLegend: true, dataPoints: [{  y: (res.totalDomesticDataUsage),legendText:"Domestic", color:'#4F6A92'},{ y: (res.totalInternationalDataUsage),legendText:"Roaming", color:'#0C8EFF'},]  } ]});            
+                                indexLabel: "{y}",showInLegend: true, indexLabelFontSize: 15,dataPoints: [{  y: (res.totalDomesticDataUsage),legendText:"Domestic", color:'#4F6A92'},{ y: (res.totalInternationalDataUsage),legendText:"Roaming", color:'#0C8EFF'},]  } ]});            
 $("#pie2").CanvasJSChart({axisY: {title: Domestic,}, 
                         axisX: {title: International,},
-                        legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 13,}, 
+                        legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 15,}, 
                         data: [{type: "pie", //change it to column, spline, line, pie, etc
-                                indexLabel: "{y}",showInLegend: true,dataPoints: [{ x: 10, y: (res.totalDomesticCallUsage),legendText:"Domestic",color:'#4F6A92' },{ x: 20, y: (res.totalInternationalCallUsage),legendText:"Roaming",color:'#0C8EFF' }]}]});      
+                                indexLabel: "{y}",showInLegend: true,indexLabelFontSize: 15,dataPoints: [{ x: 10, y: (res.totalDomesticCallUsage),legendText:"Domestic",color:'#4F6A92' },{ x: 20, y: (res.totalInternationalCallUsage),legendText:"Roaming",color:'#0C8EFF' }]}]});      
  $("#pie3").CanvasJSChart({axisY: {title: Domestic,}, 
                         axisX: {title: International,},
-                        legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 13,}, 
+                        legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 15,}, 
                         data: [{type: "pie", //change it to column, spline, line, pie, etc
-                                indexLabel: "{y}",showInLegend: true,dataPoints: [{ x: 50, y: (res.totalDomesticSMSUsage),legendText:"Domestic", color:'#4F6A92'},{ x: 20, y: (res.totalInternationalSMSUsage),legendText:"Roaming", color:'#0C8EFF'},]}]});            
+                                indexLabel: "{y}",showInLegend: true,indexLabelFontSize: 15,dataPoints: [{ x: 50, y: (res.totalDomesticSMSUsage),legendText:"Domestic", color:'#4F6A92'},{ x: 20, y: (res.totalInternationalSMSUsage),legendText:"Roaming", color:'#0C8EFF'},]}]});            
  $("#pie4").CanvasJSChart({axisY: {title: Domestic,}, 
                         axisX: {title: International,},
-                        legend :{verticalAlign: "center",horizontalAlign: "right",fontSize: 13,}, 
+                        legend :{verticalAlign: "center",horizontalAlign: "right",fontSize: 15,}, 
                         data: [{type: "pie", //change it to column, spline, line, pie, etc
-                                indexLabel: "{y}",showInLegend: true,dataPoints: [{ x: 10, y: (res.totalDomesticIpassUsage),legendText:"Domestic", color:'#4F6A92'},{ x: 20, y: (res.totalInternationalIpassUsage),legendText:"Roaming", color:'#0C8EFF'},]}]}); 
+                                indexLabel: "{y}",showInLegend: true,indexLabelFontSize: 15,dataPoints: [{ x: 10, y: (res.totalDomesticIpassUsage),legendText:"Domestic", color:'#4F6A92'},{ x: 20, y: (res.totalInternationalIpassUsage),legendText:"Roaming", color:'#0C8EFF'},]}]}); 
 });
 		 $A.enqueueAction(action);
         var action1 = component.get("c.getyourCollegueChargeType");
@@ -47,25 +48,26 @@ $("#pie2").CanvasJSChart({axisY: {title: Domestic,},
                res1= response.getReturnValue(); 
             } 
 /*--------------------------------for column or line charts----------------------------------------------------------------------*/        
-  $("#column1").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"}, 
-                        axisX: {title: "",gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"},
-                        legend :{verticalAlign: "center",horizontalAlign: "right",fontSize: 15,labelFontFamily:  "sans-serif"}, 
-                        data: [{type: "column",  
-                            indexLabel: "{y}", dataPoints: [{label:"You",  y: (res1.totalDataUsage),color:'#D72C32' },{ label:"Colleague", y: (res1.totalAverageDataUsage),color:'#0C8EFF'},]}]});
- $("#column2").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"}, 
-                        axisX: {title:"" ,gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"},
+            $("#column1").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"}, 
+                        axisX: {title: "",gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"},
+                        legend :{verticalAlign: "center",horizontalAlign: "right",fontSize: 15,labelFontFamily:  "Salesforce Sans"}, 
+                        data: [{type: "column",  indexLabelFontSize: 15,
+                            indexLabel: "{y}", dataPoints: [{label:"You",  y: (res1.totalDataUsage),color:'#D72C32',fontSize: 15 },{ label:"Colleague", y: (res1.totalAverageDataUsage),color:'#0C8EFF',fontSize: 15},]}]});
+ $("#column2").CanvasJSChart({
+                        axisY: {title: "" ,gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"}, 
+                        axisX: {title:"" ,gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"},
                         legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 15,}, 
-                        data: [{type: "column",  
+                        data: [{type: "column",  indexLabelFontSize: 15,
                             indexLabel: "{y}",dataPoints: [{label:"You",  y: (res1.totalCallUsage),color:'#D72C32' },{ label:"Colleague", y: (res1.totalAverageCallUsage),color:'#0C8EFF'},]}]});   
- $("#column3").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"}, 
-                        axisX: {title: "" ,gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"},
+ $("#column3").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"}, 
+                        axisX: {title: "" ,gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"},
                         legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 15,}, 
-                        data: [{type: "column",  
+                        data: [{type: "column",  indexLabelFontSize: 15,
                             indexLabel: "{y}",dataPoints: [{label:"You",  y: (res1.totalMessageUsage),color:'#D72C32' },{ label:"Colleague", y: (res1.totalAverageMessageUsage),color:'#0C8EFF'}]}]});
- $("#column4").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"}, 
-                        axisX: {title: "" , gridThickness: 0,labelFontSize:10,titleFontSize: 10,labelFontFamily:  "sans-serif"}, 
+ $("#column4").CanvasJSChart({axisY: {title: "" ,gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"}, 
+                        axisX: {title: "" , gridThickness: 0,labelFontSize:15,titleFontSize: 10,labelFontFamily:  "Salesforce Sans"}, 
                         legend :{verticalAlign: "center",horizontalAlign: "right" ,fontSize: 15,}, 
-                        data: [{type: "column",  
+                        data: [{type: "column",  indexLabelFontSize: 15,
                             indexLabel: "{y}",dataPoints: [{label:"Data",  y: (res1.totalIpassUsage),color:'#D72C32' },{ label:"iPass", y: (res1.totalAverageIpassUsage),color:'#0C8EFF'},] } ]});
                                                            
 });    
