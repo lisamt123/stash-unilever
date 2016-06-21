@@ -52,11 +52,31 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Agency_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID( User_id__r.Contact.AccountId )</formula>
+        <label>Agency ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Agency_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_id__r.Contact.Account.Name</formula>
+        <label>Agency Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Brand_Name__c</fullName>
         <externalId>false</externalId>
@@ -147,6 +167,7 @@
         <columns>Category_Name__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>User_id__c</columns>
+        <columns>Agency_Name__c</columns>
         <columns>Level_of_Access__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

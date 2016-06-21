@@ -48,11 +48,15 @@
                 <behavior>Readonly</behavior>
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <behavior>Edit</behavior>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -164,6 +168,10 @@
                 <behavior>Readonly</behavior>
                 <field>eml_Unilever_Finance_BP_Contact_Email__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Comments__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -220,9 +228,6 @@
                 <field>txt_Other_Currency__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>num_Estimated_Man_days_of_PWO__c</field>
             </layoutItems>
@@ -241,6 +246,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pec_Variance__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Contingency_Charges__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Discounts__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -265,29 +278,10 @@
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
-        <label>System Information</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CreatedById</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>LastModifiedById</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
-    </layoutSections>
-    <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Closer Notification Form</label>
+        <label>Closure Notification Form</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -310,7 +304,7 @@
                 <field>txt_CNF_Unilever_Budget_Approver_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>dt_CNF_Planned_PWO_End_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -318,11 +312,11 @@
                 <field>mpkl_CNF_Currency__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_CNF_Planned_man_days__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_CNF_Planned_fees_inclusive_of_discou__c</field>
             </layoutItems>
             <layoutItems>
@@ -330,7 +324,7 @@
                 <field>num_CNF_Planned_Fixed_Price_Contingency__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_CNF_Planned_expenses__c</field>
             </layoutItems>
             <layoutItems>
@@ -338,11 +332,11 @@
                 <field>num_CNF_Planned_PMO_tax__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_CNF_Planned_total_charges__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_CNF_Planned_Day_rate__c</field>
             </layoutItems>
             <layoutItems>
@@ -353,16 +347,14 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>CreatedById</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_CNF_CR_number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -413,13 +405,18 @@
                 <field>num_CNF_Actual_Day_rate__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>txta_CNF_Reason_for_Return__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -459,13 +456,28 @@
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <customButtons>New_User_Defined_DocuSign_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>pkl_Attribute_Type__c</fields>
+        <fields>txt_Value__c</fields>
+        <fields>Type_of_COntract__c</fields>
+        <fields>Sent_in_Docusign__c</fields>
+        <fields>DS_Status__c</fields>
+        <fields>DS_Responsibility_With__c</fields>
+        <fields>DS_Responsibility_Owner__c</fields>
+        <fields>Comments__c</fields>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_PWO__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h56000000IyHV</masterLabel>
+        <masterLabel>00h18000000Ekdl</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -30,6 +30,18 @@
         <name>fml_Fianl_PWORF_Ageing__c</name>
     </fields>
     <fields>
+        <label><!-- Resubmitted Date --></label>
+        <name>fml_Resubmitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>fml_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submitted Date --></label>
+        <name>fml_Submitted_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- PWORF Age --></label>
         <name>num_PWORF_Age__c</name>
     </fields>

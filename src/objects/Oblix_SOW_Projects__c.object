@@ -10,9 +10,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>Oblix_VF04OverrideProjectNew</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -20,9 +18,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF04OverrideProjectNew</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -34,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF04OverrideProjectNew</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -83,6 +77,26 @@
         </displayedFields>
         <displayedFields>
             <field>OblixRegion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fees_Paid_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Percentage_of_Fees_Paid_To_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fees_PFY_Total_By_CFY_Calculator__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fees_PFY_Paid_Using_CFY_Calc__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -306,6 +320,101 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Campaign_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>First_3_selected_countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Stage_Completed_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Stage_Projected_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Completed_Stage_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Projected_Stage_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Projected_Stage_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Completed_Stage_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sync_Required_NFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_NFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Percentage_of_Fees_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_Year__r.Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name_Suffix__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Record_Locked_Sync__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BET_Required__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BET_Required_Yes_No__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Is_B_Fwd_Campaign__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_Campaign_Summary</label>
     </fieldSets>
     <fieldSets>
@@ -382,10 +491,31 @@
         <externalId>false</externalId>
         <label>Asset Deliverables</label>
         <length>131072</length>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>BET_Required_Yes_No__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( BET_Required__c ,&apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BET Required(Yes/No)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BET_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>BET Required</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>BET_first_release__c</fullName>
@@ -399,6 +529,29 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Box_Number_PFY_Project_Score_CFY_Calc__c</fullName>
+        <description>Required for the rollover process</description>
+        <externalId>false</externalId>
+        <label>Box Number PFY Project Score CFY Calc</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_Number_PFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Box Number PFY</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Brand_Led_Growth__c</fullName>
         <description>Business Value Creation:</description>
         <externalId>false</externalId>
@@ -408,53 +561,53 @@
             <controllingField>Innovation_Projects__c</controllingField>
             <picklistValues>
                 <fullName>Total turnover &lt;€100m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover €100-€200m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover €200-€300m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover €300-€400m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover &gt;€400m</fullName>
+                <default>false</default>
                 <controllingFieldValues>Brand Led Growth</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &lt;10M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
+                <fullName>Incremental turnover &lt;10M</fullName>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 10M - 20M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
+                <fullName>Incremental turnover 10M - 20M</fullName>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 20M - 30M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
+                <fullName>Incremental turnover 20M - 30M</fullName>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 30M - 40M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
+                <fullName>Incremental turnover 30M - 40M</fullName>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &gt;40M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
+                <fullName>Incremental turnover &gt;40M</fullName>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -475,6 +628,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Campaign_Attributes_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This flag is set via campaign create VF page. It is used during the sync process to determine if an overwrite to NFY campaign fields are required. This is to ensure updating the assets alone does not overwrite the campaign attributes.</description>
+        <externalId>false</externalId>
+        <label>Campaign Attributes Updated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Campaign_Countries__c</fullName>
         <description>List of countries selected for this campaign</description>
         <externalId>false</externalId>
@@ -484,6 +647,50 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Campaign_FY__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <label>Campaign FY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>FY2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2016</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2017</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2018</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2019</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2020</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2021</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2022</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Campaign_Fees_Total__c</fullName>
@@ -534,6 +741,32 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_NFY__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Campaign NFY</label>
+        <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Campaigns (Campaign NFY)</relationshipLabel>
+        <relationshipName>Campaign_NFY</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_PFY__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Campaign PFY</label>
+        <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Campaigns (Campaign PFY)</relationshipLabel>
+        <relationshipName>Campaigns_PFY</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Campaign_Points__c</fullName>
@@ -640,6 +873,97 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Cloned_Campaign__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cloned Campaign</label>
+        <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Campaigns (Cloned Campaign)</relationshipLabel>
+        <relationshipName>Cloned_Campaign</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cloned_SOW__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.Cloned_SOW__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cloned SOW</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_Stage_CFY__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <label>Completed Stage CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Completed_Stage_PFY__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <label>Completed Stage PFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
         <fullName>Completed_Stage__c</fullName>
         <externalId>false</externalId>
         <label>Completed Stage</label>
@@ -692,6 +1016,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Enforce_Trigger_Update_Assets__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update Assets</label>
+        <summarizedField>Oblix_Project_Assets__c.Enforce_Trigger_Update__c</summarizedField>
+        <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Enforce_Trigger_Update__c</fullName>
         <description>This dummy rollup summary ensures the before update trigger is fired on SWOP Campaign if the campaign swop splits country changes for the same percentage value.</description>
         <externalId>false</externalId>
@@ -702,6 +1038,78 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Fees_Outstanding_between_CFY_PFY__c</fullName>
+        <description>The difference between what the new paid amount is (using CFY calculator) and the amount actually paid in PFY</description>
+        <externalId>false</externalId>
+        <formula>Fees_PFY_Total_By_CFY_Calculator__c -  Fees_Paid_PFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The difference between what the new paid amount is (using CFY calculator) and the amount actually paid in PFY</inlineHelpText>
+        <label>Fees Outstanding between CFY PFY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fees_PFY_Paid_Using_CFY_Calc__c</fullName>
+        <description>Required for the rollover process</description>
+        <externalId>false</externalId>
+        <label>Fees PFY Paid Using CFY Calc</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fees_PFY_Total_By_CFY_Calculator__c</fullName>
+        <description>Required for rollover process</description>
+        <externalId>false</externalId>
+        <label>Fees PFY Total By CFY Calculator</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fees_Paid_PFY__c</fullName>
+        <description>For use in rollover process. Total actual fee paid last FY</description>
+        <externalId>false</externalId>
+        <label>Fees Paid PFY</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fees_To_Be_Paid_In_Current_FY_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+OR(
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
+),NULL, Value_to_be_paid_in_Current_FY__c)</formula>
+        <label>FY Campaign Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Fees_To_Be_Paid_Next_Financial_Year__c</fullName>
@@ -718,11 +1126,24 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Fees_Total_PFY__c</fullName>
+        <description>total campaign fee from PFY</description>
+        <externalId>false</externalId>
+        <label>Fees Total PFY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Final_release__c</fullName>
         <description>Final release date</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the the date for final release</inlineHelpText>
-        <label>Final release</label>
+        <label>BET Final Release</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -740,6 +1161,17 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>First_3_selected_countries__c</fullName>
+        <description>Utility field to store up to first 3 selected countries to be displayed on the campaign detail and summary pages.</description>
+        <externalId>false</externalId>
+        <label>First 3 selected countries</label>
+        <length>1300</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>First_Air_Date__c</fullName>
@@ -772,6 +1204,15 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_B_Fwd_Campaign__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is B/Fwd Campaign</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Is_this_High_Risk__c</fullName>
@@ -863,6 +1304,44 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Name_Prefix__c</fullName>
+        <description>This field is editable and visible to UL user via Oblix application. A trigger will combine this field + suffix and copies over to Name field value</description>
+        <externalId>false</externalId>
+        <label>Name Prefix</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Suffix_Cycle_Number__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>holds the number of times a campaign is rolled-over (brought forward) as part of rollover process</description>
+        <externalId>false</externalId>
+        <label>Name Suffix Cycle Number</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Suffix__c</fullName>
+        <description>This suffix is programatically generated as part of the trigger and combined with name prefix to make up the Name field value</description>
+        <externalId>false</externalId>
+        <label>Name Suffix</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Number_of_Agency_Hub_Splits__c</fullName>
         <description>Total number related child agency hub split records</description>
         <externalId>false</externalId>
@@ -942,6 +1421,17 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Oblix_ProjectBoxNumber_PFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Oblix ProjectBoxNumber PFY</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Oblix_ProjectBoxNumber__c</fullName>
         <externalId>false</externalId>
         <label>Campaign Box Number</label>
@@ -963,6 +1453,31 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Original_Campaign__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Original Campaign</label>
+        <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Campaigns (Original Campaign)</relationshipLabel>
+        <relationshipName>Original_Campaign</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Original_SOW__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.Original_SOW__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Original SOW</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Other_Kinds_of_Research__c</fullName>
@@ -1006,10 +1521,36 @@
         <externalId>false</externalId>
         <inlineHelpText>Enter the percentage of the Total Project Fees that is targeted to be paid this FY?</inlineHelpText>
         <label>Percentage of Fee for this FY</label>
-        <precision>3</precision>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Fees_PFY__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <label>Percentage of Fees PFY</label>
+        <precision>10</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Fees_Paid_To_Date__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <formula>Percentage_of_Fee_for_this_FY__c + Percentage_of_Fees_PFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Percentage of Fees Paid To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
@@ -1129,7 +1670,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Multiple countries (5-10), multiple language (5-10)</fullName>
+                <fullName>Multiple countries (6-10), multiple language (6-10)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1224,6 +1765,72 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Projected_Stage_CFY__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <label>Projected Stage CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Projected_Stage_PFY__c</fullName>
+        <description>For use in the rollover process</description>
+        <externalId>false</externalId>
+        <label>Projected Stage PFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
         <fullName>Projected_Stage__c</fullName>
         <description>Projected Stage to reflext what the Marketers are aiming for</description>
         <externalId>false</externalId>
@@ -1254,6 +1861,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Record_Locked_Sync__c</fullName>
+        <description>Used in visualforce page to show/hide edit button in swop</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos; 
+&amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Required_NFY__c == &apos;Sync Requested&apos; || TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Requested&apos;),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Locked Sync</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Region__c</fullName>
@@ -1304,6 +1924,54 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>SOW_Campaign_Name__c</fullName>
+        <description>Not on the UI, only used in a report. Shows both SOW and Campaign names in the same field to allow easier grouping in a report</description>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.Name&amp;&quot;/&quot;&amp;Name</formula>
+        <label>SOW/Campaign Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOW_FY__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Financial_Year__r.Financial_Year__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOW_NFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.SOW_NFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW NFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOW_PFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.SOW_PFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW PFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Selected_Countries__c</fullName>
         <description>Updated by Apex, to remove starting &apos;/&apos;, NOT to be used otherwise - ONLY APEX</description>
         <externalId>false</externalId>
@@ -1324,6 +1992,70 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Completed_CFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Completed CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Stage_Projected_CFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Projected CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Start_of_TV_production__c</fullName>
@@ -1359,6 +2091,66 @@
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
+        <fullName>Sync_Required_NFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Campaign_PFY__r.Sync_Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sync Required NFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sync_Status__c</fullName>
+        <description>determines the status of the Sync, this value is set by automated jobs</description>
+        <externalId>false</externalId>
+        <label>Sync Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sync Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sync In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sync Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sync Requested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clone In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clone Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sync_Step__c</fullName>
+        <description>Stamps the record with the processed step to ensure the next batch does not pick up the same record. DO NOT EDIT as this field is set by automated job</description>
+        <externalId>false</externalId>
+        <label>Sync Step</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Timescale_Notes__c</fullName>
         <description>Notes relating to timescale</description>
         <externalId>false</externalId>
@@ -1388,6 +2180,17 @@
         <label>Total Asset Deliverables</label>
         <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Asset_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Asset Score</label>
+        <summarizedField>Oblix_Project_Assets__c.Asset_Line_Item_Score__c</summarizedField>
+        <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
@@ -1428,6 +2231,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Total_Project_Score_PFY__c</fullName>
+        <description>When campaign is synced or finalised , copy from Total_Project_Score__c (from SOW previous FY) =&gt; Total_Project_Score_PFY__c (to SOW next FY)</description>
+        <externalId>false</externalId>
+        <label>Total Project Score PFY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Total_Project_Score__c</fullName>
         <externalId>false</externalId>
         <label>Total Project Score</label>
@@ -1453,6 +2269,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Unique_key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Field used to prevent creation of campaigns with the same name within the context of the SOW.</description>
+        <externalId>false</externalId>
+        <label>Unique key</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Value_To_BePaid_Manual_Override__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1463,9 +2292,10 @@
     </fields>
     <fields>
         <fullName>Value_to_be_paid_in_Current_FY__c</fullName>
-        <description>Value to be paid in Current FY</description>
+        <description>Value to be paid in Current FY
+Was originally Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c but amended for rollover process</description>
         <externalId>false</externalId>
-        <formula>Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c</formula>
+        <formula>(Percentage_of_Fees_Paid_To_Date__c * Campaign_Total_Fees__c) -  Fees_PFY_Paid_Using_CFY_Calc__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Fees To Be Paid In Current FY</label>
         <precision>18</precision>
@@ -1494,6 +2324,17 @@
     <pluralLabel>SWOP Campaigns</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
+        <active>true</active>
+        <description>Lock Campaign Record if Campaign Sync  in Progress.</description>
+        <errorConditionFormula>IF(
+NOT(ISCHANGED(Sync_Status__c)) &amp;&amp; 
+NOT(ISCHANGED(Sync_Required_NFY__c)) &amp;&amp; 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos;
+&amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Required_NFY__c == &apos;Sync Requested&apos; || TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorMessage>Sync in Progress. Record Locked. Campaign Locked.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Oblix_Campaign_Splits_Should_Add_To_100</fullName>
         <active>false</active>

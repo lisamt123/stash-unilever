@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>IPM_Food_Dressing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Food Dressing</label>
+        <sharedTo>
+            <group>IPM_Food_Dressing</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Dressing</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Food_Savoury</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Food Savoury</label>
+        <sharedTo>
+            <group>IPM_Food_Savoury</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Savoury</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Food_Spreads</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Food Spreads</label>
+        <sharedTo>
+            <group>IPM_Food_Spreads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Spreads</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_HC_HHC_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>IPM_HC_HHC_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_HC_HHC_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Household Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_HC_Laundry_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>IPM_HC_Laundry_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_HC_Laundry_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Laundry</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_FB_Parent_and_Finance_Category</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care FB-Parent and Finance Category</label>
+        <sharedTo>
+            <group>IPM_Home_Care_FB_Parent_and_Finance_Cat</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>FB-Parent and Finance Category</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_HPC_Parent_and_Finance_Category</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care HPC-Parent and Finance Category</label>
+        <sharedTo>
+            <group>IPM_Home_Care_HPC_Parent_and_Finance_Cat</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>HPC-Parent and Finance Category</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_HPC_Professional_Cleaning_Category</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care HPC-Professional Cleaning Category</label>
+        <sharedTo>
+            <group>IPM_Home_Care_Professional_Cleaning</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Professional Cleaning Category</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_Household_Care</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care Household Care</label>
+        <sharedTo>
+            <group>IPM_Home_Care_Household_Care</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Household Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_Laundry</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care Laundry</label>
+        <sharedTo>
+            <group>IPM_Home_Care_Laundry</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Laundry</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_Non_Corporate_Home_Care_Category</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care Non Corporate Home Care Category</label>
+        <sharedTo>
+            <group>IPM_Home_Care_Non_Corporate_Category</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Non Corporate Home Care Category</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Home_Care_PFB_Parent_and_Finance_Category</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Home Care PFB-Parent and Finance Category</label>
+        <sharedTo>
+            <group>IPM_Home_Care_PFB_Parent_and_Finance_Cat</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>PFB-Parent and Finance Category</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Personal_Care_Deodorants_Fragrances</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Personal Care Deodorants &amp; Fragrances</label>
+        <sharedTo>
+            <group>IPM_Personal_Care_Deodorants_Fragrance</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Deodorants &amp; Fragrances</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Personal_Care_Hair_Care</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Personal Care Hair Care</label>
+        <sharedTo>
+            <group>IPM_Personal_Care_Hair_Care</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Hair Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Personal_Care_Non_Corporate_Personal_Care_Cat</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Personal Care Non Corporate Personal Care Cat</label>
+        <sharedTo>
+            <group>IPM_Personal_Care_Non_Corporate_Personal</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Non Corporate Personal Care Cat</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Personal_Care_Oral_Care</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Personal Care Oral Care</label>
+        <sharedTo>
+            <group>IPM_Personal_Care_Oral_Care</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Oral Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Personal_Care_Skin_Care</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Personal Care Skin Care</label>
+        <sharedTo>
+            <group>IPM_Personal_Care_SKIN_CARE</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Skin Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Personal_Care_Skin_Cleansing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Personal Care Skin Cleansing</label>
+        <sharedTo>
+            <group>IPM_Personal_Care_Skin_Cleansing</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Skin Cleansing</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refreshment_Coffee_Snacks</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Refreshment Coffee &amp; Snacks</label>
+        <sharedTo>
+            <group>IPM_Refreshment_Coffee_Snacks</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Coffee &amp; Snacks</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refreshment_Ice_Cream</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Refreshment Ice Cream</label>
+        <sharedTo>
+            <group>IPM_Refreshment_Ice_Cream</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Ice Cream</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refreshment_Plantations</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Refreshment Plantations</label>
+        <sharedTo>
+            <group>IPM_Refreshment_Plantations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Plantations</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refreshment_Tea_and_Soy_Fruit_Beverages</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Refreshment Tea and Soy &amp; Fruit Beverages</label>
+        <sharedTo>
+            <group>IPM_Refreshment_Tea_and_Soy_Fruit_Bev</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Tea and Soy &amp; Fruit Beverages</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refreshment_Water_Purification_Category</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Refreshment Water Purification Category</label>
+        <sharedTo>
+            <group>IPM_Refreshment_Water_Purification_Catg</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Water Purification Category</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refreshment_Weight_Management</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Refreshment Weight Management</label>
+        <sharedTo>
+            <group>IPM_Refreshment_Weight_Management</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Weight Management</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Rollout_Global</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Rollout Global</label>
+        <sharedTo>
+            <group>IPM_Global</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Rollout_Project__c</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_food_Other_Foods</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM food Other Foods</label>
+        <sharedTo>
+            <group>IPM_Food_Other_Foods</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Other Foods</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

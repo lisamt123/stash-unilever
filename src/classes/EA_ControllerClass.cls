@@ -25,18 +25,73 @@ public with sharing class EA_ControllerClass {
 * @param  
 * @return list of Everyday_Activity__c. 
 */ 
-    @AuraEnabled
-    Public static List<Everyday_Activity__c> getActivities(){
+   @AuraEnabled
+    Public static List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> getActivities(){
     
         //List<Everyday_Activity__c> activityList = new List<Everyday_Activity__c>();
         //activityList = [SELECT Id,Name, RecordType.Name, Rating__c, Description__c,Minutes_to_Complete_Action__c,Top_Tip__c,Participants_Required__c,Activity_Points__c FROM Everyday_Activity__c Where  Active__c =true ORDER BY Rating__c desc Nulls last];      
         List<Everyday_Activity__c> lstAcivity = new List<Everyday_Activity__c>(); 
           
-        lstAcivity = [SELECT Name, Rating__c, Participants_Required__c,Minutes_to_Complete_Action__c,Top_Tip__c, RecordType.Name,Description__c,Activity_Points__c  FROM Everyday_Activity__c where  Active__c=true order by Rating__c desc Nulls last];   
+        lstAcivity = [SELECT Id,Name, Rating__c, Participants_Required__c,Minutes_to_Complete_Action__c,Top_Tip__c, RecordType.Name,Description__c,Activity_Points__c  FROM Everyday_Activity__c where  Active__c=true order by Rating__c desc Nulls last];   
        
-     
+       List<EA_Team_Member__c> teamList=[Select Id,Everyday_Activity__c,Everyday_Activity__r.Name, Everyday_Activity__r.RecordType.Name , Everyday_Activity__r.Rating__c,
+                                          Everyday_Activity__r.Description__c, Everyday_Activity__r.Minutes_to_Complete_Action__c, Activity_Due_Date__c,
+                                          Everyday_Activity__r.Top_Tip__c, Everyday_Activity__r.Participants_Required__c, Everyday_Activity__r.Activity_Points__c , 
+                                          Participant__c,Participant__r.Name, Participant_small_photourl__c 
+                                          FROM EA_Team_Member__c WHERE Activity_Due_Date__c <=: system.now() order by createdDate Desc ];
+                                          
+        Map<Id,Set<string>> recentuserMap=new Map<Id,Set<string>>();
+       
+        for(Everyday_Activity__c act:lstAcivity){
+         Set<string> photourlsSet=new Set<string>();
+          for(EA_Team_Member__c item:teamList){
+          
+            if(act.Id == item.Everyday_Activity__c && photourlsSet.size()<6)
+            {
+              photourlsSet.add(item.Participant_small_photourl__c);
+            
+            }
+           
+          }
+          
+          recentuserMap.put(act.Id,photourlsSet);
+            
+            
+        }
+   
+        
+        //List<string> photourlList=recentuserMap.addAll(recentuserMap.values());
+        
+        List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> distinctmemberList=new List<EA_Wrapper_Class.EA_RecentlyCompletedUsers>();
+        
+        Set<string> distinctuserSet=new Set<string>();
+        
+         for(Everyday_Activity__c act:lstAcivity )
+         {
+           EA_Wrapper_Class.EA_RecentlyCompletedUsers newObj=new EA_Wrapper_Class.EA_RecentlyCompletedUsers();
+           newObj.activityId=act.Id;
+           newObj.themeName=act.RecordType.Name;
+           newObj.activityName=act.Name;
+           newObj.activityRating=act.Rating__c;
+           newObj.description=act.Description__c;
+           newObj.minutestoComplete=act.Minutes_to_Complete_Action__c;
+           newObj.peopleRequired=act.Participants_Required__c;
+           newObj.activityPoints=act.Activity_Points__c;
+           List<string> phtoUrl=new List<string>();
+           
+            // set<string> strSet=new set<string>();
+            // strSet=recentuserMap.get(act.id);
+             List<string> photoList=new List<string>(recentuserMap.get(act.id));
+             newObj.userPhotoUrl1=photoList;
+             system.debug('&&&&'+ newObj.userPhotoUrl1);
+             distinctmemberList.add(newObj);
+           }
+        
+        
+       // distinctmemberList.addAll(recentuserMap.values());
+        
     
-        return lstAcivity ;
+        return distinctmemberList;
     
     } 
     
@@ -46,11 +101,64 @@ public with sharing class EA_ControllerClass {
 * @return list  Everyday_Activity__c. 
 */ 
     @AuraEnabled
-    Public static List<Everyday_Activity__c> getActivitiesonfilter(string themeName){
+    Public static List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> getActivitiesonfilter(string themeName){
         List<Everyday_Activity__c> lstAcivity = new List<Everyday_Activity__c>();    
         lstAcivity = [SELECT Name, Rating__c, Participants_Required__c,Minutes_to_Complete_Action__c,Top_Tip__c, RecordType.Name,Description__c,Activity_Points__c  FROM Everyday_Activity__c where RecordType.Name=:themeName AND  Active__c=true order by Rating__c desc Nulls last];   
         
-        return lstAcivity ;      
+         List<EA_Team_Member__c> teamList=[Select Id,Everyday_Activity__c,Everyday_Activity__r.Name, Everyday_Activity__r.RecordType.Name , Everyday_Activity__r.Rating__c,
+                                          Everyday_Activity__r.Description__c, Everyday_Activity__r.Minutes_to_Complete_Action__c, Activity_Due_Date__c,
+                                          Everyday_Activity__r.Top_Tip__c, Everyday_Activity__r.Participants_Required__c, Everyday_Activity__r.Activity_Points__c , 
+                                          Participant__c,Participant__r.Name, Participant_small_photourl__c 
+                                          FROM EA_Team_Member__c WHERE Activity_Due_Date__c <=: system.now() order by createdDate Desc ];
+                                          
+        Map<Id,Set<string>> recentuserMap=new Map<Id,Set<string>>();
+       
+        for(Everyday_Activity__c act:lstAcivity){
+         Set<string> photourlsSet=new Set<string>();
+          for(EA_Team_Member__c item:teamList){
+          
+            if(act.Id == item.Everyday_Activity__c && photourlsSet.size()<6)
+            {
+               photourlsSet.add(item.Participant_small_photourl__c);
+            }
+           
+          }
+          
+          recentuserMap.put(act.Id,photourlsSet);
+          
+        }
+   
+        
+        List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> distinctmemberList=new List<EA_Wrapper_Class.EA_RecentlyCompletedUsers>();
+        
+        Set<string> distinctuserSet=new Set<string>();
+        
+         for(Everyday_Activity__c act:lstAcivity )
+         {
+           EA_Wrapper_Class.EA_RecentlyCompletedUsers newObj=new EA_Wrapper_Class.EA_RecentlyCompletedUsers();
+           newObj.activityId=act.Id;
+           newObj.themeName=act.RecordType.Name;
+           newObj.activityName=act.Name;
+           newObj.activityRating=act.Rating__c;
+           newObj.description=act.Description__c;
+           newObj.minutestoComplete=act.Minutes_to_Complete_Action__c;
+           newObj.peopleRequired=act.Participants_Required__c;
+           newObj.activityPoints=act.Activity_Points__c;
+           newObj.toptip=act.Top_Tip__c;
+           List<string> phtoUrl=new List<string>();
+           List<string> photoList=new List<string>(recentuserMap.get(act.id));
+           newObj.userPhotoUrl1=photoList;
+            
+             distinctmemberList.add(newObj);
+           }
+        
+          
+        
+
+        
+    
+        return distinctmemberList;
+         
     }
     @AuraEnabled
     public static List<Everyday_Activity__c> getactivitydetail(String ActivityID){
@@ -119,6 +227,7 @@ public with sharing class EA_ControllerClass {
             points +=integer.valueof(ar.get('total'));
         } 
         objUser.activity_points=points;
+        system.debug('Points Earned-->'+points );
         integer newbee=integer.valueof(EA_BadgeDetails__c.getInstance('Newbee').BadgeValue__c);
         integer bronz=integer.valueof(EA_BadgeDetails__c.getInstance('Bronze').BadgeValue__c);
         integer silver=integer.valueof(EA_BadgeDetails__c.getInstance('Silver').BadgeValue__c);
@@ -146,6 +255,8 @@ public with sharing class EA_ControllerClass {
         }
         userprofileList.add(objUser);
                 return userprofileList;
+                
+                
         
     }    
     /* This method returns list of user smallphotoURLs who have recently completed the Activity */
@@ -179,14 +290,20 @@ public with sharing class EA_ControllerClass {
         return  wrapperList;
     }    
     @AuraEnabled
-    public static boolean getbooleanvalue(string actID){
+    public static List<Id> getbooleanvalue(){
         string status_accepted=EA_Constants.INVITATION_STATUS_ACCEPTED;
         string status_self=EA_Constants.INVITATION_STATUS_SELF;
-        LIST<EA_Team_Member__c> team = [Select  Everyday_Activity__r.RecordTypeId,Everyday_Activity__r.Rating__c, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate From EA_Team_Member__c  Where(Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:status_accepted OR invitation_Status__c =:status_self) AND Everyday_Activity__c = :actID ];        
-        if(team.size() > 0){
-            return true;
+        //LIST<EA_Team_Member__c> team = [Select  Everyday_Activity__r.RecordTypeId,Everyday_Activity__r.Rating__c, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate From EA_Team_Member__c  Where(Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:status_accepted OR invitation_Status__c =:status_self) AND Everyday_Activity__c = :actID ];        
+         LIST<EA_Team_Member__c> team = [Select  Everyday_Activity__r.RecordTypeId,Everyday_Activity__r.Rating__c, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate From EA_Team_Member__c  Where(Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:status_accepted OR invitation_Status__c =:status_self) ];        
+        Map<string ,boolean> memberMap=new Map<string,boolean>();
+        List<Id> idList=new List<Id>();
+        for(EA_Team_Member__c member:team )
+        {
+          idList.add(Id.valueOf( member.Everyday_Activity__c));
+           
+        
         }              
-        return false;       
+        return idList;       
     }   
     @AuraEnabled
     public static List<EA_Wrapper_Class.EA_UserProfile_Wrapper> getActivityPoints(String ActivityID){
@@ -210,7 +327,7 @@ activities for current user.
     @AuraEnabled
     public static List<EA_Wrapper_Class.EA_UserProfile_Wrapper>  getUserActivities(){
         List<EA_Wrapper_Class.EA_UserProfile_Wrapper> userprofileList=new List<EA_Wrapper_Class.EA_UserProfile_Wrapper>();     
-        List<EA_Team_Member__c> memberList=[Select id,Activity_Due_Date__c, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];      
+        List<EA_Team_Member__c> memberList=[Select id,Activity_Due_Date__c, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c, Everyday_Activity__r.Active__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];      
         if(memberList != null){           
             //SOQL query inside for loop - Fix
             Map<id ,String> tmIdToEANameMap = new Map<id ,String>();                
@@ -234,23 +351,25 @@ activities for current user.
             //SOQL query inside for loop - Fix
             Map<string,EA_Team_Member__c> memberMap=new Map<string,EA_Team_Member__c>();
             List<EA_Team_Member__c> activityList=new List<EA_Team_Member__c>();
-            for(EA_Team_Member__c item:memberList){
-                if(item.Everyday_Activity__c != NULL && (!memberMap.containsKey(item.Everyday_Activity__r.Name)) ){                  
-                    memberMap.put(item.Everyday_Activity__r.Name,item);
+        
+             for(EA_Team_Member__c item:memberList){
+                if(item.Everyday_Activity__c != NULL && (!memberMap.containsKey(item.Everyday_Activity__r.Name+'Self')) ){ 
+                                     
+                    memberMap.put(item.Everyday_Activity__r.Name+'Self',item);
               }
             }
             activityList.addAll(memberMap.values()); 
-            
-             for(integer i=0;i<activityList.size();i++){
-                if(activityList[i].Invitation_Status__c == EA_Constants.INVITATION_STATUS_INVITED &&  System.today() > activityList[i].Activity_Due_Date__c) {
-                    activityList.remove(i);
+          
+             for(integer i=0;i<memberList.size();i++){
+                if(memberList[i].Invitation_Status__c == EA_Constants.INVITATION_STATUS_INVITED &&  System.today() > memberList[i].Activity_Due_Date__c) {
+                    memberList.remove(i);
                     
                 }
             } 
            
             
                       
-            for(EA_Team_Member__c item:activityList){
+            for(EA_Team_Member__c item:memberList){
                 EA_Wrapper_Class.EA_UserProfile_Wrapper objWrapper=new EA_Wrapper_Class.EA_UserProfile_Wrapper();               
                 DateTime tomorrow=(item.Activity_Due_Date__c).addDays(1);
                 objWrapper.activity_name= tmIdToEANameMap.get(item.id);
@@ -260,7 +379,8 @@ activities for current user.
                 objWrapper.participant_rating=item.Rating_By_Participant__c ;
                 objWrapper.invitation_status=item.Invitation_Status__c ;
                 //objWrapper.Activity_Due_Date=item.Activity_Due_Date__c;
-                objWrapper.Activity_Due_Date=tomorrow;              
+                objWrapper.Activity_Due_Date=tomorrow; 
+                objWrapper.isActive=item.Everyday_Activity__r.Active__c;             
                 userprofileList.add(objWrapper);              
             }           
            
@@ -371,7 +491,8 @@ activities for current user.
                 for (Object id : values) {
                     lstUser.add(string.valueof(id) );
                 }
-            }                                 
+            } 
+                                         
             List<Everyday_Activity__c> acts = getactivitydetail(activityId);
             String actvityName = acts[0].Name;
             Decimal points = acts[0].Activity_Points__c;           
@@ -402,30 +523,33 @@ activities for current user.
             newrecord.Activity_Due_Day__c = activityTime;
             newrecord.Activity_Points__c= points;
             newrecord.Activity_Due_Date__c= activityDate;
-            //newrecord.Participant_small_photourl__c=objUser.smallphotourl;
+            newrecord.Participant_small_photourl__c=objUser.smallphotourl;
             insert newrecord;
             
             List<EA_Team_Member__c> memberList = new List<EA_Team_Member__c>();
-            Map<ID, User> usersMap = new Map<ID, User>();
+            Map<ID, string> usersMap = new Map<ID, string>();
             
             List<User> users=[select smallphotourl,id from User where id IN: lstUser];
              
             for(User uObj : users){
             
-                usersMap.put(uObj.id,uObj);
+                usersMap.put(uObj.id,uObj.smallphotourl);
             }
                       
             for (User uObj : users) {
                 EA_Team_Member__c m   = new EA_Team_Member__c();                
                 m.Participant__c   = uObj.id;
+                system.debug('First userid-->'+uObj.id);
                 m.Invited_By__c  = UserInfo.getUserId();
                 m.Invitation_Status__c = EA_Constants.INVITATION_STATUS_INVITED;
                 m.Everyday_Activity__c = activityId;
                 m.Activity_Due_Day__c = activityTime;
                 m.Activity_Points__c= points;
                 m.Activity_Due_Date__c= activityDate;
-                User participantUserRec =usersMap.get(uObj.id);
-               // m.Participant_small_photourl__c=participantUserRec.smallphotourl;
+               // User objUser1=[select smallphotourl,id from User where id=:uObj.id];
+                string participantUserRec =usersMap.get(uObj.id);
+                system.debug('!!!'+participantUserRec );
+                m.Participant_small_photourl__c=participantUserRec ;
                 memberList.add(m);
             }
             insert memberList;            
@@ -435,7 +559,7 @@ activities for current user.
             dateMsgStr = dateMsgStr.substring(0,10);               
             dateMsgStr = getProperDate(dateMsgStr);               
                
-            String msgLabel = UserInfo.getName() + ' has invited you to do "'+ actvityName +'"'+ ' activity together on '+dateMsgStr+'. Please respond to the request from Everyday Actions on Salesforce1 app.';
+            String msgLabel = UserInfo.getName() + ' has invited you to do "'+ actvityName +'"'+ ' activity together on '+dateMsgStr+'. Please respond to the request from Everyday Actions on Salesforce1 app.'+ ' ' + Label.EA_ShareEmail6;
               
             //Need to work on removing for loop
             if(lstUser.size() > 0 && lstUser != null){                   

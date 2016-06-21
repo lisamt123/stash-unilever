@@ -46,7 +46,7 @@ public with sharing class IPM_UpdateGlobalProjectName {
                             (SELECT Name,IPM_Rollout_Project__c,Regional_Project__c,IPM_Project__c FROM Regional_Project_Rollout__r WHERE IPM_Project__c=Null),
                             (SELECT Financial_External_ID__c,Parent_Project__c,Regional_Project__c,Local_Project__c FROM IPM_Financials_Consolidated__r),
                             (SELECT Financial_External_ID__c,Parent_Project__c,Regional_Project__c,Local_Project__c,IPM_Project_Rollout__c FROM IPM_Financials_Regional__r WHERE Parent_Project__c=Null AND Local_Project__c=Null),
-                            (SELECT Financial_External_ID__c,Parent_Project__c,Regional_Project__c,Local_Project__c FROM IPM_Financials_Local__r WHERE Parent_Project__c=Null AND Regional_Project__c=Null)
+                            (SELECT Financial_External_ID__c,Parent_Project__c,Regional_Project__c,Local_Project__c FROM IPM_Financials_Local__r)
                             FROM IPM_Project__c WHERE Id =:updatedProNameMap.Keyset() LIMIT 50000];    
         if(!projectList.isEmpty())
         {
@@ -346,13 +346,13 @@ public with sharing class IPM_UpdateGlobalProjectName {
 				newFinYearNameMap.Put(fin.id,updatedProNameMap.get(fin.Parent_Project__c));
 				oldFinYearNameMap.Put(fin.id,oldprojectnameMap.get(fin.Parent_Project__c));
 			}
-            else if(fin.Parent_Project__c==null && fin.Regional_Project__c!=null)
+            else if(fin.Parent_Project__c==null && fin.Regional_Project__c!=null && fin.Local_Project__c==null)
             {
             	finName_STR=fin.Financial_External_ID__c.replace(oldprojectnameMap.get(fin.Regional_Project__c),updatedProNameMap.get(fin.Regional_Project__c));//get finance external id after '-' as string
 				newFinYearNameMap.Put(fin.id,updatedProNameMap.get(fin.Regional_Project__c));
 				oldFinYearNameMap.Put(fin.id,oldprojectnameMap.get(fin.Regional_Project__c));
 			}
-			else if(fin.Parent_Project__c==null && fin.Regional_Project__c==null && fin.Local_Project__c!=null)
+			else if((fin.Parent_Project__c==null && fin.Regional_Project__c==null && fin.Local_Project__c!=null )|| (fin.Parent_Project__c==null && fin.Regional_Project__c!=null && fin.Local_Project__c!=null))
             {
             	finName_STR=fin.Financial_External_ID__c.replace(oldprojectnameMap.get(fin.Local_Project__c),updatedProNameMap.get(fin.Local_Project__c));//get finance external id after '-' as string
 				newFinYearNameMap.Put(fin.id,updatedProNameMap.get(fin.Local_Project__c));

@@ -9,6 +9,7 @@
         <value>CPA For Trigger Pattern</value>
     </caseValues>
     <fields>
+        <help><!-- This filed is used to run trigger --></help>
         <label><!-- Check Run --></label>
         <name>chk_Check_Run__c</name>
     </fields>

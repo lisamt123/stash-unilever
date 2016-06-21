@@ -35,4 +35,8 @@
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Sync in Progress. Record Locked --></errorMessage>
+        <name>Lock_Record_if_Sync_in_Progress</name>
+    </validationRules>
 </CustomObjectTranslation>

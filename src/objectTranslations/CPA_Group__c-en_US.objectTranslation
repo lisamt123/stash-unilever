@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>CPA Group</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>CPA Group</value>
-    </caseValues>
     <fields>
         <label><!-- CPA Group Name --></label>
         <name>CPA_Group_Name__c</name>

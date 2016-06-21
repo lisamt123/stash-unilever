@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>One_View_Global_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Global Admin can see all Report Tiles</description>
+        <label>One View Global Admin</label>
+        <sharedTo>
+            <group>One_View_Global_Admin</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_Local_Admin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

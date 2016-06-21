@@ -113,10 +113,6 @@
             <translation><!-- Food Solutions --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Look-a-like</masterLabel>
-            <translation><!-- Look-a-like --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Market Development</masterLabel>
             <translation><!-- Market Development --></translation>
         </picklistValues>

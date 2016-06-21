@@ -285,6 +285,24 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
     <label>Queries</label>
     <listViews>
         <fullName>All</fullName>
@@ -296,7 +314,7 @@
     <listViews>
         <fullName>CAP_ULPM_CPA_Queries</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -305,7 +323,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_CPA_Queries</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -314,8 +332,26 @@
     <listViews>
         <fullName>CPA_SMT_CPA_Queries</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_ULFT_CPA_Queries</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULFT</label>
+        <queue>CPA_ULFT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_ULPT_CPA_Queries</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPT</label>
+        <queue>CPA_ULPT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

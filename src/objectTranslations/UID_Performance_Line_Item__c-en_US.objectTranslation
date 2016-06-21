@@ -17,6 +17,10 @@
         <name>UID_IOP_Month__c</name>
     </fields>
     <fields>
+        <label><!-- JBP Report Value --></label>
+        <name>UID_IOP_Value_Curr__c</name>
+    </fields>
+    <fields>
         <label><!-- JBP Value --></label>
         <name>UID_IOP_Value__c</name>
     </fields>
@@ -26,9 +30,20 @@
         <relationshipLabel><!-- Performance Line Items --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- ISO Currency --></label>
+        <name>UID_ISO_Currency__c</name>
+    </fields>
+    <fields>
         <label><!-- Product --></label>
         <name>UID_Product__c</name>
         <relationshipLabel><!-- Performance Line Items --></relationshipLabel>
     </fields>
+    <layouts>
+        <layout>IOP Detail Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

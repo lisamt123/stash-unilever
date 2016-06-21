@@ -632,6 +632,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM Postponed Comments --></label>
+        <name>IPM_Postponed_Comments__c</name>
+    </fields>
+    <fields>
         <label><!-- Project Job Type --></label>
         <name>IPM_ProjectJobType__c</name>
         <picklistValues>

@@ -9,8 +9,102 @@
         <value>User Defined Attributes</value>
     </caseValues>
     <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Number --></label>
+        <name>Contract_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- DS Responsibility Owner --></label>
+        <name>DS_Responsibility_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- DS Responsibility With --></label>
+        <name>DS_Responsibility_With__c</name>
+        <picklistValues>
+            <masterLabel>Accenture</masterLabel>
+            <translation><!-- Accenture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever Director</masterLabel>
+            <translation><!-- Unilever Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever Manager</masterLabel>
+            <translation><!-- Unilever Manager --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DS Status --></label>
+        <name>DS_Status__c</name>
+        <picklistValues>
+            <masterLabel>Being reviewed</masterLabel>
+            <translation><!-- Being reviewed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined in Docusign</masterLabel>
+            <translation><!-- Declined in Docusign --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Queried</masterLabel>
+            <translation><!-- Queried --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Voided in Docusign</masterLabel>
+            <translation><!-- Voided in Docusign --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sent in Docusign --></label>
+        <name>Sent_in_Docusign__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type of Contract --></label>
+        <name>Type_of_COntract__c</name>
+        <picklistValues>
+            <masterLabel>CNF</masterLabel>
+            <translation><!-- CNF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PWO</masterLabel>
+            <translation><!-- PWO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TNF</masterLabel>
+            <translation><!-- TNF --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Attribute Type --></label>
+        <name>Unique_value__c</name>
+    </fields>
+    <fields>
+        <label><!-- isDocusignedRecord --></label>
+        <name>chk_isDocusignedRecord__c</name>
+    </fields>
+    <fields>
         <label><!-- CR --></label>
         <name>lkp_CR__c</name>
+        <relationshipLabel><!-- User Defined Attributes --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- HLE Request --></label>
+        <name>lkp_HLE_Request__c</name>
+        <relationshipLabel><!-- User Defined Attributes --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LOI --></label>
+        <name>lkp_LOI__c</name>
         <relationshipLabel><!-- User Defined Attributes --></relationshipLabel>
     </fields>
     <fields>
@@ -19,32 +113,29 @@
         <relationshipLabel><!-- User Defined Attributes --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- PWO --></label>
+        <name>lkp_PWO__c</name>
+        <relationshipLabel><!-- User Defined Attributes --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Attribute Type --></label>
         <name>pkl_Attribute_Type__c</name>
-        <picklistValues>
-            <masterLabel>Competency</masterLabel>
-            <translation><!-- Competency --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Cost</masterLabel>
-            <translation><!-- Cost --></translation>
-        </picklistValues>
         <picklistValues>
             <masterLabel>Cost Avoidance</masterLabel>
             <translation><!-- Cost Avoidance --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Man Hours</masterLabel>
-            <translation><!-- Man Hours --></translation>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Penalty Applicable Charges</masterLabel>
             <translation><!-- Penalty Applicable Charges --></translation>
         </picklistValues>
-        <picklistValues>
-            <masterLabel>Penalty Credit</masterLabel>
-            <translation><!-- Penalty Credit --></translation>
-        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Other Attribute type --></label>
+        <name>txt_Other_Attribute_type__c</name>
     </fields>
     <fields>
         <label><!-- Value --></label>
@@ -57,9 +148,53 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    <recordTypes>
+        <label><!-- CR --></label>
+        <name>CPA_CR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- HLE Request --></label>
+        <name>CPA_HLE_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- LOI --></label>
+        <name>CPA_LOI</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PWO --></label>
+        <name>CPA_PWO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PWORF --></label>
+        <name>CPA_PWORF</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CR docusign --></label>
+        <name>CR_docusign</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- LOI docusign --></label>
+        <name>LOI_docusign</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PWO docusign --></label>
+        <name>PWO_docusign</name>
+    </recordTypes>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Other Attribute type is mandatory when ‘Other’ Attribute is selected, other wise keep it blank. --></errorMessage>
+        <name>Other_Attribute_type</name>
+    </validationRules>
     <validationRules>
         <errorMessage><!-- Error: You selected Cost --></errorMessage>
         <name>Restrict_Attribute_Type</name>
     </validationRules>
+    <webLinks>
+        <label><!-- New_User_Defined_DocuSign_Attribute --></label>
+        <name>New_User_Defined_DocuSign_Attribute</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- btn_New_User_Defined_Attribute --></label>
+        <name>btn_New_User_Defined_Attribute</name>
+    </webLinks>
 </CustomObjectTranslation>

@@ -248,6 +248,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_Name_Other__c</fullName>
+        <description>CEC Product Name &amp; Other field will mention (FS)  for all food products</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Other__c),  Name , Name  &amp; &quot; (&quot; &amp; Other__c   &amp;  &quot;)&quot;)</formula>
+        <label>Product Name &amp; Other</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Product_Status__c</fullName>
         <externalId>false</externalId>
         <label>Product Status</label>

@@ -47,6 +47,14 @@
         <label><!-- Responded By --></label>
         <name>Responded_By__c</name>
     </fields>
+    <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
+    </fields>
+    <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
+    </fields>
     <layouts>
         <layout>CPA_Query comments Layout</layout>
         <sections>

@@ -25,7 +25,7 @@
         <name>Comms_Planer</name>
     </customApplications>
     <customApplications>
-        <label><!-- Contracting --></label>
+        <label><!-- Hubble --></label>
         <name>Contracting</name>
     </customApplications>
     <customApplications>
@@ -1449,51 +1449,51 @@
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store CR object id. --></label>
+        <label><!-- CPA_CR_Object_Id --></label>
         <name>CPA_CR_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store the respective org’s URL. --></label>
+        <label><!-- CPA default URl --></label>
         <name>CPA_Default_URL</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store below message. --></label>
+        <label><!-- CPA HLE Request cant be deleted --></label>
         <name>CPA_HLE_Request_cant_be_deleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store key contact name field id. --></label>
+        <label><!-- CPA_KeyContact_Object_Id --></label>
         <name>CPA_KeyContact_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store the LOI object ID. --></label>
+        <label><!-- CPA_LOI_Object_Id --></label>
         <name>CPA_LOI_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store below message. --></label>
+        <label><!-- CPA Mandatory Fields Message --></label>
         <name>CPA_Mandatory_Fields_Message</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store below message. --></label>
+        <label><!-- CPA Operation Cancelled --></label>
         <name>CPA_Operation_Cancelled</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is store the custom filed ID of PWORF lookup on Key Contact ob --></label>
+        <label><!-- CPA_PWORF_KeyContact_Name_Filed_Id --></label>
         <name>CPA_PWORF_KeyContact_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is to store the custom filed ID of PWORF lookup on LOI object. --></label>
+        <label><!-- PWORF LOI Id Field --></label>
         <name>CPA_PWORF_LOI_ID_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is to store the custom filed ID of PWORF lookup on LOI object. --></label>
+        <label><!-- PWORF LOI Name Field --></label>
         <name>CPA_PWORF_LOI_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is store the custom filed ID of PWORF lookup on PWO object --></label>
+        <label><!-- PWORF Name Filed Id --></label>
         <name>CPA_PWORF_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is to store the custom filed ID of PWORF lookup on Requirement --></label>
+        <label><!-- CPA_PWORF_Rad_Name_Filed_Id --></label>
         <name>CPA_PWORF_Rad_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
@@ -1501,11 +1501,11 @@
         <name>CPA_PWORF_ResourceSummary_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is to store the custom filed ID of PWO lookup on CR object --></label>
+        <label><!-- PWO Name Field Id --></label>
         <name>CPA_PWO_Name_Field_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store the PWO object id. --></label>
+        <label><!-- CPA_PWO_Object_Id --></label>
         <name>CPA_PWO_Object_Id</name>
     </customLabels>
     <customLabels>
@@ -1513,15 +1513,15 @@
         <name>CPA_RaD_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store below message. --></label>
+        <label><!-- CPA Recall and Unlock --></label>
         <name>CPA_Recall_and_Unlock</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store below message. --></label>
+        <label><!-- CPA_RecordType --></label>
         <name>CPA_RecordType</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is used to store below message. --></label>
+        <label><!-- CPA_RecordType_Details --></label>
         <name>CPA_RecordType_Details</name>
     </customLabels>
     <customLabels>
@@ -1529,836 +1529,12 @@
         <name>CPA_ResourceSummary_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- This custom label is to store the custom filed ID of Submit Response object. --></label>
+        <label><!-- CPA query response URL Object ID --></label>
         <name>CPA_query_response_URL_Object_ID</name>
     </customLabels>
     <customLabels>
         <label><!-- This custom label is used to store the id of LookupCPA_Queries__c field. --></label>
         <name>CPA_query_response_URL_id</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Add New Field Mapping --></label>
-        <name>CRMfusionDBR101__DB_AC_Add_New_Field_Mapping</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Clear Mappings --></label>
-        <name>CRMfusionDBR101__DB_AC_Clear_Mappings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Clear Mappings Help --></label>
-        <name>CRMfusionDBR101__DB_AC_Clear_Mappings_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Conversion Action Select Help --></label>
-        <name>CRMfusionDBR101__DB_AC_Conversion_Action_Select_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Opportunity Assignment Email Body --></label>
-        <name>CRMfusionDBR101__DB_AC_Opp_Assignment_Email_Body</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Opportunity Assignment Email Subject --></label>
-        <name>CRMfusionDBR101__DB_AC_Opp_Assignment_Email_Subject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Primary Settings Block Title --></label>
-        <name>CRMfusionDBR101__DB_AC_Primary_Settings_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Settings Edit Title --></label>
-        <name>CRMfusionDBR101__DB_AC_Settings_Edit_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Target Filter Select Help --></label>
-        <name>CRMfusionDBR101__DB_AC_Target_Filter_Select_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Target Object Select Help --></label>
-        <name>CRMfusionDBR101__DB_AC_Target_Object_Select_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Convert - Task Description Start --></label>
-        <name>CRMfusionDBR101__DB_AC_Task_Description_Start</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Merge - Add New Merge Mapping --></label>
-        <name>CRMfusionDBR101__DB_AM_Add_New_Merge_Mapping</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Merge - Merge Action Select Help --></label>
-        <name>CRMfusionDBR101__DB_AM_Merge_Action_Select_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Merge - Primary Settings Block Title --></label>
-        <name>CRMfusionDBR101__DB_AM_Primary_Settings_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Auto-Merge - Settings Edit Title --></label>
-        <name>CRMfusionDBR101__DB_AM_Settings_Edit_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Actions Header --></label>
-        <name>CRMfusionDBR101__DB_Actions_Header</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Add Word --></label>
-        <name>CRMfusionDBR101__DB_Add_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Cancel Word --></label>
-        <name>CRMfusionDBR101__DB_Cancel_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Clone Word --></label>
-        <name>CRMfusionDBR101__DB_Clone_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Convert Word --></label>
-        <name>CRMfusionDBR101__DB_Convert_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Current Field Mappings --></label>
-        <name>CRMfusionDBR101__DB_Current_Field_Mappings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Delete Mapping Confirmation --></label>
-        <name>CRMfusionDBR101__DB_Delete_Mapping_Confirmation</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Delete Word --></label>
-        <name>CRMfusionDBR101__DB_Delete_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Documentation Title --></label>
-        <name>CRMfusionDBR101__DB_Documentation_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Duplicate Found on Insert Action Message --></label>
-        <name>CRMfusionDBR101__DB_Duplicate_Found_Insert</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Duplicate Found on Undelete Action Message --></label>
-        <name>CRMfusionDBR101__DB_Duplicate_Found_Undelete</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Duplicate Found on Update Action Message --></label>
-        <name>CRMfusionDBR101__DB_Duplicate_Found_Update</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Enable Objects - Object Select Label --></label>
-        <name>CRMfusionDBR101__DB_EO_Object_Select_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Edit Word --></label>
-        <name>CRMfusionDBR101__DB_Edit_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Account Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Account_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Contact Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Contact_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Converting Lead Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Lead_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Master Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Master_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Missing Matching Data --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Missing_Matching_Data</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - No Convert Id --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_No_Convert_ID</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Opportunity Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Opp_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - SFDC Conversion Error --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_SFDC_Conversion_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Settings Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Settings_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Convert - Unknown Exception Creating Task --></label>
-        <name>CRMfusionDBR101__DB_Error_AC_Unknown_Exception_Task</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Merge - Master Record Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AM_No_Master</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Merge - Missing Matching Data --></label>
-        <name>CRMfusionDBR101__DB_Error_AM_No_Matching_Data</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Merge - No Merge Id --></label>
-        <name>CRMfusionDBR101__DB_Error_AM_No_Merge_Id</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Merge - No Merge Record --></label>
-        <name>CRMfusionDBR101__DB_Error_AM_No_Merge_Record</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - AM - No Settings Found --></label>
-        <name>CRMfusionDBR101__DB_Error_AM_No_Settings_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Auto-Merge - Unkown Task Creation Error --></label>
-        <name>CRMfusionDBR101__DB_Error_AM_Unknown_Task_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Async Build Failed --></label>
-        <name>CRMfusionDBR101__DB_Error_Async_Build_Failed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - DML Error Message --></label>
-        <name>CRMfusionDBR101__DB_Error_DML_Error_Message</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - DML Row Error --></label>
-        <name>CRMfusionDBR101__DB_Error_DML_Row_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - DML Row Level Errors --></label>
-        <name>CRMfusionDBR101__DB_Error_DML_Row_Level_Errors</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Exception Email Body Part 1 --></label>
-        <name>CRMfusionDBR101__DB_Error_Email_Body_1</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Exception Email Body Part 2 --></label>
-        <name>CRMfusionDBR101__DB_Error_Email_Body_2</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Exception Email Body Part 2 Alternate --></label>
-        <name>CRMfusionDBR101__DB_Error_Email_Body_2_Alt</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Exception Email Signature --></label>
-        <name>CRMfusionDBR101__DB_Error_Email_Signature</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Exception Email Subject --></label>
-        <name>CRMfusionDBR101__DB_Error_Email_Subject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Empty Dupe Warning --></label>
-        <name>CRMfusionDBR101__DB_Error_Empty_Dupe_Warning</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Empty Field Name In List --></label>
-        <name>CRMfusionDBR101__DB_Error_Empty_Field_Name_In_List</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Empty Key Hash Map --></label>
-        <name>CRMfusionDBR101__DB_Error_Empty_Key_Hash_Map</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Empty Match Key Map --></label>
-        <name>CRMfusionDBR101__DB_Error_Empty_Match_Key_Map</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Field Names Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_Field_Names_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Field Not Found In Types --></label>
-        <name>CRMfusionDBR101__DB_Error_Field_Not_Found_In_Types</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Hash Value Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_Hash_Value_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Inactive Scenario Owner --></label>
-        <name>CRMfusionDBR101__DB_Error_Inactive_Scenario_Owner</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Invalid Ids In Filter --></label>
-        <name>CRMfusionDBR101__DB_Error_Invalid_Ids_In_Filter</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Invalid Matching Type --></label>
-        <name>CRMfusionDBR101__DB_Error_Invalid_Matching_Type</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Key Builder - No Scenarios Selected --></label>
-        <name>CRMfusionDBR101__DB_Error_KB_No_Scenarios_Selected</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Key Builder - Some Scenarios Not Deployed --></label>
-        <name>CRMfusionDBR101__DB_Error_KB_Some_Scenarios_Not_Deployed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Key Value Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_Key_Value_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - No Blocked Count --></label>
-        <name>CRMfusionDBR101__DB_Error_No_Blocked_Count</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - No Filter Criteria --></label>
-        <name>CRMfusionDBR101__DB_Error_No_Filter_Criteria</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - No Merge Count --></label>
-        <name>CRMfusionDBR101__DB_Error_No_Merge_Count</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - No Object Type --></label>
-        <name>CRMfusionDBR101__DB_Error_No_Object_Type</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - No Scenario Id --></label>
-        <name>CRMfusionDBR101__DB_Error_No_Scenario_Id</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Not Auto-Merge or Auto-Convert --></label>
-        <name>CRMfusionDBR101__DB_Error_Not_AutoMerge_or_AutoConvert</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Not Configured Warning --></label>
-        <name>CRMfusionDBR101__DB_Error_Not_Configured_Warning</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Numeric Filter Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_Numeric_Filter_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Rule Limit Exceeded --></label>
-        <name>CRMfusionDBR101__DB_Error_Rule_Limit_Exceeded</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Rule Param - Invalid Number of Letters --></label>
-        <name>CRMfusionDBR101__DB_Error_Rule_Param_Invalid_Number_of_Letters</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Rule Param - Invalid Number of Words --></label>
-        <name>CRMfusionDBR101__DB_Error_Rule_Param_Invalid_Number_of_Words</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Rule Param - Invalid Regex --></label>
-        <name>CRMfusionDBR101__DB_Error_Rule_Param_Invalid_Regex</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenario Filter Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenario_Filter_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenario Filter Invalid or Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenario_Filter_Invalid_or_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenario Needs Rules --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenario_Needs_Rules</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenario Not Deployed --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenario_Not_Deployed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenario Not Found --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenario_Not_Found</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenario Type Cannot Be Changed --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenario_Type_Cannot_Be_Changed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Scenarios Not Loaded --></label>
-        <name>CRMfusionDBR101__DB_Error_Scenarios_Not_Loaded</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Single Database Error Wrapper --></label>
-        <name>CRMfusionDBR101__DB_Error_Single_Database_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Too Many Queries --></label>
-        <name>CRMfusionDBR101__DB_Error_Too_Many_Queries</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Too Many Script Statements --></label>
-        <name>CRMfusionDBR101__DB_Error_Too_Many_Script_Statements</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger After Delete Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_After_Delete_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger After Insert Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_After_Insert_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger After Undelete Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_After_Undelete_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger After Update Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_After_Update_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger Before Delete Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Delete_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger Before Insert Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Insert_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger Before Undelete Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Undelete_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger Before Update Line --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Update_Line</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger Ids Label --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_Ids_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger Org Info --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_Org_Info</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Trigger User Info --></label>
-        <name>CRMfusionDBR101__DB_Error_Trigger_User_Info</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Unknown Error --></label>
-        <name>CRMfusionDBR101__DB_Error_Unknown_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Unknown Object Type For Id --></label>
-        <name>CRMfusionDBR101__DB_Error_Unknown_Object_Type_For_Id</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Unknown Error Deleting Orphaned Dupe --></label>
-        <name>CRMfusionDBR101__DB_Error_Unkown_Error_Deleting_Orphaned_Dupe</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Upsert Dupes Unknown Exception --></label>
-        <name>CRMfusionDBR101__DB_Error_Upsert_Dupes_Unknown_Ex</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Web Services - SetScenarioKeySizes Invalid Parameters --></label>
-        <name>CRMfusionDBR101__DB_Error_WS_SSKS_Invalid_Parameters</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - Web Services Permissions --></label>
-        <name>CRMfusionDBR101__DB_Error_Web_Services_Permissions</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Error - X Param Empty --></label>
-        <name>CRMfusionDBR101__DB_Error_X_Param_Empty</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Export Settings Button --></label>
-        <name>CRMfusionDBR101__DB_Export_Settings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Import Settings Button --></label>
-        <name>CRMfusionDBR101__DB_Import_Settings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Key Builder - Do Not Leave Message --></label>
-        <name>CRMfusionDBR101__DB_KB_Do_Not_Leave_Message</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Keys Word --></label>
-        <name>CRMfusionDBR101__DB_Keys_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Lead Conversion Tool Title --></label>
-        <name>CRMfusionDBR101__DB_Lead_Conversion_Tool_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Merge Tool Title --></label>
-        <name>CRMfusionDBR101__DB_Merge_Tool_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Merge Word --></label>
-        <name>CRMfusionDBR101__DB_Merge_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB New Scenario Name --></label>
-        <name>CRMfusionDBR101__DB_New_Scenario_Name</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Online Help URL --></label>
-        <name>CRMfusionDBR101__DB_Online_Help_URL</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Redirecting Notice --></label>
-        <name>CRMfusionDBR101__DB_Redirecting_Notice</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Remove Word --></label>
-        <name>CRMfusionDBR101__DB_Remove_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Adding Item --></label>
-        <name>CRMfusionDBR101__DB_SF_Adding_Item</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Edit Block Title --></label>
-        <name>CRMfusionDBR101__DB_SF_Edit_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Edit Page Title --></label>
-        <name>CRMfusionDBR101__DB_SF_Edit_Page_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Information Section Title --></label>
-        <name>CRMfusionDBR101__DB_SF_Information_Section_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - No Records Selected --></label>
-        <name>CRMfusionDBR101__DB_SF_No_Records_Selected</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Profile Filter Label --></label>
-        <name>CRMfusionDBR101__DB_SF_Profile_Filter_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Record Type Filter Label --></label>
-        <name>CRMfusionDBR101__DB_SF_Record_Type_Filter_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Removing Item Status --></label>
-        <name>CRMfusionDBR101__DB_SF_Removing_Item_Status</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Role Filter Label --></label>
-        <name>CRMfusionDBR101__DB_SF_Role_Filter_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Select Profile Help --></label>
-        <name>CRMfusionDBR101__DB_SF_Select_Profile_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Select Record Type Help --></label>
-        <name>CRMfusionDBR101__DB_SF_Select_Record_Type_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Select Role Help --></label>
-        <name>CRMfusionDBR101__DB_SF_Select_Role_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Selected Items Block Title --></label>
-        <name>CRMfusionDBR101__DB_SF_Selected_Items_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - Too Many Results --></label>
-        <name>CRMfusionDBR101__DB_SF_Too_Many_Results</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - View Detail Section Header --></label>
-        <name>CRMfusionDBR101__DB_SF_View_Detail_Section_Header</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Filter - View Main Block Title --></label>
-        <name>CRMfusionDBR101__DB_SF_View_Main_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Rule - Edit Block Title --></label>
-        <name>CRMfusionDBR101__DB_SR_Edit_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Rule - Edit Section Title --></label>
-        <name>CRMfusionDBR101__DB_SR_Edit_Section_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Rule - Information Block Title --></label>
-        <name>CRMfusionDBR101__DB_SR_Information_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Rule - Match Field Label Suffix --></label>
-        <name>CRMfusionDBR101__DB_SR_Match_Field_Label_Suffix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Rule - View Main Block Title --></label>
-        <name>CRMfusionDBR101__DB_SR_View_Main_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Rule - View Section Title --></label>
-        <name>CRMfusionDBR101__DB_SR_View_Section_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Adding Item --></label>
-        <name>CRMfusionDBR101__DB_STF_Adding_Item</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Edit Block Title --></label>
-        <name>CRMfusionDBR101__DB_STF_Edit_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Edit Page Title --></label>
-        <name>CRMfusionDBR101__DB_STF_Edit_Page_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Information Section Title --></label>
-        <name>CRMfusionDBR101__DB_STF_Information_Section_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - No Records Selected --></label>
-        <name>CRMfusionDBR101__DB_STF_No_Records_Selected</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Profile Filter Label --></label>
-        <name>CRMfusionDBR101__DB_STF_Profile_Filter_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Record Type Filter Label --></label>
-        <name>CRMfusionDBR101__DB_STF_Record_Type_Filter_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Removing Item Status --></label>
-        <name>CRMfusionDBR101__DB_STF_Removing_Item_Status</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Role Filter Label --></label>
-        <name>CRMfusionDBR101__DB_STF_Role_Filter_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Select Profile Help --></label>
-        <name>CRMfusionDBR101__DB_STF_Select_Profile_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Select Record Type Help --></label>
-        <name>CRMfusionDBR101__DB_STF_Select_Record_Type_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Select Role Help --></label>
-        <name>CRMfusionDBR101__DB_STF_Select_Role_Help</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Selected Items Block Title --></label>
-        <name>CRMfusionDBR101__DB_STF_Selected_Items_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - Too Many Results --></label>
-        <name>CRMfusionDBR101__DB_STF_Too_Many_Results</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - View Detail Section Header --></label>
-        <name>CRMfusionDBR101__DB_STF_View_Detail_Section_Header</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario Target Filter - View Main Block Title --></label>
-        <name>CRMfusionDBR101__DB_STF_View_Main_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Save Word --></label>
-        <name>CRMfusionDBR101__DB_Save_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario - Edit Block Title --></label>
-        <name>CRMfusionDBR101__DB_Scenario_Edit_Block_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario - Edit Page Title --></label>
-        <name>CRMfusionDBR101__DB_Scenario_Edit_Page_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario - Information Section Title --></label>
-        <name>CRMfusionDBR101__DB_Scenario_Information_Section_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Scenario - New Title --></label>
-        <name>CRMfusionDBR101__DB_Scenario_New_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Scenario Rule Text --></label>
-        <name>CRMfusionDBR101__DB_Scenario_Rule_Text</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Scenario Text --></label>
-        <name>CRMfusionDBR101__DB_Scenario_Text</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Search For --></label>
-        <name>CRMfusionDBR101__DB_Search_For</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Search Go --></label>
-        <name>CRMfusionDBR101__DB_Search_Go</name>
-    </customLabels>
-    <customLabels>
-        <label>Zoekfunctie</label>
-        <name>CRMfusionDBR101__DB_Search_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB_Searching --></label>
-        <name>CRMfusionDBR101__DB_Searching</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Custom Apex Code --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Apex_Code</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Auto-Convert Lead --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_AutoConvert_Lead</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Auto-Merge --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_AutoMerge</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Contains --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Contains</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Current User --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Current_User</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Does Not Contain --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_DNC</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Does Not End With --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_DNEW</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Does Not Start With --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_DNSW</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Do Not Insert --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Do_Not_Insert</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Do Nothing --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Do_Nothing</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Ends With --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Ends_With</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Equals Null --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Equals_Null</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Is Not Null --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_INN</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Ignore --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Ignore</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - L2A --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_L2A</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - L2C --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_L2C</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Merge Values --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Merge_Values</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Non-Standard --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Non_Standard</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - None --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_None</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Overwrite --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Overwrite</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Redirect to Existing --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Redirect_to_Existing</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Redirect to VF Page --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Redirect_to_VF_Page</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Report Duplicate --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Report_Duplicate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Starts With --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Starts_With</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Select Option - Update if Blank --></label>
-        <name>CRMfusionDBR101__DB_Select_Option_Update_if_Blank</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - String Merge Separator --></label>
-        <name>CRMfusionDBR101__DB_String_Merge_Separator</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - String Merge Truncated --></label>
-        <name>CRMfusionDBR101__DB_String_Merge_Truncated</name>
-    </customLabels>
-    <customLabels>
-        <label>Aan</label>
-        <name>CRMfusionDBR101__DB_To_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - License Expiration Label --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_License_Expiration_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - Rule Count Label --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_Rule_Count_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - Status Label --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_Status_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - Title --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_Title</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - Unlimited Word --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_Unlimited_Word</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - Updating Status --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_Updating_Status</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Today Page - User Count Label --></label>
-        <name>CRMfusionDBR101__DB_Today_Page_User_Count_Label</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Today URL --></label>
-        <name>CRMfusionDBR101__DB_Today_URL</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB - Updating Available Options --></label>
-        <name>CRMfusionDBR101__DB_Updating_Available_Options</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Warning Task Description --></label>
-        <name>CRMfusionDBR101__DB_Warning_Task_Description</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- DB Warning Task Subject --></label>
-        <name>CRMfusionDBR101__DB_Warning_Task_Subject</name>
     </customLabels>
     <customLabels>
         <label><!-- Cancel and Revert --></label>
@@ -4541,10 +3717,6 @@
         <name>IPM_EcoDesign_Assessment_Section</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM_EcoDesign_Average --></label>
-        <name>IPM_EcoDesign_Average</name>
-    </customLabels>
-    <customLabels>
         <label><!-- IPM_EcoDesign_Change_vs --></label>
         <name>IPM_EcoDesign_Change_vs</name>
     </customLabels>
@@ -4571,10 +3743,6 @@
     <customLabels>
         <label><!-- IPM EcoDesign Country Deleted --></label>
         <name>IPM_EcoDesign_Country_Deleted</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_EcoDesign_Directional_View --></label>
-        <name>IPM_EcoDesign_Directional_View</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_EcoDesign_EI_Countries --></label>
@@ -4609,16 +3777,8 @@
         <name>IPM_EcoDesign_New_SKU</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM_EcoDesign_New_SKU_Impact --></label>
-        <name>IPM_EcoDesign_New_SKU_Impact</name>
-    </customLabels>
-    <customLabels>
         <label><!-- IPM_EcoDesign_Non_EI Countries --></label>
         <name>IPM_EcoDesign_Non_EI_Countries</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_EcoDesign_On_Category --></label>
-        <name>IPM_EcoDesign_On_Category</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_EcoDesign_Section_Text --></label>
@@ -7513,7 +6673,7 @@
         <name>IPM_TaskNameErrorMsg</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Task Assign Text1 --></label>
+        <label><!-- IPM Task Assign Text --></label>
         <name>IPM_Task_Assign_Text1</name>
     </customLabels>
     <customLabels>
@@ -9933,10 +9093,6 @@
         <name>All_Projects</name>
     </customTabs>
     <customTabs>
-        <label><!-- Assign Category --></label>
-        <name>Assign_Category</name>
-    </customTabs>
-    <customTabs>
         <label><!-- Brand Centres --></label>
         <name>Brand_Centres</name>
     </customTabs>
@@ -10324,6 +9480,10 @@
             <columns>
                 <label><!-- Auto Aligned Fin &amp; TLD --></label>
                 <name>Auto Aligned Fin &amp; TLD</name>
+            </columns>
+            <columns>
+                <label><!-- Auto Aligned Fin &amp; TLD for financial --></label>
+                <name>Auto Aligned Fin &amp; TLD for financial</name>
             </columns>
             <columns>
                 <label><!-- Brand Positioning --></label>

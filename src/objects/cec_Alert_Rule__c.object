@@ -260,6 +260,10 @@
         <label>Market</label>
         <picklist>
             <picklistValues>
+                <fullName>ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Baltics</fullName>
                 <default>false</default>
             </picklistValues>
@@ -296,6 +300,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Italy</fullName>
                 <default>false</default>
             </picklistValues>
@@ -312,11 +320,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -374,8 +390,8 @@
             <controllingField>Type__c</controllingField>
             <picklistValues>
                 <fullName>0</fullName>
-                <controllingFieldValues>Safety</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Safety</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>1</fullName>
@@ -383,8 +399,8 @@
             </picklistValues>
             <picklistValues>
                 <fullName>2</fullName>
-                <controllingFieldValues>Quality</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Quality</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>3</fullName>
@@ -392,9 +408,9 @@
             </picklistValues>
             <picklistValues>
                 <fullName>4</fullName>
+                <default>false</default>
                 <controllingFieldValues>Quality</controllingFieldValues>
                 <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>5</fullName>
@@ -451,9 +467,9 @@
             </picklistValues>
             <picklistValues>
                 <fullName>5</fullName>
+                <default>false</default>
                 <controllingFieldValues>Quality</controllingFieldValues>
                 <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -544,6 +560,15 @@
         <filterScope>Everything</filterScope>
         <label>All Alert Rules</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Baltics_Queue_cec_Alert_Rule</fullName>
@@ -645,6 +670,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
@@ -683,6 +717,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Philippines_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
@@ -707,6 +750,15 @@
         </filters>
         <label>CEC Portugal Queue</label>
         <language>pt_PT</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

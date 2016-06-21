@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:This component is used to display Gate CMI responses in Gate Document PDF Page
 *@Author: Cognizant
@@ -49,7 +49,7 @@
                                     <div class="cpart1 pull-left">
                                     	<!-- Condition for displaying country name -->
                                         <apex:outputpanel layout="block" styleClass="cmiCntryContainer pull-left" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
-                                            <apex:outputText styleClass="cmiCountryContainer cmiCountryValue pull-left" value="{!displayCon[key].IPM_CMI_Country__c}" />
+                                            <apex:outputText styleClass="cmiCountryContainer cmiCountryValue pull-left" value="{!mapCountryNameWithCode[displayCon[key].IPM_CMI_Country__c]}" />
                                         </apex:outputPanel>
                                         <apex:variable var="i" value="{!1}"/>
                                     </div>

@@ -59,6 +59,7 @@
     <fields>
         <fullName>USLPCountryISCode__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Stores International standard code of the country.</description>
         <externalId>true</externalId>
         <label>USLPCountryISCode</label>
         <length>2</length>

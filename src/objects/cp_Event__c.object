@@ -890,24 +890,24 @@
             <controllingField>Budget_Tracker__c</controllingField>
             <picklistValues>
                 <fullName>Total Budget</fullName>
+                <default>false</default>
                 <controllingFieldValues>Funded by Business</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms and Business</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Training and Entertainment</fullName>
+                <default>false</default>
                 <controllingFieldValues>Funded by Business</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms and Business</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brought in Cost (e.g. Agency)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Funded by Business</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms and Business</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

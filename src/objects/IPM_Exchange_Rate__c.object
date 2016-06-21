@@ -55,10 +55,11 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Currency_Code__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>This field is used to store currency code. This is a unique code.</description>
         <externalId>true</externalId>
         <label>Currency Code</label>
         <length>5</length>
@@ -69,6 +70,7 @@
     </fields>
     <fields>
         <fullName>Exchange_Rate__c</fullName>
+        <description>This field is used to store exchange rate of currency. There is no link between this exchange rate and Salesforce multi currency. This data is loaded manually as per business requirement.</description>
         <externalId>false</externalId>
         <label>Exchange Rate</label>
         <precision>18</precision>
@@ -94,5 +96,5 @@
     </nameField>
     <pluralLabel>IPM Exchange Rate</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

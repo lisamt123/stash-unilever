@@ -28,12 +28,17 @@ public class CEC_TestDataFactory {
     }
 
     public static User createDebitCardProcessTestUser() {
-        List<String> permissionSetsToBeAssigned = new List<String>{'CEC_User', 'CEC_Debit_Card_Process','CEC_Business_Admin'};
+        List<String> permissionSetsToBeAssigned = new List<String>{'CEC_User', 'CEC_Debit_Card_Process','CEC_E_Voucher_Process','CEC_Business_Admin'};
         User cecTestUser = createUser('Unilever - Salesforce MultiApp Standard','CEC Global Head','cecdebittestuser@test00DE0000000bbLj.org');
         assignPermissionSet(cecTestUser.Id, permissionSetsToBeAssigned);
         return cecTestUser;
     }
-
+    public static User createEvoucherProcessTestUser() {
+        List<String> permissionSetsToBeAssigned = new List<String>{'CEC_User', 'CEC_E_Voucher_Process','CEC_Business_Admin'};
+        User cecTestUser = createUser('Unilever - Salesforce MultiApp Standard','CEC Global Head','cecdebittestuser@test00DE0000000bbLj.org');
+        assignPermissionSet(cecTestUser.Id, permissionSetsToBeAssigned);
+        return cecTestUser;
+    }
     public static User getStandardCECTestUser() {
         User u = [SELECT Id FROM User WHERE Email='cectestuser@test00DE0000000bbLj.org' LIMIT 1];
         return u;
@@ -97,7 +102,7 @@ public class CEC_TestDataFactory {
                                             Id productId, Id reasonCodeId,  Id accountId,
                                             Id caseMarketMappingId, Boolean createAccountByDefault){
         List<Case> testCaseList = new List<Case>();
-        Id noneRecordTypeId = [SELECT id,name FROM RecordType WHERE name='None'].Id;
+        Id noneRecordTypeId = [SELECT id, name FROM RecordType WHERE name='None' AND SobjectType = 'Case'].Id;
         for(Integer i = 1; i <= noOfCases; i++){
             Case caseObj = new Case();
             if (createAccountByDefault) {
@@ -355,10 +360,13 @@ public class CEC_TestDataFactory {
         georgraphyList.add(geographyIndia);
         mdm_Geography__c  geographyUS = new mdm_Geography__c(name='United States');
         georgraphyList.add(geographyUS);
+        mdm_Geography__c  geographyBrazil = new mdm_Geography__c(name='Brazil');
+        georgraphyList.add(geographyBrazil);
         insert georgraphyList;
 
         CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
         cmmUK.Name = 'United Kingdom';
+        cmmUK.Cheque_Decimals__c = 'Display as text';
         cmmUK.Market__c = 'United Kingdom';
         cmmUK.Country__c = geographyUK.Id;
         caseMarketMappingList.add(cmmUK);
@@ -374,6 +382,12 @@ public class CEC_TestDataFactory {
         cmmNA.Market__c = 'North America';
         cmmNA.Country__c = geographyUS.Id;
         caseMarketMappingList.add(cmmNA);
+        
+        CEC_Case_Market_Mapping__c cmmBrazil = new CEC_Case_Market_Mapping__c();
+        cmmNA.Name = 'Brazil';
+        cmmNA.Market__c = 'Brazil';
+        cmmNA.Country__c = geographyBrazil.Id;
+        caseMarketMappingList.add(cmmBrazil);
 
         insert caseMarketMappingList;
         return caseMarketMappingList;
@@ -463,4 +477,99 @@ public class CEC_TestDataFactory {
         }
         return testDebitCardDetailList; 
     }    
+    
+    public static List<CEC_E_Voucher_Details__c> createEvoucherDetail(Integer noOfVoucher,
+                                                                String eVoucherNumber, String Status,
+                                                                Id accountId , Id geographyId) {
+        List<CEC_E_Voucher_Details__c> testEvoucherDetailList = new List<CEC_E_Voucher_Details__c>();
+        
+        List<mdm_Geography__c> georgraphyList = new List<mdm_Geography__c>();
+        
+        for(Integer i = 1; i <= noOfVoucher; i++){
+            CEC_E_Voucher_Details__c testEvoucherDetail = new CEC_E_Voucher_Details__c();
+            
+            testEvoucherDetail.name = eVoucherNumber;
+            testEvoucherDetail.Expiry_Date__c = DateTime.Now().addDays(5);
+            testEvoucherDetail.Active__c = true;
+            testEvoucherDetail.Status__c = Status;
+            testEvoucherDetail.Country__c = geographyId;
+            testEvoucherDetail.Account_Id__c = accountId;
+            testEvoucherDetail.Voucher_Value__c = 125;
+            testEvoucherDetailList.add(testEvoucherDetail); 
+        }
+        return testEvoucherDetailList; 
+    }    
+    
+   public static Group createQueue(String name, String type, List<String> sobjtypes,Id userId){
+   
+           Group testGroup = new Group(Name=name, Type=type);
+           insert testGroup;
+           
+           List<QueuesObject> queueObjs = new List<QueuesObject>();
+           if(!sobjtypes.isEmpty() && userId != null){
+                System.runAs(new User(Id=userId))
+                {   
+                    for(String sobj : sobjtypes){
+                       queueObjs.add(new QueueSObject(QueueID = testGroup.id, SObjectType =sobj));
+                    }
+                    
+                    insert queueObjs;
+                }
+           
+           } 
+           
+          return testGroup ;  
+         
+    }
+    
+    public static List<mdm_Geography__c> createGeographies(List<String> cntryNames){
+         List<mdm_Geography__c> georgraphies = new List<mdm_Geography__c>();
+          for(String cntryName : cntryNames){
+            georgraphies.add(new mdm_Geography__c(name=cntryName,ISO_Country_Dependency_Medium_Name__c = cntryName ));
+        }
+        
+        insert georgraphies;
+        return georgraphies;
+    }
+    
+    public static List<cec_Store__c> createStore(List<String> cntryNames){
+
+        List<cec_Store__c> stores = new List<cec_Store__c>();
+        List<mdm_Geography__c> georgraphies = new List<mdm_Geography__c>();
+        
+          for(String cntryName : cntryNames){
+            georgraphies.add(new mdm_Geography__c(name=cntryName,ISO_Country_Dependency_Medium_Name__c = cntryName ));
+        }
+        
+        insert georgraphies;
+        
+        for(mdm_Geography__c geoGrphy: georgraphies){
+            stores.add(new cec_Store__c(Name = geoGrphy.name, Country__c = geoGrphy.id ));
+        }
+        
+        insert stores;
+        
+        return stores;
+    }
+    
+     public static List<CEC_Case_Market_Mapping__c> createCaseMarketMapping(string country, Integer noOfrec) {
+        List<CEC_Case_Market_Mapping__c> caseMarketMappingList = new List<CEC_Case_Market_Mapping__c>();
+        List<mdm_Geography__c> georgraphyList = new List<mdm_Geography__c>();
+         for(Integer recCount=0; recCount <noOfrec; recCount++){ 
+             	georgraphyList.add(new mdm_Geography__c(name=country,ISO_Country_Dependency_Medium_Name__c = country));
+         	
+         }
+         
+        
+        insert georgraphyList;
+		 
+             for(mdm_Geography__c geography : georgraphyList){
+                    caseMarketMappingList.add(new CEC_Case_Market_Mapping__c(Name= geography.name,Cheque_Decimals__c = 'Display as text',
+                                                                            Market__c= geography.name, Country__c= geography.id
+                                                                            ));             
+             }
+        
+        insert caseMarketMappingList;
+        return caseMarketMappingList;
+    }
 }

@@ -116,7 +116,7 @@
     <listViews>
         <fullName>CAP_ULPM_CPA_Risk_Assessment_and_Mitigation</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -125,7 +125,7 @@
     <listViews>
         <fullName>CAP_ULPM_Risk_Assessment_and_Mitigation</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -134,7 +134,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_CPA_Risk_Assessment_and_Mitigation</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -143,7 +143,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_Risk_Assessment_and_Mitigation</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -152,7 +152,7 @@
     <listViews>
         <fullName>CPA_SMT_CPA_Risk_Assessment_and_Mitigation</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -161,7 +161,7 @@
     <listViews>
         <fullName>CPA_SMT_Risk_Assessment_and_Mitigation</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

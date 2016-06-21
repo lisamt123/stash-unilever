@@ -13,7 +13,7 @@
         <name>Admin_Chatter_Group__c</name>
     </fields>
     <fields>
-        <label><!-- Archived --></label>
+        <label><!-- Deleted --></label>
         <name>Archived__c</name>
     </fields>
     <fields>
@@ -28,6 +28,10 @@
     <fields>
         <label><!-- Comment GA URL --></label>
         <name>Comment_GA_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hidden --></label>
+        <name>Hidden__c</name>
     </fields>
     <fields>
         <label><!-- Image URL --></label>
@@ -106,6 +110,10 @@
     <fields>
         <label><!-- News Article Title --></label>
         <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Video Article --></label>
+        <name>Video_Article__c</name>
     </fields>
     <fields>
         <label><!-- View Count --></label>

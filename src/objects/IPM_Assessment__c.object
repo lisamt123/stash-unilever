@@ -88,6 +88,7 @@
     </fieldSets>
     <fields>
         <fullName>Assessment_Batch_ID__c</fullName>
+        <description>Batch Id of the incoming Assessments. All assessments coming with same batch Id will be treated as on group.</description>
         <externalId>false</externalId>
         <label>Assessment Batch ID</label>
         <length>255</length>
@@ -99,6 +100,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assessment_GHG_PCU_Percentage__c</fullName>
+        <description>Stores the green house gas PCU(per consumer use) value in percentage.</description>
         <externalId>false</externalId>
         <label>Assessment GHG PCU Percentage</label>
         <precision>18</precision>
@@ -111,6 +113,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assessment_GHG_PCU__c</fullName>
+        <description>Stores the green house gas PCU(per consumer use) value in grams.</description>
         <externalId>false</externalId>
         <label>Assessment GHG PCU</label>
         <precision>18</precision>
@@ -123,6 +126,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assessment_Waste_PCU_Percentage__c</fullName>
+        <description>Stores the waste PCU(per consumer use) value in percentage.</description>
         <externalId>false</externalId>
         <label>Assessment Waste PCU Percentage</label>
         <precision>18</precision>
@@ -135,6 +139,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assessment_Waste_PCU__c</fullName>
+        <description>Stores the waste PCU(per consumer use) value in grams.</description>
         <externalId>false</externalId>
         <label>Assessment Waste PCU</label>
         <precision>18</precision>
@@ -147,6 +152,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assessment_Water_PCU_Percentage__c</fullName>
+        <description>Stores the green house gas PCU(per consumer use) value in percentage.</description>
         <externalId>false</externalId>
         <label>Assessment Water PCU Percentage</label>
         <precision>18</precision>
@@ -159,6 +165,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assessment_Water_PCU__c</fullName>
+        <description>Stores the water PCU(per consumer use) value in litres.</description>
         <externalId>false</externalId>
         <label>Assessment Water PCU</label>
         <precision>18</precision>
@@ -171,6 +178,7 @@
     </fields>
     <fields>
         <fullName>IPM_Category_Name__c</fullName>
+        <description>Store category name of the assessment.</description>
         <externalId>false</externalId>
         <label>Category Name</label>
         <length>50</length>
@@ -182,6 +190,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_Rep_GTU_Code__c</fullName>
+        <description>Stores comparison SKU or representative GTU code</description>
         <externalId>false</externalId>
         <label>Comparison Rep GTU Code</label>
         <length>50</length>
@@ -193,6 +202,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_Rep_GTU_GHG_PCU__c</fullName>
+        <description>Stores comparison SKU or representative GTU GHG</description>
         <externalId>false</externalId>
         <label>Comparison Rep GTU GHG PCU</label>
         <precision>18</precision>
@@ -205,6 +215,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_Rep_GTU_Name__c</fullName>
+        <description>Stores comparison SKU or representative GTU Name</description>
         <externalId>false</externalId>
         <label>Comparison Rep GTU Name</label>
         <length>255</length>
@@ -216,6 +227,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_Rep_GTU_Waste_PCU__c</fullName>
+        <description>Stores comparison SKU or representative GTU waste PCU</description>
         <externalId>false</externalId>
         <label>Comparison Rep GTU Waste PCU</label>
         <precision>18</precision>
@@ -228,6 +240,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_Rep_GTU_Water_PCU__c</fullName>
+        <description>Stores comparison SKU or representative GTU water PCU</description>
         <externalId>false</externalId>
         <label>Comparison Rep GTU Water PCU</label>
         <precision>18</precision>
@@ -240,6 +253,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Greenhouse__c</fullName>
+        <description>Stores comparison SKU GHG metric measurement</description>
         <externalId>false</externalId>
         <label>Comparison SKU (Greenhouse)</label>
         <precision>18</precision>
@@ -252,6 +266,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Sourcing__c</fullName>
+        <description>Stores comparison SKU Qualitative measurement Sustainable Sourcing  metric measurement</description>
         <externalId>false</externalId>
         <label>Comparison SKU (Sustainable Sourcing)</label>
         <length>255</length>
@@ -263,6 +278,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Waste__c</fullName>
+        <description>Stores comparison SKU waste metric measurement</description>
         <externalId>false</externalId>
         <label>Comparison SKU (Waste)</label>
         <precision>18</precision>
@@ -275,6 +291,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Water__c</fullName>
+        <description>Stores comparison SKU water metric measurement</description>
         <externalId>false</externalId>
         <label>Comparison SKU (Water)</label>
         <precision>18</precision>
@@ -287,6 +304,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU__c</fullName>
+        <description>Stores comparison SKU</description>
         <externalId>false</externalId>
         <label>Comparison SKU</label>
         <length>255</length>
@@ -298,6 +316,7 @@
     </fields>
     <fields>
         <fullName>IPM_Country_Category_Avg_GHG_PCU__c</fullName>
+        <description>Contains Metric measurement GHG Country Category Average value</description>
         <externalId>false</externalId>
         <label>Country Category Avg GHG PCU</label>
         <precision>18</precision>
@@ -310,6 +329,7 @@
     </fields>
     <fields>
         <fullName>IPM_Country_Category_Avg_Waste_PCU__c</fullName>
+        <description>Contains Metric measurement waste Country Category Average value</description>
         <externalId>false</externalId>
         <label>Country Category Avg Waste PCU</label>
         <precision>18</precision>
@@ -322,6 +342,7 @@
     </fields>
     <fields>
         <fullName>IPM_Country_Category_Avg_Water_PCU__c</fullName>
+        <description>Contains Metric measurement water Country Category Average value</description>
         <externalId>false</externalId>
         <label>Country Category Avg Water PCU</label>
         <precision>18</precision>
@@ -334,6 +355,7 @@
     </fields>
     <fields>
         <fullName>IPM_Country_Code__c</fullName>
+        <description>Country code of the country for which the assessment is created.</description>
         <externalId>false</externalId>
         <label>Country Code</label>
         <length>50</length>
@@ -345,6 +367,7 @@
     </fields>
     <fields>
         <fullName>IPM_Country_Name__c</fullName>
+        <description>Country name of the country for which the assessment is created.</description>
         <externalId>false</externalId>
         <label>Country Name</label>
         <length>100</length>
@@ -357,6 +380,7 @@
     <fields>
         <fullName>IPM_Country__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Stores Country Name</description>
         <externalId>false</externalId>
         <label>IPM Country</label>
         <referenceTo>IPM_Country__c</referenceTo>
@@ -369,6 +393,7 @@
     </fields>
     <fields>
         <fullName>IPM_Current_Global_Average_Greenhouse__c</fullName>
+        <description>Contains current Metric measurement GHG Country Category Average value</description>
         <externalId>false</externalId>
         <label>Current Global Average (Greenhouse)</label>
         <precision>18</precision>
@@ -381,6 +406,7 @@
     </fields>
     <fields>
         <fullName>IPM_Current_Global_Average_Sourcing__c</fullName>
+        <description>Contains current Metric measurement sourcing Country Category Average value</description>
         <externalId>false</externalId>
         <label>Current Global Average (Sourcing)</label>
         <length>255</length>
@@ -392,6 +418,7 @@
     </fields>
     <fields>
         <fullName>IPM_Current_Global_Average_Waste__c</fullName>
+        <description>Contains current Metric measurement waste Country Category Average value</description>
         <externalId>false</externalId>
         <label>Current Global Average (Waste)</label>
         <precision>18</precision>
@@ -404,6 +431,7 @@
     </fields>
     <fields>
         <fullName>IPM_Current_Global_Average_Water__c</fullName>
+        <description>Contains current Metric measurement water Country Category Average value</description>
         <externalId>false</externalId>
         <label>Current Global Average (Water)</label>
         <precision>18</precision>
@@ -416,6 +444,7 @@
     </fields>
     <fields>
         <fullName>IPM_EcoDesign_Assessment_Id__c</fullName>
+        <description>Ecodeign Id of the incoming assessment</description>
         <externalId>false</externalId>
         <label>EcoDesign Assessment Id</label>
         <precision>18</precision>
@@ -428,6 +457,7 @@
     </fields>
     <fields>
         <fullName>IPM_Environmental_Impact_Country_Codes__c</fullName>
+        <description>Stores the comma seperated country code values of the EI(Environmental Impact) countries</description>
         <externalId>false</externalId>
         <label>Environmental Impact Country Codes</label>
         <length>100</length>
@@ -439,6 +469,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Greenhouse__c</fullName>
+        <description>Stores expected GHG metric measurement change in percentage</description>
         <externalId>false</externalId>
         <label>Expected % Change (Greenhouse)</label>
         <precision>18</precision>
@@ -451,6 +482,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Sourcing__c</fullName>
+        <description>Stores expected sustainable sourcing metric measurement change in percentage</description>
         <externalId>false</externalId>
         <label>Expected % Change (Sustainable Sourcing)</label>
         <length>255</length>
@@ -462,6 +494,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Waste__c</fullName>
+        <description>Stores expected waste metric measurement change in percentage</description>
         <externalId>false</externalId>
         <label>Expected % Change (Waste)</label>
         <precision>18</precision>
@@ -474,6 +507,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Water__c</fullName>
+        <description>Stores expected water metric measurement change in percentage</description>
         <externalId>false</externalId>
         <label>Expected % Change (Water)</label>
         <precision>18</precision>
@@ -486,6 +520,7 @@
     </fields>
     <fields>
         <fullName>IPM_Global_Category_Average_View_GHG__c</fullName>
+        <description>Stores Global Category Average GHG value</description>
         <externalId>false</externalId>
         <label>Global Category Average View GHG</label>
         <precision>18</precision>
@@ -498,6 +533,7 @@
     </fields>
     <fields>
         <fullName>IPM_Global_Category_Average_View_Waste__c</fullName>
+        <description>Stores Global Category Average Waste  value</description>
         <externalId>false</externalId>
         <label>Global Category Average View Waste</label>
         <precision>18</precision>
@@ -510,6 +546,7 @@
     </fields>
     <fields>
         <fullName>IPM_Global_Category_Average_View_Water__c</fullName>
+        <description>Stores Global Category Average water value</description>
         <externalId>false</externalId>
         <label>Global Category Average View Water</label>
         <precision>18</precision>
@@ -522,6 +559,7 @@
     </fields>
     <fields>
         <fullName>IPM_Health_Hygiene__c</fullName>
+        <description>Qualitative measurement of Health &amp; Hygiene</description>
         <externalId>false</externalId>
         <label>Health Hygiene</label>
         <length>100</length>
@@ -534,6 +572,7 @@
     <fields>
         <fullName>IPM_Is_Category_Avg_Based__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Stores whether the assessment is category average based</description>
         <externalId>false</externalId>
         <label>Is Category Avg Based</label>
         <trackHistory>false</trackHistory>
@@ -543,6 +582,7 @@
     <fields>
         <fullName>IPM_Is_Food_Division__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicated whether the assessment is from Food Division</description>
         <externalId>false</externalId>
         <label>Is Food Division</label>
         <trackHistory>false</trackHistory>
@@ -552,6 +592,7 @@
     <fields>
         <fullName>IPM_Is_Lead_Assessment__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates whether the assessment is a lead assessment</description>
         <externalId>false</externalId>
         <label>Is Lead Assessment</label>
         <trackHistory>false</trackHistory>
@@ -561,6 +602,7 @@
     <fields>
         <fullName>IPM_Is_Water_Metric_Relevant__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates whether the water metric relevant for the assessment</description>
         <externalId>false</externalId>
         <label>Is Water Metric Relevant</label>
         <trackHistory>false</trackHistory>
@@ -569,6 +611,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Greenhouse__c</fullName>
+        <description>Stores new SKU GHG Values</description>
         <externalId>false</externalId>
         <label>New SKU (Greenhouse)</label>
         <precision>18</precision>
@@ -581,6 +624,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Sourcing__c</fullName>
+        <description>Stores new SKU sustainable sourcing value</description>
         <externalId>false</externalId>
         <label>New SKU (Sustainable Sourcing)</label>
         <length>255</length>
@@ -592,6 +636,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Waste__c</fullName>
+        <description>Store new SKU waste value</description>
         <externalId>false</externalId>
         <label>New SKU (Waste)</label>
         <precision>18</precision>
@@ -604,6 +649,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Water__c</fullName>
+        <description>Stores new SKU water value</description>
         <externalId>false</externalId>
         <label>New SKU (Water)</label>
         <precision>18</precision>
@@ -616,6 +662,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU__c</fullName>
+        <description>Stores New SKU</description>
         <externalId>false</externalId>
         <label>New SKU</label>
         <length>255</length>
@@ -627,6 +674,7 @@
     </fields>
     <fields>
         <fullName>IPM_Nutrition__c</fullName>
+        <description>Stores Qualitative measurement Nutrition value</description>
         <externalId>false</externalId>
         <label>Nutrition</label>
         <length>100</length>
@@ -638,6 +686,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project__c</fullName>
+        <description>Stores the IPM Project Id</description>
         <externalId>false</externalId>
         <label>IPM Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -652,6 +701,7 @@
     </fields>
     <fields>
         <fullName>IPM_SKU_Name__c</fullName>
+        <description>Stores name of the SKU (Stock Keeping Unit)</description>
         <externalId>false</externalId>
         <label>SKU Name</label>
         <length>255</length>
@@ -663,6 +713,7 @@
     </fields>
     <fields>
         <fullName>IPM_SKU_Type__c</fullName>
+        <description>Store Type of the SKU (Comparison SKU or Country Category Average)</description>
         <externalId>false</externalId>
         <label>SKU Type</label>
         <picklist>
@@ -682,6 +733,7 @@
     </fields>
     <fields>
         <fullName>IPM_Sustainable_Sourcing__c</fullName>
+        <description>Stores Stores Qualitative measurement sustainable sourcing value</description>
         <externalId>false</externalId>
         <label>Sustainable Sourcing</label>
         <length>100</length>
@@ -693,6 +745,7 @@
     </fields>
     <fields>
         <fullName>Project_Phase__c</fullName>
+        <description>Stores current phase of the project</description>
         <externalId>false</externalId>
         <label>Project Phase</label>
         <length>30</length>

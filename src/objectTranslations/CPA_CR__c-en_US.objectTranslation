@@ -110,6 +110,10 @@
         <name>dat_Returned_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Sent for Signature date --></label>
+        <name>dat_Sent_for_Signature_Date__c</name>
+    </fields>
+    <fields>
         <help><!-- Submission date of CR --></help>
         <label><!-- Submitted Date --></label>
         <name>dat_Submitted_Date__c</name>
@@ -147,12 +151,20 @@
         <name>eml_PWORFDelta_Project_requestor_email__c</name>
     </fields>
     <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
+    </fields>
+    <fields>
         <label><!-- Unilever Budget Approver Email* --></label>
         <name>eml_Unilever_Budget_Approver_Email__c</name>
     </fields>
     <fields>
         <label><!-- Unilever Content Approver Email* --></label>
         <name>eml_Unilever_Content_Approver_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
     </fields>
     <fields>
         <label><!-- Unilever Reference --></label>
@@ -163,12 +175,25 @@
         <name>fur_PWO_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Project Scale --></label>
+        <name>fur_Project_Scale__c</name>
+    </fields>
+    <fields>
         <label><!-- Variance % --></label>
         <name>fur_per_Variance__c</name>
     </fields>
     <fields>
+        <label><!-- PWORF Reord type --></label>
+        <name>fur_pworfrecord_type__c</name>
+    </fields>
+    <fields>
         <label><!-- isValidated --></label>
         <name>isValidated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner --></label>
+        <name>lkp_Owner__c</name>
+        <relationshipLabel><!-- CR (Owner) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Unilever Budget Approver* --></label>
@@ -317,8 +342,16 @@
         <name>num_Authorisation_man_days__c</name>
     </fields>
     <fields>
+        <label><!-- Contingency Charges --></label>
+        <name>num_Contingency_Charges__c</name>
+    </fields>
+    <fields>
         <label><!-- Delta Efforts --></label>
         <name>num_Delta_Efforts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discounts --></label>
+        <name>num_Discounts__c</name>
     </fields>
     <fields>
         <label><!-- num_Effort_Cost --></label>
@@ -391,6 +424,10 @@
     <fields>
         <label><!-- Expense %* --></label>
         <name>pec_Expense__c</name>
+    </fields>
+    <fields>
+        <label><!-- Variance %* --></label>
+        <name>per_Variance__c</name>
     </fields>
     <fields>
         <label><!-- Approval Comment Check --></label>
@@ -649,7 +686,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Status* --></label>
+        <label><!-- Status --></label>
         <name>pkl_Status__c</name>
         <picklistValues>
             <masterLabel>Accepted</masterLabel>
@@ -737,7 +774,7 @@
         <name>txt_PWODelta_Other_Billing_Details__c</name>
     </fields>
     <fields>
-        <label><!-- Other Innovation Area --></label>
+        <label><!-- Other Unilever Innovation Area --></label>
         <name>txt_PWODelta_Other_Innovation_Area__c</name>
     </fields>
     <fields>

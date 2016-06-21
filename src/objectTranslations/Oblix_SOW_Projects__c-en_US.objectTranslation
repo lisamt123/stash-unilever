@@ -18,33 +18,49 @@
         <name>Asset_Deliverables__c</name>
     </fields>
     <fields>
+        <label><!-- BET Required(Yes/No) --></label>
+        <name>BET_Required_Yes_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Required --></label>
+        <name>BET_Required__c</name>
+    </fields>
+    <fields>
         <help><!-- BET first release date --></help>
         <label><!-- BET first release --></label>
         <name>BET_first_release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box Number PFY Project Score CFY Calc --></label>
+        <name>Box_Number_PFY_Project_Score_CFY_Calc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box Number PFY --></label>
+        <name>Box_Number_PFY__c</name>
     </fields>
     <fields>
         <help><!-- Identifying priorities for the brand based on the total turnover the campaign is protecting (Select this option, only if incremental turnover value is unavailable) --></help>
         <label><!-- Business Value --></label>
         <name>Brand_Led_Growth__c</name>
         <picklistValues>
-            <masterLabel>Incremental Turn Over 10M - 20M</masterLabel>
-            <translation><!-- Incremental Turn Over 10M - 20M --></translation>
+            <masterLabel>Incremental turnover 10M - 20M</masterLabel>
+            <translation><!-- Incremental turnover 10M - 20M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over 20M - 30M</masterLabel>
-            <translation><!-- Incremental Turn Over 20M - 30M --></translation>
+            <masterLabel>Incremental turnover 20M - 30M</masterLabel>
+            <translation><!-- Incremental turnover 20M - 30M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over 30M - 40M</masterLabel>
-            <translation><!-- Incremental Turn Over 30M - 40M --></translation>
+            <masterLabel>Incremental turnover 30M - 40M</masterLabel>
+            <translation><!-- Incremental turnover 30M - 40M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over &lt;10M</masterLabel>
-            <translation><!-- Incremental Turn Over &lt;10M --></translation>
+            <masterLabel>Incremental turnover &lt;10M</masterLabel>
+            <translation><!-- Incremental turnover &lt;10M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over &gt;40M</masterLabel>
-            <translation><!-- Incremental Turn Over &gt;40M --></translation>
+            <masterLabel>Incremental turnover &gt;40M</masterLabel>
+            <translation><!-- Incremental turnover &gt;40M --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Total turnover &lt;€100m</masterLabel>
@@ -72,8 +88,48 @@
         <name>Budget_Burnt_to_date__c</name>
     </fields>
     <fields>
+        <label><!-- Campaign Attributes Updated --></label>
+        <name>Campaign_Attributes_Updated__c</name>
+    </fields>
+    <fields>
         <label><!-- Campaign Countries --></label>
         <name>Campaign_Countries__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign FY --></label>
+        <name>Campaign_FY__c</name>
+        <picklistValues>
+            <masterLabel>FY2015</masterLabel>
+            <translation><!-- FY2015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2016</masterLabel>
+            <translation><!-- FY2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2017</masterLabel>
+            <translation><!-- FY2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2018</masterLabel>
+            <translation><!-- FY2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2019</masterLabel>
+            <translation><!-- FY2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2020</masterLabel>
+            <translation><!-- FY2020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2021</masterLabel>
+            <translation><!-- FY2021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2022</masterLabel>
+            <translation><!-- FY2022 --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Campaign Fees Total --></label>
@@ -99,6 +155,16 @@
             <masterLabel>New – One channel</masterLabel>
             <translation><!-- New – One channel --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Campaign NFY --></label>
+        <name>Campaign_NFY__c</name>
+        <relationshipLabel><!-- SWOP Campaigns (Campaign NFY) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Campaign PFY --></label>
+        <name>Campaign_PFY__c</name>
+        <relationshipLabel><!-- SWOP Campaigns (Campaign PFY) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Campaign Points --></label>
@@ -147,6 +213,63 @@
         <name>Campaign_Total_Fees__c</name>
     </fields>
     <fields>
+        <label><!-- Cloned Campaign --></label>
+        <name>Cloned_Campaign__c</name>
+        <relationshipLabel><!-- SWOP Campaigns (Cloned Campaign) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cloned SOW --></label>
+        <name>Cloned_SOW__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed Stage CFY --></label>
+        <name>Completed_Stage_CFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Completed Stage PFY --></label>
+        <name>Completed_Stage_PFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Completed Stage --></label>
         <name>Completed_Stage__c</name>
         <picklistValues>
@@ -179,22 +302,55 @@
         <name>Description__c</name>
     </fields>
     <fields>
+        <label><!-- Enforce Trigger Update Assets --></label>
+        <name>Enforce_Trigger_Update_Assets__c</name>
+    </fields>
+    <fields>
         <label><!-- Enforce Trigger Update --></label>
         <name>Enforce_Trigger_Update__c</name>
+    </fields>
+    <fields>
+        <help><!-- The difference between what the new paid amount is (using CFY calculator) and the amount actually paid in PFY --></help>
+        <label><!-- Fees Outstanding between CFY PFY --></label>
+        <name>Fees_Outstanding_between_CFY_PFY__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fees PFY Paid Using CFY Calc --></label>
+        <name>Fees_PFY_Paid_Using_CFY_Calc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fees PFY Total By CFY Calculator --></label>
+        <name>Fees_PFY_Total_By_CFY_Calculator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fees Paid PFY --></label>
+        <name>Fees_Paid_PFY__c</name>
+    </fields>
+    <fields>
+        <label><!-- FY Campaign Fee --></label>
+        <name>Fees_To_Be_Paid_In_Current_FY_Agency__c</name>
     </fields>
     <fields>
         <label><!-- Fees To Be Paid Next Financial Year --></label>
         <name>Fees_To_Be_Paid_Next_Financial_Year__c</name>
     </fields>
     <fields>
+        <label><!-- Fees Total PFY --></label>
+        <name>Fees_Total_PFY__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter the the date for final release --></help>
-        <label><!-- Final release --></label>
+        <label><!-- BET Final Release --></label>
         <name>Final_release__c</name>
     </fields>
     <fields>
         <label><!-- Marketing SOW --></label>
         <name>Financial_Year__c</name>
         <relationshipLabel><!-- SWOP Campaigns --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- First 3 selected countries --></label>
+        <name>First_3_selected_countries__c</name>
     </fields>
     <fields>
         <help><!-- When is the first airing? --></help>
@@ -213,6 +369,10 @@
             <masterLabel>Innovation</masterLabel>
             <translation><!-- Innovation --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is B/Fwd Campaign --></label>
+        <name>Is_B_Fwd_Campaign__c</name>
     </fields>
     <fields>
         <help><!-- Is this item/production/activity high risk? --></help>
@@ -264,6 +424,18 @@
         <name>Live_date_Asset_delivery__c</name>
     </fields>
     <fields>
+        <label><!-- Name Prefix --></label>
+        <name>Name_Prefix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Suffix Cycle Number --></label>
+        <name>Name_Suffix_Cycle_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Suffix --></label>
+        <name>Name_Suffix__c</name>
+    </fields>
+    <fields>
         <label><!-- Number of Agency Hub Splits --></label>
         <name>Number_of_Agency_Hub_Splits__c</name>
     </fields>
@@ -294,12 +466,25 @@
         <name>OblixRegion__c</name>
     </fields>
     <fields>
+        <label><!-- Oblix ProjectBoxNumber PFY --></label>
+        <name>Oblix_ProjectBoxNumber_PFY__c</name>
+    </fields>
+    <fields>
         <label><!-- Campaign Box Number --></label>
         <name>Oblix_ProjectBoxNumber__c</name>
     </fields>
     <fields>
         <label><!-- Unique Name --></label>
         <name>Oblix_tec_Unique_Name_c__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Campaign --></label>
+        <name>Original_Campaign__c</name>
+        <relationshipLabel><!-- SWOP Campaigns (Original Campaign) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Original SOW --></label>
+        <name>Original_SOW__c</name>
     </fields>
     <fields>
         <help><!-- Type in any other types of research to be used --></help>
@@ -319,6 +504,14 @@
         <help><!-- Enter the percentage of the Total Project Fees that is targeted to be paid this FY? --></help>
         <label><!-- Percentage of Fee for this FY --></label>
         <name>Percentage_of_Fee_for_this_FY__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percentage of Fees PFY --></label>
+        <name>Percentage_of_Fees_PFY__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percentage of Fees Paid To Date --></label>
+        <name>Percentage_of_Fees_Paid_To_Date__c</name>
     </fields>
     <fields>
         <label><!-- Platform --></label>
@@ -393,8 +586,8 @@
             <translation><!-- Multiple countries (11-15), mutiple language (c.15) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Multiple countries (5-10), multiple language (5-10)</masterLabel>
-            <translation><!-- Multiple countries (5-10), multiple language (5-10) --></translation>
+            <masterLabel>Multiple countries (6-10), multiple language (6-10)</masterLabel>
+            <translation><!-- Multiple countries (6-10), multiple language (6-10) --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -453,6 +646,54 @@
         <name>Project_Start_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Projected Stage CFY --></label>
+        <name>Projected_Stage_CFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Projected Stage PFY --></label>
+        <name>Projected_Stage_PFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Projected Stage --></label>
         <name>Projected_Stage__c</name>
         <picklistValues>
@@ -475,6 +716,10 @@
             <masterLabel>Projected Strategy &amp; Planning</masterLabel>
             <translation><!-- Projected Strategy &amp; Planning --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Record Locked Sync --></label>
+        <name>Record_Locked_Sync__c</name>
     </fields>
     <fields>
         <label><!-- Region --></label>
@@ -517,6 +762,22 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- SOW/Campaign Name --></label>
+        <name>SOW_Campaign_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOW FY --></label>
+        <name>SOW_FY__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOW NFY --></label>
+        <name>SOW_NFY__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOW PFY --></label>
+        <name>SOW_PFY__c</name>
+    </fields>
+    <fields>
         <label><!-- Selected Countries --></label>
         <name>Selected_Countries__c</name>
     </fields>
@@ -524,6 +785,54 @@
         <help><!-- Should legal review this project? --></help>
         <label><!-- Should legal review this project? --></label>
         <name>Should_legal_review_this_project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stage Completed CFY --></label>
+        <name>Stage_Completed_CFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stage Projected CFY --></label>
+        <name>Stage_Projected_CFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Enter the date your TV production will start --></help>
@@ -544,6 +853,42 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Sync Required NFY --></label>
+        <name>Sync_Required_NFY__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sync Status --></label>
+        <name>Sync_Status__c</name>
+        <picklistValues>
+            <masterLabel>Clone Completed</masterLabel>
+            <translation><!-- Clone Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clone In Progress</masterLabel>
+            <translation><!-- Clone In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sync Completed</masterLabel>
+            <translation><!-- Sync Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sync In Progress</masterLabel>
+            <translation><!-- Sync In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sync Requested</masterLabel>
+            <translation><!-- Sync Requested --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sync Required</masterLabel>
+            <translation><!-- Sync Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sync Step --></label>
+        <name>Sync_Step__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter any notes relevant to the timescale --></help>
         <label><!-- Timescale Notes --></label>
         <name>Timescale_Notes__c</name>
@@ -555,6 +900,10 @@
     <fields>
         <label><!-- Total Asset Deliverables --></label>
         <name>Total_Asset_Deliverables__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Asset Score --></label>
+        <name>Total_Asset_Score__c</name>
     </fields>
     <fields>
         <label><!-- Total Digital Fee --></label>
@@ -569,12 +918,20 @@
         <name>Total_Locations__c</name>
     </fields>
     <fields>
+        <label><!-- Total Project Score PFY --></label>
+        <name>Total_Project_Score_PFY__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Project Score --></label>
         <name>Total_Project_Score__c</name>
     </fields>
     <fields>
         <label><!-- Total Value Driver Score --></label>
         <name>Total_Value_Driver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique key --></label>
+        <name>Unique_key__c</name>
     </fields>
     <fields>
         <label><!-- Value To BePaid Manual Override --></label>
@@ -589,6 +946,14 @@
         <sections>
             <label><!-- Business Value Drivers --></label>
             <section>Business Value Drivers</section>
+        </sections>
+        <sections>
+            <label><!-- Campaign Cycle --></label>
+            <section>Campaign Cycle</section>
+        </sections>
+        <sections>
+            <label><!-- Campaign Stages --></label>
+            <section>Campaign Stages</section>
         </sections>
         <sections>
             <label><!-- Custom Links --></label>
@@ -608,6 +973,10 @@
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Sync in Progress. Record Locked. Campaign Locked. --></errorMessage>
+        <name>Lock_Campaign_Record_if_Campaign_Sync</name>
+    </validationRules>
     <validationRules>
         <errorMessage><!-- Total % for Agency Hub splits should add up to 100 --></errorMessage>
         <name>Oblix_Campaign_Splits_Should_Add_To_100</name>

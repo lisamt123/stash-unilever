@@ -81,11 +81,15 @@
                 <behavior>Edit</behavior>
                 <field>Related_CRs__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <behavior>Edit</behavior>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -179,10 +183,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_otherProcessOfficeAreaE2E__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>txta_High_Level_Estimate__c</field>
             </layoutItems>
             <layoutItems>
@@ -216,7 +216,8 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>txt_otherProcessOfficeAreaE2E__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -548,11 +549,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Business_Process_Area_del__c</fields>
         <fields>High_Level_Description_del__c</fields>
         <fields>Requirement_Type_del__c</fields>
         <fields>New_or_changed_requirement_del__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>OBJECT_ID</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -570,6 +570,8 @@
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
@@ -615,7 +617,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000RT4z</masterLabel>
+        <masterLabel>00h56000000IvQG</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

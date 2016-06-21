@@ -165,6 +165,15 @@
     </fields>
     <label>Case QC Mapping</label>
     <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Baltics_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
@@ -264,6 +273,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
@@ -300,10 +318,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Philippines_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
         <queue>CEC_Poland_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

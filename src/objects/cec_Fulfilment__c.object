@@ -244,6 +244,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Cheque_Decimals__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Case__r.Country__r.Cheque_Decimals__c)</formula>
+        <label>Cheque Decimals</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Cheque_Number__c</fullName>
         <description>CEC : To capture the cheque number</description>
         <externalId>false</externalId>
@@ -276,6 +287,103 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Consumer_Document_Number__c</fullName>
+        <description>CEC: used for replacement product reporting</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.Document_Number__c</formula>
+        <label>Consumer Document Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Document_Type__c</fullName>
+        <description>CEC: used for replacement product reports</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.Document_Type__c</formula>
+        <label>Consumer Document Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_First_Name__c</fullName>
+        <description>CEC: Used in Replacement product reports</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.FirstName</formula>
+        <label>Consumer First Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Home_Phone_Number__c</fullName>
+        <description>CEC: Used in replacement product report</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.PersonContact.HomePhone</formula>
+        <label>Consumer Home Phone Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Last_Name__c</fullName>
+        <description>CEC: Used in Replacement product reports</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consumer Last Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Mobile_Phone_Number__c</fullName>
+        <description>CEC: used for replacement product reporting</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.PersonContact.MobilePhone</formula>
+        <label>Consumer Mobile Phone Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Other_Phone_Number__c</fullName>
+        <description>CEC: used for replacement product reporting</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.PersonContact.OtherPhone</formula>
+        <label>Consumer Other Phone Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Phone_Number__c</fullName>
+        <description>CEC: Used for replacement product reporting</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.PersonContact.Phone</formula>
+        <label>Consumer Phone Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Country_BrandLogo__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(Country__c) +&quot;_&quot;+ Brand_Logo__r.Logo__c  +&quot;_&quot;+ &quot;Logo&quot;</formula>
@@ -294,6 +402,10 @@
         <picklist>
             <picklistValues>
                 <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -397,6 +509,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -437,6 +553,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -454,6 +574,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -478,6 +602,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Slovenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -537,6 +665,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Approved__c</fullName>
+        <description>CEC Date Approved is used to store the date when fulfilment was approved.</description>
+        <externalId>false</externalId>
+        <label>Date Approved</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Date_of_Birth__c</fullName>
@@ -600,6 +738,44 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_Voucher_Expiry_Date__c</fullName>
+        <description>CEC Expiry date Displays E-VoucherDetails.ExpiryDate</description>
+        <externalId>false</externalId>
+        <formula>E_Voucher_Number__r.Expiry_Date__c</formula>
+        <label>E-Voucher Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>E_Voucher_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC E-Voucher Number is Lookup to the E-Voucher details.</description>
+        <externalId>false</externalId>
+        <label>E-Voucher Number</label>
+        <referenceTo>CEC_E_Voucher_Details__c</referenceTo>
+        <relationshipLabel>Fulfilment</relationshipLabel>
+        <relationshipName>Fulfilment</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>E_Voucher_Value__c</fullName>
+        <description>CEC E-Voucher Value is used to capture the E-Voucher  value.</description>
+        <externalId>false</externalId>
+        <label>E-Voucher Value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1046,6 +1222,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Include_Gift__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: For sending gift to the consumer</description>
+        <externalId>false</externalId>
+        <label>Include Gift</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IsPrintedLocally__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1118,6 +1304,18 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <visibleLines>20</visibleLines>
     </fields>
     <fields>
+        <fullName>No_of_Replacement_Items__c</fullName>
+        <description>CEC: Used to display the total no of items to be displayed</description>
+        <externalId>false</externalId>
+        <label>No of Replacement Items</label>
+        <summarizedField>CEC_Fulfilment_Product__c.Product_Quantity__c</summarizedField>
+        <summaryForeignKey>CEC_Fulfilment_Product__c.Fulfilment_Id__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Payable_To__c</fullName>
         <description>CEC: To capture the Account Information(Title + Account First Name + Account Last Name)</description>
         <externalId>false</externalId>
@@ -1127,6 +1325,17 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PersonEmail__c</fullName>
+        <description>CEC PersonEmail  will hols email id of Account holder</description>
+        <externalId>false</externalId>
+        <label>Person Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1140,6 +1349,28 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Notes__c</fullName>
+        <description>CEC: To capture any additional notes related to product replacement</description>
+        <externalId>false</externalId>
+        <label>Product Notes</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC Product Sent will hold information about product sent or not</description>
+        <externalId>false</externalId>
+        <label>Product Sent</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>QA_flag__c</fullName>
@@ -1188,6 +1419,42 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Resend_E_Voucher_Email__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC Resend E-Voucher Email is used to send the E-Voucher details.</description>
+        <externalId>false</externalId>
+        <label>Resend E-Voucher Email</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Retrieval_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC Retrieval Request  will hold id of Retrieval Request</description>
+        <externalId>false</externalId>
+        <label>Retrieval Id</label>
+        <referenceTo>CEC_Retrieval_Request__c</referenceTo>
+        <relationshipLabel>Fulfilment</relationshipLabel>
+        <relationshipName>Fulfilment</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Retrieval_Status__c</fullName>
+        <description>CEC Retrieval Status  will hold status of Retrieval Request</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Retrieval_Id__r.Retrieval_Status__c)</formula>
+        <label>Retrieval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Salutation__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(Case__r.Account.Salutation)  +&apos; &apos; + Case__r.Account.LastName</formula>
@@ -1218,7 +1485,9 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             <controllingField>Country__c</controllingField>
             <picklistValues>
                 <fullName>Standard Letter</fullName>
+                <default>true</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
+                <controllingFieldValues>Australia</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
@@ -1244,6 +1513,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
@@ -1254,17 +1524,20 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Mlodova, Republic of</controllingFieldValues>
                 <controllingFieldValues>Montenegro</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
                 <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Norway</controllingFieldValues>
                 <controllingFieldValues>Panama</controllingFieldValues>
                 <controllingFieldValues>Paraguay</controllingFieldValues>
                 <controllingFieldValues>Peru</controllingFieldValues>
+                <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Romania</controllingFieldValues>
                 <controllingFieldValues>Serbia</controllingFieldValues>
                 <controllingFieldValues>Slovakia</controllingFieldValues>
                 <controllingFieldValues>Slovenia</controllingFieldValues>
+                <controllingFieldValues>South Africa</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
@@ -1272,20 +1545,19 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
                 <controllingFieldValues>Venezuela</controllingFieldValues>
-                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Dosing Request</fullName>
+                <default>false</default>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Remuneration</fullName>
+                <default>false</default>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1313,6 +1585,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <type>Checkbox</type>
     </fields>
     <label>Fulfilment</label>
+    <listViews>
+        <fullName>CEC_ANZ_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Quality Check</label>
+        <queue>CEC_ANZ_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Baltics_Quality_Check_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
@@ -1676,6 +1966,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Quality Check</label>
+        <queue>CEC_Indonesia_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Indonesia_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Quality_Check_cec_Fulfilment</fullName>
         <columns>NAME</columns>
         <columns>Advisor_Name__c</columns>
@@ -1808,6 +2116,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Philippines_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Quality Check</label>
+        <queue>CEC_Philippines_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Quality_Check_cec_Fulfilment</fullName>
         <columns>NAME</columns>
         <columns>isApproved__c</columns>
@@ -1881,6 +2207,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Portugal</role>
             <role>CEC_User_Portugal</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Quality Check</label>
+        <queue>CEC_South_Africa_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2032,6 +2376,13 @@ ISBLANK(Case__r.Account.PersonMailingStreet)
         <errorMessage>The fulfillment is already approved, cannot update debit card information</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>E_Voucher_Value_Validation</fullName>
+        <active>true</active>
+        <description>CEC E-Voucher Value Validation rule is used to disable the updation of E-Voucher details on  approved fulfillment.</description>
+        <errorConditionFormula>(ISCHANGED( E_Voucher_Value__c ) || ISCHANGED( E_Voucher_Number__c ) ) &amp;&amp; isApproved__c ==true</errorConditionFormula>
+        <errorMessage>The fulfilment is already approved, cannot update E Voucher details information.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Enclosure_Quantity_Check</fullName>
         <active>true</active>
         <description>CEC : To mandate population of Enclosure Quantity field when corresponding Enclosure field is populated</description>
@@ -2082,29 +2433,33 @@ NOT(ISBLANK(Enclosure5__c)) &amp;&amp; ISPICKVAL( Enclosure5_Quantity__c , &quot
 
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;; 
 
-var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;); 
-fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;; 
-fulfilment.Brand__c = &apos;{!JSENCODE(cec_Fulfilment__c.CaseBrand__c)}&apos;; 
-fulfilment.Case_Product_Category__c = &apos;{!JSENCODE(cec_Fulfilment__c.Case_Product_Category__c)}&apos;;
-fulfilment.Cheque_Number__c = &apos;{!cec_Fulfilment__c.Cheque_Number__c}&apos;;
+if ({!$Permission.CEC_Cheque_Process}) {
+	var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;); 
+	fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;; 
+	fulfilment.Brand__c = &apos;{!JSENCODE(cec_Fulfilment__c.CaseBrand__c)}&apos;; 
+	fulfilment.Case_Product_Category__c = &apos;{!JSENCODE(cec_Fulfilment__c.Case_Product_Category__c)}&apos;;
+	fulfilment.Cheque_Number__c = &apos;{!cec_Fulfilment__c.Cheque_Number__c}&apos;;
 
-fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;; 
- 
-//alert(&apos;my alert===&apos;+fulfilment.Id + &apos; &apos; + fulfilment.Brand__c + &apos; &apos; +fulfilment.Country__c + &apos; &apos;+ fulfilment.Case_Product_Category__c); 
+	fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;; 
+	 
+	//alert(&apos;my alert===&apos;+fulfilment.Id + &apos; &apos; + fulfilment.Brand__c + &apos; &apos; +fulfilment.Country__c + &apos; &apos;+ fulfilment.Case_Product_Category__c); 
 
-if (fulfilment.Cheque_Number__c != &quot;&quot;){
-	alert(&apos;{!$Label.CEC_ChequeBook_ChequeNo_Already_Added}&apos;);
-}	
-else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
-	alert(&apos;{!$Label.CEC_ChequeBook_input_fields_missing}&apos;);
-} else  {
-	var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;generateChequeNumber&quot;,{fulfilmentId:fulfilment.Id});
-//alert (&apos;my result===&apos;+result);
-	if (result[0].status == &apos;S&apos;) { 
-		window.location.reload(); 
-	} else if (result[0].status == &apos;E&apos;) { 
-		alert(result[0].message);
-	} 
+	if (fulfilment.Cheque_Number__c != &quot;&quot;){
+		alert(&apos;{!$Label.CEC_ChequeBook_ChequeNo_Already_Added}&apos;);
+	}	
+	else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
+		alert(&apos;{!$Label.CEC_ChequeBook_input_fields_missing}&apos;);
+	} else  {
+		var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;generateChequeNumber&quot;,{fulfilmentId:fulfilment.Id});
+	//alert (&apos;my result===&apos;+result);
+		if (result[0].status == &apos;S&apos;) { 
+			window.location.reload(); 
+		} else if (result[0].status == &apos;E&apos;) { 
+			alert(result[0].message);
+		} 
+	}
+} else {
+    alert(&apos;{!$Label.CEC_NoAccessForChequeProcess}&apos;);
 }</url>
     </webLinks>
     <webLinks>
@@ -2154,6 +2509,130 @@ if ({!$Permission.Debit_Card_Process}) {
 }</url>
     </webLinks>
     <webLinks>
+        <fullName>Add_E_Voucher_Details</fullName>
+        <availability>online</availability>
+        <description>CEC_CustomAdd_E_Voucher_Details button.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add E-Voucher Details</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+if ({!$Permission.CEC_E_Voucher_Process}) {
+
+    sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+
+    var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;);
+    fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;;
+    fulfilment.E_Voucher_Number__c = &apos;{!cec_Fulfilment__c.E_Voucher_Number__c}&apos;;
+    fulfilment.Date_of_Birth__c = &apos;{!cec_Fulfilment__c.Date_of_Birth__c}&apos;;
+    fulfilment.Account_Id__c = &apos;{!cec_Fulfilment__c.Account_Id__c}&apos;;
+    fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;;
+    fulfilment.Local_Identifier__c = &apos;{!cec_Fulfilment__c.Local_Identifier__c}&apos;;
+	fulfilment.PersonEmail__c = &apos;{!cec_Fulfilment__c.PersonEmail__c}&apos;;
+    fulfilment.Mailing_Address__c = &apos;{!JSENCODE(cec_Fulfilment__c.Mailing_Address__c)}&apos;;
+
+    if (fulfilment.E_Voucher_Number__c != &quot;&quot;) {
+        alert(&apos;{!$Label.CEC_E_VoucherDetails_Already_Added}&apos;);
+    } else if (fulfilment.Id == &apos;&apos; || fulfilment.Account_Id__c == &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Mailing_Address__c == &apos;&apos; || fulfilment.Local_Identifier__c == &apos;&apos; || fulfilment.Date_of_Birth__c == &apos;&apos; || fulfilment.PersonEmail__c == &apos;&apos;) {
+        alert(&apos;{!$Label.CEC_E_VoucherDetails_Input_Fields_Missing}&apos;);
+    } else {
+        var result = sforce.apex.execute(&quot;CEC_EvoucherProcess&quot;, &quot;getEvoucherNumber&quot;, {
+            fulfilmentId: fulfilment.Id
+        });
+        //alert (&apos;my result===&apos;+result);
+        if (result[0].status == &apos;S&apos;) {
+            //sforce.console.refreshSubtabById(result[0].id);
+			sforce.console.getFocusedSubtabId(refreshFulfilmentSubTab);
+        } else if (result[0].status == &apos;E&apos;) {
+            alert(result[0].message);
+        }
+    }
+} else {
+    alert(&apos;{!$Label.CEC_E_VoucherDetails_InsufficientPrivileges}&apos;);
+}
+function refreshFulfilmentSubTab(result) {
+    //Refresh Fulfilment tab
+    sforce.console.refreshSubtabById(result.id);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_Retrieval_Request</fullName>
+        <availability>online</availability>
+        <description>CEC New Retrieval Request  will create New Retrieval Request and populate Fulfilment: Retrieval Id &amp; 	Retrieval: Fulfilment Id</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add Retrieval Request</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+var fulfillmentQuery;
+if ({!$Permission.CEC_Retrieval_Process}) {
+    fulfillmentQuery = sforce.connection.query(&quot;Select Id,case__r.id,case__r.AccountId,case__r.Account.Phone,case__r.Account.PersonMobilePhone,case__r.Account.PersonOtherPhone,case__r.Account.PersonHomePhone,case__r.Account.PersonMailingCity,case__r.Account.PersonMailingCountry,case__r.Account.PersonBirthdate, case__r.Account.PersonMailingPostalCode, case__r.Account.PersonMailingState, case__r.Account.PersonMailingStreet,case__r.Account.Name,case__r.Country_Name__c,Retrieval_Id__c,isApproved__c From cec_fulfilment__c Where Id = &apos;{!cec_Fulfilment__c.Id}&apos;&quot;);
+    var retrivalRequestId;
+    var retrivalRequestName;
+    var records = fulfillmentQuery.getArray(&quot;records&quot;);
+    var fulfillmentRecord = records[0];
+    var caseRecord = fulfillmentRecord.getArray(&quot;Case__r&quot;);
+    var accountRecord = caseRecord[0].getArray(&quot;Account&quot;);
+    if (fulfillmentRecord != null &amp;&amp; caseRecord != null &amp;&amp; accountRecord != null &amp;&amp; (accountRecord[0].Phone == null &amp;&amp; accountRecord[0].PersonMobilePhone == null &amp;&amp; accountRecord[0].PersonOtherPhone == null &amp;&amp; accountRecord[0].PersonHomePhone == null)) {
+        alert(&apos;{!$Label.CEC_CaseAccountPersonPhoneMissing}&apos;);
+    } else if (fulfillmentRecord.isApproved__c == &apos;true&apos;) {
+		alert(&apos;{!$Label.CEC_ApprovedFulfilmentError}&apos;);
+	} else if (fulfillmentRecord.Retrieval_Id__c != null) {
+		alert(&apos;{!$Label.CEC_DuplicateRetrievalRequestError}&apos;);
+	}else {
+        var newRetrievelRequest = new sforce.SObject(&quot;CEC_Retrieval_Request__c&quot;);
+        newRetrievelRequest.Fulfilment_Id__c = fulfillmentRecord.Id;
+        newRetrievelRequest.Case__c = caseRecord[0].Id;
+        newRetrievelRequest.Case_Country_Name__c = caseRecord[0].Country_Name__c;
+        sforce.connection.create([newRetrievelRequest], updateFulfilment);
+    }
+} else {
+    alert(&apos;{!$Label.CEC_NoAccessForRetrievalProcess}&apos;);
+}
+function updateFulfilment(result) {
+    retrivalRequestId = result[0].id;
+	var fulfillmentProductQuery;
+	fulfillmentProductQuery = sforce.connection.query(&quot;Select Id,Retrieval_Id__c From CEC_Fulfilment_Product__c Where Fulfilment_Id__c = &apos;{!cec_Fulfilment__c.Id}&apos;&quot;);
+	var recordsFP = fulfillmentProductQuery.getArray(&quot;records&quot;);
+	var updateFP = [];
+	if (recordsFP !=null ){
+		for(var i=0;i&lt;recordsFP.length;i++){
+			var FulfilmentProduct=new sforce.SObject(&quot;CEC_Fulfilment_Product__c&quot;);
+			FulfilmentProduct.Id=recordsFP[i].Id;
+			FulfilmentProduct.Retrieval_Id__c = retrivalRequestId;
+			updateFP.push(FulfilmentProduct);
+		}
+		var result = sforce.connection.update(updateFP);	
+	}
+    var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;);
+    fulfilment.id = &apos;{!cec_Fulfilment__c.Id}&apos;;
+    fulfilment.Retrieval_Id__c = retrivalRequestId; // Update Retrieval Request Id on 
+    sforce.connection.update([fulfilment], tabOperations);
+}
+function tabOperations(result) {
+    sforce.console.getFocusedSubtabId(refreshFulfilmentSubTab);
+    sforce.console.getFocusedPrimaryTabId(openRetrievalRequestSubtab);
+}
+function refreshFulfilmentSubTab(result) {
+    sforce.console.refreshSubtabById(result.id);
+}
+function openRetrievalRequestSubtab(result) {
+    //Now that we have the primary tab ID, we can open a new subtab in it
+    var primaryTabId = result.id;
+	// Refresh the Case details
+    sforce.console.refreshPrimaryTabById(primaryTabId, false);
+    sforce.console.openSubtab(primaryTabId, &apos;/&apos; + retrivalRequestId, true, null, null);
+};</url>
+    </webLinks>
+    <webLinks>
         <fullName>New_Fulfilment</fullName>
         <availability>online</availability>
         <description>CEC_Custom New fulfilment button</description>
@@ -2170,10 +2649,10 @@ if ({!$Permission.Debit_Card_Process}) {
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
 
 var caseQuery;
-if ({!$Permission.Debit_Card_Process}) {
-    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Local_Identifier__c,Account.Debit_Card_Number__c,Account.Debit_Card_Number__r.Active__c,Account.Debit_Card_Number__r.Name,Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
+if ({!$Permission.CEC_Debit_Card_Process}) {
+    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonEmail,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Local_Identifier__c,Account.Debit_Card_Number__c,Account.Debit_Card_Number__r.Active__c,Account.Debit_Card_Number__r.Name,Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c,CEC_Product__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
 } else {
-    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
+    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonEmail,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Local_Identifier__c,  Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c,CEC_Product__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
 }
 var fulfilmentId;
 var fulfilmentName;
@@ -2213,16 +2692,20 @@ if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
 
     //This Code will default the values only if advisor has debit card Process custom permission.
     //This Code is used to default the values of DOB,Local identifier,Debit Card Number and Debit Card Status
-    if ({!$Permission.Debit_Card_Process}) {
+    if ({!$Permission.CEC_Debit_Card_Process} || {!$Permission.CEC_E_Voucher_Process} ) {
 
         if (caseRecord.Account.PersonBirthdate != null) {
             newFulfilment.Date_of_Birth__c = caseRecord.Account.PersonBirthdate;
         }
-        if (caseRecord.Account.Local_Identifier__c != null) {
-            newFulfilment.Local_Identifier__c = caseRecord.Account.Local_Identifier__c;
+        if (caseRecord.Account.PersonEmail != null) {
+            newFulfilment.PersonEmail__c = caseRecord.Account.PersonEmail;
         }
 
-        if (caseRecord.Account.Debit_Card_Number__c != null) {
+        if (caseRecord.Account.Local_Identifier__c != null) {
+            newFulfilment.Local_Identifier__c = caseRecord.Account.Local_Identifier__c;
+        }		
+
+        if (caseRecord.Account.Debit_Card_Number__c != null &amp;&amp; caseRecord.Account.Debit_Card_Number__r.Active__c != null &amp;&amp; caseRecord.Account.Debit_Card_Number__r.Name != null) {
 
             newFulfilment.Account_Card_Status__c = caseRecord.Account.Debit_Card_Number__r.Active__c;
             newFulfilment.Account_Card_Number__c = caseRecord.Account.Debit_Card_Number__r.Name;
@@ -2266,12 +2749,12 @@ if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
     } else if (result[0].status == &apos;E&apos;) {
         alert(result[0].message);
     }
-
+    
     sforce.connection.create([newFulfilment], success);
 }
 
 function success(result) {
-
+    
     fulfilmentId = result[0].id;
     fulfilmentName = result[0].Name;
     sforce.console.getFocusedPrimaryTabId(openSubtab);

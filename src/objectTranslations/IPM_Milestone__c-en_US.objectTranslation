@@ -81,6 +81,7 @@
         <name>IPM_Deputy_Project_Leader_Name__c</name>
     </fields>
     <fields>
+        <help><!-- Snapshot of Capability Due Date --></help>
         <label><!-- Due Date@Capability --></label>
         <name>IPM_Due_Date_Capability__c</name>
     </fields>
@@ -333,6 +334,10 @@
         <picklistValues>
             <masterLabel>Market Ready</masterLabel>
             <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
         </picklistValues>
     </fields>
     <fields>

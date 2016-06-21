@@ -36,7 +36,7 @@
     </fields>
     <fields>
         <help><!-- Total value in Euros being requested for this WAR --></help>
-        <label><!-- Total value in Euro being requested * --></label>
+        <label><!-- W@R total value in € being requested* --></label>
         <name>cur_Total_value_in_Euro_being_requested__c</name>
     </fields>
     <fields>
@@ -76,6 +76,10 @@
         <name>dt_LOI_Start_Date__c</name>
     </fields>
     <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
+    </fields>
+    <fields>
         <label><!-- Unilever Budget Approver Email* --></label>
         <name>eml_Unilever_Budget_Approver_Email__c</name>
     </fields>
@@ -84,12 +88,21 @@
         <name>eml_Unilever_Content_Approver_Email__c</name>
     </fields>
     <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
+    </fields>
+    <fields>
         <label><!-- PWORF Clarity ID --></label>
         <name>fml_PWORF_Clarity_ID__c</name>
     </fields>
     <fields>
         <label><!-- isValidated --></label>
         <name>isValidated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner --></label>
+        <name>lkp_Owner__c</name>
+        <relationshipLabel><!-- LOI (Owner) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- PWORF --></label>
@@ -110,8 +123,8 @@
         <label><!-- Phases Covered by W@R* --></label>
         <name>mpkl_Phases_covered_by_WAR__c</name>
         <picklistValues>
-            <masterLabel>Analyse</masterLabel>
-            <translation><!-- Analyse --></translation>
+            <masterLabel>Analyze</masterLabel>
+            <translation><!-- Analyze --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Build</masterLabel>
@@ -159,7 +172,7 @@
     </fields>
     <fields>
         <help><!-- Total number of man-days being requested for this WAR --></help>
-        <label><!-- Total number of man days requested* --></label>
+        <label><!-- W@R total number of man days requested* --></label>
         <name>num_Total_number_of_man_days_requested__c</name>
     </fields>
     <fields>

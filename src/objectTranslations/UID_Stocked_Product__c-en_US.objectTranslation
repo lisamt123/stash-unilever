@@ -33,6 +33,10 @@
         <label><!-- Stocked Product External ID --></label>
         <name>UID_Stocked_Product_External_ID__c</name>
     </fields>
+    <fields>
+        <label><!-- Summarized Invoice Ranking Flag --></label>
+        <name>UID_Summarized_Invoice_Ranking_Flag__c</name>
+    </fields>
     <layouts>
         <layout>Stocked Product Layout</layout>
         <sections>

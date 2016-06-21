@@ -28,6 +28,20 @@
         <name>Asset_Description__c</name>
     </fields>
     <fields>
+        <label><!-- Asset Line Item Score --></label>
+        <name>Asset_Line_Item_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset NFY --></label>
+        <name>Asset_NFY__c</name>
+        <relationshipLabel><!-- SWOP Campaign Assets (Asset NFY) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset PFY --></label>
+        <name>Asset_PFY__c</name>
+        <relationshipLabel><!-- SWOP Campaign Assets (Asset PFY) --></relationshipLabel>
+    </fields>
+    <fields>
         <help><!-- Please select the Asset that most meets the type of Asset required? --></help>
         <label><!-- Asset Name --></label>
         <name>Asset_Picklist__c</name>
@@ -405,6 +419,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Asset Score --></label>
+        <name>Asset_Score__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Scoring Number --></label>
         <name>Asset_Scoring_Number__c</name>
     </fields>
@@ -417,7 +435,7 @@
         <name>Asset_Total_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Asset Type --></label>
+        <label><!-- Category --></label>
         <name>Asset_Type__c</name>
         <picklistValues>
             <masterLabel>Audio Visual</masterLabel>
@@ -445,11 +463,32 @@
         <name>Asset_name__c</name>
     </fields>
     <fields>
+        <help><!-- Aggregated asset name used on Assets Table on Campaign summary. --></help>
+        <label><!-- Asset name --></label>
+        <name>Asset_summary_page_name__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Type/Subcategory --></label>
         <name>Calculator_Question__c</name>
     </fields>
     <fields>
+        <label><!-- Campaign ID --></label>
+        <name>Campaign_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign NFY --></label>
+        <name>Campaign_NFY__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign PFY --></label>
+        <name>Campaign_PFY__c</name>
+    </fields>
+    <fields>
         <label><!-- Category --></label>
+        <name>Category_Trimmed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category rt --></label>
         <name>Category__c</name>
     </fields>
     <fields>
@@ -501,6 +540,23 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Cloned Asset --></label>
+        <name>Cloned_Asset__c</name>
+        <relationshipLabel><!-- SWOP Campaign Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cloned Campaign --></label>
+        <name>Cloned_Campaign__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enforce Trigger Update --></label>
+        <name>Enforce_Trigger_Update__c</name>
+    </fields>
+    <fields>
         <help><!-- Filter on the word &quot;Score&quot; to capture full descriptions of the asset --></help>
         <label><!-- Full Description --></label>
         <name>FULL_Description__c</name>
@@ -517,6 +573,15 @@
     <fields>
         <label><!-- Option Name --></label>
         <name>Option_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Asset --></label>
+        <name>Original_Asset__c</name>
+        <relationshipLabel><!-- SWOP Campaign Assets (Original Asset) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Original Campaign --></label>
+        <name>Original_Campaign__c</name>
     </fields>
     <fields>
         <label><!-- Quantity --></label>
@@ -587,9 +652,33 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Sync Status --></label>
+        <name>Sync_Status__c</name>
+        <picklistValues>
+            <masterLabel>Sync Complete</masterLabel>
+            <translation><!-- Sync Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sync In Progress</masterLabel>
+            <translation><!-- Sync In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sync Required</masterLabel>
+            <translation><!-- Sync Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sync Step --></label>
+        <name>Sync_Step__c</name>
+    </fields>
+    <fields>
         <help><!-- When is this asset due to be delivered? --></help>
         <label><!-- Target Delivery Date --></label>
         <name>Target_Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- MDM ID --></label>
+        <name>mdm_id__c</name>
     </fields>
     <layouts>
         <layout>Agency Project Assets Layout</layout>
@@ -678,4 +767,8 @@
         <name>Stimulus_Materials_Research_requirements</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Sync in Progress. Record Locked --></errorMessage>
+        <name>Lock_Campaign_Record_if_Campaign_Sync</name>
+    </validationRules>
 </CustomObjectTranslation>

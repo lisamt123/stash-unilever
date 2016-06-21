@@ -376,38 +376,38 @@
             <controllingField>FAU_Category__c</controllingField>
             <picklistValues>
                 <fullName>eXcel-rator WL3</fullName>
-                <controllingFieldValues>Core</controllingFieldValues>
                 <default>true</default>
+                <controllingFieldValues>Core</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>HP4</fullName>
-                <controllingFieldValues>Core</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Core</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UL2020</fullName>
-                <controllingFieldValues>Core</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Core</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>eXcel-rator WL2</fullName>
-                <controllingFieldValues>Franchise</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Franchise</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>HP2</fullName>
-                <controllingFieldValues>Franchise</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Franchise</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>HP3</fullName>
-                <controllingFieldValues>Franchise</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Franchise</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
-                <controllingFieldValues>Franchise</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Franchise</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

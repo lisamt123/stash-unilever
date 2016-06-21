@@ -9,6 +9,10 @@
         <value>IPM Reporting</value>
     </caseValues>
     <fields>
+        <label><!-- Batch Size --></label>
+        <name>Batch_Size__c</name>
+    </fields>
+    <fields>
         <label><!-- Last Batch RunDate --></label>
         <name>Last_Batch_RunDate__c</name>
     </fields>

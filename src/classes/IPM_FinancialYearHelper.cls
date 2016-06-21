@@ -20,10 +20,8 @@ public with sharing class IPM_FinancialYearHelper
             'Volume_Global__c','Volume_Regional__c','Volume_Local__c',
             'Volume_Tons_Global__c','Volume_Tons_Regional__c','Volume_Tons_Local__c'
         };
-
-    private static String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
-    private static String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
+    static set<string> setInvalidFin = new set<string>();
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
     /*******************************************************************************************************************
@@ -43,9 +41,7 @@ public with sharing class IPM_FinancialYearHelper
         
         Set<String> changedFinancialFieldSet = new Set<String>();
         
-        Boolean consolidationChanged = false;  
-        Map<String,Schema.SObjectField> financialYearFieldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();
-        
+       
         for(IPM_Financial_Year__c newfinancialYear : newFinancialYearList) 
         {
             IPM_Financial_Year__c oldFinancialYear = null;
@@ -267,4 +263,232 @@ public with sharing class IPM_FinancialYearHelper
         
         return financialYearQuery;
     }
+
+    //This method is used to create market performance(6.5) and performance breakdown(6.3) data when financial years are created as part of local rollout creation.
+    public static void createMarketPerformance(Map<id,IPM_Financial_Year__c>finYearmap){
+        Map<String, IPM_Financial_Year__c> mapFinancialExternalIdwithFinancialYear = new Map<String, IPM_Financial_Year__c>();
+       
+        List<IPM_MarketPerformance__c>lstMarketPerformaceData = new List<IPM_MarketPerformance__c>();
+        IPM_MarketPerformance__c marketPerformanceData;
+        
+        List<IPM_MarketPerformanceBreakdown__c> lstPerformanceBreakdownData = new List<IPM_MarketPerformanceBreakdown__c>();
+        IPM_MarketPerformanceBreakdown__c performanceBreakdownData;
+        
+        Integer counter;
+        final String PERIOD = 'Period ';
+        final integer PERIOD_COUNT = 13;
+         
+        set<String> setFinancialExternalIds = new Set<String>();
+        for( IPM_Financial_Year__c financialYear : [SELECT Id, Year__c, Year_Type__c, PL_Type__c, Financial_External_Id__c, IPM_Financial__r.Financial_External_ID__c, 
+                                                    IPM_Financial__r.RecordType.Name, IPM_Financial__r.Regional_Project__c
+                                                    FROM IPM_Financial_Year__c
+                                                    WHERE Id IN : finYearmap.keySet()
+                                                    AND isActive__c = true 
+                                                    AND Year__c =: IPM_ConstantUtils.Y1_YEARINDEX
+                                                    AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_GROSS
+                                                    AND IPM_Financial__r.RecordType.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT])
+                                                    //AND IPM_Financial__r.Regional_Project__c!=null ])
+        {
+                mapFinancialExternalIdwithFinancialYear.put(financialYear.Financial_External_Id__c, financialYear);
+                setFinancialExternalIds.add(financialYear.IPM_Financial__r.Financial_External_ID__c);
+        }
+        for(IPM_Project_Rollout__c projectRollout : [Select Id, MCO_Name__c, IPM_Rollout_Project__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c IN : setFinancialExternalIds  limit 1000]){
+                marketPerformanceData = new IPM_MarketPerformance__c();
+                marketPerformanceData.IPMFinancialYear__c = mapFinancialExternalIdwithFinancialYear.get(projectRollout.IPM_Rollout_Project__c).Id;
+                marketPerformanceData.IPMProjectRollout__c = projectRollout.Id;
+                marketPerformanceData.External_Id__c = mapFinancialExternalIdwithFinancialYear.get(projectRollout.IPM_Rollout_Project__c).Financial_External_Id__c;
+                lstMarketPerformaceData.add(marketPerformanceData);
+        }
+        
+	    if(!lstMarketPerformaceData.isEmpty()){    
+	        insert lstMarketPerformaceData;
+                
+	        for(IPM_MarketPerformance__c marketPerformance : [Select Id, External_Id__c from IPM_MarketPerformance__c 
+	                                                                                              where Id IN : (new Map<Id, IPM_MarketPerformance__c>( lstMarketPerformaceData)).keySet()])
+	        {
+	            for(counter=1;counter<=PERIOD_COUNT;counter++){
+	                performanceBreakdownData = new IPM_MarketPerformanceBreakdown__c();
+	                performanceBreakdownData.MarketPerformance__c = marketperformance.Id;
+	                performanceBreakdownData.External_Id__c = marketperformance.External_Id__c + IPM_ConstantUtils.IPM_SPACE + PERIOD + counter;
+	                performanceBreakdownData.Period__c = PERIOD+counter;
+	                performanceBreakdownData.Sequence__c = counter;
+	                lstPerformanceBreakdownData.add(performanceBreakdownData);
+	            }
+	        }
+	        if(!lstPerformanceBreakdownData.isEmpty())
+	            insert lstPerformanceBreakdownData;
+	    }
+        
+        
+    }
+	
+	 /**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for consolidation and updating the  
+    *                               the financial action standard records.
+    * @param mapNewFinancialYears   New Financial Year record
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+    public static void updateGlobalFinancialActionStandards(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
+		try{
+			List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
+			List<IPM_Financial_Action_Standards__c> updateFinActionStdsList=new List<IPM_Financial_Action_Standards__c>();
+			Set<Id> projectIds=new Set<Id>();
+			for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
+				if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
+					newFinYearList.add(newFinYear);
+					projectIds.add(newFinYear.Global_Project_Id__c);
+				}
+			}
+			for(IPM_Financial_Action_Standards__c finActionStd:[SELECT Id,IPM_Project_Span__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,
+																	   IPM_Innov_Value_Share_Action_Charter__c,IPM_iTo_Action_Standard_Charter__c,IPM_Project__c FROM IPM_Financial_Action_Standards__c
+																WHERE IPM_Project__c In:projectIds]){
+				for(IPM_Financial_Year__c finYear:newFinYearList){
+					if(finActionStd.IPM_Financial_Year_Y1_Gross__c==finYear.Id){
+						finActionStd.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+						finActionStd.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+						finActionStd.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
+					}
+					else if(finActionStd.IPM_Financial_Year_Y1_Incremental__c==finYear.Id){
+						finActionStd.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+						finActionStd.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+					}
+				}
+				updateFinActionStdsList.add(finActionStd);
+			}
+			if(updateFinActionStdsList!=null && !updateFinActionStdsList.isEmpty()){
+				update updateFinActionStdsList;
+			}
+		}
+		catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+				UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+		}
+	}	
+	/**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for hard validation check                    the financial action standard records.
+    * @param setFinExtId            set of Financial records to be validated
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+    public static void validateDefaultFinancial(set<string> setFinExtId){
+        try{
+            string DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
+            map<string, IPM_Financial_Year__c> mapExtIdFinYear = new map<string, IPM_Financial_Year__c>();
+            //set<string> setInvalidFin = new set<string>();
+            set<string> setGlobalProjExtIds = new set<string>();
+            set<string> setRegionalOrigProjIds = new set<string>();
+            map<string, IPM_Project__c> mapProj = new map<string, IPM_Project__c>();
+            
+            set<string> setAllFinacials = new set<string>(); //Set to store all Financial External Ids.
+            
+            //Get all Financial Year records for the related Financial records
+            for(IPM_Financial_Year__c finYr :[select id, Name,Turnover_Global__c, Turnover_Regional__c, Turnover_Local__c, Financial_External_ID__c, External_Id__c, IPM_Financial__r.Global_External_Id__c, IPM_Financial__r.Regional_Project__c, IPM_Financial__r.Local_Project__c, IPM_Financial__r.Financial_External_ID__c from IPM_Financial_Year__c where Financial_External_ID__c in : setFinExtId AND IPM_Financial__r.RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE and Name!= :IPM_ConstantUtils.Y0_LABEL and isActive__c = TRUE and IPM_Financial__r.isActive__c = TRUE  LIMIT 50000]){
+                mapExtIdFinYear.put(finYr.External_Id__c, finYr);
+		setAllFinacials.add(finYr.IPM_Financial__r.Financial_External_ID__c);
+				
+                //Global Original Project's financial
+                if(finYr.IPM_Financial__r.Global_External_Id__c!=null){
+                    setGlobalProjExtIds.add(finYr.IPM_Financial__r.Global_External_Id__c);
+                }
+                //Regional Original Project's financial
+                else if(finYr.IPM_Financial__r.Regional_Project__c!= null){
+                    setRegionalOrigProjIds.add(finYr.IPM_Financial__r.Regional_Project__c);  
+                }   
+            }
+            //Get phase & type of all original Projects
+            if(!setGlobalProjExtIds.isEmpty() || !setRegionalOrigProjIds.isEmpty()){
+                for(IPM_Project__c proj :[select id, Name, IPM_Phase__c, IPM_Project_Type__c from IPM_Project__c where Name in:setGlobalProjExtIds or id in :setRegionalOrigProjIds LIMIT 50000]){
+                    mapProj.put(proj.id, proj);
+                    mapProj.put(proj.Name, proj);                       
+                }   
+            }
+            
+            //Loop through all Financial Year records and get all invalid Parent Financials
+            if(!mapExtIdFinYear.isEmpty()){
+                
+                getInvalidParentFinancialsGlobal(mapExtIdFinYear, mapProj);
+            	getInvalidParentFinancialsRegional(mapExtIdFinYear, mapProj);
+            	getInvalidParentFinancialsLocal(mapExtIdFinYear, mapProj);
+            
+                //Update Financials
+                list<IPM_Financial__c> lstInvalidFinance = new list<IPM_Financial__c>();
+                if(!setAllFinacials.isEmpty()){
+                    for(string finExtId :setAllFinacials){
+                        if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId)){
+                            lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalid__c = true));
+                        }
+                        else{
+                            lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalid__c = false));   
+                        }
+                    }   
+                }
+                //Upsert Financial Validation flag
+                if(!lstInvalidFinance .isEmpty()){
+                    upsert lstInvalidFinance Financial_External_ID__c;
+                }
+            }
+        }
+        catch(Exception ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                'validateDefaultFinancial',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
+    
+    //For Global Projects' Financials
+    static void getInvalidParentFinancialsGlobal(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj)
+    {
+    		for(string finExtId: mapExtIdFinYear.keySet())
+    		{
+                        
+                //For Global Projects' Financials
+                if(finExtId.endsWithIgnoreCase(IPM_ConstantUtils.PL_TYPE_GROSS) && mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c!=null){
+                    //For Operational Projects
+                    if(mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c).IPM_Project_Type__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
+                        if(mapExtIdFinYear.get(finExtId).Turnover_Global__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Global__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Global__c)){
+                            setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
+                        }
+                    }
+                    // For Renovation/Innovation Projects: Check if Project phase is Ideas
+                    else if(mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c)!=null && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c).IPM_Phase__c.equalsIgnoreCase(IPM_ConstantUtils.PHASE_IDEAS) && (mapExtIdFinYear.get(finExtId).Turnover_Global__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Global__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Global__c))){
+                        setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);      
+                    }
+                }
+    		}
+    }
+    
+    //For Regional Projects' Financials
+    static void getInvalidParentFinancialsRegional(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj)
+    {
+    		for(string finExtId: mapExtIdFinYear.keySet())
+    		{
+                        
+               if(finExtId.endsWithIgnoreCase(IPM_ConstantUtils.PL_TYPE_GROSS) && mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c!= null){
+                            //For Operational Projects
+                            if(mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c).IPM_Project_Type__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
+                                if(mapExtIdFinYear.get(finExtId).Turnover_Regional__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Regional__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Regional__c)){
+                                    setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
+                                }
+                            }
+                            //For Regional Original/Rollouts : Non-Key Financial year records
+                            else if(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c.endsWithIgnoreCase(IPM_ConstantUtils.FINANCIAL_NONKEY ) && mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c)!=null && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c).IPM_Phase__c.equalsIgnoreCase(IPM_ConstantUtils.PHASE_IDEAS) && (mapExtIdFinYear.get(finExtId).Turnover_Regional__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Regional__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Regional__c))){
+                                setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
+                            }
+                            //For Regional Original/Rollouts : Key Financial year records
+                            else if(!mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c.endsWithIgnoreCase(IPM_ConstantUtils.FINANCIAL_NONKEY ) && (mapExtIdFinYear.get(finExtId).Turnover_Regional__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Regional__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Regional__c))){
+                                setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                            }
+               }
+    		}
+    }
+    
+    //For Local Projects' Financials
+    static void getInvalidParentFinancialsLocal(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj)
+    {
+    		for(string finExtId: mapExtIdFinYear.keySet())
+    		{
+               if(finExtId.endsWithIgnoreCase(IPM_ConstantUtils.PL_TYPE_GROSS) && mapExtIdFinYear.get(finExtId).IPM_Financial__r.Local_Project__c!= null && (mapExtIdFinYear.get(finExtId).Turnover_Local__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Local__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Local__c))){
+                            setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+               }         
+    		}
+    }
+    
 }

@@ -129,6 +129,10 @@
         <name>eml_HLE_PB_Email__c</name>
     </fields>
     <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
+    </fields>
+    <fields>
         <label><!-- Email* --></label>
         <name>eml_UBPR_Email__c</name>
     </fields>
@@ -141,13 +145,22 @@
         <name>eml_Unilever_project_manager_Email__c</name>
     </fields>
     <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
+    </fields>
+    <fields>
         <label><!-- isValidated --></label>
         <name>isValidated__c</name>
     </fields>
     <fields>
+        <label><!-- Owner --></label>
+        <name>lkp_Owner__c</name>
+        <relationshipLabel><!-- HLE Request (Owner) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Unilever project manager --></label>
         <name>lkp_Unilever_project_manager__c</name>
-        <relationshipLabel><!-- HLE Request --></relationshipLabel>
+        <relationshipLabel><!-- HLE Request (Unilever project manager) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- If yes, what is the source? --></label>

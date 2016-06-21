@@ -924,143 +924,143 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
             <controllingField>Placement__c</controllingField>
             <picklistValues>
                 <fullName>3D Highlighter</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>A Board (Snap Frame Board)</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Adjustable Tray</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Awareness</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Banner</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Basket Organiser</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Beacon Branding</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Beauty Advisor Counter</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Beauty Bay Double</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Beauty Bay Single</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Belt Divider</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Billboard</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Blitz / Bulk</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Branding Exterior System</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Branding Sign</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Branding Tape</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Branding Totem</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bunting</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bus Stop</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cabinet Frame Decal</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cabinet Management Frame</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Checkout/Tillpoint</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cigar Case</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cladding</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Clip-strip</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Coffin Fridge</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cooler</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Counter</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Counter Top</fullName>
@@ -1072,503 +1072,503 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
             </picklistValues>
             <picklistValues>
                 <fullName>Cross Category</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cross Merchandising</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Crowner Clipon</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Demonstration</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Demo Stand</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Double Impulse Strips</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Education</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Elevator</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Entrance Arch</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Floor Stand</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Frame</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Frame Decals</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Freestanding</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Freezer</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>FSU</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>FSU for Sachets</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>FSU - Universal Display WE</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Full Category Chest</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Full Category Upright</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Full Shelf Unit</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Game</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Glorifier</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Glorifier / Tester</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Gondola End</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Gravity Feed (Primary)</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Gravity Feed (Secondary)</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hanger</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hanging Banner</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Header</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Header + Base</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hotspot</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Impulse Strip</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Impulse Strip Cages</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Info Panel</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Innovation</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Internal Signals</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>In the Run</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Island Module</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kits of Parts</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Micro Style Bar</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mini Entrance Signage</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mobile</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Multi Function Counter Top</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Multi Function Tray</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Multiple Impulse Strips</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>On Shelf Combination</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Outer Clip</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pallet Display</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Parasite / Cross Merchandising</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Parasite / Glorifier</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pavement Board</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>PC Display</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>PC Display for Sachets</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>PDQ</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Plug-In Unit</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pop up</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Poster</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Poster Board</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Power Wing</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Primary Shelf</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Primary Shelf Dress-Up</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Promotion</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pusher</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Retractable Device</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sachet Display</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sachet Hanger</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sample Pack with Hook</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Scalable Exterior Branding Sign</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Secondary Display Freezer</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Secondary Placement</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Security sensor cladding</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Security Unit</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shelf</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shelf Atmosphere</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shelf Front / Tray</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shelf Ready Packaging</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shelf Stopper / Shelf Talker</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shelf Talker</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shipper</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shopping Basket</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Signage</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Standee</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sticker</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Style Bar</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sub Category Header</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Swing Rack</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tester</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tester Table</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Theatre</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Top Shelf / Hotspot</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total Visibility</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Totem</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tray</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Trolley Talker</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vertical Movement Challenge</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Wall Mounted</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Wall Unit</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Window Display</fullName>
-                <controllingFieldValues>Secondary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Secondary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Wing</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Wobbler</fullName>
-                <controllingFieldValues>Primary</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Primary</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

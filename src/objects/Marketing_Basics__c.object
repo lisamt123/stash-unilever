@@ -18,9 +18,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -32,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -58,7 +54,7 @@ Renamed to Other SOW items in reviews</description>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -97,11 +93,23 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Brand Technical &amp;/or Infrastructure Reviews</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -113,11 +121,11 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -128,11 +136,46 @@ Renamed to Other SOW items in reviews</description>
                 <fullName>USLP</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL))</formula>
+        <label>Activity Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Fee_UL__c</fullName>
+        <description>For use in the Unilever Non Campaign report, to hide values from the field if the record type is not &apos;Activity&apos;</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL)</formula>
+        <label>Activity Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Agency_Department__c</fullName>
@@ -200,9 +243,10 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <description>Field was not being used, so has been relabelled for use in Non Campaign table</description>
         <externalId>false</externalId>
         <inlineHelpText>Please enter a full description of the Tasks / Activities required</inlineHelpText>
-        <label>Description</label>
+        <label>Other Info</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -219,6 +263,18 @@ Renamed to Other SOW items in reviews</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FTE_report__c</fullName>
+        <description>For use in non campaign reports only</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, TEXT(No_of_Hours_Required__c)+&quot;%&quot;)</formula>
+        <label>FTE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Financial_Year__c</fullName>
@@ -288,14 +344,58 @@ Renamed to Other SOW items in reviews</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Hourly_Rate_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL , Hourly_Rate_or_FTE__c)</formula>
+        <label>Hourly Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Hourly_Rate_or_FTE__c</fullName>
+        <description>Field for storing actual hourly rate or FTE (not calculated from &quot;Total Amount&quot; divided by &quot;Hours required&quot;) from Calculator Role Rate record.</description>
+        <externalId>false</externalId>
+        <label>Hourly Rate or FTE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Hours_Required_Activity__c</fullName>
+        <description>Used in Non Campaign reports in order to exclude the field value from any records that are of type dedicated resource, since they should have a value for FTE not no of hours</description>
+        <externalId>false</externalId>
+        <formula>IF(RecordType.DeveloperName = &quot;Activity&quot;,  No_of_Hours_Required__c   , NULL)</formula>
+        <label>No of Hours Required</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>No_of_Hours_Required__c</fullName>
         <description>The No of hours to complete these</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the number or hours this activity is estimated to take.</inlineHelpText>
         <label>No of Hours Required</label>
-        <precision>4</precision>
+        <precision>6</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -327,8 +427,9 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>OblixOtherItemFee__c</fullName>
+        <description>Relabelled from &apos;Other Item Fee&apos; to &apos;Activity Fee&apos; as per request from Liliya in order to show correct headings in Non-Campaign reports</description>
         <externalId>false</externalId>
-        <label>Other Item Fee</label>
+        <label>Activity Fee</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -338,10 +439,11 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>Oblix_FTE_Real_Price__c</fullName>
+        <description>Field label changed from &apos;FTE Real Price&apos; to &apos;Resource Fee&apos; so that the correctly worded label show in SWOP reporting</description>
         <externalId>false</externalId>
         <formula>FTE__c *  OblixOtherItemFee__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FTE Real Price</label>
+        <label>Resource Fee</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -354,8 +456,11 @@ Renamed to Other SOW items in reviews</description>
         <externalId>false</externalId>
         <formula>IF(
     No_of_Hours_Required__c = 0, 
-    0, 
-    OblixOtherItemFee__c /  No_of_Hours_Required__c
+    0,
+    IF( RecordType.DeveloperName == &apos;Activity&apos;,
+        OblixOtherItemFee__c /  No_of_Hours_Required__c,
+        Hourly_Rate_or_FTE__c
+    )    
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Hourly Rate</label>
@@ -397,6 +502,37 @@ Renamed to Other SOW items in reviews</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL,OblixOtherItemFee__c ))</formula>
+        <label>Resource Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Fee_UL__c</fullName>
+        <description>For use in Unilever user Non Campaign report. Shows the Resource Fee for a Dedicated Resource</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, OblixOtherItemFee__c )</formula>
+        <label>Resource Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Role_Title__c</fullName>
@@ -919,7 +1055,7 @@ Renamed to Other SOW items in reviews</description>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Resource Name</label>
+        <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
@@ -957,6 +1093,10 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Brand Technical %26%2For Infrastructure Reviews</fullName>
                 <default>false</default>
             </values>
@@ -965,7 +1105,15 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -981,7 +1129,11 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1591,7 +1743,19 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Other</fullName>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

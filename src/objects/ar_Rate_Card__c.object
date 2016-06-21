@@ -1447,138 +1447,138 @@
             <controllingField>Role_Type__c</controllingField>
             <picklistValues>
                 <fullName>Principal/Board member</fullName>
-                <controllingFieldValues>Client Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Client Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>New Business Director</fullName>
-                <controllingFieldValues>Client Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Client Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Client Services Director</fullName>
-                <controllingFieldValues>Client Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Client Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Client Services Manager</fullName>
-                <controllingFieldValues>Client Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Client Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Client Services Assistant</fullName>
-                <controllingFieldValues>Client Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Client Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Creative Director</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Senior Designer</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Designer</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Junior Designer</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mac Operator / Artworker</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Production Manager</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Production Assistant</fullName>
-                <controllingFieldValues>Creative Services</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Creative Services</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Designer (POS)</fullName>
-                <controllingFieldValues>POS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>POS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Creative Director (3D)</fullName>
-                <controllingFieldValues>Specialists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Specialists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Senior Designer (3D)</fullName>
-                <controllingFieldValues>Specialists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Specialists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Designer (3D)</fullName>
-                <controllingFieldValues>Specialists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Specialists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Junior Designer (3D)</fullName>
-                <controllingFieldValues>Specialists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Specialists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Prototype Engineer</fullName>
-                <controllingFieldValues>Specialists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Specialists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Semiotician</fullName>
-                <controllingFieldValues>Strategists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Strategists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Copywriter</fullName>
-                <controllingFieldValues>Strategists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Strategists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Art Director</fullName>
-                <controllingFieldValues>Strategists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Strategists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Art Buyer</fullName>
-                <controllingFieldValues>Strategists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Strategists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Proof Reader</fullName>
-                <controllingFieldValues>Strategists</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Strategists</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Strategy Director</fullName>
-                <controllingFieldValues>Structural</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Structural</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Senior Strategist</fullName>
-                <controllingFieldValues>Structural</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Structural</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Strategist</fullName>
-                <controllingFieldValues>Structural</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Structural</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Junior Strategist</fullName>
-                <controllingFieldValues>Structural</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Structural</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

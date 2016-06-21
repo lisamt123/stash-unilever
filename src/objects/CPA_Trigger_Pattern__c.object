@@ -6,7 +6,9 @@
     <fields>
         <fullName>chk_Check_Run__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>This filed is used to run trigger</description>
         <externalId>false</externalId>
+        <inlineHelpText>This filed is used to run trigger</inlineHelpText>
         <label>Check Run</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

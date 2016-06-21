@@ -114,6 +114,40 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>fml_Resubmitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>PWORF_ID__r.dat_Resubmitted_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Resubmitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>fml_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(PWORF_ID__r.pkl_Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>PWORF_ID__r.dat_Submitted_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>num_PWORF_Age__c</fullName>
         <description>to hold the Pworf Age till last withhold or Answer status.</description>
         <externalId>false</externalId>
@@ -155,7 +189,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_CPA_PWORF_Ageing</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

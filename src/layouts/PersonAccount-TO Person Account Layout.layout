@@ -45,6 +45,10 @@
                 <behavior>Edit</behavior>
                 <field>Phone_No_Special_Char__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

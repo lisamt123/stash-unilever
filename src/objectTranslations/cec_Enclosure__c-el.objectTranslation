@@ -60,6 +60,10 @@
             <translation><!-- Argentina --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Austria</masterLabel>
             <translation><!-- Austria --></translation>
         </picklistValues>
@@ -160,6 +164,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Ireland</masterLabel>
             <translation><!-- Ireland --></translation>
         </picklistValues>
@@ -200,6 +208,10 @@
             <translation><!-- Netherlands --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Nicaragua</masterLabel>
             <translation><!-- Nicaragua --></translation>
         </picklistValues>
@@ -218,6 +230,10 @@
         <picklistValues>
             <masterLabel>Peru</masterLabel>
             <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -242,6 +258,10 @@
         <picklistValues>
             <masterLabel>Slovenia</masterLabel>
             <translation><!-- Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Spain</masterLabel>

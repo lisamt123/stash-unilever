@@ -1,3 +1,3 @@
 <apex:page showHeader="true" sidebar="true" action="{!redirectToSwop}" standardController="Marketing_SOW__c" extensions="Oblix_SWOPredirectController" >
-	<h3>redirecting to SWOP application ...</h3>
+	<apex:detail />
 </apex:page>

@@ -843,7 +843,7 @@ public class IPM_TestFactory_Helper
         
         List<IPM_Project__c> testIPMProjList = new List<IPM_Project__c>();
         for(Integer i = 1; i <= listSize; i++){ 
-            Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + scope + i,
+            Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_OP_COMMENTS + scope + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>scope , 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => scope +' Company Card',
@@ -1970,6 +1970,12 @@ public class IPM_TestFactory_Helper
         
         insert documentTemplateList; 
         
+        // Create milestone custom setting data for Market Ready .This is used to set milestone  due date to blank for specified number of days .         
+        IPM_Blank_MrktRdyDueDate__c mrktReadyAutoPop = new IPM_Blank_MrktRdyDueDate__c();
+        mrktReadyAutoPop.name='NumberOfDays';
+        mrktReadyAutoPop.No_Of_Days__c=0;
+        insert mrktReadyAutoPop; 
+        
         
         // Create Master Project For sharing to work for master tasks and milestones.
         Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => HOUSEHOLDCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal};
@@ -2206,11 +2212,12 @@ public class IPM_TestFactory_Helper
 	* @description Create reporting custom setting records
 	**************************************************************************************************/
     
-    public static IPM_Reporting__c createIPMReportingCustomSetting() {
+    public static IPM_Reporting__c createIPMReportingCustomSetting(String strName, Boolean doInsert) {
         
-        IPM_Reporting__c RP = new IPM_Reporting__c(Name='BD BB Report', Last_Batch_RunDate__c= System.now(), Y1__c = 1, Y2__c=2, Y3__c=3, Y4__c=4, Y5__c=5, Y_1__c = -1, Y_2__c=-2, Y_3__c=-3);  
-        
-        insert RP;
+        IPM_Reporting__c RP = new IPM_Reporting__c(Name = strName, Last_Batch_RunDate__c= System.now(), Y1__c = 1, Y2__c=2, Y3__c=3, Y4__c=4, Y5__c=5, Y_1__c = -1, Y_2__c=-2, Y_3__c=-3);  
+        if(doInsert){
+        	insert RP;
+        }
         return RP;
     } 
     

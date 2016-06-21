@@ -298,7 +298,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_CPA_Commercial_Details</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

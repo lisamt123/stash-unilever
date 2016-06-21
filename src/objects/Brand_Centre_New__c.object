@@ -299,43 +299,43 @@ Draft or Published.</inlineHelpText>
             <controllingField>Category__c</controllingField>
             <picklistValues>
                 <fullName>Beverages</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deo</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dressings</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hair</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deo, Hair, Skin Care &amp; Cleansing</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Household Care</fullName>
-                <controllingFieldValues>Homecare</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Homecare</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ice Cream</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Laundry</fullName>
-                <controllingFieldValues>Homecare</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Homecare</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton</fullName>
@@ -343,33 +343,33 @@ Draft or Published.</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Oral Care</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Savoury</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Care</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spreads</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Cleansing</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Care &amp; Cleansing</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

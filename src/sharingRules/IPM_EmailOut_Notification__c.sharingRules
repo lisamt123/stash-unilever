@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>IPM_EmailOut_Notification_SharingRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>IPM EmailOut Notification SharingRule</label>
+        <sharedTo>
+            <group>IPM_All_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Project_Name__c</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

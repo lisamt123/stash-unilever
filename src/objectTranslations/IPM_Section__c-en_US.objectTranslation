@@ -66,6 +66,10 @@
         <name>IPM_Has_Appendix__c</name>
     </fields>
     <fields>
+        <label><!-- Default Section --></label>
+        <name>IPM_IS_Default_Section__c</name>
+    </fields>
+    <fields>
         <label><!-- Negotiable? --></label>
         <name>IPM_Negotiable__c</name>
     </fields>

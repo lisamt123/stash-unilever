@@ -3,6 +3,9 @@
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>CEC Brazil Planitox Queue</name>
     <queueSobject>
+        <sobjectType>CEC_Factory_Details__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>Case</sobjectType>
     </queueSobject>
 </Queue>

@@ -100,11 +100,15 @@
                 <behavior>Edit</behavior>
                 <field>Related_CRs__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -297,10 +301,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Business_Process_Area_del__c</fields>
         <fields>High_Level_Description_del__c</fields>
-        <fields>OWNER.FIRST_NAME</fields>
-        <fields>OWNER.LAST_NAME</fields>
         <fields>Requirement_Type_del__c</fields>
+        <fields>New_or_changed_requirement_del__c</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -312,6 +316,8 @@
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
         <relatedList>CPA_User_Defined_Attribute__c.lkp_PWORF__c</relatedList>
@@ -353,7 +359,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000RT4u</masterLabel>
+        <masterLabel>00h56000000IvQI</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -1,7 +1,7 @@
 @isTest
 private class Oblix_Utils_Test {
 
-	@isTest(seeAllData=true) 
+	//@isTest(seeAllData=true) 
 	static void shouldMapRecordType(){
 		User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
@@ -12,16 +12,6 @@ private class Oblix_Utils_Test {
         }
 	}
 	
-	@isTest 
-	static void shouldGetlstSubCat(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            List<String> result = Oblix_Utils.getlstSubCat();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}
 	
 	@isTest 
 	static void shouldGetAllFieldsInFieldsSet(){
@@ -32,109 +22,8 @@ private class Oblix_Utils_Test {
             Test.stopTest();
             System.assert(!result.isEmpty());
         }
-	}
-	
-	@isTest 
-	static void shouldLstSubCatPerRecT(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            List<String> result = Oblix_Utils.lstSubCatPerRecT(Label.Oblix_Lbl_UIUX_AudioVisuel);
-            System.assert(!result.isEmpty());
-            List<String> result2 = Oblix_Utils.lstSubCatPerRecT(Label.Oblix_Lbl_UIUX_Digital);
-            System.assert(!result2.isEmpty());
-            List<String> result3 = Oblix_Utils.lstSubCatPerRecT(Label.Oblix_Lbl_UIUX_Experiential);
-            System.assert(!result3.isEmpty());
-            List<String> result4 = Oblix_Utils.lstSubCatPerRecT(Label.Oblix_Lbl_UIUX_Static_Img);
-            System.assert(!result4.isEmpty());
-            List<String> result5 = Oblix_Utils.lstSubCatPerRecT(Label.Oblix_Lbl_UIUX_Stimulus_Materials);
-            System.assert(!result5.isEmpty());
-            
-            
-            
-            Test.stopTest();
-        }
-	}
-	
-	@isTest 
-	static void shouldGetStageList(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            List<String> result = Oblix_Utils.getStageList();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}
-	
-	@isTest 
-	static void shouldGetMapSubCategOption(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            map<string, list<string>> result = Oblix_Utils.getMapSubCategOption();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}
-	
-	@isTest 
-	static void shouldGetmapSubCategOptionDescription(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            map<string, string> result = Oblix_Utils.getmapSubCategOptionDescription();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
 	}	
-	
-	@isTest 
-	static void shouldGetmapSubCategOptionDefinition(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            map<string, string> result = Oblix_Utils.getmapSubCategOptionDefinition();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}	
-	
-	@isTest 
-	static void shouldGetProjectedItems2(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-        	list<string> stages = Oblix_Utils.getStageList();
-            Test.startTest();
-            String result = Oblix_Utils.getProjectedItems2(stages.get(0));
-            Test.stopTest();
-            System.assert(result.length()>1);
-        }
-	}	
-	
-	@isTest 
-	static void shouldGetCompletedItems2(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-        	list<string> stages = Oblix_Utils.getStageList();
-            Test.startTest();
-            String result = Oblix_Utils.getCompletedItems2(stages.get(0));
-            Test.stopTest();
-            System.assert(result.length()>1);
-        }
-	}	
-	
-	@isTest 
-	static void shouldGetSelectedStageCheckbox(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-        	list<string> stages = Oblix_Utils.getStageList();
-            Test.startTest();
-            String result = Oblix_Utils.getSelectedStageCheckbox(stages.get(0),stages.get(1));
-            Test.stopTest();
-            System.assert(result.length()>1);
-        }
-	}	
+		
 	
 	@isTest 
 	static void shouldGetAbreViationByRTBySubCatgForCardAssets(){
@@ -159,29 +48,6 @@ private class Oblix_Utils_Test {
 	}	
 	
 	@isTest 
-	static void shouldGetMapRecordTypeDescription(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            map<string, string> result = Oblix_Utils.getMapRecordTypeDescription();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}	
-	
-	@isTest 
-	static void shouldGetFeePercentages(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            list<string> lstStage = new list<String>{'1','2','3','4','5'};
-            map<string, integer> result = Oblix_Utils.getFeePercentages(lstStage);
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}	
-	
-	@isTest 
 	static void shouldCountrryGetId(){
 		User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
@@ -192,18 +58,7 @@ private class Oblix_Utils_Test {
             Test.stopTest();
             System.assertEquals(g.Id,result);
         }
-	}	
-	
-	@isTest 
-	static void shouldGetMapRTforSubCat(){
-		User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            map<string, string> result = Oblix_Utils.getMapRTforSubCat();
-            Test.stopTest();
-            System.assert(!result.isEmpty());
-        }
-	}	
+	}		
 	
 	@isTest 
 	static void shouldSelectOptionSortByLabel(){

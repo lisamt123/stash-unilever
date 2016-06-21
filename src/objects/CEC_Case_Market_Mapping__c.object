@@ -133,6 +133,45 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Cheque_Decimals__c</fullName>
+        <externalId>false</externalId>
+        <label>Cheque Decimals</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Display as text</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Display as fraction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Company_Address__c</fullName>
+        <description>CEC: To capture the company address of the company.Used in retrieval report</description>
+        <externalId>false</externalId>
+        <label>Company Address</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Phone__c</fullName>
+        <description>CEC: To capture the company phone number</description>
+        <externalId>false</externalId>
+        <label>Company Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
         <fullName>Country__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: contains the country value which will be used in webtocase scenario by integration team</description>
@@ -177,6 +216,15 @@
         <trackTrending>false</trackTrending>
         <type>Email</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Enable_Skill_Routing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC Enable Skill Routing</description>
+        <externalId>false</externalId>
+        <label>Enable Skill Routing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Language__c</fullName>
@@ -304,6 +352,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_Factory_Email_Template__c</fullName>
+        <description>Contains the email template name for product factory of the country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces</inlineHelpText>
+        <label>Product Factory Email Template</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Tag__c</fullName>
         <description>TO: Picklist to differentiate between CEC and George Case Market Mapping</description>
         <externalId>false</externalId>
@@ -322,6 +382,18 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>Textile_Factory_Email_Template__c</fullName>
+        <description>Contains textile factory email template for the country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces</inlineHelpText>
+        <label>Textile Factory Email Template</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Case Market Mapping</label>
     <listViews>
         <fullName>All</fullName>
@@ -339,6 +411,15 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Baltics_Queue_CEC_Case_Market_Mapping</fullName>
@@ -458,6 +539,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
@@ -507,6 +597,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Philippines_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
@@ -522,6 +621,28 @@
         <queue>CEC_Portugal_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Food_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Food Queue</label>
+        <queue>CEC_South_Africa_Food_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Home and Personal Queue</label>
+        <language>en_US</language>
+        <queue>CEC_South_Africa_Home_and_Personal_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Africa</role>
+            <role>CEC_User_South_Africa</role>
         </sharedTo>
     </listViews>
     <listViews>

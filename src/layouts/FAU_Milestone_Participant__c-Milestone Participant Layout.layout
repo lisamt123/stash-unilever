@@ -27,6 +27,10 @@
                 <behavior>Readonly</behavior>
                 <field>FAU_Front_End_Link__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

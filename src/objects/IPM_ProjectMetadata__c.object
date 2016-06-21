@@ -34,6 +34,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Applicable_Gate__c</fullName>
+        <description>All gates which are applicable for the project i.e. Contract, Charter, Market Ready</description>
+        <externalId>false</externalId>
+        <label>Applicable Gates</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Applicable_Phases__c</fullName>
         <description>All phases which are applicable for the project i.e. Ideas,Feasibility,Capability,Market Ready,PLE</description>
         <externalId>false</externalId>

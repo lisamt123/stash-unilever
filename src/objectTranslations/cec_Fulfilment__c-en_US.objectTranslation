@@ -76,6 +76,10 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Cheque Decimals --></label>
+        <name>Cheque_Decimals__c</name>
+    </fields>
+    <fields>
         <label>Check Number</label>
         <name>Cheque_Number__c</name>
     </fields>
@@ -88,6 +92,38 @@
         <name>Cheque_Voided__c</name>
     </fields>
     <fields>
+        <label><!-- Consumer Document Number --></label>
+        <name>Consumer_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Document Type --></label>
+        <name>Consumer_Document_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer First Name --></label>
+        <name>Consumer_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Home Phone Number --></label>
+        <name>Consumer_Home_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Last Name --></label>
+        <name>Consumer_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Mobile Phone Number --></label>
+        <name>Consumer_Mobile_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Other Phone Number --></label>
+        <name>Consumer_Other_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Phone Number --></label>
+        <name>Consumer_Phone_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Country &amp; BrandLogo --></label>
         <name>Country_BrandLogo__c</name>
     </fields>
@@ -97,6 +133,10 @@
         <picklistValues>
             <masterLabel>Argentina</masterLabel>
             <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Austria</masterLabel>
@@ -199,6 +239,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Ireland</masterLabel>
             <translation><!-- Ireland --></translation>
         </picklistValues>
@@ -239,6 +283,10 @@
             <translation><!-- Netherlands --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Nicaragua</masterLabel>
             <translation><!-- Nicaragua --></translation>
         </picklistValues>
@@ -257,6 +305,10 @@
         <picklistValues>
             <masterLabel>Peru</masterLabel>
             <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -281,6 +333,10 @@
         <picklistValues>
             <masterLabel>Slovenia</masterLabel>
             <translation><!-- Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Spain</masterLabel>
@@ -320,6 +376,10 @@
         <name>Currency_Text__c</name>
     </fields>
     <fields>
+        <label><!-- Date Approved --></label>
+        <name>Date_Approved__c</name>
+    </fields>
+    <fields>
         <label><!-- Date of Birth --></label>
         <name>Date_of_Birth__c</name>
     </fields>
@@ -339,6 +399,19 @@
     <fields>
         <label><!-- Document Approval --></label>
         <name>Document_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Expiry Date --></label>
+        <name>E_Voucher_Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Number --></label>
+        <name>E_Voucher_Number__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Value --></label>
+        <name>E_Voucher_Value__c</name>
     </fields>
     <fields>
         <label><!-- Enclosure1 Notes --></label>
@@ -550,6 +623,10 @@
         <name>ID__c</name>
     </fields>
     <fields>
+        <label><!-- Include Gift --></label>
+        <name>Include_Gift__c</name>
+    </fields>
+    <fields>
         <label><!-- Printed Locally --></label>
         <name>IsPrintedLocally__c</name>
     </fields>
@@ -574,12 +651,28 @@
         <name>Message__c</name>
     </fields>
     <fields>
+        <label><!-- No of Replacement Items --></label>
+        <name>No_of_Replacement_Items__c</name>
+    </fields>
+    <fields>
         <label><!-- Payable To --></label>
         <name>Payable_To__c</name>
     </fields>
     <fields>
+        <label><!-- Person Email --></label>
+        <name>PersonEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- Post Option --></label>
         <name>PostOption__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Notes --></label>
+        <name>Product_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Sent --></label>
+        <name>Product_Sent__c</name>
     </fields>
     <fields>
         <label><!-- QA flag --></label>
@@ -596,6 +689,19 @@
     <fields>
         <label><!-- Refund Value in Words --></label>
         <name>Refund_Value_in_Words__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resend E-Voucher Email --></label>
+        <name>Resend_E_Voucher_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Id --></label>
+        <name>Retrieval_Id__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Status --></label>
+        <name>Retrieval_Status__c</name>
     </fields>
     <fields>
         <label><!-- Salutation --></label>
@@ -644,6 +750,10 @@
             <section>Debit Card Details</section>
         </sections>
         <sections>
+            <label><!-- E-Voucher Details --></label>
+            <section>E-Voucher Details</section>
+        </sections>
+        <sections>
             <label><!-- Enclosures --></label>
             <section>Enclosures</section>
         </sections>
@@ -659,6 +769,14 @@
             <label><!-- New Section --></label>
             <section>New Section</section>
         </sections>
+        <sections>
+            <label><!-- Product Details --></label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label><!-- Retrieval Request Details --></label>
+            <section>Retrieval Request Details</section>
+        </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
@@ -668,6 +786,10 @@
     <validationRules>
         <errorMessage><!-- The fulfillment is already approved, cannot update debit card information --></errorMessage>
         <name>DebitCard_Value_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The fulfilment is already approved, cannot update E Voucher details information. --></errorMessage>
+        <name>E_Voucher_Value_Validation</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Enclosure quantity is mandatory for the selected enclosure. --></errorMessage>
@@ -692,6 +814,14 @@
     <webLinks>
         <label><!-- Add_Debit_Card_Details --></label>
         <name>Add_Debit_Card_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Add_E_Voucher_Details --></label>
+        <name>Add_E_Voucher_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Add_Retrieval_Request --></label>
+        <name>Add_Retrieval_Request</name>
     </webLinks>
     <webLinks>
         <label><!-- New_Fulfilment --></label>

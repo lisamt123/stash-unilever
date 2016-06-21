@@ -61,6 +61,7 @@ public class CFC_Conference_Test{
         
         CFC_EventsWrapper eventListData = CFC_EventsController.getEventsList('Digital','DESC'); 
         System.assert(eventListData!=null);
+        //System.assert(CFC_EventsController.getCFCGAID()!=null);
         Test.stopTest();
     }
     

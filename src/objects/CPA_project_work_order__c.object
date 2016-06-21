@@ -772,6 +772,15 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_TNF_Unilever_Contact_Email__c</fullName>
         <description>TNF Unilever Contact Email*</description>
         <externalId>false</externalId>
@@ -825,10 +834,19 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>fml_Clarity_ID__c</fullName>
         <description>PWORF Clarity ID is store in it</description>
         <externalId>false</externalId>
-        <formula>PWORF_ID__r.txt_Clarity_ID__c</formula>
+        <formula>IF( ISBLANK(PWORF_ID__c),  txt_Standalone_PWO_clarity_ID__c,  PWORF_ID__r.txt_Clarity_ID__c )</formula>
         <inlineHelpText>PWORF Clarity ID is store in it</inlineHelpText>
         <label>Clarity ID</label>
         <required>false</required>
@@ -900,7 +918,7 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
     <fields>
         <fullName>fml_Unilever_Project_Name_on_PWORF__c</fullName>
         <externalId>false</externalId>
-        <formula>PWORF_ID__r.txta_Title__c</formula>
+        <formula>IF(ISBLANK(PWORF_ID__r.txta_Title__c), txt_Unilever_Project_Name__c ,PWORF_ID__r.txta_Title__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever Project Name on PWORF</label>
         <required>false</required>
@@ -941,9 +959,31 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>fur_PWORFRecord_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>PWORF_ID__r.RecordType.DeveloperName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWORFRecord Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fur_Project_Scale__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(PWORF_ID__r.pkl_Project_Scale__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Scale</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>fur_Unilever_Project_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>PWORF_ID__r.txta_Title__c</formula>
+        <formula>IF(ISBLANK(PWORF_ID__r.txta_Title__c), txt_Unilever_Project_Name__c ,PWORF_ID__r.txta_Title__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever Project Name</label>
         <required>false</required>
@@ -980,6 +1020,17 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <label>Linked PWOs</label>
         <referenceTo>CPA_project_work_order__c</referenceTo>
         <relationshipName>CPA_Project_Work_Order</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>PWO1</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1402,6 +1453,28 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <precision>14</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Contingency_Charges__c</fullName>
+        <externalId>false</externalId>
+        <label>Contingency Charges</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Discounts__c</fullName>
+        <externalId>false</externalId>
+        <label>Discounts</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -2031,7 +2104,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <fullName>txt_Accenture_Project_Manager__c</fullName>
         <description>Name of Accenture Project Manager</description>
         <externalId>false</externalId>
-        <label>Accenture Project Manager*</label>
+        <label>Vendor Project Manager*</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -2051,7 +2124,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <fields>
         <fullName>txt_CNF_Accenture_Project_Manager__c</fullName>
         <externalId>false</externalId>
-        <label>CNF Accenture Project Manager*</label>
+        <label>CNF Vendor Project Manager*</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -2261,6 +2334,16 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <fullName>txt_Project_requestor_Name__c</fullName>
         <externalId>false</externalId>
         <label>Project requestor Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Standalone_PWO_clarity_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Clarity ID*</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -2488,6 +2571,28 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     </fields>
     <label>PWO</label>
     <listViews>
+        <fullName>ALL_PWO_Status</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>lkp_Owner__c</columns>
+        <columns>txt_Accenture_Project_Manager__c</columns>
+        <columns>dat_Actual_End_Date__c</columns>
+        <columns>TNF_Status__c</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All PWO</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>All_PWO</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
@@ -2500,7 +2605,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <listViews>
         <fullName>CAP_ULPM_CPA_project_work_order</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -2509,19 +2614,83 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <listViews>
         <fullName>CAP_VDM_Queue_CPA_project_work_order</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CNF_Created_By_Me</fullName>
+        <columns>NAME</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>lkp_Owner__c</columns>
+        <columns>txt_Accenture_Project_Manager__c</columns>
+        <columns>dat_Actual_End_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>CPA_project_work_order__c.CPA_PWO_CNF,CPA_project_work_order__c.CPA_PWO_CNF_Submitted,CPA_project_work_order__c.CPA_PWO_CNF_Signed</value>
+        </filters>
+        <label>CNF Created By Me</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CPA_SMT_CPA_project_work_order</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>PWO_Assigned_to_SMT</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>lkp_Owner__c</columns>
+        <columns>txt_Accenture_Project_Manager__c</columns>
+        <columns>dat_Actual_End_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>PWO Assigned to SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>PWO_Assigned_to_SMT_VDM</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>lkp_Owner__c</columns>
+        <columns>txt_Accenture_Project_Manager__c</columns>
+        <columns>dat_Actual_End_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>PWO Assigned to VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <nameField>
@@ -8736,12 +8905,12 @@ var RecTypeStandAlone = result.getArray(&apos;records&apos;);
 
 if(permissionSetName == &quot;CPA_SMT&quot; &amp;&amp; p.id ==&apos;&apos;){
 	//alert(&quot;Stand Alone&quot;);
-	window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL=%2F{!$Label.CPA_PWO_Object_Id}&quot;,&quot;_self&quot;);
+	window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL=%2F{!$Label.CPA_PWO_Object_Id}&quot;,&quot;_parent&quot;);
 }else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.id !=&apos;&apos; ){
 	//alert(&apos;Regular&apos;);
 	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Auto Accepted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Accepted&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Answered&quot;) 
 	{ 
-		window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_parent&quot;);
 	}else{ 
 		alert(&quot;PWO can be created only if associated PWORF is in Accepted/Auto Accepted/Answered status&quot;); 
 	}
@@ -8813,7 +8982,11 @@ try {
 		} else{ 
 			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 		} 
-	} else{ 
+	}
+	else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.CNF_Status__c == &quot;Saved&quot;){
+			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
+	}	
+	else{ 
 		alert(&quot;You are not authorized to perform this action.&quot;); 
 	}
 
@@ -8899,7 +9072,11 @@ try {
 		}else { 
 			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 		}
-	}else{
+	}
+	else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.TNF_Status__c == &quot;Saved&quot;){
+			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
+	}
+	else{
 			alert(&quot;You are not authorized to perform this action.&quot;);  
 	}
 	
@@ -9092,7 +9269,7 @@ if( permissionSetName == &quot;CPA_SMT&quot; ||  permissionSetName == &quot;CPA_
 	var crRecords = result.getArray(&quot;records&quot;);
 
 	if(p.pkl_Status__c == &quot;Delivered&quot; || crRecords.length &gt;0){
-		alert(&apos;Request for Termination can not be raised, because PWO is already Delivered or associated CR(s) is/are Delivered&apos;);
+		alert(&apos;Request for Termination cant be raised, because PWO is already Delivered or associated CR(s) is/are Delivered&apos;);
 	}
 	else if(p.pkl_Status__c == &quot;Signed&quot;){
 		var CPATR = new sforce.SObject(&quot;CPA_Termination_Requested__c&quot;);
@@ -9117,7 +9294,7 @@ if( permissionSetName == &quot;CPA_SMT&quot; ||  permissionSetName == &quot;CPA_
 
 	alert(&apos;PWO is already Requested for Termination&apos;);
 	} else if(p.pkl_Status__c == &quot;Closed&quot;){
-	alert(&apos;Request for Termination can not be raised, because PWO is already Closed&apos;);
+	alert(&apos;Request for Termination cant be raised, because PWO is already Closed&apos;);
 	}
 	else {
 	alert(&apos;PWO cannot be requested for Termination at this stage, please raise a query for Cancellation&apos;);
@@ -9732,7 +9909,7 @@ if(isValidateFlag == &apos;true&apos;){
 	} 
 } 
 else { 
-alert(&quot;TNF can not be submitted, Due to Required fields are missing&quot;); 
+alert(&quot;TNF cant be submitted, Due to Required fields are missing&quot;); 
 }
 }else {
 	alert(&quot;You are not authorized to perform this action.&quot;); 

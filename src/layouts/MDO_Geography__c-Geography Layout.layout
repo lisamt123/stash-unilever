@@ -35,6 +35,10 @@
                 <behavior>Edit</behavior>
                 <field>name_united_nations__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

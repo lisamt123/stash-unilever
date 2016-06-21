@@ -14,24 +14,25 @@ private class IPM_ProjectHandler_Test {
     private static User deputyPLUser;
     private static User technicalPLUser;
     private static User gatekeeperUser;
-    private final static string STRING_BET = 'BET';
-    private final static string STRING_MS_BET_FirstRelease = 'Brand Experience Toolkit(BET) First Release';
     private static List < IPM_Project__c > projectlist;
     private static List < IPM_Project__c > betProjectList = IPM_TestFactory_Helper.createIPMProjectList(false, 10);
-    private static User stdUserForBET;  
-    Static String BLANK_STRING = IPM_ConstantUtils.BLANK;
-    Static String MANAGER_ACCESS = IPM_ConstantUtils.BET_MANAGER_ACCESS;
-    Static String USER_LAST_NAME = 'PLATFORM_USER';
-    Static uw_BET__c bet1;
-    Static uw_BET__c bet2;
-    Static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-    Static String REGIONAL = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-    Static String LOCAL = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+    private static User stdUserForBET;
     private static User adminUser;
     private static User standardUser;
     private static List < IPM_Company_Card__c > companyCardList;
     private static User platformUser;
-    
+    private static uw_BET__c bet1;
+    private static uw_BET__c bet2;
+    private final static string STRING_BET = 'BET';
+    private final static string STRING_MS_BET_FirstRelease = 'Brand Experience Toolkit(BET) First Release';
+    private final static String USER_LAST_NAME = 'PLATFORM_USER';  
+    private final static String BLANK_STRING = IPM_ConstantUtils.BLANK;
+    private final static String MANAGER_ACCESS = IPM_ConstantUtils.BET_MANAGER_ACCESS;
+    private final static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+    private final static String REGIONAL = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+    private final static String LOCAL = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+   
+     
     /***********************************
     Description of the purpose of the method. 
     @name: initializeData
@@ -71,7 +72,8 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Current_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
         project.Sustainability_Period__c = '3';
         insert project;
-        system.assert(project.Name!=null);
+        
+        system.assertEquals(project.IPM_Project_Name__c ,[Select IPM_Project_Name__c from IPM_Project__c where Id=: project.Id ].IPM_Project_Name__c ,'Failed to insert project with the specified name.');
         
         IPM_Milestone__c milestone = new IPM_Milestone__c();
         milestone.IPM_Project__c = project.Id;
@@ -81,6 +83,8 @@ private class IPM_ProjectHandler_Test {
         milestone.IPM_Due_Date__c = project.IPM_Target_Launch_Dates__c;
         milestone.ExternalField__c = project.Name+ STRING_MS_BET_FirstRelease;
         insert milestone;
+        
+        system.assertEquals(milestone.ExternalField__c ,[Select ExternalField__c from IPM_Milestone__c where Id=: milestone.Id ].ExternalField__c ,'Failed to create milestone with the specified external Id.');
         
         project.Name = 'TestCommentsUpdated';
         project.IPM_Project_Name__c = 'UpdatedProjectName';
@@ -106,6 +110,9 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Technical_Project_Leader__c = technicalPLUser.Id; 
         project.IPM_Project_Gatekeeper__c = gatekeeperUser.Id; 
         update project;
+        
+        system.assertEquals(project.IPM_Project_Name__c ,[Select IPM_Project_Name__c from IPM_Project__c where Id=: project.Id ].IPM_Project_Name__c ,'Failed to update  project record .');
+        
     }
     
     /***********************************************************
@@ -118,7 +125,7 @@ private class IPM_ProjectHandler_Test {
         User financeuser = IPM_TestFactory_Helper.createUser(false);
         financeuser.lastname = 'financeUser';
         insert financeuser;
-        system.assert(financeuser.Id != null, 'financeuser not inserted');
+        system.assertEquals(financeuser.lastname ,[Select lastname from User where Id =:financeuser.Id].lastname, 'Failed to insert finance user.');
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)) {
             // user has to be created as system admin 
             stdUserForBET = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
@@ -137,16 +144,22 @@ private class IPM_ProjectHandler_Test {
             betRecord1,
                 betRecord2
                 };
-                    system.assert(betRecord1.Id != null, 'betRecord1 not inserted');
-        system.assert(betRecord2.Id != null, 'betRecord2 not inserted');
+        
+        system.assertEquals( betRecord1.name ,[Select name from uw_BET__c where Id=:betRecord1.Id].name, 'betRecord1 not inserted');
+        
+        system.assertEquals( betRecord2.name ,[Select name from uw_BET__c where Id=:betRecord2.Id].name, 'betRecord2 not inserted');
+        
         IPM_Project__c parentProj = betProjectList[9];
         parentProj.ownerId = stdUserForBET.id;
         parentProj.Deputy_Project_Leader__c = stdUserForBET.id;
         parentProj.IPM_Project_Name__c = 'testParentProj1';
         parentProj.IPM_Project_Leader__c = stdUserForBET.id;
         insert parentProj;
-        system.assert(parentProj.Id != null, 'parentProj not inserted');
+        
+        system.assertEquals(parentProj.IPM_Project_Name__c ,[Select IPM_Project_Name__c from  IPM_Project__c where Id=:parentProj.Id].IPM_Project_Name__c , 'parentProj not inserted');
+        
         list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
+        
         //Giving access to BET
         BET_BETWrapper.MemberRequest member = new BET_BETWrapper.MemberRequest();
         member.UserId = stdUserForBET.Id;
@@ -154,9 +167,11 @@ private class IPM_ProjectHandler_Test {
         lstMemberRequests.add(member);
         BET_AccessService.RequestAccess(lstMemberRequests, betRecord1.Id, parentProj.id);
         BET_AccessService.RequestAccess(lstMemberRequests, betRecord2.Id, parentProj.id);
+        
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)) {
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
         }
+        
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
@@ -166,12 +181,14 @@ private class IPM_ProjectHandler_Test {
                 regionalCompanyCard,
                 localCompanyCard
                 };
-                    insert companyCardList;
+        insert companyCardList;
+        
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(8, platformUser);
         IPM_TestFactory_Helper.shareMasterProject(new List < User > {
             platformUser
                 });
+                
         System.runAs(platformUser) {
             integer count = 0; {
                 for (IPM_Project__c proj: projectList) {
@@ -187,7 +204,7 @@ private class IPM_ProjectHandler_Test {
                 }
                 insert projectList;
             }
-            system.assertEquals(projectList.size(), 8, 'Projects are not created');
+            system.assertEquals([Select count() from IPM_Project__c where name like '%test%' AND First_Sync_To_EcoDesign__c=true], 8, 'Failed to create expected number of projects ');
             Test.stopTest();
         }
     }
@@ -211,12 +228,21 @@ private class IPM_ProjectHandler_Test {
         betProjectList[2].IPM_Project_Leader__c = UserInfo.getUserId();
         betProjectList[2].Deputy_Project_Leader__c = UserInfo.getUserId();
         betProjectList[2].BET__c = bet1.id;
+        
         insert new List < IPM_Project__c > {
             betProjectList[0],
                 betProjectList[1],
                 betProjectList[2]
                 };
-                    betProjectList[3].name = 'testPrj2';
+                
+         Set<ID> projIdSet1 = new  Set<ID> { betProjectList[0].Id,
+                betProjectList[1].Id,
+                betProjectList[2].Id }  ;    
+                
+        system.assertEquals(3 ,[Select count() from  IPM_Project__c where Id IN : projIdSet1] , 'Project list not inserted.');
+        
+                
+        betProjectList[3].name = 'testPrj2';
         betProjectList[3].IPM_Project_Type__c = Rollout;
         betProjectList[3].IPMProject_Span__c = REGIONAL;
         betProjectList[3].IPM_Project_Leader__c = UserInfo.getUserId();
@@ -225,11 +251,20 @@ private class IPM_ProjectHandler_Test {
         betProjectList[4].name = 'testPrj3';
         betProjectList[4].IPM_Project_Leader__c = UserInfo.getUserId();
         betProjectList[4].Deputy_Project_Leader__c = UserInfo.getUserId();
+        
         insert new List < IPM_Project__c > {
             betProjectList[3],
                 betProjectList[4]
                 };
-                    betProjectList[5].name = 'testPrj4';
+                
+        Set<ID> projIdSet2 = new  Set<ID> {  betProjectList[3].Id,
+                betProjectList[4].Id
+                }  ;        
+                
+        system.assertEquals(2 ,[Select count() from  IPM_Project__c where Id IN : projIdSet2] , 'Project list not inserted.');
+                
+                
+        betProjectList[5].name = 'testPrj4';
         betProjectList[5].IPM_Project_Type__c = Rollout;
         betProjectList[5].IPMProject_Span__c = REGIONAL;
         betProjectList[5].IPM_Project_Leader__c = UserInfo.getUserId();
@@ -278,11 +313,10 @@ private class IPM_ProjectHandler_Test {
         List < IPM_Project__c > projList = [SELECT Id, Name, IPM_Project_Name__c FROM IPM_Project__c Limit 1];
         //Validating that the project has beeen successfully inserted
         system.assertEquals(1, projList.size(), 'IPM_Project__c Record Size Not Matched');
-        List<User> userLst = [Select Id from User Limit 10];
-        system.runAs(userLst[0]){             
+        
+        system.runAs(adminUser){             
             Test.startTest();
             IPM_ProjectHandler projectHandler = new IPM_ProjectHandler();
-            System.assert(projectHandler != null);
             Test.stopTest();              
         }
     }
@@ -305,7 +339,7 @@ private class IPM_ProjectHandler_Test {
                 }
                 update projectList;
             IPM_Project__c updatedProj= [Select id,EcoDesign_Sync_Status__c,IPM_Strategic_Intent__c from IPM_Project__c Limit 1][0];
-            System.assertEquals('testNew',updatedProj.IPM_Strategic_Intent__c );  
+            System.assertEquals('testNew',updatedProj.IPM_Strategic_Intent__c ,'Failed to update strategic intent on project.' );  
             Test.stopTest();              
         }
     }
@@ -375,15 +409,21 @@ private class IPM_ProjectHandler_Test {
            
             betInitializeData();
             
-            insert new List < IPM_Project__c > {
+            insert new List < IPM_Project__c >{
                 betProjectList[8],
                     betProjectList[7],
                     betProjectList[6],
-                    
-                    
                     betProjectList[5]
-                    
                     };
+                    
+            Set<Id> projIds =new Set<Id> { betProjectList[8].Id,
+                    betProjectList[7].Id,                 
+                    betProjectList[6].Id ,
+                    betProjectList[5].Id 
+                    };
+                    
+                    
+            system.assertEquals(4,[Select count() from IPM_Project__c where Id IN : projIds],'Failed to create project records');      
                         
             betProjectList[5].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
             betProjectList[5].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
@@ -415,9 +455,9 @@ private class IPM_ProjectHandler_Test {
                     betProjectList[6],
                     betProjectList[5]
                     };
-                        Test.stopTest();
+            Test.stopTest();
             
-            System.assertEquals([select UserId__c from BET_Member_Request__c where Project_Id__c = : [Select Id from IPM_Project__c where name = 'testParentProj1'
+            system.assertEquals([select UserId__c from BET_Member_Request__c where Project_Id__c = : [Select Id from IPM_Project__c where name = 'testParentProj1'
                                                                                                       limit 1
                                                                                                      ].Id limit 1].UserId__c, [Select IPM_Project_Leader__c from IPM_Project__c where name = 'testPrj4'
                                                                                                                                limit 1

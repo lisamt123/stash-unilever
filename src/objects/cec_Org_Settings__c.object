@@ -39,6 +39,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Brazil_Factory_Response_Email_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Brazil Factory Response Email Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Cosmetovigilence_CaseId_Reference__c</fullName>
         <description>CEC: Survey field reference that will store the Case Id from the Case record e.g. q55 in a url of  http://survey.clicktools.com/go?iv=26bnjdwb56aj0&amp;q55=500c0000004P3Vz.</description>
         <externalId>false</externalId>
@@ -65,6 +75,18 @@
         <description>CEC Debit Card Expiry Days is used to calculate the expiry date of a debit card.</description>
         <externalId>false</externalId>
         <label>Debit Card Expiry Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_Voucher_Expiry_Days__c</fullName>
+        <description>CEC E-Voucher Expiry Days is used to calculate the expiry date of the E Voucher.</description>
+        <externalId>false</externalId>
+        <label>E-Voucher Expiry Days</label>
         <precision>4</precision>
         <required>false</required>
         <scale>0</scale>

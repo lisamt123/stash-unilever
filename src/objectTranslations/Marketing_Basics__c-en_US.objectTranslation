@@ -36,6 +36,10 @@
             <translation><!-- Brand Led Training for the agency --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Brand Love Key</masterLabel>
+            <translation><!-- Brand Love Key --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Brand Technical &amp;/or Infrastructure Reviews</masterLabel>
             <translation><!-- Brand Technical &amp;/or Infrastructure Reviews --></translation>
         </picklistValues>
@@ -44,8 +48,16 @@
             <translation><!-- Brand equity development --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Category Leadership</masterLabel>
+            <translation><!-- Category Leadership --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Competitive Reviews</masterLabel>
             <translation><!-- Competitive Reviews --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Leadership</masterLabel>
+            <translation><!-- Global Leadership --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Global Status Meetings</masterLabel>
@@ -60,8 +72,12 @@
             <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Regtional Status Meetings</masterLabel>
-            <translation><!-- Regtional Status Meetings --></translation>
+            <masterLabel>Regional Leadership</masterLabel>
+            <translation><!-- Regional Leadership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional Status Meetings</masterLabel>
+            <translation><!-- Regional Status Meetings --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Status Reports</masterLabel>
@@ -71,6 +87,14 @@
             <masterLabel>USLP</masterLabel>
             <translation><!-- USLP --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Activity Fee --></label>
+        <name>Activity_Fee_Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Fee --></label>
+        <name>Activity_Fee_UL__c</name>
     </fields>
     <fields>
         <label><!-- Agency Department --></label>
@@ -122,12 +146,16 @@
     </fields>
     <fields>
         <help><!-- Please enter a full description of the Tasks / Activities required --></help>
-        <label><!-- Description --></label>
+        <label><!-- Other Info --></label>
         <name>Description__c</name>
     </fields>
     <fields>
         <label><!-- FTE --></label>
         <name>FTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE --></label>
+        <name>FTE_report__c</name>
     </fields>
     <fields>
         <label><!-- Financial Year --></label>
@@ -182,6 +210,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Hourly Rate --></label>
+        <name>Hourly_Rate_Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hourly Rate or FTE --></label>
+        <name>Hourly_Rate_or_FTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Hours Required --></label>
+        <name>No_of_Hours_Required_Activity__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter the number or hours this activity is estimated to take. --></help>
         <label><!-- No of Hours Required --></label>
         <name>No_of_Hours_Required__c</name>
@@ -196,11 +236,11 @@
         <relationshipLabel><!-- SWOP Non Campaign Items --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Other Item Fee --></label>
+        <label><!-- Activity Fee --></label>
         <name>OblixOtherItemFee__c</name>
     </fields>
     <fields>
-        <label><!-- FTE Real Price --></label>
+        <label><!-- Resource Fee --></label>
         <name>Oblix_FTE_Real_Price__c</name>
     </fields>
     <fields>
@@ -219,6 +259,14 @@
     <fields>
         <label><!-- Other Activities --></label>
         <name>Other_Activities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Fee --></label>
+        <name>Resource_Fee_Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Fee --></label>
+        <name>Resource_Fee_UL__c</name>
     </fields>
     <fields>
         <label><!-- Role Title --></label>

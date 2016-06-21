@@ -37,6 +37,10 @@
         <name>IPM_Auto_Aligned_Fin_TLD__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Auto Aligned Fin &amp; TLD for financial --></label>
+        <name>IPM_Auto_Aligned_Fin_TLD_for_financial__c</name>
+    </fields>
+    <fields>
         <label><!-- BET Final Release Due date --></label>
         <name>IPM_BET_Final_Release_Due_date__c</name>
     </fields>

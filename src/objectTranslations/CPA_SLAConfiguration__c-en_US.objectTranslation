@@ -9,42 +9,52 @@
         <value>CPA_SLA Configuration</value>
     </caseValues>
     <fields>
+        <help><!-- This defines SLA1 for DBTD project type. --></help>
         <label><!-- DBTD SLA1 --></label>
         <name>DBTD_SLA1__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA2 for DBTD project type. --></help>
         <label><!-- DBTD SLA2 --></label>
         <name>DBTD_SLA2__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA1 for Others project type. --></help>
         <label><!-- Others SLA1 --></label>
         <name>Others_SLA1__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA2 for Others project type. --></help>
         <label><!-- Others SLA2 --></label>
         <name>Others_SLA2__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA1 for PADBTD project type. --></help>
         <label><!-- PADBTD SLA1 --></label>
         <name>PADBTD_SLA1__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA2 for PADBTD project type. --></help>
         <label><!-- PADBTD SLA2 --></label>
         <name>PADBTD_SLA2__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA1 for PA project. --></help>
         <label><!-- PA SLA1 --></label>
         <name>PA_SLA1__c</name>
     </fields>
     <fields>
+        <help><!-- This defines SLA2 for PA project type. --></help>
         <label><!-- PA SLA2 --></label>
         <name>PA_SLA2__c</name>
     </fields>
     <fields>
+        <help><!-- This set SLA1 for RA project type. --></help>
         <label><!-- RA SLA1 --></label>
         <name>RA_SLA1__c</name>
     </fields>
     <fields>
+        <help><!-- This captures SLA2 for RA project type. --></help>
         <label><!-- RA SLA2 --></label>
         <name>RA_SLA2__c</name>
     </fields>

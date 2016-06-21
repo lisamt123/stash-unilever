@@ -128,7 +128,7 @@
     <fields>
         <help><!-- Has W@R been discussed with Supplier Performance Team?
 (If no, please contact Supplier Performance Team to discuss) --></help>
-        <label><!-- Agreed with Supplier Performance Team* --></label>
+        <label><!-- Agreed with Supplier Performance Team --></label>
         <name>Has_W_R_been_discussed_with_Supplier_Per__c</name>
         <picklistValues>
             <masterLabel>No</masterLabel>
@@ -229,7 +229,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>LatestPWOID__c</name>
     </fields>
     <fields>
-        <label><!-- Latest PWO Status --></label>
+        <label><!-- Most Recent PWO&apos;s Status --></label>
         <name>Latest_PWO_Status__c</name>
     </fields>
     <fields>
@@ -508,8 +508,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>eml_Key_contact_Email__c</name>
     </fields>
     <fields>
-        <label><!-- Project requestor Email --></label>
+        <label><!-- Project requestor Email* --></label>
         <name>eml_Project_requestor_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
     </fields>
     <fields>
         <help><!-- Email of Unilever person responsible for approving the project budget. --></help>
@@ -532,6 +536,10 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>eml_Unilever_Project_Manager_Email__c</name>
     </fields>
     <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
+    </fields>
+    <fields>
         <label><!-- Unilever Project Manager Name --></label>
         <name>ftxt_Unilever_Project_Manager_Name__c</name>
     </fields>
@@ -550,6 +558,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <label><!-- isValidated --></label>
         <name>isValidated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner --></label>
+        <name>lkp_Owner__c</name>
+        <relationshipLabel><!-- PWORF (Owner) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Project requestor --></label>
@@ -761,8 +774,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <label><!-- Phases covered by the WAR --></label>
         <name>pkl_Phases_covered_by_the_WAR__c</name>
         <picklistValues>
-            <masterLabel>Analyze</masterLabel>
-            <translation><!-- Analyze --></translation>
+            <masterLabel>Analyse</masterLabel>
+            <translation><!-- Analyse --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Build</masterLabel>
@@ -1015,7 +1028,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>txt_Project_Repository_Location__c</name>
     </fields>
     <fields>
-        <label><!-- Project requestor Name --></label>
+        <label><!-- Project requestor Name* --></label>
         <name>txt_Project_requestor_Name__c</name>
     </fields>
     <fields>
@@ -1716,11 +1729,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>Request_Type</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- This PWORF is in cancelled status, can not edit. --></errorMessage>
+        <errorMessage><!-- This PWORF is in cancelled status, cannot edit. --></errorMessage>
         <name>Restrict_cancelled_PWORF_to_be_edited</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Date should be greater than current date --></errorMessage>
+        <errorMessage><!-- Please select business week days. --></errorMessage>
         <name>Revised_Submission_Date</name>
     </validationRules>
     <validationRules>
@@ -1736,7 +1749,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>Stakeholder_Expectations</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Can not edit the status of the PWORF --></errorMessage>
+        <errorMessage><!-- Cannot edit the status of the PWORF --></errorMessage>
         <name>Status_Validation_For_CPA_ULPM_Profile</name>
     </validationRules>
     <validationRules>

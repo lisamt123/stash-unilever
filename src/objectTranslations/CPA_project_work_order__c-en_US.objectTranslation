@@ -379,6 +379,10 @@
         <name>eml_Project_requestor_Email__c</name>
     </fields>
     <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
+    </fields>
+    <fields>
         <help><!-- Email of the Unilever representative/manager --></help>
         <label><!-- TNF Unilever Contact Email* --></label>
         <name>eml_TNF_Unilever_Contact_Email__c</name>
@@ -401,6 +405,10 @@
     <fields>
         <label><!-- Unilever project manager Email --></label>
         <name>eml_Unilever_project_manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
     </fields>
     <fields>
         <help><!-- PWORF Clarity ID is store in it --></help>
@@ -440,6 +448,14 @@
         <name>ftxt_Project_Phases__c</name>
     </fields>
     <fields>
+        <label><!-- PWORFRecord Type --></label>
+        <name>fur_PWORFRecord_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Scale --></label>
+        <name>fur_Project_Scale__c</name>
+    </fields>
+    <fields>
         <label><!-- Unilever Project Name --></label>
         <name>fur_Unilever_Project_Name__c</name>
     </fields>
@@ -457,6 +473,11 @@
         <label><!-- Linked PWOs --></label>
         <name>lkp_Linked_PWO__c</name>
         <relationshipLabel><!-- PWO --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Owner --></label>
+        <name>lkp_Owner__c</name>
+        <relationshipLabel><!-- PWO (Owner) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Project requestor --></label>
@@ -683,6 +704,14 @@
     <fields>
         <label><!-- CNF Variance (Number in Man-Days)* --></label>
         <name>num_CNF_Variance_number_in_man_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contingency Charges --></label>
+        <name>num_Contingency_Charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discounts --></label>
+        <name>num_Discounts__c</name>
     </fields>
     <fields>
         <label><!-- Cost Efforts --></label>
@@ -1073,7 +1102,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Accenture Project Manager* --></label>
+        <label><!-- Vendor Project Manager* --></label>
         <name>txt_Accenture_Project_Manager__c</name>
     </fields>
     <fields>
@@ -1081,7 +1110,7 @@
         <name>txt_Action__c</name>
     </fields>
     <fields>
-        <label><!-- CNF Accenture Project Manager* --></label>
+        <label><!-- CNF Vendor Project Manager* --></label>
         <name>txt_CNF_Accenture_Project_Manager__c</name>
     </fields>
     <fields>
@@ -1167,6 +1196,10 @@
     <fields>
         <label><!-- Project requestor Name --></label>
         <name>txt_Project_requestor_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clarity ID* --></label>
+        <name>txt_Standalone_PWO_clarity_ID__c</name>
     </fields>
     <fields>
         <label><!-- TNF Accenture Contact* --></label>
@@ -1274,8 +1307,8 @@
             <section>Basic Project Details</section>
         </sections>
         <sections>
-            <label><!-- Closer Notification Form --></label>
-            <section>Closer Notification Form</section>
+            <label><!-- Closure Notification Form --></label>
+            <section>Closure Notification Form</section>
         </sections>
         <sections>
             <label><!-- Custom Links --></label>
@@ -1336,8 +1369,8 @@
             <section>Basic Project Details</section>
         </sections>
         <sections>
-            <label><!-- Closer Notification Form --></label>
-            <section>Closer Notification Form</section>
+            <label><!-- Closure Notification Form --></label>
+            <section>Closure Notification Form</section>
         </sections>
         <sections>
             <label><!-- Custom Links --></label>

@@ -95,6 +95,10 @@
         <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- IPM Phase Task Added --></label>
+        <name>IPM_Phase_Task_Added__c</name>
+    </fields>
+    <fields>
         <label><!-- Phase --></label>
         <name>IPM_Phase__c</name>
         <picklistValues>
@@ -138,6 +142,10 @@
         <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- SectionExternalIDFormula --></label>
+        <name>IPM_SectionExternalIDFormula__c</name>
+    </fields>
+    <fields>
         <label><!-- Section Number --></label>
         <name>IPM_Section_Number__c</name>
     </fields>
@@ -145,6 +153,22 @@
         <label><!-- IPM Section --></label>
         <name>IPM_Section__c</name>
         <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Span --></label>
+        <name>IPM_TaskSpan__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Task Complexity --></label>
@@ -161,6 +185,10 @@
     <fields>
         <label><!-- Task Name --></label>
         <name>IPM_Task_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Section ExternalID --></label>
+        <name>IPM_Task_Section_External_ID__c</name>
     </fields>
     <fields>
         <label><!-- Task Temp Complexity --></label>
@@ -200,6 +228,26 @@
         <picklistValues>
             <masterLabel>PLE/Learnings</masterLabel>
             <translation><!-- PLE/Learnings --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Type of Task --></label>
+        <name>IPM_Type_of_Task__c</name>
+        <picklistValues>
+            <masterLabel>Adhoc</masterLabel>
+            <translation><!-- Adhoc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Future Adhoc</masterLabel>
+            <translation><!-- Future Adhoc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Future Standard</masterLabel>
+            <translation><!-- Future Standard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
         </picklistValues>
     </fields>
     <fields>

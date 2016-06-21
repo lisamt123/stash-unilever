@@ -47,6 +47,10 @@
                 <behavior>Required</behavior>
                 <field>Onboarding_Task_Set__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

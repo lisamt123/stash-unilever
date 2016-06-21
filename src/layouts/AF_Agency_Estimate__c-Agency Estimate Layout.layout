@@ -215,6 +215,10 @@
                 <behavior>Readonly</behavior>
                 <field>TestQuartersDone__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

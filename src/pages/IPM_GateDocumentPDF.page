@@ -117,6 +117,9 @@
         .fourthCol{width:10%;} 
         .uploadImage {width: 50px; height: 50px;}
         img.ipmImage{width: 100%;height: 100%;}
+        /* Appendix reference styling*/
+        .appBlock {color: #797979;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 13px 10px 14px;}
+        
         /Table Style*/
         .ipmTable.table{border-left:none; border-right:none;}
         .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
@@ -397,18 +400,18 @@
         .cmiHeaderHolder{border-top: 1px solid #7fa19e;width:100%;background: #f2f8fc;min-height:50px;margin-top: 10px;border-bottom: 0.5pt #9ab4b1 solid;}
         .cmiGateName{width:100%;background: #f3ffe7;padding:5px;display:table;border-bottom: 0.5pt solid #ddd;}
         .cmiTabContainer{width:100%;}
-        .cmiValue{padding:5px;font-size: 9px;min-height: 45px;}
+        .cmiValue{padding:5px;font-size: 9px;min-height: 20px;width: 100%;display: block;}
         .cmiTimingValue{width:43px;padding:3px;maring-top:40px;font-size: 9px;}
-        .elemWidth{width:60px;}
-        .testValWidth{width:50px;display:table-cell;}
-        .kpiWidth{width:90px;display:table-cell;}
+        .elemWidth{width:90px;}
+        .testValWidth{width:50px;display:block;}
+        .kpiWidth{width:90px;display:block;}
         .cmiRenBlock{width:100%;border-bottom: 0.5pt solid #ddd;}
         .cmiActionStnds{width:117px;}
         .cmiChrtrResWidth{width:120px;}
         .cmiActionOvrall{width: 42px;}
         .cmiConResOvrall{width: 70px;}
         .cmiResultsOvrall{width: 40px;}
-        .cmiComments{width: 140px;}
+        .cmiComments{width: 270px;}
         .cmiConComments{width: 40px;}
         .cmiCountryWidth{width: 45px;}
         .cmiValContainer{width:100%;}
@@ -417,33 +420,35 @@
         .cmiColumnTitle{display:block;float:left;padding: 5px;}
         .cmiColumnDesc {text-align: center;width: 85%;display: inline-block;float: left;padding: 5px;}
         .cmiCountryValue{width: 45px;padding:5px;font-size: 9px;display:block;}
-        .cmiInputVal{display:block;height:100%;padding:3px;font-size: 9px;min-height: 54px;border-bottom:0.5pt solid #ccc;}
+        .cmiInputVal{display:block;height:100%;padding:3px;font-size: 9px;min-height: 56px;border-bottom:0.5pt solid #ccc;}
         .cmiCntryContainer{float:left;clear:both;}
         .cmiTimingHead{width:43px;}
         .cmiInputHead{width:53px;}
         .cmiInputContainer{width:66px;}
-        .cmiActOvrValContainer{font-size: 9px;width: 55px;padding-bottom: 5px;}
-        .cmiChrtrLeftValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiChrtrRightValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiActOvrValContainer{font-size: 9px;width: 57px;padding-bottom: 5px;}
+        .cmiChrtrLeftValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiChrtrRightValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
         .cmiRightClrBox{display:block;}
-        .cmiConRes1{display:block;width:30px;border-right: 1px solid #ddd;font-size: 11px;min-height: 50px;}
-        .cmiConRes2{display:block;width:45px;border-right: 1px solid #ddd;font-size: 11px;min-height: 50px;}
-        .cmiConResValue1{display:block;font-size: 8px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiConResValue2{display:block;font-size: 8px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiConResHeader{width:75px;}
+        .cmiConRes1{display:block;width:50px;border-right: 1px solid #ddd;font-size: 11px;min-height: 52px;}
+        .cmiConRes2{display:block;width:50px;border-right: 1px solid #ddd;font-size: 11px;min-height: 52px;}
+        .cmiConResValue1{display:block;font-size: 8px;padding:5px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiConResValue2{display:block;width:42px;padding:5px;font-size: 8px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiConResHeader{width:90px;}
         .cmichrtrOvrallClr{display:block;width:80px;font-size: 8px;min-height: 45px;}
-        .cmiconOvrallClr{display:block;width:48px;font-size: 8px;min-height: 45px;}
-        .cmiChrtrRightValue .CMIRed,.cmiChrtrRightValue .CMIGreen,.cmiChrtrRightValue .CMIAmber,.cmiChrtrRightValue .CMILGreen{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:2px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
-        .CMIRed,.CMIGreen,.CMIAmber,.CMILGreen{margin-top:5px;margin-left:3px !important;margin-right:2px !important;padding:2px !important;color:#fff;}
-        .cmiCommentsValue{width:45px;display:block;font-size: 9px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiChrtrComment{width:146px !important;}
+        .cmiconOvrallClr{display:block;width:52px;font-size: 8px;min-height: 45px;}
+        .cmiChrtrRightValue .CMIRed,.cmiChrtrRightValue .CMIGreen,.cmiChrtrRightValue .CMIAmber,.cmiChrtrRightValue .CMILGreen,.cmiChrtrRightValue .CMIPink{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:2px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+        .cmiConResValue2 .CMIRed,.cmiConResValue2 .CMIGreen,.cmiConResValue2 .CMIAmber,.cmiConResValue2 .CMILGreen,.cmiConResValue2 .CMIPink{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:1px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+        .CMIRed,.CMIPink,.CMIGreen,.CMIAmber,.CMILGreen{margin-top:5px;margin-left:3px !important;margin-right:2px !important;padding:2px !important;color:#fff;}
+        .cmiCommentsValue{width:144px;display:block;font-size: 9px;padding:5px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiChrtrComment{width:275px !important;}
         .CMIRed{background-color:#FF0000;}
         .CMIGreen{background-color:#4F6228;}
         .CMIAmber{background-color:#FFC000;}
         .CMILGreen{background-color:#C4D79B;}
-        .cmiRightContainer{border-bottom: 0.5pt solid #ddd;height:100%;width: 532px;clear:both;}
-        .cmiLeftContainer{height:100%;width:230px;}
-        .cmiTabRight{border-left:1px solid #ccc;width:500px;}
+        .CMIPink{background: #E6B8B7;}
+        .cmiRightContainer{height:100%;clear:both;border-bottom: 0.5pt solid #ddd;}
+        .cmiLeftContainer{height:100%;width:100px;}
+        .cmiTabRight{border-left:1px solid #ccc;width:660px;}
         .cmiTimeContainer2,.cmiChrtrResMcontainer,.cmiConResContainer,.cmiCommentsContainer{border-left:0.5pt solid #ccc;}
         .cpart2{display:table-cell;border-right:0.5pt solid #ccc;}
         .cmiTimeContainer1{display:table-cell;}
@@ -513,6 +518,87 @@
            min-height:160px;
            display:block;
         }
+		.ipmFinancetable thead th .finproject{font-size:11px;}
+		.ipmFinancetable thead th .fintotal{font-size:12px;}		
+        .performanceTable table{font-size:10px;}		
+        .performanceTableHead{font-weight: bold;background-color:#dceefa;}		
+        		
+        .bPageBlock .list.monitor {		
+            width: 100%;		
+        }		
+        .bPageBlock .list.ipmTable.monitor thead th {		
+            background-color: #dceefa;		
+        }		
+        .bPageBlock .list.monitor tr.odd {		
+            background-color: #f8f8f8;		
+        }		
+        .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {		
+            background-color: transparent;		
+        }		
+        body .pbBody table.list.monitor tr.headerRow td, 		
+        body .pbBody table.list.monitor tr.headerRow th {		
+           font-size: 8.5px;		
+        }		
+        body .pbBody table.list.monitor tr.dataRow th, 		
+        body .pbBody table.list.monitor tr.dataRow td {		
+            font-size:8.5px;		
+        }		
+        		
+        /* Performance Breakdown Styles */		
+        .performanceContainer1{background-color:#dceefa;float: left;}		
+        .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}		
+        .performanceContainer2,.performanceContainer3{width: 760px;}		
+        .performanceContainer2{background: #f8f8f8;float:left;clear:both;}		
+        .performanceContainer3{clear:both;display:table;table-layout:fixed;}		
+        .breakdown_Container{margin-bottom: 10px;}		
+        .performanceSecHead{float:left;width:43px;padding: 5px;font-size:10px;}		
+        .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}		
+        .emptyCell{min-height:14px;}		
+        .misaligned{border:2px solid red;min-height:51px;}		
+        .performanceDrpdownContainer{margin-top:10px;}		
+        .SecButtonSet a.icoButton.download{margin-top:10px;}		
+        .panel .ipmButtonSet{margin-bottom:10px;}		
+        input.misalignedField{border:1px solid red;}		
+        .breakdown_Container{width: 762px;font-size:10px;clear:both;}
+		
+	/* Global Financial Action Standards Styles */
+		.gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
+		.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
+		.glbHeadLeft{min-width: 100px;float: left;height: 113px;border: 1px solid #ddd;}
+		.glbHeadRight{width:658px;float: left;min-height: 100px;border: 1px solid #ddd;}
+		.glbHeadtop1{width:325px;float:left;min-height: 98px;}
+		.glbHeadtop2{width:330px;float:left;min-height: 98px;}
+		.glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
+		.glbsubHeadM{float:left;width:64px;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
+		.glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
+		.glbHeadtop1{border-right: 1px solid #ddd;}
+		.glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
+		.glbValLeft{height: 43px;width: 100px;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
+		.glbValRight{width:762px;height: 42px;}
+		.glbValSubLeft{width:327px;display:block;height: 40px;float:left;}
+		.glbValSubRight{width:332px;display:block;height: 50px;float:left;border-right: 1px solid #ddd;}
+		.glbValM{width:54px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
+		.glbValM2{width:99px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
+		.glbVal8{border-right: 1px solid #ddd;width:100px;}
+		.glbVal5{width:56px;}
+		.glbsecContainer .glbVal8{border-right:1px solid #ddd;width:102px;}
+		.glbValLeft.othValleft{height:44px !important;}
+		.glbsecContainer{float:left;width:100%;}
+		.glbfrstContainer{float:left;width:100%;display:table;}
+		.glbsubHeadM,.glbsubHeadM2{font-size: 11px;color: #364354;font-weight: bold;}
+		.glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
+		.glbSeclist{width:50%;float:left;}
+		.glbfinvalContainer{float:left;display:table;width:100%;}
+	
+	/* Financial Action Standards Inverse styles */
+		.ipmFinancetable.inverse{width:100%;max-width:100%;}
+		.ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;float: none;}
+		.ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+		
+		@media print
+		{
+			div.gkcStatus{page-break-inside: avoid;}
+		}
     </style>
 </head>
 <body class="docBody">
@@ -580,7 +666,8 @@
                       {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
                     </td>      
                     <td width="10%">
-                        <apex:outputText value="{!project.IPM_Brand_Positioning__c}"/>
+                     
+                       <apex:outputText value="{!brandPosition}"/> 
                     </td> 
                     <td class="label" width="20%">
                        {!$Label.IPM_Project_Leader}{!$Label.IPM_COLON}
@@ -598,7 +685,9 @@
                         <apex:outputPanel rendered="{!if(ShowFinanceMember=False, TRUE,False)}">
                             <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
                         </apex:outputPanel>-->
-                         <apex:outputText value="{!finProjectPriority.IPM_CPP_Local__c}"/>
+                        <!--CR0405 New CPP for regional/local rollout-->
+						<apex:outputText value="{!IF(localCPP != null, localCPP, regionalCPP)}" />
+                         
                     </td>
                 </tr>
                 <tr>     
@@ -770,7 +859,8 @@
                           {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
                         </td>      
                         <td colspan="2" >
-                            <apex:outputText value="{!project.IPM_Brand_Positioning__c}"/>
+                       
+                            <apex:outputText value="{!brandPosition}"/> 
                         </td>               
                     </tr> 
                 </table>
@@ -783,7 +873,7 @@
             <apex:outputPanel rendered="{!IF(pds.IPM_Section__r.IPM_Section_Type__c='Header',true,false)}"> 
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c}" styleClass="heading2 bold"/>
             
-                <apex:outputText value="(guidance not due until contract)" rendered="{!IF(pds.IPM_Section_Name__c='Deployment',True,False)}"  styleClass="bdText"> </apex:outputText>
+                <apex:outputText value="(guidance not due until contract)" rendered="{!AND(projectDoc.IPM_GateDocuments__c='Charter',pds.IPM_Section_Name__c='Deployment')}"  styleClass="bdText"> </apex:outputText>
                 
             </apex:outputPanel>
             <!-- below panel is rendered when document section sectioType is "sub-header" and default section is true -->
@@ -800,16 +890,17 @@
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c} [{!pds.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
           <!--- Components To BE Displayed within Sections--->
 
-                <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment')}" > </c:IPM_Financial_ActionStandards>
                 <!-- below component renders while it meet one of the criteria -->
                 <!-- 1. sub header section master section external id is "Initial_Estimate_of_Opportunity" -->
-                <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project Document gate is "Market Deployment"-->                                                    
+                <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project Document gate is "Market Deployment"--> 
+                <c:IPM_GlobalFinancialActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original',OR(project.IPM_Phase__c='Ideas',projectDoc.IPM_GateDocuments__c='Charter'))}"></c:IPM_GlobalFinancialActionStandards>
+                <c:IPM_Financial_Action_Standards_Inverse gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment',OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Local',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',projectDoc.IPM_GateDocuments__c!='Charter')))}" > </c:IPM_Financial_Action_Standards_Inverse>
                 <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c=='Market Deployment'))}" ></c:IPM_FinGate>
                 <c:IPM_RND_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',pds.IPM_Section_Name__c=='R&D Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                 <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='Supply Chain Feasibility',pds.IPM_Section_Name__c=='Supply Chain Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
                 <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
                 <!-- below component will render when child od sub header section master external id is "CUs n Complexity" and project span is "Regional" or "Local" and phase is "Ideas" -->
-               <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!pds.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}"></c:IPM_CU_Complexity>
+               <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!pds.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c='Operational'))}"></c:IPM_CU_Complexity>
                <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',pds.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
                 <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
@@ -818,6 +909,10 @@
            
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
+           <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!pds.IPM_Has_Appendix__c}"> 
+                 <apex:outputPanel >{!$Label.IPM_GD_APPENDIX_MSG}tion <span data-dir="{!pds.IPM_Master_Section_External_Id__c}" class="appText">{!pds.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
+                                                                                                  
+             </apex:outputPanel>
             </apex:outputPanel>
 
 
@@ -847,7 +942,9 @@
                     <c:IPM_CMIGateSectionPDF projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}" secId="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSectionPDF>
                     <c:IPM_BCC_Consolidate gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
-                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy> 
+                    <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
+                    <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
+                    <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.3' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
         </apex:repeat> 
     
 

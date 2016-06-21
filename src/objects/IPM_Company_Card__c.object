@@ -76,6 +76,7 @@
     <fields>
         <fullName>IPM_Business_Partner__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>to store business partner user name</description>
         <externalId>false</externalId>
         <label>Business Partner</label>
         <referenceTo>User</referenceTo>
@@ -137,6 +138,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Company_HQ_Country__c</fullName>
+        <description>to store company head quarter name</description>
         <externalId>false</externalId>
         <label>Company H.Q (Country)</label>
         <picklist>
@@ -161,6 +163,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     <fields>
         <fullName>IPM_Company_IPM_Champion__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>to store company champion</description>
         <externalId>false</externalId>
         <label>Company IPM Champion</label>
         <referenceTo>IPM_User_Profile__c</referenceTo>
@@ -173,6 +176,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Company_Turnover__c</fullName>
+        <description>to store company turn over</description>
         <externalId>false</externalId>
         <label>Company Turnover</label>
         <precision>18</precision>
@@ -184,6 +188,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Company_Type__c</fullName>
+        <description>to store company type as company or central unit</description>
         <externalId>false</externalId>
         <label>Company Type</label>
         <picklist>
@@ -203,6 +208,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Currency__c</fullName>
+        <description>to store currency type</description>
         <externalId>false</externalId>
         <label>Currency</label>
         <picklist>
@@ -658,6 +664,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Geographical_Region__c</fullName>
+        <description>to store geographical region</description>
         <externalId>false</externalId>
         <label>Geographical Region</label>
         <picklist>
@@ -1697,6 +1704,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Geographical_Scope__c</fullName>
+        <description>to store geographical scope</description>
         <externalId>false</externalId>
         <label>Geographical Scope</label>
         <picklist>
@@ -2752,6 +2760,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_IC_Category__c</fullName>
+        <description>to store IC category</description>
         <externalId>false</externalId>
         <label>IC Category(ies)</label>
         <length>255</length>
@@ -2763,6 +2772,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_IC_Type__c</fullName>
+        <description>to store IC type</description>
         <externalId>false</externalId>
         <label>IC Type</label>
         <picklist>
@@ -2791,6 +2801,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Inoplan_Region__c</fullName>
+        <description>to store inoplan region value</description>
         <externalId>false</externalId>
         <label>Inoplan Region</label>
         <picklist>
@@ -2838,6 +2849,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_MCO__c</fullName>
+        <description>to store managed category</description>
         <externalId>false</externalId>
         <label>MCO</label>
         <picklist>
@@ -2993,6 +3005,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Managed_Category__c</fullName>
+        <description>to store company card category</description>
         <externalId>false</externalId>
         <label>Managed Category</label>
         <picklist>
@@ -3053,6 +3066,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Market_Cluster__c</fullName>
+        <description>to store market cluster value</description>
         <externalId>false</externalId>
         <label>Market Cluster</label>
         <picklist>
@@ -3096,6 +3110,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Name_Suffix__c</fullName>
+        <description>to store project name suffix</description>
         <externalId>false</externalId>
         <label>Project Name Suffix</label>
         <length>10</length>
@@ -3107,6 +3122,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_Total_OpCo_Turnover__c</fullName>
+        <description>to store total company turnover</description>
         <externalId>false</externalId>
         <label>Total OpCo Turnover (&apos;000s Euros)</label>
         <precision>18</precision>
@@ -3118,6 +3134,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     </fields>
     <fields>
         <fullName>IPM_TxtGeographical_Scope__c</fullName>
+        <description>to store geographical scope values as Global or market cluster or countries names</description>
         <externalId>false</externalId>
         <label>Geographical Scope</label>
         <required>false</required>
@@ -3128,6 +3145,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     <fields>
         <fullName>IPM_Unique_Company_Card_Name__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>to store value as unique company card</description>
         <externalId>false</externalId>
         <label>Unique Company Card Name</label>
         <length>100</length>
@@ -3169,9 +3187,9 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <columns>IPM_Managed_Category__c</columns>
         <columns>IPM_Market_Cluster__c</columns>
         <columns>IPM_MCO__c</columns>
-        <columns>RECORDTYPE</columns>
         <columns>IPM_Company_Turnover__c</columns>
         <columns>IPM_Total_OpCo_Turnover__c</columns>
+        <columns>RECORDTYPE</columns>
         <columns>IPM_Currency__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

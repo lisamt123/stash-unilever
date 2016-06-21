@@ -28,6 +28,10 @@
                 <behavior>Edit</behavior>
                 <field>FA_VC_Facilities__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

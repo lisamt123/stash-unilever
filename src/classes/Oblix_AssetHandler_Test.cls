@@ -1,10 +1,16 @@
 @isTest
 public with sharing class Oblix_AssetHandler_Test {
+      private static List<Asset_Scoring__c> list_of_asset_scoring;
 
 	@isTest static void Oblix_AssetHandler_Test(){
 		User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
             Test.startTest();
+
+            list_of_asset_scoring = Oblix_TestUtils.createAssetScoringRecords(10);  
+            insert list_of_asset_scoring;
+
+            insert Oblix_TestUtils.createOblixCustomSettings();
 
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 

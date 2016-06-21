@@ -214,6 +214,10 @@
                 <behavior>Readonly</behavior>
                 <field>PO_Check_Value_Diff__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

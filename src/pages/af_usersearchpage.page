@@ -1,4 +1,4 @@
-<apex:page controller="af_usersearch" sidebar="false">
+<apex:page controller="AF_Usersearch" sidebar="false">
 
   <apex:form >
   <apex:pageMessages id="errors" />

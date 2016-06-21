@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>OV_KPI_Dimension_Brand_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Read sharing for Dimension</description>
+        <label>OV KPI Dimension Brand - Read</label>
+        <sharedTo>
+            <group>One_View_Consumer</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_KPI_Data_Managers</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OV_KPI_Dimension_Brand_Write</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>OV KPI Dimension Brand - Write</label>
+        <sharedTo>
+            <group>One_View_KPI_Data_Managers</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_KPI_Data_Managers</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

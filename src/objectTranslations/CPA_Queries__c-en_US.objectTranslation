@@ -117,15 +117,19 @@
             <translation><!-- Request to Withhold --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <label><!-- SMT group email --></label>
+        <name>eml_SMT_group_email__c</name>
+    </fields>
+    <fields>
+        <label><!-- VDM group email --></label>
+        <name>eml_VDM_group_email__c</name>
+    </fields>
     <layouts>
         <layout>CPA_Queries Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>

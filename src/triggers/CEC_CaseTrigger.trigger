@@ -33,6 +33,8 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
         caseHelper.updateCaseDetailsIfRecordTypeIsSpam(trigger.newMap,trigger.oldMap); 
         caseHelper.updateProductAndReasonCode(trigger.newMap);
         caseHelper.updateCountryDetail(trigger.newMap);
+        caseHelper.updateCaseBrandAndSkillOnUpdate(trigger.newmap, trigger.oldMap);
+        System.debug('Before updateCaseBrandAndSkillOnUpdate'); 
         //caseHelper.insertCountryDetail(trigger.new);
         caseHelper.updateDayCodeMftrCode(trigger.newMap, trigger.oldMap);
         // to set flag for survey email workflow
@@ -67,16 +69,13 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
         caseHelper.updateSuppliedEmail(trigger.new);//To update the suppliedEmail for Web Cases
         caseHelper.insertCountryDetail(trigger.new);
         caseHelper.updatePIIWarningForInsert(trigger.new);
+        System.debug('$$$$$$$$$$InsertValues' + trigger.new[0].Country_Name__c + ' ' + trigger.new[0].Brand__C);
+        caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new);
+        
         
     }
     
     /* Support team change ends*/
     
-/** START: GS Test ***** 
-    if(trigger.isBefore && trigger.isUpdate){
-            System.debug('Before Update'); 
-            CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
-            caseHelper.updateCaseFields(trigger.newMap);
-    }
-/** END: GS TEST   ****/
+
 }

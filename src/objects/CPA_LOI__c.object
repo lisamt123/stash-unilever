@@ -130,7 +130,7 @@
         <description>Total value in Euros being requested for this WAR</description>
         <externalId>false</externalId>
         <inlineHelpText>Total value in Euros being requested for this WAR</inlineHelpText>
-        <label>Total value in Euro being requested *</label>
+        <label>W@R total value in € being requested*</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -222,6 +222,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email</description>
         <externalId>false</externalId>
@@ -237,6 +247,16 @@
         <description>Unilever Content Approver Email</description>
         <externalId>false</externalId>
         <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -263,6 +283,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>LOI2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>lkp_PWORF__c</fullName>
@@ -314,10 +346,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Analyse</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Design</fullName>
                 <default>false</default>
             </picklistValues>
@@ -335,6 +363,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -403,7 +435,7 @@
         <description>Total number of man-days being requested for this WAR</description>
         <externalId>false</externalId>
         <inlineHelpText>Total number of man-days being requested for this WAR</inlineHelpText>
-        <label>Total number of man days requested*</label>
+        <label>W@R total number of man days requested*</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -694,11 +726,16 @@
         <filterScope>Everything</filterScope>
         <label>All LOI</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CAP_ULPM_CPA_LOI</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -707,7 +744,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_CPA_LOI</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -716,10 +753,75 @@
     <listViews>
         <fullName>CPA_SMT_CPA_LOI</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>LOI_Assigned_to_SMT</fullName>
+        <columns>NAME</columns>
+        <columns>lkp_PWORF__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_Internal_PWO_ID__c</columns>
+        <columns>fml_PWORF_Clarity_ID__c</columns>
+        <columns>txt_PWO_number__c</columns>
+        <columns>txt_PWO_title__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>LOI Assigned to SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>LOI_Assigned_to_VDM</fullName>
+        <columns>NAME</columns>
+        <columns>lkp_PWORF__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_Internal_PWO_ID__c</columns>
+        <columns>fml_PWORF_Clarity_ID__c</columns>
+        <columns>txt_PWO_number__c</columns>
+        <columns>txt_PWO_title__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>LOI Assigned to VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>LOI_Created_By_Me</fullName>
+        <columns>NAME</columns>
+        <columns>lkp_PWORF__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_Internal_PWO_ID__c</columns>
+        <columns>fml_PWORF_Clarity_ID__c</columns>
+        <columns>txt_PWO_number__c</columns>
+        <columns>txt_PWO_title__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Mine</filterScope>
+        <label>LOI Created By Me</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <nameField>
@@ -737,7 +839,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -847,7 +949,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -957,7 +1059,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1066,7 +1168,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1175,7 +1277,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1296,7 +1398,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>CPA_New_LOI_cant_be_created</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>LOI cant be created before PWORF get approved by Vendor</description>
         <errorConditionFormula>OR( 
 ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Submitted&quot;), 
@@ -1343,9 +1445,9 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
 	} 
 	else if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
-		alert(&quot;Can not Cancel LOI as it is already Cancelled&quot;); 
+		alert(&quot;Cant Cancel LOI as it is already Cancelled&quot;); 
 	}else{
-		alert(&quot;Can not Cancel LOI&quot;); 
+		alert(&quot;Cant Cancel LOI&quot;); 
 	}
 	
 	
@@ -1382,33 +1484,33 @@ var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name; 
 
 
-if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){
+if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){ 
 
-	var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_LOI__c&apos; AND Name=&apos;LOI Other&apos; limit 1&quot; ;
-	var result = sforce.connection.query(soql); 
-	var RecType = result.getArray(&apos;records&apos;);
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_LOI__c&apos; AND Name=&apos;LOI Other&apos; limit 1&quot; ; 
+var result = sforce.connection.query(soql); 
+var RecType = result.getArray(&apos;records&apos;); 
 
-	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
-	{ 
-		alert(&quot;LOI cannot be created since associated PWORF is in Saved/Withhold/Returned/Cancelled Status&quot;); 
-	} 
-	else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
-	{ 
-		alert(&quot;Associated PWORF should be atleast in Accepted status to create LOI.&quot;); 
-	} 
-	else{ 
-		result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;); 
-		var loiRecords = result.getArray(&quot;records&quot;); 
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
+{ 
+alert(&quot;LOI cannot be created since associated PWORF is in Saved/Withhold/Returned/Cancelled Status&quot;); 
+} 
+else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
+{ 
+alert(&quot;Associated PWORF should be atleast in Accepted status to create LOI.&quot;); 
+} 
+else{ 
+//result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;); 
+//var loiRecords = result.getArray(&quot;records&quot;); 
 
-		if(loiRecords.length &gt;0){ 
-			alert(&quot;LOI cannot be create since associated PWORF contains Cancelled LOI&quot;); 
-		}else{ 
-			window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecType[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
-		}	
-	} 
-}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; == &apos;&apos;){
+//if(loiRecords.length &gt;0){ 
+//alert(&quot;LOI cannot be created since associated PWORF contains Cancelled LOI&quot;); 
+//}else{ 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecType[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_parent&quot;); 
+//}	
+} 
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; == &apos;&apos;){ 
 alert(&quot;Please create LOI by using New LOI option from Relevant PWORF Record&quot;);	
-//*window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_self&quot;); */
+//*window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_parent&quot;); */ 
 }else{ 
 alert(&quot;LOI can be created by Vendor Team only.&quot;); 
 }</url>
@@ -1444,6 +1546,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){
 			p.pkl_Status__c = &quot;Resubmitted&quot;;
 			result = sforce.connection.update([p]);
+//alert(result);
 			location.reload(true);
 		}
 		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){
@@ -1472,7 +1575,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 
 	}
 	else {
-		alert(&quot;LOI can not be submitted, as required fields are missing&quot;);
+		alert(&quot;LOI cant be submitted, as required fields are missing&quot;);
 	}
 }
 else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_SMT&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
@@ -1503,13 +1606,13 @@ try {
 
 	if( permissionSetName == &quot;CPA_SMT&quot;){ 
 		if(p.pkl_Status__c == &quot;Signed&quot;){ 
-			alert(&quot;Can not Return, as LOI is already Signed&quot;); 
+			alert(&quot;Cant Return, as LOI is already Signed&quot;); 
 		} else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
-			alert(&quot;Can not Return, as LOI is already Cancelled&quot;); 
+			alert(&quot;Cant Return, as LOI is already Cancelled&quot;); 
 		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
 			window.open(&apos;/apex/CPA_LOI_Reason_for_return?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
 		}else if(p.pkl_Status__c == &quot;Returned&quot;){ 
-			alert(&quot;Can not Return, as LOI is already Returned&quot;); 
+			alert(&quot;Cant Return, as LOI is already Returned&quot;); 
 		}else if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
 		}else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){
@@ -1596,7 +1699,7 @@ if(permissionSetName == &quot;CPA_SMT&quot;){
 	}else if(p.pkl_Status__c == &quot;Signed&quot;){
 		alert(&quot;LOI is already Signed&quot;);
 	}else{
-		alert(&quot;LOI can not be Signed, as it is not Sent for Signature&quot;);
+		alert(&quot;LOI cant be Signed, as it is not Sent for Signature&quot;);
 	}
 }
 else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){

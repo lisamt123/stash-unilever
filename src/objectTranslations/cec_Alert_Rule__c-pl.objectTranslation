@@ -149,6 +149,10 @@
         <label>Rynek</label>
         <name>Market__c</name>
         <picklistValues>
+            <masterLabel>ANZ</masterLabel>
+            <translation><!-- ANZ --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Baltics</masterLabel>
             <translation><!-- Baltics --></translation>
         </picklistValues>
@@ -185,6 +189,10 @@
             <translation><!-- India --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Italy</masterLabel>
             <translation><!-- Italy --></translation>
         </picklistValues>
@@ -201,12 +209,20 @@
             <translation><!-- North America --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Poland</masterLabel>
             <translation><!-- Poland --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Portugal</masterLabel>
             <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Southern Cone</masterLabel>

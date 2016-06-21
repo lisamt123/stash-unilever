@@ -1,24 +1,40 @@
-<apex:page sidebar="false" controller="Oblix_SowMainController" docType="html-5.0" showHeader="false" standardStylesheets="false">
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="false" controller="Oblix_SowMainController" >
 
     <apex:composition template="Oblix_OuterPageTemplate">
 
-        <apex:define name="top_breadcrumb"/>
+        <apex:define name="top_breadcrumb"/> 
         <apex:define name="header_text">
             SOW List
+            <br/>
         </apex:define>
 
-        <apex:define name="top_option_links"/>
+        <apex:define name="top_option_links" />
 
         <apex:define name="top_right_panel">
+            
             <apex:commandButton value="CREATE SOW" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_create_sow" onclick="blockme()" rendered="{!IF(can_create_sow,true,false)}" reRender="jqueryId,jqueryId2" />
+                
         </apex:define>
+
 
         <apex:define name="body_content">
 
-            <apex:outputPanel rendered="{!IF(thousandBlocks.size == 0,true,false)}" id="welcomeMessage">
+        <style>
+            .table_blocked {
+                border: none;
+                padding: 15px;
+                background-color: #000;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                opacity: .5;
+                color: #fff;
+            }
+        </style>
+
+            <apex:outputPanel rendered="{!IF(liliso_sow.size == 0,true,false)}" id="welcomeMessage">
                 <div class="row SOW_homepage_welcome_message">
                     <div class="col-lg-8 col-lg-offset-3">
-                        <h1>Hi {!userConnected.Name}</h1>
+                        <h1>Hi {!$User.FirstName} {!$User.LastName }</h1>
                         <h5>You have not created any SOW yet. Click the button to get started</h5>
                         <img alt="Create SOW" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-up-right.png')}" width="96" height="77"/>
                     </div>
@@ -26,19 +42,7 @@
             </apex:outputPanel>
 
             <hr class="divider" />
-            <apex:outputPanel rendered="{!IF(thousandBlocks.size > 0,true,false)}" id="sowListItems">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <!--p>Showing 1 to 10 of 17 entries&nbsp;&nbsp;|&nbsp;&nbsp;Show
-                        <select class="Oblix_picklist id=" name="" placeholder="10">
-                            <option value="5">5</option>
-                            <option value="10" selected="selected">10</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                        </select>
-                            entries</p-->
-                    </div>
-                </div>
+            <apex:outputPanel rendered="{!IF(liliso_sow.size > 0,true,false)}" id="sowListItems">
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="pull-right SOW_homepage_find">
@@ -47,42 +51,86 @@
                         </div>
 
                         <div class="Oblix_table" id="Oblix_DashId">
+
+                             <!-- Table blocking elements: copy-pasted HTML/CSS from BlockUI plugin for faster loading -->
+                            <div class="blockUI_table" style="display:none"></div>
+                            <div class="blockUI_table" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.6; cursor: wait; position: absolute; background-color: rgb(0, 0, 0);"></div>
+                            <div class="blockUI_table table_blocked" style="z-index: 1011; position: absolute; padding: 0px; margin: 0px; width: 30%; top: 82.5px; left: 398.5px; text-align: center; cursor: wait;"><h1>Please wait...</h1></div>
+                        
                             <table class="table table-striped" id="sowListTable">
+                                <!-- iterating over a fieldset proved to slow down the page load quite a lot
+                                <thead>
+                                    <tr>
+                                        <apex:repeat value="{!$ObjectType.Marketing_SOW__c.FieldSets.Oblix_SOW_Main}" var="field">
+                                            <th class="header_{!field}">{!field.label}</th>
+                                        </apex:repeat>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!liliso_sow}" var="liso_sow">
+                                        <apex:repeat value="{!liso_sow}" var="sow">
+                                            <tr>
+                                                <apex:repeat value="{!$ObjectType.Marketing_SOW__c.FieldSets.Oblix_SOW_Main}" var="field">
+                                                    <td class="cell_{!field}">
+                                                        <apex:outputText rendered="{!field.Type == 'string' || field.Type == 'picklist'}">{!sow[field]}</apex:outputText>
+                                                        <apex:outputText rendered="{!field.Type == 'date'}" value="{0,date,MM'/'dd'/'yyyy}">
+                                                            <apex:param value="{!sow[field]}" />
+                                                        </apex:outputText>
+                                                        <apex:outputText rendered="{!field.Type == 'currency'}" value="€ {0, number,###,###,##0}">
+                                                            <apex:param value="{!sow[field]}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                </apex:repeat>
+                                            </tr>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                </tbody>
+                                -->
+
                                 <thead>
                                     <tr>
                                         <th style="display:none;width:0px !important">{!$ObjectType.Marketing_SOW__c.fields.Id.label}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.Name.label}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</th>
+                                        <th>{!$Label.Oblix_Lbl_UIUX_Sub_Category}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</th>
                                         <th>{!$Label.Oblix_Lbl_UIUX_Last_updated}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.SOW_Status__c.label}</th>
-                                        <th>Current SOW Total</th>
-
+                                        <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_Current_FY_Total__c.label}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <apex:repeat value="{!thousandBlocks}" var="block">
-                                        <apex:repeat value="{!block.lstMarketingSows}" var="sow">
+                                    <apex:repeat value="{!liliso_sow}" var="liso_sow">
+                                        <apex:repeat value="{!liso_sow}" var="sowWrapper">
                                             <tr>
-                                                <td style="display:none;width:0px !important">{!sow.Id}</td>
-                                                <td>{!sow.Name}</td>
-                                                <td>{!sow.OblixBrand__r.Name}</td>
-                                                <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
+                                                <td style="display:none;width:0px !important">{!sowWrapper.sow.Id}</td>
+                                                <td>{!sowWrapper.sow.Name}</td>
+                                                <td>{!sowWrapper.sow.Brand_Name__c}</td>
+                                                <td>{!sowWrapper.sow.SmallProductCategory__r.Name}</td>
+                                                <td width="15%">{!sowWrapper.sow.Agency_Name__c}</td>
                                                 <td>
-                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
-                                                        <apex:param value="{!sow.LastModifiedDate}" /></apex:outputText>
+                                                    <span style="display: none;">
+                                                    <!-- Needed for locale-independent DataTables sorting -->
+                                                        <apex:outputText value="{0, date, yyyy/MM/dd-HH:mm:ss}">
+                                                            <apex:param value="{!sowWrapper.sow.LastModifiedDate}" /> 
+                                                        </apex:outputText>
+                                                    </span>
+                                                    <apex:outputText value="{!sowWrapper.localeDate}" />
                                                 </td>
-                                                <td>{!sow.SOW_Status__c}</td>
-                                                <td>€&nbsp;
-                                                    <apex:outputText value="{0, number,###,###,##0}">
-                                                        <apex:param value="{!sow.Total_Campaigns_This_FY__c+sow.OblixTotalOtherItemsFees__c}" />
+                                                <td>{!sowWrapper.sow.SOW_Status__c}</td>
+                                                <td>
+                                                    <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!sowWrapper.disaplyFinancialData}">
+                                                        <apex:param value="{!sowWrapper.sow.Oblix_Current_FY_Total__c}" />
                                                     </apex:outputText>
+                                                    <apex:outputText value=" --- " rendered="{!sowWrapper.disaplyFinancialData == false}"/>
                                                 </td>
                                             </tr>
                                         </apex:repeat>
                                     </apex:repeat>
+
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -91,31 +139,32 @@
             <apex:actionFunction name="redirectToSOWDetailPage" action="{!redirectToSOWDetailPage}" reRender="jqueryId,jqueryId2">
                 <apex:param name="selectedSowId" assignTo="{!selectedSowId}" value="" />
             </apex:actionFunction>
+
         </apex:define>
+
         <apex:define name="page_scripts">
             <script type="text/javascript">
-            $(document).ready(function() {
-                $.unblockUI();
-                var table = $('#sowListTable').DataTable({
-                    "dom": 'lrtip',
-                    'pagingType': 'full_numbers'
-                });
-                $('#searchBox').on('keyup', function() {
-                    table.search(this.value).draw();
-
-                });
-                $('#sowListTable tbody').on('click', 'tr', function() {
-                    blockme();
-                    $(this).toggleClass('selected');
-                    $(this).addClass('bg_selected');
-                    var ids = $.map(table.rows('.selected').data(), function(item) {
-                        return item[0];
+                $(document).ready(function() {
+                    var table = $('#sowListTable').on( 'init.dt', function () {
+                        $('#Oblix_DashId .blockUI_table').hide();
+                    } ).DataTable({"dom": 'lrtip', 'pagingType': 'full_numbers', 'order': [[ 5, "desc" ]], 'bPaginate': false});
+                    //setTimeout(function(){ $('#Oblix_DashId .blockUI1').hide(); console.log('Test123')}, 3000);
+                    $('#searchBox').on('keyup', function() {
+                        table.search(this.value).draw();
                     });
-                    redirectToSOWDetailPage(ids);
+                    $('#sowListTable tbody').on('click', 'tr', function() {
+                        blockme();
+                        $(this).toggleClass('selected');
+                        $(this).addClass('bg_selected');
+                        var ids = $.map(table.rows('.selected').data(), function(item) {
+                            return item[0];
+                        });
+                        redirectToSOWDetailPage(ids);
+                    });
                 });
-
-            });
-        </script>
+            </script>
         </apex:define>
+
     </apex:composition>
+    
 </apex:page>

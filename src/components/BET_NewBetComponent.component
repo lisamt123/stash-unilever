@@ -85,7 +85,7 @@
             <div class="form-item">
                 <div class="item-label">
                     <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
+                    <apex:outputPanel layout="inline" styleClass="question-icon" 
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
                 </div>

@@ -51,8 +51,8 @@
                 <field>num_Target_Blend_Rate__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>fur_per_Variance__c</field>
+                <behavior>Edit</behavior>
+                <field>per_Variance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -90,6 +90,10 @@
                 <behavior>Edit</behavior>
                 <field>txt_Unilever_Content_Approver_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -97,11 +101,11 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -223,6 +227,20 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>CPA_Queries__c.LookupCR_Query__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <customButtons>New_User_Defined_DocuSign_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>pkl_Attribute_Type__c</fields>
+        <fields>txt_Value__c</fields>
+        <fields>Sent_in_Docusign__c</fields>
+        <fields>DS_Status__c</fields>
+        <fields>DS_Responsibility_With__c</fields>
+        <fields>DS_Responsibility_Owner__c</fields>
+        <fields>Comments__c</fields>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_CR__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

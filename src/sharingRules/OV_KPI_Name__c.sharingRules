@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>OneView_KPI_Name_Edit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Global Admins ability to Read/write</description>
+        <label>OneView KPI Name Edit</label>
+        <sharedTo>
+            <group>One_View_Global_Admin</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_Global_Admin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OneView_KPI_Name_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Read KPI Name</description>
+        <label>OneView KPI Name Read</label>
+        <sharedTo>
+            <group>One_View_Consumer</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_Consumer</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

@@ -84,6 +84,10 @@
         <relationshipLabel><!-- Team Members (Participant) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Participant small photourl --></label>
+        <name>Participant_small_photourl__c</name>
+    </fields>
+    <fields>
         <label><!-- Rating By Participant --></label>
         <name>Rating_By_Participant__c</name>
     </fields>

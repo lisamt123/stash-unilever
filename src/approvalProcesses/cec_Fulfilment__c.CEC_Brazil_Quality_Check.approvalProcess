@@ -30,7 +30,8 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <formula>Debit_Card_Value__c  &gt;  $User.Debit_Card_Refund_Limit__c</formula>
+            <formula>((Debit_Card_Value__c &gt; $User.Debit_Card_Refund_Limit__c)
+|| (ISBLANK($User.Debit_Card_Refund_Limit__c) &amp;&amp; NOT(ISBLANK(Debit_Card_Value__c )))) ||((E_Voucher_Value__c &gt; $User.E_Voucher_Refund_Limit__c ) || (ISBLANK($User.E_Voucher_Refund_Limit__c) &amp;&amp; NOT(ISBLANK(E_Voucher_Value__c ))))</formula>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
         <label>Step 1</label>

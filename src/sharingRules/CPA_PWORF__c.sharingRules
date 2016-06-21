@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>PWORF</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PWORF</label>
+        <sharedTo>
+            <group>CAP_ULPM_group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>VDM_Name__c</field>
+            <operation>equals</operation>
+            <value>Accenture</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PWORF2</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PWORF2</label>
+        <sharedTo>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>VDM_Name__c</field>
+            <operation>equals</operation>
+            <value>Accenture</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted,Cancelled,Resubmitted,Withhold,Auto Accepted,Returned,Accepted,Rejected,Answered</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

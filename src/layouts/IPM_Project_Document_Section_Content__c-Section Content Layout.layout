@@ -446,6 +446,10 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Assortment_CU_Priority__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

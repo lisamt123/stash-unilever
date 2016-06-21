@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>BESTBUY MALDIVES PVT LTD Partner User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
-    <parentRole>UID_Business_Distributor_Manager</parentRole>
+    <parentRole>UI_DMS_CD_OPS_PIMMP</parentRole>
 </Role>

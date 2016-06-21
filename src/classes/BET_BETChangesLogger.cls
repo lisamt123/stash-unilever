@@ -7,6 +7,7 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
+1.1        blessy.voola@accenture.com 24-Mar-2016    Do not send notification to inactive BET owner
 *************************************************************************************/
 /* Helper class takes sharing settings from its 'parent' */
 public class BET_BETChangesLogger {
@@ -127,6 +128,9 @@ public class BET_BETChangesLogger {
       } else {
         diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
         IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(newRecord.IPM_Project__c);
+        //Do not send notification if BET owner is inactive
+        User owner=[select id,isactive from User where id=:newRecord.ownerid];
+        if(owner.isactive)
         BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(newRecord,project); 
       }
     }

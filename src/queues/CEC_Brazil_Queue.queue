@@ -9,6 +9,12 @@
         <sobjectType>CEC_Debit_Card_Detail__c</sobjectType>
     </queueSobject>
     <queueSobject>
+        <sobjectType>CEC_E_Voucher_Details__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CEC_Factory_Details__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>Case</sobjectType>
     </queueSobject>
     <queueSobject>

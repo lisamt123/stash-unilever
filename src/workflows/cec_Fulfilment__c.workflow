@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>CEC_Brazil_E_Voucher_Email</fullName>
+        <description>CEC Brazil E-Voucher Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>PersonEmail__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>sac@atendimentounilever.com.br</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>CEC_Emails_Brazil/Brazil_E_Voucher_Details</template>
+    </alerts>
     <fieldUpdates>
         <fullName>CEC_Cheque_Sent_Update</fullName>
         <description>CEC: To set &apos;Cheque Sent&apos; to &apos;N&apos; whenever &apos;Cheque Voided&apos; field is updated to &apos;Y&apos;</description>
@@ -56,6 +68,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <rules>
         <fullName>CEC %3A Cheque Sent Update</fullName>
@@ -71,6 +84,17 @@
         </criteriaItems>
         <description>CEC: This rule will set &apos;Cheque Sent&apos; to &apos;N&apos; whenever &apos;Cheque Voided&apos; field is updated to &apos;Y&apos;</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Brazil Send E-Voucher Email</fullName>
+        <actions>
+            <name>CEC_Brazil_E_Voucher_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>CEC Send E-Voucher Email is used to</description>
+        <formula>IF(Case_Market__c = &apos;Brazil&apos; &amp;&amp; ((isApproved__c &amp;&amp; E_Voucher_Number__c &lt;&gt; Null) || (isApproved__c &amp;&amp; E_Voucher_Number__c &lt;&gt; Null  &amp;&amp;  Resend_E_Voucher_Email__c   = TRUE)),TRUE , FALSE)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>Market Update</fullName>

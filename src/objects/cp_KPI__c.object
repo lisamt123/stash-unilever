@@ -261,21 +261,21 @@
             <controllingField>KPI_Progress_Status__c</controllingField>
             <picklistValues>
                 <fullName>Resource Constraints</fullName>
+                <default>false</default>
                 <controllingFieldValues>Amber</controllingFieldValues>
                 <controllingFieldValues>Red</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>New Leadership</fullName>
+                <default>false</default>
                 <controllingFieldValues>Amber</controllingFieldValues>
                 <controllingFieldValues>Red</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
+                <default>false</default>
                 <controllingFieldValues>Amber</controllingFieldValues>
                 <controllingFieldValues>Red</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
