@@ -1,3 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Activity Record Count --></label>
+        <name>Activity_Record_Count__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de Visita</label>
+        <name>Call_Type__c</name>
+        <picklistValues>
+            <masterLabel>Claims Recontacts</masterLabel>
+            <translation><!-- Claims Recontacts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executed</masterLabel>
+            <translation><!-- Executed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound Call - Follow Up</masterLabel>
+            <translation><!-- Inbound Call - Follow Up --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound Call - Primary</masterLabel>
+            <translation><!-- Inbound Call - Primary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound Mail - Follow Up</masterLabel>
+            <translation><!-- Inbound Mail - Follow Up --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out-of-Route</masterLabel>
+            <translation><!-- Out-of-Route --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound Call - Answerphone</masterLabel>
+            <translation><!-- Outbound Call - Answerphone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound Call - Not Answered</masterLabel>
+            <translation><!-- Outbound Call - Not Answered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound Call - Not Available</masterLabel>
+            <translation><!-- Outbound Call - Not Available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound Recontact</masterLabel>
+            <translation><!-- Outbound Recontact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound call - Answered</masterLabel>
+            <translation><!-- Outbound call - Answered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planned</masterLabel>
+            <translation><!-- Planned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recommended Alternative Products / Stores</masterLabel>
+            <translation><!-- Recommended Alternative Products / Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secondary Contact</masterLabel>
+            <translation><!-- Secondary Contact --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account ID Reference --></label>
+        <name>ICB_AccountIDReference__c</name>
+    </fields>
+    <fields>
+        <label>Localização do Cliente</label>
+        <name>ICB_CustomerGeolocation__c</name>
+    </fields>
+    <fields>
+        <label>Fim Visita Executada</label>
+        <name>ICB_End_Executed_Visit__c</name>
+    </fields>
+    <fields>
+        <label>Distância Executada</label>
+        <name>ICB_ExecutedDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit Duration Time --></label>
+        <name>ICB_ExecutedVisitDurationTime__c</name>
+    </fields>
+    <fields>
+        <label>Duração da Visita Executada</label>
+        <name>ICB_ExecutedVisitDuration__c</name>
+    </fields>
+    <fields>
+        <label>Visita Executada</label>
+        <name>ICB_ExecutedVisit__c</name>
+    </fields>
+    <fields>
+        <label>Localização do Check-Out</label>
+        <name>ICB_GeolocationCheckOut__c</name>
+    </fields>
+    <fields>
+        <label>Localização do Check-In</label>
+        <name>ICB_GeolocationCheckin__c</name>
+    </fields>
+    <fields>
+        <label><!-- ICB Golden Minute Open --></label>
+        <name>ICB_GoldenMinuteOpen__c</name>
+    </fields>
+    <fields>
+        <label>Situação</label>
+        <name>ICB_Icon__c</name>
+    </fields>
+    <fields>
+        <label>Índice de Disciplina na Loja</label>
+        <name>ICB_InStoreDisciplineIndex__c</name>
+    </fields>
+    <fields>
+        <label>Visita Fora de Rota</label>
+        <name>ICB_OutOfRouteVisit__c</name>
+    </fields>
+    <fields>
+        <label>Distância Planejada</label>
+        <name>ICB_PlannedDistance__c</name>
+    </fields>
+    <fields>
+        <label>Visita Planejada</label>
+        <name>ICB_PlannedVisit__c</name>
+    </fields>
+    <fields>
+        <label>Índice de Efetividade da Rota</label>
+        <name>ICB_RouteEffectivenessIndex__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Area --></label>
+        <name>ICB_Sales_Area__c</name>
+    </fields>
+    <fields>
+        <label>Sequência</label>
+        <name>ICB_Sequence__c</name>
+    </fields>
+    <fields>
+        <label>Início da Visita Executada</label>
+        <name>ICB_Start_Executed_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>ICB_Status__c</name>
+        <picklistValues>
+            <masterLabel>Concluded</masterLabel>
+            <translation><!-- Concluded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

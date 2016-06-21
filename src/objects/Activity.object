@@ -182,6 +182,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>ICB_Icon__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+ IF(ISPICKVAL( ICB_Status__c , &quot;Concluded&quot;) , &quot;/img/samples/flag_green.gif&quot;, &quot;/img/samples/flag_red.gif&quot;), 
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status Icon</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ICB_InStoreDisciplineIndex__c</fullName>
         <description>Duration of executed visit in comparison with the planned visit. Used for report&apos;s KPI.</description>
         <externalId>false</externalId>
