@@ -28,7 +28,7 @@
     </style>
     <div class="Insights">
         <div class="slds-text-body--regular">
-            <div class="slds-text-body--regular">Total data usage compared with your colleagues</div><br/>
+            <div class="slds-text-body--regular">Total Data usage compared with your colleagues</div><br/>
             <div>
                 <span class="bar_chart">Yours</span>
                 <div class="linechart">

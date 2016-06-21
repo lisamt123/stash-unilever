@@ -46,7 +46,7 @@
         }
         .device_desc{
         float:left;
-        width:74%;
+        width:73%;
         }
         .device_img{
         float: left;

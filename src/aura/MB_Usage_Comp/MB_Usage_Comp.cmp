@@ -110,7 +110,7 @@
                      </aura:if>
                     <span class="slds-text-body--regular data_value">{!v.usageData.totalMessageUsage}</span>
                 </div> 
-                <div class="slds-text-body--small I_PASS">I-PASS<br/><br/>
+                <div class="slds-text-body--small I_PASS">iPASS<br/><br/>
                     <aura:if isTrue="{!v.usageData.ipassVariance ==true}">
                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
                      </aura:if>
