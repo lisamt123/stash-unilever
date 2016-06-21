@@ -2,8 +2,8 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <height>250</height>
     <label>Check-In</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <page>ICB_CheckInCheckOut</page>
     <type>VisualforcePage</type>
-    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <width>-100</width>
 </QuickAction>
