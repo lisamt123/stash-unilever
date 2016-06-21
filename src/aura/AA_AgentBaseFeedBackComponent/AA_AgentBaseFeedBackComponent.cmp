@@ -1,0 +1,11 @@
+<aura:component controller="CORE_Feedback_App_Controller">
+    <aura:attribute name="agentApp" type="String" default="Agent"/>
+    <aura:attribute name="Pagename" type="String" default="c:AA_LandingPageComponent"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:AA_Feedback_Evt" action="{!c.gotoApp}"/>
+    <aura:registerEvent name="LandingPageEvent" type="c:AA_NavigateToLandingPageEvent"/>
+   <div aura:id="content">
+    
+    </div>
+</aura:component>

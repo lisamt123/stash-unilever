@@ -1,0 +1,98 @@
+<aura:component controller="AA_AgentAppService" >
+	<aura:attribute name="isCheckBusinessPrinciple" type="Boolean" />
+    <aura:registerEvent name="businessPrincipleEvent" type="c:AA_BusinessPrincipleEvent"/>
+
+    <style>
+        .header-color{
+        	color: #2A94D6;
+        }
+        .btn-container{
+        	position: fixed;
+    		z-index: 1000;
+        	padding: 8px 8px 8px 15px;
+            width: 100%;
+        	background: #FFF;
+        }
+        
+    </style>
+    
+    <div class="btn-container">
+    	<button class="slds-button slds-button--neutral">Back</button>
+    </div>
+    <div class="business-princpls slds-m-horizontal--small">
+        <div class="slds-text-heading--medium slds-m-vertical--medium">Code of business principles</div>        
+    	<div class="slds-text-heading--medium slds-m-vertical--medium">
+        	Unilever Code of Business Principles and Policies impose a global ban on cartel activity
+        </div>
+        <div>&nbsp;</div>
+        <div class="bsns-prncpls">
+        	<div class="slds-text-heading--small slds-m-vertical--x-small header-color">Standard of Conduct</div>
+            <p class="slds-text-body--regular">We conduct our operations with honesty, integrity and openness, and with respect for the human rights and interests of our employees. We shall similarly respect the legitimate interests of those with whom we have relationships.</p>
+            
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Obeying the Law</div>
+            <p class="slds-text-body--regular">Unilever is committed to diversity in a working environment where there is mutual trust and respect and where everyone feels responsible for the performance and reputation of our company. We will recruit, employ and promote employees on the sole basis of the qualiﬁcations and abilities needed for the work to be performed. We are committed to safe and healthy working conditions for all employees. We will not use any form of forced, compulsory or child labour.We are committed to working with employees to develop and enhance each individual’s skills and capabilities. We respect the dignity of the individual and the right of employees to freedom of association. We will maintain good communications with employees through company based information and consultation procedures</p>
+            
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Employees</div>
+			<p class="slds-text-body--regular">Unilever is committed to diversity in a working environment where there is mutual trust and respect and where everyone feels responsible for the performance and reputation of our company. We will recruit, employ and promote employees on the sole basis of the qualiﬁcations and abilities needed for the work to be performed. We are committed to safe and healthy working conditions for all employees. We will not use any form of forced, compulsory or child labour.We are committed to working with employees to develop and enhance each individual’s skills and capabilities. We respect the dignity of the individual and the right of employees to freedom of association. We will maintain good communications with employees through company based information and consultation procedures</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Consumers</div>
+			<p>Unilever is committed to providing branded products and services which consistently offer value in terms of price and quality, and which are safe for their intended use. Products and services will be accurately and properly labelled, advertised and communicated.</p>
+				
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Shareholders</div>
+			<p class="slds-text-body--regular">Unilever will conduct its operations in accordance with internationally accepted principles of good corporate governance. We will provide timely, regular and reliable information on our activities, structure, ﬁnancial situation and performance to all shareholders.</p>
+			
+        	<div class="slds-text-heading--small slds-m-vertical--x-small header-color">Business Partners</div>
+			<p class="slds-text-body--regular">Unilever is committed to establishing mutually beneﬁcial relations with our suppliers, customers and business partners. In our business dealings we expect our partners to adhere to business principles consistent with our own.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Community Involvement</div>
+			<p class="slds-text-body--regular">Unilever strives to be a trusted corporate citizen and, as an integral part of society, to fulﬁl our responsibilities to the societies and communities in which we operate.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Public Activities</div>
+			<p class="slds-text-body--regular">Unilever companies are encouraged to promote and defend their legitimate business interests. Unilever will co-operate with governments and other organisations, both directly and through bodies such as trade associations, in the development of proposed legislation and other regulations which may affect legitimate business interests. Unilever neither supports political parties nor contributes to the funds of groups whose activities are calculated to promote party interests.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">The Environment</div>
+			<p class="slds-text-body--regular">Unilever is committed to making continuous improvements in the management of our environmental impact and to the longer-term goal of developing a sustainable business. Unilever will work in partnership with others to promote environmental care, increase understanding of environmental issues and disseminate good practice.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Innovation</div>
+			<p class="slds-text-body--regular">In our scientiﬁc innovation to meet consumer needs we will respect the concerns of our consumers and of society. We will work on the basis of sound science, applying rigorous standards of product safety.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Competition</div>
+			<p class="slds-text-body--regular">Unilever believes in vigorous yet fair competition and supports the development of appropriate competition laws. Unilever companies and employees will conduct their operations in accordance with the principles of fair competition and all applicable regulations.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Business Integrity</div>
+			<p class="slds-text-body--regular">Unilever does not give or receive, whether directly or indirectly, bribes or other improper advantages for business or ﬁnancial gain. No employee may offer, give or receive any gift or payment which is, or may be construed as being, a bribe. Any demand for, or offer of, a bribe must be rejected immediately and reported to management. Unilever accounting records and supporting documents must accurately describe and reﬂect the nature of the underlying transactions. No undisclosed or unrecorded account, fund or asset will be established or maintained.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Conﬂicts of Interests</div>
+			<p class="slds-text-body--regular">All Unilever employees are expected to avoid personal activities and ﬁnancial interests which could conﬂict with their responsibilities to the company. Unilever employees must not seek gain for themselves or others through misuse of their positions.</p>
+			
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Compliance – Monitoring – Reporting</div>
+			<p class="slds-text-body--regular">Compliance with these principles is an essential element in our business success. The Unilever Board is responsible for ensuring these principles are applied throughout Unilever. The Chief Executive Ofﬁcer is responsible for implementing these principles and is supported in this by the Corporate Code Committee chaired by the Chief Legal Ofﬁcer. Members of the Committee are the Group Secretary, the Chief Auditor, the SVP HR and the SVP Communications. The Global Code Ofﬁcer is Secretary to the Committee. The Committee presents quarterly updates to the Corporate Responsibility and Reputation and the Audit Committee, half-yearly reports to the Unilever Executive and an annual report to the Board. Day-to-day responsibility is delegated to all senior management of the regions, categories, functions, and operating companies. They are responsible for implementing these principles, if necessary through more detailed guidance tailored to local needs, and are supported in this by Regional Code Committees comprising the Regional General Counsel together with representatives from all relevant functions and categories. Assurance of compliance is given and monitored each year. Compliance with the Code is subject to review by the Board supported by the Corporate Responsibility and Reputation Committee and for ﬁnancial and accounting issues the Audit Committee. Any breaches of the Code must be reported in accordance with the procedures speciﬁed by the Chief Legal Ofﬁcer. The Board of Unilever will not criticise management for any loss of business resulting from adherence to these principles and other mandatory policies and instructions. The Board of Unilever expects employees to bring to their attention, or to that of senior management, any breach or suspected breach of these principles. Provision has been made for employees to be able to report in conﬁdence and no employee will suffer as a consequence of doing so.</p>
+	
+            <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Any sharing of information on The Agent MUST ALWAYS fully comply with competition rules</div>
+            <p class="slds-text-body--regular">NEVER ask/accept directly or indirectly (e.g. via a common customer or supplier)<br />
+            "Commercially Sensitive Information" [ refers to any information that reveals, directly or indirectly, current or future commercial plans or strategies of an actual or potential competitor of a Party. Such information includes (but is not limited to) non-public information on prices or other terms of sale, investment plans, production costs, market shares and sales territories, bidding or refraining from bidding plans, and the selection, rejection or termination of customers and suppliers ] on competitors
+            Treat "Confidential Information" [includes information that is not in the public domain and information that is not specifically designated for public disclosure or circulation] VERY CAREFULLY; if relevant, mark info with "Confidential to Unilever - this information should not be communicated to any third party" 
+            NEVER allow The Agent to be used in a way that may be seen as in breach of competition rules &nbsp; if you see sensitive info on The Agent that may be problematic <strong>ALERT Legal</strong> 
+            </p>
+            
+            <p class="slds-text-body--regular slds-m-vertical--x-small"><strong>The information has been gathered only from public sources and <span style="color:red;">non</span> compliance of the same will be treated as a breach of COBP</strong></p>
+			
+            <p class="slds-text-body--regular"><span class="text-italic"><i>In this Code the expressions "Unilever" and "Unilever companies" are used for convenience and mean the Unilever Group of companies comprising Unilever N.V., Unilever PLC and their respective subsidiary companies. The Board of Unilever means the Directors of Unilever N.V. and Unilever PLC.</i></span></p>
+			<p class="slds-text-body--regular">&nbsp;</p>
+            
+            <p>
+                <form class="slds-form--stacked">
+                    <div class="slds-m-vertical--x-small">
+                    <ui:inputCheckbox aura:id="checkBusinessPrinciple" change="{!c.onCheck}"/> <span> I accept the Code of Business Principles.</span>
+                    </div>
+                    
+                    <div>
+                        <ui:button label="Accept" press="{!c.submitForm}" />
+                    </div>
+                </form>
+            </p>
+        </div>
+        
+    </div>
+
+</aura:component>

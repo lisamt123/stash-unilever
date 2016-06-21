@@ -1,0 +1,66 @@
+/*Filter option page header bar left align the content*/
+.THIS .leftAlign {
+    padding: 10px;    
+}
+
+.THIS .formHeader{
+    background: #FFFFFF;
+    width:100%;
+    height:50px;
+    border-bottom: 1px solid #D1D1D4;
+}
+
+.THIS.container{
+    padding-bottom: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    background: white;
+}
+
+.THIS .unilever-frm-content{
+    position: relative;
+    padding: 15px 15px 20px 15px;
+    border-top: 2px solid #cfd7e6;
+}
+
+.THIS .unilever-submit-btn{
+    text-align: center;
+    padding: 15px;
+}
+
+.THIS .unilever-submit-btn .slds-button {
+    width: 100%;
+}
+
+.THIS .slds-form-element {
+    margin-bottom: .75rem;
+}
+.THIS .red-color{
+    color: red;
+}
+.THIS .hide-form{
+    display: none;
+}
+.THIS .green-color{
+    color: green;
+}
+.THIS .text-align{
+    text-align: center;
+}
+
+.THIS .slds-modal__header{
+    border-bottom: none;
+    padding: 0.5rem 1rem;
+}
+
+.THIS .slds-p-around--medium {
+    padding: 0.5rem;
+}
+
+.THIS .success-msg-div{
+
+}
+.THIS .red-color{
+    color: red;
+}

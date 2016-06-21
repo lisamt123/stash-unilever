@@ -1,0 +1,114 @@
+<aura:component controller="AA_AgentAppService">
+    <style>
+        .hiddenClass{
+          color: red;
+          display: none;
+        }
+        
+    	.baseImage{
+        	position: relative;
+        	background: #fff;
+         }
+       
+    	.bkground-img-trans{
+        	width: 100%;
+            max-height: 198px;
+            min-height: 198px;
+            vertical-align: middle;
+        }
+        
+        .logo{
+        	position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .first-image-base{
+        	    max-height: 198px;
+   				min-height: 198px;
+        		width: 100%;
+        }
+        
+        
+    </style> 
+    
+	<aura:attribute name="objReport" type="AA_WrapperClass.agentReportDetail"/>
+    <aura:attribute name="isLikeBtn" type="Boolean"/>
+    <aura:attribute name="isCount" type="Boolean" default="false"/>
+    <aura:attribute name="enableLike" type="Boolean" default="false"/>
+    <aura:attribute name="disableLike" type="Boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.landingPageDate}" />
+    <div>
+    <div class="report-detail" > 
+        
+     <div onclick="{!c.doInit}">  
+         <ui:outputText aura:id="recordId" value="{!v.objReport.agentReportID}"  class="hiddenClass"/>
+          
+                <div class="baseImage">
+                    <img src="{!v.objReport.DocumentUrl}"  class="first-image-base" style="border-style:none;" />
+                    <aura:if isTrue="{!v.objReport.recordType == 'UL'}">
+                        <img src="/resource/AA_Agent_LightningAppStatic/images/Unilever_badge.svg" class="logo"/>
+                    </aura:if>
+                    <aura:if isTrue="{!v.objReport.recordType == 'CI'}">
+                        <img src="/resource/AA_Agent_LightningAppStatic/images/CI_badge.svg" class="logo"/>
+                    </aura:if>
+                </div>
+                 
+                <div class="report-titles reporter-name slds-text-heading--small slds-truncate slds-m-top--x-small">{!v.objReport.reportTitl}</div>
+                <div class="place-region slds-text-body--regular slds-truncate"><p><aura:if isTrue="{! (v.objReport.clusterName != null)}"><span>{!v.objReport.clusterName}</span></aura:if><aura:if isTrue="{! (v.objReport.country != null)}" ><span> {! ', '+ v.objReport.country}</span></aura:if> </p></div>
+         </div>       
+         <div class="slds-media slds-comment slds-hint-parent caption-media">
+                    <div class="slds-media__figure">
+                        <div class="slds-avatar slds-avatar--circle slds-avatar--medium" >
+                            <a href="#void" title="{!v.objReport.CreatedBy}">
+                                <img  style="width:100%;" src="/profilephoto/005/T" alt="{!v.objReport.CreatedBy}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slds-media__body profile-detail">
+                        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                            <p class="slds-truncate slds-m-bottom--xx-small slds-text-heading--small reporter-name"><span class="slds-type-focus">{!v.objReport.CreatedBy}</span></p>
+                        </div>
+                        <p class="slds-text-body--small">{!v.objReport.timeToDisplay}</p>
+                        
+                    </div>
+            </div>
+                <div style="background:white;border-top:1px solid #f0f0f0;padding:9px;">
+                    <div class="slds-grid slds-grid--align-spread slds-text-body--regular">
+                        <div class="slds-col">
+                            
+                                <aura:if isTrue="{!v.objReport.UserLike != 'true'}">
+                                   <!-- <button aura:id="Like" onclick="{!c.likeUnlikeUpdate}" class="slds-button slds-button-icon slds-m-right-x-small" data-record="{!v.objReport.agentReportID}"  label="{!v.objReport.agentReportID}" >-->
+                                       <ui:button disabled="{!v.enableLike}" aura:id="like" class="slds-button slds-button-icon slds-m-right-x-small" press="{!c.likeUnlikeUpdate}" >
+                                        <img src="/resource/AA_Agent_LightningAppStatic/images/like_grey.svg" class="like-btn-reports"></img> <span class="slds-assistive-text">Like</span>
+                                    </ui:button> <span class="place-likes slds-truncate">{!v.objReport.LikeCount} Like </span>
+                                </aura:if> 
+                               
+                            <aura:if isTrue="{!v.objReport.UserLike == 'true'}">
+                                <!--<button aura:id="unLike" class="slds-button slds-button-icon slds-m-right-x-small" onclick="{!c.likeUnlikeUpdate}" data-record="{!v.objReport.agentReportID}"  label="{!v.objReport.agentReportID}">-->
+                                <ui:button disabled="{!v.disableLike}" aura:id="unlike" class="slds-button slds-button-icon slds-m-right-x-small" press="{!c.likeUnlikeUpdate}" >
+                                    <img src="/resource/AA_Agent_LightningAppStatic/images/like_blue.svg" class="like-btn-reports"></img> <span class="slds-assistive-text">Like</span>
+                                </ui:button><span class="caption-likes slds-truncate" >{!v.objReport.LikeCount} Like</span>
+                            </aura:if>
+                          
+                               <!-- <aura:if isTrue="{!v.objReport.UserLike != 'true'}">
+                                    <button id="Like" onclick="{!c.likeUpdate}" class="slds-button slds-button-icon slds-m-right-x-small" data-record="{!v.objReport.agentReportID}"  label="{!v.objReport.agentReportID}" >
+                                        <img src="/resource/AA_Agent_LightningAppStatic/images/like_grey.svg" class="like-btn-reports"></img> <span class="slds-assistive-text">Like</span>
+                                    </button> <span class="place-likes slds-truncate">{!v.objReport.LikeCount} Like </span>
+                                </aura:if> 
+                               
+                               <aura:if isTrue="{!v.objReport.UserLike == 'true'}">
+                                    <button id="unLike" class="slds-button slds-butto-icon slds-m-right-x-small" onclick="{!c.unlikeUpdate}">
+                                        <img src="/resource/AA_Agent_LightningAppStatic/images/like_blue.svg" class="like-btn-reports"></img> <span class="slds-assistive-text">Like</span>
+                                    </button><span class="caption-likes slds-truncate" >{!v.objReport.LikeCount} Like</span>
+                                </aura:if>-->
+                            
+                        </div>
+                        <div class="slds-col">{!v.objReport.TotalCommentCount} Comment</div>
+                    </div>
+        		</div>
+            	</div>     
+        </div>
+    
+</aura:component>

@@ -1,0 +1,374 @@
+<aura:component implements="force:appHostable" controller="AA_AgentAppService">
+    
+    <!--<aura:attribute name="sortType" type="String" />
+    <aura:attribute name="cancelType" type="String"/>-->  
+    
+    <aura:attribute name="subTopicList" type="string[]" />
+    <aura:attribute name="SubTopicNull" type="boolean" default="false"/>
+    <aura:attribute name="disableOnBrandChange" type="boolean" default="true"/>
+    <aura:attribute name="Brand" type="boolean" default="true"/>
+    <aura:attribute name="others" type="boolean" default="false"/>
+    <aura:attribute name="otherCompetitorBrandId" type="Id"  />
+    <aura:attribute name="SubTopiccheck" type="boolean" default="true"/>
+    <aura:attribute name="competitorBrandId" type="Id"/>
+    <aura:attribute name="allCompetitorNameList" type="Object"/>
+    <aura:attribute name="competitorNameList" type="Object" />
+    <aura:attribute name="allCategoryList" type="Object"/>
+    <aura:attribute name="categoryList" type="Object" />
+     <!--<aura:attribute name="imageId" type="String" />
+    <aura:attribute name="clusterId" type="String" />
+    <aura:attribute name="countryId" type="String" />
+    <aura:attribute name="townId" type="String" />-->
+    <aura:attribute name="reportTitle" type="String" default='' />
+  	<aura:attribute name="reportDescription" type="String" default='' />
+    <!--<aura:attribute name="AddNotifyUser" type="String" />
+    <aura:attribute name="Source" type="String" />
+    <aura:attribute name="CompetitorBrand" type="String" />
+    <aura:attribute name="CompetitorName" type="String" />
+    <aura:attribute name="Category" type="String" />
+    <aura:attribute name="Retailer" type="String" />
+    <aura:attribute name="Topic" type="String" />
+    <aura:attribute name="SubTopic" type="String" />
+  <aura:attribute name="parentId" type="Id"/>-->
+    <aura:attribute name="retailerId" type="Id"/>
+    <aura:attribute name="townName" type="String" default=''/>
+    <aura:attribute name="cafeteriaMenuDetail" type="String"/>
+    <aura:attribute name="globalClusterId" type="Id" />
+    <aura:attribute name="selectedUsers" type="Object[]" />
+    <aura:attribute name="otherBrandName" type="String" />
+    <aura:attribute name="otherCompetitorName" type="String" />
+    <aura:attribute name="contentId" type="String"  description=""/>
+    <aura:attribute name="versionId" type="String" description=""/>
+    <aura:attribute name="submitForm" type="Boolean" default="true" />
+    <aura:attribute name="confirmForm" type="Boolean" default="false"/>
+    <aura:attribute name="businessPrinciples" type="Boolean" default="false"/>
+    <aura:attribute name="successMessage" type="Boolean" default="false"/>
+    
+     <aura:attribute name="sortTopic" type="String"/>
+    <aura:attribute name="filterType" type="String"/>
+    <aura:attribute name="offSet" type="Integer"/>
+    <aura:attribute name="limitRecords" type="Integer"/>
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="clusterId" type="String"/>
+    <aura:attribute name="countryId" type="String"/>
+    <aura:attribute name="applyFilter" type="String"/>
+    
+    
+     <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+     <aura:handler name="change" value="{!v.competitorBrandId}" action="{!c.handleCompetitorBrandChange}"/>
+    <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
+    <aura:handler name="updateUserListEvent" event="c:AA_UpdateUserList" action="{!c.handleSelectedUsers}"/>
+    <aura:handler name="uploadContentVersion" event="c:AA_ContentVersionEvent" action="{!c.handleContentVersionData}"/>
+    <!--<aura:attribute name="CompetitorReport" type="AA_WrapperUtility.AgentAppDataRequest[]" />-->
+    
+    <style>
+        
+    </style>
+    <div class="container slds-text-body--regular">
+      <div  aura:id="submitForm">
+        <!--<aura:if isTrue="{!v.submitForm}">   -->
+        <div class="row ">
+                <table>
+                    <tr>
+                        <td class="leftAlign">
+                            <!--<span>
+                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
+                        </span>-->
+                            <button class="slds-button slds-button--neutral" onclick="{!c.cancel}">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="competitor-content">
+                
+             <!-- <c:AA_UploadContentVersion />-->
+                
+                <div>
+                    <img id="menuDetail" src="{!v.cafeteriaMenuDetail}" height="100" width="100"/>          
+                </div>     
+                
+             	<div class="slds-form-element" >
+                    <span>
+                        <label class="slds-form-element__label"> Cluster </label>
+							<div class="slds-form-element__control">
+                                <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
+                                    <ui:inputSelectOption text="Select Cluster" label="Select Cluster" value="true"/>
+                                    <aura:iteration var="cluster" items="{!v.clusterList}">
+                                        <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
+                                    </aura:iteration>
+                                </ui:inputSelect>
+							</div>
+                    </span>
+                </div>
+                    
+                <div class="slds-form-element" >
+                    <span>
+                        <label class="slds-form-element__label"> Country </label>
+                        <div class="slds-form-element__control">
+                                <ui:inputSelect aura:id="countryId"  disabled="{!v.check}" class="slds-select">
+                                    <ui:inputSelectOption text="Select Country" label="Select Country" value="true"/>
+                                    <aura:iteration var="country" items="{!v.countryList}">
+                                        <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                        </div>
+                    </span>
+                </div>
+                <div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Town </label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="towns" disabled="{!v.check}" class="slds-input" placeholder="Town" value="{!v.townName}" />
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Report Title <span class="red-color">*</span></label>
+                        <div class="slds-form-element__control">
+                                <ui:inputText aura:id="reportTitles" required="true" class="slds-input" placeholder="Add brand,location and activity in the report Title " value="{!v.reportTitle}"  />
+                        </div>
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label">Report Description</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputTextArea aura:id="reportDesc" class="slds-input"  value="{!v.reportDescription}" rows="3" required="true"/>
+                        </div>
+                    </div>
+                    <div class="slds-form-element form-element-cust" >
+                        <div class="slds-form-element__control">
+                            <c:AA_NotifyUser />
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label" > Source <span class="red-color">*</span> </label>
+                        <div class="slds-form-element__control">
+                                <ui:inputSelect aura:id="Source" class="slds-select">
+                                    <ui:inputSelectOption text="source" label="Select a source" value="true"/>
+                                    <aura:iteration var="Source" items="{!v.sourceList}">
+                                        <ui:inputSelectOption text="{!Source}" label="{!Source}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                        </div>
+                    </div>
+                    <div>
+                        <c:AA_AutoComplete label="Competitor Brand" pluralLabel="Competitor Brands" placeholderValue="Type to search competitor Brand"  sObjAttributeName="competitorBrandId" sObjectRecordType="Competitor Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c"/>
+                        
+                    </div>
+                    <aura:if isTrue="{!v.Brand}">
+                        <div class="slds-form-element" >
+                            <label class="slds-form-element__label"> Competitor Name </label>
+                            <div  class="slds-form-element__control">
+                                    <ui:inputSelect aura:id="competitorName"  class="slds-select">
+                                         <aura:if isTrue="{!v.disableOnBrandChange}">
+                                        <ui:inputSelectOption text="Select Competitor Name" label="Select Competitor Name" value="true"/>
+                                        </aura:if>
+                                        <aura:iteration var="competitorName" items="{!v.competitorNameList}">
+                                            <ui:inputSelectOption text="{!competitorName.Id}" label="{!competitorName.Name}"/>
+                                        </aura:iteration>
+                                    </ui:inputSelect>
+                            </div>                        
+                        </div>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.others}">
+                        <div class="slds-form-element" >
+                            <label class="slds-form-element__label"> Enter Other Brand Name:</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputText aura:id="otherBrandNameId" class="slds-input"  value="{!v.otherBrandName}" required="true" />
+                            </div>                 
+                        </div> 
+                        <div class="slds-form-element" >
+                            <label class="slds-form-element__label"> Enter Other Competitor Name:</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputText aura:id="otherCompetitorNameId" class="slds-input"  value="{!v.otherCompetitorName}" required="true" />
+                            </div>               
+                        </div>  
+                    </aura:if>
+                    
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Category </label>
+                        <div  class="slds-form-element__control">
+                                <ui:inputSelect aura:id="category"  class="slds-select">
+                                    <aura:if isTrue="{!v.disableOnBrandChange}">
+                                        <ui:inputSelectOption text="Select Category" label="Select Category" value="true"/>
+                                    </aura:if>
+                                    <aura:iteration var="category" items="{!v.categoryList}">
+                                        <ui:inputSelectOption text="{!category.Id}" label="{!category.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                        </div>
+                    </div>
+                    <div>
+                        <c:AA_AutoComplete label="Retailer" pluralLabel="Retailers" placeholderValue="E.g Walmart" sObjAttributeName="retailerId" sObjectRecordType="null" sObjectAPIName="aa_Agent_Retailer__c" />               
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Topic </label>
+                        <div class="slds-form-element__control">
+                            <ui:inputSelect aura:id="topic" class="slds-select" change="{!c.onSelectTopic}">
+                                <ui:inputSelectOption text="Select Topic" label="Select Topic" value="true"/>
+                                <aura:iteration var="topic" items="{!v.topicList}">
+                                    <ui:inputSelectOption text="{!topic.Id}" label="{!topic.Name}"/>
+                                </aura:iteration>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Sub-topic </label>
+                        <div class="slds-form-element__control">
+                            <ui:inputSelect aura:id="Subtopic" disabled="{!v.SubTopiccheck}" class="slds-select">
+                                <!--<aura:if isTrue="{!v.SubTopicNull}">-->
+                                <ui:inputSelectOption text="Select SubTopic" label="Select SubTopic" value="true" />
+                                <!-- </aura:if>-->
+                                <aura:iteration var="topic" items="{!v.subTopicList}">
+                                    <ui:inputSelectOption text="{!topic}" label="{!topic}" /> 
+                                </aura:iteration>                                  
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="competitor-submit-btn">
+                <button class="slds-button slds-button--brand" onclick="{!c.goToConfirm}">Submit this Report</button>
+            </div>
+        </div>
+       <!-- <div aura:id="confirmForm" class="hide-form competitor-content">-->
+        <aura:if isTrue="{!v.confirmForm}" >
+
+            <div class="row">
+                <table>
+                    <tr>
+                        <td class="leftAlign">
+                            <!--<span>
+                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
+                        </span>-->
+                            <button class="slds-button slds-button--neutral" onclick="{!c.cancelSubmit}">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <c:svg class="slds-icon--large" 
+                       xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#warning"  />Confirm
+                <div>By clicking the submit button, I accept the code of business principles.</div>
+                <div class="slds-text-heading--medium"  >
+                    <span onclick="{!c.showBusinessPrinciples}">
+                        show more
+                        <!-- <img src="/resource/AgentAppStaticResource/images/down.svg"></img> -->
+                        <c:svg class="slds-icon--small slds-m-left--x-small" 
+                               xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"  />
+                    </span>
+                </div> 
+            </div>
+            <div class="slds-grid slds-wrap" onclick="{!c.submitReport}" >
+                <div class="slds-col agree-submit-btn">
+                	<img src="/resource/AA_Agent_LightningAppStatic/images/Approve.svg"></img><button class="slds-button slds-m-horizontal--small">Agree and Submit</button>
+                </div>
+            </div>
+
+        </aura:if>
+        <aura:if isTrue="{!v.businessPrinciples}">
+        <!-- aura:id="businessPrinciples" class="hide-form">-->
+            <div class="slds">
+            <div class="row">
+                <table>
+                    <tr>
+                        <td class="leftAlign">
+                            <!--<span>
+                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
+                        </span>-->
+                            <button class="slds-button slds-button--neutral" onclick="{!c.back}">Back</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="business-princpls slds-m-horizontal--small">
+                <div class="slds-text-heading--medium slds-m-vertical--medium">Code of business principles</div>        
+                <div class="slds-text-heading--medium slds-m-vertical--medium">
+                    Unilever Code of Business Principles and Policies impose a global ban on cartel activity
+                </div>
+                <div>&nbsp;</div>
+                <div class="bsns-prncpls">
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Standard of Conduct</div>
+                    <p class="slds-text-body--regular">We conduct our operations with honesty, integrity and openness, and with respect for the human rights and interests of our employees. We shall similarly respect the legitimate interests of those with whom we have relationships.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Obeying the Law</div>
+                    <p class="slds-text-body--regular">Unilever is committed to diversity in a working environment where there is mutual trust and respect and where everyone feels responsible for the performance and reputation of our company. We will recruit, employ and promote employees on the sole basis of the qualiﬁcations and abilities needed for the work to be performed. We are committed to safe and healthy working conditions for all employees. We will not use any form of forced, compulsory or child labour.We are committed to working with employees to develop and enhance each individual’s skills and capabilities. We respect the dignity of the individual and the right of employees to freedom of association. We will maintain good communications with employees through company based information and consultation procedures</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Employees</div>
+                    <p class="slds-text-body--regular">Unilever is committed to diversity in a working environment where there is mutual trust and respect and where everyone feels responsible for the performance and reputation of our company. We will recruit, employ and promote employees on the sole basis of the qualiﬁcations and abilities needed for the work to be performed. We are committed to safe and healthy working conditions for all employees. We will not use any form of forced, compulsory or child labour.We are committed to working with employees to develop and enhance each individual’s skills and capabilities. We respect the dignity of the individual and the right of employees to freedom of association. We will maintain good communications with employees through company based information and consultation procedures</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Consumers</div>
+                    <p>Unilever is committed to providing branded products and services which consistently offer value in terms of price and quality, and which are safe for their intended use. Products and services will be accurately and properly labelled, advertised and communicated.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Shareholders</div>
+                    <p class="slds-text-body--regular">Unilever will conduct its operations in accordance with internationally accepted principles of good corporate governance. We will provide timely, regular and reliable information on our activities, structure, ﬁnancial situation and performance to all shareholders.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Business Partners</div>
+                    <p class="slds-text-body--regular">Unilever is committed to establishing mutually beneﬁcial relations with our suppliers, customers and business partners. In our business dealings we expect our partners to adhere to business principles consistent with our own.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Community Involvement</div>
+                    <p class="slds-text-body--regular">Unilever strives to be a trusted corporate citizen and, as an integral part of society, to fulﬁl our responsibilities to the societies and communities in which we operate.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Public Activities</div>
+                    <p class="slds-text-body--regular">Unilever companies are encouraged to promote and defend their legitimate business interests. Unilever will co-operate with governments and other organisations, both directly and through bodies such as trade associations, in the development of proposed legislation and other regulations which may affect legitimate business interests. Unilever neither supports political parties nor contributes to the funds of groups whose activities are calculated to promote party interests.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">The Environment</div>
+                    <p class="slds-text-body--regular">Unilever is committed to making continuous improvements in the management of our environmental impact and to the longer-term goal of developing a sustainable business. Unilever will work in partnership with others to promote environmental care, increase understanding of environmental issues and disseminate good practice.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Innovation</div>
+                    <p class="slds-text-body--regular">In our scientiﬁc innovation to meet consumer needs we will respect the concerns of our consumers and of society. We will work on the basis of sound science, applying rigorous standards of product safety.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Competition</div>
+                    <p class="slds-text-body--regular">Unilever believes in vigorous yet fair competition and supports the development of appropriate competition laws. Unilever companies and employees will conduct their operations in accordance with the principles of fair competition and all applicable regulations.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Business Integrity</div>
+                    <p class="slds-text-body--regular">Unilever does not give or receive, whether directly or indirectly, bribes or other improper advantages for business or ﬁnancial gain. No employee may offer, give or receive any gift or payment which is, or may be construed as being, a bribe. Any demand for, or offer of, a bribe must be rejected immediately and reported to management. Unilever accounting records and supporting documents must accurately describe and reﬂect the nature of the underlying transactions. No undisclosed or unrecorded account, fund or asset will be established or maintained.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Conﬂicts of Interests</div>
+                    <p class="slds-text-body--regular">All Unilever employees are expected to avoid personal activities and ﬁnancial interests which could conﬂict with their responsibilities to the company. Unilever employees must not seek gain for themselves or others through misuse of their positions.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Compliance – Monitoring – Reporting</div>
+                    <p class="slds-text-body--regular">Compliance with these principles is an essential element in our business success. The Unilever Board is responsible for ensuring these principles are applied throughout Unilever. The Chief Executive Ofﬁcer is responsible for implementing these principles and is supported in this by the Corporate Code Committee chaired by the Chief Legal Ofﬁcer. Members of the Committee are the Group Secretary, the Chief Auditor, the SVP HR and the SVP Communications. The Global Code Ofﬁcer is Secretary to the Committee. The Committee presents quarterly updates to the Corporate Responsibility and Reputation and the Audit Committee, half-yearly reports to the Unilever Executive and an annual report to the Board. Day-to-day responsibility is delegated to all senior management of the regions, categories, functions, and operating companies. They are responsible for implementing these principles, if necessary through more detailed guidance tailored to local needs, and are supported in this by Regional Code Committees comprising the Regional General Counsel together with representatives from all relevant functions and categories. Assurance of compliance is given and monitored each year. Compliance with the Code is subject to review by the Board supported by the Corporate Responsibility and Reputation Committee and for ﬁnancial and accounting issues the Audit Committee. Any breaches of the Code must be reported in accordance with the procedures speciﬁed by the Chief Legal Ofﬁcer. The Board of Unilever will not criticise management for any loss of business resulting from adherence to these principles and other mandatory policies and instructions. The Board of Unilever expects employees to bring to their attention, or to that of senior management, any breach or suspected breach of these principles. Provision has been made for employees to be able to report in conﬁdence and no employee will suffer as a consequence of doing so.</p>
+                    
+                    <div class="slds-text-heading--small slds-m-vertical--x-small header-color">Any sharing of information on The Agent MUST ALWAYS fully comply with competition rules</div>
+                    <p class="slds-text-body--regular">NEVER ask/accept directly or indirectly (e.g. via a common customer or supplier)<br />
+                        "Commercially Sensitive Information" [ refers to any information that reveals, directly or indirectly, current or future commercial plans or strategies of an actual or potential competitor of a Party. Such information includes (but is not limited to) non-public information on prices or other terms of sale, investment plans, production costs, market shares and sales territories, bidding or refraining from bidding plans, and the selection, rejection or termination of customers and suppliers ] on competitors
+                        Treat "Confidential Information" [includes information that is not in the public domain and information that is not specifically designated for public disclosure or circulation] VERY CAREFULLY; if relevant, mark info with "Confidential to Unilever - this information should not be communicated to any third party" 
+                        NEVER allow The Agent to be used in a way that may be seen as in breach of competition rules &nbsp; if you see sensitive info on The Agent that may be problematic <strong>ALERT Legal</strong> 
+                    </p>
+                    
+                    <p class="slds-text-body--regular slds-m-vertical--x-small"><strong>The information has been gathered only from public sources and <span style="color:red;">non</span> compliance of the same will be treated as a breach of COBP</strong></p>
+                    
+                    <p class="slds-text-body--regular"><span class="text-italic"><i>In this Code the expressions "Unilever" and "Unilever companies" are used for convenience and mean the Unilever Group of companies comprising Unilever N.V., Unilever PLC and their respective subsidiary companies. The Board of Unilever means the Directors of Unilever N.V. and Unilever PLC.</i></span></p>
+                    <p class="slds-text-body--regular">&nbsp;</p>
+                    
+                </div>
+                
+            </div>
+        </div>
+        </aura:if>
+        <aura:if isTrue="{!v.successMessage}">
+        <!-- aura:id="successMessage" class="hide-form">-->
+            <div class="slds-modal slds-fade-in-open" aria-hidden="true" role="dialog">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <div class="slds-text-heading--medium green-color">
+                            <img class="slds-m-right--x-small" src="/resource/AA_Agent_LightningAppStatic/images/Approve.svg" style="height: 26px; width: 26px;"/>
+                            Sucess
+                        </div>
+                    </div>
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <div>
+                            <p class="text-align">The report is submitted <br/> successfully.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop--open"></div>
+        </aura:if>
+        
+    </div>
+</aura:component>

@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForAllPageTypes" >
+    <aura:attribute name="applyFilter" type="String"/>
+    <aura:attribute name="filterType" type="String" description="store report filter type here"/>
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="limitRecords" type="Integer"/>
+    <aura:attribute name="offSet" type="Integer"/>
+    <aura:attribute name="clusterId" type="String"/>
+    <aura:attribute name="countryId" type="String"/>
+   <div onclick="{!c.filterRecord}">
+            <img src="/resource/AA_Agent_LightningAppStatic/images/Filter_steel.svg" ></img>
+    </div>
+</aura:component>

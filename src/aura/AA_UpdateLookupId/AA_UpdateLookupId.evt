@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Update autocomplete Id" >
+    <aura:attribute name="sObjectId" type="Id" required="true" description="The Id of the selected SObject." />
+	<aura:attribute name="sObjAttributeFieldName" type="String" description="The Id of the selected SObject." />
+</aura:event>

@@ -1,0 +1,60 @@
+<aura:component controller="AA_AgentAppService" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <c:AA_CommonComponent />
+    <aura:attribute name="filterType" type="String" default="AllReports"/>
+    <aura:attribute name="sortType" type="String" default="ShowLatestFirst"/>
+    <aura:attribute name="filterTypeLabel" type="String" />
+    <aura:attribute name="limitRecords" type="Integer" default="12"/>
+    <aura:attribute name="offSet" type="Integer" default="0"/>
+    <aura:attribute name="applyFilter" type="String" default="false"/>
+    <aura:attribute name="countryId" type="String" default="null"/>
+    <aura:attribute name="clusterId" type="String" default="null"/>
+    <aura:attribute name="unileverBrandId" type="String" default="null"/>
+    <aura:attribute name="retailerId" type="String" default="null"/>
+    <aura:attribute name="reportingOnId" type="String" default="null"/>
+    <aura:attribute name="recordType" type="String" default="null"/>
+    <aura:attribute name="competitorBrandId" type="String" default="null"/>
+    <aura:attribute name="competitorId" type="String" default="null"/>
+    <aura:attribute name="categoryId" type="String" default="null"/>
+    <aura:attribute name="topicId" type="String" default="null"/>
+    
+    <aura:attribute name="objAgentAppDataResponse" type="AA_WrapperClass.AgentAppDataResponse" description="Agent app report list get stored here" />
+    <aura:attribute name="objPassAgentReportsToNG" type="AA_WrapperClass.agentReportDetail" />
+    <aura:attribute name="totalReportCount" type="Integer" />
+    <aura:attribute name="businessPrincipleFlag" type="Boolean" description="Initialize terms and condition accepted or not"/>
+    <aura:attribute name="showLandingPageFlag" type="Boolean" default="false"  description="Initialize Landing page"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.checkBusinessPrinciple}" />
+    <aura:handler name="businessPrincipleEvent" event="c:AA_BusinessPrincipleEvent" action="{!c.handleBusinessPrincipleEvent}"/>
+    
+    <aura:handler event="c:AA_FilterEvent" action="{!c.getDetail}" />
+    <aura:handler event="c:AA_NavigateToPageDetail" action="{!c.getForm}" />
+    <aura:handler event="c:AA_NavigateToLandingPageEvent" name="LandingPageEvent"  action="{!c.getshowPage}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <style>
+        body{
+        font: 100%/1.5 "Salesforce Sans",Arial,sans-serif;
+        }
+        
+    </style>
+    <div class="container">
+        
+        <div class="spinner-location"><ui:spinner aura:id="spinner" /></div>
+        <div aura:id="baseComponentContainer">
+            <aura:if isTrue="{!v.businessPrincipleFlag == true}">
+                <aura:if isTrue="{!v.showLandingPageFlag == false}">
+                    <c:AA_AgentBaseFeedBackComponent />
+                </aura:if>
+                <aura:if isTrue="{!v.showLandingPageFlag == true}">
+                    <c:AA_LandingPageComponent objPassAgentReportsToNG="{!v.objPassAgentReportsToNG}" objAgentAppDataResponse="{!v.objAgentAppDataResponse}" limitRecords="{!v.limitRecords}" offSet="{!v.offSet}" filterType="{!v.filterType}" sortType="{!v.sortType}" applyFilter="{!v.applyFilter}"/>
+                </aura:if>
+            </aura:if>
+            <aura:if isTrue="{!v.businessPrincipleFlag == false}">
+                <c:AA_BusinessPrincipleComponent />
+            </aura:if> 
+            
+        </div>
+    </div>
+    
+</aura:component>

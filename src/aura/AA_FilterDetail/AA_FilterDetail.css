@@ -1,0 +1,118 @@
+/*make the filter option as deselected*/
+.THIS .inactiveFilterOption {
+    font-weight: normal;  
+    height: 45px;
+    padding: 10px;
+    border-bottom: 1px solid #D1D1D4;
+    border-right: 1px solid #D1D1D4;
+    border-left: 1px solid #D1D1D4;
+}
+
+.THIS .leftAlign{
+        padding: 8px 8px 8px 15px;
+}
+
+.THIS .inactive{
+    font-weight: normal;  
+    height: 45px;
+    padding: 10px;
+    border-bottom: 1px solid #D1D1D4;
+    border-right: 1px solid #D1D1D4;
+    border-left: 1px solid #D1D1D4;
+}
+/*make the filter option as selected*/
+.THIS .activeFilterOption {
+    font-weight: bold;    
+    height: 45px;
+    padding: 10px;
+    border-bottom: 1px solid #D1D1D4;
+    border-right: 1px solid #D1D1D4;
+    border-left: 1px solid #D1D1D4;
+    background: url(/resource/NewsCenterIcons/Sort_Tick.svg) no-repeat;
+    background-size: 15px;
+    background-position: 96% 50%;
+}
+/*Filter option pannel*/
+.THIS .filtePannel{ 
+    /*color: #344A5F !important; */
+    /* background: #f0f0f0; */
+    background: #fff;
+    position: relative;
+    padding: 15px 15px 20px 15px;
+    border-top: 2px solid #CFD7E6;
+}
+
+.THIS .filter-btns-bottom{
+	display: inline;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.THIS .filter-botton-container{
+	text-align: center;
+    padding: 10px;
+}
+
+/*Filter option page header bar center align the content*/
+.THIS td.centerAlign{
+    text-align:center;
+    font-weight: bold; 
+    font-size: 18px; 
+    padding-top: 10px;
+}
+/*Filter option page header bar Apply button style*/
+.THIS .applyButton{
+    padding: 5px 20px;
+    background: #2A94D6;
+    color:#FFFFFF;
+    border-radius: 5px;
+}
+/*Filter option page header bar Cancel button style*/
+.THIS .cancelButton{
+    padding: 5px 20px;
+    background: #D1D1D4;
+    border-radius: 5px;
+    autofocus:true;
+}
+
+.THIS.titleLabel {
+    color: #8c8c90;
+    font-size: 16px;
+    font-weight: normal;
+    /* padding: 15px 0 5px 8px; */
+    vertical-align: middle;
+    margin: 0;
+}
+.THIS.container {
+    padding-bottom: 10px;
+    max-width: 1200px;
+    margin: 0 auto;   
+}
+
+.THIS.inputWidth {
+    matgin-left:10px;
+    width: 100%;
+}
+
+.THIS .filtePannel .slds-form-element{
+	margin-bottom: 0.75rem;    
+}
+
+.THIS .filter-btns-bottom .slds-button{
+    width: 40%;
+}
+
+.THIS .brand-list{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-width: 0 1px 1px 1px;
+    margin-top: -13px;
+}
+
+.THIS .barnd-list{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-width: 0 1px 1px 1px;
+    margin-top: -13px;
+}

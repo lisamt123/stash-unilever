@@ -1,0 +1,113 @@
+<aura:component controller="AA_AgentAppService">
+    <aura:attribute name="objAgentAppDataResponse" type="AA_WrapperClass.AgentAppDataResponse" description="Agent app report list get stored here" />
+    <aura:attribute name="objPassAgentReportsToNG" type="AA_WrapperClass.agentReportDetail" />
+    <aura:attribute name="pageRecordCount" type="Integer" default="12" />
+    <aura:attribute name="totalReportCount" type="Integer" />
+    <aura:attribute name="filterType" type="String" default="AllReports"/>
+    <aura:attribute name="sortType" type="String" default="ShowLatestFirst"/>
+    <aura:attribute name="filterTypeLabel" type="String" default="All reports" />
+    <aura:attribute name="limitRecords" type="Integer" default="12"/>
+    <aura:attribute name="offSet" type="Integer" default="0"/>
+    <aura:attribute name="applyFilter" type="String" default="false"/>
+    <aura:attribute name="countryId" type="String" default="null"/>
+    <aura:attribute name="clusterId" type="String" default="null"/>
+    
+    <aura:attribute name="previousFilterType" type="String"/>
+    <aura:attribute name="unileverBrandId" type="String" />
+    <aura:attribute name="retailerId" type="String" />
+	<aura:attribute name="reportingOnId" type="String"/>
+    <aura:attribute name="recordType" type="String"/>
+    <aura:attribute name="competitorBrandId" type="String"/>
+    <aura:attribute name="competitorId" type="String"/>
+    <aura:attribute name="categoryId" type="String"/>
+	<aura:attribute name="topicId" type="String"/>
+    
+    <!-- Attributes & Handlers for filter and sort popup Start-->
+    <aura:attribute name="filterPopUp" type="Boolean" default="false"/>
+    <aura:attribute name="sortPopUp" type="Boolean" default="false"/>
+    <aura:attribute name="newSelectedFilter" type="String"/> 
+    <aura:attribute name="previousSortType" type="String"/>
+    <aura:handler name="change" value="{!v.newSelectedFilter}" action="{!c.removeSortStyle}"/>
+    <!-- Attributes  & Handlers for filter and sort popup End-->
+    
+    <aura:registerEvent name="callFilterPageEvent" type="c:AA_FilterEventAllReport"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:AA_FilterEventAllReport" action="{!c.changeComponent}" />
+    
+    <div aura:id="content">
+        <div aura:id="topBannerContainer">
+            <c:AA_TopBannerComponent sortType="{!v.sortType}" filterType="{!v.filterType}" limitRecords="{!v.limitRecords}" offSet="{!v.offSet}"  countryId="{!v.countryId}" clusterId="{!v.clusterId}" applyFilter="{!v.applyFilter}"/>
+        </div>
+        <div class="rest-body" aura:id="filterContainer">
+            <div class="slds-grid slds-grid--align-spread">
+                <!-- Code for the FilterPopUP Start -->
+                <div class="slds-col">
+                    <div class="slds-text-heading--medium"  >
+                        <span onclick="{!c.goToPopUpFilter}">
+                        {!v.filterTypeLabel} 
+                        <!-- <img src="/resource/AgentAppStaticResource/images/down.svg"></img> -->
+                        <c:svg class="slds-icon--small slds-m-left--x-small" 
+                               xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"  />
+                    	</span>
+                     </div>                    
+                            <div class="slds-form-element toggle slds-dropdown all-report-filter" aura:id="filterPopUp">
+                                <ul class="dropdown__list" role="menu">
+                                 <li class="slds-dropdown__item sort-bold" aura:id ="showAll" onclick="{!c.showAllActive}">
+                                     <a  role="menuitem menuItem_width">
+                                         <p class="slds-truncate">All reports</p>
+                                     </a>
+                                 </li>
+                                 <li class="slds-dropdown__item" aura:id ="FilteredReports" onclick="{!c.FilteredReport}">
+                                     <a  role="menuitem menuItem_width">
+                                         <p class="slds-truncate">Filtered reports</p>
+                                     </a>
+                                 </li>
+                                 <li class="slds-dropdown__item" aura:id ="MyReports" onclick="{!c.MyReport}">
+                                     <a  role="menuitem menuItem_width">
+                                         <p class="slds-truncate">My reports</p>
+                                     </a>
+                                 </li>
+                             </ul>
+                            </div>                  
+                </div>
+              <!-- Code for the FilterPopUP End 
+               
+                <div class="slds-col slds-text-align-right">
+                	<c:AA_FilterComponent sortType="{!v.sortType}" filterType="{!v.filterType}" limitRecords="{!v.limitRecords}" offSet="{!v.offSet}" countryId="{!v.countryId}" clusterId="{!v.clusterId}" applyFilter="{!v.applyFilter}"/>
+                </div>-->
+                <div class="slds-col sort-filter-cust">
+                    <span class="sort-filter-filters">
+                        <c:AA_FilterComponent sortType="{!v.sortType}" filterType="{!v.filterType}" limitRecords="{!v.limitRecords}" offSet="{!v.offSet}" countryId="{!v.countryId}" clusterId="{!v.clusterId}" applyFilter="{!v.applyFilter}"/>
+                         <!-- Code for the SortPopUP Start -->
+                        <div class="slds-m-left--small" onclick="{!c.gotoPopUpSort}"><img src="/resource/AgentAppStaticResource/images/Sort_steel.svg"></img></div>
+                    </span>
+                    <div class="slds-form-element toggle slds-dropdown slds-dropdown--right   dorpdown-right" aura:id="sortPopUp">
+                        <ul class="dropdown__list" role="menu">
+                            <li class="slds-dropdown__item sort-bold" aura:id ="ShowLatestFirst" onclick="{!c.ShowLatestFirst}">
+                                <a  role="menuitem menuItem_width">
+                                    <p class="slds-truncate">Show Latest First</p>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item" aura:id ="ShowMostlikedFirst" onclick="{!c.ShowMostlikedFirst}">
+                                <a  role="menuitem menuItem_width">
+                                    <p class="slds-truncate">Show Most Liked First</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Code for the SortPopUP end -->
+            </div>
+        </div>
+       
+            <c:AA_ReportContainerComponent totalReportCount="{!v.totalReportCount}" objPassAgentReportsToNG="{!v.objPassAgentReportsToNG}"/>
+        
+        <aura:if isTrue="{! (v.totalReportCount > v.limitRecords)}">
+        <div aura:id="showMoreResultButtonContainer" class="show-more-btn-div">
+            <!-- <ui:button label="Show More" labelClass="assistiveText" press="{!c.showMore}">Show More</ui:button> -->
+        	<button class="slds-button slds-button--brand show-more-rslt-btn" onclick="{!c.showMore}">Show More</button>
+        </div>
+        </aura:if>
+    </div>
+</aura:component>

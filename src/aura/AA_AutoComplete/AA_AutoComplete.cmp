@@ -1,0 +1,61 @@
+<aura:component controller="AA_AutoCompleteController"   implements="flexipage:availableForAllPageTypes" >
+      
+    <!-- Attributes -->
+    <aura:attribute name="wrongBrandName" type="boolean" default="false"/>
+    <aura:attribute name="sObjectAPIName" type="String" required="true"
+                    description="The API name of the SObject to search" />
+    <aura:attribute name="label" type="String" required="true"
+                    description="The label to assign to the lookup, eg: Account" />
+    <aura:attribute name="pluralLabel" type="String" required="true"
+                    description="The plural label to assign to the lookup, eg: Accounts" />
+    <aura:attribute name="searchString" type="String"
+                    description="The search string to find." />
+    <aura:attribute name="sObjAttributeName" type="String"
+                    description="The String to store the attribute name of AA_FilterDetail to which we need to store the object Id"/>
+    <aura:attribute name="sObjectRecordType" type="String" default=""
+                    description="The record type of the aa_Agent_App_Competitor_Brand__c." />
+    <aura:attribute name="placeholderValue" type="String"
+                    description="The place holder value for the autocomplete input text" />
+    
+    <!-- Events -->
+    <aura:registerEvent name="updateLookupIdEvent" type="c:AA_UpdateLookupId"/>    
+    <!--<aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/>  -->  
+    <aura:handler name="clearLookupIdEvent" event="c:AA_ClearLookupId" action="{!c.handleIdClear}"/>
+   
+    
+    <!-- Lookup Markup : See https://www.lightningdesignsystem.com/components/lookups -->
+    <div > 
+        <div aura:id="lookup-div" data-select="single" data-typeahead="true">
+            <!-- This is the Input form markup -->
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">{!v.label}</label>
+                <div class="slds-form-element__control">
+                    <!-- This markup is for when searching for a string -->
+                    <ui:inputText aura:id="lookup" value="{!v.searchString}" placeholder="{!v.placeholderValue}" class="slds-input" updateOn="keyup" keyup="{!c.search}" />
+                </div>
+            </div>
+            <!-- This is the lookup list markup. Initially it's hidden -->
+            
+            <div aura:id="lookuplist"  >
+               <div >
+                 <aura:if isTrue="{!v.wrongBrandName}">
+                    Please select appropriate values from the list for Competitor Brand.
+                </aura:if> 
+                </div> 
+                <div>
+                    <ul aura:id="lookuplist-items" class="barnd-list">
+                        <aura:iteration items="{!v.matches}" var="match">
+                            <li >
+                                <a id="{!globalId + '_id_' + match.SObjectId}" onclick="{!c.select}">
+                                    {!match.SObjectLabel}
+                                </a>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</aura:component>

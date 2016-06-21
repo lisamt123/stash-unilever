@@ -1,0 +1,89 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="sortTopic" type="String"/>
+    <aura:attribute name="filterType" type="String"/>
+    <aura:attribute name="offSet" type="Integer"/>
+    <aura:attribute name="limitRecords" type="Integer"/>
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="clusterId" type="String"/>
+    <aura:attribute name="countryId" type="String"/>
+    <aura:attribute name="applyFilter" type="String"/>
+    
+    <style>
+        .container{
+            padding-bottom: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color:#f0f0f0;
+        }
+        .header{
+            border: 1px solid #d1d1d4;
+            padding-bottom: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color:white;
+        }
+        .back{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:10px;
+        }
+        .back-text{
+            position:absolute;
+            top:60px;
+            left:0px;
+            width:10px;
+            color:white;
+        }
+        .slds-button--neutral {
+            border-radius: 30px;
+        }
+        .unilever-report,.unilever-report:hover, .unilever-report:focus  {
+            background-color: #0070d2;
+            color:white;
+        }  
+        .compitetor-report,.compitetor-report:hover, .compitetor-report:focus  {
+            background-color: #1CA9DE;
+            color:white;
+        }          
+        .rest-body{
+            padding:20px;
+            margin-bottom: 14px;
+
+        }
+        .slds-list__item{
+        	width:50%;
+        }
+        .banner-text{
+            position: absolute;
+            bottom: 11px;
+            left: 20px;
+            font-size: 22px;
+            color: #FFF;
+        }
+        
+    </style>
+    
+    
+        <div class="header">
+            <div class="img-banner"> 
+                <img class="img-banner" src="/resource/AA_Agent_LightningAppStatic/images/Large_1200px.jpg"/>
+                <!-- <span class="banner-text slds-text-heading-medium">Agent</span> -->
+            </div>
+            <div class="UnileverButton slds-grid slds-wrap slds-grid--align-end slds-m-right--x-small">
+					<button class="unilever-report slds-button slds-button--neutral slds-not-selected" aria-live="assertive">
+                        <span class="slds-text-not-selected">
+                            <div onclick="{!c.goToUnileverForm}"> Unilever Report > </div>
+                        </span>
+                    </button>
+                    <button class="compitetor-report  slds-button slds-button--neutral slds-not-selected" aria-live="assertive">
+                        <span class="slds-text-not-selected">
+                            <div onclick="{!c.goToCompetitorpage}"> Competitor Report > </div>
+                        </span>
+                    </button>
+            </div>
+        </div>  
+       
+        
+
+</aura:component>

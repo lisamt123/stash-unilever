@@ -1,0 +1,69 @@
+.THIS {
+}
+
+/* Portrait */
+@media only screen and (max-device-width: 480px) {
+	.THIS .desktop-view {display:none}
+}
+
+@media only screen and (max-device-width: 1024px){
+	.THIS .desktop-view {display:none}
+}
+
+@media only screen and (min-device-width: 1025px) {
+	.THIS .mobile-view {display:none; border:none;}
+}
+
+.THIS .insert-img-file{
+    border: 1px solid #d1d1d4;
+    border-radius: 3px;
+}
+
+.THIS .insert-img-file .slds-col{
+   text-align: center; 
+}
+
+.THIS .img-upload{
+    background: url(/resource/Lightning_designing_style/assets/icons/utility/image_60.png) no-repeat;
+    border-right: 1px solid #e6e6e6;
+}
+
+.THIS .attach-upload{
+    background: url(/resource/Lightning_designing_style/assets/icons/utility/attach_60.png) no-repeat;
+}
+
+.THIS .photo-upload{
+    background: url(/resource/Lightning_designing_style/assets/icons/utility/photo_60.png) no-repeat;
+}
+
+.THIS .common-style-upload input{
+	position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 52px;  
+    height: 52px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.THIS .common-style-upload{
+	height: 52px;
+    position: relative;
+    background-position: center;   
+    background-size: 48px 48px;
+}
+
+.THIS .uploaded-contents{
+    border: 1px solid #d1d1d4;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 8px 8px 8px 10px;
+    margin-top: .75rem;
+}
+
+.THIS .pull-right{
+   float: right; 
+}

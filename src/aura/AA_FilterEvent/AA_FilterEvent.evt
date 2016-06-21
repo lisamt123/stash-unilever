@@ -1,0 +1,18 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="filterType" type="String"/>
+    <aura:attribute name="navigate" type="String"/>
+    <aura:attribute name="sortType" type="String" />
+    <aura:attribute name="applyFilter" type="String" />
+    <aura:attribute name="limitRecords" type="Integer" />
+    <aura:attribute name="offSet" type="Integer" />
+    <aura:attribute name="countryId" type="String" />
+    <aura:attribute name="clusterId" type="String" />
+    <aura:attribute name="unileverBrandId" type="String" />
+    <aura:attribute name="retailerId" type="String" />
+	<aura:attribute name="reportingOnId" type="String"/>
+    <aura:attribute name="recordType" type="String"/>
+	<aura:attribute name="competitorBrandId" type="String"/>
+    <aura:attribute name="competitorId" type="String"/>
+    <aura:attribute name="categoryId" type="String"/>
+	<aura:attribute name="topicId" type="String"/>   
+</aura:event>
