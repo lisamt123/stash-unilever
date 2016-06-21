@@ -92,7 +92,6 @@
         });
         $A.enqueueAction(action);
         return;
-        console.log('Exit <locateVisit>');
     },
     locateGoldenMinute : function(component, event, helper){
         console.log('Entering <locateGoldenMinute>');
@@ -116,7 +115,6 @@
         });
         $A.enqueueAction(action);
         return;
-        console.log('Exit <locateGoldenMinute>');
     },
     mseries : function(componente, event, helper){
         sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), true);
