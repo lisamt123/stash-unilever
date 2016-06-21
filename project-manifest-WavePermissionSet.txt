@@ -1,3 +1,7 @@
 src
 src/permissionsets
-src/permissionsets/Employee_Apps_Wave_Dataflow_Access.permissionset
+src/permissionsets/Admin_Analytics_Pilot_Admin.permissionset
+src/permissionsets/Admin_Analytics_Pilot_User.permissionset
+src/permissionsets/Analytics_Cloud_Builder.permissionset
+src/permissionsets/Analytics_Cloud_User.permissionset
+src/permissionsets/Wave_Admin_User.permissionset
