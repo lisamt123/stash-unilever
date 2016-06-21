@@ -76,8 +76,8 @@ public with sharing class MB_Controller_Class{
       }
      } 
       string sfcBaseUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/'+'sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId=';
-
-  
+      
+      System.debug('URL--->'+URL.getSalesforceBaseUrl().toExternalForm());
       List<MB_Billing_Entity__c> billingEntityDistinctList=deviceMap.values();
       for(MB_Billing_Entity__c entity:billingEntityDistinctList ){
         MB_Wrapper_Class.MB_Device_Wrapper_Class objWrapper=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
@@ -88,6 +88,7 @@ public with sharing class MB_Controller_Class{
         
         if(imageIdMap.size() > 0){
           objWrapper.deviceImageUrl=sfcBaseUrl+string.valueof(imageIdMap.get(entity.Device_Details__c));
+          
         }
         system.debug('###'+ objWrapper.deviceImageUrl);
         objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Device_Details__c).setScale(2);
@@ -138,10 +139,7 @@ public with sharing class MB_Controller_Class{
     @AuraEnabled
     public static MB_Wrapper_Class.MB_Device_Wrapper_Class getUsageDetails(String month) {
         
-        Decimal AverageDataUsage=0;
-        Decimal AverageCallUsage=0;
-        Decimal AverageMessageUsage=0;
-        Decimal AverageIpassUsage=0;
+        
         Decimal DataUsage =0;
         Decimal CallUsage =0; 
         Decimal MessageUsage =0;
@@ -382,7 +380,7 @@ public with sharing class MB_Controller_Class{
          
           }
           else if(ipassMap.containsKey(entity.Charge_Type__r.Name)){
-             decimal amount=0;
+             //decimal amount=0;
              MB_Wrapper_Class.IpassChargeType_Wraper objData=ipassMap.get(entity.Charge_Type__r.Name);
              ipassMap.remove(entity.Charge_Type__r.Name);
              if(entity.Local_Net_Amount__c !=null){

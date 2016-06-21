@@ -63,12 +63,15 @@ public class MB_DeleteBillingData_Test {
   billingEntityList.add(billingEntityObject2);
       
  
-      MB_ScheduleBillingDataDeletion_Batch batchObj =new MB_ScheduleBillingDataDeletion_Batch();
-      string jobid = system.schedule('my batch job', '0 0 0 1 4 ?', new MB_ScheduleBillingDataDeletion_Batch() );
+      //MB_ScheduleBillingDataDeletion_Batch batchObj =new MB_ScheduleBillingDataDeletion_Batch();
+       system.schedule('my batch job', '0 0 0 1 4 ?', new MB_ScheduleBillingDataDeletion_Batch() );
       
-       MB_DeleteBillingData_Batch batchObject1 = new MB_DeleteBillingData_Batch();
+      //String caseJSON = '{"attributes":"type":"CasSe","url":"/services/data/v25.0/sobjects/Case/500E0000002nH2fIAE"},"Id":"500E0000002nH2fIAE","Status":"Closed","CreatedDate":"2012-10-04T17:54:26.000+0000", "ClosedDate":"2012-10-04T17:54:26.000+0000","Reason":"Spam"}'; 
+//Case c = (Case) JSON.deserialize(caseJSON, Case.class );
+      
+       /*MB_DeleteBillingData_Batch batchObject1 = new MB_DeleteBillingData_Batch();
   		//Database.BatchableContext batchContext;
-      	Database.executeBatch(batchObject1);
+      	Database.executeBatch(batchObject1);*/
       
   System.assert(billingEntityList != null,'billingEntityList cannot be null');
   //batchObject.start(batchContext);

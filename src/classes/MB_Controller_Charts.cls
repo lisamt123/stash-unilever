@@ -24,6 +24,23 @@ public with sharing Class MB_Controller_Charts{
  public static Decimal totalInternationalSMSUsage =0;
  public static Decimal totalDomesticIpassUsage=0;
  public static Decimal totalInternationalIpassUsage=0; 
+ public static Decimal totalIpassUsageIn =0; 
+ public static Decimal totalAverageIpassUsageIn =0; 
+ 
+ public static Map<String,Decimal> getRoaming(MB_Billing_Entity__c AvgofCollegueData, Map<Id,string> usageTypeMap){ 
+ 
+  Map<String,Decimal> datamap=new  Map<String,Decimal>();
+      if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
+               totalIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
+             }  
+            
+           if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass && AvgofCollegueData.iPass_Consumed_In_MB__c!=null){
+               totalAverageIpassUsageIn +=(AvgofCollegueData.iPass_Consumed_In_MB__c).setScale(2);
+             } 
+     datamap.put('totalIpassUsageIn',totalIpassUsageIn);
+     datamap.put('totalAverageIpassUsageIn',totalAverageIpassUsageIn);
+     return datamap;
+       }
 
      public static Map<String,Decimal> getTotalData(MB_Billing_Entity__c beObj, Map<Id,string> chargeType ){ 
  
@@ -312,13 +329,9 @@ public with sharing Class MB_Controller_Charts{
                   wrprobj.totalMessageUsage +=(getUserTotalMap.get('UserSMS')).setScale(2) ; 
                   
              if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains(Roaming_Type)) {
-            if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
-            wrprobj.totalIpassUsage +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
-             }  
-            
-           if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass && AvgofCollegueData.iPass_Consumed_In_MB__c!=null){
-             wrprobj.totalAverageIpassUsage +=(AvgofCollegueData.iPass_Consumed_In_MB__c).setScale(2);
-             } 
+                 getUserTotalMap = getRoaming(AvgofCollegueData,usageTypeMap);
+                 wrprobj.totalIpassUsage =getUserTotalMap.get('totalIpassUsageIn').setScale(2) ;
+                 wrprobj.totalAverageIpassUsage =getUserTotalMap.get('totalAverageIpassUsageIn').setScale(2) ;
              }
          }
       }  
@@ -329,6 +342,7 @@ public with sharing Class MB_Controller_Charts{
     return null;
     
 }
+
  @AuraEnabled
      public static MB_Wrapper_Class.MB_Device_Wrapper_Class getInsights(String month) {
      System.debug('%%'+month);
@@ -411,13 +425,9 @@ public with sharing Class MB_Controller_Charts{
                   wrprobj.totalMessageUsageIn +=(getUserTotalMap.get('UserSMS')).setScale(2) ; 
                   
              if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains(Roaming_Type)) {
-            if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
-            wrprobj.totalIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
-             }  
-            
-           if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass && AvgofCollegueData.iPass_Consumed_In_MB__c!=null){
-             wrprobj.totalAverageIpassUsageIn +=(AvgofCollegueData.iPass_Consumed_In_MB__c).setScale(2);
-             } 
+                 getUserTotalMap = getRoaming(AvgofCollegueData,usageTypeMap);
+                 wrprobj.totalIpassUsageIn =getUserTotalMap.get('totalIpassUsageIn').setScale(2) ;
+                 wrprobj.totalAverageIpassUsageIn =getUserTotalMap.get('totalAverageIpassUsageIn').setScale(2) ;
              }
          }
       }  
