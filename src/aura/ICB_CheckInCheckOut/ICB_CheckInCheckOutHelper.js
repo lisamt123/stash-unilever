@@ -47,7 +47,7 @@
                     if( returnMSG.indexOf($A.get("$Label.c.ICB_TEXT_CHECK_IN")) > -1 ){
                         
                         var lVisit = component.get('v.visit');
-                        var codcustomer = lVisit.Account.SAP_ID__c;
+                        var codcustomer = lVisit.ICB_Sales_Area__c;
                 		
                         if( codcustomer != null && codcustomer != "undefined" ){
                             console.log('URI MSERIES= '+$A.get("$Label.c.ICB_SCHEMA_MSERIES")+codcustomer);

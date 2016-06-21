@@ -58,15 +58,13 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>Sales_Rep__c</fullName>
-        <description>Sales rep ID.</description>
-        <externalId>true</externalId>
-        <label>Sales Rep</label>
-        <length>18</length>
+        <fullName>Description__c</fullName>
+        <description>Territory description</description>
+        <externalId>false</externalId>
+        <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Territory_ID__c</fullName>

@@ -29,6 +29,10 @@
                 <behavior>Required</behavior>
                 <field>EndDateTime</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ICB_Icon__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -29,7 +29,7 @@ public with sharing class ICB_CheckInCheckOut_CC
     {
         system.debug('Entering <getVisit>: '+ visitId);
         List<Event> visita = [SELECT Id, What.Name, WhatId, Account.SAP_ID__c, ICB_GeolocationCheckIn__Latitude__s,
-                              ICB_GoldenMinuteOpen__c From Event Where Id =: visitId 
+                              ICB_GoldenMinuteOpen__c, ICB_Sales_Area__c From Event Where Id =: visitId 
                               AND REcordTypeId =: idRecTypeIceCream limit 1];
         system.debug('Exiting <getVisit>: '+ visita);
         if(!visita.isEmpty())
