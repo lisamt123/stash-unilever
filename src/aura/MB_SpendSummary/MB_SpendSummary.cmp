@@ -127,6 +127,7 @@
                        </aura:iteration>
                    </div>               
                <div class="Right_cevro">
+                   
                    <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
                </div>
             </div>
@@ -154,7 +155,7 @@
                        </aura:iteration>
                    </div>               
                <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
                </div>
             </div>
            </div>
@@ -210,7 +211,7 @@
                  </div>              
              
              <div class="Right_cevro">
-                 <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                 <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
              </div>
           </div>
         </div>
@@ -268,7 +269,7 @@
                </aura:iteration>  
            </div>  
           <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
           </div>
            </div>
 
@@ -326,7 +327,7 @@
                   </aura:iteration> 
               </div>
            <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
            </div>
           </div>
 
@@ -385,7 +386,7 @@
                    </aura:iteration> 
                </div>
             <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
             </div>
            </div>
            
