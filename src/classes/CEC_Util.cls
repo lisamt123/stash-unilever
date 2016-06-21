@@ -15,6 +15,9 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 
 
 public class CEC_Util {
+    static final string text = 'Text';
+    static final string andString = ' and ';
+    static final string fraction = 'Fraction';
 
     //Method to send email
     public static void sendNotificationEmail(string msgString, string emailSubject){
@@ -91,7 +94,7 @@ public class CEC_Util {
         if (rem > 0) { 
             word = to_19[rem] + ' Hundred'; 
             if (mod > 0) { 
-                word += ' and '; 
+                word += andString; 
             } 
         } 
         System.debug('mod is  ' + mod ); 
@@ -106,27 +109,27 @@ public class CEC_Util {
     // 3) Textual version of decimal currency, e.g. CENTS
     public static String convertAllDigitsToWord(decimal val, string currencyText, string currencyDecimalText, string decimalFormatCMM ) {
         string amountInWords = '';
-        string decimalFormat = 'Text'; //default output as text
+        string decimalFormat = text; //default output as text
         
         if(decimalFormatCMM == 'Display as fraction'){
-            decimalFormat = 'Fraction';
+            decimalFormat = fraction;
         }
         
-        if (val < 100) {
+        if(val < 100){
             System.debug('In englishNumber val is < 100 ' + val ); 
             
             if ((val - val.intValue()) > 0){
                 if (val.intValue() > 0){
-                    if(decimalFormat == 'Text'){
-                        amountInWords = convertTwoDigitToWord(val.intValue())+ ' ' + currencyText + ' and ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-                    }else if(decimalFormat == 'Fraction'){
-                        amountInWords = convertTwoDigitToWord(val.intValue())+ ' and ' + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                    if(decimalFormat == text){
+                        amountInWords = convertTwoDigitToWord(val.intValue())+ ' ' + currencyText + andString + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+                    }else if(decimalFormat == fraction){
+                        amountInWords = convertTwoDigitToWord(val.intValue())+ andString + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
                     }
                 }
                 else{
-                    if(decimalFormat == 'Text'){
+                    if(decimalFormat == text){
                         amountInWords = convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText;
-                    }else if(decimalFormat == 'Fraction'){
+                    }else if(decimalFormat == fraction){
                         amountInWords = string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
                     }
                 }               
@@ -137,51 +140,54 @@ public class CEC_Util {
             return amountInWords.toUpperCase();                
         }
         
-        if (val < 1000) {
+        if(val < 1000){
             System.debug('In englishNumber val is < 1000 ' + val ); 
             
             if ((val - val.intValue()) > 0){
-                if(decimalFormat == 'Text'){
-                    amountInWords = convertThreeDigitToWord(val.intValue())+ ' ' + currencyText + ' and ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText;
-                }else if(decimalFormat == 'Fraction'){
-                    amountInWords = convertThreeDigitToWord(val.intValue())+ ' and ' + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                if(decimalFormat == text){
+                    amountInWords = convertThreeDigitToWord(val.intValue())+ ' ' + currencyText + andString + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText;
+                }else if(decimalFormat == fraction){
+                    amountInWords = convertThreeDigitToWord(val.intValue())+ andString + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
                 }
             }else{
                 amountInWords = convertThreeDigitToWord(val.intValue())+ ' ' + currencyText;
             }
             return amountInWords.toUpperCase();
         }
-        
-        for (integer v = 0; v < denom.size(); v++) { 
+        return convertAllDigitsToWord1000plus(val, currencyText, currencyDecimalText, decimalFormat);
+         
+    }
+    
+    private static String convertAllDigitsToWord1000plus(decimal val, string currencyText, string currencyDecimalText, string decimalFormat){
+        string amountInWords = '';
+        for (integer v = 0; v < denom.size(); v++){ 
             integer didx = v - 1; 
             integer dval = (integer)Math.pow(1000, v); 
             
-            System.debug('didx ' + didx ); 
-            System.debug('dval ' + dval ); 
-            
+    System.debug('didx ' + didx ); 
+    System.debug('dval ' + dval ); 
             
             if (dval > val) { 
                 integer mod = (integer)Math.pow(1000, didx); 
-                System.debug('value of mod ' + mod ); 
+    System.debug('value of mod ' + mod ); 
                 integer l = (integer) val / mod; 
-                System.debug('value of l ' + l ); 
+    System.debug('value of l ' + l ); 
                 integer r = (integer) val - (l * mod); 
-                System.debug('value of r ' + r ); 
+    System.debug('value of r ' + r ); 
                 String ret = convertThreeDigitToWord(l) + ' ' + denom[didx]; 
-                System.debug('value of ret ' + ret ); 
+    System.debug('value of ret ' + ret ); 
                 
                 
                 if (r > 0) { 
                     System.debug('in loop value of r ' + r ); 
-                    ret += ', ' + convertAllDigitsToWord(r,currencyText,currencyDecimalText,decimalFormatCMM); 
-                    
+                    ret += ', ' + convertAllDigitsToWord(r,currencyText,currencyDecimalText,decimalFormat);
                 } 
-                System.debug('in loop value of ret ' + ret ); 
+    System.debug('in loop value of ret ' + ret ); 
                 if ((val - val.intValue()) > 0){
-                    if(decimalFormat == 'Text'){
-                        amountInWords = ret + ' ' + currencyText+ ' ' + 'and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-                    }else if(decimalFormat == 'Fraction'){
-                        amountInWords = ret + ' and ' + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
+                    if(decimalFormat == text){
+                        amountInWords = ret + ' ' + currencyText+ andString + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+                    }else if(decimalFormat == fraction){
+                        amountInWords = ret + andString + string.ValueOf(((val - val.intValue())*100).intValue()) + '/100 ' + currencyText;
                     }
                 }
                 else{
@@ -190,7 +196,7 @@ public class CEC_Util {
                 return amountInWords.toUpperCase();
             } 
         } 
-        return amountInWords.toUpperCase(); 
+        return amountInWords.toUpperCase();
     }
     
     
@@ -215,36 +221,24 @@ public class CEC_Util {
                                                 String reason3, String reason4){
         String finalReasonCodeConcatValue = initialReasonCode;
         // Concatenate reason1 if it is not null.
-		finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason1);
+        finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason1);
                                                                      
         // Concatenate reason2 if it is not null.
-		finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason2);
-		
+        finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason2);
+        
         // Concatenate reason3 if it is not null.
         finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason3);
 
         // Concatenate reason4 if it is not null.
         finalReasonCodeConcatValue = stingConcatenate(finalReasonCodeConcatValue, reason4);
-		
+        
         return finalReasonCodeConcatValue;
     }
-	
-	private static string stingConcatenate(String finalReasonCodeConcatValue, String reason){
-		finalReasonCodeConcatValue = (String.isNotBlank(reason))? (finalReasonCodeConcatValue + reason):finalReasonCodeConcatValue;
-		return finalReasonCodeConcatValue;
-	}
     
-   public static Boolean isValidEmailAddress(String emailAddress){
-        if(emailAddress != null && emailAddress.trim() != null && emailAddress.trim().length() > 0){
-            String[] split = emailAddress.split('@');
-            if(split != null && split.size() == 2){
-                split = split[1].split('\\.');
-                if(split != null && split.size() >= 2){
-                    return true;
-                }
-            }
-        }
-        return false;
+    private static string stingConcatenate(String finalReasonCodeConcatValue, String reason){
+        string finalReasonCodeConcatValue1 = finalReasonCodeConcatValue;
+        finalReasonCodeConcatValue1 = (String.isNotBlank(reason))? (finalReasonCodeConcatValue + reason):finalReasonCodeConcatValue;
+        return finalReasonCodeConcatValue1;
     }
         
 }
