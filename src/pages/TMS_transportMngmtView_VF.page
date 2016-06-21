@@ -1,0 +1,2 @@
+<apex:page standardController="TMS_Transporter_Management_Screen__c" recordSetVar="a" 
+action="{!URLFOR($Action.TMS_Transporter_Management_Screen__c.List,$ObjectType.TMS_Transporter_Management_Screen__c)}" />

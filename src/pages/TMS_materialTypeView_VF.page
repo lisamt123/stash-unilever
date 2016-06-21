@@ -1,0 +1,2 @@
+<apex:page standardController="TMS_Material_Type__c" recordSetVar="a" 
+action="{!URLFOR($Action.TMS_Material_Type__c.List,$ObjectType.TMS_Material_Type__c)}" />

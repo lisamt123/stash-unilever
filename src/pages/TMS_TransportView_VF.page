@@ -1,0 +1,17 @@
+<apex:page sidebar="false" docType="html-5.0" showHeader="false" standardController="TMS_Transporter_Management_Screen__c" extensions="TMS_transportView_CC">
+  <apex:form id="frm">
+        <apex:pageblock title="Transporter Management Screen Edit" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="save" action="{!save}" oncomplete="self.close()" reRender="frm"/>
+                <apex:commandButton value="Close" onclick="self.close()"/>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection >
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Placement_Date__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Destination__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Transporter__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Truck_Type__c}"/>
+                <!--<apex:inputField value="{!TMS_Transporter_Management_Screen__c.Date_Time__c}"/>-->
+            </apex:pageblockSection>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

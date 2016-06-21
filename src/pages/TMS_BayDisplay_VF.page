@@ -1,0 +1,120 @@
+<apex:page cache="true" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="true" standardController="TMS_Truck_Entry_Checklist__c" extensions="TMS_BayDisplay_CC" >
+<apex:form id="thform">
+<head>
+    <meta charset="utf-8" />        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS Libs -->
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+      <link href="{!URLFOR($Resource.Vep_dataTables, '/DataTables-1.10.10/media/css/jquery.dataTables.min.css')}" rel="stylesheet"/>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_jquery_1_11_2, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Vep_dataTables, '/DataTables-1.10.10/media/js/jquery.dataTables.min.js')}"></script>
+   
+</head>
+
+<style type="text/css">
+.row1
+    {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5%;
+    }
+    tr:nth-child(odd){background-color: white !important;}
+    tr:nth-child(even){background-color: #f2f2f2 !important;}
+    .tb1
+    {
+    background-color:#047cbc;
+    }
+    td
+    {
+     	font-size: 30px;   
+    }
+    .fix
+    {
+    align:center !important;
+    postion: fixed !important;
+    }
+    th
+    {
+    color:white;
+    text-align:left;
+    background-color:#047cbc;
+    font-size: 30px;
+    }   
+.myClass{
+color:white !important;
+background:#bf4040 !important;
+}
+</style>
+<body class="flat-blue">
+            <div class="app-container">
+            <div class="row content-container">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <ol class="breadcrumb navbar-breadcrumb">
+                                <li> 
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                Bay Display
+                                </li>
+                                <!--<li style="margin-left:500px;">{!$User.Division}</li>-->
+                            </ol>
+                        </div> 
+                                    
+                    </div>
+                </nav>  
+                
+            <div class="container-fluid">
+            <div class="side-body padding-top">                   
+                <!-- content -->                      
+            <div class="row1">
+             
+            <div class="panel-body">
+            <div class="table-responsive" style="width:1200px;margin-left:-50px;">
+              <table id="myTable" class="display table tb1" style="table-layout: auto;">
+                	<thead>  
+                    <tr>                  
+                        <th>Truck No</th>
+                       <!-- <th>Truck Material Type</th>-->
+                        <th>Bay Details</th>
+                        <!--<th>Bay Description</th>-->
+                        <th>Truck Action</th>                         
+                        <th>Time</th>
+                    </tr>  
+                    </thead>  
+                     <tbody> 
+                        <apex:repeat value="{!Bay}" var="tr">
+                               <tr>   
+                                    <td>{!tr.Vehicle_Number__c}</td>
+                                    <!--<td>{!tr.Truck_Type__c}</td> -->                                 
+                                    <td>{!tr.Bay_Number__c}</td> 
+                                   <!-- <td>{!tr.Bay_Description__c}</td>-->
+                                    <td>{!tr.Action__c}</td>                                     
+                                    <td>{!tr.Bay_Wait_Time__c}</td>
+                               </tr>  
+                        </apex:repeat>
+                    </tbody>  
+                </table> 
+                                
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>                     
+            </div>
+            </div>
+                 
+</body>      
+
+</apex:form>
+    
+</apex:page>

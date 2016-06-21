@@ -1,0 +1,49 @@
+<apex:page standardController="TMS_PO_items__c" extensions="TMS_Popup_unloadLoadDone_CC" sidebar="false" showHeader="false">
+   <apex:form >
+     <script language="JavaScript" type="text/javascript">
+    	function CloseWindow(){  
+            if(window.parent){
+                window.parent.opener.location.href = window.parent.opener.location.href;
+                window.parent.close();
+                window.parent.reload();
+            }   
+            else{
+                window.opener.location.href = "{!JSENCODE($CurrentPage.parameters.tmsloadid)}"
+                window.close();   
+            }   
+        }
+	</script>
+    <apex:pageBlock >
+    	<apex:pageBlockSection >
+        	<apex:pageBlockTable value="{!Tsentryload}" var="ts" columns="2">
+            	<apex:column headerValue="Truck Number">
+                    {!ts.Vehicle_Number__c}
+                </apex:column>
+                <apex:column headerValue="Bay">
+                    {!ts.Bay_Number__c}
+                </apex:column>
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <br/>
+        	<apex:pageBlockSection >
+                <apex:pageBlockTable value="{!poItem}" var="p">
+                    <apex:column headerValue="Po Number">
+                        {!p.TMS_PO__r.Name}
+                    </apex:column>
+                    <apex:column headerValue="Invoice Number">
+                        {!p.TMS_PO__r.Invoice_No__c}
+                    </apex:column>
+                    <apex:column headerValue="Choose">
+                        <apex:inputField value="{!p.choosePO__c}"/> 
+                    </apex:column>
+                </apex:pageBlockTable>
+                
+        </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+        	<apex:commandButton action="{!save}" value="Save" oncomplete="CloseWindow()"/>
+            <apex:commandButton value="Cancel" onclick="CloseWindow()"/>
+            </apex:pageBlockButtons>
+    
+    </apex:pageBlock>
+ </apex:form>
+</apex:page>

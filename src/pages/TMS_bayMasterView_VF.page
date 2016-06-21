@@ -1,0 +1,2 @@
+<apex:page standardController="TMS_Bay_Master__c" recordSetVar="a" 
+action="{!URLFOR($Action.TMS_Bay_Master__c.List,$ObjectType.TMS_Bay_Master__c)}" />

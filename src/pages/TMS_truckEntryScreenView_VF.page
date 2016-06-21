@@ -1,0 +1,2 @@
+<apex:page standardController="TMS_Truck_Entry_Checklist__c" recordSetVar="a" 
+action="{!URLFOR($Action.TMS_Truck_Entry_Checklist__c.List,$ObjectType.TMS_Truck_Entry_Checklist__c)}" />

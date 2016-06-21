@@ -1,0 +1,29 @@
+<apex:page Controller="TMS_TimePopup_CC" sidebar="false" showHeader="false" docType="html-5.0">
+    <apex:form id="frm">
+        <apex:pageBlock id="pgblk" mode="edit" title="Update time">
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton value="Update" action="{!updatetime}" oncomplete="CloseWindow()" rerender="frm"/>
+                <apex:commandButton value="Cancel" onclick="CloseWindow()"/>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection columns="1">
+                <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Time:"/>
+                <apex:input type="time" value="{!seltime}" required="true" style="width:100px;"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageblockSection>
+         </apex:pageBlock>    
+<script language="JavaScript" type="text/javascript">
+    function CloseWindow(){  
+            if(window.parent){
+                window.parent.opener.location.href = window.parent.opener.location.href;
+                window.parent.close();
+                window.parent.reload();
+            }   
+            else{
+                window.opener.location.href = "{!JSENCODE($CurrentPage.parameters.tmscid)}"
+                window.close();   
+            }   
+        }
+</script> 
+</apex:form>   
+</apex:page>

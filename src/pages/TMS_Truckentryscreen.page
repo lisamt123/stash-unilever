@@ -1,0 +1,83 @@
+<apex:page standardController="TMS_Truck_Entry_Checklist__c" standardStylesheets="true" extensions="TMS_truckentryscreen" action="{!truckentryscreen}">
+<apex:form id="frm">
+ <script type = "text/javascript">
+    function checkField(chall)
+    {
+    if (/[^0-9a-bA-B\s]/gi.test(chall.value))
+    {
+    alert ("Only alphanumeric characters are valid for Challan Number");
+    fieldname.value = "";
+    fieldname.focus();
+    return false;
+    }
+}
+</script>
+
+    <apex:sectionHeader title="TMS_Truck Entry Screen" subtitle="New TMS_Truck Entry Screen"/>
+    <apex:pageBlock title="TMS_Truck Entry Screen Edit" mode="edit">
+        <apex:pageblockbuttons >
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:commandButton value="Save" action="{!save}" reRender="frm"/>
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+            {!$Setup.Tms_PlantCode__c.Plant_Code__c}
+        </apex:pageblockbuttons>
+        <apex:pageBlockSection title="Information" columns="2" collapsible="false">
+            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.recordtypeid}">
+                <!--<apex:param value="{!TMS_Truck_Entry_Checklist__c.recordtypeid}" name="recType" assignTo="{!recdtype}"/>-->             
+            </apex:outputField>
+            <!--<apex:outputText label="Truck Type">{!recdtype}</apex:outputText>-->
+            <apex:inputField value="{!truckentry.Challan_Number__c}" id="chall" required="true" rendered="{!challan}" onblur="checkField(this)"/>
+            <apex:inputField value="{!truckentry.Vendor__c}" required="true" rendered="{!vendor}"/>
+            <apex:inputField value="{!truckentry.LR_Number__c}" required="true" rendered="lrnum"/>
+            <apex:inputField value="{!truckentry.Transporter__c}" rendered="{!transporter}"/>
+            <apex:inputField value="{!truckentry.PO_Number__c}" required="true" rendered="{!ponumber}"/>
+            <apex:inputField value="{!truckentry.Vehicle_Number__c}" required="true"/>
+            <!--<apex:inputField value="{!truckentry.RFID__c}" rendered="{!IF(TMS_Truck_Entry_Checklist__c.recordtype.Name=='Engineering_Materials_Truck',false,true)}"/>-->
+            <apex:inputField value="{!truckentry.Name}" required="true"/>
+           <!-- <apex:inputField value="{!truckentry.Status__c}" rendered="{!status}"/>-->
+            <apex:inputField value="{!truckentry.Material_Desc__c}" required="true"/>
+           <!-- <apex:inputField value="{!truckentry.Action__c}" rendered="{!action}"/>-->
+            <!--<apex:inputField value="{!truckentry.Relay_Item_Id__c}"/>-->
+           <!-- <apex:inputField value="{!truckentry.Initial_Wt__c}" rendered="{!initialwt}"/>-->
+           <!-- <apex:inputhidden value="{!truckentry.Relay_Item_Id__c}" rendered="{!relayitem}"/>-->
+           <!-- <apex:inputField value="{!truckentry.TMS_Current_Weight__c}" rendered="{!currentwt}"/>-->
+           <!-- <apex:inputhidden value="{!truckentry.Relay_Item_Id__c}" rendered="{!relayitem}"/>-->
+           <!-- <apex:inputField value="{!truckentry.TMS_ItemWeight__c}" rendered="{!itemwt}"/>-->
+            
+        </apex:pageBlockSection>
+            
+            <apex:pageBlockSection id="rfsec" title="RFID Information" columns="1"  rendered="{!truckentry.truck_Action__c=='Accept'}">
+                    <apex:inputField value="{!truckentry.RFID__c}" rendered="{!IF(TMS_Truck_Entry_Checklist__c.recordtype.Name=='Engineering_Materials_Truck',false,true)}"/>
+                    <apex:commandButton id="Update" value="Get RFID" action="{!getRFID}" reRender="rfsec" />
+        </apex:pageBlockSection>
+            
+            
+        <apex:pageBlockSection title="Checklist" columns="2">
+            <apex:pageBlockTable value="{!tmschklists}" var="chk" columnsWidth="400,200*">
+                <apex:column headerValue="Questions">
+                    <apex:outputText value="{!chk.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Answer">
+                    <apex:inputField value="{!chk.Expected_Answer__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>                
+        </apex:pageBlockSection>
+        
+        <apex:pageblocksection title="Truck Actions">
+            <apex:PageBlockSectionItem >
+                <apex:outputLabel value="Truck Action" />
+                    <apex:actionRegion >
+                        <apex:inputField value="{!truckentry.truck_Action__c}" required="true">
+                        <apex:actionSupport event="onchange" reRender="ajaxrequest" /></apex:inputField>
+                    </apex:actionRegion>
+            </apex:PageBlockSectionItem>    
+        </apex:pageblocksection>
+        
+        <apex:outputPanel id="ajaxrequest">
+        <apex:pageBlockSection rendered="{!truckentry.truck_Action__c=='Reject'}">
+          <apex:inputField value="{!truckentry.Reject_Reason__c}" /> </apex:pageBlockSection>
+      </apex:outputPanel>
+            
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

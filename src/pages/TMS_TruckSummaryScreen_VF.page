@@ -1,0 +1,534 @@
+<apex:page cache="true" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" Controller="TMS_TruckSummaryScreen_CC" >
+<apex:form id="thform">
+<head>
+    <meta charset="utf-8" />        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS Libs -->
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+      <link href="{!URLFOR($Resource.Vep_dataTables, '/DataTables-1.10.10/media/css/jquery.dataTables.min.css')}" rel="stylesheet"/>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_jquery_1_11_2, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Vep_dataTables, '/DataTables-1.10.10/media/js/jquery.dataTables.min.js')}"></script>
+   
+</head>
+
+<script type="text/javascript">     
+        function unCheckOther(cb)
+            {
+                var inputElem = document.getElementsByTagName("input");                    
+                for(var i=0; i<inputElem.length; i++)
+                {             
+                          
+                      if(inputElem[i].id.indexOf('chkd') != -1)
+                        if (inputElem[i].checked = true)                          
+                            inputElem[i].checked = false;                       
+                }               
+               cb.checked = true;
+                callfind();   
+                callfind1();     
+            }
+</script>
+
+    
+<script type="text/javascript">
+    function openpopup(tmsid) {        
+        var myWindow = window.open("/apex/TMS_TimePopup_VF?tid="+tmsid,"tms_popup","width=370,height=200"); 
+        myWindow.focus();  
+    }
+    function openloadpopup(load) {        
+        var myWindow = window.open("/apex/TMS_Popup_unloadLoadDone_VF?tloadid="+load,"tms_popup","width=650,height=200"); 
+        myWindow.focus();  
+    }
+    function openprint(printid) {        
+        var myWindow = window.open("/apex/TMS_printLoadingSlip?tid="+printid,"tms_popup"); 
+        myWindow.focus();  
+    }
+</script>
+<!--<script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");
+            for(var i=0; i<inputCheckBox.length; i++){
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+    </script>-->
+
+<style type="text/css">
+
+    .row1
+    {
+    padding-left: 5%;
+    padding-right: 5%;yyyy
+    padding-top: 5%;
+    }
+    td
+    {
+    <!--text-align:center;-->
+    background-color:;
+    }
+    .tb1
+    {
+    background-color:#047cbc;
+    }
+    .fix
+    {
+    align:center !important;
+    postion: fixed !important;
+    }
+    th
+    {
+    color:white;
+    text-align:center;
+    }
+.myClass{
+color:white !important;
+background:#047cbc; !important;
+}
+
+
+.errorClass {
+color:white !important;
+    background: #69ca02 !important;
+}
+.normalClass {
+color:white !important;
+    background: #fd6730 !important;
+}
+
+</style>
+  <!--START POPUP CSS -->
+    
+        <style type="text/css">
+            .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            /* These are the 3 css properties you will need to change so the popup 
+            displays in the center of the screen. First set the width. Then set 
+            margin-left to negative half of what the width is. You can add 
+            the height property for a fixed size pop up if you want.*/
+            width: 500px;
+            margin-left: -250px;
+            margin-top:300px;
+            top:100px;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+    </style>
+
+    
+    <!--END POPUP CSS -->
+
+<body class="flat-blue">
+            <div class="app-container">
+            <div class="row content-container">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-expand-toggle">
+                                <i class="fa fa-bars icon"></i>
+                            </button>
+                            <ol class="breadcrumb navbar-breadcrumb">
+                                <li> 
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                Truck Summary screen
+                                <!-- Sitecode need to remove after assigning User to Particluar Site-->
+                                </li>
+                                <li >{!$Setup.Tms_PlantCode__c.Plant_Code__c}</li>
+                            </ol>
+                            <!--<ol class="breadcrumb navbar-breadcrumb" style="margin-left:700px;margin-top:-30px;">
+                                <li>HPC- Chiplun Plant</li>
+                            </ol>-->
+                        </div> 
+                        <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        </ul>              
+                    </div>
+                </nav>  
+                <div class="side-menu sidebar-inverse" >
+                <nav class="navbar navbar-default" role="navigation" >
+                    <div class="side-menu-container" style="width:300px;">
+                        <div class="navbar-header" >
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-hand-o-right"></div>
+                                <div class="title">Truck Management</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        <ul class="nav navbar-nav">
+              <li>
+                  <a href="/apex/TMS_TruckSummaryScreen_VF" target="_self">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Home
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="/setup/ui/recordtypeselect.jsp?ent=01Ic00000001ywJ&retURL=%2Fa8r%2Fo&save_new_url=%2Fa8r%2Fe%3FretURL%3D%252Fa8r%252Fo" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Truck Entry Screen
+                  </span>
+                </a>
+              </li>
+              <!-- <li>
+                <a href="apex/TMS_DocumentValidation_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Document Validation Screen
+                  </span>
+                </a>
+              </li>-->
+               <li>
+                <a href="/a8j/l?retURL=https%3A%2F%2Funilever--SCPaperles--c.cs14.visual.force.com%2Fapex%2FTMS_transportMngmtView_VF%3Fsave_new%3D1%26sfdc.override%3D1&_CONFIRMATIONTOKEN=VmpFPSxNakF4Tmkwd05TMHhNbFF4TVRveE16b3pOaTQ1TnpaYSw1OVpUcGNGcjhUWlF0VVItczRjbmpxLE5qVXlNemN6" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Transporter Management Screen
+                  </span>
+                </a>
+              </li>
+             <!-- <li>
+                <a href="apex/TMS_dispatchScreen_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Dispatch Screen
+                  </span>
+                </a>
+              </li>-->
+              
+              <li>
+                <a href="apex/TMS_BayDisplay_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Bay Display
+                  </span>
+                </a>
+              </li>
+           
+              
+            </ul>
+                    </div>
+                </nav>
+                </div> 
+            <div class="container-fluid">
+            <div class="side-body padding-top">                   
+                <!-- content -->                      
+            <div class="row1">
+             
+            <div class="panel-body">
+            <div class="table-responsive" style="width:1200px;margin-left:-50px;">
+            
+           <!--<apex:pageBlock id="pgBlk">-->
+           <div style="color:red;background-color:#ffffe6;">
+                <apex:pageMessages ></apex:pageMessages>  
+            </div>
+            <!--<apex:repeat  value="{!tmstrucks}" var="w">-->
+            <marquee>Initial Weight for the Truck Weighed : </marquee>
+           <!-- </apex:repeat>   -->
+               <table style="align:left;">
+                   <tr>
+                        <td>
+                            <apex:commandlink action="{!newTruckEntry}" target="_blank" >
+                                <apex:commandButton value="New Truck Entry" styleClass="myClass"/>
+                            </apex:commandlink>
+                       </td>
+                   </tr>
+               </table>
+              <table id="myTable" class="display table tb1" style="table-layout: auto;">
+                <thead>  
+                    <tr> 
+                    <th><apex:inputCheckbox onclick="unCheckOther(this,'inputId')"/> </th>
+                        <th>Date</th> 
+                        <th>TruckNo</th>
+                        <th>Truck</th>  
+                        <th>Mat.Desc.</th>  
+                        <th>Vendor</th>  
+                        <th>Status</th>  
+                        <th>PONo</th>
+                        <th>Action</th>
+                        <th>Bay Details</th>
+                        <!--<th>BayDesc.</th>-->
+        
+                    
+                    </tr>  
+                    </thead>
+                  <!--  <apex:actionFunction name="callfind" action="{!docMethod}" reRender="dcop" />-->
+                 <apex:repeat value="{!tmstrucks}" var="w"> 
+                <tr>
+                <td>
+                    <apex:inputCheckbox value="{!w.isSelected}"  onclick="unCheckOther(this)" id="chkd">
+                     <!--   <apex:actionSupport event="onchange" reRender="rftb"/> -->
+                    </apex:inputCheckbox>
+                </td>
+                <td>
+                    <!--<apex:outputText value="{0,date,MM/dd/yy hh:mm a}"> <apex:param value="{!NOW()+0.229}" /> </apex:outputText>-->
+                    
+                    <apex:outputText value="{0,date,MM/dd/yy hh:mm a}"> <apex:param value="{!w.datetime1+0.23}" /> </apex:outputText>
+                </td>
+                
+                 
+                 <td>{!w.vehicleno}</td>             
+                 <td>{!w.recordtype}</td>
+                 <td>{!w.materialdesc}</td> 
+                 <td>{!w.vendor}</td> 
+                 <td>{!w.status}</td>
+                 <td>{!w.po}</td>
+                 
+                    
+                 <td>
+                     <div style="width:120px;background:#047cbc;text-align:center;">
+                     <apex:outputPanel rendered="{!IF(w.action == 'Doc Val',true,false)}" >
+                        <apex:outputLink value="/apex/TMS_Documentvalidation_VF1" style="width:120px;background-color:#047cbc;color:white;">
+                            Doc Val<apex:param name="testdoc" value="{!w.Id}" assignTo="{!testdoc}"/>
+                        </apex:outputLink>
+                     </apex:outputPanel>
+                     </div>
+                     <div style="width:120px;background:#047cbc;;text-align:center;">
+                     <apex:outputPanel rendered="{!IF(w.action == 'Create Shipment',true,false)}">
+                        <apex:outputLink value="/apex/TMS_dispatchScreen_VF" style="width:120px;background-color:#047cbc;color:white;">
+                            Create Shipment<apex:param name="testdoc" value="{!w.Id}" assignTo="{!testdoc}"/>
+                        </apex:outputLink>
+                     </apex:outputPanel>
+                     </div>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Truck on Hold',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you accept the truck ?')) return false;" style="width:120px;background-color:#047cbc;color:white;" action="{!truckonHold}" reRender="TablePanel,thform">
+                            <apex:param name="hold" value="{!w.i}" assignTo="{!hold}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Int weight',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you accept initial weight done?')) return false;" style="width:120px;background-color:#047cbc;color:white;" action="{!intWeight}" reRender="TablePanel,thform">
+                        <apex:param name="intweigh" value="{!w.i}" assignTo="{!intweigh}"/>
+                        </apex:commandButton>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!IF(w.action == 'Allocate Bay',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you want to assign this Bay ?')) return false;"  style="width:120px;background-color:#047cbc;color:white;" action="{!bayUpdate}" reRender="TablePanel,thform">
+                        <apex:param name="Testite" value="{!w.i}" assignTo="{!Testite}"/>
+                     </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Move To Bay',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you  want to Move truck to the Bay ?')) return false;"  style="width:120px;background-color:#047cbc;color:white;" action="{!reachBay}" reRender="TablePanel,thform">
+                        <apex:param name="bayreach" value="{!w.i}" assignTo="{!bayreach}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Unload/Load Done',true,false)}">
+                        <!-- <apex:outputLink value="/apex/TMS_Popup_unloadLoadDone_VF" target="_blank" style="width:120px;background-color:#047cbc;color:white;">-->
+                       <!-- <apex:commandButton value="{!w.action}" onclick="openloadpopup('{!URLENCODE(load)}');return false;"  style="width:120px;background-color:#047cbc;color:white;" action="{!unloadLoad}"  reRender="TablePanel,thform"><!--action="{!unloadLoad}"-->
+                       <!-- <apex:param name="load" value="{!w.Id}" assignTo="{!load}"/>-->
+                       <apex:commandButton value="{!w.action}" onclick="openloadpopup('{!URLENCODE(w.Id)}');return false;" style="width:120px;background-color:#047cbc;color:white;"/>
+                      <!--  </apex:commandButton>-->
+                     </apex:outputPanel>
+                    <!-- <apex:outputPanel rendered="{!IF(w.action == 'Unload/Load Done',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Will you Accept The Truck To UnLoad/Load Done ?')) return false;"  style="width:120px;background-color:#047cbc;color:white;" action="{!unloadLoadComplete}" reRender="TablePanel,thform">
+                        <apex:param name="loadComplete" value="{!w.i}" assignTo="{!loadComplete}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>-->
+                     <apex:outputPanel rendered="{!IF(w.action == 'Fin weight',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you accept Final Weight Done ?')) return false;"  style="width:120px;background-color:#047cbc;color:white;" action="{!finalWeight}" reRender="TablePanel,thform">
+                        <apex:param name="finalWeigh" value="{!w.i}" assignTo="{!finalWeigh}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <div style="width:120px;background:#047cbc;;text-align:center;">
+                     <apex:outputPanel rendered="{!IF(w.action == 'Qnty Val',true,false)}">
+                        <apex:outputLink value="/apex/TMS_Documentvalidation_VF1" style="width:120px;background-color:#047cbc;color:white;">
+                            Qnty Val<apex:param name="testdoc" value="{!w.Id}" assignTo="{!testdoc}"/>
+                        </apex:outputLink>
+                     </apex:outputPanel>
+                     </div>
+                   <!-- <apex:outputPanel rendered="{!IF(w.action == 'Exit',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Will you delete ?')) return false;" styleClass="{!IF(w.action == 'Allocate Bay' || w.action == 'UnLoad/Load' || w.action == 'Interim Exit','errorClass','normalClass')}" action="{!deleteRow}" reRender="TablePanel,thform">
+                            <apex:param name="delrow" value="{!w.vehicleno}" assignTo="{!delrow}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>-->
+                     <apex:outputPanel rendered="{!IF(w.action == 'Exit',true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you want to Exit ?')) return false;" styleClass="{!IF(w.action == 'Allocate Bay' || w.action == 'UnLoad/Load' || w.action == 'Interim Exit','errorClass','normalClass')}" style="width:120px;" action="{!removeRow}" reRender="TablePanel,thform,tstpopup2">
+                            <apex:param name="remrow" value="{!w.i}" assignTo="{!remrow}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Interim Exit' ,true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you want to have Interim Entry ?')) return false;" styleClass="{!IF(w.action == 'Allocate Bay' || w.action == 'UnLoad/Load' || w.action == 'InterimExit','errorClass','normalClass')}" style="width:120px;" action="{!interimExit}" reRender="TablePanel,thform">
+                            <apex:param name="interim" value="{!w.i}" assignTo="{!interim}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Interim Entry' ,true,false)}">
+                        <apex:commandButton value="{!w.action}" onclick="if(!confirm('Do you want to do Final Weight?')) return false;" styleClass="{!IF(w.action == 'Allocate Bay' || w.action == 'UnLoad/Load' || w.action == 'InterimExit','errorClass','normalClass')}" style="width:120px;" action="{!unloadLoad}" reRender="TablePanel,thform">
+                            <apex:param name="load" value="{!w.i}" assignTo="{!load}"/>
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Sample Accepted'  ,true,false)}">
+                        <apex:commandButton value="{!w.action}"  onclick="this.disabled=true;alert('Please Select Either QA Approve/QA Rejected');" styleClass="{!IF(w.action == 'Allocate Bay' || w.action == 'UnLoad/Load' || w.action == 'InterimExit','errorClass','normalClass')}" style="width:120px;"  reRender="TablePanel,myTable"><!--action="{!qaAccept}" onclick="if(!confirm('Do you want to do Final Weight ?'))-->
+                            <!--<apex:param name="qa" value="{!w.i}" assignTo="{!qa}"/>-->
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(w.action == 'Final Doc Check' || w.action == 'Terminate' ,true,false)}">
+                        <apex:commandButton value="{!w.action}" style="width:120px;background-color:#047cbc;color:white;" reRender="TablePanel,thform" disabled="true">
+                        </apex:commandButton>
+                     </apex:outputPanel>
+                 </td>
+                                    
+                    <td>
+                        <apex:outputPanel rendered="{!IF(w.action == 'Allocate Bay',true,false)}" id="TablePanel">
+                            <apex:selectList value="{!w.selectedbay}" size="1" multiselect="false" onchange="baychange('{!w.i}',this);">
+                                    <apex:selectOptions value="{!w.baypicklist}" />
+                                    <!--<apex:actionSupport event="onchange" action="{!selctpick}" reRender="myTable"/>-->
+                             </apex:selectList>  
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!IF(w.action == 'Move To Bay' || w.action == 'UnLoad/Load' || w.action == 'Create Shipment' || w.action == 'Unload/Load Done',true,false)}">                           
+                           <apex:outputText value="{!w.bay1}"/>                            
+                        </apex:outputPanel>
+                    </td >
+                    
+                    <!--<td> 
+                        <apex:outputPanel id="testren">
+                            <apex:outputPanel > 
+                                <apex:outputLabel value="{!w.baydes}"/>                               
+                            </apex:outputPanel>  
+                            <apex:outputPanel rendered="{!IF(w.action == 'Move To Bay' || w.action == 'UnLoad/Load' || w.action == 'Unload/Load Done',true,false)}">
+                                <apex:outputText value="{!w.baydesc}"/>
+                            </apex:outputPanel>
+                        </apex:outputPanel>                       
+                    </td>   -->   
+                </tr>
+ 
+                </apex:repeat>
+                </table>
+                    <!-- START   POPUP FOR CHANGE BAY -->
+                    <apex:outputPanel id="tstpopup1">
+                     <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp1}"/>
+                       <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp1}">
+                          Please select the Bay to Change?<br/><br/><br/>
+                          <apex:selectList id="chbays" value="{!selectedValue}" size="1" title="chbay" multiselect="false">
+                            <apex:selectOptions value="{!chbays}"></apex:selectOptions>
+                          </apex:selectList>
+
+                             <apex:commandButton value="Change Bay" action="{!changeBay}"/>
+                       </apex:outputPanel>
+                    </apex:outputPanel>                            
+                <!-- END POPUP FOR CHANGE BAY-->  
+                <apex:actionFunction name="callfind" action="{!utmethode}" reRender="rftb" />
+                <apex:actionFunction name="callfind1" action="{!utmethode1}" reRender="rftb1"/>
+                <!-- START   POPUP FOR TERMINATE TRUCK -->
+                    <apex:outputPanel id="tstpopup">
+                     <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+                       <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+                          Please select the Reason To Terminate the truck?<br/><br/><br/>
+                          <apex:inputText value="{!terreason}"/>
+                             <apex:commandButton value="Save and Close" action="{!terminate}"/>
+                             <!--<apex:commandButton value="Close" action="{!close}"/>-->
+                       </apex:outputPanel>
+                    </apex:outputPanel>                            
+                <!-- END POPUP FOR TERMINATE TRUCK-->
+                
+                <!-- START   POPUP FOR Detention Logic -->
+                    <apex:outputPanel id="tstpopup2">
+                     <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp2}"/>
+                       <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp2}">
+                          Please select the Reason For Delay Of the truck?<br/><br/><br/>
+                             <apex:inputText value="{!detReason}"/>
+                             <apex:commandButton value="Save and Close" action="{!detention}"/>
+                             <!--<apex:commandButton value="Close" action="{!close}"/>-->
+                       </apex:outputPanel>
+                    </apex:outputPanel>                          
+                <!-- END POPUP FOR Detention Logic--> 
+                
+               <apex:outputPanel id="rftb">
+                   
+                <table>
+                <tr><td>
+                  <apex:outputPanel rendered="{!ut==true}"><apex:commandButton value="Update Time"  onclick="openpopup('{!URLENCODE(tmsid)}');return false;"  styleClass="myClass"/></apex:outputPanel>
+                  <apex:outputPanel rendered="{!ut==false}"><apex:commandButton value="Update Time"  action="{!timeupdate}"  styleClass="myClass"/></apex:outputPanel>
+                </td><td></td>
+                <td>
+                    <apex:outputPanel id="rftb1">
+                    <apex:outputPanel rendered="{!ut==true}"><apex:commandButton value="Print Loading Slip" onclick="openprint('{!URLENCODE(printid)}');return false;" styleClass="myClass"/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!ut==false}"><apex:commandButton value="Print Loading Slip"  action="{!printError}"  styleClass="myClass"/></apex:outputPanel>
+                    </apex:outputPanel>
+                 </td>
+                <td></td>
+                <td> 
+                    <apex:commandButton value="QA Rejected" onclick="if(!confirm('Do you Want To Reject QA ?')) return false;" styleClass="myClass" action="{!QAReceive}">                    
+                    </apex:commandButton>  
+                </td>
+                <td></td>
+                <td><apex:commandButton value="QA Approved" onclick="if(!confirm('Do you Want To Update QA Approved ?')) return false;" styleClass="myClass" action="{!QAApprove}"/></td>
+                <td><apex:commandButton value="Terminate Truck" onclick="if(!confirm('Do you Want To Terminate The Entry ?')) return false;" styleClass="myClass" action="{!showPopup}" rerender="tstpopup"/></td>
+                <td><apex:commandButton value="Change Bay" onclick="if(!confirm('Do you Want To Change the Bay ?')) return false;" action="{!showPopup1}" rerender="tstpopup1" styleClass="myClass" /></td>
+                </tr>
+                </table>
+                </apex:outputPanel>
+    
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>                     
+            </div>
+            </div>
+           <apex:actionFunction action="{!populatebaydesc}" rerender="testren,testren1" name="updatebaydesc">          
+           <apex:param name="firstParam" value="" />
+           <apex:param name="secondParam" value="" />
+           </apex:actionFunction>
+                              
+</body>      
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "paging":   true,
+        "ordering": true,
+        "info":     false,
+        "bFilter": true,
+        "bSearchable":false,
+        "bLengthChange": false,
+        "order": [[ 1, "desc"]],
+        
+        
+    
+     });
+});
+
+
+</script>
+<script>
+function baychange(ite,bayno){
+updatebaydesc(ite,bayno.value)
+}
+</script>
+</apex:form>
+    
+</apex:page>

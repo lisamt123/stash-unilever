@@ -1,0 +1,575 @@
+<apex:page cache="true" sidebar="false" showHeader="false"   docType="" standardStylesheets="true" controller="TMS_Documentvalidation_CC" extensions="TMS_GETPOFROMSAP">
+
+<apex:remoteObjects >
+    <apex:remoteObjectModel jsShortHand="acct" name="TMS_PO__c" fields="Id,Truck_Entry_Checklist__c,Name,PO_Number__c,Invoice_Qty__c,UOM__c"
+        retrieve="{!$RemoteAction.TMS_GETPOFROMSAP.retrievePO}"/>
+        
+    <apex:remoteObjectModel jsShortHand="opp" name="TMS_PO_items__c" fields="Id,TMS_PO__c,Name,Initial__c,Material_Description__c,choosePO__c"/>
+
+</apex:remoteObjects>
+<apex:form >
+<head>
+    <meta charset="utf-8" />        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS Libs -->
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+    <link href="{!URLFOR($Resource.jtable, 'jtable.2.4.0/themes/jqueryui/jtable_jqueryui.min.css')}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+
+
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script>
+
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"/>
+<apex:includeScript value="{!URLFOR($Resource.jtable, 'jtable.2.4.0/jquery.jtable.min.js')}"/>
+
+   
+</head>
+
+
+<script>
+
+var $ = jQuery.noConflict();
+$(document).ready(function() {
+    $("#records").jtable({
+        title: "PO Details",
+        jqueryuiTheme: true, 
+        saveUserPreferences: false,
+        paging: true,
+             selecting: true, //Enable selecting
+            multiselect: true, //Allow multiple selecting
+            selectingCheckboxes: true, //Show checkboxes o
+        pageSize: 10,
+        pageSizes: [10, 25, 50, 75, 100],
+        
+        fields: {
+            Truck_Entry_Checklist__c: {
+                    type:"hidden",
+                    edit: false,
+                    defaultValue: '{!testdoc}'
+                },
+
+             Id: {
+                key: true,
+                list: false
+            },
+            TMS_PO_items__c: {
+                title: "",
+                width: "1%",
+                sorting: false,
+                openChildAsAccordion: true,
+                create: false,
+                edit: false,
+                display: function(account) {
+                    return setupChildren(account, opportunityConfig);
+                }
+            },
+            PO_Number__c : { title: "PO Number"},
+            Invoice_Qty__c: { title: "Invoice Quantity" },
+            Name: { title: "Invoice Number" },
+            UOM__c: { title: "UOM" 
+                    	
+                    },
+            Gender: {
+                    title: 'Gender',
+                    options: { 'M': 'Male', 'F': 'Female' },
+                    list: false
+                }
+                   
+           
+        },
+        actions: {
+            listAction: function (postData, jtParams) {
+                return listAccounts(postData, jtParams);
+            },
+            createAction: function (postData) {
+                return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);  
+            },
+            updateAction: function(postData) {
+            alert(postData);
+                return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
+            },
+            deleteAction: function(postData) {
+                alert(data.record.Id);
+                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
+            }
+        },
+        
+        
+                //Register to selectionChanged event to hanlde events
+            selectionChanged: function () {
+                //Get all selected rows
+                var $selectedRows = $('#records').jtable('selectedRows');
+ 
+                $('#SelectedRowList').empty();
+                if ($selectedRows.length > 0) {
+                    //Show selected rows
+                    $selectedRows.each(function () {
+                        var record = $(this).data('record');
+                        $('#SelectedRowList').append(
+                            '<b>Id</b>: ' + record.Id +
+                            '<br /><b>Name</b>:' + record.Name + '<br /><br />'
+                            );
+                    });
+                } else {
+                    //No rows selected
+                    $('#SelectedRowList').append('No row selected! Select rows to see here...');
+                }
+            }
+       
+        
+        
+    });
+    
+    $("#records").jtable("load");
+    
+        
+        function listAccounts(postData, jtParams) {
+            var limitVal = jtParams.jtPageSize;
+            var offsetVal = jtParams.jtStartIndex;
+            
+            var criteria = {
+                limit: limitVal,
+                where: { Truck_Entry_Checklist__c: { eq: '{!testdoc}' } }, 
+                orderby: [ {Id: 'DESC'} ]
+            };
+            // offsetVal must be at least 1
+            if (offsetVal >= 1) {
+                criteria.offset = offsetVal;
+            }
+            
+            return retrieve(new SObjectModel.acct(), getAccountObject, criteria);
+        }
+        
+        function getAccountObject(record) {
+            return {
+                Name : record.get("Name"),
+                Id:record.get("Id"),
+                PO_Number__c : record.get("PO_Number__c"),
+                Invoice_Qty__c : record.get("Invoice_Qty__c"),
+                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c"),
+                UOM__c : record.get("UOM__c")
+            };
+        }
+      
+    
+    function setupChildren(account, configFunc) {
+        var config = configFunc(account);
+        var openLink = $("<img src='" + "http://www.kniessmediagroup.de/kmg/pro.png" + "' title='" + config.title + "' alt='" + config.title + "' />");
+        openLink.click(function(event) {
+            event.preventDefault();
+            
+            $("#records").jtable("openChildTable", openLink.closest("tr"), config, function(data) {
+                data.childTable.jtable("load");
+            });
+        });
+        
+        return openLink;
+    }
+    
+    function opportunityConfig(account) {
+        var config = {
+            title:  account.record.PO_Number__c + " - Line Items",
+            img: "{!URLFOR($Resource.TableIcons, 'opportunities32.png')}",
+            actions: {
+                listAction: function(data) { 
+                    return listOpportunities(account);
+                },
+                updateAction: function(postData) {
+                    return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
+                },
+                createAction: function(postData) {
+                    return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
+                }
+                
+            },
+            fields: {
+                TMS_PO__c: {
+                    type:"hidden",
+                    edit: false,
+                    defaultValue: account.record.Id
+                },
+                Id: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Name: {
+                    title: "Material Code",
+                    type:"text"
+                    
+                },
+                Material_Description__c: {
+                    title: "Material Desc",
+                    type: "text"
+                },
+                Initial__c : {
+                    title: "Initial Weight",
+                    type: "number"
+                }
+            }
+        };
+        
+        function listOpportunities(account) {
+            return retrieve(new SObjectModel.opp(), getOpportunityObject, { 
+                limit: 100 ,
+                where: { TMS_PO__c: { eq: account.record.Id } } 
+            });
+        }
+            
+        function getOpportunityObject(record) {
+            return {
+                Id : record.get("Id"),
+                Name : record.get("Name"),
+                TMS_PO__c:record.get("TMS_PO__c"),
+                Initial__c : record.get("Initial__c"),
+                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c"),
+                Material_Description__c :record.get("Material_Description__c")
+                
+            };
+        }
+        
+        return config;
+    }
+    
+    
+    
+    function retrieve(modelVar, objectConverterFunc, config) {
+        return $.Deferred(function (dfd) {
+            modelVar.retrieve(config,
+                function(err, records, event) {
+                    if (err) {
+                        handleErr(dfd, err);
+                    } else {
+                        // construct the result in the jTable expected format
+                        var data = {
+                            Result: "OK",
+                            Records: [],
+                            TotalRecordCount: event.result.TotalRecordCount
+                        };
+                        // add the records to the results
+                        records.forEach(function(record) {
+                            data.Records.push(objectConverterFunc(record));
+                        });
+                        dfd.resolve(data);
+                    }
+                }
+            );
+        });
+    }
+
+    function upsert(modelVar, objectConverterFunc) {
+        return $.Deferred(function(dfd) { 
+            modelVar.upsert(function(err, result) {
+                if (err) {
+                    handleErr(dfd, err);
+                } else {
+                    var rec = objectConverterFunc(modelVar);
+                    rec.Id = result[0];
+                    dfd.resolve({
+                        Result: "OK",
+                        Record: rec
+                    });
+                }
+            });
+        });
+    }
+    
+    function remove(objectConverterFunc) {
+    alert(objectConverterFunc);
+
+    }
+    
+    function handleErr(dfd, err) {
+        var data = {
+            Result: "ERROR",
+            Message: err
+        };
+        dfd.resolve(data);
+    }
+    
+    function getFields(postData) {
+       // extract the fields (simple name/values)
+       // from the postData query string
+       var rec = {};
+       var pairs = postData.split("&");
+       var i, pair;
+       for (i = 0; i < pairs.length; i++) {
+           pair = pairs[i].split("=");
+           rec[pair[0]] = decodeURIComponent( pair[1].replace(/\+/g, ' ') );
+       }
+       return rec;
+    }
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");
+            for(var i=0; i<inputCheckBox.length; i++){
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+    
+/* function showhide()
+    {
+        // var div = document.getElementById("about");
+        //var div = document.getElementById("about1");
+        document.getElementById("about").style.display = 'block';
+        document.getElementById("about1").style.display = 'block';
+        /*if (div.style.display !== "block") {
+        div.style.display = "block";
+        }
+        else {
+        div.style.display = "none";
+        }  
+    }*/
+    function calc(A,B,SUM) {
+       var one = document.getElementById(A).value;
+       var two = document.getElementById(B).value; 
+       document.getElementById(SUM).value = one - two;
+    }
+
+</script>
+<script>
+  function myFunction() {
+    var y = document.getElementById("txt1").value;
+    var z = document.getElementById("txt2").value;
+    var x = +y + +z;
+    document.getElementById("demo").innerHTML = x;
+  }
+</script>
+    <script>
+        $(document).ready(function(){
+    $("#button").click(function(){
+        $("#about").toggle();
+    });
+});
+        $(document).ready(function(){
+    $("#button").click(function(){
+        $("#about1").toggle();
+    });
+});
+ </script>
+
+<style type="text/css">
+
+    .row1
+    {
+    padding-left: 5%;
+    padding-right: 5%;yyyy
+    padding-top: 5%;
+    }
+    td
+    {
+    
+    background-color:white;
+    }
+    table
+    {
+    background-color:white;
+    }
+    
+.myClass{
+color:black !important;
+background:#AC33FF !important;
+}    
+
+.myinput { width: 70px; }
+
+.mybutton { height:20px; width: 25px; }
+.errorClass {
+color:white !important;
+    background: #69ca02 !important;
+}
+.normalClass {
+color:white !important;
+    background: #fd6730 !important;
+}
+
+</style>
+
+<body class="flat-blue" >
+            <div class="app-container">
+            <div class="row content-container">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <ol class="breadcrumb navbar-breadcrumb">
+                                <li> 
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                Document Validation screen
+                                <!-- Sitecode need to remove after assigning User to Particluar Site-->
+                                </li>
+                                <!--<li style="margin-left:700px;">{!$User.Division}</li>-->
+                            </ol>
+                           <!-- <ol class="breadcrumb navbar-breadcrumb" style="margin-left:700px;">
+                                <li>HPC- Chiplun Plant</li>
+                            </ol>-->
+                        </div> 
+                        <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        </ul>              
+                    </div>
+                </nav>  
+                <div class="side-menu sidebar-inverse" >
+                <nav class="navbar navbar-default" role="navigation" >
+                    <div class="side-menu-container" style="width:400px;">
+                        <div class="navbar-header" >
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-hand-o-right"></div>
+                                <div class="title">Truck Management</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        <ul class="nav navbar-nav">
+              
+              <li>
+                  <a href="/apex/TMS_TruckSummaryScreen_VF" target="_self">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Home
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="/setup/ui/recordtypeselect.jsp?ent=01Ic00000001ywJ&retURL=%2Fa8r%2Fo&save_new_url=%2Fa8r%2Fe%3FretURL%3D%252Fa8r%252Fo" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Truck Entry Screen
+                  </span>
+                </a>
+              </li>
+               <!--<li>
+                <a href="apex/TMS_DocumentValidation_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Document Validation Screen
+                  </span>
+                </a>
+              </li>-->
+               <li>
+                <a href="/a8j/l?retURL=https%3A%2F%2Funilever--SCPaperles--c.cs14.visual.force.com%2Fapex%2FTMS_transportMngmtView_VF%3Fsave_new%3D1%26sfdc.override%3D1&_CONFIRMATIONTOKEN=VmpFPSxNakF4Tmkwd05TMHhNbFF4TVRveE16b3pOaTQ1TnpaYSw1OVpUcGNGcjhUWlF0VVItczRjbmpxLE5qVXlNemN6" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Transporter Mgmnt Screen
+                  </span>
+                </a>
+              </li>
+             <!-- <li>
+                <a href="apex/TMS_dispatchScreen_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Dispatch Screen
+                  </span>
+                </a>
+              </li>-->
+              
+              <li>
+                <a href="apex/TMS_BayDisplay_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Bay Display
+                  </span>
+                </a>
+              </li>
+           
+              
+            </ul>
+                    </div>
+                </nav>
+                </div>
+            <div class="container-fluid">
+            <div class="side-body padding-top" >                   
+                <!-- content -->                      
+            <div class="row1">
+             
+            <div class="panel-body">
+            <div class="table-responsive" style="width: 1150px; margin-left:-80px;">
+            <apex:pageBlock tabStyle="Masterbrand__tab" mode="edit" id="pgtruck">
+                <apex:pageBlockTable value="{!DocumentList}" var="doc">
+                    <apex:column headerValue="Vehicle Number :">
+                        <apex:outputField value="{!doc.Vehicle_Number__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Truck Material Type :">
+                        <apex:outputField value="{!doc.Truck__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Transporter :">
+                        <apex:outputField value="{!doc.Transporter__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Challan NO. :">
+                        <apex:outputField value="{!doc.Challan_Number__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Vendor :">
+                        <apex:outputField value="{!doc.Vendor_Customer__c}" />
+                    </apex:column>
+                    </apex:pageBlockTable><br/>
+                <apex:pageBlockSection columns="3" >
+            <apex:selectRadio value="{!searchCategory}" layout="table" >
+                <apex:selectOption itemLabel="PO" itemValue="PO" />
+                <apex:selectOption itemLabel="Manual Entry" itemValue="Manual Entry"/>
+               <!-- <input type="radio" name="Manual Entry" value="Manual Entry" checked="checked"/>Manual Entry-->
+            </apex:selectRadio>
+            <apex:outputLabel value="Delay Reason:" for="accts">&nbsp;&nbsp;
+            <apex:selectList value="{!Delay}"  multiselect="false" size="1" id="accts">
+                <apex:selectOption itemValue="None" itemLabel="-None-"/>
+                <apex:selectOption itemValue="No PO/DO" itemLabel="No PO/DO"/>
+                <apex:selectOption itemValue="User not available" itemLabel="User not available"/>
+                <apex:selectOption itemValue="Network down" itemLabel="Network down"/>
+                <apex:selectOption itemValue="Incorrect documents by transporter" itemLabel="Incorrect documents by transporter"/>
+            </apex:selectList>
+            </apex:outputLabel>
+            </apex:pageBlockSection>
+            
+                </apex:pageBlock>
+                    
+                    <div id="records"></div>
+                <apex:repeat value="{!DocumentList}" var="doc">
+                <table align='right' id="potab">
+                <tr>
+                    <td><apex:commandButton value="Get Data - SAP" styleClass="myClass" /></td><td style="width:30px;"></td>
+                	<td><apex:commandButton value="Accept Truck" action="{!acceptTruck}" styleClass="myClass" rendered="{!IF(doc.Action__c == 'Doc Val',true,false)}"/></td><td style="width:30px;"></td>
+                	<td><apex:commandButton value="Accept Truck" disabled="true" rendered="{!IF(doc.Action__c != 'Doc Val',true,false)}" styleClass="myClass" /></td><td style="width:30px;"></td>
+                    <td><apex:commandButton value="Manual Weight" disabled="true" styleClass="myClass"/></td><td style="width:30px;"></td>
+                	<td><apex:commandButton value="Qty. Validated" action="{!qtyValidate}" rendered="{!IF(doc.Action__c == 'Qnty Val',true,false)}" styleClass="myClass" /></td>                   
+                    <td><apex:commandButton value="Qty. Validated"  disabled="true" rendered="{!IF(doc.Action__c != 'Qnty Val',true,false)}" styleClass="myClass" /></td>
+                </tr>                
+                </table>                
+                </apex:repeat>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>                     
+            </div>
+            </div>
+                                
+</body>
+
+</apex:form>
+</apex:page>

@@ -1,0 +1,499 @@
+<apex:page controller="TMS_printLoadingSlip_CC" sidebar="false" showHeader="false">
+<apex:form >
+<html >
+<head>
+<script>      
+        window.onload = function() { 
+            window.print();
+        }
+</script>
+    
+<style>
+    table{
+        border: 1px solid black;
+      }
+</style> 
+</head>
+
+<body>    
+    <div style="width:100%;height:100px;"> 
+            <table align="center" style="width:100%">
+                <tr>
+                    <td align="center" border="0">
+                        <h><b>HINDUSTAN UNILEVER LIMITED</b></h>
+                    </td>
+                </tr>
+            </table>
+            <table align="center"  style="width:100%">
+                <tr>
+                    <td align="center">
+                        <h><b>FINISHED GOODS LOADING SLIP</b></h>
+                    </td>
+                </tr>
+            </table>
+            <table  style="width:100%">
+                <tr>
+                    <td align="left">
+                        <h align="left"><b>Loading Slip Number :</b> {!Tsentry.id}</h>                        
+                    </td>
+                    <td>                        
+                        <h><b>Date :</b> <apex:outputText value="{0,date,dd/MM/yy}"> <apex:param value="{!now()}" /> </apex:outputText></h>
+                    </td>                    
+                </tr>
+            </table>
+            <table  style="width:100%">
+                <tr >
+                    <td>
+                        <table  style="width:100%">
+                        <tr><td>
+                            <h><b> Truck Details </b></h>
+                            </td>
+                        </tr>    
+                        </table> 
+                        <table  style="width:100%">
+                        <tr>
+                            <td width="10%">
+                                <b>Truck Number   </b> <br/>
+                                <b>Transporter    </b><br/>
+                                <b>Driver Name    </b><br/>
+                                <b>Cleaner Name  </b><br/>
+                                <b>Truck In Date  </b><br/>
+                                <b>Truck In Time   </b>
+                            </td>
+                            <td style="width:20%;height:143px;">
+                                :&nbsp;&nbsp;{!Tsentry.Vehicle_Number__c}<br/>
+                                :&nbsp;&nbsp;{!Tsentry.Vendor_Customer__c}<br/>
+                                :&nbsp;&nbsp;{!Tsentry.name} <br/>
+                                :&nbsp;&nbsp;<br/>
+                                :&nbsp;&nbsp;<apex:outputText value="{0,date,MM/dd/yy}"> <apex:param value="{!Tsentry.Date_Time__c+0.042}" /> </apex:outputText><br/>
+                                :&nbsp;&nbsp;<apex:outputText value="{0,date,hh:mm a}"> <apex:param value="{!Tsentry.Date_Time__c+0.042}" /> </apex:outputText>
+                            </td>
+                          
+                        
+                        
+                    
+                    <td style="width:33%">
+                       <b> Driving License : Yes / No <br/>
+                        Lorry Permit : Yes/ No <br/>
+                        Insurance Receipt : Yes / No <br/>
+                        Tax Receipts : Yes / No <br/>
+                        Lorry Fitness  Cert : Yes / No <br/>
+                        RTO Permit : Yes / No <br/>
+                        PUC Certificate : Yes / No   </b>                                               
+                    </td>
+                    </tr> 
+                    </table>
+                    </td>
+                    <td>
+                        <table style="width:100%;height:30%;" >
+                        <tr>
+                            <td height="40px">
+                                <b>Lorry Checked By : </b><br/><br/>
+                            </td>
+                        </tr>    
+                        </table><br/>
+                        <table style="width:100%;height:30%;" >
+                        <tr>
+                            <td height="40px">
+                                 <b>Security Officer / Supervisor :</b>
+                            </td>
+                        </tr>    
+                        </table><br/>
+                        <table style="width:100%;" >
+                        <tr>
+                            <td height="40px">
+                                <b>Any Other Remarks :</b>
+                            </td>
+                        </tr>    
+                        </table>
+                    </td>
+                </tr>               
+            </table>
+        <table style="width:100%" >
+            <tr>
+                <td ><b>Remarks:</b></td>
+            </tr>        
+        </table>
+        <table style="width:100%" >
+            <tr>
+                <td style="width:50%">
+                    <table border="1" style="width:100%">
+                        <tr><td width="450px;"><h><b>Depot : </b>{!Tsentry.Depots__c} </h></td> <td>
+                                <h><b>LR NO : </b>{!Tsentry.LR_Number__c}</h>
+                           </td>
+                        </tr>    
+                    </table>
+                    <table border="1" style="width:100%">
+                    <tr>
+                        <td>
+                           <b> SL NO : Finished  Goods to be Loaded </b><br/>
+                        </td>
+                        <td style="width:35%"><b>UM (Bags/CLDs) </b></td>
+                        <td style="width:35%"><b>Qty (MT / Kgs) </b></td>
+                    </tr>   
+                    </table>
+                    <table border="1" style="width:100%" >
+                    
+                        
+                        <tr><td width="30.2%">1 : {!Tsentry.Material_Description__c}</td><td></td><td></td></tr>
+                        <tr><td>2 : </td><td></td><td></td></tr>
+                        <tr><td>3 : </td><td></td><td></td></tr>
+                        <tr><td>4 : </td><td></td><td></td></tr>
+                        <tr><td>5 : </td><td></td><td></td></tr>
+                        <tr><td>6 : </td><td></td><td></td></tr>
+                        <tr><td>7 : </td><td></td><td></td></tr>
+                        <tr><td>8 : </td><td></td><td></td></tr>
+                        
+                        
+                    </table>
+                    <table  style="width:100%">
+                        <tr><td> <b>Sign By Dispatch Clerk :</b></td>
+                            <td> <b>Date/Time of slip issued :</b></td>
+                        </tr>
+                    </table>
+                </td>                
+                
+            </tr>
+        </table>  
+        <table  style="width:100%">
+            <tr>
+                <td>
+                    <b>BSR Dept:</b>
+                </td>
+            </tr>
+        </table>
+        <table  style="width:100%">
+            <tr>
+                <td>
+                    <table  style="width:100%">
+                        <tr>
+                            <td style="width:50%"><b>BSR</b></td>
+                        </tr>
+                    </table>
+                    <table  style="width:100%">
+                        <tr>
+                            <td height="15px;"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table  style="width:100%">
+                        <tr>
+                            <td><b>Product</b></td>
+                        </tr>
+                    </table>
+                    <table  style="width:100%">
+                        <tr>
+                            <td height="15px;">{!Tsentry.Material_Description__c}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table  style="width:100%">
+                        <tr>
+                            <td><b>Bags</b></td>
+                        </tr>
+                    </table>
+                    <table  style="width:100%">
+                        <tr>
+                            <td height="15px;"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table  style="width:100%">
+                        <tr>
+                            <td><b>MRP</b></td>
+                        </tr>
+                    </table>
+                    <table  style="width:100%">
+                        <tr>
+                            <td height="15px;"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table  style="width:100%">
+                        <tr>
+                            <td ><b>Date/Shift</b></td>
+                        </tr>
+                    </table>
+                    <table  style="width:100%">
+                        <tr>
+                            <td height="15px;"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div width="900px;">
+        <table border="1"  >
+            <tr>
+            	<th>S no.</th>
+                <th width="70px;">BSR Slip No.</th>
+                <th width="70px;">Pallet Nos</th>
+                <th width="70px;">Shift</th>
+                <th width="70px;">Qty.</th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table border="1"  style="margin-left:370px;margin-top:-224px;">
+            <tr>
+            	<th>S no.</th>
+                <th width="70px;">BSR Slip No.</th>
+                <th width="70px;">Pallet Nos</th>
+                <th width="70px;">Shift</th>
+                <th width="70px;">Qty.</th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table border="1"  style="margin-left:730px;margin-top:-224px;">
+            <tr>
+            	<th>S no.</th>
+                <th width="90px;">BSR Slip No.</th>
+                <th width="90px;">Pallet Nos</th>
+                <th width="90px;">Shift</th>
+                <th width="90px;">Qty.</th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        </div>
+        <table  style="width:100%">
+            <tr>
+                <td>
+                    <b>Invoice Generated by:</b>
+                </td>
+            </tr>
+        </table>
+        <table  style="width:100%">
+            <tr>
+                <td style="width:20%">
+                   <b> Loading Supervisor</b> <br/><br/><br/><br/>   
+                </td>
+                <td style="width:20%">
+                   <b> BSR Operator</b> <br/><br/><br/><br/>   
+                </td>
+                <td style="width:20%">
+                   <b> Transporter Sign</b> <br/><br/><br/><br/>   
+                </td>
+                <td style="width:20%">
+                   <b> Truck Driver Sign</b> <br/><br/><br/><br/>   
+                </td>
+                <td style="width:20%">
+                   <b> Security Sign</b> <br/><br/><br/><br/>   
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</body>
+</html>
+</apex:form>
+</apex:page>

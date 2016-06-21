@@ -1,0 +1,23 @@
+<apex:page standardController="TMS_Transporter_Management_Screen__c" >
+    <apex:form >
+        <div align="right">
+              <b>Plant Name : </b>{!$User.Division} <br/>          
+        </div>
+        <apex:pageblock title="Transporter Management Screen" mode="edit">
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection >
+                
+                <!--<apex:outputField value=""/>-->
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Placement_Date__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Destination__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Transporter__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Truck_Type__c}"/>
+                <!--<apex:inputField value="{!TMS_Transporter_Management_Screen__c.Date_Time__c}"/>-->
+            </apex:pageblockSection>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

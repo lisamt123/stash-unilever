@@ -1,0 +1,2 @@
+<apex:page standardController="TMS_Vendor_Transporter_Customer_Mast__c" recordSetVar="a" 
+action="{!URLFOR($Action.TMS_Vendor_Transporter_Customer_Mast__c.List,$ObjectType.TMS_Vendor_Transporter_Customer_Mast__c)}" />
