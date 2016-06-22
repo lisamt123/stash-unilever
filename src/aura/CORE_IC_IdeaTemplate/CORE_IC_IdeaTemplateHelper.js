@@ -1,4 +1,5 @@
 ({
+    
 	scrollToLocation : function(component, location) {
         var scroller = this.getScroller(component),
             payload = {
@@ -7,14 +8,14 @@
         
         if(typeof location === "string") {
             payload.destination = location;
-        } else if(location instanceof HTMLElement) {
+        } 
+        else if(location instanceof HTMLElement) {
             payload.destination = "custom";
         	payload.xcoord = location.offsetLeft;
         	payload.ycoord = -location.offsetTop;
         }
-        
-	    scroller.getEvent("scrollTo").setParams(payload).fire();
-	},
+        scroller.getEvent("scrollTo").setParams(payload).fire();
+        },
         
     getScroller : function(component) {
         var elem = component.getElement(),

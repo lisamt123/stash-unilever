@@ -17,7 +17,7 @@ padding:10px;
 
 .THIS .commentPost{
     padding-top: 10px;
-    padding-left: 5px;
+    padding-left: 0px;
     padding-right: 5px;
     padding-bottom: 20px;
 
@@ -67,7 +67,7 @@ text-decoration:none;
     margin:10px 0;
 }
 .THIS .shade-new{
-    margin: auto -12px;    
+    margin: auto -10px;    
 }
 .THIS .button-vote{
     margin-top: 10px;
@@ -79,5 +79,11 @@ text-decoration:none;
      margin-bottom: .05rem;
 }
 .THIS .listitem{
-     padding: 2px;    
+     padding: 10px 20px;    
+}
+.THIS.new-class{
+    margin-left: 7px;
+}
+.THIS .new-hr{
+        margin: 0 -10px;
 }

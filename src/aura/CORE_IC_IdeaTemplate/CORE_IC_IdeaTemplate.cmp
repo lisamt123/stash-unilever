@@ -10,6 +10,7 @@
     <aura:attribute name="pageName" type="String" default="CORE_IC_IdeaHome"/>
     <aura:attribute name="showspinner" type="Boolean" default="false"/>
     
+    
     <!--<aura:handler event="c:Feedback_Event" action="{!c.handleEventTest}" />-->    
     <!--Applying background color for the base page-->
     <style>

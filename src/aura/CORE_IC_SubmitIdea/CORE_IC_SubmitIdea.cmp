@@ -73,6 +73,14 @@
             </table>
         </div>
         <hr></hr>
+         <div class="displayErrorMessage paddingTop">
+                <aura:if isTrue="{!v.displayErrorMessage}">
+                    <!-- Please enter all the mandatory fields... -->
+                        <div class="slds-box slds-theme--error">
+                             <p>Please enter all the<strong> mandatory fields.</strong></p>
+                        </div>
+                </aura:if>
+            </div>
         <div class="fullPadding">                
             <div class="slds-form-element is-required">
                 <label class="slds-form-element__label" for="select-01">
@@ -115,8 +123,10 @@
                         <div>
                              <img class="clearFileIcon " src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" onclick="{!c.clearAttachment}"></img>
                         </div>
+                        
                     </div>   
                 </div>
+                <div class="slds-text-body--small fileSize">Maximum File Size 512KB</div>
                 <div class="slds-form-element paddingTop">
                     <label class="slds-form-element__label" for="select-01">
                         <abbr class="slds-required" title="required">*</abbr> <img src="/resource/Lightning_designing_style/assets/icons/utility/tabset_60.png" class="smallIcon"/>  Categories
@@ -130,14 +140,7 @@
                     </div>
                 </div> 
             </div>                        
-            <div class="displayErrorMessage paddingTop">
-                <aura:if isTrue="{!v.displayErrorMessage}">
-                    <!-- Please enter all the mandatory fields... -->
-                        <div class="slds-box slds-theme--error">
-                             <p>Please enter all the<strong> mandatory fields.</strong></p>
-                        </div>
-                </aura:if>
-            </div>
+           
         </div>    
     </div>
     <aura:if isTrue="{!v.showspinner}">

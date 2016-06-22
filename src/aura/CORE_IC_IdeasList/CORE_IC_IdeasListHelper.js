@@ -97,9 +97,9 @@
             if (state === "SUCCESS") {    
                 if(response.getReturnValue().IdeasOfTheWeek!=null){
                     var trendingIdeasList = response.getReturnValue().IdeasOfTheWeek;   
-                    this.sortData(trendingIdeasList,'MinutesBetween','ASC');
+                    this.sortData(trendingIdeasList,'VoteCount','DESC');
                     component.set("v.trendingIdeasList",trendingIdeasList);
-        			component.set("v.selectedSortType","trendingIdea");
+        			component.set("v.selectedSortType","trendingIdea");                    
 					this.filterIdeasListOnLoad(component,trendingIdeasList,selectedFilterType); 
                 } else {
                     helper.checkSelectedSort(component,"v.activeIdeasList","latestIdea",selectedFilterType);

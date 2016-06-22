@@ -72,7 +72,7 @@
                     </a>
                 </div>
             </div>
-            <div class="slds-media__body" >
+            <div class="slds-media__body" onclick="{!c.displayIdeaDetails}" >
                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
                     <p class="slds-truncate">
                         <a >{!v.ideasListItem.CreatorName}</a>

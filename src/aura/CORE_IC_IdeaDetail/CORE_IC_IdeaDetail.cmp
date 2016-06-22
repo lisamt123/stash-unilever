@@ -109,7 +109,7 @@
                             <img src="{!v.recordDetail.BackgroundImage}"  alt="Person"/>
                         </span>
                     </div>
-                    <div class="slds-media__body">
+                    <div class="slds-media__body" >
                         <p class="slds-tile__title slds-truncate">
                             <a> {!v.recordDetail.CreatorName}</a>
                         </p>
@@ -211,7 +211,7 @@
                     <div class="slds-publisher slds-publisher--discussion commentPost">
                         <label for="comment-text-input2" class="slds-assistive-text">Write a comment</label>
                         <ui:inputText aura:id="comments" class="sectionText" placeholder="Write a comment…"  value="{!v.commentListItem.CommentBody}"  />
-                        <div class="slds-publisher__actions slds-grid slds-grid--align-spread">
+                        <div class="slds-publisher__actions slds-grid slds-grid--align-spread new-class">
                             <button class="slds-button slds-button--brand" onclick="{!c.submitComment}">Post</button>
                         </div>
                     </div>
@@ -258,7 +258,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <hr/>
+                            <hr class="new-hr"/>
                         </aura:iteration>
                     </div>
                     <aura:set attribute="else">

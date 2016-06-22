@@ -24,7 +24,7 @@
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_ChatterShare","recordType":"Campaign","recordDetail":component.get("v.campaignsListItem"),"pannelType":component.get("v.pannelType")}).fire();
     },
     hideChatterShare : function(component, event, helper) {
-        component.set("v.share",false);       
+        component.set("v.shareCampaign",false);       
     },
     gotoCampaignDetail : function(component, event, helper) {
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");

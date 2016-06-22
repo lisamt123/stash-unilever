@@ -18,7 +18,7 @@
              </div>
          </div> 
           <div class="slds-media__body">
-             <aura:if isTrue="{!v.showspinner=='false'}">
+             
              <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate"> 
                  <p class="slds-truncate "><span class="user">{!v.myUpdatesListItem.CreatorName}</span>
                    <aura:if isTrue="{!v.myUpdatesListItem.MyUpdatesType == 'Comment'}">
@@ -38,15 +38,7 @@
                      </a>
                <p class="slds-text-body--small">{!v.myUpdatesListItem.CreatedDateTime}...</p>
                  
-                  <aura:set attribute="else">
-                        <div class="slds-spinner_container">
-                             <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
-                               <div class="slds-spinner__dot-a"></div>
-                               <div class="slds-spinner__dot-b"></div>
-                             </div>
-                      </div>
-                 </aura:set>
-             </aura:if>
+                
           </div>  
      </div>
   <hr/>      

@@ -4,7 +4,6 @@
         component.set("v.showSort",false); 
         $("#sortOptions").toggle();
         event.stopPropagation();   
-        console.log('---------selected filter--------'+component.get("v.selectedFilterType"));
         var cmp1=component.find(component.get("v.selectedFilterType"));
         $A.util.addClass(cmp1,'campaign');
 	},
@@ -13,17 +12,14 @@
         component.set("v.showSort",true);
         $("#filterOptions").toggle();
         event.stopPropagation();    
-        console.log('---------selected filter--------'+component.get("v.selectedSortType"));
         var cmp1=component.find(component.get("v.selectedSortType"));
         $A.util.addClass(cmp1,'campaign');
 	},
     
     loadIdeasListData : function(component, event, helper) {
         component.set("v.showspinner",true);              
-        component.set("v.showFilterSort",true);  
-        console.log('------------IDea List----1---------'+component.get("v.displayCampaignIdea"));              
-        if(component.get("v.displayCampaignIdea")==true) {         
-            console.log('------------IDea List-----2--------'+component.get("v.recordDetail.FeaturedCampaigns.IdeaThemeId"));  
+        component.set("v.showFilterSort",true);            
+        if(component.get("v.displayCampaignIdea")==true) {           
             var action = component.get("c.getCampaignDetail");
             action.setParams({
                 "ideaThemeId":component.get("v.recordDetail.FeaturedCampaigns.IdeaThemeId"), 
@@ -52,9 +48,7 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state === "SUCCESS") {    
-                    if(response.getReturnValue().IdeasOfTheWeek!=null){                        
-            			console.log('------------IDea List-----5--------');
-                        console.log('----------'+response.getReturnValue().ShowMoreLimit);
+                    if(response.getReturnValue().IdeasOfTheWeek!=null){    
                         component.set("v.showMoreLimit",response.getReturnValue().ShowMoreLimit);
                         var ideasList = response.getReturnValue().IdeasOfTheWeek; 
                         if(ideasList.length>0) {                            
@@ -93,8 +87,12 @@
         }
 	},    
     loadMoreIdeaList: function(component, event, helper) {        
-        if(component.get("v.selectedFilterType")=="openCampaign"){                                
-        	helper.loadMoreIdeasHelper(component,component.get("v.activeIdeasList"));
+        if(component.get("v.selectedFilterType")=="openCampaign"){                    
+			if(component.get("v.selectedSortType")=="trendingIdea"){	          
+                helper.loadMoreIdeasHelper(component,component.get("v.trendingIdeasList"));
+            } else {                        
+        		helper.loadMoreIdeasHelper(component,component.get("v.activeIdeasList"));
+            } 
         } else if(component.get("v.selectedFilterType")=="closedCampaign"){
 			helper.loadMoreIdeasHelper(component,component.get("v.closedIdeasList"));            
         } else if(component.get("v.selectedFilterType")=="myIdeas"){
@@ -102,32 +100,26 @@
         }
     },        
     displayOpenCampaigns : function(component, event, helper) {  
-        console.log('--------------open-----------'+component.get("v.selectedFilterType"));
         $("#sortOptions").toggle();           
         if(component.get("v.selectedFilterType")!="openCampaign"){
-        	helper.initializeDefaultValues(component);         
-            
+        	helper.initializeDefaultValues(component);                     
             $A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign');              
             component.set("v.selectedSortType","trendingIdea");
-            helper.filterIdeasListOnLoad(component,component.get("v.trendingIdeasList"),"openCampaign");   
-        	console.log('--------------open1-----------'+component.get("v.ideasList"));
+            helper.filterIdeasListOnLoad(component,component.get("v.trendingIdeasList"),"openCampaign");  
         	component.set("v.showspinner",false);            
         }
     },
-    displayClosedCampaigns : function(component, event, helper) {   
-        console.log('--------------closed-----------'+component.get("v.selectedFilterType"));    
+    displayClosedCampaigns : function(component, event, helper) {     
         $("#sortOptions").toggle();         
         if(component.get("v.selectedFilterType")!="closedCampaign"){		       
         	helper.initializeDefaultValues(component);    
             
         	$A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign'); 
             helper.checkSelectedSort(component,"v.closedIdeasList","mostVotedIdea","closedCampaign");  
-        	console.log('--------------closed1-----------'+component.get("v.ideasList"));   
         	component.set("v.showspinner",false);
         }    
     },
     displayMyIdeas : function(component, event, helper) {   
-        console.log('-------------myupdate------------');  
         $("#sortOptions").toggle();          	 	
         if(component.get("v.selectedFilterType")!="myIdeas"){
             helper.initializeDefaultValues(component);  
@@ -161,8 +153,7 @@
                 	helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");
                 }
                 helper.setDefaultSortFilter(component,"latestIdea","myIdeas");
-				component.set("v.showspinner",false); 
-        		console.log('-------------myupdate1-----------'+component.get("v.ideasList"));                 
+				component.set("v.showspinner",false);                 
             }               
         	$A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign'); 
         }
@@ -185,7 +176,8 @@
     },
     
     displayLatest : function(component, event, helper) {
-        if(component.get("v.selectedSortType")!="latestIdea"){		           
+        if(component.get("v.selectedSortType")!="latestIdea"){	            
+        	component.set("v.displayErrorMessage",false);
         	$("#filterOptions").toggle();
         	$A.util.removeClass(component.find(component.get("v.selectedSortType")),'campaign');   
             helper.checkSelectedFilter(component,"latestIdea");
@@ -193,7 +185,8 @@
         component.set("v.showSort",false); 
     },
     displayMostVoted : function(component, event, helper) {
-        if(component.get("v.selectedSortType")!="mostVotedIdea"){		           
+        if(component.get("v.selectedSortType")!="mostVotedIdea"){	
+        	component.set("v.displayErrorMessage",false);	           
         	$("#filterOptions").toggle();
         	$A.util.removeClass(component.find(component.get("v.selectedSortType")),'campaign');    
             helper.checkSelectedFilter(component,"mostVotedIdea");
@@ -201,7 +194,8 @@
         component.set("v.showSort",false); 
     },
     displayMostCommented : function(component, event, helper) {
-        if(component.get("v.selectedSortType")!="mostCommentedIdea"){		           
+        if(component.get("v.selectedSortType")!="mostCommentedIdea"){	            
+        	component.set("v.displayErrorMessage",false);	           
         	$("#filterOptions").toggle();
         	$A.util.removeClass(component.find(component.get("v.selectedSortType")),'campaign');   
             helper.checkSelectedFilter(component,"mostCommentedIdea"); 
@@ -209,7 +203,8 @@
         component.set("v.showSort",false); 
     },
     displayTrending : function(component, event, helper) {
-        if(component.get("v.selectedSortType")!="trendingIdea"){		           
+        if(component.get("v.selectedSortType")!="trendingIdea"){	            
+        	component.set("v.displayErrorMessage",false);	           
         	$("#filterOptions").toggle();
         	$A.util.removeClass(component.find(component.get("v.selectedSortType")),'campaign');  
             component.set("v.selectedSortType","trendingIdea");
@@ -232,7 +227,5 @@
     navigateToCampaignsDetail : function(component, event, helper) { 
     	var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_CampaignDetail","recordType":"Campaign","recordDetail":component.get("v.recordDetail.FeaturedCampaigns"),"pannelType":component.get("v.pannelType")}).fire(); 
-	},
-
-    
+	},    
 })
