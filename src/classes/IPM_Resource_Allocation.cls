@@ -150,7 +150,7 @@ public with sharing class IPM_Resource_Allocation {
                 }
                 else if(leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE && rolloutSpan == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL)
                 {
-                    ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_CL;
+                    ButtonLabel=Label.IPM_MCO_Rollout_Leader;
                 }
             }
             else if(leaderType==IPM_ConstantUtils.ROLLOUT_FL_TYPE)

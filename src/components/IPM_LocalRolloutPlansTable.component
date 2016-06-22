@@ -253,8 +253,8 @@ This componet used for regional rollout project
                                         <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                                                                    
                                             <apex:outputPanel id="countryLeaderPanel" rendered="{!isEditMode}">
-                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_MCO_Rollout_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
-                                                    <span class="" >{!$Label.IPM_Select_Country_Leader}</span>
+                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_MCO_Rollout_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_MCO_Rollout_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                    <span class="" >{!$Label.IPM_Select_MCO_Rollout_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
                                             <apex:outputField value="{!localrollout.IPM_Regional_PL__r.Name}"/> 
