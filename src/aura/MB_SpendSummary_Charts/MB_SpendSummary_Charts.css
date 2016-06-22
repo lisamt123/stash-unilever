@@ -7,7 +7,7 @@
             width:50%;
 }
 .THIS .head_d-1{
-    width: 5rem;
+    width: 5.59rem;
     color: #033a69;
     position: absolute;
     right: 0px;
@@ -16,7 +16,7 @@
     margin-top: 9px;
 }
 .THIS  .icon-styles-1{
-width: 35px;
+    width: 40px;
     float: left;
     background: transparent;
     border: 1px solid #cfd7e6;
@@ -25,7 +25,7 @@ width: 35px;
     border-radius: 5px 0 0 5px;
 }
 .THIS   .icon-styles-2{
-width: 36px;
+    width: 41px;
     float: left;
     background: white;
     border: 1px solid #cfd7e6;
@@ -76,4 +76,5 @@ width: 36px;
     width: 5%;
     margin-left: 18px;
     margin-top: 10px;
+    margin-right: 35px;
 }
