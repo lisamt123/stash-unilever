@@ -198,62 +198,19 @@ public class MB_Controller_Charts_Test{
   billingEntityObject12.Charge_Type__c = chargeTypeObject7.Id;
   billingEntityObject12.User__c = userObject2.Id;
   insert billingEntityObject12;
-  
-  MB_Billing_Entity__c billingEntityObject13 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC4', Billing_Month__c = 'March 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
-                                    iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 30.00, Local_Net_Amount__c = 75.00, Messages__c = 90.00, Non_Usage_Consumed__c = 0.00, 
-                                    Service_Name__c = 'SN4');
-  billingEntityObject13.Device_Details__c = deviceDetailsObject.Id;
-  billingEntityObject13.Usage_Type__c = usageTypeObject4.Id;
-  billingEntityObject13.Charge_Type__c = chargeTypeObject8.Id;
-  billingEntityObject13.User__c = userObject2.Id;
-  insert billingEntityObject13;
-      
-  MB_Billing_Entity__c billingEntityObject14 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = 'February 2016', Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
-                                    iPass_Consumed_In_MB__c = 100.00, Item_Count__c = 10.00, Local_Net_Amount__c = 50.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
-                                    Service_Name__c = 'SN2');
-  billingEntityObject14.Device_Details__c = deviceDetailsObject.Id;
-  billingEntityObject14.Usage_Type__c = usageTypeObject2.Id;
-  billingEntityObject14.Charge_Type__c = chargeTypeObject3.Id;
-  billingEntityObject14.User__c = userObject2.Id;
-  insert billingEntityObject14;
       
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject2 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType(Month_April);
-  System.assertEquals(deviceWrapperClassObject2.totalAverageCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,0.00); 	
-  System.assertEquals(deviceWrapperClassObject2.totalAverageIpassUsage,0.00);	
-  System.assertEquals(deviceWrapperClassObject2.totalAverageMessageUsage,90.00); 	
-  System.assertEquals(deviceWrapperClassObject2.totalCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject2.totalDataUsage,0.00); 	  
-  System.assertEquals(deviceWrapperClassObject2.totalMessageUsage,90.00);
-  System.assertEquals(deviceWrapperClassObject2.totalIpassUsage,0.00);
-         
-  MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject3 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject3 = MB_Controller_Charts.getyourCollegueChargeType('March 2016');
-  System.assertEquals(deviceWrapperClassObject3.totalAverageCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject3.totalAverageDataUsage,0.00); 	
-  System.assertEquals(deviceWrapperClassObject3.totalAverageIpassUsage,0.00);	
-  System.assertEquals(deviceWrapperClassObject3.totalAverageMessageUsage,90.00); 	
-  System.assertEquals(deviceWrapperClassObject3.totalCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject3.totalDataUsage,0.00); 	  
-  System.assertEquals(deviceWrapperClassObject3.totalMessageUsage,0.00);
-  System.assertEquals(deviceWrapperClassObject3.totalIpassUsage,0.00);
-        
-  MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject4 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject4 = MB_Controller_Charts.getyourCollegueChargeType('February 2016');
-  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsage,0.00); 	
-  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsage,100.00);	
-  System.assertEquals(deviceWrapperClassObject4.totalAverageMessageUsage,0.00); 	
-  System.assertEquals(deviceWrapperClassObject4.totalCallUsage,0.00); 
-  System.assertEquals(deviceWrapperClassObject4.totalDataUsage,0.00); 	  
-  System.assertEquals(deviceWrapperClassObject4.totalMessageUsage,0.00);
-  System.assertEquals(deviceWrapperClassObject4.totalIpassUsage,0.00);
+  deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType(Month_April,deviceDetailsObject.Id);
  
-      
+  MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject3 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+  deviceWrapperClassObject3 = MB_Controller_Charts.getyourCollegueChargeType('November 2015',deviceDetailsObject.Id);
+  System.assertEquals(deviceWrapperClassObject3,null);
+  
+  MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject4 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+  deviceWrapperClassObject4 = MB_Controller_Charts.getInsights(Month_April);
+  
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject5 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
-  deviceWrapperClassObject5 = MB_Controller_Charts.getyourCollegueChargeType('November 2015');
-  System.assertEquals(deviceWrapperClassObject5,null);
+  deviceWrapperClassObject5 = MB_Controller_Charts.getInsights('October 2015');
   }    
                          
   Test.stopTest();

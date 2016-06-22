@@ -47,6 +47,15 @@ public with sharing class MB_Wrapper_Class_Test {
     deviceWrapperClassObject.smsVariance = true;
     deviceWrapperClassObject.ipassVariance = true;
     deviceWrapperClassObject.nonUsageVariance = true;
+    deviceWrapperClassObject.totalCallUsagePattern = 'CUP';
+    deviceWrapperClassObject.totalDataUsageIn = 20.00;
+    deviceWrapperClassObject.totalCallUsageIn = 20.00;
+    deviceWrapperClassObject.totalMessageUsageIn = 20.00;
+    deviceWrapperClassObject.totalIpassUsageIn = 20.00;
+    deviceWrapperClassObject.totalAverageDataUsageIn = 30.00;
+    deviceWrapperClassObject.totalAverageCallUsageIn = 30.00;
+    deviceWrapperClassObject.totalAverageMessageUsageIn = 30.00;
+    deviceWrapperClassObject.totalAverageIpassUsageIn = 30.00;
     
     System.assertEquals(deviceWrapperClassObject.userName,'UN');
     System.assertEquals(deviceWrapperClassObject.deviceName,'DN');

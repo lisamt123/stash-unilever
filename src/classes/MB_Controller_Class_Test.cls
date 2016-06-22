@@ -187,9 +187,9 @@ public with sharing class MB_Controller_Class_Test {
   string userName = MB_Controller_Class.getUserName();
   System.assertEquals(userName, 'fufn');
   
-  //MB_Wrapper_Class  wrapperObject1 = MB_Controller_Class.getSpendDetails(deviceDetailsObject.Id,Month_May);
+  MB_Wrapper_Class  wrapperObject1 = MB_Controller_Class.getSpendDetails(deviceDetailsObject.Id,Month_May);
       
-  //List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList1 = MB_Controller_Class.deviceSpendDetailsForUser(Month_May);
+  List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList1 = MB_Controller_Class.deviceSpendDetailsForUser(Month_May);
  }
          
   Test.stopTest();
@@ -372,7 +372,13 @@ static testMethod void testMBControllerWithCollegue(){
   System.assertEquals(wrapperObject2.totalMessageUsage,90.00);
   System.assertEquals(wrapperObject2.totalUsage,325.00);
  
-  //MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperObject3 = MB_Controller_Class.getUsageDetails('November 2015');
+  MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperObject3 = MB_Controller_Class.getUsageDetails('November 2015');
+      
+  String minsSecond1 = MB_Controller_Class.getMinsSecond(120.15);
+  
+  String minsSecond2 = MB_Controller_Class.getMinsSecond(601.50);
+      
+  String minsSecond3 = MB_Controller_Class.getMinsSecond(105.00);
  }
          
   Test.stopTest();
