@@ -201,6 +201,9 @@ public class MB_Controller_Charts_Test{
       
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject2 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType(Month_April,deviceDetailsObject.Id);
+  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,750.00); 	
+  System.assertEquals(deviceWrapperClassObject2.totalAverageIpassUsage,100.00); 
+  System.assertEquals(deviceWrapperClassObject2.totalAverageMessageUsage,135.00);
  
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject3 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject3 = MB_Controller_Charts.getyourCollegueChargeType('November 2015',deviceDetailsObject.Id);
@@ -208,9 +211,13 @@ public class MB_Controller_Charts_Test{
   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject4 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject4 = MB_Controller_Charts.getInsights(Month_April);
-  
+  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsageIn,75.00); 	
+  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsageIn,750.00); 
+  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsageIn,200.00);
+   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject5 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject5 = MB_Controller_Charts.getInsights('October 2015');
+  System.assertEquals(deviceWrapperClassObject5,null);
   }    
                          
   Test.stopTest();

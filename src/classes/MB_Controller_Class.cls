@@ -12,6 +12,20 @@ VERSION     AUTHOR         DATE              DETAIL Description
 ***************************************************************/
 
 public with sharing class MB_Controller_Class{
+
+	public static MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj{get;set;}
+	public static Decimal DataUsage {get;set;}
+    public static Decimal CallUsage {get;set;} 
+    public static Decimal MessageUsage {get;set;}
+    public static Decimal IpassUsage {get;set;}
+    public static Decimal previousDataUsage {get;set;}
+    public static Decimal previousCallUsage {get;set;}
+    public static Decimal previousMessageUsage {get;set;}
+    public static Decimal previousIpassUsage {get;set;}
+    public static Decimal previousnonUsage {get;set;}
+    public static Decimal previouSpend {get;set;}
+    public static Decimal totalSpend {get;set;}
+
      public static string CurrencySym()
      {
       MB_Billing_Currency__c CurrencySymbol = MB_Billing_Currency__c.getInstance('GBP');
@@ -138,18 +152,18 @@ public with sharing class MB_Controller_Class{
     
     @AuraEnabled
     public static MB_Wrapper_Class.MB_Device_Wrapper_Class getUsageDetails(String month) {
+	
+		DataUsage=0;
+		CallUsage=0;
+		MessageUsage=0;
+		IpassUsage=0;
+		previousDataUsage=0;
+		previousCallUsage=0;
+		previousMessageUsage=0;
+		previousIpassUsage=0;
+		totalSpend=0;
         
-        
-        Decimal DataUsage =0;
-        Decimal CallUsage =0; 
-        Decimal MessageUsage =0;
-        Decimal IpassUsage =0;
-        Decimal previousDataUsage =0;
-        Decimal previousCallUsage =0; 
-        Decimal previousMessageUsage =0;
-        Decimal previousIpassUsage =0;
-        Decimal totalSpend =0;
-        MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
+        wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
               
         
         string previousMonth=getPreviousMonth(month);
@@ -163,7 +177,38 @@ public with sharing class MB_Controller_Class{
         if(currentMnthList.size()>0){
         for(MB_Billing_Entity__c CurrentUserData:lstyourChargeType)
         {
-          if(CurrentUserData.Billing_Month__c ==month){
+          updateMonthDataUsage(CurrentUserData,month,previousMonth);
+
+        }
+          system.debug('!@#$');
+          wrprobj.totalCallUsagePattern='';
+          Decimal callusageinmin=CallUsage.setScale(2);
+          system.debug('!@#$--'+callusageinmin);
+          if(getMinsSecond(callusageinmin)!=null && callusageinmin!=null)
+          {
+             wrprobj.totalCallUsagePattern=getMinsSecond(callusageinmin);
+              system.debug('!@#$---'+wrprobj.totalCallUsagePattern);
+          }
+          wrprobj.totalDataUsage=DataUsage.setScale(2);
+          wrprobj.totalMessageUsage=MessageUsage.setScale(2) ;
+          wrprobj.totalIpassUsage=IpassUsage.setScale(2) ;
+          wrprobj.totalUsage=totalSpend.setScale(2);
+          wrprobj.userName=userinfo.getfirstname();
+          wrprobj.dataVariance=getVariance(DataUsage,previousDataUsage );
+          wrprobj.callVariance=getVariance(CallUsage ,previousCallUsage  ) ;
+          wrprobj.smsVariance=getVariance(MessageUsage,previousMessageUsage );
+          wrprobj.ipassVariance=getVariance(IpassUsage ,previousIpassUsage ) ;
+           system.debug('$$$'+wrprobj);
+          return wrprobj;
+         
+          
+         }
+         return null;
+       }
+	   
+	   public static void updateMonthDataUsage(MB_Billing_Entity__c CurrentUserData, String month, String previousMonth){
+	   
+			if(CurrentUserData.Billing_Month__c ==month){
              if(CurrentUserData.Local_Net_Amount__c !=null){
               totalSpend=totalSpend+CurrentUserData.Local_Net_Amount__c; 
                 wrprobj.userCurrency=CurrencySym();
@@ -198,33 +243,8 @@ public with sharing class MB_Controller_Class{
             }
          
              }    
-
-        }
-          system.debug('!@#$');
-          wrprobj.totalCallUsagePattern='';
-          Decimal callusageinmin=CallUsage.setScale(2);
-          system.debug('!@#$--'+callusageinmin);
-          if(getMinsSecond(callusageinmin)!=null && callusageinmin!=null)
-          {
-             wrprobj.totalCallUsagePattern=getMinsSecond(callusageinmin);
-              system.debug('!@#$---'+wrprobj.totalCallUsagePattern);
-          }
-          wrprobj.totalDataUsage=DataUsage.setScale(2);
-          wrprobj.totalMessageUsage=MessageUsage.setScale(2) ;
-          wrprobj.totalIpassUsage=IpassUsage.setScale(2) ;
-          wrprobj.totalUsage=totalSpend.setScale(2);
-          wrprobj.userName=userinfo.getfirstname();
-          wrprobj.dataVariance=getVariance(DataUsage,previousDataUsage );
-          wrprobj.callVariance=getVariance(CallUsage ,previousCallUsage  ) ;
-          wrprobj.smsVariance=getVariance(MessageUsage,previousMessageUsage );
-          wrprobj.ipassVariance=getVariance(IpassUsage ,previousIpassUsage ) ;
-           system.debug('$$$'+wrprobj);
-          return wrprobj;
-         
-          
-         }
-         return null;
-       }
+	   
+	   }
        
     /*******************************************************************************************************
     * @description This method returns total spend of a user device for a particular month.
@@ -427,18 +447,18 @@ public with sharing class MB_Controller_Class{
         objWrapper.nonusageWrapperList=nonusageMap.values();
         system.debug('@@@@'+objWrapper.ipassWrapperList.size());
         
-        Decimal previousDataUsage =0;
-        Decimal previousCallUsage =0; 
-        Decimal previousMessageUsage =0;
-        Decimal previousIpassUsage =0;
-        Decimal previousnonUsage =0;
-        Decimal previouSpend =0;
+        previousDataUsage =0;
+        previousCallUsage =0; 
+        previousMessageUsage =0;
+        previousIpassUsage =0;
+        previousnonUsage =0;
+        previouSpend =0;
         
-         previousDataUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Data);
-         previousCallUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Calls);
-         previousMessageUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Messaging);
-         previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_iPass);
-         previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Recurring);
+         previousDataUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Data).setScale(2);
+         previousCallUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);
+         previousMessageUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Messaging).setScale(2);
+         previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
+         previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
          previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId).setScale(2);
         
         MB_Wrapper_Class.MB_Device_Wrapper_Class objdevice=new MB_Wrapper_Class.MB_Device_Wrapper_Class();

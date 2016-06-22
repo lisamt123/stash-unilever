@@ -1,5 +1,5 @@
 .THIS .sectiona_a{
-            padding: 0.5rem .9rem;
+            padding: 1.2rem 0.9rem 2rem .9rem;
 }
 .THIS .head_c-1{
             float:left;
@@ -7,10 +7,13 @@
             width:50%;
 }
 .THIS .head_d-1{
-    width: 4.9rem;
+    width: 5rem;
     color: #033a69;
     position: absolute;
     right: 0px;
+}
+.THIS .canvasjs-chart-container{
+    margin-top: 9px;
 }
 .THIS  .icon-styles-1{
 width: 35px;
@@ -31,11 +34,11 @@ width: 36px;
 }
 .THIS .usage{
             color:#033A69;
-            padding:0 0 0.7rem 1rem;
+            padding:0 0 0.4rem 1rem;
 }
 .THIS .insights{
             color:#033A69;
-            padding:1rem 0 .7rem 1rem;
+            padding:1rem 0 .4rem 1rem;
 }
 .THIS .sub_carousel{
             width:95%;
@@ -67,6 +70,7 @@ width: 36px;
     left:0px;
     top:200px;
     border: 1px solid #cfd7e6;
+    border-radius: 4px;
 }
 .THIS .back-button{
     width: 5%;

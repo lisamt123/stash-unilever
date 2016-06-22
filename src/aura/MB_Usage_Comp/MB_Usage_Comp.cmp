@@ -90,7 +90,7 @@
                     <aura:if isTrue="{!v.usageData.dataVariance==false}">
                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
                      </aura:if>
-                    <span class="slds-text-body--regular data_value">{!v.usageData.totalDataUsage}MB</span>
+                    <span class="slds-text-body--regular data_value">{!v.usageData.totalDataUsage} Mb</span>
                 </div>
                 <div class="slds-text-body--small Voice">Voice<br/><br/>
                     <aura:if isTrue="{!v.usageData.callVariance==true}">
@@ -117,7 +117,7 @@
                     <aura:if isTrue="{!v.usageData.ipassVariance ==false}">
                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
                      </aura:if>
-                    <span class="slds-text-body--regular data_value">{!v.usageData.totalIpassUsage}MB</span>
+                    <span class="slds-text-body--regular data_value">{!v.usageData.totalIpassUsage} Mb</span>
                 </div>
                 <div style="clear:both"></div>
         </div>

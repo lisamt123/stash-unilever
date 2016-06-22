@@ -24,7 +24,7 @@
         float:right;
         color:#033A69;
         text-align: right;	
-        margin-right:18px;
+        margin-right:23px;
         }
         .head_d{
             float: left;
@@ -35,7 +35,7 @@
         .head_e{
         float: right;
         text-align: right;
-        margin-right:18px;
+        margin-right:23px;
         }
         .trend{
         width: 20px;

@@ -82,4 +82,14 @@ public with sharing class CORE_Feedback_App_Controller_Test {
         Test.stopTest();    
     }
     
+    @isTest 
+    public static void getUIThemeDescriptionTest(){
+        Test.startTest();
+        
+          CORE_Feedback_App_Controller.getUIThemeDescription();
+          String theme1 = UserInfo.getUiThemeDisplayed(); 
+          System.assertEquals(theme1,'Theme3');
+        
+        Test.stopTest();    
+    }
 }

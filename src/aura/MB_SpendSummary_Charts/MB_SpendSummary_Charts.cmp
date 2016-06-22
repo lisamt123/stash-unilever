@@ -16,6 +16,10 @@
          .main_carousel {
             border-radius: 5px;
         }	
+        .slick-dots {
+        
+        bottom: -25px !important;
+        }
     </style>
    <aura:attribute name="showspinner" type="boolean" default="true"/>
     <aura:attribute name="deviceName" type="String"/>
@@ -41,7 +45,7 @@
             <div class="carousel">
                 
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">DATA (in mb)</div>
+                    <div class="slds-text-body--small chart_main">DATA (in Mb)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div id="pie1" class="sub_carousel">
                     </div>
@@ -60,7 +64,7 @@
                     </div>
                 </div>
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS (in mb)</div>
+                    <div class="slds-text-body--small chart_main">iPASS (in Mb)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div id="pie4" class="sub_carousel">
                     </div>
@@ -75,7 +79,7 @@
             <div class="carousel_column">
                 
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">DATA  (in mb)</div>
+                    <div class="slds-text-body--small chart_main">DATA  (in Mb)</div>
                     <div class="slds-text-body--regular chart_sub">You -vs- Your Colleagues</div>
                     <div id="column1" class="sub_carousel">
                     </div>
@@ -94,7 +98,7 @@
                     </div>
                 </div>
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS  (in mb)</div>
+                    <div class="slds-text-body--small chart_main">iPASS  (in Mb)</div>
                     <div class="slds-text-body--regular chart_sub">Roaming Data -vs- Roaming iPass</div>
                     <div id="column4" class="sub_carousel">
                     </div>

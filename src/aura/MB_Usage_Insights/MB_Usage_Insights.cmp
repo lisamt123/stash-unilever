@@ -22,8 +22,13 @@
         	border-radius: 6px;
     }
         .slick-dots {
-        	left: -18px;
-        	bottom: -30px;
+        	left: 0px;
+        	bottom: -25px;
+        }
+        @media screen and (max-width:320px){
+        .message_body {
+            min-height: 526px;
+        }
         }
     </style>
     <div class="Insights">
@@ -34,14 +39,14 @@
                 <div class="linechart">
                     <span class="line_bar_data"></span>
                 </div>
-                <span>{!v.DataYou} MB</span>
+                <span>{!v.DataYou} Mb</span>
             </div><br/>
             <div>
                 <span class="bar_chart">Avg</span>
                 <div  class="linechart">
                     <span class="line_bars_data"></span>
                 </div >
-                <span>{!v.DataColleagues} MB</span>
+                <span>{!v.DataColleagues} Mb</span>
             </div> 
         </div>
          <div class="slds-text-body--regular">
@@ -85,14 +90,14 @@
                 <div class="linechart">
                     <span class="line_bar_iPass"></span>
                 </div>
-                <span>{!v.iPassYou} MB</span>
+                <span>{!v.iPassYou} Mb</span>
             </div><br/>
             <div>
                 <span class="bar_chart">iPass</span>
                 <div  class="linechart">
                     <span class="line_bars_iPass"></span>
                 </div >
-                <span>{!v.iPassColleagues} MB</span>
+                <span>{!v.iPassColleagues} Mb</span>
             </div> 
         </div>
     </div>
