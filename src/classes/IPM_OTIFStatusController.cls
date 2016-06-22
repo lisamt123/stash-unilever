@@ -65,23 +65,8 @@ public with sharing class IPM_OTIFStatusController{
             		{       		
             				if(docSectionContent.DependentFieldAPIName__c == dependentPicklistAPIName )
             				{
-            					if(docSectionContent.BETCurrentStatus__c == IPM_ConstantUtils.BET_UNRELEASED)
-            					{
-            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_STATUS_RED;
             						
-            					}else if(docSectionContent.BETCurrentStatus__c == IPM_ConstantUtils.BET_FIRST_RELEASE)
-            					{
-            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_STATUS_AMBER;
-            						
-            					}else if(docSectionContent.BETCurrentStatus__c == IPM_ConstantUtils.BET_FINAL_RELEASE)
-            					{
-            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_STATUS_GREEN;
-            						
-            					}else if(String.isBlank(docSectionContent.BETCurrentStatus__c))
-            					{
-            						docSectionContent.IPM_OTIF_Status__c = IPM_ConstantUtils.OTIF_NOT_APPLICABLE;
-            					}
-            					
+            					docSectionContent.IPM_OTIF_Status__c = docSectionContent.BETCurrentStatus__c;
             				}
 	
             		}

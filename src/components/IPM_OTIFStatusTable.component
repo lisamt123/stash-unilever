@@ -68,8 +68,7 @@
                    </td>
                     <td>
                     
-                       <apex:outputText rendered="{!IF(AND(con.DependentFieldAPIName__c!='BETCurrentStatus__c'),true,false)}" value="{!con.IPM_OTIF_Measure__c}"/>
-                       <apex:outputText rendered="{!IF(AND(con.DependentFieldAPIName__c=='BETCurrentStatus__c'),true,false)}"  title="{!$Label.IPM_Question_Readonly_Help}" styleClass="info" value="{!con.IPM_OTIF_Measure__c}" />
+                       <apex:outputText title="{!con.IPM_OTIF_Question_Help_Text__c}" styleClass="info" value="{!con.IPM_OTIF_Measure__c}" />
                     </td>
                     <td>
                      <apex:outputText value="{!con.IPM_OTIF_Responsibility__c}"/>
@@ -82,7 +81,7 @@
                     <td>
                       <!-- Rendered condition for showing output text -->
                     <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c!='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
-                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c=='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)} widmax40P">{!con.BETCurrentStatus__c}</div></apex:outputtext>
+                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c=='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)} widmax40P">{!con.IPM_Project_BETStatus__c}</div></apex:outputtext>
                     </td>       
                   </tr>
                   </apex:repeat>
