@@ -47,84 +47,54 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Holds consolidated information regarding concluded visits.</description>
+    <description>Store the territory code related with sales rep.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>ICB_ExecutedTotalDistance__c</fullName>
-        <description>Total distance executed on the visit.</description>
+        <fullName>Description__c</fullName>
+        <description>Territory description</description>
         <externalId>false</externalId>
-        <label>Executed Total Distance</label>
-        <precision>18</precision>
+        <label>Description</label>
         <required>false</required>
-        <scale>2</scale>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>ICB_ExecutedTotalDuration__c</fullName>
-        <description>Total duration of the execute visit. Expressed in minutes.</description>
-        <externalId>false</externalId>
-        <label>Executed Total Duration</label>
-        <precision>8</precision>
+        <fullName>Territory_ID__c</fullName>
+        <description>Territory ID.</description>
+        <externalId>true</externalId>
+        <label>Territory ID</label>
+        <length>4</length>
         <required>false</required>
-        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ICB_PlannedTotalDistance__c</fullName>
-        <description>Total distance planned for the visit.</description>
-        <externalId>false</externalId>
-        <label>Planned Total Distance</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ICB_PlannedTotalDuration__c</fullName>
-        <description>Total duration for the planned visit. Expressed in minutes.</description>
-        <externalId>false</externalId>
-        <label>Planned Total Duration</label>
-        <precision>8</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ICB_VisitManagementCode__c</fullName>
-        <description>Visit management record identifier.</description>
-        <displayFormat>VM-{00000000}</displayFormat>
-        <externalId>false</externalId>
-        <label>Visit Management Code</label>
-        <trackTrending>false</trackTrending>
-        <type>AutoNumber</type>
-    </fields>
-    <label>Visit Management</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <nameField>
-        <label>Visit Management Name</label>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Territories</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Territory</label>
+    <nameField>
+        <displayFormat>T-{00000000}</displayFormat>
+        <label>Territory</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Visits Management</pluralLabel>
+    <pluralLabel>Territories</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

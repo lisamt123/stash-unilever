@@ -13,12 +13,50 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myDecision</targetReference>
+            <targetReference>isChangedDecision2_myRule_1_Country_c</targetReference>
         </connector>
     </assignments>
     <decisions>
+        <name>isChangedDecision2_myRule_1_Country_c</name>
+        <label>isChangedDecision2_myRule_1_Country_c</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>isChangedRule_2_myRule_1_Country_c</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>myVariable_old.Country__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>myVariable_current.Country__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myDecision</targetReference>
+            </connector>
+            <label>isChangedRule_2_myRule_1_Country_c</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
         <name>myDecision</name>
-        <label>Primary Decision</label>
+        <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
@@ -35,7 +73,7 @@
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -50,78 +88,25 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.ICB_AccountIDReference__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.RecordType.DeveloperName</leftValueReference>
+                <leftValueReference>isChangedRule_2_myRule_1_Country_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Ice Cream Visit</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Create record</label>
+            <label>Did the country changed</label>
         </rules>
     </decisions>
-    <description>Inserts address and geolocation from acocunt into visit record</description>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>[Event].Account.ShippingStreet &amp; &quot;, &quot; &amp;[Event].Account.ShippingPostalCode &amp; &quot;, &quot; &amp; [Event].Account.ShippingCity  &amp; &quot;, &quot; &amp; [Event].Account.ShippingState &amp; &quot;, &quot; &amp; [Event].Account.ShippingCountry</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_2_myRule_1_A1_Location</name>
-        <dataType>String</dataType>
-        <expression>{!myVariable_current.Account.ShippingStreet} &amp; &quot;, &quot; &amp;{!myVariable_current.Account.ShippingPostalCode} &amp; &quot;, &quot; &amp; {!myVariable_current.Account.ShippingCity}  &amp; &quot;, &quot; &amp; {!myVariable_current.Account.ShippingState} &amp; &quot;, &quot; &amp; {!myVariable_current.Account.ShippingCountry}</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>[Event].Account.Name &amp; &quot;-&quot; &amp; [Event].Account.AccountNumber</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_3_myRule_1_A1_Subject</name>
-        <dataType>String</dataType>
-        <expression>{!myVariable_current.Account.Name} &amp; &quot;-&quot; &amp; {!myVariable_current.Account.AccountNumber}</expression>
-    </formulas>
-    <interviewLabel>ICB_Insert_Account_address_and_geolocation_into_visit-5_Event</interviewLabel>
-    <label>ICB Insert Account address,geolocation and subject into visit</label>
+    <description>This process will change the RGB value in the project depending on the selection of the picklist &quot;Country&quot;</description>
+    <interviewLabel>TASKRAY_Set_Color_by_Country-1_TASKRAY__Project__c</interviewLabel>
+    <label>TASKRAY Set Color by Country</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
-            <stringValue>Event</stringValue>
+            <stringValue>TASKRAY__Project__c</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -145,7 +130,7 @@
     <processMetadataValues>
         <name>TriggerType</name>
         <value>
-            <stringValue>onCreateOnly</stringValue>
+            <stringValue>onAllChanges</stringValue>
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
@@ -153,7 +138,7 @@
         <processMetadataValues>
             <name>evaluationType</name>
             <value>
-                <stringValue>always</stringValue>
+                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -165,13 +150,59 @@
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[Event]</stringValue>
+                <stringValue>[TASKRAY__Project__c]</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Retrieve Account&apos;s address and geolocation</label>
+        <label>Change Color Colombia</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myRule_1_A2</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Country</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Country__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Colombia</stringValue>
+            </value>
+        </filters>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -189,7 +220,7 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>Number</stringValue>
+                    <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -201,50 +232,101 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Customer Geolocation (Latitude)</stringValue>
+                    <stringValue>Color</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
-            <field>ICB_CustomerGeolocation__Latitude__s</field>
+            <field>TASKRAY__ProjectColor__c</field>
             <value>
-                <elementReference>myVariable_current.Account.ShippingLatitude</elementReference>
+                <stringValue>#f70505</stringValue>
             </value>
         </inputAssignments>
-        <inputAssignments>
+        <object>TASKRAY__Project__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[TASKRAY__Project__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A2</name>
+        <label>Change Color Ecuador</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <filters>
             <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
+                <name>implicit</name>
                 <value>
                     <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Customer Geolocation (Longitude)</stringValue>
+                    <stringValue>Country</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
-            <field>ICB_CustomerGeolocation__Longitude__s</field>
+            <field>Country__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <elementReference>myVariable_current.Account.ShippingLongitude</elementReference>
+                <stringValue>Ecuador</stringValue>
             </value>
-        </inputAssignments>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -261,51 +343,21 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Location</stringValue>
+                    <stringValue>Color</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Formula</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Location</field>
-            <value>
-                <elementReference>formula_2_myRule_1_A1_Location</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
                 <value>
                     <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Assunto</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Formula</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Subject</field>
+            <field>TASKRAY__ProjectColor__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_Subject</elementReference>
+                <stringValue>00ff56</stringValue>
             </value>
         </inputAssignments>
-        <object>Event</object>
+        <object>TASKRAY__Project__c</object>
     </recordUpdates>
     <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
     <variables>
@@ -314,7 +366,7 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
-        <objectType>Event</objectType>
+        <objectType>TASKRAY__Project__c</objectType>
     </variables>
     <variables>
         <name>myVariable_old</name>
@@ -322,7 +374,7 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>Event</objectType>
+        <objectType>TASKRAY__Project__c</objectType>
     </variables>
     <variables>
         <name>myVariable_waitStartTimeVariable</name>

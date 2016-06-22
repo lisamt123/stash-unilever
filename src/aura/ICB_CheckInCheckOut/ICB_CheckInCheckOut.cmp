@@ -1,4 +1,5 @@
 <aura:component access="global" controller="ICB_CheckInCheckOut_CC" >
+    <aura:attribute name="visit"  type="Event" />
     <aura:attribute name="content"  type="ContentDocument" />
     <aura:attribute name="recordId"  type="String" />
     <aura:attribute name="idGolden"  type="String"/>
@@ -17,6 +18,7 @@
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler name="mapLatLng_map" event="c:ICB_StaticGoogleMaps_Lat_Lng"  action="{!c.setLatLng}" />
+    
     
     <div class="slds">
         <ltng:require styles="/resource/agf__SLDS0121/assets/styles/salesforce-lightning-design-system-ltng.css" />
