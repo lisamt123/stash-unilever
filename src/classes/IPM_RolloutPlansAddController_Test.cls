@@ -420,9 +420,12 @@ private class IPM_RolloutPlansAddController_Test
 			  
 			  irp2.searchCountry=null;
 			  irp2.searchRolloutCountry();
-			  system.assert(irp2.updateRollouts == true, WRAPPER_NOT_CREATED);
-			  system.assert(irp2.mapMCOWrappers.get(LV4_GEO0085).rolloutPresentAtMCO  == true, WRAPPER_NOT_CREATED);
-			  system.assert(irp2.mapClusterWrappers.get(GEO0060).rolloutPresentAtCluster == true, WRAPPER_NOT_CREATED);
+			  
+			  system.assert(irp2.updateRollouts, WRAPPER_NOT_CREATED);
+			  system.assert(irp2.mapMCOWrappers.get(LV4_GEO0085).rolloutPresentAtMCO , WRAPPER_NOT_CREATED);
+			  system.assert(irp2.mapClusterWrappers.get(GEO0060).rolloutPresentAtCluster, WRAPPER_NOT_CREATED);
+			  
+			  
 			  irp2.lstClusterWrappers.add(geoWrp);
 
 			  /********************************All the wrappers are populated************************************************/
