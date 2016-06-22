@@ -6503,13 +6503,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_Phase_Change</shortDescription>
         <value>Confirmation: Project Phase Change Request</value>
     </labels>
-    <labels>
-        <fullName>IPM_Phase_Gate</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_Phase_Gate</shortDescription>
-        <value>Phase &amp; Gate document</value>
-    </labels>
+    
     <labels>
         <fullName>IPM_Phase_Label</fullName>
         <language>en_US</language>
@@ -9277,6 +9271,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
         <value>Enter Task Name.</value>
     </labels>
+	<labels>
+		<fullName>IPM_Phase_Gate</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Phase_Gate</shortDescription>
+		<value>Document &amp; Phase</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Project_Full_Lite</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM Project Full/Lite</shortDescription>
+		<value>Project Lite/Full</value>
+	</labels>
     <labels>
         <fullName>IPM_FunctionalRoleErrorMsg</fullName>
         <language>en_US</language>
