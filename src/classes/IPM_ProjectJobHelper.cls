@@ -92,8 +92,7 @@ public without sharing class IPM_ProjectJobHelper
                 
                 IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
                 
-                List<IPM_Project_Type__c> previousPhaseList = IPM_Utils.getPreviousPhases(currentProjectType,false);
-                
+                            
                 List<IPM_Project_Type__c> nextPhaseList = IPM_Utils.getNextPhases(currentProjectType,false);
                 
                  
@@ -400,7 +399,7 @@ public without sharing class IPM_ProjectJobHelper
                                
                                 if(currentProjectType.IPM_CopyPhase2Local__c)
                                 {
-                                    IPM_Project_Type__c localProjectType = IPM_Utils.retrieveProjectType(localProject);    
+                                     
                                     
                                     if( localProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
                                         IPM_ConstantUtils.phaseSequence.get(localProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
@@ -433,11 +432,7 @@ public without sharing class IPM_ProjectJobHelper
         	List<IPM_Project__c> projectUpdateList = new List<IPM_Project__c>();
         	for(IPM_Project__c incomingProjectDetail : processingProjectMap.values())
         	{
-				IPM_Project__c tempIncomingProjectDetail = new IPM_Project__c(IPM_Phase__c = incomingProjectDetail.IPM_Phase__c,IPM_Complexity__c = incomingProjectDetail.IPM_Complexity__c,
-				IPM_Child_Complexity__c = incomingProjectDetail.IPM_Child_Complexity__c,IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c,
-				IPM_Current_Document_Status__c = incomingProjectDetail.IPM_Current_Document_Status__c,
-				IPM_ProjectJobType__c = incomingProjectDetail.IPM_ProjectJobType__c,IPM_PhaseChangeQueueJobId__c = incomingProjectDetail.IPM_PhaseChangeQueueJobId__c,
-				IPM_Project_Job_Status__c = incomingProjectDetail.IPM_Project_Job_Status__c);
+				
         		projectUpdateList.add(incomingProjectDetail);
         	}
         	if(!projectUpdateList.isEmpty())
@@ -526,8 +521,7 @@ public without sharing class IPM_ProjectJobHelper
                     // Check for Rollouts.
                     if(currentProjectType.IPM_CreateRegionalProjects__c)
                     {
-                        Map<Id,IPM_Project_Rollout__c> regionalRollouts = new Map<Id,IPM_Project_Rollout__c>();
-    
+                           
                         if(projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null)
                         {
                             Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
@@ -551,14 +545,12 @@ public without sharing class IPM_ProjectJobHelper
                     
                     if(currentProjectType.IPM_CreateLocalProjects__c)
                     {
-                        Map<Id,IPM_Project_Rollout__c> localRollouts = new Map<Id,IPM_Project_Rollout__c>();
                         if(projectSpecificLocalRolloutMap.containsKey(projectId) &&  projectSpecificLocalRolloutMap.get(projectId) !=null)
                         {
                             Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
                             if(!associatedLocalRolloutsMap.isEmpty())
                             {
-                                Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
-                                List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
+                                 List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
                                 
                                  for(IPM_Project__c project : preparedProjectList)
                                 {

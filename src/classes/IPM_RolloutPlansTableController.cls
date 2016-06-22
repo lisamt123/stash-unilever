@@ -237,7 +237,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         Map<Id,String> marketClusterRolloutMap = new Map<Id,String>();
         //Logic to create map(rolloutCountryNamesMap) of regional rollout and the list of countries to associate Company card of the matching geographical scope, when PL is assigned for the rollout             
-        Set<id> regionalRolloutId =  rolloutTolocalRolloutToCountryMap.keySet();
+        
         
         Map<Id, List<IPM_Country__c>> rolloutCountryNamesMap = new Map<Id, List<IPM_Country__c>>();
         if(rolloutTolocalRolloutToCountryMap != Null && !rolloutTolocalRolloutToCountryMap.isEmpty()) //checking regional rollout or local rollout in based on span
@@ -461,7 +461,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         // If it is a Regional Project, Get the List of Local Rollouts from the relationship
         if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && !associatedProjectMap.isEmpty())
         {
-            List<IPM_Project_Rollout__c> rolloutList = new List<IPM_Project_Rollout__c>(); 
+             
             for(IPM_Project__c project : associatedProjectMap.values())
             {
                 projectTolocalRolloutToCountryMap.put(project.Id, new Map<Id,List<IPM_Country__c>>());
@@ -724,8 +724,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {   
             Map<Id,IPM_Project_Rollout__c> updaterolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
                          
-            Set<id> regionalRolloutIdSet =  rolloutTolocalRolloutToCountryMap.keySet(); // it will regionalrolloutsId
-
             if(rolloutTolocalRolloutToCountryMap!= null && !rolloutTolocalRolloutToCountryMap.isEmpty())
             { 
                 for(id rolloutId :rolloutTolocalRolloutToCountryMap.keySet())
@@ -788,14 +786,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
 
-            System.SavePoint rollOutSavePoint = Database.SetSavePoint();
-           
+                      
             validationError = IPM_ConstantUtils.BLANK;
             
             if((updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()) || (updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()))
             {
                 if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()){
-                    List<IPM_Project_Rollout__c> rolloutsToUpdate = updaterolloutsMap.values();
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
