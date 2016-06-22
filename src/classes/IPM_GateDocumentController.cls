@@ -127,6 +127,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public string regionalCPP {get;set;}
     public string localCPP {get;set;}
     public string brandPosition {get; set;}
+	//phase 2.0 variables
+    public boolean isWithAppendix{get;set;}//set boolean value to display appendix on gate document PDF page
+    public boolean isDisplayWithoutAppendix{get;set;}//check whether without appendix pdf to display on page or not
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -139,6 +142,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         isPDFDownload=true;
         isExemptFromThresholdITO=false;
         bDocStatusNotStartedOrApproved = false;
+		isDisplayWithoutAppendix=false;//phase 2.0
+        isWithAppendix=true;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
@@ -319,6 +324,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                            WHERE IPM_Project__c=:project.Id AND IPM_GateDocuments__c=:gateDocument];
             if(!lstProjectDoc.isEmpty()){
                 projectDoc = lstProjectDoc[0];
+				//Phase 2.0-Check gate document as all four gates.
+                if((IPM_ConstantUtils.CHARTER_GATE.Equals(projectDoc.IPM_GateDocuments__c)||IPM_ConstantUtils.CONTRACT_GATE.Equals(projectDoc.IPM_GateDocuments__c)||
+                IPM_ConstantUtils.MARKET_READY_GATE.Equals(projectDoc.IPM_GateDocuments__c)||IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE.Equals(projectDoc.IPM_GateDocuments__c))&&isPDFDownload){
+                	isDisplayWithoutAppendix=true;		
+                }
                 isEditLinkAvailable();
             }
             
@@ -866,7 +876,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc];
            
-            getAppendixSections();	
+            if(isWithAppendix){
+            	getAppendixSections();
+            }
 	
 	}
 	catch(Exception ex){

@@ -922,8 +922,8 @@
        
         </apex:repeat>
         
-         <apex:outputText value="Appendix" styleClass="heading2 bold"/>
-         <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" >
+         <apex:outputText value="Appendix" styleClass="heading2 bold" rendered="{!isWithAppendix}"/>
+         <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" rendered="{!isWithAppendix}">
                                                             
                         <apex:outputPanel rendered="{!IF(apxSec.IPM_Section__r.IPM_Section_Type__c='Header',true,false)}"> 
                 <apex:outputText value="{!apxSec.IPM_Section_Sequence__c} {!apxSec.IPM_Section_Name__c}" styleClass="heading2 bold"/>

@@ -71,8 +71,14 @@
                                     <div class="col-sm-6 pull-right clearfix noPadleft noPadright headerRight">  
                                         <div class="SecButtonSet pull-right">
                                                 <a class="icoButton history" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ProjectDocumentSectionHistory}?Id={!project.Id}" data-backdrop="static" data-keyboard="false" title="View Update History" id="showHistory"></a>
-                                                
-                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download"   title="Download" rendered="{!isPDFDownload}"/>
+                                                <!-- CR0434 -->
+                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!$Label.IPM_Download_with_Appendix}" rendered="{!isPDFDownload}">
+                                                    <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="True"/>
+                                                </apex:commandLink>
+                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}">
+                                                    <apex:param name="withOutAppendix" AssignTo="{!isWithAppendix}" Value="False"/>
+                                                </apex:commandLink>  
+                                                <!-- CR0434 end here-->   
                                                 
                                                 <!-- To place the help symbol in the top right hand corner of page -->
                                                 <apex:outputPanel styleClass="SecButtonSet delete pull-right" >
