@@ -201,10 +201,9 @@
                                     </div>
                                 </div>
 				 <!-- Display below outputPanel when project phase is not in PLE-->				
-				<apex:outputPanel styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
-                            </apex:outputPanel>
+				<apex:outputPanel styleClass="greyborder" rendered="{!displayGateDocument}"></apex:outputPanel>
                  <!-- Display below outputPanel when project phase is not in PLE and current gate to display is not null-->
-			    <apex:outputPanel layout="block" rendered="{!IF(AND(project.IPM_Phase__c!='PLE', currGateToDisplay != null),true,false)}">
+			    <apex:outputPanel layout="block" rendered="{!displayGateDocument}">    
                             
                                 <div class="row">
                                     <div class="col-sm-7 pr0">
@@ -221,37 +220,46 @@
 			    </apex:outputPanel>
 							 <!-- Display below outputPanel when project phase is not in PLE-->
                             <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
-                            
+								<apex:variable value="false" var="showGreyBorder"/>
                                 <div class="row">
-
-                                
-                                <div class="col-sm-12 pr0">
-                                    <div class="keycontent">
-                                        {!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
-                                    </div>
-                                </div>
+								<!-- EPIC320 starts here -->
+                                <apex:outputPanel layout="block" rendered="{!displayGateDocument}"> 
+									<div class="col-sm-12 pr0">
+										<div class="keycontent">
+											{!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
+										</div>
+									</div>
+								</apex:outputPanel>
+                                <!-- EPIC320 end here -->
                                  <!-- Display below outputPanel when project phase is in progress-->
                                 <apex:outputPanel rendered="{!bPhaseChangeInProgress}">
-                                    <div class="documentStatus pl0">
-                                        <div class="{!projectDocStatusStyleClass}"> {!$Label.IPM_PHASECHAGE_INPROGRESS} </div>
-                                    </div>
+									<!-- EPIC320 starts here -->
+									<apex:outputPanel layout="block" rendered="{!displayGateDocument}"> 
+										<div class="documentStatus pl0">
+											<div class="{!projectDocStatusStyleClass}"> {!$Label.IPM_PHASECHAGE_INPROGRESS} </div>
+										</div>
+									</apex:outputPanel>
                                 </apex:outputPanel>
                                 <!-- Display below outputPanel when project phase is not in progress-->
-                                <apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">                    
-                                    <div class="documentStatus pl0">
-                                        <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
-                                    </div>
+                                <apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">    
+									<apex:outputPanel layout="block" rendered="{!displayGateDocument}">
+										<div class="documentStatus pl0">
+											<div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
+										</div>
+									</apex:outputPanel>
                                     <!-- Display below outputPanel when project phase is in PLE-->
                                     <apex:outputPanel rendered="{!bShowShipToTradeButton}">
                                         <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
                                             <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
                                         </div>
+										<apex:variable value="true" var="showGreyBorder"/>
                                     </apex:outputPanel>
 									<!-- Display below outputPanel when bShowChangeStatusButton is true-->
                                     <apex:outputPanel rendered="{!bShowChangeStatusButton}">
                                         <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
                                             <input type="button" class="ipmButton" value="Change status"/>
                                         </div>
+										<apex:variable value="true" var="showGreyBorder"/>
                                     </apex:outputPanel>
    									<!--  Move to Next Phase button render related changes  starts here -->
                                     <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
@@ -259,13 +267,14 @@
 										<apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                                             <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
                                                 <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
-                                            </div>     
+                                            </div> 
+											<apex:variable value="true" var="showGreyBorder"/>
                                     </apex:outputPanel>
                                     <!--  Move to Next Phase button render related changes  ends here -->
                                 </apex:outputPanel>
                             </div>
                             
-                            <div class="greyborder"></div>
+                            <apex:outputPanel styleClass="greyborder" layout="block" rendered="{! OR(displayGateDocument,showGreyBorder='true')}"></apex:outputPanel>
                             </apex:outputPanel>
                             <!-- Display below outputPanel when rolloutProjectRecentMilestone is not null-->
                             <apex:outputPanel layout="block" styleClass="charterApprover" rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0 && !rolloutProjectRecentMilestone[0].IPM_Project__r.Is_Archieved__c}">

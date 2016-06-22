@@ -88,7 +88,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
     private static final String PLANNED_STR= 'The planned ';
     public static final String KEY_FINANCE_STR = 'Key Financial Data is missing. Please update your business case: ';
     private static final String GATE_STR='gate';
-
+	//Phase 2.0
+    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
     public String projectDocStatusStyleClass{get;set;}
 
     public Map<String, String> objectFldMap = new Map<String, String>{
@@ -222,7 +223,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
            currPhase = projObj.IPM_Temporary_Phase__c;
        }
        init();
-       
+       getGatedocumentRendered();
        // Adding Alert for Local Project leader is blank for rollout Projects
        lstRolloutProjectAlertMessage = new List<String>();
        if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
@@ -333,6 +334,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         rolloutsGenerated = false;//Eco Design
         fin = new list<IPM_Financial__c>();
         hideFinSection =  true;
+		displayGateDocument=false;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
@@ -1142,6 +1144,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
      public void next() {
         bPaginated = true;
         con.next();
-     }     
+     }
+	/******************************************************************************************************************
+     @Description:to show/hide gate document status and percentage on project overview page.
+     ******************************************************************************************************************/    
+	@testvisible private void getGatedocumentRendered(){
+	 	IPM_Project_Type__c getProjectDetails=IPM_Utils.retrieveProjectType(project);
+	 	if(getProjectDetails!=null && !String.IsBlank(getProjectDetails.IPM_Gate_Document__c)){
+	 		displayGateDocument=true;
+	 	}
+	}    
 
 }
