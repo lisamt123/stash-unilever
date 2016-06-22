@@ -61,7 +61,7 @@ public class ICB_CheckInCheckOut_CC_Test
         System.runAs(userCognos)
         {
             //File is not null
-            Territory__c territory = ICB_SobjectInstance_Test.insertTerritory(userCognos.Id, '123Abcd');
+            Territory__c territory = ICB_SobjectInstance_Test.insertTerritory(userCognos.Id, '1010');
             ContentVersion content = ICB_SobjectInstance_Test.insertContentVersion(territory);
             System.assert(ICB_CheckInCheckOut_CC.getCognosFile() != null);  
             //File is null
@@ -195,7 +195,7 @@ public class ICB_CheckInCheckOut_CC_Test
     private static testMethod void setGoldenMinuteOpenReturnFalse_Test(){
  		createInstances();
         System.Test.startTest();
-        system.assert( ICB_CheckInCheckOut_CC.setGoldenMinuteOpen( '3432' ));
+        system.assert( !ICB_CheckInCheckOut_CC.setGoldenMinuteOpen( '3432' ));
         System.Test.stopTest();
     }
 }
