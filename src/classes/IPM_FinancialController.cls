@@ -735,62 +735,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             defaultFinancialId =  mapDefaultFinancials.get(project.IPMProject_Span__c).Id;
         }
         
-        
-        //*********************Logic to calculate CurrentFinancialId(the Id of the financial that is to be displayed currently) : START ************//
-        
-        //statefulCurrentFinancialId is not null this means that the current financial should be also the same
-        if(statefulCurrentFinancialId != NULL)
-        {
-            currentFinancialId = statefulCurrentFinancialId;
-        }
-		
-		// If previousfinancialId is null, it means there is no current financial set, which means that this is the first time page is loading.
-		
-		// If previousfinancialId is not null, it means there is a current financial set, which means that we are navigating from one financial tab to another.
-        if (previousFinancialId != null)
-        {
-        	//In case of Tab change, check if the previous financial Id still holds true and exists in the current financial View.
-        	
-	    	//first check the previous financial in list of Non consolidated financials in the new tab 
-	    	//lRolloutWrapper holds all the non-consolidated financials existing for the current financial view
-	    	for(RolloutWrapper lRolloutWrapper :lstRolloutWrappers)
-	    	{
-	    		List<IPM_Financial__c> associatedFinancials = lRolloutWrapper.lstFinancials;
-	    		Map<Id,IPM_Financial__c> associatedFinancialMap = new Map<Id,IPM_Financial__c>(associatedFinancials);
-	    		if(associatedFinancialMap.containsKey(previousFinancialId))
-	    		{
-	    			currentFinancialId = previousFinancialId;
-	    			break;
-	    		}
-	    	}
-	    	
-	    	
-	    	//if currentFinancialId == null this means that the previous financial was not present in non-consolidated financials existing for the current financial view
-	    	//So check if the previous finacial is present in the list of consolidated financials existing for the current financial view
-	    	//mapConsolidatedFinancials hold the consolidated financials existing for the current financial view
-	    	if(currentFinancialId ==null)
-	    	{
-				for(IPM_Financial__c associatedConsolidatedFin : mapConsolidatedFinancials.values())
-				{
-					if(previousFinancialId == associatedConsolidatedFin.Id)
-					{
-						currentFinancialId = previousFinancialId;
-						break;
-					}
-				}
-	    	}	
-        }
-        
-        
-        //if the current financial Id is still NULL then set it to the default financial Id
-        //for global projects the defualtfinancialId is the associated global consolidated financial id
-        //for regioanl projects the defualtfinancialId is the associated regional consolidated financial id
-        if(currentFinancialId == null)
-        {
-        	currentFinancialId = defaultFinancialId;
-        }
-        
-		//*********************Logic to calculate CurrentFinancialId(the Id of the financial that is to be displayed currently) : END ************//
+        calculateCurrentFinancialId(statefulCurrentFinancialId,defaultFinancialId);
     }
     
     /*******************************************************************************************************
@@ -952,7 +897,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getGlobalRollupWrappers()
     {
         //Rollout Wrappers
-        String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
+        
         
         List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  
                                                             FROM IPM_Financials_Regional__r
@@ -998,7 +943,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalMyViewWrappers()
     {
         // No need to display Non Key financials in case of Regional View. Only needs to be displayed in Global Charter
-        String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
+        
         
         List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
@@ -1707,10 +1652,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                Boolean isValidateIncrementalPBOFailed= false ;
                Boolean isValidateGrossBMIFailed= false;
                Boolean isValidateIncrementalBMIFailed= false ;
-               Boolean isValidateGrossTurnoverFailed= false;
+               
                 if(BI != IPM_ConstantUtils.smallBI){
-	                //Validate Gross Turnover values 
-	                isValidateGrossTurnoverFailed = validateGrossTurnover(finWrapper.lstGrossPLTurnover);
 	                
 	                //validateForGateSubmission
 	                isValidateIncrementalTurnoverFailed = validateIncrementalTurnover(finWrapper.lstIncrementalPLTurnover); 
@@ -2662,5 +2605,62 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             isCopyfromSTDBC=true;   
         }
-    } 
+    }
+    
+    //*********************Logic to calculate CurrentFinancialId(the Id of the financial that is to be displayed currently)************//
+    private void calculateCurrentFinancialId(String statefulCurrentFinancialId, String defaultFinancialId){
+        
+        //statefulCurrentFinancialId is not null this means that the current financial should be also the same
+        if(statefulCurrentFinancialId != NULL)
+        {
+            currentFinancialId = statefulCurrentFinancialId;
+        }
+		
+		// If previousfinancialId is null, it means there is no current financial set, which means that this is the first time page is loading.
+		
+		// If previousfinancialId is not null, it means there is a current financial set, which means that we are navigating from one financial tab to another.
+        if (previousFinancialId != null)
+        {
+        	//In case of Tab change, check if the previous financial Id still holds true and exists in the current financial View.
+        	
+	    	//first check the previous financial in list of Non consolidated financials in the new tab 
+	    	//lRolloutWrapper holds all the non-consolidated financials existing for the current financial view
+	    	for(RolloutWrapper lRolloutWrapper :lstRolloutWrappers)
+	    	{
+	    		List<IPM_Financial__c> associatedFinancials = lRolloutWrapper.lstFinancials;
+	    		Map<Id,IPM_Financial__c> associatedFinancialMap = new Map<Id,IPM_Financial__c>(associatedFinancials);
+	    		if(associatedFinancialMap.containsKey(previousFinancialId))
+	    		{
+	    			currentFinancialId = previousFinancialId;
+	    			break;
+	    		}
+	    	}
+	    	
+	    	
+	    	//if currentFinancialId == null this means that the previous financial was not present in non-consolidated financials existing for the current financial view
+	    	//So check if the previous finacial is present in the list of consolidated financials existing for the current financial view
+	    	//mapConsolidatedFinancials hold the consolidated financials existing for the current financial view
+	    	if(currentFinancialId ==null)
+	    	{
+				for(IPM_Financial__c associatedConsolidatedFin : mapConsolidatedFinancials.values())
+				{
+					if(previousFinancialId == associatedConsolidatedFin.Id)
+					{
+						currentFinancialId = previousFinancialId;
+						break;
+					}
+				}
+	    	}	
+        }
+        
+        
+        //if the current financial Id is still NULL then set it to the default financial Id
+        //for global projects the defualtfinancialId is the associated global consolidated financial id
+        //for regioanl projects the defualtfinancialId is the associated regional consolidated financial id
+        if(currentFinancialId == null)
+        {
+        	currentFinancialId = defaultFinancialId;
+        }
+ 
+	} 
 }

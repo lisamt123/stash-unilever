@@ -16,7 +16,12 @@ private class IPM_FinancialControllerRegional_Test {
     private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
     private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
     private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
-    private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE; 
+    private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE;
+    
+    private static final string eitherConsolidatedNonKeyMsg = 'Financial is either consolidated or key';
+    private static final string TLDNullMsg = 'TLD not set properly';
+    private static final string showNextMsg = 'Financial year is to be navigated to left(Next)';
+    private static final string showPreviousMsg = 'Financial year is to be navigated to right(Previous)'; 
 
     @testSetup public static void createRegionalOriginalProject()
      {
@@ -243,10 +248,10 @@ private class IPM_FinancialControllerRegional_Test {
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
              
-             system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, 'isConsolidatedOrNonkey is true');
-             system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , 'Null Value found');
-             system.assert(ipmFinCon.showNext!= null , 'Null Value found');
-             system.assert(ipmFinCon.showPrevious!= null , 'Null Value found');
+             system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
+             system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
+             system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
+             system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
              system.assert(ipmFinCon.tldAcceptFromValue == 'Accept Local TLD' , 'TLD accept value not returned as required');
              
              
