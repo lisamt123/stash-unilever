@@ -1168,9 +1168,6 @@ private class IPM_ProjectOverviewCtrl_Test
             Test.startTest();
             PageReference pRef1 = new PageReference(sPageRefURL+globalProject.ID);
             Test.setCurrentPage(pRef1);
-            
-            IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-            IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
             Test.stopTest();
         
         }

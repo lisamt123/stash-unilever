@@ -829,10 +829,7 @@ public with sharing class IPM_Resource_Allocation {
     public void assignLeaderMember()
     {
         IPM_Project_Rollout__c inContextRollout = null;
-        Id companyCardRecordTypeId = null;
         
-        List<String> locationFilter = new List<String>();
-        List<Id> filteredCompanyCardList = new List<Id>();
         
         // Get Project Specific information 
         IPM_Project__c ipmproject = [SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
@@ -1025,7 +1022,6 @@ public with sharing class IPM_Resource_Allocation {
     public void filterLeaderMember()
     {
         lstUserProfile=new list<IPM_User_Profile__c>();
-        string strCoreMem=IPM_ConstantUtils.BLANK; // used in the query
         string UQuery=IPM_ConstantUtils.BLANK;
         string querySearchLeader = String.escapeSingleQuotes(SearchLeader) +PERCENTAGE_SLASH;//used in the query below
         UQuery=BEGIN_QUERY;

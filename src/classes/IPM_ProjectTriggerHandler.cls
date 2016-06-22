@@ -125,7 +125,7 @@ public with sharing class IPM_ProjectTriggerHandler
     public void onAfterInsert(IPM_Project__c[] newProjects) {
         
         /** follow/unfollow functionality begins **/
-        Map<Id, Set<Id>> projectUsersToFollowMap = getProjectUsersMap(newProjects, null, true); 
+         
         /** follow/unfollow fnctionality ends **/        
                 
         //@@Design Review - Data Sharing Change Create a queue 

@@ -521,10 +521,7 @@ public without sharing class IPM_Utils {
     
     public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects, Boolean includeSystemFields) 
     { 
-        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','recordtypeid'};
-        
-        Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
-        Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
+        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','recordtypeid'};  
        
         String queryStr = ' Select ';
 
@@ -713,7 +710,6 @@ public without sharing class IPM_Utils {
     public static IPM_Project_Type__c getNextPhase(IPM_Project_Type__c currentProjectType,Boolean withGate)
     {
         IPM_Project_Type__c nextProjectPhase = new IPM_Project_Type__c();
-        decimal projectPhaseSequence =0;
       
         if(currentProjectType!=null)
         {
@@ -756,7 +752,6 @@ public without sharing class IPM_Utils {
     public static List<IPM_Project_Type__c> getNextPhases(IPM_Project_Type__c currentProjectType,Boolean withGate)
     {
         List<IPM_Project_Type__c> nextProjectPhase = new List<IPM_Project_Type__c>();
-        decimal projectPhaseSequence =0;
       
         if(currentProjectType!=null)
         {

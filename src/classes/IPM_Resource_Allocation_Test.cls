@@ -509,7 +509,7 @@ private class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.assignLeaderMember();
             projRollout.recordTypeId=Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); 
             update projRollout;
-			IPM_Project_Rollout__c projectRollout = [SELECT recordTypeId FROM IPM_Project_Rollout__c WHERE Id =: projRollout.id];
+			
 			System.assertEquals(Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(),projRollout.recordTypeId,'Rollout type is invalid');
             ipmResAlloccation.assignLeaderMember();
             rolloutList1=[select Id,Name,Market_Cluster_Name__c,IPM_Regional_PL__c,Finance_Member__c,RecordTypeId,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r)  FROM IPM_Project_Rollout__c where Id=:projRollout.Id];
