@@ -59,7 +59,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     
     @TestVisible private Map<String,IPM_Project_Rollout__c> mapExistingRollouts; //Map of Existing Rollouts
     @TestVisible private Map<String,IPM_Country__c> mapExistingCountries; //Map of existing counttries
-    @TestVisible private Set<String> setExistingCountriesRegionalProject; //Set of Existing countries for the regional project
     
     @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRegionalRollouts; //Map of Regional Rollouts that need to be upserted
     @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRollouts; //Map of Local Rollouts that need to be upserted
@@ -812,7 +811,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         
         mapExistingRollouts = new Map<String,IPM_Project_Rollout__c>();
         mapExistingCountries = new Map<String,IPM_Country__c>();
-        setExistingCountriesRegionalProject = new Set<String>();
         mapUpsertRegionalRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertCountries = new Map<String,IPM_Country__c>();

@@ -209,6 +209,9 @@ public class IPM_TestFactory_Helper
     public static Set<String> profiles = new Set<String>{ 'System Administrator','Unilever - Force MultiApp Standard' };
     public static List<Profile> profileList = [SELECT Id, Name FROM Profile WHERE Name IN :profiles ORDER BY Name asc];
 
+	public static final String PROJECTNAME_PREFIX ='test';
+    public static final String TEST ='Test';
+
     /***********************************************************************************************************************************************************
     * @description To get master project Id
     **************************************************************************************************/
@@ -426,7 +429,7 @@ public class IPM_TestFactory_Helper
         
         for(Integer i = 1; i <= 3; i++)
         {
-            Map<String,Object> projMap =  new Map<String,Object>{NAME => 'test'+ i,IPM_PROJECT_NAME=>'test' + i,
+            Map<String,Object> projMap =  new Map<String,Object>{NAME => PROJECTNAME_PREFIX+ i,IPM_PROJECT_NAME=>PROJECTNAME_PREFIX + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>C_GLOBAL, 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
@@ -1625,7 +1628,7 @@ public class IPM_TestFactory_Helper
 	* @description To insert IPM_Gate_CMI__c
 	**************************************************************************************************/
     public static IPM_Gate_CMI__c createGateCMI(Id projId, Boolean doInsert){
-        Map<String,Object> GateCMIMap =  new Map<String,Object>{'Test__c'=>'Test', 'KPI__c'=>'testkpi', 'Gate__c'=>CONTRACT};
+        Map<String,Object> GateCMIMap =  new Map<String,Object>{'Test__c'=>TEST, 'KPI__c'=>'testkpi', 'Gate__c'=>CONTRACT};
         if(projId != null) {GateCMIMap.put(IPM_PROJECT, projId);}
         IPM_Gate_CMI__c GateCMI  = (IPM_Gate_CMI__c)IPM_TestFactory.createSObject('IPM_Gate_CMI__c',GateCMIMap,false);  
         if(doInsert) { 
@@ -1639,7 +1642,7 @@ public class IPM_TestFactory_Helper
 	* @description To insert IPM_Gate_CMI_KPI_Inputs__c
 	**************************************************************************************************/
     public static IPM_Gate_CMI_KPI_Inputs__c createGateCMIKPIInputs(Boolean doInsert){
-        Map<String,Object> GateCMIKPIInputsMap =  new Map<String,Object>{NAME=>'settings1','IPM_Test__c'=>'Test', 'IPM_KPI__c'=>'testkpi', 'IPM_Inputs__c'=>'Test Input1,Test Input2'};
+        Map<String,Object> GateCMIKPIInputsMap =  new Map<String,Object>{NAME=>'settings1','IPM_Test__c'=>TEST, 'IPM_KPI__c'=>'testkpi', 'IPM_Inputs__c'=>'Test Input1,Test Input2'};
         
         IPM_Gate_CMI_KPI_Inputs__c GateCMIKPIInputs  = (IPM_Gate_CMI_KPI_Inputs__c)IPM_TestFactory.createSObject('IPM_Gate_CMI_KPI_Inputs__c',GateCMIKPIInputsMap,false);   
         if(doInsert) { 
@@ -1653,7 +1656,7 @@ public class IPM_TestFactory_Helper
 	* @description to insert sample data of IPM_CorePara_helps_example__c
 	**************************************************************************************************/
     public static IPM_CorePara_helps_example__c createCoreParamHelpExapmle(Boolean doInsert){
-        Map<String,Object> coreParamHelpExapmleMap =  new Map<String,Object>{'IPM_Answer__c'=>'ImprovementTest','IPM_Core_Parameter_Helps__c'=>'Test', 'IPM_Core_Parameter_Help__c'=>'testkpi'};
+        Map<String,Object> coreParamHelpExapmleMap =  new Map<String,Object>{'IPM_Answer__c'=>'ImprovementTest','IPM_Core_Parameter_Helps__c'=>TEST, 'IPM_Core_Parameter_Help__c'=>'testkpi'};
         
         IPM_CorePara_helps_example__c coreParamHelpExapmle  = (IPM_CorePara_helps_example__c)IPM_TestFactory.createSObject('IPM_CorePara_helps_example__c',coreParamHelpExapmleMap,false);   
         if(doInsert) { 
