@@ -383,7 +383,6 @@ public with sharing class IPM_ProjectDocumentHelper
     
     public static void initiateCopyOverLogic(String gateType,IPM_Project_Document_Section__c incomingSection, String currentSectionExternalId,IPM_Project__c currentProject,IPM_Project__c parentProject)
     {
-        String targetValue = '';
         Id associatedBosscard = currentProject.IPM_Bosscard__c;
         SObject sourceObject = null;
         
