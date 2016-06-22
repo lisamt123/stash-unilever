@@ -187,7 +187,7 @@
                             </apex:facet>
                             <div class="col-sm-12 noteimg noPadleft">
                             <div class="col-sm-1 noPadleft">
-                            <apex:outputPanel rendered="{!p.record['IPM_Type_of_Milestone__c'] == 'Standard'}">
+                            <apex:outputPanel rendered="{!AND( p.record['IPM_Type_of_Milestone__c'] == 'Standard', !p.showTLDInfoIcon )}">
                             <a href="#" class="icoButton document"></a>
                             </apex:outputPanel>
                             </div>
@@ -291,7 +291,7 @@
             </div> 
             <!--  Code to implement the Pagination to show the limited milestones per page  -->
             <div class="pull-right">
-                <apex:panelGrid columns="5" styleClass="panel-group clearfix" id="cmdBtnPanel">
+                <apex:panelGrid columns="5" styleClass="panel-group clearfix" id="cmdBtnPanel" rendered="{!OR(hasPrevious, hasnext)}">
                      <apex:commandButton styleClass="mstoneArrows {!If(hasPrevious,'mstoneActive','mstoneNotActive')}" disabled="{!!hasPrevious}" status="myStatusM" action="{!firstPage}" value="<<" rerender="tskPanelM,cmdBtnPanel,jsLoadM" oncomplete="jsLoadM()"/ >
                      <apex:commandButton styleClass="mstoneArrows {!If(hasPrevious,'mstoneActive','mstoneNotActive')}" disabled="{!!hasPrevious}" status="myStatusM"  action="{!previousPage}" value="<" rerender="tskPanelM,cmdBtnPanel,jsLoadM" oncomplete="jsLoadM()"/>
                      <span class="mstonePagination">{!paginationUIDisplay}</span>

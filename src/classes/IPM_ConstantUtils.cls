@@ -1014,7 +1014,7 @@ public class IPM_ConstantUtils {
    public static final String SF_SECTION_TYPE='sectionType';
    
    //task pagination size
-   public static final integer NO_OF_RECORDS =5;
+   public static final integer NO_OF_RECORDS = 20;
    
 
    

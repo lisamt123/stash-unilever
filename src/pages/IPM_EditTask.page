@@ -94,8 +94,8 @@
 				</div>
 			</apex:outputPanel>
 			<div class="buttonMarginRight marginTop ipmButtonGroup pull-right">               
-				<apex:commandLink id="cancelLink" value="Cancel" styleClass="ipmButton buttonMarginRight" reRender="form, reRenderScript" onClick="pageclose();" onComplete="callEditTask()"/>   
-				<apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onclick="skipValidation();" onComplete="{!if(AND(validate),'pageclose(); callEditTask();','')};"/>
+                                                                <apex:commandLink id="cancelLink" value="Cancel" styleClass="ipmButton buttonMarginRight" reRender="form, reRenderScript" onClick="pageclose();pageclosetodo();" onComplete="callEditTask()"/>   
+                                                                <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onclick="skipValidation();" onComplete="{!if(AND(validate),'pageclose();pageclosetodo(); callEditTask();','')};"/>
 			</div>
 		
 
