@@ -530,8 +530,7 @@ private with sharing class IPM_CoreParameters_Test {
         
             uw_bet__c bet1 = BET_TestUtils.getTestBet();
             insert bet1;
-            List<uw_bet__c>betLists=[SELECT ID FROM uw_bet__c WHERE ID=:bet1.id LIMIT 1];
-            system.assertEquals(betLists[0].id,bet1.id,'bet id is:'+betLists[0].id);
+            
             testProject.BET_Link_Requested__c = bet1.id;
             testProject.bet__c = bet1.id;
 
@@ -542,9 +541,7 @@ private with sharing class IPM_CoreParameters_Test {
             ProjectWithOutBoss.BET_Link_Requested__c = '';
             //update ProjectWithOutBoss;
             update testProject;
-            List < IPM_Project__c > ProjectsLists = [SELECT Id, BET_Link_Requested__c FROM IPM_Project__c WHERE id=: testProject.id 
-                                                    LIMIT 1];
-            system.assertEquals(ProjectsLists[0].BET_Link_Requested__c, testProject.BET_Link_Requested__c, 'project bet link should be' + ProjectsLists[0].BET_Link_Requested__c);
+            
         
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
             IPM_CoreParameters sic2 = new IPM_CoreParameters();

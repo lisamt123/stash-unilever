@@ -3,7 +3,7 @@
 *@Description:Used in project initiation wizard to complete core parameter.
 *@Author: Cognizant
 *@Created Date: 27/01/2015 
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *******************************************************************************************
 -->
 <apex:component controller="IPM_Coreparameters" allowDML="true"
@@ -749,21 +749,22 @@
                             id="prevControl" class="projectdetails ipmButton">{!$Label.IPM_Back}</a>
                     </apex:outputPanel>
                     <div class="pull-left ml5">
+                   <apex:commandButton styleClass="ipmButton primary" onclick="skipValidation();mpaskip();saveselectedAns();" value="{!$Label.IPM_SAVE_AND_CONTINUE}" rendered="{!isRegRollout}"/>
                     <!-- If isMPAEditable attribute is true && editMarketActivityByPL attribute is false, the below panel will be diplayed  -->
-                        <apex:outputPanel rendered="{!AND(isMPAEditable,!editMarketActivityByPL)}">
+                        <apex:outputPanel rendered="{!AND(isMPAEditable,!editMarketActivityByPL,!isRegRollout)}">
                             <a href="#myCarousel" data-slide="next"
                                 title="{!$Label.IPM_SAVE_AND_CONTINUE}"
                                 onclick="skipValidation(),saveselectedAns();" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
                         <!-- If isMPAEditable attribute is true && editMarketActivityByPL attribute is true, the below panel will be diplayed  -->
-                        <apex:outputPanel rendered="{!AND(isMPAEditable,editMarketActivityByPL)}">
+                        <apex:outputPanel rendered="{!AND(isMPAEditable,editMarketActivityByPL,!isRegRollout)}">
                             <a href="#myCarousel" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
                                 onclick="skipValidation(),saveselectedbdAns();" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
                         <!--If isMPAEditable attribute is false, the below panel will be diplayed  -->
-                        <apex:outputPanel rendered="{!!isMPAEditable}">
+                        <apex:outputPanel rendered="{!AND(!isMPAEditable,!isRegRollout)}">
                             <a href="#myCarousel" data-slide="next"
                                 title="{!$Label.IPM_Continue}" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_Continue}</a>

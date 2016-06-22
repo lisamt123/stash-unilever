@@ -612,8 +612,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             
             Map<Id, IPM_Project__c> ipmFastTrackProjectMap = new Map<Id, IPM_Project__c>(); // Fast Track Marked project Map 
             Map<Id, String> stoppedProjectMap = new Map<Id, String>(); // Fast Track Marked project Map 
-            
-			
+           
+            IPM_ProjectHelper.copyOverMPAValue((Map<Id,IPM_Project__c>)trigger.NewMap);
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
                     IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
