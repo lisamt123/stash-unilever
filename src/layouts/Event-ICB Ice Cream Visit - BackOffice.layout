@@ -29,6 +29,10 @@
                 <behavior>Required</behavior>
                 <field>EndDateTime</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ICB_Icon__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -38,6 +42,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>WhoId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ICB_GoldenMinuteOpen__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -85,7 +93,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Location</field>
+                <field>Phone</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -170,18 +178,6 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
-    <relatedLists>
-        <relatedList>RelatedEventAttendeeAccept</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedEventAttendeeNotDecided</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedEventAttendeeDecline</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedActivityAttachmentList</relatedList>
-    </relatedLists>
     <relatedObjects>WhoId</relatedObjects>
     <relatedObjects>WhatId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

@@ -525,6 +525,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ICB_Matricula__c</fullName>
+        <description>User identification at SAP</description>
+        <externalId>false</externalId>
+        <label>Matricula</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Sub_Category__c</fullName>
         <externalId>false</externalId>
         <label>Sub Category</label>
