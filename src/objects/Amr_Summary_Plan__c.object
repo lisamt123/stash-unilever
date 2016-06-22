@@ -573,9 +573,6 @@
         <isOptional>false</isOptional>
         <name>Amr Summary Plan_Big C</name>
     </namedFilters>		
-    <pluralLabel>ProductCategory</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>Read</sharingModel>	
     <pluralLabel>Amr Summary Plans</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
