@@ -111,6 +111,7 @@ private with sharing class IPM_ProjectHelper_Test
                 projectMap.put(project.Id,project);
             }
             
+	    IPM_ProjectHelper.copyOverMPAValue(projectMap);
             Id  mileMasterRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.mileMRecordType).getRecordTypeId();
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
         

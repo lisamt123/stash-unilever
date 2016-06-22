@@ -2032,5 +2032,27 @@ public with sharing class IPM_ProjectHelper
 		}
 		
 	}
-	
+    // for copying over the MPA value from parent project to its child project
+    
+     public static void copyOverMPAValue(Map<Id,IPM_Project__c> projectMPAMap) {
+    List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    String parentId;
+    for(Id projectId : projectMPAMap.keySet() ) {
+        parentId = projectId;
+    }
+
+    parentId = parentId.substring(0,15);
+
+    projectList = [select Id,IPM_Answer_of_Q1__c,IPMProject_Span__c,Name,IPM_Parent_Project__c from IPM_Project__c 
+    where (IPM_Global_Project_Id__c =: parentId AND IPM_Parent_Project__c != '' ) OR (IPM_Parent_Project__c =: parentId AND IPMProject_Span__c =: 'Local' ) LIMIT 50000];
+    
+    if(!projectList.isEmpty()) {
+        for(IPM_Project__c proj : projectList) {
+            proj.IPM_Answer_of_Q1__c = projectMPAMap.values()[0].IPM_Answer_of_Q1__c;
+        }
+    }
+    if(!projectList.isEmpty()) {
+        update projectList;
+    }
+    }
 }

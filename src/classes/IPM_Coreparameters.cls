@@ -104,6 +104,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public string operationaPointer_STR{get;set;}//operational css value
     public string answerChecked_STR{get;set;}//css value
     public string answerUnChecked_STR{get;set;}//css value
+    public Boolean isRegRollout {get; set;} // true if project is regional rollout
     public String projbetlink {
     get{
         If (IPM_Coreparameter.BET_Link_Requested__c!=null ){
@@ -249,7 +250,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         editMPAByBD=false;
         editCPVByBD=false;
         editETByTPL=false;
-        extraEditable=false;  
+        extraEditable=false; 
+        isRegRollout=false; 
         isExemptFromThresholdITO=false;
         operationalSlider_STR=IPM_ConstantUtils.IPM_OPERATIONAL_SLIDER;
         operationaPointer_STR=IPM_ConstantUtils.IPM_OPERATIONAL_BLUEPOINTER;
@@ -502,6 +504,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             market_STR=IPM_Coreparameter.IPM_Market__c;
             subSector_STR=IPM_Coreparameter.IPM_Sub_sector__c;
             betValue_STR=IPM_Coreparameter.IPM_BET_Toolkit__c;
+            if(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)){
+                isRegRollout=true;
+            }
             if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) || IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)){
                 isOriginal=true;
             }
@@ -807,8 +812,14 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         !((IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
             ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)
             ))){
-            isEditCoreparam=true;
+            
             isAdditionalPara=true;
+        }
+        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && 
+        !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
+            ){
+            isEditCoreparam=true;
+            
         }
         
     }
