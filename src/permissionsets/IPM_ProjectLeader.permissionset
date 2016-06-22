@@ -6880,6 +6880,11 @@
         <field>IPM_Project__c.IPM_Phase__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project__c.IPM_ProjectGKM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project__c.IPM_ProjectJobType__c</field>
