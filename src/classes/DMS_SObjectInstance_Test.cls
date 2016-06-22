@@ -10,7 +10,8 @@ public class DMS_SObjectInstance_Test {
         acc.SalesChannel__c = salesChannel;
         acc.OwnerId = ownerId;
         acc.ExternalCode__c = externalCode;
-        acc.CodRegion__c='testCode';        
+        acc.CodRegion__c='testCode';
+		acc.Country__c = 'testCountry';        
         if(isCreate) Database.insert(acc);        
         return acc;
     }
@@ -100,7 +101,8 @@ public class DMS_SObjectInstance_Test {
             Lastname = name,
             AccountId = accountId,
             Email =email,
-            CodRegion__c = 'testCode'
+            CodRegion__c = 'testRegion',
+            SellerCode__c = 'testCode'
         );
         if(isCreate)
         {
@@ -123,14 +125,13 @@ public class DMS_SObjectInstance_Test {
         target.Orders__c = 0;
         target.ImpactedStores__c = 0;
         target.Status__c = 'ACT';
-        if(isCreate)
-        {
+        if(isCreate){
             Database.insert(target);
         }
         return target;
     }
     
-    public static AccountTeamMember createAccountTeam(id userIdParam, id accountIdParam,Boolean isCreate){
+    public static AccountTeamMember createAccountTeam(id userIdParam, id accountIdParam,boolean isCreate){
         AccountTeamMember aTeam = new AccountTeamMember();
         aTeam.AccountId = accountIdParam;
         aTeam.UserId = userIdParam;
@@ -141,4 +142,30 @@ public class DMS_SObjectInstance_Test {
         return aTeam;
     }
     
+    public static DMS_DatasetId__c createDmsDatasetId(String name, String datasetId,boolean isCreate){
+        DMS_DatasetId__c dataset = new DMS_DatasetId__c();
+        dataset.Name = name;
+        dataset.ID__c = datasetId;
+        if(isCreate) Database.insert(dataset);
+        return dataset;
+    }   
+    
+    public static CollaborationGroup createCollaborationGroup(String name,String description,String type,boolean isCreate){
+        CollaborationGroup groups = new CollaborationGroup();
+        groups.Name = name;
+        groups.Description = description;
+        groups.CollaborationType = type;
+        
+        if(isCreate) Database.insert(groups);
+        
+        return groups;
+    }
+    
+    public static CollaborationGroupMember createCollaborationGroupMember(id groupId,id memberId,boolean isCreate){
+        CollaborationGroupMember collaborationMember = new CollaborationGroupMember();
+        collaborationMember.CollaborationGroupId = groupId;
+        collaborationMember.MemberId = memberId; 
+        if(isCreate) Database.insert(collaborationMember);
+        return collaborationMember;
+    }
 }

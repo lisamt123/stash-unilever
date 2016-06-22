@@ -15,20 +15,20 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 ***********************************************************************/
 public with sharing class DMS_ContactTriggerHelper 
 {
-	private static Profile myProfile;
-	
+    private static Profile myProfile;
+    
     static 
     {
-      myProfile =  [SELECT id FROM Profile WHERE name = 'Partner Community User'][0];
+        myProfile =  [SELECT id FROM Profile WHERE name = 'Partner Community User'][0];
     }
     
     public DMS_ContactTriggerHelper() {}
     
     /*********************************************************
-    * Purpose: Create new User when new contact is created
-    * Parameters: oldTrigger & newTrigger values
-    * Returns: none 
-    *********************************************************/
+* Purpose: Create new User when new contact is created
+* Parameters: oldTrigger & newTrigger values
+* Returns: none 
+*********************************************************/
     public void createNewUser(List<Contact> contact) 
     {
         
@@ -43,78 +43,57 @@ public with sharing class DMS_ContactTriggerHelper
                     users.add(create(con));
                 }
             } 
-            insert users;
-            
-            //add the users on the contact members team to the related Store
-            accountTeamMemberInsert(contact);
+            insert users;                        
         }  
         catch (Exception e)
         {
             system.debug(DMS_GlobalConstants.MSG_EXCEPTION_USERCREATION + e.getCause() + e.getMessage() + e.getLineNumber());
         } 
+        finally{
+            //add the users on the contact members team to the related Store
+            accountTeamMemberInsert(contact);
+        }
     }
     
     private void accountTeamMemberInsert(List<Contact> listContact) 
     {
-
-        Map<Id, Map<Id, User>> mapContact = new Map<Id,Map<Id, User>>();
-        Map<Id, User> mapValues = new Map<Id, User>();
-        List<id> distributorsIds = new List<id>();
-        List<id> storesIds = new List<id>();
-        List<User> usersList = new List<User>();
-        List<String> codeRegionList = new List<String>();
-
-        for(User users : [SELECT Id, ContactId,Contact.accountId, Contact.CodRegion__c FROM User WHERE ContactId =: listContact]){
-            distributorsIds.add(users.Contact.accountId);
-            codeRegionList.add(users.Contact.CodRegion__c);
-            usersList.add(users);
+        try
+        {                        
+            List<id> distributorsIds = new List<id>();            
+            List<User> usersList = new List<User>();
+            List<String> codeRegionList = new List<String>();
             
-        }
-        
-        List<AccountTeamMember> aTeamList = new List<AccountTeamMember>();
-        List<Account> accList = [SELECT id FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =: codeRegionList ];
-        
-        for(Account acc : [SELECT id,ParentId FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =:codeRegionList AND RecordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer')]){
-            for(User userTeam : usersList) 
-            {
-                if(userTeam.Contact.accountId == acc.ParentId){
-                    AccountTeamMember aTeam = new AccountTeamMember();
-                    aTeam.AccountId = acc.id;
-                    aTeam.UserId = userTeam.id;
-                    aTeamList.add(aTeam);
-                }
-            }            
-        }
-        Database.insert(aTeamList);                
-         
-    }
-    
-    
-    /*
-    * Purpose: Retreive all stores from the distributor with the Region Code.
-    * Parameters: Map with Contacts and Ids
-    * Returns: none 
-    */
-    private Map<Id, String> getStores(Map<Contact, Id> mapAccount) 
-    {
-        
-        Map<Id, String> mapAccountCdRegion = new Map<Id, String>();
-        List<Account> listAccount = [SELECT Id, CodRegion__c FROM Account WHERE ParentId =: mapAccount.values() And RecordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer')];
-        
-        for(Account acc : listAccount) 
-        {
-            if(!String.isEmpty(acc.CodRegion__c)) {
-                mapAccountCdRegion.put(acc.Id, acc.CodRegion__c);
+            for(User users : [SELECT Id, ContactId,Contact.accountId, Contact.CodRegion__c FROM User WHERE ContactId =: listContact]){
+                distributorsIds.add(users.Contact.accountId);
+                codeRegionList.add(users.Contact.CodRegion__c);
+                usersList.add(users);
+                
             }
+            
+            List<AccountTeamMember> aTeamList = new List<AccountTeamMember>();        
+            
+            for(Account acc : [SELECT id,ParentId FROM Account WHERE ParentId =: distributorsIds AND CodRegion__c =:codeRegionList AND RecordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer')]){
+                for(User userTeam : usersList) 
+                {
+                    if(userTeam.Contact.accountId == acc.ParentId){
+                        AccountTeamMember aTeam = new AccountTeamMember();
+                        aTeam.AccountId = acc.id;
+                        aTeam.UserId = userTeam.id;
+                        aTeamList.add(aTeam);
+                    }
+                }            
+            }
+            Database.insert(aTeamList);                
         }
-        return mapAccountCdRegion;
+        catch(Exception e)
+        {}
     }
     
     /*
-    * Purpose: Create new User when contacts updated with an Email.
-    * Parameters: oldTrigger & newTrigger values
-    * Returns: none 
-    */
+* Purpose: Create new User when contacts updated with an Email.
+* Parameters: oldTrigger & newTrigger values
+* Returns: none 
+*/
     public void createtUserUpdate(List<Contact> contactOld, List<Contact> contactNew) 
     {
         try {
@@ -138,10 +117,10 @@ public with sharing class DMS_ContactTriggerHelper
     }
     
     /***********************************
-    * Purpose: Create new User.
-    * Parameters: contacts
-    * Returns: none 
-    ************************************/
+* Purpose: Create new User.
+* Parameters: contacts
+* Returns: none 
+************************************/
     private User create(Contact contact) {
         Database.DMLOptions dmo = new Database.DMLOptions();
         dmo.EmailHeader.triggerUserEmail = false;       

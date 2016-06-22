@@ -33,6 +33,5 @@ public with sharing class DMS_Home_CC {
 	********************************************************************/
     public User getCurrentUser(){
         return this.currentUser;
-    }
-    
+    }    
 }

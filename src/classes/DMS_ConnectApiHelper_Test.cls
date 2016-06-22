@@ -36,7 +36,7 @@ public class DMS_ConnectApiHelper_Test {
     
     @isTest
     static void testMentionOnly() {
-        String mentionId = '005x0000000URNP';
+        String mentionId = UserInfo.getUserId();
         String text = '{' + mentionId + '}';
         List<ConnectApi.MessageSegmentInput> segments = DMS_ConnectAPiHelper.getMessageSegmentInputs(text);
         

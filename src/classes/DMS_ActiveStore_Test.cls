@@ -11,7 +11,7 @@ public class DMS_ActiveStore_Test {
             Account accountStoreSameChannel = DMS_SObjectInstance_Test.createAccount('Store2','Store2Code', accountDistributor.id, 'APROV', DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer'), ownerUser.id, SALES_CHANNEL, true);        
             Account accountStoreDiferentChannel = DMS_SObjectInstance_Test.createAccount('Store3','Store3Code', accountDistributor.id, 'APROV', DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer'), ownerUser.id, SALES_CHANNEL_SECOND, true);
             Contact contact1 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'Test', null,true);
-            Contact contact2 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'contactError', null,true);
+            DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'contactError', null,true);
             User createdUser = DMS_SObjectInstance_Test.createUserPartner(contact1.Id,'testCountStore@test.com',true); 
 
             Set<id> contactIds = new Set<id>();

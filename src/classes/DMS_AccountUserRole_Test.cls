@@ -9,15 +9,13 @@ public class DMS_AccountUserRole_Test {
             
             List<id> idAccount = new List<id>();
             idAccount.add(accountStore.Id);
-            idAccount.add(accountDistributor.id);
-            
-            Contact contact1 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'TestMcTesty', null,true);
-            User user1 = DMS_SObjectInstance_Test.createUserPartner(contact1.id, 'testUser@Roletest.com',true);
+            idAccount.add(accountDistributor.id);            
+            Contact contact1 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'TestMcTesty', null,true);  
+            DMS_SObjectInstance_Test.createUserPartner(contact1.id, 'testUser@Roletest.com',true);
             List<UserRole> userAccount =[SELECT Id, PortalAccountId FROM UserRole WHERE PortalAccountId =: idAccount];  
             
             System.assert(userAccount.size()>0);            
-            DMS_AccountUserRole.createPartner(idAccount);
-            DMS_AccountUserRole.createPartner(idAccount);                        
+            DMS_AccountUserRole.createPartner(idAccount);                                  
         }
     }
 }

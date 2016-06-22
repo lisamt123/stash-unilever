@@ -47,6 +47,7 @@ public class DMS_GlobalConstants {
     //DMS_Hexagon_CC
     public static final String MSG_EXCEPTION_HEXAGON = 'Exception occured on the Class Hexagon_CC: ';
     public static final String HEXAGON_VALUES = 'Hexagon values';
+    public static final String HEXAGON_DATASET = '0Fb19000000A45oCAC';
     
     //DMS_ConnectApiHelper
     //Exception Message 

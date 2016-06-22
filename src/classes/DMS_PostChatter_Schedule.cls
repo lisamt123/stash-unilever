@@ -54,11 +54,11 @@ global with sharing class DMS_PostChatter_Schedule implements Schedulable, Datab
     
     @future(callout=true)
     public static void postChatter(String mySession) {
-
+	String mentionIds;
         try {
 			getIdCommunity();
             DMS_WaveRestCall.getRecords(customSetting.get('ECO'),customSetting.get('Impacted'), mySession); //call the method 
-        	
+        	            
             for(DMS_WaveRestCall.Records waveRecord :  DMS_WaveRestCall.listRecords) 
             {
                 mapUsers.put(waveRecord.Account_Owner, waveRecord.DistributorCode);    
@@ -67,8 +67,7 @@ global with sharing class DMS_PostChatter_Schedule implements Schedulable, Datab
             Map<Id, Set<String>> mapUserGroupId = new Map<Id, Set<String>>(getMapUserGroupId(mapUsers)); //Separete the UserId by GroupMember that he's part
 
             for(Id vId : mapUserGroupId.keySet()) {
-                String groupId = vId;
-                String mentionIds;
+                String groupId = vId;                
                 for(String mentionValues : mapUserGroupId.get(vId)) 
                 {
                     mentionIds += mentionValues;           
@@ -152,9 +151,10 @@ global with sharing class DMS_PostChatter_Schedule implements Schedulable, Datab
     ********************************************************************/
     private static String formatString(String myString) 
     {
+        string replaceValue;
         try {
             
-            myString = myString.replace('null', ' ');
+            replaceValue = myString.replace('null', ' ');
         }
         catch (Exception e) 
         {
