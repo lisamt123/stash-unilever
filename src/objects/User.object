@@ -525,18 +525,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>ICB_CPF__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <description>CPF (Cadastro de Pessoa Fisica) of the user.</description>
-        <externalId>false</externalId>
-        <label>CPF</label>
-        <length>14</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>ICB_Matricula__c</fullName>
         <description>User identification at SAP</description>
         <externalId>false</externalId>
