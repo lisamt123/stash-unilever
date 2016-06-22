@@ -24,7 +24,7 @@
 }
 .THIS .fullPadding {
     padding:10px;
-    padding-top:25px;
+    padding-top:10px;
 }
 .THIS .file {
     margin-bottom: 5px;
@@ -84,4 +84,8 @@
 }
 .THIS .fileSize{
     color: red;
+}
+.THIS .new-drop{
+    width:80%;
+    margin-left:10px;
 }

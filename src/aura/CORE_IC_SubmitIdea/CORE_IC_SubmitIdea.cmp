@@ -88,7 +88,7 @@
                 </label>
                 <div class="slds-form-element__control">
                     <div class="slds-select_container">
-                        <select id="select-01" class="slds-select" onchange="{!c.changeCategoryList}">
+                        <select id="select-01" class="slds-select new-drop" onchange="{!c.changeCategoryList}">
                             <aura:iteration items="{!v.campaignNameList}" var="campaignName" >
                                 <option text="{!campaignName}"/>
                             </aura:iteration>
