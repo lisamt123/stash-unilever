@@ -11,10 +11,17 @@ class DMS_ContactTriggerHelper_Test {
             DMS_ContactTriggerHelper contactHelper = new DMS_ContactTriggerHelper();
             Account accountDistributor = DMS_SObjectInstance_Test.createAccount('Distributor','DistributorCode', null, null, DMS_RecordTypeMemory.getRecType('Account', 'Distributor'), ownerUser.id,NULL, true);
             Account accountStore = DMS_SObjectInstance_Test.createAccount('Store1','Store1Code', accountDistributor.id, 'APROV', DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer'), ownerUser.id, SALES_CHANNEL, true);                        
+
             Contact contactUser = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'Test', null,true);
             Contact contactTest = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'Test', null,true); 
             User createdUser = DMS_SObjectInstance_Test.createUserPartner(contactTest.Id,'testContact@trigger.com',true); 
             aTeamList = [SELECT id FROM AccountTeamMember WHERE AccountId =: accountStore.id];
+
+            Contact contact1 = DMS_SObjectInstance_Test.createContact(accountDistributor.Id,'Test', null,true);            
+            User createdUser = DMS_SObjectInstance_Test.createUserPartner(contact1.Id,'testCountStore@test.com',true); 
+            contact1.Email = 'contactHelper@test.com';
+            Database.update(contact1);
+
             
             System.assert(aTeamList.size() == 0);
             
