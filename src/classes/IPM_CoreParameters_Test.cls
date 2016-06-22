@@ -115,7 +115,6 @@ private with sharing class IPM_CoreParameters_Test {
             insert corehelpsList;
             List < IPM_CorePara_helps_example__c > coreParamHelpList = [SELECT id, IPM_Answer__c FROM IPM_CorePara_helps_example__c WHERE IPM_Answer__c = : IPM_ConstantUtils.IMPROVEMENT LIMIT 1];
             system.assertEquals(coreParamHelpList[0].IPM_Answer__c, IPM_ConstantUtils.IMPROVEMENT, common_STR + space_STR + IPM_ConstantUtils.IMPROVEMENT);
-            IPM_Coreparameters corPrm=new IPM_Coreparameters();
             List < IPM_Company_Card__c > companyCardList = new List < IPM_Company_Card__c > ();
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
             companyCardList.add(globalCompanyCard);
@@ -248,8 +247,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.projbetlink = 'testProjectName';
             sic.betName = 'testBetName';
             // Test class constructor invocation : NO SONAR 
-            IPM_Coreparameters.IPM_BET_BETWrapper sicWrap = new IPM_Coreparameters.IPM_BET_BETWrapper(bWrapper);
-
             Test.stopTest();
 
         }
@@ -261,7 +258,7 @@ private with sharing class IPM_CoreParameters_Test {
     static testmethod void  testgetCoreStrategicIntent(){
          initializedData();
          system.RunAs(userInitialize) {
-         	Test.startTest();
+            Test.startTest();
              sic.answerone_STR=IPM_ConstantUtils.IMPROVEMENT;
              sic.answertwo_STR=IPM_ConstantUtils.NOCHANGE;
              sic.answerthree_STR=IPM_ConstantUtils.BASE;
@@ -271,7 +268,7 @@ private with sharing class IPM_CoreParameters_Test {
              sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
              sic.getCoreStrategicIntent();
             system.assertEquals(sic.IPM_Coreparameter.IPM_ProjectSubType__c,IPM_ConstantUtils.IPM_BLG,'Load Strategic Intent For BLG Project'); 
-         	Test.stopTest();
+            Test.stopTest();
          }
     }
         

@@ -838,7 +838,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     private void getOperationalMyViewWrappers()
 	{    
-	   String firstFinancialId = '';
 	    
 	    List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
 	    String projectId = project.Id;

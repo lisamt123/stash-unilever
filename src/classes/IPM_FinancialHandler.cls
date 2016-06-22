@@ -367,7 +367,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     public void beforeInsert(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface && newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !newFinancial.Financial_External_ID__c.contains(IPM_ConstantUtils.FINANCIAL_NONKEY) 
-        IPM_Financial__c newfinancial = (IPM_Financial__c)so;
+        
     }
     
     /**

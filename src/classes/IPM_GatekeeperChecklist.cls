@@ -163,7 +163,7 @@ public with sharing class IPM_GatekeeperChecklist{
             } 
           
             // Get BET status and Set BET Gatekeeping answer
-	        List<IPM_Questionnaire__c> tempListGK  = new List<IPM_Questionnaire__c>();
+	        
 	        for(IPM_Questionnaire__c ipmQue : gkChecklist) 
 	        {
             	if(String.isNotBlank(ipmQue.DependentFieldAPIName__c))
