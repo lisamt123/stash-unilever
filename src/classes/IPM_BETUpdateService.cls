@@ -116,12 +116,15 @@ public without sharing class IPM_BETUpdateService{
     //Get BET Updates from BET
     public static void updateIPM(Id BETId, BET_BETWrapper BET, list<string> updatedFields, id userId){
         // Call IPM BET helper class method to update BET Milestones Due date for First Release & Final Release Milestones
+        
+       	list <IPM_Project__c> associatedProjectList = [select id, BET_First_Release_Missed__c, BET_Final_Release_Missed__c, BETCurrentStatus__c from IPM_Project__c where bet__c = : BET.betid limit 50000];
+       	
         for(string betField :updatedFields){
             // Call helper method for BET Status change
             if(betField.tolowercase().indexOf(BET_FIELD_STATUS)!=-1){
                 
-                list <IPM_Project__c> associatedProjectList = [select id, BET_First_Release_Missed__c, BET_Final_Release_Missed__c, BETCurrentStatus__c from IPM_Project__c where bet__c = : BET.betid limit 50000];
-    		IPM_BETHelper.updateCurrentBETStatusOnProject(BET,associatedProjectList);
+                // Update Current status of BET on Project
+    			IPM_BETHelper.updateCurrentBETStatusOnProject(BET,associatedProjectList);
 
                 IPM_BETHelper.resetMilestoneMissedFlag(BETId,BET);    
                 //Call method to update Phase on Final Release BET Milestone
