@@ -9141,7 +9141,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ipmFinSummaryGMbps</shortDescription>
-        <value>GM Y1 bps vs DNDS</value>
+        <value>GM Y1 vs Av Cannibalised GM bps</value>
     </labels>
     <labels>
         <fullName>ipmFinSummaryIRR</fullName>

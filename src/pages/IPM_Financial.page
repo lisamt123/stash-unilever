@@ -246,7 +246,7 @@
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
                                                                     <!-- Rendered when IPM Financial object is updateable and project span is Global and project phase is not Ideas and current mode is not edit view-->    
-                                                                    <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}">
+                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditMode), isConsolidated)}">
                                                                      <!-- Rendered when record is editable and project phase is not PLE-->   
                                                                         <apex:outputPanel rendered="{!toShowEditButton}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
@@ -475,6 +475,26 @@
     
                                                         <!-- Rollup Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
+                                                            <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
+                                                                <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditModeBottomUp), isConsolidated)}">
+                                                                     <!-- Rendered when record is editable and project phase is not PLE-->   
+                                                                     <apex:outputPanel rendered="{!toShowEditButton}">                                                                     
+                                                                        <apex:commandButton styleclass="ipmButton primary" action="{!editFinancialsBottomUp}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()" value="{!$Label.IPM_EDIT}"/> 
+                                                                     </apex:outputPanel> 
+                                                                 </apex:outputPanel>
+                                                                 <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditModeBottomUp, false)}">
+                                                                       <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}
+                                                                       </div>
+                                                                       <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
+                                                                       </apex:actionFunction>
+                                                                       <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}
+                                                                       </div>
+                                                                       <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="finacialButtons,errorPanel,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
+                                                                       </apex:actionFunction>
+                                                                   </apex:outputPanel>
+                                                            </div> 
                                                             <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
                                                                 financialsInnovation="{!financialsInnovation}"
                                                                 financialsCalendar="{!financialsCalendar}"
@@ -483,6 +503,7 @@
                                                                 fieldSuffix="{!fieldSuffix}"
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
+                                                                isEditMode="{!isEditModeBottomUp}"
                                                             />
                                                         </div>                            
                                                     </div>

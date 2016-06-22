@@ -598,6 +598,9 @@ public class IPM_FinancialController_Test {
                 ipmFinCon.editFinancials();
                 system.assertEquals(ipmFinCon.isEditMode, true,'Edit mode is invalid');
                 
+                ipmFinCon.editFinancialsBottomUp();
+                system.assertEquals(ipmFinCon.isEditModeBottomUp , true,'Edit BottomUp mode is invalid');
+                
                 ipmFinCon.BI = PROJECT_BI_LARGE;
                 ipmFinCon.saveFinancials();
                 //assert missing

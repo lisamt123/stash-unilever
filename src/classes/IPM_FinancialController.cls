@@ -12,6 +12,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
     
     public Boolean isEditMode {get; set;} //Boolean variable to define if the page is in edit mode
+    public Boolean isEditModeBottomUp {get; set;} //Boolean variable to define if the page is in edit mode
     public Boolean isEditable{get;set;} //Boolean Variable to define if the record is editable by the current logged in user
     public Boolean isValidationFailed {get;set;} //Boolean variable to check the financial data validation
     public Boolean isy0TurnoverInvalid {get;set;} //Boolean variable to highlight the y0Turnover cell if the value is invalid
@@ -264,6 +265,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 //upto here                 
                 isEditMode = FALSE; 
+                isEditModeBottomUp = false;
+                
                 Boolean result = validateMilestoneAndFinacialData();
                 if(result) {
                     milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
@@ -1504,7 +1507,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             getFinancials();
             getMisalignmentVisibility();
-            isEditMode = FALSE;            
+            isEditMode = FALSE;
+            isEditModeBottomUp = false;            
             validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
             validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } 
@@ -1530,6 +1534,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getFinancials();
             getMisalignmentVisibility();
             isEditMode = FALSE;
+            isEditModeBottomUp = false;
             validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
             validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } 
@@ -1550,9 +1555,24 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void editFinancials() {
         try{
             isEditMode = true;
+            isEditModeBottomUp = false;
+            
 			if(toShowEditOpern||toShowEditButton){
                 isCopyfromSTDBC=true;   
             }
+           
+        } catch (Exception eX){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                   IPM_ConstantUtils.EXCEPTION_EDITFINANCIALS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            isError = true;
+            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        }
+    }
+    
+    public void editFinancialsBottomUp() {
+        try{
+            isEditModeBottomUp = true;
+            isEditMode = false;
            
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
@@ -1576,6 +1596,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             Boolean isCalendarValidationFailed = false;
             Boolean isInnovationValidationFailed = false;
             isEditMode = false;
+            isEditModeBottomUp = false;
+            
                  //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
                   saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
                   saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
