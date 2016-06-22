@@ -421,4 +421,7 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
+    <pluralLabel>ProductCategory</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Read</sharingModel>
 </CustomObject>

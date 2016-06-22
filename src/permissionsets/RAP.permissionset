@@ -3984,7 +3984,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Amr_Job_Details__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -4011,7 +4011,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Amr_Quote__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -4020,7 +4020,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Amr_Saving__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>

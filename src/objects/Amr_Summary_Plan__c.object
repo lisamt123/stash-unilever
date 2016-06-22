@@ -572,7 +572,7 @@
         </filterItems>
         <isOptional>false</isOptional>
         <name>Amr Summary Plan_Big C</name>
-    </namedFilters>	
+    </namedFilters>		
     <pluralLabel>ProductCategory</pluralLabel>
     <searchLayouts/>
     <sharingModel>Read</sharingModel>	
