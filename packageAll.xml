@@ -307,8 +307,7 @@
     <types>
         <members>*</members>
         <name>WaveTemplateBundle</name>
-    </types>        
-    <version>37.0</version>        
+    </types>               
     <types>
         <members>*</members>
         <name>Workflow</name>
