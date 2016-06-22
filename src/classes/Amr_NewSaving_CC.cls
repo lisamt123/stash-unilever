@@ -104,9 +104,12 @@ public with sharing class Amr_NewSaving_CC {
             alertValue = null;
             IsCloneSaved = false;
             jobId = ApexPages.CurrentPage().getParameters().get(Amr_ConstantForAdManager.ID); 
+           
+            
        }
     catch(Exception e){
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Invalid_Job_Id));
+           System.debug('msg -> ' + e.getMessage());
            savingMessages = true;
            return;
     }
@@ -145,7 +148,12 @@ public with sharing class Amr_NewSaving_CC {
         }
         
         if(!String.isBlank(savingObjId) && !IsCloneSaved){
+<<<<<<< HEAD
                 
+=======
+        
+        /*        
+>>>>>>> develop
         acceptedQuoteNew=[select Saving__r.Saving_Average_of_Quotes__c,Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
                                            Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
                                            Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
@@ -153,11 +161,31 @@ public with sharing class Amr_NewSaving_CC {
                                            CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
                                            Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
                                            Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c =:savingObjId AND Is_Accepted__c =:true];
+<<<<<<< HEAD
                                            
+=======
+        */
+         
+         acceptedQuoteNew=[select Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,                                           
+                                           Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,                                           
+                                           CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,                                           
+                                           id,Folder__c from Amr_Quote__c where Saving__c =:savingObjId AND Is_Accepted__c =:true];                                  
+        /*                                   
+>>>>>>> develop
            savingObjNew =  [select Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
                                No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films_List__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Id=:savingObjId limit 1];
         
+<<<<<<< HEAD
+=======
+        */
+        
+        
+        savingObjNew =  [select Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
+                               No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films_List__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,
+                               (select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Id=:savingObjId limit 1];
+        
+>>>>>>> develop
         
         acceptedQuote   = acceptedQuoteNew.clone(false,true,false,false);
         savingObj       = savingObjNew.clone(false,true,false,false);
@@ -178,7 +206,11 @@ public with sharing class Amr_NewSaving_CC {
    ********************************************************************/ 
     public Pagereference SaveQuoteAndSavingData(){
 
+<<<<<<< HEAD
         alertValue = '';
+=======
+        alertValue = 'Testing';
+>>>>>>> develop
                 
         try{
            boolean okayToSave = true;
@@ -213,12 +245,19 @@ public with sharing class Amr_NewSaving_CC {
                 savingMessages = true;
                  okayToSave=false;
             }*/
+            /*
+            selectedCountry = new Set<String>();
+            for(String str1:selectedCountryOld) {
+                System.debug('HERE  ->  ' + str1);
+                selectedCountry.add(str1);
+            }    */
             
             if(!okayToSave){
             return null;
             
             }else{
             if(selectedCountry.size()>0){
+                    savingObj.Shoot_Location__c = null;
                     for(String str : selectedCountry){
                         if(savingObj.Shoot_Location__c == null){
                             savingObj.Shoot_Location__c = str ;
@@ -496,8 +535,12 @@ public with sharing class Amr_NewSaving_CC {
     }
     
     public void getCaProcessMangCategory(){
+<<<<<<< HEAD
         Amr_Saving__c savingObjTemp = new Amr_Saving__c();
 		savingObjTemp.Production_Type__c = '';
+=======
+        System.debug('Process Management Category');
+>>>>>>> develop
     }
     
     

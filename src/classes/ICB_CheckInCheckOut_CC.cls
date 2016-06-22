@@ -51,7 +51,11 @@ public with sharing class ICB_CheckInCheckOut_CC
         
         try
         {
+<<<<<<< HEAD
             Territory__c lTerritory = [SELECT Id, User__c, Territory_ID__c FROM Territory__c WHERE Id =: UserInfo.getUserId()];
+=======
+            Territory__c lTerritory = [SELECT Id, User__c, Territory_ID__c FROM Territory__c WHERE User__c =: UserInfo.getUserId()];
+>>>>>>> develop
             String lTerritoryLike = '%'+lTerritory.Territory_ID__c+'%';
             
             List< ContentDocument > lstCon = [SELECT Id, CreatedDate, Title FROM ContentDocument Where Title LIKE :lTerritoryLike
