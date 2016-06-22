@@ -180,7 +180,11 @@
     <types>
         <members>*</members>
         <name>FlowDefinition</name>
-    </types>    
+    </types>
+    <types>
+        <members>*</members>
+        <name>GlobalPicklist</name>
+    </types>         
     <types>
         <members>*</members>
         <name>Group</name>
@@ -264,6 +268,11 @@
         <name>Scontrol</name>
     </types>  
     <types>
+        <members>BET</members>
+        <members>BETApp</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
         <members>*</members>
         <name>SharingReason</name>
     </types>
@@ -274,10 +283,34 @@
     <types>
         <members>*</members>
         <name>ValidationRule</name>
+    </types>   
+    <types>
+        <members>*</members>
+        <name>WaveApplication</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>WaveDashboard</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveDataflow</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveDataset</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveLens</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveTemplateBundle</name>
+    </types>               
     <types>
         <members>*</members>
         <name>Workflow</name>
     </types>
-    <version>35.0</version>
+    <version>37.0</version>
 </Package>
