@@ -499,6 +499,7 @@ private with sharing class IPM_CoreParameters_Test {
         sic.betName = 'testBetName';
         // Test class constructor invocation : NO SONAR 
         IPM_Coreparameters.IPM_BET_BETWrapper sicWrap = new IPM_Coreparameters.IPM_BET_BETWrapper(bWrapper);
+        system.assert(sicWrap != null, 'Error in wrapper class instantiation');
 
         apexpages.currentpage().getparameters().put(IPM_ConstantUtils.EDITPARAMETER, 'editcore');
         apexpages.currentpage().getparameters().put(IPM_ConstantUtils.ADDITIONALPARAMETER, 'additional');

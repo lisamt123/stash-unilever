@@ -478,23 +478,7 @@ public class IPM_TestFactory_Helper
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
-        
-        //  Create User profile Information
-        Map<String,List<Object>> IPMUserProfileMap =  new Map<String,List<Object>>{
-            'IPM_Business_Partner__c' => new List<Object>{false,false,false},
-            'IPM_Category__c' => new List<Object>{HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE},
-            IPM_CENTRAL_TEAM => new List<Object>{false,false,false},
-            'IPM_Finance_Lead__c' => new List<Object>{false,false,false},
-            'IPM_GateKeeper__c' => new List<Object>{false,false,false},
-            'IPM_Project_Leader__c' => new List<Object>{false,false,false},
-            'IPM_User_Category__c' => new List<Object>{IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT},
-            'IPM_User_Function__c' => new List<Object>{PROJECT_LEADER,PROJECT_LEADER,PROJECT_LEADER},
-            IPM_USER_ROLE => new List<Object>{'MO','MO','MO'},
-            IPM_WORK_LEVEL => new List<Object>{'WL1','WL1','WL1'},
-            'IPM_Company_Card__c' => new List<Object>{companyCardList[0],companyCardList[1],companyCardList[2]},
-            'IPM_User__c' => new List<Object>{userList[0].Id,userList[1].Id,userList[2].Id}
-        };
-        
+
         
         return userList;
     }

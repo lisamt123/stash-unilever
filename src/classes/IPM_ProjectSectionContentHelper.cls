@@ -351,7 +351,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                 IPM_Project__c parentProject = null;
                 List<IPM_Gate_CMI__c> parentProjectCMIGates = new List<IPM_Gate_CMI__c>();
                 
-                IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(currentProject);
                 
                 List<IPM_Gate_CMI__c> targetCMIRecords = new List<IPM_Gate_CMI__c>();
                 
