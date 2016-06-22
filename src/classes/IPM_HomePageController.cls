@@ -302,14 +302,19 @@ public with sharing class IPM_HomePageController
       + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size()+ finDataMissingAlertMessageMap.size();
 
    }    
-    
+    /********************************************************************************
+     *@Description : get overall tasks count on My Todos list tab
+     *@Param: none
+     *@Return :  task count
+    *********************************************************************************/
+     
     public String getTaskcountValue(){
 		//create map of task type and task list
     	map<string,List<IPM_Task__c>> updatedTaskListMap = new map<string,List<IPM_Task__c>>{'overdue'=> new List<IPM_Task__c>(),'today'=> new List<IPM_Task__c>(),'nextseven'=> new List<IPM_Task__c>(),'later'=> new List<IPM_Task__c>() };
     	Integer taskCount =0;
     	
     	//get all task list 
-    	list<IPM_Task__c> existingTaskList = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Project__c,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_PM_Approach__c,IPM_Assignee__c,IPM_Due_Date1__c
+    	list<IPM_Task__c> existingTaskList = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Project__c,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_PM_Approach__c,IPM_Assignee__c,IPM_Due_Date1__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c
     										  FROM IPM_Task__c 
 											  WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false  LIMIT 50000];
 		

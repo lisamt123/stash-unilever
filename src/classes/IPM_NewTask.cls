@@ -10,6 +10,7 @@ public with sharing class IPM_NewTask {
     private static final string DO_SAVE_TASKS = 'doSaveTasks';
     private static final String PERCENT_SIGN = '%';
     private static final String ERROR = 'Error';
+    private static final String SPACE = ' ';
     private map<string,Id> assigneeIdName;
     public IPM_Task__c tasks{get;set;} // To intialize the tasks
     public IPM_Project__c projectObject{get;set;} // Getting the project details
@@ -108,7 +109,7 @@ public with sharing class IPM_NewTask {
                     list<IPM_Project_Document_Section__c> proDocSecList = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Default_Section__c,IPM_FunctionalRole__c from IPM_Project_Document_Section__c where Id =:proDocSecId ];
                     if(proDocSecList != NULL && !proDocSecList.isEmpty()){
                         tasks.IPM_Function__c = proDocSecList[0].IPM_FunctionalRole__c;
-                        sectionValue = string.valueOf(proDocSecList[0].IPM_Section_Sequence__c+IPM_ConstantUtils.BLANK+proDocSecList[0].IPM_Section_Name__c);
+                        sectionValue = string.valueOf(proDocSecList[0].IPM_Section_Sequence__c+ SPACE +proDocSecList[0].IPM_Section_Name__c);
                         selectedSectionId  = proDocSecList[0].id;
                     }
                 }
@@ -529,7 +530,7 @@ public with sharing class IPM_NewTask {
                                 {
                                     if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
                                     {
-                                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+IPM_ConstantUtils.BLANK+docsections.IPM_Section_Name__c));
+                                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
                                         SectionToExtenalIdSectionMap.put(docsections.Id,docsections.External_ID__c);
                                     }   
                                } 
@@ -548,7 +549,7 @@ public with sharing class IPM_NewTask {
                           {
                                 if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
                                 {
-                                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+IPM_ConstantUtils.BLANK+docsections.IPM_Section_Name__c));
+                                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
                                     projectDocSectionToSectionMap.put(docsections.Id,docsections.IPM_Section__c);
                                     SectionToExtenalIdSectionMap.put(docsections.Id,docsections.IPM_Section__r.External_ID__c); 
                                 }  
@@ -690,7 +691,7 @@ public with sharing class IPM_NewTask {
 	            {
 	                if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
 	                {
-	                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+IPM_ConstantUtils.BLANK+docsections.IPM_Section_Name__c));
+	                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
 	                    SectionToExtenalIdSectionMap.put(docsections.Id,docsections.External_ID__c);
 	                }   
 	           } 
@@ -708,7 +709,7 @@ public with sharing class IPM_NewTask {
 	              {
 	                    if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
 	                    {
-	                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+IPM_ConstantUtils.BLANK+docsections.IPM_Section_Name__c));
+	                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
 	                        projectDocSectionToSectionMap.put(docsections.Id,docsections.IPM_Section__c);
 	                        SectionToExtenalIdSectionMap.put(docsections.Id,docsections.IPM_Section__r.External_ID__c); 
 	                    }  
@@ -772,8 +773,10 @@ public with sharing class IPM_NewTask {
 		List<SelectOption> options = new List<SelectOption>();
 		
 		//check if section is selected
-		if(selectedSectionId == null || string.isNotBlank(selectedSectionId) )
+		if((selectedSectionId == null || string.isBlank(selectedSectionId)) ){
 			return options;
+		}
+			
 			
 		options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
 		
@@ -813,7 +816,7 @@ public with sharing class IPM_NewTask {
 		
 		string taskIOwner = '';
 		
-		if(tasks.IPM_Function__c == null || string.isnotBlank(tasks.IPM_Function__c))
+		if(tasks.IPM_Function__c == null || string.isBlank(tasks.IPM_Function__c))
 			return taskIOwner;
 		
 		//get user name

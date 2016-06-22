@@ -138,8 +138,8 @@ public with sharing class IPM_MyList{
     public static final String DESCNULLSLAST_STR = ' DESC NULLS LAST';
     public static final String ASCNULLSLAST_STR = ' ASC NULLS LAST';
     public static final String IPM_MYLIST_STR = IPM_MyList.class.getName();
-    public static final String SELECTQUERY_STR = 'select ipm_completed__c,ipm_project__r.ipm_category_icon__c,ipm_project_document_section__r.ipm_section_sequence__c,ipm_project_document_section__r.ipm_section_name__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,';
-    public static final String QUERY_FIELDS_STR = 'IPM_Function__c,IPM_Project_Document_Section__c,IPM_Assignee__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,IPM_Master_Task__c,';
+    public static final String SELECTQUERY_STR = 'select ipm_completed__c,ipm_project__r.ipm_category_icon__c,ipm_project_document_section__r.ipm_section_sequence__c,ipm_project_document_section__r.ipm_section_name__c,';
+    public static final String QUERY_FIELDS_STR = 'IPM_Function__c,IPM_Project_Document_Section__c,IPM_Assignee__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,IPM_Master_Task__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,';
     public static final String QUERY_FIELDS1_STR = 'IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.IPM_Project_Type__c, IPM_Task_Type__c,IPM_Task_Name__c,IPM_Phase__c,IPM_Due_Date1__c FROM IPM_Task__c';
     public static final String QUERY_WHERE_PROJECTNAME_STR = ' and IPM_Project__r.Name IN';
     public static final String QUERY_WHERE_PHASE_STR =  ' and ipm_project__r.ipm_phase__c in';

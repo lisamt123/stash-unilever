@@ -595,7 +595,6 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			}
 			
 			update projDocSec;
-			IPM_Project_Document_Section__c testSection1 = [Select id, IPM_Gate_Document_Summary__c from IPM_Project_Document_Section__c where id =: projDocSec.Id];
 			
 			
 			if(projDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED){
@@ -679,8 +678,6 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			
 			if(!lstupdatedResource.isEmpty()){
 				update lstupdatedResource;
-				
-				IPM_Project_Document_Section__c testSection = [Select id, IPM_Gate_Document_Summary__c from IPM_Project_Document_Section__c where id =: projDocSec.Id];
 				
 				lstupdatedResource.clear();
 			}
@@ -770,8 +767,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskid limit 50000];
             
             Boolean isTaskComplete = tObj[0].IPM_Completed__c;
-            tObj[0].IPM_Completed__c = isTaskComplete == true ? false : true; 
-            tObj[0].IPM_Completed_Date__c = isTaskComplete == true ? null :system.today() ;
+            tObj[0].IPM_Completed__c = isTaskComplete ? false : true; 
+            tObj[0].IPM_Completed_Date__c = isTaskComplete  ? null :system.today() ;
             
             updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
             updatedTaskList.add(tObj[0]);
