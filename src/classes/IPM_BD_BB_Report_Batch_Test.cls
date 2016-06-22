@@ -362,6 +362,24 @@ private class IPM_BD_BB_Report_Batch_Test {
             IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
             database.executebatch(batchs,100);  
             
+            string cppRec ;
+            cppRec = batchs.calculateCPP(40000.00, 400000000.00);
+            system.assertequals(cppRec,'Gold','CPP value is not Gold'); 
+            
+            cppRec = batchs.calculateCPP(2.00, 1000.00);
+            system.assertequals(cppRec,'Silver','CPP value is not SILVER'); 
+            
+            cppRec = batchs.calculateCPP(0.20, 1000.00);
+            system.assertequals(cppRec,'Bronze','CPP value is not BRONZE'); 
+            
+            double turnOverVal;
+            IPM_Financial_Year__c fr = lstFinancialYear[0];
+            
+            turnOverVal = batchs.getTurnOver(fr, True, 'TURNOVER' );
+            system.assertequals(fr.Turnover_Global__c,turnOverVal,'Turnover value for global is same'); 
+            
+            turnOverVal = batchs.getTurnOver(fr, false, 'TURNOVER' );
+            system.assertequals(fr.Turnover_Regional__c,turnOverVal,'Turnover value for Regional is same');
             
         }  
          

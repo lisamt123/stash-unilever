@@ -129,7 +129,7 @@ src/email/VEP_Templates/VEP_Send_Email_to_Visitor_about_Travel_Status.email-meta
 src/workflows
 src/workflows/Vep_Visitor__c.workflow
 src/labels
-src/labels/CustomLabels.labels
+src/labels/VEP.labels
 src/pages/VEP_VisitorPass_Dashboard.page
 src/pages/VEP_VisitorPass_Dashboard.page-meta.xml
 src/tabs/Visitor_Dashboard.tab

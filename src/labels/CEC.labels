@@ -1,10 +1,56 @@
     <labels>
+        <fullName>CEC_AccountName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_AccountName</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Account_Site</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Account_Site</shortDescription>
+        <value>Account Site</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Add_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Add Product</shortDescription>
+        <value>Add Product</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Address</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
         <fullName>CEC_AlertActionSchedulerName</fullName>
         <categories>CEC: Label</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_AlertActionSchedulerName</shortDescription>
         <value>CEC AlertAction Scheduler</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ApprovedFulfilmentError</fullName>
+        <categories>CEC:Fulfilment_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ApprovedFulfilmentError</shortDescription>
+        <value>No operations are allowed on Approved Fulfilment</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Brand</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Brand</shortDescription>
+        <value>Brand</value>
     </labels>
     <labels>
         <fullName>CEC_CBM_NotificationBodyFooter</fullName>
@@ -39,6 +85,21 @@
         <value>The fulfilment cannot be created without an Account attached to the Case</value>
     </labels>
     <labels>
+        <fullName>CEC_CaseAccountMissing_retrieval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountMissing_retrieval</shortDescription>
+        <value>The retrieval request cannot be created without an Account attached to the Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseAccountPersonAddressMissing</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountPersonAddressMissing</shortDescription>
+        <value>One of the Account value MailingStreet/MailingCity/MailingState/MailingCountry/MailingPostalCode/ should be available</value>
+    </labels>
+    <labels>
         <fullName>CEC_CaseAccountPersonDetailsError</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -47,12 +108,36 @@
         <value>One of the Account value MailingStreet/MailingCity/MailingState/MailingCountry/MailingPostalCode should be available for creating the Fulfilment.</value>
     </labels>
     <labels>
+        <fullName>CEC_CaseAccountPersonPhoneMissing</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountPersonPhoneMissing</shortDescription>
+        <value>Account Phone number is missing</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseCountryVerbitimMessage</fullName>
+        <categories>CEC:CaseErrorMsg</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseCountryVerbitimMessage</shortDescription>
+        <value>Country and Verbatim is mandatory for this case</value>
+    </labels>
+    <labels>
         <fullName>CEC_CaseNumber</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_CaseNumber</shortDescription>
         <value>Case#</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseRefreshAlertError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC CaseRefreshAlertError</shortDescription>
+        <value>Please save changes to your case record and check the \&apos;Case Action\&apos; tab for Surveys</value>
     </labels>
     <labels>
         <fullName>CEC_Case_Factory_Survey_Reference</fullName>
@@ -76,6 +161,62 @@
         <protected>false</protected>
         <shortDescription>CEC_Category</shortDescription>
         <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChatSurveySchedulerName</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChatSurveySchedulerName</shortDescription>
+        <value>CEC Chat Survey Scheduler</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_ChequeNo_Already_Added</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_ChequeNo_Already_Added</shortDescription>
+        <value>Cheque number has already been added to the fulfilment</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_DetailsMissing</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_DetailsMissing</shortDescription>
+        <value>No active cheque book details present for this Brand &amp; Product Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_MaxLimt_reached</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_MaxLimt_reached</shortDescription>
+        <value>Cheque Book max limit has been reached.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_input_fields_missing</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_Input_Fields_Missing</shortDescription>
+        <value>Either Brand, Country or Product Category information is missing.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_City</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ClickHere</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ClickHere</shortDescription>
+        <value>Click Here!</value>
     </labels>
     <labels>
         <fullName>CEC_Console_Message1</fullName>
@@ -182,6 +323,43 @@
         <value>Update action cannot be performed. Consumer record is already associated with the case record.</value>
     </labels>
     <labels>
+        <fullName>CEC_ContactEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ContactEmail</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ContactName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ContactName</shortDescription>
+        <value>Contact Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ContactPhone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ContactPhone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Country</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Country_region</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Country_region</shortDescription>
+        <value>Country/region</value>
+    </labels>
+    <labels>
         <fullName>CEC_CreateContactDisplay</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -196,6 +374,45 @@
         <protected>false</protected>
         <shortDescription>Create_Button</shortDescription>
         <value>Create</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_Already_Added</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_Already_Added</shortDescription>
+        <value>Debit Card details are already been added</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_Input_Fields_Missing</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_Input_Fields_Missing</shortDescription>
+        <value>Mandatory information is not present (Date of Birth, Account, Country, Mailing Address, Local Identifier)</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_InsufficientPrivileges</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_InsufficientPrivileges</shortDescription>
+        <value>Insufficient Privileges to add/update Debit Card details to Fulfilment</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</shortDescription>
+        <value>There is no Active debit card present for this country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Delisted_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Delisted Product</shortDescription>
+        <value>* DELISTED PRODUCT *</value>
     </labels>
     <labels>
         <fullName>CEC_Detail_Request_Info</fullName>
@@ -214,6 +431,46 @@
         <value>records are being displayed</value>
     </labels>
     <labels>
+        <fullName>CEC_Distance</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Distance</shortDescription>
+        <value>Distance</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DuplicateRetrievalRequestError</fullName>
+        <categories>CEC:Retrieval_Request_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DuplicateRetrievalRequestError</shortDescription>
+        <value>Retrieval Request already added to the Fulfilment</value>
+    </labels>
+    <labels>
+        <fullName>CEC_E_VoucherDetails_Already_Added</fullName>
+        <categories>CEC:E_VoucherDetails_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_E_VoucherDetails_Already_Added</shortDescription>
+        <value>E-Voucher details are already been added</value>
+    </labels>
+    <labels>
+        <fullName>CEC_E_VoucherDetails_Input_Fields_Missing</fullName>
+        <categories>CEC:E_VoucherDetails_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_E_VoucherDetails_Input_Fields_Missing</shortDescription>
+        <value>Mandatory information is not present (Date of Birth, Account, Country, Mailing Address, Local Identifier, Account Email id)</value>
+    </labels>
+    <labels>
+        <fullName>CEC_E_VoucherDetails_InsufficientPrivileges</fullName>
+        <categories>CEC:E_VoucherDetails_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_E_VoucherDetails_InsufficientPrivileges</shortDescription>
+        <value>Insufficient Privileges to add/update E-voucher details to Fulfilment</value>
+    </labels>
+    <labels>
         <fullName>CEC_Email</fullName>
         <categories>VF page :CEC_NewAccountCase</categories>
         <language>en_US</language>
@@ -228,6 +485,29 @@
         <protected>false</protected>
         <shortDescription>CEC_Email_Label</shortDescription>
         <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Email Subject</shortDescription>
+        <value>Consumer Services Case #:</value>
+    </labels>
+    <labels>
+        <fullName>CEC_EnterMktMappingMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_EnterMktMappingMsg</shortDescription>
+        <value>Please Enter Case Market Mapping to Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_EvoucherDetails_No_Active_EVoucher_For_Country</fullName>
+        <categories>CEC:E_VoucherDetails_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_EvoucherDetails_No_Active_EVoucher_For_Country</shortDescription>
+        <value>There is no Active E-Voucher present for this country</value>
     </labels>
     <labels>
         <fullName>CEC_FirstName</fullName>
@@ -250,6 +530,20 @@
         <protected>false</protected>
         <shortDescription>CEC_Fulfilment_PostOption_otherwise</shortDescription>
         <value>otherwise</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Insufficient_Privileges</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Insufficient Privileges</shortDescription>
+        <value>Insufficient Privileges.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_InvalidChatterGroupName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_InvalidChatterGroupName</shortDescription>
+        <value>Invalid Chatter Group Name :</value>
     </labels>
     <labels>
         <fullName>CEC_Label_Action</fullName>
@@ -297,7 +591,46 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>To display Last Name required message</shortDescription>
-        <value>Last Name: You must enter a value</value>
+        <value>Last Name:You must enter Last Name to search a Consumer</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Latitude</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Latitude</shortDescription>
+        <value>Latitude</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Local_Indentifier</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Local Indentifier</shortDescription>
+        <value>Local Indentifier</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Longitude</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Longitude</shortDescription>
+        <value>Longitude</value>
+    </labels>
+    <labels>
+        <fullName>CEC_MandatoryRetrievalActionError</fullName>
+        <categories>CEC:Retrieval_Request_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_MandatoryRetrievalActionError</shortDescription>
+        <value>Retrieval Action is mandatory to submit the request.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Mandatory_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Mandatory Message</shortDescription>
+        <value>Product Information is missing.</value>
     </labels>
     <labels>
         <fullName>CEC_Marketing_Opt_in</fullName>
@@ -330,6 +663,21 @@
         <value>Missing Information</value>
     </labels>
     <labels>
+        <fullName>CEC_Multilanguage_Birth</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Multilanguage_Birth</shortDescription>
+        <value>Birth-Nascimento-Nacimiento-Geburt-La naissance-Nascita-誕生-Födelse-출생-分娩-Geboorte-Fødsel-syntymä-рождение</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Name</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
         <fullName>CEC_NewCaseError</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -352,6 +700,30 @@
         <protected>false</protected>
         <shortDescription>Save case record before add a new consumer.</shortDescription>
         <value>Please save the pending changes to the case record first and then search the Consumer to link to the case. If a new Consumer creation is attempted in this transaction, then this Consumer can be found again by Search.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NoAccessForChequeProcess</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForChequeProcess</shortDescription>
+        <value>No Access for Cheque Process</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NoAccessForRetrievalProcess</fullName>
+        <categories>CEC:Retrieval_Request_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForRetrievalProcess</shortDescription>
+        <value>No Access for Retrieval Process</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NoResultFoundMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoResultFoundMsg</shortDescription>
+        <value>No search results found</value>
     </labels>
     <labels>
         <fullName>CEC_No_Cases_are_available_based_on_the_skill</fullName>
@@ -383,6 +755,14 @@
         <protected>false</protected>
         <shortDescription>CEC_OtherDetailsSection</shortDescription>
         <value>Other Details</value>
+    </labels>
+    <labels>
+        <fullName>CEC_PageSize</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PageSize</shortDescription>
+        <value>PageSize</value>
     </labels>
     <labels>
         <fullName>CEC_ParentCaseNumber</fullName>
@@ -425,12 +805,57 @@
         <value>Product</value>
     </labels>
     <labels>
+        <fullName>CEC_ProductCategory</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductCategory</shortDescription>
+        <value>Product Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ProductCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductCode</shortDescription>
+        <value>ProductCode</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ProductLocator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductLocator</shortDescription>
+        <value>Product Locator</value>
+    </labels>
+    <labels>
         <fullName>CEC_Product_Hierarchy</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_Product_Hierarchy</shortDescription>
         <value>Product Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product_Last_Manufactured_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Product Last Manufactured Date</shortDescription>
+        <value>Product Last Manufactured Date</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Product Quantity</shortDescription>
+        <value>Product Quantity</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product_Tag</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product_Tag</shortDescription>
+        <value>Product Tag</value>
     </labels>
     <labels>
         <fullName>CEC_Quick_Code_Change_Error</fullName>
@@ -465,12 +890,80 @@
         <value>Reason Hierarchy</value>
     </labels>
     <labels>
+        <fullName>CEC_RecommendedProducts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RecommendedProducts</shortDescription>
+        <value>Recommended Products</value>
+    </labels>
+    <labels>
         <fullName>CEC_RelatedCases</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_RelatedCases</shortDescription>
         <value>Related Cases</value>
+    </labels>
+    <labels>
+        <fullName>CEC_RetrievalAlreadySubmitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RetrievalAlreadySubmitted</shortDescription>
+        <value>Only new retrieval request can be submitted.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Retrieval_Factory_Analysis_Pending_Error</fullName>
+        <categories>CEC : Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Retrieval Factory Analysis Pending Error</shortDescription>
+        <value>Factory Analysis is still pending.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Retrieval_Initiate_Analysis_Missing</fullName>
+        <categories>CEC : Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Initiate Analysis Missing Product Factory</shortDescription>
+        <value>Product Factory Information is not populated.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Retrieval_Initiate_Analysis_Status_Error</fullName>
+        <categories>CEC : Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Retrieval Initiate Analysis Status Error</shortDescription>
+        <value>Only Completed Retrieval with the status \&apos;Retrieval Complete\&apos; can be sent for analysis.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Retrieval_Process_rebook_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Retrieval Process rebook error</shortDescription>
+        <value>Rebooking is applicable only for scheduled retrieval request</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Role</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Role</shortDescription>
+        <value>Role</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchCountry</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>label for search box.</shortDescription>
+        <value>Search Country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchMarketButtonName</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchMarketButtonName</shortDescription>
+        <value>Go!</value>
     </labels>
     <labels>
         <fullName>CEC_SearchValidationError</fullName>
@@ -481,6 +974,14 @@
         <value>Validation Error : Please fill at least one field in the search form</value>
     </labels>
     <labels>
+        <fullName>CEC_SearchWarningMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchWarningMsg</shortDescription>
+        <value>The search returned more than the maximum number of rows (200). Please refine your search criteria.</value>
+    </labels>
+    <labels>
         <fullName>CEC_Search_Button</fullName>
         <categories>Visualforce Page :CEC_NewAccountContact</categories>
         <language>en_US</language>
@@ -489,12 +990,27 @@
         <value>Search</value>
     </labels>
     <labels>
+        <fullName>CEC_SelectMktMappingMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SelectMktMappingMsg</shortDescription>
+        <value>Please select Market Mapping to transfer the case</value>
+    </labels>
+    <labels>
         <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_Specify Details in Missing Info</shortDescription>
         <value>Please Specify which details are known</value>
+    </labels>
+    <labels>
+        <fullName>CEC_State</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_State</shortDescription>
+        <value>State</value>
     </labels>
     <labels>
         <fullName>CEC_Status</fullName>
@@ -513,6 +1029,44 @@
         <value>Street</value>
     </labels>
     <labels>
+        <fullName>CEC_SurveyLink</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SurveyLink</shortDescription>
+        <value>Survey Link</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SurveyName</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SurveyName</shortDescription>
+        <value>Survey Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SurveyResults</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SurveyResults</shortDescription>
+        <value>Survey Results</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Task_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Task_Description</shortDescription>
+        <value>Your consumer template has been approved by the Quality Check team.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Task_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Task_Subject</shortDescription>
+        <value>Approved correspondence</value>
+    </labels>
+    <labels>
         <fullName>CEC_Title</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -521,11 +1075,36 @@
         <value>Title</value>
     </labels>
     <labels>
+        <fullName>CEC_Unilever_Opt_In</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Unilever_Opt_In</shortDescription>
+        <value>Unilever Opt-In</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ValidChatterTemplate</fullName>
+        <categories>CEC : Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ValidChatterTemplate</shortDescription>
+        <value>Invalid Chatter Template Name :</value>
+    </labels>
+    <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+		<categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
         <value>Please enter a valid Email Template Name.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ZipCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ZipCode</shortDescription>
+        <value>Zip Code</value>
     </labels>
     <labels>
         <fullName>CEC_isFormKnown</fullName>

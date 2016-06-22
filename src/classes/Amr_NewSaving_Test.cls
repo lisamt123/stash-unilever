@@ -64,7 +64,6 @@ public class Amr_NewSaving_Test{
         Amr_NewSaving_CC   savingObject = new Amr_NewSaving_CC ();
         
         savingObject.savingObj = savingObjTest;
-        System.debug('IDDDDD --->' + savingObjTest.id);
         savingObject.jobId = jobDetailsObj.id;
         savingObject.jobDetailObj = jobDetailsObj;
         savingObject.adManagerNumber = 'Ego/12345';

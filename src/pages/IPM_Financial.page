@@ -3,7 +3,7 @@
 *@Description: To manage and display the financials  associated with the IPM project 
 *@Author: Cognizant
 *@Created Date: 13/05/2015             
-*@Copyright © 2015  Unilever  
+*@Copyright © 2015  Unilever   
 ************************************************************************************
 -->
 <apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc">   
@@ -38,13 +38,13 @@
                                             <!-- If project is editable and Phase is NOT PLE-->
 	                                       <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE')}">
                                                 <!-- IF Object type us IPM Financial and object has update rights for loggedin user, and span is Global and Phase is NOT Ideas, and not any rollouterror occured.-->
-	                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
+	                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global',project.IPM_Project_Type__c == 'Original', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
 	                                                <apex:outputPanel id="opCurr" styleClass="selCur">
                                                          <!--Rendered if it is NOT edit mode -->
 	                                                     <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
 	                                                </apex:outputPanel>
                                                     <!--Rendered if it is NOT edit mode -->
-	                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="{!$Label.IPM_Financial_CopyPaste}" rendered="{!NOT(isEditMode)}"/>
+	                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="{!$Label.IPM_Financial_CopyPaste}" rendered="{!isCopyfromSTDBC}"/>
 	                                            </apex:outputPanel>
 	                                        </apex:outputPanel>
 	                                        <!-- 
@@ -110,9 +110,8 @@
                                                             </div> 
                                                             <div class="ipmAcrdnExpand"> 
                                                              <ul class="docFilter accordionFilters">
-                                                                    <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">  
-                                                                        <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
-                                                                            <div class="incHeight" id="flagID">              
+                                                                    <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">
+                                                                             <li class="{!IF(fieldSuffix == 'Global',IF(financial.Status_Global__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Global__c == 'In Progress', $Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Regional',IF(financial.Status_Regional__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Regional__c == 'In Progress',$Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Local',IF(financial.Status_Local__c == 'Submitted',$Label.IPM_SUBMIT_CODE,IF(financial.Status_Local__c == 'In Progress',$Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE)),'')))} finRecord"> <div class="incHeight" id="flagID">
                                                                                 <span class="key wordwrap">
                                                                                     <!-- Rendered if bollean showKeyFinancial is true and custom field IPM_Key_Financial__c is true-->    
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />
@@ -236,12 +235,12 @@
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local.-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated), project.IPMProject_Span__c == 'Local', isEditable)}">
-                                                                        <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_REGIONAL_BC}</div>
+                                                                        <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>
                                                                         <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when project phase is not PLE and project type is not Operational and controller's -->
                                                         			<apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',isTargetLaunchDateMisaligned)}">
-                                                                         <div class="ipmButton secondary" onclick="alignTLDRecords();">{!tldAcceptFromValue}</div>
+                                                                         <div class="ipmButton secondary" onclick="alignTLDRecords();">{! if(isTDLAcceptNBC_Confirm,tldAcceptedBCConfirmed,tldAcceptFromValue)}</div>
                                                                         <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="finacialButtons,rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
@@ -249,7 +248,7 @@
                                                                     <!-- Rendered when IPM Financial object is updateable and project span is Global and project phase is not Ideas and current mode is not edit view-->    
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}">
                                                                      <!-- Rendered when record is editable and project phase is not PLE-->   
-                                                                        <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational')}">
+                                                                        <apex:outputPanel rendered="{!toShowEditButton}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
                                                                         <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
@@ -257,9 +256,9 @@
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when project is updateable as per logged in user's rights and there is no error in controller-->    
-                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,NOT(isEditMode))}"> 
+                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,NOT(isEditMode))}">   
 <!-- Rendered when project phase is not PLE and type is operational-->  
-                                                                        <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c == 'Operational')}">
+                                                                        <apex:outputPanel rendered="{!toShowEditOpern}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
                                                                         <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
@@ -337,10 +336,10 @@
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
                                                                 </apex:actionFunction>
                                                                  <!-- Rendered when local project and localrollout TLD do not match. Misalignment message is displayed. Message is stored in CustomLabel-->
-                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!isTargetLaunchDateMisaligned}">
-                                                                    <div class="misAlignedTLD">
-                                                                        <apex:outputText value="{!validationErrorMessage}"/>
-                                                                    </div>
+                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!AND(isTargetLaunchDateMisaligned,validationErrorMessage != '')}">
+                                                                     <div class="misAlignedTLD">
+                                                                        <apex:outputText value="{!validationErrorMessage}"/> 
+                                                                    </div>  
                                                                 </apex:outputPanel>
                                                                 <!-- Rendered when validation message is not empty. Validation message is set from controller class-->
                                                                 <apex:outputPanel id="milestoneFinanceDataValidationMessagePanel" rendered="{!NOT(milestoneFinanceDataValidationMessage=='')}">
@@ -389,11 +388,8 @@
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
                                                                     fieldSuffix="{!fieldSuffix}"                                                                    
-                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
                                                                     isValidationError="{!isValidationError}"
                                                                     validationErrorMessage="{!validationErrorMessage}"
-                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
-                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                     
                                                                     isEditable="{!isEditable}"
                                                                     showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
@@ -401,6 +397,8 @@
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                     isITOgrtGTO="{!isITOgrtGTO}"
                                                                     isITOgrtGTOCal="{!isITOgrtGTOCal}" 
+                                                                    isValidationErrorCal="{!isValidationErrorCal}" 
+                                                                    validationErrorMessageCal="{!validationErrorMessageCal}" 
                                                                 />
                                                         
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
@@ -431,17 +429,16 @@
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
                                                                     fieldSuffix="{!fieldSuffix}"                                                                    
-                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
                                                                     isValidationError="{!isValidationError}"
                                                                     validationErrorMessage="{!validationErrorMessage}"
-                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
-                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                         isEditable="{!isEditable}"
                                                                         showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
                                                                     project="{!project}"
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                         isITOgrtGTO="{!isITOgrtGTO}"
                                                                         isITOgrtGTOCal="{!isITOgrtGTOCal}"
+                                                                    isValidationErrorCal="{!isValidationErrorCal}"
+                                                                    validationErrorMessageCal="{!validationErrorMessageCal}"
                                                                 />
                                                                 </apex:outputPanel>
                                                         </div>

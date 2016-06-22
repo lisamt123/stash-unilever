@@ -38,7 +38,7 @@ public class CEC_CaseInlineControllerTest{
             insert reasonCodeList;
 
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-            CEC_Case_Market_Mapping__c cmmUK;
+            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
                 if (cmm.Market__c == 'United Kingdom') {
                     cmmUK = cmm;
@@ -77,7 +77,9 @@ public class CEC_CaseInlineControllerTest{
         System.runAs(u) {
             Test.startTest(); 
             Case caseObj = [SELECT Id, Reason_Code__c FROM Case LIMIT 1];           
-            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];
+            mdm_Case_Product__c productObj = [SELECT Id,Product_Status__c FROM mdm_Case_Product__c LIMIT 1];
+            productObj.Product_Status__c = 'Active';
+            update productObj;
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
 
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
@@ -85,6 +87,7 @@ public class CEC_CaseInlineControllerTest{
             
             caseControllerObj.reasonId = reasonObj.Id;
             caseControllerObj.productId = productObj.Id;
+            caseControllerObj.productStatus = productObj.Product_Status__c;
             caseControllerObj.toggleMissingInfoDisplay();
             System.assertEquals(true, caseControllerObj.missingInfoSectionDisplay);
 
@@ -248,7 +251,7 @@ Test method for getCategoryValues method
             
             Case caseObj = new Case();
             insert caseObj;
-            List<mdm_Product_Category__c> prodCategoryList = [SELECT Id FROM mdm_Product_Category__c];
+            List<mdm_Product_Category__c> prodCategoryList = [SELECT Id FROM mdm_Product_Category__c limit 100];
 
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
             CEC_CaseInlineController caseControllerObj = new CEC_CaseInlineController(stdController);
@@ -298,13 +301,16 @@ Test method for updateProductHierarchy method
             Case caseObj = new Case();
             insert caseObj;
             
-            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];
+            mdm_Case_Product__c productObj = [SELECT Id,Product_Status__c FROM mdm_Case_Product__c LIMIT 1];
+            productObj.Product_Status__c = 'Active';
+            update productObj;
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
             
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
             CEC_CaseInlineController caseControllerObj = new CEC_CaseInlineController(stdController);
             caseControllerObj.productId = productObj.Id;
             caseControllerObj.reasonId = reasonObj.Id;
+            caseControllerObj.productStatus = productObj.Product_Status__c;
             caseControllerObj.updateProductHierarchy();
             system.assertEquals(caseControllerObj.productId, productObj.Id);
             Test.stopTest();
@@ -448,13 +454,13 @@ Test method for mapArticleToCase method
             system.assertEquals(1,knCount);
             
             caseControllerObj.getAllRecords();
-            System.assert(caseControllerObj.displayMore==false);
+            System.assertEquals(false, caseControllerObj.displayMore);
             caseObj.RecordTypeId=spamRec[0].Id;
             caseControllerObj.caseRecord=caseObj;
             caseControllerObj.selectQuickcode();
             
             if(spamRec.size()>0){
-                System.assert(caseControllerObj.caseRecord.RecordTypeId==spamRec[0].Id);
+                System.assertEquals(spamRec[0].Id, caseControllerObj.caseRecord.RecordTypeId);
             } 
             Test.stopTest();
         }
@@ -474,13 +480,16 @@ Test method for checkAlertAction method
             caseObj.Reason_Code__c = null;
             update caseObj;
             
-            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];
+            mdm_Case_Product__c productObj = [SELECT Id,Product_Status__c FROM mdm_Case_Product__c LIMIT 1];
+            productObj.Product_Status__c = 'Active';
+            update productObj;
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
 
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
             CEC_CaseInlineController caseControllerObj = new CEC_CaseInlineController(stdController);
             caseControllerObj.productId = productObj.Id;
             caseControllerObj.reasonId = reasonObj.Id;
+            caseControllerObj.productStatus = productObj.Product_Status__c;
                         
             caseObj.Reason_Code__c = reasonObj.Id;
             caseObj.Production_Code__c = null;

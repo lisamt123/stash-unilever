@@ -89,6 +89,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             	Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
             	
             	Set<Id> changedFinancialSet = new Set<Id>();
+				
+		IPM_FinancialHelper.deleteFinancialYears(newFinancialList);
             	
             	for(IPM_Financial__c financial : newFinancialList)
 	            {
@@ -149,8 +151,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
 
                 // Check for Financial Action Standard Update For Sections 
-                IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);
-                 
+                IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);  
+                IPM_FinancialHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial__c>) Trigger.newMap);   
                 for(IPM_Financial__c financial : newFinancialList)
 	            {
 	                IPM_Financial__c oldFinancial = null;

@@ -4,11 +4,12 @@
 * @description  This class is used to test the functionality of IPM_IECompatible class 
 */
 @isTest
-public with sharing class IPM_IECompatible_Test {
+private with sharing class IPM_IECompatible_Test {
    
    
-    public static string USER_AGENT = 'USER-AGENT';
-    public static string MSIE = 'MSIE'; 
+    public static final string USER_AGENT = 'USER-AGENT';
+    public static final string MSIE = 'MSIE'; 
+    public static final string ERROR_MSG ='Invalid browser type'; 
     /**
     *  To test PM_IECompatible class
     *  @name :testIECompatible
@@ -22,7 +23,7 @@ public with sharing class IPM_IECompatible_Test {
         Test.setCurrentPage(Page.IPM_ProjectSearchPage);
         ApexPages.currentPage().getHeaders().put(USER_AGENT , MSIE);
         IPM_IECompatible.ieFix();
-        system.AssertEquals(Apexpages.currentPage().getHeaders().get(USER_AGENT),MSIE,'Browser Mode IE');   
+        System.assertEquals(Apexpages.currentPage().getHeaders().get(USER_AGENT),MSIE, ERROR_MSG);   
         Test.stopTest();
     }
 

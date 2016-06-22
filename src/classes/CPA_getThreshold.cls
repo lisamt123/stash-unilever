@@ -143,7 +143,7 @@ public with sharing class  CPA_getThreshold {
              strToCompare = (strProjectScale.substring(0,strProjectScale.indexOf('('))).trim();
              system.debug('strToCompare----->'+strToCompare);
         }else if(CRRecord.pkl_PWORFDelta_Project_Scale__c!=null && CRRecord.fur_Project_Scale__c== null){
-             strProjectScale = CRRecord.fur_Project_Scale__c;
+             strProjectScale = CRRecord.pkl_PWORFDelta_Project_Scale__c;
              strToCompare = (strProjectScale.substring(0,strProjectScale.indexOf('('))).trim();
              system.debug('strToCompare----->'+strToCompare);
         }

@@ -1,8 +1,8 @@
-<apex:page html-class="noBgImage" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true">
+<apex:page readOnly="true" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
     <!-- sylesheets -->
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
-
+   <apex:composition template="PBS_Header_Template"/>
     <div class="wrapper wrapper-sub-frame">
         <!--<div class="row">
             <div class="col-md-12 col-lg-12">
@@ -50,12 +50,12 @@
         <div class="row">
             <div class="col-md-3 col-lg-3 leftNav">
                 <div class="box center">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="" target="_new" disableOnClick="true">
-                        <apex:image title="Please click on PBS link next to the Home button" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$page.PBS_WelcomePage}" target="_self" disableOnClick="true">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
                     </a>
                 </div>
                 <div class="box center box-center-2">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Collaborate!" href="{!$Page.PC_Forum}" target="innerFrame">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Collaborate!" href="{!$Page.PC_Forum}" target="_self">
                         <apex:image title="Collaborate!" value="{!URLFOR($Resource.PCResources, 'img/hexicons_collaborate.svg')}" />
                     </a>
                 </div>                               
@@ -68,7 +68,7 @@
             </div>
             <div class="col-md-9 col-lg-9">
                 <div class="home-page-right-image">
-                <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_MyProfile}" target="innerFrame">
+                <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_MyProfile}" target="_self">
                    <apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />
                  </a>
                 </div>              
