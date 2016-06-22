@@ -98,20 +98,20 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         // Check required Attributes for the project.
         if(!projectAssociatedWithProjectTypesList.isEmpty())
         {
-            List<IPM_ProjectMetadata__c> projectMetadataList = IPM_Utils.getProjectTypeMetadata(projectAssociatedWithProjectTypesList);
+            List<IPM_Project_Metadata__mdt> projectMetadataList = IPM_Utils.getProjectTypeMetadata(projectAssociatedWithProjectTypesList);
             List<String> mandatoryFieldArray = new List<String>();
             
             for(Integer counter=0;counter < projectAssociatedWithProjectTypesList.size();counter++)
             {
-                IPM_ProjectMetadata__c projectMetadata = projectMetadataList.get(counter);
+                IPM_Project_Metadata__mdt projectMetadata = projectMetadataList.get(counter);
                 IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);   
                 if(project.IPM_IsSaved__c){
                     Set<String> projectmandatoryFieldErrorSet = new Set<String>();
-                    if(projectMetadata!=null && projectMetadata.IPM_Project_Type__c !=null && !String.isBlank(projectMetadata.IPM_Project_Type__c))
+                    if(projectMetadata!=null && projectMetadata.IPM_ProjectType__c !=null && !String.isBlank(projectMetadata.IPM_ProjectType__c))
                     {
-                        if(projectMetadata.IPM_MadatoryFields__c !=null && !String.isBlank(projectMetadata.IPM_MadatoryFields__c))
+                        if(projectMetadata.IPM_MandatoryFields__c !=null && !String.isBlank(projectMetadata.IPM_MandatoryFields__c))
                         {
-                            mandatoryFieldArray = projectMetadata.IPM_MadatoryFields__c.split(IPM_ConstantUtils.COMMA);
+                            mandatoryFieldArray = projectMetadata.IPM_MandatoryFields__c.split(IPM_ConstantUtils.COMMA);
                             for(String fieldAPI : mandatoryFieldArray)
                             {
                                 if(project.get(fieldAPI) == null && projectFieldDesc.containsKey(fieldAPI))
@@ -777,6 +777,24 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         if(insertedProject.IPM_Project_Name__c !=null && !String.isBlank(insertedProject.IPM_Project_Name__c))
         {
             insertedProject.Name = insertedProject.IPM_Project_Name__c;
+            if(insertedProject.IPM_Category_Text__c != null && customSettingCategory != null && customSettingCategory.containsKey(insertedProject.IPM_Category_Text__c))
+            {
+                insertedProject.IPM_Category_Group__c = customSettingCategory.get(insertedProject.IPM_Category_Text__c).IPM_Category_Group__c;
+            } 
+            
+            if(insertedProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+            {
+            	//Setting the default answer for the charter question in case of Global Original project
+            	if(insertedProject.IPMProject_Span__c == IPM_ConstantUtils.IPMGLOBAL && insertedProject.IPM_Approver_of_Charter__c == null){
+	            	insertedProject.IPM_Approver_of_Charter__c  = IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT;
+	            }
+	            
+	            //Setting the default answer of contract or market ready question in case of Regional Original Project
+	            if(insertedProject.IPMProject_Span__c == IPM_ConstantUtils.IPMREGIONAL && insertedProject.IPM_GateKeeping_Model__c == null){
+	            	insertedProject.IPM_GateKeeping_Model__c  = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+	            }	
+            }
+        }
         }
         
         if(insertedProject.Exempt_from_Threshold__c !=null)
@@ -846,6 +864,24 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             {
                 incomingProject.addError(string.format( Label.IPM_PROJECT_PHASE_VALIDATION,new String[]{nextPhaseProjectType.IPM_Phase__c,incomingProject.IPM_Phase__c}) );
             }       
+        }
+        if(incomingProject.IPM_Category_Text__c !=null && customSettingCategory!=null && customSettingCategory.containsKey(incomingProject.IPM_Category_Text__c))
+        {
+            //To add which category group the project belongs.
+            incomingProject.IPM_Category_Group__c = customSettingCategory.get(incomingProject.IPM_Category_Text__c).IPM_Category_Group__c;
+        }
+        
+        if(incomingProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+        {
+        	//Setting the default answer for the charter question in case of Global Original project
+        	if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.IPMGLOBAL && incomingProject.IPM_Approver_of_Charter__c == null){
+            	incomingProject.IPM_Approver_of_Charter__c  = IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT;
+            }
+            
+            //Setting the default answer of contract or market ready question in case of Regional Original Project
+            if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.IPMREGIONAL && incomingProject.IPM_GateKeeping_Model__c == null){
+            	incomingProject.IPM_GateKeeping_Model__c  = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+            }	
         }
         
         if(incomingProject.Is_Archieved__c !=null && incomingProject.Is_Archieved__c && incomingProject.Is_Archieved__c != oldProject.Is_Archieved__c)

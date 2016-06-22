@@ -27,6 +27,13 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     public Boolean isBDuser{get;set;}//used by security
     public Boolean isSDateEdit{get;set;}//used by security
     public Boolean isWarningRequired {get;set;}//used to display warning message when difference between MRD and TLD is less than 6 months
+    public Boolean showTLDInfoIcon{get;set;}
+    public String displayPage{get;set;}
+    public String strLink{get;set;}
+    
+    public static String DEFAULT_TLD_HELPTEXT = 'IPM_Before_Rollout_TLDMilestone_HelpText';
+    public static String DEFAULT_TLD_LINK = 'Go To Project Parameters';
+    public static String DEFAULT_PAGE = 'IPM_CoreParameters';
     
     public Map<String, String> currentSort{get;set;}//sorting variable where the current sort fits in
     //phases by order they appear
@@ -85,8 +92,8 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         if(projectId =='' || projectId ==null){
             projectId = ApexPages.currentPage().getParameters().get('Pid');
         }
-        projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
-                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c  FROM IPM_Project__c WHERE Id =:projectId];
+        projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Project_Leader__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
+                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c, (SELECT Id, Name from IPM_Project_Rollout__r) FROM IPM_Project__c WHERE Id =:projectId];
         projectPhase =  projectObj != null && projectObj.IPM_Phase__c != null ? projectObj.IPM_Phase__c : '';
         initializeMilestones();
         phaseMsList.sort();//customised sort
@@ -130,6 +137,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         for(IPM_Milestone__c eachMilestone : (List<IPM_Milestone__c>)recordList ){
             isDeletable = true;
             isEditable = true;
+            showTLDInfoIcon = false;
             
             // Non Deletable Milestones 
             if(nonDelMS.contains(eachMilestone.IPM_Type_of_Milestone__c)){
@@ -143,6 +151,13 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             // Target Launch Date will be read only
             if(eachMilestone.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equalsignorecase(eachMilestone.IPM_Name__c)){
                 isEditable = false;
+                if(projectObj.IPM_Project_Leader__c == UserInfo.getUserId()){
+                	showTLDInfoIcon = true;
+                	getTLDHelpText();
+                }
+                else{
+                	showTLDInfoIcon = false;
+                }
             }
             
             // Logic to check if current phase of milestone is previous or not
@@ -167,12 +182,44 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             } 
             
             if(eachMilestone.IPM_Completed__c) {
-                wrapperRecordList.add(new sObjectPaginationWrapper(eachMilestone, true, isEditable, isDeletable));
+                wrapperRecordList.add(new sObjectPaginationWrapper(eachMilestone, true, isEditable, isDeletable, showTLDInfoIcon));
             }else{
-                wrapperRecordList.add(new sObjectPaginationWrapper(eachMilestone, false, isEditable, isDeletable));
+                wrapperRecordList.add(new sObjectPaginationWrapper(eachMilestone, false, isEditable, isDeletable, showTLDInfoIcon));
             }
         }
     }
+    
+    public String getTLDHelpText()
+    {
+    	String tldHelpTextLabel = '';
+    	IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectObj);
+    	
+    	List<IPM_Project_Rollout__c> associatedRolloutList = projectObj.IPM_Project_Rollout__r;    	
+		
+		if(associatedRolloutList.isEmpty() && associatedProjectType.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS && associatedProjectType.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+		{
+			tldHelpTextLabel = DEFAULT_TLD_HELPTEXT; //Resultant Label: IPM_Before_Rollout_TLDMilestone_HelpText
+    			
+			//This link will be displayed along with help text and it will take us to the IPM_CoreParameters page
+			strLink = DEFAULT_TLD_LINK;
+			displayPage = DEFAULT_PAGE;
+		}
+		else
+		{
+			String[] displayLinkArray = associatedProjectType.IPM_TLD_Milestone_Help_Text__c.split(IPM_ConstantUtils.COMMA_DELIMITER);
+			
+			if(displayLinkArray.size() == 2){
+				//To display the link below along with help text and it will take us to the IPM_RolloutPlans page or IPM_CoreParameters page.
+				tldHelpTextLabel = displayLinkArray[0]; 
+				strLink = displayLinkArray[1];
+			}
+			displayPage = associatedProjectType.IPM_Go_To_Change_TLD_Link__c;
+		}
+		
+    	return tldHelpTextLabel;
+    }
+    
+    
     /**************************************************************
     * @description: toggling sort with milestones and adding back to the currentSort map & ordering the result
     */

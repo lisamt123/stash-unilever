@@ -65,6 +65,7 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         project.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
         project.IPM_Brand_Positioning__c = IPM_ConstantUtils.TEST_STR;
+        project.IPM_Approver_of_Charter__c = null;
         project.IPM_ProjectSubType__c = 'Innovation/Renovation';
         project.IPM_Document_Update_Comments__c = 'Start Comments';
         project.IPM_Target_Launch_Dates__c = System.today()+10;

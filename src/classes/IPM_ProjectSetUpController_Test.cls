@@ -59,8 +59,6 @@ private class IPM_ProjectSetUpController_Test {
 		List<MDO_BrandPositions__c>mdoBPositionsList=[SELECT brand_position_id__c FROM MDO_BrandPositions__c WHERE ID=:mdoBrandPositions.ID LIMIT 1];
 		system.assertEquals(mdoBPositionsList[0].brand_position_id__c,mdoBrandPositions.brand_position_id__c,'mdo brand positions id is not matched');
     
-	//Insert Custom Setting of Project Metadata
-     	IPM_TestFactory_Helper.createIPMProjectMetadata();
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         IPM_TestFactory_Helper.createMarketshortName(true);
         
@@ -248,7 +246,7 @@ private class IPM_ProjectSetUpController_Test {
         sic.none();
         System.assertEquals(sic.project.IPM_Project_Logo_Id__c,'','Project logo id is Empty');
         Test.stopTest();
-        sic.projectMetadata.IPM_MultipleBrandPosApplicable__c=true;
+        
         sic.project.IPM_Brand_Positioning__c='val1,val2,val3,val4,val5,val6,val7,val8,val9,val10,val11,val12,val13,val14,val15,val16,val17,val18,val19,val20,val21,val22,val23,val24';
         sic.saveProceed();
         System.assertEquals(sic.isMaxBrandPosition,true,'User has selected more than 20 brand positions');
@@ -263,14 +261,9 @@ private class IPM_ProjectSetUpController_Test {
             sic.project.IPM_Project_Job_Status__c= IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
             sic.initialise();
             sic.removeProjectLogo();
-            sic.projectMetadata.IPM_FastTrackApplicable__c=false;
-            sic.projectMetadata.IPM_WhiteSpaceApplicable__c=false;
             System.assertEquals(sic.project.IPM_White_Space_Project__c,false,'User marked project as without white space');    
             System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false,'User marked project as without fast track');   
-            if(sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_1) || sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_2))
-            {
-                System.assertEquals(sic.project.IPM_Approver_of_Charter__c, sic.projectMetadata.IPM_DefaultCharterQuestionAnswer__c);
-            }  
+             
             sic.processProjectSave();
             List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
             system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
@@ -326,7 +319,7 @@ private class IPM_ProjectSetUpController_Test {
                 
                 sic.getBrandPos();
                 // Error Scenario
-                sic.getGateKeepingModels();
+                sic.getGKMQuestions();
                 System.assertEquals(sic.isBusinessError,true,GOT_ERROR_STRING);              
                 List<SelectOption> selectProjectType = sic.getProjectSubTypes();                
                 // Error Scenario
@@ -336,22 +329,26 @@ private class IPM_ProjectSetUpController_Test {
                 {
                     sic.project.IPM_ProjectSubType__c = subProjectType.getValue();
                     sic.getHelpTextProjectSubType();                
-                    sic.populateProjectInformation();
                     
-                    System.assertEquals(sic.project.IPM_Project_Type__c,sic.projectMetadata.IPM_Project_Type__c,'Project type is:'+sic.projectMetadata.IPM_Project_Type__c);
-                    System.assertEquals(sic.project.IPMProject_Span__c,sic.projectMetadata.IPM_Project_Span__c,'Project sapn is:'+sic.projectMetadata.IPM_Project_Span__c);
-                    System.assertEquals(sic.project.IPM_Phase__c,sic.projectMetadata.IPM_DefaultPhase__c,'Project default pahse is:'+sic.projectMetadata.IPM_DefaultPhase__c);
+                    
+                    System.assertEquals(sic.project.IPM_Project_Type__c,sic.projectMetadata.IPM_ProjectType__c,'Project type is:'+sic.projectMetadata.IPM_ProjectType__c);
+                    System.assertEquals(sic.project.IPMProject_Span__c,sic.projectMetadata.IPM_DefaultProjectSpan__c,'Project span is:'+sic.projectMetadata.IPM_DefaultProjectSpan__c);
+                    System.assertEquals(sic.project.IPM_Phase__c,sic.projectMetadata.IPM_DefaultPhase__c,'Project default phase is:'+sic.projectMetadata.IPM_DefaultPhase__c);
                     System.assertEquals(sic.project.IPM_Complexity__c,sic.projectMetadata.IPM_DefaultComplexity__c,'Project default complexity is:'+sic.projectMetadata.IPM_DefaultComplexity__c);
                     sic.getCharterApprovers();
-                    List<SelectOption> gateKeepingSelect = sic.getGateKeepingModels();
-                    if(sic.projectMetadata.IPM_GatekeepingModelsApplicable__c)
+                    
+                    List<SelectOption> gateKeepingSelect = sic.getGKMQuestions();
+                   
+                    if(sic.projectMetadata.IPM_GKMQuestionsApplicable__c)
                     {
-                        sic.getHelpTextCharterQuestions();
-                        sic.getHelpTextGateKeeping();
-                        for(SelectOption GKModel : gateKeepingSelect)
-                        {
-                            sic.project.IPM_GateKeeping_Model__c =GKModel.getValue();
-                            System.assert(sic.projectMetadata.IPM_ApplicableGateKeepingModels__c.contains(GKModel.getValue()),'project gate keeping model is:'+GKModel.getValue());
+                      sic.getHelpTextGKMQuestions();
+                      sic.getGMKQuestionsLabel();
+                      
+                      if(sic.project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL){
+                        System.assert(sic.projectMetadata.IPM_GMKQuestionDefaultAns__c.contains(sic.project.IPM_Approver_of_Charter__c),'project gate keeping model is:'+sic.project.IPM_Approver_of_Charter__c);
+                      }
+                        else if(sic.project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL){
+                          System.assert(sic.projectMetadata.IPM_GMKQuestionDefaultAns__c.contains(sic.project.IPM_GateKeeping_Model__c),'project gate keeping model is:'+sic.project.IPM_GateKeeping_Model__c);
                         }
                     }
                     else

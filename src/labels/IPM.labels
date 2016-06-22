@@ -9319,3 +9319,31 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM Select MCO Rollout Leader</shortDescription>
         <value>Select MCO Rollout Leader</value>
     </labels>
+	<labels>
+        <fullName>IPM_Before_Rollout_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Before_Rollout_TLDMilestone_HelpText</shortDescription>
+        <value>Until your Rollout Plan is created you can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of your earliest MCO rollout - you can change the TLD of this project via your Rollout Plan.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please contact the relevant Regional Project Leader.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_LocalRollout_Operational</shortDescription>
+        <value>You can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>

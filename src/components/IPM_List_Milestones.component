@@ -265,12 +265,16 @@
                             <!-- Edit button code starts here-------- -->
                             <apex:outputPanel rendered="{!p.isEditable}">
                                 <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                                    <a class="icoButton edit1 editMilestoneBtn" id="editMilestone" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" data-backdrop="static" 
-                        data-keyboard="false"></a>
+                                    <a class="icoButton edit1 editMilestoneBtn" id="editMilestone" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" data-backdrop="static" data-keyboard="false"></a>
+                                    
                                 </apex:outputPanel>
                                   
                             </apex:outputPanel>
                             <!-- Edit button code ends here-------- -->
+                            
+                            <apex:outputPanel rendered="{!(p.showTLDInfoIcon)}"> 
+                             	<a class="icoButton info" title="{!$Label[TLDHelpText]} </br> <a href='{!$Page[displayPage]}?Id={!projectId}' target='_blank'>{!strLink}</a>"></a>                           
+                            </apex:outputPanel>
                             
                             <!-- Delete button code starts here-------- -->
                             <apex:outputPanel rendered="{!p.isDeletable}">    

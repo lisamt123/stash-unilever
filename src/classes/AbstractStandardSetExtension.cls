@@ -200,6 +200,7 @@ public abstract class AbstractStandardSetExtension
         public boolean isLast {get;set;}
         public boolean isEditable {get;set;}
         public boolean isDeletable {get;set;}
+        public boolean showTLDInfoIcon {get;set;}
         
         public sObjectPaginationWrapper(sObject record,Boolean isChecked)
         {
@@ -219,6 +220,13 @@ public abstract class AbstractStandardSetExtension
         	this.isDeletable =  isDeletable;
         }
         
+        public sObjectPaginationWrapper(sObject record,Boolean isChecked,Boolean isEditable, Boolean isDeletable, Boolean showTLDInfoIcon){
+        	this.record =  record;
+        	this.isChecked = isChecked;
+        	this.isEditable =  isEditable;
+        	this.isDeletable =  isDeletable;
+        	this.showTLDInfoIcon =  showTLDInfoIcon;
+        }
     }
     
      /***************************************************************************

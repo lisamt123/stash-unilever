@@ -1557,8 +1557,12 @@ public class IPM_TestFactory_Helper
     /***********************************************************************************************************************************************************
 	* @description To load IPM_ProjectMetadata__c custom setting
 	**************************************************************************************************/
-    public static List<IPM_ProjectMetadata__c> createIPMProjectMetadata(){
-        return Test.loadData(IPM_ProjectMetadata__c.sObjectType, 'IPM_Project_Metadata');   
+    public static List<IPM_Project_Metadata__mdt> createIPMProjectMetadata(){
+        system.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
+            String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
+        	List<IPM_Project_Metadata__mdt> projectMetadataList = (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery);
+        }
+        return projectMetadataList;
     }  
     
     /***********************************************************************************************************************************************************
@@ -1936,7 +1940,7 @@ public class IPM_TestFactory_Helper
     public static List<IPM_Section__c> sectionTemplateList{get;set;}
     public static List<IPM_Milestone__c> milestoneTemplateList{get;set;}
     public static List<IPM_Questionnaire__c> questionnaireTemplateList{get;set;}
-    public static List<IPM_ProjectMetadata__c> projectMetadataList{get;set;}
+    public static List<IPM_Project_Metadata__mdt> projectMetadataList{get;set;}
     public static List<IPM_Project_Type__c> projectTypeList{get;set;}
     public static List<MDM_Geography__c> mdmGeoList {get;set;}
     public static List<IPM_Gate_CMI_KPI_Inputs__c> cmiGateKPIInputList {get;set;}
@@ -2119,18 +2123,18 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> milestoneTemplateMap = new Map<String,List<Object>>
         {
-            'IPM_Category__c' => new List<String>{HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,LAUNDRY,LAUNDRY,LAUNDRY,LAUNDRY},
-            'IPM_Name__c' => new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Market Deployment Gate Approval','Post Launch Evaluation','Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Post Launch Evaluation'},
-            'IPM_No_Of_Days_for_Developing_Emerging__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING},
-            'IPM_No_Of_Days_for_Developing__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING},
-            'IPM_No_Of_Days__c' => new List<String>{BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,'0',BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE},
-            'IPM_Active__c'=> new list<Boolean>{true,true,true,true,true,true,true,true,true},
-            IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY},
-            'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,EMPTY_STRING,CHARTER,CONTRACT,MARKET_READY,EMPTY_STRING},
-            'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
-            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
-            IPM_PROJECT => new List<Id>{masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id},
-            RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 
+            'IPM_Category__c' => new List<String>{HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE,LAUNDRY,LAUNDRY,LAUNDRY,LAUNDRY,LAUNDRY},
+            'IPM_Name__c' => new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Market Deployment Gate Approval','Post Launch Evaluation','Target Launch Date(Ship to Trade)','Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Post Launch Evaluation','Ship To Trade (Target Launch Date)'},
+            'IPM_No_Of_Days_for_Developing_Emerging__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING},
+            'IPM_No_Of_Days_for_Developing__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING},
+            'IPM_No_Of_Days__c' => new List<String>{BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,'0',BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE},
+            'IPM_Active__c'=> new list<Boolean>{true,true,true,true,true,true,true,true,true,true,true},
+            IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_READY},
+            'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,EMPTY_STRING,EMPTY_STRING,CHARTER,CONTRACT,MARKET_READY,EMPTY_STRING,EMPTY_STRING},
+            'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
+            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
+            IPM_PROJECT => new List<Id>{masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id},
+            RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 
         };
         
         milestoneTemplateList = (List<IPM_Milestone__c>)IPM_TestFactory.createSObjectList('IPM_Milestone__c',milestoneTemplateMap,false);
@@ -2166,7 +2170,7 @@ public class IPM_TestFactory_Helper
         
         mdmGeoList = Test.loadData(MDM_Geography__c.sObjectType, 'IPM_Unilever_Geo');
         
-        projectMetadataList = Test.loadData(IPM_ProjectMetadata__c.sObjectType, 'IPM_Project_Metadata');
+        projectMetadataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
         
         projectTypeList = Test.loadData(IPM_Project_Type__c.sObjectType, 'IPM_ProjectType'); 
         
