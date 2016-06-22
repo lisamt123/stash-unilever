@@ -179,10 +179,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            
            // Stores information for Tasks Updates .
            Map<Id,IPM_Project__c> processTasksMap = new Map<Id,IPM_Project__c>();
-           
-           // Stores information for Notification Updates .
-           Map<Id,IPM_Project__c> notificationEligibleProjects = new Map<Id,IPM_Project__c>();
-           
+                      
            // Stores information for financial Updates.
            Map<String,IPM_Project__c> financialYearUpdates = new Map<String,IPM_Project__c>();
            

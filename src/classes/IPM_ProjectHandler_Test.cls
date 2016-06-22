@@ -318,6 +318,7 @@ private class IPM_ProjectHandler_Test {
         system.runAs(adminUser){             
             Test.startTest();
             IPM_ProjectHandler projectHandler = new IPM_ProjectHandler();
+            system.assert(projectHandler != null , 'ProjectHandler not instantiated properly');
             Test.stopTest();              
         }
     }

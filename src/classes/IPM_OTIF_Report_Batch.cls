@@ -217,8 +217,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
                 }   
                 
-                Boolean globalORregionalValues=pr.IPM_Global_OR_Regional__c;
-                
                 string finExtId = '';
                 if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
                     for(IPM_Financial__c fir:rolloutFinancialmap.get(regionalrolloutid)){

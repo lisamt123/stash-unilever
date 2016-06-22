@@ -90,7 +90,7 @@ private class IPM_ProjDocSectionController_Test{
             for(IPM_Project_Document_Section__c temp : sectionList){
                 sectionIdList.add(temp.Id);
             }
-            List<IPM_Project_Document_Section__c> ipmSectionList = [Select id, IPM_FunctionalRole__c from IPM_Project_Document_Section__c where id in : sectionIdList];            
+            
             system.assertEquals(sectionList[0].IPM_FunctionalRole__c, IPM_ConstantUtils.FUNCTIONAL_ROLE_BD, 'Section not updated properly.');
             
             sectionContent = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
@@ -235,7 +235,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForBBUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'BB';
         update testResource; 
@@ -266,7 +265,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForCMIUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'CMI';
         update testResource; 
@@ -296,8 +294,7 @@ private class IPM_ProjDocSectionController_Test{
     
     public static testMethod void testSaveForCDUser(){ 
         Test.startTest();
-        createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
+        createTestData(); 
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'CD';
         update testResource; 
@@ -328,7 +325,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForRnDUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'R&D';
         update testResource; 
@@ -359,7 +355,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForSCUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'Supply Chain';
         update testResource; 
@@ -412,7 +407,6 @@ private class IPM_ProjDocSectionController_Test{
         IPM_Project_Resource__c projResource = [Select id, IPM_Role_Type__c from IPM_Project_Resource__c where id =: testResource.Id];
         system.assertEquals(projResource.IPM_Role_Type__c, 'Finance', PROJ_RESOURCE_NOT_UPDATED);
         
-        User testUser = [Select id from User where id =: testResource.IPM_User__c];
         IPM_Project_Document_Section__c testsection = [Select id, IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where id =: sectionList[0].Id];
         testSection.IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CMI_SECTION;
         testSection.IPM_FunctionalRole__c = 'Finance';
