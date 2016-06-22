@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>AddToCampaign</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableCustomerPortal</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnablePartnerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableSelfService</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Merge</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>NewContact</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewCustomerPortal</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewPartnerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewSelfService</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>AF_Send_Email_Notification__c</fullName>
         <defaultValue>false</defaultValue>
@@ -9,6 +101,23 @@
         <label>Send Email Notifcation</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AssistantName</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>AssistantPhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Birthdate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Day_Rate__c</fullName>
@@ -43,6 +152,22 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Department</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>DoNotCall</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Email</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Expertise__c</fullName>
@@ -468,6 +593,22 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>Fax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>HasOptedOutOfEmail</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>HasOptedOutOfFax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>HomePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
         <fullName>Homebase__c</fullName>
         <externalId>false</externalId>
         <label>Homebase</label>
@@ -542,6 +683,97 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Jigsaw</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>LastCURequestDate</fullName>
+    </fields>
+    <fields>
+        <fullName>LastCUUpdateDate</fullName>
+    </fields>
+    <fields>
+        <fullName>LeadSource</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>MailingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>MobilePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>OtherAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>OtherPhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Phone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
         <fullName>Referred_By__c</fullName>
         <externalId>false</externalId>
         <label>Referred By</label>
@@ -582,6 +814,11 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ReportsToId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Sapient_Language_Preference__c</fullName>
         <description>Data retrieved from Sapient web forms</description>
         <externalId>false</externalId>
@@ -591,6 +828,10 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>hoot2sf_FacebookId__c</fullName>
@@ -632,4 +873,934 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <listViews>
+        <fullName>AllContacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Contacts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>BirthdaysThisMonth</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.BIRTHDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.BIRTHDATE</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>Birthdays This Month</label>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypes>
+        <fullName>Agency_Contact</fullName>
+        <active>true</active>
+        <description>A contact belonging to an agency</description>
+        <label>Agency Contact</label>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Pitch_Contact</fullName>
+        <active>true</active>
+        <label>Pitch Contact</label>
+        <picklistValues>
+            <picklist>Day_Rate__c</picklist>
+            <values>
+                <fullName>0- 250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1k- 2%2E5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5- 5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250- 500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500- 1k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5k %2B</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Expertise__c</picklist>
+            <values>
+                <fullName>Accessory design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acupuncture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aromatherapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Direction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist in residence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Athlete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Audio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beautician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blogger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carpenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinematographer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comedian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dancer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dental Hygienist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dentist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dry Cleaner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy Healer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facialist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facilitator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fashion Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Filming %26 Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastronomy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graffiti Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graphic Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Stylist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hairdresser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illustrator %26 Sketch Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jewellery design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Lifestyle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Reporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makeup Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male Grooming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medispa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Midwife</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Motivational Speaker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Musician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nail artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naturopath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nutritionist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Painter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Performance Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perfumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal Trainer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fashion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fine Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Portraiture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physiotherapist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product %26 Pack Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sailor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sculptor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semiotician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shiatsu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sleep Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sommelier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyteller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Wardrobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Presenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theatre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trend Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visualiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga Teacher</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Homebase__c</picklist>
+            <values>
+                <fullName>Amsterdam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Berlin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brussels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buenos Aires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geneva</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sao Paulo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seoul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shanghai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokyo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Relationship__c</picklist>
+            <values>
+                <fullName>Do not recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Have met but not worked with</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met %2F No connection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met but share a mutual connection</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Standard_Contact</fullName>
+        <active>true</active>
+        <description>A contact belonging to a standard account</description>
+        <label>Standard Contact</label>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>FULL_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.PHONE1</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FULL_NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE1</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE3</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE4</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE5</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE6</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.SITE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.PHONE1</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Pitch_Email_or_Phone_Mandatory</fullName>
+        <active>true</active>
+        <description>Either Email or Phone must be filled in.</description>
+        <errorConditionFormula>ISBLANK(Email) &amp;&amp; ISBLANK(Phone) &amp;&amp; $Permission.Pitch_Email_Phone_Validation</errorConditionFormula>
+        <errorMessage>You must enter an email address or a phone number.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>GoogleMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://maps.google.com/maps?f=q&amp;hl=en&amp;q={!Contact_MailingStreet}+{!Contact_MailingCity}+{!Contact_MailingState}&amp;om=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleSearch</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Search</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/search?q={!Contact_FirstName} {!Contact_LastName}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SendGmail</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send Gmail</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://mail.google.com/mail?view=cm&amp;tf=0&amp;to={!Contact_Email}&lt;{!Contact_LastName}, {!Contact_FirstName}&gt;&amp;tf=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo! Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://maps.yahoo.com/py/maps.py?cn={!Contact_MailingCountry}&amp;csz={!Contact_MailingCity}+{!Contact_MailingState}+{!Contact_MailingPostalCode}+&amp;addr={!Contact_MailingAddress}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooWeather</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo! Weather</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
+    </webLinks>
 </CustomObject>
