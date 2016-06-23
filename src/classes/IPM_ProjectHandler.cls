@@ -618,11 +618,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             
             Map<Id, IPM_Project__c> ipmFastTrackProjectMap = new Map<Id, IPM_Project__c>(); // Fast Track Marked project Map 
             Map<Id, String> stoppedProjectMap = new Map<Id, String>(); // Fast Track Marked project Map 
-           
-            IPM_ProjectHelper.copyOverMPAValue((Map<Id,IPM_Project__c>)trigger.NewMap);
+           MAP<Id,IPM_Project__c> projectMPAMap = new MAP<Id,IPM_Project__c>(); //for copying over the MPA value from parent to child project
+            
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
-                    IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
+                   IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
+                   if(p.IPM_Answer_of_Q1__c!= proj.IPM_Answer_of_Q1__c){
+                       projectMPAMap.put(p.Id,p);
+                   }
                    
                    if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && p.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && 
                         p.IPM_Fast_Track_Project__c != proj.IPM_Fast_Track_Project__c){
@@ -704,6 +707,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     
                          
                 }
+               // Calling method for copying over MPA value from parent to child project
+               if(!projectMPAMap.isEmpty()){
+                      IPM_ProjectHelper.copyOverMPAValue((projectMPAMap)); 
+               }
                
                  // Fast Track Global Original Project 
                 if(!ipmFastTrackProjectMap.isEmpty())

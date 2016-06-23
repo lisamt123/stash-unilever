@@ -113,60 +113,6 @@ private class IPM_ProjDocSectionController_Test{
             IPM_Gate_CMI__c testCMI = [Select id, IPM_Skip_Test_Reason__c from IPM_Gate_CMI__c where id =: gateCMI[0].Id];
             system.assertEquals(testCMI.IPM_Skip_Test_Reason__c, 'XYZ', 'CMI not updated properly.');
             
-
-            IPM_Gate_Document_Section_Access__c customSettingData = new IPM_Gate_Document_Section_Access__c();
-            customSettingData.Name = 'BD Marketing';
-            customSettingData.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Idea_Graphic,Consumer_Need,Strategic_Fit,Competitors,Target_Audience,Concept,CU_And_Complexity,Degree_of_Commonality,Communication,Trademarks,Product,Proposed_Pricing,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData.IPM_Gate_Document_Section_Access_2__c = 'Merchandising_Strategy,Trade_Promotion_Strategy,Country_Feedback_Requirements,Regional_BD_Team_Feedback_to_Global,Regional_BD_Team_FB_Req,Pack_Graphics';
-            customSettingDataList.add(customSettingData);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData1 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData1.Name = 'CD';
-            customSettingData1.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Customers_Channels,Promotion_Guidance_for_Deployment,Assortment_Strategy,Merchandising_Strategy,Trade_Promotion_Strategy,Customers_Channels,Trade_Story, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData1.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData1);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData2 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData2.Name = 'CMI';
-            customSettingData2.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Consumer_Evidence_Concept,Mix_Qualification_Plan_and_Action_Standards,Consumer_Evidence_Pack,Consumer_Evidence_Product,Consumer_Evidence_Price,Full_Mix,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData2.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData2);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData3 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData3.Name = 'Finance';
-            customSettingData3.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Business_Case_Action_Standards,Initial_Estimate_of_Opportunity,BD/BB_Alignment,Business_Case_Action_Standards,Assumptions,Sensitivity_Analysis,Business_Waste,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData3.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData3);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData4 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData4.Name = 'Project Leader';
-            customSettingData4.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Idea_Graphic,Feedback_from_Last_Gate,Human_Resources,Key_Issues_needing_focus_in_Gate_Meeting,Key_Changes_since_Contract_Gate, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData4.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData4);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData5 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData5.Name = 'R&D';
-            customSettingData5.IPM_Gate_Document_Section_Access_1__c = 'Introduction,R&D_Initial_Outline_Product_Pack,Environmental_Impact,R&D_Feasibility,Pack_Graphics,Product,R&D_Technical_Readiness, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData5.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData5);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData6 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData6.Name = 'Supply Chain';
-            customSettingData6.IPM_Gate_Document_Section_Access_1__c = 'Introduction,CU_And_Complexity,Degree_of_Commonality,Supply_Chain_Feasibility,Supply_Chain_Technical_Readiness,Technical, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData6.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData6);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData7 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData7.Name = 'Technical Project Leader';
-            customSettingData7.IPM_Gate_Document_Section_Access_1__c = 'Introduction,R&D_Initial_Outline_Product_Pack,Environmental_Impact,R&D_Feasibility,R&D_Technical_Readiness,Supply_Chain_Initial_Outline,Supply_Chain_Feasibility,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData7.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData7);
-            
-            insert customSettingDataList;
-            Set<Id> customSettingIdList = new Set<Id>();
-            for(IPM_Gate_Document_Section_Access__c testCustomSetting : customSettingDataList){
-                customSettingIdList.add(testCustomSetting.Id);
-            }
             List<IPM_Gate_Document_Section_Access__c> testCustomSettingList = [Select id from IPM_Gate_Document_Section_Access__c limit 1000];
             system.assertEquals(testCustomSettingList.size(), 8, 'Custom setting data not inserted properly.');
             

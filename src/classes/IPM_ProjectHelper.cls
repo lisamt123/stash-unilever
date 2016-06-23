@@ -2021,23 +2021,36 @@ public with sharing class IPM_ProjectHelper
     
      public static void copyOverMPAValue(Map<Id,IPM_Project__c> projectMPAMap) {
     List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    String parentId;
+    Set<String> parentIdSet = new Set<String>();
     for(Id projectId : projectMPAMap.keySet() ) {
+        String parentId;
         parentId = projectId;
+        parentId = parentId.substring(0,15);
+        parentIdSet.add(parentId);
+        
     }
 
-    parentId = parentId.substring(0,15);
-
-    projectList = [select Id,IPM_Answer_of_Q1__c,IPMProject_Span__c,Name,IPM_Parent_Project__c from IPM_Project__c 
-    where (IPM_Global_Project_Id__c =: parentId AND IPM_Parent_Project__c != '' ) OR (IPM_Parent_Project__c =: parentId AND IPMProject_Span__c =: 'Local' ) LIMIT 50000];
     
-    if(!projectList.isEmpty()) {
-        for(IPM_Project__c proj : projectList) {
-            proj.IPM_Answer_of_Q1__c = projectMPAMap.values()[0].IPM_Answer_of_Q1__c;
+
+    projectList = [select Id,IPM_Answer_of_Q1__c,IPMProject_Span__c,Name,IPM_Parent_Project__c,IPM_Global_Project_Id__c  from IPM_Project__c 
+    where (IPM_Global_Project_Id__c IN: parentIdSet AND IPM_Parent_Project__c != '' ) OR (IPM_Parent_Project__c IN: parentIdSet AND IPMProject_Span__c =: 'Local' ) LIMIT 50000];
+    
+    
+    for(IPM_Project__c proj : projectList) {
+        for(Id projMap : projectMPAMap.keySet()) {
+        
+            if(proj.IPM_Global_Project_Id__c == projMap || (proj.IPM_Parent_Project__c == projMap && proj.IPMProject_Span__c == 'Local' )){
+        
+                proj.IPM_Answer_of_Q1__c = projectMPAMap.get(projMap).IPM_Answer_of_Q1__c;
+        
         }
+    }
+  
+    
     }
     if(!projectList.isEmpty()) {
         update projectList;
     }
     }
+
 }
