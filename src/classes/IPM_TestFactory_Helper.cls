@@ -203,6 +203,8 @@ public class IPM_TestFactory_Helper
     public static ID recTypeSCFeasibility = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.SCFEASIBILITY_RECORD_TYPE).RecordTypeId;
     public static ID recTypeRisk = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RISKQUESTION_RECORD_TYPE).RecordTypeId;
     
+    // Gatekeeping Question Rcord Type
+    public static ID recTypeGKC = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId;
     public static List<IPM_Project__c>masterProject=new List<IPM_Project__c>();
     
     //TO query the profile
@@ -2125,7 +2127,7 @@ public class IPM_TestFactory_Helper
         insert milestoneTemplateList;
         
         
-        List<Id> recordIdList = new List<Id>{recTypeRnD,recTypeIDPOS,recTypeIDRQS,recTypeIDCR,recTypeRnDFeasibility,recTypeSCFeasibility,recTypeRisk};
+        List<Id> recordIdList = new List<Id>{recTypeRnD,recTypeIDPOS,recTypeIDRQS,recTypeIDCR,recTypeRnDFeasibility,recTypeSCFeasibility,recTypeRisk,recTypeGKC};
         
         Map<String,List<Object>> questionnaireMap = new Map<String,List<Object>>{RECORD_TYPE_ID => new List<Id>(),
             'IPM_Charter_Score__c' => new List<Integer>(),'IPM_Contract_Score__c' => new List<Integer>(),'IPM_Market_Deployment_Score__c' => new List<Integer>(),'IPM_Market_Ready_Score__c' => new List<Integer>(),
@@ -2142,12 +2144,19 @@ public class IPM_TestFactory_Helper
                 questionnaireMap.get('IPM_Contract_Score__c').add(counter);
                 questionnaireMap.get('IPM_Market_Deployment_Score__c').add(counter);
                 questionnaireMap.get('IPM_Market_Ready_Score__c').add(counter);
+                questionnaireMap.get('DependentFieldAPIName__c').add('');
                 questionnaireMap.get(IPM_PROJECT).add(masterProjectList[0].Id); 
             }
         }
         
         questionnaireTemplateList = (List<IPM_Questionnaire__c>)IPM_TestFactory.createSObjectList('IPM_Questionnaire__c',questionnaireMap,false);
         
+        for(IPM_Questionnaire__c questionnaire : questionnaireTemplateList)
+        {
+        	if(questionnaire.RecordTypeId == recTypeGKC && questionnaire.IPM_Market_Ready_Score__c == 1){
+        		questionnaire.DependentFieldAPIName__c = IPM_ConstantUtils.BET_CURRENT_STATUS;
+        	}
+        }
         insert questionnaireTemplateList;
         
         mdmGeoList = Test.loadData(MDM_Geography__c.sObjectType, 'IPM_Unilever_Geo');

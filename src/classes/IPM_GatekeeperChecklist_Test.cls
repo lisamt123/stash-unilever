@@ -24,7 +24,11 @@ private class IPM_GatekeeperChecklist_Test{
     private static final string ANSWERED_STR = 'Answered';
     private static final string PARTLY_STR = 'Partly';
     public static User stdUserForAGateKeeper;
-    
+    static uw_BET__c bet;
+    static List<IPM_BET_Valid_Categories__c> betvalidCategories ;
+    static User runningUser=IPM_TestFactory_Helper.createUser(false); 
+    static final   string CAT_NAME ='Household Care' ;
+    public static IPM_Questionnaire__c dependentQuestion;
      /*************************************************************************************************************************
     * @description Test Data
     */
@@ -108,7 +112,57 @@ private class IPM_GatekeeperChecklist_Test{
          
     }
 
+    /*
+    @description Contains all common data for BET testing
+    */
+    static void betDataInitializer(){
+        	bet = BET_TestUtils.getTestBet();
+        	insert bet; 
+        	system.assertEquals(1 , [Select count() from uw_BET__c where Id=:bet.Id ],'Failed to insert BET record.');
+        	betvalidCategories = new List<IPM_BET_Valid_Categories__c>();
+        	betvalidCategories.add(new IPM_BET_Valid_Categories__c(Name = CAT_NAME ));
+        	insert betvalidCategories;
+        	system.assertEquals(1 , [Select count() from IPM_BET_Valid_Categories__c where Name =: CAT_NAME ] , 'Failed to insert category  records.');      
+        	MDO_Category__c category = IPM_TestFactory_Helper.createMDOCategory(false);
+        	category.Name = 'Household Care';
+        	insert category;
+        	system.assertEquals(1 , [Select count() from MDO_Category__c where Id =: category.Id ] , 'Failed to insert MDO category  records.');      
+    }	
+          /*************************************************
+    * @Description: Test invoke getChecklistQuestions Dependent Question Answer
+    * ***********************************************/
+    static testMethod void testBETGateChecklist()
+    {	
+    		 Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+       		 globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+			// Share Master Project to Project Leader
+        	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser});
+    		System.runAs(globalUser) {
+	    		 List<IPM_Questionnaire__c> ipmQuestionnaireLst = [SELECT Id,RecordTypeId,DependentFieldAPIName__c,IPM_Project__c,IPM_Question__c FROM IPM_Questionnaire__c where Is_Master__c = true];
+	    		 betDataInitializer();
+	    		 projectListObj = [Select Id, Name,BETCurrentStatus__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+           		 (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID, RecordTypeID, IPM_Project__c,DependentFieldAPIName__c,BETCurrentStatus__c from IPM_Questionnaires__r)
+                 from IPM_Project__c where Name in:projectNameSet];
+                 project=projectListObj[0];   		 
+	    		 project.bet__c = bet.id;   
+	    		 update project;
+	    		 for(IPM_Project__c projectObj : projectListObj) {
+	                projDocList = projectObj.Project_Documents__r;
+	                quesList=projectObj.IPM_Questionnaires__r;
+	                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);// Positive Test;
+           		 }
+                 ipmGK=new IPM_GatekeeperChecklist();	
+				 for(IPM_Questionnaire__c question : quesList)
+				 {
+				 	if(question.recordTypeId == Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId     && question.IPM_Market_Ready_Score__c == 1 )
+				 	{
+				 		System.assertEquals(IPM_ConstantUtils.BET_CURRENT_STATUS, question.DependentFieldAPIName__c);
+				 		System.assertEquals(IPM_ConstantUtils.JOB_STATUS_NA, question.BETCurrentStatus__c );
+				 	}
+				 }
+    		}
 
+    }
     /*************************************************
     * @Description: Test invoke update GatekeeperChecklist
     * ***********************************************/
