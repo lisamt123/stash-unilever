@@ -1032,6 +1032,10 @@
 	<apexClass>IPM_FinancialControllerRegional_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_ExportDataController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
    
     
     <fieldPermissions>
@@ -8928,6 +8932,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_UploadBusinessCase</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>IPM_ExportToExcel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
