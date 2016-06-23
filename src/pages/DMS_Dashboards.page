@@ -41,8 +41,8 @@
     
   
     <div id="texto1">
-        <wave:dashboard rendered="{!exibirImpac}" showTitle="true" height="700" width="100%" dashboardId="0FK190000004CadGAE"></wave:dashboard> 
-        <wave:dashboard rendered="{!exibirEco}" showTitle="true" height="700" width="100%" dashboardId="0FK190000004CaTGAU"></wave:dashboard> 
+        <wave:dashboard rendered="{!exibirImpac}" showTitle="true" height="700" width="100%" dashboardId="0FK190000004Cb2GAE"></wave:dashboard> 
+        <wave:dashboard rendered="{!exibirEco}" showTitle="true" height="700" width="100%" dashboardId="0FK190000004CaxGAE"></wave:dashboard> 
         
     </div>
     <div id="texto2">

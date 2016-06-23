@@ -27,6 +27,7 @@ public with sharing class DMS_Hexagon_CC
     public static List<String>label {get;set;}      
     private List<Account> distributorList;
     private Map<String,id> contactCodeIdMap = new Map<String,id>();
+     private static Map<String, String> customSetting = new Map<String, String>();
     
     static{
         label = new List<String>();
@@ -36,6 +37,11 @@ public with sharing class DMS_Hexagon_CC
         label.add('"'+System.Label.DMS_HEXAGON_FREQUENCY+'"');
         label.add('"'+System.Label.DMS_HEXAGON_ORDERS+'"');
         label.add('"'+System.Label.DMS_HEXAGON_SELLOUT+'"');
+        
+        List<DMS_DatasetId__c> customList = DMS_DatasetId__c.getAll().values();
+        for(DMS_DatasetId__c values : customList) {
+            customSetting.put(values.name, values.ID__c);   
+        }
     }
     
     /*******************************************************************
@@ -70,7 +76,7 @@ public with sharing class DMS_Hexagon_CC
         try
         {              
             DMS_WaveHexagon hexagono = new DMS_WaveHexagon();
-            recordsList = hexagono.getRecords(DMS_GlobalConstants.HEXAGON_DATASET,selecteddistributorCountry,selectedDistributor,selectedDate,selectedSalesChannel); 
+            recordsList = hexagono.getRecords(customSetting.get('Hexagon'),selecteddistributorCountry,selectedDistributor,selectedDate,selectedSalesChannel); 
         }
         catch(Exception e){
             System.debug(DMS_GlobalConstants.MSG_EXCEPTION_HEXAGON + e.getCause() + e.getMessage() + e.getLineNumber());

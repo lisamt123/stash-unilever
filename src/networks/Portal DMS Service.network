@@ -32,7 +32,7 @@
         <profile>partner community user</profile>
         <profile>cd partner community user</profile>
     </networkMemberGroups>
-    <!--<picassoSite>Portal_DMS_Service1</picassoSite>-->
+    <picassoSite>Portal_DMS_Service1</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Portal_DMS_Service</site>

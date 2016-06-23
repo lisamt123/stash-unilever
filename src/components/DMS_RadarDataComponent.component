@@ -157,8 +157,8 @@
         <canvas id="{!idChart}" style="width: 100%; height:100%"></canvas>
         <div id="legend">
             <ul id="colunas" style="margin: 0 auto; width: 50%;" >
-                <li style="margin-top: 6px;"><div style="margin-top: 5px; width:7px important!; height:7px important!; border: 5px solid;  float: left;  border-color: rgba(255,165,0,2);"></div><font size="2">Actual</font></li>
-                <li style="margin-top: 6px;"><div style="margin-top: 5px; width:7px important!; height:7px important!; border: 5px solid;  float: left;  border-color: rgba(151,187,205,2);"></div><font size="2">Promedio</font></li>
+                <li style="margin-top: 6px;"><div style="margin-top: 5px; width:7px important!; height:7px important!; border: 5px solid;  float: left;  font-size: 80%; border-color: rgba(255,165,0,2);"></div>Actual</li>
+                <li style="margin-top: 6px;"><div style="margin-top: 5px; width:7px important!; height:7px important!; border: 5px solid;  float: left;  font-size: 80%; border-color: rgba(151,187,205,2);"></div>Promedio</li>
             </ul>
         </div>
     </div>

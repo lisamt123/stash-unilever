@@ -77,6 +77,7 @@
                         </div>
                     </div>
                 </div>
+                
             </apex:form>
             <apex:form >
                 <apex:repeat value="{!hexagonMap}" var="seller">
