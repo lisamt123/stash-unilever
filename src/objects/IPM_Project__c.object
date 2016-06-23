@@ -2772,6 +2772,106 @@ OwnerId))</formula>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>RQS_Charter_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Charter Answered &gt; 3</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Charter_Score__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Charter Answered</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Charter_Score__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Contract Answered &gt; 3</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Contract_Score__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Contract Answered</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Contract_Score__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Corporate Risk</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Regional_Project_Leader_Name__c</fullName>
         <description>To capture the name of the regional project leader.</description>
         <externalId>false</externalId>
