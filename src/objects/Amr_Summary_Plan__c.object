@@ -549,7 +549,7 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <lookupFilter>
+    <namedFilters>
         <fullName>nf_01I18000000CsL1EAK_00N18000000Z0VxEAK</fullName>
         <active>true</active>
         <field>Amr_Summary_Plan__c.ProductCategory__c</field>
@@ -560,9 +560,8 @@
         </filterItems>
         <isOptional>false</isOptional>
         <name>Amr Summary Plan_Small C</name>
-		<sourceObject>MDO_Category__c</sourceObject>
-    </lookupFilter>
-    <lookupFilter>
+    </namedFilters>
+    <namedFilters>
         <fullName>nf_01I18000000CsL1EAK_00N18000000Z0WvEAK</fullName>
         <active>true</active>
         <field>Amr_Summary_Plan__c.Big_C__c</field>
@@ -573,8 +572,7 @@
         </filterItems>
         <isOptional>false</isOptional>
         <name>Amr Summary Plan_Big C</name>
-		<sourceObject>MDO_Category__c</sourceObject>
-    </lookupFilter>		
+    </namedFilters>		
     <pluralLabel>Amr Summary Plans</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
