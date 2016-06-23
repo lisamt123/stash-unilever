@@ -2048,6 +2048,19 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>SAP_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Purpose: External ID | Data Source: NA | Integration: NA | Level: Restricted</description>
+        <externalId>true</externalId>
+        <label>SAP ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>ShippingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>

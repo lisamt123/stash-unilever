@@ -207,6 +207,26 @@
         <type>Location</type>
     </fields>
     <fields>
+        <fullName>ICB_GoldenMinuteOpen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When Golden Minute was open set this field equals true</description>
+        <externalId>false</externalId>
+        <label>ICB Golden Minute Open</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Icon__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+ IF(ISPICKVAL( ICB_Status__c , &quot;Concluded&quot;) , &quot;/img/samples/flag_green.gif&quot;, &quot;/img/samples/flag_red.gif&quot;), 
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status Icon</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ICB_InStoreDisciplineIndex__c</fullName>
         <description>Duration of executed visit in comparison with the planned visit. Used for report&apos;s KPI.</description>
         <externalId>false</externalId>
@@ -263,6 +283,16 @@
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Sales_Area__c</fullName>
+        <description>Sales area Enternal ID reference.</description>
+        <externalId>false</externalId>
+        <label>Sales Area</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ICB_Sequence__c</fullName>
