@@ -9448,4 +9448,11 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
         <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 – DNDS GM Y1</value>
     </labels>
+	<labels>
+        <fullName>IPM_BelowThresholdError_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThresholdError_Msg</shortDescription>
+        <value>Please be aware that your project is Below Threshold and has not been given Exempt status. If you wish for your Project to have Exempt status please contact your IPM Business Partner.</value>
+    </labels>
 </CustomLabels>

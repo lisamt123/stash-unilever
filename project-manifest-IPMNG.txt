@@ -22,6 +22,10 @@ src/classes/IPM_ChatterFeedHelper.cls
 src/classes/IPM_ChatterFeedHelper.cls-meta.xml
 src/classes/IPM_ChatterFeedHelper_Test.cls
 src/classes/IPM_ChatterFeedHelper_Test.cls-meta.xml
+src/classes/IPM_GatekeeperChecklist_Test.cls
+src/classes/IPM_GatekeeperChecklist_Test.cls-meta.xml
+src/classes/IPM_OTIFstatusController_Test.cls
+src/classes/IPM_OTIFstatusController_Test.cls-meta.xml
 src/classes/IPM_ConstantUtils.cls
 src/classes/IPM_ConstantUtils.cls-meta.xml
 src/classes/IPM_Consumer_Evidence_Controller.cls
