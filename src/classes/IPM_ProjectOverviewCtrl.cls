@@ -751,7 +751,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         if(ApexPages.currentPage().getParameters().containsKey('showMembers')){
             memberCallFromURL = true;
         }
-        IPM_ProjectMetadata__c projMetadata = IPM_Utils.retrieveProjectMetadata(project);
+        IPM_Project_Metadata__mdt projMetadata = IPM_Utils.retrieveProjectMetadata(project);
         Boolean isRollout = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT);
         Boolean isLinkDenied = false;
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
