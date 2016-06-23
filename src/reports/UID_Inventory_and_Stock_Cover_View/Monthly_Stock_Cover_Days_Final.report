@@ -4,7 +4,7 @@
         <calculatedFormula>FLOOR(UID_Stocked_Product_Summary__c.UID_Stock_Cover__c:AVG)</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
-        <downGroupingContext>Account.Stocked_Products__r$UID_Start_Date__c</downGroupingContext>
+        <downGroupingContext>Account.Stocked_Products__r$UID_End_Date__c</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Stock Cover(Days)</masterLabel>
@@ -44,14 +44,6 @@
         <lowColor>#C25454</lowColor>
         <midColor>#C2C254</midColor>
     </colorRanges>
-    <colorRanges>
-        <columnName>FORMULA1</columnName>
-        <highBreakpoint>100.0</highBreakpoint>
-        <highColor>#54C254</highColor>
-        <lowBreakpoint>30.0</lowBreakpoint>
-        <lowColor>#C25454</lowColor>
-        <midColor>#C2C254</midColor>
-    </colorRanges>
     <columns>
         <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</field>
     </columns>
@@ -71,7 +63,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Month</dateGranularity>
-        <field>Account.Stocked_Products__r$UID_Start_Date__c</field>
+        <field>Account.Stocked_Products__r$UID_End_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
@@ -89,6 +81,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
-        <interval>INTERVAL_PREVCURY</interval>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>

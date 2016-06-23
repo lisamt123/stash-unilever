@@ -16,7 +16,7 @@
     </div>
     <div class="col-sm-12 noPadleft">
        <!--Below two rendered conditions is used to show IPM_AssortmentStrategy_From__c and IPM_AssortmentStrategy_To__c fields from the lstAssortStrategy list if it is not null -->
-        <span class="viewDataPeriod">{!$Label.IPM_Data_period}</span> <apex:outputField value="{!lstAssortStrategy[0].IPM_AssortmentStrategy_From__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/> - <apex:outputField value="{!lstAssortStrategy[0].IPM_AssortmentStrategy_To__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/> 
+        <span class="viewDataPeriod">{!$Label.IPM_DATE_PERIOD_COLON}</span> <apex:outputField value="{!lstAssortStrategy[0].IPM_AssortmentStrategy_From__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/> - <apex:outputField value="{!lstAssortStrategy[0].IPM_AssortmentStrategy_To__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/> 
     </div>                       
         <table with="100%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered ipmTable cmiGateSectionTable">
             <thead>

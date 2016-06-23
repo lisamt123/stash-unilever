@@ -31,7 +31,10 @@
         <field>Marketing_Basics__c.Role_Title__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.No_of_Hours_Required__c</field>
+        <field>Marketing_Basics__c.Description__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
     </columns>
     <columns>
         <field>Marketing_Basics__c.Hourly_Rate_Agency__c</field>
@@ -40,7 +43,7 @@
         <field>Marketing_Basics__c.Activity_Fee_Agency__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.FTE__c</field>
+        <field>Marketing_Basics__c.FTE_report__c</field>
     </columns>
     <columns>
         <field>Marketing_Basics__c.Resource_Fee_Agency__c</field>

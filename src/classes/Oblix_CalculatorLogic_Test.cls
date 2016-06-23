@@ -189,7 +189,7 @@ public with sharing class Oblix_CalculatorLogic_Test {
 
 		// all campaigns should have the same business driver score 
 		for (Id campaign_id : map_campaigns_to_test.keySet()){
-			system.assertEquals(2.50, map_campaign_business_driver.get(campaign_id), 'expecting 2.50 as total business driver score actual!');
+			system.assertEquals(2.45, map_campaign_business_driver.get(campaign_id), 'expecting 2.45 as total business driver score actual!');
 			
 			project = map_campaigns_to_test.get(campaign_id);
 
@@ -309,7 +309,7 @@ public with sharing class Oblix_CalculatorLogic_Test {
 		// 		TEST TOTAL CAMPAIGN FEE
 		// ***********************************************************************************************
 		
-		Map<Id, Double> midd_project_total_fee = Oblix_CalculatorLogic.getCampaignFee(map_campaigns_to_test, list_asset_wrappers, true, true, true);
+		Map<Id, Double> midd_project_total_fee = Oblix_CalculatorLogic.getCampaignFee(map_campaigns_to_test, list_asset_wrappers, true, true, true, Oblix_Utils.TOTAL_PROJECT_SCORE_CFY_FILED);
 
 		system.assert(midd_project_total_fee.values()[0] > 0,  'expecting total campaign fees to be greater than zero');
 	}

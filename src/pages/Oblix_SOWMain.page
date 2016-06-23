@@ -1,19 +1,35 @@
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="true" controller="Oblix_SowMainController">
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="false" controller="Oblix_SowMainController" >
 
     <apex:composition template="Oblix_OuterPageTemplate">
 
-        <apex:define name="top_breadcrumb"/>
+        <apex:define name="top_breadcrumb"/> 
         <apex:define name="header_text">
             SOW List
+            <br/>
         </apex:define>
 
-        <apex:define name="top_option_links"/>
+        <apex:define name="top_option_links" />
 
         <apex:define name="top_right_panel">
+            
             <apex:commandButton value="CREATE SOW" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_create_sow" onclick="blockme()" rendered="{!IF(can_create_sow,true,false)}" reRender="jqueryId,jqueryId2" />
+                
         </apex:define>
 
+
         <apex:define name="body_content">
+
+        <style>
+            .table_blocked {
+                border: none;
+                padding: 15px;
+                background-color: #000;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                opacity: .5;
+                color: #fff;
+            }
+        </style>
 
             <apex:outputPanel rendered="{!IF(liliso_sow.size == 0,true,false)}" id="welcomeMessage">
                 <div class="row SOW_homepage_welcome_message">
@@ -35,6 +51,12 @@
                         </div>
 
                         <div class="Oblix_table" id="Oblix_DashId">
+
+                             <!-- Table blocking elements: copy-pasted HTML/CSS from BlockUI plugin for faster loading -->
+                            <div class="blockUI_table" style="display:none"></div>
+                            <div class="blockUI_table" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.6; cursor: wait; position: absolute; background-color: rgb(0, 0, 0);"></div>
+                            <div class="blockUI_table table_blocked" style="z-index: 1011; position: absolute; padding: 0px; margin: 0px; width: 30%; top: 82.5px; left: 398.5px; text-align: center; cursor: wait;"><h1>Please wait...</h1></div>
+                        
                             <table class="table table-striped" id="sowListTable">
                                 <!-- iterating over a fieldset proved to slow down the page load quite a lot
                                 <thead>
@@ -87,8 +109,13 @@
                                                 <td>{!sowWrapper.sow.SmallProductCategory__r.Name}</td>
                                                 <td width="15%">{!sowWrapper.sow.Agency_Name__c}</td>
                                                 <td>
-                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
-                                                        <apex:param value="{!sowWrapper.sow.LastModifiedDate}" /></apex:outputText>
+                                                    <span style="display: none;">
+                                                    <!-- Needed for locale-independent DataTables sorting -->
+                                                        <apex:outputText value="{0, date, yyyy/MM/dd-HH:mm:ss}">
+                                                            <apex:param value="{!sowWrapper.sow.LastModifiedDate}" /> 
+                                                        </apex:outputText>
+                                                    </span>
+                                                    <apex:outputText value="{!sowWrapper.localeDate}" />
                                                 </td>
                                                 <td>{!sowWrapper.sow.SOW_Status__c}</td>
                                                 <td>
@@ -100,8 +127,10 @@
                                             </tr>
                                         </apex:repeat>
                                     </apex:repeat>
+
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -116,14 +145,12 @@
         <apex:define name="page_scripts">
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $.unblockUI();
-                    var table = $('#sowListTable').DataTable({
-                        "dom": 'lrtip',
-                        'pagingType': 'full_numbers'
-                    });
+                    var table = $('#sowListTable').on( 'init.dt', function () {
+                        $('#Oblix_DashId .blockUI_table').hide();
+                    } ).DataTable({"dom": 'lrtip', 'pagingType': 'full_numbers', 'order': [[ 5, "desc" ]], 'bPaginate': false});
+                    //setTimeout(function(){ $('#Oblix_DashId .blockUI1').hide(); console.log('Test123')}, 3000);
                     $('#searchBox').on('keyup', function() {
                         table.search(this.value).draw();
-
                     });
                     $('#sowListTable tbody').on('click', 'tr', function() {
                         blockme();
@@ -134,7 +161,6 @@
                         });
                         redirectToSOWDetailPage(ids);
                     });
-
                 });
             </script>
         </apex:define>

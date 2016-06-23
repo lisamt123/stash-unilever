@@ -21,7 +21,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public List<String> lstFinAlertMessage {get;set;} //Alert message for financial misalignment
     public List<String> lstRolloutProjectAlertMessage {get;set;} //Alert message for Rollout local projec leader is blank
     public List<String> lstFinTLDAlertMessage {get;set;} //Alert message for financial TLD misalignment
-    public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
+    public List<String> lstFinDataMissingAlertMessage {get;set;} 
+        public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
     public IPM_Task__c[] tasksList{get;set;}//list of tasks to be made displayed
     public Integer noOfNotifications{get;set;}//number of notifications that a page can display
     public IPM_Project_Document__c projectDoc{get; set;}//current gate document that the project is associated with
@@ -226,11 +227,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
        lstRolloutProjectAlertMessage = new List<String>();
        if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
        {
-            lstprojectRollout = [SELECT ID,IPM_Regional_PL__c FROM IPM_Project_Rollout__c where Regional_Project__c = : project.id limit 50000];
+            lstprojectRollout = [SELECT ID,Name,IPM_Regional_PL__c FROM IPM_Project_Rollout__c where Regional_Project__c = : project.id limit 50000];
             for(IPM_Project_Rollout__c rollOutProject : lstprojectRollout){
                 if(String.isBlank(rollOutProject.IPM_Regional_PL__c) || rollOutProject.IPM_Regional_PL__c == null)
                 {
-                    lstRolloutProjectAlertMessage.add(Label.IPM_Local_Project_Leader_BlankMsg);
+                    lstRolloutProjectAlertMessage.add(String.format(Label.IPM_Local_Project_Leader_BlankMsg,new List<String>{rollOutProject.Name}));
                     noOfNotifications++;
                 }
             }
@@ -368,6 +369,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
+        ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
         ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
         (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
@@ -379,16 +381,24 @@ public with sharing class IPM_ProjectOverviewCtrl {
          {
             projectPriority = project.IPM_Financials_Local__r[0].ipm_cpp_local__c;
          }
-
+         //CR0405-New CPP for Local rollouts. When local project priority is null ie financials are not created, 
+         // regional numbers will be used to calculate priority
+         if(projectPriority==null && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL && !project.IPM_Financials_Regional__r.isEmpty())
+         {
+            projectPriority = project.IPM_Financials_regional__r[0].ipm_cpp_regional__c;
+         }
          projResCompleteList = project.IPM_Project_Resources__r;
         Set<String> functionalRoleSet = new Set<String>();
          // set of roles when PL is added as team member
         Set<String> plFunctionalRoleSet=new Set<String>();
          for(IPM_Project_Resource__c res : projResCompleteList){
+ 	      if(IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN.equals(res.IPM_Role_Type__c)){
+                res.IPM_Role_Type__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_SC;  
+            }
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;
-                if(res.IPM_Project_Role_Owner__c==true){
+                if(res.IPM_Project_Role_Owner__c){
                    plFunctionalRoleSet.add(res.IPM_Role_Type__c);//get PL functional roles as team member
                 }
             }   
@@ -399,7 +409,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
               
         //projResList =  project.IPM_Project_Resources__r;      
         if(project.IPM_Projects__r != NULL && !project.IPM_Projects__r.isEmpty()){          
-            rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name, IPM_Type_of_gate__c, IPM_Due_Date__c 
+            rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name,IPM_Name__c,IPM_Type_of_gate__c, IPM_Due_Date__c ,IPM_Project__r.Is_Archieved__c
                                                                   from IPM_Milestone__c
                                                                   where IPM_Project__r.IPM_Parent_Project__c =: projectId 
                                                                   AND IPM_Due_Date__c != NULL AND IPM_Due_Date__c >= TODAY
@@ -407,7 +417,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                   AND IPM_Phase__c != : IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT
                                                                   ORDER BY IPM_Due_Date__c asc, IPM_Project__r.IPM_Target_Launch_Dates__c asc limit 1]; 
              if(rolloutProjectRecentMilestone != null && !rolloutProjectRecentMilestone.isEmpty()){
-                gateDueDateMessage = string.format(System.Label.IPM_GateDueDateMesg, new string[] {String.valueof(rolloutProjectRecentMilestone[0].IPM_Type_of_gate__c)});
+                gateDueDateMessage = string.format(System.Label.IPM_GateDueDateMesg, new string[] {String.valueof(rolloutProjectRecentMilestone[0].IPM_Name__c)});
              }                                                  
          }                
          if(projResList != NULL && projResList.isEmpty() && project.IPM_Project_Leader__c != UserInfo.getUserId() && project.IPM_Technical_Project_Leader__c != UserInfo.getUserId()
@@ -488,10 +498,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
 			//IF SPAN is Global
 			if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
 			{
-				fin=[SELECT Business_Impact_Global__c					            
+				fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c					            
 					 FROM IPM_Financial__c 
 					 WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-				globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE : (fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c : IPM_ConstantUtils.BLANK) );
+		            globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE : (fin[0].Business_Impact_Global__c != null ? (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS ? fin[0].Business_Impact_Regional__c : fin[0].Business_Impact_Global__c ):  IPM_ConstantUtils.BLANK) );
 			}
 			//IF SPAN is Regional
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
@@ -506,10 +516,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
 				{
 					//Project Type is Rollout
-					fin=[SELECT Business_Impact_Global__c
+					fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					 globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c :IPM_ConstantUtils.BLANK));
+					 globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}
 			}
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
@@ -527,12 +537,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
 				{
 					IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
-					fin=[SELECT Business_Impact_Global__c FROM IPM_Financial__c 
+					fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c FROM IPM_Financial__c 
 							 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
 							 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 					 
 					 
-					globalbusinessImpactStr =  (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c :IPM_ConstantUtils.BLANK));
+					globalbusinessImpactStr =  (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}
 				
 			}
@@ -587,6 +597,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();
+                lstFinDataMissingAlertMessage = new list<String>();
 
         for(IPM_Financial__c fin: RegionalOrLocalFins ){  
             if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c && (system.today() > fin.Misaligned_Date__c)){               
@@ -615,6 +626,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         			project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Parent_Project__r.IPM_Project_Name__c);
                     ++noOfNotifications;
         }
+                //DEF2344 fix
+            List<IPM_Project__c> projList = IPM_ValidationHelper.validateMilestoneAndFinacialData(new List<IPM_Project__c>{project});
+            if(!projList.isEmpty()) {
+                lstFinDataMissingAlertMessage.add(Label.IPM_Finacial_Data_Missing);
+                ++noOfNotifications;
+            }
         
          
         //Calculate nearest Gate Due date for Rollout 
@@ -634,6 +651,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
             stoppedMsg += project.IPM_Stopped_Date_Time__c.Date() + SPACE + Label.IPM_During + SPACE + project.IPM_Phase__c +  SPACE + Label.IPM_Phase_Label + SPACE;
         }
         
+        if(project.IPM_Target_Launch_Dates__c!=null)
+        {
         //Alert for BET First Release is due on X
         Datetime targetLaunchDate=datetime.newInstance(project.IPM_Target_Launch_Dates__c.year(),project.IPM_Target_Launch_Dates__c.month(),project.IPM_Target_Launch_Dates__c.day());
        
@@ -658,7 +677,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 betMsgFinalReleaseDueDate =project.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(DATEFORMAT); 
                 ++noOfNotifications;
             }       
-        } 
+        }
+    } 
         
         //Process for associated project sections
         List<IPM_Project_Document_Section__c> projectSectionsList = new List<IPM_Project_Document_Section__c>(); 

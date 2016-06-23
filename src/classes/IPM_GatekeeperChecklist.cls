@@ -20,8 +20,10 @@ public with sharing class IPM_GatekeeperChecklist{
     public static  ID recTypeRnDFeasibility; //Contains R&D Feasibility  Record type Id
     public static  ID recTypeSCFeasibility; //Contains SC Feasibility  Record type Id
     public static  ID recTypeTrademark;//Contains Trademark Feasibility  Record type Id
-     
-    public static list<IPM_Questionnaire__c> gkChecklist{get;set;} //Contains Gatekeeper Check list Questions
+    
+    public static list<IPM_Questionnaire__c> gkChecklist{get;set;} //Contains Gatekeeper Check list Questions 
+    public Map<Id,List<SelectOption>> gkChecklistAnsMap{get;set;} //Contains responses to the Gatekeeper Check list Questions
+    public Map<String,String> gkHelpTextMap{get; set;} //Contains help text corresponding to the Gatekeeper Check list responses
     public static list<IPM_Questionnaire__c> quesList{get; set;} //Contains feasibility and rnd questions
     public IPM_Questionnaire__c gkCheck{get; set;} //Contains Gatekeeper Check list Record
     public Id quesId{get; set;} //Questionnaire Record Id
@@ -31,6 +33,9 @@ public with sharing class IPM_GatekeeperChecklist{
     public ID projectID{get;set;} //Project Id
     public Boolean cmts{get; set;} //Used for updating comments and Check list Value
     public IPM_Project_Document_Section__c  projDocSec {get;set;} //Contains Project Document Section Record
+    
+    public static final Map<String,String> GK_DEF_APPLICABLE_ANSMAP = new  Map<String,String>{Label.IPM_YES => Label.IPM_YES ,Label.IPM_PARTLY => Label.IPM_PARTLY , Label.IPM_NO => Label.IPM_NO, Label.IPM_NA => Label.IPM_NO_APPLICABLE };
+    
     //Contains Gate Document Type and Retrieving Gatekeeper Check list Questionnaires
     public string gateType{ 
         get {
@@ -48,7 +53,7 @@ public with sharing class IPM_GatekeeperChecklist{
         }
         set {
             gateTypeRND = value;
-             getChecklistQuestions(IPM_ConstantUtils.RND,gateTypeRND);
+            getChecklistQuestions(IPM_ConstantUtils.RND,gateTypeRND);
         }
     }
     //Contains Gate Document Type to Retrieve SC Feasibility Questionnaires
@@ -68,10 +73,10 @@ public with sharing class IPM_GatekeeperChecklist{
         }
         set {
             gateTypeRNDFeas = value;
-             getChecklistQuestions(IPM_ConstantUtils.RND_FEASIBILITY,gateTypeRNDFeas);
+            getChecklistQuestions(IPM_ConstantUtils.RND_FEASIBILITY,gateTypeRNDFeas);
         }
     }
-
+    
     public string gateTypeTradeMark{  
         get {
             return gateType;
@@ -81,7 +86,7 @@ public with sharing class IPM_GatekeeperChecklist{
             getChecklistQuestions(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE,gateTypeTradeMark);
         }
     }
-
+    
     //To Check Record is Editable or Read Mode
     public boolean editTable{ 
         get {
@@ -126,13 +131,14 @@ public with sharing class IPM_GatekeeperChecklist{
             recTypeSCFeasibility=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.SCFEASIBILITY_RECORD_TYPE).RecordTypeId;
             recTypeTrademark=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
         }
-       
+        
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
-                GET_RECORDTYPEID_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                                                  GET_RECORDTYPEID_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
+    
     
     /************************************************************************************************************************
     *  Description To Show Gatekeeper Checklist Questionnaires for Displaying in Gate Document
@@ -145,23 +151,82 @@ public with sharing class IPM_GatekeeperChecklist{
         try{
             //Retrieving Record Type Ids
             getRecordTypeId();  
-            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_GK_Answers_Multiselect__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
             if(projDocSec!=null){
                 string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
                 gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
             }
             else{
-                gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');
-            }  
+               
+               gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');     
+                
+            } 
+            
+            if(gkChecklist!=null && !gkChecklist.isEmpty())  
+            {
+                gkChecklistAnsMap  = new Map<Id , List<SelectOption>>();
+                
+                for(IPM_Questionnaire__c ipmQue : gkChecklist) 
+                {   
+                    // Prepare a map of Options VS help Text.           
+                    gkHelpTextMap = new  Map<String , String>{ Label.IPM_YES => ipmQue.IPM_HelpText_Yes__c  , Label.IPM_PARTLY => ipmQue.IPM_HelpText_Partly__c , Label.IPM_NO => ipmQue.IPM_HelpText_No__c ,Label.IPM_NA=> ipmQue.IPM_Question_Help_Text__c };
+                    
+                    List<SelectOption> applicableGKOptions = new  List<SelectOption>{new SelectOption('0',Label.IPM_SELECT)};
+                    
+                    // Get the Applicable Answer List based on the Questionare record.
+                    String gkAnswers=ipmQue.IPM_GK_Answers_Multiselect__c;
+                    
+                    if( gkAnswers!=null && !String.isBlank(gkAnswers))
+                    {
+                         List<String> applicableAnswerList = gkAnswers.split(IPM_ConstantUtils.SEMICOLON);
+                         
+                         for(String answerString : applicableAnswerList)
+                         {  
+                            String[] optionsArray = answerString.split(IPM_ConstantUtils.TILDA_DELIMITER);
+                            
+                            if(!optionsArray.isEmpty())
+                            {
+                                String optionLabel = optionsArray[0];
+                                String optionValue = optionsArray[1];
+                                
+                                SelectOption answerOption = null; 
+                                if(!gkHelpTextMap.containsKey(optionLabel))
+                                {
+                                    answerOption = new SelectOption(optionValue,optionLabel);
+                                }
+                                else
+                                {
+                                    answerOption = new SelectOption(optionValue,'<span title='+  gkHelpTextMap.get(optionLabel)  + '>' +optionLabel+'</span>');
+                                }
+                                answerOption.setEscapeItem(false);
+                                applicableGKOptions.add(answerOption);              
+                            }
+                         } 
+                     }
+                     else  
+                     {
+                         for(String key :GK_DEF_APPLICABLE_ANSMAP.keyset())
+                         {
+                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title='+  gkHelpTextMap.get(key)  + '>' +key+'</span>');
+                         
+                            answerOption.setEscapeItem(false);
+                         
+                            applicableGKOptions.add(answerOption); 
+                         } 
+                     }                 
+                     
+                     gkChecklistAnsMap.put(ipmQue.id, applicableGKOptions);   
+                 }
+             } 
         }
-       
+        
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
-                GET_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                                                  GET_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
-
+    
     /************************************************************************************************************************
     *  Description To Update the Answers and Comments in the Gatekeeper Checklist Questionnaires
     *  @name getSectioWiseGKChecklist
@@ -185,12 +250,12 @@ public with sharing class IPM_GatekeeperChecklist{
             catch (DMLException ex) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
-                    UPDATE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+                                                      UPDATE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
             }
             catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
-                    UPDATE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                                                      UPDATE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
         }
         return null;
@@ -208,11 +273,11 @@ public with sharing class IPM_GatekeeperChecklist{
             projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Master_Section_External_Id__c FROM IPM_Project_Document_Section__c WHERE Id=:SecId];
             getGKChecklist();
         }
-       
+        
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
-                GET_SECTION_WISE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                                                  GET_SECTION_WISE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
@@ -230,30 +295,30 @@ public with sharing class IPM_GatekeeperChecklist{
             getRecordTypeId();
             if(checklistType==IPM_ConstantUtils.SC_FEASIBILITY){
                 checklistRecordType=recTypeSCFeasibility;
-            }
+            } 
             else if(checklistType==IPM_ConstantUtils.RND_FEASIBILITY){
                 checklistRecordType=recTypeRnDFeasibility;
             }
-            else if(checklistType==IPM_ConstantUtils.RND){
+            else if(checklistType==IPM_ConstantUtils.RND){ 
                 checklistRecordType=recTypeRnD;
             }
-            else if(checklistType==IPM_ConstantUtils.TRADEMARK_RECORD_TYPE){
+            else if(checklistType==IPM_ConstantUtils.TRADEMARK_RECORD_TYPE){ 
                 checklistRecordType=recTypeTrademark;
             }
             if(String.isNotBlank(checklistRecordType)){
                 //Getting Supply Chain Questionnaires for Project
                 quesList=[SELECT ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,
-                                 IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_Section_External_Id__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId 
+                          IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_Section_External_Id__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId 
                           FROM IPM_Questionnaire__c 
                           WHERE RecordTypeId=:checklistRecordType AND IPM_Project__c=:projectID AND IPM_RQS_Gate_Type__c=:gateType];
             }
             
         }
-       
+        
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
-                GET_CHECKLIST_QUESTIONS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                                                  GET_CHECKLIST_QUESTIONS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
 }

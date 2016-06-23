@@ -1,0 +1,135 @@
+<apex:page controller="Amr_CommonController_CC">    
+    <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/common-header.css')}" />
+    
+    <style type='text/css'>        
+        @media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
+            .done-for-today {
+                line-height:20px;
+            }            
+        }
+        .lower-container-logo {
+           	display:none;
+         }
+         .lower-container {
+		    height: 20px !important;
+		}
+    </style>
+    
+    <!--[if IE]>
+    <style type='text/css'>
+        .done-for-today {
+            line-height:20px;
+        }      
+    </style>
+    <![endif]-->
+    
+    <style>
+        @font-face {
+                font-family: 'dinOffPro';
+                src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.eot')}") format('embedded-opentype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.woff2')}") format('woff2'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.woff')}") format('woff'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.ttf')}") format('truetype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.svg#svgFontName')}") format('svg');
+            }
+            
+            @font-face {
+                font-family: 'dinOffProBold';
+                src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.eot')}") format('embedded-opentype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.woff2')}") format('woff2'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.woff')}") format('woff'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.ttf')}") format('truetype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.svg#svgFontName')}") format('svg');
+            }
+            
+            @font-face {
+                font-family: 'dinOffProBoldIta';
+                src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.eot')}") format('embedded-opentype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.woff2')}") format('woff2'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.woff')}") format('woff'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.ttf')}") format('truetype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.svg#svgFontName')}") format('svg');
+            }
+            
+            @font-face {
+                font-family: 'dinOffProIta';
+                src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.eot')}") format('embedded-opentype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.woff2')}") format('woff2'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.woff')}") format('woff'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.ttf')}") format('truetype'),
+                url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.svg#svgFontName')}") format('svg');
+            }        
+        
+        .zen .zen-tabMenu > li {                                   
+            border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabBlue.png");            
+        }        
+        .zen .zen-tabMenu .zen-active {            
+            border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabWhite.png") !important;            
+        }        
+        .bodyDiv {        
+            background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/pattern-2.png')}");            
+        }                  
+        
+    </style>
+    <apex:form >
+    <div class="header-container">
+        <div class="upper-main-container">
+            <div class="upper-left-container left">
+                <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Img_TopLeft.png')}" alt="header" />
+            </div>
+            <div class="upper-container left">
+                <div class="left upper-container-logo">
+                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/unilever.png')}" alt="logo" />
+                </div>
+                <div class="left upper-container-welcome-text">
+                    Hi {!$User.FirstName} {!$User.LastName}, Welcome to AdManager
+                </div>          
+                <div class="right upper-container-right-logo">
+                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager_90.png')}" alt="header" />
+                </div>
+                <div class="right done-for-today" style="height:16px;">
+                    <div class="left">                  
+                        DONE FOR TODAY? EXIT AdManager
+                    </div> 
+                    <div class="left end-session">
+                        <apex:commandLink action="{!EndSession}" >
+                            <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/ico-close-white.png')}" alt="logo"/>
+                        </apex:commandLink>                                           
+                    </div>
+                    <div class="clear"></div>                     
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="upper-right-container left">
+                <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Img_TopRight.png')}" alt="header" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>      
+        <div class="lower-container margin-top20" style="height:150px;"> 
+            <div class="left lower-container-logo">       
+                <div class="left"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/animatics.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/music.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/talent.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/uniadapt.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/fulfilment.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/production.png')}" alt="banner" /></div>
+                <div class="left logo-banner-small" style="margin-top:45px;"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/post-production.png')}" alt="banner" /></div>
+                <div class="clear"></div>
+            </div>
+            <div class="right">
+                
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+            </div>      
+    </div>
+    <div id="Maintab">
+    
+    </div>
+    </apex:form>
+</apex:page>

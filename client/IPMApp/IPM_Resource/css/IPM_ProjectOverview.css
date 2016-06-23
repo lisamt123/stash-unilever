@@ -1,0 +1,1598 @@
+/************** CSS HEADER INFORMATION******************************************************
+	- File Name     : IPM_ProjectOverview
+	- Description   : This file is used in the Project Overview page 
+	- Client        : Unilever
+	- Last Modified : 29-10-15
+	- Author        : Cognizant Technology Solutions  
+*******************************************************************************************/
+/* ===GLOBAL STYLES=== */
+         body,
+         td {
+             color: #555 ;
+         }         
+         .contentWrapper {
+             padding-left: 15px;
+             padding-right: 15px;
+         }
+         .fl {
+             float: left;
+         }
+		 .searchModal .lookupSearchIcon{background-image: url("../images/search.svg");border: 0;background-size: 20px 20px;width: 28px;height: 29px;background-position: 5px 6px;background-repeat: no-repeat;position: relative;left: -34px;background-color: #fff;}
+		 .pull-right{float:right;}
+		 .tradeDesc{margin: 10px 0;display: block;}
+		 .tradeButtonContainer{margin:15px;}
+         .submitted {
+             margin-top: 2px;
+             padding-top: 3px;
+             padding-bottom: 5px;
+             padding-left: 12px;
+             padding-right: 7px;
+             background-color: #F0A03D;
+             border: 0 solid #666;
+         }
+		 .ipmCheckbox label{
+		 top:-6px ;
+		 }
+		 .createNewBrandExp strong {display:block;}
+         .notsubmitted {
+             margin-top: 2px;
+             padding-top: 1px;
+             padding-bottom: 5px;
+             padding-left: 12px;
+             padding-right: 7px;
+             background-color: #fff;
+             border: 1px solid #ddd;
+         }
+         .f12 {
+             font-size: 12px;
+         }
+         .pb3 {
+             padding-bottom: 3px;
+         }
+         .clearfix {
+             clear: both;
+         }
+         .mr10 {
+             margin-right: 10px;
+         }
+         .pr10 {
+             padding-right: 10px;
+         }
+         .pt10 {
+             padding-top: 10px;
+         }
+         .overviewborder {
+             border-bottom: 1px solid #D1D1D1;
+             margin: 0 10px;
+             padding: 0 10px 20px 10px;
+         }
+         .keyTitle {
+             color: #666;
+             font-weight: bold;
+             font-size: 1em;
+			 display:inline-block;
+			 margin-bottom:0;
+         }
+         .keycontent {
+             color: #000;
+             font-weight: normal;
+             font-size: 1em;
+             word-break: break-all;
+			 display:inline-block;
+			 margin-bottom:0;
+         }
+		 .author {
+			color: #000;
+			font-weight:bold;
+		 }
+		 .flagMargin{
+		 margin-left:10px;
+		 }
+		 
+		 .whiteSpaceContainer{
+		 padding:0 15px;
+		 margin-top:10px;
+		 float: left;
+		 }
+		 
+         .percentage {
+             color: #007dbb;
+			 font-size:13px;
+         }
+         .keyprojectDetails {
+             display: block;
+             color: #666;
+             font-size: 1em;
+         }
+         .secblock {
+             border-left: 9px solid #F0A03D;
+         }
+         .secblock span {
+             background-color: #F9FAEC;
+             font-size: 1em;
+             color: #005EB8;
+             padding-top: 18px;
+             padding-bottom: 18px;
+             padding-left: 10px;
+             padding-right: 15px;
+             display: block;
+         }
+         .secnofill span {
+             background-color: #fff;
+             border: 1px solid #dedede;
+             font-size: 1em;
+             color: #005EB8;
+             padding-top: 18px;
+             padding-bottom: 18px;
+             padding-left: 19px;
+             padding-right: 15px;
+             display: block;
+         }
+         .secUsersHistory {
+             color: #636363;
+             margin: 0 0;
+         }
+		 
+         .secUsersHistory .tlCircle {
+             width: 10px;
+             height: 10px;
+             background: #007dbb;
+             border-radius: 50%;
+             margin-left: -2px;
+         }
+         .secUsersHistory .panel-group {
+             padding: 20px 0 0 0;
+             border-left: 1px dotted #9fcbe8;
+			 margin-left: 2px;
+         }
+         .secUsersHistory .listHistory {
+             background: #cfebfc;
+             border-radius: 3px;
+             -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+             margin-bottom: 10px;
+             padding: 10px;
+             position: absolute;
+             left: 46px;
+             top: 12px;
+         }
+         .secUsersHistory .listHistory:before {
+             left: 0;
+             top: 50%;
+             border: solid transparent;
+             content: "";
+             height: 0;
+             width: 0;
+             position: absolute;
+             pointer-events: none;
+             border-right-color: #cfebfc;
+             border-width: 10px;
+             margin-top: -21px;
+             margin-left: -20px;
+         }
+         .secUsersHistory .col-xs-2 {
+             width: 14%;
+             margin-top: 12px;
+         }
+         .circularimg {
+             position: relative;
+             left: -17px;
+             border-radius: 28px;
+             width: 35px;
+         }
+         .username {
+             font-size: 0.8em;
+             color: #949e8b;
+             margin-bottom: 5px;
+             font-weight: bold;
+         }
+         .date {
+             font-size: 1em;
+             color: #3b516d;
+             font-weight: bold;
+         }
+         .action {
+             font-size: 1em;
+             color: #444;
+             margin-top: 10px;
+             word-wrap: break-word;
+         }
+         .listHistory-green {
+             background: #E9EE91;
+             border-radius: 3px;
+             -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+             margin-bottom: 10px;
+             padding: 10px;
+             position: relative;
+             left: 14px;
+         }
+         .secUsersHistory .listHistory-green:before {
+             left: 0;
+             top: 40px;
+             border: solid transparent;
+             content: "";
+             height: 0;
+             width: 0;
+             position: absolute;
+             pointer-events: none;
+             border-right-color: #E9EE91;
+             border-width: 10px;
+             margin-top: -21px;
+             margin-left: -20px;
+         }
+         .listHistory-ltgreen {
+             background: #F0F3B2;
+             border-radius: 3px;
+             -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+             margin-bottom: 10px;
+             padding: 10px;
+             position: relative;
+             left: 14px;
+         }
+         .secUsersHistory .listHistory-ltgreen:before {
+             left: 0;
+             top: 40px;
+             border: solid transparent;
+             content: "";
+             height: 0;
+             width: 0;
+             position: absolute;
+             pointer-events: none;
+             border-right-color: #F0F3B2;
+             border-width: 10px;
+             margin-top: -21px;
+             margin-left: -20px;
+         }
+         .listHistory-ble {
+             background: #D0ECFE;
+             border-radius: 3px;
+             -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+             margin-bottom: 10px;
+             padding: 10px;
+             position: relative;
+             left: 14px;
+         }
+         .secUsersHistory .listHistory-ble:before {
+             left: 0;
+             top: 40px;
+             border: solid transparent;
+             content: "";
+             height: 0;
+             width: 0;
+             position: absolute;
+             pointer-events: none;
+             border-right-color: #D0ECFE;
+             border-width: 10px;
+             margin-top: -21px;
+             margin-left: -20px;
+         }
+         .listHistory-blue {
+             background: #D0ECFE;
+             border-radius: 3px;
+             -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+             margin-bottom: 10px;
+             padding: 10px;
+             position: relative;
+             left: 14px;
+         }
+         .secUsersHistory .listHistory-blue:before {
+             left: 0;
+             top: 40px;
+             border: solid transparent;
+             content: "";
+             height: 0;
+             width: 0;
+             position: absolute;
+             pointer-events: none;
+             border-right-color: #D0ECFE;
+             border-width: 10px;
+             margin-top: -21px;
+             margin-left: -20px;
+         }
+         .mt70 {
+             margin-top: 70px;
+         }
+         .cirpos {
+             position: absolute;
+             left: 15px;
+         }
+         .bluetxt {
+             color: #005EB8;
+             font-size: 1em;
+         }
+         .cirimg {
+             border-radius: 28px;
+             width: 35px;
+         }
+         .mt20 {
+             margin-top: 20px;
+         }
+         .greytxt {
+             color: #ddd;
+         }
+         .mlr5px {
+             margin-left: 5px;
+             margin-right: 5px;
+         }
+         .pb3.notstarted:before {
+             display: block;
+             width: 9px;
+             content: " ";
+             border: 1px solid #dedede;
+             position: absolute;
+             padding-left: 2px;
+             margin-right: 3px;
+             height: 23%;
+         }
+         .whiteBox .ipmCheckbox label {
+             top: 0;
+         }
+         .ipmCheckbox {
+             padding: 0;
+             margin-top: 10px;
+             margin-left: 16px;
+         }
+         .pl5 {
+             padding-left: 5px;
+         }
+         @media screen and (max-width: 1024px) {
+             .pb3.notstarted:before {
+                 height: 25%;
+             }
+             .dropdown-menu {
+                 min-width: 179px ;
+             }
+         }
+         .pr0 {
+             padding-right: 0;
+         }
+         .pl0 {
+             padding-left: 0;
+         }
+         .mt20 {
+             margin-top: 20px;
+         }  
+         .ipmProjectDetails .panel {
+             box-shadow: none ;
+             webkit-box-shadow: none ;
+         }
+         .navbar-nav>li a > span {
+             border-right: 0;
+         }
+         .headerpbl {
+             width: 337px;
+             height: 50px;
+             bottom: 51px;
+             float: right;
+             left: -128px;
+         }
+         .ipmFunnelPanel {
+             position: relative;
+             bottom: 0;
+         }
+         ul.dropdown-menu li {
+             margin-left: 0;
+         }
+         .dropdown-menu {
+             min-width: 246px;
+             left: 2px;
+         }
+
+         .noPadleft {
+             padding-left: 0;
+         }
+         .noPadright {
+             padding-right: 0;
+         }
+         .ipmPageHeaderDiv {
+             margin-bottom: 5px ;
+         }
+         .contentscroll {
+             overflow-y: auto;
+             height: 800px;
+             overflow-x: hidden;
+         }
+         .greybor {
+             margin-top: 15px;
+             margin-bottom: 10px;
+             border-bottom: 1px solid #D1D1D1 ;
+         }
+         .alertBox {
+             margin-top: 0;
+             margin-bottom: 15px;
+             margin-left: 0;
+             margin-right: 0;
+             position: relative;
+             background: #ffef47;
+             border-radius: 4px;
+             display: none;
+         }
+         .alertsContainer {
+             background: #FFF372;
+             padding: 10px;
+             float: left;
+             font-size: 1em;
+             color: #333;
+         }
+         .fa-exclamation-triangle {
+             font-size: 21px;
+             color: #E98824;
+         }
+         .rightContent {
+             position: relative;
+             left: -34px;
+         }
+         
+         .minus {
+             position: relative;
+             background: #00A9E0;
+             color: white;
+             left: -22px;
+             top: 12px;
+             z-index: 9;
+             float: right;
+             font-size: 0.58em;
+             padding: 4px 5px 3px 5px;
+             border-radius: 2px;
+         }
+         .alertContent {
+             display: none;
+			 bottom: 27px;
+         }
+		 .alertContent ul {
+		 margin-bottom:0;
+		 max-height:300px;
+		 overflow:auto;
+		 width: 98%;
+		 }
+		 
+		 .alertContent ul li{
+			color:#333;
+		 }
+		 
+         .alertsIcon {
+             width: 4.5%;
+         }
+         .alertList {
+             padding-left: 0;
+			 max-height:300px;
+			 overflow:auto;
+         }
+         .blackFont {
+             color: #000;
+         }
+         .nav {
+             position: relative;
+         }
+         .alerttext {
+             position: relative;
+             font-weight: bold;
+             color: #333;
+             font-size: 18.666667px;
+             bottom: 4px;
+         }
+         .greyborder {
+             margin-top: 15px;
+             margin-bottom: 10px;
+             border-bottom: 1px solid #D1D1D1 ;
+         }
+         .chatter span {
+             background-color: #fff;
+             border: 1px solid #8AB3DA;
+             font-size: 0.95em;
+             color: #007DBB;
+             padding-top: 6px;
+             padding-bottom: 6px;
+             padding-left: 19px;
+             padding-right: 15px;
+             display: block;
+             font-weight: bold;
+             border-radius: 5px;
+         }
+         .followingchatter span {
+             font-size: 0.95em;
+             color: #666;
+             display: block;
+             font-weight: bold;
+         }
+         .followingchatter span img {
+             width: 24%;
+             padding-right: 8px;
+         }
+         .mb20 {
+             margin-bottom: 20px;
+         }
+         .chatter span img {
+             width: 27%;
+             padding-right: 8px;
+         }
+         .chatter a {
+             cursor: pointer;
+             text-decoration: none;
+         }
+         .chatter a:hover {
+             text-decoration: none ;
+         }
+         .unfollow {
+             font-weight: normal ;
+             color: #007DBB ;
+             margin-left: 74px;
+         }
+         @media screen and (max-width: 1024px) {
+             .unfollow {
+                 margin-left: 55px ;
+             }
+         }
+         .mt6 {
+             margin-top: 6px;
+         }
+         .fasttrack {
+             width: 34px;
+             height: 26px;
+         }
+         .alertimg {
+             width: 30px;
+             position: relative;
+             bottom: 7px;
+         }
+         .topheader {
+             display: block;
+             font-weight: bold;
+             color: #004976;
+         }
+         /* header new styles */
+         
+         .ipmFunnelPanel {
+             bottom: 4px;
+         }
+         .channelContainer {
+             border: 0;
+         }
+         .ipmProjectDetails .panel-title {
+             line-height: 2em;
+         }
+         .ipmFunnelPanel {
+             bottom: 4px;
+         }
+         .uploadImg img {
+             border-radius: 50% ;
+             max-width: 44px;
+         }
+         .ipmProjectDetails .panel {
+             background: transparent;
+         }
+         .ipmProjectDetails .uploadImg {
+             overflow: hidden;
+             padding: 0;
+             margin: 0;
+         }
+         .ipmProjectDetails .panel-body .col-sm-3 {
+             padding-left: 3px;
+             margin-top: 18px;
+         }
+         .pageHeadToolbar {
+             border-bottom: 1px solid #ddd;
+             margin: 0 15px;
+         }
+         .pageHeadToolbar .SecFillProgress {
+             display: inline-block;
+             border-left: 1px #929292 solid;
+             padding-left: 10px;
+         }
+         .pageHeadToolbar .SecFillProgress .fillProgress {
+             display: inline-block;
+             color: #e98824;
+             font-size: 22px;
+             font-weight: normal;
+         }
+         .pageHeadToolbar .SecFillProgress .fillProgress span {
+             font-size: 12px;
+         }
+         .pageHeadToolbar .SecFillProgress .fillProgressTxt {
+             color: #364354;
+             display: inline-block;
+             font-size: 12px;
+         }
+         .pageHeadToolbar .SecStatusUpdate {
+             display: inline-block;
+             margin: 0;
+             padding-right: 15px;
+             border-right: 1px solid #929292;
+         }
+         .pageHeadToolbar .SecCurrentStatus {
+             display: inline-block;
+             color: #364354;
+             margin: 0 15px;
+             text-align: right;
+         }
+         .pageHeadToolbar .status {
+             color: #e98824;
+             display: block;
+             font-weight: bold;
+         }
+         .icoButton {
+             cursor: pointer;
+         }
+         .pageHeadToolbar .SecButtonSet {
+             display: inline-block;
+             margin: 0 10px 10px;
+         }
+         .leftSideBar {
+             margin-top: 10px;
+         }
+         .leftSideBar h4 {
+             color: #253b78;
+             font-size: 1.1em;
+             font-weight: bold;
+         }
+         .leftSideBar ul.docFilter {
+             padding: 0;
+             margin: 20px 0 0;
+             list-style: none;
+         }
+         .leftSideBar ul.docFilter li {
+             margin-left: 0;
+             display: block;
+             background: #edeef0;
+             color: #253b78;
+             border-bottom: 1px solid #d7e0e0;
+             padding: 7px;
+         }
+         .leftSideBar ul.docFilter li > input[type=checkbox] {
+             position: relative;
+             margin-right: 5px;
+             top: 2px;
+         }
+         .leftSideBar ul.docFilter h4 {
+             display: block;
+             background: #edeef0;
+             color: #253b78;
+             margin-bottom: 0;
+             border-bottom: 1px solid #d7e0e0;
+             border-top: 1px solid #d7e0e0;
+             padding: 10px 7px;
+         }
+         .tempWrapper .expandTool {
+             text-align: right;
+         }
+         .tempWrapper .expandTool span {
+             display: inline-block;
+             margin: 5px;
+             font-weight: bold;
+             color: #0f81bb;
+             cursor: pointer;
+         }
+         .contenWrapper {
+             margin-top: 11px;
+         }
+         .leftSideBar .ipmButtonGroup {
+             margin-bottom: 10px;
+             padding: 10px 0 0;
+         }
+         .leftFilterBlock {
+             width: 19%;
+         }
+         .rightContentBlock {
+             width: 81%;
+         }
+         /* Generic Accordian Styles */
+         
+         .ipmAccordian {
+             display: block;
+         }
+         .ipmAccordian .aHead {
+             display: block;
+         }
+         .ipmAccordian > .ipmAcrdnExpand {
+             border: 1px solid #dce3e2;
+             display: block;
+             border-top: none;
+             margin-bottom: 10px;
+         }
+         .ipmAccordian > .aHead {
+             color: #253b78;
+             font-size: 1.5em;
+             font-weight: bold;
+             display: block;
+             background: #f7f7f7;
+             border: 1px solid #dce3e2;
+             margin-bottom: 2px;
+             padding: 13px 10px 14px;
+         }
+         .ipmAccordian > .ipmAcrdnExpand > .aHead {
+             color: #0f7fb8;
+             font-size: 1.1em;
+             font-style: normal;
+             font-weight: bold;
+             display: block;
+             border-bottom: 1px solid #dce3e2;
+             margin: 0 20px;
+             padding: 12px 0;
+         }
+         .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead {
+             font-size: 1em;
+             font-style: normal;
+             font-weight: bold;
+             color: #0f7fb8;
+             display: block;
+             border-bottom: 1px solid #eee;
+             padding: 12px 0 15px;
+             margin: 0 0 0 20px;
+         }
+         .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead:first-child {
+             padding-top: 2px;
+         }
+         .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {
+             padding: 10px 20px 0 45px;
+             display: block;
+         }
+         .ipmAccordian .ipmAcrdnExpand .col-sm-3 {
+             padding-right: 0;
+             position: relative;
+         }
+         .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .ipmAcrdnExpand {
+             padding: 10px 10px 0 45px;
+             display: block;
+         }
+         .ipmAccordian .ipmAcrdnExpand {
+             color: #797979;
+             display: block;
+         }
+         .ipmAccordian > .aHead span.expico {
+             display: inline-block;
+             cursor: pointer;
+             font-family: FontAwesome;
+             width: 21px;
+             height: 21px;
+             text-align: center;
+             font-weight: normal;
+             line-height: 23px;
+             background: #81bd42;
+             position: relative;
+             margin-right: 5px;
+             font-size: 0.8em;
+             border-radius: 50%;
+             -webkit-border-radius: 50%;
+             -moz-border-radius: 50%;
+             color: #fff;
+         }
+         .ipmAccordian .ipmAcrdnExpand .aHead span.expico {
+             display: inline-block;
+             cursor: pointer;
+             font-family: FontAwesome;
+             width: 16px;
+             height: 16px;
+             text-align: center;
+             font-weight: normal;
+             line-height: 17px;
+             background: #d4d4d4;
+             position: relative;
+             margin-right: 5px;
+             font-size: 0.7em;
+             border-radius: 50%;
+             -webkit-border-radius: 50%;
+             -moz-border-radius: 50%;
+             color: #fff;
+         }
+         .ipmAccordian span.wrpHead {
+             display: inline-block;
+             padding: 5px 10px 5px 0;
+             border-right: 1px solid #797979;
+         }
+         .ipmAccordian .Filled-in {
+             display: inline-block;
+             padding: 0 8px;
+             margin-left: 5px;
+             border-left: 1px solid #797979;
+             color: #e68627;
+             font-size: 13px;
+             font-weight: normal;
+         }
+         .ipmAccordian .Not.Started {
+             display: inline-block;
+             padding: 0 8px;
+             margin-left: 5px;
+             border-left: 1px solid #797979;
+             color: #797979;
+             font-size: 13px;
+             font-weight: normal;
+         }
+         .ipmAccordian .Excluded {
+             display: inline-block;
+             padding: 0 8px;
+             margin-left: 5px;
+             color: #222;
+             background: #ebebeb;
+             font-size: 13px;
+             font-weight: normal;
+         }
+         .ipmAccordian span.lastupdate {
+             display: block;
+             margin: 6px 0 0 0;
+             color: #d4d4d4;
+             font-weight: normal;
+         }
+         .ipmAccordian .acHead {
+             padding-top: 4px;
+         }
+         .ipmAccordian .lastUpdate {
+             color: #c2c2c2;
+             display: block;
+             margin-top: 10px;
+             font-size: 0.9em;
+         }
+         .ipmAccordian .sfdc_richtext {
+             color: #797979;
+         }
+         .messageBox .SecButtonSet {
+             margin-top: 0;
+             margin-right: 10px;
+             position: relative;
+             top: 2px;
+         }
+         .messageBox .SecButtonSet .icoButton {
+             width: 16px;
+             height: 16px;
+             top: -2px;
+         }
+         .messageBox .SecButtonSet a {
+             display: block;
+             float: left;
+             border: 1px solid #015ba7;
+             cursor: default;
+             border-radius: 50%;
+             -moz-border-radius: 50%;
+             -webkit-border-radius: 50%;
+         }
+         .messageBox .SecButtonSet span.msgTxt {
+             position: relative;
+             top: -2px;
+             display: block;
+             margin-left: 25px;
+             text-align: left;
+         }
+         .ipmAccordian .SecButtonSet {
+             display: inline-block;
+             text-align: right;
+             margin-top: -5px;
+         }
+         .ipmAccordian .SecButtonSet .icoButton {
+             display: inline-block;
+             width: 30px;
+             margin: 0 5px;
+             height: 30px;
+             border: 1px solid #1568b6;
+             border-radius: 50%;
+             -webkit-border-radius: 50%;
+             -moz-border-radius: 50%;
+         }
+         .ipmProjectDetails .SecButtonSet {
+             display: inline-block;
+             text-align: right;
+             position: relative;
+         }
+         .StatusComment {
+             background: #d9ecc6;
+             border: 1px solid #bdbdbd;
+             margin-top: 20px;
+             margin-bottom: 20px;
+         }
+         .StatusComment .panelTitle {
+             font-size: 1.2em;
+             font-weight: bold;
+             color: #364354;
+             margin: 0 20px 0;
+             padding: 15px 0;
+             border-bottom: 1px solid #aecaab;
+         }
+         .StatusComment .panelRow {
+             margin: 10px 20px 0;
+             border-bottom: 1px solid #aecaab;
+         }
+         .StatusComment .innerHead {
+             font-weight: bold;
+             color: #333;
+             margin-left: 10px;
+         }
+         .StatusComment .updateStatus {
+             color: #666;
+         }
+         .StatusComment .panelRow:last-child {
+             border: none;
+         }
+         .StatusComment .marginbottom {
+             margin-bottom: 6px;
+         }
+         .StatusComment .txtRight {
+             text-align: right;
+         }
+         /* ipmModal Styles */
+         
+         .ipmModal .modal-header {
+             background: url(../images/pop_header.png) repeat-x ;
+             padding: 17.5px 10px 17.5px 17.5px;
+             border-bottom: 1px #d7d7d7 solid;
+             border-radius: 3px;
+             -webkit-border-radius: 3px;
+         }
+         .ipmModal .modal-title {
+             color: #333333 ;
+             font-weight: bold;
+             font-size: 1em;
+         }
+         .ipmModal .modal-header button.close {
+             border: 1px #007dbb solid;
+             border-radius: 50%;
+             padding: 3px 5px;
+             color: #007dbb;
+             width: 30px;
+             background: #fff;
+             margin-top: -8px;
+             opacity: 1;
+         }
+         .ipmModal .modal-content {
+             border-radius: 3px;
+             height: 100%;
+         }
+         .ipmModal .modal-body {
+             height: 90%;
+         }
+         .ipmModal .modal-dialog {
+             margin: 15px auto;
+         }
+         .dropdown-menu {
+             min-width: 246px;
+             left: 2px;
+         }
+         .messageBox {
+             color: #0f81bb;
+             background: #dbefff;
+             border: 1px solid #007DBB;
+             position: relative;
+             border-radius: 3px;
+             margin-left: 60px;
+             padding: 7px;
+         }
+         .closeMessage {
+             color: #000;
+             position: absolute;
+             right: 6px;
+             top: 7px;
+             cursor: pointer;
+         }
+         .rHead {
+             color: #797979;
+             font-size: 0.8em;
+             font-weight: normal;
+         }
+         .greyline {
+             color: #333;
+             font-size: 1em;
+             border-top: 1px solid #aecaab;
+             padding: 0;
+             margin-top: 10px;
+         }
+         .greyline>div {
+             padding-top: 10px;
+         }
+         .commentPanel {
+             margin-top: 10px;
+             padding-left: 0;
+         }
+         .user {
+             font-size: 1em;
+             font-weight: bold;
+             color: #666666;
+             padding-right: 10px;
+             border-right: 1px solid #252525;
+             padding-top: 3px;
+             padding-bottom: 3px;
+             margin-right: 10px;
+         }
+         .action-txt {
+             font-size: 1em;
+             font-weight: bold;
+             color: #585858;
+         }
+         .status-date {
+             font-size: 0.8em;
+             font-weight: normal;
+             color: #797979;
+         }
+         .pageContent {
+             position: relative;
+         }
+         .pageContent .initFilter {
+             background: #fff url(../images/ajax-loader.gif) no-repeat center 40px;
+             width: 100%;
+             height: 100%;
+             padding: 20px;
+             color: #000;
+             text-align: center;
+             position: absolute;
+             z-index: 100;
+             display: block;
+             opacity: 0.9;
+             -moz-opacity: 0.9;
+             -webkit-opacity: 0.9;
+             filter: alpha(opacity=90);
+         }
+         .circular.ipmImage {
+             border-radius: 500rem ;
+         }
+         /* overlay styles */
+         
+         .cust-overlay {
+             background: #fff url(../images/ajax-loader.gif) no-repeat center 10%;
+             width: 100%;
+             height: 100%;
+             padding: 0;
+             margin-top: 8%;
+             color: #000;
+             text-align: center;
+             position: absolute;
+             z-index: 100;
+             display: block;
+             opacity: 0.8;
+             -moz-opacity: 0.8;
+             -webkit-opacity: 0.8;
+             filter: alpha(opacity=80);
+         }
+         /* gatekeeperlist table styling */
+         
+         .gateKeeperlist {
+             table-layout: fixed;
+         }
+         .incHeight {
+             height: 17px;
+         }
+         .gateKeeperlist>thead>tr>th:first-child {
+             padding-left: 5px ;
+         }
+         .gateKeeperlist>tbody>tr>td:first-child {
+             text-align: left ;
+         }
+         .Yes {
+             background: #81bf42;
+         }
+         .No {
+             background: #d01620;
+         }
+         .Not.Applicable {
+             background: #999999;
+         }
+         .Partly {
+             background: #f1993e;
+         }
+         .noPadleft {
+             padding-left: 0;
+         }
+         .noPadright {
+             padding-right: 0;
+         }
+         .firstCol {
+             width: 7%;
+         }
+         .secondCol {
+             width: 35%;
+         }
+         .thirdCol {
+             width: 16%;
+         }
+         .fourthCol {
+             width: 10%;
+         }
+         /*otif table styling for showing color*/
+         
+         .Green {
+             width: 20px;
+             height: 20px;
+             background: #81bf42;
+         }
+         .Red {
+             width: 20px;
+             height: 20px;
+             background: #d01620;
+         }
+         .Not.Applicable {
+             background: #999999;
+         }
+         .Amber {
+             width: 20px;
+             height: 20px;
+             background: #f1993e;
+         }
+        
+         .pageHeadToolbar .SecButtonSet {
+             margin-top: 0;
+         }
+         .crrtCountTblDiv th.firstCol {
+             width: 20%;
+         }
+         .gkcStatus {
+             text-align: center;
+             color: #fff;
+             font-size: 12px;
+         }
+         .noMargin {
+             margin: 0 ;
+         }
+         .SecButtonSetInfo .icoButton {
+             width: 16px ;
+             height: 16px ;
+             position: relative;
+             top: 3px;
+         }
+         .SecButtonSet.channelOptions {
+             margin-top: 5px;
+         }
+         .documentStatus {
+             clear: both;
+             margin-left: 16px;
+         }
+         .documentStatus .percentage {
+             color: #E88821;
+             font-weight: bold;
+             margin-top: 5px;
+         }
+         .dstatusButton {
+             margin-left: 16px;
+             padding-top: 10px;
+             clear: both;
+			 margin-bottom:10px;
+         }
+         .dstatusButton .ipmButton {
+             background: #F79C3E;
+             color: #fff ;
+             border: 1px solid #AD6B27;
+         }
+         .dstatusButton .ipmButton:hover {
+             background: #e38a2d;
+         }
+         .zen-media img.chatterIcon {
+             height: 35px ;
+         }
+         .zen-media {
+             margin-bottom: 10px ;
+         }
+         .zen-media .zen-mediaBody {
+             font-weight: bold ;
+			 font-size:16px ;
+         }
+         .zen-media .zen-img.chatterIcon {
+             background-image: url(../images/chatter_nonretina.png) ;
+             background-position: 0 ;
+         }
+         /* Feasibility styles */
+         
+         .statusButton .ipmButton {
+             background: #F79C3E;
+             color: #fff ;
+             border: 1px solid #AD6B27;
+         }
+         .statusButton .ipmButton:hover {
+             background: #F79C3E ;
+             color: #fff ;
+             border: 1px solid #AD6B27;
+         }
+		 .statusButton{text-align:left ;margin-top: 5px ;}
+		 
+         .SecButtonSet {
+             text-align: left;
+             margin-top: 5px;
+         }
+         .skipButtoncontainer {
+             margin: 15px 10px;
+         }
+         .ipmMoveFeasibility .modal-dialog {
+             margin-top: 15%;
+         }
+         .buttonMarginRight {
+             margin-right: 15px;
+         }
+         .skipButtoncontainer .proInit {
+             text-align: center;
+             position: absolute;
+             z-index: 100;
+             top: 53px;
+             right: 0;
+             width: 50%;
+             height: 38%;
+             background: #fff url(../images/ajax-loader.gif) no-repeat 0 0;
+         }
+         .stopsection img {
+             padding-bottom: 10px;
+         }
+         .stopsection {
+             margin-top: 20px;
+         }
+         .stopsection div + div {
+             color: #DC2E30;
+             font-weight: bold;
+             font-size: 1em;
+             padding-bottom: 5px;
+         }
+         .stopsection div + div + div {
+             color: #666;
+             font-size: 0.875em;
+             margin-bottom: 10px;
+         }
+         .infosec {
+             background-color: #F7F7F7;
+             padding: 10px;
+             color: #364353;
+             text-align: left;
+             font-weight: normal ;
+         }
+         .successStyle {
+             color: #439C26 ;
+             font-weight: bold;
+             font-size: 1.4em ;
+             padding-bottom: 5px;
+         }
+         .launchDate {
+             color: #3C516E;
+             font-size: 1.2em;
+         }
+		 
+		 .bluFont{
+		 color:#007DBB;
+		 }
+		 
+		 .greyFont{
+		 color:#666 ;
+		 }
+		 
+		.documentStatus .status,.documentStatus .greyFont,.documentStatus .completed,.documentStatus .stopped{display:block;font-weight:bold;}
+	    .documentStatus .greyFont{color:#555;}
+	    .documentStatus .status{color:#e98824;}
+	    .documentStatus .completed{color:#4a6c11;}
+	    .documentStatus .stopped{color:#e50101;}
+		.projectStopped{background:#FFEBEC;color:#C92317;display:block;text-align:center;margin-top: -10px;  padding: 5px 0 10px;  margin-bottom: 15px;}
+    .projectStopped::before{content:url('../images/red_i_icon.png');position: relative;  right: 12px;  top: 4px;}
+	.clusterAns{word-break:break-word;}
+	.negMargin {
+	    margin-top: 0;
+	    margin-bottom: 6px;
+	    margin-right: 0;
+	    position: relative;
+	    background: #FFF372;
+		max-height:300px;
+		overflow:auto;
+	}
+	.charterApprover{margin-bottom:10px;color:#333;background-color: #F6F6F6;  margin-top: -10px;  display: block;  padding: 10px 10px 10px 0;  border-bottom: 1px solid #CCD9D8;}
+	.charterApprover a{color:#007DBB ;}
+	
+	.proMytodoPagination{color:#333;display:block;margin:0 10px;}
+    .btn.proMytodoArrows{font-weight: bold;text-decoration:none;border:0 ;background:none ;margin: 0 10px;}
+    .proMytodoArrows:hover{text-decoration:none;}
+	.btn.proMytodoActive,.btn.proMytodoActive:hover{color:#333 ;background:none ;border:0;margin: 0 10px;}
+	.btnDisabled.proMytodoNotActive,.btnDisabled.proMytodoNotActive:hover{color:#AEAEAE ;background:none ;border:0;margin: 0 10px;}
+	.buttonmarRight{margin-right:15px;}
+	.globeContainer .headerglb{margin-top:0;}
+	.globeContainer .grentxt{margin-top:5px ;}
+	.pgFetch {color:#4AA02C;font-weight:bold;}
+	.overviewGreyBg{background-color: #F0F0F0;padding: 10px;border-radius: 4px;color:#364354;}
+	
+	/*BET Section*/
+	.skipMembersBtn{cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+	float:right;
+    outline: none;
+    background-color: #fff;
+	border:1px solid #8ab3da;
+	color:#0f81bb;
+    padding: 0.625em;
+	padding-bottom:0.55em\9;
+    font-size: 16px ;	    
+    line-height: 1;
+	font-family:'Arial';
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    vertical-align: middle;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	}
+	.skipMembersBtn:hover {
+    background: #dbefff;
+}
+	.changeBetLnk {font-weight:bold;padding: 5px 0 15px;}
+	.betName {min-height: 67px;border-top: 1px solid #d1d1d1;border-bottom: 1px solid #d1d1d1;line-height: 28px;margin-left: -6px;}
+	.betStatus {padding-top: 10px;padding-bottom: 10px;}
+	.betReleseDateFull {padding: 10px;border: 1px solid #d1d1d1;border-left: 5px solid #f0a03d;margin-bottom: 10px;}
+	.betReleseDate {padding: 10px 10px 10px 14px;border: 1px solid #d1d1d1;margin-bottom: 10px;}
+	.addExternalMembersBtn {
+		display: inline-block;
+		min-height: 1em;
+		outline: none;
+		padding: 0.625em;
+		padding-bottom:0.55em\9;
+		font-size: 16px ;	    
+		line-height: 0.96;
+		font-family:'Arial';
+		font-style: normal;
+		text-align: center;
+		vertical-align: middle;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+		cursor: pointer;
+		float: right;
+		font-weight: bold;
+		margin-left: 15px;
+		background:#81bf42;
+		color:#fff;
+		border:1px solid #406b14;
+		position:relative;
+		left:22px;
+	}
+	.addExternalMembersBtn:hover,.addMembersBtn:hover {
+	background:#56843b;
+	color:#fff;
+	border:1px solid #406b14;
+}
+	.addExternalMembersField {
+		width: 275px;
+		height: 30px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		float: left;
+	}
+	.circularSmall {
+		width: 45px;
+		height: auto;
+		margin-left: 10px;
+		border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		background-position: center;
+	}
+	.circular {
+		width: 80px;
+		height: auto;
+		border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		background-position: center;
+	}
+	.collapseExpandItem {
+		width: 16px;
+		height: auto;
+		cursor: pointer;
+	}
+	.ipmAddMemberModal .modal-header {
+		height: 60px;
+	}
+	.memberContainer {
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-top: 10px;
+		margin-right: 10px;
+		text-align: center;
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+	}
+	.trashIcon {
+		position: absolute;
+		right: 0;
+		top: 0;
+		cursor: pointer;
+	}
+	.searchModal {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.editCircle {
+		position: absolute;
+		width: 40px;
+		height: auto;
+		border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		right: 0;
+		border: 1px solid cornflowerblue;
+		top: 0;
+		cursor: pointer;
+		background-color: white;
+	}
+	.horizontalLine {
+		height: 5px;
+		background-color: yellow;
+	}
+	.userTitle {
+		color: #027eba;
+		font-weight: bold;
+		width: 82px;
+		margin-top: 5px;
+		word-break: break-word;
+		-ms-word-break:break-all;
+	}
+	.collapseExpand {
+		color: #027eba;
+		;
+		font-weight: bold;
+		float: right;
+		cursor: pointer;
+	}
+	.addMemeberBtn {
+		cursor: pointer;
+		width: 80px;
+		height: auto;
+	}
+	.addMembersBtn {
+		display: inline-block;
+		min-height: 1em;
+		outline: none;
+		padding: 0.625em;
+		padding-bottom:0.55em\9;
+		font-size: 16px ;	    
+		line-height: 0.96;
+		font-family:'Arial';
+		font-style: normal;
+		text-align: center;
+		vertical-align: middle;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+		cursor: pointer;
+		float: right;
+		font-weight: bold;
+		margin-left: 15px;
+		background:#81bf42;
+		color:#fff;
+		border:1px solid #406b14;
+	}
+	.leadBlock {
+		font-weight: bold;
+		background-color: yellow;
+		color: black;
+		margin-top: 10px;
+		border-radius: 15%;
+		-webkit-border-radius: 15%;
+		-moz-border-radius: 15%;
+	}
+	.suggestedMembersInfo {
+		margin: top: 20px;
+		font-style: italic;
+	}
+	.suggestedmembers{cursor:pointer;text-decoration:none;font-weight: bold;}
+	.suggestedmembers:hover{text-decoration:none;}
+	.lookupInput input{margin-left:0;}
+	.item-input input,.dateOnlyInput input{width:300px;padding:4px;border:1px #a8a8a8 solid;border-radius:4px;height:30px;}
+	.scroll {
+		width: auto;
+		max-height: 200px;
+		overflow: scroll;
+		overflow-X: hidden;
+	}
+	.searchMemberItem {
+		margin: 10px;
+		margin-left: 10px;
+		vertical-align: top;
+	}
+	.ipmGetStartedTab .ipmStartedTabs {
+		padding: 0 0 0 10px;
+		margin-top: 29px;
+	}
+	.ipmGetStartedTab .ipmStartedTabs li {
+		width: 180px;
+		position: relative;
+		padding: 11px;
+		background-repeat: no-repeat ;
+		text-align: center;
+		display: inline-block;
+		color: #fff;
+		margin-left: 0;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	.ipmGetStartedTab .ipmStartedTabs a {
+		color: #fff;
+	}
+	.ipmGetStartedTab .ipmStartedTabs li.active {
+		color: #343434;
+		position: relative;
+		cursor: pointer;
+		top: 1px;
+	}
+	.ipmGetStartedTab .ipmStartedTabs li.active a {
+		color: #000;
+	}
+	.ipmContent .headerlogo {
+		width: 100px ;
+		margin-right:0;
+	}
+	.zen-mediaBody a{color:#0f81bb ;font-size:16px ;}
+	
+	/*BET Section*/
+	.createNewBrandExp {
+         overflow: auto; 
+         float: left; 
+         width: 100%; 
+         max-height: 87%;
+      }
+       .createNewBrandExp > div {
+         padding:10px;
+      }
+	  .infoMsg {
+		padding-bottom:15px;
+	  }
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+		.col-xs-8-1024{   width: 54.666667% ;}
+	}
+	.projOverview .orgIcon {margin-top: 2px;}
+	.projOverview .oprtnIcon {margin-left: 2px;margin-top: 1px;}	           
+    .projOverview .rollIcon {margin-top: 3px;} 
+	
+	/*Create BET POPup New*/
+	  .italicTxt
+      {
+        font-style:italic
+      }
+      .removePadd
+      {
+         padding:0 ;
+      }
+      .paddTB15
+      {
+        padding:15px 0 15px 0 ;
+      }
+
+
+
+	  
+.SecButtonSet .icoButton.smalllinfo
+     {
+         height:16px ;
+         width:16px ;
+         top:3px;
+     }
+     
+     .tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
+    .tooltip > .tooltip-arrow {border-top-color:#00b1a5;}
+    div.tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5;}
+      .ui-tooltip {
+    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    border: none;
+    text-align: left;
+    color:#fff;
+    padding:3px 7px;
+    opacity:0.9;
+    width:200px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0;    
+    font-size:12px;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+    top: -10px;
+    left: 44%;
+    border-color: #01B1A6 transparent;
+    border-width: 0 10px 10px;
+}
+.ui-lefttip .ui-tooltip-content::after{left: 20px ;}
+.ui-lefttip{left: 10px ;}
+
+.breakWord
+{
+   word-wrap: break-word;
+}

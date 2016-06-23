@@ -5,16 +5,12 @@
         <description>CPA LOI Accepted Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Accepted</template>
@@ -24,16 +20,12 @@
         <description>CPA LOI Record ReSubmitted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Resubmitted</template>
@@ -43,16 +35,12 @@
         <description>CPA LOI Record Signed</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Signed</template>
@@ -62,16 +50,12 @@
         <description>CPA LOI Record Submitted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Submitted</template>
@@ -81,16 +65,12 @@
         <description>CPA LOI Record send for Signature</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Sent_For_Signature</template>
@@ -100,16 +80,12 @@
         <description>CPA LOI Returned Email Update</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Returned</template>
@@ -119,16 +95,12 @@
         <description>CPA LOI cancelled Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_is_cancelled</template>
@@ -259,7 +231,7 @@
         <lookupValue>CPA_SMT</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CPA LOI Owner Update to SMT</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
@@ -309,6 +281,15 @@
         <name>CPA LOI Returned Status</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_LOI_SMT_group_email</fullName>
+        <field>eml_SMT_group_email__c</field>
+        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <name>CPA LOI SMT group email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -370,6 +351,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_LOI_VDM_group_email</fullName>
+        <field>eml_VDM_group_email__c</field>
+        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <name>CPA LOI VDM group email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Status_Saved</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Saved</literalValue>
@@ -415,6 +405,20 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CPA LOI Accepted New</fullName>
+        <actions>
+            <name>CPA_LOI_Record_Submitted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_LOI__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA LOI Cancelled</fullName>
         <actions>
             <name>CPA_LOI_cancelled_Email_Alert</name>
@@ -438,6 +442,14 @@
     </rules>
     <rules>
         <fullName>CPA LOI Cloned%2FCreated</fullName>
+        <actions>
+            <name>CPA_LOI_SMT_group_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_LOI_VDM_group_email</name>
+            <type>FieldUpdate</type>
+        </actions>
         <actions>
             <name>CPA_Status_Saved</name>
             <type>FieldUpdate</type>

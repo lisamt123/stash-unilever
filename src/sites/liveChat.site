@@ -18,7 +18,7 @@
     <masterLabel>liveChat</masterLabel>
     <requireHttps>false</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
-    <siteAdmin>blessy.voola@unilever.com.prod</siteAdmin>
+    <siteAdmin>blessy.voola@unilever.com</siteAdmin>
     <siteTemplate>SiteTemplate</siteTemplate>
     <siteType>Visualforce</siteType>
     <subdomain>uwsites</subdomain>

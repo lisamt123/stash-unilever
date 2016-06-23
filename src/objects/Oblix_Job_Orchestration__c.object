@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This custom setting determines if the job for version control and rollover is running. It is accessed by formulas and</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Count_Failures__c</fullName>
+        <description>Counts the total number of attempts and job failures. The job will not run if there has been 3 attempts and failures. The job will email an admin to notify about the issue</description>
+        <externalId>false</externalId>
+        <label>Count Failures</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Sender_display_Name__c</fullName>
+        <description>The sender name appears on the sync job failures</description>
+        <externalId>false</externalId>
+        <label>Email Sender display Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Is_Running__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checks if the job orchestration is currently running</description>
+        <externalId>false</externalId>
+        <label>Job Is Running</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Email__c</fullName>
+        <description>Sends email to this address to notify about the failures</description>
+        <externalId>false</externalId>
+        <label>Notification Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reply_To_Email__c</fullName>
+        <description>The email address for replying back in case there is a notification sent from the sync job</description>
+        <externalId>false</externalId>
+        <label>Reply To Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requires_Manual_Attention__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Stop the job from running again until manual intervention and fixes are applied, this can be done by checking for this flag before initiating the batch job in Oblix_VersionControl class</description>
+        <externalId>false</externalId>
+        <label>Requires Manual Attention</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sync_Job_Failure_Email_Subject__c</fullName>
+        <description>The subject of the email which appears on the notification email</description>
+        <externalId>false</externalId>
+        <label>Sync Job Failure Email Subject</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Oblix_Job_Orchestration</label>
+    <visibility>Protected</visibility>
+</CustomObject>

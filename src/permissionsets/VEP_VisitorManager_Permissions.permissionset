@@ -354,7 +354,52 @@
         <field>Vep_Visitor__c.Which_Inhaler_do_you_use_if_applicable__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vep_Visitor__c.Safety_Quiz_Url__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vep_Visitor__c.In_Visit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vep_Visitor__c.Visit_Ended__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Vep_Visitor__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Vep_Visitor_Pass__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <label>VEP VisitorManager Permissions</label>
+    <recordTypeVisibilities>
+        <recordType>Vep_Visitor__c.Request</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Vep_Visitor__c.Request_Readonly</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>    
     <pageAccesses>
         <apexPage>VEP_SafetyQuiz_VF</apexPage>
         <enabled>false</enabled>
@@ -385,11 +430,11 @@
     </tabSettings>
     <tabSettings>
         <tab>Vep_Visitor_Pass__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Vep_Visitor__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Visitor_Entry_Portal</tab>

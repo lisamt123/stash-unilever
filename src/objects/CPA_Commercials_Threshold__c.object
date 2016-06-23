@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Configure Thresholds for On-Shore/Off-Shore and Expense %</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>DBTD_Est_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>DBTD Est Off</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DBTD_Est_On__c</fullName>
+        <externalId>false</externalId>
+        <label>DBTD Est On</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DBTD_Expense_perc__c</fullName>
+        <externalId>false</externalId>
+        <label>DBTD Expense %</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_Est_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>Others Est Off</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_Est_On__c</fullName>
+        <externalId>false</externalId>
+        <label>Others Est On</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_Expense_Perc__c</fullName>
+        <externalId>false</externalId>
+        <label>Others Expense %</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_Est_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>PADBTD Est Off</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_Est_On__c</fullName>
+        <externalId>false</externalId>
+        <label>PADBTD Est On</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_Expense_Perc__c</fullName>
+        <externalId>false</externalId>
+        <label>PADBTD Expense %</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_Est_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>PA Est Off</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_Est_On__c</fullName>
+        <externalId>false</externalId>
+        <label>PA Est On</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_Expense_Perc__c</fullName>
+        <externalId>false</externalId>
+        <label>PA Expense %</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_Est_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>RA Est Off</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_Est_On__c</fullName>
+        <externalId>false</externalId>
+        <label>RA Est On</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_Expense_Perc__c</fullName>
+        <externalId>false</externalId>
+        <label>RA Expense %</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CPA Commercials Threshold</label>
+    <visibility>Public</visibility>
+</CustomObject>

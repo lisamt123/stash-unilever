@@ -33,11 +33,18 @@
         <field>Account.Orders__r.Order_Products__r$UID_Invoice_Number__c</field>
     </columns>
     <columns>
+        <field>Account.Orders__r$UID_Distributor__c</field>
+    </columns>
+    <columns>
         <field>Account.Orders__r$Account</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c.CONVERT</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -58,7 +65,7 @@
         <field>Account.Orders__r.Order_Products__r$UID_Material_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Brand-wise Secondary Sales Value (USD)</name>
+    <name>Brand-wise Secondary Sales Value</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -68,6 +75,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
-        <interval>INTERVAL_PREVCURY</interval>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>

@@ -6,16 +6,100 @@
             <!-- <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name} -->
             <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name}
         </apex:define>
+        
         <apex:define name="header_text">
-            {!selected_sow.Name}
+            {!selected_sow.Name} 
+        </apex:define>
+
+        <apex:define name="header_top_warning_text">
+            <apex:outputText rendered="{!can_see_rollover_warning}">
+                <div class="alert alert-danger" role="alert"><b>IMPORTANT: This Scope of Work has campaigns brought forward from a previous financial year. Please make changes to these campaigns via:</b>&nbsp;<a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.SOW_PFY__c}">{!selected_sow.SOW_PFY__r.Name}</a> <b> and use Sync to reflect the changes below</b></div>
+            </apex:outputText>
         </apex:define>
 
         <apex:define name="top_option_links">
-            <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
-                <a href="{!$Page.Oblix_SowCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>&nbsp;&nbsp;|
+            <apex:outputPanel id="editLinksPanel">
+                <apex:outputPanel rendered="{!IF(can_edit && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow),true,false)}">
+                    <a href="{!$Page.Oblix_SOWCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>
+                </apex:outputPanel>
+                <apex:actionRegion >
+                    <apex:outputPanel rendered="{!IF(can_delete_sow && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow),true,false)}">
+                        &nbsp;|&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>
+                    </apex:outputPanel>
+                </apex:actionRegion>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(can_delete_sow,true,false)}">
-                <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>
+            <apex:outputPanel id="initiateRollOverLink" >
+                <apex:actionRegion >
+                    <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Initial_Approval_Complete__c,true,false)}">
+                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >&nbsp;&nbsp;|&nbsp;&nbsp;{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
+                    </apex:outputPanel>
+                    <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink,sync_in_progress_panel,addCampaignButtons,editLinksPanel"/>
+                    <!-- <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems"> -->
+                    <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" >
+                            </apex:actionFunction>
+                    <apex:actionFunction name="assignCampaignId" oncomplete="$.unblockUI();"><apex:param id="campaignIDSync" name="campaignIDSync" assignTo="{!campaignIDSync}" value="{!campaignIDSync}"/></apex:actionFunction>
+                </apex:actionRegion>
+            </apex:outputPanel>
+
+
+                    
+
+            <apex:outputPanel >
+                <apex:actionRegion >
+                    <apex:actionPoller interval="5" reRender="sync_in_progress_panel,sync_all_campaigns_panel" action="{!getSOW}"/>
+                </apex:actionRegion>
+            </apex:outputPanel>
+            <apex:outputPanel id="sync_in_progress_panel">
+                <apex:actionRegion >
+
+                   <!--  <apex:outputPanel rendered="{!can_see_sync_completed_on_original_sow}" >
+
+                        
+                        <div class="alert alert-success" role="alert">Here is the <a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.SOW_NFY__c}">link to your brought forward record</a></div>
+                        
+                    </apex:outputPanel> -->
+                    <apex:outputPanel rendered="{!can_see_rollover_initiated_message_on_original_sow}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText style="color:red;font-weight: bold;" value="Rollover in Progress. This Scope of Work is currently Read Only."/>
+                    </apex:outputPanel>
+
+ 
+                    <apex:outputPanel rendered="{!can_see_sync_requested_on_bfwd_sow}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText style="color:red;font-weight: bold;" value="Sync in progress, this may take a few minutes" />
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel rendered="{!can_see_sync_in_progress}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText style="color:red;font-weight: bold;" value="Sync in Progress. This SOW is READ ONLY. No updates allowed"/>
+                        <!-- <apex:outputText styleClass="alert alert-danger" value="Rollover in Progress. This Scope of Work is currently Read Only" /> -->
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel rendered="{!can_see_sync_completed_on_bfwd_sow_staying_on_the_page}" >
+
+                        <br/>
+                        <br/>
+                        <div class="alert alert-success" role="alert">Sync Completed! Please <a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.Id}">click here</a> to refresh the page with latest changes</div>
+                        <!-- <apex:outputText styleClass="alert alert-success" value="Sync Completed! Please refresh this page to see the latest changes" /> -->
+                    </apex:outputPanel>
+
+
+                    <!-- <apex:outputPanel rendered="{!can_see_link_to_cloned_record}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText styleClass="alert alert-success" value="Here is the link to your live SOW:" />&nbsp;<a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.Cloned_SOW__c}">{!selected_sow.Cloned_SOW__r.Name}</a>
+                    </apex:outputPanel> -->
+
+                </apex:actionRegion>    
             </apex:outputPanel>
             <!--            confirm delete sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowDelete" id="sowDelete">
@@ -34,23 +118,37 @@
                         </div>
                         <div class="modal-footer">
                             <div class="modal_button_align">
+                            <apex:actionRegion >
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!deleteAction}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_delete" value="YES, DELETE" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <apex:commandButton action="{!deleteAction}" reRender="page_message_id" styleClass="btn btn-danger btn_check btn_yes_delete" value="YES, DELETE" html-data-dismiss="modal" />
+                            </apex:actionRegion>
+                      <!--          <button class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();delAction1();" oncomplete="$.unblockUI();rerenAct();">YES, DELETE</button> -->
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+
+            
         </apex:define>
 
         <apex:define name="top_right_panel">
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
-                        <td class="SOW_header_value_title">SOW total (including risk adjustment)</td>
+                        <td class="header_approval_button" rowspan="3">
+                            <apex:outputPanel rendered="{!show_submit && isFXApprovedForFY}">
+                                <apex:outputPanel rendered="{!can_submit_for_approval}">
+                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(can_submit_for_approval)}">
+                                    <button type="button" disabled="disabled" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval" title="All campaigns must be synced in the following year's Scope of Work before this one can be approved">SUBMIT FOR APPROVAL</button>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow }"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow }"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
+                        <td class="SOW_header_value_title">SOW total (incl. risk adjustment)</td>
                         <td class="SOW_header_value">
                             <h2>
                                 <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
@@ -88,29 +186,33 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">Submit for approval</h1>
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <apex:outputText rendered="{!sow_approvers_defined == true}"><p>Once you submit ( {!selected_sow.Name} ) for approval it will be locked for changes.</p></apex:outputText>
-                                    <!-- <apex:outputText rendered="{!sow_approvers_defined == true && is_sole_editor == false}"><p class="text-danger">There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting.</p></apex:outputText> -->
-                                    <apex:outputText rendered="{!sow_approvers_defined == false}"><p class="text-danger">Warning : This SOW can not be submitted<br/>No approver has been identified for ( {!selected_sow.Name}) please contact the <a class="text-danger" href="mailto:liliya.ivanova@unilever.com?Subject=No%20approver%20has%20been%20identified%20for%20(%20{!selected_sow.Name}%20)" target="_top">administrator</a> for assistance</p></apex:outputText>
-                                    <apex:outputText rendered="{!sow_approvers_defined}">
-                                        <p><strong>Comments:</strong></p>
-                                        <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowSubmitComments}"/>
-                                    </apex:outputText>
+                        <apex:actionRegion >
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <apex:outputText rendered="{!sow_approvers_defined == true && NOT(selected_sow.Initial_Approval_Complete__c)}"><p>Once you submit ( {!selected_sow.Name} ) for approval it will be locked for changes.</p></apex:outputText>
+                                        <apex:outputText rendered="{!sow_approvers_defined == true && selected_sow.Initial_Approval_Complete__c}"><p>You are submitting ( {!selected_sow.Name} ) for <b>final</b> approval. Please note it will be locked for any changes. </p></apex:outputText>
+                                        <!-- <apex:outputText rendered="{!sow_approvers_defined == true && is_sole_editor == false}"><p class="text-danger">There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting.</p></apex:outputText> -->
+                                        <apex:outputText rendered="{!sow_approvers_defined == false}"><p class="text-danger">Warning : This SOW can not be submitted<br/>No approver has been identified for ( {!selected_sow.Name}) please contact the <a class="text-danger" href="mailto:liliya.ivanova@unilever.com?Subject=No%20approver%20has%20been%20identified%20for%20(%20{!selected_sow.Name}%20)" target="_top">administrator</a> for assistance</p></apex:outputText>
+                                        <apex:outputText rendered="{!sow_approvers_defined}">
+                                            <p><strong>Comments:</strong></p>
+                                            <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowSubmitComments}"/>
+                                        </apex:outputText>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!submitForApproval}" id="confirmApprove" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, SUBMIT FOR APPROVAL" reRender="top_right_panel,sow_details" disabled="{!sow_approvers_defined == false}" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                    <apex:commandButton action="{!submitForApproval}" id="confirmApprove" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, SUBMIT FOR APPROVAL" reRender="top_right_panel,sow_details" disabled="{!sow_approvers_defined == false}" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                </div>
                             </div>
-                        </div>
+                        </apex:actionRegion>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--            send sow back modal-->
+            
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sendBack" id="sendBack">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content submit_for_approval_modal">
@@ -118,23 +220,26 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">Return ( {!selected_sow.Name} )</h1>
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>Comments:*</p>
-                                    <apex:inputTextarea id="rejectComments" value="{!sowRejectComments}" rows="4" styleClass="approval_modal_comment_box" onkeyup="$('#rejectButton').prop('disabled', this.value == '' ? true : false);"/>
-                                </div>   
+                        <apex:actionRegion >
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Comments:*</p>
+                                        <apex:inputTextarea id="rejectComments" value="{!sowRejectComments}" rows="4" styleClass="approval_modal_comment_box" onkeyup="$('#rejectButton').prop('disabled', this.value == '' ? true : false);"/>
+                                    </div>   
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="RETURN SOW" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                    <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="RETURN SOW" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                </div>
                             </div>
-                        </div>
+                        </apex:actionRegion>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+            
             <!--            approve sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowApprove" id="sowApprove">
                 <div class="modal-dialog" role="document">
@@ -143,20 +248,129 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">Approve ( {!selected_sow.Name} )?</h1>
                         </div>
+                        <apex:actionRegion >
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- <p>You've approved [sow name].</p> -->
+                                        <p><strong>Comments:</strong></p>
+                                        <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowApproveComments}"/>
+                                    </div>   
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                        <!--apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever to reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/-->
+                                        <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$('#moveToMainPage').modal({backdrop: 'static', keyboard: false});"/>
+                                        <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details,page_message_id" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                </div>
+                            </div>
+                        </apex:actionRegion>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="moveToMainPage" id="moveToMainPage">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">{!selected_sow.Name} has been approved</h1>
+                        </div>
+                        <apex:outputPanel id="initialApprovalComplete" rendered="{!NOT(selected_sow.Initial_Approval_Complete__c)}">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                    {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                    </div>   
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="initialApprovalNotComplete" rendered="{!selected_sow.Initial_Approval_Complete__c}">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        Scope of Work {!selected_sow.Name} is now finalised. This is the final version for the year approved by Unilever and Agency.
+                                    </div>   
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';" >Proceed</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="attDelete" id="attDelete">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Delete Attachment?</h1>
+                        </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <!-- <p>You've approved [sow name].</p> -->
-                                    <p><strong>Comments:</strong></p>
-                                    <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowApproveComments}"/>
+                                    This Attachment will be deleted. Are you sure?
+                                </div>   
+                            </div>
+                        </div>
+                        <apex:actionFunction action="{!deleteAtt}" name="delAtt"/>
+                        <apex:actionFunction action="{!deleteAction}" name="delAction"/>
+                        <apex:actionFunction reRender="top_right_panel,sow_details" name="rerenAtt"/>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();delAtt();" oncomplete="$.unblockUI();rerenAtt();" >YES, DELETE</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="syncAllCampaigns" id="syncAllCampaigns">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Sync All Related Campaign?</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    All related campaigns will be synced. Are you sure?
                                 </div>   
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/>
-                                <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <apex:commandButton styleClass="btn btn-danger btn_check btn_yes_delete" action="{!syncCampaigns}" value="SYNC"  />
+                                <!-- <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();syncCampaigns();" oncomplete="$.unblockUI();" >SYNC</button> -->
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="syncSingleCampaign" id="syncSingleCampaign">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Sync Selected Campaign?</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    Selected campaign will be synced. Are you sure?
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();syncCampaigns();" oncomplete="$.unblockUI();" >SYNC</button>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -169,42 +383,60 @@
             <!-- SOW details: -->
             <apex:outputPanel id="sow_details">
                     <hr class="divider" />
-                    <table class="SOW_name_status_info">
-                        <tr>
-                            <td class="SOW_name_status_info_titles">Status</td>
-                            <td>{!selected_sow.SOW_Status__c}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}</td>
-                            <td>{!selected_sow.BB_or_BD__c}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">Last updated</td>
-                            <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
-                                     <apex:param value="{!selected_sow.lastmodifiedDate}" /> 
-                                </apex:outputText> by {!selected_sow.LastModifiedBy.Name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
-                            <td>{!selected_sow.OblixBrand__r.Name}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</td>
-                            <td>{!selected_sow.Oblix_AgencyEstimate__r.name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</td>
-                            <td>{!selected_sow.BigOblixProductCategory__r.name}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </td>
-                            <td>{!selected_sow.Agency_Contact__r.name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</td>
-                            <td>{!selected_sow.SmallProductCategory__r.name}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</td>
-                            <td>{!selected_sow.Unilever_Lead__r.name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</td>
-                            <td>{!selected_sow.Financial_Year__c}</td>
-                        </tr>
-                    </table>
+                    <div class="col-lg-7">
+                        <table class="SOW_name_status_info" >
+                            <tr>
+                                <td class="SOW_name_status_info_titles">Status</td>
+                                <td>{!selected_sow.SOW_Status__c}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}</td>
+                                <td>{!selected_sow.BB_or_BD__c}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">Last updated</td>
+                                <td><apex:outputText value="{!last_updated}" />  by {!selected_sow.LastModifiedBy.Name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
+                                <td>{!selected_sow.OblixBrand__r.Name}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</td>
+                                <td>{!selected_sow.Oblix_AgencyEstimate__r.name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</td>
+                                <td>{!selected_sow.BigOblixProductCategory__r.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </td>
+                                <td>{!selected_sow.Agency_Contact__r.name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</td>
+                                <td>{!selected_sow.SmallProductCategory__r.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</td>
+                                <td>{!selected_sow.Unilever_Lead__r.name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</td>
+                                <td>{!selected_sow.Financial_Year__c}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-4 bar-chart-col">
+                        <div class="oblix_chart ms-container" id="charts" style="display:inline-block;/*float:right;width:500px;*/margin-top:-15px;">
+                            <apex:outputPanel rendered="{!canSeeDashboard && hasCampaigns}">
+                                <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
+                                <div class="SOW_name_status_info_titles dashboard_title">Spend by Outcome Priority (%)</div>
+                                <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}" style="display:none"></div>
+                                <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}"></div>
+                                <svg height="20" width="50">
+                                    <text id="FullFeeButton" x="0" y="15" class="dasboard_button dasboard_button__disabled" onclick="$('.chartHolder').toggle(); $('#FYFeeButton').attr('class', 'dasboard_button'); $(this).attr('class', 'dasboard_button dasboard_button__disabled');">Full fee</text>
+                                </svg>
+                                <svg height="20" width="20"><text x="7" y="15">|</text></svg>
+                                <svg height="20" width="50">
+                                    <text id="FYFeeButton" x="0" y="15" class="dasboard_button" onclick="$('.chartHolder').toggle();  $('#FullFeeButton').attr('class', 'dasboard_button'); $(this).attr('class', 'dasboard_button dasboard_button__disabled');">FY fee</text>
+                                </svg>
+                                <!-- <a href="#" onclick="$('.chartHolder').toggle(); $('.dasboard_button').toggleClass('dasboard_button__disabled');" class="dasboard_button dasboard_button__disabled">Full fee</a>&nbsp;|&nbsp;<a href="#" onclick="$('.chartHolder').toggle(); $('.dasboard_button').toggleClass('dasboard_button__disabled');" class="dasboard_button">FY fee</a> -->
+                            </apex:outputPanel>
+                        </div>
+                    </div>
                 </apex:outputPanel>
-                <div class="form-group sow_main_attachments " id="UnileverAttachment">
+                <!--<div class="form-group sow_main_attachments " id="UnileverAttachment">
                     <p>Attachment</p>
                      <apex:actionRegion >
                         <apex:outputPanel id="attachmentsBlock">
@@ -220,37 +452,51 @@
                                 </apex:repeat>
                             </apex:outputPanel>
                      </apex:actionRegion>
-                </div>
+                </div>-->
             <!-- Related list of campaigns and non-campaigns: -->
             <div class="row">
                 <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align " data-tabs="tabs">
-                    <li class="active"><a href="#red" data-toggle="tab">Related SOW items</a></li>
+                    <li class="{!IF(uploadedAtt=='true','', 'active')}"><a href="#red" data-toggle="tab">Related SOW items</a></li>
                     <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a></li>
-                    <li><a href="#yellow" data-toggle="tab">Campaign Timeline</a></li>
-                    <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
-                    <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
+                    <!--li><a href="#yellow" data-toggle="tab">Campaign Timeline</a></li-->
+                    <li class="{!IF(uploadedAtt=='true','active', '')}"><a href="#blue" data-toggle="tab">Attachments</a></li>
+                    
+                    
+                    <!--a class="btn btn-danger btn-xs btn_check pull-right btn_sync_campaign" href="#">Sync All Campaigns</a-->
+                    <apex:outputPanel id="addCampaignButtons">
+                        <apex:outputPanel rendered="{!can_manage_campaign && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow)}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
+                        <apex:outputPanel rendered="{!can_manage_campaign && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow)}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="sync_all_campaigns_panel">
+                        <apex:actionRegion >
+                            <apex:outputPanel rendered="{!IF(can_edit && shouldSyncAllCampaigns,true,false)}" >
+                                <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
                 </ul>
             </div>
             <!--            Welcome message to start building SOW -->
-            <apex:outputPanel id="newSOW" rendered="{!IF(li_campaign_and_non_campaign_items.size == 0,true,false)}">
+<!--             <apex:outputPanel id="newSOW" rendered="{!IF(li_campaign_and_non_campaign_items.size == 0,true,false)}">
                 <div class="row SOW_homepage_welcome_message" >
                     <div class="col-lg-7 col-lg-offset-3">
                         <h1>Click either button to start building your SOW</h1>
                         <img alt="Add to SOW" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-up-right.png')}" width="96" height="77"/>
                     </div>
                 </div>
-            </apex:outputPanel>
+            </apex:outputPanel> -->
             <!--            Related list  -->
-            <apex:outputPanel id="relatedItems" rendered="{!IF(li_campaign_and_non_campaign_items.size > 0,true,false)}">
+            <!-- rendered="{!IF(li_campaign_and_non_campaign_items.size > 0,true,false)} -->
+            <apex:outputPanel id="relatedItems" >
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div id="my-tab-content" class="tab-content">
-                            <div class="tab-pane active" id="red">
+                            <div class="{!IF(uploadedAtt=='true', 'tab-pane','tab-pane active')}" id="red">
                                 <div class="pull-right SOW_homepage_find">
                                     <label>Find a specific Campaign</label>
                                     <input type="text" name="findSOW" id="searchBox" />
                                 </div>
-                                <table class="table table-striped" id="sowListTable">
+                                <table class="table table-striped sowListTable" id="sowListTable">
                                     <thead>
                                         <tr>
                                             <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
@@ -268,7 +514,11 @@
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
                                                 <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled',IF(campaign_and_non_campaign.dynamic_object['Value_To_BePaid_Manual_Override__c'],'project_fee_adjusted',''))} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
-                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                    <td>
+                                                    
+                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId('{!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']}');" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required' && can_edit}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
+                                                    
+                                                    {!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
                                                     <td>
@@ -343,17 +593,17 @@
                                                 </tr>
                                             </apex:outputPanel>
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Non Campaign'}">
-                                                <tr data-href="{!$Page.oblix_sownoncampaigncreate}?preSelectedName={!campaign_and_non_campaign.dynamic_object['Name']}&sowId={!selected_sow.Id}">
-                                                    <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
-                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                <tr data-href="{!$Page.oblix_sownoncampaigncreate}?preSelectedSection={!campaign_and_non_campaign.sectionKey}&sowId={!selected_sow.Id}">
+                                                    <td style="display:none;width:0px !important"></td>
+                                                    <td>{!campaign_and_non_campaign.name}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td></td>
-                                                    <td>{!campaign_and_non_campaign.dynamic_object['OblixCountry__r.Name']}</td>
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td>
                                                         <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
-                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['OblixOtherItemFee__c']}" />
+                                                            <apex:param value="{!campaign_and_non_campaign.cost}" />
                                                         </apex:outputText>
                                                         <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                     </td>
@@ -367,24 +617,103 @@
                             <div class="tab-pane" id="orange">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
-                                        <chatter:feedWithFollowers entityId="{!selected_sow.Id}">
-                                        </chatter:feedWithFollowers>
+                                        <!--<chatter:feedWithFollowers entityId="{!selected_sow.Id}">
+                                        </chatter:feedWithFollowers>-->
+                                        <apex:iframe src="{!$Page.Oblix_SOWChatterFeedWrapper}?Id={!selected_sow.Id}" scrolling="true" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="yellow">
+                            <!--div class="tab-pane" id="yellow">
                                 <h1>Coming Soon</h1>
                                 <p></p>
+                            </div-->
+                            <div class="{!IF(uploadedAtt=='true', 'tab-pane active','tab-pane')}" id="blue">
+                                <apex:outputPanel rendered="{!IF(can_add_attachment,true,false)}">
+                                    <apex:actionRegion >
+                                        <apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" contentType="{!pageAttachment.ContentType}"/>
+                                    </apex:actionRegion>
+                                        <apex:actionRegion >
+                                        <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" rerender=""></apex:commandButton>
+                                        <br/>
+                                        Description
+                                        &nbsp;
+                                        <apex:inputField value="{!pageAttachment.Description}" id="attDesc" styleclass="form-control multi_line_form_style" style="width:350px;height:50px !important"/>
+                                    </apex:actionRegion>
+                                </apex:outputPanel>
+                                <div class="pull-right SOW_homepage_find">
+                                    <label>Find a specific Attachment</label>
+                                    <input type="text" name="findAtt" id="searchBoxAtt" />
+                                </div>
+                                 <table class="table table-striped attachmentListTable" id="attachmentTable">
+                                    <thead>
+                                        <tr style="height:5px !important">
+                                            <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
+                                            <th></th>
+                                            <th>Date</th>
+                                            <th>Attachment name</th>
+                                            <th>Description</th>
+                                            <th>User</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <apex:actionRegion >
+                                        <apex:actionFunction name="assignP" oncomplete=""><apex:param name="attId" value="{!deleteAttachmentId}" assignTo="{!deleteAttachmentId}"/></apex:actionFunction>
+                                    </apex:actionRegion>
+                                    <br/>
+                                        <apex:outputPanel id="attPanel">
+                                            <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                                                <div id="attachmentContainer">
+                                                    <tr>
+                                                        <td style="display: none;"></td>
+                                                        <td>
+                                                            <apex:actionRegion >
+                                                                <apex:outputPanel rendered="{!IF(isAdmin || can_delete_attachment && eachAttachment.OwnerId == $User.Id,true,false)}">
+                                                                    <apex:outputLink onclick="assignP('{!eachAttachment.Id}');" value="#" styleClass="attachment_item"  html-data-toggle="modal"  html-data-target="#attDelete">&nbsp;
+                                                                        
+                                                                    </apex:outputLink>
+                                                                    <!-- <a href="#" class="attachment_item"  data-toggle="modal"  data-target="#attDelete" /> -->
+                                                                </apex:outputPanel>
+                                                            </apex:actionRegion>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputText value="{!map_att_locale[eachAttachment.Id]}" /> 
+                                                        </td>
+                                                        <td>
+                                                           <a href="{!URLFOR($Action.Attachment.Download, eachAttachment.Id)}" target="_blank"> {!eachAttachment.Name}</a>
+                                                        </td>
+                                                        <td>{!eachAttachment.Description}</td>
+                                                        <td>{!eachAttachment.CreatedBy.Name}</td>
+                                                    </tr>
+                                                </div>
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                    </tbody>
+                                </table>  
                             </div>
                         </div>
                     </div>
                 </div>
             </apex:outputPanel>
-            <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/>
+            <!-- <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/> -->
+            
+            
         </apex:define>
+
+        <!--apex:define name="history_content">
+
+            <div class="row history_table">
+                <div class="col-lg-12 history_gradient_background">
+                    <p class="history_table_title">History of Changes</p>
+                        <c:Oblix_CmpAuditTracking recordId="{!selected_sow.Id}" objApiName="Marketing_SOW__c"/>
+                </div>
+            </div>
+        </apex:define-->
+                    
 
         <apex:define name="page_scripts">
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}"/>
+            <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
 
             <script>
             // Tooltip
@@ -394,9 +723,81 @@
             // if disabled in markup, will not call web service - disable on load
             $(document).ready(function() {
                 $('[id$="rejectButton"]').attr('disabled', 'disabled');
+
+                //google.load("visualization", "1", {packages:["corechart"]});
+                //google.setOnLoadCallback(drawChart);
+
             });
 
             </script>
+
+            <!--script>
+
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawRightY);
+
+            function drawRightY() {
+                // var data = google.visualization.arrayToDataTable([
+                //     [{label: '', type: 'string'},
+                //     {label: 'Record Share', type: 'number'},
+                //     {label: 'Value Share', type: 'number'},
+                //     {type: 'string', role: 'annotation'}],
+                //     ['Box 1-5', 79, 90, 'Annotated'],
+                //     ['Box 6-10', 48, 13, 'Annotated'],
+                //     ['Box 11-15', 50, 55, 'Annotated']
+                // ]);
+
+                var options = {
+                    title: 'Spend by Outcome Priority',
+                    legend: {position: 'none'},
+                    hAxis: {
+                        minValue: 0,
+                        maxValue: 100
+                    },
+                    series: {
+                        0: { color: '#04B388'},
+                        1: { color: '#e56DB1'}
+                    },
+                    tooltip: {ignoreBounds: true, isHtml: true},
+                    height: 130,
+                    width: 500,
+                    chartArea: {width: '90%', height: '70%'}
+                };
+
+                var dataFYFee = google.visualization.arrayToDataTable($('#chart_div_fy_fee').data('chart-data'));
+                var chartFYFee = new google.visualization.BarChart(document.getElementById('chart_div_fy_fee'));
+                chartFYFee.draw(dataFYFee, options);
+
+                var dataFullFee = google.visualization.arrayToDataTable($('#chart_div_full_fee').data('chart-data'));
+                var chartFullFee = new google.visualization.BarChart(document.getElementById('chart_div_full_fee'));
+                chartFullFee.draw(dataFullFee, options);
+            }
+
+                // google.load("visualization", "1", {packages:["corechart"]});
+                // google.setOnLoadCallback(drawChart);
+                // function drawChart() {
+                //     var data = google.visualization.arrayToDataTable([
+                //         ['Task', 'Hours per Day'],
+                //         ['Audio / Visual',     11],
+                //         ['Digital',      2],
+                //         ['Experiental',  2],
+                //         ['Static Imagery', 2],
+                //         ['Stimulus Materials',    7]
+                //     ]);
+
+                //     var options = {
+                //         pieHole: 0.5,
+                //         colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
+                //         legend: {position : 'none', alignment: 'start'},
+                //         chartArea: {width: '90%', height: '90%'},
+                //         fontSize: 16
+                //     };
+
+                //     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                //     chart.draw(data, options);
+                // }
+
+            </script-->
         </apex:define>
     </apex:composition>
     

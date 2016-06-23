@@ -264,7 +264,7 @@
                                 <div class="toDoContainer">
                                     <div class="colDuedate incHeight">
                                         <span>{!$Label.IPM_DUE_DATE}</span>
-                                        <span id="sortDueDate" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+                                        <span id="sortDueDate" class="sortDueDate fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
                                     </div>   
                                 </div>
                             </th>
@@ -321,7 +321,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                    {!p.IPM_Project__r.IPM_Phase__c}
+                                                     {!p.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -420,7 +420,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                    {!p.IPM_Project__r.IPM_Phase__c}
+                                                     {!p.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -515,7 +515,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                    {!p.IPM_Project__r.IPM_Phase__c}
+                                                     {!p.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -610,7 +610,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                    {!p.IPM_Project__r.IPM_Phase__c}
+                                                     {!p.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -710,7 +710,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                    {!p.IPM_Project__r.IPM_Phase__c}
+                                                     {!p.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
