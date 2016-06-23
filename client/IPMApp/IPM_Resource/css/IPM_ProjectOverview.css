@@ -1596,3 +1596,7 @@
 {
    word-wrap: break-word;
 }
+.thGreenClr{color:#A2C24B;font-weight:bold;}
+.thRedBg{color:#fff;font-weight:bold;background:red;padding: 0px 10px;}
+.thBlueClr{color:#007DBB;font-weight:bold;}
+.thRedBg .keycontent {color: #fff;}

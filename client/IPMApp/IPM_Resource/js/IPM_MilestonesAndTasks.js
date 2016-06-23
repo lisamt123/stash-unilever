@@ -119,7 +119,13 @@ checkBoxScript();
 
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
-    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+   /* jq(".info").tooltip({ 
+    position: { my: 'center top', at: 'center bottom+10' },
+    hide: {
+    effect: "",
+    delay: 2600
+  }
+    });*/
     jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
     jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
     jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
@@ -128,3 +134,51 @@ function hilightTaskScript(){
     ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
     ipmModal('#editMilestone', 'Edit Milestone', '30%', '72%', '2%');
     ipmModal('#editTask', 'Edit To-do\'s', '38%', '580px', '2%');
+/*jq('#ipmMilestoneTabList .ipmMilestonetodosContent').hide();
+    jq('#ipmMilestoneTabList .ipmMilestonetodosTabs li:first').addClass('active');
+    jq('#ipmMilestoneTabList .ipmMilestonetodosContent:first').show();*/
+    jq(window).load(function(){
+        jq('#ipmMilestoneTabList .ipmMilestonetodosContent').hide();
+    if (window.location.search.indexOf('&name=newMstone') > -1) {
+        jq('#ipmMilestoneTabList .ipmMilestonetodosTabs li.newMstone').addClass('active');
+        jq('#ipmMilestoneTabList .ipmMilestonetodosContent#newMstone').show();
+    }else if (window.location.search.indexOf('&name=todolistcontent') > -1) { 
+        jq('#ipmMilestoneTabList .ipmMilestonetodosTabs li.todolistcontent').addClass('active'); 
+        jq('#ipmMilestoneTabList .ipmMilestonetodosContent#todolistcontent').show(); 
+    }else{
+        jq('#ipmMilestoneTabList .ipmMilestonetodosTabs li:first').addClass('active');
+        jq('#ipmMilestoneTabList .ipmMilestonetodosContent:first').show();
+    }
+}); 
+/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
+    jq('#ipmMilestoneTabList .ipmMilestonetodosTabs li').on('click', function(e) {
+        e.preventDefault();
+        jq('#ipmMilestoneTabList .ipmMilestonetodosTabs li').removeClass('active');
+        var $this = jq(this);
+        var getClass = $this.attr('class').split(' ');
+        var getId = getClass[0];
+        jq('#ipmMilestoneTabList .ipmMilestonetodosContent').hide();
+        $this.addClass('active');
+        jq('#' + getId).fadeIn("fast");
+    });
+jq(function () {
+    jq('.info').tooltip({
+    position: { my: 'center top', at: 'center bottom+10' },
+    tooltipClass: "info_tooltips",
+        content: function () {
+            return jq(this).prop('title');
+        },
+        show: null, 
+        close: function (event, ui) {
+            ui.tooltip.hover(
+            function () {
+                jq(this).stop(true).fadeTo(400, 1);
+            },
+            function () {
+                jq(this).fadeOut("400", function () {
+                    jq(this).remove();
+                })
+            });
+        }
+    });
+});
