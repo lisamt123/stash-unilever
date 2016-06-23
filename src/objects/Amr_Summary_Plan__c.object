@@ -549,6 +549,32 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
+    <lookupFilter>
+        <fullName>nf_01I18000000CsL1EAK_00N18000000Z0VxEAK</fullName>
+        <active>true</active>
+        <field>Amr_Summary_Plan__c.ProductCategory__c</field>
+        <filterItems>
+            <field>MDO_Category__c.category_type__c</field>
+            <operation>equals</operation>
+            <value>Category</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Amr Summary Plan_Small C</name>
+		<sourceObject>MDO_Category__c</sourceObject>
+    </lookupFilter>
+    <lookupFilter>
+        <fullName>nf_01I18000000CsL1EAK_00N18000000Z0WvEAK</fullName>
+        <active>true</active>
+        <field>Amr_Summary_Plan__c.Big_C__c</field>
+        <filterItems>
+            <field>MDO_Category__c.category_type__c</field>
+            <operation>equals</operation>
+            <value>Category Group</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Amr Summary Plan_Big C</name>
+		<sourceObject>MDO_Category__c</sourceObject>
+    </lookupFilter>		
     <pluralLabel>Amr Summary Plans</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
