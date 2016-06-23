@@ -210,8 +210,7 @@ public class IPM_TestFactory_Helper
     public static List<Profile> profileList = [SELECT Id, Name FROM Profile WHERE Name IN :profiles ORDER BY Name asc];
 
 	public static final String PROJECTNAME_PREFIX ='test';
-    public static final String TEST ='Test';
-
+    
     /***********************************************************************************************************************************************************
     * @description To get master project Id
     **************************************************************************************************/
