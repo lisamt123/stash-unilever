@@ -729,7 +729,7 @@
         <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Event-ICB Ice Cream Visit - BackOffice</layout>
+        <layout>Event-ICB Ice Cream Visit - Salesrep</layout>
         <recordType>Event.ICB_IceCreamVisit</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -1632,6 +1632,9 @@
         <layout>Reply-Reply Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Sales_Area__c-Sales Area Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Search_Statistics__c-WINatPOS Search Statistics Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1663,6 +1666,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Territory__c-Territory Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Third_Party_Survey__c-ThirdParty Survey Layout</layout>
