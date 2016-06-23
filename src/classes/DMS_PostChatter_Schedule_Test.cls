@@ -7,16 +7,8 @@ public class DMS_PostChatter_Schedule_Test {
     
     
     static testMethod void test() {
-        Test.setMock(HttpCalloutMock.class, new DMS_WebServiceMockGenerator());
-        List<CollaborationGroup> collaborationGroup2 = [SELECT id,name FROM CollaborationGroup];
-        System.debug('Test111: ' + collaborationGroup2);
-        CollaborationGroup collaborationGroup = new CollaborationGroup(Name='A private chatter group');
-        collaborationGroup.CollaborationType = 'private';
-        insert collaborationGroup;
-        //CollaborationGroup collaborationGroup = DMS_SObjectInstance_Test.createCollaborationGroup('groupTest','create group for test','Public',true);        
-        
-         List<CollaborationGroup> collaborationGroup3 = [SELECT id,name FROM CollaborationGroup];
-        System.debug('Test111222: ' + collaborationGroup3);
+        Test.setMock(HttpCalloutMock.class, new DMS_WebServiceMockGenerator());        
+        CollaborationGroup collaborationGroup = DMS_SObjectInstance_Test.createCollaborationGroup('groupTest','create group for test','Public',true);        
         // DMS_SObjectInstance_Test.createCollaborationGroupMember(collaborationGroup.id,UserInfo.getUserId(),true);
         DMS_SObjectInstance_Test.createDmsDatasetId('ECO', '00519000001B28n',true);
         DMS_SObjectInstance_Test.createDmsDatasetId('Impact', '00519000001B28n9n',true);                
