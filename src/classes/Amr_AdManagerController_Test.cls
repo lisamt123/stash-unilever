@@ -46,10 +46,10 @@ public class Amr_AdManagerController_Test {
         }
       
       
-        String Clust ='testClust';
-        String Count='testCount';
+        //String Clust ='testClust';
+        //String Count='testCount';
         String Id = jobDetail.Id;
-        String AdManagertxt = 'ABC/12345';
+        //String AdManagertxt = 'ABC/12345';
         String emailId= 'pqr12@gmail.com';
         String userId = u.Id;
         
