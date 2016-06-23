@@ -2,7 +2,7 @@
 @Description : To meet requirements  REQ00003
 @Created Date: March 2015
 @Author: Cognizant 
-@Referenced: ipm_ProjectSetup or ipm_EditProject page
+@Referenced: ipm_ProjectSetup or ipm_EditProject page 
 ****************************************************************************/
 global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermediateController{ 
     //*@Description: default sub project type for company card selection
@@ -466,8 +466,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 // Get Unique GateKeeping Models
                 if(String.isNotEmpty(gateKeepingFieldAPI) )
                 {
-                        gateKeepingSet.add(gtKeepingModel);
-
                     List<Schema.PicklistEntry> GKMQuestionPickVal = projectFieldMap.get(gateKeepingFieldAPI).getDescribe().getPickListValues();
                     // Prepare the Select Option List from Picklist Metadata and get the Labels as well.
                     for(Schema.PicklistEntry pickEntry : GKMQuestionPickVal)
