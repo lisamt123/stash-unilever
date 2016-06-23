@@ -304,7 +304,7 @@ Returns: It will return submitted saving data.
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
          //   Integer i = 0;
-            Date startOfMonth = Date.today().toStartOfMonth();
+        //    Date startOfMonth = Date.today().toStartOfMonth();
         //    Date startOfNextMonth = startOfMonth.addMonths(1);
             DateTime currentDay = DateTime.now();
             //loggedIn user

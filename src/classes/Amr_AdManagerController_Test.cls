@@ -84,7 +84,7 @@ public class Amr_AdManagerController_Test {
         controller.getSubmitForm();
        // controller.createJob();
         Amr_AdManagerController_CC.insertJobAllocationData(Id,userId,emailId);
-        Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
+       // Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
         PageReference pageRef = Page.Amr_CAPJobportfolio;
         Test.setCurrentPage(pageRef);
         //PageReference pageRefVal = controller.Redirect();

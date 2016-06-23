@@ -206,7 +206,7 @@ public with sharing class Amr_ReportHelper {
   }
   
   public List<Amr_Summary_Plan__c> updatePlanList(List<Amr_Summary_Plan__c> planList,Map<String,Map<String,Integer>> totalCategoryMap,integer yearValue){
-    boolean flag = false;
+  //  boolean flag = false;
     List<Amr_Summary_Plan__c> newPlansList = new List<Amr_Summary_Plan__c>();
     
     for(String categoryKey:totalCategoryMap.keySet()){
@@ -220,11 +220,9 @@ public with sharing class Amr_ReportHelper {
               planObj.Actual_BD__c = totalCategoryMap.get(categoryKey).get('BD');
               planObj.Actual_BB__c = totalCategoryMap.get(categoryKey).get('BB');
               
-              flag = true;
+             // flag = true;
               break;
-            }else{
-                flag = false;
-            } 
+            }
           }       
        }
        

@@ -200,7 +200,7 @@ public class Amr_JobSheetController_Test{
         insert jobAllocation1;
       //  insert jobSharedDet;
       
-         List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
+       //  List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
       
        Test.setCurrentPageReference(new PageReference(Amr_ConstantForAdManager.JOBSHEETLOCATION)); 
         System.currentPageReference().getParameters().put(Amr_ConstantForAdManager.ID, jobDetail.id);
@@ -253,7 +253,7 @@ public class Amr_JobSheetController_Test{
         insert jobAllocation1;
       //  insert jobSharedDet;
       
-         List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
+      //   List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
       
        Test.setCurrentPageReference(new PageReference(Amr_ConstantForAdManager.JOBSHEETLOCATION)); 
         System.currentPageReference().getParameters().put(Amr_ConstantForAdManager.ID, jobDetail.id);
