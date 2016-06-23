@@ -1197,6 +1197,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 		// For future implementations.
 	}
 	
+	public void getGateKeepingModels()
+	{
+		// For future implementations.
+	}
+	
 	
 	
     
