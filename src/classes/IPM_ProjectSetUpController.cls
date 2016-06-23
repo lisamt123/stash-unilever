@@ -1185,6 +1185,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         	}
         }
         return result;
-    }        
+    }
+	
+	public void getHelpTextGateKeeping()
+	{
+		// For future implementations.
+	}
+	
     
 }
