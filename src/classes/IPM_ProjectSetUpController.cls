@@ -1192,5 +1192,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 		// For future implementations.
 	}
 	
+	public void getHelpTextCharterQuestions()
+	{
+		// For future implementations.
+	}
+	
+	
+	
     
 }
