@@ -3,6 +3,7 @@
     <height>130</height>
     <icon>TH1__Salesforce1PubAction</icon>
     <label>Email</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <page>ONE_Correspond_Email_Action</page>
     <type>VisualforcePage</type>
     <width>-100</width>

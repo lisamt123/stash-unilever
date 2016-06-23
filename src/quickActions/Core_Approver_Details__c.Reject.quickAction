@@ -3,6 +3,7 @@
     <height>250</height>
     <icon>Rejected</icon>
     <label>Reject</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <page>Core_CA_Approver_Reject</page>
     <type>VisualforcePage</type>
     <width>-100</width>

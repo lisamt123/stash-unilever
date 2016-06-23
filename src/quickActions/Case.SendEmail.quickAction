@@ -4,6 +4,7 @@
         <field>ToAddress</field>
         <formula>Case.ContactEmail</formula>
     </fieldOverrides>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>

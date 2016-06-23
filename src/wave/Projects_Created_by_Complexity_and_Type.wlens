@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]],&quot;groups&quot;:[&quot;IPM_Complexity__c&quot;,&quot;IPM_Project_Type__c&quot;],&quot;filters&quot;:[[&quot;Created Date&quot;,[[1455062400000,1466553600000]],&quot;&gt;=&lt;=&quot;]]}","version":-1.0}}

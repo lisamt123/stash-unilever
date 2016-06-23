@@ -3,6 +3,7 @@
     <description>Agent App - This button is used to  reassign the approval process from ETS to CI manager group</description>
     <height>250</height>
     <label>Reassign</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <page>Reassign_Approval</page>
     <type>VisualforcePage</type>
     <width>-100</width>

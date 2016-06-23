@@ -4,6 +4,7 @@
     <height>250</height>
     <icon>Rejected</icon>
     <label>Reject</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <page>AA_ReportRejected</page>
     <type>VisualforcePage</type>
     <width>-100</width>
