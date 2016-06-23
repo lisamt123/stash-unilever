@@ -27,6 +27,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
     private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     
+    public static Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
+    public static Map<String ,IPM_Category_Thresholds__mdt>  masterCategoryThrshMap ;
+    public static final String PROJECT_TYPE_ORIGINAL = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
     /***********************************************************************************************************************************
     * bulkBefore
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
@@ -34,6 +37,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */
     public void bulkBefore()
     {
+        masterCategoryThrshMap=IPM_Utils.getCategorythresholdMap();
         List<IPM_Project__c> projectAssociatedWithProjectTypesList = new List<IPM_Project__c>();
         
         if(Trigger.isInsert || Trigger.isUpdate)
@@ -509,6 +513,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         && proj.IPM_Finance_Lead__c!=null && proj.IPM_Finance_Lead__c!=proj.IPM_Project_Leader__c){
                         regionalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Lead__c);
                 }
+                // To populate clusterIDsforY3iToUpdate for updating Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the Y3iTo and IPM_Cluster__c are populated
+                if(proj.IPM_Project_Type__c == PROJECT_TYPE_ORIGINAL && String.isNotBlank(String.valueOf(proj.IPM_Project_Y3iTO__c)) && String.isNotBlank(proj.IPM_Cluster__c) )
+                {
+                    clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
+                }
             }
             
             //Notify when rollout project is created
@@ -680,6 +689,18 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                             stoppedProjectMap.put(p.id,IPM_ConstantUtils.BLANK);
                         }
                    }  
+                   // To populate clusterIDsforY3iToUpdate for updating Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the Y3iTo of project changes or the project is moved to another cluster
+                   if(p.IPM_Project_Type__c == PROJECT_TYPE_ORIGINAL && (p.IPM_Project_Y3iTO__c != proj.IPM_Project_Y3iTO__c || p.IPM_Cluster__c != proj.IPM_Cluster__c))
+                   {
+                        if(p.IPM_Cluster__c!=Null)
+                        {
+                            clusterIDsforY3iToUpdate.add(p.IPM_Cluster__c);
+                        }
+                        if(proj.IPM_Cluster__c!=Null)
+                        {
+                            clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
+                        }
+                   }
                     
                          
                 }
@@ -748,6 +769,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
               
     }
     
+     // To populate clusterIDsforY3iToUpdate for updating Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the project under the cluster is deleted
+     if(Trigger.isDelete)
+     {
+        for(IPM_project__c proj : (List<IPM_Project__c>)Trigger.old){
+            if(proj.IPM_Project_Type__c==PROJECT_TYPE_ORIGINAL && proj.IPM_Cluster__c!=Null)
+            {
+                clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
+            }
+        }
+     }
    } 
    
     public void beforeInsert(SObject so)
@@ -791,6 +822,13 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 	            	insertedProject.IPM_GateKeeping_Model__c  = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
 	            }	
             }
+        }
+        if(insertedProject.IPM_Category_Text__c !=null && insertedProject.IPM_Category_Group__c !=null && insertedProject.IPMProject_Span__c !=null && insertedProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL )
+        {
+            String mdtMapKey =  insertedProject.IPM_Category_Text__c + insertedProject.IPM_Category_Group__c + insertedProject.Market_Cluster_Name__c + insertedProject.IPMProject_Span__c;
+            if(masterCategoryThrshMap.containsKey(mdtMapKey))
+            {   
+                insertedProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c;
         }
         }
         
@@ -881,6 +919,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             }	
         }
         
+        if(incomingProject.IPM_Category_Text__c !=null && incomingProject.IPM_Category_Group__c !=null && incomingProject.IPMProject_Span__c !=null && incomingProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL  )
+        {
+            String mdtMapKey =  incomingProject.IPM_Category_Text__c + incomingProject.IPM_Category_Group__c + incomingProject.Market_Cluster_Name__c + incomingProject.IPMProject_Span__c;
+            if(masterCategoryThrshMap.containsKey(mdtMapKey))
+            {   
+                incomingProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c;
+            }
+        }
         if(incomingProject.Is_Archieved__c !=null && incomingProject.Is_Archieved__c && incomingProject.Is_Archieved__c != oldProject.Is_Archieved__c)
         {
             incomingProject.IPM_Project_Stopped_By__c   = UserInfo.getName();
@@ -1005,6 +1051,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
         }
         
+        // To update Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the project under the cluster is deleted,project Y3 iTO changes or project is moved to another cluster
+        if( clusterIDsforY3iToUpdate!=Null && !clusterIDsforY3iToUpdate.isEmpty())
+        {
+            IPM_Utils.updateclusterSumY3iTOValue(clusterIDsforY3iToUpdate); 
+        }
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

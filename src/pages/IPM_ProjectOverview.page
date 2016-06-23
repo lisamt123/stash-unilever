@@ -159,6 +159,17 @@
                          </div>
                         
                         <p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
+                        <apex:outputpanel rendered="{!AND(isOriginal,!ISBLANK(project.IPM_Cluster__r.Name))}">
+                            <div class="greyborder"></div>
+                            <div class="row">
+                                <div class="col-sm-7 pr0">
+                                    <div class="keycontent">{!$Label.IPM_Project_Cluster}</div>
+                                </div>
+                                <div class="col-sm-5">
+                                    {!project.IPM_Cluster__r.Name}  
+                                </div>
+                            </div>
+                            </apex:outputpanel>
                         <p class="keycontent">{!project.IPM_Brand__c} | {!project.IPM_Category_Text__c}</p>
                         <div class="greyborder"></div>
 						<!-- Display below outputPanel when project is fast track and project type is not operational-->
@@ -299,14 +310,33 @@
                                 </div>
                             </div>
                             <!-- Display below outputPanel when hideFinSection is true-->
-							<apex:outputpanel rendered="{!hideFinSection}">
-                            <div class="greyborder"></div>
+                            <apex:outputpanel layout="block" styleClass="{!if( project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,'thRedBg','')}" rendered="{!hideFinSection}">
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_Year_3_iTO}</div>
                                 </div>
                                 <div class="col-sm-3 pl0">
-                                    &euro;{!globalyearDec}mn
+                                    &euro;{!project.IPM_Project_Y3iTO__c}mn
+                                </div>
+                            </div>
+                            </apex:outputpanel>
+                            <apex:outputpanel layout="block" styleClass="{!if( project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold  ,'thRedBg','')}" rendered="{!isOrgPrjRLplancreated}">
+                            <div class="row">
+                                <div class="col-sm-8 pr0">
+                                    <div class="keycontent">{!$Label.IPM_Threshold_Status}</div> 
+                                </div>
+                                <div class= "{!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'col-sm-3 pl0 thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'col-sm-3 pl0 thBlueClr',''))}">
+                                    {!project.IPM_Threshold_Status__c} 
+                                </div>
+                            </div>
+                            </apex:outputpanel> 
+                            <apex:outputpanel layout="block" styleClass="{!if( project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold  ,'thRedBg','')}" rendered="{!isOriginal}">
+                            <div class="row">
+                                <div class="col-sm-8 pr0">
+                                    <div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
+                                </div>
+                                <div class="col-sm-3 pl0">
+                                    &euro;{!project.IPM_Category_Thresh__c}mn  
                                 </div>
                             </div>
 							</apex:outputpanel>

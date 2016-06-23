@@ -9383,4 +9383,53 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Used when No Sub-Sector is selected</shortDescription>
         <value>No Sub-Sector is selected</value>
     </labels>
+	<labels>
+        <fullName>IPM_Above_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Above_Threshold</shortDescription>
+        <value>Above Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BelowThreshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThreshold</shortDescription>
+        <value>Below Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Category_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Category Threshold</shortDescription>
+        <value>Category Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Exempt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exempt</shortDescription>
+        <value>Exempt</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Cluster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Cluster</shortDescription>
+        <value>Project Cluster :</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Threshold_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Threshold Status</shortDescription>
+        <value>Threshold Status</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Y3_iTO_notation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Y3 iTO (mn €) :</shortDescription>
+        <value>Y3 iTO (mn €) :</value>
+    </labels>
 

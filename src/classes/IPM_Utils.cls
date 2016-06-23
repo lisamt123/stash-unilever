@@ -1060,6 +1060,92 @@ public without sharing class IPM_Utils {
         return projIdiTOMap;
     }
     
+/*************************************************************************************************************************************
+    * @description          Method to create project-iTo Map : key-projectId ,value-ITO value
+    * @param                Project Ids
+    */
+     public  static Map<Id, Decimal> createProjectSpecificITOValueMap(List<Id> projList) {    
+        Decimal iTOValue = 0.00;
+        Map<Id,Decimal> projIdiTOMap =  new Map<Id,Decimal>();
+        //query financial year and financial deatils
+        IPM_Financial_Year__c[] finYearDetails = [SELECT Turnover_Global__c, Turnover_Regional__c,Turnover_Local__c ,IPM_Financial__r.Parent_Project__c,IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c,IPM_Financial__r.Local_Project__c,IPM_Financial__r.IPM_Project_Rollout__c,
+                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c,IPM_Financial__r.Parent_Project__r.IPM_Phase__c, IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c //SS change
+                                                  FROM IPM_Financial_Year__c
+                                                  WHERE (IPM_Financial__r.Parent_Project__c IN : projList OR IPM_Financial__r.Regional_Project__c IN : projList OR IPM_Financial__r.Local_Project__c IN : projList)AND Year__c = '3' AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL    
+                                                  LIMIT 50000];
+        if(!finYearDetails.isEmpty()){
+            for(IPM_Financial_Year__c finYr :finYearDetails){
+                //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
+                if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
+                    && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
+                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null ) 
+                {
+                    iTOValue = finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS ? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
+                }
+                //Regional Financial : RT = CONSOLIDATED + Regional Project != null + Local Project = null
+                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT)
+                         && finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Local_Project__c == null
+                         && finYr.Turnover_Regional__c != null)
+                {
+                    iTOValue = (finYr.Turnover_Regional__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
+                }
+                //Local Financial : RT = Default +  Local Project != null
+                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT)
+                        && finYr.IPM_Financial__r.Local_Project__c != null && finYr.Turnover_Local__c != null)
+                { 
+                    iTOValue = (finYr.Turnover_Local__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
+                }
+                //Global Operational
+                else if(finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null 
+                            && finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT) 
+                            && finYr.IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
+                }
+                 //Regional Operational
+                else if(finYr.Turnover_Regional__c != null && finYr.IPM_Financial__r.Regional_Project__c != null 
+                            && finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT) 
+                            && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                    iTOValue = (finYr.Turnover_Regional__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
+                }
+            }
+        }
+     return projIdiTOMap; 
+}
+/*********************************************************************************************************************
+    * @description          Method to  update Y3iTo's of project 
+    * @param                Project Ids
+    */
+public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) { 
+	 Map<Id,Decimal> projIdiTOMap =  IPM_Utils.createProjectSpecificITOValueMap(projListForY3ITOUpdate);
+	 List<IPM_Project__c> y3iTOUpdateProjList = new List<IPM_Project__c>();
+	 if(projIdiTOMap!=null && !projIdiTOMap.isEmpty()){
+	 	for(Id projId :projIdiTOMap.keyset()){
+	 		IPM_Project__c projForY3ITOUpdate = new IPM_Project__c(Id=projId , IPM_Project_Y3iTO__c=projIdiTOMap.get(projId)) ;
+	 		y3iTOUpdateProjList.add(projForY3ITOUpdate);
+	 	}
+	 	if(y3iTOUpdateProjList!=Null && !y3iTOUpdateProjList.isEmpty()){
+	 		update y3iTOUpdateProjList;
+	 	}
+	 }
+} 
+/*******************************************************************************************************************************
+    * @description          Method to  update IPM_Sum_Y3iTO__c of project cluster as sum of Y3iTo's pf projects under the cluster
+    * @param                cluster Ids
+    */
+public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){   
+	List<IPM_Clusters__c> clusterListForY3iTOUpdate = new List<IPM_Clusters__c>();   
+	for( AggregateResult aggrResult : [SELECT IPM_Cluster__c  , SUM(IPM_Project_Y3iTO__c) FROM IPM_Project__c where IPM_Project_Type__c=:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL AND IPM_Cluster__c IN :clusterIDsForY3iTOUpdate GROUP BY IPM_Cluster__c ]){
+		clusterListForY3iTOUpdate.add(new IPM_Clusters__c(Id=(Id)aggrResult.get('IPM_Cluster__c'),IPM_Sum_Y3iTO__c=(Decimal)aggrResult.get('expr0'))); 
+	}
+	if(clusterListForY3iTOUpdate!=Null && !clusterListForY3iTOUpdate.isEmpty()){
+		update clusterListForY3iTOUpdate; 
+	}
+} 
     /**************************************************************
     * @description: Recursive invocation to provide the List of Parents for a specific Project
     * @param1 incomingProjectIds : List of Project Ids.
@@ -1437,4 +1523,18 @@ public without sharing class IPM_Utils {
                     UPDATE_FINANCIAL_YEAR_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
     	}            
     }    	
+    /************************************************************************************************************************
+    * @description          Method to  return Map of IPM_Category_Thresholds__mdt with key as concatenation of various fields
+    * @param                No param 
+    */ 
+    public static Map<String ,IPM_Category_Thresholds__mdt> getCategorythresholdMap()
+    {
+        Map<String ,IPM_Category_Thresholds__mdt> masterCategoryThrshMap = new Map<String ,IPM_Category_Thresholds__mdt>();
+        String categoryThresholdQuery = IPM_Utils.prepareSOQLQuery('IPM_Category_Thresholds__mdt',false,null,true); 
+        for(IPM_Category_Thresholds__mdt Cat_mdt : (List<IPM_Category_Thresholds__mdt>)database.Query(categoryThresholdQuery) )
+        {
+              masterCategoryThrshMap.put(Cat_mdt.IPM_Category__c+Cat_mdt.IPM_Category_Group__c+Cat_mdt.IPM_Market_Cluster__c+Cat_mdt.IPM_Project_Span__c ,Cat_mdt);
+        }
+        return masterCategoryThrshMap;
+    }         	
 }

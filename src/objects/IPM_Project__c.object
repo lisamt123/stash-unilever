@@ -1089,6 +1089,21 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Category_Thresh__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Holds Category Threshold depending on  Category group , Category , span .This value is populated during project creation.</description>
+        <externalId>false</externalId>
+        <label>Category Threshold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Category__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the related category.</description>
@@ -2117,6 +2132,20 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Project_Y3iTO__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Y3iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Quit_Project_Tab__c</fullName>
         <description>To keep track if the user quits the project.</description>
         <externalId>false</externalId>
@@ -2514,6 +2543,18 @@ OwnerId))</formula>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Threshold_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(OR(ISBLANK(IPM_Cluster__c ),ISNULL(IPM_Cluster__c )),  IF(IPM_Category_Thresh__c &gt; IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;) , IF(IPM_Category_Thresh__c &gt;  IPM_Cluster__r.IPM_Sum_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos; )))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Threshold Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Threshold_Value__c</fullName>

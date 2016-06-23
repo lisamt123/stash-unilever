@@ -39,6 +39,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean rolloutRegionalPLFilledError{get; set;}
     public Boolean rolloutCountryPLFilledError{get; set;}
     public Boolean completedError{get; set;}
+    public Boolean belowThresholdError{get; set;}
     public String riskSectionId{get; set;}
     public Boolean showStop{get; set;}
     public Boolean showPostpone{get; set;}
@@ -95,6 +96,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         isEcoDesignSecNegotiable=false;
         bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT;  
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
+        belowThresholdError=false;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
         if(projectId!=null)
@@ -529,6 +531,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             {
                 showValidation=false;
                 discriptionError=true;
+            }
+            if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
+            {
+                belowThresholdError=true;   
             }
             
         }

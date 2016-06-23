@@ -7,6 +7,7 @@
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
     public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    public static Set<Id> finYearIdsforProjY3iToSync = new Set<Id> ();
     
     //@description:Constructor
     public IPM_FinancialYearHandler ()
@@ -46,7 +47,7 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     */
     public void bulkAfter()
     {
-       
+        Set<Id> incomingFinancialYearSet = new Set<Id>();
         Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
         //Added for CR0010+CR0127
@@ -75,16 +76,19 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
         if(Trigger.isInsert){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
+            finYearIdsforProjY3iToSync.addAll(Trigger.NewMap.keySet());
         }
         else if(Trigger.isUpdate){
             for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New){
                 if(finYr.Turnover_Global__c!=((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Global__c || finYr.Turnover_Regional__c != ((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Regional__c || finYr.Turnover_Local__c!=((IPM_Financial_Year__c)  Trigger.Oldmap.get(finYr.id)).Turnover_Local__c){
                     lstFinYr.add(finYr);    
+                    finYearIdsforProjY3iToSync.add(finYr.Id);    
                 }   
             }   
         }
         else if(Trigger.isDelete){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
+            finYearIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());    
         }
 		
 		
@@ -120,7 +124,8 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     public void beforeUpdate(SObject oldSo, SObject so)
     { 
         //This method has been included as the class implements the ITrigger interface
-        
+        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
+        IPM_Financial_Year__c oldFinancialYear = (IPM_Financial_Year__c)oldSo;
     }
     
     /**
@@ -174,6 +179,10 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     */
     public void andFinally()
     {
+        if(!finYearIdsforProjY3iToSync.isEmpty())
+        {
+         	IPM_FinancialYearHelper.updateAssoProjectY3iToValue(finYearIdsforProjY3iToSync);
+        }
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger
         ExceptionLoggingHelper.insertLogRecordList();
     }

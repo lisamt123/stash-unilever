@@ -69,6 +69,19 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
+    <fields>
+        <fullName>IPM_Sum_Y3iTO__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Sum of Y3 iTO&apos;s of Original Projects</description>
+        <externalId>false</externalId>
+        <label>Sum of Y3 iTO&apos;s of Original Projects</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Project Clusters</label>
     <listViews>
         <fullName>All</fullName>

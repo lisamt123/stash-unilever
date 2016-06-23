@@ -214,6 +214,14 @@
                                     </apex:outputPanel>
                             </apex:outputPanel>
                         </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="thStatusBox" rendered="{!AND(showValidation,belowThresholdError)}">
+                            <div class="SecButtonSet pull-left">
+                                <a class="icoButton redBell"></a>
+                            </div>
+                            <div class="thBoxText">
+                                {!$Label.IPM_BelowThresholdError_Msg}
+                            </div>    
+                        </apex:outputPanel>
                             </apex:outputPanel>
                         </apex:outputPanel>
                         
