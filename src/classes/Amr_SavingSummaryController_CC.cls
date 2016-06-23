@@ -184,6 +184,7 @@ Returns:
      
      String pcFinalCostCurrency =  quotesObj.Accepted_Final_Cost_PC_only_Currency__c;
      String pcFinalCostLocalAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PC_only_Local_Amo__c);
+     /*
      String pcFinalCostEuroAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PC_Euro_Amou__c);
      String ppcFinalCostCurrency = String.valueOf(quotesObj.Accepted_Final_Cost_PPC_only_Currency__c);
      String ppcFinalLocalAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PPC_only_Local_Am__c);
@@ -191,7 +192,7 @@ Returns:
      String caFinalCostCurrency = String.valueOf(quotesObj.Accepted_Final_Cost_CA_only_Currency__c);
      String caFinalCostLocalAmount = String.valueOf(quotesObj.Accepted_Final_Cost_CA_Local_Amount__c);
      String caFinalCostEuroAmount = String.valueOf(quotesObj.Accepted_Final_Cost_CA_Euro_Amount__c);
-     
+     */
      
      savingSummaryList = new List<Amr_Saving__c>();
      Boolean setFlag = false;
@@ -348,7 +349,7 @@ soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdM
        }
 
        if(String.isNotBlank(numberOfAdditionalFilm)){
-           String finalNumberOfFilms = numberOfAdditionalFilm.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+         //  String finalNumberOfFilms = numberOfAdditionalFilm.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
            soql += ' and No_of_Additional_Films_List__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(numberOfAdditionalFilm)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        } 
        if(String.isNotBlank(savingObject.Duration_of_Additional_Films__c)){

@@ -220,7 +220,7 @@ Returns:
         
         TotalJobs =0;
         TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
-        List<Amr_Job_Allocation__c> listDisplay =[SELECT AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__c  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
+    //    List<Amr_Job_Allocation__c> listDisplay =[SELECT AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__c  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
         for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where  AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000] ){
                jobDetailsId.add(objJobAlloction.AM_Job_Detail__c);
         }        
@@ -303,9 +303,9 @@ Returns: It will return submitted saving data.
         public List<PieWedgeData> getPieData(){  
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            Integer i = 0;
+         //   Integer i = 0;
             Date startOfMonth = Date.today().toStartOfMonth();
-            Date startOfNextMonth = startOfMonth.addMonths(1);
+        //    Date startOfNextMonth = startOfMonth.addMonths(1);
             DateTime currentDay = DateTime.now();
             //loggedIn user
             AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Display__c = true and Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
@@ -342,7 +342,7 @@ Returns: It will return submitted saving data of current month.
          public List<PieWedgeData> getPieDataSaving(){  
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            Integer i = 0;
+     //       Integer i = 0;
             
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
@@ -667,7 +667,7 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-               DateTime refDate2 = startDateFinal.addDays(1);
+          //     DateTime refDate2 = startDateFinal.addDays(1);
        //        soql += ' and AM_Job_Detail__r.createdDate '+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
          //      soql += ' and AM_Job_Detail__r.createdDate '+  '< '+ refDate2.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT);
           soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ; 

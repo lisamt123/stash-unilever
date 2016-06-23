@@ -222,6 +222,8 @@ public with sharing class Amr_ReportHelper {
               
               flag = true;
               break;
+            }else{
+                flag = false;
             } 
           }       
        }
@@ -358,7 +360,7 @@ public with sharing class Amr_ReportHelper {
   
   public List<Amr_Summary_Plan__c> totalBDAndBB(List<Amr_Summary_Plan__c> planList){
       Double total = 0;
-      Map<String,Integer> BDBBMap = new Map<String, Integer>();
+    //  Map<String,Integer> BDBBMap = new Map<String, Integer>();
      
       for(Amr_Summary_Plan__c pList : planList){
           
@@ -379,7 +381,7 @@ public with sharing class Amr_ReportHelper {
   }
     public List<Amr_Summary_Plan__c> updatePlanListTotalBDAndBB(List<Amr_Summary_Plan__c> planList,Map<String,Map<String,Integer>> categoryStageOneToTwoMapBD,Map<String,Map<String,Integer>> categoryStageOneToTwoMapBB){
     
-    Map<String, Integer> totalCountOfStage = new Map<String, Integer>();
+  //  Map<String, Integer> totalCountOfStage = new Map<String, Integer>();
     
     Integer total = 0;
    
