@@ -560,6 +560,7 @@
         </filterItems>
         <isOptional>false</isOptional>
         <name>Amr Summary Plan_Small C</name>
+		<sourceObject>MDO_Category__c</sourceObject>
     </lookupFilter>
     <lookupFilter>
         <fullName>nf_01I18000000CsL1EAK_00N18000000Z0WvEAK</fullName>
@@ -572,6 +573,7 @@
         </filterItems>
         <isOptional>false</isOptional>
         <name>Amr Summary Plan_Big C</name>
+		<sourceObject>MDO_Category__c</sourceObject>
     </lookupFilter>		
     <pluralLabel>Amr Summary Plans</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
