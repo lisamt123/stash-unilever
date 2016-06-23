@@ -4,14 +4,12 @@
         <fullName>BET__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>BET</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_ApplicableCategories__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>ApplicableCategories</label>
         <length>255</length>
         <required>false</required>
@@ -21,7 +19,6 @@
     <fields>
         <fullName>IPM_ApplicableCompanyCard__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>ApplicableCompanyCard</label>
         <length>255</length>
         <required>false</required>
@@ -31,7 +28,6 @@
     <fields>
         <fullName>IPM_ApplicableGates__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>ApplicableGates</label>
         <length>255</length>
         <required>false</required>
@@ -41,7 +37,6 @@
     <fields>
         <fullName>IPM_ApplicablePhases__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>ApplicablePhases</label>
         <length>255</length>
         <required>false</required>
@@ -52,7 +47,6 @@
         <fullName>IPM_DefaultComplexity__c</fullName>
         <description>Sets the default Complexity when creating the project.</description>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <inlineHelpText>Sets the default Complexity when creating the project.</inlineHelpText>
         <label>Default Complexity</label>
         <picklist>
@@ -156,7 +150,6 @@
     <fields>
         <fullName>IPM_GMKQuestionAns__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>GMK Question Answer</label>
         <picklist>
             <picklistValues>
@@ -180,7 +173,6 @@
         <fullName>IPM_GMKQuestionDefaultAns__c</fullName>
         <description>For showing default Selected Value for GateKeeping Question</description>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <inlineHelpText>For showing default Selected Value for GateKeeping Question</inlineHelpText>
         <label>GMK Question Default Answer</label>
         <picklist>
@@ -214,7 +206,6 @@
     <fields>
         <fullName>IPM_GMKQuestionLabel__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>GMK Question Label</label>
         <length>100</length>
         <required>false</required>
@@ -235,7 +226,6 @@
         <fullName>IPM_MultiBrandPosApplicable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>MultipleBrandPosApplicable</label>
         <type>Checkbox</type>
     </fields>
@@ -252,7 +242,6 @@
     <fields>
         <fullName>IPM_ProjectType__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Project Type</label>
         <picklist>
             <picklistValues>
