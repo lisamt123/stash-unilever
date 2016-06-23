@@ -144,7 +144,7 @@ global with sharing class DMS_PostChatter_Schedule implements Schedulable, Datab
 
     }
     
-    /*******************************************************************
+    /********************************************************************
     * Purpose: Remove the null values.
     * Parameters: The String (Id) from the User
     * Returns: The String formated.

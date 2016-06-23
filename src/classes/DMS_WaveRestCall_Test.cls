@@ -19,12 +19,10 @@ public class DMS_WaveRestCall_Test {
         Test.setMock(HttpCalloutMock.class, new DMS_WebServiceMockGenerator_Test());
         Test.startTest();
          
-        DMS_WaveRestCall vCall = new DMS_WaveRestCall();
+        new DMS_WaveRestCall();
         DMS_WaveRestCall.getRecords('','','');
         System.assert(DMS_WaveRestCall.listRecords.size() > 0);
         Test.stopTest();
          
-     }
-
-    
+     }    
 }
