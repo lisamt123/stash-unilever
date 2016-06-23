@@ -229,7 +229,7 @@
     <fields>
         <fullName>CEC_Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>CEC : Look up field to populate the Case Product.</description>
+        <description>CEC : Look up field to populate the Case Product. This is updated description</description>
         <externalId>false</externalId>
         <label>CEC_Product</label>
         <referenceTo>mdm_Case_Product__c</referenceTo>
@@ -268,6 +268,17 @@
     </fields>
     <fields>
         <fullName>CMMFlag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: This flag will be set in the email trigger whenever new CMM is populated on the case object</description>
+        <externalId>false</externalId>
+        <label>CMMFlag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+	<fields>
+        <fullName>CMMFlag_Commit this field__c</fullName>
         <defaultValue>false</defaultValue>
         <description>CEC: This flag will be set in the email trigger whenever new CMM is populated on the case object</description>
         <externalId>false</externalId>
