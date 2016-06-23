@@ -13,8 +13,8 @@ VERSION     AUTHOR         DATE              DETAIL Description
 
 public with sharing class MB_Controller_Class{
 
-	public static MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj{get;set;}
-	public static Decimal DataUsage {get;set;}
+    public static MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj{get;set;}
+    public static Decimal DataUsage {get;set;}
     public static Decimal CallUsage {get;set;} 
     public static Decimal MessageUsage {get;set;}
     public static Decimal IpassUsage {get;set;}
@@ -152,16 +152,16 @@ public with sharing class MB_Controller_Class{
     
     @AuraEnabled
     public static MB_Wrapper_Class.MB_Device_Wrapper_Class getUsageDetails(String month) {
-	
-		DataUsage=0;
-		CallUsage=0;
-		MessageUsage=0;
-		IpassUsage=0;
-		previousDataUsage=0;
-		previousCallUsage=0;
-		previousMessageUsage=0;
-		previousIpassUsage=0;
-		totalSpend=0;
+    
+        DataUsage=0;
+        CallUsage=0;
+        MessageUsage=0;
+        IpassUsage=0;
+        previousDataUsage=0;
+        previousCallUsage=0;
+        previousMessageUsage=0;
+        previousIpassUsage=0;
+        totalSpend=0;
         
         wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
               
@@ -205,10 +205,10 @@ public with sharing class MB_Controller_Class{
          }
          return null;
        }
-	   
-	   public static void updateMonthDataUsage(MB_Billing_Entity__c CurrentUserData, String month, String previousMonth){
-	   
-			if(CurrentUserData.Billing_Month__c ==month){
+       
+       public static void updateMonthDataUsage(MB_Billing_Entity__c CurrentUserData, String month, String previousMonth){
+       
+            if(CurrentUserData.Billing_Month__c ==month){
              if(CurrentUserData.Local_Net_Amount__c !=null){
               totalSpend=totalSpend+CurrentUserData.Local_Net_Amount__c; 
                 wrprobj.userCurrency=CurrencySym();
@@ -243,8 +243,8 @@ public with sharing class MB_Controller_Class{
             }
          
              }    
-	   
-	   }
+       
+       }
        
     /*******************************************************************************************************
     * @description This method returns total spend of a user device for a particular month.
@@ -253,7 +253,7 @@ public with sharing class MB_Controller_Class{
     */ 
     public static boolean getVariance(decimal currentUsage,decimal previousUsage){
     
-      if(currentUsage >  previousUsage)
+      if(currentUsage >  previousUsage && previousUsage !=0)
       {
         system.debug('***'+currentUsage+'$$'+previousUsage);
         return true;
@@ -483,6 +483,103 @@ public with sharing class MB_Controller_Class{
         
   }
   
+    
+    //Shruti
+    /*******************************************************************************************************
+    * @description This method returns total spend of a user device for a particular month.
+    * @param  month, device Id
+    * @return decimal  
+    */ 
+    
+      @AuraEnabled
+   public static MB_Wrapper_Class getSpendDetailsForNonUsage(string deviceId,string month){
+  System.debug('NON USAGE:  deviceId--->'+deviceId+',,,month--->'+month);
+       string previous=getPreviousMonth(month);
+       List<Id> usageTypeIds;
+       List<MB_Usage_Type__c> usageTypes=[SELECT Id,Name FROM MB_Usage_Type__c WHERE Name NOT IN (:'Calls',:'Data',:'Messaging',:'ipass')];
+       System.debug('usageTypes---->'+usageTypes[0].Name);
+       if(usageTypes!=null && usageTypes.size()>0){
+       	   usageTypeIds=new List<Id>();
+           for(MB_Usage_Type__c usageType:usageTypes){
+               usageTypeIds.add(usageType.id);
+           }
+       }
+       
+       List<MB_Billing_Entity__c> nonUsageBillingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId AND Usage_Type__c in: usageTypeIds]; 
+    
+       System.debug('nonUsageBillingEntityList--->'+nonUsageBillingEntityList);
+       List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
+       List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
+       for(MB_Billing_Entity__c entity:nonUsageBillingEntityList){
+         if(entity.Billing_Month__c ==month){
+            currentmonthBillingList.add(entity);
+         }
+         if(entity.Billing_Month__c ==previous){
+            previousmonthBillingList.add(entity);
+         }
+       }
+       
+       Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper> nonusageMap=new Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper>();
+       MB_Wrapper_Class objWrapper=new MB_Wrapper_Class();
+       /*for(MB_Billing_Entity__c entity:currentmonthBillingList)
+       {
+        
+       if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Recurring)
+        {
+          if(!nonusageMap.containsKey(entity.Charge_Type__r.Name)){
+              MB_Wrapper_Class.NonUsageChargeType_Wrapper objData=new MB_Wrapper_Class.NonUsageChargeType_Wrapper();
+              
+              objData.chargeTypeName=entity.Charge_Type__r.Name;
+              if(entity.Local_Net_Amount__c !=null){
+              objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
+              nonusageMap.put(entity.Charge_Type__r.Name,objData);
+            }
+          }
+          
+          else if(nonusageMap.containsKey(entity.Charge_Type__r.Name)){
+             decimal amount=0;
+             MB_Wrapper_Class.NonUsageChargeType_Wrapper objData=nonusageMap.get(entity.Charge_Type__r.Name);
+             nonusageMap.remove(entity.Charge_Type__r.Name);
+             if(entity.Local_Net_Amount__c !=null){
+             amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
+             objData.totalSpend=amount.setScale(2);
+            
+             objData.chargeTypeName=entity.Charge_Type__r.Name;
+             nonusageMap.put(entity.Charge_Type__r.Name,objData);
+           }}
+        
+         }
+       
+        }
+    
+        MB_Wrapper_Class objWrapper=new MB_Wrapper_Class();
+        
+        objWrapper.nonusageWrapperList=nonusageMap.values();
+        system.debug('@@@@'+objWrapper.ipassWrapperList.size());
+        
+        previousnonUsage =0;
+        previouSpend =0;
+        
+         previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
+         previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId).setScale(2);
+        
+        MB_Wrapper_Class.MB_Device_Wrapper_Class objdevice=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+        objdevice.userCurrency=CurrencySym();
+        objdevice.userName=userinfo.getfirstname();
+        objdevice.totalnonUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
+        objdevice.totalUsage=totalDeviceSpend(currentmonthBillingList,deviceId).setScale(2);
+        objdevice.nonUsageVariance=getVariance(objdevice.totalnonUsage,previousnonUsage);
+        objdevice.totalSpendVariance=getVariance(objdevice.totalUsage,previouSpend);
+        objWrapper1.objdeviceWrapper=objdevice;*/
+        
+        return objWrapper;
+        
+  }
+    
+    
   /*******************************************************************************************************
     * @description This method returns total spend of a particular usage type.
     * @param  month, device Id
