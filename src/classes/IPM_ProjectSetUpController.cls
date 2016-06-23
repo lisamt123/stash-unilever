@@ -1202,7 +1202,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 		// For future implementations.
 	}
 	
-	
-	
-    
+	public void populateProjectInformation()
+	{
+		// For future implementations.
+	}
 }
