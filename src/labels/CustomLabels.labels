@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-       <labels>
+    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -4276,7 +4276,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Gate_Doc_Milestone</shortDescription>
-        <value>Gate Document Milestone</value>
+        <value>Document Milestone</value>
     </labels>
     <labels>
         <fullName>IPM_Gate_Document_Summary</fullName>
@@ -6505,13 +6505,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_Phase_Change</shortDescription>
         <value>Confirmation: Project Phase Change Request</value>
     </labels>
-    <labels>
-        <fullName>IPM_Phase_Gate</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_Phase_Gate</shortDescription>
-        <value>Phase &amp; Gate document</value>
-    </labels>
+    
     <labels>
         <fullName>IPM_Phase_Label</fullName>
         <language>en_US</language>
@@ -9143,7 +9137,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ipmFinSummaryGMbps</shortDescription>
-        <value>GM Y1 bps vs DNDS</value>
+        <value>GM Y1 vs Av Cannibalised GM bps</value>
     </labels>
     <labels>
         <fullName>ipmFinSummaryIRR</fullName>
@@ -9279,6 +9273,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
         <value>Enter Task Name.</value>
     </labels>
+	<labels>
+		<fullName>IPM_Phase_Gate</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Phase_Gate</shortDescription>
+		<value>Document &amp; Phase</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Project_Full_Lite</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM Project Full/Lite</shortDescription>
+		<value>Project Lite/Full</value>
+	</labels>
     <labels>
         <fullName>IPM_FunctionalRoleErrorMsg</fullName>
         <language>en_US</language>
@@ -9293,5 +9301,137 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
-    
+    <labels>
+        <fullName>IPM_Export_Milestones</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export Milestones</shortDescription>
+        <value>Export Milestones</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Export_ToDos</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export ToDos</shortDescription>
+        <value>Export To-do&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UPDATE_ROLLOUTS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM UPDATE ROLLOUTS</shortDescription>
+        <value>Update Rollouts</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Select_MCO_Rollout_Leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Select MCO Rollout Leader</shortDescription>
+        <value>Select MCO Rollout Leader</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Before_Rollout_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Before_Rollout_TLDMilestone_HelpText</shortDescription>
+        <value>Until your Rollout Plan is created you can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of your earliest MCO rollout - you can change the TLD of this project via your Rollout Plan.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please contact the relevant Regional Project Leader.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_LocalRollout_Operational</shortDescription>
+        <value>You can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Download_with_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download with Appendix</shortDescription>
+        <value>Download with Appendix</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Download_without_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download without Appendix</shortDescription>
+        <value>Download without Appendix</value>
+    </labels>
+    <labels>
+        <fullName>IPM_No_Market_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Market is selected</shortDescription>
+        <value>No Market is selected</value>
+    </labels>
+    <labels>
+        <fullName>IPM_No_Sub_Sector_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Sub-Sector is selected</shortDescription>
+        <value>No Sub-Sector is selected</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Above_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Above_Threshold</shortDescription>
+        <value>Above Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BelowThreshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThreshold</shortDescription>
+        <value>Below Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Category_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Category Threshold</shortDescription>
+        <value>Category Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Exempt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exempt</shortDescription>
+        <value>Exempt</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Cluster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Cluster</shortDescription>
+        <value>Project Cluster :</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Threshold_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Threshold Status</shortDescription>
+        <value>Threshold Status</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Y3_iTO_notation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Y3 iTO (mn €) :</shortDescription>
+        <value>Y3 iTO (mn €) :</value>
+    </labels>
 </CustomLabels>
