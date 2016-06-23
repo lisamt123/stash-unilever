@@ -5,7 +5,6 @@
 **/
 public with sharing class IPM_PDocAttachmentListCtrl {
     
-    private final IPM_Project__c project; //project sObject depending on the stnadard controller record
     public String projectId{get;set;} //project id from the url
     public DocumentWrapper[] documentList{get;set;} // wrapper list which wraps all the attachments
     public Boolean isExist {get;set;} //boolean property if there are any records exists.
@@ -14,7 +13,6 @@ public with sharing class IPM_PDocAttachmentListCtrl {
     public IPM_PDocAttachmentListCtrl(ApexPages.StandardController stdController) {
         //Initialising variables
         isExist = false;
-        this.project = (IPM_Project__c)stdController.getRecord();
         documentList = new list<DocumentWrapper>();
         projectId = ApexPages.currentPage().getParameters().get('id');
         String[] gatesList = IPM_Utils.getPicklistValues(new IPM_Project_Document__c(), 'IPM_GateDocuments__c');//Ext Variable to initialise picklist values per Gates
