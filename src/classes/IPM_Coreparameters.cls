@@ -724,7 +724,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         List<MDO_Category__c> userMarket=new List<MDO_Category__c>();
         if(IPM_Coreparameter.IPM_Category_Text__c!=null){
             lstmarket=new list<selectoption>();
-            lstmarket.add(new selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectMarket));
             selCat=IPM_Coreparameter.IPM_Category_Text__c;
             set<string>UniqueMarket=new set<string>();
             if(String.isNotBlank(selCat)) {
@@ -754,7 +753,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             selCat=IPM_Coreparameter.IPM_Category_Text__c;
             List<MDO_Category__c > subsectorList=new List<MDO_Category__c >();
             set<string>uniqueSubSector=new set<string>();
-            lstsubsector.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectSubSector));
             if(String.IsNotBlank(selCat)) {
                 subsectorList=[SELECT id, Name FROM
                             MDO_Category__c WHERE parent_L3__r.Name=:selCat

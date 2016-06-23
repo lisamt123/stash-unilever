@@ -762,7 +762,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreParameter.js')}" type="text/javascript"></script>   
 	<apex:outputPanel id="selectNextTabScript">
     <script>
-         var IPMAppPS = {wmessage:'{!$Label.IPM_Unsaved_Alert}',selectLabel:'{!$Label.IPM_ProjectSetup_SELECT}',setuppageurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}',projectId:'{!projectId}',save:'{!saveSuccess}',task:'{!isTaskgenerated}',jobStatus:'{!project.IPM_Project_Job_Status__c}',ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}',homePage:'{!URLFOR($Page.IPM_HomePage)}',complexity:'{!JSINHTMLENCODE(ComplexityType)}',protabname:'{!JSINHTMLENCODE(ProjectTabName)}'}; 
+         var IPMAppPS = {wmessage:'{!$Label.IPM_Unsaved_Alert}',sectorLabel:'{!$Label.IPM_SelectSubSector}',selectLabel:'{!$Label.IPM_ProjectSetup_SELECT}',setuppageurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}',projectId:'{!projectId}',save:'{!saveSuccess}',task:'{!isTaskgenerated}',jobStatus:'{!project.IPM_Project_Job_Status__c}',ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}',homePage:'{!URLFOR($Page.IPM_HomePage)}',complexity:'{!JSINHTMLENCODE(ComplexityType)}',protabname:'{!JSINHTMLENCODE(ProjectTabName)}'}; 
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }}); 
     var apexAccountList =[];                 
     <apex:repeat value="{!listofprojectname}" var="proList">          

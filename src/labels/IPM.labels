@@ -9355,3 +9355,32 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_TLDMilestoneHelpText_LocalRollout_Operational</shortDescription>
         <value>You can edit the Target Launch Date of this project via Project Parameters.</value>
     </labels>
+    <labels>
+        <fullName>IPM_Download_with_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download with Appendix</shortDescription>
+        <value>Download with Appendix</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Download_without_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download without Appendix</shortDescription>
+        <value>Download without Appendix</value>
+    </labels>
+    <labels>
+        <fullName>IPM_No_Market_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Market is selected</shortDescription>
+        <value>No Market is selected</value>
+    </labels>
+    <labels>
+        <fullName>IPM_No_Sub_Sector_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Sub-Sector is selected</shortDescription>
+        <value>No Sub-Sector is selected</value>
+    </labels>
+
