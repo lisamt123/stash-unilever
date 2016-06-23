@@ -1928,6 +1928,7 @@ public class IPM_TestFactory_Helper
     public static List<MDM_Geography__c> mdmGeoList {get;set;}
     public static List<IPM_Gate_CMI_KPI_Inputs__c> cmiGateKPIInputList {get;set;}
     public static List<IPM_CMI_Color_Mapping__c> cmiColorCodes {get;set;}
+     public static List<IPM_Gate_Document_Section_Access__c> gateDocumentSectionAccess {get;set;}
     
     /***********************************************************************************************************************************************************
 	* @description To get  project master data
@@ -2159,8 +2160,9 @@ public class IPM_TestFactory_Helper
         cmiGateKPIInputList = Test.loadData(IPM_Gate_CMI_KPI_Inputs__c.sObjectType, 'IPM_GateCMIKPIInputs');
         
         cmiColorCodes = Test.loadData(IPM_CMI_Color_Mapping__c.sObjectType, 'IPM_CMIColorCodes');
+     	
+     	gateDocumentSectionAccess = Test.loadData(IPM_Gate_Document_Section_Access__c.sObjectType, 'IPM_GateDocumentSectionAccess');
     }
-    
     /***********************************************************************************************************************************************************
 	* @description To insert sample data list of IPM_Gate_CMI__c
 	**************************************************************************************************/
@@ -2383,4 +2385,10 @@ public class IPM_TestFactory_Helper
         return Test.loadData(IPM_CMI_Color_Mapping__c.sObjectType, 'IPM_CMIColorCodes');
     }
     
+     /***********************************************************************************************************************************************************
+	* @description To get IPM_Gate_Document_Section_Access__c
+	**************************************************************************************************/
+    public static List<IPM_Gate_Document_Section_Access__c> loadGateDocumentSectionAccess(){
+        return Test.loadData(IPM_Gate_Document_Section_Access__c.sObjectType, 'IPM_GateDocumentSectionAccess');
+    }
 }
