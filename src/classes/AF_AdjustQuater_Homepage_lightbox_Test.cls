@@ -43,6 +43,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
+            System.assertEquals(BrandEst[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c LIMIT 2]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,AFCategoryBrand[0].id);
@@ -86,6 +87,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
+            System.Assert(AFCategoryBrand[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             // Insert BrandEstimate.
@@ -146,6 +148,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
+            System.Assert(AFCategoryBrand[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             // Insert BrandEstimate.
@@ -205,6 +208,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
+            System.Assert(AFCategoryBrand[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             //insert BrandEstimate.
