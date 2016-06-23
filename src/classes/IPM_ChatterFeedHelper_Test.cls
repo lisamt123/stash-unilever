@@ -144,7 +144,6 @@ private class IPM_ChatterFeedHelper_Test {
         regionalProjectList = createRegionalProjects(lstProjects);
         
                
-        createLocalProjectList(regionalProjectList);       
         
         
          //Bulk insert of project resources
@@ -499,6 +498,7 @@ private class IPM_ChatterFeedHelper_Test {
             
             Test.startTest();
             System.runAs(platformUser) {
+            createLocalProjectList(regionalProjectList);  
             regionalProjectList[0].IPM_Target_Launch_Dates__c = System.today() + 8;
             update regionalProjectList;
             
@@ -543,6 +543,7 @@ private class IPM_ChatterFeedHelper_Test {
             Test.startTest();  
             System.runAs(platformUser) {
             
+            createLocalProjectList(regionalProjectList);  
             Id  financeMasterRecordType = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();  
             IPM_Financial__c financial = IPM_TestFactory_Helper.createIPMFinancial(false);
             financial.Parent_Project__c = lstLocalProjects[0].Id;
@@ -762,7 +763,7 @@ private class IPM_ChatterFeedHelper_Test {
         initializeData();
         System.runAs(platformUser) {
             Test.startTest();   
-
+			createLocalProjectList(regionalProjectList);  
             IPM_ProjectTriggerHandler IPM_ProjectTriggerHandlerctrl = new IPM_ProjectTriggerHandler();
             IPM_ProjectTriggerHandlerctrl.onAfterInsert(regionalProjectList);
             IPM_ProjectTriggerHandlerctrl.onBeforeUpdate(regionalProjectList);
@@ -774,7 +775,7 @@ private class IPM_ChatterFeedHelper_Test {
                proj.IPM_Project_Leader__c = UserInfo.getUserId();
                proj.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
                proj.Deputy_Project_Leader__c = UserInfo.getUserId();
-               proj.IPM_Finance_Member__c = UserInfo.getUserId();
+               proj.IPM_Finance_Lead__c = UserInfo.getUserId();
                proj.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
                newProjectMap.put(proj.id,proj);
             }   
