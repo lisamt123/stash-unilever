@@ -157,7 +157,6 @@ public with sharing class IPM_GatekeeperChecklist{
             String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_GK_Answers_Multiselect__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,BETCurrentStatus__c,DependentFieldAPIName__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
 	        for(String fieldAPIName :  sobjectFieldMap.keySet())
 	        {   
-	            Schema.DescribeFieldResult fieldDescribe = sobjectFieldMap.get(fieldAPIName).getDescribe(); 
 	            if(!(fieldAPIName.equalsIgnoreCase('Id')))
 	            {
 	                query += ' '+fieldAPIName+',';
@@ -175,7 +174,6 @@ public with sharing class IPM_GatekeeperChecklist{
             } 
           
             // Get BET status and Set BET Gatekeeping answer
-	        List<IPM_Questionnaire__c> tempListGK  = new List<IPM_Questionnaire__c>();
 	        for(IPM_Questionnaire__c ipmQue : gkChecklist) 
 	        {
 	        	String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
