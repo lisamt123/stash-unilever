@@ -18,15 +18,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_P_Document_Name</fullName>
-        <field>Name</field>
-        <formula>LEFT(IPM_Project__r.Name + &apos;-&apos; + TEXT(IPM_GateDocuments__c), 78)</formula>
-        <name>Update P Document Name</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>IPM_Update_Category_Status_On_Approval</fullName>
         <actions>

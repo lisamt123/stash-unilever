@@ -9434,4 +9434,18 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Y3 iTO (mn €) :</shortDescription>
         <value>Y3 iTO (mn €) :</value>
     </labels>
+	<labels>
+        <fullName>IPM_MCO_Rollout_Leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MCO Rollout Leader</shortDescription>
+        <value>MCO Rollout Leader</value>
+   </labels>
+    <labels>
+        <fullName>ipmFinSummaryGMbpsHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
+        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 – DNDS GM Y1</value>
+    </labels>
 </CustomLabels>

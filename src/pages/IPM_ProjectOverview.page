@@ -213,6 +213,7 @@
                                 </div>
 				 <!-- Display below outputPanel when project phase is not in PLE-->				
 				<apex:outputPanel styleClass="greyborder" rendered="{!displayGateDocument}"></apex:outputPanel>
+				</apex:outputPanel>
                  <!-- Display below outputPanel when project phase is not in PLE and current gate to display is not null-->
 			    <apex:outputPanel layout="block" rendered="{!displayGateDocument}">    
                             

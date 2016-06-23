@@ -541,7 +541,7 @@ public without sharing class IPM_Utils {
         for(String fieldAPIName :  sobjectFieldMap.keySet())
         {   
             Schema.DescribeFieldResult fieldDescribe = sobjectFieldMap.get(fieldAPIName).getDescribe(); 
-            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) && !excludedFieldSet.contains(fieldAPIName))
+            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() || fieldDescribe.isNameField()) && !excludedFieldSet.contains(fieldAPIName))
             {
                 queryStr += ' '+fieldAPIName+',';
             }
@@ -596,7 +596,7 @@ public without sharing class IPM_Utils {
                 for(String childFieldAPIName : childFieldTypeMap.keySet())
                 {
                     Schema.DescribeFieldResult fieldDescribe = childFieldTypeMap.get(childFieldAPIName).getDescribe();
-                    if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
+                    if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() || fieldDescribe.isNameField()) )
                     {
                         queryStr += ' '+childFieldAPIName+',';
                     }
