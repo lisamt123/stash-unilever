@@ -83,9 +83,10 @@
     margin-top: -24px;
 }
 .THIS .fileSize{
-    color: red;
+   
+    margin-left: 3px;
 }
 .THIS .new-drop{
-    width:80%;
-    margin-left:10px;
+    width:100%;
+
 }

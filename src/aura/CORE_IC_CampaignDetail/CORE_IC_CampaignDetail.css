@@ -1,3 +1,7 @@
+.THIS .shareWidth{
+        width: 35px;
+    height: 35px;
+}
 .THIS.mainContent{
     background-color:white;
     padding-left: 8px;
@@ -24,6 +28,7 @@
 }
 .THIS .fontStyle{
     color:#A7B8D1;
+    font-size: 0.8rem;
 }
 .THIS .ideaListShare{
     left: auto;

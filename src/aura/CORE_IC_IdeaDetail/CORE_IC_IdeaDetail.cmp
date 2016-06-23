@@ -98,7 +98,7 @@
     <div class="mainFrame">
         <div class="slds-grid">
             <div class="slds-align-top">
-                <img class="topBackBarIcon" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToAllIdea}"/>
+                <img class="topBackBarIcon" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.navigateToAllIdea}"/>
             </div>
         </div>
         <aura:if isTrue="{!v.showspinner=='false'}">

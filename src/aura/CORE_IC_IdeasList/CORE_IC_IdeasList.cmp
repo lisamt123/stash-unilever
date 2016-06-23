@@ -89,7 +89,7 @@
     <aura:if isTrue="{!v.displayCampaignIdea}">
         <div class="topBarStyle">   
             <div class="topBackBar">
-                <img class="topBackBarIcon" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToCampaignsDetail}"/>           	                                             
+                <img class="topBackBarIcon" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.navigateToCampaignsDetail}"/>           	                                             
             </div> 
         </div>
     	<aura:set attribute="else">

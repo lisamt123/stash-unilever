@@ -49,7 +49,7 @@
         	<div>    
                 <div class="topBarStyle">
                     <div onclick="{!c.BackButton}" class="topBackBar">
-                        <img src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" class="topBackBarIcon" ></img>
+                        <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" class="topBackBarIcon" ></img>
                     </div>
                 </div>            
                 <div class="chatterSection">

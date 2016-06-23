@@ -19,7 +19,7 @@
     </style>
       <aura:if isTrue="{!v.showspinner=='false'}">  
         <div class="main-content" style="width:100%;">
-               <div class="headerBarRowAlign" ><img class="backImageStyle-new" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToIdeaHome}"/>
+            <div class="headerBarRowAlign" ><img class="backImageStyle-new" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.navigateToIdeaHome}"/>
                    <div class="slds-text-heading--medium homePageSectionTitle">{!$Label.c.CORE_IC_FAQ}</div>               	                                             
                </div> 
               <hr/>

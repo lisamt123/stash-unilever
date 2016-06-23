@@ -64,6 +64,7 @@
             right: 10px;
             margin-bottom: 10px;
             margin-top: 10px;
+            font-size: 0.8rem;
         }
         .slds-text-body--regular.topPadding.bottomPadding {
             padding: 10px;
@@ -128,7 +129,7 @@
     <div class="main_content">
         <div class="topBarStyle">
             <div class="topBackBar">
-                <img class="topBackBarIcon" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToAllCampaigns}"/>
+                <img class="topBackBarIcon" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.navigateToAllCampaigns}"/>
             </div>
         </div>
         <aura:if isTrue="{!v.showspinner=='false'}">
@@ -143,7 +144,7 @@
                             </div>
                             <aura:if isTrue="{!v.recordDetail.ActiveStatus}">
                                 <div class="slds-no-flex">
-                                    <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none share_top_button" onclick="{!c.showShare}">
+                                    <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none share_top_button shareWidth" onclick="{!c.showShare}">
                                         <img src="/resource/CORE_IC_IdeasLigthtning/utility/share_60.png" class="slds-button__icon slds-button__icon--hint slds-button__icon--small"/>
                                     </button>
                                     <aura:if isTrue="{!v.share}">
