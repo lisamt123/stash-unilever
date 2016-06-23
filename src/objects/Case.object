@@ -6429,6 +6429,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Emails_Q_A</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>OWNER_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notEqual</operation>
+            <value>CEC Southern Cone Queue</value>
+        </filters>
+        <label>Emails Q&amp;A</label>
+        <language>es_MX</language>
+    </listViews>
+    <listViews>
         <fullName>Escalations_Queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.STATUS</columns>

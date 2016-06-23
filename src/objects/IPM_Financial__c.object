@@ -5279,7 +5279,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
     <listViews>
         <fullName>IPM_a7IE0000000breR_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7IE0000000breR</label>
+        <label>IPM_SMART</label>
         <queue>IPM_a7IE0000000breR</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -5416,6 +5416,69 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000c0MT</label>
         <queue>IPM_a7IE0000000c0MT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c0lF_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c0lF</label>
+        <queue>IPM_a7IE0000000c0lF</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c0m3_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c0m3</label>
+        <queue>IPM_a7IE0000000c0m3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c0m8_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c0m8</label>
+        <queue>IPM_a7IE0000000c0m8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c10e_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c10e</label>
+        <queue>IPM_a7IE0000000c10e</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c11O_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_LH RUS 500ML</label>
+        <queue>IPM_a7IE0000000c11O</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c15h_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c15h</label>
+        <queue>IPM_a7IE0000000c15h</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c15x_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c15x</label>
+        <queue>IPM_a7IE0000000c15x</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
