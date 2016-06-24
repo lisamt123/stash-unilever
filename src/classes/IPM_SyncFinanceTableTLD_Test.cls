@@ -24,16 +24,10 @@ private class IPM_SyncFinanceTableTLD_Test
     private static final String PROJ_PHASE_FEASIBILITY_MSG='Project phase should be FEASIBILITY';
     private static final String FIN_YEAR_MSG='Financial Year Mismatch';
     private static final String FIN_YEAR_EXT_ID_MSG='Financial Year External Id Mismatch';
-    private static final String ROLLOUT_MSG='Rollout should be present';
-    private static final String TESTPROJECT001_CONSOLIDATED='TestProject001_CONSOLIDATED';
     private static final String NOT_STARTED='Not Started';
     private static final String TESTPROJ_OPRL_GBL = 'TESTPROJ_OPRL_GBL';
     private static final String TESTPROJ_OPRL_REG = 'TESTPROJ_OPRL_REG';
     private static final String TESTPROJ_OPRL_LCL = 'TESTPROJ_OPRL_LCL';
-    private static final String TESTCOMMENTS1_REG_LOC1 = 'TestComments1_REG_LOC1';
-    private static final String TESTCOMMENTS1_REG_LOC2 = 'TestComments1_REG_LOC2';
-    private static final String TESTCOMMENTS1_REG_LOC_K = 'TestComments1_REG_LOC_K';
-    private static final String TESTCOMMENTS1_REG = 'TestComments1_REG';
     private static final String GLOBAL_PL = 'GLOBAL_PL';
     private static final String REGIONAL_PL = 'REGIONAL_PL';
     private static final String LOCAL_PL = 'LOCAL_PL';

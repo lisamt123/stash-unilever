@@ -7,29 +7,10 @@
 @isTest(SeeAllData=false)
 private class IPM_SyncFinanceTableTLDLocal_Test {
     
-private static final String TESTPROJECT001_REG ='TestProject001_REG';   
-    private static final String TESTPROJECT001_REG_LOC1 ='TestProject001_REG_LOC1'; 
-    private static final String TESTPROJECT001_REG_LOC2 ='TestProject001_REG_LOC2';
-    private static final String TESTPROJECT001_REG_LOC_K='TestProject001_REG_LOC_K';
-    private static final String PROJECT_CREATION='Project Creation';
     private static final String MARKET_CLUSTER='GEO0060';
-    private static final String GLOBAL_USER='globalUser@unilever.test.com';
-    private static final String REGIONAL_USER='regionalUser@unilever.test.com';
-    private static final String LOCAL_USER='localUser@unilever.test.com';
-    private static final String TESTPROJECT001='TestProject001';
     private static final String PROJ_SIZE_MSG='Project(s) size should be 1';
-    private static final String PROJ_PHASE_IDEAS_MSG='Project phase should be IDEAS';
-    private static final String TLD_MATCH_MSG='Target launch date should be set correctly';
-    private static final String PROJ_ROLLOUT_SIZE_MSG='Project rollout(s) size should be 1';
-    private static final String PROJ_PHASE_FEASIBILITY_MSG='Project phase should be FEASIBILITY';
     private static final String FIN_YEAR_MSG='Financial Year Mismatch';
-    private static final String FIN_YEAR_EXT_ID_MSG='Financial Year External Id Mismatch';
     private static final String ROLLOUT_MSG='Rollout should be present';
-    private static final String TESTPROJECT001_CONSOLIDATED='TestProject001_CONSOLIDATED';
-    private static final String NOT_STARTED='Not Started';
-    private static final String TESTPROJ_OPRL_GBL = 'TESTPROJ_OPRL_GBL';
-    private static final String TESTPROJ_OPRL_REG = 'TESTPROJ_OPRL_REG';
-    private static final String TESTPROJ_OPRL_LCL = 'TESTPROJ_OPRL_LCL';
     private static final String TESTCOMMENTS1_REG_LOC1 = 'TestComments1_REG_LOC1';
     private static final String TESTCOMMENTS1_REG_LOC2 = 'TestComments1_REG_LOC2';
     private static final String TESTCOMMENTS1_REG_LOC_K = 'TestComments1_REG_LOC_K';
