@@ -830,7 +830,7 @@ public class IPM_TestFactory_Helper
         
         List<IPM_Project__c> testIPMProjList = new List<IPM_Project__c>();
         for(Integer i = 1; i <= listSize; i++){ 
-            Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + scope + i,
+            Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_OP_COMMENTS + scope + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>scope , 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => scope +' Company Card',
