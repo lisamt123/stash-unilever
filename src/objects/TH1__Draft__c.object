@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>Related_Lookup_CEC_Retrieval__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC_Retrieval field is a lookup field used to display drafts on retrieval object</description>
+        <externalId>false</externalId>
+        <label>Retrieval Request</label>
+        <referenceTo>CEC_Retrieval_Request__c</referenceTo>
+        <relationshipLabel>ONE Correspond</relationshipLabel>
+        <relationshipName>Drafts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+</CustomObject>
