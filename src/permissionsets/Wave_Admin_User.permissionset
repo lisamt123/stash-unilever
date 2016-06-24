@@ -16,7 +16,7 @@
         <enabled>false</enabled>
         <externalDataSource>Unilever_SFDev</externalDataSource>
     </externalDataSourceAccesses>
-    <label>Analytics Cloud Builder</label>
+    <label>Wave Admin User</label>
     <recordTypeVisibilities>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
         <visible>false</visible>
@@ -855,6 +855,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>InsightsAppEQLEditor</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>InsightsAppEltEditor</name>
     </userPermissions>
     <userPermissions>
@@ -868,5 +872,9 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>InsightsCreateApplication</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>WaveTabularDownload</name>
     </userPermissions>
 </PermissionSet>

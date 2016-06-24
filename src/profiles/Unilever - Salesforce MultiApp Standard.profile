@@ -738,7 +738,7 @@
         <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Event-Event Layout</layout>
+        <layout>Event-ICB Ice Cream Visit - Salesrep</layout>
         <recordType>Event.ICB_IceCreamVisit</recordType>
     </layoutAssignments>
     <layoutAssignments>

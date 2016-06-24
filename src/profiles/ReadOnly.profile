@@ -100,47 +100,47 @@
         <layout>AM_Test__c-AM Test Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.Agency</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.Agency_Fee</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.Business_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.OOH_Distributor</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.OOH_Point_of_Sale_Outlet</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.OOH_Sale_Terminal</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
+        <recordType>Account.Pitch_Agency</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.UID_Primary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-Ice Cream</layout>
         <recordType>Account.UID_Secondary_Account</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-Pitch Agency Layout</layout>
-        <recordType>Account.Pitch_Agency</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Agency_Fee_Field_History__c-Agency Fee - Field History Layout</layout>

@@ -16,7 +16,7 @@
         <enabled>false</enabled>
         <externalDataSource>Unilever_SFDev</externalDataSource>
     </externalDataSourceAccesses>
-    <label>Analytics Cloud Builder</label>
+    <label>TaskRayCustom</label>
     <recordTypeVisibilities>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
         <visible>false</visible>
@@ -695,11 +695,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>TASKRAY__Project__c.Strategy</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>TASKRAY__Project__c.VIP</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request</recordType>
@@ -845,28 +845,4 @@
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>InsightsAppAdmin</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>InsightsAppDashboardEditor</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>InsightsAppEltEditor</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>InsightsAppUploadUser</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>InsightsAppUser</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>InsightsCreateApplication</name>
-    </userPermissions>
 </PermissionSet>
