@@ -25200,6 +25200,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ICB_CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.ICB_Matricula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.IPM_Brand_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25306,6 +25316,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Sustainability_Expert__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.TaskRay_Last_Use__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28350,6 +28365,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Enclosure__c.Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Enclosure__c.Company__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28730,6 +28750,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Fulfilment__c.EstimatedTotalProductValue__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Fulfilment__c.Expiry_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28867,6 +28892,21 @@
         <editable>true</editable>
         <field>cec_Fulfilment__c.Salutationold__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.SendAsCoupon__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.TotalEnclosureValue__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.TotalFulfilmentValue__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -34271,8 +34311,8 @@
         <startAddress>178.189.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
-        <endAddress>179.189.235.242</endAddress>
-        <startAddress>179.189.235.242</startAddress>
+        <endAddress>179.191.87.182</endAddress>
+        <startAddress>179.191.87.182</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>180.222.255.255</endAddress>
@@ -34285,6 +34325,10 @@
     <loginIpRanges>
         <endAddress>184.73.255.255</endAddress>
         <startAddress>184.72.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>187.11.237.33</endAddress>
+        <startAddress>187.11.237.33</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>187.32.117.193</endAddress>
@@ -34331,10 +34375,6 @@
         <startAddress>194.60.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
-        <endAddress>194.60.106.102</endAddress>
-        <startAddress>194.60.106.102</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
         <endAddress>194.118.255.255</endAddress>
         <startAddress>194.118.0.0</startAddress>
     </loginIpRanges>
@@ -34369,6 +34409,10 @@
     <loginIpRanges>
         <endAddress>200.119.243.193</endAddress>
         <startAddress>200.119.243.193</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>200.158.222.24</endAddress>
+        <startAddress>200.158.222.24</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>201.234.58.187</endAddress>

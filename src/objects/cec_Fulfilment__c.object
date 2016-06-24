@@ -413,6 +413,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Belgium</fullName>
                 <default>false</default>
             </picklistValues>
@@ -565,6 +569,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Panama</fullName>
                 <default>false</default>
             </picklistValues>
@@ -621,6 +629,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
@@ -634,6 +646,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -1157,6 +1173,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>EstimatedTotalProductValue__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Total Product Value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Expiry_Date__c</fullName>
         <externalId>false</externalId>
         <formula>Debit_Card_Number__r.Expiry_Date__c</formula>
@@ -1478,6 +1506,42 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>SendAsCoupon__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Send as Coupon</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TotalEnclosureValue__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Total Enclosure Value</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TotalFulfilmentValue__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Value__c +  EstimatedTotalProductValue__c +  E_Voucher_Value__c +  Refund_Value__c + TotalEnclosureValue__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Fulfilment Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>
@@ -1489,6 +1553,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Argentina</controllingFieldValues>
                 <controllingFieldValues>Australia</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
                 <controllingFieldValues>Bosnia and Herzegovina</controllingFieldValues>
@@ -1527,6 +1592,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>New Zealand</controllingFieldValues>
                 <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Norway</controllingFieldValues>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
                 <controllingFieldValues>Panama</controllingFieldValues>
                 <controllingFieldValues>Paraguay</controllingFieldValues>
                 <controllingFieldValues>Peru</controllingFieldValues>
@@ -1541,10 +1607,12 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
+                <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
                 <controllingFieldValues>Venezuela</controllingFieldValues>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dosing Request</fullName>
@@ -1617,6 +1685,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
         <queue>CEC_Baltics_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Bangladesh_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Bangladesh Quality Check</label>
+        <queue>CEC_Bangladesh_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Bangladesh_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Bangladesh Queue</label>
+        <queue>CEC_Bangladesh_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -2116,6 +2202,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Pakistan_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Pakistan Quality Check</label>
+        <queue>CEC_Pakistan_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Pakistan_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Pakistan Queue</label>
+        <queue>CEC_Pakistan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Philippines_Quality_Check_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Philippines Quality Check</label>
@@ -2279,6 +2383,42 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
         <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Thailand_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Thailand Quality Check</label>
+        <queue>CEC_Thailand_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Thailand_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Thailand Queue</label>
+        <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Vietnam_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Vietnam Quality Check</label>
+        <queue>CEC_Vietnam_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Vietnam_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Vietnam Queue</label>
+        <queue>CEC_Vietnam_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

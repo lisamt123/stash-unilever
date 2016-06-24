@@ -27,6 +27,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Bangladesh</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Bangladesh</label>
+        <sharedTo>
+            <role>CEC_User_Bangladesh</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Bangladesh</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Benelux</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Benelux</label>
@@ -162,6 +175,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Pakistan</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Pakistan</label>
+        <sharedTo>
+            <role>CEC_User_Pakistan</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Pakistan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Philippines</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Philippines</label>
@@ -227,6 +253,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Thailand</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Thailand</label>
+        <sharedTo>
+            <role>CEC_User_Thailand</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_UK</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals UK</label>
@@ -237,6 +276,19 @@
             <field>Country_Name__c</field>
             <operation>equals</operation>
             <value>United Kingdom,Ireland</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Vietnam</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Vietnam</label>
+        <sharedTo>
+            <role>CEC_User_Vietnam</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Vietnam</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -344,6 +396,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Baltics</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Bangladesh_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Bangladesh - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Bangladesh</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Bangladesh</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -501,6 +564,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Pakistan_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Pakistan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Pakistan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Pakistan</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Philippines_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Philippines - Manager</label>
@@ -589,6 +663,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Thailand_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Thailand - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_UK_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals UK – Manager</label>
@@ -597,6 +682,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_UK</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Vietnam_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Vietnam - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Vietnam</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Vietnam</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

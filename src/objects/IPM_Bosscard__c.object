@@ -3118,6 +3118,87 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1AB_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_A_SEAA</label>
+        <queue>IPM_a7IE0000000c1AB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1Au_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MARGARITA_N&amp;R</label>
+        <queue>IPM_a7IE0000000c1Au</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1B4_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SUMMERR W2_N&amp;R</label>
+        <queue>IPM_a7IE0000000c1B4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1B9_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JAGUARR W2_N&amp;R</label>
+        <queue>IPM_a7IE0000000c1B9</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1BE_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_KHALEESI_N&amp;R</label>
+        <queue>IPM_a7IE0000000c1BE</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1YO_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c1YO</label>
+        <queue>IPM_a7IE0000000c1YO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1Yi_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c1Yi</label>
+        <queue>IPM_a7IE0000000c1Yi</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1Z7_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c1Z7</label>
+        <queue>IPM_a7IE0000000c1Z7</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c1ZC_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST230616_LA</label>
+        <queue>IPM_a7IE0000000c1ZC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>

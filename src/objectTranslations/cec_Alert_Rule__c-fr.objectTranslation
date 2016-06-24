@@ -95,6 +95,10 @@
             <translation><!-- Baltics --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Benelux</masterLabel>
             <translation><!-- Benelux --></translation>
         </picklistValues>
@@ -147,6 +151,10 @@
             <translation><!-- North America --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Philippines</masterLabel>
             <translation><!-- Philippines --></translation>
         </picklistValues>
@@ -175,8 +183,16 @@
             <translation><!-- Sri Lanka --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
         </picklistValues>
     </fields>
     <fields>

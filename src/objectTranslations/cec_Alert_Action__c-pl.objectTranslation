@@ -112,6 +112,10 @@
             <translation><!-- Austria --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Belgium</masterLabel>
             <translation><!-- Belgium --></translation>
         </picklistValues>
@@ -264,6 +268,10 @@
             <translation><!-- Norway --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Panama</masterLabel>
             <translation><!-- Panama --></translation>
         </picklistValues>
@@ -320,6 +328,10 @@
             <translation><!-- Switzerland --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
@@ -334,6 +346,10 @@
         <picklistValues>
             <masterLabel>Venezuela</masterLabel>
             <translation><!-- Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
         </picklistValues>
     </fields>
     <fields>

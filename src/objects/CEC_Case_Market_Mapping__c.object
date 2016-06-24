@@ -431,6 +431,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Bangladesh_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Bangladesh Queue</label>
+        <queue>CEC_Bangladesh_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Benelux_Queue_CEC_Case_Market_Mapping</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -597,6 +606,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Pakistan_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Pakistan Queue</label>
+        <queue>CEC_Pakistan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Philippines_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Philippines Queue</label>
@@ -624,15 +642,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_South_Africa_Food_Queue_CEC_Case_Market_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC South Africa Food Queue</label>
-        <queue>CEC_South_Africa_Food_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_South_Africa_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC South Africa Home and Personal Queue</label>
@@ -643,6 +652,15 @@
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Africa</role>
             <role>CEC_User_South_Africa</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_CEC_Case_Market_Mapping1</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -668,6 +686,24 @@
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
         <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Thailand_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Thailand Queue</label>
+        <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Vietnam_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Vietnam Queue</label>
+        <queue>CEC_Vietnam_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

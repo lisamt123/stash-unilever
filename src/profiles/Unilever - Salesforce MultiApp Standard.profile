@@ -25200,6 +25200,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ICB_CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.ICB_Matricula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.IPM_Brand_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25306,6 +25316,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Sustainability_Expert__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.TaskRay_Last_Use__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28350,6 +28365,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Enclosure__c.Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Enclosure__c.Company__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28730,6 +28750,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Fulfilment__c.EstimatedTotalProductValue__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Fulfilment__c.Expiry_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28867,6 +28892,21 @@
         <editable>true</editable>
         <field>cec_Fulfilment__c.Salutationold__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.SendAsCoupon__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.TotalEnclosureValue__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.TotalFulfilmentValue__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
