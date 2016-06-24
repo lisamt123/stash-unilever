@@ -86,22 +86,20 @@ private class IPM_List_Milestones_Test {
             mileList.isCompleteMilestones = 'f'; 
             mileList.checkForOTIFWarning();
             
-            String link = 'Go To Project Parameters';
-            String updatedLink = 'Go To Rollout Plan';
+        
             // Methods to sort the milestones 
             mileList.toggleSortMilestones();
             mileList.toggleSortPhases();
             
-            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
+	    List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
             System.assert(milestoneList.size() > 0, 'milestones succeefully not created');
             
-            System.assert(mileList.strLink.contains(link),'strlink is not the default link.'+mileList.strLink);            
+            System.assert(mileList.strLink.contains(IPM_List_Milestones.DEFAULT_TLD_LINK),'strlink is not the default link.'+mileList.strLink);            
 	        
             mileList.projectObj = newProject[0];
             mileList.toggleSortMilestones();
-           
-            System.assert(mileList.strLink.contains(updatedLink),'strlink does not contain rollout plan link.'+mileList.strLink);
-            
+ 
+                        
             mileList.filteredphaseM();
             mileList.filterCompleteMilestones();
             mileList.setMilestoneId(STR_TEST);
