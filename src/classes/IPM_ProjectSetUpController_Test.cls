@@ -199,10 +199,11 @@ private class IPM_ProjectSetUpController_Test {
         getPagerefences();
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>();
-        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
-        companyCardList.add(localCompanyCard);      
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-        companyCardList.add(regionalCompanyCard);       
+        companyCardList.add(regionalCompanyCard); 
+	IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        companyCardList.add(localCompanyCard);   
+	    
         insert companyCardList;     
         for(IPM_Company_Card__c companyCard : companyCardList )
         {

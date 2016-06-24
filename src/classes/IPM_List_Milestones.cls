@@ -204,7 +204,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
 			strLink = DEFAULT_TLD_LINK;
 			displayPage = DEFAULT_PAGE;
 		}
-		else
+		else if(String.isNotBlank(associatedProjectType.IPM_TLD_Milestone_Help_Text__c))
 		{
 			String[] displayLinkArray = associatedProjectType.IPM_TLD_Milestone_Help_Text__c.split(IPM_ConstantUtils.COMMA_DELIMITER);
 			
