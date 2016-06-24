@@ -501,7 +501,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
        } 
             
        
-       List<IPM_Project__c> projectList=new List<IPM_Project__c>(); //List of Projects
+
        //IPM_ProjectShare handler=new IPM_ProjectShare(); //Initializing Project Share Class
        IPM_ProjectTriggerHandler PThandler = new IPM_ProjectTriggerHandler();//For Chatter and Processing Financial Records
            
@@ -1017,8 +1017,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     
     public void afterInsert(SObject so)
     {
-        IPM_Project__c incomingProject = (IPM_Project__c)so; 
-         //Track field history of Pl into Project Resource History custom object when PL gets assigned to project. 
+         
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
