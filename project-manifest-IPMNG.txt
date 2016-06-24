@@ -245,20 +245,8 @@ src/email/IPM_Emails/IPM_Due_Date_in_the_past2.email
 src/email/IPM_Emails/IPM_Due_Date_in_the_past2.email-meta.xml
 src/email/IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created.email
 src/email/IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created.email-meta.xml
-src/flows
-src/flows/IPM_Financial_Global_To_Local-3.flow
-src/flows/IPM_Financial_Global_To_Regional-4.flow
-src/flows/IPM_Financial_Local_To_Regional-3.flow
-src/flows/IPM_Financial_Regional_To_Local-5.flow
-src/flows/IPM_Financial_Year_Global_To_Local-3.flow
-src/flows/IPM_Financial_Year_Global_To_Regional-3.flow
-src/flows/IPM_Financial_Year_Local_To_Regional-4.flow
-src/flows/IPM_Financial_Year_Regional_To_Local-4.flow
-src/flows/IPM_Notify_Local_Rollout_Project_Created-15.flow
-src/flows/IPM_Notify_Regional_Rollout_Project_Created-13.flow
 src/labels
 src/labels/CustomLabels.labels
-src/labels/IPM.labels
 src/layouts
 src/layouts/IPM_Clusters__c-IPM Project Clusters Layout.layout
 src/layouts/IPM_Project__c-IPM Project Layout.layout
