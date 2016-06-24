@@ -964,7 +964,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <fields>
         <fullName>CustomerLegalCode__c</fullName>
         <description>Purpose : To display the Customer Legal Code
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Customer Legal Code</label>
         <length>10</length>
@@ -1304,6 +1304,16 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Customer_Number__c</fullName>
+        <description>Purpose : Auto Number to create Account ID for Food Solutions
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Auto Number to create Account ID for Food Solutions</inlineHelpText>
+        <label>FS Customer Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
         <fullName>FS_MasterCode__c</fullName>
         <description>Purpose : To display Legal Entity code
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -1370,16 +1380,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>GFS_Customer_Number__c</fullName>
-        <description>Purpose : Auto Number to create Account ID for Food Solutions
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Auto Number to create Account ID for Food Solutions</inlineHelpText>
-        <label>FS Customer Number</label>
-        <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
-    </fields>
-    <fields>
         <fullName>General_Email__c</fullName>
         <externalId>false</externalId>
         <label>General Email</label>
@@ -1408,6 +1408,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>INN__c</fullName>
+        <externalId>false</externalId>
+        <label>INN</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Industry</fullName>
@@ -1562,7 +1573,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <fields>
         <fullName>KeyCustomerLevel1Name__c</fullName>
         <description>Purpose :To display Key Customer Level 1 Name 
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Key Customer Level 1 Name</label>
         <length>50</length>
@@ -1575,7 +1586,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <fields>
         <fullName>KeyCustomerLevel1__c</fullName>
         <description>Purpose : To display the Key Customer Level 1
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Key Customer Level 1</label>
         <length>10</length>
@@ -1587,6 +1598,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>KeyCustomerLevel4Code__c</fullName>
+        <description>Purpose : A commercial grouping of accounts 
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Banner</label>
         <length>10</length>
@@ -1598,6 +1611,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>KeyCustomerLevel4Name__c</fullName>
+        <description>Purpose : A commercial grouping of accounts
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>BannerName</label>
         <length>50</length>
@@ -2477,7 +2492,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>SAP_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Purpose : External ID
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>true</externalId>
         <label>SAP ID</label>
         <length>255</length>
@@ -2486,6 +2501,54 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SegmentRussia__c</fullName>
+        <externalId>false</externalId>
+        <label>Operator Segment(Russia)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pubs/Bars/Entertaining center/Caffee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Segment__c</fullName>
@@ -2616,6 +2679,134 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SubSegmentRussia__c</fullName>
+        <externalId>false</externalId>
+        <label>Operator Sub Segment(Russia)</label>
+        <picklist>
+            <controllingField>SegmentRussia__c</controllingField>
+            <picklistValues>
+                <fullName>Бар / Паб</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание - Ж/Д</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание – Заправки</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hotels</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hotels</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Доставка еды на дом/офис</fullName>
+                <default>false</default>
+                <controllingFieldValues>Take Away</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canteens</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+                <controllingFieldValues>Take Away</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+                <controllingFieldValues>Wholesalers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+                <controllingFieldValues>Offices</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+                <controllingFieldValues>Take Away</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ресторан гастрономический (премиальный)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canteens</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+                <controllingFieldValues>QSR</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+                <controllingFieldValues>QSR</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Фри-фло, рестораны самообслуживания</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>SubSegment__c</fullName>
@@ -3593,7 +3784,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <language>fr</language>
     </listViews>
     <listViews>
-        <fullName>Distributor_Accounts</fullName>
+        <fullName>All_Distributor_Accounts_2</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.SITE</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
@@ -3608,7 +3799,62 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <operation>equals</operation>
             <value>Distributor</value>
         </filters>
-        <label>Distributor Accounts</label>
+        <label>All Distributor Accounts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_Operator_Accounts1</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Operators</value>
+        </filters>
+        <label>All Operator Accounts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Distributor_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Distributor</value>
+        </filters>
+        <label>My Distributor Accounts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Operator_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Operators</value>
+        </filters>
+        <label>My Operator Accounts</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -4767,6 +5013,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -4817,6 +5102,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6045,6 +6425,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -6095,6 +6514,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7181,6 +7695,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -7231,6 +7784,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8676,6 +9324,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>A-Center Led</fullName>
@@ -8702,6 +9389,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10498,6 +11280,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -10552,6 +11373,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Temporary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12215,6 +13131,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -12265,6 +13220,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13352,6 +14402,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -13402,6 +14491,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14687,6 +15871,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -14737,6 +15960,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16297,6 +17615,45 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
                 <fullName>Contract Caterers</fullName>
@@ -16347,6 +17704,101 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16878,6 +18330,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <searchResultsAdditionalFields>PC_ADDRESS2_ZIP</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>FS_Account_Owner_Change_Lock</fullName>
+        <active>true</active>
+        <description>Created for account owner change lock for other than administrators</description>
+        <errorConditionFormula>AND( ISCHANGED( OwnerId ), $Profile.Name &lt;&gt; &quot;System Administrator&quot;, OR( RecordType.DeveloperName=&apos;Distributor&apos;,RecordType.DeveloperName=&apos;Operators&apos; ))</errorConditionFormula>
+        <errorMessage>You do not have access to change the account owner.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>LocalIdentifier_Length_Validation</fullName>
         <active>true</active>

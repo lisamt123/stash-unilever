@@ -44,7 +44,8 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Active__c</fullName>
-        <description>To calculate Active or Inactive for product</description>
+        <description>Purpose : To calculate Active or Inactive for product 
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <formula>AND(not(ISBLANK(StartDate__c)),not(ISBLANK(EndDate__c)),EndDate__c&gt;=today(),StartDate__c&lt;=today() , IF( StartDate__c &gt; EndDate__c,false,true ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -54,7 +55,8 @@
     </fields>
     <fields>
         <fullName>COGS__c</fullName>
-        <description>Product&apos;s cost of goods sold</description>
+        <description>Purpose : Product&apos;s cost of goods sold
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>COGS</label>
         <precision>6</precision>
@@ -64,12 +66,17 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>CanUseQuantitySchedule</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>CanUseRevenueSchedule</fullName>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>CategoryCode__c</fullName>
-        <description>Code of the category for future mapping in the reporting</description>
+        <description>Purpose : Code of the category for future mapping in the reporting
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Category Code</label>
         <length>4</length>
@@ -80,7 +87,8 @@
     </fields>
     <fields>
         <fullName>Category__c</fullName>
-        <description>Refers to product&apos;s targeted category</description>
+        <description>Purpose : Refers to product&apos;s targeted category
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Category</label>
         <picklist>
@@ -975,7 +983,8 @@
     </fields>
     <fields>
         <fullName>Division__c</fullName>
-        <description>To select Division</description>
+        <description>Purpose : To select Division 
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Division</label>
         <picklist>
@@ -1018,7 +1027,8 @@
     </fields>
     <fields>
         <fullName>EndDate__c</fullName>
-        <description>Date on which the product will become inactive</description>
+        <description>Purpose : Date on which the product will become inactive
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -1028,7 +1038,8 @@
     <fields>
         <fullName>FS_Compensable__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Flag that indicates if the product is compensable i.e. provide compensation for damages, expiry, etc. (tbc)</description>
+        <description>Purpose :Flag that indicates if the product is compensable i.e. provide compensation for damages, expiry, etc. (tbc) 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Compensable</label>
         <trackHistory>false</trackHistory>
@@ -1036,7 +1047,8 @@
     </fields>
     <fields>
         <fullName>FS_CorpbrandCode__c</fullName>
-        <description>Code of the Brand for future mapping in the reporting</description>
+        <description>Purpose : Code of the Brand for future mapping in the reporting
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Corpbrand Code</label>
         <length>9</length>
@@ -1048,6 +1060,8 @@
     <fields>
         <fullName>FS_Customizable__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Purpose : Indicates if product is customizable 
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Customizable</label>
         <trackHistory>false</trackHistory>
@@ -1055,7 +1069,8 @@
     </fields>
     <fields>
         <fullName>FS_DUNumber__c</fullName>
-        <description>Distribution Unit Number? (tbc)</description>
+        <description>Purpose : Distribution Unit Number? (tbc) 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>DU Number</label>
         <precision>18</precision>
@@ -1067,7 +1082,8 @@
     </fields>
     <fields>
         <fullName>FS_EquivalentUnit__c</fullName>
-        <description>Field describing equivalent alternate unit of measure applicable to the product</description>
+        <description>Purpose : Field describing equivalent alternate unit of measure applicable to the product 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Equivalent Unit</label>
         <length>30</length>
@@ -1078,7 +1094,8 @@
     </fields>
     <fields>
         <fullName>FS_Focus__c</fullName>
-        <description>Refers to controlling accounts group code (used for reporting purposes)</description>
+        <description>Purpose : Refers to controlling accounts group code (used for reporting purposes)
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Focus</label>
         <picklist>
@@ -1100,19 +1117,9 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_ImageID__c</fullName>
-        <description>To displaying product Image id  from Documents</description>
-        <externalId>false</externalId>
-        <label>ImageID</label>
-        <length>30</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>FS_NetWeight__c</fullName>
-        <description>Net weight of SKU. This field is used in Russia Food Solution</description>
+        <description>Purpose : Net weight of SKU. This field is used in Russia Food Solution 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Net Weight</label>
         <precision>18</precision>
@@ -1125,7 +1132,8 @@
     <fields>
         <fullName>FS_Orderable__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Orderable</description>
+        <description>Purpose : Orderable
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Orderable</label>
         <trackHistory>false</trackHistory>
@@ -1133,7 +1141,8 @@
     </fields>
     <fields>
         <fullName>FS_PacksizeCode__c</fullName>
-        <description>Code of the PackSize for future mapping in the reporting</description>
+        <description>Purpose : Code of the PackSize for future mapping in the reporting 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Pack size Code</label>
         <length>17</length>
@@ -1143,20 +1152,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_Picture_Products__c</fullName>
-        <description>Displaying Product image</description>
-        <externalId>false</externalId>
-        <formula>IF( ISBLANK(FS_ImageID__c) ,&apos;&apos;, IMAGE(&apos;/servlet/servlet.FileDownload?file=&apos;+FS_ImageID__c,&apos;Image&apos;,100,100))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Picture Product</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>FS_ProductDescriptionRussia__c</fullName>
-        <description>Product Description Russian Language</description>
+        <description>Purpose : Product Description Russian Language
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Product Description LONG</label>
         <length>80</length>
@@ -1166,8 +1164,21 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_ProductImage__c</fullName>
+        <description>Purpose : Displaying Product image
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <formula>IMAGE(ImageURL__c,&quot;Image Unavailable&quot;,100,100)</formula>
+        <label>Product Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_ProfitCenter__c</fullName>
-        <description>To display Profit Center</description>
+        <description>Purpose : To display Profit Center  
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Profit Center</label>
         <precision>18</precision>
@@ -1179,7 +1190,8 @@
     </fields>
     <fields>
         <fullName>FS_ShelfLife__c</fullName>
-        <description>Shelf-life of SKU. This field is also used in Russia Food Solution</description>
+        <description>Purpose : Shelf-life of SKU. This field is also used in Russia Food Solution
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Shelf Life</label>
         <precision>18</precision>
@@ -1190,8 +1202,124 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Thrust__c</fullName>
+        <description>Purpose : Locally maintained grouping of products for reporting
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <label>Thrust</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Elevate the Centre of the Plate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guests want Hellmann&apos;s FOH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hellmann&apos;s Sandwich Pro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA&apos;s Favorite Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Focus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Say Its Lipton; Sell more Iced Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stand Out Soups</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_Top_Sellers__c</fullName>
+        <description>Purpose : Locally maintained grouping of products for reporting
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <label>Top Sellers</label>
+        <picklist>
+            <controllingField>FS_Thrust__c</controllingField>
+            <picklistValues>
+                <fullName>Brown Sauces and Gravies</fullName>
+                <default>false</default>
+                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hollandaise</fullName>
+                <default>false</default>
+                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayo PC</fullName>
+                <default>false</default>
+                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Real Big Squeeze</fullName>
+                <default>false</default>
+                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayo Gallons</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hot Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fresh Brewed Iced Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>Non Focus</controllingFieldValues>
+                <controllingFieldValues>Say Its Lipton; Sell more Iced Tea</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Caldo</fullName>
+                <default>false</default>
+                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Liquid Concentrated Base</fullName>
+                <default>false</default>
+                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Leg Crm Soup Base</fullName>
+                <default>false</default>
+                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Other SKUs</fullName>
+                <default>false</default>
+                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
+                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
+                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
+                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
+                <controllingFieldValues>Non Focus</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_VATRU__c</fullName>
-        <description>VAT value for Russia</description>
+        <description>Purpose : VAT value for Russia
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>VAT RU</label>
         <precision>17</precision>
@@ -1203,7 +1331,8 @@
     </fields>
     <fields>
         <fullName>FS_VATUA__c</fullName>
-        <description>VAT Value for Ukraine</description>
+        <description>Purpose : VAT Value for Ukraine 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>VAT UA</label>
         <precision>17</precision>
@@ -1215,7 +1344,8 @@
     </fields>
     <fields>
         <fullName>FS_ZSU__c</fullName>
-        <description>Unit conversion factor from Sales Unit to Base UOM</description>
+        <description>Purpose : Unit conversion factor from Sales Unit to Base UOM
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Unit conversion factor from Sales Unit t</label>
         <precision>17</precision>
@@ -1247,7 +1377,8 @@
     </fields>
     <fields>
         <fullName>GTIN__c</fullName>
-        <description>Global Trade Item Number</description>
+        <description>Purpose : Global Trade Item Number 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <inlineHelpText>Global Trade Item Number. Used to uniquely identify a product worldwide</inlineHelpText>
         <label>GTIN</label>
@@ -1259,12 +1390,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>ImageURL__c</fullName>
+        <description>Purpose: URL link to jpg image of Product</description>
+        <externalId>false</externalId>
+        <label>Image URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
         <fullName>IsActive</fullName>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>LeadTime__c</fullName>
-        <description>To Store Lead Time</description>
+        <description>Purpose :To Store Lead Time  
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Lead Time</label>
         <precision>18</precision>
@@ -1276,7 +1417,8 @@
     </fields>
     <fields>
         <fullName>MarketCode__c</fullName>
-        <description>Code of the Market for future mapping in the reporting</description>
+        <description>Purpose : Code of the Market for future mapping in the reporting
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Market Code</label>
         <length>6</length>
@@ -1287,7 +1429,8 @@
     </fields>
     <fields>
         <fullName>MarketType__c</fullName>
-        <description>Refers to product&apos;s targeted market</description>
+        <description>Purpose : Refers to product&apos;s targeted market 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <inlineHelpText>Refers to product&apos;s targeted market</inlineHelpText>
         <label>Market Type</label>
@@ -1382,123 +1525,13 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NFS_Thrust__c</fullName>
-        <externalId>false</externalId>
-        <label>Thrust</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Elevate the Centre of the Plate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Guests want Hellmann&apos;s FOH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hellmann&apos;s Sandwich Pro</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NA&apos;s Favorite Tea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Non Focus</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Say Its Lipton; Sell more Iced Tea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Stand Out Soups</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NFS_Top_Sellers__c</fullName>
-        <externalId>false</externalId>
-        <label>Top Sellers</label>
-        <picklist>
-            <controllingField>NFS_Thrust__c</controllingField>
-            <picklistValues>
-                <fullName>Brown Sauces and Gravies</fullName>
-                <default>false</default>
-                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hollandaise</fullName>
-                <default>false</default>
-                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mayo PC</fullName>
-                <default>false</default>
-                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Real Big Squeeze</fullName>
-                <default>false</default>
-                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mayo Gallons</fullName>
-                <default>false</default>
-                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hot Tea</fullName>
-                <default>false</default>
-                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Fresh Brewed Iced Tea</fullName>
-                <default>false</default>
-                <controllingFieldValues>Non Focus</controllingFieldValues>
-                <controllingFieldValues>Say Its Lipton; Sell more Iced Tea</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Caldo</fullName>
-                <default>false</default>
-                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Knorr Liquid Concentrated Base</fullName>
-                <default>false</default>
-                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Leg Crm Soup Base</fullName>
-                <default>false</default>
-                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>All Other SKUs</fullName>
-                <default>false</default>
-                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
-                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
-                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
-                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
-                <controllingFieldValues>Non Focus</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>PackSize__c</fullName>
-        <description>Filed depicting the number of units and packaging size per unit in a pack (E.g. 4x2.9 OZ)</description>
+        <description>Purpose : Filed depicting the number of units and packaging size per unit in a pack (E.g. 4x2.9 OZ)
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Pack Size</label>
         <length>30</length>
@@ -1509,7 +1542,8 @@
     </fields>
     <fields>
         <fullName>Package__c</fullName>
-        <description>To select particular Package for Products</description>
+        <description>Purpose : To select particular Package for Products
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Package</label>
         <picklist>
@@ -1536,7 +1570,8 @@
     </fields>
     <fields>
         <fullName>ProductCategory__c</fullName>
-        <description>To display Product Category</description>
+        <description>Purpose : To display Product Category 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Product Category</label>
         <picklist>
@@ -1901,7 +1936,8 @@
     </fields>
     <fields>
         <fullName>ProductTerm__c</fullName>
-        <description>To display Product Term</description>
+        <description>Purpose : To display Product Term 
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Product Term</label>
         <length>30</length>
@@ -1912,7 +1948,8 @@
     </fields>
     <fields>
         <fullName>ProductType__c</fullName>
-        <description>To select Product Type</description>
+        <description>Purpose : To select Product Type
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Product Type</label>
         <picklist>
@@ -1963,7 +2000,8 @@
     </fields>
     <fields>
         <fullName>ProfitabilityTarget__c</fullName>
-        <description>To display Profitability Target</description>
+        <description>Purpose : To display Profitability Target
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <formula>CASE( MarketType__c,
 &quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,26.5,
@@ -2002,7 +2040,8 @@
     </fields>
     <fields>
         <fullName>ResourceType__c</fullName>
-        <description>To display the Resource Type</description>
+        <description>Purpose : To display the Resource Type
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Resource Type</label>
         <length>50</length>
@@ -2013,6 +2052,8 @@
     </fields>
     <fields>
         <fullName>Restriction__c</fullName>
+        <description>Purpose : Identified if this product is restricted
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Restriction</label>
         <picklist>
@@ -2036,7 +2077,8 @@
     <fields>
         <fullName>SAP_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <description>SAP External ID (Used for Integration)</description>
+        <description>Purpose : SAP External ID (Used for Integration)
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>true</externalId>
         <label>SAP ID</label>
         <length>255</length>
@@ -2048,7 +2090,8 @@
     <fields>
         <fullName>SalesProduct__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Sales Product</description>
+        <description>Purpose : Sales Product
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Sales Product</label>
         <trackHistory>false</trackHistory>
@@ -2056,7 +2099,8 @@
     </fields>
     <fields>
         <fullName>SalesUnit__c</fullName>
-        <description>Sales UOM (cases)</description>
+        <description>Purpose : Sales UOM (cases) 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Sales Unit</label>
         <length>3</length>
@@ -2067,7 +2111,8 @@
     </fields>
     <fields>
         <fullName>StartDate__c</fullName>
-        <description>First date the product is available for selling</description>
+        <description>Purpose : First date the product is available for selling 
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -2076,6 +2121,8 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
+        <description>Purpose : Indicates if the product is active or not
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -2098,7 +2145,8 @@
     </fields>
     <fields>
         <fullName>SubCategory__c</fullName>
-        <description>Refers to product&apos;s targeted sub-category</description>
+        <description>Purpose : Refers to product&apos;s targeted sub-category
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Sub Category</label>
         <picklist>
@@ -2985,7 +3033,8 @@
     </fields>
     <fields>
         <fullName>SubSector__c</fullName>
-        <description>Refers to product&apos;s targeted sub-sector</description>
+        <description>Purpose : Refers to product&apos;s targeted sub-sector
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Sub Sector</label>
         <picklist>
@@ -3872,7 +3921,8 @@
     </fields>
     <fields>
         <fullName>UID_Barcode__c</fullName>
-        <description>Barcode of SKU. This fields is also used in Russia Food Solution project</description>
+        <description>Purpose : Barcode of SKU. This fields is also used in Russia Food Solution project
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Barcode</label>
         <length>25</length>
@@ -4672,7 +4722,8 @@
     </fields>
     <fields>
         <fullName>UnitOfMeasure__c</fullName>
-        <description>Field describing the unit of measure applicable to the product</description>
+        <description>Purpose : Field describing the unit of measure applicable to the product
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Unit Of Measure</label>
         <length>30</length>
@@ -4683,6 +4734,8 @@
     </fields>
     <fields>
         <fullName>UoM__c</fullName>
+        <description>Purpose : Unit of Measure
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>UoM</label>
         <picklist>
@@ -5671,6 +5724,84 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Thrust__c</picklist>
+            <values>
+                <fullName>Elevate the Centre of the Plate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guests want Hellmann%27s FOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hellmann%27s Sandwich Pro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%27s Favorite Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Focus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Say Its Lipton%3B Sell more Iced Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stand Out Soups</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Top_Sellers__c</picklist>
+            <values>
+                <fullName>All Other SKUs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brown Sauces and Gravies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caldo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fresh Brewed Iced Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hollandaise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Liquid Concentrated Base</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leg Crm Soup Base</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayo Gallons</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayo PC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Big Squeeze</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Family</picklist>
             <values>
                 <fullName>Food Services</fullName>
@@ -5769,84 +5900,6 @@
             </values>
             <values>
                 <fullName>Unknown</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>NFS_Thrust__c</picklist>
-            <values>
-                <fullName>Elevate the Centre of the Plate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Guests want Hellmann%27s FOH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hellmann%27s Sandwich Pro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NA%27s Favorite Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non Focus</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Say Its Lipton%3B Sell more Iced Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stand Out Soups</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>NFS_Top_Sellers__c</picklist>
-            <values>
-                <fullName>All Other SKUs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brown Sauces and Gravies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Caldo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fresh Brewed Iced Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hollandaise</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hot Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Liquid Concentrated Base</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Leg Crm Soup Base</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mayo Gallons</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mayo PC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Real Big Squeeze</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

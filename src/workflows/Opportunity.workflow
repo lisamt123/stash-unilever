@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Approval_request_email_template_to_Step3_approver</fullName>
+        <description>&quot;Approval request email template&quot; to Step3 approver</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>maha.r.bhaskar.reddy@accenture.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ramesh.suddapalli@accenture.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
+    </alerts>
+    <alerts>
         <fullName>Approval_request_email_template_to_Step_1_approver</fullName>
         <ccEmails>ramesh.suddapalli@accenture.com</ccEmails>
         <description>&quot;Approval request email template&quot; to Step 1 approver</description>
@@ -14,7 +29,7 @@
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>NAFS_Email_Templates/NAFS_Opportunity_approval_request_email_template</template>
+        <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
     </alerts>
     <alerts>
         <fullName>Approval_request_email_template_to_Step_2_approver</fullName>
@@ -25,7 +40,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>NAFS_Email_Templates/NAFS_Opportunity_approval_request_email_template</template>
+        <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
     </alerts>
     <alerts>
         <fullName>Approval_request_email_template_to_approver_for_Final_Approve</fullName>
@@ -36,7 +51,7 @@
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>NAFS_Email_Templates/NAFS_Opportunity_approval_request_email_template</template>
+        <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
     </alerts>
     <alerts>
         <fullName>Email_Alert_to_Opp_Owner</fullName>
@@ -46,7 +61,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>NAFS_Email_Templates/NAFS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days</template>
+        <template>FS_Email_Templates/FS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days</template>
     </alerts>
     <fieldUpdates>
         <fullName>Deal_Approved_Update_Step2</fullName>
@@ -80,8 +95,8 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <rules>
-        <fullName>NAFS Email to opportunity owner when Deal approval exactly 60 days</fullName>
-        <active>false</active>
+        <fullName>FS Email to opportunity owner when Deal approval exactly 60 days</fullName>
+        <active>true</active>
         <criteriaItems>
             <field>Opportunity.DealApproved__c</field>
             <operation>equals</operation>
@@ -106,5 +121,14 @@
             <timeLength>60</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Update Opportunity Product</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

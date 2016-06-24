@@ -52,12 +52,12 @@
     </fields>
     <fields>
         <fullName>Name</fullName>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <recordTypes>
-        <fullName>NAFS_Pricebook</fullName>
+        <fullName>FS_Pricebook</fullName>
         <active>true</active>
-        <label>NAFS Pricebook</label>
+        <label>FS Pricebook</label>
     </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>PRICEBOOK2.NAME</customTabListAdditionalFields>
