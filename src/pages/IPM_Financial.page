@@ -111,7 +111,7 @@
                                                             <div class="ipmAcrdnExpand"> 
                                                              <ul class="docFilter accordionFilters">
                                                                     <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">
-                                                                             <li class="{!IF(fieldSuffix == 'Global',IF(financial.Status_Global__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Global__c == 'In Progress', $Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Regional',IF(financial.Status_Regional__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Regional__c == 'In Progress',$Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Local',IF(financial.Status_Local__c == 'Submitted',$Label.IPM_SUBMIT_CODE,IF(financial.Status_Local__c == 'In Progress',$Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE)),'')))} finRecord"> <div class="incHeight" id="flagID">
+                                                                             <li class="{!IF(fieldSuffix == 'Global',IF(financial.Status_Global__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Global__c == 'In Progress', $Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Regional',IF(financial.Status_Regional__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Regional__c == 'In Progress',$Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Local',IF(financial.Status_Local__c == 'Submitted',$Label.IPM_SUBMIT_CODE,IF(financial.Status_Local__c == 'In Progress',$Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE)),'')))} finRecord pad0PX"> <div class="incHeight" id="flagID">
                                                                                 <span class="key wordwrap">
                                                                                     <!-- Rendered if bollean showKeyFinancial is true and custom field IPM_Key_Financial__c is true-->    
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />
@@ -246,7 +246,7 @@
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
                                                                     <!-- Rendered when IPM Financial object is updateable and project span is Global and project phase is not Ideas and current mode is not edit view-->    
-                                                                    <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}">
+                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditMode), isConsolidated)}">
                                                                      <!-- Rendered when record is editable and project phase is not PLE-->   
                                                                         <apex:outputPanel rendered="{!toShowEditButton}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
@@ -336,19 +336,19 @@
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
                                                                 </apex:actionFunction>
                                                                  <!-- Rendered when local project and localrollout TLD do not match. Misalignment message is displayed. Message is stored in CustomLabel-->
-                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!AND(isTargetLaunchDateMisaligned,validationErrorMessage != '')}">
-                                                                     <div class="misAlignedTLD">
-                                                                        <apex:outputText value="{!validationErrorMessage}"/> 
-                                                                    </div>  
+                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!AND(isTargetLaunchDateMisaligned,showMisalignment)}">
+                                                                    <div class="misAlignedTLD">
+                                                                        <apex:outputText value="{!validationErrorMessage}"/>
+                                                                    </div>
                                                                 </apex:outputPanel>
                                                                 <!-- Rendered when validation message is not empty. Validation message is set from controller class-->
-                                                                <apex:outputPanel id="milestoneFinanceDataValidationMessagePanel" rendered="{!NOT(milestoneFinanceDataValidationMessage=='')}">
+                                                                <apex:outputPanel id="milestoneFinanceDataValidationMessagePanel" rendered="{!AND(NOT(milestoneFinanceDataValidationMessage==''),showMisalignment)}">
                                                                     <div class="misAlignedTLD">
                                                                         <apex:outputText value="{!milestoneFinanceDataValidationMessage}"/>
                                                                     </div>
                                                                 </apex:outputPanel>
                                                                 <!-- Rendered when record is editable and controller property showMisalignedConfirmbtn is set to true-->
-                                                                <apex:outputPanel id="financeLeaderErrMsg" rendered="{!AND(isEditable,NOT(showMisalignedConfirmbtn))}" >
+                                                                <apex:outputPanel id="financeLeaderErrMsg" rendered="{!AND(isEditable,NOT(showMisalignedConfirmbtn),showMisalignment)}" >
                                                                      <div class="misAlignedTLD"> 
                                                                         <apex:outputText value="The Target Launch Date for {!currentFinancial.Display_Name__c} has been updated to {!currentTargetLaunchDate} from {!previousTargetLaunchDate}. Please confirm that any necessary updates to the business case have been made."/>
                                                                     </div>
@@ -370,7 +370,7 @@
                                                                                     <span class="finproject finspace">Target Launch Date:</span>
                                                                                 </th>
                                                                                 <th class="" scope="col" colspan="{!colSpan}" width="65%">
-                                                                                    <span class="finproject" style="{!IF(isTargetLaunchDateMisaligned, 'border:solid;border-color: #ff0000;', '')}">{!targetLaunchDateToDisplay}</span>
+                                                                                    <span class="finproject" style="{!IF(AND(isTargetLaunchDateMisaligned,showMisalignment), 'border:solid;border-color: #ff0000;', '')}">{!targetLaunchDateToDisplay}</span>
                                                                                 </th>
                                                                             </tr>
                                                                         </thead>
@@ -475,6 +475,26 @@
     
                                                         <!-- Rollup Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
+                                                            <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
+                                                                <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditModeBottomUp), isConsolidated)}">
+                                                                     <!-- Rendered when record is editable and project phase is not PLE-->   
+                                                                     <apex:outputPanel rendered="{!toShowEditButton}">                                                                     
+                                                                        <apex:commandButton styleclass="ipmButton primary" action="{!editFinancialsBottomUp}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()" value="{!$Label.IPM_EDIT}"/> 
+                                                                     </apex:outputPanel> 
+                                                                 </apex:outputPanel>
+                                                                 <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditModeBottomUp, false)}">
+                                                                       <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}
+                                                                       </div>
+                                                                       <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
+                                                                       </apex:actionFunction>
+                                                                       <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}
+                                                                       </div>
+                                                                       <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="finacialButtons,errorPanel,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
+                                                                       </apex:actionFunction>
+                                                                   </apex:outputPanel>
+                                                            </div> 
                                                             <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
                                                                 financialsInnovation="{!financialsInnovation}"
                                                                 financialsCalendar="{!financialsCalendar}"
@@ -483,6 +503,7 @@
                                                                 fieldSuffix="{!fieldSuffix}"
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
+                                                                isEditMode="{!isEditModeBottomUp}"
                                                             />
                                                         </div>                            
                                                     </div>

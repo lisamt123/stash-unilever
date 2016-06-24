@@ -41,7 +41,7 @@ This componet used for regional rollout project
                 </div>
             </apex:outputPanel>
         </div>        
-         <apex:outputPanel id="validationErrorMsg">
+         <apex:outputPanel id="validationErrorMsg" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}">
          <!-- This render condition will check for validation error should not blank -->
             <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}"/> 
         </apex:outputPanel>
@@ -78,7 +78,7 @@ This componet used for regional rollout project
                     <apex:outputPanel layout="block" styleClass="test" rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                         <th scope="col" width="180px" colspan="1">
                             <div>
-                                <div class="colTasks incHeight"><span>{!$Label.IPM_COUNTRY_LEADER}</span></div>
+                                <div class="colTasks incHeight"><span>{!$Label.IPM_MCO_Rollout_Leader}</span></div>
                            </div>
                         </th>
                         <th scope="col" width="120px" colspan="1">
@@ -142,9 +142,9 @@ This componet used for regional rollout project
                                       
                                         <th scope="col" width="120px" colspan="1">
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                <apex:image styleClass="rounded" url="{!localProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                <apex:image styleClass="rounded" url="{!localProject.IPM_Finance_Lead__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
-                                            <apex:outputField value="{!localProject.IPM_Finance_Member__c}"/>
+                                            <apex:outputField value="{!localProject.IPM_Finance_Lead__c}"/>
                                         </th>
                                     </tr>
                                 </thead>
@@ -253,8 +253,8 @@ This componet used for regional rollout project
                                         <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                                                                    
                                             <apex:outputPanel id="countryLeaderPanel" rendered="{!isEditMode}">
-                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Country_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
-                                                    <span class="" >{!$Label.IPM_Select_Country_Leader}</span>
+                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_MCO_Rollout_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_MCO_Rollout_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                    <span class="" >{!$Label.IPM_Select_MCO_Rollout_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
                                             <apex:outputField value="{!localrollout.IPM_Regional_PL__r.Name}"/> 

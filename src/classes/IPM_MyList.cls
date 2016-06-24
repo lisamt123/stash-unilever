@@ -139,7 +139,7 @@ public with sharing class IPM_MyList{
     public static final String ASCNULLSLAST_STR = ' ASC NULLS LAST';
     public static final String IPM_MYLIST_STR = IPM_MyList.class.getName();
     public static final String SELECTQUERY_STR = 'select ipm_completed__c,ipm_project__r.ipm_category_icon__c,ipm_project_document_section__r.ipm_section_sequence__c,ipm_project_document_section__r.ipm_section_name__c,';
-    public static final String QUERY_FIELDS_STR = 'IPM_Function__c,IPM_Project_Document_Section__c,IPM_Assignee__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
+    public static final String QUERY_FIELDS_STR = 'IPM_Function__c,IPM_Project_Document_Section__c,IPM_Assignee__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,IPM_Master_Task__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,';
     public static final String QUERY_FIELDS1_STR = 'IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.IPM_Project_Type__c, IPM_Task_Type__c,IPM_Task_Name__c,IPM_Phase__c,IPM_Due_Date1__c FROM IPM_Task__c';
     public static final String QUERY_WHERE_PROJECTNAME_STR = ' and IPM_Project__r.Name IN';
     public static final String QUERY_WHERE_PHASE_STR =  ' and ipm_project__r.ipm_phase__c in';
@@ -175,7 +175,7 @@ public with sharing class IPM_MyList{
         lstExtProj = new List<IPM_Project__c>();
         
         //Added this line to prevent future method running in for loop.
-        List<IPM_Task__c> taskList = loadTasks();
+        List<IPM_Task__c> taskList = IPM_TaskHelper.removeDuplicateTaskForUser(loadTasks());
         for(IPM_Task__c eachTask : taskList) {
             
             userSet.add(eachTask.IPM_Assignee__c);
@@ -255,7 +255,7 @@ public with sharing class IPM_MyList{
         
         String soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ String.escapeSingleQuotes(usrRole) +'\' , \'BD\')' : 
         ' AND IPM_Function__c = \'' + String.escapeSingleQuotes(usrRole) + '\'';
-        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,';
+        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Master_Task__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Assignee__c,';
         soql += 'IPM_Section__r.IPM_Section_Sequence__c,IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Project__r.IPM_Category_Icon__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Type__c , ';
         soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
         soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,  ';
@@ -354,10 +354,18 @@ public with sharing class IPM_MyList{
     
     public void markComplete() {
         try{
-            IPM_Task__c tObj = [SELECT IPM_Completed__c FROM IPM_Task__c WHERE Id =:taskId];
-            tObj.IPM_Completed__c = isChecked == IPM_Utils.truevalue ? true : false; 
-            tObj.IPM_Completed_Date__c = isChecked == IPM_Utils.truevalue ? system.today() : null;
-            update tObj;    
+			List<IPM_Task__c> updatedTaskList = new  List<IPM_Task__c>();
+        	
+            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
+
+            tObj[0].IPM_Completed__c = isChecked == 'true' ? true : false; 
+            tObj[0].IPM_Completed_Date__c = isChecked == 'true' ? system.today() : null;
+            	
+            updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
+            updatedTaskList.add(tObj[0]);
+            
+            update updatedTaskList;
+   
         }catch(Exception ex){   catchBlockContent('markComplete',ex);  }
         resetall();
     }    
@@ -403,7 +411,10 @@ public with sharing class IPM_MyList{
                 }
                 query += LIMIT_STR;
                 try{
-                    setCon = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+					list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = IPM_TaskHelper.removeDuplicateTaskForUser(allTasksList);
+                    setCon = new ApexPages.StandardSetController(newTasksList);
+                    
                     if(isCompleteTasks != IPM_Utils.Yes){
                         setCon.setPageSize(overduesize);
                     }else{
@@ -471,7 +482,10 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setControl = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+					list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = IPM_TaskHelper.removeDuplicateTaskForUser(allTasksList);
+                    setControl = new ApexPages.StandardSetController(newTasksList);
+                    
                     setControl.setPageSize(showtodaySize);
                     
                     totaltodaypages= Integer.valueof(math.ceil((double)setControl.getResultSize()/(double)setControl.getPageSize()));
@@ -536,7 +550,10 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setCont = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = IPM_TaskHelper.removeDuplicateTaskForUser(allTasksList);
+                    setCont = new ApexPages.StandardSetController(newTasksList);
+                    
                     setCont.setPageSize(nextSevensize);
                     
                     nextSevenpagesize=Integer.valueof(math.ceil((double)setCont.getResultSize()/(double)setCont.getPageSize()));
@@ -606,7 +623,10 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setContr = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = IPM_TaskHelper.removeDuplicateTaskForUser(allTasksList);
+                    setContr = new ApexPages.StandardSetController(newTasksList);
+                    
                     setContr.setPageSize(laterSize);
                     totallatertaskpages= Integer.valueof(math.ceil((double)setContr.getResultSize()/(double)setContr.getPageSize()));
                 }
@@ -669,7 +689,10 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setController= new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+					list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = IPM_TaskHelper.removeDuplicateTaskForUser(allTasksList);
+                    setController = new ApexPages.StandardSetController(newTasksList);
+                    
                     setController.setPageSize(completedSize);
                     totalcompletedpages= Integer.valueof(math.ceil((double)setController.getResultSize()/(double)setController.getPageSize()));
                 }

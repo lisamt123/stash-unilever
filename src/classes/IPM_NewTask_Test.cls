@@ -596,21 +596,18 @@ private class IPM_NewTask_Test{
                  newTask.projectObject = projDetailList11[0];
                  newTask.tasks = task;
                  newTask.projectObject = projDetailList11[0];
-                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
-                 List<SelectOption> optionPhaseList= newTask.getPhaselist();
-                 system.assertEquals(!optionPhaseList.isEmpty(),true,'Task Phase List for standard tasks not populated as expected');
-                 List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
-             	 system.assertEquals(!optionSpanList.isEmpty(),true,'Task Span List for standard tasks not populated as expected'); 
-            }  
-            
+                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD;
+                 system.assertEquals(task.IPM_Phase__c!= null,true,'Task Phase List for standard tasks not populated as expected');
+            }	  
         Test.stopTest();      
     }
     
-    /***********************************
+    
+ 	/***********************************
       @name: testTodoWithStandardTasks
       @Description: test tasks with standard tasks
     ***********************************/
-    private static TestMethod void testTodoWithIncorrectProjectMetaData(){
+    private static TestMethod void testEditTask(){
         
         Test.startTest();
         
@@ -618,36 +615,43 @@ private class IPM_NewTask_Test{
             IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
             initializedData(); 
             createProjectResource(projectDetailList[0].Id,userBD.id);
-            List<IPM_ProjectMetadata__c> metaDataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
-            List<IPM_ProjectMetadata__c> updatedMetaDataList = new List<IPM_ProjectMetadata__c>();
-            try{
-	            for(IPM_ProjectMetadata__c metaData:metaDataList)
-	            {
-	            	metaData.IPM_Applicable_Gate__c = null;
-	            	updatedMetaDataList.add(metaData);
-	            }	
-	            update updatedMetaDataList;
-	            
-	            system.runAs(userBD)
-	            {
-	                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
-	                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
-	                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
-	                  
-	                 IPM_NewTask newTask = new IPM_NewTask(sc); 
-	                 newTask.tasks = task;
-	                 newTask.projectObject = projectDetailList[0];
-	                 List<SelectOption> optionPhaseList= newTask.getPhaselist();
-	                 system.assertEquals(optionPhaseList.isEmpty(),true,'Task Phase List for standard tasks not populated as expected');
-	                 List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
-	             	 system.assertEquals(!optionSpanList.isEmpty(),true,'Task Span List for standard tasks not populated as expected'); 
-	            }  
-            }
-            catch(Exception ex)
+            
+            system.runAs(userBD)
             {
-            	system.assertEquals(ex.getMessage(),'Attempt to de-reference a null object','Exception not thrown');
-            }   
-        Test.stopTest();         
+                 list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
+                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
+                 task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                 task.IPM_Task_Name__c = 'Current Task';
+                 task.IPM_Section__c = ipmSection.id;
+                 task.IPM_Function__c = 'BD';
+                 task.RecordTypeId = PROJECT_TASK_ID;
+                 task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 
+                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+                
+                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.tasks = task;
+                 newTask.projectObject = projDetailList11[0];
+                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
+                 
+                 List<SelectOption> optionSectionList = newTask.getListSections();
+             	 system.assertEquals(!optionSectionList.isEmpty(),true,'Task section List for standard tasks not populated as expected'); 
+             	 
+             	 newTask.sectionWiseFunctionalRoleList();
+             	 newTask.selectedSectionId = ipmSection.id;
+             	 newTask.SectionToExtenalIdSectionMap.put(ipmSection.id,'Idea_Graphic');
+             	 List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
+             	 system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
+             	 
+             	 task.IPM_Function__c = 'BD';
+
+             	 system.assertEquals(string.isNotBlank(task.IPM_Function__c),true,'Task owner List for standard tasks not populated as expected'); 
+            }  
+            
+        Test.stopTest();      
     }
- 
+    
 }

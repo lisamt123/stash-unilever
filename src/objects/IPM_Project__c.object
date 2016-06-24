@@ -206,6 +206,18 @@
         <label>IPM Project Fields EcoDesign</label>
     </fieldSets>
     <fields>
+        <fullName>BETCurrentStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>BET Current Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BET_Archive_Status__c</fullName>
         <description>To store BET status when BET is archived (first release, final release, unreleased).</description>
         <externalId>false</externalId>
@@ -596,6 +608,26 @@
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -985,6 +1017,18 @@
                 <fullName>Home Care</fullName>
                 <default>true</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1042,6 +1086,21 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Category_Thresh__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Holds Category Threshold depending on  Category group , Category , span .This value is populated during project creation.</description>
+        <externalId>false</externalId>
+        <label>Category Threshold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1369,20 +1428,6 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>IPM_Finance_Member__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to the finance related user.</description>
-        <externalId>false</externalId>
-        <label>Finance Member</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>IPM_Projects3</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>IPM_GateKeepingModel__c</fullName>
         <description>Formula field which finds the Gate Keeping Module of the project</description>
         <externalId>false</externalId>
@@ -1552,7 +1597,7 @@ OwnerId))</formula>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
         <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
+        <formula>ISBLANK(IPM_Finance_Lead__c)</formula>
         <label>IPM Is Finance Member Null</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1767,6 +1812,48 @@ OwnerId))</formula>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    
+    <fields>
+        <fullName>IPM_ProjectGKM__c</fullName>
+        <description>To tell which GKM the project follows.</description>
+        <externalId>false</externalId>
+        <label>IPM_ProjectGKM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2029,6 +2116,20 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Y3iTO__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Y3iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Quit_Project_Tab__c</fullName>
@@ -2430,6 +2531,18 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Threshold_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(OR(ISBLANK(IPM_Cluster__c ),ISNULL(IPM_Cluster__c )),  IF(IPM_Category_Thresh__c &gt; IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;) , IF(IPM_Category_Thresh__c &gt;  IPM_Cluster__r.IPM_Sum_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos; )))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Threshold Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Threshold_Value__c</fullName>
         <description>To store the Threshold value</description>
         <externalId>false</externalId>
@@ -2467,7 +2580,7 @@ OwnerId))</formula>
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>18</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2490,7 +2603,7 @@ OwnerId))</formula>
         <fullName>IsFinanceMemberNull__c</fullName>
         <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
+        <formula>ISNULL(IPM_Finance_Lead__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IsFinanceMemberNull</label>
         <trackHistory>false</trackHistory>
@@ -2643,6 +2756,106 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Charter Answered &gt; 3</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Charter_Score__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Charter Answered</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Charter_Score__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Contract Answered &gt; 3</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Contract_Score__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Contract Answered</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Contract_Score__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Corporate Risk</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Regional_Project_Leader_Name__c</fullName>
@@ -2934,8 +3147,28 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
+                <fullName>GIC Deodorants %26 Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3032,6 +3265,18 @@ OwnerId))</formula>
                 <fullName>Home Care</fullName>
                 <default>true</default>
             </values>
+	    <values>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>	
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Child_Complexity__c</picklist>
@@ -3195,6 +3440,37 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_ProjectGKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3394,8 +3670,28 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
+                <fullName>GIC Deodorants %26 Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3491,6 +3787,18 @@ OwnerId))</formula>
             <values>
                 <fullName>Home Care</fullName>
                 <default>true</default>
+            </values>
+	    <values>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3655,6 +3963,37 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_ProjectGKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

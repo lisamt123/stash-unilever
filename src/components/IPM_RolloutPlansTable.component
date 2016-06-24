@@ -139,9 +139,9 @@
                                         </th>
                                         <th scope="col" width="120px" colspan="1">
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!regionalProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                    <apex:image styleClass="rounded" url="{!regionalProject.IPM_Finance_Lead__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
-                                            <apex:outputField value="{!regionalProject.IPM_Finance_Member__c}"/>
+                                            <apex:outputField value="{!regionalProject.IPM_Finance_Lead__c}"/>
                                         </th>
                                     </tr>
                                 </thead>
@@ -194,18 +194,19 @@
                                             <td scope="col" width="180px">
                                                 
                                                 <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!localRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                    <apex:image styleClass="rounded" url="{!localRollout.Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                                 </apex:outputPanel>
                                                 
-                                                <apex:outputField value="{!localRollout.IPM_Regional_PL__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
+
+                                                <apex:outputField value="{!localRollout.Local_Project__r.IPM_Project_Leader__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>
                                             <td scope="col" width="120px">
                                                 
                                                 <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                    <apex:image styleClass="rounded" url="{!localRollout.Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                                 </apex:outputPanel>
                                                 
-                                                <apex:outputField value="{!localRollout.Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
+                                                <apex:outputField value="{!localRollout.Local_Project__r.IPM_Finance_Lead__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
                                         <tr class="secrow">

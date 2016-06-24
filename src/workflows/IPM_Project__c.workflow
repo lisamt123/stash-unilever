@@ -27,7 +27,7 @@
         <description>IPM Notify Finance Leader the TLD changed</description>
         <protected>false</protected>
         <recipients>
-            <field>IPM_Finance_Member__c</field>
+            <field>IPM_Finance_Lead__c</field>
             <type>userLookup</type>
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>

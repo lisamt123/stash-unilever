@@ -253,7 +253,6 @@ public with sharing class IPM_FinGateController {
         iTOWrapper = new ipmFinancialSummaryWrapper();
         iAPWrapper = new ipmFinancialSummaryWrapper();
         
-        String projectId=IPM_ConstantUtils.BLANK;
 
         //Only valid for Charter Gate Document
         if (printDoc==IPM_ConstantUtils.CHARTER_GATE && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){ 

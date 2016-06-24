@@ -20,7 +20,16 @@ public without sharing class IPM_ProjectJobHelper
     
     public static String CLASS_NAME = IPM_ProjectJobHelper.class.getName();
      /**************************************************************
-    * @description: Process Project information. Used for Setting Phases of various Projects, which internall invoke Related DMLs.
+    * @description: Process Project information. Used for Setting Phases of various Projects, which internally invoke Related DMLs.
+                    This class handles the core logic for :
+                    1) This Method forms the core logic for Transaction Management and is used for Driving process from Custom Settings. 
+                    2) Identifying next Phase based on various combinations of data from Project Type Custom Settings.
+                    3) Iterates throught the hierarchy and creates a data set of Hierarchical data for Projects.
+                    4) Derives the logic for how process should flow based on Data in Custom Setting and GatekeepingModels.
+                    5) Reads various configuration attributes like 'copy Phase to Local', 'Copy Phase To Regional',
+                        which identifies which project drives what projects.
+                    6) Sets the value for Projects when in Transaction Management. Values like 'Job Type' and Job Status is set from this method.    
+                    7) Reads Project Type Custom Setting to identify when to create regional and Local Projects. 
     * @param1 incomingProjectMap : Map of incoming Projects
     * @param2 qContext : Queueable Context.
     */
@@ -92,8 +101,7 @@ public without sharing class IPM_ProjectJobHelper
                 
                 IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
                 
-                List<IPM_Project_Type__c> previousPhaseList = IPM_Utils.getPreviousPhases(currentProjectType,false);
-                
+                            
                 List<IPM_Project_Type__c> nextPhaseList = IPM_Utils.getNextPhases(currentProjectType,false);
                 
                  
@@ -400,7 +408,7 @@ public without sharing class IPM_ProjectJobHelper
                                
                                 if(currentProjectType.IPM_CopyPhase2Local__c)
                                 {
-                                    IPM_Project_Type__c localProjectType = IPM_Utils.retrieveProjectType(localProject);    
+                                     
                                     
                                     if( localProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
                                         IPM_ConstantUtils.phaseSequence.get(localProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
@@ -433,11 +441,7 @@ public without sharing class IPM_ProjectJobHelper
         	List<IPM_Project__c> projectUpdateList = new List<IPM_Project__c>();
         	for(IPM_Project__c incomingProjectDetail : processingProjectMap.values())
         	{
-				IPM_Project__c tempIncomingProjectDetail = new IPM_Project__c(IPM_Phase__c = incomingProjectDetail.IPM_Phase__c,IPM_Complexity__c = incomingProjectDetail.IPM_Complexity__c,
-				IPM_Child_Complexity__c = incomingProjectDetail.IPM_Child_Complexity__c,IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c,
-				IPM_Current_Document_Status__c = incomingProjectDetail.IPM_Current_Document_Status__c,
-				IPM_ProjectJobType__c = incomingProjectDetail.IPM_ProjectJobType__c,IPM_PhaseChangeQueueJobId__c = incomingProjectDetail.IPM_PhaseChangeQueueJobId__c,
-				IPM_Project_Job_Status__c = incomingProjectDetail.IPM_Project_Job_Status__c);
+				
         		projectUpdateList.add(incomingProjectDetail);
         	}
         	if(!projectUpdateList.isEmpty())
@@ -526,8 +530,7 @@ public without sharing class IPM_ProjectJobHelper
                     // Check for Rollouts.
                     if(currentProjectType.IPM_CreateRegionalProjects__c)
                     {
-                        Map<Id,IPM_Project_Rollout__c> regionalRollouts = new Map<Id,IPM_Project_Rollout__c>();
-    
+                           
                         if(projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null)
                         {
                             Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
@@ -551,14 +554,12 @@ public without sharing class IPM_ProjectJobHelper
                     
                     if(currentProjectType.IPM_CreateLocalProjects__c)
                     {
-                        Map<Id,IPM_Project_Rollout__c> localRollouts = new Map<Id,IPM_Project_Rollout__c>();
                         if(projectSpecificLocalRolloutMap.containsKey(projectId) &&  projectSpecificLocalRolloutMap.get(projectId) !=null)
                         {
                             Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
                             if(!associatedLocalRolloutsMap.isEmpty())
                             {
-                                Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
-                                List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
+                                 List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
                                 
                                  for(IPM_Project__c project : preparedProjectList)
                                 {

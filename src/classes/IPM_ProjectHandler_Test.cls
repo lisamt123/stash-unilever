@@ -31,7 +31,7 @@ private class IPM_ProjectHandler_Test {
     private final static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
     private final static String REGIONAL = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
     private final static String LOCAL = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-   
+    private static IPM_Clusters__c cluster;
      
     /***********************************
     Description of the purpose of the method. 
@@ -50,6 +50,9 @@ private class IPM_ProjectHandler_Test {
         technicalPLUser = IPM_TestFactory_Helper.createUser(true);
         gatekeeperUser = IPM_TestFactory_Helper.createUser(true);
         adminUser = IPM_TestFactory_Helper.createUserAdmin(true);
+        cluster = new IPM_Clusters__c();
+        cluster.name = 'TESTCLUSTER';
+        insert cluster;
         
         project = IPM_TestFactory_Helper.createIPMProject(false);
         project.Name = 'TestCom-ments';
@@ -65,15 +68,19 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         project.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
         project.IPM_Brand_Positioning__c = IPM_ConstantUtils.TEST_STR;
+        project.IPM_Approver_of_Charter__c = null;
         project.IPM_ProjectSubType__c = 'Innovation/Renovation';
         project.IPM_Document_Update_Comments__c = 'Start Comments';
         project.IPM_Target_Launch_Dates__c = System.today()+10;
         project.IPM_Category_Text__c = 'Laundry';
         project.IPM_Current_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
         project.Sustainability_Period__c = '3';
+        project.IPM_Project_Y3iTO__c = 3000;
+        project.IPM_Cluster__c = cluster.id;
         insert project;
         
         system.assertEquals(project.IPM_Project_Name__c ,[Select IPM_Project_Name__c from IPM_Project__c where Id=: project.Id ].IPM_Project_Name__c ,'Failed to insert project with the specified name.');
+        system.assertEquals(project.IPM_Project_Y3iTO__c ,[Select IPM_Sum_Y3iTO__c from IPM_Clusters__c where id=: cluster.id].IPM_Sum_Y3iTO__c ,'Failed to add up value of Y3iTO.');
         
         IPM_Milestone__c milestone = new IPM_Milestone__c();
         milestone.IPM_Project__c = project.Id;
@@ -105,7 +112,7 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT; 
         project.IPM_Target_Launch_Dates__c = System.today()+50;
         project.IPM_Project_Leader__c = standardUser.Id;
-        project.IPM_Finance_Member__c = user2.Id; 
+        project.IPM_Finance_Lead__c = user2.Id; 
         project.Deputy_Project_Leader__c = deputyPLUser.Id; 
         project.IPM_Technical_Project_Leader__c = technicalPLUser.Id; 
         project.IPM_Project_Gatekeeper__c = gatekeeperUser.Id; 
@@ -278,7 +285,7 @@ private class IPM_ProjectHandler_Test {
         betProjectList[6].IPM_Project_Leader__c = UserInfo.getUserId();
         betProjectList[6].Deputy_Project_Leader__c = null;
         betProjectList[6].IPM_Parent_Project__c = betProjectList[1].id;
-        betProjectList[6].IPM_Finance_Member__c = UserInfo.getUserId();
+        betProjectList[6].IPM_Finance_Lead__c = UserInfo.getUserId();
         betProjectList[7].name = 'testPrj6';
         betProjectList[7].IPM_Project_Type__c = Rollout;
         betProjectList[7].IPMProject_Span__c = LOCAL;
@@ -317,6 +324,7 @@ private class IPM_ProjectHandler_Test {
         system.runAs(adminUser){             
             Test.startTest();
             IPM_ProjectHandler projectHandler = new IPM_ProjectHandler();
+            system.assert(projectHandler != null , 'ProjectHandler not instantiated properly');
             Test.stopTest();              
         }
     }
@@ -360,7 +368,7 @@ private class IPM_ProjectHandler_Test {
         
         system.runAs(globalUser){ 
             
-            project.IPM_Finance_Member__c = UserInfo.getUserId(); 
+            project.IPM_Finance_Lead__c = UserInfo.getUserId(); 
             Test.StartTest();
             update project;
             Test.StopTest();
@@ -430,7 +438,7 @@ private class IPM_ProjectHandler_Test {
             betProjectList[5].IPM_Fast_Track_Project__c = true;
             
             betProjectList[6].IPMProject_Span__c = LOCAL;
-            betProjectList[6].IPM_Finance_Member__c = financeuser.id;
+            betProjectList[6].IPM_Finance_Lead__c = financeuser.id;
             betProjectList[6].IPM_Project_Name__c = 'testProj';
             betProjectList[6].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             betProjectList[6].IPM_BET_Toolkit__c = Label.IPM_BET_NoBET;

@@ -14,10 +14,13 @@ private class IPM_OTIFstatusController_Test {
     private static List<IPM_Project_Document__c> projDocList;
     private static IPM_Project_Document_Section__c projDocSec;
     private static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static IPM_OTIF_Status__c oticStatusSetting;
     private static User otifUser;
     private static string RECORD_NOT_SAVED_SUCCESSFULLY='record not saved successfully';
     private static string SECTION_CONTENT_LIST_IS_EMPTY='section content list empty';
-    
+    static uw_BET__c bet;
+	static List<IPM_BET_Valid_Categories__c> betvalidCategories ;
+	static final string CAT_NAME ='Household Care' ;
     /*Name: initializeData
     * @Description: Initialises the data needed for creating OTIF situation
     */
@@ -25,10 +28,17 @@ private class IPM_OTIFstatusController_Test {
         otifUser = IPM_TestFactory_Helper.createUser(true);
         system.assert(otifUser.id!=null);//positive test
         system.RunAs(otifUser){
+            oticStatusSetting = IPM_TestFactory_Helper.createIPMOTIFStatus(FALSE);
+            oticStatusSetting.Dependent_Field__c = IPM_ConstantUtils.BET_CURRENT_STATUS;
+            oticStatusSetting.name = 'Market Ready Communication';
+            insert oticStatusSetting;
+            bet = BET_TestUtils.getTestBet();
+        	insert bet; 
             project = IPM_TestFactory_Helper.createIPMProject(FALSE);
             project.Sustainability_Period__c='3';
             project.IPM_Target_Launch_Dates__c=system.today();
             project.IPM_IsCompleted__c=true; 
+            project.bet__c = bet.id;   
             insert project;
             IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
             system.assert(projectObj.IPM_IsCompleted__c,RECORD_NOT_SAVED_SUCCESSFULLY);
@@ -66,13 +76,29 @@ private class IPM_OTIFstatusController_Test {
             projDocSecCon.IPM_Section_Id__c=projDocSec.ID;
             projDocSecCon.IPM_Section_Name__c='Customer Channel';
             projDocSecCon.IPM_Section_type__c='Checklist';
+            projDocSecCon.DependentFieldAPIName__c = IPM_ConstantUtils.BET_CURRENT_STATUS;
             insert projDocSecCon;
             
-            IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
+            IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c,DependentFieldAPIName__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
             system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,RECORD_NOT_SAVED_SUCCESSFULLY);
+            system.assertEquals(projectDocSecConObj.DependentFieldAPIName__c, IPM_ConstantUtils.BET_CURRENT_STATUS);
         }
     }
     
+        /*
+    @description Contains all common data for BET testing
+    */
+    static void betDataInitializer(){
+        	system.assertEquals(1 , [Select count() from uw_BET__c where Id=:bet.Id ],'Failed to insert BET record.');
+        	betvalidCategories = new List<IPM_BET_Valid_Categories__c>();
+        	betvalidCategories.add(new IPM_BET_Valid_Categories__c(Name = CAT_NAME ));
+        	insert betvalidCategories;
+        	system.assertEquals(1 , [Select count() from IPM_BET_Valid_Categories__c where Name =: CAT_NAME ] , 'Failed to insert category  records.');      
+        	MDO_Category__c category = IPM_TestFactory_Helper.createMDOCategory(false);
+        	category.Name = 'Household Care';
+        	insert category;
+        	system.assertEquals(1 , [Select count() from MDO_Category__c where Id =: category.Id ] , 'Failed to insert MDO category  records.');      
+    }	
     /*Name: testShowContent
     * @Description: Tests actual content
     */
@@ -100,5 +126,27 @@ private class IPM_OTIFstatusController_Test {
             System.assertEquals(otif.secCon.IPM_OTIF_Status__c,'Red',System.Label.IPM_FUNC_CALLED_SUCCESSFULLY);
             Test.stopTest();
         }
+    }
+    static testMethod void testOTIFDependentQuestion()
+    {
+    	initializeData();
+    	betDataInitializer();
+    	system.RunAs(otifUser){
+    		Test.startTest();
+            IPM_OTIFstatusController otif = new IPM_OTIFstatusController();
+            otif.secConId=project.Id;
+            otif.updateOTIFStatus();
+            System.assertNotEquals(otif.secCon.IPM_Content_Type__c,IPM_ConstantUtils.OTIF_CONTENT_TYPE,System.Label.IPM_CATCH_BLOCK_CALLED);
+            otif.iseditable=true;
+            otif.showSectionContent();
+            System.assertEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
+            otif.projDocSecId=projDocSec.Id;
+            otif.otifType=IPM_ConstantUtils.OTIF_TABLE;
+            otif.showSectionContent();
+            System.assertNotEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
+            System.assertEquals(otif.secConList.size(), 1);
+            System.assertEquals(IPM_ConstantUtils.JOB_STATUS_NA, otif.secConList[0].BETCurrentStatus__c);	
+    		Test.stopTest();
+    	}
     }
 }

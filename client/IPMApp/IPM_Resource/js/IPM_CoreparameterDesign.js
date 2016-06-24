@@ -19,8 +19,11 @@ function updateAdditional() {
     if(window.parent.location.href.indexOf("&BETOptions=1") > -1){
      window.parent.location.reload();
     }else{
-       window.location.href = IPMProAppCP.projectUrl + '?id=' + IPMProAppCP.projectName;
+       window.parent.location.reload();
     }
+}
+function mpaskip(){
+  window.parent.location.reload();
 }
 /* Below function performs a page reload. It reloads the page when reset is clicked for first question. */
 function resetqone() {
@@ -43,7 +46,7 @@ function checkCoreParam() {
         if(window.parent.location.href.indexOf("&BETOptions=1") > -1){
          window.parent.location.reload();
         }else{
-           window.location.href = IPMProAppCP.projectUrl + '?id=' + IPMProAppCP.projectName;
+           window.parent.location.reload();
         }
     }
 }

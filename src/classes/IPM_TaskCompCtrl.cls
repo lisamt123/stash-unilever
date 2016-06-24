@@ -442,13 +442,16 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         try{
             if(string.isNotBlank(taskId))
             {
-                IPM_Task__c tObj = [SELECT IPM_Completed__c FROM IPM_Task__c WHERE Id =:taskId];
-                if(tObj!=null)
-                {
-                    tObj.IPM_Completed__c = isChecked == IPM_ConstantUtils.TEAM_TRUE ? true : false; 
-                    tObj.IPM_Completed_Date__c = isChecked == IPM_ConstantUtils.TEAM_TRUE ? system.today() : null;
-                    update tObj;
-                }
+                List<IPM_Task__c> updatedTaskList = new  List<IPM_Task__c>();
+        	
+            	List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
+	            tObj[0].IPM_Completed__c = isChecked == 'true' ? true : false; 
+	            tObj[0].IPM_Completed_Date__c = isChecked == 'true' ? system.today() : null;
+	            	
+	            updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
+	            updatedTaskList.add(tObj[0]);
+	            
+	            update updatedTaskList;
             }
             
         }catch(Exception ex) {
@@ -493,5 +496,23 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                             'SaveIPMApproach',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
     }    
+    
+    /********************************************************************************
+    *@Description :Method to send the parameters required (i.e the object, fields required for the object and the where condition for the query) 
+    for the excel download
+    *@return:Returns the IPM_ExportToExcel page 
+    *********************************************************************************/
+    public pagereference exportToExcel(){
+        
+        PageReference url = Page.IPM_ExportToExcel;
+        url.getParameters().put('currentObjectName','Task');
+        url.getParameters().put('currentObject','IPM_Task__c');
+        url.getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
+        url.getParameters().put('whereClause','where IPM_Project__c =\''+projectId+'\' and IPM_Active__c= true and (NOT IPM_Type_of_Task__c LIKE \'%' + String.escapeSingleQuotes('Future Adhoc') + '%\') AND (NOT IPM_Type_of_Task__c LIKE \'%' + String.escapeSingleQuotes('Future Standard') + '%\')');
+        
+        url.setRedirect(true);
+        return url;
+    }    
+    
     
 }

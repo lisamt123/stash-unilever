@@ -64,7 +64,7 @@ public with sharing class IPM_MyProjects{
                                             IPM_Category_Text__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Job_Status__c,IPM_IsSaved__c,IPM_Project_Name__c,IPM_Target_Launch_Dates__c 
                                             FROM IPM_Project__c WHERE (IPM_Project_Leader__c = : UserInfo.getUserId() 
                                             or Deputy_Project_Leader__c  = : UserInfo.getUserId()  or IPM_Technical_Project_Leader__c = : UserInfo.getUserId() 
-                                            or IPM_Project_Gatekeeper__c = : UserInfo.getUserId() or IPM_Finance_Member__c = : UserInfo.getUserId() 
+                                            or IPM_Project_Gatekeeper__c = : UserInfo.getUserId() or IPM_Finance_Lead__c = : UserInfo.getUserId() 
                                             or IPM_Bosscard__r.OwnerId = :UserInfo.getUserId() or Id IN : projectIds)  and Is_Archieved__c = false 
                                             and IPM_Project_Name__c != NULL and IPM_Phase__c != :IPM_ConstantUtils.PHASE_PLE 
                                             Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 1000];

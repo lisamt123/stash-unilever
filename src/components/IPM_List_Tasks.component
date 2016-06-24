@@ -63,6 +63,12 @@
                     <apex:outputPanel styleClass="pull-left" layout="block" rendered="{!if(AND(isCreateTask=true,projectObj.IPM_PM_Approach__c='Internal'),'true','false')}">
                         <div class="addLink toDoLink noPadright addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}" title="Add To-dos" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText">&nbsp;{!$Label.IPM_AddTaskLabel}</span></div>
                     </apex:outputPanel>
+                    <apex:outputPanel styleClass="pull-left downloadbtntodo" layout="block" >
+                        <div class="SecButtonSet pull-right">
+                                <!-- Below commandlink is used to provide excel download button -->   
+                                <apex:commandLink styleClass="icoButton download" target="_blank" action="{!exportToExcel}" oncomplete="window.close();" title="{!$Label.IPM_Export_ToDos}"  /> 
+                        </div>
+                    </apex:outputPanel>
                 </apex:outputPanel>
                 
                 <apex:outputPanel layout="block" rendered="{!!pmApproachMessage}">

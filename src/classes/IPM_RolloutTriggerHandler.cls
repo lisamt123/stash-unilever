@@ -55,7 +55,6 @@ public with sharing class IPM_RolloutTriggerHandler
         Set<String> setRegionalProjectNames = new Set<String>(); 
         
         Set<String> setCurrentRolloutIds = new Set<String>();        
-        Set<String> setInActiveFinancialExternalIds = new Set<String>();
         
         Set<Id> deletedLocalRolloutIds = new Set<Id>();
         Set<Id> setTopLevelProjectIds = new Set<Id>();
@@ -500,7 +499,6 @@ public with sharing class IPM_RolloutTriggerHandler
             financialExistingMap.put(ipmFinancial.Financial_External_Id__c,ipmFinancial);
         }
             
-        IPM_Financial__c nonKeyFinancial = financialExistingMap.get(financialNonKeyExternalId);
         
         // Check if non Key Should be retained/Created based on whether there are non Key MCO's present. 
         Boolean  nonkeyActiveRolloutExists = false;

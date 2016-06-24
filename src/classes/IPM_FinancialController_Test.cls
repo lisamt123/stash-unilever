@@ -31,6 +31,11 @@ public class IPM_FinancialController_Test {
     private static final string REGIONAL_PL_EMAIL_ID = 'regionalProjectLeader@unilever.com.test';
     private static final string LOCAL_PL_EMAIL_ID = 'localProjectLeader@unilever.com.test';
     private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE;
+    
+    private static final string eitherConsolidatedNonKeyMsg = 'Financial is either consolidated or key';
+    private static final string TLDNullMsg = 'TLD not set properly';
+    private static final string showNextMsg = 'Financial year is to be navigated to left(Next)';
+    private static final string showPreviousMsg = 'Financial year is to be navigated to right(Previous)';
 
     //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
@@ -293,6 +298,13 @@ public class IPM_FinancialController_Test {
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
              //Load Tab Rollup
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+             
+             system.assertEquals(true, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
+             system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
+             system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
+             system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
+             
+             
         }
          
      }
@@ -381,6 +393,11 @@ public class IPM_FinancialController_Test {
          loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
          //Load Tab Rollup
          loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+         
+         system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
+	     system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
+	     system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
+	     system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
          
      }
      
@@ -585,6 +602,9 @@ public class IPM_FinancialController_Test {
                 
                 ipmFinCon.editFinancials();
                 system.assertEquals(ipmFinCon.isEditMode, true,'Edit mode is invalid');
+                
+                ipmFinCon.editFinancialsBottomUp();
+                system.assertEquals(ipmFinCon.isEditModeBottomUp , true,'Edit BottomUp mode is invalid');
                 
                 ipmFinCon.BI = PROJECT_BI_LARGE;
                 ipmFinCon.saveFinancials();

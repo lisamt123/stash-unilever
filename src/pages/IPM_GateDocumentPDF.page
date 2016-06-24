@@ -922,8 +922,8 @@
        
         </apex:repeat>
         
-         <apex:outputText value="Appendix" styleClass="heading2 bold"/>
-         <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" >
+         <apex:outputText value="Appendix" styleClass="heading2 bold" rendered="{!isWithAppendix}"/>
+         <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" rendered="{!isWithAppendix}">
                                                             
                         <apex:outputPanel rendered="{!IF(apxSec.IPM_Section__r.IPM_Section_Type__c='Header',true,false)}"> 
                 <apex:outputText value="{!apxSec.IPM_Section_Sequence__c} {!apxSec.IPM_Section_Name__c}" styleClass="heading2 bold"/>
@@ -944,7 +944,7 @@
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
                     <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
-                    <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.3' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
+                    <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
         </apex:repeat> 
     
 

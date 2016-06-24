@@ -88,8 +88,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
     private static final String PLANNED_STR= 'The planned ';
     public static final String KEY_FINANCE_STR = 'Key Financial Data is missing. Please update your business case: ';
     private static final String GATE_STR='gate';
-
+	//Phase 2.0
+    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
     public String projectDocStatusStyleClass{get;set;}
+    public Boolean isOrgPrjRLplancreated{get;set;}
 
     public Map<String, String> objectFldMap = new Map<String, String>{
                                               TASK_SOBJECTNAME => 'IPM_Completed__c,IPM_Task_Name__c,IPM_Task_Complexity__c,IPM_Assignee__c,IPM_Task_Type__c',
@@ -176,7 +178,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         isAcessDuetoTeam=false;
         lstofuser=new list<IPM_Project__c>();
-        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Member__c FROM IPM_Project__c 
+        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Lead__c FROM IPM_Project__c 
                                        WHERE Id=:projectId  limit 1];
          if(lstofuser!=null && !lstofuser.isEmpty()) {
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
@@ -192,7 +194,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
             }
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
              (lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid() && lstofuser[0].Deputy_Project_Leader__c !=null) || (lstofuser[0].IPM_Project_Gatekeeper__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Gatekeeper__c !=null)||
-             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Member__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Member__c !=null) ){
+             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Lead__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Lead__c !=null) ){
              isAcessDuetoTeam=true;
             }
         }
@@ -222,7 +224,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
            currPhase = projObj.IPM_Temporary_Phase__c;
        }
        init();
-       
+       getGatedocumentRendered();
        // Adding Alert for Local Project leader is blank for rollout Projects
        lstRolloutProjectAlertMessage = new List<String>();
        if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
@@ -333,6 +335,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         rolloutsGenerated = false;//Eco Design
         fin = new list<IPM_Financial__c>();
         hideFinSection =  true;
+		displayGateDocument=false;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
@@ -346,18 +349,18 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT Rollout_Plan_Target_Launch_Date__c,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        project = [SELECT Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
         IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
-        Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
+        Deputy_Project_Leader__c, IPM_Finance_Lead__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
-        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
+        IPM_ProjectGKM__c,IPM_Company_Card__c,IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
-        IPM_Project__c
+        IPM_Project__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c
         FROM Tasks__r 
         WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
         ORDER BY IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c limit 10000),
@@ -367,6 +370,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
         From Project_Documents__r limit 10000),
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
+        ,(SELECT Id FROM IPM_Project_Rollout__r ),(SELECT Id FROM Regional_Project_Rollout__r ) 
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
         ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
@@ -421,7 +425,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
              }                                                  
          }                
          if(projResList != NULL && projResList.isEmpty() && project.IPM_Project_Leader__c != UserInfo.getUserId() && project.IPM_Technical_Project_Leader__c != UserInfo.getUserId()
-            && project.Deputy_Project_Leader__c != UserInfo.getUserId() && project.IPM_Finance_Member__c != UserInfo.getUserId() && project.IPM_Project_Gatekeeper__c != UserInfo.getUserId()){
+            && project.Deputy_Project_Leader__c != UserInfo.getUserId() && project.IPM_Finance_Lead__c != UserInfo.getUserId() && project.IPM_Project_Gatekeeper__c != UserInfo.getUserId()){
             rolloutProjectRecentMilestone = null;
          }
          else if( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c ==  IPM_ConstantUtils.PHASE_IDEAS){
@@ -592,8 +596,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         //Adding alert for Regional-Local financial
         List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
-        RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
-                                                        FROM IPM_Financial__c WHERE Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
+        RegionalOrLocalFins = [SELECT Id, Name,Local_Project__r.Is_Archieved__c,Regional_Project__r.Is_Archieved__c, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
+                                FROM IPM_Financial__c WHERE (Regional_Project__c =: project.Id OR Local_Project__c=: project.Id) and Local_Project__r.Is_Archieved__c = false and Regional_Project__r.Is_Archieved__c = false limit 50000];
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();
@@ -637,12 +641,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
         //Calculate nearest Gate Due date for Rollout 
 
        //process for Tasks RL
+		list<IPM_Task__c> duplicateTasksList =  new list<IPM_Task__c>();
         for(IPM_Task__c eachTask : project.Tasks__r) {
             if(!eachTask.IPM_Completed__c) {
-                tasksList.add(eachTask);
+                duplicateTasksList.add(eachTask);
             }
             projectTasksSet.add(eachTask.Id);
         }
+        tasksList = IPM_TaskHelper.removeDuplicateTaskForUser(duplicateTasksList);
+        
         // Identify the due date for the Gate document for the project
         allIncompleteTasks = tasksList.size();
         
@@ -744,10 +751,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         if(ApexPages.currentPage().getParameters().containsKey('showMembers')){
             memberCallFromURL = true;
         }
-        IPM_ProjectMetadata__c projMetadata = IPM_Utils.retrieveProjectMetadata(project);
+        IPM_Project_Metadata__mdt projMetadata = IPM_Utils.retrieveProjectMetadata(project);
         Boolean isRollout = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT);
         Boolean isLinkDenied = false;
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
+        // checking if rollout plan for original project has been created
+        isOrgPrjRLplancreated = isOriginal && (!project.IPM_Project_Rollout__r.isEmpty()  || !project.Regional_Project_Rollout__r.isEmpty() );  
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
@@ -1004,10 +1013,17 @@ public with sharing class IPM_ProjectOverviewCtrl {
     */
     public void markComplete() {
         try{
-            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
+			List<IPM_Task__c> updatedTaskList = new  List<IPM_Task__c>();
+        	
+            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
             tObj[0].IPM_Completed__c = isChecked == 'true' ? true : false; 
             tObj[0].IPM_Completed_Date__c = isChecked == 'true' ? system.today() : null;
-            update tObj[0];
+
+            	
+            updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
+            updatedTaskList.add(tObj[0]);
+            
+            update updatedTaskList;
         }
         catch (DmlException ex)
         {
@@ -1132,6 +1148,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
      public void next() {
         bPaginated = true;
         con.next();
-     }     
+     }
+	/******************************************************************************************************************
+     @Description:to show/hide gate document status and percentage on project overview page.
+     ******************************************************************************************************************/    
+	@testvisible private void getGatedocumentRendered(){
+	 	IPM_Project_Type__c getProjectDetails=IPM_Utils.retrieveProjectType(project);
+	 	if(getProjectDetails!=null && !String.IsBlank(getProjectDetails.IPM_Gate_Document__c)){
+	 		displayGateDocument=true;
+	 	}
+	}    
 
 }

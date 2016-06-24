@@ -608,7 +608,7 @@
                        </apex:actionFunction>
                        <apex:actionFunction name="allProjects" action="{!loadProjects}" rerender="prjPanel,jsLoad,paginationSec" status="myStatus" />
                        <apex:actionFunction name="myProjects" action="{!loadProjects}" rerender="prjPanel,jsLoad,paginationSec" status="myStatus"/>
-                       <apex:actionFunction name="applyFltr" action="{!loadProjects}" rerender="prjPanel,paginationSec" status="myStatus">
+                       <apex:actionFunction name="applyFltr" action="{!loadProjects}" rerender="prjPanel,paginationSec,jsLoad" status="myStatus">
                            <apex:param name="mytsk" assignTo="{!selectedPhase}" value="" />
                            <apex:param name="tldFrom" assignTo="{!tldFrom}" value="" />
                            <apex:param name="tldTo" assignTo="{!tldTo}" value="" />

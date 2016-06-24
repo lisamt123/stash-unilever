@@ -2,7 +2,7 @@
 @Description : To meet requirements  REQ00003
 @Created Date: March 2015
 @Author: Cognizant 
-@Referenced: ipm_ProjectSetup or ipm_EditProject page
+@Referenced: ipm_ProjectSetup or ipm_EditProject page 
 ****************************************************************************/
 global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermediateController{ 
     //*@Description: default sub project type for company card selection
@@ -19,8 +19,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //*@Description: Project Resource list
     list<IPM_Project_Resource__c> lstProuser = new list<IPM_Project_Resource__c>();
     //*@Description: Project Metadata information
-    public List<IPM_ProjectMetadata__c> projectTypeList{get;set;}
-    public IPM_ProjectMetadata__c projectMetadata {get;set;} 
+    public List<IPM_Project_Metadata__mdt> projectTypeList{get;set;}
+    public IPM_Project_Metadata__mdt projectMetadata {get;set;} 
     public Map<Id,String> companyCardToRecordType {get;set;}
     //*@Description: Flag for Business Mandatory Fields
     public Boolean isMaxBrandPosition {get;set;}
@@ -130,11 +130,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         isSavedDB = project.IPM_IsSaved__c;
         imgurl=System.Label.IPM_image;
         companyCardToRecordType = new Map<Id,String>();
-        projectTypeList = new List<IPM_ProjectMetadata__c>();
+        projectTypeList = new List<IPM_Project_Metadata__mdt>();
         isRollout =  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
         
-        if(project!=null){
-            List<IPM_ProjectMetadata__c>  projectMetadataList = IPM_Utils.getProjectTypeMetadata(new List<IPM_Project__c>{project});
+        if(project!=null)
+        {
+            List<IPM_Project_Metadata__mdt>  projectMetadataList = IPM_Utils.getProjectTypeMetadata(new List<IPM_Project__c>{project});
             if(!projectMetadataList.isEmpty()){
                 projectMetadata = projectMetadataList.get(0);
             }
@@ -153,7 +154,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         
         if(projectMetadata == null)
         {
-            projectMetadata = new IPM_ProjectMetadata__c();
+            projectMetadata = new IPM_Project_Metadata__mdt();
         } 
         isFromEditPage=ApexPages.currentPage().getParameters().get('isEdit'); 
         ImageId=ApexPages.currentPage().getParameters().get('image');
@@ -265,22 +266,28 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     {   
         // Update the Project Type with Category specific information to find precise project Type.
         isBusinessError = false;
+        //Clean the existing data values
         businessErrorField= IPM_ConstantUtils.BLANK;    
-        projectMetadata = new IPM_ProjectMetadata__c();
+        projectMetadata = new IPM_Project_Metadata__mdt();
         project.IPM_Project_Type__c = project.IPM_Category_Text__c = project.IPM_GateKeeping_Model__c = project.IPM_Approver_of_Charter__c = project.IPM_ProjectSubType__c =project.IPMProject_Span__c = project.IPM_Phase__c = project.IPM_Complexity__c = project.IPM_Child_Complexity__c = IPM_ConstantUtils.BLANK;
         
         if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c))
         {
+            //To associate the project span/scope based on the selected company card
             project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
+            getCategory();
         }
         else
         {
+            //To thrown an error in case a selected company card is not associated with a scope
             isBusinessError = true;
             businessErrorField = 'IPM_Company_Card__c';  
         }
     }
     /****************************************************************************
-    @Description : Getting List of Categories
+    @Description :  Getting List of Categories. Invoked from Page when user changes company card information. 
+                    Once project category has been established, it would rerender Sub Project Type Block,
+                    which would invoke getSubProjectType
     @Return:List of category
     *****************************************************************************/  
     public List<SelectOption> getCategory()
@@ -340,7 +347,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }
                 if(!String.isBlank(project.IPM_Category_Text__c) )
                 {
-                    getBrandPos();  
+                    getProjectSubTypes(); 
                 }
             }
         }
@@ -362,7 +369,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     {   
         List<Selectoption> brandOptionList = new List<Selectoption>();
         List<MDO_BrandPositions__c> userBrandPos; 
-        if(!projectMetadata.IPM_MultipleBrandPosApplicable__c)
+        if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
         {
            brandOptionList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
         }
@@ -438,49 +445,61 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : Getting List of Gate Keeping Models
     @Return: List of Gate Keeping Models
     *****************************************************************************/
-    public List<SelectOption> getGateKeepingModels()
+    public List<SelectOption> getGKMQuestions() 
     {
         // Get Picklist Values from Database and then based on Project Type Filter those values
         Map<String, Schema.SObjectField> projectFieldMap = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();
-        List<Schema.PicklistEntry> gateKeepingPickVal = projectFieldMap.get('IPM_GateKeeping_Model__c').getDescribe().getPickListValues();
+
         List<SelectOption> gateKeepingOptions = new List<SelectOption>();
-        if(String.isBlank(projectMetadata.IPM_Project_Type__c))
+        if(String.isBlank(projectMetadata.IPM_ProjectType__c))
         {
             isBusinessError = true;
             businessErrorField = 'IPM_ProjectSubType__c';           
         }
         else
         {
-            if(projectMetadata.IPM_GatekeepingModelsApplicable__c)
+            if(projectMetadata.IPM_GKMQuestionsApplicable__c)
             {
-                String gateKeepingString = projectMetadata.IPM_ApplicableGateKeepingModels__c;
-                String defaultGateKeepingModel = projectMetadata.IPM_Default_GateKeeping_Model__c;
-                Set<String> gateKeepingSet = new Set<String>();
+                String gateKeepingFieldAPI = projectMetadata.IPM_GMKQuesiton__c;  
+                String defaultGateKeepingModel = projectMetadata.IPM_GMKQuestionDefaultAns__c;
+
                 // Get Unique GateKeeping Models
-                if(gateKeepingString!=null && !String.isEmpty(gateKeepingString))
+                if(String.isNotEmpty(gateKeepingFieldAPI) )
                 {
-                    String[] gateKeepingArray = gateKeepingString.split(IPM_ConstantUtils.COMMA);
-                    for(String gtKeepingModel: gateKeepingArray)
+                    List<Schema.PicklistEntry> GKMQuestionPickVal = projectFieldMap.get(gateKeepingFieldAPI).getDescribe().getPickListValues();
+                    // Prepare the Select Option List from Picklist Metadata and get the Labels as well.
+                    for(Schema.PicklistEntry pickEntry : GKMQuestionPickVal)
                     {
-                        gateKeepingSet.add(gtKeepingModel);
-                    }   
-                }
-                // Prepare the Select Option List from Picklist Metadata and get the Labels as well.
-                for(Schema.PicklistEntry pickEntry : gateKeepingPickVal)
-                {
-                    if(!String.isBlank(pickEntry.getValue()) && gateKeepingSet.contains(pickEntry.getValue()))
-                    {
-                        gateKeepingOptions.add(new SelectOption (pickEntry.getLabel(),pickEntry.getValue() ) );
+
+                        if(!String.isBlank(pickEntry.getValue()) )
+                        {
+                            gateKeepingOptions.add(new SelectOption (pickEntry.getLabel(),pickEntry.getValue() ) );
+                        }
                     }
                 }
                 // Set default GateKeeping Model 
-                if(!String.isBlank(defaultGateKeepingModel) && String.isBlank(project.IPM_GateKeeping_Model__c) )
+                if(!String.isBlank(defaultGateKeepingModel) && String.isBlank( (String)project.get(gateKeepingFieldAPI) ) )
                 {
-                    project.IPM_GateKeeping_Model__c = defaultGateKeepingModel;
+                    project.put(gateKeepingFieldAPI,defaultGateKeepingModel); 
                 }
             }
         }
         return gateKeepingOptions;
+    }
+
+    public String getGMKQuestionsLabel()
+    {
+        String GKMQuestionLabel = IPM_ConstantUtils.BLANK;
+        if(String.isBlank(projectMetadata.IPM_ProjectType__c))
+        {
+            isBusinessError = true;
+            businessErrorField = 'IPM_ProjectSubType__c';           
+        }
+        else
+        {
+            GKMQuestionLabel = projectMetadata.IPM_GMKQuestionLabel__c;
+        } 
+        return GKMQuestionLabel; 
     }
     /****************************************************************************
     @Description : Getting List of Sub Project types
@@ -493,14 +512,14 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();
         List<Schema.PicklistEntry> projectSubTypeVal = projectFieldDesc.get('IPM_ProjectSubType__c').getDescribe().getPickListValues(); 
         List<SelectOption> projectSubTypeOptions = new List<SelectOption>();
-        List<String> projectSubTypeList = new List<String>();
+        
         Set<String> projectSubTypeSet = new Set<String>();
-        if(project.IPM_Company_Card__c !=null && !String.isBlank(project.IPM_CompanyCardText__c))
+        if(!String.isBlank(project.IPM_CompanyCardText__c) && !String.isBlank(project.IPM_Category_Text__c) ) 
         {
             projectTypeList = IPM_Utils.getProjectTypesBasedOnCompanyCard(project);  
             String defaultSubProjectType = IPM_ConstantUtils.BLANK;
             
-            for(IPM_ProjectMetadata__c projectMetadataObj : projectTypeList)
+            for(IPM_Project_Metadata__mdt projectMetadataObj : projectTypeList)
             {
                 String projectSubTypeString = projectMetadataObj.IPM_ProjectSubType__c;
                 
@@ -521,21 +540,23 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     {
                         if(!projectSubTypeSet.contains(projectSubType))
                         {
-                            projectSubTypeList.add(projectSubType);
                             projectSubTypeSet.add(projectSubType);
                         }
                     }     
                 }    
             }
             
-            if(!String.isBlank(defaultSubProjectType) && (project.IPM_ProjectSubType__c ==null || String.isBlank(project.IPM_ProjectSubType__c) ) && projectSubTypeSet.contains(defaultSubProjectType) )
+            if(!projectSubTypeSet.isEmpty())
             {
-                project.IPM_ProjectSubType__c = defaultSubProjectType;
-            }  
-            
-            if(projectSubTypeList!=null && !projectSubTypeList.isEmpty() && projectSubTypeList.size() == 1 && String.isBlank(project.IPM_ProjectSubType__c))
-            {
-                project.IPM_ProjectSubType__c = projectSubTypeList.get(0); 
+                if(projectSubTypeSet.size() == 1)
+                {
+                    List<String> subProjectTypeList = new List<String>(projectSubTypeSet);
+                    project.IPM_ProjectSubType__c = subProjectTypeList.get(0); 
+                }
+                else if(!String.isBlank(defaultSubProjectType) && String.isBlank(project.IPM_ProjectSubType__c))
+                {
+                        project.IPM_ProjectSubType__c = defaultSubProjectType;
+                } 
             }
             
         }
@@ -551,8 +572,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         
         if(!String.isBlank(project.IPM_ProjectSubType__c))
         {
-            populateProjectInformation();
-            getGateKeepingModels(); 
+            associateProjectMetadata();
         }
         
         return projectSubTypeOptions;
@@ -564,7 +584,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Map<String,String> getHelpTextProjectSubType()
     {
         Map<String,String> helpTextMap = new Map<String,String>();
-        for(IPM_ProjectMetadata__c projectMetadataObj :projectTypeList)
+        for(IPM_Project_Metadata__mdt projectMetadataObj :projectTypeList)
         {
             String helpTextString = projectMetadataObj.IPM_SubProjectHelpText__c;
             helpTextMap.putAll(populateHelpText(helpTextString));
@@ -575,27 +595,14 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     /****************************************************************************
     @Description : To get Help Text for Gate Keeping Models
     *****************************************************************************/
-    public Map<String,String> getHelpTextGateKeeping()
+    public Map<String,String> getHelpTextGKMQuestions()
     {
         Map<String,String> helpTextMap = new Map<String,String>();
-        for(IPM_ProjectMetadata__c projectMetadataObj :projectTypeList)
+        for(IPM_Project_Metadata__mdt projectMetadataObj :projectTypeList) 
         {
-            String helpTextString = projectMetadataObj.IPM_GateKeepingHelpText__c;
+            String helpTextString = projectMetadataObj.IPM_GMKQuestionHelpText__c; 
             helpTextMap.putAll(populateHelpText(helpTextString));
         }
-        return helpTextMap;
-    }
-    
-    
-    /****************************************************************************
-    @Description : To get Help Text for Gate Keeping Models
-    *****************************************************************************/
-    public Map<String,String> getHelpTextCharterQuestions() 
-    {
-        Map<String,String> helpTextMap = new Map<String,String>();
-        String helpTextString = projectMetadata.IPM_Charter_Question_HelpText__c;
-        helpTextMap.putAll(populateHelpText(helpTextString));
-        
         return helpTextMap;
     }
     
@@ -623,21 +630,21 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     /****************************************************************************
     @Description : To populate project information
     *****************************************************************************/
-    public void populateProjectInformation()
+    public void associateProjectMetadata()
     {
-        projectMetadata = new IPM_ProjectMetadata__c();
-        List<IPM_ProjectMetadata__c>  projectMetadataList = IPM_Utils.getProjectTypeMetadata(new List<IPM_Project__c>{project});
+        projectMetadata = new IPM_Project_Metadata__mdt();
+        List<IPM_Project_Metadata__mdt>  projectMetadataList = IPM_Utils.getProjectTypeMetadata(new List<IPM_Project__c>{project});
         if(!projectMetadataList.isEmpty())
         {
             projectMetadata = projectMetadataList.get(0);
         }
-        getbrandPos();
+        
     }
     
     /****************************************************************************
     @Description : searching duplicate project
     *****************************************************************************/
-    public void populateProjectTypeInformation(IPM_ProjectMetadata__c projectMetadata)
+    public void populateProjectMetadataAttributes(IPM_Project_Metadata__mdt projectMetadata)
     {
         if(projectMetadata == null || project.IPM_CompanyCardText__c == null || String.isBlank(project.IPM_CompanyCardText__c))
         {
@@ -646,26 +653,31 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
         else
         {
-                if(!projectMetadata.IPM_GatekeepingModelsApplicable__c)
+
+                if(!projectMetadata.IPM_GKMQuestionsApplicable__c)
                 {
-                   project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.BLANK;
+                    project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.BLANK; 
+                    project.IPM_Approver_of_Charter__c = IPM_ConstantUtils.BLANK;    
                 }
-                
-                if(!projectMetadata.IPM_Charter_Question_Applicable__c)
+                else
                 {
-                   project.IPM_Approver_of_Charter__c = IPM_ConstantUtils.BLANK;    
+                    String GMKQuestionFieldAPI = projectMetadata.IPM_GMKQuesiton__c;
+                    String GMKQuestionDefaultValue = projectMetadata.IPM_GMKQuestionDefaultAns__c; 
+                    if( String.isBlank((String)project.get(GMKQuestionFieldAPI) ) )
+                    {
+                        project.put(GMKQuestionFieldAPI,GMKQuestionDefaultValue);
+                    }
                 }
                 
                 project.IPM_Project_Type__c = project.IPMProject_Span__c =  project.IPM_Phase__c = project.IPM_Complexity__c = project.IPM_Child_Complexity__c = null;
-                project.IPM_Project_Type__c = projectMetadata.IPM_Project_Type__c;
-                project.IPM_SourceProjectType__c = projectMetadata.IPM_Project_Type__c;
-                project.IPMProject_Span__c = projectMetadata.IPM_Project_Span__c;
-                project.IPM_Phase__c = projectMetadata.IPM_DefaultPhase__c;
+                project.IPM_Project_Type__c = projectMetadata.IPM_ProjectType__c;
+                project.IPM_SourceProjectType__c = projectMetadata.IPM_ProjectType__c;
+                project.IPMProject_Span__c = projectMetadata.IPM_DefaultProjectSpan__c;
+                project.IPM_Phase__c = projectMetadata.IPM_DefaultPhase__c; 
                 project.IPM_Complexity__c =  projectMetadata.IPM_DefaultComplexity__c;
-                project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c;
-                if(IPM_ConstantUtils.IPMREGIONAL.Equals(project.IPMProject_Span__c)){
-                	project.IPM_GateKeeping_Model__c=projectMetadata.IPM_Default_GateKeeping_Model__c;	
-                }
+                project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c; 
+                project.IPM_ProjectGKM__c =  projectMetadata.MasterLabel;
+                                
         }
         
            
@@ -694,8 +706,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
             if(!project.IPM_IsSaved__c && !isRollout.Equals(project.IPM_Project_Type__c))
             {
-                
-                populateProjectTypeInformation(projectMetadata);
+                associateProjectMetadata();
+                populateProjectMetadataAttributes(projectMetadata);
             }
         
             Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();
@@ -704,9 +716,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             List<String> mandatoryFields = DEFAULT_MANDATORY_FIELDS;
             
             // If not project Type is selected, Force user to select company Card.
-            if(projectMetadata!=null && projectMetadata.IPM_Project_Type__c !=null && !String.isBlank(projectMetadata.IPM_MadatoryFields__c))
+            if(projectMetadata!=null && projectMetadata.IPM_ProjectType__c !=null && !String.isBlank(projectMetadata.IPM_MandatoryFields__c))
             {
-                String mandatoryFieldString = projectMetadata.IPM_MadatoryFields__c;
+                String mandatoryFieldString = projectMetadata.IPM_MandatoryFields__c;
                 mandatoryFields = mandatoryFieldString.split(IPM_ConstantUtils.COMMA);    
             }
             
@@ -728,7 +740,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 
             }
             //To display error when more than 20 BrandPosSelected
-            if(!String.isBlank(project.IPM_Brand_Positioning__c) && projectMetadata.IPM_MultipleBrandPosApplicable__c){
+            if(!String.isBlank(project.IPM_Brand_Positioning__c) && projectMetadata.IPM_MultiBrandPosApplicable__c){
                 
                 String[] maxBrandPosition = project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA);
                 
@@ -797,17 +809,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }
             }  
            if(project.IPM_Project_Gatekeeper__c==null && project.IPM_Company_Card__c!=null){
-	            list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:project.IPM_Company_Card__c AND
-	            										IPM_User_Function__c=:IPM_ConstantUtils.TEAM_GATEKEEPER LIMIT 1];  
-	            if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
-	            	project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;	
-	            } 
-            }	
-            
-			if(String.isBlank(project.IPM_Approver_of_Charter__c ) )
-			{
-				project.IPM_Approver_of_Charter__c= projectMetadata.IPM_DefaultCharterQuestionAnswer__c;
-			}                    
+                list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:project.IPM_Company_Card__c AND
+                                                        IPM_User_Function__c=:IPM_ConstantUtils.TEAM_GATEKEEPER LIMIT 1];  
+                if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
+                    project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c; 
+                } 
+            }   
             update project;
             
             if(!skipValidation)
@@ -1178,6 +1185,25 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         	}
         }
         return result;
-    }        
-    
+    }
+	
+	public void getHelpTextGateKeeping()
+	{
+		// For future implementations.
+	}
+	
+	public void getHelpTextCharterQuestions()
+	{
+		// For future implementations.
+	}
+	
+	public void getGateKeepingModels()
+	{
+		// For future implementations.
+	}
+	
+	public void populateProjectInformation()
+	{
+		// For future implementations.
+	}
 }

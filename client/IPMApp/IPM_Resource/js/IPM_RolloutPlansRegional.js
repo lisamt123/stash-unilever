@@ -262,3 +262,12 @@ window.onbeforeunload = unloadPage;
 function skipValidation() {
     unsaved = false;
 }
+
+jq("[id*=srchTxt]").keypress(function(){
+    var keyCode = (event.keyCode ? event.keyCode : event.which);
+    if (keyCode === 13) {
+        callsearch();
+        skipValidation();
+        return false;
+    }
+});

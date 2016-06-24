@@ -127,6 +127,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public string regionalCPP {get;set;}
     public string localCPP {get;set;}
     public string brandPosition {get; set;}
+	//phase 2.0 variables
+    public boolean isWithAppendix{get;set;}//set boolean value to display appendix on gate document PDF page
+    public boolean isDisplayWithoutAppendix{get;set;}//check whether without appendix pdf to display on page or not
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -139,6 +142,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         isPDFDownload=true;
         isExemptFromThresholdITO=false;
         bDocStatusNotStartedOrApproved = false;
+		isDisplayWithoutAppendix=false;//phase 2.0
+        isWithAppendix=true;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
@@ -319,6 +324,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                            WHERE IPM_Project__c=:project.Id AND IPM_GateDocuments__c=:gateDocument];
             if(!lstProjectDoc.isEmpty()){
                 projectDoc = lstProjectDoc[0];
+				//Phase 2.0-Check gate document as all four gates.
+                if((IPM_ConstantUtils.CHARTER_GATE.Equals(projectDoc.IPM_GateDocuments__c)||IPM_ConstantUtils.CONTRACT_GATE.Equals(projectDoc.IPM_GateDocuments__c)||
+                IPM_ConstantUtils.MARKET_READY_GATE.Equals(projectDoc.IPM_GateDocuments__c)||IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE.Equals(projectDoc.IPM_GateDocuments__c))&&isPDFDownload){
+                	isDisplayWithoutAppendix=true;		
+                }
                 isEditLinkAvailable();
             }
             
@@ -409,7 +419,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         getProjectDocumentSection();
         
         //For Getting Sub-Header Sections
-        String Query='SELECT Id,IPM_Master_Section_External_Id__c,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c , IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Has_Appendix__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c= \'' + projectDoc.Id + '\''+' and IPM_Section__r.IPM_Parent_Section__c !=null and IPM_Default_Section__c=true';
+        String Query='SELECT Id,IPM_Master_Section_External_Id__c,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c , IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Has_Appendix__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c= \'' + projectDoc.Id + '\''+' and IPM_Section__r.IPM_Is_Parent_Exist__c =true and IPM_Default_Section__c=true';
         String filterValue='';
         Integer roleCount=0;
         
@@ -693,7 +703,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                              IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_Has_Appendix__c, 
                              IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
                              FROM IPM_Project_Document_Section__c 
-                             WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c=null AND IPM_Section__r.IPM_Section_Sequence__c!='8' order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000]; 
+                             WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Is_Parent_Exist__c=false AND IPM_Section__r.IPM_Section_Sequence__c!='8' order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000]; 
             //need to remove filter condition of 8*
             proSectionParentsSequenceList = new Set<String>();
             
@@ -722,7 +732,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                 IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,
                                 IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Master_Section_External_Id__c,IPM_Has_Appendix__c  
                                 FROM IPM_Project_Document_Section__c 
-                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c !=null AND IPM_Default_Section__c=true AND (IPM_Section_Sequence__c like '1%' or IPM_Section_Sequence__c like '8%') 
+                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Is_Parent_Exist__c =true AND IPM_Default_Section__c=true AND (IPM_Section_Sequence__c like '1%' or IPM_Section_Sequence__c like '8%') 
                                 order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
             
         }
@@ -866,7 +876,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc];
            
-            getAppendixSections();	
+            if(isWithAppendix){
+            	getAppendixSections();
+            }
 	
 	}
 	catch(Exception ex){

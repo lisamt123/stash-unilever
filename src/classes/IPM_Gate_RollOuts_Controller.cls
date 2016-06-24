@@ -61,9 +61,7 @@ public with sharing class IPM_Gate_RollOuts_Controller
                 
                 Map<Id,IPM_Project_Rollout__c> completeLocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
                 
-                Map<String, List<IPM_Project_Rollout__c>> regProjToLocalRolloutsMap = new Map<String, List<IPM_Project_Rollout__c>>(); // Map to store Regional Project and its related local rollouts
-                Set<Id> localRolloutIds = new Set<Id>();
-                
+                                
                 // Get the List of Regional Rollouts based on the Project.
                 // Based on The Project Span, if it is Global we need to refer IPM Project else if it is regional, Regional project needs to be used in wher clause.
                 if(projectInContext.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)

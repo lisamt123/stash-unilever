@@ -355,6 +355,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_Project_Document_Section__c = projectDocumentSection.Id;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c; 
                         tempGKQ.IPM_GK_Answers_Multiselect__c=	gkQ.IPM_GK_Answers_Multiselect__c;                
+                        tempGKQ.DependentFieldAPIName__c = gkQ.DependentFieldAPIName__c;
+                        tempGKQ.IPM_HelpText_ReadOnly__c = gkQ.IPM_HelpText_ReadOnly__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
                     break;
@@ -381,6 +383,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_Sequence_Number__c = questionSequence;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;
                         tempGKQ.IPM_GK_Answers_Multiselect__c=	gkQ.IPM_GK_Answers_Multiselect__c;
+                        tempGKQ.DependentFieldAPIName__c = gkQ.DependentFieldAPIName__c;
+                        tempGKQ.IPM_HelpText_ReadOnly__c = gkQ.IPM_HelpText_ReadOnly__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
                     break;
@@ -417,7 +421,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
             
             if(recordTypeId == recTypeRnDFeasibility || recordTypeId == recTypeSCFeasibility  || recordTypeId == recTypeRnD ||recordTypeId==recTypeGK || recordTypeId==recTypeTradeMark)
             {
-                tempQuestionare.IPM_GK_Answers__c = questionMasterObj.IPM_GK_Answers__c;    
+                tempQuestionare.IPM_Sequence_Number__c = questionMasterObj.IPM_Sequence_Number__c; 
+		tempQuestionare.IPM_GK_Answers__c = questionMasterObj.IPM_GK_Answers__c;    
             }
             else if(recordTypeId == recTypeIDCR)
             {                   

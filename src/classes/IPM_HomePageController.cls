@@ -167,9 +167,11 @@ public with sharing class IPM_HomePageController
         // Final local Misalignment
         List<IPM_Financial__c> regionalFins = new List<IPM_Financial__c>();
         Set<Id> ProjIds = new Map<Id,IPM_Project__c>(lstProjects).keySet();
-        regionalFins = [Select Id, Name, Misaligned__c,MisalignmentDateTime__c,Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c from IPM_Financial__c 
+        regionalFins = [Select Id, Name, Misaligned__c,MisalignmentDateTime__c,Misaligned_Date__c,Local_Project__r.Is_Archieved__c,Regional_Project__r.Is_Archieved__c,Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c from IPM_Financial__c 
         where (Regional_Project__c IN : ProjIds or Global_Project_Id__c IN : ProjIds 
-                                                or Local_Project__c IN : ProjIds) and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT and Misaligned__c = true Limit: IPM_ConstantUtils.MaxLimit];
+                                                or Local_Project__c IN : ProjIds) 
+                                                and Local_Project__r.Is_Archieved__c = false and Regional_Project__r.Is_Archieved__c = false
+                                                and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT and Misaligned__c = true Limit: IPM_ConstantUtils.MaxLimit];
         for(IPM_Financial__c fin: regionalFins ){  
              if(fin.Regional_Project__c != NULL && fin.Local_Project__c != NULL && fin.Misaligned__c && fin.Misaligned_Date__c < system.today().addDays(1)){
                  LstFinMisalignedMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Regional_Project__r.Name+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Regional.Project Name} and {Local.Project Name} are  misaligned.
@@ -300,10 +302,44 @@ public with sharing class IPM_HomePageController
       + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size()+ finDataMissingAlertMessageMap.size();
 
    }    
-    
+    /********************************************************************************
+     *@Description : get overall tasks count on My Todos list tab
+     *@Param: none
+     *@Return :  task count
+    *********************************************************************************/
+     
     public String getTaskcountValue(){
-        Integer taskcount =[SELECT count() FROM IPM_Task__c WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false LIMIT 50000];
-        String taskcountValue =String.valueOf(taskcount);
+		//create map of task type and task list
+    	map<string,List<IPM_Task__c>> updatedTaskListMap = new map<string,List<IPM_Task__c>>{'overdue'=> new List<IPM_Task__c>(),'today'=> new List<IPM_Task__c>(),'nextseven'=> new List<IPM_Task__c>(),'later'=> new List<IPM_Task__c>() };
+    	Integer taskCount =0;
+    	
+    	//get all task list 
+    	list<IPM_Task__c> existingTaskList = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Project__c,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_PM_Approach__c,IPM_Assignee__c,IPM_Due_Date1__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c
+    										  FROM IPM_Task__c 
+											  WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false  LIMIT 50000];
+		
+		//map tasks as per task type
+		for(IPM_Task__c  taskRec :  existingTaskList){
+			if(taskRec.IPM_Due_Date1__c < System.now()){
+				updatedTaskListMap.get('overdue').add(taskRec);
+			}
+			if(taskRec.IPM_Due_Date1__c == System.now()){
+				updatedTaskListMap.get('today').add(taskRec);
+			}
+			if(taskRec.IPM_Due_Date1__c > System.now() && taskRec.IPM_Due_Date1__c <= System.now().addDays(7)){
+				updatedTaskListMap.get('nextseven').add(taskRec);
+			}
+			if(taskRec.IPM_Due_Date1__c > System.now().addDays(7) || taskRec.IPM_Due_Date1__c == NULL){
+				updatedTaskListMap.get('later').add(taskRec);
+			}
+		}
+		
+		//	remove all duplicates from each set of tasks and get all tasks count 
+		for(string taskDate : updatedTaskListMap.keySet()){
+			list<IPM_Task__c> updatedTaskList = IPM_TaskHelper.removeDuplicateTaskForUser(updatedTaskListMap.get(taskDate));
+			taskCount = taskCount + updatedTaskList.size();
+		}
+		String taskcountValue = String.valueOf(taskCount);
         return taskcountValue;
     }
    
@@ -312,7 +348,7 @@ public with sharing class IPM_HomePageController
         
         list<IPM_User_Profile__c>lstuserprofile=[SELECT IPM_User_Role__c,IPM_User_Function__c,Export_Porfolio_Data__c 
                                                  FROM IPM_User_Profile__c 
-                                                 WHERE IPM_User__c=:userinfo.getuserid() AND (IPM_User_Role__c!=null or IPM_User_Function__c!=null) LIMIT 50000];
+                                                 WHERE IPM_User__c=:userinfo.getuserid() AND IPM_Is_RoleorFunction_Blank__c=true LIMIT 50000];
         
         if(lstuserprofile != null && !lstuserprofile.isEmpty()){
             for(IPM_User_Profile__c up:lstuserprofile){

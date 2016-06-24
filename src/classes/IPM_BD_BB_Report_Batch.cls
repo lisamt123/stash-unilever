@@ -61,7 +61,21 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global Database.QueryLocator start(Database.BatchableContext BC){  
         return Database.getQueryLocator(query);
     }
-
+	
+     
+    /**************************************************************************************************
+     * @Description: This method is called for Each batch of records that is passed from Schedule class.
+     				 This method will prepare all the IPM Project records and its related records, that will be
+     				 used to populate the IPM Analytic records.
+     				 Only modified project within span of time as per custom setting data, will be inserted 
+     				 and existing records of these project will be deleted.
+     				 IPM_Analtics__c object records will be populated that will contain all the project and its related
+     				 information. This object will be used for reporting. 
+     				 
+     * @return     : None		
+     * @param1     : Database.BatchableContext - Reference of Database.BatchableContext
+     * @param1     : List<IPM_Project__c> This parameter specifies the number of records to pass into the execute method
+   	***************************************************************************************************/
     //Execute method 
     global void execute(Database.BatchableContext BC,  list<IPM_Project__c> Scope){  
 
@@ -459,7 +473,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Parent_Project_Name__c = p.IPM_Parent_Project__r.Name;  
             a.IPM_Project_Leader__c = p.IPM_Project_Leader__r.Name;
             a.IPM_Deputy_Project_Leader__c = p.Deputy_Project_Leader__r.Name;
-            a.IPM_Finance_Member__c = p.IPM_Finance_Member__r.Name;
+            a.IPM_Finance_Member__c = p.IPM_Finance_Lead__r.Name;
             a.IPM_Technical_Project_Leader__c = p.IPM_Technical_Project_Leader__r.Name;  
             a.IPM_Project_Span__c = p.IPMProject_Span__c;
             a.IPM_Project_Type__c = p.IPM_Project_Type__c;

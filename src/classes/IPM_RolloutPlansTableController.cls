@@ -140,8 +140,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                            IPM_Answer_of_Q2__c, IPM_Answer_of_Q3__c, IPM_Approver_of_Charter__c, IPM_Approver_of_Contract_Market_Ready__c, 
                            IPM_Bosscard_Status__c, IPM_Bosscard__c, IPM_Brand_Positioning__c, IPM_Brand__c, IPM_Category_Group__c,IPM_SourceProjectType__c, 
                            IPM_Category_Icon__c,IPM_Category_Text__c,IPM_Category__c,IPM_Company_Card__c,IPM_Complexity__c,IPM_Core_Parameters__c,
-                           IPM_CPP_Change_Reason__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_FilledIn_Percentage__c,IPM_Finance_Member__c,IPM_Project_Leader__r.SmallPhotoUrl,
-                           IPM_GateKeeping_Model__c,IPM_Gate_Keeping_Module__c,IPM_IsCompleted__c,IPM_Market_Type__c,IPM_Market__c, IPM_Finance_Member__r.SmallPhotoUrl,
+                           IPM_CPP_Change_Reason__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_FilledIn_Percentage__c,IPM_Finance_Lead__c,IPM_Project_Leader__r.SmallPhotoUrl,
+                           IPM_GateKeeping_Model__c,IPM_Gate_Keeping_Module__c,IPM_IsCompleted__c,IPM_Market_Type__c,IPM_Market__c, IPM_Finance_Lead__r.SmallPhotoUrl,
                            IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
                            IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
                            IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c,
@@ -237,7 +237,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         Map<Id,String> marketClusterRolloutMap = new Map<Id,String>();
         //Logic to create map(rolloutCountryNamesMap) of regional rollout and the list of countries to associate Company card of the matching geographical scope, when PL is assigned for the rollout             
-        Set<id> regionalRolloutId =  rolloutTolocalRolloutToCountryMap.keySet();
+        
         
         Map<Id, List<IPM_Country__c>> rolloutCountryNamesMap = new Map<Id, List<IPM_Country__c>>();
         if(rolloutTolocalRolloutToCountryMap != Null && !rolloutTolocalRolloutToCountryMap.isEmpty()) //checking regional rollout or local rollout in based on span
@@ -351,7 +351,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
         { // If it is a Global Project, get regional Projects and associated Rollouts against regional Projects.
                 
-            String queryString = 'SELECT Id,IPM_Rollout_Status__c,IPM_RolloutStatus__c,Name,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Finance_Member__r.SmallPhotoUrl,IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c, Rollout_Plan_Target_Launch_Date__c, ';
+            String queryString = 'SELECT Id,IPM_Rollout_Status__c,IPM_RolloutStatus__c,Name,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c,IPM_Finance_Lead__c, Rollout_Plan_Target_Launch_Date__c, ';
             
             queryString+= ' (SELECT ';
             
@@ -362,7 +362,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id, Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Member__c,IPM_Regional_PL__r.smallphotourl,Finance_Member__r.smallphotourl FROM Regional_Project_Rollout__r  where isActive__c = true ';
+            queryString+= ' Id, Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Regional_PL__r.smallphotourl,Finance_Member__r.smallphotourl FROM Regional_Project_Rollout__r  where isActive__c = true ';
             queryString+= ' ORDER BY IPM_Rollout_Project__c), ';
             
             queryString+= ' (SELECT ';
@@ -409,7 +409,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             String localSpan = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;//used in the query below
             
-            String queryString = ' SELECT Id,Is_Archieved__c ,Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c,IPM_Finance_Member__r.SmallPhotoUrl,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
+            String queryString = ' SELECT Id,Is_Archieved__c ,Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Lead__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan AND Is_Archieved__c =: isArchiveFalse';
             queryString+= ' ORDER BY IPM_Project_Name__c';
             
@@ -441,7 +441,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             
-            queryLocalRolloutString+= 'Id,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Member__c FROM IPM_Project_Rollout__c WHERE Id in:localProjectAssociatedRollouts and isActive__c = true ORDER BY IPM_Rollout_Project__c '; 
+            queryLocalRolloutString+= 'Id,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Id in:localProjectAssociatedRollouts and isActive__c = true ORDER BY IPM_Rollout_Project__c '; 
            
             Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)Database.query(queryLocalRolloutString) );
             
@@ -461,7 +461,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         // If it is a Regional Project, Get the List of Local Rollouts from the relationship
         if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && !associatedProjectMap.isEmpty())
         {
-            List<IPM_Project_Rollout__c> rolloutList = new List<IPM_Project_Rollout__c>(); 
+             
             for(IPM_Project__c project : associatedProjectMap.values())
             {
                 projectTolocalRolloutToCountryMap.put(project.Id, new Map<Id,List<IPM_Country__c>>());
@@ -724,8 +724,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {   
             Map<Id,IPM_Project_Rollout__c> updaterolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
                          
-            Set<id> regionalRolloutIdSet =  rolloutTolocalRolloutToCountryMap.keySet(); // it will regionalrolloutsId
-
             if(rolloutTolocalRolloutToCountryMap!= null && !rolloutTolocalRolloutToCountryMap.isEmpty())
             { 
                 for(id rolloutId :rolloutTolocalRolloutToCountryMap.keySet())
@@ -788,14 +786,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
 
-            System.SavePoint rollOutSavePoint = Database.SetSavePoint();
-           
+                      
             validationError = IPM_ConstantUtils.BLANK;
             
             if((updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()) || (updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()))
             {
                 if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()){
-                    List<IPM_Project_Rollout__c> rolloutsToUpdate = updaterolloutsMap.values();
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {

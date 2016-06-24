@@ -142,7 +142,6 @@ private class IPM_GetHelpDoc_Test{
         IPM_FileUploadController fileUploadCtrl = null;
         ipmHelpDoc = new IPM_GetHelpDoc(fileUploadCtrl);
         
-        String str=ipmHelpDoc.getURL();
         List<Document> lstDocument = [Select Id,Name from Document where Name =:ipmHelpDoc.helpDocName  limit 1];
         System.assertEquals(lstDocument[0].Name,docName, HELP_DOCUMENT_ERROR);// Positive Test
         
@@ -163,7 +162,6 @@ private class IPM_GetHelpDoc_Test{
         IPM_BCCController bccCtrl = null;
         ipmHelpDoc = new IPM_GetHelpDoc(bccCtrl);
         ipmHelpDoc.helpDocName='docName11';
-        String str=ipmHelpDoc.getURL();
         List<Document> lstDocument = [Select Id,Name from Document where Name =:ipmHelpDoc.helpDocName  limit 1];
         System.assertEquals(lstDocument.size(),0,HELP_DOCUMENT);// Negative Test
         Test.stopTest();

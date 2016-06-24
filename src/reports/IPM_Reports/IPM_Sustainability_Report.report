@@ -13,7 +13,7 @@
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
     </columns>
     <columns>
-        <field>IPM_Project__c.IPM_Finance_Member__c</field>
+        <field>IPM_Project__c.IPM_Finance_Lead__c</field>
     </columns>
     <columns>
         <field>IPM_Project__c.IPMProject_Span__c</field>

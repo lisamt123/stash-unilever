@@ -10,6 +10,7 @@ public with sharing class IPM_NewTask {
     private static final string DO_SAVE_TASKS = 'doSaveTasks';
     private static final String PERCENT_SIGN = '%';
     private static final String ERROR = 'Error';
+    private static final String SPACE = ' ';
     private map<string,Id> assigneeIdName;
     public IPM_Task__c tasks{get;set;} // To intialize the tasks
     public IPM_Project__c projectObject{get;set;} // Getting the project details
@@ -31,6 +32,7 @@ public with sharing class IPM_NewTask {
     public list<SelectOption> FuntionalRolelist;
     public Map<Id,Id> projectDocSectionToSectionMap {get;set;}
     public Map<Id,String> SectionToExtenalIdSectionMap {get;set;}
+	public Map<string,set<string>> sectionToFunctionalRoleMap;
     
     
     private Map<String,String> phaseGateMapping;
@@ -107,7 +109,7 @@ public with sharing class IPM_NewTask {
                     list<IPM_Project_Document_Section__c> proDocSecList = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Default_Section__c,IPM_FunctionalRole__c from IPM_Project_Document_Section__c where Id =:proDocSecId ];
                     if(proDocSecList != NULL && !proDocSecList.isEmpty()){
                         tasks.IPM_Function__c = proDocSecList[0].IPM_FunctionalRole__c;
-                        sectionValue = string.valueOf(proDocSecList[0].IPM_Section_Sequence__c+' '+proDocSecList[0].IPM_Section_Name__c);
+                        sectionValue = string.valueOf(proDocSecList[0].IPM_Section_Sequence__c+ SPACE +proDocSecList[0].IPM_Section_Name__c);
                         selectedSectionId  = proDocSecList[0].id;
                     }
                 }
@@ -136,6 +138,7 @@ public with sharing class IPM_NewTask {
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.taskId)))
             {
                 taskId = ApexPages.currentPage().getParameters().get(IPM_Utils.taskId);
+				 sectionWiseFunctionalRoleList();
                 try
                 {
                     sObjName = taskId.getSObjectType().getDescribe().getName();
@@ -332,9 +335,9 @@ public with sharing class IPM_NewTask {
         try
         {
             // Get Phase and Gate Mapping for Original Project.
-            IPM_ProjectMetadata__c projectMetaData = IPM_Utils.retrieveProjectMetadata(projectObject);
-            String[] applicablePhases = projectMetaData.IPM_Applicable_Phases__c.split(IPM_ConstantUtils.COMMA);
-            String[] applicableGates = projectMetaData.IPM_Applicable_Gate__c.split(IPM_ConstantUtils.COMMA);
+            IPM_Project_Metadata__mdt projectMetaData = IPM_Utils.retrieveProjectMetadata(projectObject);
+            String[] applicablePhases = projectMetaData.IPM_ApplicablePhases__c.split(IPM_ConstantUtils.COMMA);
+            String[] applicableGates = projectMetaData.IPM_ApplicableGates__c.split(IPM_ConstantUtils.COMMA);
             
             // Get curent Project Type information based on Project Phase. 
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectObject);
@@ -527,7 +530,7 @@ public with sharing class IPM_NewTask {
                                 {
                                     if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
                                     {
-                                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+' '+docsections.IPM_Section_Name__c));
+                                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
                                         SectionToExtenalIdSectionMap.put(docsections.Id,docsections.External_ID__c);
                                     }   
                                } 
@@ -546,7 +549,7 @@ public with sharing class IPM_NewTask {
                           {
                                 if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
                                 {
-                                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+' '+docsections.IPM_Section_Name__c));
+                                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
                                     projectDocSectionToSectionMap.put(docsections.Id,docsections.IPM_Section__c);
                                     SectionToExtenalIdSectionMap.put(docsections.Id,docsections.IPM_Section__r.External_ID__c); 
                                 }  
@@ -657,4 +660,174 @@ public with sharing class IPM_NewTask {
         }
         return funcAssigneeId;
     }
+	/********************************************************************************
+     *@Description : get all project document section/ section list used for edit task
+     *@Param: none
+     *@Return :  picklist values where each value is combination of section sequence and section name
+    *********************************************************************************/
+    public List<SelectOption> getListSections() {
+		
+		List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+		
+    	String projectType = String.IsNotBlank(projectObject.IPM_SourceProjectType__c) ? projectObject.IPM_SourceProjectType__c : IPM_ConstantUtils.BLANK;
+        String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
+        
+        //check if phase selected is future phase     
+        if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
+	    {
+	    	//as phase is future phase project document section is not inserted, so add sections to option 
+	        for(IPM_Section__c docsections :[SELECT IPM_Document_Template__r.IPM_Document_Type__c,External_ID__c,Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_IS_Default_Section__c 
+	                                        FROM IPM_Section__c 
+	                                        WHERE  
+	                                        IPM_IS_Default_Section__c = true 
+	                                        AND IPM_Document_Template__r.IPM_Document_Type__c =: tasks.IPM_Type_of_Gate__c
+	                                        AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c =: projectObject.IPM_Complexity__c
+	                                        AND IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
+	                                        AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
+	                                        AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c =: projectType
+	                                        AND ProjectSpan__c includes (:tasks.IPM_TaskSpan__c) 
+	                                        ] ) 
+	            {
+	                if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
+	                {
+	                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
+	                    SectionToExtenalIdSectionMap.put(docsections.Id,docsections.External_ID__c);
+	                }   
+	           } 
+	     } //check if phase selected is current phase       
+	     else{
+	     	//as project documnet section is present for current phase add it to option
+	        for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Default_Section__c 
+	                                                                FROM IPM_Project_Document_Section__c 
+	                                                                WHERE IPM_Gate_Document__c=:tasks.IPM_Type_of_Gate__c 
+	                                                                AND IPM_Default_Section__c = true
+	                                                                AND IPM_Project_Document__r.IPM_Project_Complexity__c =: projectObject.IPM_Complexity__c 
+	                                                                AND IPM_Section__r.IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
+	                                                                AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
+	                                                                AND IPM_Project_Document__r.IPM_Project__c =:projectObject.id ] ) 
+	              {
+	                    if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
+	                    {
+	                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+ SPACE +docsections.IPM_Section_Name__c));
+	                        projectDocSectionToSectionMap.put(docsections.Id,docsections.IPM_Section__c);
+	                        SectionToExtenalIdSectionMap.put(docsections.Id,docsections.IPM_Section__r.External_ID__c); 
+	                    }  
+	              }
+	     }
+
+    	return options;
+    }
+    /********************************************************************************
+     *@Description : creates mapping of functional role to list of section external id list
+     *@Param: none
+     *@Return :  none
+    *********************************************************************************/
+    
+	public void sectionWiseFunctionalRoleList()
+    {
+    	sectionToFunctionalRoleMap = new Map<string,set<string>>();
+    	
+    	//get all records of custome setting
+        List<IPM_Gate_Document_Section_Access__c> docAccessList = IPM_Gate_Document_Section_Access__c.getall().values();
+		
+		//iterate over rcutome setting records
+		for(IPM_Gate_Document_Section_Access__c docAccessRec : docAccessList){
+			
+			//get all section external ids in list from both access fields
+			list<string> secExternalIdList = docAccessRec.IPM_Gate_Document_Section_Access_1__c.split(',');
+			
+			if(docAccessRec.IPM_Gate_Document_Section_Access_2__c != null){
+				secExternalIdList.addAll(docAccessRec.IPM_Gate_Document_Section_Access_2__c.split(','));
+			}
+			//iterate over section external id list
+			for(string secExtId : secExternalIdList)
+			{
+					string secExtIdUpperCase = secExtId.toUpperCase();
+					set<string> functionalRoleSet = new  set<string>();
+					
+					//if functional role to section external id map is null or not contains the current section external id then add this to map
+					if(sectionToFunctionalRoleMap.isEmpty() || (!sectionToFunctionalRoleMap.isEmpty() && !sectionToFunctionalRoleMap.containsKey(secExtIdUpperCase)))
+					{
+						functionalRoleSet.add(docAccessRec.Name);
+					}
+					//if map contains section external id then add new functional role to existing functional role list
+					else if(!sectionToFunctionalRoleMap.isEmpty() && sectionToFunctionalRoleMap.containsKey(secExtIdUpperCase))
+					{
+						functionalRoleSet = sectionToFunctionalRoleMap.get(secExtIdUpperCase);
+						functionalRoleSet.add(docAccessRec.Name);
+					}
+					sectionToFunctionalRoleMap.put(secExtIdUpperCase,functionalRoleSet);
+			}
+		}
+		
+    }
+    /********************************************************************************
+     *@Description : creates functional role list having an access to selected section
+     *@Param: none
+     *@Return :  picklist
+    *********************************************************************************/
+     
+	public List<SelectOption> getListFunctionalRole() {
+		
+		List<SelectOption> options = new List<SelectOption>();
+		
+		//check if section is selected
+		if((selectedSectionId == null || string.isBlank(selectedSectionId)) ){
+			return options;
+		}
+			
+			
+		options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+		
+		//check if section is selected and get functional role list from the section to functional role list map
+		if(string.isNotBlank(selectedSectionId) && SectionToExtenalIdSectionMap.containsKey(selectedSectionId))
+    	{
+    		string sectionExternalId = SectionToExtenalIdSectionMap.get(selectedSectionId).toUpperCase();
+    		set<string> roleSet = sectionToFunctionalRoleMap.get(sectionExternalId);
+    		
+    		for(string role : roleSet)
+    		{
+    			string roleValue = role;
+    			if(role.equalsIgnoreCase(IPM_ConstantUtils.IPM_ROLE_BD_MARKETING ))
+				{ 
+					roleValue = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+				}
+				if(role.equalsIgnoreCase(IPM_ConstantUtils.TEAM_TECHNICAL_PROJECT_LEADER ))
+				{ 
+					roleValue = IPM_ConstantUtils.TEAM_CORETPL;
+				}
+				if(role.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_LEADER ))
+				{ 
+					roleValue = IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
+				}
+    			options.add(new SelectOption(roleValue,roleValue));
+    		}
+    	}
+		return options;
+	}
+	/********************************************************************************
+     *@Description : get user name as per functional role selected
+     *@Param: none
+     *@Return :  string
+    *********************************************************************************/
+    
+	public string getFunctionalRoleOwner() {
+		
+		string taskIOwner = '';
+		
+		if(tasks.IPM_Function__c == null || string.isBlank(tasks.IPM_Function__c))
+			return taskIOwner;
+		
+		//get user name
+		if(assigneeIdName != null && !assigneeIdName.isEmpty()){
+			string taskIOwnerId = assigneeIdName.get(tasks.IPM_Function__c);
+			
+			if(userIdName != null && !userIdName.isEmpty())
+			{
+				taskIOwner = userIdName.get(taskIOwnerId);
+			}
+		}
+		return 	taskIOwner;
+	}
 }

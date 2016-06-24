@@ -76,31 +76,32 @@ private class IPM_RolloutPlansAddController_Test
     private static final string TestComments2 = 'TestComments2';
     private static final string TestComments3 = 'TestComments3';
     private static final string ID = 'id';
-    private static final string TEST_STR = 'test';
     private static final string TASK_NOT_CREATED='tasks not created';
     private static final string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
     private static final string MILESTONES_NOT_CREATED='milestones not crerated';
     private static final string FINANCIAL_NOT_CREATED='financial not created';
     private static final string PHASE_NOT_FEASIBILITY='project phase is not feasibility'; 
     private static final string FAILED_ASSERT_MSG = 'Url is not as expected and failed processsing .' ;
+    private static final String WRAPPER_NOT_CREATED = 'Market Cluster/MCO wrapper not created successfully.';
     
-    /***************************************************************************
-    * @description: Used for Creating IPM Project data for Rollout flow test          
-    *****************************************************************************/
+    /******************************************************************************************************************************************
+    * @description: Used for Creating IPM Project data for Rollout flow test  .This is used in test methods to create data specifc to use cases.
+    * Constructor logic for the controller is tested for  projects (Searching rollouts, Adding rollouts, Processing rollouts). 
+    * Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects                            
+    ********************************************************************************************************************************************/
     private static  void GlobalProjRolloutAdd(Boolean isActive ,Boolean isRegionalProj ,Boolean isFeasibilityProject) 
     {
        IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2 ;
-       IPM_RolloutPlansAddController irp3 ;
-       IPM_RolloutPlansAddController irp4 ;
+
        
 	   if(!isRegionalProj)  
-        {
+        { 
+          // creating multiple instances of   IPM_RolloutPlansAddController
           irp2= new IPM_RolloutPlansAddController();
-          irp3= new IPM_RolloutPlansAddController();
-          irp4= new IPM_RolloutPlansAddController();
         } 
        
+       // setting values of GeographyWrapper parameters
        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
        Set<String> projectNameSet = new Set<String>{TestComments1,TestComments2,TestComments3};
        List<Id> globalProjectIdList = new List<Id>();
@@ -108,6 +109,7 @@ private class IPM_RolloutPlansAddController_Test
        User globalProjectLeader = null;
        User regionalProjectLeader = null;  
         
+       // getting project leaders  for global ,local and regional
        List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL,:REGIONAL_PL,:LOCAL_PL)];
         
        for(User lUser  :userList)
@@ -127,6 +129,7 @@ private class IPM_RolloutPlansAddController_Test
           Test.startTest();
             if(isRegionalProj)
             {
+            	// creating projects as a global project leader
             	projectList=IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader);
             	if(isFeasibilityProject)
             	{
@@ -294,7 +297,7 @@ private class IPM_RolloutPlansAddController_Test
 		   ApexPages.currentPage().getParameters().put(ID,projectList[0].Id); 
            projectId = ApexPages.currentPage().getParameters().get(ID);
           
-         
+           // setting controller parameters
            irp.project=projectList[0];
            irp.globalCountries=GLOBAL_COUNTRIES;
            irp.regionalMco=REGIONAL_MCO;
@@ -329,7 +332,7 @@ private class IPM_RolloutPlansAddController_Test
            geoWrp.countryDisabled =true;
            geoWrp.noRolloutDisabled=true;
           
-          
+           // creating MDO Geography records
            MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
            insert geo1;
           
@@ -361,6 +364,7 @@ private class IPM_RolloutPlansAddController_Test
           insert countryList;
           List<IPM_Project_Rollout__c> rollouLst = [Select id,IPM_Rollout_Project__c, (Select id,Country_Code__c,Project_Country__c,isActive__c from IPM_Countries_Local__r ) from IPM_Project_Rollout__c Where id =: regionalRolloutList[0].id];
           
+          // setting controller parameters
           irp.searchCountry=AFRICA;
           irp.searchRolloutCountry();
           irp.lstClusterWrappers.add(geoWrp);
@@ -385,6 +389,7 @@ private class IPM_RolloutPlansAddController_Test
 
           if(!isRegionalProj)
           {
+			   // setting controller parameters
 			  irp2.project=projectList[0];
 			  irp2.globalCountries=GLOBAL_COUNTRIES;
 			  irp2.regionalMco=REGIONAL_MCO;
@@ -419,118 +424,13 @@ private class IPM_RolloutPlansAddController_Test
 			  
 			  irp2.searchCountry=null;
 			  irp2.searchRolloutCountry();
+			  
+			  system.assert(irp2.updateRollouts, WRAPPER_NOT_CREATED);
+			  system.assert(irp2.mapMCOWrappers.get(LV4_GEO0085).rolloutPresentAtMCO , WRAPPER_NOT_CREATED);
+			  system.assert(irp2.mapClusterWrappers.get(GEO0060).rolloutPresentAtCluster, WRAPPER_NOT_CREATED);
+			  
+			  
 			  irp2.lstClusterWrappers.add(geoWrp);
-
-			  /********************************All the wrappers are populated************************************************/
-			  
-			  irp3.project=projectList[0];
-			  irp3.globalCountries=GLOBAL_COUNTRIES;
-			  irp3.regionalMco=REGIONAL_MCO;
-			  irp3.regionalCountry=REGIONAL_COUNTRY;
-			  irp3.regionalNoRoll=REGIONAL_NOROLL;
-			  irp3.globalUnselectedCountries = GLOBAL_UNSELECTED_COUNTRIES;
-			  irp3.regionalUnselectedMco = REGIONAL_UNSELECTED_MCO; //unselected mco country code
-			  irp3.regionalUnselectedNoRoll = REGIONAL_UNSELECTED_NOROLL;
-			  irp3.selectedCountry = AFRICA;
-			  irp3.errorMessage=ERROR_MESSAGE;
-			  
-			  irp3.setCountryNoRolls = new Set<String>{CONGO,CHAD}; //it is made from  regionalNoRoll
-			  irp3.setCountryCodesGlobal= new Set<String>{AG_BR_AO};  // country iso code is added in the controller
-			  irp3.setCountryCodesGlobalUnselected= new Set<String>{KW,NB}; //globalUnselectedCountries is put into this
-			  
-			 
-			  irp3.setCountryCodesMCOsUnselected = new Set<String>{ASIA,EUROPE}; //regionalUnselectedMco is put into this 
-			  irp3.setCountryCodesMCOs =  new Set<string>{AFRICA_EMERGING_MARKETS,OTHER_SOUTH_ASIA}; // regionalMco is put into this
-			  irp3.setCountryCodesUnselected = new Set<String>{KW,NB}; // regionalUselectedCountry is put into this
-			  irp3.setCountryNoRollsUnselected = new Set<String>{CB}; //regionalUnselectedNoRoll is put into this
-			  irp3.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
-			 
-			 
-			  geoWrp.code=LV4_GEO0085;
-			  geoWrp.name=AFRICA_EMERGING_MARKETS;
-			  geoWrp.parentCode=GEO0060;
-			  geoWrp.rolloutStatus=With_MCO;
-			  geoWrp.key=true;
-			  geoWrp.selected=true;
-			  geoWrp.clusterDisabled=true;
-			  geoWrp.mcoDisabled=true;
-			  geoWrp.countryDisabled =true;
-			  geoWrp.noRolloutDisabled=true;
-			  
-			  IPM_RolloutPlansAddController.GeographyWrapper geoWrp3=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
-			  
-			  List<IPM_RolloutPlansAddController.GeographyWrapper> clusterWrapLst =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-			  clusterWrapLst.add(geoWrp3);            
-			  List<IPM_RolloutPlansAddController.GeographyWrapper> mcoWrapLst =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-			  mcoWrapLst.add(geoWrp3);
-			  List<IPM_RolloutPlansAddController.GeographyWrapper> countryWrapLst =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-			  countryWrapLst.add(geoWrp3);
-			  
-			  irp3.lstClusterWrappers = clusterWrapLst;
-			  irp3.lstMCOWrappers = mcoWrapLst;
-			  irp3.lstCountryWrappers = countryWrapLst;
-			  irp3.searchCountry=TEST_STR;
-			  irp3.searchRolloutCountry();
-
-			  /***********************************lstCountryWrappers is not populated so that exception part is covered*********************/
-			  irp4.project=projectList[0];
-			  irp4.globalCountries=GLOBAL_COUNTRIES;
-			  irp4.regionalMco=REGIONAL_MCO;
-			  irp4.regionalCountry=REGIONAL_COUNTRY;
-			  irp4.regionalNoRoll=REGIONAL_NOROLL;
-			  irp4.globalUnselectedCountries = GLOBAL_UNSELECTED_COUNTRIES;
-			  irp4.regionalUnselectedMco = REGIONAL_UNSELECTED_MCO; //unselected mco country code
-			  irp4.regionalUnselectedNoRoll = REGIONAL_UNSELECTED_NOROLL;
-			  irp4.selectedCountry = AFRICA;
-			  irp4.errorMessage=ERROR_MESSAGE;
-			  
-			  irp4.setCountryNoRolls = new Set<String>{CONGO,CHAD}; //it is made from  regionalNoRoll
-			  irp4.setCountryCodesGlobal= new Set<String>{AG_BR_AO};  // country iso code is added in the controller
-			  irp4.setCountryCodesGlobalUnselected= new Set<String>{KW,NB}; //globalUnselectedCountries is put into this
-			  
-			 
-			  irp4.setCountryCodesMCOsUnselected = new Set<String>{ASIA,EUROPE}; //regionalUnselectedMco is put into this 
-			  irp4.setCountryCodesMCOs =  new Set<string>{AFRICA_EMERGING_MARKETS,OTHER_SOUTH_ASIA}; // regionalMco is put into this
-			  irp4.setCountryCodesUnselected = new Set<String>{KW,NB}; // regionalUselectedCountry is put into this
-			  irp4.setCountryNoRollsUnselected = new Set<String>{CB}; //regionalUnselectedNoRoll is put into this
-			  irp4.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
-	 
-			  IPM_RolloutPlansAddController.GeographyWrapper geoWrp4=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
-			  
-			  List<IPM_RolloutPlansAddController.GeographyWrapper> clusterWrapLst4 =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-			  clusterWrapLst.add(geoWrp4);            
-			  
-			  List<IPM_RolloutPlansAddController.GeographyWrapper> mcoWrapLst4 =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-			  mcoWrapLst.add(geoWrp4);
-			  
-			  if(!isActive)
-			  {
-				List<IPM_RolloutPlansAddController.GeographyWrapper> countryWrapLst4 =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-				countryWrapLst4.add(geoWrp4); 
-				irp4.lstCountryWrappers = countryWrapLst4; 
-			  }
-			  
-			  irp4.lstClusterWrappers = clusterWrapLst4;
-			  irp4.lstMCOWrappers = mcoWrapLst4;
-
-			  //keep  lstCountryWrappers as null to test the  exception block 
-			  irp4.searchCountry=TEST_STR;
-			  if(isActive)
-			  {
-				try
-				{
-				  irp4.searchRolloutCountry(); 
-				}
-			   catch(Exception e)
-				{
-				  System.assert(e.getMessage() != null,'Null record referenced lstCountryWrappers');
-				}
-			  }
-			  else
-			  {
-				irp4.searchRolloutCountry();  
-			  }
-			  
 			}
 			  
 			  if(!regionalProjects.isEmpty()){
@@ -546,6 +446,7 @@ private class IPM_RolloutPlansAddController_Test
 			  PageReference rolloutPlansActual = irp.redirectPage();
 			  irp.cancel();
 			  
+			  // checking if  page redirection  is correct 
 			  System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'Url is not as expected');
 			  
 			  expectedPageRef = rolloutPlansExpected;

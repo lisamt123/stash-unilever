@@ -151,16 +151,39 @@ public with sharing class IPM_GatekeeperChecklist{
         try{
             //Retrieving Record Type Ids
             getRecordTypeId();  
-            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_GK_Answers_Multiselect__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+            String sObjectName = 'IPM_Questionnaire__c';
+            Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(sObjectName).getDescribe();
+        	Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
+            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_GK_Answers_Multiselect__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,BETCurrentStatus__c,DependentFieldAPIName__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+	        for(String fieldAPIName :  sobjectFieldMap.keySet())
+	        {   
+	            if(!(fieldAPIName.equalsIgnoreCase('Id')))
+	            {
+	                query += ' '+fieldAPIName+',';
+	            }
+	        }
+	        query += 'Id,IPM_Project_Document_Section__r.IPM_Section_Name__c from '+ sObjectName +' WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
             if(projDocSec!=null){
                 string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
                 gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
             }
-            else{
-               
+            else
+            {   
                gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');     
                 
             } 
+          
+            // Get BET status and Set BET Gatekeeping answer
+	        for(IPM_Questionnaire__c ipmQue : gkChecklist) 
+	        {
+	        	String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
+            	if(String.isNotBlank(dependentFieldAPIName))
+    			{
+            		ipmQue.put('IPM_GK_Answers__c',(String)ipmQue.get(dependentFieldAPIName));
+          		}	
+	        }	   
+	        
+   
             
             if(gkChecklist!=null && !gkChecklist.isEmpty())  
             {
@@ -196,7 +219,7 @@ public with sharing class IPM_GatekeeperChecklist{
                                 }
                                 else
                                 {
-                                    answerOption = new SelectOption(optionValue,'<span title='+  gkHelpTextMap.get(optionLabel)  + '>' +optionLabel+'</span>');
+                                    answerOption = new SelectOption(optionValue,'<span title= " '+  gkHelpTextMap.get(optionLabel)  + ' " >' +optionLabel+'</span>');
                                 }
                                 answerOption.setEscapeItem(false);
                                 applicableGKOptions.add(answerOption);              
@@ -207,7 +230,7 @@ public with sharing class IPM_GatekeeperChecklist{
                      {
                          for(String key :GK_DEF_APPLICABLE_ANSMAP.keyset())
                          {
-                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title='+  gkHelpTextMap.get(key)  + '>' +key+'</span>');
+                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title= " '+  gkHelpTextMap.get(key)  + ' ">' +key+'</span>');
                          
                             answerOption.setEscapeItem(false);
                          

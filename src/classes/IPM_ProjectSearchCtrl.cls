@@ -147,7 +147,7 @@ public with sharing class IPM_ProjectSearchCtrl{
                                                         Deputy_Project_Leader__c=:userinfo.getuserid() OR
                                                         IPM_Technical_Project_Leader__c =:userinfo.getuserid() OR
                                                         IPM_Project_Gatekeeper__c =:userinfo.getuserid() OR
-                                                        IPM_Finance_Member__c = : UserInfo.getUserId() LIMIT 9999 ]){
+                                                        IPM_Finance_Lead__c = : UserInfo.getUserId() LIMIT 9999 ]){
              shareProjIdSet.add(project.Id);                                                    
         }
         shareProjIdSet.remove(null);

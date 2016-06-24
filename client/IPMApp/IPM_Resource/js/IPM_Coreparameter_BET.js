@@ -8,7 +8,82 @@ var jq = jQuery.noConflict();
 jq(document).ready(function() {
     betCallBack();
     hilightTaskScript();
+    sectorPicklist();
 });
+function sectorPicklist(){
+    jq('.ccCheck').change(function(e) {
+    if (jq('.sectorposList input[type=checkbox]:checked').length > 20) {
+        jq(this).prop('checked', false);
+        jq(this).next('label').removeClass('selected');
+    }
+});
+jq(document).on('click', '.sectorposList input[type="checkbox"], .sectorposList li', function(e){
+   e.stopPropagation();
+});   
+jq(document).on('show.bs.dropdown', '.sectorposListContainer', function(){
+    jq(this).find('.sectorposList').show(); 
+});
+jq(document).click(function(e) {
+    if( e.target.id !== 'sectorposListUL') {
+        jq(".sectorposList").hide();    
+    }   
+});
+jq(document).click(function(e) {
+    if( e.target.id !== 'marketposListUL') {
+        jq(".sectorposList").hide();    
+    }   
+});
+jq('.ipmSectorDropbuttonscc').click(function(e) {           
+    var brandPositionValue = '';
+    jq(".sectorposList  input[type=checkbox]").each(function(e){
+        if(jq(this).prop('checked') === true){   
+            if(brandPositionValue.length > 0)
+            {
+                brandPositionValue = brandPositionValue +','+jq(this).val();
+            }
+            else
+            {
+                brandPositionValue = jq(this).val();
+            }
+        } 
+    });
+    jq('.hiddensectorfield').val(brandPositionValue);
+    if(brandPositionValue === ''){
+        jq('.sectorSelValues').text(IPMAppPS.sectorLabel);
+    }
+    else{
+        jq('.sectorSelValues').text(brandPositionValue);
+    }
+    jq(".sectorposList").hide(); 
+});  
+ jq(document).on('click', '.filterActionscc .ipmSectorDropresetcc', function(e){
+        e.stopPropagation();
+        jq(".sectorposList input:checkbox").each(function() {
+             jq(this).prop('checked', false);
+           jq(this).next('label').removeClass('selected');
+            jq('.sectorSelValues').text(IPMAppPS.sectorLabel);
+        });
+    });     
+if( jq('.hiddensectorfield') !== null && jQuery.type(jq('.hiddensectorfield')) !== 'undefined') 
+{
+    var brandPicklist = jq('.hiddensectorfield').val();   
+    if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
+    {
+        jq('.sectorSelValues').text(brandPicklist);
+        var brandArray = brandPicklist.split(',');  
+        jq(".sectorposList  input[type=checkbox]").each(function(e){
+            var checkboxObj = jq(this);
+            jq.each( brandArray, function( i, savedBrandPosition ){
+                if(checkboxObj.val() === savedBrandPosition)
+                    {
+                     checkboxObj.prop('checked',true);
+                        return false;
+                    }
+            }); 
+        });
+    }
+} 
+}
 function betCallBack() {
 /* Below script works on click event. When clicked on row it checks the checkbox and also highlights the row by adding a color. */
     jq('.ipmTable').on('click', 'tbody tr', function() {

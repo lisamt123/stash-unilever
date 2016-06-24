@@ -56,6 +56,26 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>BETCurrentStatus__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;, &apos;Red&apos;, &apos;First release&apos;, &apos;Amber&apos;,&apos;Final Release&apos; ,&apos;Green&apos;,&apos;&apos;, &apos;Not Applicable&apos;, &apos;&apos; )</formula>
+        <label>BET Current Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DependentFieldAPIName__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependent Field API Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Assort_Channel_Name__c</fullName>
         <description>for displaying channel name in assortment strategy</description>
         <externalId>false</externalId>
@@ -604,106 +624,106 @@
             <controllingField>IPM_CMI_Input__c</controllingField>
             <picklistValues>
                 <fullName>Failure (=&lt; 33%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky (34% - 69%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory (70% - 84%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Outstanding (&gt;= 85%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>High Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Medium Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Low Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Potential Failure</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
@@ -711,21 +731,21 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bottom 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Mid 40%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Top 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -752,106 +772,106 @@
             <controllingField>IPM_CMI_Input__c</controllingField>
             <picklistValues>
                 <fullName>Failure (=&lt; 33%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky (34% - 69%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory (70% - 84%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Outstanding (&gt;= 85%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>High Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Medium Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Low Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Potential Failure</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
@@ -859,21 +879,21 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bottom 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Mid 40%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Top 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -898,106 +918,106 @@
             <controllingField>IPM_CMI_Input__c</controllingField>
             <picklistValues>
                 <fullName>Failure (=&lt; 33%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky (34% - 69%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory (70% - 84%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Outstanding (&gt;= 85%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>High Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Medium Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Low Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Potential Failure</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
@@ -1005,21 +1025,21 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bottom 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Mid 40%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Top 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1035,106 +1055,106 @@
             <controllingField>IPM_CMI_Input__c</controllingField>
             <picklistValues>
                 <fullName>Failure (=&lt; 33%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky (34% - 69%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory (70% - 84%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Outstanding (&gt;= 85%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
                 <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>High Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Medium Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Low Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Differentiation</controllingFieldValues>
                 <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Relevance</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <default>false</default>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Potential Failure</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory</fullName>
+                <default>false</default>
                 <controllingFieldValues>package communication</controllingFieldValues>
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
@@ -1142,21 +1162,21 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bottom 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Mid 40%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Top 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>Persuation</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1949,6 +1969,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_OTIF_Question_Help_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM OTIF Question Help Text</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>IPM_OTIF_Responsibility__c</fullName>
         <description>contains otif responsbility</description>
         <externalId>false</externalId>
@@ -2179,6 +2207,17 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_BETStatus__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c == &apos;&apos;, &apos;No Bet&apos;, IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Project BETStatus</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Document_Section__c</fullName>

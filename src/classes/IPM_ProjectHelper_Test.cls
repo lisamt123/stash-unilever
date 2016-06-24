@@ -111,6 +111,7 @@ private with sharing class IPM_ProjectHelper_Test
                 projectMap.put(project.Id,project);
             }
             
+	    IPM_ProjectHelper.copyOverMPAValue(projectMap);
             Id  mileMasterRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.mileMRecordType).getRecordTypeId();
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
         
@@ -342,7 +343,7 @@ private with sharing class IPM_ProjectHelper_Test
             addnewValue.IPM_Technical_Project_Leader__c=globalUser.id;
             addnewValue.Deputy_Project_Leader__c=globalUser.id;
             addnewValue.IPM_Project_Gatekeeper__c=globalUser.id;
-            addnewValue.IPM_Finance_Member__c=globalUser.id;
+            addnewValue.IPM_Finance_Lead__c=globalUser.id;
             projNewList.add(addnewValue);
             oldProjectMap.put(proj.id,addnewValue);
             IPM_ProjectTriggerHandler.getProjectUsersMap(projNewList, oldProjectMap, false) ;

@@ -8076,7 +8076,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Gate_Doc_Milestone</shortDescription>
-        <value>Gate Document Milestone</value>
+        <value>Document Milestone</value>
     </labels>
     <labels>
         <fullName>IPM_Gate_Document_Summary</fullName>
@@ -15624,6 +15624,27 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BelowThresholdError_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThresholdError_Msg</shortDescription>
+        <value>Please be aware that your project is Below Threshold and has not been given Exempt status. If you wish for your Project to have Exempt status please contact your IPM Business Partner.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_MCO_Rollout_Leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MCO Rollout Leader</shortDescription>
+        <value>MCO Rollout Leader</value>
+   </labels>
+    <labels>
+        <fullName>ipmFinSummaryGMbpsHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
+        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 – DNDS GM Y1</value>
     </labels>
     
 </CustomLabels>

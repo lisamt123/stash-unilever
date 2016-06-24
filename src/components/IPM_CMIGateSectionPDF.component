@@ -121,7 +121,9 @@
                                     <apex:outputPanel styleClass="cmiConRes2 pull-left" layout="block" rendered="{!AND(cmi.Gate__c!='Charter',gate!='Charter',secConList.size>0,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                         <apex:repeat value="{!secConList}" var="con">
                                         		<!-- Checking country name -->
-                                                <apex:outputText styleClass="cmiConResValue2 {!con.IPM_CMI_Color_Score_Value_Achieved__c}" value="{!con.IPM_CMI_Outcome_Color_Achieved__c}" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/>
+                                            <apex:outputPanel layout="block" styleclass="cmiConResValue2" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}">       
+                                                <apex:outputText styleClass="{!con.IPM_CMI_Outcome_Color_Achieved__c} {!con.IPM_CMI_Color_Score_Value_Achieved__c}" value="" />
+                                            </apex:outputPanel>
                                         </apex:repeat>
                                     </apex:outputPanel>
                                 </div>                                        

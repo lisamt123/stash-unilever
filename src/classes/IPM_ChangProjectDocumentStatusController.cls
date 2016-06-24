@@ -39,6 +39,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean rolloutRegionalPLFilledError{get; set;}
     public Boolean rolloutCountryPLFilledError{get; set;}
     public Boolean completedError{get; set;}
+    public Boolean belowThresholdError{get; set;}
     public String riskSectionId{get; set;}
     public Boolean showStop{get; set;}
     public Boolean showPostpone{get; set;}
@@ -68,6 +69,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
     public id documentSectionId{get;set;}
+    public boolean isEcoDesignSecNegotiable;
+    
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
@@ -90,8 +93,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         financialAlignment=false;
         tldAlignment=false; 
         isBDBBAlignment=false;   
+        isEcoDesignSecNegotiable=false;
         bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT;  
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
+        belowThresholdError=false;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
         if(projectId!=null)
@@ -265,7 +270,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         String projectWhereClause = ' WHERE id  =: projectId limit 1';
         projectWhereClause = projectQuery + projectWhereClause;
         List<IPM_Project__c> projList  = database.query(projectWhereClause);
-        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c)
+        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !isEcoDesignSecNegotiable)
         {
             ecoDesignNoAssessmentError = true;  
         }
@@ -433,6 +438,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
                 if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
                 {
+			if(pds.IPM_Negotiable__c) 
+                	{
+                    		isEcoDesignSecNegotiable = pds.IPM_Negotiable__c;
+                	}
                     ecoDesignSectionId = pds.Id;
                 }
                 
@@ -522,6 +531,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             {
                 showValidation=false;
                 discriptionError=true;
+            }
+            if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
+            {
+                belowThresholdError=true;   
             }
             
         }
@@ -927,6 +940,4 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
         }
     }
-    
-    
 }

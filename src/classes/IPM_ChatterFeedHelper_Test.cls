@@ -125,7 +125,7 @@ private class IPM_ChatterFeedHelper_Test {
         globalprojects[0].Deputy_Project_Leader__c = deputyPL.Id;
         globalprojects[0].IPM_Technical_Project_Leader__c = technicalPL.id;
         globalprojects[0].IPM_Project_Gatekeeper__c = gateKeeper.id;
-        globalprojects[0].IPM_Finance_Member__c= financeMember.id;
+        globalprojects[0].IPM_Finance_Lead__c= financeMember.id;
         globalprojects[0].IPM_Project_Leader__c= pL.id;
            
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
@@ -144,7 +144,6 @@ private class IPM_ChatterFeedHelper_Test {
         regionalProjectList = createRegionalProjects(lstProjects);
         
                
-        createLocalProjectList(regionalProjectList);       
         
         
          //Bulk insert of project resources
@@ -209,7 +208,7 @@ private class IPM_ChatterFeedHelper_Test {
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
-            project.IPM_Finance_Member__c = financeMember.id;
+            project.IPM_Finance_Lead__c = financeMember.id;
             project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             project.IPM_Company_Card__c = lstProjects[0].IPM_Company_Card__c;
             project.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
@@ -247,7 +246,7 @@ private class IPM_ChatterFeedHelper_Test {
             project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
-            project.IPM_Finance_Member__c = UserInfo.getUserId();
+            project.IPM_Finance_Lead__c = UserInfo.getUserId();
             project.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             project.IPM_Company_Card__c = lstProjects[0].IPM_Company_Card__c;
@@ -274,7 +273,7 @@ private class IPM_ChatterFeedHelper_Test {
         lstProjects.addAll(lstLocalProjects);
         
         lstProjects =[Select Id,Name,IPM_Project_Name__c,IPM_Phase__c,IPM_Temporary_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,
-            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
+            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Lead__c,
             IPM_Technical_Project_Leader__c,IPM_Project_Type__c,IPM_Company_Card__c,IPMProject_Span__c,
             IPM_Target_Launch_Dates__c,IPM_Parent_Project__c from IPM_Project__c where id in:lstProjects];
         
@@ -499,6 +498,7 @@ private class IPM_ChatterFeedHelper_Test {
             
             Test.startTest();
             System.runAs(platformUser) {
+            createLocalProjectList(regionalProjectList);  
             regionalProjectList[0].IPM_Target_Launch_Dates__c = System.today() + 8;
             update regionalProjectList;
             
@@ -543,6 +543,7 @@ private class IPM_ChatterFeedHelper_Test {
             Test.startTest();  
             System.runAs(platformUser) {
             
+            createLocalProjectList(regionalProjectList);  
             Id  financeMasterRecordType = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();  
             IPM_Financial__c financial = IPM_TestFactory_Helper.createIPMFinancial(false);
             financial.Parent_Project__c = lstLocalProjects[0].Id;
@@ -762,7 +763,7 @@ private class IPM_ChatterFeedHelper_Test {
         initializeData();
         System.runAs(platformUser) {
             Test.startTest();   
-
+			createLocalProjectList(regionalProjectList);  
             IPM_ProjectTriggerHandler IPM_ProjectTriggerHandlerctrl = new IPM_ProjectTriggerHandler();
             IPM_ProjectTriggerHandlerctrl.onAfterInsert(regionalProjectList);
             IPM_ProjectTriggerHandlerctrl.onBeforeUpdate(regionalProjectList);
@@ -774,7 +775,7 @@ private class IPM_ChatterFeedHelper_Test {
                proj.IPM_Project_Leader__c = UserInfo.getUserId();
                proj.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
                proj.Deputy_Project_Leader__c = UserInfo.getUserId();
-               proj.IPM_Finance_Member__c = UserInfo.getUserId();
+               proj.IPM_Finance_Lead__c = UserInfo.getUserId();
                proj.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
                newProjectMap.put(proj.id,proj);
             }   

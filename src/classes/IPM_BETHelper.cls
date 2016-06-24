@@ -80,7 +80,19 @@ public without sharing class IPM_BETHelper {
         }
 
     }
-
+	// Update the BET current status on Project Object When BET statuus changed
+	public static void updateCurrentBETStatusOnProject(BET_BETWrapper BET,list<IPM_Project__c> associatedProjectList)
+	{
+		for(IPM_Project__c project : associatedProjectList)
+		{
+			project.BETCurrentStatus__c = BET.status;
+		} 
+		 
+		IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+		update associatedProjectList;
+		IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+	}
+	
     //Method to reset BET Milestone date missed alert 
     public static void resetMilestoneMissedFlag(Id BETId, BET_BETWrapper BET) {
         list < IPM_Project__c > lstPRoject = new list < IPM_Project__c > ();
