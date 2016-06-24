@@ -252,7 +252,6 @@ src/flows/IPM_Notify_Local_Rollout_Project_Created-15.flow
 src/flows/IPM_Notify_Regional_Rollout_Project_Created-13.flow
 src/labels
 src/labels/CustomLabels.labels
-src/labels/IPM.labels
 src/layouts
 src/layouts/IPM_Clusters__c-IPM Project Clusters Layout.layout
 src/layouts/IPM_Project_Document__c-IPM Project Document Layout.layout
@@ -314,11 +313,8 @@ src/pages/IPM_TaskList.page
 src/pages/IPM_TaskList.page-meta.xml
 src/permissionsets
 src/permissionsets/IPMNG_Basic.permissionset
-src/permissionsets/IPM_Business_Partners.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
-src/profiles
-src/profiles/Unilever - Force MultiApp Standard.profile
 src/reportTypes
 src/reportTypes/BETs_with_Lead_IPM.reportType
 src/reportTypes/IPM_Projects_with_IPM_Project_Documents_with_IPM_Project_Document_Sections.reportType
