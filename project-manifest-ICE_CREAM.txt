@@ -50,6 +50,7 @@ src/dashboards/Shared_Dashboards/KPIsDeVisita.dashboard
 src/flows
 src/flows/ICE_Flow_teste-3.flow
 src/flows/ICB_Populate_Field-1.flow
+src/flows/ICB_AssignSalesAreaEvent-1.flow
 src/groups
 src/groups/ICB_IceCreamBRBackOffice.group
 src/groups/ICB_IceCreamBRSalesRepresentative.group
