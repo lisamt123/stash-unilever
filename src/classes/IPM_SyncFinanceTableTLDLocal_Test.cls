@@ -19,6 +19,7 @@ private class IPM_SyncFinanceTableTLDLocal_Test {
     private static final String REGIONAL_PL = 'REGIONAL_PL';
     private static final String LOCAL_PL = 'LOCAL_PL';
     private static final String BLANK = '';
+    private static User globalProjectLeader=null;
     
    
     
@@ -36,7 +37,6 @@ private class IPM_SyncFinanceTableTLDLocal_Test {
         // Create an instance of admin user.
          User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
          
-         User globalProjectLeader = null;
          // Create an instances of standard Users for Allocation to Project Leaders.
          System.runAs(adminUser)
          {   
@@ -114,7 +114,6 @@ private class IPM_SyncFinanceTableTLDLocal_Test {
             localNonkeyProjectRollout1.isActive__c=true;
             rollouts.add(localNonkeyProjectRollout1);
             
-            rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
             IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localNonkeyProjectRollout2.Name= TESTCOMMENTS1_REG_LOC2;
             localNonkeyProjectRollout2.IPM_Rollout_Project__c = TESTCOMMENTS1_REG_LOC2;
@@ -160,8 +159,7 @@ private class IPM_SyncFinanceTableTLDLocal_Test {
 
 
         Date targetLanchDate1 = System.today().addYears(4);
-        User globalUser = [Select Id from User where LastName =:GLOBAL_PL limit 1]; 
-        System.runAs(globalUser) {
+        System.runAs(globalProjectLeader) {
             // update rollout1 with targetLanchDate1
             IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=: TESTCOMMENTS1_REG_LOC_K limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
@@ -219,8 +217,7 @@ private class IPM_SyncFinanceTableTLDLocal_Test {
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
         Date targetLanchDate1 = System.today().addYears(4);
-        User globalUser = [Select Id from User where LastName =:GLOBAL_PL limit 1]; 
-        System.runAs(globalUser) {
+        System.runAs(globalProjectLeader) {
             // update rollout1 with targetLanchDate1
             IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=: TESTCOMMENTS1_REG_LOC1 limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
@@ -286,8 +283,7 @@ private class IPM_SyncFinanceTableTLDLocal_Test {
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
         Date targetLanchDate1 = System.today().addYears(4);
-        User globalUser = [Select Id from User where LastName =:GLOBAL_PL limit 1]; 
-        System.runAs(globalUser) {
+        System.runAs(globalProjectLeader) {
             // update rollout1 with targetLanchDate1
             IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=: TESTCOMMENTS1_REG_LOC1 limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
