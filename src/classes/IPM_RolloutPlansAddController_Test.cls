@@ -76,7 +76,6 @@ private class IPM_RolloutPlansAddController_Test
     private static final string TestComments2 = 'TestComments2';
     private static final string TestComments3 = 'TestComments3';
     private static final string ID = 'id';
-    private static final string TEST_STR = 'test';
     private static final string TASK_NOT_CREATED='tasks not created';
     private static final string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
     private static final string MILESTONES_NOT_CREATED='milestones not crerated';
@@ -94,15 +93,12 @@ private class IPM_RolloutPlansAddController_Test
     {
        IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2 ;
-       IPM_RolloutPlansAddController irp3 ;
-       IPM_RolloutPlansAddController irp4 ;
+
        
 	   if(!isRegionalProj)  
         { 
           // creating multiple instances of   IPM_RolloutPlansAddController
           irp2= new IPM_RolloutPlansAddController();
-          irp3= new IPM_RolloutPlansAddController();
-          irp4= new IPM_RolloutPlansAddController();
         } 
        
        // setting values of GeographyWrapper parameters

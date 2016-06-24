@@ -20,7 +20,16 @@ public without sharing class IPM_ProjectJobHelper
     
     public static String CLASS_NAME = IPM_ProjectJobHelper.class.getName();
      /**************************************************************
-    * @description: Process Project information. Used for Setting Phases of various Projects, which internall invoke Related DMLs.
+    * @description: Process Project information. Used for Setting Phases of various Projects, which internally invoke Related DMLs.
+                    This class handles the core logic for :
+                    1) This Method forms the core logic for Transaction Management and is used for Driving process from Custom Settings. 
+                    2) Identifying next Phase based on various combinations of data from Project Type Custom Settings.
+                    3) Iterates throught the hierarchy and creates a data set of Hierarchical data for Projects.
+                    4) Derives the logic for how process should flow based on Data in Custom Setting and GatekeepingModels.
+                    5) Reads various configuration attributes like 'copy Phase to Local', 'Copy Phase To Regional',
+                        which identifies which project drives what projects.
+                    6) Sets the value for Projects when in Transaction Management. Values like 'Job Type' and Job Status is set from this method.    
+                    7) Reads Project Type Custom Setting to identify when to create regional and Local Projects. 
     * @param1 incomingProjectMap : Map of incoming Projects
     * @param2 qContext : Queueable Context.
     */
