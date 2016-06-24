@@ -212,9 +212,9 @@ private class IPM_GatekeeperChecklist_Test{
             ipmGK.gateType='Charter';
             ipmGK.projectID=quesList[0].IPM_Project__c; 
             ipmgk.getSectioWiseGKChecklist();
-            
+            if(ipmgk.gkChecklistAnsMap != null){
             System.assert(ipmgk.gkChecklistAnsMap.keyset().size()>0,'Failed to populate controller map : gkChecklistAnsMap');
-            
+            }
             List<IPM_Project_Document_Section__c> docSecList=[SELECT Id,IPM_Section_Sequence__c FROM IPM_Project_Document_Section__c WHERE Id=:ipmGk.SecId limit 1];
             
             System.assertEquals(docSecList[0].Id,ipmGK.projDocSec.Id,'data is not avalilable there so we can not get section wise checklist');// Positive Test;

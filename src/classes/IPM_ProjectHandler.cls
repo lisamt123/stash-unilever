@@ -1014,10 +1014,15 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         IPM_GroupManagement.deleteQueue(queueSet);
     }
      
-    
+    /***************************************************************************************************************************************
+    * @description:afterInsert
+    * This method is called iteratively for each record to be insert during a AFTER
+    * trigger.
+    * @para:sobject record
+    */
     public void afterInsert(SObject so)
     {
-         
+          //Used for future reference. This method has been included as the class implements the ITrigger interface
     }
     
     public void afterUpdate(SObject oldSo, SObject so)

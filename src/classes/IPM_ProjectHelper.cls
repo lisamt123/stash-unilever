@@ -852,6 +852,14 @@ public with sharing class IPM_ProjectHelper
     
     /**************************************************************
     * @description: Used for populating References on Financials,Creating financials based on certain Criteria.
+	* @ The incoming project is checked against the PM_ProjectType__c custom setting, to check if the refernces on financial object are to be updated
+	* @ Based on the whether the financial is KEY, NONKEY Or DEFAULT the postFixToUniqueFinancialKeySet is calculated.
+	* @ This information is fetched from the IPM_ProjectType__c custom setting based on the informations about the incoming project.
+	* @ projectToPostFixToUniqueFinancialKeySet is then prepared, which holds the projectId and its unique Financial Key set
+	* @ The the fields to update for different kind of financials is fetched from IPM_Project_Type using the projectToPostFixToUniqueFinancialKeySet
+	* @ The references on the incoming project is then updated based on whether the project spanc is local or regional (references like local_project__c, regional_Project and rollout references)
+	* @ Then copyover of financial is initiated for the required projects, based on project Type information
+	* @ After this the new financials are created as required.
     * @param1 incomingProjectMap : incoming Project Map  
     */
     
