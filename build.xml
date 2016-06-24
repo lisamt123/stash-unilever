@@ -192,6 +192,11 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
+		<runTest>IPM_FinancialControllerRegional_Test</runTest>
+		<runTest>IPM_GatekeeperChecklist_Test</runTest>
+		<runTest>IPM_List_Milestones_Test</runTest>
+		<runTest>IPM_RolloutPlansAddController_Test</runTest>
+		<runTest>IPM_ProjectSetUpController_Test</runTest>
 		<runTest>IPM_AddManageSection_Test</runTest>
 		<runTest>IPM_Approverlist_Test</runTest>
 		<runTest>IPM_AssesmentHandler_Helper_Test</runTest>
@@ -232,7 +237,6 @@
 		<runTest>IPM_EcoDesignSection_Test</runTest>
 		<runTest>IPM_FileUploadController_Test</runTest>
 		<runTest>IPM_FinancialActionStandards_Test</runTest>
-		<runTest>IPM_FinancialControllerRegional_Test</runTest>
 		<runTest>IPM_FinancialController_Test</runTest>
 		<runTest>IPM_FinancialCopyPasteGrid_Test</runTest>
 		<runTest>IPM_FinancialValueWrapper_Test</runTest>
@@ -243,7 +247,6 @@
 		<runTest>IPM_GateCMIController_Test</runTest>
 		<runTest>IPM_GateDocumentController_Test</runTest>
 		<runTest>IPM_GateDocumentRiskManagement_Test</runTest>
-		<runTest>IPM_GatekeeperChecklist_Test</runTest>
 		<runTest>IPM_Gate_Milestones_Test</runTest>
 		<runTest>IPM_GateRiskSection_Test</runTest>
 		<runTest>IPM_Gate_RollOuts_Controller_Test</runTest>
@@ -254,7 +257,6 @@
 		<runTest>IPM_HomePageController_Test</runTest>
 		<runTest>IPM_IECompatible_Test</runTest>
 		<runTest>IPM_ImageUploadController_Test</runTest>
-		<runTest>IPM_List_Milestones_Test</runTest>
 		<runTest>IPM_MilestoneHandler_Test</runTest>
 		<runTest>IPM_Milestone_Test</runTest>
 		<runTest>IPM_MyList_Test</runTest>
@@ -280,10 +282,8 @@
 		<runTest>IPM_ProjectResourceTriggerHandlerTest</runTest>
 		<runTest>IPM_ProjectRolloutHandler_Test</runTest>
 		<runTest>IPM_ProjectSearchCtrl_Test</runTest>
-		<runTest>IPM_ProjectSetUpController_Test</runTest>
 		<runTest>IPM_ProjectTriggerHandler_Test</runTest>
 		<runTest>IPM_Resource_Allocation_Test</runTest>
-		<runTest>IPM_RolloutPlansAddController_Test</runTest>
 		<runTest>IPM_RolloutPlansTableController_Test</runTest>
 		<runTest>IPM_RolloutTriggerHandler_Test</runTest>
 		<runTest>IPM_SyncFinanceTableTLDLocal_Test</runTest>
