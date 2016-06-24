@@ -2,9 +2,11 @@
 @Author Cognizant
 @name IPM_ProjectHandler
 @CreateDate 20/08/2014
-@Description Trigger Handler for the IPM_Project__c SObject.
+@Description Trigger Handler for the IPM_Project__c SObject. 
+This is used : in creation of project specific data like task ,milestones etc.
+               in validating /populating field values of  records , sending Rollout member access request , BET follow up request,chatter follow up and eco design sync etc.
 @Version 1.0
-@reference Project Job Queue
+@reference Project Job Queue 
 */
 public with sharing class IPM_ProjectHandler implements ITrigger
 {       
@@ -34,9 +36,13 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     * bulkBefore
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
     * any data required into maps prior execution of the trigger.
+    * Also used : to populate field values of records in trigger.new .
+                : to  check if project mandatory fields are filled in  during project creation ,updation
+                : for  setting bet milestones dates,release dates 
     */
     public void bulkBefore()
     {
+        //populating masterCategoryThrshMap from existing org data of IPM_Category_Thresholds__mdt
         masterCategoryThrshMap=IPM_Utils.getCategorythresholdMap();
         List<IPM_Project__c> projectAssociatedWithProjectTypesList = new List<IPM_Project__c>();
         
@@ -141,10 +147,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
     }
     
-    /***********************************************************************************************************************************
+    /***********************************************************************************************************************************************************
     * bulkAfter
-    * This method is called prior to execution of a AFTER trigger. Use this to cache
-    * any data required into maps prior execution of the trigger.
+    * This method is called prior to execution of a AFTER trigger. Use this to cache 
+    * any data required into maps prior execution of the trigger. \
+    * Use this if any processing required after records are saved to the database or saved record values are required.
+      This is used  in creation of project specifc data like tasks ,milestones etc. and  to send BET follow up request on phase change from Ideas to Feasibility.
     */
     public void bulkAfter()
     { 
@@ -288,6 +296,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                 // Follow Unfollow People
                                 for(String projectMember : ProjectMembersAPINames)
                                 {
+                                    // checking if team member's are filled in before enabling chatter follow up for them
                                     if(incomingProject.get(projectMember) !=null)
                                     {
                                         chatterFollowProjects.put(incomingProject.Id,incomingProject);
@@ -295,6 +304,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                     }
                                 }
             
+                                // populate countryFeedbackProjects map for Local projects with Marker ready gate
                                 if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && 
                                 incomingProject.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE)
                                 {
@@ -319,6 +329,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         }
                     }
                     
+                    //collecting projects for financialyear update on project  sustainability period change
                     if( (incomingProject.Sustainability_Period__c != oldProject.Sustainability_Period__c) )
                     {
                         String projectId = incomingProject.Id;
@@ -490,6 +501,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
        } 
             
        
+
        //IPM_ProjectShare handler=new IPM_ProjectShare(); //Initializing Project Share Class
        IPM_ProjectTriggerHandler PThandler = new IPM_ProjectTriggerHandler();//For Chatter and Processing Financial Records
            
@@ -785,6 +797,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
      }
    } 
    
+    /*******************************************************************************************************************************************
+    * beforeinsert : Use this method while  validating /populating values on newly created records, here records are not yet saved to the database. 
+    * This sets temporary Phase on the projects and marks project status for phase change .This is also used in setting the default answer for the gate  questions ,
+    * populating project category threshold based on category,category group and few other parameters.
+    */
     public void beforeInsert(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface
@@ -809,6 +826,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         if(insertedProject.IPM_Project_Name__c !=null && !String.isBlank(insertedProject.IPM_Project_Name__c))
         {
             insertedProject.Name = insertedProject.IPM_Project_Name__c;
+            //To add which category group the project belongs.
             if(insertedProject.IPM_Category_Text__c != null && customSettingCategory != null && customSettingCategory.containsKey(insertedProject.IPM_Category_Text__c))
             {
                 insertedProject.IPM_Category_Group__c = customSettingCategory.get(insertedProject.IPM_Category_Text__c).IPM_Category_Group__c;
@@ -827,6 +845,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 	            }	
             }
         }
+       
+        //populating project category threshold based on category,category group and few other parameters
         if(insertedProject.IPM_Category_Text__c !=null && insertedProject.IPM_Category_Group__c !=null && insertedProject.IPMProject_Span__c !=null && insertedProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL )
         {
             String mdtMapKey =  insertedProject.IPM_Category_Text__c + insertedProject.IPM_Category_Group__c + insertedProject.Market_Cluster_Name__c + insertedProject.IPMProject_Span__c;
@@ -849,6 +869,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         }
     }
     
+    /********************************************************************************************************************************************************
+    * beforeupdate : Use this method while  validating /populating values on newly updated records, here the record changes  are not yet saved to the database 
+    *  This is used to update  TLD field , get next phase for the project , add category group , process incoming project status and etc.
+    */
     public void beforeUpdate(SObject oldSo, SObject so)
     {   
         //This method has been included as the class implements the ITrigger interface
@@ -923,6 +947,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             }	
         }
         
+        //populating project  category  threshold based on category,category group and few other parameters
         if(incomingProject.IPM_Category_Text__c !=null && incomingProject.IPM_Category_Group__c !=null && incomingProject.IPMProject_Span__c !=null && incomingProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL  )
         {
             String mdtMapKey =  incomingProject.IPM_Category_Text__c + incomingProject.IPM_Category_Group__c + incomingProject.Market_Cluster_Name__c + incomingProject.IPMProject_Span__c;
@@ -992,7 +1017,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     
     public void afterInsert(SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface
+         
     }
     
     public void afterUpdate(SObject oldSo, SObject so)

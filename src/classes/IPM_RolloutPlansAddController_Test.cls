@@ -98,7 +98,8 @@ private class IPM_RolloutPlansAddController_Test
        IPM_RolloutPlansAddController irp4 ;
        
 	   if(!isRegionalProj)  
-        {
+        { 
+          // creating multiple instances of   IPM_RolloutPlansAddController
           irp2= new IPM_RolloutPlansAddController();
           irp3= new IPM_RolloutPlansAddController();
           irp4= new IPM_RolloutPlansAddController();
@@ -112,6 +113,7 @@ private class IPM_RolloutPlansAddController_Test
        User globalProjectLeader = null;
        User regionalProjectLeader = null;  
         
+       // getting project leaders  for global ,local and regional
        List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL,:REGIONAL_PL,:LOCAL_PL)];
         
        for(User lUser  :userList)
@@ -299,7 +301,7 @@ private class IPM_RolloutPlansAddController_Test
 		   ApexPages.currentPage().getParameters().put(ID,projectList[0].Id); 
            projectId = ApexPages.currentPage().getParameters().get(ID);
           
-         
+           // setting controller parameters
            irp.project=projectList[0];
            irp.globalCountries=GLOBAL_COUNTRIES;
            irp.regionalMco=REGIONAL_MCO;
@@ -366,6 +368,7 @@ private class IPM_RolloutPlansAddController_Test
           insert countryList;
           List<IPM_Project_Rollout__c> rollouLst = [Select id,IPM_Rollout_Project__c, (Select id,Country_Code__c,Project_Country__c,isActive__c from IPM_Countries_Local__r ) from IPM_Project_Rollout__c Where id =: regionalRolloutList[0].id];
           
+          // setting controller parameters
           irp.searchCountry=AFRICA;
           irp.searchRolloutCountry();
           irp.lstClusterWrappers.add(geoWrp);
@@ -390,6 +393,7 @@ private class IPM_RolloutPlansAddController_Test
 
           if(!isRegionalProj)
           {
+			   // setting controller parameters
 			  irp2.project=projectList[0];
 			  irp2.globalCountries=GLOBAL_COUNTRIES;
 			  irp2.regionalMco=REGIONAL_MCO;
@@ -446,6 +450,7 @@ private class IPM_RolloutPlansAddController_Test
 			  PageReference rolloutPlansActual = irp.redirectPage();
 			  irp.cancel();
 			  
+			  // checking if  page redirection  is correct 
 			  System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'Url is not as expected');
 			  
 			  expectedPageRef = rolloutPlansExpected;
