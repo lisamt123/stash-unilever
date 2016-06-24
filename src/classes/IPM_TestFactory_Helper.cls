@@ -2131,7 +2131,7 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> questionnaireMap = new Map<String,List<Object>>{RECORD_TYPE_ID => new List<Id>(),
             'IPM_Charter_Score__c' => new List<Integer>(),'IPM_Contract_Score__c' => new List<Integer>(),'IPM_Market_Deployment_Score__c' => new List<Integer>(),'IPM_Market_Ready_Score__c' => new List<Integer>(),
-            'Is_Master__c' => new List<Boolean>(),IPM_PROJECT => new List<Id>(),'IPM_Score__c' => new List<Integer>()};
+            'Is_Master__c' => new List<Boolean>(),IPM_PROJECT => new List<Id>(),'IPM_Score__c' => new List<Integer>(),'DependentFieldAPIName__c' => new List<String>()};
         
         for(Id recordId : recordIdList)
         {

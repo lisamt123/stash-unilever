@@ -348,7 +348,7 @@ private class IPM_SyncFinanceTableTLD_Test
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
-    static void setupIdeasPhaseData(){
+/*    static void setupIdeasPhaseData(){
         // Create an instance of admin user.
          User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
          
@@ -738,7 +738,7 @@ private class IPM_SyncFinanceTableTLD_Test
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-    static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated() {
+/*    static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated() {
         setupIdeasPhaseData();
 
 
@@ -797,7 +797,7 @@ private class IPM_SyncFinanceTableTLD_Test
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-    static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToEarliest() {
+/*    static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToEarliest() {
         setupIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
@@ -864,7 +864,7 @@ private class IPM_SyncFinanceTableTLD_Test
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-    static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest() {
+ /*   static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest() {
         setupIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
@@ -926,7 +926,7 @@ private class IPM_SyncFinanceTableTLD_Test
                 }
             }
         }
-    } 
+    } */
     /*
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
