@@ -4,12 +4,18 @@ src/assignmentRules/Case.assignmentRules
 src/classes
 src/classes/CEC_CaseTransferController.cls
 src/classes/CEC_CaseTransferController.cls-meta.xml
+src/classes/CEC_CaseTriggerHelper.cls
+src/classes/CEC_CaseTriggerHelper.cls-meta.xml
 src/classes/cec_EmailMessageHelper.cls
 src/classes/cec_EmailMessageHelper.cls-meta.xml
 src/classes/CEC_FulfilmentHelper.cls
 src/classes/CEC_FulfilmentHelper.cls-meta.xml
 src/classes/CEC_FulfilmentTriggerHandler.cls
 src/classes/CEC_FulfilmentTriggerHandler.cls-meta.xml
+src/classes/CEC_LiveAgentControllerSpanish.cls
+src/classes/CEC_LiveAgentControllerSpanish.cls-meta.xml
+src/classes/CEC_LiveAgentControllerSpanishTest.cls
+src/classes/CEC_LiveAgentControllerSpanishTest.cls-meta.xml
 src/email
 src/email/CEC_Emails_Bangladesh-meta.xml
 src/email/CEC_Emails_Pakistan-meta.xml
@@ -19,25 +25,37 @@ src/email/CEC_Emails_South_Africa/CEC_SA_Courier_Email.email-meta.xml
 src/email/CEC_Emails_South_Africa-meta.xml
 src/email/CEC_Emails_Thailand-meta.xml
 src/email/CEC_Emails_Vietnam-meta.xml
+src/flows
+src/flows/Create_and_Update_Claim_Notes-3.flow
 src/labels
 src/labels/CEC.labels
 src/layouts
+src/layouts/CEC_Claim_Note__c-Claim Note Layout.layout
 src/layouts/cec_Enclosure__c-Enclosure Layout.layout
 src/layouts/cec_Fulfilment__c-Fulfilment Layout.layout
+src/layouts/CEC_Retrieval_Request__c-Retrieval Request Layout%28Read Only%29.layout
+src/layouts/CEC_Retrieval_Request__c-Retrieval Request Layout.layout
 src/objects
 src/objects/Case.object
 src/objects/cec_Alert_Action__c.object
 src/objects/cec_Alert_Rule__c.object
+src/objects/CEC_Claim_Note__c.object
 src/objects/cec_Enclosure__c.object
 src/objects/cec_Fulfilment__c.object
+src/objects/cec_Org_Settings__c.object
 src/objects/CEC_Retrieval_Request__c.object
+src/objects/TH1__Draft__c.object
 src/objects/User.object
+src/package.xml
 src/pages
 src/pages/CEC_CaseTransfer.page
 src/pages/CEC_CaseTransfer.page-meta.xml
+src/pages/CEC_PostChatFormSpanish.page
+src/pages/CEC_PostChatFormSpanish.page-meta.xml
 src/permissionsets
 src/permissionsets/CEC_Business_Admin.permissionset
 src/permissionsets/CEC_Cheque_Process.permissionset
+src/permissionsets/CEC_Claim_User.permissionset
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_Product_Fulfilment.permissionset
 src/permissionsets/CEC_Retrieval_Process.permissionset
@@ -87,3 +105,11 @@ src/sharingRules/Third_Party_Survey__c.sharingRules
 src/workflows
 src/workflows/Case.workflow
 src/workflows/CEC_Retrieval_Request__c.workflow
+
+
+
+
+
+
+
+
