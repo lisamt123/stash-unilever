@@ -326,7 +326,7 @@
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_Threshold_Status}</div> 
                                 </div>
-                                <div class= "{!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'col-sm-3 pl0 thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'col-sm-3 pl0 thBlueClr',''))}">
+                                <div class= "col-sm-3 pl0 {!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'thBlueClr',''))}">
                                     {!project.IPM_Threshold_Status__c} 
                                 </div>
                             </div>

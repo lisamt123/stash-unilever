@@ -31,7 +31,7 @@ private class IPM_ProjectHandler_Test {
     private final static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
     private final static String REGIONAL = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
     private final static String LOCAL = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-   
+    private static IPM_Clusters__c cluster;
      
     /***********************************
     Description of the purpose of the method. 
@@ -50,6 +50,9 @@ private class IPM_ProjectHandler_Test {
         technicalPLUser = IPM_TestFactory_Helper.createUser(true);
         gatekeeperUser = IPM_TestFactory_Helper.createUser(true);
         adminUser = IPM_TestFactory_Helper.createUserAdmin(true);
+        cluster = new IPM_Clusters__c();
+        cluster.name = 'TESTCLUSTER';
+        insert cluster;
         
         project = IPM_TestFactory_Helper.createIPMProject(false);
         project.Name = 'TestCom-ments';
@@ -72,9 +75,12 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Category_Text__c = 'Laundry';
         project.IPM_Current_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
         project.Sustainability_Period__c = '3';
+        project.IPM_Project_Y3iTO__c = 3000;
+        project.IPM_Cluster__c = cluster.id;
         insert project;
         
         system.assertEquals(project.IPM_Project_Name__c ,[Select IPM_Project_Name__c from IPM_Project__c where Id=: project.Id ].IPM_Project_Name__c ,'Failed to insert project with the specified name.');
+        system.assertEquals(project.IPM_Project_Y3iTO__c ,[Select IPM_Sum_Y3iTO__c from IPM_Clusters__c where id=: cluster.id].IPM_Sum_Y3iTO__c ,'Failed to add up value of Y3iTO.');
         
         IPM_Milestone__c milestone = new IPM_Milestone__c();
         milestone.IPM_Project__c = project.Id;
