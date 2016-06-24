@@ -32,11 +32,14 @@ private class IPM_OTIF_Report_Batch_Test {
     private static final string GREEN='Green';  
 
     /**********************************************************************
-    *  @Description: Test Method to initialize data for the other test methods
-    *  @name : initializeData1
-    *  @param : none
-    *  @return : none
+    *  @Description: Test Method to create generic project and other related objects data that will be used by other methods of this test class
+    				 This method will prepare test records for IPM_Project__c, IPM_Milestone__c, IPM_Project Document etc, all these records will be used to populate
+    				 the IPM Analytic records.
+    *  @name       : initializeData1
+    *  @param      : none
+    *  @return     : none
     *************************************************************************/
+    // Method to Initialize Project related data for 
     static void initializeData1(){
               
             systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
