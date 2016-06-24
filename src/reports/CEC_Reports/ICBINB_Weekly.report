@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CREATED_DATEONLY</field>
+    </columns>
+    <columns>
+        <field>CASE_NUMBER</field>
+    </columns>
+    <columns>
+        <field>ORIGIN</field>
+    </columns>
+    <columns>
+        <field>Case.Product_UPC__c</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Case.Reason_L5_desc__c</field>
+    </columns>
+    <columns>
+        <field>Case.Production_Code__c</field>
+    </columns>
+    <columns>
+        <field>SUBJECT</field>
+    </columns>
+    <columns>
+        <field>Case.Used_Product_Previously__c</field>
+    </columns>
+    <description>ICBINB! Weekly</description>
+    <filter>
+        <criteriaItems>
+            <column>Case.Case_Market__c</column>
+            <operator>equals</operator>
+            <value>north america</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Case.Case_Brand__c</column>
+            <operator>equals</operator>
+            <value>ICBINB!</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Case.Reason_L1_desc__c</column>
+            <operator>notEqual</operator>
+            <value>Other</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>ICBINB! Weekly</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList@Case.CEC_Product__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <interval>INTERVAL_LASTWEEK</interval>
+    </timeFrameFilter>
+</Report>
