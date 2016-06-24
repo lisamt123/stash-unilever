@@ -563,6 +563,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.Manager__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Type</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -758,12 +763,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>User.ICB_CPF__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.ICB_Matricula__c</field>
+        <field>User.ICB_Registration__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -940,7 +940,6 @@
         <recordType>Event.ICB_IceCreamVisit</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>EditEvent</name>
