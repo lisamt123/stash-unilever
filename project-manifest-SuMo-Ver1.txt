@@ -11,3 +11,6 @@ src/triggers/SuMoSuMo_Job_CoursesTrigger.trigger-meta.xml
 src/triggers/SuMoSuMo_PBS_CourseTrigger.trigger
 src/triggers/SuMoSuMo_PBS_CourseTrigger.trigger-meta.xml
 src/workflows/PBS_Learning_Assignment__c.workflow
+src/tabs/SuMo_Job_Courses__c.tab
+src/tabs/SuMo_PBS_Course__c.tab
+src/permissionsets/Motivation_Designer_Supplementary.permissionset
