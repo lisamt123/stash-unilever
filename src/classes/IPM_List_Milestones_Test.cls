@@ -57,9 +57,22 @@ private class IPM_List_Milestones_Test {
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
         
         //Get the project data
-        IPM_Project__c proj = [SELECT Id, Name, IPM_Target_Launch_Dates__c from IPM_project__c WHERE Name IN: projectNameSet ];
+        IPM_Project__c proj = [SELECT Id, Name, IPM_Target_Launch_Dates__c, IPM_Project_Type__c, IPM_GateKeeping_Model__c, IPMProject_Span__c, IPM_Phase__c, IPM_CompanyCardText__c from IPM_project__c WHERE Name IN: projectNameSet ];
         // get the running user information
-        User globalUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];  
+        User globalUser = [Select Id, Name, LastName from User where LastName = 'PLATFORM_USER' limit 1]; 
+        
+        List<IPM_Project__c> newProject =IPM_TestFactory_Helper.createIPMProjectList(false,1);
+            
+        newProject[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+        newProject[0].IPM_Parent_Project__c = proj.id;
+        newProject[0].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT; 
+        newProject[0].IPM_Project_Leader__c = globalUser.Id;
+        newProject[0].IPM_Project_Name__c = 'TestPrj1';
+        newProject[0].IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+        newProject[0].IPMProject_Span__c = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+        newProject[0].IPM_CompanyCardText__c = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+                    
+        insert newProject; 
         
         System.runAs(globalUser)
         {
@@ -73,6 +86,8 @@ private class IPM_List_Milestones_Test {
             mileList.isCompleteMilestones = 'f'; 
             mileList.checkForOTIFWarning();
             
+            String link = 'Go To Project Parameters';
+            String updatedLink = 'Go To Rollout Plan';
             // Methods to sort the milestones 
             mileList.toggleSortMilestones();
             mileList.toggleSortPhases();
@@ -80,6 +95,12 @@ private class IPM_List_Milestones_Test {
             List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
             System.assert(milestoneList.size() > 0, 'milestones succeefully not created');
             
+            System.assert(mileList.strLink.contains(link),'strlink is not the default link.'+mileList.strLink);            
+	        
+            mileList.projectObj = newProject[0];
+            mileList.toggleSortMilestones();
+           
+            System.assert(mileList.strLink.contains(updatedLink),'strlink does not contain rollout plan link.'+mileList.strLink);
             
             mileList.filteredphaseM();
             mileList.filterCompleteMilestones();

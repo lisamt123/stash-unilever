@@ -11,12 +11,10 @@ private class IPM_ProjDocSectionController_Test{
     private static final string PROJ_RESOURCE_NOT_UPDATED = 'project resource not updated properly';
     private static final string PROJ_DOC_SEC_ID_STR = 'projdocsecid';
 	private static final string SAVE_FAILED = 'save failed';
-    private static final string GATE_DOC_SECTION_ACCESS_2 = 'trade_promotion_strategy,country_feedback_requirements';
     private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     private static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
     private static IPM_Project_Document_Section_Content__c sectionContent;
-    private static List<IPM_Gate_Document_Section_Access__c> customSettingDataList = new List<IPM_Gate_Document_Section_Access__c>();
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static IPM_Project_Resource__c ipmProjectResource; 
     private static List<IPM_Gate_CMI__c> gateCMI = new List<IPM_Gate_CMI__c>();
