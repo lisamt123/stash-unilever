@@ -103,7 +103,7 @@ private class IPM_MyList_Test{
             }
             insert projResourceList;
             
-            List<IPM_Project_Resource__c> projResList = [SELECT Id,IPM_Role_Type__c from IPM_Project_Resource__c ];
+            List<IPM_Project_Resource__c> projResList = [SELECT Id,IPM_Role_Type__c from IPM_Project_Resource__c where IPM_Project__r.Name in:projectNameSet limit 100];
             system.assertEquals('BD', projResList[0].IPM_Role_Type__c,'BD user is not created');
         
         return taskList;
@@ -188,12 +188,10 @@ private class IPM_MyList_Test{
             list<IPM_Task__c> overdueTask;
             list<IPM_Task__c> todayTask;
             list<IPM_Task__c> sevendaysTask;
-            list<IPM_Task__c> laterTask;
             list<IPM_Task__c> overdueTaskQuery;
             list<IPM_Task__c> todayTaskQuery;
             list<IPM_Task__c> sevenDaysQry;
             list<IPM_Task__c> completedTaskQry;
-            list<IPM_Task__c> completedTask;
             list<Date> setDate;
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
             list<IPM_Task__c> updatedTaskTest = new list<IPM_Task__c> ();
@@ -229,8 +227,6 @@ private class IPM_MyList_Test{
             overdueTask = taskListTest.getOverduetasksSample();
             todayTask = taskListTest.getprojectTaskssample();
             sevendaysTask = taskListTest.getNextSevenTasks();
-            laterTask = taskListTest.getLaterTasks();
-            completedTask = taskListTest.getcompletedTasks();
             taskListTest.showAllOverDue();
             taskListTest.todayTasksize();
             taskListTest.showAllNextSevenDays();
@@ -260,7 +256,6 @@ private class IPM_MyList_Test{
     */ 
      private static testmethod void myTaskCompletedTest(){
         Test.startTest();
-            list<IPM_Task__c> completedTask;
             list<Date> setDate;
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
             list<IPM_Task__c> updatedTaskTest = new list<IPM_Task__c> ();
@@ -288,7 +283,6 @@ private class IPM_MyList_Test{
                 taskListTest.getprojectTaskssample();
                 taskListTest.getNextSevenTasks();
                 taskListTest.getLaterTasks();
-                completedTask = taskListTest.getcompletedTasks();
                 taskListTest.showCompletedTasks();
                 list<IPM_Task__c> taskListResult = [Select Id from IPM_Task__c where IPM_Completed__c = true and IPM_Project__c in:projIdSet limit 1000];
                 system.assertEquals(taskListResult.size(),4,'4 tasks are not marked as completed');

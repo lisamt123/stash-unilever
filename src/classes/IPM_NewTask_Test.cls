@@ -597,11 +597,8 @@ private class IPM_NewTask_Test{
                  newTask.tasks = task;
                  newTask.projectObject = projDetailList11[0];
                  task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
-                  List<IPM_Project_Metadata__mdt> metaDataListExisting = IPM_TestFactory_Helper.createIPMProjectMetadata();
-                 List<IPM_Project_Metadata__mdt> metaDataList = [SELECT IPM_ApplicablePhases__c,IPM_ApplicableGates__c FROM IPM_Project_Metadata__mdt];
-                 system.assertEquals(!metaDataList.isEmpty(),true,'Task Phase List for standard tasks not populated as expected');
                  List<SelectOption> optionPhaseList= newTask.getPhaselist();
-                 List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
+                 system.assertEquals(task.IPM_Phase__c!= null,true,'Task Phase List for standard tasks not populated as expected');
             }	 
             
         Test.stopTest();      
@@ -649,10 +646,11 @@ private class IPM_NewTask_Test{
              	 newTask.selectedSectionId = ipmSection.id;
              	 newTask.SectionToExtenalIdSectionMap.put(ipmSection.id,'Idea_Graphic');
              	 List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
+             	 system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
              	 
              	 task.IPM_Function__c = 'BD';
              	 string functionalOwner = newTask.getFunctionalRoleOwner();
-             	 
+             	 system.assertEquals(string.isNotBlank(task.IPM_Function__c),true,'Task owner List for standard tasks not populated as expected'); 
             }  
             
         Test.stopTest();      
