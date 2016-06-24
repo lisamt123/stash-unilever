@@ -188,8 +188,8 @@ global with sharing class Core_IC_LandingPage{
     */
     private static Core_IC_WrapperUtility.IdeaLandingPageResponse processIdeasOfTheWeek(Core_CA_ApplicationWrapper appWrapperObj){ 
        Core_IC_WrapperUtility.IdeaLandingPageResponse ObjIdeaLandingPageResponse=new Core_IC_WrapperUtility.IdeaLandingPageResponse(); 
-       List<Core_IC_WrapperUtility.IdeasOfTheWeek> lstIdeasOfTheWeek = new List<Core_IC_WrapperUtility.IdeasOfTheWeek>();
-       List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
+      // List<Core_IC_WrapperUtility.IdeasOfTheWeek> lstIdeasOfTheWeek = new List<Core_IC_WrapperUtility.IdeasOfTheWeek>();
+     //  List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
        try{
             List<IdeaTheme> lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id FROM IdeaTheme WHERE Status=:strActive ORDER BY Promoted__c DESC,CreatedDate DESC];
             List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c FROM IdeaTheme WHERE Status=:strClosed ORDER BY Promoted__c DESC,CreatedDate DESC];
@@ -304,13 +304,13 @@ global with sharing class Core_IC_LandingPage{
     */
     private static Core_IC_WrapperUtility.IdeaLandingPageResponse processMyUpdates(Core_CA_ApplicationWrapper appWrapperObj){
        Core_IC_WrapperUtility.IdeaLandingPageResponse ObjIdeaLandingPageResponse=new Core_IC_WrapperUtility.IdeaLandingPageResponse(); 
-       List<Core_IC_WrapperUtility.MyUpdates> lstMyUpdates = new List<Core_IC_WrapperUtility.MyUpdates>(); 
-       List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
+     //  List<Core_IC_WrapperUtility.MyUpdates> lstMyUpdates = new List<Core_IC_WrapperUtility.MyUpdates>(); 
+      // List<IdeaTheme> lstIdeaTheme=new List<IdeaTheme>();
        try{
            
             List<IdeaTheme> lstActiveIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c,Id FROM IdeaTheme WHERE Status=:strActive ORDER BY Promoted__c DESC,CreatedDate DESC];
             List<IdeaTheme> lstClosedIdeaTheme=[SELECT Description,EndDate,Idea_Themes_Banner__c,Title,Promoted__c FROM IdeaTheme WHERE Status=:strClosed ORDER BY Promoted__c DESC,CreatedDate DESC];
-            List<Idea> lstIdea=new List<Idea>(); 
+           // List<Idea> lstIdea=new List<Idea>(); 
             
             Set<Id> setActiveId=new Set<Id>();
             for(IdeaTheme i:lstActiveIdeaTheme){
