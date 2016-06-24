@@ -1,11 +1,15 @@
 .THIS .shareWidth{
-        width: 35px;
+    width: 35px;
     height: 35px;
+    margin-top: -4px;
 }
 .THIS.mainContent{
     background-color:white;
     padding-left: 8px;
     padding-right: 8px;
+}
+.THIS .height{
+        margin-bottom: 3px;
 }
 .THIS hr{
     margin: 0rem;
@@ -74,6 +78,7 @@
     padding-bottom: 5px;
     margin-left: 225px;
     margin-top: -38px;
+        margin-bottom: -2px;
 }
 .THIS .tilePaddingTitle{
     padding-top: 13px;

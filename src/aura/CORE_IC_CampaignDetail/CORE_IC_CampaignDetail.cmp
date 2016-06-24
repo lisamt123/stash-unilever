@@ -145,7 +145,7 @@
                             <aura:if isTrue="{!v.recordDetail.ActiveStatus}">
                                 <div class="slds-no-flex">
                                     <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none share_top_button shareWidth" onclick="{!c.showShare}">
-                                        <img src="/resource/CORE_IC_IdeasLigthtning/utility/share_60.png" class="slds-button__icon slds-button__icon--hint slds-button__icon--small"/>
+                                        <img src="/resource/CORE_IC_IdeasLigthtning/utility/share_60.png" class="slds-button__icon slds-button__icon--hint slds-button__icon--small height"/>
                                     </button>
                                     <aura:if isTrue="{!v.share}">
                                         <div  id="showOptions" class="slds-dropdown slds-dropdown--right  " >
