@@ -268,6 +268,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Benelux</fullName>
                 <default>false</default>
             </picklistValues>
@@ -320,6 +324,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
@@ -348,7 +356,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -580,6 +596,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Bangladesh_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Bangladesh Queue</label>
+        <queue>CEC_Bangladesh_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Benelux_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Benelux Queue</label>
@@ -717,6 +742,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Pakistan_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Pakistan Queue</label>
+        <queue>CEC_Pakistan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Philippines_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Philippines Queue</label>
@@ -786,6 +820,24 @@
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
         <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Thailand_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Thailand Queue</label>
+        <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Vietnam_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Vietnam Queue</label>
+        <queue>CEC_Vietnam_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

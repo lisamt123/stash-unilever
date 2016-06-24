@@ -4,6 +4,11 @@
     <masterLabel>Custom Dashboards</masterLabel>
     <shares>
         <accessLevel>View</accessLevel>
+        <sharedTo>AllInternalUsers</sharedTo>
+        <sharedToType>Organization</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
         <sharedTo>craig.keenan@unilever.mail.onmicrosoft.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>

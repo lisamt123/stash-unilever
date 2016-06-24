@@ -237,6 +237,14 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- CPF --></label>
+        <name>ICB_CPF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Matricula --></label>
+        <name>ICB_Matricula__c</name>
+    </fields>
+    <fields>
         <label><!-- Brand Name --></label>
         <name>IPM_Brand_Name__c</name>
     </fields>
@@ -403,6 +411,14 @@
         <picklistValues>
             <masterLabel>Swedish</masterLabel>
             <translation><!-- Swedish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thai</masterLabel>
+            <translation><!-- Thai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnamese</masterLabel>
+            <translation><!-- Vietnamese --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -607,6 +623,10 @@
             <translation><!-- Baltics --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Benelux</masterLabel>
             <translation><!-- Benelux --></translation>
         </picklistValues>
@@ -659,6 +679,10 @@
             <translation><!-- North America --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Philippines</masterLabel>
             <translation><!-- Philippines --></translation>
         </picklistValues>
@@ -687,8 +711,16 @@
             <translation><!-- Sri Lanka --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1377,6 +1409,10 @@
     <fields>
         <label><!-- Sustainability Expert --></label>
         <name>Sustainability_Expert__c</name>
+    </fields>
+    <fields>
+        <label><!-- TaskRay Last Use --></label>
+        <name>TaskRay_Last_Use__c</name>
     </fields>
     <fields>
         <label><!-- User License --></label>
