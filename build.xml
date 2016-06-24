@@ -974,6 +974,38 @@
       <runTest>BET_UpsertBETControllerTest</runTest>
     </sf:deploy>
   </target>
+<!-- ***************************************************************************** -->
+  <!-- Validate the  set of Hubble meta-data before deployment                          -->
+  <!-- ***************************************************************************** -->
+  <target name="validateCPA">
+    <echo level="info">Testing the deployment of Hubble</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+      <runTest>CPA_batchProrfAgeUpdate_test</runTest>
+      <runTest>CPA_ReturnController_Test</runTest>
+      <runTest>CPA_SelectRecordType_Test</runTest>
+      <runTest>CPA_ReturnController_Test</runTest>
+      <runTest>CPA_Req_Deli_and_Key_Contacts_util_Test</runTest>
+      <runTest>CPA_PWORF_PWO_UtilMethods_Test</runTest>
+      <runTest>CPA_PWORF_Aging_Schedular_Test</runTest>
+      <runTest>CPA_InformationController_Test</runTest>
+      <runTest>CPA_Contract_UtilMethods_Test</runTest>
+      <runTest>CPA_Commercials_Threshold_Test</runTest>
+      <runTest>CPA_CancelController_Test</runTest>
+      <runTest>CPA_AttchemntUtilController_Test</runTest>
+      <runTest>Oblix_SOWNonCampaignCreateCtrl_Test</runTest>
+    </sf:deploy>
+  </target>
   <!-- ***************************************************************************** -->
   <!-- Performing the tests and deploy of Meta-data                                  -->
   <!-- ***************************************************************************** -->
