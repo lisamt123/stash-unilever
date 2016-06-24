@@ -138,7 +138,7 @@ private class IPM_GatekeeperChecklist_Test{
 			// Share Master Project to Project Leader
         	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser});
     		System.runAs(globalUser) {
-	    		 List<IPM_Questionnaire__c> ipmQuestionnaireLst = [SELECT Id,RecordTypeId,DependentFieldAPIName__c,IPM_Project__c,IPM_Question__c FROM IPM_Questionnaire__c where Is_Master__c = true];
+
 	    		 betDataInitializer();
 	    		 projectListObj = [Select Id, Name,BETCurrentStatus__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
            		 (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID, RecordTypeID, IPM_Project__c,DependentFieldAPIName__c,BETCurrentStatus__c from IPM_Questionnaires__r)
