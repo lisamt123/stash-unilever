@@ -940,7 +940,6 @@
         <recordType>Event.ICB_IceCreamVisit</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>EditEvent</name>

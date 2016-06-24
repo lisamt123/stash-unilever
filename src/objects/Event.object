@@ -53,6 +53,14 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Ice_Cream</fullName>
+        <fields>Subject</fields>
+        <fields>WhatId</fields>
+        <fields>Location</fields>
+        <fields>ICB_Status__c</fields>
+        <label>Ice Cream</label>
+    </compactLayouts>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>ActivityDate</fullName>
