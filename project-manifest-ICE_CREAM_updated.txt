@@ -1,6 +1,4 @@
 src
 src/permissionsets
-src/permissionsets/ICB_BackOffice_Salesforce.permissionset
-src/permissionsets/ICB_BackOffice_Salesforce_Plataform.permissionset
-src/permissionsets/ICB_Sales_Representative_Salesforce.permissionset
-src/permissionsets/ICB_Sales_Representative_Standard.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce_Plataform.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce.permissionset
