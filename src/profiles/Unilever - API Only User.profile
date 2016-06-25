@@ -2965,6 +2965,16 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <recordType>TASKRAY__Project_Task__c.Strategy</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>TASKRAY__Project_Task__c.VIP</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
         <recordType>TASKRAY__Project__c.Strategy</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

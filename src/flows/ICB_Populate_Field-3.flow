@@ -11,7 +11,7 @@
         <label>Assign Sales Area</label>
         <locationX>100</locationX>
         <locationY>300</locationY>
-        <actionName>ICB_Assign_Sales_Area_Event</actionName>
+        <actionName>ICB_AssignSalesAreaEvent</actionName>
         <actionType>flow</actionType>
         <inputParameters>
             <processMetadataValues>

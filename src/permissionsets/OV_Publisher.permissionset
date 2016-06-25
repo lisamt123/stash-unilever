@@ -697,6 +697,14 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>TASKRAY__Project_Task__c.Strategy</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>TASKRAY__Project_Task__c.VIP</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>TASKRAY__Project__c.Strategy</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

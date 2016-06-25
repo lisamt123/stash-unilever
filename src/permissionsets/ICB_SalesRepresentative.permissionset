@@ -72,7 +72,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.Standard</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.UID_Primary_Account</recordType>
@@ -356,7 +356,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.Standard_Contact</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>ContentVersion.One_View</recordType>
@@ -695,6 +695,14 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>TASKRAY__Project_Task__c.Strategy</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>TASKRAY__Project_Task__c.VIP</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>TASKRAY__Project__c.Strategy</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -846,7 +854,6 @@
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>EditEvent</name>
