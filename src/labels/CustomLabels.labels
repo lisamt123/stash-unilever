@@ -10309,7 +10309,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Phase_Gate</shortDescription>
-        <value>Phase &amp; Gate document</value>
+        <value>Document &amp; Phase</value>
     </labels>
     <labels>
         <fullName>IPM_Phase_Label</fullName>
@@ -12935,7 +12935,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ipmFinSummaryGMbps</shortDescription>
-        <value>GM Y1 bps vs DNDS</value>
+        <value>GM Y1 vs Av Cannibalised GM bps</value>
     </labels>
     <labels>
         <fullName>ipmFinSummaryIRR</fullName>
@@ -15730,5 +15730,60 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Used when No Sub-Sector is selected</shortDescription>
         <value>No Sub-Sector is selected</value>
     </labels>
-    
+	<labels>
+        <fullName>IPM_Above_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Above_Threshold</shortDescription>
+        <value>Above Threshold</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Category_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Category Threshold</shortDescription>
+        <value>Category Threshold</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Exempt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exempt</shortDescription>
+        <value>Exempt</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Y3_iTO_notation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Y3 iTO (mn €) :</shortDescription>
+        <value>Y3 iTO (mn €) :</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Before_Rollout_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Before_Rollout_TLDMilestone_HelpText</shortDescription>
+        <value>Until your Rollout Plan is created you can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of your earliest MCO rollout - you can change the TLD of this project via your Rollout Plan.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please contact the relevant Regional Project Leader.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_LocalRollout_Operational</shortDescription>
+        <value>You can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
 </CustomLabels>
