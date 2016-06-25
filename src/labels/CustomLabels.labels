@@ -15709,5 +15709,26 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM Download with Appendix</shortDescription>
         <value>Download with Appendix</value>
     </labels>
+	<labels>
+        <fullName>IPM_Download_without_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download without Appendix</shortDescription>
+        <value>Download without Appendix</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Threshold_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Threshold Status</shortDescription>
+        <value>Threshold Status</value>
+    </labels>
+	<labels>
+        <fullName>IPM_No_Sub_Sector_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Sub-Sector is selected</shortDescription>
+        <value>No Sub-Sector is selected</value>
+    </labels>
     
 </CustomLabels>
