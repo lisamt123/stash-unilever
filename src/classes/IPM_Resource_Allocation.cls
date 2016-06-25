@@ -911,7 +911,6 @@ public with sharing class IPM_Resource_Allocation {
     {
         String project_Leader=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
         String function_Leader = IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;
-        map<id,id>uniqueUsers=new map<id,id>();
         
         list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
         string uQuery=IPM_ConstantUtils.BLANK; 
