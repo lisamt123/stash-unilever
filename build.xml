@@ -311,7 +311,7 @@
       deployRoot="${basedir}/test"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-	<<runTest>IPM_AddManageSection_Test</runTest>
+	<runTest>IPM_AddManageSection_Test</runTest>
 	<runTest>IPM_Approverlist_Test</runTest>
 	<runTest>IPM_AssesmentHandler_Helper_Test</runTest>
 	<runTest>IPM_AssortmentStrategy_Test</runTest>
