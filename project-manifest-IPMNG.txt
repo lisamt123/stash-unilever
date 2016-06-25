@@ -337,5 +337,3 @@ src/workflows/IPM_Project_Document__c.workflow
 src/workflows/IPM_Project_Rollout__c.workflow
 src/workflows/IPM_Project__c.workflow
 src/workflows/IPM_Questionnaire__c.workflow
-undeploy
-undeploy/destructiveChanges.xml
