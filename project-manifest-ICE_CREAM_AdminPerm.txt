@@ -1,2 +1,4 @@
 src/permissionsets
 src/permissionsets/ICB_Admin.permissionset
+src/permissionsets/ICB_BackOffice.permissionset
+src/permissionsets/ICB_SalesRepresentative.permissionset
