@@ -15646,5 +15646,68 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
         <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 – DNDS GM Y1</value>
     </labels>
+	<labels>
+        <fullName>IPM_BelowThreshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThreshold</shortDescription>
+        <value>Below Threshold</value>
+    </labels>
+	<labels>
+        <fullName>IPM_No_Market_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Market is selected</shortDescription>
+        <value>No Market is selected</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Export_Milestones</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export Milestones</shortDescription>
+        <value>Export Milestones</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Export_ToDos</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export ToDos</shortDescription>
+        <value>Export To-do&apos;s</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_UPDATE_ROLLOUTS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM UPDATE ROLLOUTS</shortDescription>
+        <value>Update Rollouts</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Select_MCO_Rollout_Leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Select MCO Rollout Leader</shortDescription>
+        <value>Select MCO Rollout Leader</value>
+    </labels>
+	<labels>
+		<fullName>IPM_Project_Full_Lite</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM Project Full/Lite</shortDescription>
+		<value>Project Lite/Full</value>
+	</labels>
+	<labels>
+        <fullName>IPM_Project_Cluster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Cluster</shortDescription>
+        <value>Project Cluster :</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Download_with_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download with Appendix</shortDescription>
+        <value>Download with Appendix</value>
+    </labels>
     
 </CustomLabels>
