@@ -174,6 +174,10 @@ src/classes/IPM_ValidationHelper_Test.cls
 src/classes/IPM_ValidationHelper_Test.cls-meta.xml
 src/classes/IPM_WithoutSharingHelper.cls
 src/classes/IPM_WithoutSharingHelper.cls-meta.xml
+src/classes/IPM_FinancialHelper.cls
+src/classes/IPM_FinancialHelper.cls-meta.xml
+src/classes/IPM_SyncFinanceTableTLD.cls
+src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
 src/components
 src/components/IPM_CMIGateSectionPDF.component
 src/components/IPM_CMIGateSectionPDF.component-meta.xml
@@ -209,6 +213,8 @@ src/components/IPM_RolloutPlansTable.component
 src/components/IPM_RolloutPlansTable.component-meta.xml
 src/components/IPM_Section_GateChecklist.component
 src/components/IPM_Section_GateChecklist.component-meta.xml
+src/components/IPM_Consumer_Evidence.component
+src/components/IPM_Consumer_Evidence.component-meta.xml
 src/customMetadata
 src/customMetadata/IPM_Category_Thresholds.IPM_Original_Threshold_Beverages_Refresh.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Original_Threshold_Deo_Personal.md
@@ -311,6 +317,10 @@ src/pages/IPM_RolloutPlansRegional.page
 src/pages/IPM_RolloutPlansRegional.page-meta.xml
 src/pages/IPM_TaskList.page
 src/pages/IPM_TaskList.page-meta.xml
+src/pages/IPM_AddManageSections.page
+src/pages/IPM_AddManageSections.page-meta.xml
+src/pages/IPM_BosscardStatus.page
+src/pages/IPM_BosscardStatus.page-meta.xml
 src/permissionsets
 src/permissionsets/IPMNG_Basic.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
@@ -337,5 +347,3 @@ src/workflows/IPM_Project_Document__c.workflow
 src/workflows/IPM_Project_Rollout__c.workflow
 src/workflows/IPM_Project__c.workflow
 src/workflows/IPM_Questionnaire__c.workflow
-undeploy
-undeploy/destructiveChanges.xml
