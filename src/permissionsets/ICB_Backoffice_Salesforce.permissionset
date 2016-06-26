@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Ice cream sales representative permission sets.</description>
+    <description>Permission set for backoffice ice cream project</description>
     <externalDataSourceAccesses>
         <enabled>false</enabled>
         <externalDataSource>Inside_Unilever_com</externalDataSource>
@@ -17,7 +17,7 @@
         <enabled>false</enabled>
         <externalDataSource>Unilever_SFDev</externalDataSource>
     </externalDataSourceAccesses>
-    <label>ICB Sales Representative OLD</label>
+    <label>ICB Backoffice Salesforce</label>
     <recordTypeVisibilities>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
         <visible>false</visible>
@@ -861,10 +861,22 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ExportReport</name>
+        <name>RunFlow</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewMyTeamsDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicReports</name>
     </userPermissions>
 </PermissionSet>
