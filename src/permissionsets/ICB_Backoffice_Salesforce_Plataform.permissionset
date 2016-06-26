@@ -1178,6 +1178,15 @@
     </fieldPermissions>
     <label>ICB Backoffice Salesforce Plataform</label>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Event</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -1265,7 +1274,25 @@
         <tab>standard-Contact</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <tabSettings>
+	Unilever - Salesforce MultiApp Standard
+        <tab>standard-report</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Chatter</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Dashboard</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    
     <userLicense>Salesforce Platform</userLicense>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditEvent</name>
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>RunFlow</name>
