@@ -112,7 +112,7 @@ private class PBS_MyProfileController_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -178,7 +178,7 @@ private class PBS_MyProfileController_Test {
         update ach;
 
 
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -195,7 +195,7 @@ private class PBS_MyProfileController_Test {
         //Change achievement status
         List<PBS_Achievement_Assignment__c> achievementAssignments = [select Id,Status__c from PBS_Achievement_Assignment__c where Training_Plan_Achievement__r.Training_Plan__c = :tplanId];
         for(PBS_Achievement_Assignment__c aa : achievementAssignments){
-            aa.Status__c = PBS_LMSConstants_CC.AA_ACQUIRED_STATUS;
+            aa.Status__c = LMSConstants.AA_ACQUIRED_STATUS;
         }
         update achievementAssignments;
 

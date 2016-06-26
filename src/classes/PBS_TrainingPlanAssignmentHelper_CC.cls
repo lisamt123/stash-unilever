@@ -45,15 +45,15 @@ public with sharing class PBS_TrainingPlanAssignmentHelper_CC{
     }
 
     public static void processBeforeDelete(List<PBS_Training_Plan_Assignment__c> assignments){
-        deleteAssociatedLearningAssignments(assignments);
+        PBS_TrainingPlanAssignmentHelper_Part.deleteAssociatedLearningAssignments(assignments);
     }
 
     public static void processAfterUpdate(Map<Id,PBS_Training_Plan_Assignment__c> oldAssignmentsMap,Map<Id,PBS_Training_Plan_Assignment__c> newAssignmentsMap){
-        processAchievementRulesForAssignments(oldAssignmentsMap,newAssignmentsMap);
+        PBS_TrainingPlanAssignmentHelper_Part.processAchievementRulesForAssignments(oldAssignmentsMap,newAssignmentsMap);
     }
 
     //This methods deletes all training plan section assignments associated to the specified plan assignments
-    public static void deleteAssociatedLearningAssignments(List<PBS_Training_Plan_Assignment__c> assignments){
+/*    public static void deleteAssociatedLearningAssignments(List<PBS_Training_Plan_Assignment__c> assignments){
 
         //Set a static attribute in the assignment helper with the list of the deleted training plan asssignment ids
         //This will be used to ignore progress recalculation
@@ -156,7 +156,7 @@ public with sharing class PBS_TrainingPlanAssignmentHelper_CC{
         }
 
     }
-
+*/
     private static void postChatterNotifications(List<PBS_Training_Plan_Assignment__c> assignments){
 
         Map<String,Set<Id>> mapTrainingPlanAssignments = new Map<String,Set<Id>>();
@@ -304,7 +304,7 @@ public with sharing class PBS_TrainingPlanAssignmentHelper_CC{
         }
 
     }
-
+/*
     private static void processAchievementRulesForTracks(Set<Id> uIds, Set<Id> tPlanIds){
 
         try{
@@ -334,9 +334,9 @@ public with sharing class PBS_TrainingPlanAssignmentHelper_CC{
     private static void calculateTrainingTrackProgress(Set<Id> uIds, Set<Id> trackIds){
         PBS_TrainingPlanAssignmentHelper_CC.WithoutSharingOps wosHelper = new PBS_TrainingPlanAssignmentHelper_CC.WithoutSharingOps();
         wosHelper.calculateTrainingTrackProgressWOS(uIds,trackIds);
-    }
+    }*/
 
-    private without sharing class WithoutSharingOps{
+    public without sharing class WithoutSharingOps{
 
         // We need to run this without sharing to make sure we clean related assignment record even if the records are not available to the running user
         public void deleteAssociatedLearningAssignmentsWOS(List<PBS_Training_Plan_Assignment__c> assignments,Map<Id,Set<Id>> mapTPlanUserIds){
@@ -384,9 +384,10 @@ public with sharing class PBS_TrainingPlanAssignmentHelper_CC{
             if(uIds.size() > 0 && trackIds.size() > 0){
 
                 //Determine if we should link the achievement assignment to a network id
-                Id currentNetworkId = null;
+                //Id currentNetworkId = null;
                 if(uIds.size() == 1 && uIds.contains(UserInfo.getUserId())){
-                    currentNetworkId = PBS_LMSUtils_CC.getCurrentNetworkId();
+                    //currentNetworkId = PBS_LMSUtils_CC.getCurrentNetworkId();
+                     PBS_LMSUtils_CC.getCurrentNetworkId();
                 }
 
                 //Get track achievements

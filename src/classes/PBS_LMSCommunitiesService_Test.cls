@@ -37,7 +37,7 @@ public class PBS_LMSCommunitiesService_Test {
         
         Test.startTest();
         System.runAs(lmsUsers.get(0)){
-            Id categoryId = null;
+            Id categoryId;
             for(PBS_Learning_Category__c lc : idlist){
                 categoryId = lc.Id;
             }
@@ -51,19 +51,19 @@ public class PBS_LMSCommunitiesService_Test {
     
     static testMethod void testWithoutSharingOps(){
         PBS_LMSCommunitiesService_CC.WithoutSharingOps commwsops = new PBS_LMSCommunitiesService_CC.WithoutSharingOps();
-        List<PBS_Training_Track__c> trainingtracks =[select id from PBS_Training_Track__c limit 10];
+        //List<PBS_Training_Track__c> trainingtracks =[select id from PBS_Training_Track__c limit 10];//sonar fix
         Id accountId = PBS_LMSUtils_CC.getUserAccountId();
         
         List<PBS_Learning_Category__c> idlist =[select id from PBS_Learning_Category__c limit 10];
         
         Test.startTest();
-        	Id trackid = null;
+            Id trackid;
             for(PBS_Learning_Category__c lc : idlist){
                 trackid = lc.Id;
             }
-        	commwsops.getTrainingPlanIdsForAccount(accountId);
-        	commwsops.getAccountTrainingTracks(accountId);
-        	commwsops.filterTrainingTracksForAccount(new Set<Id>{trackid},PBS_LMSUtils_CC.getUserAccountId(), 'Active');
+            commwsops.getTrainingPlanIdsForAccount(accountId);
+            commwsops.getAccountTrainingTracks(accountId);
+            commwsops.filterTrainingTracksForAccount(new Set<Id>{trackid},PBS_LMSUtils_CC.getUserAccountId(), 'Active');
             System.assert(commwsops != NULL);
         Test.stopTest();
     }

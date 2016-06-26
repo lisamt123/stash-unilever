@@ -1381,10 +1381,10 @@ public with sharing class PBS_LMSService_CC{
         List<String> lvFields =  new List<String>{'Rating__c',COMMENTS_C};
         Map<Schema.sObjectType,List<String>> relatedFieldsObjectsCreate = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjectsCreate.put(PBS_Training_Plan_Feedback__c.sObjectType,lvFields);
-
+		System.debug(lvFields);
         PBS_LMS_ESAPI_CC.isAuthorizedToCreate(relatedFieldsObjectsCreate);
         //END Access Check
-
+		System.debug('relatedFieldsObjectsCreate'+relatedFieldsObjectsCreate);
         PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
         wsops.insertFeedback(feedback);
 
@@ -1408,6 +1408,9 @@ public with sharing class PBS_LMSService_CC{
             ,'Hide_From_Catalog_Home__c'
             ,ORDER_C
             ,'Is_Internal__c'
+
+
+
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -1422,6 +1425,7 @@ public with sharing class PBS_LMSService_CC{
             ,'Hide_From_Catalog_Home__c'
             ,ORDER_C
             ,'Is_Internal__c'
+
         };
 
         String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Learning_Category__c';
@@ -1616,6 +1620,8 @@ public with sharing class PBS_LMSService_CC{
             ,PROGRESS_C
             ,TRAINING_PLAN_C
             ,'Shared_Learning_Assignment__c'
+            ,'Evaluation_Result__c'        //Added these 2 fields
+            ,'Evaluation_Score__c'
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check

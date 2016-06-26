@@ -35,6 +35,7 @@ public class PBS_Learning_Test {
         public static final string CURRENTRECORDTYPE_IS_WRONG= 'currentrecordtype is wrong';
         public static final string GETCONTENTS_IS_WRONG= 'getcontents is wrong';
         public static final string LEARNING_TASK= 'Task';
+        private static final string LEARNING_PREVIEWED= 'Learning has already been previewed';
 
     static testmethod void testLearningQuizAndPreview(){
     
@@ -56,14 +57,14 @@ public class PBS_Learning_Test {
             List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 3);
 
             //create question
-            List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+            PBS_LearningData_Test.createTestQuestions(qline, 4, null);
 
 
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Preview'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            System.assert(learningversions.size() == 0, 'Learning has already been previewed');
+            System.assert(learningversions.size() == 0, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
@@ -111,7 +112,7 @@ public class PBS_Learning_Test {
                                                                 where Type__c = 'Preview'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            System.assert(learningversions.size() == 0, 'Learning has already been previewed');
+            System.assert(learningversions.size() == 0, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
@@ -158,7 +159,7 @@ public class PBS_Learning_Test {
                                                                 where Type__c = 'Preview'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            System.assert(learningversions.size() == 0, 'Learning has already been previewed');
+            System.assert(learningversions.size() == 0, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
@@ -209,7 +210,7 @@ public class PBS_Learning_Test {
                                                                 where Type__c = 'Preview'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            System.assert(learningversions.size() == 0, 'Learning has already been previewed');
+            System.assert(learningversions.size() == 0, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
@@ -243,7 +244,7 @@ public class PBS_Learning_Test {
                                                                 where Type__c = 'Preview'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            //System.assert(learningversions.size() == 1, 'Learning has already been previewed');
+            //System.assert(learningversions.size() == 1, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
@@ -279,13 +280,13 @@ public class PBS_Learning_Test {
             List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
-            List<PBS_Task__c> task = PBS_LearningData_Test.createTestTask(learning);
+            PBS_LearningData_Test.createTestTask(learning);
 
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Preview'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            System.assert(learningversions.size() == 0, 'Learning has already been previewed');
+            System.assert(learningversions.size() == 0, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
@@ -334,20 +335,20 @@ public class PBS_Learning_Test {
             List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 3);
 
             //create question
-            List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+            PBS_LearningData_Test.createTestQuestions(qline, 4, null);
 
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Publish'
                                                                 and Learning__c = :learning.get(0).Id];
 
-            System.assert(learningversions.size() == 0, 'Learning has already been previewed');
+            System.assert(learningversions.size() == 0, LEARNING_PREVIEWED);
 
             PageReference pageRef = Page.PBS_Learning_Publish;
             Test.setCurrentPage(pageRef);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
-            List<sObject> lsobjects = extension.getContents();
+            extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
@@ -377,7 +378,7 @@ public class PBS_Learning_Test {
             List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, 'Resource', false);
 
             //create training resource
-            List<PBS_Training_Resource__c> tresource = PBS_LearningData_Test.createTestTrainingResource(learning);
+            PBS_LearningData_Test.createTestTrainingResource(learning);
 
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Published'
@@ -390,7 +391,7 @@ public class PBS_Learning_Test {
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
-            List<sObject> lsobjects = extension.getContents();
+            extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
@@ -418,7 +419,7 @@ public class PBS_Learning_Test {
             List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
-            List<PBS_Task__c> task = PBS_LearningData_Test.createTestTask(learning);
+            PBS_LearningData_Test.createTestTask(learning);
 
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Published'
@@ -431,7 +432,7 @@ public class PBS_Learning_Test {
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
-            List<sObject> lsobjects = extension.getContents();
+            extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
@@ -505,7 +506,7 @@ public class PBS_Learning_Test {
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Ask user for version selection';
-            List<sObject> lsobjects = extension.getContents();
+            extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 

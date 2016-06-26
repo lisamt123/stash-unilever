@@ -1,4 +1,5 @@
 /**
+
  * OWASP Enterprise Security API (ESAPI)
  *
  * This file is part of the Open Web Application Security Project (OWASP)
@@ -39,9 +40,9 @@
 private class PBS_AccessController_Test{
 
      public static final string LastName = 'LastName'; // Added this to avoid duplication of string literal LastName
-     
+      
     static testMethod void testAccessControl() {
-   
+       Test.startTest();
         Contact c = new Contact();
         c.LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3'; // We add this long random to make sure we will not conflict with any real last name
         String errStr;
@@ -139,6 +140,7 @@ private class PBS_AccessController_Test{
                 + e.getExceptionField() + ' Text: ' + e.getText();
            
         }
+        Test.stopTest();
     }
 
     static testMethod void testReturnedObjects() {
@@ -204,6 +206,7 @@ private class PBS_AccessController_Test{
     }
 
     static testMethod void testAccessControlArray() {
+        Test.startTest();
         String errStr;
 
         try {
@@ -347,14 +350,15 @@ private class PBS_AccessController_Test{
                 throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr,e);
                
         }
+         Test.stopTest();
     }
 
     static testMethod void testAccessControlConstructor() {
         String errStr;
         Test.startTest();
         try {
-            PBS_SFDCAccessController_CC ac = new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
-            System.assert(true);
+            new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
+           // System.assert(true);
         } catch (PBS_SFDCAccessControlException e) {
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
@@ -371,10 +375,10 @@ private class PBS_AccessController_Test{
            limiter, this is likely to be DML operations which are capped at 100. This is why we are testing up to 100 */
 
         // JR : Changed limit to 20 to prevent hitting any soql limits with existing triggers
+        Test.startTest();
         Integer max = 20;
-
         for (Integer i = 0; i < max; i++) {
-            Contact c = new Contact();
+        Contact c = new Contact();
             c.LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 c limits'; // We add this long random to make sure we will not conflict with any real last name
             PBS_ESAPI_CC.accessController().insertAsUser(c, new List<Schema.SObjectField>{Contact.LastName});
         }
@@ -382,5 +386,6 @@ private class PBS_AccessController_Test{
         Contact [] arr = [select LastName, Id from Contact where LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 c limits'];
 
         System.assert(arr.size() == max, 'testLimits');
+        Test.stopTest();
     }
 }

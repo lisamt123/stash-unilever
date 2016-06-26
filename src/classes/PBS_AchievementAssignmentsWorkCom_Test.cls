@@ -50,8 +50,8 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
 
         Test.setCurrentPage(pageRef);
         Test.startTest();
-            System.runAs(lmsUsers.get(0)){
-                PBS_ResourceViewerController_CC cont = new PBS_ResourceViewerController_CC();
+            System.runAs(lmsUsers.get(0)){                
+                new PBS_ResourceViewerController_CC();                
                 String contRef = PBS_ResourceViewerController_CC.redirectToResource(learningAssignmentId);
                 System.assert(contRef != null);
                 List<PBS_Learning_Assignment__c> assignments;
@@ -82,7 +82,7 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections1 = PBS_TrainingPlanData_Test.createTrainingPlanSections(tplans.get(0).Id,1);
         //Create training plan section items for resource
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,resourceLearnings);
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,resourceLearnings);
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievements = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplans, new List<PBS_Achievement__c>{lAchievements.get(0)});
@@ -95,8 +95,8 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
         ach.Work_Badge_Image_URL__c = wb.ImageUrl;
         ach.Work_Badge_Giver__c = adminUsers.get(0).Id;
         update ach;
-
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit : integer.valueOf(label.pbs_soqlLimit)];
+        
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)]; // Set Limit of 50000
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 
