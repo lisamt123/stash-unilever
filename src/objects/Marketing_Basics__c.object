@@ -2,7 +2,10 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>CancelEdit</actionName>
@@ -10,7 +13,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -18,7 +24,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -26,11 +35,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -38,11 +53,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -2345,6 +2366,10 @@ IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL,OblixOtherItemFee__c )
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
