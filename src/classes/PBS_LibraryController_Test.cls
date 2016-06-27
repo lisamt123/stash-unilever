@@ -12,7 +12,7 @@ private class PBS_LibraryController_Test {
         System.assertEquals(false, pbsLibrary.getHasNext(), 'There should be no next page');
         System.assertEquals(false, pbsLibrary.getHasPrevious(), 'There should be no previous page');
 
-        System.assertEquals(true, pbsLibrary.getPbsArticleList().isEmpty(), 'There should be no articles');
+        System.assertEquals(true, pbsLibrary.pbsKnowledgeArticleList().isEmpty(), 'There should be no articles');
         System.assertEquals(1, pbsLibrary.getNumberOfPages(), 'There should be exaclty 1 page');
 
         pbsLibrary.next();
@@ -68,12 +68,12 @@ private class PBS_LibraryController_Test {
         System.assertEquals(true, pbsLibrary.getHasNext(), 'There should be next page');
         System.assertEquals(false, pbsLibrary.getHasPrevious(), 'There should be no previous page');
 
-        System.assertEquals(false, pbsLibrary.getPbsArticleList().isEmpty(), 'There should be articles');
+        System.assertEquals(false, pbsLibrary.pbsKnowledgeArticleList().isEmpty(), 'There should be articles');
         System.assertEquals(2, pbsLibrary.getNumberOfPages(), 'Pages count is different then expected');
 
         pbsLibrary.next();
         System.assertEquals(2, pbsLibrary.getCurrentPageNumber(), 'Page should be 2');
-        System.assertEquals(5 /* 15 created - 10 as second page */, pbsLibrary.getPbsArticleList().size(), 'There should be 5 articles');
+        System.assertEquals(5 /* 15 created - 10 as second page */, pbsLibrary.pbsKnowledgeArticleList().size(), 'There should be 5 articles');
         System.assertEquals(true, pbsLibrary.getHasPrevious(), 'There should be previous page');
 
         pbsLibrary.previous();
@@ -90,18 +90,18 @@ private class PBS_LibraryController_Test {
 
         PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
 
-        System.assertEquals(2, pbsLibrary.getPbsArticleList().size(), 'There should be 2 articles');
+        System.assertEquals(2, pbsLibrary.pbsKnowledgeArticleList().size(), 'There should be 2 articles');
 
         pbsLibrary.filterArticleType = 'PBS_FAQ_s__kav';
-        System.assertEquals(1, pbsLibrary.getPbsArticleList().size(), 'There should be 1 article');
-        System.assertEquals(pbsLibrary.filterArticleType, pbsLibrary.getPbsArticleList().get(0).ArticleType, 'Article type should match filter');
+        System.assertEquals(1, pbsLibrary.pbsKnowledgeArticleList().size(), 'There should be 1 article');
+        System.assertEquals(pbsLibrary.filterArticleType, pbsLibrary.pbsKnowledgeArticleList().get(0).ArticleType, 'Article type should match filter');
 
         pbsLibrary.filterArticleType = '';
-        System.assertEquals(2, pbsLibrary.getPbsArticleList().size(), 'There should be 2 articles');
+        System.assertEquals(2, pbsLibrary.pbsKnowledgeArticleList().size(), 'There should be 2 articles');
 
         pbsLibrary.filterArticleType = 'PBS_Wiki__kav';
-        System.assertEquals(1, pbsLibrary.getPbsArticleList().size(), 'There should be 1 article');
-        System.assertEquals(pbsLibrary.filterArticleType, pbsLibrary.getPbsArticleList().get(0).ArticleType, 'Article type should match filter');
+        System.assertEquals(1, pbsLibrary.pbsKnowledgeArticleList().size(), 'There should be 1 article');
+        System.assertEquals(pbsLibrary.filterArticleType, pbsLibrary.pbsKnowledgeArticleList().get(0).ArticleType, 'Article type should match filter');
         
         pbsLibrary.searchstring = 'test wiki';
         pbsLibrary.getPbsArticleSearchList();
