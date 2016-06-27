@@ -45,7 +45,7 @@ public with sharing class IPM_OTIFStatusController{
             projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Master_Section_External_Id__c FROM IPM_Project_Document_Section__c WHERE Id=:projDocSecId];
             
             //For Displaying OTIF Questions and Status Based on Type (Section or Table)
-            query='SELECT Id,IPM_OTIF_No_of_Status__c,IPM_OTIF_Measure__c,IPM_OTIF_Responsibility__c,IPM_OTIF_Status__c,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Master_Section_External_Id__c,IPM_Section_type__c,IPM_OTIF_HelpText_Red__c,IPM_OTIF_HelpText_NA__c,IPM_OTIF_HelpText_Green__c,IPM_OTIF_HelpText_Amber__c,IPM_Section_Number__c,IPM_OTIF_Sequence__c,IPM_Section_Id__c,IPM_Section_Name__c,Section_Content_Ext_Id__c,BETCurrentStatus__c,DependentFieldAPIName__c FROM IPM_Project_Document_Section_Content__c'; 
+            query='SELECT Id,IPM_OTIF_No_of_Status__c,IPM_OTIF_Measure__c,IPM_OTIF_Responsibility__c,IPM_OTIF_Status__c,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Master_Section_External_Id__c,IPM_Section_type__c,IPM_OTIF_HelpText_Red__c,IPM_OTIF_HelpText_NA__c,IPM_OTIF_HelpText_Green__c,IPM_OTIF_HelpText_Amber__c,IPM_Section_Number__c,IPM_OTIF_Sequence__c,IPM_Section_Id__c,IPM_Section_Name__c,Section_Content_Ext_Id__c,BETCurrentStatus__c,DependentFieldAPIName__c,IPM_Project_BETStatus__c,IPM_OTIF_Question_Help_Text__c FROM IPM_Project_Document_Section_Content__c'; 
             if(otifType==IPM_ConstantUtils.OTIF_TABLE){
                 secConList=Database.query(query+'  WHERE IPM_Project_Document_Section__c=\''+ string.escapeSingleQuotes(projDocSecId) +'\' '+' order by IPM_OTIF_Sequence__c ASC');
             }
