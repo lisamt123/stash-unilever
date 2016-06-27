@@ -784,6 +784,6 @@ function quit(qelem){
     );
 }
 </script> 
-<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Projectsetupview.js')}" type="text/javascript"></script>
+<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectSetUpView.js')}" type="text/javascript"></script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreparameterDesign.js')}" type="text/javascript"></script>
 </apex:page>
