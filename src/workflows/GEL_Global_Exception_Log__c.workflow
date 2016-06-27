@@ -27,10 +27,6 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <recipients>
-            <field>PoC__c</field>
-            <type>email</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>GEL_Global_Exception_Log/GEL_Details_requested_by_Process_Owner</template>
     </alerts>
@@ -50,6 +46,48 @@
         <protected>false</protected>
         <recipients>
             <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>GEL_Global_Exception_Log/GEL_AlertTemplate_To_Raiser</template>
+    </alerts>
+    <alerts>
+        <fullName>GEL_Sending_mail_to_both_ETC_BO_and_POC</fullName>
+        <description>GEL_Sending mail to both ETC BO and POC</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>PoC__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>GEL_Global_Exception_Log/GEL_Details_requested_by_Process_Owner</template>
+    </alerts>
+    <alerts>
+        <fullName>GEL_Sending_mail_to_both_ETC_BO_and_POC_when_status_is_closed</fullName>
+        <description>GEL_Sending mail to both ETC BO and POC when status is closed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>PoC__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>GEL_Global_Exception_Log/GEL_When_exception_is_Closed_Raiser_Notified</template>
+    </alerts>
+    <alerts>
+        <fullName>GEL_Sending_mail_to_both_ETC_BO_and_POC_when_status_is_rejected</fullName>
+        <description>GEL_Sending mail to both ETC BO and POC when status is rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>PoC__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>GEL_Global_Exception_Log/GEL_AlertTemplate_To_Raiser</template>
@@ -103,11 +141,17 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>GEL_Global_Exception_Log__c.Status__c</field>
-            <operation>equals</operation>
-            <value>PendingClarification</value>
-        </criteriaItems>
+        <formula>AND( ISPICKVAL( Status__c , &apos;PendingClarification&apos;), IF( ETC_BO_Owner__r.Email  =  PoC__c , true, false)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GEL_Further Details requested by Process Owner- POC</fullName>
+        <actions>
+            <name>GEL_Sending_mail_to_both_ETC_BO_and_POC</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( ISPICKVAL( Status__c , &apos;PendingClarification&apos;), IF( ETC_BO_Owner__r.Email   &lt;&gt;   PoC__c , true, false)  )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -117,11 +161,17 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>GEL_Global_Exception_Log__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Closed</value>
-        </criteriaItems>
+        <formula>AND( ISPICKVAL( Status__c , &apos;Closed&apos;) , IF( ETC_BO_Owner__r.Email  =  PoC__c , true, false) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GEL_IF status closed - Email to Exception Raiser - POC</fullName>
+        <actions>
+            <name>GEL_Sending_mail_to_both_ETC_BO_and_POC_when_status_is_closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( ISPICKVAL( Status__c , &apos;Closed&apos;), IF( ETC_BO_Owner__r.Email  &lt;&gt;  PoC__c , true, false)  )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -131,11 +181,17 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>GEL_Global_Exception_Log__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Rejected</value>
-        </criteriaItems>
+        <formula>AND( ISPICKVAL( Status__c , &apos;Rejected&apos;) , IF( ETC_BO_Owner__r.Email  =  PoC__c , true, false) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GEL_IF status rejected - Email to Exception Raiser - POC</fullName>
+        <actions>
+            <name>GEL_Sending_mail_to_both_ETC_BO_and_POC_when_status_is_rejected</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( ISPICKVAL( Status__c , &apos;Rejected&apos;) , IF( ETC_BO_Owner__r.Email  &lt;&gt;  PoC__c , true, false) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

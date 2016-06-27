@@ -1,3 +1,11 @@
+/**********************************************************************
+Name: GEL_Global_Exception_TriggerHandler
+Purpose:
+This TriggerHandler is used to populate the ETC BO Owner and the owner of the record 
+according to the process on GEL records dynamically from custom settings
+VERSION   AUTHOR   DATE    
+1.0       Chandana June-2016   
+***********************************************************************/
 public with sharing class GEL_Global_Exception_TriggerHandler implements ITrigger{
     
     // Constructor
@@ -42,7 +50,7 @@ public with sharing class GEL_Global_Exception_TriggerHandler implements ITrigge
     * any data required into maps prior execution of the trigger.
     */
     public void bulkAfter(){
-          
+        //This method has been included as the class implements the ITrigger interface
         
     }
     public void beforeInsert(SObject so){
@@ -52,12 +60,10 @@ public with sharing class GEL_Global_Exception_TriggerHandler implements ITrigge
     
     public void beforeUpdate(SObject oldSo, SObject so){   
         //This method has been included as the class implements the ITrigger interface
-       Map<string,Global_Exception_Users__c> mapUsers = new Map<string,Global_Exception_Users__c>();
         set<string> setUserEmails = new set<string>();
         List<user> listUsers = new list<User>();
         Map<string,id> mapuserid = new map<String,id>();
-        List<Global_Exception_Users__c> listuseremails = Global_Exception_Users__c.getall().values();
-        mapUsers = Global_Exception_Users__c.getall(); 
+        List<Global_Exception_Users__c> listuseremails = Global_Exception_Users__c.getall().values(); 
        if(trigger.isUpdate){
             for(Global_Exception_Users__c geu : listuseremails){            
                     setUserEmails.add(geu.Email__c);                
