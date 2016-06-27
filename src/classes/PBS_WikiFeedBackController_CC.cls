@@ -20,7 +20,7 @@ public with sharing  class PBS_WikiFeedBackController_CC{
              }
             objwiki = [SELECT p.Title FROM PBS_Wiki__kav p WHERE Id =: recordId LIMIT 1];
             
-           if( objwiki.isempty() || objwiki == null){  
+           if( objwiki.isempty()){  
                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,'Knowledge Article Id not found'));
                recordId =null;
                return;

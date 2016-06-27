@@ -15,7 +15,7 @@ public with sharing class PBS_WikiFeedbackViewController_CC{
         }
         lstPBSWikiFeedback = getPbsFeedbacklist(strWikiId);
         
-        if(lstPBSWikiFeedback.isEmpty() || lstPBSWikiFeedback == null){
+        if( lstPBSWikiFeedback == null || lstPBSWikiFeedback.isEmpty()){
              List<PBS_Wiki__kav>  lstwiki = new  List<PBS_Wiki__kav>();
              lstwiki = [SELECT Title FROM PBS_Wiki__kav p WHERE Id =: strWikiId LIMIT 1];
             if(!lstwiki.isEmpty() && lstwiki != null)

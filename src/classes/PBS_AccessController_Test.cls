@@ -364,6 +364,7 @@ private class PBS_AccessController_Test{
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
               throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr,e);  
+              System.assert(errStr != null, errStr);
         }
         Test.stopTest();
     }

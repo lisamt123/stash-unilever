@@ -82,6 +82,7 @@ private class PBS_WikiFeedbackViewController_Test
          
         PBS_WikiFeedbackViewController_cc pbsWiki = new PBS_WikiFeedbackViewController_cc();      
         Test.stopTest();
+        System.assert(pbsWiki != null, pbsWiki);
      }
      
      static testMethod void testSaveWithoutWikiIdMethod()
@@ -104,6 +105,7 @@ private class PBS_WikiFeedbackViewController_Test
         PBS_WikiFeedbackViewController_cc pbsWiki = new PBS_WikiFeedbackViewController_cc();      
 
         Test.stopTest();
+        System.assert(pbsWiki != null, pbsWiki);
      }
      
       static testMethod void testWithoutWikiIdMethod()
@@ -126,5 +128,6 @@ private class PBS_WikiFeedbackViewController_Test
         PBS_WikiFeedbackViewController_cc pbsWiki = new PBS_WikiFeedbackViewController_cc();      
 
         Test.stopTest();
+        System.assert(pbsWiki != null, pbsWiki);
      }
 }
