@@ -7052,6 +7052,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project__c.RQS_Charter_Answered_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.RQS_Charter_Answered__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.RQS_Contract_Answered_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.RQS_Contract_Answered__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project__c.Regional_Project_Leader_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7249,6 +7269,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Questionnaire__c.Is_Master__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Questionnaire__c.RQS_Charter_Answered_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Questionnaire__c.RQS_Charter_Answered__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Questionnaire__c.RQS_Contract_Answered_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Questionnaire__c.RQS_Contract_Answered__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
