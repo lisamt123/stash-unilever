@@ -57,8 +57,8 @@ public with sharing class PBS_SFDCCreditCardValidationRule_CC extends PBS_SFDCBa
   public void assertValid(String input ) {
 
       if ( PBS_SFDCStringUtils_CC.isEmpty(input) ) {
-      if (isAllowNull())
-        return;
+      if (isAllowNull()){
+        return;}
       throw new PBS_SFDCValidator_CC.SFDCValidationException('Input credit card required');
       }
       

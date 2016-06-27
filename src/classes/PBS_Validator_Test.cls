@@ -773,7 +773,7 @@ private class PBS_Validator_Test {
             }
         }
     }
-
+/*
     private class HttpRequestParamsTest {
         private String inputStr;
         private Set<String> requiredParams;
@@ -1039,5 +1039,5 @@ private class PBS_Validator_Test {
         }
     }
     
-    
+    */
 }

@@ -43,8 +43,8 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
 
     public Attachment attachment {
         get {
-        if (attachment == null)
-          attachment = new Attachment();
+        if (attachment == null){
+          attachment = new Attachment();}
         return attachment;
         }
         set;
@@ -142,7 +142,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
     }
 
     public PageReference markCompletedAndRedirect(){
-        PageReference completedRef = markCompleted();
+        //PageReference completedRef = markCompleted();
         if(redirectURL != null){
             PageReference redirectRef = new PageReference(redirectURL);
             return redirectRef;
