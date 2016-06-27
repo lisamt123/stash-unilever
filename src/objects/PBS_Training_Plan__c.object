@@ -382,5 +382,39 @@
         <errorConditionFormula>(!ISBLANK(Start_Date__c) &amp;&amp; ISBLANK(End_Date__c)) || (ISBLANK(Start_Date__c) &amp;&amp; !ISBLANK(End_Date__c))</errorConditionFormula>
         <errorMessage>You must set a value for Start and End date or leave both empty</errorMessage>
     </validationRules>
-   
+     <webLinks>
+        <fullName>Export_Training_Plan</fullName>
+        <availability>online</availability>
+        <description>Display VF page for exporting a training plan</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Export</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_TrainingPlanExport</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Manage_Achievements</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Manage Achievements</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_TrainingPlanAchievementManagement</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Manage_Assignments</fullName>
+        <availability>online</availability>
+        <description>Display VF page for managing training plan assigments</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Manage Assignments</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_TrainingPlanAssignment</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

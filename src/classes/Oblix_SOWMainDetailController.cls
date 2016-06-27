@@ -29,6 +29,11 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
             liso_attachments = getSOWAttachments(selected_sow.Id);
             
             li_campaign_and_non_campaign_items = new List<Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems>();
+            
+            
+            // Fix to resolve SOQL 101 Issue
+            
+            /*
 
             // get campaigns
             for(Oblix_SOW_Projects__c campaign : [SELECT Campaign_PFY__r.Sync_Status__c,Id, Name, OblixRegion__c, Selected_Countries__c, First_3_selected_countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
@@ -38,7 +43,22 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
                 WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
                 li_campaign_and_non_campaign_items.add(new Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems('Campaign', campaign, can_edit));
                 
-            }
+            } */
+            
+            // Fix Starts Here
+            
+            Boolean canEdit = can_edit;
+            
+             // get campaigns
+            for(Oblix_SOW_Projects__c campaign : [SELECT Campaign_PFY__r.Sync_Status__c,Id, Name, OblixRegion__c, Selected_Countries__c, First_3_selected_countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
+                Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c, Campaign_Total_Fees__c, Percentage_of_Fee_for_this_FY__c, 
+                Sync_Required_NFY__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Campaign_PFY__c, Percentage_of_Fees_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c  
+                FROM Oblix_SOW_Projects__c 
+                WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
+                li_campaign_and_non_campaign_items.add(new Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems('Campaign', campaign, canEdit));
+             }
+            
+            // Ends Here
 
             hasCampaigns = !li_campaign_and_non_campaign_items.isEmpty();
 

@@ -115,7 +115,7 @@ global with sharing class PBS_SFDCEncoder_CC {
             return input;}
 
         for (Integer i = 0; i < fromArr.size(); ++i) {
-            strInput = input.replace(fromArr[i], toArr[i]);
+            strInput = strInput.replace(fromArr[i], toArr[i]);
         }
 
         return strInput;

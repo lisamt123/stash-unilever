@@ -52,11 +52,11 @@ public with sharing class PBS_LMSHeaderController_CC {
 
         String pageURL         = ApexPages.currentPage().getUrl().toLowerCase();
 
-        customLogo             = almond.LMSSettings.getCustomLogo();
-        backgroundColor        = almond.LMSSettings.getHeaderBackgroundColor();
-        textColor              = almond.LMSSettings.getHeaderTextColor();
-        textHoverColor         = almond.LMSSettings.getHeaderTextHoverColor();
-        backToSFURL            = almond.LMSSettings.getBacktoSFUrl();
+        customLogo             = PBS_LMSSettings_CC.getCustomLogo();
+        backgroundColor        = PBS_LMSSettings_CC.getHeaderBackgroundColor();
+        textColor              = PBS_LMSSettings_CC.getHeaderTextColor();
+        textHoverColor         = PBS_LMSSettings_CC.getHeaderTextHoverColor();
+        backToSFURL            = PBS_LMSSettings_CC.getBacktoSFUrl();
         hideBackToSFButton     = false;
         
         //Removed - As it is public in package

@@ -68,6 +68,7 @@ src/permissionsets/WU_Logistics_Leadership_Team.permissionset
 src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
 src/permissionsets/WU_Warehouse_Excellence_Operations_Chatter_Only.permissionset
 src/permissionsets/WU_Logistics_Leadership_Team_for_Chatter_Only.permissionset
+src/permissionsets/WU_Warehouse_Admin.permissionset
 src/reportTypes
 src/reportTypes/Warehouse_Utilization.reportType
 src/reportTypes/WU_Warehouse_Capacity_Detail.reportType

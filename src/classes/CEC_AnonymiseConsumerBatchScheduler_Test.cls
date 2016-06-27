@@ -19,7 +19,7 @@ public with sharing class CEC_AnonymiseConsumerBatchScheduler_Test {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
             Date d1 = System.today().addDays(-3);
-            String personRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Person Account').getRecordTypeId();
+            //String personRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Person Account').getRecordTypeId();
             
             Account accountObj1 = new Account(Salutation='Mr',FirstName='Peter',LastName='Parker',PersonEmail='abc@abc00DE0000000bbLj.com',Phone='12121212',BillingStreet='St peters',PersonMailingStreet='St peters',ShippingStreet='St peters',Retention_Date__c=d1,Anonymise_check__c=true);
            
@@ -52,7 +52,7 @@ public with sharing class CEC_AnonymiseConsumerBatchScheduler_Test {
                                                 Retention_Date__c from Account limit 10];
             
             for (Account accountObj : resultAccountList) {
-                if (accountObj.Anonymise_check__c == false && accountObj.Date_Anonymized__c == null) {
+                if (!accountObj.Anonymise_check__c && accountObj.Date_Anonymized__c == null) {
                     System.assertNotEquals(accountObj.PersonEmail, null);
                     System.assertNotEquals(accountObj.Salutation, null);
                     System.assertNotEquals(accountObj.FirstName, null);
@@ -63,7 +63,7 @@ public with sharing class CEC_AnonymiseConsumerBatchScheduler_Test {
                     System.assertNotEquals(accountObj.ShippingStreet, null);
                     System.assertEquals(accountObj.Retention_Date__c, null);
                     System.assertEquals(accountObj.Anonymise_check__c, false);
-                } else if (accountObj.Anonymise_check__c == false && accountObj.Date_Anonymized__c != null){
+                } else if (!accountObj.Anonymise_check__c && accountObj.Date_Anonymized__c != null){
                     System.assertEquals(accountObj.PersonEmail, null);
                     System.assertEquals(accountObj.Salutation, null);
                     System.assertEquals(accountObj.FirstName, null);

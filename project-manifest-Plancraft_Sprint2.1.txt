@@ -590,6 +590,14 @@ src/pages/PBS_Welcome_Home.page
 src/pages/PBS_Welcome_Home.page-meta.xml
 src/pages/PBS_WelcomePage.page
 src/pages/PBS_WelcomePage.page-meta.xml
+src/pages/PC_ContainerPage.page
+src/pages/PC_ContainerPage.page-meta.xml
+src/pages/PC_Forum.page
+src/pages/PC_Forum.page-meta.xml
+src/pages/PC_ForumGroup.page
+src/pages/PC_ForumGroup.page-meta.xml
+src/pages/PC_Home.page
+src/pages/PC_Home.page-meta.xml
 src/pages/PBS_Wiki.page
 src/pages/PBS_Wiki.page-meta.xml
 src
@@ -659,3 +667,46 @@ src/reportTypes/PBS_Learnings_with_Quiz_with_Question_Line_with_Qu.reportType
 src/reportTypes/PBS_Learnings_with_Quizzes_with_Question_Lines.reportType
 src/reportTypes/PBS_Quizzes_with_Question_Lines_with_Questions.reportType
 src/reportTypes/PBS_Training_Plans_with_Training_Plan_Sect_with_Tr.reportType
+src
+src/layouts
+src/layouts/PBS_Achievement__c-Achievement Layout.layout
+src/layouts/PBS_Achievement_Assignment__c-Achievement Assignment Layout.layout
+src/layouts/PBS_Achievement_Category__c-Achivement Category Layout.layout
+src/layouts/PBS_Answer_Sequence__c-Answer Sequence Layout.layout
+src/layouts/PBS_Answer_Sequence_Item__c-Answer Sequence Item Layout.layout
+src/layouts/PBS_Batch_Operation_Record__c-Batch Operation Record Layout.layout
+src/layouts/PBS_Learning__c-Learning-Quiz Layout.layout
+src/layouts/PBS_Learning__c-Learning-Resource Layout.layout
+src/layouts/PBS_Learning__c-Learning-Task Layout.layout
+src/layouts/PBS_Learning_Assignment__c-Learning Assignment Layout.layout
+src/layouts/PBS_Learning_Category__c-Learning Category Layout.layout
+src/layouts/PBS_Learning_Version__c-Learning Version Layout.layout
+src/layouts/PBS_Profile__c-PBS Profile Layout.layout
+src/layouts/PBS_Question__c-Question Layout.layout
+src/layouts/PBS_Question_Line__c-Question Line Layout.layout
+src/layouts/PBS_Quiz__c-Quiz Layout.layout
+src/layouts/PBS_Response__c-Response Layout.layout
+src/layouts/PBS_Shared_Learning_Assignment__c-Shared Learning Assignment Layout.layout
+src/layouts/PBS_Standard_Job_Profile__c-PBS Standard Job Profile Layout.layout
+src/layouts/PBS_Task__c-Task Layout.layout
+src/layouts/PBS_Task_Approver__c-Task Approver Layout.layout
+src/layouts/PBS_TML_Answer_Sequence__c-TML Answer Sequence Layout.layout
+src/layouts/PBS_TML_Answer_Sequence_Item__c-TML Answer Sequence Item Layout.layout
+src/layouts/PBS_TML_Question__c-TML Question Layout.layout
+src/layouts/PBS_Training_Plan__c-Training Plan Layout.layout
+src/layouts/PBS_Training_Plan_Access_Request__c-Training Plan Access Request Layout.layout
+src/layouts/PBS_Training_Plan_Account__c-Training Plan Account Layout.layout
+src/layouts/PBS_Training_Plan_Achievement__c-Training Plan Achievement Layout.layout
+src/layouts/PBS_Training_Plan_Assignment__c-Training Plan Assignment Layout.layout
+src/layouts/PBS_Training_Plan_Batch_Operation__c-Training Plan Batch Operation Layout.layout
+src/layouts/PBS_Training_Plan_Category__c-Training Plan Category Layout.layout
+src/layouts/PBS_Training_Plan_Feedback__c-Training Plan Feedback Layout.layout
+src/layouts/PBS_Training_Plan_Section__c-Training Plan Section Layout.layout
+src/layouts/PBS_Training_Plan_Section_Assignment__c-Training Plan Section Assignment Layout.layout
+src/layouts/PBS_Training_Plan_Section_Item__c-Training Plan Section Item Layout.layout
+src/layouts/PBS_Training_Resource__c-Training Resource Layout.layout
+src/layouts/PBS_Training_Track__c-Training Track Layout.layout
+src/layouts/PBS_Training_Track_Account__c-Training Track Account Layout.layout
+src/layouts/PBS_Training_Track_Level__c-Training Track Level Layout.layout
+src/layouts/PBS_Training_Track_Level_Item__c-Training Track Level Item Layout.layout
+src/layouts/PC_Group__c-PC Group Layout.layout

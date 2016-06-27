@@ -88,7 +88,7 @@ private class Oblix_PermissionHandler_Test {
         Test.startTest();
         System.runAs(superuser) {
 
-            System.assertEquals(true, Oblix_PermissionHandler.hasEditAccess(mSow.Id));
+            System.assertEquals(true, Oblix_PermissionHandler.hasEditAccess(mSow));
             System.assertEquals(true, Oblix_PermissionHandler.canCreateSOW());
             System.assertEquals(true, Oblix_PermissionHandler.canSeeFinancialField(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(true, Oblix_PermissionHandler.canSeeFinancialField(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, null));

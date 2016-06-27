@@ -105,7 +105,9 @@ public with sharing class Oblix_AddAssetPageHelper {
             			WHERE Id = :projectId]
             	)
             );
-            recalculateBasket();
+            if (map_campaign_for_calculator.keySet().size()>0){
+                recalculateBasket();
+            }
         }
         map_assets_in_basket_json = JSON.serialize(map_assets_in_basket);
 

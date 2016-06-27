@@ -28,13 +28,6 @@
         <shortDescription>Entity RT Unilever</shortDescription>
         <value>Unilever Entity</value>
     </labels>
-    <labels>
-        <fullName>GoogleAPIKey</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>GoogleAPIKey</shortDescription>
-        <value>gme-unilever</value>
-    </labels>
 
     <labels>
         <fullName>HideTermsOfUseLabel</fullName>

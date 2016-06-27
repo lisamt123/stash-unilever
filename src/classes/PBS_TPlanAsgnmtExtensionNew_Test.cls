@@ -37,8 +37,8 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
 
         System.runAs(adminUsers.get(0)){
             // Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -67,7 +67,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
 
                 users = cont.users;
                 System.assert(users.size()>=12, 'User size is: ' + String.valueOf(users.size()) + ' lms : ' + String.valueOf(lmsUsers.size()));
-                System.assert(ref != null);
+                System.assert(ref == null);
                 //Test import Assignmentes reference
                 PageReference importPage = cont.goToImportAssignments();
                 System.assert(importPage != null);
@@ -84,8 +84,8 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
 
@@ -144,8 +144,8 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         User sampleUser = [select id,firstName,lastName,email,profileId,userroleId from User where id in :lmsUsers limit 1];
@@ -172,7 +172,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
                     ref = cont.assignSingleUser();
                     List<PBS_Training_Plan_Assignment__c> userTPlanAssignment = [select id from PBS_Training_Plan_Assignment__c where User__c = :lmsUsers.get(0).Id];
                     System.assert(userTPlanAssignment.size()>0, 'Assignment was not created');
-                    System.assert(ref != null);
+                    System.assert(ref == null);
                 }catch(Exception e){
                     System.assert(false,'Assignment failed');
                     System.assert(ref != null);
@@ -190,7 +190,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
         }
 
         User sampleUser = [select id,firstName,lastName,email,profileId,userroleId from User where id in :lmsUsers limit 1];
@@ -215,7 +215,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
                     ref = cont.assignSingleUser();
                     List<PBS_Training_Plan_Assignment__c> userTPlanAssignment = [select id from PBS_Training_Plan_Assignment__c where User__c = :lmsUsers.get(0).Id];
                     System.assert(userTPlanAssignment.size() == 0, 'Assignment was created for invalid user');
-                    System.assert(ref != null);
+                    System.assert(ref == null);
                 }catch(Exception e){
                     System.assert(false,'Assignment failed');
                 }
