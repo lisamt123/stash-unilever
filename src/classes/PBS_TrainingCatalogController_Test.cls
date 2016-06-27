@@ -96,6 +96,39 @@ private class PBS_TrainingCatalogController_Test {
         Test.stopTest();
 
     }
+    
+    static testMethod void testWithValidCategoryIdWithParameters(){
+
+        //Create admin users
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
+
+        System.runAs(adminUsers.get(0)){
+            //Assign corresponding perm sets
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
+        }
+
+        PBS_TrainingPlanData_Test.createSampleData();
+		List<PBS_Learning_Category__c> tplanCategories =[Select Id, Name from PBS_Learning_Category__c Order By Name desc ];
+        
+        PageReference ref = Page.PBS_TrainingCatalogDetail;
+        ref.getParameters().put('id',tplanCategories.get(0).Id);
+		ref.getParameters().put('geo','Dummy data');
+        ref.getParameters().put('course','Dummy data');
+        ref.getParameters().put('profile','Dummy data');
+        ref.getParameters().put('worklevel','Dummy data'); 
+        Test.setCurrentPageReference(ref);
+        Test.startTest();
+            System.runAs(lmsUsers.get(0)){
+                PBS_TrainingCatalogDetailController_CC cont = new PBS_TrainingCatalogDetailController_CC();
+                System.assert(cont!=null);
+            }
+        Test.stopTest();
+
+    }
+    
+    
 
     private static Integer getTrainingPlanAssignmentsCount(Id tplanId){
         return [select count() from PBS_Training_Plan_Assignment__c where Training_Plan__c = :tplanId];

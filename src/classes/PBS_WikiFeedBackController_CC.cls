@@ -56,7 +56,7 @@ public with sharing  class PBS_WikiFeedBackController_CC{
           
         }
         catch(Exception e){
-          e.getmessage();
+          ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,e.getmessage()));
           return null;
           //newPage = new PageReference('/apex/PBS_Wiki_Feedback?ID=' + recordId);
           //newPage.setRedirect(true);

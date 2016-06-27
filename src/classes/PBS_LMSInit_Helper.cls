@@ -24,36 +24,49 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
-
 */
-public with sharing class PBS_LearningDeleteSharedAsgnmntsExt_CC {
 
-    private String learningId;
+public class PBS_LMSInit_Helper{
 
-    public PBS_LearningDeleteSharedAsgnmntsExt_CC(ApexPages.StandardController cont){
-        learningId = cont.getRecord().Id;
-        init();
-    }
-
-    private void init(){
-        //Nothing to do here for now...
-    }
-
-    public PageReference deleteUnusuedSharedAssignments(){
-        try{
-
-            //BEGIN Access Check
-            List<Schema.sObjectType> objectTypesToDelete = new List<Schema.sObjectType>();
-            objectTypesToDelete.add(PBS_Shared_Learning_Assignment__c.sObjectType);
-            PBS_LMS_ESAPI_CC.isAuthorizedToDelete(objectTypesToDelete);
-            //END Access Check
-
-            Database.executeBatch(new PBS_LearningDeleteSharedAsgmtsBatch_CC(learningId),20);
-            PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Delete_Queued_Success);
-        }catch(Exception e){
-            ApexPages.addMessages(e);
+  public static List<Object> getObjectList(Map<String,Object> o, String key){
+        if(o != null && o.get(key) != null){
+            return (List<Object>)o.get(key);
+        }else{
+            return new List<Object>();
         }
-        return null;
+    }
+      public static String getStringValue(Object o, String defaultValue){
+        return o!=null?(String)o:defaultValue;
+    }
+
+    public static Date getDateValue(Object o, Date defaultValue){
+        Date dateValue = defaultValue;
+        if(o != null){
+            String dateString = (String)o;
+            List<String> dComp = dateString.split('-');
+            if(dComp.size() == 3){
+                dateValue = Date.newInstance(Integer.valueOf(dComp[0]), Integer.valueOf(dComp[1]), Integer.valueOf(dComp[2]));
+            }
+        }
+        return dateValue;
+    }
+
+    public static Boolean getBooleanValue(Object o, Boolean defaultValue){
+        return o!=null?(Boolean)o:defaultValue;
+    }
+
+    public static Integer getIntegerValue(Object o, Integer defaultValue){
+        return o!=null?(Integer)o:defaultValue;
+    }
+
+    public static Double getDoubleValue(Object o, Double defaultValue){
+        return o!=null?(Double)o:defaultValue;
+    }
+
+    public static String getTimeStamp(){
+        DateTime dtimenow = DateTime.now();
+        String ts = dtimenow.second()+''+dtimenow.millisecond();
+        return ts;
     }
 
 }

@@ -52,11 +52,11 @@ public with sharing class PBS_LMSHeaderController_CC {
 
         String pageURL         = ApexPages.currentPage().getUrl().toLowerCase();
 
-        customLogo             = PBS_LMSSettings_CC.getCustomLogo();
-        backgroundColor        = PBS_LMSSettings_CC.getHeaderBackgroundColor();
-        textColor              = PBS_LMSSettings_CC.getHeaderTextColor();
-        textHoverColor         = PBS_LMSSettings_CC.getHeaderTextHoverColor();
-        backToSFURL            = PBS_LMSSettings_CC.getBacktoSFUrl();
+        customLogo             = almond.LMSSettings.getCustomLogo();
+        backgroundColor        = almond.LMSSettings.getHeaderBackgroundColor();
+        textColor              = almond.LMSSettings.getHeaderTextColor();
+        textHoverColor         = almond.LMSSettings.getHeaderTextHoverColor();
+        backToSFURL            = almond.LMSSettings.getBacktoSFUrl();
         hideBackToSFButton     = false;
         
         //Removed - As it is public in package
@@ -95,12 +95,15 @@ public with sharing class PBS_LMSHeaderController_CC {
         section = null;
         List<String> sections;
         for (PBS_AlmondNavigation__c item : navigationItems) {
+         
             if (pageURL.contains(item.URL__c)) {
                 section = item.Name;
             } else if (!String.isBlank(item.SectionOtherPages__c)) {
+           
                 sections = item.SectionOtherPages__c.split(',');
                 for (String sectionPart : sections) {
                     if (pageURL.contains(sectionPart)) {
+                    
                         section = item.Name;
                         break;
                     }

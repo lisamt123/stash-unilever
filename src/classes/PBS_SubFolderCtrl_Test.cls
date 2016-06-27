@@ -26,34 +26,34 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-public with sharing class PBS_LearningDeleteSharedAsgnmntsExt_CC {
+@isTest
+public class PBS_SubFolderCtrl_Test {
+    static testMethod void testSubFolderMethods(){
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
 
-    private String learningId;
-
-    public PBS_LearningDeleteSharedAsgnmntsExt_CC(ApexPages.StandardController cont){
-        learningId = cont.getRecord().Id;
-        init();
-    }
-
-    private void init(){
-        //Nothing to do here for now...
-    }
-
-    public PageReference deleteUnusuedSharedAssignments(){
-        try{
-
-            //BEGIN Access Check
-            List<Schema.sObjectType> objectTypesToDelete = new List<Schema.sObjectType>();
-            objectTypesToDelete.add(PBS_Shared_Learning_Assignment__c.sObjectType);
-            PBS_LMS_ESAPI_CC.isAuthorizedToDelete(objectTypesToDelete);
-            //END Access Check
-
-            Database.executeBatch(new PBS_LearningDeleteSharedAsgmtsBatch_CC(learningId),20);
-            PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Delete_Queued_Success);
-        }catch(Exception e){
-            ApexPages.addMessages(e);
+        System.runAs(adminUsers.get(0)){
+            //Assign corresponding perm sets
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
-        return null;
+        PBS_TrainingPlanData_Test.createSampleData();
+		List<PBS_Learning_Category__c> tplanCategories =[Select Id, Name from PBS_Learning_Category__c Order By Name desc ];
+        
+        PageReference ref = Page.PBS_SubFolder;
+        ref.getParameters().put('id',tplanCategories.get(0).Id);
+        
+        Test.setCurrentPageReference(ref);
+        Test.startTest();
+            System.runAs(lmsUsers.get(0)){
+                PBS_SubFolderController_CC cont = new PBS_SubFolderController_CC();
+                System.assert(cont.getCourseTypeOptions().size()>0);
+                System.assert(cont.getGeographyOptions().size()>0);
+                System.assert(cont.getJobProfileOptions().size()>0);
+                System.assert(cont.getWorkLevelOptions().size()>0);
+                System.assert(cont.filterResults()!=null);
+            }
+        Test.stopTest();
     }
 
 }

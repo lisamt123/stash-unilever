@@ -73,7 +73,7 @@ private class PBS_TPlanAsgmtExtensionExisting_Test{
                     asgmt.isSelected = true;
                 }
 
-                PageReference ref = cont.updateAssignments();
+                cont.updateAssignments();
 
                 System.assertEquals(5,currentRows.size());
             }
@@ -120,7 +120,7 @@ private class PBS_TPlanAsgmtExtensionExisting_Test{
                 for(PBS_TrainingPlanAssignmentExtExisting_CC.TPlanAssignmentWrapper asgmt : currentRows){
                     asgmt.isSelected = true;
                 }
-                PageReference ref = cont.deleteAssignments();
+                 cont.deleteAssignments();
                 currentRows = cont.rows;
                 System.assertEquals(0,currentRows.size());
             }
@@ -144,7 +144,7 @@ private class PBS_TPlanAsgmtExtensionExisting_Test{
 
         PBS_TrainingPlanData_Test.createSampleData();
 
-        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c ];
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan  = tplans.get(0);
         Set<Id> selectedUserIds = new Set<Id>();

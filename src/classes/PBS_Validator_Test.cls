@@ -66,9 +66,9 @@ private class PBS_Validator_Test {
     private static final string C280 = '%c2%80';
     private static final string ZEROTONINE = '01234567890123456789012345678901234567890123456789';
     public static final string GOOGLE = 'www.google.com';
-    private static final string SALESFORCE = 'na7.salesforce.com';
-    private static final string CSALESFORCE = 'c.na7.salesforce.com';
-    private static final string ZEROTONINE_10 = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
+    //private static final string SALESFORCE = 'na7.salesforce.com';
+    //private static final string CSALESFORCE = 'c.na7.salesforce.com';
+    //private static final string ZEROTONINE_10 = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
     private static final string ONE_TXT = '1.txt';
     
     private class CreditCardTest {

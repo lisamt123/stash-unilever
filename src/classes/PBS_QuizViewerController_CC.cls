@@ -74,7 +74,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
         //Retrieve assignment id
         String aid = Apexpages.currentPage().getParameters().get(AID_1);
         //Retrieve quiz id
-        String qid = Apexpages.currentPage().getParameters().get('qid');
+        Apexpages.currentPage().getParameters().get('qid');
         //Retrieve preview mode flag
         if(String.isNotBlank(Apexpages.currentPage().getParameters().get('pMode'))){
             isPreviewMode = true;
