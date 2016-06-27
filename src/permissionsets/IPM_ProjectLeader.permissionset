@@ -4811,6 +4811,26 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Document_Section_Content__c.BETCurrentStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project_Document_Section_Content__c.DependentFieldAPIName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Document_Section_Content__c.IPM_Project_BETStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Question_Help_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Document_Section_Content__c.IPM_Assort_Channel_Name__c</field>
         <readable>true</readable>
@@ -6282,6 +6302,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Project__c.BETCurrentStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Project__c.BET_Archive_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7114,6 +7139,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project__c.update_on_change_of_ms_first_release_dat__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Questionnaire__c.DependentFieldAPIName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Questionnaire__c.BETCurrentStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Questionnaire__c.IPM_HelpText_ReadOnly__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
