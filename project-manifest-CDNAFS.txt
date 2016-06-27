@@ -14,7 +14,6 @@ src
 src/layouts
 src/layouts/Account-Distributor.layout
 src/layouts/Account-Operators.layout
-src/layouts/Product2-Food Solutions Product.layout
 src/layouts/Pricebook2-FS PriceBook Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src
@@ -24,7 +23,6 @@ src
 src/permissionsets
 src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_AFM.permissionset
-
 src/permissionsets/FS_Marketing.permissionset
 src/permissionsets/FS_Sales_Rep.permissionset
 src/permissionsets/FS_SCP_And_Corp.permissionset
