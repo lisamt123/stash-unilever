@@ -194,7 +194,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NA~Not Applicable</fullName>
+                <fullName>N/A~Not Applicable</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
