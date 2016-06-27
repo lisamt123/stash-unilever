@@ -62,6 +62,8 @@ src/queues/CEC_Thailand_Queue.queue
 src/queues/CEC_Vietnam_Escalation_Queue.queue
 src/queues/CEC_Vietnam_Quality_Check.queue
 src/queues/CEC_Vietnam_Queue.queue
+src/queues/CEC_North_America_Tier_2_Queue.queue
+src/queues/CEC_North_America_Tier_3_Queue.queue
 src/roles
 src/roles/CEC_Manager_Bangladesh.role
 src/roles/CEC_Manager_Pakistan.role
