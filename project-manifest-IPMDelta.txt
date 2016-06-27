@@ -1,4 +1,12 @@
 src
 src/classes
-src/classes/IPM_OTIFStatusController.cls
-src/classes/IPM_OTIFStatusController.cls-meta.xml
+src/classes/IPM_GatekeeperChecklist.cls
+src/classes/IPM_GatekeeperChecklist.cls-meta.xml
+src/classes/IPM_TaskHelper.cls
+src/classes/IPM_TaskHelper.cls-meta.xml
+src/pages
+src/pages/IPM_ProjectSetUpView.page
+src/pages/IPM_ProjectSetUpView.page-meta.xml
+src/staticresources
+src/staticresources/IPM_Resource.resource
+src/staticresources/IPM_Resource.resource-meta.xml

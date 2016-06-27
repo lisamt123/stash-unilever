@@ -399,7 +399,7 @@ public with sharing class IPM_TaskHelper {
     {
         for(IPM_Project_Resource__c projectResource : projResList)
         {
-            if(projectResource.IPM_Role_Type__c!=null && projectResource.IPM_Role_Type__c.equalsIgnoreCase(masterTask.IPM_Function__c) && projectResource.IPM_Project_Role_Owner__c)
+            if(projectResource.IPM_Role_Type__c!=null && projectResource.IPM_Role_Type__c.equalsIgnoreCase(newTask.IPM_Function__c) && projectResource.IPM_Project_Role_Owner__c)
             {
                 newTask.IPM_Assignee__c = projectResource.IPM_User__c; 
                 break;

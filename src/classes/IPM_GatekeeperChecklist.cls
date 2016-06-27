@@ -154,7 +154,7 @@ public with sharing class IPM_GatekeeperChecklist{
             String sObjectName = 'IPM_Questionnaire__c';
             Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(sObjectName).getDescribe();
         	Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
-            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_GK_Answers_Multiselect__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,BETCurrentStatus__c,DependentFieldAPIName__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+            String query='SELECT ';
 	        for(String fieldAPIName :  sobjectFieldMap.keySet())
 	        {   
 	            if(!(fieldAPIName.equalsIgnoreCase('Id')))
