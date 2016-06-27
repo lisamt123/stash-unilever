@@ -110,11 +110,11 @@ private class PBS_TrainingCatalogController_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-		List<PBS_Learning_Category__c> tplanCategories =[Select Id, Name from PBS_Learning_Category__c Order By Name desc ];
+        List<PBS_Learning_Category__c> tplanCategories =[Select Id, Name from PBS_Learning_Category__c Order By Name desc limit :integer.valueof(System.Label.PBS_soqllimit)];
         
         PageReference ref = Page.PBS_TrainingCatalogDetail;
         ref.getParameters().put('id',tplanCategories.get(0).Id);
-		ref.getParameters().put('geo','Dummy data');
+        ref.getParameters().put('geo','Dummy data');
         ref.getParameters().put('course','Dummy data');
         ref.getParameters().put('profile','Dummy data');
         ref.getParameters().put('worklevel','Dummy data'); 

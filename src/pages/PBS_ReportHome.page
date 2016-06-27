@@ -1,0 +1,57 @@
+<apex:page sidebar="false" controller="PBS_ReportGenerator_CC">
+<title>Reports</title> 
+<apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+<style type="text/css">
+ .reportcontainer{
+    background-color:#004976;
+    position: relative;
+    top: -30px;
+   }
+.UnileverLogo{
+    margin-left:-710px;
+}
+.reportheader{
+background-color:#ffffff;
+margin-left:250px;
+margin-right:250px;
+}
+.reportbody{
+background-color:#13133D;
+margin-left:250px;
+margin-right:250px;
+    height:520px;
+}
+    .reportbodyinside{
+    position:relative;
+    top:35px;
+    background-color:#ffffff;
+    margin-left:60px;
+    margin-right:60px;
+    height:450px;
+    }
+</style>
+<br/>
+<div class="reportcontainer">
+  <center>
+     <div class="reportbody">
+      <apex:form >
+       <div class="reportbodyinside">
+         <br/>
+          <h1>
+              Plancraft Reports
+           </h1> <br/><br/>        
+           <apex:commandlink value="PBS Course Status" action="{!generateCrsStatusReport}" target="_blank"/>
+          <br/>
+<!--<apex:commandlink value="PBS_TPlan Assignments With User Details" action="{!gnrtTPlanAsgmntsWithUserDtlsRprt}" target="_blank"></apex:commandLink>
+          <br/>-->
+           <apex:commandlink value="PBS Course Status By UserName" action="{!generateCrsStatsByUserRprt}" target="_blank"/>
+          <br/>
+           <apex:commandlink value="PBS Course Status In Detail" action="{!generateCrsStatsByUserinDetl}" target="_self"/>  
+                     
+   </div>
+</apex:form>
+</div>
+</center>
+    
+</div>
+</apex:page>

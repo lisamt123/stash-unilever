@@ -38,7 +38,7 @@ public class PBS_SubFolderCtrl_Test {
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
         PBS_TrainingPlanData_Test.createSampleData();
-		List<PBS_Learning_Category__c> tplanCategories =[Select Id, Name from PBS_Learning_Category__c Order By Name desc ];
+        List<PBS_Learning_Category__c> tplanCategories =[Select Id, Name from PBS_Learning_Category__c Order By Name desc limit :integer.valueof(System.Label.PBS_soqllimit)];
         
         PageReference ref = Page.PBS_SubFolder;
         ref.getParameters().put('id',tplanCategories.get(0).Id);

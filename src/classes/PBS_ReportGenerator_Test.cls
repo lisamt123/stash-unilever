@@ -2,7 +2,7 @@
 private class PBS_ReportGenerator_Test {
     
  @isTest(SeeAllData='true')
- public static void testCrsStatusReport(){
+  static void testCrsStatusReport(){
     PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
     Pagereference pageref;
     Test.startTest();
@@ -11,7 +11,7 @@ private class PBS_ReportGenerator_Test {
     Test.stopTest();
   }
     @isTest(SeeAllData='true')
-  public static void testTPlanAsgmntsRprt(){
+   static void testTPlanAsgmntsRprt(){
     PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
     Pagereference pageref;
     Test.startTest();
@@ -37,21 +37,7 @@ private class PBS_ReportGenerator_Test {
      System.assert(pageref!= null);
     Test.stopTest();
   }
-    static testMethod void testgetUserNames(){
-      PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
-      List<SelectOption> nameList = new List<SelectOption>();
-        PBS_Standard_Job_Profile__c jobprofile = new PBS_Standard_Job_Profile__c();
-       PBS_Profile__c userName = new PBS_Profile__c();
-    Test.startTest();
-        jobprofile.Name='Dummy Role';
-        insert jobprofile;
-        userName.User__c=UserInfo.getUserId();
-        for(PBS_Standard_Job_Profile__c jobprof : [SELECT id FROM PBS_Standard_Job_Profile__c]){
-        userName.user_role__c = jobprof.id;}
-        insert userName;
-        System.assert(reportgeneratorObj.getUserNames().size()>0);
-    Test.stopTest();
- }
+  
      @isTest(SeeAllData='true')
     static void testGenerateDetlRprt(){
      PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
