@@ -915,6 +915,22 @@
                 <fullName>BETCurrentStatus%5F%5Fc</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>RQS_Charter_Answered%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Charter_Answered_3%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Contract_Answered%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Contract_Answered_3%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers_Multiselect__c</picklist>

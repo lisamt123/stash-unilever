@@ -1,12 +1,9 @@
 src
 src/classes
-src/classes/IPM_GatekeeperChecklist.cls
-src/classes/IPM_GatekeeperChecklist.cls-meta.xml
-src/classes/IPM_TaskHelper.cls
-src/classes/IPM_TaskHelper.cls-meta.xml
-src/pages
-src/pages/IPM_ProjectSetUpView.page
-src/pages/IPM_ProjectSetUpView.page-meta.xml
+src/classes/IPM_ProjectOverviewCtrl.cls
+src/classes/IPM_ProjectOverviewCtrl.cls-meta.xml
+src/objects
+src/objects/IPM_Questionnaire__c.object
 src/staticresources
 src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
