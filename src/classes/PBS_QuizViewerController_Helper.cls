@@ -27,7 +27,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-public class PBS_QuizViewerController_Helper{
+public with sharing class PBS_QuizViewerController_Helper{
 
         public void updateAssignmentFinalScore(PBS_Learning_Assignment__c assignment,PBS_Quiz__c quiz){
         
