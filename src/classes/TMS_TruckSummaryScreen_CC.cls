@@ -16,6 +16,7 @@ public string load {get; set;}
 public string loadComplete {get; set;}
 public string finalWeigh {get; set;}
 public string interim {get;set;}
+public string interimExt {get; set;}
 public string finalQuan {get; set;}
 public string qa {get; set;}
 public string printslip {get; set;}
@@ -65,7 +66,6 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
            PO_Number__c,Action__c,Bay_Number__c,Bay_Description__c,Bay_Wait_Time__c,CreatedDate,Initial_Wt__c 
           from TMS_Truck_Entry_Checklist__c WHERE Status__c!='Exit' ORDER BY Date__c DESC];
         //rType = [SELECT Id, name FROM RecordType WHERE SObjectType='TMS_Truck_Entry_Checklist__c' AND Id=:RecordTypeId];
-        //system.debug('rtype->'+rType);
         List<TMS_Bay_Master__c> bays = [SELECT Id, Name, Bay_Description__c, STD_Wait_Time__c FROM TMS_Bay_Master__c ORDER BY Name ASC];
         List<SelectOption> options = new List<SelectOption>();
         options.add(new Selectoption('None','None'));
@@ -164,13 +164,7 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
                  Integer bayvalue = 0;
                  string baystr;
                  tsentrycheck.id = tmstrucks[ite].id; 
-                 
                  tsentrycheck.Bay_Number__c = tmstrucks[ite].selectedbay;
-                 string tsentry = tmstrucks[ite].selectedbay;
-                 if(tsentry.equals(tmstrucks[ite].selectedbay)){
-                     tsentrycheck.Bay_Number__c = tmstrucks[ite].selectedbay + ' '+'Wait';
-                 }    
-                
                  tsentrycheck.Bay_Description__c = tmstrucks[ite].baydes;                 
                  DateTime t = system.now();
                  Time tm = t.Time();
@@ -188,16 +182,31 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
                  tsentrycheck.Action__c='Move To Bay';
                  //tsentrycheck.Status__c='Bay Allocated';                   
                  listtruckentry.add(tsentrycheck);
-            if(listtruckentry.size()>0){
-                update listtruckentry;
-            
+                if(listtruckentry.size()>0){
+                    update listtruckentry;
+                }
+                Integer value = 0;
+                if(listtruckentry.size()>0){
+                    for(TMS_Truck_Entry_Checklist__c tmtruck :listtruckentry){ 
+                        TMS_Truck_Entry_Checklist__c tmentry = new TMS_Truck_Entry_Checklist__c();
+                        if(tmtruck.Bay_Description__c==null){
+                        if(tmtruck.Bay_Number__c.equals(tmstrucks[ite].selectedbay)){
+                            value = value+1;
+                            tmentry.id = tmstrucks[ite].id;
+                            tmentry.Bay_Number__c = tmtruck.Bay_Number__c + ' '+'Wait';
+                            tmstruckList.add(tmentry);
+                        }                        
+                    } 
+                    }      
+                }
+                if(!tmstruckList.isempty()){
+                    update tmstruckList;
+                }
+                
                 PageReference pg = Page.TMS_TruckSummaryScreen_VF;
                 pg.setRedirect(true);
-                return pg;                  
-            }
-            
-           }
-                      
+                return pg;
+               }       
            return null;           
      }    
      
@@ -262,21 +271,6 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
              pg.setRedirect(true);
              return pg;      */   
      }
-    /* public PageReference unloadLoadComplete(){
-             integer ite = integer.valueof(loadComplete);
-             loadComplete= System.currentPageReference().getParameters().get('loadComplete');
-             truckList = new List<TMS_Truck_Entry_Checklist__c>();
-             truckList = [select id,Vehicle_Number__c,Action__c,Status__c from TMS_Truck_Entry_Checklist__c where id=:loadComplete];
-             TMS_Truck_Entry_Checklist__c tsentrycheck = new TMS_Truck_Entry_Checklist__c();
-             tsentrycheck.Id=tmstrucks[ite].id; 
-             tsentrycheck.Action__c='Fin weight';
-             tsentrycheck.Status__c='Unload/Load Done';
-             truckList.add(tsentrycheck);
-             update truckList;
-             PageReference pg = Page.TMS_TruckSummaryScreen_VF;
-             pg.setRedirect(true);
-             return pg;         
-     }*/
      public PageReference finalWeight(){
              integer ite = integer.valueof(finalWeigh);
              finalWeigh= System.currentPageReference().getParameters().get('finalWeigh');
@@ -285,7 +279,7 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
              TMS_Truck_Entry_Checklist__c tsentrycheck = new TMS_Truck_Entry_Checklist__c();
              tsentrycheck.Id=tmstrucks[ite].id; 
              tsentrycheck.Action__c='Qnty Val';
-             //tsentrycheck.Status__c='Final Wt.done';
+             tsentrycheck.Status__c='Final Wt.done';
              truckList.add(tsentrycheck);
              update truckList;
              PageReference pg = Page.TMS_TruckSummaryScreen_VF;
@@ -321,22 +315,22 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
              PageReference pg = Page.TMS_TruckSummaryScreen_VF;
              pg.setRedirect(true);
              return pg;         
-     } 
-     /*public PageReference qaAccept(){
-             integer ite = integer.valueof(qa);
-             qa= System.currentPageReference().getParameters().get('qa');
+     }
+     public PageReference interimEntry(){
+             integer ite = integer.valueof(interimExt);
+             interimExt= System.currentPageReference().getParameters().get('interimExt');
              truckList = new List<TMS_Truck_Entry_Checklist__c>();
-             truckList = [select id,Vehicle_Number__c,Action__c,Status__c from TMS_Truck_Entry_Checklist__c where id=:qa];
+             truckList = [select id,Vehicle_Number__c,Action__c,Status__c from TMS_Truck_Entry_Checklist__c where id=:interimExt];
              TMS_Truck_Entry_Checklist__c tsentrycheck = new TMS_Truck_Entry_Checklist__c();
              tsentrycheck.Id=tmstrucks[ite].id; 
-             //tsentrycheck.Action__c='Allocate Bay';
-             tsentrycheck.Status__c='QA Accepted';
+             tsentrycheck.Action__c='Exit';
+             tsentrycheck.Status__c='External Bay Selected';
              truckList.add(tsentrycheck);
              update truckList;
              PageReference pg = Page.TMS_TruckSummaryScreen_VF;
              pg.setRedirect(true);
              return pg;         
-     }*/
+     } 
      public pageReference removeRow(){
              integer ite = integer.valueof(remrow);
              remrow= System.currentPageReference().getParameters().get('remrow');
@@ -351,7 +345,6 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
              update truckList;
              truckList1 = [select id,Vehicle_Number__c,Action__c,Status__c,Exit_Time__c,Detention_Time__c from TMS_Truck_Entry_Checklist__c where id=:truckList[0].Id];
              //TMS_Truck_Entry_Checklist__c ts = new TMS_Truck_Entry_Checklist__c();
-             system.debug('truck list'+truckList1);
              for(TMS_Truck_Entry_Checklist__c ts:truckList1){
              
                  if(ts.Detention_Time__c>30.00){
@@ -553,7 +546,7 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
          }  
     }
     public void utmethode1()
-     {    //system.debug('tmtrucks-->'+tmstrucks);
+     {    
          ut=true;
          for(Tmstruck t:tmstrucks)
          {
@@ -571,14 +564,4 @@ public List<TMS_Truck_Entry_Checklist__c> listtruckentry = new List<TMS_Truck_En
       }
           
     }
-    /*public pageReference deleteRow(){
-    delrow = System.currentPageReference().getParameters().get('delrow');
-           truckList = new List<TMS_Truck_Entry_Checklist__c>();
-        truckList = [select id,Vehicle_Number__c,Truck_Type__c,Vendor_Customer__c,Transporter__c,Challan_Number__c from TMS_Truck_Entry_Checklist__c where Vehicle_Number__c=:delrow];
-        delete truckList;
-        PageReference pg = Page.TMS_TruckSummaryScreen_VF;
-                    pg.setRedirect(true);
-                    return pg;
-    }*/
-    
 }
