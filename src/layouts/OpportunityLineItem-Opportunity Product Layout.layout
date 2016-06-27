@@ -42,22 +42,6 @@
                 <behavior>Edit</behavior>
                 <field>ApprovalGranted__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_OpportunityDistributor__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_GrossProfitPercent__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_MrktTarget__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -79,10 +63,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_HQRate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_OpportunityEmail__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

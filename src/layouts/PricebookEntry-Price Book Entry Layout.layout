@@ -63,17 +63,17 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_Bracket_1__c</field>
+                <field>FS_Bracket_1__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_Bracket_3__c</field>
+                <field>FS_Bracket_3__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NAFS_Bracket_2__c</field>
+                <field>FS_Bracket_2__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

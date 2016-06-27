@@ -50,6 +50,14 @@
                 <behavior>Required</behavior>
                 <field>CurrencyIsoCode</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Account_Plan__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Defined_Objective__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -118,7 +126,7 @@
                     <contextFilterableField>OPPORTUNITY_ID</contextFilterableField>
                     <hideOnError>false</hideOnError>
                     <includeContext>true</includeContext>
-                    <reportName>NAFS_Report_MABE_1</reportName>
+                    <reportName>FS_Report_MABE_1</reportName>
                     <showTitle>false</showTitle>
                     <size>SMALL</size>
                 </reportChartComponent>
@@ -135,7 +143,7 @@
                     <contextFilterableField>OPPORTUNITY_ID</contextFilterableField>
                     <hideOnError>false</hideOnError>
                     <includeContext>true</includeContext>
-                    <reportName>NAFS_Report_MABE_2</reportName>
+                    <reportName>FS_Report_MABE_2</reportName>
                     <showTitle>false</showTitle>
                     <size>SMALL</size>
                 </reportChartComponent>

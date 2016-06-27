@@ -43,18 +43,6 @@
                 <field>ApprovalGranted__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_OpportunityDistributor__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_OpportunityRate__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Quantity</field>
             </layoutItems>
@@ -83,10 +71,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_HQRate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NAFS_OpportunityEmail__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
