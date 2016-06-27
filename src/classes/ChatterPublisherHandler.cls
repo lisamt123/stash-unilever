@@ -1,17 +1,16 @@
-public class ChatterPublisherHandler {
-    
-    
+public with sharing  class ChatterPublisherHandler {
+   
      /* ============================================== Retrieving data ================================ */
     
    /* Get Feed Elements From a Feed 
-	* This method retrieves the feed while loading the component 
-	* Used in : ChatterFeedCmp.cmp  */
+    * This method retrieves the feed while loading the component 
+    * Used in : ChatterFeedCmp.cmp  */
     
    @AuraEnabled
    public static List<ChatterAuraFeedItem> getFeedElements(String subjectId, String feedType) { 
-           	List<ChatterAuraFeedItem> auraFeedItems = new List<ChatterAuraFeedItem>();
-            ChatterAuraFeedItem cfe;
-       		ConnectApi.FeedType convertedFeedType = convertFeedType(feedtype);
+            List<ChatterAuraFeedItem> auraFeedItems = new List<ChatterAuraFeedItem>();
+            // ChatterAuraFeedItem cfe;
+            ConnectApi.FeedType convertedFeedType = convertFeedType(feedtype);
             Integer pageSize = 5 ; // default value
             ChatterPublisherSettings__c setting = ChatterPublisherSettings__c.getInstance('Default');
                if(setting != null) {
@@ -19,10 +18,10 @@ public class ChatterPublisherHandler {
                        pageSize = setting.Number_Of_Feed_Elements_to_Display__c.intValue(); 
                 } 
                }
-            System.debug('pageSize::' + pageSize);
+           // System.debug('pageSize::' + pageSize);
             List<ConnectApi.FeedElement> feedElements = (ConnectApi.ChatterFeeds.getFeedElementsFromFeed(Network.getNetworkId(), convertedFeedType, subjectId, null,pageSize, ConnectApi.FeedSortOrder.LastModifiedDateDesc)).elements; 
-           	for(ConnectApi.FeedElement fe : feedElements){
-					auraFeedItems.add(getChatterAuraFeedItemFromFeedElement(fe));
+            for(ConnectApi.FeedElement fe : feedElements){
+                    auraFeedItems.add(getChatterAuraFeedItemFromFeedElement(fe));
            }
            return auraFeedItems;
    } 
@@ -30,13 +29,13 @@ public class ChatterPublisherHandler {
     /* Get a feed element by Id */
     
    @AuraEnabled
-   public static ChatterAuraFeedItem getFeedElement(String feedElementId) { 	
+   public static ChatterAuraFeedItem getFeedElement(String feedElementId) {     
            ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId); 
-       	   return getChatterAuraFeedItemFromFeedElement(feedElement);
+           return getChatterAuraFeedItemFromFeedElement(feedElement);
    }
     
     /* Get a comment by Id in order to refresh a comment
-	 * Used in ChatterFeedElement.cmp */
+     * Used in ChatterFeedElement.cmp */
     
    @AuraEnabled
    public static ChatterAuraFeedComment getCommentById(String commentId) { 
@@ -45,11 +44,11 @@ public class ChatterPublisherHandler {
            return feedComment ; 
    }
     
-    /*  This method is used to get suggestions based on typed characters	
-	 * while mentioning a user or group in the publisher component  */
+    /*  This method is used to get suggestions based on typed characters    
+     * while mentioning a user or group in the publisher component  */
     
    @AuraEnabled
-   public static String getMentionCompletions(String q, String contextId) { 
+    public static String getMentionCompletions(String q, String contextId) { 
            String result = '';
            if(contextId != null & contextId.equalsIgnoreCase('me')) {
                contextId = UserInfo.getUserId();
@@ -59,35 +58,35 @@ public class ChatterPublisherHandler {
            if(mentionCompletionPage.mentionCompletions != null && !mentionCompletionPage.mentionCompletions.isEmpty()) {
                Integer size = mentionCompletionPage.mentionCompletions.size();
                for(Integer i=0 ; i<size ; i++) {
-                   result += '{name: \'' + ((mentionCompletionPage.mentionCompletions).get(i)).name + '\'}';   
+                    result += '{name: \'' + ((mentionCompletionPage.mentionCompletions).get(i)).name + '\'}';   
                    if(i != size-1) {
                        result+=',';
                    }
                }
-
+ 
            }
           result += '\n ] \n }';
           return  result;
-
-   }
-    
+ 
+   }  
     /* Used in ChatterPublisherCmp.cmp in order to display the name of subject Id */
     
     @AuraEnabled 
     public static String getSubjectNameById(String subjectId) {
+         String objectName;
         String result;
         if(subjectId != null && subjectId.equalsIgnoreCase('me')) {
             result = 'My Followers';
         } else if(subjectId != null){
             String myIdPrefix = String.valueOf(subjectId).substring(0,3);
-            String objectName;
+           
             //Get schema information
             Map<String, Schema.SObjectType> gd =  Schema.getGlobalDescribe();
             //Loop through all the sObject types returned by Schema
             for(Schema.SObjectType stype : gd.values()){
                 Schema.DescribeSObjectResult r = stype.getDescribe();
                 String prefix = r.getKeyPrefix();
-                System.debug('Prefix is ' + prefix);
+              //  System.debug('Prefix is ' + prefix);
                 //Check if the prefix matches with requested prefix
                 if(prefix!=null && prefix.equals(myIdPrefix)){
                     objectName = r.getName();
@@ -96,7 +95,7 @@ public class ChatterPublisherHandler {
                 }
             }
             String query = 'SELECT Id, Name FROM '+ objectName + ' WHERE Id = \'' + subjectId + '\'' ;
-            System.Debug('My query : ' + query);
+        //    System.Debug('My query : ' + query);
             List<sObject> sobjList = Database.query(query);
             if(!sobjList.isEmpty()) {
                 sObject mySObject = sobjList.get(0);
@@ -111,28 +110,28 @@ public class ChatterPublisherHandler {
     /* ============================================== Posting to feed  ================================ */
     
    /* Post a new feed element, including Link and mention capabilities
-	* Used in : ChatterPublisherCmp.cmp */
+    * Used in : ChatterPublisherCmp.cmp */
    @AuraEnabled
    public static void postFeedElement(String messageToPost,String subjectId) { 
-       	   ConnectApi.FeedItemInput feedItemInput = getFeedItemInputWithMentions(messageToPost,subjectId);
-       	   ConnectApi.FeedElementCapabilitiesInput feedElementCapabilitiesInput = new ConnectApi.FeedElementCapabilitiesInput();
+           ConnectApi.FeedItemInput feedItemInput = getFeedItemInputWithMentions(messageToPost,subjectId);
+           ConnectApi.FeedElementCapabilitiesInput feedElementCapabilitiesInput = new ConnectApi.FeedElementCapabilitiesInput();
            feedElementCapabilitiesInput.link = getLinkCapability(messageToPost);
            feedItemInput.capabilities = feedElementCapabilitiesInput;     
-           ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
+   ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
      
    }
     
    /* Posting a new comment to a feed element
-	* Used in ChatterFeedElement.cmp */
+    * Used in ChatterFeedElement.cmp */
      
    @AuraEnabled
    public static ChatterAuraFeedItem postCommentToFeedElement(String feedElementId, String text) { 
            ConnectApi.FeedElement feedElement;
            if(text != null && text.trim() != '') {
-                ConnectApi.Comment comment = ConnectApi.ChatterFeeds.postCommentToFeedElement(Network.getNetworkId(), feedElementId, text);
-       	   		
+               ConnectApi.Comment comment = ConnectApi.ChatterFeeds.postCommentToFeedElement(Network.getNetworkId(), feedElementId, text);
+                
            } 
-      	   feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
+           feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
            return getChatterAuraFeedItemFromFeedElement(feedElement);
            
    }
@@ -155,7 +154,7 @@ public class ChatterPublisherHandler {
 
         return fileId;
        
-	} 
+    } 
     
     private static String appendToFile(Id fileId, String base64Data, String subjectId, String textToPost) {
         // TO BE DONE : 
@@ -187,9 +186,9 @@ public class ChatterPublisherHandler {
         delete cd;
         
         List<ConnectApi.FeedElement> feedElements = (ConnectApi.ChatterFeeds.getFeedElementsFromFeed(Network.getNetworkId(), connectApi.FeedType.News, subjectId, null,1, ConnectApi.FeedSortOrder.CreatedDateDesc)).elements; 
-        ConnectApi.ChatterFeeds.deleteFeedElement(Network.getNetworkId(), feedElements.get(0).Id); 	
+        ConnectApi.ChatterFeeds.deleteFeedElement(Network.getNetworkId(), feedElements.get(0).Id);  
         
-   		postFeedElementWithExistingFile(subjectId,textToPost,c.ContentDocumentId); */
+        postFeedElementWithExistingFile(subjectId,textToPost,c.ContentDocumentId); */
         
 
         return fileId;
@@ -198,7 +197,7 @@ public class ChatterPublisherHandler {
     
      @AuraEnabled
     public static String saveTheFile(String subjectId,String fileName, String base64Data, String contentType,String textToPost) { 
-        System.debug('saveTheFile');
+    //    System.debug('saveTheFile');
          base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
         ContentVersion newContentVersion = new ContentVersion();
         // see https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_contentversion.htm
@@ -208,7 +207,7 @@ public class ChatterPublisherHandler {
         newContentVersion.Origin = 'H'; 
         insert newContentVersion;
         ContentVersion c = [Select Id, ContentDocumentId from ContentVersion where id =: newContentVersion.Id LIMIT 1]; 
-   		postFeedElementWithExistingFile(subjectId,textToPost,c.ContentDocumentId);
+        postFeedElementWithExistingFile(subjectId,textToPost,c.ContentDocumentId);
         return newContentVersion.Id;
     }
     
@@ -247,8 +246,8 @@ public class ChatterPublisherHandler {
         // Post the feed item.
          ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
         
-		
-		
+        
+        
     } 
     
     /* parse a text and prepare letion segments to be posted  */
@@ -334,17 +333,17 @@ public class ChatterPublisherHandler {
    /* ============================================== Liking & Unliking feed elements ================================ */
     
    /* Like a feed element by conyext user 
-	Used in ChatterFeedElement.cmp */
+    Used in ChatterFeedElement.cmp */
    @AuraEnabled
-   public static ChatterAuraFeedItem likeFeedElement(String feedElementId) { 	
+   public static ChatterAuraFeedItem likeFeedElement(String feedElementId) {    
            ConnectApi.ChatterLike likeFeedElement = ConnectApi.ChatterFeeds.likeFeedElement(Network.getNetworkId(), feedElementId); 
-       	   ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
+           ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
            return getChatterAuraFeedItemFromFeedElement(feedElement);
        
    }
     
    /* Like a feed element by conyext user 
-	Used in ChatterFeedElement.cmp */
+    Used in ChatterFeedElement.cmp */
    @AuraEnabled
     public static ChatterAuraFeedItem unlikeFeedElement(String feedElementId) {
            ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
@@ -367,7 +366,7 @@ public class ChatterPublisherHandler {
     /* ============================================== Liking & Unliking comments ================================ */
    
     /* Like and Unlike a comment  by conyext user 
-	Used in ChatterFeedElement.cmp */
+    Used in ChatterFeedElement.cmp */
    @AuraEnabled
    public static void likeUnlikeComment(String commentIdtoHandleLike) {
 
@@ -402,7 +401,7 @@ public class ChatterPublisherHandler {
         return result;
     }
     
-	/* create a link capability from text segment to post */
+    /* create a link capability from text segment to post */
     
     private static ConnectApi.LinkCapabilityInput getLinkCapability(String messageToPost){
  
@@ -455,7 +454,7 @@ public class ChatterPublisherHandler {
             feedComment.userId = comment.user.id;
             if(comment.user.photo != null) {
                 feedComment.userSmallPhotoUrl = comment.user.photo.smallPhotoUrl;
-            } 		
+            }       
         }
         feedComment.relativeCreatedDate = comment.relativeCreatedDate;
         if(comment.myLike != null) { 
@@ -508,7 +507,7 @@ public class ChatterPublisherHandler {
                                   richTextSegment = new ChatterAuraFeedItem.ChatterRichTextSegment();
                             
                                   if(messageSegment instanceof ConnectApi.MarkupBeginSegment) {
-									  richTextSegment.segmentBody = ' <' + ((ConnectApi.MarkupBeginSegment) messageSegment).htmlTag + '> ';
+                                      richTextSegment.segmentBody = ' <' + ((ConnectApi.MarkupBeginSegment) messageSegment).htmlTag + '> ';
                                       cfe.isRichText = true;
                                   }
                                   if(messageSegment instanceof ConnectApi.MarkupEndSegment) {
@@ -517,7 +516,7 @@ public class ChatterPublisherHandler {
                                   if(messageSegment instanceof ConnectApi.TextSegment) {
                                       richTextSegment.segmentBody = messageSegment.text;
                                   }
-                            	  if(messageSegment instanceof ConnectApi.MentionSegment) {
+                                  if(messageSegment instanceof ConnectApi.MentionSegment) {
                                       cfe.isRichText = true;
                                       richTextSegment.segmentType = 'mention';
                                       if(((ConnectApi.MentionSegment) messageSegment).record != null) {
@@ -525,13 +524,13 @@ public class ChatterPublisherHandler {
                                       }
                                       richTextSegment.refName = ((ConnectApi.MentionSegment) messageSegment).name ;
                                   }
-                             	  if(messageSegment instanceof ConnectApi.LinkSegment) {
+                                  if(messageSegment instanceof ConnectApi.LinkSegment) {
                                       cfe.isRichText = true;
                                       String refId = '#';
                                       richTextSegment.segmentBody = ' <a href="' + ((ConnectApi.LinkSegment) messageSegment).url + '"> ' + ((ConnectApi.LinkSegment) messageSegment).text + '</a>';
                                   } 
-                            	  cfe.richBodyText.add(richTextSegment);
-                        	}
+                                  cfe.richBodyText.add(richTextSegment);
+                            }
                         }
                    }
                        
@@ -569,9 +568,9 @@ public class ChatterPublisherHandler {
                               for (ConnectApi.Topic t : topics){
                                cfe.topics.add(t.name);  
                               }
-                          	 if(cfe.topics.isEmpty()){
+                             if(cfe.topics.isEmpty()){
                                cfe.isEmptyTopics = true;
-                          	 }
+                             }
                           } else {
                               cfe.isEmptyTopics = true;
                           }
@@ -603,7 +602,7 @@ public class ChatterPublisherHandler {
                                    feedFile.versionId = content.versionId;
                                    feedFile.contentId = content.id;
                                    (cfe.files).add(feedFile);  
-                           		}
+                                }
                            }
                             
                        }
@@ -621,7 +620,7 @@ public class ChatterPublisherHandler {
                    
                     if(fe.Id != null) {
                        ConnectApi.CommentPage commentPage = ConnectApi.ChatterFeeds.getCommentsForFeedElement(Network.getNetworkId(), fe.Id);
-                   	   List<ConnectApi.Comment> comments = commentPage.items;
+                       List<ConnectApi.Comment> comments = commentPage.items;
                        if(!comments.isEmpty()){
                            cfe.hasComments = true;
                            cfe.comments = new List<ChatterAuraFeedComment>();
@@ -640,7 +639,7 @@ public class ChatterPublisherHandler {
  
     /* ================================================ Upload from SF capability: search existing files  ========================================================*/
 
- 	/**
+    /**
      * Aura enabled method to search a specified SObject for a specific string
      */
     @AuraEnabled

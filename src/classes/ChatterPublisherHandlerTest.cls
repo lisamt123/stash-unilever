@@ -1,9 +1,9 @@
 @isTest
 public class ChatterPublisherHandlerTest {
     
-  	@isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_GetFeed() {      
-
+    @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_GetFeed() {      
+ 
         ConnectApi.FeedElementpage testPage = new ConnectApi.FeedElementpage();
         List<ConnectApi.FeedItem> testItemList = new List<ConnectApi.FeedItem>();
         ConnectApi.FeedItem element1 = new ConnectApi.FeedItem();
@@ -54,7 +54,7 @@ public class ChatterPublisherHandlerTest {
         
         // Set the test data Network.getNetworkId(), convertedFeedType, subjectId, null,pageSize, ConnectApi.FeedSortOrder.LastModifiedDateDesc
         ConnectApi.ChatterFeeds.setTestGetFeedElementsFromFeed(Network.getNetworkId(), ConnectApi.FeedType.News, 'me',null,5, ConnectApi.FeedSortOrder.LastModifiedDateDesc, testPage);
-
+ 
         // The method returns the test page, which we know has two items in it.
         Test.startTest();
         FeedItem feedItem = new FeedItem();
@@ -67,66 +67,69 @@ public class ChatterPublisherHandlerTest {
       
   }
     
-    @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_PostPlainText() {
+     @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_PostPlainText() {
         Test.startTest();
         ChatterPublisherHandler.postFeedElement('message', 'me');
         Test.stopTest();
     }
     
-    @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_PostWithLink() {
+     @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_PostWithLink() {
         Test.startTest();
         ChatterPublisherHandler.postFeedElement('Can you check www.google.com please?', 'me');
         Test.stopTest();
     }
     
-    @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_PostWithMention() {
+     @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_PostWithMention() {
         Test.startTest();
         String currentUserName = UserInfo.getName();
         ChatterPublisherHandler.postFeedElement('Please welcome @[' + currentUserName + ']', 'me');
         Test.stopTest();
     }
     
-     @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_LikeFeedElement() {
+      @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_LikeFeedElement() {
         Test.startTest();
         FeedItem feedItem = new FeedItem();
         feedItem.Body = 'test';
         feedItem.ParentId = UserInfo.getUserId();
         insert feedItem;
+         System.AssertNotEquals(Null,feedItem.id);
         ChatterPublisherHandler.likeFeedElement(feedItem.id);
         Test.stopTest();
     }
     
     
-     @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_UNLikeFeedElement() {
+      @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_UNLikeFeedElement() {
         Test.startTest();
         FeedItem feedItem = new FeedItem();
         feedItem.Body = 'test';
         feedItem.ParentId = UserInfo.getUserId();
         insert feedItem;
+         System.AssertNotEquals(Null,feedItem.id);
         ChatterPublisherHandler.likeFeedElement(feedItem.id);
         ChatterPublisherHandler.unlikeFeedElement(feedItem.id);
         Test.stopTest();
     }
     
-      @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_CommentFeedElement() {
+       @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_CommentFeedElement() {
         Test.startTest();
         FeedItem feedItem = new FeedItem();
         feedItem.Body = 'test';
         feedItem.ParentId = UserInfo.getUserId();
         insert feedItem;
-        ChatterAuraFeedItem result = ChatterPublisherHandler.getFeedElement(feedItem.id);
+          System.AssertNotEquals(Null,feedItem.ParentId);
+         ChatterAuraFeedItem result = ChatterPublisherHandler.getFeedElement(feedItem.id);
         ChatterPublisherHandler.postCommentToFeedElement(feedItem.id, 'my comment');
         Test.stopTest();
     }
     
-    @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_getMentionCompletion() {
+     @isTest//(seeAllData=true)
+     static void ChatterPublisherHandlerTest_getMentionCompletion() {
         
         ConnectApi.MentionCompletionPage mentionCompletionPageTest = new ConnectApi.MentionCompletionPage();
         mentionCompletionPageTest.mentionCompletions = new List<ConnectApi.MentionCompletion>();
@@ -139,24 +142,25 @@ public class ChatterPublisherHandlerTest {
         Test.stopTest();
     }
     
-    @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_uploadFile() {
+     @isTest(seeAllData=true)
+     static void ChatterPublisherHandlerTest_uploadFile() {
         Test.startTest();
         ChatterPublisherHandler.uploadNewFile('fileName.txt', 'base64Data', 'txt', 'me', 'hello', '');
         Test.stopTest();
     }
     
-
-    @isTest(seeAllData=true)
-    static void ChatterPublisherHandlerTest_getSubjectNameById() {
+ 
+     @isTest//(seeAllData=true)
+     static void ChatterPublisherHandlerTest_getSubjectNameById() {
         Test.startTest();
-        String result1 = ChatterPublisherHandler.getSubjectNameById('me');
+         String result1 = ChatterPublisherHandler.getSubjectNameById('me');
         Account acc = new Account();
         acc.name = 'acme';
         insert acc;
-        String result2 = ChatterPublisherHandler.getSubjectNameById(acc.id);
+         System.AssertNotEquals(Null,acc.id);
+         String result2 = ChatterPublisherHandler.getSubjectNameById(acc.id);
         Test.stopTest();
     }
-
-
+ 
+ 
 }
