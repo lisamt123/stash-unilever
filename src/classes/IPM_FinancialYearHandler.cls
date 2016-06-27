@@ -6,8 +6,8 @@
 */
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
-    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
-    public static Set<Id> finYearIdsforProjY3iToSync = new Set<Id> ();
+    public Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    public Set<Id> finYearIdsforProjY3iToSync = new Set<Id> ();
     
     //@description:Constructor
     public IPM_FinancialYearHandler ()
