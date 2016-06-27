@@ -1,9 +1,4 @@
 src
-src/permissionsets
-src/permissionsets/IPM_ProjectLeader.permissionset
-src/permissionsets/IPMNG_Basic.permissionset
-src/sharingRules
-src/sharingRules/IPM_Project__c.sharingRules
-src/staticresources
-src/staticresources/IPM_Resource.resource
-src/staticresources/IPM_Resource.resource-meta.xml
+src/classes
+src/classes/IPM_OTIFStatusController.cls
+src/classes/IPM_OTIFStatusController.cls-meta.xml
