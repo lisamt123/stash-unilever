@@ -11,18 +11,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>IdeasLigthningGA__c</fullName>
-        <description>IdeasLigthningGA  Tracking ID</description>
-        <externalId>false</externalId>
-        <inlineHelpText>IdeasLigthningGA  Tracking ID</inlineHelpText>
-        <label>IdeasLigthningGA</label>
-        <length>250</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Text_Value__c</fullName>
         <externalId>false</externalId>
         <label>Text Value</label>

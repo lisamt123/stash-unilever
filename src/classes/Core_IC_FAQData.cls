@@ -18,11 +18,13 @@ global with sharing class Core_IC_FAQData {
             objFAQResponseResponse = processFAQValues();
             objFAQResponseResponse.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
             objFAQResponseResponse.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
-       } catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_IC_FAQData : GetFAQValues method ', ex); }    
-     /*  catch(Core_CA_BaseServiceException baseServEx){ 
+       }
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
-          
+       }
+       catch(Exception ex){
+            throw new Core_CA_BaseServiceException('Exception occured: Core_IC_FAQData : GetFAQValues method ', ex);
+       }    
        return objFAQResponseResponse;
     }
     
@@ -53,7 +55,10 @@ global with sharing class Core_IC_FAQData {
                 lstFaq.add(faq);
             }*/
             objFAQResponseResponse.FAQ=lstFaq;
-       }catch(Exception ex){  throw new Core_CA_BaseServiceException('Exception occured: Core_IC_FAQData : processFAQValues method ', ex); }   
+       }
+       catch(Exception ex){
+            throw new Core_CA_BaseServiceException('Exception occured: Core_IC_FAQData : processFAQValues method ', ex);
+       }   
        
        return objFAQResponseResponse;
     }
