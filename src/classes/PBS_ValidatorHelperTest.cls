@@ -40,12 +40,12 @@ Public class PBS_ValidatorHelperTest{
     private static final string ABC ='abc';
     private static final string UTF8 = 'utf-8';
     private static final string C280 = '%c2%80';
-    private static final string ZEROTONINE = '01234567890123456789012345678901234567890123456789';
+    //private static final string ZEROTONINE = '01234567890123456789012345678901234567890123456789';
     public static final string GOOGLE = 'www.google.com';
     private static final string SALESFORCE = 'na7.salesforce.com';
     private static final string CSALESFORCE = 'c.na7.salesforce.com';
     private static final string ZEROTONINE_10 = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
-    private static final string ONE_TXT = '1.txt';
+    //private static final string ONE_TXT = '1.txt';
         private static final string VALID1 = 'valid #1';
     private static final string VALID2 = 'valid #2';
     private static final string VALID3 = 'valid #3';
