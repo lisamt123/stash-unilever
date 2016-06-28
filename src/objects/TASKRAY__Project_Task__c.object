@@ -426,6 +426,11 @@
             <isRequired>false</isRequired>
         </availableFields>
         <description>This is used to select fields which will display on the Task Card.</description>
+        <displayedFields>
+            <field>Country__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Task Card Labels</label>
     </fieldSets>
     <fieldSets>
