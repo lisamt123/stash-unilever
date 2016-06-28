@@ -12,6 +12,7 @@ src/layouts
 src/layouts/CEC_Claim_Note__c-Claim Note Layout.layout
 src/layouts/CEC_Retrieval_Request__c-Retrieval Request Layout%28Read Only%29.layout
 src/layouts/CEC_Retrieval_Request__c-Retrieval Request Layout.layout
+src/layouts/Case-Case Feed Layout.layout
 src/objects
 src/objects/Case.object
 src/objects/CEC_Claim_Note__c.object
