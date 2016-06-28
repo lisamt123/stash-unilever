@@ -839,7 +839,8 @@ public with sharing class IPM_Resource_Allocation {
        
         String projectManagedCategory = ipmproject.IPM_Category_Text__c;
         // Get In context Rollout Information
-        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id,IPM_Company_Card__c,Name,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(SELECT Id,Country_Name__c FROM IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId LIMIT 1];
+        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id,IPM_Company_Card__c,Name,IPM_Regional_PL__c,IPM_Rollout_Gatekeeper__c,
+                                                        Finance_Member__c,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(SELECT Id,Country_Name__c FROM IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId LIMIT 1];
       
         List<User> lstUser = [SELECT Id,Name FROM User WHERE Id =:selectedLeaderMember LIMIT 1];
         if(!lstRegRollout.isEmpty())

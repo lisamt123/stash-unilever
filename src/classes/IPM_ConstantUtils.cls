@@ -625,7 +625,7 @@ public class IPM_ConstantUtils {
     public static final String ROLLOUT_PL_TYPE = 'Project';
     public static final String ROLLOUT_FL_TYPE = 'Finance';
     public static final String ROLLOUT_CNTRY_TYPE = 'Country';
-    public static final String USER_FUNCTON_CL = 'Country Leader';
+    public static final String USER_FUNCTON_CL = 'MCO Rollout Leader';
     public static final String ROLLOUTID = 'RolloutId';
     public static final String LEADERMEMID = 'LeaderMemid';
     public static final String EDITMODE = 'EditMode';
