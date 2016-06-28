@@ -32,8 +32,9 @@ src/classes/Core_NC_NewsCenterControllerHelper.cls
 src/classes/Core_NC_NewsCenterControllerHelper.cls-meta.xml
 src/documents
 src/documents/Ideas
+src/documents/Ideas-meta.xml
 src/documents/Ideas/Idea.jpg
-src/documents/Ideas/Ideas-meta.xml
+src/documents/Ideas/Idea.jpg-meta.xml
 src/pages
 src/pages/CORE_IC_NavigateToApp.page
 src/pages/CORE_IC_NavigateToApp.page-meta.xml
