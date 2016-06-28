@@ -13,7 +13,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Executed</masterLabel>
-            <translation><!-- Executed --></translation>
+            <translation>Executada</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Inbound Call - Follow Up</masterLabel>
@@ -29,7 +29,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Out-of-Route</masterLabel>
-            <translation><!-- Out-of-Route --></translation>
+            <translation>Fora da Rota</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Outbound Call - Answerphone</masterLabel>
@@ -53,7 +53,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Planned</masterLabel>
-            <translation><!-- Planned --></translation>
+            <translation>Planejada</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Recommended Alternative Products / Stores</masterLabel>
