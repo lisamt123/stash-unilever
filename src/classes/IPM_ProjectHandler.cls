@@ -29,7 +29,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
     private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     public static Map<String,IPM_Category__c> customSettingCategory = IPM_Category__c.getAll();
-    public static Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
+    public Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
     public static Map<String ,IPM_Category_Thresholds__mdt>  masterCategoryThrshMap ;
     public static final String PROJECT_TYPE_ORIGINAL = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
     /***********************************************************************************************************************************
