@@ -633,11 +633,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          {
              showKeyFinancial = true;
          }
-         
+         lstRolloutWrappers = new List<RolloutWrapper>();
         if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
         {
                 mapConsolidatedFinancials = new Map<String, IPM_Financial__c> ();
-                lstRolloutWrappers = new List<RolloutWrapper>();
                 
                 // If Project is Global Orignal Project
                 if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
@@ -2624,6 +2623,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         	
 	    	//first check the previous financial in list of Non consolidated financials in the new tab 
 	    	//lRolloutWrapper holds all the non-consolidated financials existing for the current financial view
+	    	if(!lstRolloutWrappers.isEmpty()){
 	    	for(RolloutWrapper lRolloutWrapper :lstRolloutWrappers)
 	    	{
 	    		List<IPM_Financial__c> associatedFinancials = lRolloutWrapper.lstFinancials;
@@ -2634,7 +2634,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	    			break;
 	    		}
 	    	}
-	    	
+        	}
 	    	
 	    	//if currentFinancialId == null this means that the previous financial was not present in non-consolidated financials existing for the current financial view
 	    	//So check if the previous finacial is present in the list of consolidated financials existing for the current financial view
