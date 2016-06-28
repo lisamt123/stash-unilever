@@ -193,6 +193,7 @@ public class AF_ApproveActualsCtrl_Test
             //Insert BrandEstimate
             List<AF_AgencyEmailAlerts__c> Agency= AF_TestFactory_Helper.insertagencyEmailalerts(1,true);
             List<AF_AgencyEmailAlerts__c> AgencyQuery =[SELECT Name, Q2__c, Q1__c ,Q3__c, Q4__c  FROM AF_AgencyEmailAlerts__c where Id IN:Agency LIMIT 1];
+            System.assert(AgencyQuery!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             //Insert Attachment
             Blob b = Blob.valueOf(attachment_Data);  
             Attachment attach = new Attachment();  
@@ -310,11 +311,11 @@ public class AF_ApproveActualsCtrl_Test
             //Insert Account
             List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
             List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
-            System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
+            System.assertEquals(acc[0].Id != null,acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert contact
             List<contact> Con=AF_TestFactory_Helper.AFInsertContact(1,true);
             List<contact> Contactquery= [SELECT id FROM contact LIMIT 1];
-            System.Assert(Contactquery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
+            System.assertEquals(Con[0].id!=null,Contactquery[0].id!=null, AF_TestFactory_Helper.CONTACT_RECORD);
             //Insert category
             List<AF_Category_Brand__c> cb = AF_TestFactory_Helper.insertAFCBList(1,true);
             List<AF_Category_Brand__c> categoryQuery = [SELECT id FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_CATEGORY_RECTYPE and Id IN:cb LIMIT 1];
@@ -340,6 +341,7 @@ public class AF_ApproveActualsCtrl_Test
             //Insert BrandEstimate
             List<AF_AgencyEmailAlerts__c> Agency= AF_TestFactory_Helper.insertagencyEmailalerts(1,true);
             List<AF_AgencyEmailAlerts__c> AgencyQuery =[SELECT Name, Q2__c, Q1__c ,Q3__c, Q4__c  FROM AF_AgencyEmailAlerts__c where Id IN:Agency LIMIT 1];
+            System.assert(AgencyQuery!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             //Insert Attachment
             Blob b = Blob.valueOf(attachment_Data);  
             Attachment attach = new Attachment();  

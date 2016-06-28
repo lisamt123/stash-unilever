@@ -92,6 +92,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             ApexPages.currentPage().getParameters().put('id',brandEst[0].id); 
             List<AggregateResult> AgencyEstimateTotalCountByCountry = [SELECT SUM(AF_Total__c) CountryTotal,AF_Unilever_Entity__r.AF_Country__c CountryName FROM AF_Agency_Estimate__c  where AF_Brand_Estimate__c=: brandEst[0].Id GROUP BY AF_Unilever_Entity__r.AF_Country__c];
             List<AF_Bonus_Threshold__c> BonusThresholdCollection = [Select a.Year__c,a.Country_Name__c, a.SystemModstamp, a.OwnerId, a.Name, a.LastViewedDate,  a.Id,a.Brand_Name__c, a.Bonus_Measure__c, a.Agency_Name__c, a.AF_Unique_Thresholds__c, a.AF_Traditional__c, a.AF_Stretching__c, a.AF_Pilot_Model__c, a.AF_Outstanding__c, a.AF_Minimum__c, a.AF_Digital__c, a.AF_Country__c, a.AF_Country_Full_Name__c, a.AF_Category__c, a.AF_Brand_Estimate__c, a.AF_Bonusable_Fee__c From AF_Bonus_Threshold__c a where Agency_Name__c=:brandEst[0].AF_Agency__c and Brand_Name__c=:brandEst[0].Brand__c and Year__c =: brandEst[0].AF_Fiscal_Year__c ];
+            System.assertEquals(AgencyEstimateTotalCountByCountry!=null, BonusThresholdCollection!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             AF_ApprovalProcessForBrandEstController approvProceBrandEst=new AF_ApprovalProcessForBrandEstController();
             approvProceBrandEst.BrandEstRecord=BrandEstRecord;
             approvProceBrandEst.RejectBrandEstComment();
@@ -191,6 +192,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             ApexPages.currentPage().getParameters().put('id',brandEst[0].id); 
             List<AggregateResult> AgencyEstimateTotalCountByCountry = [SELECT SUM(AF_Total__c) CountryTotal,AF_Unilever_Entity__r.AF_Country__c CountryName FROM AF_Agency_Estimate__c  where AF_Brand_Estimate__c=: brandEst[0].Id GROUP BY AF_Unilever_Entity__r.AF_Country__c];
             List<AF_Bonus_Threshold__c> BonusThresholdCollection = [Select a.Year__c,a.Country_Name__c, a.SystemModstamp, a.OwnerId, a.Name, a.LastViewedDate,  a.Id,a.Brand_Name__c, a.Bonus_Measure__c, a.Agency_Name__c, a.AF_Unique_Thresholds__c, a.AF_Traditional__c, a.AF_Stretching__c, a.AF_Pilot_Model__c, a.AF_Outstanding__c, a.AF_Minimum__c, a.AF_Digital__c, a.AF_Country__c, a.AF_Country_Full_Name__c, a.AF_Category__c, a.AF_Brand_Estimate__c, a.AF_Bonusable_Fee__c From AF_Bonus_Threshold__c a where Agency_Name__c=:brandEst[0].AF_Agency__c and Brand_Name__c=:brandEst[0].Brand__c and Year__c =: brandEst[0].AF_Fiscal_Year__c ];
+            System.assertEquals(AgencyEstimateTotalCountByCountry!=null, BonusThresholdCollection!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             AF_ApprovalProcessForBrandEstController approvProceBrandEst=new AF_ApprovalProcessForBrandEstController();
             approvProceBrandEst.BrandEstRecord=BrandEstRecord;
             approvProceBrandEst.RejectBrandEstComment();

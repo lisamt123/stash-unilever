@@ -192,6 +192,7 @@ public class AF_Agency_EstimateHandler_Test
 			}
 			insert AgencyEsitmateNew1;
 			List<AF_Agency_Estimate__c> AgencyQuery1 = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate1 limit 1];
+			System.assert(AgencyQuery1!=null, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
 			delete AgencyEsitmateNew1;
 			//Insert Bonus Threshold
 			List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,false);
