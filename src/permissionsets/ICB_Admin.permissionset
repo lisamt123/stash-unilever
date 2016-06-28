@@ -856,6 +856,10 @@
     </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
+        <name>BulkApiHardDelete</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ChatterEditOwnPost</name>
     </userPermissions>
     <userPermissions>
