@@ -37,7 +37,7 @@ public class PBS_LMSCommunitiesService_Test {
         
         Test.startTest();
         System.runAs(lmsUsers.get(0)){
-            Id categoryId;
+            Id categoryId = null;
             for(PBS_Learning_Category__c lc : idlist){
                 categoryId = lc.Id;
             }
@@ -57,7 +57,7 @@ public class PBS_LMSCommunitiesService_Test {
         List<PBS_Learning_Category__c> idlist =[select id from PBS_Learning_Category__c limit 10];
         
         Test.startTest();
-            Id trackid;
+            Id trackid = null;
             for(PBS_Learning_Category__c lc : idlist){
                 trackid = lc.Id;
             }

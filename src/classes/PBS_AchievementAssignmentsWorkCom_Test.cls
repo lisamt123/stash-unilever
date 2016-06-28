@@ -85,7 +85,8 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
         PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,resourceLearnings);
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievements = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplans, new List<PBS_Achievement__c>{lAchievements.get(0)});
+       // List<PBS_Training_Plan_Achievement__c> lTPlanAchievement =
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplans, new List<PBS_Achievement__c>{lAchievements.get(0)});
 
         List<WorkBadgeDefinition> lWorkBadges = PBS_AchievementData_Test.createWorkBadges(1);
         WorkBadgeDefinition wb = lWorkBadges.get(0);

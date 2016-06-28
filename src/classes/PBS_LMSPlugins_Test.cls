@@ -46,7 +46,8 @@ public class PBS_LMSPlugins_Test {
         Test.startTest();
 
         try{
-            PBS_LMSPlugins_CC.LearningConfig config = PBS_LMSPlugins_CC.getLearningPluginConfig('TestCustomLearning1');// sonar fix
+            //PBS_LMSPlugins_CC.LearningConfig config =
+            PBS_LMSPlugins_CC.getLearningPluginConfig('TestCustomLearning1');// sonar fix
             //PBS_LMSPlugins_CC.getLearningPluginConfig('TestCustomLearning1');
             System.assert(false, 'Plugin exception was not thrown');
         }catch(PBS_LMSPlugins_CC.LMSPluginsException e){
@@ -60,7 +61,8 @@ public class PBS_LMSPlugins_Test {
         Test.startTest();
 
         try{
-            PBS_LMSPlugins_CC.LearningConfig config = PBS_LMSPlugins_CC.getLearningPluginConfig('TestCustomLearning2'); // sonar fix
+            //PBS_LMSPlugins_CC.LearningConfig config = 
+            PBS_LMSPlugins_CC.getLearningPluginConfig('TestCustomLearning2'); // sonar fix
             //PBS_LMSPlugins_CC.getLearningPluginConfig('TestCustomLearning2');
             System.assert(false, 'Plugin exception was not thrown');
         }catch(PBS_LMSPlugins_CC.LMSPluginsException e){
