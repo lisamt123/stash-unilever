@@ -6,33 +6,28 @@
     background-color:#004976;
     position: relative;
     top: -30px;
+    
    }
-.UnileverLogo{
-    margin-left:-710px;
-}
-.reportheader{
-background-color:#ffffff;
-margin-left:250px;
-margin-right:250px;
-}
+
 .reportbody{
 background-color:#13133D;
 margin-left:250px;
 margin-right:250px;
     height:520px;
 }
-    .reportbodyinside{
+.reportbodyinside{
     position:relative;
     top:35px;
     background-color:#ffffff;
     margin-left:60px;
     margin-right:60px;
     height:450px;
-    }
+    text-align: center;
+ }
 </style>
 <br/>
 <div class="reportcontainer">
-  <center>
+  
      <div class="reportbody">
       <apex:form >
        <div class="reportbodyinside">
@@ -51,7 +46,5 @@ margin-right:250px;
    </div>
 </apex:form>
 </div>
-</center>
-    
 </div>
 </apex:page>
