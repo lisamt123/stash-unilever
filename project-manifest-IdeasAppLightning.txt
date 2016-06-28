@@ -30,6 +30,9 @@ src/classes/Core_NC_NewsCenterController.cls
 src/classes/Core_NC_NewsCenterController.cls-meta.xml
 src/classes/Core_NC_NewsCenterControllerHelper.cls
 src/classes/Core_NC_NewsCenterControllerHelper.cls-meta.xml
+src/documents
+src/documents/Ideas
+src/documents/Ideas/IdeasAppIcon.svg
 src/pages/
 src/pages/CORE_IC_NavigateToApp.page
 src/pages/CORE_IC_NavigateToApp.page-meta.xml
@@ -156,6 +159,10 @@ src/labels
 src/labels/IdeasAppLightning.labels
 src/objects
 src/objects/CORE_Feedback__c.object
+src/objects/Core_Ideation__c.object
+src/objects/Core_Ideation_heirarchical__c.object
+src/objects/Core_IC_FAQ__c.object
+src/objects/App_Feedback__c.object
 src/staticresources
 src/staticresources/CORE_IC_IdeasLigthtning.resource
 src/staticresources/CORE_IC_IdeasLigthtning.resource-meta.xml
