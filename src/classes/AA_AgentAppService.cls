@@ -1,4 +1,4 @@
-public class AA_AgentAppService  {
+public with sharing class AA_AgentAppService  {
     //Public AA_WrapperClass.AgentAppDataResponse objGetAgentDataResponse{get;set;}
     //Public AA_WrapperClass.AgentAppDataRequest objAgentAppDataRequest{get;set;}
     //Public AA_WrapperClass.agentReportDetail objPassAgentReportsToNG{get;set;}
@@ -1026,54 +1026,7 @@ public class AA_AgentAppService  {
         return newObjToBeInserted;
     } 
     
-     /*public static Id saveTheFile(String fileName, String base64Data, String contentType){
-    system.debug('File Upload ======>'+ fileName);
-        base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
-        ContentVersion newContentVersion = new ContentVersion();
-        newContentVersion.Title = fileName;
-        newContentVersion.PathOnClient = fileName;
-        newContentVersion.VersionData = EncodingUtil.base64Decode(base64Data);
-        newContentVersion.Origin = 'H'; 
-        insert newContentVersion;
-        ContentVersion c = [Select Id, ContentDocumentId from ContentVersion where id =: newContentVersion.Id LIMIT 1]; 
-            system.debug('Content Id ======>'+ c.ContentDocumentId);
-            return newContentVersion.Id;
-        //  postFeedElementWithExistingFile(subjectId,textToPost,c.ContentDocumentId);
-    }*/ 
-    
-   /* @AuraEnabled
-    public static Id saveTheChunk(String fileName, String base64Data, String contentType, String fileId) { 
-        if (fileId == '') {
-            fileId = saveTheFile(fileName, base64Data, contentType);
-        } else {
-            appendToFile(fileId, base64Data);
-        }
-        
-        return Id.valueOf(fileId);
-    }*/
-    
-    /*@AuraEnabled 
-    public static void appendToFile(Id fileId, String base64Data) {
-        base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
-        ContentVersion a = [Select Id, ContentDocumentId,VersionData from ContentVersion where id =: fileId];
-        String existingBody = EncodingUtil.base64Encode(a.VersionData);
-        a.VersionData= EncodingUtil.base64Decode(existingBody + base64Data); 
-        
-        String existingBody = String.valueof(a.VersionData);
-        system.debug('Existing Body =========>'+ existingBody);
-        
-        system.debug('Append Body =========>'+ base64Data);
-        
-        a.VersionData = Blob.valueof(existingBody+base64Data);
-        system.debug('Blob Body =========>'+ Blob.valueof(existingBody+base64Data));
-        
-        
-        system.debug('Blob Body =========>'+ a.VersionData);
-        
-       // a.IsMajorVersion = false;
-        update a;
-        
-    }*/
+  
     
     @AuraEnabled
     public static String getBrandName(String brandId){
@@ -1132,5 +1085,42 @@ public class AA_AgentAppService  {
                     where UserId__c =: UserInfo.getUserId()];
         
         return UserPref;
+    }
+    
+    public static Id saveTheFile(String fileName, String base64Data, String contentType){
+        base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
+        ContentVersion newContentVersion = new ContentVersion();
+       
+        newContentVersion.Title = fileName;
+        newContentVersion.PathOnClient = fileName;
+        newContentVersion.VersionData = EncodingUtil.base64Decode(base64Data);
+        newContentVersion.Origin = 'H'; 
+        newContentVersion.IsMajorVersion = false;
+        newContentVersion.CMS_ID__c='';
+        insert newContentVersion;
+        ContentVersion c = [Select Id, ContentDocumentId from ContentVersion where id =: newContentVersion.Id LIMIT 1]; 
+            return newContentVersion.Id;
+    } 
+    
+    @AuraEnabled
+    public static Id saveTheChunk(String fileName, String base64Data, String contentType, String fileId) { 
+
+        if (fileId == '') {
+            fileId = saveTheFile(fileName, base64Data, contentType);
+        } else {
+            appendToFile(fileId, base64Data);
+        }
+        
+        return Id.valueOf(fileId);
+    }
+    
+    @future 
+    public static void appendToFile(Id fileId, String base64Data) {
+            base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
+            ContentVersion a = [Select Id, ContentDocumentId,VersionData from ContentVersion where id =: fileId];
+            //String existingBody = EncodingUtil.base64Encode(a.VersionData);
+            //a.VersionData = EncodingUtil.base64Decode(existingBody + base64Data); 
+            a.VersionData = EncodingUtil.base64Decode(EncodingUtil.base64Encode(a.VersionData) + base64Data); 
+            update a;
     }
 }

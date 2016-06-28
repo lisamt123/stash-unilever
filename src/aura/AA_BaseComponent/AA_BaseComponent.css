@@ -1,6 +1,5 @@
 .THIS {
 }
-
 .THIS .spinner-location{
     width: 10%;
     position: fixed;
@@ -9,11 +8,6 @@
     transform: translate(-50%, -50%);
     z-index: 10000;
 }
-
 .THIS .spinner-img{
-        content: url("/resource/Lightning_designing_style/assets/images/spinners/slds_spinner.gif");
-    }
-
-/*.THIS.container{
-       font-family: "Salesforce Sans",Arial,sans-serif;
-}*/
+    content: url("/resource/Lightning_designing_style/assets/images/spinners/slds_spinner.gif");
+}

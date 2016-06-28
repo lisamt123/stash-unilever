@@ -1,5 +1,4 @@
 <aura:component controller="AA_AgentAppService" >
-    
     <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
     <aura:attribute name="objGetAgentDataResponseCompetitor" type="AA_WrapperClass.AgentAppDataResponse" description="values for all competitorReport"/>
     <aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
@@ -17,7 +16,6 @@
     <aura:attribute name="retailerId" type="Id" default="null" description="Id of the selected Retailer"/>
     <aura:attribute name="competitorBrandId" type="Id" default="null" description="Id of the selected Competitor Brand name"/>
     <aura:attribute name="globalClusterId" type="Id" description="Id of the 'global' Cluster"/>
-    
     <aura:attribute name="objgetSavedFilterData" type="aa_Agent_App_User_Preference__c" description="Values of saved filter data of the user"/>
     <aura:attribute name="savedRecordType" type="String" description="Record Type that was previously selected by user" />
     <aura:attribute name="savedUnileverBrandName" type="String" default="" description="previously saved Unilever brand name" />
@@ -25,7 +23,6 @@
     <aura:attribute name="savedCompetitorBrandName" type="String" default="" description="previously saved competitor brand name" />
     <aura:attribute name="unileverRecordTypeId" type="Id" description="Unilever Record Type Id" />
     <aura:attribute name="competitorRecordTypeId" type="Id" description="Competitor Record Type Id" />
-    
     <aura:attribute name="filterType" type="String" />
     <aura:attribute name="sortType" type="String"/>
     <aura:attribute name="applyFilter" type="String"/>
@@ -35,7 +32,6 @@
     <aura:attribute name="clusterId" type="String" />
     <aura:attribute name="deviceId" type="String" />
     
-
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
     <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
@@ -46,27 +42,21 @@
             <table>
                 <tr>
                     <td class="leftAlign">
-                        <!--<span>
-                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
-                        </span>-->
                         <button class="slds-button slds-button--neutral" onclick="{!c.cancelFilter}">Cancel</button>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="filtePannel slds-text-body--regular">
-            
             <div class="slds-form-element">
                 <span>
                     <label class="slds-form-element__label" >Report Type</label>
                     <div class="slds-form-element__control">
-
-                            <ui:inputSelect aura:id="reportType" change="{!c.onSelectChangeView}" class="slds-select ">
-                                <ui:inputSelectOption text="All" label="All"/>
-                                <ui:inputSelectOption text="Unilever Report" label="Unilever Report"/>
-                                <ui:inputSelectOption text="Competitor Report" label="Competitor Report"/>
-                            </ui:inputSelect>
-
+                        <ui:inputSelect aura:id="reportType" change="{!c.onSelectChangeView}" class="slds-select ">
+                            <ui:inputSelectOption text="All" label="All"/>
+                            <ui:inputSelectOption text="Unilever Report" label="Unilever Report"/>
+                            <ui:inputSelectOption text="Competitor Report" label="Competitor Report"/>
+                        </ui:inputSelect>
                     </div>
                 </span>
             </div>
@@ -74,14 +64,12 @@
                 <span>
                     <label class="slds-form-element__label"> Cluster </label>
                     <div class="slds-form-element__control">
-
-                            <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
-                                <ui:inputSelectOption text="Select a Cluster" label="Select Cluster" value="true"/>
-                                <aura:iteration var="cluster" items="{!v.clusterList}">
-                                    <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
-                                </aura:iteration>
-                            </ui:inputSelect>
-
+                        <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
+                            <ui:inputSelectOption text="Select a Cluster" label="Select Cluster" value="true"/>
+                            <aura:iteration var="cluster" items="{!v.clusterList}">
+                                <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
+                            </aura:iteration>
+                        </ui:inputSelect>
                     </div>
                 </span>
             </div>
@@ -89,18 +77,15 @@
                 <span>
                     <label class="slds-form-element__label"> Country </label>
                     <div class="slds-form-element__control">
-
-                            <ui:inputSelect aura:id="countryId" disabled="{!v.check}" class="slds-select">
-                                <ui:inputSelectOption text="Select a Country" label="Select Country" value="true"/>
-                                <aura:iteration var="country" items="{!v.countryList}">
-                                    <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
-                                </aura:iteration>
-                            </ui:inputSelect>
-
+                        <ui:inputSelect aura:id="countryId" disabled="{!v.check}" class="slds-select">
+                            <ui:inputSelectOption text="Select a Country" label="Select Country" value="true"/>
+                            <aura:iteration var="country" items="{!v.countryList}">
+                                <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
+                            </aura:iteration>
+                        </ui:inputSelect>
                     </div>
                 </span>
             </div>
-            
             <!-- Unilever Report filter View-->
             <aura:if isTrue="{!v.filterRecordType == 'Unilever Report'}">
                 <div >
@@ -110,24 +95,19 @@
                     <div aura:id="retailerAutoComplete">
                         <c:AA_AutoComplete label="Retailer" pluralLabel="Retailers" placeholderValue="E.g Marks and Spencers" sObjAttributeName="retailerId" sObjectRecordType="null" sObjectAPIName="aa_Agent_Retailer__c" searchString="{!v.savedRetailerName}"/>               
                     </div>
-                    
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label" > Reporting On </label>
                         <div  class="slds-form-element__control">
-
-                                <ui:inputSelect aura:id="reportingOnId"  class="slds-select">
-                                    <ui:inputSelectOption text="Reporting on" label="Select Reporting On" value="true"/>
-                                    <aura:iteration var="reporting" items="{!v.reportingOnList}">
-                                        <ui:inputSelectOption text="{!reporting}" label="{!reporting}"/>
-                                    </aura:iteration>
-                                </ui:inputSelect>
-
+                            <ui:inputSelect aura:id="reportingOnId"  class="slds-select">
+                                <ui:inputSelectOption text="Reporting on" label="Select Reporting On" value="true"/>
+                                <aura:iteration var="reporting" items="{!v.reportingOnList}">
+                                    <ui:inputSelectOption text="{!reporting}" label="{!reporting}"/>
+                                </aura:iteration>
+                            </ui:inputSelect>
                         </div>
                     </div>
-                    
                 </div>
             </aura:if>
-            
             <!-- Competitor Report filter View-->
             <aura:if isTrue="{!v.filterRecordType == 'Competitor Report'}">
                 <div>
@@ -137,61 +117,44 @@
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label"> Competitor Name </label>
                         <div  class="slds-form-element__control">
-
-                                <ui:inputSelect aura:id="competitorName"  class="slds-select">
-                                    <ui:inputSelectOption text="Select Competitor Name" label="Select Competitor Name" value="true"/>
-                                    <aura:iteration var="competitorName" items="{!v.competitorNameList}">
-                                        <ui:inputSelectOption text="{!competitorName.Id}" label="{!competitorName.Name}"/>
-                                    </aura:iteration>
-                                </ui:inputSelect>
-
+                            <ui:inputSelect aura:id="competitorName"  class="slds-select">
+                                <ui:inputSelectOption text="Select Competitor Name" label="Select Competitor Name" value="true"/>
+                                <aura:iteration var="competitorName" items="{!v.competitorNameList}">
+                                    <ui:inputSelectOption text="{!competitorName.Id}" label="{!competitorName.Name}"/>
+                                </aura:iteration>
+                            </ui:inputSelect>
                         </div>
-                        
                     </div>
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label"> Category </label>
                         <div  class="slds-form-element__control">
-
-                                <ui:inputSelect aura:id="category"  class="slds-select">
-                                    <ui:inputSelectOption text="Select Category" label="Select Category" value="true"/>
-                                    <aura:iteration var="category" items="{!v.categoryList}">
-                                        <ui:inputSelectOption text="{!category.Id}" label="{!category.Name}"/>
-                                    </aura:iteration>
-                                </ui:inputSelect>
-
+                            <ui:inputSelect aura:id="category"  class="slds-select">
+                                <ui:inputSelectOption text="Select Category" label="Select Category" value="true"/>
+                                <aura:iteration var="category" items="{!v.categoryList}">
+                                    <ui:inputSelectOption text="{!category.Id}" label="{!category.Name}"/>
+                                </aura:iteration>
+                            </ui:inputSelect>
                         </div>
                     </div>
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label"> Topic </label>
                         <div class="slds-form-element__control">
-
-                                <ui:inputSelect aura:id="topic" class="slds-select">
-                                    <ui:inputSelectOption text="Select Topic" label="Select Topic" value="true"/>
-                                    <aura:iteration var="topic" items="{!v.topicList}">
-                                        <ui:inputSelectOption text="{!topic.Id}" label="{!topic.Name}"/>
-                                    </aura:iteration>
-                                </ui:inputSelect>
-
+                            <ui:inputSelect aura:id="topic" class="slds-select">
+                                <ui:inputSelectOption text="Select Topic" label="Select Topic" value="true"/>
+                                <aura:iteration var="topic" items="{!v.topicList}">
+                                    <ui:inputSelectOption text="{!topic.Id}" label="{!topic.Name}"/>
+                                </aura:iteration>
+                            </ui:inputSelect>
                         </div>
                     </div>
                 </div>
             </aura:if>
         </div>
-        
         <div class="filter-botton-container">
             <div class="filter-btns-bottom">
-                <!--<span >
-                    <ui:button label="clear" press="{!c.clearFilter}"/>
-                </span>-->
                 <button class="slds-button slds-button--neutral" onclick="{!c.clearFilter}">Clear</button>
-                <!--<span >
-                    <ui:button label="Apply" press="{!c.applyFilter}"/>
-                </span>-->
                 <button class="slds-button slds-button--brand" onclick="{!c.applyFilter}">Apply</button>
             </div>
         </div>
     </div>
-    
-    
-    
 </aura:component>

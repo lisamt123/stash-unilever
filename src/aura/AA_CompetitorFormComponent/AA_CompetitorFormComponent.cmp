@@ -1,8 +1,6 @@
-<aura:component implements="force:appHostable" controller="AA_AgentAppService">
-    
-    <!--<aura:attribute name="sortType" type="String" />
-    <aura:attribute name="cancelType" type="String"/>-->  
-    
+<aura:component implements="force:appHostable" controller="AA_AgentAppService"> 
+    <aura:attribute name="latitude" type="Decimal" />
+    <aura:attribute name="longitude" type="Decimal" />
     <aura:attribute name="subTopicList" type="string[]" />
     <aura:attribute name="SubTopicNull" type="boolean" default="false"/>
     <aura:attribute name="disableOnBrandChange" type="boolean" default="true"/>
@@ -15,21 +13,8 @@
     <aura:attribute name="competitorNameList" type="Object" />
     <aura:attribute name="allCategoryList" type="Object"/>
     <aura:attribute name="categoryList" type="Object" />
-     <!--<aura:attribute name="imageId" type="String" />
-    <aura:attribute name="clusterId" type="String" />
-    <aura:attribute name="countryId" type="String" />
-    <aura:attribute name="townId" type="String" />-->
     <aura:attribute name="reportTitle" type="String" default='' />
   	<aura:attribute name="reportDescription" type="String" default='' />
-    <!--<aura:attribute name="AddNotifyUser" type="String" />
-    <aura:attribute name="Source" type="String" />
-    <aura:attribute name="CompetitorBrand" type="String" />
-    <aura:attribute name="CompetitorName" type="String" />
-    <aura:attribute name="Category" type="String" />
-    <aura:attribute name="Retailer" type="String" />
-    <aura:attribute name="Topic" type="String" />
-    <aura:attribute name="SubTopic" type="String" />
-  <aura:attribute name="parentId" type="Id"/>-->
     <aura:attribute name="retailerId" type="Id"/>
     <aura:attribute name="townName" type="String" default=''/>
     <aura:attribute name="cafeteriaMenuDetail" type="String"/>
@@ -39,11 +24,14 @@
     <aura:attribute name="otherCompetitorName" type="String" />
     <aura:attribute name="contentId" type="String"  description=""/>
     <aura:attribute name="versionId" type="String" description=""/>
+    <aura:attribute name="attachedId" type="Id" />
     <aura:attribute name="submitForm" type="Boolean" default="true" />
     <aura:attribute name="confirmForm" type="Boolean" default="false"/>
     <aura:attribute name="businessPrinciples" type="Boolean" default="false"/>
     <aura:attribute name="successMessage" type="Boolean" default="false"/>
-    
+ 	<aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
+    <aura:attribute name="allCountryList" type="Object" description="List of all Countries values which will be used while selection based on the cluster list"/>
+    <aura:attribute name="countryList" type="Object" description="List of the countries values which we will display in the country drop down list "/>    
      <aura:attribute name="sortTopic" type="String"/>
     <aura:attribute name="filterType" type="String"/>
     <aura:attribute name="offSet" type="Integer"/>
@@ -52,44 +40,52 @@
     <aura:attribute name="clusterId" type="String"/>
     <aura:attribute name="countryId" type="String"/>
     <aura:attribute name="applyFilter" type="String"/>
-    
+    <aura:attribute name="showMap" type="Boolean" default="test"/> 
     
      <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
+    <aura:handler name="getCountryCityLatLng" event="c:AA_GoogleMapEvent" action="{!c.getLocationDetails}"/>
      <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
      <aura:handler name="change" value="{!v.competitorBrandId}" action="{!c.handleCompetitorBrandChange}"/>
     <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
     <aura:handler name="updateUserListEvent" event="c:AA_UpdateUserList" action="{!c.handleSelectedUsers}"/>
     <aura:handler name="uploadContentVersion" event="c:AA_ContentVersionEvent" action="{!c.handleContentVersionData}"/>
-    <!--<aura:attribute name="CompetitorReport" type="AA_WrapperUtility.AgentAppDataRequest[]" />-->
-    
-    <style>
-        
-    </style>
     <div class="container slds-text-body--regular">
       <div  aura:id="submitForm">
-        <!--<aura:if isTrue="{!v.submitForm}">   -->
         <div class="row ">
                 <table>
                     <tr>
                         <td class="leftAlign">
-                            <!--<span>
-                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
-                        </span>-->
                             <button class="slds-button slds-button--neutral" onclick="{!c.cancel}">Cancel</button>
                         </td>
                     </tr>
                 </table>
             </div>
-            
             <div class="competitor-content">
-                
-             <!-- <c:AA_UploadContentVersion />-->
-                
-                <div>
-                    <img id="menuDetail" src="{!v.cafeteriaMenuDetail}" height="100" width="100"/>          
-                </div>     
-                
-             	<div class="slds-form-element" >
+              <c:AA_UploadContentVersion />
+                <div class="slds-m-vertical--x-small">
+                <div class="slds-grid slds-grid--align-spread">
+                    <div class="slds-col">
+                        <c:svg class="slds-icon--small slds-m-left--x-small" 
+                               xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#checkin"  />
+                    	<label class="slds-form-element__label"> Use my location </label>
+                    </div>
+                    <div class="slds-col">
+                    <div onclick="{!c.gotoMap}"> 
+                        <aura:if isTrue="{!v.showMap}">
+                            <img src="/resource/AgentAppStaticResource/images/onOff.svg"/>
+                        </aura:if>
+                         <aura:if isTrue="{!v.showMap==false}">
+                            <img src="/resource/AgentAppStaticResource/images/off-btn.svg"/>
+                        </aura:if>
+                    </div>
+                    </div>                    
+                </div>
+               <aura:if isTrue="{!v.showMap==true}"> 
+				   <c:AA_GoogleMap />
+               </aura:if>  
+                </div>
+             	<div aura:id="ManualLocation" class="hide-form">
+                <div class="slds-form-element" >
                     <span>
                         <label class="slds-form-element__label"> Cluster </label>
 							<div class="slds-form-element__control">
@@ -102,7 +98,6 @@
 							</div>
                     </span>
                 </div>
-                    
                 <div class="slds-form-element" >
                     <span>
                         <label class="slds-form-element__label"> Country </label>
@@ -116,14 +111,13 @@
                         </div>
                     </span>
                 </div>
-                <div>
-                    <div class="slds-form-element" >
-                        <label class="slds-form-element__label"> Town </label>
-                        <div class="slds-form-element__control">
-                            <ui:inputText aura:id="towns" disabled="{!v.check}" class="slds-input" placeholder="Town" value="{!v.townName}" />
-                        </div>
+                <div class="slds-form-element" >
+                    <label class="slds-form-element__label"> Town </label>
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="towns" disabled="{!v.check}" class="slds-input" placeholder="Town" value="{!v.townName}" />
                     </div>
-                    
+                </div>
+          </div> 
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label"> Report Title <span class="red-color">*</span></label>
                         <div class="slds-form-element__control">
@@ -141,7 +135,6 @@
                             <c:AA_NotifyUser />
                         </div>
                     </div>
-                    
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label" > Source <span class="red-color">*</span> </label>
                         <div class="slds-form-element__control">
@@ -155,7 +148,6 @@
                     </div>
                     <div>
                         <c:AA_AutoComplete label="Competitor Brand" pluralLabel="Competitor Brands" placeholderValue="Type to search competitor Brand"  sObjAttributeName="competitorBrandId" sObjectRecordType="Competitor Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c"/>
-                        
                     </div>
                     <aura:if isTrue="{!v.Brand}">
                         <div class="slds-form-element" >
@@ -172,7 +164,6 @@
                             </div>                        
                         </div>
                     </aura:if>
-                    
                     <aura:if isTrue="{!v.others}">
                         <div class="slds-form-element" >
                             <label class="slds-form-element__label"> Enter Other Brand Name:</label>
@@ -187,7 +178,6 @@
                             </div>               
                         </div>  
                     </aura:if>
-                    
                     <div class="slds-form-element" >
                         <label class="slds-form-element__label"> Category </label>
                         <div  class="slds-form-element__control">
@@ -228,22 +218,16 @@
                             </ui:inputSelect>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="competitor-submit-btn">
                 <button class="slds-button slds-button--brand" onclick="{!c.goToConfirm}">Submit this Report</button>
             </div>
         </div>
-       <!-- <div aura:id="confirmForm" class="hide-form competitor-content">-->
         <aura:if isTrue="{!v.confirmForm}" >
-
             <div class="row">
                 <table>
                     <tr>
                         <td class="leftAlign">
-                            <!--<span>
-                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
-                        </span>-->
                             <button class="slds-button slds-button--neutral" onclick="{!c.cancelSubmit}">Cancel</button>
                         </td>
                     </tr>
@@ -256,7 +240,6 @@
                 <div class="slds-text-heading--medium"  >
                     <span onclick="{!c.showBusinessPrinciples}">
                         show more
-                        <!-- <img src="/resource/AgentAppStaticResource/images/down.svg"></img> -->
                         <c:svg class="slds-icon--small slds-m-left--x-small" 
                                xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"  />
                     </span>
@@ -270,15 +253,11 @@
 
         </aura:if>
         <aura:if isTrue="{!v.businessPrinciples}">
-        <!-- aura:id="businessPrinciples" class="hide-form">-->
             <div class="slds">
             <div class="row">
                 <table>
                     <tr>
                         <td class="leftAlign">
-                            <!--<span>
-                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
-                        </span>-->
                             <button class="slds-button slds-button--neutral" onclick="{!c.back}">Back</button>
                         </td>
                     </tr>
@@ -341,17 +320,13 @@
                     </p>
                     
                     <p class="slds-text-body--regular slds-m-vertical--x-small"><strong>The information has been gathered only from public sources and <span style="color:red;">non</span> compliance of the same will be treated as a breach of COBP</strong></p>
-                    
                     <p class="slds-text-body--regular"><span class="text-italic"><i>In this Code the expressions "Unilever" and "Unilever companies" are used for convenience and mean the Unilever Group of companies comprising Unilever N.V., Unilever PLC and their respective subsidiary companies. The Board of Unilever means the Directors of Unilever N.V. and Unilever PLC.</i></span></p>
                     <p class="slds-text-body--regular">&nbsp;</p>
-                    
                 </div>
-                
             </div>
         </div>
         </aura:if>
         <aura:if isTrue="{!v.successMessage}">
-        <!-- aura:id="successMessage" class="hide-form">-->
             <div class="slds-modal slds-fade-in-open" aria-hidden="true" role="dialog">
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
@@ -369,6 +344,5 @@
             </div>
             <div class="slds-backdrop slds-backdrop--open"></div>
         </aura:if>
-        
     </div>
 </aura:component>

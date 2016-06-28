@@ -29,17 +29,15 @@
     
     <aura:handler event="c:AA_FilterEvent" action="{!c.getDetail}" />
     <aura:handler event="c:AA_NavigateToPageDetail" action="{!c.getForm}" />
-    <aura:handler event="c:AA_NavigateToLandingPageEvent" name="LandingPageEvent"  action="{!c.getshowPage}" />
+    <aura:handler event="c:AA_NavigateToLandingPageEvent" name="LandingPageEventFeedBack"  action="{!c.getshowPage}" />
     <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
     <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
     <style>
         body{
         font: 100%/1.5 "Salesforce Sans",Arial,sans-serif;
         }
-        
     </style>
     <div class="container">
-        
         <div class="spinner-location"><ui:spinner aura:id="spinner" /></div>
         <div aura:id="baseComponentContainer">
             <aura:if isTrue="{!v.businessPrincipleFlag == true}">
@@ -53,8 +51,6 @@
             <aura:if isTrue="{!v.businessPrincipleFlag == false}">
                 <c:AA_BusinessPrincipleComponent />
             </aura:if> 
-            
         </div>
     </div>
-    
 </aura:component>

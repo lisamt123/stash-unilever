@@ -1,23 +1,15 @@
 ({
-   
     goToURL : function(component,event,helper){
-        console.log('Entrys'); 
         var urlEvent=$A.get("e.force:navigateToURL");
         urlEvent.setParams({"url":"/_ui/core/chatter/ui/ChatterPage"});
         urlEvent.fire();
-            
-    },
+    },
     goToCompetitorpage: function(component, event, helper) {
-        //helper.getForm(component, event, helper);
-       console.log("Inside goTO comp Form");
         var selectEvent=$A.get("e.c:AA_NavigateToPageDetail");
         selectEvent.setParams({"navigate":"AA_CompetitorFormComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
-		console.log("go to comp page fired");
     },
     goToUnileverForm: function(component, event, helper) {
-        console.log("Inside goTO Unilever Form");
         var selectEvent=$A.get("e.c:AA_NavigateToPageDetail");
         selectEvent.setParams({"navigate":"AA_UnileverFormComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
-				console.log("go to unilever page fired");
     },
 })
