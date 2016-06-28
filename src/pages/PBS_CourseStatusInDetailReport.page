@@ -21,11 +21,11 @@
     margin-left:60px;
     margin-right:60px;
     height:460px;
+    text-align: center;
    }
 </style>
 <br/>
 <div class="reportcontainer">
-  <center>
      <div class="reportbody">
       <apex:form >
        <div class="reportbodyinside">
@@ -44,6 +44,5 @@
         </div>
      </apex:form>
     </div>
-  </center>
 </div>
 </apex:page>
