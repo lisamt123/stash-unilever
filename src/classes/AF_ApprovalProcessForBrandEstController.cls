@@ -62,6 +62,7 @@ public class AF_ApprovalProcessForBrandEstController
 **********************************************************************/ 
 	public pagereference RejectBrandWithComments()
 	{
+		Approval.ProcessResult result;
 		pagereference ref;
 		try{
 			if(RejectComment==''){
@@ -77,7 +78,7 @@ public class AF_ApprovalProcessForBrandEstController
 					req.setAction('Reject');                    
 					req.setWorkitemId(workItemId);
 					// Submit the request for approval
-					Approval.ProcessResult result =  Approval.process(req);
+				    result =  Approval.process(req);
 					AF_Comments__c AfC=new AF_Comments__c();
 					AfC.AF_Brand_Estimate__c=brandEstimateId;
 					AfC.AF_Comments__c=RejectComment;
@@ -122,6 +123,7 @@ public class AF_ApprovalProcessForBrandEstController
 **********************************************************************/ 
 	public pagereference ApproveRecord()
 	{
+		Approval.ProcessResult result;
 		pagereference ref;
 		try{
 			if(Actoridset.size()>0)
@@ -133,7 +135,7 @@ public class AF_ApprovalProcessForBrandEstController
 					req.setAction('Approve');        
 					req.setWorkitemId(workItemId);
 					// Submit the request for approval
-					Approval.ProcessResult result =  Approval.process(req);
+					result =  Approval.process(req);
 					TempConstructor();
 					displayPopupRejComment=false;
 					displayPopup=false;
@@ -163,6 +165,7 @@ public class AF_ApprovalProcessForBrandEstController
 **************************************************************************************/ 
 	public pagereference RejectRecord()
 	{
+		Approval.ProcessResult result;
 		pagereference ref;
 		try{
 			if(Actoridset.size()>0)
@@ -174,7 +177,7 @@ public class AF_ApprovalProcessForBrandEstController
 					req.setAction('Reject');                    
 					req.setWorkitemId(workItemId);
 					// Submit the request for approval
-					Approval.ProcessResult result =  Approval.process(req);
+					result =  Approval.process(req);
 					TempConstructor();
 					displayPopupRejComment=false;
 					displayPopup=false;
@@ -330,6 +333,7 @@ public class AF_ApprovalProcessForBrandEstController
 ********************************************************************************************************/   
 	public pagereference Submit()
 	{
+		Approval.ProcessResult result;
 		AF_CountryBreakdownCheck mycheck = new AF_CountryBreakdownCheck();
 		Boolean myresult = mycheck.CheckCountryBreakdown(ParentId);
 		if(BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE && myresult )
@@ -386,7 +390,7 @@ public class AF_ApprovalProcessForBrandEstController
 				req1.setComments('Submitting request for approval automatically ');
 				req1.setObjectId(brandEstimateId);
 				// Submit the approval request for the Brand Estimate
-				Approval.ProcessResult result = Approval.process(req1);
+				result = Approval.process(req1);
 				TempConstructor();
 				displayPopupRejComment=false;
 				displayPopup=false;
@@ -416,6 +420,7 @@ public class AF_ApprovalProcessForBrandEstController
 ********************************************************************************************************/      
 	public pagereference SubitforApproval()
 	{
+		Approval.ProcessResult result;
 		pagereference ref;
 		if(brandEstimateId!=null && brandEstimateId!='')
 		if( (LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY)|| (LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE)|| (LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO)) 
@@ -432,7 +437,7 @@ public class AF_ApprovalProcessForBrandEstController
 			req1.setComments('Submitting request for approval automatically ');
 			req1.setObjectId(brandEstimateId);
 			// Submit the approval request for the Brand Estimate
-			Approval.ProcessResult result = Approval.process(req1);
+			result = Approval.process(req1);
 			TempConstructor();
 			displayPopupRejComment=false;
 			displayPopup=false;

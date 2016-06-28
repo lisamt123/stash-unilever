@@ -14,6 +14,9 @@ public class AF_BonusMatrixOverrideController_Test
     static user userforBonusMatrixOverride;
     private static string CHPARENTID='CHParentId';
     private static string ID='id';
+    private static AF_ViewAllController viewCtrl1;
+    private static AF_ViewAllController viewCtrl2;
+    private static AF_ViewAllController viewCtrl3;
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_bonusMatrixOverrideController
@@ -122,11 +125,11 @@ public class AF_BonusMatrixOverrideController_Test
             AF_BonusMatrixOverrideController bonMatCtrl=new AF_BonusMatrixOverrideController();
             bonMatCtrl.Save();  
             ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
-            AF_ViewAllController viewCtrl1=new AF_ViewAllController();
+            viewCtrl1=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);
-            AF_ViewAllController viewCtrl2=new AF_ViewAllController();
+            viewCtrl2=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AFBonusMat[0].id);
-            AF_ViewAllController viewCtrl3=new AF_ViewAllController();
+            viewCtrl3=new AF_ViewAllController();
             Test.stopTest();
         }
     }
@@ -246,11 +249,11 @@ public class AF_BonusMatrixOverrideController_Test
             bonMatCtrl.SavePo();
             bonMatCtrl.CalculateLocalC();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
-            AF_ViewAllController viewCtrl1=new AF_ViewAllController();
+            viewCtrl1=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);
-            AF_ViewAllController viewCtrl2=new AF_ViewAllController();
+            viewCtrl2=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AFBonusMat[0].id);
-            AF_ViewAllController viewCtrl3=new AF_ViewAllController();
+            viewCtrl3=new AF_ViewAllController();
             Test.stopTest();
         }
     }

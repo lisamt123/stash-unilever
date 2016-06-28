@@ -40,6 +40,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 *  @return: PageReference.
 *********************************************************************************************/
 	public PageReference saveControllerReview(){
+		Approval.ProcessResult result;
 		if(checkReview){
 			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.info,Label.AF_Approval_Process);
 			apexpages.addmessage(msg);
@@ -61,7 +62,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 				request.setComments(Label.AF_Submitted);
 				request.setNextApproverIds(new ID[]{UserInfo.getUserId()});
 				// submit the approval request for processing
-				Approval.ProcessResult result = Approval.process(request);
+				 result = Approval.process(request);
 			}
 			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm,Label.AF_Record_saved);
 			apexpages.addmessage(msg); 
