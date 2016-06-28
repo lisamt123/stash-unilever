@@ -7,37 +7,13 @@
 *********************************************/
 public with sharing class IPM_MyList{ 
     /********************************************************************************
-    *@Description:To get the current projectID via Page parameters
-    *********************************************************************************/
-    public String projectId{get;set;}
-    /********************************************************************************
-    *@Description:To get the open Tasks for the user 
-    *********************************************************************************/
-    public Integer openTasks{get;set;}
-    /********************************************************************************
-    *@Description:To get the Closed Tasks for the user assigned to the projects
-    *********************************************************************************/
-    public Integer closedTasks {get; set;}
-    /********************************************************************************
     *@Description:To Sort the level of tasks
     *********************************************************************************/
     public Boolean isAsc{get;set;}
     /********************************************************************************
-    *@Description:To describe the tasks to be editable
-    *********************************************************************************/
-    public Boolean IsTaskEditable{get;set;}
-    /********************************************************************************
-    *@Description: To display the tasks on the UI only for the projects tasks which are maintained Internal
-    *********************************************************************************/
-    public Boolean isExternalApproach{get;set;}
-    /********************************************************************************
     *@Description:This describe the sorting for current tasks
     *********************************************************************************/
     public Map<String, String> currentSort{get;set;}
-    /********************************************************************************
-    *@Description: LastTaskMap is to display all the Tasks based on the user
-    *********************************************************************************/
-    public Map<Id, Boolean> lastTasksMap{get;set;}
     /********************************************************************************
     *@Description: To set the Tasks for different types of tasks on the Page
     *********************************************************************************/
@@ -91,7 +67,6 @@ public with sharing class IPM_MyList{
     /********************************************************************************
     *@Description: To get the User for all the projects they are assigned
     *********************************************************************************/
-    public Map<Id, String> userMap;
     /********************************************************************************
     *@Description: To sort the TaskName
     *********************************************************************************/
@@ -153,13 +128,13 @@ public with sharing class IPM_MyList{
     public List<IPM_Task__c> lstTasks{get;set;}
     public String taskcountValue;
     private final Integer DAY_VALUE = 7;
+   private set<Id> taskIdSet =  new set<Id>();
     /********************************************************************************
     *@Description :For getting Tasks Value.
     *@Param: NA
     *@return:This method returns the list and which contains the all the tasks
     *********************************************************************************/
     public IPM_MyList(){
-        openTasks = 0; closedTasks = 0;
         phasesList = new List<String>();
         brandlist= new List<String>();
         categoryList= new List<String>();
@@ -170,7 +145,6 @@ public with sharing class IPM_MyList{
         Set<String> brandsSet =new Set<String>();
         Set<String> CategorysSet =new Set<String>();
         Set<String> usersSet = new Set<String>();
-        isExternalApproach =true;
         Set<Id> userSet = new Set<Id>();
         lstExtProj = new List<IPM_Project__c>();
         
@@ -182,13 +156,7 @@ public with sharing class IPM_MyList{
             brandsSet.add(eachTask.IPM_Project__r.IPM_Brand_Positioning__c);
             CategorysSet.add(eachTask.IPM_Project__r.IPM_Category_Text__c);            
             usersSet.add(eachTask.IPM_Assignee__r.Name);
-            
-            if(eachTask.IPM_Completed__c) {
-                closedTasks++;                
-            }else {
-                openTasks++;                
-            }
-        }
+         }
         
         List<IPM_Project__c> lstProject=[SELECT Id,IPM_Parent_Project__c,IPM_PM_Approach__c,IPM_Project_Leader__c,IPM_Project_Name__c FROM IPM_Project__c 
                                                                 WHERE ( IPM_Project_Leader__c =: UserInfo.getUserId() OR Deputy_Project_Leader__c =: UserInfo.getUserId()  OR IPM_Technical_Project_Leader__c =: UserInfo.getUserId() ) AND IPM_PM_Approach__c = : IPM_ConstantUtils.IPM_APPROACH_EXTERNAL LIMIT 10000];
@@ -248,20 +216,20 @@ public with sharing class IPM_MyList{
         String utilUserRole = IPM_Utils.userRole();
         List<IPM_Task__c> tasksToReturn = new List<IPM_Task__c>();
         String usrRole = utilUserRole != null?utilUserRole:BLANK_STR;
-        lastTasksMap = new Map<Id, Boolean>();
+        //lastTasksMap = new Map<Id, Boolean>();
         toggleTask ='true'; 
         brandlist= new List<String>();
         Set<String> brandsSet =new Set<String>();
         
         String soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ String.escapeSingleQuotes(usrRole) +'\' , \'BD\')' : 
         ' AND IPM_Function__c = \'' + String.escapeSingleQuotes(usrRole) + '\'';
-        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,';
+        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Master_Task__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Assignee__c,';
         soql += 'IPM_Section__r.IPM_Section_Sequence__c,IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Project__r.IPM_Category_Icon__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Type__c , ';
         soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
         soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,  ';
         soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,';
         soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c  FROM IPM_Task__c ';
-        soql += 'WHERE ( IPM_Due_Date1__c != NULL OR IPM_Completed__c = true ) AND IPM_Project__r.IPM_PM_Approach__c = \'Internal\'  AND';        
+        soql += 'WHERE  IPM_Project__r.IPM_PM_Approach__c = \'Internal\'  AND';        
         
         if(toggleTask == IPM_Utils.truevalue) {
             soql += ' IPM_Assignee__c = \'' + UserInfo.getUserId() + '\'';
@@ -293,7 +261,11 @@ public with sharing class IPM_MyList{
         }
         soql +=' Limit 1000';
         try{
-            tasksToReturn = Database.query(soql);
+            tasksToReturn = IPM_TaskHelper.removeDuplicateTaskForUser(Database.query(soql));
+            for(IPM_Task__c taskRec : tasksToReturn)
+            {
+            	taskIdSet.add(taskRec.Id);
+            }
             standardSetCon = new ApexPages.StandardSetController(tasksToReturn);
         }catch(Exception ex){  catchBlockContent(LOAD_TASKS,ex);  }        
         
@@ -411,7 +383,19 @@ public with sharing class IPM_MyList{
                 }
                 query += LIMIT_STR;
                 try{
-                    setCon = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = new list<IPM_Task__c>();
+                   for(IPM_Task__c taskRec : allTasksList)
+		            {
+		            	if(!taskIdSet.isEmpty() && taskIdSet.contains(taskRec.Id))
+		            	{
+		            		newTasksList.add(taskRec);
+		            	}
+		            }
+		            setCon = new ApexPages.StandardSetController(newTasksList);
+                    
+                    
                     if(isCompleteTasks != IPM_Utils.Yes){
                         setCon.setPageSize(overduesize);
                     }else{
@@ -479,7 +463,18 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setControl = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = new list<IPM_Task__c>();
+                   for(IPM_Task__c taskRec : allTasksList)
+		            {
+		            	if(!taskIdSet.isEmpty() && taskIdSet.contains(taskRec.Id))
+		            	{
+		            		newTasksList.add(taskRec);
+		            	}
+		            }
+		            setControl = new ApexPages.StandardSetController(newTasksList);
+                    
                     setControl.setPageSize(showtodaySize);
                     
                     totaltodaypages= Integer.valueof(math.ceil((double)setControl.getResultSize()/(double)setControl.getPageSize()));
@@ -544,7 +539,17 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setCont = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                    list<IPM_Task__c> newTasksList = new list<IPM_Task__c>();
+                   for(IPM_Task__c taskRec : allTasksList)
+		            {
+		            	if(!taskIdSet.isEmpty() && taskIdSet.contains(taskRec.Id))
+		            	{
+		            		newTasksList.add(taskRec);
+		            	}
+		            } setCont = new ApexPages.StandardSetController(newTasksList);
+                    
                     setCont.setPageSize(nextSevensize);
                     
                     nextSevenpagesize=Integer.valueof(math.ceil((double)setCont.getResultSize()/(double)setCont.getPageSize()));
@@ -614,7 +619,17 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setContr = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                     list<IPM_Task__c> newTasksList = new list<IPM_Task__c>();
+                   for(IPM_Task__c taskRec : allTasksList)
+		            {
+		            	if(!taskIdSet.isEmpty() && taskIdSet.contains(taskRec.Id))
+		            	{
+		            		newTasksList.add(taskRec);
+		            	}
+		            }setContr = new ApexPages.StandardSetController(newTasksList);
+                    
                     setContr.setPageSize(laterSize);
                     totallatertaskpages= Integer.valueof(math.ceil((double)setContr.getResultSize()/(double)setContr.getPageSize()));
                 }
@@ -677,7 +692,17 @@ public with sharing class IPM_MyList{
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
                     query += LIMIT_STR;
-                    setController= new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
+                    list<IPM_Task__c> allTasksList = DataBase.query(query);
+                     list<IPM_Task__c> newTasksList = new list<IPM_Task__c>();
+                   for(IPM_Task__c taskRec : allTasksList)
+		            {
+		            	if(!taskIdSet.isEmpty() && taskIdSet.contains(taskRec.Id))
+		            	{
+		            		newTasksList.add(taskRec);
+		            	}
+		            }
+                    setController = new ApexPages.StandardSetController(newTasksList);
+                    
                     setController.setPageSize(completedSize);
                     totalcompletedpages= Integer.valueof(math.ceil((double)setController.getResultSize()/(double)setController.getPageSize()));
                 }

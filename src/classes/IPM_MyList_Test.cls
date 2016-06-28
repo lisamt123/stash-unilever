@@ -130,8 +130,6 @@ private class IPM_MyList_Test{
             taskListTest = new IPM_MyList();
             taskListTest.size =1;
             taskListTest.overduesize1=2;
-            taskListTest.projectId = null;
-            taskListTest.IsTaskEditable = true;
             taskListTest.isBosscard =  false;
             
             taskListTest.toggleSortAssignees();
