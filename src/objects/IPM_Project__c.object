@@ -2533,7 +2533,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Threshold_Status__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(OR(ISBLANK(IPM_Cluster__c ),ISNULL(IPM_Cluster__c )),  IF(IPM_Category_Thresh__c &gt; IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;) , IF(IPM_Category_Thresh__c &gt;  IPM_Cluster__r.IPM_Sum_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos; )))</formula>
+        <formula>IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(OR(ISBLANK(IPM_Cluster__c ),ISNULL(IPM_Cluster__c )),  IF(IPM_Category_Thresh__c &lt; IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;) , IF(IPM_Category_Thresh__c &lt;  IPM_Cluster__r.IPM_Sum_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos; )))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Threshold Status</label>
         <required>false</required>

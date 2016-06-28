@@ -311,7 +311,7 @@
                                 </div>
                             </div>
                             <!-- Display below outputPanel when hideFinSection is true-->
-                            <apex:outputpanel layout="block" styleClass="{!if( project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,'thRedBg','')}" rendered="{!hideFinSection}">
+                            <apex:outputpanel layout="block" styleClass="{!if(AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal) ,'thRedBg','')}" rendered="{!hideFinSection}">
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_Year_3_iTO}</div>
@@ -321,7 +321,7 @@
                                 </div>
                             </div>
                             </apex:outputpanel>
-                            <apex:outputpanel layout="block" styleClass="{!if( project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold  ,'thRedBg','')}" rendered="{!isOrgPrjRLplancreated}">
+                            <apex:outputpanel layout="block" styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}" rendered="{!AND(isOrgPrjRLplancreated,isOriginal)}">
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_Threshold_Status}</div> 
@@ -331,7 +331,7 @@
                                 </div>
                             </div>
                             </apex:outputpanel> 
-                            <apex:outputpanel layout="block" styleClass="{!if( project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold  ,'thRedBg','')}" rendered="{!isOriginal}">
+                            <apex:outputpanel layout="block" styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}" rendered="{!isOriginal}">
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
