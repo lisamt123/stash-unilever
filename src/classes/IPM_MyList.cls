@@ -149,7 +149,7 @@ public with sharing class IPM_MyList{
     public static final String ERROR_STR = 'Error';
     public static final String ISARCHIEVED_FALSE_STR =' AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =  \'Internal\' ';
     public static final String QUERY_WHERE_ASSIGNEE_STR=' WHERE IPM_Assignee__c = ';
-    private static final String LIMIT_STR=' LIMIT 2000 ';
+    private static final String LIMIT_STR=' LIMIT 1000 ';
     public List<IPM_Task__c> lstTasks{get;set;}
     public String taskcountValue;
     private final Integer DAY_VALUE = 7;
