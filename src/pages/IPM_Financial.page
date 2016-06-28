@@ -245,8 +245,8 @@
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
-                                                                    <!-- Rendered when IPM Financial object is updateable and project span is Global -->    
-                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditMode) ) }">
+                                                                    <!-- Rendered when IPM Financial object is updateable and project span is Global(including Consolidated other than Ideas), Regional, Local -->    
+                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,OR(project.IPMProject_Span__c == 'Global',project.IPMProject_Span__c == 'Local',project.IPM_Phase__c == 'Ideas',AND(project.IPMProject_Span__c == 'Regional',NOT(isConsolidated))),NOT(isEditMode))}">
                                                                      <!-- Rendered when record is editable and project phase is not PLE-->   
                                                                         <apex:outputPanel rendered="{!toShowEditButton}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
