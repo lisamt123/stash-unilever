@@ -70,6 +70,7 @@
         <apex:param name="thirdParam" assignTo="{!comment}" value=""/>
         <apex:param name="fourthParam" assignTo="{!cmts}" value=""/>
         </apex:actionFunction>
+        <apex:actionFunction name="updateReadOnlyAnswers" action="{!updateReadOnlyGKchecklist}" reRender="" rendered="{!isEditable}" />
        <!------------------Gatekeeper Checklist Section--------------->       
         <script>
         var IPMAppSecGK = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', partly:'{!$Label.IPM_PARTLY}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}'};      

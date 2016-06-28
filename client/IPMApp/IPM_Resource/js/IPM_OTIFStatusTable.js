@@ -11,6 +11,7 @@ var jq = jQuery.noConflict();
 /* Below script calls a function 'initSliderOTIF' on page load. */
 jq(document).ready(function() {
     initSliderOTIF();
+	updateReadOnlyOTIF();
 });
 
 /* Below function calls another function 'callupdateOtifList' which updates the otif list */

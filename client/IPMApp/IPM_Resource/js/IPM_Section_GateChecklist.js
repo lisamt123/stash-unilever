@@ -11,7 +11,7 @@ var ansIndex = 0;
  /* Below script calls a function 'initSliderSecGk' on page load. */
 jq(document).ready(function() {
     var sliderObjs = jq(".sliderGk");
-    
+    updateReadOnlyAnswers();
     var sliderIndex = 0;
     jq(sliderObjs).each(function() {
         divId = "legendSldGK" + sliderIndex;

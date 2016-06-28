@@ -93,6 +93,7 @@
 <apex:param name="FirstParam" assignTo="{!secConId}" value="" />
 <apex:param name="SecondParam" assignTo="{!status}" value="" />
 </apex:actionFunction>
+<apex:actionFunction name="updateReadOnlyOTIF" action="{!updateOTIFReadOnlyStatus}" reRender="" />
 <script> 
 var IPMAppOTT = {select:'{!$Label.IPM_SELECT}', green:'{!$Label.IPM_OTIF_GREEN}', amber:'{!$Label.IPM_OTIF_AMBER}', red:'{!$Label.IPM_OTIF_RED}', na:'{!$Label.IPM_NO_APPLICABLE}'};            
 </script>
