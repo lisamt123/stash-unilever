@@ -935,7 +935,7 @@
         <picklistValues>
             <picklist>IPM_GK_Answers_Multiselect__c</picklist>
             <values>
-                <fullName>NA%7ENot Applicable</fullName>
+                <fullName>N/A~Not Applicable</fullName>
                 <default>false</default>
             </values>
             <values>
