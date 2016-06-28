@@ -220,7 +220,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
        test.startTest();
        initializeTestMethodData();
        test.stopTest();
-        
+       
         system.runAs(globalUser){
               childProj.IPM_Project_Type__c=ROLLOUT_STR;
               childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
@@ -236,6 +236,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
               childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
               childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
               update childProjs;
+             
               list<ipm_project__c>localProjectsList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
               system.assertEquals(localProjectsList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY,'LOCAL project phase is not capability');
               chngPro.showValidation=true;
