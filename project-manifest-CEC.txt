@@ -1,4 +1,5 @@
 src
+<<<<<<< HEAD
 src/assignmentRules
 src/assignmentRules/Case.assignmentRules
 src/classes
@@ -113,3 +114,8 @@ src/workflows/CEC_Retrieval_Request__c.workflow
 
 
 
+=======
+src/queues
+src/queues/CEC_North_America_Tier_2_Queue.queue
+src/queues/CEC_North_America_Tier_3_Queue.queue
+>>>>>>> develop

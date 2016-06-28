@@ -1,0 +1,15 @@
+src
+src/objects
+src/objects/Amr_Summary_Plan__c.object
+src
+src/staticresources
+src/staticresources/Amr_static_resources.resource
+src/staticresources/Amr_static_resources.resource-meta.xml
+src
+src/classes
+src/classes/Amr_NewSaving_CC.cls
+src/classes/Amr_NewSaving_CC.cls-meta.xml
+src
+src/permissionsets
+src/permissionsets/RAP.permissionset
+src

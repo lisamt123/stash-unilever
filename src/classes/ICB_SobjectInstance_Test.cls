@@ -57,33 +57,32 @@ public class ICB_SobjectInstance_Test
         return user;
     }
     /*******************************************************************
-    Purpose: Insert ICB_Territory_Management__c for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
+    Purpose: Insert Territory__c for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
-    Parameters: userId
+    Parameters: userID : User ID, code : Territory code
     Returns: ICB_Territory_Management__c
     Throws [Exceptions]: [NONE] 
     ********************************************************************/
-    public static ICB_Territory_Management__c insertTerritory(Id userId,String name, String code)
+    public static Territory__c insertTerritory(Id userId,String code)
     {
-        ICB_Territory_Management__c territory = new ICB_Territory_Management__c(Name = name,
-                                                                                SetupOwnerId = userId,
-                                                                                ICB_Territory_Code__c = code 
-                                                                               );
+        Territory__c territory = new Territory__c(User__c = userId,
+                                                  Territory_ID__c = code 
+                                                 ); 
         insert territory;
         return territory;
     }
     /*******************************************************************
     Purpose: Insert ContentVersion for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
-    Parameters: territory
+    Parameters: Territory__c
     Returns: [VOID]
     Throws [Exceptions]: [NONE]  
     ********************************************************************/
-    public static ContentVersion insertContentVersion(ICB_Territory_Management__c territory)
+    public static ContentVersion insertContentVersion(Territory__c territory)
     {
-        ContentVersion doc = new ContentVersion(Title = territory.ICB_Territory_Code__c,
-                                                PathOnClient = territory.ICB_Territory_Code__c,
-                                                VersionData = Blob.valueOf(territory.ICB_Territory_Code__c)
+        ContentVersion doc = new ContentVersion(Title = territory.Territory_ID__c,
+                                                PathOnClient = territory.Territory_ID__c,
+                                                VersionData = Blob.valueOf(territory.Territory_ID__c)
                                                );
         insert doc;
         return doc;
