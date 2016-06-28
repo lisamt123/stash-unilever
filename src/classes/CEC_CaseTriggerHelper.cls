@@ -34,9 +34,9 @@ public class CEC_CaseTriggerHelper{
     String sfdcBaseURL = URL.getSalesforceBaseUrl().toExternalForm()+'/';
     map<id, Account> caseToAccountMap = new map<id, Account>();
     list<Id> noAccountCaseIds = new list<Id>();
-	Final String exceptionMsg = 'An exception occurred: ';
-	Final String originNA = 'Web North America';
-	Final String caseStatusClosed ='Closed';
+    Final String exceptionMsg = 'An exception occurred: ';
+    Final String originNA = 'Web North America - Deffered';//Updated the origin value to skip the contact us field default
+    Final String caseStatusClosed ='Closed';
     
     
     
@@ -95,7 +95,7 @@ public class CEC_CaseTriggerHelper{
                     caseRecord = new Case(Id=caseId);
                     caseRecord.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccount;
                     // Update case brand
-                    caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
+                    //caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
                 } // if no duplicates are found, and account already exists, add case to account
@@ -106,9 +106,12 @@ public class CEC_CaseTriggerHelper{
                     caseRecord.AccountId = acc.Id;
                     caseRecord.ContactId = acc.PersonContactId;
                     // update case brand
-                    caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
+                    //caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     // update related account details from case description
-                    acc = updateAccountDetailsFromCaseDescription(acc, newCaseMap.get(caseId).description);
+                    //Commented the code based on Phil H request
+                    /*if(newCaseMap.get(caseId).Origin == originNA){
+                        acc = updateAccountDetailsFromCaseDescription(acc, newCaseMap.get(caseId).description);
+                    }*/
                     accntList.add(acc);
                     
                     caseList.add(caseRecord);
@@ -137,9 +140,10 @@ public class CEC_CaseTriggerHelper{
                     accnt.FirstName = FName;
                     
                     // update related account details from case description
-                    if(newCaseMap.get(caseId).Origin == originNA){
-                        accnt = updateAccountDetailsFromCaseDescription(accnt, newCaseMap.get(caseId).description);
-                    }
+                    //Commented the below code based on Phil H request
+                    /*if(newCaseMap.get(caseId).Origin == originNA){
+                       accnt = updateAccountDetailsFromCaseDescription(accnt, newCaseMap.get(caseId).description);
+                    }*/
                     System.debug('Nagesh I am here'+ accntList);                  
                     accntList.add(accnt);
                 }
@@ -776,6 +780,15 @@ This method identifies date of manufacture from the daycode
                 }
                 
             }
+            
+        /*    for(case newCase: caseList){
+            
+                if(newCase.Origin == originNA && newCase.Case_ISO_Country_Code__c != ''){
+                
+                    newCase.Origin = 'Web';
+                }
+
+            }*/
             
         }Catch(Exception e ){
             System.debug(exceptionMsg + e.getMessage());  

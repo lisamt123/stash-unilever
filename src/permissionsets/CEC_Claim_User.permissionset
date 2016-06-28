@@ -4800,6 +4800,14 @@
         <apexClass>uw_uploadBCImage</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+<classAccesses>
+        <apexClass>CEC_LiveAgentControllerSpanish</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_LiveAgentControllerSpanishTest</apexClass>
+		<enabled>false</enabled>
+    </classAccesses>
     <description>CEC : Access to only CEC Claims Advisors</description>
     <externalDataSourceAccesses>
         <enabled>false</enabled>
@@ -4831,6 +4839,21 @@
         <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_Adaptation__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Claim_Note__c.Note__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Override_From_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TH1__Draft__c.Related_Lookup_CEC_Retrieval__c</field>
+	<readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26704,6 +26727,15 @@
         <object>Case</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>CEC_Claim_Note__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>AA_ReportAccepted</apexPage>
         <enabled>false</enabled>
@@ -28315,6 +28347,10 @@
     <pageAccesses>
         <apexPage>uw_CustomAssetUpload</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CEC_PostChatFormSpanish</apexPage>
+	<enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
