@@ -24,7 +24,7 @@
         float:right;
         color:#033A69;
         text-align: right;	
-        margin-right:23px;
+        margin-right:35px;
         }
         .head_d{
             float: left;
@@ -35,7 +35,7 @@
         .head_e{
         float: right;
         text-align: right;
-        margin-right:23px;
+        margin-right:35px;
         }
         .trend{
         width: 20px;
@@ -75,7 +75,9 @@
     <aura:attribute name="CurrentMonth" type="String"/>
     <aura:attribute name="deviceId" type="String"/>
     <aura:attribute name="spendDetails" type="MB_Wrapper_Class"/>
+    <aura:attribute name="nonUsageChargeDetails" type="MB_Wrapper_Class"/>
     <aura:attribute name="deviceDetails" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
+    <aura:attribute name="nonUsageDetails" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.showspinner=='false'}">
         
@@ -92,7 +94,7 @@
                 </div>
             </div><div style="clear:both"></div>
         </div>
-        <div class="section_a">
+        <div class="section_a" style="border-top: 1px solid #CFD7E6;">
             <div class="slds-text-body--regular head_a">Total</div>
             <div class="slds-text-body--regular head_b">
               <aura:if isTrue="{!v.deviceDetails.totalSpendVariance==true}"> 
@@ -127,8 +129,7 @@
                        </aura:iteration>
                    </div>               
                <div class="Right_cevro">
-                   
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   >
                </div>
             </div>
            </div>
@@ -183,7 +184,7 @@
                  </div>              
              
              <div class="Right_cevro">
-                 <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                 >
              </div>
           </div>
         </div>
@@ -238,7 +239,7 @@
                </aura:iteration>  
            </div>  
           <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   >
           </div>
            </div>
 
@@ -298,7 +299,7 @@
                   </aura:iteration> 
               </div>
            <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   >
            </div>
           </div>
 
@@ -333,7 +334,68 @@
 
           </div>
        </aura:if>
-       <aura:if isTrue="{!v.deviceDetails.totalnonUsage > 0}">
+       <!--<aura:if isTrue="{!v.deviceDetails.totalnonUsage > 0}">
+           <div onclick="{!c.gotoDetailSummarynonUsage}" data-deviceName="Data"  id="outerdiv">
+           <div class="section_a">
+               <div class="slds-text-body-regular head_a">Non Usage</div>
+               <div class="slds-text-body-regular head_b">
+                   <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==true}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                   </aura:if>
+                   <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                   </aura:if>
+                   {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalnonUsage}
+               </div>
+               <div class="section_a-new">
+                   <aura:iteration items="{!v.spendDetails.nonusageWrapperList}" var="data">
+                     <aura:if isTrue="{!data.totalSpend >0}">
+                       <div class="slds-text-body-small head_d">{!data.chargeTypeName}</div>
+                       <div class="slds-text-body-small head_e">{!v.deviceDetails.userCurrency}{!data.totalSpend}</div>
+                       <div style="clear:both"></div>
+                       </aura:if>
+                   </aura:iteration> 
+               </div>
+            <div class="Right_cevro">
+                   >
+            </div>
+           </div>
+           
+
+           </div>
+      </aura:if>
+        <aura:if isTrue="{!v.deviceDetails.totalnonUsage == 0}">
+           <div  data-deviceName="Data"  id="outerdiv">
+           <div class="section_a">
+               <div class="slds-text-body-regular head_a">Non Usage</div>
+               <div class="slds-text-body-regular head_b"> 
+                   <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==true}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                   </aura:if>
+                   <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
+                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                   </aura:if>
+                   {!v.deviceDetails.userCurrency}0.00
+               </div>
+               <div class="section_a-new">
+                   <aura:iteration items="{!v.spendDetails.nonusageWrapperList}" var="data">
+                     <aura:if isTrue="{!data.totalSpend >0}">
+                       <div class="slds-text-body-small head_d">{!data.chargeTypeName}</div>
+                       <div class="slds-text-body-small head_e">{!v.deviceDetails.userCurrency}0.00</div>
+                       <div style="clear:both"></div>
+                       </aura:if>
+                   </aura:iteration> 
+               </div>
+            <div class="Right_cevro">
+                   
+            </div>
+           </div>
+           
+
+           </div>
+      </aura:if>-->
+        
+        <aura:if isTrue="{!v.deviceDetails.totalnonUsage > 0}">
            <div onclick="{!c.gotoDetailSummarynonUsage}" data-deviceName="Data"  id="outerdiv">
            <div class="section_a">
                <div class="slds-text-body--regular head_a">Non Usage</div>
@@ -356,7 +418,7 @@
                    </aura:iteration> 
                </div>
             <div class="Right_cevro">
-                   <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                   >
             </div>
            </div>
            
@@ -374,7 +436,7 @@
                    <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
                    </aura:if>
-                   {!v.deviceDetails.userCurrency}0.00
+                   {!v.deviceDetails.userCurrency} Test 0
                </div>
                <div class="section_a-new">
                    <aura:iteration items="{!v.spendDetails.nonusageWrapperList}" var="data">
@@ -386,13 +448,14 @@
                    </aura:iteration> 
                </div>
             <div class="Right_cevro">
-                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
+                   
             </div>
            </div>
            
 
            </div>
       </aura:if>
+        
         <c:MB_Action_bar componentName="MB_Devices" selectedMonth="{!v.CurrentMonth}"/>
     </div>
  <aura:set attribute="else">

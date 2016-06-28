@@ -35,6 +35,14 @@
         :-ms-input-placeholder {  
         	color: #A8B8D0;  
         }
+        .slds-modal__content{
+        	text-align: left;
+    		padding-left: 1rem;
+        }
+        .slds-modal__header {
+        	border-radius: .25rem;
+        	padding: 2rem 1rem !important;
+        }
     </style>
     <div class="close-button" onclick="{!c.rateLater}"><img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img></div>
     <div class="feedback_container">
@@ -111,15 +119,7 @@
           <button class="slds-button slds-button--icon-inverse slds-modal__close">
             <span class="slds-assistive-text">{!$Label.c.CORE_FB_Cancel}</span>
           </button>
-          <h2 class="slds-text-heading--medium">{!$Label.c.CORE_FB_Error}</h2>
-        </div>
-        <div class="slds-modal__content slds-p-around--medium">
-          <div>
-            <p>{!$Label.c.CORE_FB_Error_Alert}</p>
-          </div>
-        </div>
-        <div class="slds-modal__footer slds-theme--default">
-          <button class="slds-button slds-button--neutral" onclick="{!c.closeError}">Okay</button>
+          <h2 class="slds-text-heading--medium error-text">{!$Label.c.CORE_FB_Error_Alert}<a href="" class="error-cross"><img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" onclick="{!c.closeError}"></img></a></h2>
         </div>
       </div>
     </div>
@@ -201,21 +201,17 @@
           <button class="slds-button slds-button--icon-inverse slds-modal__close">
             <span class="slds-assistive-text">Close</span>
           </button>
-          <h2 class="slds-text-heading--medium">Error</h2>
-        </div>
-        <div class="slds-modal__content slds-p-around--medium">
-          <div>
-            <p>Please rate the app to submit your feedback</p>
-          </div>
-        </div>
-        <div class="slds-modal__footer slds-theme--default">
-          <button class="slds-button slds-button--neutral" onclick="{!c.closeError}">Okay</button>
+		  <h2 class="slds-text-heading--medium error-text">Please rate the app to submit your feedback<a class="error-cross"><img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" onclick="{!c.closeError}"></img></a></h2>
+
         </div>
       </div>
     </div>
     <div class="slds-backdrop slds-backdrop--open"></div>
   </div>
     </aura:if>
+                  
+            
+            
         </div>
      </aura:if>
       

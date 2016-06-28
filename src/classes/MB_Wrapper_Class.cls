@@ -183,7 +183,7 @@ public class MB_Wrapper_Class{
      
      @AuraEnabled
      public string chargeTypeName{get;set;}
-     
+  
      @AuraEnabled
      public decimal totalSpend{get;set;}
     }

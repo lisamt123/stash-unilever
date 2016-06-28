@@ -15,6 +15,8 @@
            component.set("v.showspinner","false");
               });
            $A.enqueueAction(action);  
+        
+        
          
    },
 
@@ -54,7 +56,7 @@
     
     gotoDetailSummarynonUsage:function(component, event, helper) {
         var summaryEvent=$A.get("e.c:MB_UsageTypeSummary_Event"); 
-        summaryEvent.setParams({"month":component.get("v.CurrentMonth"),"deviceId":component.get("v.deviceId"),"usageType":"Recurring","deviceName":component.get("v.deviceName")}).fire();
+        summaryEvent.setParams({"month":component.get("v.CurrentMonth"),"deviceId":component.get("v.deviceId"),"usageType":"NonUsage","deviceName":component.get("v.deviceName")}).fire();
     },
     
 })

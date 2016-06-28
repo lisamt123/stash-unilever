@@ -256,7 +256,23 @@
         <columns>Billing_Month__c</columns>
         <columns>User__c</columns>
         <columns>Local_Net_Amount__c</columns>
+        <columns>Charge_Type__c</columns>
+        <columns>Usage_Type__c</columns>
+        <columns>Call_Minutes__c</columns>
+        <columns>Data_Consumed_In_MB__c</columns>
+        <columns>iPass_Consumed_In_MB__c</columns>
+        <columns>Messages__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>Billing_Month__c</field>
+            <operation>contains</operation>
+            <value>May</value>
+        </filters>
+        <filters>
+            <field>User__c</field>
+            <operation>equals</operation>
+            <value>few equal</value>
+        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>

@@ -1,6 +1,6 @@
 <aura:component controller="MB_Controller_Charts">
     <ltng:require styles="/resource/charts/slick/slick.css,/resource/charts/slick/slick-theme.css"
-                  scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,
+                  scripts="/resource/charts/jquery-1.11.1.min.js,
                            /resource/charts/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
     <aura:attribute name="DataYou" type="Decimal"></aura:attribute>
     <aura:attribute name="DataColleagues" type="Decimal"></aura:attribute>
@@ -28,6 +28,9 @@
         @media screen and (max-width:320px){
         .message_body {
             min-height: 526px;
+        }
+        .linechart{
+        width: 40% !important;
         }
         }
     </style>

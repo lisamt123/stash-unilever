@@ -385,6 +385,11 @@ static testMethod void testMBControllerWithCollegue(){
       
   String minsSecond3 = MB_Controller_Class.getMinsSecond(105.00);
   System.assertEquals(minsSecond3,'01:45:00');
+      
+  MB_ReportingGA__c reportingGAObject = new MB_ReportingGA__c(Name = 'MB_GA_Value',MB_GA__c = 'MGA');
+  insert reportingGAObject;
+  string strgaid = MB_Controller_Class.getGAID();
+  System.assertEquals(strgaid,'MGA');
  }
          
   Test.stopTest();

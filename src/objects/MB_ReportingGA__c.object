@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
-    <description>Tem faq list</description>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>MB_GA__c</fullName>
+        <description>Google Analytics Tracking Id</description>
         <externalId>false</externalId>
-        <label>Description</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Title__c</fullName>
-        <externalId>false</externalId>
-        <label>Title</label>
+        <inlineHelpText>Google Analytics Tracking Id</inlineHelpText>
+        <label>MB_GA</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -22,14 +15,17 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>URL__c</fullName>
-        <description>Url in FAQ</description>
+        <fullName>MB_Info_GA__c</fullName>
+        <description>Google Analytics Tracking Id</description>
         <externalId>false</externalId>
-        <label>URL</label>
+        <inlineHelpText>Google Analytics Tracking Id</inlineHelpText>
+        <label>MB_Info_GA</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Url</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
-    <label>TEM_FAQ_List</label>
+    <label>MB_ReportingGA</label>
     <visibility>Public</visibility>
 </CustomObject>

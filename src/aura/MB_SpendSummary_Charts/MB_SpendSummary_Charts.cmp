@@ -1,7 +1,7 @@
 <aura:component controller="MB_Controller_Charts" >
-    <ltng:require styles="/resource/charts/slick/slick.css,/resource/charts/slick/slick-theme.css"
-                  scripts="/resource/charts/jquery-1.11.1.min.js,/resource/charts/canvasjs-1.8.0/jquery.canvasjs.min.js,
-                           /resource/charts/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
+    <ltng:require styles="/resource/charts/slick/slick.css,/resource/charts/slick/slick-theme.css"  
+                  scripts="/resource/charts/d3.min.js,/resource/charts/jquery-1.11.1.min.js,
+                             /resource/charts/slick/slick.min.js,/resource/charts/d3pie.js"  afterScriptsLoaded="{!c.doinit}"/>
     
     <style>
         body{
@@ -20,11 +20,31 @@
         
         bottom: -25px !important;
         }
+        .legend {                                                   
+        font-size: 12px;                                          
+      }                                                           
+      rect {                                                      
+        stroke-width: 2;                                          
+      }  
+      svg {
+        position: absolute;
+        top: 51px;
+     }
     </style>
+     <aura:attribute name="DataYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="DataColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="CallsYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="CallsColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="SMSYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="SMSColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="iPassYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="iPassColleagues" type="Decimal"></aura:attribute>
    <aura:attribute name="showspinner" type="boolean" default="true"/>
     <aura:attribute name="deviceName" type="String"/>
     <aura:attribute name="CurrentMonth" type="String"/>
     <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="result" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
+    <aura:attribute name="Avgresult" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
     <aura:if isTrue="{!v.showspinner=='false'}">
     <div>
         <img class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.gotoDevices}"></img>
@@ -45,28 +65,57 @@
             <div class="carousel">
                 
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">DATA (in Mb)</div>
+                    <div class="slds-text-body--small chart_main">DATA (MB)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
-                    <div id="pie1" class="sub_carousel">
+                    <div class="chartstext">
+                        <div style="width:25%;float:left">
+                            <div id="pie1" class="sub_carousel"></div>
+                        </div>
+                        <div style="width:39%;float:right;padding: 1.2rem 0.5rem 0 2.3rem;text-align: left;">
+                            <span class="charttext" style="color:#0C8EFF;font-size:10px">DOMESTIC</span><br/><span style="color:#0C8EFF">{!v.result.totalDomesticDataUsage}MB</span><br/><br/>
+                        	<span class="charttext" style="color:#4F6A92;font-size:10px">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalDataUsage}MB</span>
+                        </div>
                     </div>
-                </div>
+                    </div>
+               
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">VOICE (in min)</div>
+                    <div class="slds-text-body--small chart_main">VOICE (Min)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
-                    <div id="pie2" class="sub_carousel">
+                     <div class="chartstext">
+                        <div style="width:25%;float:left">
+                            <div id="pie2" class="sub_carousel"></div>
+                        </div>
+                        <div style="width:39%;float:right;padding: 1.2rem 0.5rem 0 2.3rem;text-align: left;">
+                            <span class="charttext" style="color:#0C8EFF;font-size:10px">DOMESTIC</span><br/><span style="color:#0C8EFF">{!v.result.totalDomesticCallUsage}min</span><br/><br/>
+                        	<span class="charttext" style="color:#4F6A92;font-size:10px">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalCallUsage}min</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">SMS (Count)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
-                    <div id="pie3" class="sub_carousel">
+                     <div class="chartstext">
+                        <div style="width:25%;float:left">
+                            <div id="pie3" class="sub_carousel"></div>
+                        </div>
+                        <div style="width:39%;float:right;padding: 1.2rem 0.5rem 0 2.3rem;text-align: left;">
+                            <span class="charttext" >DOMESTIC</span><br/><span style="color:#0C8EFF">{!v.result.totalDomesticSMSUsage}</span><br/><br/>
+                        	<span class="charttext">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalSMSUsage}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS (in Mb)</div>
+                    <div class="slds-text-body--small chart_main">iPASS (MB)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
-                    <div id="pie4" class="sub_carousel">
+                    <div class="chartstext">
+                        <div style="width:25%;float:left">
+                            <div id="pie4" class="sub_carousel"></div>
+                        </div>
+                        <div style="width:39%;float:right;padding: 1.2rem 0.5rem 0 2.3rem;text-align: left;">
+                            <span class="charttext" style="color:#0C8EFF;font-size:10px">DOMESTIC</span><br/><span style="color:#0C8EFF">{!v.result.totalDomesticIpassUsage}MB</span><br/><br/>
+                        	<span class="charttext" style="color:#4F6A92;font-size:10px">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalIpassUsage}MB</span>
+                        </div>
                     </div>
                 </div>              
             </div>
@@ -79,28 +128,72 @@
             <div class="carousel_column">
                 
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">DATA  (in Mb)</div>
+                    <div class="slds-text-body--small chart_main">DATA  (MB)</div>
                     <div class="slds-text-body--regular chart_sub">You -vs- Your Colleagues</div>
-                    <div id="column1" class="sub_carousel">
+                    <div class="Insights">
+                        <div class="slds-text-body--regular">
+                            <div class="bar_data">
+                                <div  class="line_bars_data"></div>
+                                <div  class="line_bar_data"></div>
+                            </div>
+                            <div class="bar_text">
+                                <div Style="color:#0C8EFF"><span class="charttext">YOU</span><br/><span>{!v.Avgresult.totalDataUsage}MB</span><br/><br/></div>
+                                <div Style="color:#F88962"><span class="charttext">YOUR COLLEAGUES</span><br/><span>{!v.Avgresult.totalAverageDataUsage}MB</span></div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">VOICE  (in min)</div>
+                    <div class="slds-text-body--small chart_main">VOICE  (Min)</div>
                     <div class="slds-text-body--regular chart_sub">You -vs- Your Colleagues</div>
-                    <div id="column2" class="sub_carousel">
+                    <div class="Insights">
+                        <div class="slds-text-body--regular">
+                            <div class="bar_data">
+                                 <div  class="line_bars_calls"></div>
+                                 <div  class="line_bar_calls"></div>
+                            </div>
+                            <div class="bar_text">
+                                <div Style="color:#0C8EFF"><span class="charttext">YOU</span><br/><span>{!v.Avgresult.totalCallUsage}Mins</span><br/><br/></div>
+                                <div Style="color:#F88962"><span class="charttext">YOUR COLLEAGUES</span><br/><span>{!v.Avgresult.totalAverageCallUsage}Mins</span></div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 
                 <div class="car_main">
                     <div class="slds-text-body--small chart_main">SMS  (Count)</div>
                     <div class="slds-text-body--regular chart_sub">You -vs- Your Colleagues</div>
-                    <div id="column3" class="sub_carousel">
+                    <div class="Insights">
+                        <div class="slds-text-body--regular">
+                            <div class="bar_data">
+                                <div  class="line_bars_SMS"></div>
+                                <div  class="line_bar_SMS"></div>
+                            </div>
+                            <div class="bar_text">
+                                <div Style="color:#0C8EFF"><span class="charttext" >YOU</span><br/><span>{!v.Avgresult.totalMessageUsage}</span><br/><br/></div>
+                                <div Style="color:#F88962"><span class="charttext" >YOUR COLLEAGUES</span><br/><span>{!v.Avgresult.totalAverageMessageUsage}</span></div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS  (in Mb)</div>
+                    <div class="slds-text-body--small chart_main">iPASS  (MB)</div>
                     <div class="slds-text-body--regular chart_sub">Roaming Data -vs- Roaming iPass</div>
-                    <div id="column4" class="sub_carousel">
+                   <div class="Insights">
+                        <div class="slds-text-body--regular">
+                            <div class="bar_data">
+                                <div  class="line_bars_ipass"></div>
+                                <div  class="line_bar_ipass"></div>
+                            </div>
+                            <div class="bar_text">
+                                <div Style="color:#0C8EFF"><span class="charttext" >YOU</span><br/><span>{!v.Avgresult.totalIpassUsage}MB</span><br/><br/></div>
+                                <div Style="color:#F88962"><span class="charttext" >YOUR COLLEAGUES</span><br/><span>{!v.Avgresult.totalAverageIpassUsage}MB</span></div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>              
             </div>

@@ -67,6 +67,26 @@ public with sharing class CORE_Feedback_App_Controller{
      
      return false;
   }
+   /******************************************************************************************************
+* @description 
+* @param  
+* @return boolean. 
+*/
+   
+    @AuraEnabled
+    public static String getUIThemeDescription() {
+        String themedesc;
+        String theme = UserInfo.getUiThemeDisplayed();
+        if(theme=='Theme3' || theme=='Theme2'){
+            themedesc='Salesforce Classic';
+        }else if(theme=='Theme4d'){
+            themedesc='Lightning Experience';
+        }else if(theme=='Theme4t'){
+            themedesc='Salesforce1 Mobile';
+        }
+        return themedesc;
+    
+}
   
 
 }

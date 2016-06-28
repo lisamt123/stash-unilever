@@ -6,6 +6,7 @@ doInit:function(component, event, helper) {
        action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
+   
                 var response=response.getReturnValue();
                 if(response === true){
                      component.set("v.showspinner",false); 
