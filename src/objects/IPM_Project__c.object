@@ -2824,7 +2824,7 @@ OwnerId))</formula>
         <summaryFilterItems>
             <field>IPM_Questionnaire__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>RQS Questionnaire</value>
+            <value>RQS Questionnaire, Corporate Risk</value>
         </summaryFilterItems>
         <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
@@ -2849,7 +2849,7 @@ OwnerId))</formula>
         <summaryFilterItems>
             <field>IPM_Questionnaire__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Corporate Risk</value>
+            <value>Corporate Risk, RQS Questionnaire</value>
         </summaryFilterItems>
         <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
