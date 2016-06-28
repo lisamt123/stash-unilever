@@ -13,6 +13,7 @@ public with sharing class IPM_GatekeeperChecklist{
     private static final String GET_SECTION_WISE_GKCHECKLIST_STR='getSectioWiseGKChecklist'; 
     private static final String GET_GKCHECKLIST_STR='getGKChecklist';
     private static final String UPDATE_GKCHECKLIST_STR='updateGKchecklist';
+    private static final String UPDATE_READONLY_GKCHECKLIST_STR='updateReadOnlyGKchecklist';
     private static final String GET_RECORDTYPEID_STR='getRecordTypeId';
     //Initializing Variables
     public static  ID recTypeGK; //Contains Gatekeeper Check list Record type Id
@@ -33,6 +34,7 @@ public with sharing class IPM_GatekeeperChecklist{
     public ID projectID{get;set;} //Project Id
     public Boolean cmts{get; set;} //Used for updating comments and Check list Value
     public IPM_Project_Document_Section__c  projDocSec {get;set;} //Contains Project Document Section Record
+    public Map<Id,IPM_Questionnaire__c> readOnlyQuestionnaireMap {get;set;}
     
     public static final Map<String,String> GK_DEF_APPLICABLE_ANSMAP = new  Map<String,String>{Label.IPM_YES => Label.IPM_YES ,Label.IPM_PARTLY => Label.IPM_PARTLY , Label.IPM_NO => Label.IPM_NO, Label.IPM_NA => Label.IPM_NO_APPLICABLE };
     
@@ -114,6 +116,7 @@ public with sharing class IPM_GatekeeperChecklist{
     public IPM_GatekeeperChecklist(){
         IPM_IECompatible.ieFix();//For IE Compatibility
         projectID=ApexPages.currentPage().getParameters().get('Id'); 
+        readOnlyQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>(); 
     }
     
     /************************************************************************************************************************
@@ -147,14 +150,18 @@ public with sharing class IPM_GatekeeperChecklist{
     *  @return void
     *  @throws query exception
     */
-    public void getGKChecklist(){
-        try{
+    public void getGKChecklist()
+    {
+        try
+        {
             //Retrieving Record Type Ids
             getRecordTypeId();  
+            
             String sObjectName = 'IPM_Questionnaire__c';
             Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(sObjectName).getDescribe();
+        
         	Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
-            String query='SELECT ';
+        	String query = ' SELECT ';
 	        for(String fieldAPIName :  sobjectFieldMap.keySet())
 	        {   
 	            if(!(fieldAPIName.equalsIgnoreCase('Id')))
@@ -162,27 +169,28 @@ public with sharing class IPM_GatekeeperChecklist{
 	                query += ' '+fieldAPIName+',';
 	            }
 	        }
+	        
 	        query += 'Id,IPM_Project_Document_Section__r.IPM_Section_Name__c from '+ sObjectName +' WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
             if(projDocSec!=null){
                 string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
                 gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
-            }
+            } 
             else
             {   
-               gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');     
-                
+               gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');        
             } 
           
             // Get BET status and Set BET Gatekeeping answer
-	        for(IPM_Questionnaire__c ipmQue : gkChecklist) 
-	        {
-	        	String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
-            	if(String.isNotBlank(dependentFieldAPIName))
-    			{
-            		ipmQue.put('IPM_GK_Answers__c',(String)ipmQue.get(dependentFieldAPIName));
-          		}	
-	        }	   
-	        
+          for(IPM_Questionnaire__c ipmQue : gkChecklist) 
+          {
+            String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
+              if(String.isNotBlank(dependentFieldAPIName))
+          {
+                ipmQue.put('IPM_GK_Answers__c',(String)ipmQue.get(dependentFieldAPIName));
+                readOnlyQuestionnaireMap.put(ipmQue.Id,ipmQue);
+              }   
+          }     
+          
    
             
             if(gkChecklist!=null && !gkChecklist.isEmpty())  
@@ -257,8 +265,23 @@ public with sharing class IPM_GatekeeperChecklist{
     *  @return void
     *  @throws dml exception
     */
+    
+    public void  updateReadOnlyGKchecklist()
+    {
+        try
+        {
+            update readOnlyQuestionnaireMap.values(); 
+        }  
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                                                  UPDATE_READONLY_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
+    
     public pageReference updateGKchecklist(){
-        if(quesId != null)  {
+        if(quesId != null)  
+        {
             gkCheck=new IPM_Questionnaire__c();
             gkCheck.Id=quesId;
             try{
