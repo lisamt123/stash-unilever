@@ -32,7 +32,7 @@ src/classes/Core_NC_NewsCenterControllerHelper.cls
 src/classes/Core_NC_NewsCenterControllerHelper.cls-meta.xml
 src/documents
 src/documents/Ideas
-src/documents/Ideas/IdeasIcon.jpg
+src/documents/Ideas/Idea.jpg
 src/pages
 src/pages/CORE_IC_NavigateToApp.page
 src/pages/CORE_IC_NavigateToApp.page-meta.xml
