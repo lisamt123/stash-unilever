@@ -89,6 +89,10 @@
         <name>ICB_Status__c</name>
     </fields>
     <fields>
+        <label><!-- Manager --></label>
+        <name>Manager__c</name>
+    </fields>
+    <fields>
         <name>Type</name>
         <picklistValues>
             <masterLabel>Call</masterLabel>

@@ -2,3 +2,5 @@ src
 src/classes
 src/classes/Oblix_SOWMainDetailController.cls
 src/classes/Oblix_SOWMainDetailController.cls-meta.xml
+src/classes/Oblix_SOWRollOverLogic.cls
+src/classes/Oblix_SOWRollOverLogic.cls-meta.xml
