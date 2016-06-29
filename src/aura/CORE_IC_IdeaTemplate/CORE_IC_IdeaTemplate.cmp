@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_Feedback_App_Controller">
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller">
     <ltng:require scripts="/resource/CORE_IC_IdeasLigthtning/js/jquery.js,/resource/CORE_IC_IdeasLigthtning/js/jqueryUiJs.js"                   
                   styles="/resource/CORE_IC_IdeasLigthtning/js/jqueryUiCss.css, /resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts"                  
                   afterScriptsLoaded="{!c.loadIdeaHome}"/> 

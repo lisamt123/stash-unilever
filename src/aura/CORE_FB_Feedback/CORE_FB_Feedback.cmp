@@ -1,7 +1,7 @@
-<aura:component implements="force:appHostable" controller="CORE_Feedback_App_Controller">
+<aura:component implements="force:appHostable" controller="CORE_FB_Feedback_App_Controller">
     <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system-ltng.min.css" />
-    <ltng:require styles="/resource/Feedback_App/assets/styles/star-css.css" />
+    <ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
     <aura:attribute name="success_toast" type="boolean" default="false"></aura:attribute>

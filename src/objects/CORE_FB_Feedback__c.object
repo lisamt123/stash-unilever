@@ -144,7 +144,7 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Feedback</label>
+    <label>CORE_FB_Feedback</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -155,7 +155,7 @@
         <label>Feedback Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Feedbacks</pluralLabel>
+    <pluralLabel>CORE_FB_Feedback</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

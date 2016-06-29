@@ -10,7 +10,7 @@
                 var response=response.getReturnValue();
                 if(response === true){                    
                     component.set("v.showspinner",false); 
-                    helper.loadFeedBack(component,"markup://c:Feedback",component.get("v.pannelType"));
+                    helper.loadFeedBack(component,"markup://c:CORE_FB_Feedback",component.get("v.pannelType"));
                  }
                 if(response === false ){ 
                     component.set("v.showspinner",false); 
@@ -18,7 +18,7 @@
                  }
               }
          });    
-        if(component.get("v.articleId")!=undefined && component.get("v.articleId")!=null && component.get("v.articleId")!='' ){ 
+        if(component.get("v.articleId")!=undefined ){ 
         	console.log(component.get("v.articleType")+'---------------2--------------'+component.get("v.articleId"));
            // alert("hi" +component.get("v.articleId"));
         	var componentName;
@@ -38,10 +38,8 @@
         var response;
         action.setCallback(this, function(response) { 
             response=response.getReturnValue();
-            
-            if(response != 'Lightning Experience'){
-            
-        	helper.scrollToLocation(component, "top"); 
+           if(response != 'Lightning Experience'){
+           helper.scrollToLocation(component, "top"); 
          }
         });    
         $A.enqueueAction(action);
@@ -52,7 +50,7 @@
             helper.loadDetailPageComponent(component, event.getParam("componentName"),event.getParam("recordDetail"),event.getParam("recordType"),event.getParam("ParentPageDetail"),event.getParam("pannelType"),'');
         } else if(event.getParam("Pagename")=="CORE_IC_IdeaHome") {
             helper.loadNewComponent(component,"markup://c:CORE_IC_IdeaHome",event.getParam("pannelType"));    
-        } else if(event.getParam("Pagename")=="Feedback") {
+        } else if(event.getParam("Pagename")=="CORE_FB_Feedback") {
             helper.loadFeedBack(component,"markup://c:"+event.getParam("Pagename"),event.getParam("pannelType"));            
         } else if(event.getParam("Pagename")=="campaignIdea") {
             console.log('-------main---------'+event.getParam("componentName"));
