@@ -1,0 +1,48 @@
+src
+src/classes
+src/classes/CEC_CaseTriggerHelper.cls
+src/classes/CEC_CaseTriggerHelper.cls-meta.xml
+src/classes/CEC_LiveAgentControllerSpanish.cls
+src/classes/CEC_LiveAgentControllerSpanish.cls-meta.xml
+src/classes/CEC_LiveAgentControllerSpanishTest.cls
+src/classes/CEC_LiveAgentControllerSpanishTest.cls-meta.xml
+src/flows
+src/flows/Create_and_Update_Claim_Notes-3.flow
+src/layouts
+src/layouts/CEC_Claim_Note__c-Claim Note Layout.layout
+src/layouts/CEC_Retrieval_Request__c-Retrieval Request Layout%28Read Only%29.layout
+src/layouts/CEC_Retrieval_Request__c-Retrieval Request Layout.layout
+src/layouts/Case-Case Feed Layout.layout
+src/objects
+src/objects/Case.object
+src/objects/CEC_Claim_Note__c.object
+src/objects/cec_Org_Settings__c.object
+src/objects/TH1__Draft__c.object
+src/package.xml
+src/pages
+src/pages/CEC_PostChatFormSpanish.page
+src/pages/CEC_PostChatFormSpanish.page-meta.xml
+src/pages/CEC_PreChatFormSpanish.page
+src/pages/CEC_PreChatFormSpanish.page-meta.xml
+src/permissionsets
+src/permissionsets/CEC_Claim_User.permissionset
+src/permissionsets/CEC_CRUD.permissionset
+src/permissionsets/CEC_User.permissionset
+src/staticresources
+src/staticresources/CEC_ChatOfflineEnglish.resource
+src/staticresources/CEC_ChatOfflineEnglish.resource-meta.xml
+src/staticresources/CEC_ChatOfflineEnglishMobile.resource
+src/staticresources/CEC_ChatOfflineEnglishMobile.resource-meta.xml
+src/staticresources/CEC_ChatOfflineSpanish.resource
+src/staticresources/CEC_ChatOfflineSpanish.resource-meta.xml
+src/staticresources/CEC_ChatOfflineSpanishMobile.resource
+src/staticresources/CEC_ChatOfflineSpanishMobile.resource-meta.xml
+src/staticresources/CEC_ChatOnlineEnglish.resource
+src/staticresources/CEC_ChatOnlineEnglish.resource-meta.xml
+src/staticresources/CEC_ChatOnlineEnglishMobile.resource
+src/staticresources/CEC_ChatOnlineEnglishMobile.resource-meta.xml
+src/staticresources/CEC_ChatOnlineSpanish.resource
+src/staticresources/CEC_ChatOnlineSpanish.resource-meta.xml
+src/staticresources/CEC_ChatOnlineSpanishMobile.resource
+src/staticresources/CEC_ChatOnlineSpanishMobile.resource-meta.xml
+
