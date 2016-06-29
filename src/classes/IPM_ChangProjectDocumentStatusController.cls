@@ -168,6 +168,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         if(!String.isBlank(Status))
         {
             projectDoc.IPM_Document_Status__c=Status;//setting the project document status
+            
+            IPM_Project_Metadata__mdt  projectMetadata = IPM_Utils.retrieveProjectMetadata(project);
+            if(projectMetadata!=null){
+            	project.IPM_ProjectGKM__c = projectMetadata.MasterLabel;
+            }
         }
         //functionality when Document status is STOPPED
         if(projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED)
