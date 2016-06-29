@@ -10,4 +10,8 @@
 		<members>AgencyHomePageController</members>
 		<name>ApexClass</name>	
     </types> 
+	<types>
+		<members>Ideas</members>
+		<name>CustomTab</name>
+	</types>
 </Package>

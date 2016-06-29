@@ -1,0 +1,19 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false"     applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" >
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <apex:includeLightning />
+    <style>
+        body {
+            margin: 0px !important;
+        }
+    </style>
+    <div id="lightning" />
+    <script>
+        var articleId = '{!$CurrentPage.Parameters.articleId}';
+        var articleType = '{!$CurrentPage.Parameters.articleType}';
+        $Lightning.use("c:CORE_EventsApp", function() 
+        {
+            $Lightning.createComponent("c:CORE_IC_IdeaTemplate", { "articleId" : articleId, "articleType": articleType }, "lightning", function(cmp) { });
+        });
+    </script>
+
+</apex:page>
