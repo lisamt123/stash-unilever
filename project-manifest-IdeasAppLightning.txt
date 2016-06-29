@@ -157,6 +157,9 @@ src/aura/CORE_FB_Feedback_Back_Event/CORE_FB_Feedback_Back_Event.evt-meta.xml
 src/aura/CORE_FB_Feedback_Event
 src/aura/CORE_FB_Feedback_Event/CORE_FB_Feedback_Event.evt
 src/aura/CORE_FB_Feedback_Event/CORE_FB_Feedback_Event.evt-meta.xml
+src/staticresources
+src/staticresources/CORE_FB_Feedback_App.resource
+src/staticresources/CORE_FB_Feedback_App.resource-meta.xml
 src/labels
 src/labels/IdeasAppLightning.labels
 src/objects
