@@ -82,7 +82,7 @@
       allowMissingFiles="true"
       autoUpdatePackage="true"
       ignoreWarnings="true"
-      deployRoot="retrievedSrc"
+      deployRoot="${basedir}/${sfdc.retrieveTarget}"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
     </sf:deploy>    
