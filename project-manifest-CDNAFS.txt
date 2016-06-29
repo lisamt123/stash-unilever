@@ -1,44 +1,4 @@
 src
-src/objects
-src/objects/Account.object
-src/objects/Product2.object
-src/objects/Pricebook2.object
-src/objects/PricebookEntry.object
-src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
-src/objects/FS_User_Territory__c.object
-src/objects/FSOpportunityTriggerSettings__c.object
-src/objects/FS_Defined_Objective__c.object
-src/objects/FS_Account_Plan__c.object
-src
 src/layouts
-src/layouts/Pricebook2-FS PriceBook Layout.layout
-src/layouts/PricebookEntry-Price Book Entry Layout.layout
-src
-src/profiles
-src/profiles/Food Solutions API Only.profile
-src
-src/triggers
-src/triggers/OpportunityTrigger.trigger
-src/triggers/OpportunityTrigger.trigger-meta.xml
-src
-src/classes
-src/classes/FS_OpportunityHelper.cls
-src/classes/FS_OpportunityHelper.cls-meta.xml
-src/classes/FS_OpportunityHelper_Test.cls
-src/classes/FS_OpportunityHelper_Test.cls-meta.xml
-src/classes/FS_Utility.cls
-src/classes/FS_Utility.cls-meta.xml
-src
-src/reports
-src/reports/NAFS_Report-meta.xml
-src/reports/NAFS_Report/FS_PriceBookList.report
-src/reports/NAFS_Report/FS_Report_MABE_1.report
-src/reports/NAFS_Report/FS_Report_MABE_2.report
-src
-src/email
-src/email/FS_Email_Templates-meta.xml
-src/email/FS_Email_Templates/FS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days.email
-src/email/FS_Email_Templates/FS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days.email-meta.xml
-src/email/FS_Email_Templates/FS_Opportunity_approval_request_email_template.email
-src/email/FS_Email_Templates/FS_Opportunity_approval_request_email_template.email-meta.xml
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Operators.layout
