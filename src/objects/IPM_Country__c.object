@@ -3154,6 +3154,24 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c3aj_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HULK RETURN ID</label>
+        <queue>IPM_a7IE0000000c3aj</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c3nU_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c3nU</label>
+        <queue>IPM_a7IE0000000c3nU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

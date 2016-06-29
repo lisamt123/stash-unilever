@@ -3199,6 +3199,24 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c3aj_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HULK RETURN ID</label>
+        <queue>IPM_a7IE0000000c3aj</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c3nU_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000c3nU</label>
+        <queue>IPM_a7IE0000000c3nU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>
