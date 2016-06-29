@@ -50,11 +50,11 @@ public with sharing  class ChatterPublisherHandler {
    @AuraEnabled
     public static String getMentionCompletions(String q, String contextId) { 
            String result = '';
-           String resultCon = 'contextId';
+           String resultCon = contextId;
            if(contextId != null & contextId.equalsIgnoreCase('me')) {
                resultCon = UserInfo.getUserId();
            }
-           ConnectApi.MentionCompletionPage mentionCompletionPage = ConnectApi.Mentions.getMentionCompletions(Network.getNetworkId(),q, contextId);
+           ConnectApi.MentionCompletionPage mentionCompletionPage = ConnectApi.Mentions.getMentionCompletions(Network.getNetworkId(),q, resultCon);
            result = '{ \n  tags: [ \n';
            if(mentionCompletionPage.mentionCompletions != null && !mentionCompletionPage.mentionCompletions.isEmpty()) {
                Integer size = mentionCompletionPage.mentionCompletions.size();
@@ -144,16 +144,16 @@ public with sharing  class ChatterPublisherHandler {
     
     @AuraEnabled 
     public static String uploadNewFile(String fileName, String base64Data, String contentType, String subjectId, String textToPost, String fileId){
-        
+        string fileIdToUpload=fileId;
         if (fileId == '' || fileId == null) {
 
-            fileId = saveTheFile(subjectId,fileName, base64Data, contentType,textToPost);
+            fileIdToUpload = saveTheFile(subjectId,fileName, base64Data, contentType,textToPost);
         } else {
 
-            fileId = appendToFile(fileId, base64Data, subjectId, textToPost);
+            fileIdToUpload = appendToFile(fileId, base64Data, subjectId, textToPost);
         }
 
-        return fileId;
+        return fileIdToUpload;
        
     } 
     
@@ -199,12 +199,13 @@ public with sharing  class ChatterPublisherHandler {
      @AuraEnabled
     public static String saveTheFile(String subjectId,String fileName, String base64Data, String contentType,String textToPost) { 
     //    System.debug('saveTheFile');
-         base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
+          string encoding=base64Data;
+         encoding = EncodingUtil.urlDecode(base64Data, 'UTF-8');
         ContentVersion newContentVersion = new ContentVersion();
         // see https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_contentversion.htm
         newContentVersion.Title = fileName;
         newContentVersion.PathOnClient = fileName;
-        newContentVersion.VersionData = EncodingUtil.base64Decode(base64Data);
+        newContentVersion.VersionData = EncodingUtil.base64Decode(encoding);
         newContentVersion.Origin = 'H'; 
         insert newContentVersion;
         ContentVersion c = [Select Id, ContentDocumentId from ContentVersion where id =: newContentVersion.Id LIMIT 1]; 
@@ -216,14 +217,14 @@ public with sharing  class ChatterPublisherHandler {
     
     @AuraEnabled 
     public static void postFeedElementWithExistingFile(String subjectId, String textSegment, id contentDocumentId){
-            
+           string  textSegmentSection=textSegment;
         if(textSegment == null){
-            textSegment = '';
+            textSegmentSection = '';
         }
         
-        ConnectApi.FeedItemInput feedItemInput = getFeedItemInputWithMentions(textSegment,subjectId);
+        ConnectApi.FeedItemInput feedItemInput = getFeedItemInputWithMentions(textSegmentSection,subjectId);
         ConnectApi.FeedElementCapabilitiesInput feedElementCapabilitiesInput = new ConnectApi.FeedElementCapabilitiesInput();
-        feedElementCapabilitiesInput.link = getLinkCapability(textSegment);
+        feedElementCapabilitiesInput.link = getLinkCapability(textSegmentSection);
         feedItemInput.capabilities = feedElementCapabilitiesInput;
         
         
@@ -406,7 +407,7 @@ public with sharing  class ChatterPublisherHandler {
     
     private static ConnectApi.LinkCapabilityInput getLinkCapability(String messageToPost){
  
-        String linkUrl;
+        String linkUrl='';
         
         String[] postTextSegments = messageToPost.split(' ');
         for(String s : postTextSegments) {
@@ -416,10 +417,10 @@ public with sharing  class ChatterPublisherHandler {
             }
         }
         
-        ConnectApi.LinkCapabilityInput linkInput;
+         ConnectApi.LinkCapabilityInput linkInput=Null;
         
         if(linkUrl != null && linkUrl.trim() != '') {
-                linkInput = new ConnectApi.LinkCapabilityInput();
+             linkInput = new ConnectApi.LinkCapabilityInput();
                 linkInput.url = linkUrl;
                 linkInput.urlName = linkUrl;
         }
@@ -432,7 +433,7 @@ public with sharing  class ChatterPublisherHandler {
     /* Convertind feed type from string to enum */
     
     private static ConnectApi.FeedType convertFeedType(String sFeedType) {
-        ConnectApi.FeedType result;
+        ConnectApi.FeedType result=Null;
         for(ConnectApi.FeedType feedType : ConnectApi.FeedType.values()) {
             if(feedType.name() == sFeedType) {
                 result =  feedType;
