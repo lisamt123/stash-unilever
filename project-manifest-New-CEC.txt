@@ -18,7 +18,6 @@ src/objects/Case.object
 src/objects/CEC_Claim_Note__c.object
 src/objects/cec_Org_Settings__c.object
 src/objects/TH1__Draft__c.object
-src/package.xml
 src/pages
 src/pages/CEC_PostChatFormSpanish.page
 src/pages/CEC_PostChatFormSpanish.page-meta.xml
