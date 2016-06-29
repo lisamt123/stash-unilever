@@ -64,11 +64,9 @@
             component.set("v.showspinner","false"); 
           });
        $A.enqueueAction(action);
-        var action1 = component.get("c.getGAID");
-        action1.setCallback(this, function(response) {
+        var action2 = component.get("c.getGAID");
+        action2.setCallback(this, function(response) {
             var state = response.getState();
-            if (state == "SUCCESS") { 
-                //alert(response.getReturnValue());
                 if (state === "SUCCESS" && response.getReturnValue()!=='') {
                     if(response.getReturnValue()!=''){ 
                         
@@ -80,12 +78,9 @@
                         ga('create', response.getReturnValue(), 'auto');
                         ga('send', 'pageview');
                     }
-                    else {
-                        
-                    }
-                }  }                 
+                }                   
         });
-        $A.enqueueAction(action1);
+        $A.enqueueAction(action2);
  
     },
     

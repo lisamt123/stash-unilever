@@ -25,8 +25,6 @@
                      ga('send', 'pageview');
                      
                  }
-                 else {
-                 }
              }                   
          });
          $A.enqueueAction(action1);

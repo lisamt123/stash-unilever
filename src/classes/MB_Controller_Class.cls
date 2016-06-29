@@ -177,7 +177,8 @@ public with sharing class MB_Controller_Class{
         if(currentMnthList.size()>0){
         for(MB_Billing_Entity__c CurrentUserData:lstyourChargeType)
         {
-          updateMonthDataUsage(CurrentUserData,month,previousMonth);
+          updateMonthDataUsage(CurrentUserData,month);
+          updatePreviousMonthDataUsage(CurrentUserData,previousMonth);
 
         }
           system.debug('!@#$');
@@ -206,7 +207,7 @@ public with sharing class MB_Controller_Class{
          return null;
        }
        
-       public static void updateMonthDataUsage(MB_Billing_Entity__c CurrentUserData, String month, String previousMonth){
+       public static void updateMonthDataUsage(MB_Billing_Entity__c CurrentUserData, String month){
        
             if(CurrentUserData.Billing_Month__c ==month){
              if(CurrentUserData.Local_Net_Amount__c !=null){
@@ -225,8 +226,10 @@ public with sharing class MB_Controller_Class{
            if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass){
               IpassUsage +=CurrentUserData.iPass_Consumed_In_MB__c;
             }
-          }
-           
+          }       
+       }
+        public static void updatePreviousMonthDataUsage(MB_Billing_Entity__c CurrentUserData,String previousMonth){
+       
            if(CurrentUserData.Billing_Month__c ==previousMonth){
            
            if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data){
@@ -243,9 +246,7 @@ public with sharing class MB_Controller_Class{
             }
          
              }    
-       
        }
-       
     /*******************************************************************************************************
     * @description This method returns total spend of a user device for a particular month.
     * @param  month, device Id
