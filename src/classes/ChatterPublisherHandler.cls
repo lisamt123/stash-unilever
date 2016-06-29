@@ -74,8 +74,8 @@ public with sharing  class ChatterPublisherHandler {
     
     @AuraEnabled 
     public static String getSubjectNameById(String subjectId) {
-         String objectName;
-        String result;
+         String objectName=Null;
+        String result=Null;
         if(subjectId != null && subjectId.equalsIgnoreCase('me')) {
             result = 'My Followers';
         } else if(subjectId != null){
@@ -91,7 +91,7 @@ public with sharing  class ChatterPublisherHandler {
                 //Check if the prefix matches with requested prefix
                 if(prefix!=null && prefix.equals(myIdPrefix)){
                     objectName = r.getName();
-                    System.debug('Object Name! ' + objectName);
+                  //  System.debug('Object Name! ' + objectName);
                     break;
                 }
             }
@@ -478,7 +478,7 @@ public with sharing  class ChatterPublisherHandler {
                    List<ChatterAuraMessageSegment> messageSegments = new List<ChatterAuraMessageSegment>();  
                    ChatterAuraMessageSegment ms;
                    if(((connectApi.FeedItem) fe).header != null){
-                       if(((connectApi.FeedItem) fe).body.isRichText == null || ((connectApi.FeedItem) fe).body.isRichText == false) {
+                       if(((connectApi.FeedItem) fe).body.isRichText == null || !(((connectApi.FeedItem) fe).body.isRichText)) {
                            cfe.isRichText = false;
                        } else {
                            cfe.isRichText = true;

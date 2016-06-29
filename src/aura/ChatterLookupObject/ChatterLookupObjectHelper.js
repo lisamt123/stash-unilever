@@ -175,9 +175,8 @@
  
             toast.fire();
         }
-        else // otherwise throw an alert
-     {
-            alert(title + ': ' + message);
-       } 
+       /* else // otherwise throw an alert
+              {
+            alert(title + ': ' + message); } */
     }
 })
