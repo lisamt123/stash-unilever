@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>CORE_FB_App_Name</fullName>
         <language>en_US</language>
@@ -126,4 +124,3 @@
         <shortDescription>EmailSubjectForIdeas</shortDescription>
         <value>Vote for the Idea</value>
     </labels>
-</CustomLabels>
