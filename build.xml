@@ -69,7 +69,9 @@
      unpackaged="src/package.xml"
      pollWaitMillis="${sfdc.pollWaitMillis}"
      maxPoll="${sfdc.maxPoll}"/>
-    <copy file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
+    <copy todir="src">
+      <fileset dir="${basedir}/${sfdc.retrieveTarget}"/>
+    </copy>
   </target>  
 
   <target name="validate-updates" description="Validate updates">
