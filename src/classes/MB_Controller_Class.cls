@@ -285,7 +285,10 @@ public with sharing class MB_Controller_Class{
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
                                     FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId]; 
-    
+    List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId]; 
        
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
        List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
@@ -416,13 +419,19 @@ public with sharing class MB_Controller_Class{
        if(entity.Usage_Type__r.Name != MB_Constants.Usage_Type_iPass && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Messaging && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Calls && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Data)
         {
             if(!nonusageMap.containsKey(entity.Usage_Type__r.Name)){
-            List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
+            /*List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId and Usage_Type__r.Name=:entity.Usage_Type__r.Name]; 
-    
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId and Usage_Type__r.Name=:entity.Usage_Type__r.Name]; */
+    		List<MB_Billing_Entity__c> nonUsageBillingEntity=new List<MB_Billing_Entity__c>();
+                for(MB_Billing_Entity__c nonUsageBE:billingEntityList1){
+                    if(nonUsageBE.Usage_Type__r.Name!=null && nonUsageBE.Usage_Type__r.Name!='' && nonUsageBE.Usage_Type__r.Name==entity.Usage_Type__r.Name){
+                        nonUsageBillingEntity.add(nonUsageBE);
+                    }
+                }
+                
             decimal amt=0;
-            for(MB_Billing_Entity__c billObj:billingEntityList1){
+            for(MB_Billing_Entity__c billObj:nonUsageBillingEntity){
                 if(billObj.Local_Net_Amount__c!=null){
                 System.debug('t.Local_Net_Amount__c---->'+billObj.Local_Net_Amount__c);
                 amt += billObj.Local_Net_Amount__c;
