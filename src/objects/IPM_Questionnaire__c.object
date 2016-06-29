@@ -59,8 +59,8 @@
         <fullName>BETCurrentStatus__c</fullName>
         <externalId>false</externalId>
         <formula>CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
-&apos;First Release&apos;,&apos;Partly&apos;, 
-&apos;Final Release&apos;,&apos;Yes&apos;, 
+&apos;First release&apos;,&apos;Partly&apos;, 
+&apos;Final release&apos;,&apos;Yes&apos;, 
 &apos;&apos;, &apos;Not Applicable&apos;,&apos;&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>BET Current Status</label>
@@ -935,7 +935,7 @@
         <picklistValues>
             <picklist>IPM_GK_Answers_Multiselect__c</picklist>
             <values>
-                <fullName>N/A~Not Applicable</fullName>
+                <fullName>NA%7ENot Applicable</fullName>
                 <default>false</default>
             </values>
             <values>

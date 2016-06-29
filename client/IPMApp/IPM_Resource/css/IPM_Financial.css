@@ -44,7 +44,6 @@
 	.pHead a, .finRecord a{color:#3b516d;  vertical-align: middle;}
 	.expico-square{margin-top:2px;}
 	.finRecord{padding: 10px 7px;background-color:#f9faec ;border-bottom: 1px solid #c0d3bf;}
-	.finRecord.pad0PX{padding: 0px}
 	.projectContainer > .ipmAcrdnExpand{margin-bottom:0 ;}
 	.finLegends {margin-top:10px;color:#666;font-size:0.8em;float:left;}
 	.filterSubTitle .expico-square{margin-right:6px ;}
