@@ -3,7 +3,7 @@
 		helper.sharePost(component); 
         jQuery(".attachmentContainer").hide();
 	},
-    
+   
     chooseFile : function(component, event, helper) {
 		jQuery(".ModalDialogPlaceholderFileUpload").addClass("slds-hide");
         component.find("attachNewFileB").getElement().disabled = false;
@@ -34,7 +34,7 @@
         }
         jQuery(".lookup-input").focus();
 	},
-    
+
     mention : function(component, event, helper) {
         var txt = component.get("v.textToPost");
         if(txt == undefined) {
@@ -48,19 +48,15 @@
         helper.uploadFile(component); 
         //jQuery(".ModalDialogPlaceholderFileUpload").addClass("slds-hide");
     },
-    
-    
+ 
     afterLoaded:  function(component, event, helper) {
         
         //Added by AES
         jQuery(".attachmentContainer").hide();
         $j = jQuery.noConflict();            
        //END AES
-  
-        
        function getCaretPosition (elem) {
-    
-      // Initialize
+          // Initialize
       var iCaretPos = 0;
     
       // IE Support
@@ -80,7 +76,8 @@
       }
       // Firefox support
       else if (elem.selectionStart || elem.selectionStart == '0')
-        iCaretPos = elem.selectionStart;
+      {  iCaretPos = elem.selectionStart;
+      }
     
       // Return results
       return (iCaretPos);
@@ -98,8 +95,9 @@
                     elem.focus();
                     elem.setSelectionRange(caretPos, caretPos);
                 }
-                else
+                else{
                     elem.focus();
+                }
             }
         }
     }
@@ -133,8 +131,6 @@
          });
       
     } 
-            
-           
         jQuery(document).ready(function() {
         jQuery(".lookup-input").autocomplete({
             source: function(request, response) {
@@ -184,12 +180,7 @@
             
             jQuery(".ui-autocomplete").css("z-index",1);
         	jQuery(".ui-autocomplete").css("background-color","white");
-        
-            
-        
-        
-        
-        
+
     },
     
     showPopUp : function(component, event, helper) {
@@ -236,9 +227,7 @@
         // Clear the Id bound to the View
         cmp.set('v.recordId', null);
     },
-    
-    
-     showSpinner : function (component) {
+    showSpinner : function (component) {
         var spinner = component.find('publisherSpinner');
         var evt = spinner.get("e.toggle");
         evt.setParams({ isVisible : true });

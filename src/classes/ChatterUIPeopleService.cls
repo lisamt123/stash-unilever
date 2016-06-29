@@ -30,10 +30,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  * Service class for handling Chatter People
  */
 public with sharing class ChatterUIPeopleService {
-	
-	public static Set<String> EDITABLE_USER_FIELDS = new Set<String> { 'Phone', 'Title', 'AboutMe', 'CompanyName', 'MobilePhone'};	
-	public static final Integer PEOPLE_QUERY_SIZE = 15;
-	
+  
+  public static Set<String> EDITABLE_USER_FIELDS = new Set<String> { 'Phone', 'Title', 'AboutMe', 'CompanyName', 'MobilePhone'};  
+  public static final Integer PEOPLE_QUERY_SIZE = 15;
+  
     /**
      * @param userId - ID of the User to update
      * @param updatedFields - Stringified JSON with key value pairs representing the fields and values to update.
@@ -41,38 +41,38 @@ public with sharing class ChatterUIPeopleService {
      * @return String representing a JSON status object, where the status property will be "success" or "error"
      */
     public static String updateUserInfo(Id userId, String updatedFields) {
-    	Map<String, String> updatedFieldsMap = (Map<String, String>)JSON.deserialize(updatedFields, Map<String, String>.class);
+      Map<String, String> updatedFieldsMap = (Map<String, String>)JSON.deserialize(updatedFields, Map<String, String>.class);
 
-    	// sanitize the fields for update
-    	Map<String, String> validFieldsMap = new Map<String, String>();
+      // sanitize the fields for update
+      Map<String, String> validFieldsMap = new Map<String, String>();
 
-    	for (String fieldName : EDITABLE_USER_FIELDS) {
-    		if (updatedFieldsMap.containsKey(fieldName)) {
-    			validFieldsMap.put(fieldName, updatedFieldsMap.get(fieldName));
-    		}
-    	}
+      for (String fieldName : EDITABLE_USER_FIELDS) {
+        if (updatedFieldsMap.containsKey(fieldName)) {
+          validFieldsMap.put(fieldName, updatedFieldsMap.get(fieldName));
+        }
+      }
 
         if (validFieldsMap.size() == 0) {
             // return success status when there's nothing to update
             return ChatterUIController.getStringifiedStatus('success', '');
         }
 
-		// get the User object
-		User thisUser = getUserWithEditableFields(userId);
-		if (thisUser == null) {
-			return ChatterUIController.getStringifiedStatus('error', 'Invalid user.');
-		}
-		
-		// only update the valid user fields
-		for (String fieldName : validFieldsMap.keySet()) {
-		    thisUser.put(fieldName, validFieldsMap.get(fieldName));
-		}
+    // get the User object
+    User thisUser = getUserWithEditableFields(userId);
+    if (thisUser == null) {
+      return ChatterUIController.getStringifiedStatus('error', 'Invalid user.');
+    }
+    
+    // only update the valid user fields
+    for (String fieldName : validFieldsMap.keySet()) {
+        thisUser.put(fieldName, validFieldsMap.get(fieldName));
+    }
 
-        UserContext usrContext = UserContext.getInstance();
-		final String userUpdateResponse = updateSObject(thisUser);
-		final Map<String, String> responseDict = (Map<String, String>)JSON.deserialize(userUpdateResponse, Map<String,String>.class);
-		
-		return userUpdateResponse;
+       // UserContext usrContext = UserContext.getInstance();
+    final String userUpdateResponse = updateSObject(thisUser);
+    final Map<String, String> responseDict = (Map<String, String>)JSON.deserialize(userUpdateResponse, Map<String,String>.class);
+    
+    return userUpdateResponse;
     }
 
     /**
@@ -127,12 +127,12 @@ public with sharing class ChatterUIPeopleService {
         String likeClause = EncodingUtil.urlDecode(searchText, 'UTF-8') +'%';
         
         return [SELECT Id, Name, SmallPhotoUrl, FullPhotoUrl, FirstName, LastName, Profile.UserType
-					FROM User
-					WHERE (Name LIKE :likeClause
-					OR LastName LIKE :likeClause)
-					AND IsActive = true
-					AND Profile.UserType = 'Standard'
-					ORDER BY Name
-					LIMIT :PEOPLE_QUERY_SIZE];
+          FROM User
+          WHERE (Name LIKE :likeClause
+          OR LastName LIKE :likeClause)
+          AND IsActive = true
+          AND Profile.UserType = 'Standard'
+          ORDER BY Name
+          LIMIT :PEOPLE_QUERY_SIZE];
     }
 }

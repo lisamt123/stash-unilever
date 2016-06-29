@@ -78,10 +78,10 @@
             counter = counter + 1;
             fileNames += this.files[initial].name + '&nbsp;';
         }
-        if(fileNum > 1)
-            fileNames = 'Files selected...';
-        else
-            fileNames = this.files[0].name + '&nbsp;';
+        if(fileNum > 1){
+            fileNames = 'Files selected...';}
+        else{
+            fileNames = this.files[0].name + '&nbsp;';}
         
         jQuery('#filename').append('<span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x"></i><strong class="fa-stack-1x" style="color:#FFF; font-size:12px; margin-top:2px;">'+ fileNum + '</strong></span><span">' + fileNames + '</span>&nbsp;<span class="fa fa-times-circle fa-lg closeBtn" title="remove"></span><br>');
         

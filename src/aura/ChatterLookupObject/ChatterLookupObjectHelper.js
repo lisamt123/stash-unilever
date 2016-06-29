@@ -2,11 +2,11 @@
     /**
      * Perform the SObject search via an Apex Controller
      */
-    doSearch : function(cmp) {
+   doSearch : function(cmp) {
         // Get the search string, input element and the selection container
         var searchString = cmp.get('v.searchString');
         var inputElement = cmp.find('lookup');
-        var lookupList = cmp.find('lookuplist');
+        var lookupList = cmp.find('lookuplist'); 
  
         // Clear any errors and destroy the old lookup items container
         inputElement.set('v.errors', null);
@@ -176,8 +176,8 @@
             toast.fire();
         }
         else // otherwise throw an alert
-        {
+     {
             alert(title + ': ' + message);
-        }
+       } 
     }
 })

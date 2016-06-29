@@ -50,8 +50,9 @@ public with sharing  class ChatterPublisherHandler {
    @AuraEnabled
     public static String getMentionCompletions(String q, String contextId) { 
            String result = '';
+           String resultCon = 'contextId';
            if(contextId != null & contextId.equalsIgnoreCase('me')) {
-               contextId = UserInfo.getUserId();
+               resultCon = UserInfo.getUserId();
            }
            ConnectApi.MentionCompletionPage mentionCompletionPage = ConnectApi.Mentions.getMentionCompletions(Network.getNetworkId(),q, contextId);
            result = '{ \n  tags: [ \n';
@@ -117,7 +118,7 @@ public with sharing  class ChatterPublisherHandler {
            ConnectApi.FeedElementCapabilitiesInput feedElementCapabilitiesInput = new ConnectApi.FeedElementCapabilitiesInput();
            feedElementCapabilitiesInput.link = getLinkCapability(messageToPost);
            feedItemInput.capabilities = feedElementCapabilitiesInput;     
-   ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
+        ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
      
    }
     
@@ -128,7 +129,7 @@ public with sharing  class ChatterPublisherHandler {
    public static ChatterAuraFeedItem postCommentToFeedElement(String feedElementId, String text) { 
            ConnectApi.FeedElement feedElement;
            if(text != null && text.trim() != '') {
-               ConnectApi.Comment comment = ConnectApi.ChatterFeeds.postCommentToFeedElement(Network.getNetworkId(), feedElementId, text);
+               ConnectApi.ChatterFeeds.postCommentToFeedElement(Network.getNetworkId(), feedElementId, text);
                 
            } 
            feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
@@ -244,7 +245,7 @@ public with sharing  class ChatterPublisherHandler {
         feedItemInput.capabilities.files = filesInput;  
     
         // Post the feed item.
-         ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
+         ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), feedItemInput);
         
         
         
@@ -336,7 +337,7 @@ public with sharing  class ChatterPublisherHandler {
     Used in ChatterFeedElement.cmp */
    @AuraEnabled
    public static ChatterAuraFeedItem likeFeedElement(String feedElementId) {    
-           ConnectApi.ChatterLike likeFeedElement = ConnectApi.ChatterFeeds.likeFeedElement(Network.getNetworkId(), feedElementId); 
+           ConnectApi.ChatterFeeds.likeFeedElement(Network.getNetworkId(), feedElementId); 
            ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.getFeedElement(Network.getNetworkId(), feedElementId);
            return getChatterAuraFeedItemFromFeedElement(feedElement);
        
@@ -526,7 +527,7 @@ public with sharing  class ChatterPublisherHandler {
                                   }
                                   if(messageSegment instanceof ConnectApi.LinkSegment) {
                                       cfe.isRichText = true;
-                                      String refId = '#';
+                                     // String refId = '#';
                                       richTextSegment.segmentBody = ' <a href="' + ((ConnectApi.LinkSegment) messageSegment).url + '"> ' + ((ConnectApi.LinkSegment) messageSegment).text + '</a>';
                                   } 
                                   cfe.richBodyText.add(richTextSegment);

@@ -63,6 +63,7 @@ public class ChatterPublisherHandlerTest {
         insert feedItem;
         element1.Id = feedItem.Id;
         ChatterPublisherHandler.getFeedElements('me','News');
+        System.AssertNotEquals(Null,feedItem.id);
         Test.stopTest();
       
   }
@@ -85,7 +86,7 @@ public class ChatterPublisherHandlerTest {
      static void ChatterPublisherHandlerTest_PostWithMention() {
         Test.startTest();
         String currentUserName = UserInfo.getName();
-        ChatterPublisherHandler.postFeedElement('Please welcome @[' + currentUserName + ']', 'me');
+       ChatterPublisherHandler.postFeedElement('Please welcome @[' + currentUserName + ']', 'me');
         Test.stopTest();
     }
     
@@ -123,7 +124,7 @@ public class ChatterPublisherHandlerTest {
         feedItem.ParentId = UserInfo.getUserId();
         insert feedItem;
           System.AssertNotEquals(Null,feedItem.ParentId);
-         ChatterAuraFeedItem result = ChatterPublisherHandler.getFeedElement(feedItem.id);
+         ChatterPublisherHandler.getFeedElement(feedItem.id);
         ChatterPublisherHandler.postCommentToFeedElement(feedItem.id, 'my comment');
         Test.stopTest();
     }
@@ -138,14 +139,14 @@ public class ChatterPublisherHandlerTest {
         mentionCompletionPageTest.mentionCompletions.add(mention1);
         ConnectApi.Mentions.setTestGetMentionCompletions(Network.getNetworkId(),'sa', UserInfo.getUserId(),mentionCompletionPageTest);
         Test.startTest();
-        ChatterPublisherHandler.getMentionCompletions('sa', 'me');
+       System.AssertNotEquals(Null,ChatterPublisherHandler.getMentionCompletions('sa', 'me'));
         Test.stopTest();
     }
     
      @isTest(seeAllData=true)
      static void ChatterPublisherHandlerTest_uploadFile() {
         Test.startTest();
-        ChatterPublisherHandler.uploadNewFile('fileName.txt', 'base64Data', 'txt', 'me', 'hello', '');
+        System.AssertNotEquals(Null,ChatterPublisherHandler.uploadNewFile('fileName.txt', 'base64Data', 'txt', 'me', 'hello', ''));
         Test.stopTest();
     }
     
@@ -153,12 +154,12 @@ public class ChatterPublisherHandlerTest {
      @isTest//(seeAllData=true)
      static void ChatterPublisherHandlerTest_getSubjectNameById() {
         Test.startTest();
-         String result1 = ChatterPublisherHandler.getSubjectNameById('me');
+        ChatterPublisherHandler.getSubjectNameById('me');
         Account acc = new Account();
         acc.name = 'acme';
         insert acc;
          System.AssertNotEquals(Null,acc.id);
-         String result2 = ChatterPublisherHandler.getSubjectNameById(acc.id);
+          ChatterPublisherHandler.getSubjectNameById(acc.id);
         Test.stopTest();
     }
  
