@@ -2825,7 +2825,7 @@
         <name>ICB_Distance_Limit</name>
     </customLabels>
     <customLabels>
-        <label>Error! Realize Check-In antes do Check-Out!</label>
+        <label>Erro! Realize Check-In antes do Check-Out!</label>
         <name>ICB_ERROR_CHECKIN_BEFORE_CHECKOUT</name>
     </customLabels>
     <customLabels>
