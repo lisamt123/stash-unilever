@@ -6,33 +6,9 @@
 private class PBS_ReportGenerator_Test {
     
  @isTest(SeeAllData='true')
-  static void testCrsStatusReport(){
+    static void testCrsStatusReport(){
+        Test.startTest();
     PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
-    Pagereference pageref = null;
-    Test.startTest();
-     pageref = reportgeneratorObj.generateCrsStatusReport();
-     System.assert(pageref!= null);
-    Test.stopTest();
-  }
-    @isTest(SeeAllData='true')
-  static void testCrsStatsByUserRprt(){
-    PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
-    Pagereference pageref = null;
-    Test.startTest();
-     pageref = reportgeneratorObj.generateCrsStatsByUserRprt();
-     System.assert(pageref!= null);
-    Test.stopTest();
-  } 
-    @isTest(SeeAllData='true')
-  static void testCrsStatsByUserinDetl(){
-    PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
-    Pagereference pageref = null;
-    Test.startTest();
-     pageref = reportgeneratorObj.generateCrsStatsByUserinDetl();
-     System.assert(pageref!= null);
-    Test.stopTest();
-  }
-  
-     
-
+        Test.stopTest();
+    }
 }

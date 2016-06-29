@@ -32,7 +32,7 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
     public transient List<PBS_TrainingPlanWithAchievement_CC> tPlans{get;private set;}
 
     public PBS_Learning_Category__c learningcategory {get; private set;}
-	
+    
     String categoryId;
     public String geography;
     public String course;
@@ -80,7 +80,7 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
                         sortedTPlanIds = PBS_LMSService_CC.getTrainingPlanIdsForCategory(new Set<Id>{categoryId});
                     }
                 }
-				System.debug(sortedTPlanIds);
+                System.debug(sortedTPlanIds);
                 if(sortedTPlanIds.size()>0){
                     //Return a sorted list of training plans
                     Map<Id,PBS_Training_Plan__c> trainingPlansMap = new Map<Id,PBS_Training_Plan__c>();
@@ -171,14 +171,16 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
 
     //Get a list of training plan ids grouped by learning category Id
     private static Map<Id,List<Id>> getCategoryTrainingPlanMap(Set<Id> categoryIds,String geography,String course,String profile,String worklevel){
-
+        Set<String> geoset = new Set<String>{geography,'Global'};
         Map<Id,List<Id>> result = new Map<Id,List<Id>>();
         Set<Id> catIds = categoryIds;
-		//String geo = geography;
+        //String geo = geography;
         //Get training plan ids from training plan category ids
         System.debug(catIds);
         System.debug('Geo ='+ geography);
-        String soqlQuery = 'select Learning_Category__c,Training_Plan__c from PBS_Training_Plan_Category__c WHERE Learning_Category__c IN :catIds AND Geography__c=:geography AND Work_Level__c=:worklevel AND PlannerType__c =:profile AND Journey_Type__c =:course order by Order__c asc NULLS LAST'; 
+        //String soqlQuery = 'select Learning_Category__c,Training_Plan__c from PBS_Training_Plan_Category__c WHERE Learning_Category__c IN :catIds AND Geography__c=:geography AND Work_Level__c=:worklevel AND PlannerType__c =:profile AND Journey_Type__c =:course order by Order__c asc NULLS LAST'; 
+        String soqlQuery = 'select Learning_Category__c,Training_Plan__c from PBS_Training_Plan_Category__c WHERE Learning_Category__c IN :catIds AND Geography__c IN :geoset AND Work_Level__c=:worklevel AND PlannerType__c =:profile AND Journey_Type__c =:course order by Order__c asc NULLS LAST'; 
+ 
         System.debug((List<PBS_Training_Plan_Category__c>)Database.query(soqlQuery));
         for (PBS_Training_Plan_Category__c tpc : (List<PBS_Training_Plan_Category__c>)Database.query(soqlQuery)){
             if(tpc.Training_Plan__c != null){

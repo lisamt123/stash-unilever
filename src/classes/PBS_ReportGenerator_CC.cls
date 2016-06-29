@@ -27,40 +27,32 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 Public With Sharing class PBS_ReportGenerator_CC{
-    public List<Report> reports { set;get; } 
-    
-    public Pagereference generateCrsStatusReport(){
-        Pagereference pageref = null;
-        reports = [SELECT id,Name FROM Report where Name='PBS Course Status' limit 1]; 
-        for(Report rep : reports){
-        pageref = new Pagereference('/'+rep.id);
-    }
+    public List<Report> reports { set;get; }
+    public id reportId_PBSCrsStus {get;set;}
+    public id reportId_PBSCrsStusByUNm {get;set;}
+    public id reportId_PBSCrsStusInDtls {get;set;}
         
-        return pageref;
+    public PBS_ReportGenerator_CC(){
+        init();
     }
-   /*Redundant Report
-    *  public Pagereference gnrtTPlanAsgmntsWithUserDtlsRprt(){
-        Pagereference pageref;
-        reports = [SELECT id,Name FROM Report where Name='PBS_TPlan Assignments With User Details' limit 1]; 
+    
+    //Fetching report_IDs according to report name
+    public void init(){
+        ID reportID = null;
+        reports = [SELECT id,Name FROM Report where Name='PBS Course Status' limit 1];
         for(Report rep : reports){
-        pageref = new Pagereference('/'+rep.id);
-    }
-    return pageref;
-    }*/
-    public Pagereference generateCrsStatsByUserRprt(){
-        Pagereference pageref = null;
+             reportID = rep.id;
+        }
+        reportId_PBSCrsStus = reportID;
         reports = [SELECT id,Name FROM Report where Name='PBS Course Status By UserName' limit 1]; 
         for(Report rep : reports){
-        pageref = new Pagereference('/'+rep.id);
-    }
-    return pageref;
-    }
-    public Pagereference generateCrsStatsByUserinDetl(){
-        Pagereference pageref = null;
-        reports = [SELECT id,Name FROM Report where Name='PBS Course Status In Detail' limit 1]; 
+            reportID = rep.id;
+        }
+        reportId_PBSCrsStusByUNm = reportID;
+         reports = [SELECT id,Name FROM Report where Name='PBS Course Status In Detail' limit 1]; 
         for(Report rep : reports){
-        pageref = new Pagereference('/apex/PBS_CourseStatusInDetailReport?id='+rep.id);
-    }
-    return pageref;
+            reportID = rep.id;
+        }
+        reportId_PBSCrsStusInDtls = reportID;
     }
 }

@@ -34,14 +34,16 @@ margin-right:250px;
          <br/>
           <h1>
               Plancraft Reports
-           </h1> <br/><br/>        
-           <apex:commandlink value="PBS Course Status" action="{!generateCrsStatusReport}" target="_blank"/>
+           </h1> <br/><br/>  
+           <a href="/{!reportId_PBSCrsStus}">PBS Course Status</a><br/>
+           <a href="/{!reportId_PBSCrsStusByUNm}">PBS Course Status By UserName</a><br/>
+           <a href="/apex/PBS_CourseStatusInDetailReport?id={!reportId_PBSCrsStusInDtls}">PBS Course Status In Detail</a>
+          <!--Not using the following links-->
+          <!--<apex:commandlink value="PBS Course Status" action="{!generateCrsStatusReport}" target="_self"/>
           <br/>
-<!--<apex:commandlink value="PBS_TPlan Assignments With User Details" action="{!gnrtTPlanAsgmntsWithUserDtlsRprt}" target="_blank"></apex:commandLink>
-          <br/>-->
-           <apex:commandlink value="PBS Course Status By UserName" action="{!generateCrsStatsByUserRprt}" target="_blank"/>
+           <apex:commandlink value="PBS Course Status By UserName" action="{!generateCrsStatsByUserRprt}" target="_self"/>
           <br/>
-           <apex:commandlink value="PBS Course Status In Detail" action="{!generateCrsStatsByUserinDetl}" target="_self"/>  
+           <apex:commandlink value="PBS Course Status In Detail" action="{!generateCrsStatsByUserinDetl}" target="_self"/> -->
                      
    </div>
 </apex:form>

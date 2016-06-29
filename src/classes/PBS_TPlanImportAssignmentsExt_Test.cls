@@ -88,7 +88,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                     ref = cont.importRecords();
                     
                     List<PBS_Training_Plan_Batch_Operation__c> tpbops = [select id from PBS_Training_Plan_Batch_Operation__c  where Training_Plan__c = :tplan.Id];
-                    System.assertEquals(0,tpbops.size());
+                    System.assertEquals(1,tpbops.size());
                     PBS_Training_Plan_Batch_Operation__c tpbo = tpbops.get(0);
                     List<PBS_Batch_Operation_Record__c> bops = [select id from PBS_Batch_Operation_Record__c where Training_Plan_Batch_Operation__c = :tpbo.Id];
                     System.assert(bops.size()>0);
@@ -207,7 +207,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                 try{
                     ref = cont.importRecords();
                     List<PBS_Training_Plan_Batch_Operation__c> tpbops = [select id from PBS_Training_Plan_Batch_Operation__c  where Training_Plan__c = :tplan.Id];
-                    System.assertEquals(0,tpbops.size());
+                    System.assertEquals(1,tpbops.size());
                     PBS_Training_Plan_Batch_Operation__c tpbo = tpbops.get(0);
                     List<PBS_Batch_Operation_Record__c> bops = [select id from PBS_Batch_Operation_Record__c where Training_Plan_Batch_Operation__c = :tpbo.Id];
                     System.assert(bops.size()>0);

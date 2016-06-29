@@ -1,10 +1,11 @@
 @isTest
 private class PBS_LibraryController_Test {
-
+ 
     @isTest static void noDataTest()
     {
         Test.startTest();
-
+        PageReference pageRef = Page.PBS_PlanWiki;
+        Test.setCurrentPage(pageRef);
         PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
         System.assertNotEquals(null, pbsLibrary.language, 'Language should not be empty');
 
@@ -61,7 +62,8 @@ private class PBS_LibraryController_Test {
         insert votes;
 
         Test.startTest();
-
+        PageReference pageRef = Page.PBS_PlanWiki;
+        Test.setCurrentPage(pageRef);
         PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
 
         System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be one');
@@ -87,7 +89,8 @@ private class PBS_LibraryController_Test {
         PC_DataFactory.createFaqPage('test faq', 'test summary', '', '', null, true, true);
 
         Test.startTest();
-
+         PageReference pageRef = Page.PBS_Library;
+        Test.setCurrentPage(pageRef);
         PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
 
         System.assertEquals(2, pbsLibrary.pbsKnowledgeArticleList().size(), 'There should be 2 articles');
@@ -111,7 +114,8 @@ private class PBS_LibraryController_Test {
 
     @isTest static void getArticleTypeFilterOptions() {
         Test.startTest();
-
+        PageReference pageRef = Page.PBS_PlanWiki;
+        Test.setCurrentPage(pageRef);
         PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
         System.assertEquals(3, pbsLibrary.getArticleTypeFilterOptions().size(), 'There should be 3 options to choose from');
 

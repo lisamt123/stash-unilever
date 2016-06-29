@@ -56,18 +56,7 @@ private class PBS_WikiFeedBackController_Test {
    }
    
      static testMethod void testSaveMethod(){
-       
-        //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
-
-        System.runAs(adminUsers.get(0)){
-            //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
-        }
-       
-        
+              
            Test.startTest();
        
         PBS_Wiki__kav objPbsWiki = new PBS_Wiki__kav();

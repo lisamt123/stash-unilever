@@ -142,7 +142,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
     }
 
     public PageReference markCompletedAndRedirect(){
-        //PageReference completedRef = markCompleted();
+         markCompleted();
         if(redirectURL != null){
             PageReference redirectRef = new PageReference(redirectURL);
             return redirectRef;
