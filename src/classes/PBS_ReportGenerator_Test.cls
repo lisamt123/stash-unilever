@@ -10,5 +10,6 @@ private class PBS_ReportGenerator_Test {
         Test.startTest();
     PBS_ReportGenerator_CC reportgeneratorObj = new PBS_ReportGenerator_CC();
         Test.stopTest();
+        system.assert(reportgeneratorObj != null);
     }
 }
