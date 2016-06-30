@@ -389,8 +389,8 @@
         for (var ctry in allCountryList) {
             if (allCountryList.hasOwnProperty(ctry)) {
                 var ob = allCountryList[ctry];
-                var singleObj = new Object();
-                if(countryName==ob.Name)
+                var singleObj = [];
+                if(countryName===ob.Name)
                 {
                     component.find("countryId").set("v.value",ob.Id);
                 }

@@ -15,9 +15,11 @@ Purpose: Method to test if we could invoke a service with and without URL patter
         
         AA_ApplicationWrapperObj responseC = AA_RemoteServiceCallController.constructRequestBody('test','test','test','test');
         
-         String responseD = AA_RemoteServiceCallController.invokeService(null,null,null);
+        String responseD = AA_RemoteServiceCallController.invokeService(null,null,null);
         system.assert(responseA!=null);
         system.assert(responseB!=null);
+        system.assert(responseC!=null);
+        system.assert(responseD!=null);
   
     }
 }

@@ -26,7 +26,6 @@
                   "SCROLLER NOT FOUND. If this is broken, it's because this was a temporary workaround for something that will be fixed in 202.");
         return scroller;
     },
-    
     checkMobileBrowser : function(component){
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             return true;	

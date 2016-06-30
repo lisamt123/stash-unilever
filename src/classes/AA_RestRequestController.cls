@@ -17,7 +17,7 @@ public with sharing class AA_RestRequestController {
     
     private static HttpRequest buildRequest(String path, String method, String responseFormat, String bodyContent, String bodyContentType) {
         HttpRequest request = new HttpRequest();
-        String requestPath = path + '&language=en&client_ID='+Label.GoogleAPIKey;
+        String requestPath = path + '&language=en&client_ID='+Label.GoogleAPIClientID;
         request.setEndpoint(requestPath);
         request.setMethod(method);
         

@@ -51,6 +51,15 @@ public with sharing class AA_Constants {
     
     public static final String SVC_AGENT_APP_AUTOCOMPLETELIST='getAutocompleteList';
     
+   //cluster names Constants
+   public static final String CLUSTER_AFRICA='Africa';
+       public static final String CLUSTER_EUROPE='Europe';
+       public static final String CLUSTER_LATIN_AMERICA='Latin America';
+       public static final String CLUSTER_NAMET_RUB='NAMET & RUB';
+       public static final String CLUSTER_NORTH_AMERICA='North America';
+       public static final String CLUSTER_SOUTH_ASIA='South Asia';
+       public static final String CLUSTER_NORTH_ASIA='North Asia';
+       public static final String CLUSTER_SEAA='SEAA';
    
    
 }

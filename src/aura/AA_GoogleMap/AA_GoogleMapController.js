@@ -8,7 +8,8 @@
         var lat;
         var lng;
         
-        map.on('locationfound', function onLocationFound(e) {
+        map.on('locationfound', onLocationFound);
+        function onLocationFound(e) {
             lat = e.latlng.lat;
             lng = e.latlng.lng;
        
@@ -21,7 +22,6 @@
                 console.log(e.message);
             }
             map.on('locationerror', onLocationError);
-           //+  "&language=en&client='gme-unilever'&signature='oPru5eoCI9LZSEGXVkaDcNmZ54A='"
             var action = component.get("c.service");
             action.setParams({
                 path: component.get("v.path")+ encodeURIComponent(latlongString),
@@ -33,7 +33,6 @@
             
             action.setCallback(this, function(a) {
                 var resultsObj = a.getReturnValue();
-                console.log("Google REsponse fromApex ===>"+JSON.stringify(resultsObj));
                 component.set("v.bodyContent", JSON.parse(resultsObj.body));
                 var resultJson = component.get("v.bodyContent");
                 
@@ -42,11 +41,9 @@
                 for(i=0; i < address_cmps_array.length; i++){
                     if(address_cmps_array[i].types[0] == "administrative_area_level_2"){
                         component.set("v.townName", address_cmps_array[i].long_name);
-                        console.log("town name: ",component.get("v.townName"));
                     }
                     if(address_cmps_array[i].types[0] == "country"){
                         component.set("v.countryName", address_cmps_array[i].long_name);
-                        console.log("country name: ",component.get("v.countryName"));
                     }
                 }
                 
@@ -63,6 +60,6 @@
         	$A.run(function() {
                 $A.enqueueAction(action); 
             });
-        });
+        }
     }
 })

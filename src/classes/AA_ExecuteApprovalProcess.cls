@@ -1,7 +1,5 @@
 global with sharing class AA_ExecuteApprovalProcess{
-
     public String AssginedOwner{get;set;}
-    
     public aa_Agent_Report__c AgentReportObjNew {
         get{
             if(AgentReportObjNew == null){
@@ -10,56 +8,51 @@ global with sharing class AA_ExecuteApprovalProcess{
             return AgentReportObjNew;
         }set;
     }
-    
   //  public static aa_Agent_Report__c AgentReportDisplayObj{get;set;}
     public aa_Agent_Report__c AgentReportDisplay{get;set;}
     
    webService static void executeApproval(String reportId){
-        
-           
+       
         aa_Agent_Report__c AgentReportObj = [select Report_Title__c,status__c ,Approve_Reject__c,Country__c,ownerId,Country__r.Cluster_Id__r.Name, id,Clusterid__c,Clusterid__r.Name from aa_Agent_Report__c where id = :reportId ];
-        
         List<QueueSobject> queues=[Select q.SobjectType, q.QueueId, q.Id ,q.Queue.Name From QueueSobject q where q.SobjectType ='aa_agent_report__c'];
         Map<string,string> queueID=new Map<string,string>();
-        
         for(QueueSobject que : queues){
               queueID.put(que.Queue.Name,que.QueueId);
         }
-        
       //CI owner Assigment 
       if(!String.isEmpty(AgentReportObj.Country__c)){
            
-        if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Africa'){
+        if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_AFRICA){
             
             AgentReportObj.ownerId=queueID.get('CI Manager Africa Queue');
             
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Europe'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_EUROPE){
             
             AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
           
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Latin America'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA){
             
             AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
             
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='NAMET & RUB'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NAMET_RUB){
         
             
             AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
            
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North America'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA){
             
             AgentReportObj.ownerId=queueID.get('CI Manager North America Queue');
            
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='South Asia'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA){
             
             
             AgentReportObj.ownerId=queueID.get('CI Manager South Asia Queue');
             
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North Asia'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NORTH_ASIA){
             
             AgentReportObj.ownerId=queueID.get('CI Manager North Asia Queue');
             
-        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='SEAA'){
+        }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_SEAA){
             
             AgentReportObj.ownerId=queueID.get('CI Manager SEAA Queue');
             
@@ -71,35 +64,35 @@ global with sharing class AA_ExecuteApprovalProcess{
                  
              if(String.isEmpty(AgentReportObj.Country__c)  && !String.isEmpty(AgentReportObj.ClusterId__c)){
                       
-             if(AgentReportObj.ClusterId__r.Name=='Africa'){
+             if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_AFRICA){
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Africa Queue');
           
-             }else if(AgentReportObj.ClusterId__r.Name=='Europe'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_EUROPE){
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
          
-             }else if(AgentReportObj.ClusterId__r.Name=='Latin America'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
              
-             }else if(AgentReportObj.ClusterId__r.Name=='NAMET & RUB'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NAMET_RUB){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
              
-             }else if(AgentReportObj.ClusterId__r.Name=='North America'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager North America Queue');
          
-             }else if(AgentReportObj.ClusterId__r.Name=='South Asia'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA){
                
                 AgentReportObj.ownerId=queueID.get('CI Manager South Asia Queue');
                 
-             } else if(AgentReportObj.ClusterId__r.Name=='North Asia'){
+             } else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_ASIA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager North Asia Queue');
                 
-             } else if(AgentReportObj.ClusterId__r.Name=='SEAA'){
+             } else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SEAA){
               
               
                 AgentReportObj.ownerId=queueID.get('CI Manager SEAA Queue');
@@ -143,35 +136,35 @@ global with sharing class AA_ExecuteApprovalProcess{
              
              if(!String.isEmpty(AgentReportObj.Country__c)){
                       
-             if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Africa'){
+             if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_AFRICA){
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Africa Queue');
           
-             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Europe'){
+             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_EUROPE){
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
          
-             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Latin America'){
+             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
              
-             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='NAMET & RUB'){
+             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NAMET_RUB){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
              
-             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North America'){
+             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager North America Queue');
          
-             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='South Asia'){
+             }else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA){
                
                 AgentReportObj.ownerId=queueID.get('CI Manager South Asia Queue');
                 
-             } else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North Asia'){
+             } else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NORTH_ASIA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager North Asia Queue');
                 
-             } else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='SEAA'){
+             } else if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_SEAA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager SEAA Queue');
          
@@ -185,35 +178,35 @@ global with sharing class AA_ExecuteApprovalProcess{
                  
              if(String.isEmpty(AgentReportObj.Country__c)  && !String.isEmpty(AgentReportObj.ClusterId__c)){
                       
-             if(AgentReportObj.ClusterId__r.Name=='Africa'){
+             if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_AFRICA){
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Africa Queue');
           
-             }else if(AgentReportObj.ClusterId__r.Name=='Europe'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_EUROPE){
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
          
-             }else if(AgentReportObj.ClusterId__r.Name=='Latin America'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
              
-             }else if(AgentReportObj.ClusterId__r.Name=='NAMET & RUB'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NAMET_RUB){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
              
-             }else if(AgentReportObj.ClusterId__r.Name=='North America'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager North America Queue');
          
-             }else if(AgentReportObj.ClusterId__r.Name=='South Asia'){
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA){
                
                 AgentReportObj.ownerId=queueID.get('CI Manager South Asia Queue');
                 
-             } else if(AgentReportObj.ClusterId__r.Name=='North Asia'){
+             } else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_ASIA){
                 
                 AgentReportObj.ownerId=queueID.get('CI Manager North Asia Queue');
                 
-             } else if(AgentReportObj.ClusterId__r.Name=='SEAA'){
+             } else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SEAA){
               
 
               
@@ -271,42 +264,42 @@ global with sharing class AA_ExecuteApprovalProcess{
            //If Country is selected
             if(!String.isEmpty(AgentReportObj.Country__c)){
                      
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Africa')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_AFRICA)
            {
             
              AssginedOwner = 'Record will be assigned to CI Manager Africa Queue';
            }else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Europe')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_EUROPE)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager Europe Queue';
            }else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Latin America')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager Latin America Queue';
            }else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='NAMET & RUB')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NAMET_RUB)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager NametRub Queue';
            }else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North America')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager North America Queue';
            }else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='South Asia')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager South Asia Queue';
            }   else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North Asia')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_NORTH_ASIA)
            {
            AssginedOwner = 'Record will be assigned to CI Manager North Asia Queue';
          //  AssginedOwner = 'Record is assgined to CI Manager North America Queue';
            } else
-           if(AgentReportObj.Country__r.Cluster_Id__r.Name=='SEAA')
+           if(AgentReportObj.Country__r.Cluster_Id__r.Name==AA_Constants.CLUSTER_SEAA)
            {
            AssginedOwner = 'Record will be assigned to CI Manager SEAA Queue';
          //  AssginedOwner = 'Record is assgined to CI Manager North America Queue';
@@ -319,42 +312,42 @@ global with sharing class AA_ExecuteApprovalProcess{
            //Assigning approvers based on clusterid   
                  
              if(String.isEmpty(AgentReportObj.Country__c)  && !String.isEmpty(AgentReportObj.ClusterId__c)){ 
-              if(AgentReportObj.ClusterId__r.Name=='Africa')
+              if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_AFRICA)
            {
             
              AssginedOwner = 'Record will be assigned to CI Manager Africa Queue';
            }else
-           if(AgentReportObj.ClusterId__r.Name=='Europe')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_EUROPE)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager Europe Queue';
            }else
-           if(AgentReportObj.ClusterId__r.Name=='Latin America')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager Latin America Queue';
            }else
-           if(AgentReportObj.ClusterId__r.Name=='NAMET & RUB')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NAMET_RUB)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager NametRub Queue';
            }else
-           if(AgentReportObj.ClusterId__r.Name=='North America')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager North America Queue';
            }else
-           if(AgentReportObj.ClusterId__r.Name=='South Asia')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA)
            {
           
            AssginedOwner = 'Record will be assigned to CI Manager South Asia Queue';
            }   else
-           if(AgentReportObj.ClusterId__r.Name=='North Asia')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_ASIA)
            {
            AssginedOwner = 'Record will be assigned to CI Manager North Asia Queue';
          //  AssginedOwner = 'Record is assgined to CI Manager North America Queue';
            } else
-           if(AgentReportObj.ClusterId__r.Name=='SEAA')
+           if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SEAA)
            {
            AssginedOwner = 'Record will be assigned to CI Manager SEAA Queue';
          //  AssginedOwner = 'Record is assgined to CI Manager North America Queue';
@@ -389,14 +382,14 @@ global with sharing class AA_ExecuteApprovalProcess{
                 AgentReportObj.Status__c = 'Published (Public)';
                 AgentReportObj.Approved_By__c=Userinfo.getUserId();
                 AgentReportObj.Approved_On__c=system.now();
-                AA_DatabaseServiceUtil.sendToChatter(Id.valueof(AgentReportObj.id),AgentReportObj.CreatedById, AgentReportObj.Report_Title__c, AgentReportObj.id,AgentReportObj.Country__c,AgentReportObj.TF_Mention_User__c,AgentReportObj.TF_Topic_Name__c);
+              //  AA_DatabaseServiceUtil.sendToChatter(Id.valueof(AgentReportObj.id),AgentReportObj.CreatedById, AgentReportObj.Report_Title__c, AgentReportObj.id,AgentReportObj.Country__c,AgentReportObj.TF_Mention_User__c,AgentReportObj.TF_Topic_Name__c);
              }else           
              
              if(AgentReportObj.Status__c == 'CI Manager Approval Pending'){
                 AgentReportObj.Status__c = 'Published (Public)';
                 AgentReportObj.Approved_By__c=Userinfo.getUserId();
                 AgentReportObj.Approved_On__c=system.now();
-                 AA_DatabaseServiceUtil.sendToChatter(Id.valueof(AgentReportObj.id),AgentReportObj.CreatedById, AgentReportObj.Report_Title__c, AgentReportObj.id,AgentReportObj.Country__c,AgentReportObj.TF_Mention_User__c,AgentReportObj.TF_Topic_Name__c);
+               //  AA_DatabaseServiceUtil.sendToChatter(Id.valueof(AgentReportObj.id),AgentReportObj.CreatedById, AgentReportObj.Report_Title__c, AgentReportObj.id,AgentReportObj.Country__c,AgentReportObj.TF_Mention_User__c,AgentReportObj.TF_Topic_Name__c);
              }
                           
              if(recordTypeObj.size()>0){
