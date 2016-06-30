@@ -122,6 +122,7 @@ function gateAccrdn(){
             jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideDown("fast");
             jq(this).removeClass("fa-plus");
             jq(this).addClass("fa-minus");
+            jq(".consumerContainer .ipmAcrdnExpand").show();
         }
     });
 }
