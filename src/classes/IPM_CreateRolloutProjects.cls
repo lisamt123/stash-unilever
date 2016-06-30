@@ -70,6 +70,7 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Complexity__c = ipmProject.IPM_Child_Complexity__c,
                         IPM_Child_Complexity__c = ipmProject.IPM_Child_Complexity__c,
                         IPM_GateKeeping_Model__c = ipmProject.IPM_GateKeeping_Model__c,
+                        IPM_ProjectGKM__c = ipmProject.IPM_ProjectGKM__c,
                         IPM_IsCompleted__c = ipmProject.IPM_IsCompleted__c,
                         IPM_Strategic_Intent__c = ipmProject.IPM_Strategic_Intent__c,
                         IPM_Market_Type__c = ipmProject.IPM_Market_Type__c,
