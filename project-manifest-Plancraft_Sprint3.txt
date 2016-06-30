@@ -441,9 +441,8 @@ src/layouts/User-User Layout.layout
 src/layouts/PBS_Training_Plan_Feedback__c-Training Plan Feedback Layout.layout
 src
 src/reportTypes
-src/reportTypes/PBS_Course_Status.reporttype
-src/reportTypes/PBS_Course_Status_By_Items.reporttype
-src/reportTypes/PBS_Course_Status_In_Detail.reporttype
+src/reportTypes/PBS_Course_Status.reportType
+src/reportTypes/PBS_Course_Status_In_Detail.reportType
 src
 src/reports
 src/reports/LMS_Reports
