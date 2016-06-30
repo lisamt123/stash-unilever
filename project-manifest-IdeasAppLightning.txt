@@ -26,10 +26,6 @@ src/classes/Core_IC_Test_IdeationApp.cls
 src/classes/Core_IC_Test_IdeationApp.cls-meta.xml
 src/classes/Core_IC_WrapperUtility.cls
 src/classes/Core_IC_WrapperUtility.cls-meta.xml
-src/classes/Core_NC_NewsCenterController.cls
-src/classes/Core_NC_NewsCenterController.cls-meta.xml
-src/classes/Core_NC_NewsCenterControllerHelper.cls
-src/classes/Core_NC_NewsCenterControllerHelper.cls-meta.xml
 src/documents
 src/documents/Ideas
 src/documents/Ideas-meta.xml
@@ -160,8 +156,12 @@ src/aura/CORE_FB_Feedback_Event/CORE_FB_Feedback_Event.evt-meta.xml
 src/staticresources
 src/staticresources/CORE_FB_Feedback_App.resource
 src/staticresources/CORE_FB_Feedback_App.resource-meta.xml
+src/staticresources/Lightning_designing_style.resource
+src/staticresources/Lightning_designing_style.resource-meta.xml
+src/staticresources/CORE_IC_IdeasLigthtning.resource
+src/staticresources/CORE_IC_IdeasLigthtning.resource-meta.xml
 src/labels
-src/labels/IdeasAppLightning.labels
+src/labels/IdeasApp-Lightning.labels
 src/objects
 src/objects/CORE_FB_Feedback__c.object
 src/objects/Core_Ideation__c.object
