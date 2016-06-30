@@ -1,0 +1,11 @@
+src
+src/queues
+src/queues/CEC_North_America_Tier_2_Queue.queue
+src/queues/CEC_North_America_Tier_3_Queue.queue
+src
+src/permissionsets
+src/permissionsets/Admin_Analytics_Pilot_Admin.permissionset
+src/permissionsets/Admin_Analytics_Pilot_User.permissionset
+src/permissionsets/Analytics_Cloud_Builder.permissionset
+src/permissionsets/Analytics_Cloud_User.permissionset
+src/permissionsets/Wave_Admin_User.permissionset
