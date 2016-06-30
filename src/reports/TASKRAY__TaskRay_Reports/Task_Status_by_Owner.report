@@ -42,6 +42,14 @@
         <field>TASKRAY__Project_Task__c.TASKRAY__Deadline__c</field>
     </columns>
     <currency>EUR</currency>
+    <filter>
+        <criteriaItems>
+            <column>CUST_RECORDTYPE</column>
+            <operator>equals</operator>
+            <value>TASKRAY__Project_Task__c.Strategy</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
