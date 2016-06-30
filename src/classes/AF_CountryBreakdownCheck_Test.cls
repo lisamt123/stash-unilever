@@ -12,6 +12,7 @@ public class AF_CountryBreakdownCheck_Test
 	Static Integer IcurrYear = System.Today().year();
 	Static string currYear=string.valueof(IcurrYear);
 	static user userforcountybreakdown;
+	static Boolean Brandestimate;
 	/***********************************************************************************
 *  @Description: this method will the test data
 *  @name : addCountryController
@@ -63,7 +64,7 @@ public class AF_CountryBreakdownCheck_Test
 			//Insert Agency Entity
 			List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
 			List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-			System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+			System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
 			//Insert Unilever Entity
 			List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
 			List<AF_Entity__c> AFUnileverEntityList = new List<AF_Entity__c>();
@@ -119,7 +120,7 @@ public class AF_CountryBreakdownCheck_Test
 			List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
 			System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id,AF_TestFactory_Helper.BONUSMATRIX_RECORD);
 			AF_CountryBreakdownCheck obj = new AF_CountryBreakdownCheck();
-			Boolean s = obj.CheckCountryBreakdown(brandEst[0].id);
+			Brandestimate = obj.CheckCountryBreakdown(brandEst[0].id);
 			Test.stopTest();
 		}
 	}

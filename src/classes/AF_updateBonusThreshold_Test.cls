@@ -15,6 +15,9 @@ public class AF_updateBonusThreshold_Test
     Static string currYear1=string.valueof(IcurrYear1);
     static  user userForBonsusThreshold;
     static  user userForBonsusThreshold1;
+    static User t1;
+    static User t;
+    static User u1;
     /**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : AF_updateBonusThreshold
@@ -27,9 +30,9 @@ public class AF_updateBonusThreshold_Test
         userForBonsusThreshold =AF_TestFactory_Helper.createUserAdmin(true);
         userForBonsusThreshold1 =AF_TestFactory_Helper.createUserAdmin1(true);
         User u=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold.id LIMIT 1];
-        User u1=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold1.id LIMIT 1];
-        User t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
-        User t1=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u1.Id];
+        u1=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold1.id LIMIT 1];
+        t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
+        t1=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u1.Id];
         System.runAs(u)
         {
             //Insert Account
@@ -59,6 +62,7 @@ public class AF_updateBonusThreshold_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Dummyuser Custom settings
             List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrand LIMIT 1];
@@ -83,10 +87,11 @@ public class AF_updateBonusThreshold_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //insert user category.
             List<Users_Category__c> usercat = AF_TestFactory_Helper.insertusercategory(1,true);
             List<Users_Category__c> usercat1 = AF_TestFactory_Helper.insertusercategory1(1,true);
+            System.assertEquals(usercat!=null, usercat1!=null,AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Bonus Threshold
             /*List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,true);
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c where Id IN:BonusThreshold LIMIT 1];
@@ -135,7 +140,7 @@ public class AF_updateBonusThreshold_Test
         Test.startTest();
         userForBonsusThreshold =AF_TestFactory_Helper.createUserAdmin(true);
         User u=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold.id LIMIT 1];
-        User t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
+        t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
         System.runAs(u)
         {
             //Insert Account
@@ -165,6 +170,7 @@ public class AF_updateBonusThreshold_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Dummyuser Custom settings
             List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrand LIMIT 1];
@@ -189,10 +195,11 @@ public class AF_updateBonusThreshold_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //insert user category.
             List<Users_Category__c> usercat = AF_TestFactory_Helper.insertusercategory(1,true);
             //List<Users_Category__c> usercat1 = AF_TestFactory_Helper.insertusercategory1(1,true);
+            System.assert(usercat[0].id!=null,AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Bonus Threshold
             /*List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,false);
             List<AF_Bonus_Threshold__c> BonusThresholdNew = new  List<AF_Bonus_Threshold__c>();
@@ -249,11 +256,11 @@ public class AF_updateBonusThreshold_Test
         Test.startTest();
         userForBonsusThreshold =AF_TestFactory_Helper.createUserAdmin(true);
         User u=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold.id LIMIT 1];
-        User t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
+        t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
         System.runAs(u)
         {
             userForBonsusThreshold1 =AF_TestFactory_Helper.createUserAdmin1(true);
-            User u1=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold1.id LIMIT 1];
+            u1=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold1.id LIMIT 1];
             //Insert Account
             List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,false);
             List<Account> accNew = new List<Account>();
@@ -281,6 +288,7 @@ public class AF_updateBonusThreshold_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Dummyuser Custom settings
             List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrand LIMIT 1];
@@ -288,7 +296,7 @@ public class AF_updateBonusThreshold_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -382,7 +390,7 @@ public class AF_updateBonusThreshold_Test
         Test.startTest();
         userForBonsusThreshold =AF_TestFactory_Helper.createUserAdmin(true);
         User u=[SELECT id,Email FROM user WHERE id=:userForBonsusThreshold.id LIMIT 1];
-        User t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
+        t=[Select Id,AF_UserTypeText__c,Email,IsActive from User where Id=:u.Id];
         System.runAs(u)
         {
             //Insert Account
@@ -410,7 +418,7 @@ public class AF_updateBonusThreshold_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -418,9 +426,10 @@ public class AF_updateBonusThreshold_Test
             //Insert Currency
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrency LIMIT 1];
+            System.Assert(AFCurrencyQuery[0].Id != null,AF_TestFactory_Helper.CURRENCY_RECORD);
             //insert Matrix Table.
             List<AF_Matrix_Table__c> MatrixTableList = AF_TestFactory_Helper.insertmatrixtable(1,true);
-            List<AF_Matrix_Table__c> MatrixTableListQuery = [SELECT Id FROM AF_Matrix_Table__c LIMIT 1];
+            List<AF_Matrix_Table__c> MatrixTableListQuery = [SELECT Id FROM AF_Matrix_Table__c where id IN:MatrixTableList LIMIT 1];
             system.assert(MatrixTableListQuery[0].Id!=null ,AF_TestFactory_Helper.MATRIX_RECORD);
             //Insert Agency Estimate.
             List<AF_Agency_Estimate__c> AgencyEsitmate = AF_TestFactory_Helper.insertAgencyEstimate(1,false);

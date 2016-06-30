@@ -28,6 +28,7 @@ public class AF_CloseAndRefresh_Test
 			ApexPages.currentPage().getParameters().put('IsError','true');     
 			ApexPages.currentPage().getParameters().put('ErrorMessage','error');
 			AF_CloseAndRefresh  Refresh =new AF_CloseAndRefresh ();
+			Refresh.ShowCustomMessage=true;
 			Test.stopTest();
 		}
 	}

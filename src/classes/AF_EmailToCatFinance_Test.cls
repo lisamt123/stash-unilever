@@ -33,7 +33,7 @@ public class AF_EmailToCatFinance_Test
 		{ 
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where id IN:acc LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//Insert category
 			List<AF_Category_Brand__c> cb = AF_TestFactory_Helper.insertAFCBList(1,true);
@@ -83,7 +83,7 @@ public class AF_EmailToCatFinance_Test
 		{
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where id IN:acc LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//Insert category
 			List<AF_Category_Brand__c> cb = AF_TestFactory_Helper.insertAFCBList(1,true);

@@ -57,12 +57,12 @@ public class AF_Brand_Controller_Review_Test
             List<AF_Controller_Review__c> conrev =AF_TestFactory_Helper.AfcontrollerReview(1,true);
             List<AF_Controller_Review__c> conrev1 =AF_TestFactory_Helper.AfcontrollerReview1(1,true);
             List<AF_Controller_Review__c> conrevQuery = [SELECT ID ,Brand_Estimate__c FROM AF_Controller_Review__c WHERE ID IN : conrev LIMIT 1];
-            System.assertEquals(conrevQuery[0].Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.CONTROLLERREVIEW_RECORD);
+            System.assertEquals(conrev1!=null,conrevQuery[0].id!=null,AF_TestFactory_Helper.CONTROLLERREVIEW_RECORD);
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntity1 = AF_TestFactory_Helper.insertEntity3(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].id!=null, AFEntity1!=null,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntitylist=new List<AF_Entity__c>();
@@ -73,7 +73,7 @@ public class AF_Brand_Controller_Review_Test
             insert AFUnileverEntitylist;
             List<AF_Entity__c> AFUnileverEntity1 = AF_TestFactory_Helper.insertEntity4(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
-            System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
+            System.AssertEquals(AFUnileverEntityQuery[0].Id != null,AFUnileverEntity1!=null, AF_TestFactory_Helper.UNILEVER_ENTITY);
             //Insert Agency Estimate.
             List<AF_Agency_Estimate__c> AgencyEsitmate = AF_TestFactory_Helper.insertAgencyEstimate(1,false);
             List<AF_Agency_Estimate__c> AgencyEsitmatelist=new List<AF_Agency_Estimate__c>();
@@ -153,7 +153,7 @@ public class AF_Brand_Controller_Review_Test
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntity1 = AF_TestFactory_Helper.insertEntity3(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].id!=null, AFEntity1!=null,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntitylist=new List<AF_Entity__c>();
@@ -163,8 +163,8 @@ public class AF_Brand_Controller_Review_Test
             }
             insert AFUnileverEntitylist;
             List<AF_Entity__c> AFUnileverEntity1 = AF_TestFactory_Helper.insertEntity4(1,true);
-            List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
-            System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
+            List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity1 LIMIT 1];
+            System.Assert(AFUnileverEntityQuery!= null, AF_TestFactory_Helper.UNILEVER_ENTITY);
             //insert controller Review.
             List<AF_Controller_Review__c> conrev =AF_TestFactory_Helper.AfcontrollerReview(1,false);
             List<AF_Controller_Review__c> conrevlist=new List<AF_Controller_Review__c>();

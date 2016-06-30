@@ -49,7 +49,7 @@ public class AF_CustomSetting_Test
             System.assert(QuarterlyBonusQuery[0].id!=null,QuarterlyBonu);
             // insert Trigger date.
             List<AF_TriggerDate__c> TriggerdateList = AF_TestFactory_Helper.insertTriggerdate(1,true);
-            List<AF_TriggerDate__c> TriggerdateListQuery = [SELECT Id FROM AF_TriggerDate__c LIMIT 1];
+            List<AF_TriggerDate__c> TriggerdateListQuery = [SELECT Id FROM AF_TriggerDate__c where id IN:TriggerdateList LIMIT 1];
             System.assert(TriggerdateListQuery[0].id!=null,Triggerdate);
             //insert Agency Email alerts.
             AF_AgencyEmailAlerts__c ae = new AF_AgencyEmailAlerts__c();
@@ -69,25 +69,26 @@ public class AF_CustomSetting_Test
             System.Assert(ab.Id != null,Agency_Bonus );
             // insert bonusLink for Agency.
             List<AF_isBonusLinkForAgency__c> bonusLinkforAgency = AF_TestFactory_Helper.insertBonusLinkforAgency(1,true);
-            List<AF_isBonusLinkForAgency__c> bonusLinkforAgencyQuery = [SELECT Id FROM AF_isBonusLinkForAgency__c LIMIT 1];
+            List<AF_isBonusLinkForAgency__c> bonusLinkforAgencyQuery = [SELECT Id FROM AF_isBonusLinkForAgency__c where id IN:bonusLinkforAgency LIMIT 1];
             system.assert(bonusLinkforAgencyQuery[0].id!=null,AF_isBonusLink);
             //Insert Dummyuser Custom settings
             List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             // insert CMCO
             List<AF_CMCO__c> cmcoLst = AF_TestFactory_Helper.insertCMCO(1,true);
-            List<AF_CMCO__c> cmcoLstQuery = [SELECT Id FROM AF_CMCO__c LIMIT 1];
+            List<AF_CMCO__c> cmcoLstQuery = [SELECT Id FROM AF_CMCO__c where id IN:cmcoLst LIMIT 1];
             system.assert(cmcoLstQuery[0].id!=null,AF_CMCO);
             // insert AF_Cat_Thershold
             List<AF_CatFinanceThreshold__c> CatFinanceThreshold = AF_TestFactory_Helper.insertcatfinancethreshold(1,true);
-            List<AF_CatFinanceThreshold__c> CatFinanceThresholdQuery = [SELECT Id FROM AF_CatFinanceThreshold__c LIMIT 1];
+            List<AF_CatFinanceThreshold__c> CatFinanceThresholdQuery = [SELECT Id FROM AF_CatFinanceThreshold__c where id IN:CatFinanceThreshold LIMIT 1];
             system.assert(CatFinanceThresholdQuery[0].id!=null,AF_CatFinanceThreshold);
             //insert BonusEstimateTriggerDate.
             List<AF_BrandEstimate_TriggerDate__c> BonusEstimateTriggerDate =AF_TestFactory_Helper.insertBrandEstimateTriggerDate(1,true);
-            List<AF_BrandEstimate_TriggerDate__c> BonusEstimateTriggerDateQuery = [SELECT Id FROM AF_BrandEstimate_TriggerDate__c LIMIT 1];
+            List<AF_BrandEstimate_TriggerDate__c> BonusEstimateTriggerDateQuery = [SELECT Id FROM AF_BrandEstimate_TriggerDate__c where id IN:BonusEstimateTriggerDate LIMIT 1];
             System.assert(BonusEstimateTriggerDateQuery[0].id!=null,AF_BrandEstimate_TriggerDate);
             //insertBonus Quarterly.
             List<AF_BonusQuarterly__c> bonusQuarterly = AF_TestFactory_Helper.insertAnnualBonusQuarterly(true,1);
-            List<AF_BonusQuarterly__c> bonusQuarterlyQuery = [SELECT Id FROM AF_BonusQuarterly__c LIMIT 1];
+            List<AF_BonusQuarterly__c> bonusQuarterlyQuery = [SELECT Id FROM AF_BonusQuarterly__c where id IN:bonusQuarterly LIMIT 1];
             System.assert(bonusQuarterlyQuery[0].id!=null,AF_BonusQuarterly);
             //insert Anuual Bonus.
             List<AF_AnnualBonus_Qual__c> AnnualBns = AF_TestFactory_Helper.insertAnnualBonusQual(1,true);
@@ -104,14 +105,14 @@ public class AF_CustomSetting_Test
             }
             insert AnnualBslist;
             List<AF_AnnualBonus_Qual__c> AnnualBsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c LIMIT 1];
-            System.Assert(AnnualBsQuery[0].Id != null,AF_AnnualBonus_Qual );
+            System.AssertEquals(AnnualBsQuery[0].Id != null,AnnualBns!=null,AF_AnnualBonus_Qual );
             //insert oopsSettings.
             List<AF_OOPS_Settings__c> OOPsettingLst = AF_TestFactory_Helper.insertOOPsetting(true,1);
-            List<AF_OOPS_Settings__c> OOPsettingLstQuery = [SELECT Id FROM AF_OOPS_Settings__c LIMIT 1 ];
+            List<AF_OOPS_Settings__c> OOPsettingLstQuery = [SELECT Id FROM AF_OOPS_Settings__c where id IN:OOPsettingLst LIMIT 1 ];
             System.Assert(OOPsettingLstQuery[0].Id != null,AF_OOPS_Settings );
             //insert Link.
             List<AF_Links__c> LinkList = AF_TestFactory_Helper.insertlink(1,true);
-            List<AF_Links__c> LinkListQuery = [SELECT ID FROM AF_Links__c LIMIT 1];
+            List<AF_Links__c> LinkListQuery = [SELECT ID FROM AF_Links__c where id IN:LinkList LIMIT 1];
             system.assert(LinkListQuery[0].id!=null ,AF_Links);
             AF_CustomSetting cs = new AF_CustomSetting();
             cs.submitCustomSetting();
