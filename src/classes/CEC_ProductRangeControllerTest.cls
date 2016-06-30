@@ -66,42 +66,42 @@ Test method for  fetchRecords method
             
             
             // particular brand search
-            ControllerObj.code = '-None-';
+            ControllerObj.code = CEC_Constants.none;
             ControllerObj.brand = 'Dove1';
-            ControllerObj.Producttag = '-None-';
+            ControllerObj.Producttag = CEC_Constants.none;
             ControllerObj.getBrands();
             ControllerObj.filteredCaseProducts();
             System.assertEquals(ControllerObj.CaseProducts.size(),1);
             // particular tag search
-            ControllerObj.code = '-None-';
-            ControllerObj.brand = '-None-';
+            ControllerObj.code = CEC_Constants.none;
+            ControllerObj.brand = CEC_Constants.none;
             ControllerObj.Producttag = 'TagTest1';          
             ControllerObj.getTags();  
             ControllerObj.filteredCaseProducts();
             // particular Code search
             ControllerObj.code = 'Test Category1';
-            ControllerObj.brand = '-None-';
-            ControllerObj.Producttag = '-None-'; 
+            ControllerObj.brand = CEC_Constants.none;
+            ControllerObj.Producttag = CEC_Constants.none; 
             ControllerObj.filteredCaseProducts();
             // particular Code and brand search
             ControllerObj.code = 'Test Category1';
             ControllerObj.brand = 'Dove1';
-            ControllerObj.Producttag = '-None-'; 
+            ControllerObj.Producttag = CEC_Constants.none; 
             ControllerObj.filteredCaseProducts();
             // particular Code and tag search
             ControllerObj.code = 'Test Category1';
-            ControllerObj.brand = '-None-';
+            ControllerObj.brand = CEC_Constants.none;
             ControllerObj.Producttag = 'TagTest1'; 
             ControllerObj.filteredCaseProducts();
             // particular Brand and tag search
-            ControllerObj.code = '-None-';
+            ControllerObj.code = CEC_Constants.none;
             ControllerObj.brand = 'Dove1';
             ControllerObj.Producttag = 'TagTest1'; 
             ControllerObj.filteredCaseProducts();
             // blank search
-            ControllerObj.brand = '-None-';
-            ControllerObj.code = '-None-';
-            ControllerObj.Producttag = '-None-';
+            ControllerObj.brand = CEC_Constants.none;
+            ControllerObj.code = CEC_Constants.none;
+            ControllerObj.Producttag = CEC_Constants.none;
             ControllerObj.filteredCaseProducts();
             System.assertEquals(ControllerObj.CaseProducts.size(),0);
             // All filters
