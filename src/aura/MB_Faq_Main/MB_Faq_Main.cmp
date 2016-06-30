@@ -5,7 +5,7 @@
   -->
      <aura:attribute name="pannelType" type="String"/>
      <aura:handler name="init" value="{!this}" action="{!c.getFaqListData}"/>
-     <aura:attribute name="faqList" type="TEM_FAQ_List__c[]"/>
+     <aura:attribute name="faqList" type="MB_FAQ_List__c[]"/>
      <aura:attribute name="showspinner" type="boolean" default="true"/>
      <aura:attribute name="CurrentMonth" type="String"/>
     <aura:attribute name="Pagename" type="String"/>

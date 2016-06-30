@@ -236,8 +236,8 @@ public with sharing class MB_Controller_UsageDetailClass{
  }
    /**** Get FAQ Values****/
     @AuraEnabled
-    public static List<TEM_FAQ_List__c> getFaqList() {
-        List<TEM_FAQ_List__c> lst=TEM_FAQ_List__c.getall().values();
+    public static List<MB_FAQ_List__c> getFaqList() {
+        List<MB_FAQ_List__c> lst=MB_FAQ_List__c.getall().values();
         return lst;
     } 
     @AuraEnabled

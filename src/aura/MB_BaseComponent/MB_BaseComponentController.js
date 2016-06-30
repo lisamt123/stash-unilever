@@ -4,13 +4,13 @@ doInit:function(component, event, helper) {
        var action=component.get("c.findFeedbacks");
        action.setParams({"appName":component.get("v.Appname")});
        action.setCallback(this, function(response) {
-            var state = response.getState();
+            var state = response.getState(); 
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
-   
+  
                 var response=response.getReturnValue();
                 if(response === true){
                      component.set("v.showspinner",false); 
-                     var destination ="markup://c:Feedback";
+                     var destination ="markup://c:CORE_FB_Feedback";
                      $A.componentService.newComponentAsync(this, function(view) {
                      var content = component.find("content");
                      content.set("v.body", view);
@@ -83,7 +83,7 @@ getDetail:function(component, event, helper) {
         //helper.scrollToLocation(component, "top");
         console.log("in base"+event.getParam("Pagename"));
         component.set("v.showspinner",true);
-        var destination ="markup://c:Feedback";
+        var destination ="markup://c:CORE_FB_Feedback";
                      $A.componentService.newComponentAsync(this, function(view) {
                      var content = component.find("content");
                      content.set("v.body", view);

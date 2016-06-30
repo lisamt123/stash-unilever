@@ -30,6 +30,6 @@
         <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
-    <label>TEM_FAQ_List</label>
+    <label>MB_FAQ_List</label>
     <visibility>Public</visibility>
 </CustomObject>

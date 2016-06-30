@@ -89,8 +89,8 @@
             <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
             <div class="head_d-1">
                 <div> 
-                    <div onclick="{!c.gotoSummary_charts}"><img class="icon-style-1" src="/resource/TEM_icons/TEM_Icons/chart_60.png" /></div>
-                    <div><img class="icon-style-2" src="/resource/TEM_icons/TEM_Icons/list_60.png" /></div>
+                    <div onclick="{!c.gotoSummary_charts}"><img class="icon-style-1" src="/resource/MB_Icons/MB_Icons/chart_60.png" /></div>
+                    <div><img class="icon-style-2" src="/resource/MB_Icons/MB_Icons/list_60.png" /></div>
                 </div>
             </div><div style="clear:both"></div>
         </div>
@@ -98,10 +98,10 @@
             <div class="slds-text-body--regular head_a">Total</div>
             <div class="slds-text-body--regular head_b">
               <aura:if isTrue="{!v.deviceDetails.totalSpendVariance==true}"> 
-                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
               </aura:if>
               <aura:if isTrue="{!v.deviceDetails.totalSpendVariance==false}"> 
-                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
               </aura:if>
                 {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalUsage}
             </div>
@@ -113,10 +113,10 @@
                    <div class="slds-text-body--regular head_a">Calls</div>
                    <div class="slds-text-body--regular head_b">
                        <aura:if isTrue="{!v.deviceDetails.callVariance==true}"> 
-                           <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                           <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                        </aura:if>
                        <aura:if isTrue="{!v.deviceDetails.callVariance==false}"> 
-                           <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                           <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                        </aura:if>
                        {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalCallUsage}
                    </div>
@@ -129,7 +129,7 @@
                        </aura:iteration>
                    </div>               
                <div class="Right_cevro">
-                   >
+                    <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img> 
                </div>
             </div>
            </div>
@@ -140,10 +140,10 @@
                    <div class="slds-text-body--regular head_a">Calls</div>
                    <div class="slds-text-body--regular head_b">
                        <aura:if isTrue="{!v.deviceDetails.callVariance==true}"> 
-                           <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                           <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                        </aura:if>
                        <aura:if isTrue="{!v.deviceDetails.callVariance==false}"> 
-                           <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                           <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                        </aura:if>
                        {!v.deviceDetails.userCurrency}0.00
                    </div>
@@ -156,7 +156,7 @@
                        </aura:iteration>
                    </div>               
                <div class="Right_cevro">
-                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
+                    <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img> 
                </div>
             </div>
            </div>
@@ -167,10 +167,10 @@
                  <div class="slds-text-body--regular head_a">Data</div>
                  <div class="slds-text-body--regular head_b">
                      <aura:if isTrue="{!v.deviceDetails.dataVariance==true}"> 
-                         <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                         <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>
                      <aura:if isTrue="{!v.deviceDetails.dataVariance==false}"> 
-                         <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                         <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                      </aura:if>
                      {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalDataUsage}
                  </div>
@@ -184,7 +184,7 @@
                  </div>              
              
              <div class="Right_cevro">
-                 >
+                <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
              </div>
           </div>
         </div>
@@ -195,10 +195,10 @@
                  <div class="slds-text-body--regular head_a">Data</div>
                  <div class="slds-text-body--regular head_b">
                      <aura:if isTrue="{!v.deviceDetails.dataVariance==true}"> 
-                         <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                         <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>
                      <aura:if isTrue="{!v.deviceDetails.dataVariance==false}"> 
-                         <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                         <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                      </aura:if>
                      {!v.deviceDetails.userCurrency}0.00
                  </div>
@@ -212,7 +212,7 @@
                  </div>              
              
              <div class="Right_cevro">
-                 <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
+                  <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
              </div>
           </div>
         </div>
@@ -223,10 +223,10 @@
                <div class="slds-text-body--regular head_a">Messaging</div>
                <div class="slds-text-body--regular head_b">
                    <aura:if isTrue="{!v.deviceDetails.smsVariance==true}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                    </aura:if>
                    <aura:if isTrue="{!v.deviceDetails.smsVariance==false}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                    </aura:if>
                    {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalMessageUsage}
                </div>
@@ -239,7 +239,7 @@
                </aura:iteration>  
            </div>  
           <div class="Right_cevro">
-                   >
+           <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
           </div>
            </div>
 
@@ -251,10 +251,10 @@
                <div class="slds-text-body--regular head_a">Messaging</div>
                <div class="slds-text-body--regular head_b">
                    <aura:if isTrue="{!v.deviceDetails.smsVariance==true}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                    </aura:if>
                    <aura:if isTrue="{!v.deviceDetails.smsVariance==false}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                    </aura:if>
                    {!v.deviceDetails.userCurrency}0.00
                    <!--{!v.deviceDetails.totalMessageUsage}-->
@@ -270,7 +270,7 @@
                </aura:iteration>  
            </div>  
           <div class="Right_cevro">
-                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
+             <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
           </div>
            </div>
 
@@ -282,10 +282,10 @@
               <div class="slds-text-body--regular head_a">iPass</div>
               <div class="slds-text-body--regular head_b">
                   <aura:if isTrue="{!v.deviceDetails.ipassVariance==true}"> 
-                      <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                      <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                   </aura:if>
                   <aura:if isTrue="{!v.deviceDetails.ipassVariance==false}"> 
-                      <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                      <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                   </aura:if>
                   {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalIpassUsage}
               </div>
@@ -299,7 +299,7 @@
                   </aura:iteration> 
               </div>
            <div class="Right_cevro">
-                   >
+             <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
            </div>
           </div>
 
@@ -311,10 +311,10 @@
               <div class="slds-text-body--regular head_a">iPass</div>
               <div class="slds-text-body--regular head_b">
                   <aura:if isTrue="{!v.deviceDetails.ipassVariance==true}"> 
-                      <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                      <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                   </aura:if>
                   <aura:if isTrue="{!v.deviceDetails.ipassVariance==false}"> 
-                      <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                      <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                   </aura:if>
                   {!v.deviceDetails.userCurrency}0.00
               </div>
@@ -328,7 +328,7 @@
                   </aura:iteration> 
               </div>
            <div class="Right_cevro">
-                   <!--<img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>-->
+ 			<img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img> 
            </div>
           </div>
 
@@ -401,10 +401,10 @@
                <div class="slds-text-body--regular head_a">Non Usage</div>
                <div class="slds-text-body--regular head_b">
                    <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==true}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                    </aura:if>
                    <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                    </aura:if>
                    {!v.deviceDetails.userCurrency}{!v.deviceDetails.totalnonUsage}
                </div>
@@ -418,7 +418,7 @@
                    </aura:iteration> 
                </div>
             <div class="Right_cevro">
-                   >
+             <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
             </div>
            </div>
            
@@ -431,10 +431,10 @@
                <div class="slds-text-body--regular head_a">Non Usage</div>
                <div class="slds-text-body--regular head_b"> 
                    <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==true}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                    </aura:if>
                    <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                    </aura:if>
                    {!v.deviceDetails.userCurrency} Test 0
                </div>
@@ -448,7 +448,7 @@
                    </aura:iteration> 
                </div>
             <div class="Right_cevro">
-                   
+                 <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
             </div>
            </div>
            

@@ -52,7 +52,7 @@
 	border-bottom: 1px solid #CFD7E6;
     color: #033a69;
     padding: .2rem 0 0rem 0rem;
-    margin-left: 10px;
+    margin-left: 7.5px;
     margin-right: 10px;
 }
 .THIS .chart_main{
@@ -82,6 +82,10 @@
 .THIS .chartstext{
    width: 90%;
     text-align: center;
+}
+.THIS .chartstext11{
+  line-height:11px;
+    margin-bottom:-17px;
 }
 .THIS .line_bar_data,.THIS .line_bar_calls,.THIS .line_bar_SMS,.THIS .line_bars_ipass{
     width: 20px;

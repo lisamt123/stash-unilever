@@ -19,7 +19,13 @@
             color: #033A69;	
         }
         .trend{
-            width: 20px;
+        width: 20px;
+        float: left;
+        margin-left: 15%;
+        margin-right:-35%;
+        }
+        .SMS .trend{
+        margin-right:-45%;
         }
         .Data,.SMS,.Voice{
             height: 50px;
@@ -63,6 +69,17 @@
        .usage-box{
         margin-top:3px;
         }
+        @media screen and (max-width:320px){
+                .trend{
+        width: 20px;
+        float: left;
+        margin-left: 15%;
+        margin-right:-10%;
+        }
+        .SMS .trend{
+        margin-right:-15%;
+        }
+        }
     </style>
  <aura:if isTrue="{!v.showspinner=='false'}">  
    <c:MB_Mobile_billing_Common pagename="{!v.pageName}" selectedmonth="{!v.selectedMonth}"/>
@@ -75,37 +92,37 @@
         <div class="usage-box">
                 <div class="slds-text-body--small Data">Data<br/>
                     <aura:if isTrue="{!v.usageData.dataVariance==true}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>
                     <aura:if isTrue="{!v.usageData.dataVariance==false}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                      </aura:if>
                     <div class="slds-text-body--regular data_value">{!v.usageData.totalDataUsage} Mb</div>
                 </div>
                 <div class="slds-text-body--small Voice">Voice<br/>
                     <aura:if isTrue="{!v.usageData.callVariance==true}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>
                     <aura:if isTrue="{!v.usageData.callVariance==false}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                      </aura:if>
                     <div class="slds-text-body--regular data_value">{!v.usageData.totalCallUsagePattern}</div>
                 </div>
                 <div class="slds-text-body--small SMS">SMS<br/>
                     <aura:if isTrue="{!v.usageData.smsVariance==true}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>
                     <aura:if isTrue="{!v.usageData.smsVariance==false}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                      </aura:if>
                     <div class="slds-text-body--regular data_value">{!v.usageData.totalMessageUsage}</div>
                 </div> 
                 <div class="slds-text-body--small I_PASS">iPASS<br/>
                     <aura:if isTrue="{!v.usageData.ipassVariance ==true}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>
                     <aura:if isTrue="{!v.usageData.ipassVariance ==false}">
-                       <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                      </aura:if>
                     <div class="slds-text-body--regular data_value">{!v.usageData.totalIpassUsage} Mb</div>
                 </div>

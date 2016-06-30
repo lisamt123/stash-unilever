@@ -153,7 +153,7 @@ public class MB_Controller_UsageDetailClass_Test{
       System.assertEquals(wraperObject3.UsageVarience,0); 
       System.assertEquals(wraperObject3.VarianceArrow,3); 
       
-      List<TEM_FAQ_List__c> list1 = MB_Controller_UsageDetailClass.getFaqList();
+      List<MB_FAQ_List__c> list1 = MB_Controller_UsageDetailClass.getFaqList();
       System.assertEquals(list1.size(),0); 
       
       List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList1 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);

@@ -1,6 +1,6 @@
 <aura:component >
         
-     <aura:attribute name="faqListItem" type="TEM_FAQ_List__c[]"/>
+     <aura:attribute name="faqListItem" type="MB_FAQ_List__c[]"/>
      <aura:attribute name="showDiv" type="boolean" default="false"/> 
          <div class="itemPanel" > 
                 <div id="clicker" class="slds-text-body--regular title" onclick="{!c.showDiv}">

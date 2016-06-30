@@ -63,10 +63,10 @@
                 <div class="slds-text-body--small head_d">Variance</div>
                 <div class="slds-text-body--small head_e">
                     <aura:if isTrue="{!v.AllHeadData.VarianceArrow==1}"> 
-                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                        <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                     </aura:if>
                     <aura:if isTrue="{!v.AllHeadData.VarianceArrow==2}"> 
-                        <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                        <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                     </aura:if>
                     {!v.AllHeadData.UsageVarience}%</div>
                 <aura:set attribute="else">
@@ -94,10 +94,10 @@
             <div class="slds-text-body--small head_d">Variance</div>
             <div class="slds-text-body--small head_e">
             <aura:if isTrue="{!data.VarianceArrow==1}"> 
-                    <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" /></span>
+                    <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                 </aura:if>
                 <aura:if isTrue="{!data.VarianceArrow==2}"> 
-                    <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" /></span>
+                    <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                 </aura:if>    
               {!data.UsageVarience}%</div>
              <aura:set attribute="else">

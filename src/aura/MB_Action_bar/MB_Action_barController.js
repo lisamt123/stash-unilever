@@ -2,7 +2,7 @@
 	 gotoFeedback :function(component, event, helper) {
         helper.scrollToLocation(component, "top");
         console.log("In action bar"+component.get("v.componentName"));
-        var feedbackevt=$A.get("e.c:Feedback_Event");
+        var feedbackevt=$A.get("e.c:CORE_FB_Feedback_Event");
          feedbackevt.setParams({"appName":"TEM Feedback","Pagename":component.get("v.componentName"),"eventName":"MB_Feedback_Event","showTranslation":true,"selectedMonth":component.get("v.selectedMonth")}).fire();
     },
     gotoFaq :function(component, event, helper) {

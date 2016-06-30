@@ -1,7 +1,7 @@
 <aura:component controller="MB_Controller_Charts" >
-    <ltng:require styles="/resource/charts/slick/slick.css,/resource/charts/slick/slick-theme.css"  
-                  scripts="/resource/charts/d3.min.js,/resource/charts/jquery-1.11.1.min.js,
-                             /resource/charts/slick/slick.min.js,/resource/charts/d3pie.js"  afterScriptsLoaded="{!c.doinit}"/>
+    <ltng:require styles="/resource/MB_Charts/slick/slick.css,/resource/MB_Charts/slick/slick-theme.css"  
+                  scripts="/resource/MB_Charts/d3.min.js,/resource/MB_Charts/jquery-1.11.1.min.js,
+                             /resource/MB_Charts/slick/slick.min.js,/resource/MB_Charts/d3pie.js"  afterScriptsLoaded="{!c.doinit}"/>
     
     <style>
         body{
@@ -52,8 +52,8 @@
             <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
             <div class="head_d-1">
                 <div>
-                    <div><img class="icon-styles-1" src="/resource/TEM_icons/TEM_Icons/chart_60.png" /></div>
-                    <div onclick="{!c.gotoDetailesText}"><img class="icon-styles-2" src="/resource/TEM_icons/TEM_Icons/list_60.png" /></div>
+                    <div><img class="icon-styles-1" src="/resource/MB_Icons/MB_Icons/chart_60.png" /></div>
+                    <div onclick="{!c.gotoDetailesText}"><img class="icon-styles-2" src="/resource/MB_Icons/MB_Icons/list_60.png" /></div>
                 </div>
             </div><div style="clear:both"></div>
         </div>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="bar_text">
                                 <div Style="color:#0C8EFF"><span class="charttext">YOU</span><br/><span>{!v.Avgresult.totalDataUsage}MB</span><br/><br/></div>
-                                <div Style="color:#F88962"><span class="charttext">YOUR COLLEAGUES</span><br/><span>{!v.Avgresult.totalAverageDataUsage}MB</span></div>
+                                <div Style="color:#F88962"><div class="charttext chartstext11">YOUR COLLEAGUES</div><br/><span>{!v.Avgresult.totalAverageDataUsage}MB</span></div>
                             </div>
                         </div>
                         
