@@ -222,5 +222,31 @@ private class PBS_MyProfileController_Test {
         Test.stopTest();
 
     }
+    
+    static testMethod void testSelectOptions(){
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
+
+        System.runAs(adminUsers.get(0)){
+            //Assign corresponding perm sets
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
+        }
+        
+        PageReference ref = Page.PBS_MyProfile;
+        Test.setCurrentPageReference(ref);
+
+        Test.startTest();
+
+        System.runAs(lmsUsers.get(0)){
+            
+            PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
+            System.assert(cont.getCategoryOptions().size()>=0);
+                System.assert(cont.getGeographyOptions().size()>=0);
+                System.assert(cont.getJobProfileOptions().size()>=0);
+                System.assert(cont.getWorkLevelOptions().size()>=0);
+        }
+        Test.stopTest();
+    }
 
 }
