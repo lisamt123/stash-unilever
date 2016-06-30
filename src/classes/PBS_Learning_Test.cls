@@ -77,19 +77,7 @@ public class PBS_Learning_Test {
             System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            System.assert(learningversions2.size() == 1, 'Learning has not been previewed, size = ' + learningversions2.size());
-
-            List<PBS_Learning_Assignment__c> previewAssignments = [select id, name from PBS_Learning_Assignment__c
-                                                                    where Learning__c = :learning.get(0).Id
-                                                                    and Is_Test_Assignment__c = true];
-
-            System.assert(previewAssignments.size() == 1, 'previewAssignments failed, size = ' + previewAssignments.size());
-            */
+           
         }
 
     }
@@ -126,19 +114,7 @@ public class PBS_Learning_Test {
             System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            System.assert(learningversions2.size() == 1, 'Learning has not been previewed, size = ' + learningversions2.size());
-
-            List<PBS_Learning_Assignment__c> previewAssignments = [select id, name from PBS_Learning_Assignment__c
-                                                                    where Learning__c = :learning.get(0).Id
-                                                                    and Is_Test_Assignment__c = true];
-
-            System.assert(previewAssignments.size() == 1, 'previewAssignments failed, size = ' + previewAssignments.size()); 
-            */
+           
         }
 
     }
@@ -174,19 +150,7 @@ public class PBS_Learning_Test {
             System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            System.assert(learningversions2.size() == 1, 'Learning has not been previewed, size = ' + learningversions2.size());
-
-            List<PBS_Learning_Assignment__c> previewAssignments = [select id, name from PBS_Learning_Assignment__c
-                                                                    where Learning__c = :learning.get(0).Id
-                                                                    and Is_Test_Assignment__c = true];
-
-            System.assert(previewAssignments.size() == 1, 'previewAssignments failed, size = ' + previewAssignments.size());
-            */
+           
         }
 
     }
@@ -227,29 +191,11 @@ public class PBS_Learning_Test {
 
             extension.previewContent();
 
-          /* List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];*/
-          
-
-            //System.assert(learningversions2.size() == 1, 'Learning has not been previewed, size = ' + learningversions2.size());
-/*
-            List<PBS_Learning_Assignment__c> previewAssignments = [select id, name from PBS_Learning_Assignment__c
-                                                                    where Learning__c = :learning.get(0).Id
-                                                                    and Is_Test_Assignment__c = true];
-
-             System.assert(previewAssignments.size() == 1, 'previewAssignments failed, size = ' + previewAssignments.size());
-             */
              System.assert(extension.doRedirection()== null);
         }
 
         System.runAs(systemUsers.get(1)){
-            List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            //System.assert(learningversions.size() == 1, LEARNING_PREVIEWED);
-
+          
             PageReference pageRef = Page.PBS_Learning_Preview;
             Test.setCurrentPage(pageRef);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
@@ -259,14 +205,7 @@ public class PBS_Learning_Test {
             System.assert(extension.currentRecordType == LEARNING_TASK, CURRENTRECORDTYPE_IS_WRONG);
 
             extension.previewContent();
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
-            */
-            //System.assert(learningversions2.size() == 1, 'Learning has not been previewed, size = ' + learningversions2.size());
-            //System.assert(learningversions2.get(0).Id == learningversions.get(0).Id, 'Learning has not been previewed, size = ' + learningversions2.size());
-
+            
         }
 
     }
@@ -305,19 +244,7 @@ public class PBS_Learning_Test {
             extension.previewContent();
 
             System.assert(ApexPages.getMessages().size() == 1, 'Page error messages is wrong');
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            System.assert(learningversions2.size() == 0, 'Learning has not been previewed, size = ' + learningversions2.size());
-
-            List<PBS_Learning_Assignment__c> previewAssignments = [select id, name from PBS_Learning_Assignment__c
-                                                                    where Learning__c = :learning.get(0).Id
-                                                                    and Is_Test_Assignment__c = true];
-
-            System.assert(previewAssignments.size() == 0, 'previewAssignments failed, size = ' + previewAssignments.size());
-            */
+           
         }
 
     }
@@ -354,22 +281,8 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
             extension.getContents();
-            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            System.assert(learningversions2.size() == 1, 'Learning has not been published, size = ' + learningversions2.size());
-
-            List<PBS_Learning__c> pub_learning = [select Id, Published__c, Current_Published_Version__c from PBS_Learning__c where Id =:learning.get(0).Id  ];
-
-             System.assert(pub_learning.get(0).Published__c == true, 'Learning was not published');
-            //System.assert(pub_learning.get(0).Current_Published_Version__c == learningversions2.get(0).Id, 'Learning was not published');
-            
-            */
         }
 
     }
@@ -400,20 +313,8 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
             extension.getContents();
-            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
-            /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            //System.assert(learningversions2.size() == 1, 'Learning has not been published, size = ' + learningversions2.size());
-
-            List<PBS_Learning__c> pub_learning = [select Id, Published__c, Current_Published_Version__c from PBS_Learning__c where Id =:learning.get(0).Id  ];
-            //System.assert(pub_learning.get(0).Published__c == true, 'Learning was not published');
-            //System.assert(pub_learning.get(0).Current_Published_Version__c == learningversions2.get(0).Id, 'Learning was not published');
-            */
-        }
+           }
 
     }
 
@@ -444,17 +345,7 @@ public class PBS_Learning_Test {
             extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
-             /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            //System.assert(learningversions2.size() == 1, 'Learning has not been published, size = ' + learningversions2.size());
-
-            List<PBS_Learning__c> pub_learning = [select Id, Published__c, Current_Published_Version__c from PBS_Learning__c where Id =:learning.get(0).Id  ];
-            //System.assert(pub_learning.get(0).Published__c == true, 'Learning was not published');
-            //System.assert(pub_learning.get(0).Current_Published_Version__c == learningversions2.get(0).Id, 'Learning was not published');
-            */
+            
         }
 
     }
@@ -473,9 +364,6 @@ public class PBS_Learning_Test {
             //create learning
             learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
-            //create task
-           // task = PBS_LearningData_Test.createTestTask(learning);
-
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Published'
                                                                 and Learning__c = :learning.get(0).Id];
@@ -487,29 +375,11 @@ public class PBS_Learning_Test {
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
-           // List<sObject> lsobjects = extension.getContents();
-            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
-          /*  List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];*/
-          /*
-            //System.assert(learningversions2.size() == 1, 'Learning has not been published, size = ' + learningversions2.size());
+          }
 
-            List<PBS_Learning__c> pub_learning = [select Id, Published__c, Current_Published_Version__c from PBS_Learning__c where Id =:learning.get(0).Id  ];
-            //System.assert(pub_learning.get(0).Published__c == true, 'Learning was not published');
-            //System.assert(pub_learning.get(0).Current_Published_Version__c == learningversions2.get(0).Id, 'Learning was not published');
-            
-           */
-        }
-
-        System.runAs(systemUsers.get(1)){
-            List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            //System.assert(learningversions.size() == 1, 'Learning has already been published');
+        System.runAs(systemUsers.get(1)){         
 
             PageReference pageRef = Page.PBS_Learning_Publish;
             Test.setCurrentPage(pageRef);
@@ -519,13 +389,7 @@ public class PBS_Learning_Test {
             extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
-              /*
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
-                                                                where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];
-
-            //System.assert(learningversions2.size() == 2, 'Learning has not been published, size = ' + learningversions2.size());
-            */
+             
         }
     }
    static testmethod void testExcpt(){
@@ -546,7 +410,5 @@ public class PBS_Learning_Test {
             }
         
        
-        }
-     
-            
+        }       
 }

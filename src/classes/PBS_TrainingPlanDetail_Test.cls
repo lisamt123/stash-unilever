@@ -58,7 +58,6 @@ public class PBS_TrainingPlanDetail_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -182,7 +181,6 @@ public class PBS_TrainingPlanDetail_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -306,7 +304,6 @@ public class PBS_TrainingPlanDetail_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -416,7 +413,6 @@ public class PBS_TrainingPlanDetail_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -529,7 +525,6 @@ public class PBS_TrainingPlanDetail_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        //List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},lAchievement);
         PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},lAchievement);
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -549,8 +544,7 @@ public class PBS_TrainingPlanDetail_Test {
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
             pageRef.getHeaders().put(USERAGENT, 'Mozilla');
-            ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
-           // PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
+            
 
         }
     }
@@ -577,13 +571,9 @@ public class PBS_TrainingPlanDetail_Test {
         //Create multiple achievments tied to the plan
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Achievement__c> lSectionAchievements = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement1 = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievement.get(0)});
         PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievement.get(0)});
-        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement2 = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievement.get(1)});
         PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievement.get(1)});
-       // List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lSectionAchievements.get(0)});
          PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lSectionAchievements.get(0)});
-       // List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements2 = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lSectionAchievements.get(1)});
         PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lSectionAchievements.get(1)});
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -603,9 +593,7 @@ public class PBS_TrainingPlanDetail_Test {
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
             pageRef.getHeaders().put(USERAGENT, 'Mozilla');
-            ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
-            //PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
-
+           
         }
     }
 }
