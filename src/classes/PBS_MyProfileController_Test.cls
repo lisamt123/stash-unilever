@@ -195,7 +195,7 @@ private class PBS_MyProfileController_Test {
         //Change achievement status
         List<PBS_Achievement_Assignment__c> achievementAssignments = [select Id,Status__c from PBS_Achievement_Assignment__c where Training_Plan_Achievement__r.Training_Plan__c = :tplanId];
         for(PBS_Achievement_Assignment__c aa : achievementAssignments){
-            aa.Status__c = LMSConstants.AA_ACQUIRED_STATUS;
+            aa.Status__c = PBS_LMSConstants_CC.AA_ACQUIRED_STATUS;
         }
         update achievementAssignments;
 

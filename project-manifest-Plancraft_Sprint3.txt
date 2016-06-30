@@ -404,6 +404,8 @@ src
 src/triggers
 src/triggers/PBS_TrainingTrackTrigger.trigger
 src/triggers/PBS_TrainingTrackTrigger.trigger-meta.xml
+src/triggers/PBS_Training_TrackTrigger.trigger
+src/triggers/PBS_Training_TrackTrigger.trigger-meta.xml
 src
 src/objects
 src/objects/PBS_Profile__c.object
@@ -438,10 +440,10 @@ src/layouts/PBS_Wiki_Feeback__c-PBS Wiki Feeback Layout.layout
 src/layouts/User-User Layout.layout
 src/layouts/PBS_Training_Plan_Feedback__c-Training Plan Feedback Layout.layout
 src
-src/reporttypes
-src/reporttypes/PBS_Course_Status.reporttype
-src/reporttypes/PBS_Course_Status_By_Items.reporttype
-src/reporttypes/PBS_Course_Status_In_Detail.reporttype
+src/reportTypes
+src/reportTypes/PBS_Course_Status.reporttype
+src/reportTypes/PBS_Course_Status_By_Items.reporttype
+src/reportTypes/PBS_Course_Status_In_Detail.reporttype
 src
 src/reports
 src/reports/LMS_Reports
