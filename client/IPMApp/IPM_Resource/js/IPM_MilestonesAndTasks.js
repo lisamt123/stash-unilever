@@ -163,11 +163,16 @@ function hilightTaskScript(){
     });
 jq(function () {
     jq('.info').tooltip({
-    position: { my: 'center top', at: 'center bottom+10' },
-    tooltipClass: "info_tooltips",
-        content: function () {
-            return jq(this).prop('title');
+            position: {
+                my: "center bottom-13",
+                at: "center top",
+                using: function( position, feedback ) {
+                    jq( this ).css( position );
+                    jq( this )
+                        .addClass( feedback.vertical );
+                }
         },
+			tooltipClass: "info_tooltips",
         show: null, 
         close: function (event, ui) {
             ui.tooltip.hover(
