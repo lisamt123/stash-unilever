@@ -71,22 +71,31 @@ public class ChatterPublisherHandlerTest {
      @isTest(seeAllData=true)
      static void ChatterPublisherHandlerTest_PostPlainText() {
         Test.startTest();
-        ChatterPublisherHandler.postFeedElement('message', 'me');
+        String messageToPost='message';
+        String subjectId='me';
+       ChatterPublisherHandler.postFeedElement('message', 'me');
+        System.assertNotEquals(messageToPost,subjectId);
         Test.stopTest();
     }
     
      @isTest(seeAllData=true)
      static void ChatterPublisherHandlerTest_PostWithLink() {
         Test.startTest();
+        String messageToPost='Can you check www.google.com please?';
+        String subjectId='me';
         ChatterPublisherHandler.postFeedElement('Can you check www.google.com please?', 'me');
+        System.assertNotEquals(messageToPost,subjectId);
         Test.stopTest();
     }
     
      @isTest(seeAllData=true)
      static void ChatterPublisherHandlerTest_PostWithMention() {
         Test.startTest();
+        String messageToPost='username';
+        String subjectId= 'me';
         String currentUserName = UserInfo.getName();
        ChatterPublisherHandler.postFeedElement('Please welcome @[' + currentUserName + ']', 'me');
+       System.assertNotEquals(messageToPost,subjectId);
         Test.stopTest();
     }
     

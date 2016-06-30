@@ -70,7 +70,7 @@ public with sharing class ChatterUIPeopleService {
 
        // UserContext usrContext = UserContext.getInstance();
     final String userUpdateResponse = updateSObject(thisUser);
-    final Map<String, String> responseDict = (Map<String, String>)JSON.deserialize(userUpdateResponse, Map<String,String>.class);
+   // final Map<String, String> responseDict = (Map<String, String>)JSON.deserialize(userUpdateResponse, Map<String,String>.class);
     
     return userUpdateResponse;
     }
