@@ -39,12 +39,13 @@
 .THIS .textHighlight{
     color: #0070d2;
     font-size: 1rem;
+    cursor:pointer;
 }
 .THIS .textLineItem{
     font-size: 0.9rem;
     color: #16325c;
     float: right;
-    margin-top: -39px;
+    margin-top: -23px;
 }
 .THIS .clarity-header{
     clear: both;
@@ -54,14 +55,9 @@
     padding-bottom: 7px;
 }
 .THIS .preparedby{
-    float: left;
-    text-align: right;
-    width: 50%;
-    margin-right: 15px;
     margin-top: 7px;
 }
 .THIS .currency{
-    text-align:left;
     margin-top: 7px;
 }
 .THIS hr{
@@ -70,6 +66,7 @@
 }
 .THIS table>tr>td{
     padding-top:5px;
+    width:25%;
 }
 .THIS .arrow-right{
     float: right;
@@ -81,6 +78,7 @@
     border-radius: 8px;
     padding: 10px;
     margin: 10px;
+    margin-bottom: 26px;
 }
 .THIS .DetailHeading{
     font-size: 0.9rem;
@@ -107,15 +105,22 @@
     line-height: 3;
     letter-spacing: 0em;
 }
-.THIS a#tab-default-2__item{
+.THIS .tab-default-2__item{
     border-bottom:2px solid #0C8EFF;
 }
 .THIS .sectionTitle{
     font-size: 1.029rem;
+    cursor:pointer;
 }
 .THIS .up{
     width:17px;
     position: absolute;
     right: 24px;
-    margin-top: -20px;
+    margin-top: -22px;
+}
+.THIS .lineItemDetail{
+    width:150px;
+}
+.THIS .preparedBy-currency{
+    text-align: center;
 }

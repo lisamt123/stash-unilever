@@ -1,6 +1,6 @@
 ({ 
     doInit : function(component, event, helper) {
-        var action=component.get("c.findFeedbacks");  
+       /* var action=component.get("c.findFeedbacks");  
        action.setParams({"appName": "Approval"}); 
         action.setCallback(this, function(response) { 
             var state = response.getState(); 
@@ -11,7 +11,7 @@
                 }             
             }
         });
-       $A.enqueueAction(action);
+       $A.enqueueAction(action);*/
         
         var retainfilter =component.get("v.filterValue")
         if(retainfilter == null || retainfilter == undefined)

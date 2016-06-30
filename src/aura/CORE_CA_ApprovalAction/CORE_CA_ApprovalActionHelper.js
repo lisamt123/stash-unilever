@@ -19,5 +19,6 @@
                 }
             });
             $A.enqueueAction(action);
-	}
+	},
+    
 })

@@ -1,6 +1,6 @@
 ({ 
-    doInit : function(component, event, helper) {  
-       var action=component.get("c.findFeedbacks");  
+    doInit : function(component, event, helper) { 
+       /*var action=component.get("c.findFeedbacks");  
        action.setParams({"appName": "Approval"}); 
         action.setCallback(this, function(response) { 
             var state = response.getState(); 
@@ -11,7 +11,7 @@
                 }             
             }
         });
-       $A.enqueueAction(action); 
+       $A.enqueueAction(action);*/ 
        
        
         var retainfilter =component.get("v.filterValue");                                     
@@ -32,6 +32,7 @@
             filteroptions="All";
             document.getElementById('icon').classList.remove('icon-LockedState');
             document.getElementById('icon').classList.remove('icon-currentState');
+            document.getElementById('all').classList.add('filterSelected');
         }
         else if(filter== "Show Only Expenses")
         {
@@ -98,6 +99,7 @@
     },
     
     ShowMoreSelection : function(component, event, helper) {
+        component.set("v.spinnercomp",true); 
         helper.loadMore(component,component.get("v.pendingData"));
     },
     gotoApp : function(component, event, helper) { 

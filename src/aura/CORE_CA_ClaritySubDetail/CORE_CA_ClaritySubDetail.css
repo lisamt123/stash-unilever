@@ -32,6 +32,7 @@
 }
 .THIS .sectionTitle{
     font-size: 1.029rem;
+    cursor: pointer;
 }
 .THIS .fieldAlign{
     float: right;
@@ -48,4 +49,13 @@
     font-size: 1rem;
     color: #00396B;
     font-weight: bold;
+}
+.THIS .up{
+    width:17px;
+    position: absolute;
+    right: 24px;
+    margin-top: -22px;
+}
+.THIS.projFinance{
+    top:58px !important;
 }

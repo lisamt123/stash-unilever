@@ -20,22 +20,24 @@
     <aura:attribute name="showApprove" type="Boolean" default="true"/>
     <aura:attribute name="showReject" type="Boolean" default="true"/>
     <aura:attribute name="spinnercompGtes" type="boolean" default="true"/>
+    <aura:attribute name="isFeedBack" type="boolean" default="false"/>
     
     <style>      
         .homePageHeader{
         background:#4F6A92;
-        height: 150px;
-        padding-top: 13px;
+        height: 135px;
+        padding-top: 2px;
         }
         .headerBarIconStyle{
         width: 40px;
         margin-top: -9px;
         }
         .backIconStyle{
-        width: 36px;
+        width: 40px;
         margin-top: 5px;
         padding-left: 13px;
         margin-bottom: 5px;
+        cursor: pointer;
         }
         .hiddenClass{
         color: red;
@@ -61,6 +63,7 @@
         }
         .img{    
         width: 40px;
+        cursor: pointer;
         }
         .actionBarHeight {
         padding-top: 5px;
@@ -70,6 +73,15 @@
         .font1{
         font-size:12px;
         }
+        .slds-tabs--default__link:focus {
+        border-bottom-width: 1px !important;
+        }
+        a#tab-scoped-2__item {
+        display: none;
+        }
+        .DetailSectionTable{
+    margin-bottom: -7px;
+}
     </style>
     <!-- Back button Functionlaity-->
     <div>
@@ -87,7 +99,9 @@
                 <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
                     {!detailData.RequestName}
                     <br/>
-                    <div class="slds-text-heading--small preparedby">{!detailData.RequestedBy}</div> <div class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.TotalAmount}</div>                    
+                    <div class="preparedBy-currency">
+                        <span class="slds-text-heading--small preparedby">{!detailData.RequestedBy}</span>&nbsp;&nbsp;&nbsp; <span class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.TotalAmount}</span>                    
+                    </div>
                 </aura:iteration>                
             </div>
         </div>
@@ -101,41 +115,43 @@
         </aura:iteration>
     </div>
     <aura:if isTrue="{!v.spinnercompGtes}">
-            <center>
-                <div class="slds-spinner_container">
-                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
-                        <div class="slds-spinner__dot-a"></div>
-                        <div class="slds-spinner__dot-b"></div>
-                    </div>
+        <center>
+            <div class="slds-spinner_container">
+                <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
                 </div>
-            </center>
-        </aura:if>
+            </div>
+        </center>
+    </aura:if>
     <!-- Detail Main Content --> 
     <aura:if isTrue="{!v.accessStatus}">
-    <div>
-        <!-- Tab-->
-        <div class="slds-tabs--default">
-            <ul class="slds-tabs--default__nav pending-header" role="tablist">
-                <li class="slds-tabs--default__item  pending" title="Item Two"
-                    role="presentation" onclick="{!c.NavigateToDetail}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">{!$Label.c.CORE_LBL_DETAILS}</a></li>
-                <li class="slds-tabs--default__item closed " title="Item Three"
-                    role="presentation" onclick="{!c.NavigateToFeed}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">{!$Label.c.CORE_LBL_FEED}</a></li>
-            </ul>
-        </div>
-        
-        <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+        <div>
+            <!-- Tab-->
+            <div Style="background:#fff;">
+                <div class="slds-tabs--default">
+                    <ul class="slds-tabs--default__nav pending-header" role="tablist">
+                        <li class="slds-tabs--default__item  pending" title="Item Two"
+                            role="presentation" onclick="{!c.NavigateToDetail}"><a class="tab-default-2__item slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item" aura:id="item11">{!$Label.c.CORE_LBL_DETAILS}</a></li>
+                        <li class="slds-tabs--default__item closed " title="Item Three"
+                            role="presentation" onclick="{!c.NavigateToFeed}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item" aura:id="item2">{!$Label.c.CORE_LBL_FEED}</a></li>
+                    </ul>
+                </div> 
+            </div>
             
+            <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+                
                 <!--Detail-->
                 <aura:if isTrue="{!v.isDetail}">
                     <div class="ProjectInformationSection">
                         <div class="slds-section__title sectionTitle" id="claim" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_DETAIL_CLAIM_DETAILS}
                             <div style="display:block;" class="up" id="claim2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="claim3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="claim3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div>
                         <hr></hr>
                         <div class="DetailSectionTable" id="claim1">
@@ -177,11 +193,11 @@
                         <div class="slds-section__title sectionTitle" id="amount" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT} &amp; {!$Label.c.CORE_LBL_INV_COST_CENTER}
                             <div style="display:block;" class="up" id="amount2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="amount3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="amount3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div>
                         <hr></hr>
                         <div class="DetailSectionTable" id="amount1">
@@ -220,33 +236,33 @@
                     </div>
                     <div class="ApprovalHistorySection">
                         <div class="slds-section__title sectionTitle" id="line" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_EXP_DETAIL_LINE_ITEMS}
-                        	<div style="display:block;" class="up" id="line2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="line3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                            <div style="display:block;" class="up" id="line2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="line3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div><hr></hr>
                         <div id="line1">
-                        <aura:iteration items="{!detailData.LineItems}" var="lineItem" indexVar="indx">
-                            <a class="slds-section__title textHighlight" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
-                                {!lineItem.ItemName}
-                            </a><hr></hr>
-                            <a class="slds-section__title textLineItem" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
-                                            {!lineItem.Currencies}&nbsp; {!lineItem.Amount}
-                                        </a>
-                        </aura:iteration>
-                            </div>
+                            <aura:iteration items="{!detailData.LineItems}" var="lineItem" indexVar="indx">
+                                <a class="slds-section__title textHighlight slds-truncate lineItemDetail" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                    {!lineItem.ItemName}
+                                </a>
+                                <a class="slds-section__title textLineItem slds-truncate" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                    {!lineItem.Currencies}&nbsp; {!lineItem.Amount}
+                                </a>
+                            </aura:iteration>
+                        </div>
                     </div>
                     <div class="ProjectInformationSection">
                         <div class="slds-section__title sectionTitle" id="claimexp" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_DETAIL_CLAIM_EXCEPTIONS}
                             <div style="display:block;" class="up" id="claimexp2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="claimexp3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="claimexp3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div>
                         <hr></hr>
                         <div class="DetailSectionTable" id="claimexp1">
@@ -260,11 +276,11 @@
                         <div class="slds-section__title sectionTitle" id="preTrip" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_DETAILS}
                             <div style="display:block;" class="up" id="preTrip2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="preTrip3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="preTrip3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div>
                         <hr></hr>
                         <aura:iteration items="{!v.PreTripDetails}" var="PreTripDetails">
@@ -273,19 +289,19 @@
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_ID} </div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!PreTripDetails.Id}</div>
+                                    <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!PreTripDetails.Id}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_PASSENGER_INFO} </div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!PreTripDetails.PassengerInfo}</div>
+                                    <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!PreTripDetails.PassengerInfo}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PRE_TRIP_LOCATION_DETAILS}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!PreTripDetails.LocationDetails}</div>
+                                    <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!PreTripDetails.LocationDetails}</div>
                                 </div>
                             </div>
                         </aura:iteration>
@@ -295,27 +311,27 @@
                         <div class="slds-section__title sectionTitle" id="comments" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
                             <div style="display:block;" class="up" id="comments2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="comments3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="comments3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div>
                         <hr></hr>
                         <div class="DetailSectionTable" id="comments1">
                             <div>
-                                <div class="slds-text-body--regular DetailData">{!detailData.Comments}</div>
+                                <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!detailData.Comments}</div>
                             </div>
                         </div>
                     </div>
                     <div class="ApprovalHistorySection">
                         <div class="slds-section__title sectionTitle" id="approvalHist" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_EXP_DETAIL_APPROVAL_HISTORY}
-                        	<div style="display:block;" class="up" id="approvalHist2">
-                                 <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
-                             </div>
-                             <div style="display:none;" class="up" id="approvalHist3">
-                                 <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
-                             </div>
+                            <div style="display:block;" class="up" id="approvalHist2">
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                            </div>
+                            <div style="display:none;" class="up" id="approvalHist3">
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                            </div>
                         </div><hr></hr>
                         <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData">
                             <div class="DetailSectionTable" id="approvalHist1">
@@ -329,44 +345,43 @@
                                     <div class="slds-text-body--regular DetailData">{!appHistoryData.ApproverAction}</div>
                                 </div>
                             </div>
-                            <br/>
                         </aura:iteration>
                     </div>
                     <br/>
                 </aura:if> 
                 <!-- Feed Tab -->
                 <aura:if isTrue="{!v.isFeed}">  
-                    <!--<div class="hiddenClass"> {!detailData.RequestId} </div>
+                    <div class="hiddenClass"> {!detailData.RequestId} </div>
                     <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
-                    <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> -->
+                    <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> 
                 </aura:if>
-            
-            <!--Action Bar-->
-            <div style="position:fixed; bottom:0;">
-            <div class="action_bar">
-                <div class="actionBarHeight">                  
-                    <table class="actionBarWidth">
-                        <tr class="alignCenter"> 
-                            <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/>
-                            <div class="font1">Feedback</div></td>
-                            <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/>
-                            <div class="font1">Comment</div></td>
-                            <aura:if isTrue="{!v.showReject}">
-                                <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg" />
-                                <div class="font1">Reject</div></td>
-                            </aura:if>
-                            <aura:if isTrue="{!v.showApprove}">   
-                                <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" />
-                                <div class="font1">Approve</div></td>
-                            </aura:if>   
-                        </tr>
-                    </table>
-                </div>  
-            </div>        
-         </div> 
-        </aura:iteration>
-    </div>
-    <!-- Approval action popup -->
+                
+                <!--Action Bar-->
+                <div style="position:fixed; bottom:0;">
+                    <div class="action_bar">
+                        <div class="actionBarHeight">                  
+                            <table class="actionBarWidth">
+                                <tr class="alignCenter"> 
+                                    <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/>
+                                        <div class="slds-truncate font1">App Feedback</div></td>
+                                    <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/>
+                                        <div class="font1">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                    <aura:if isTrue="{!v.showReject}">
+                                        <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg" />
+                                            <div class="font1">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</div></td>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.showApprove}">   
+                                        <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" />
+                                            <div class="font1">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</div></td>
+                                    </aura:if>   
+                                </tr>
+                            </table>
+                        </div>  
+                    </div>        
+                </div> 
+            </aura:iteration>
+        </div>
+        <!-- Approval action popup -->
         <aura:if isTrue="{!v.isActionPopup}">
             <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
                 <div class="slds-backdrop slds-backdrop--open">
@@ -377,8 +392,8 @@
         <!-- FeedBack popup -->
         <aura:if isTrue="{!v.isFeedBack}">          
             <div class="slds-backdrop slds-backdrop--open">
-                <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent"></c:Feedback>
+                <c:CORE_FB_Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" showTranslation="true"></c:CORE_FB_Feedback>
             </div>  
         </aura:if>
-        </aura:if>
+    </aura:if>
 </aura:component>

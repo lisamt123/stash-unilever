@@ -1,6 +1,10 @@
 ({
+    //doInit : function(component, event, helper) {
+       // alert('hi1');
+   // },
     
-    onSubmit : function(component, event, helper) {   
+    onSubmit : function(component, event, helper) { 
+        component.set("v.isRequired",false);
         var approvalDetail = component.get("v.ApprovalDetail");
         var RequestType = approvalDetail.RequestType; 
         var action= component.get("v.actionTaken"); 
@@ -11,15 +15,19 @@
            
            if(comment== '' && (RequestType == 'Expense' && action == 'Reject')){
                 document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
            }
-           if(comment== '' && (RequestType == 'Purchase Request' && action == 'Reject')){
+           else if(comment== '' && (RequestType == 'Purchase Request' && action == 'Reject')){
                 document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
            }
-           if(comment== '' && (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))){
+           else if(comment== '' && (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))){
                 document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
            }
-           if(comment== '' && (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV'))){
+           else if(comment== '' && (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV'))){
                 document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
            }
             
             else{
@@ -77,5 +85,4 @@
            // alert("value : " + checkCmp.get("v.value"));
             console.log("value : " + checkCmp.get("v.value"))
     },
-    
 })

@@ -107,12 +107,12 @@
                         <ul class="dropdown__list" role="menu" >
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate" ><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" id="all" ><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate" aura:id="ariba"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}" /></span>
+                                    <span style="width:100%;" class="slds-truncate" id="all1" aura:id="ariba"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}" /></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
@@ -170,7 +170,7 @@
     <!-- FeedBack popup -->
     <aura:if isTrue="{!v.isFeedBackPopup}">          
         <div class="slds-backdrop slds-backdrop--open">
-            <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" ></c:Feedback>
+            <c:CORE_FB_Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" showTranslation="true"></c:CORE_FB_Feedback>
         </div>  
     </aura:if>
        

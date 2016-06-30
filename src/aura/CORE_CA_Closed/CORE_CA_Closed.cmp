@@ -32,9 +32,9 @@
     <aura:attribute name="AribaFilter" type="String"/>
     <aura:attribute name="ClearFilter" type="String"/>
     <aura:attribute name="filterValue" type="String"/>
-    
+   
     <aura:attribute name="isFeedBackPopup" type="boolean" default="false"/>
-    <aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
+     <!--<aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>-->
     <style>      
         .homePageHeader{
         background:#4F6A92;

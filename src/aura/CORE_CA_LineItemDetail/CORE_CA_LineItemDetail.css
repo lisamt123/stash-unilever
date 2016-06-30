@@ -26,22 +26,23 @@
     width: 50%;
     vertical-align: top;
     min-width: 100px;
-    min-height: 15px;
+    min-height: 30px;
 }
 .THIS .fieldAlign{
     float: right;
-    margin-top: -30px;
+    margin-top: -47px;
 }
 .THIS .fieldValueAlign{
     float: right;
-    margin-top: -16px;
+    margin-top: -31px;
 }
 .THIS .splitAcc{
     min-width: 100px;
-    min-height: 15px;
+    min-height: 30px;
 }
 .THIS .sectionTitle{
     font-size: 1.029rem;
+    cursor: pointer;
 }
 .THIS .loading{
     position: absolute;
@@ -58,5 +59,11 @@
     width:17px;
     position: absolute;
     right: 24px;
-    margin-top: -20px;
+    margin-top: -22px;
+}
+.THIS .DetailSectionTable{
+    margin-bottom: -7px;
+}
+.THIS #SplitAccounting1{
+     margin-bottom: 7px !important;
 }

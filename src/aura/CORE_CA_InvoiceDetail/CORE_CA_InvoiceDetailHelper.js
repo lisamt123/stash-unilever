@@ -1,5 +1,6 @@
 ({ 
         scrollToLocation : function(component, location) { 
+            component.set("v.spinnercompInvoice",true);
         var scroller = this.getScroller(component), 
             payload = { 
                 time: 300, 
@@ -12,7 +13,7 @@
                 payload.xcoord = location.offsetLeft; 
                 payload.ycoord = -location.offsetTop; 
         } 
-        
+        	component.set("v.spinnercompInvoice",false);
             scroller.getEvent("scrollTo").setParams(payload).fire(); 
         }, 
     

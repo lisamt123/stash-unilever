@@ -4,7 +4,7 @@
   Date: 03 June 2016
   Requirement/Description: Closed tab of the Approval APP.
 -->
-<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_Feedback_App_Controller">
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller">
    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
    <aura:attribute name="isFeedBackPopup" type="boolean" />
     <style>
@@ -46,7 +46,7 @@
         padding-top: 3px;
         }
         .cCORE_CA_PendingSection .expenseName {
-        width: 75%;
+        width: 60%;
         }
         }
     </style> 
@@ -102,7 +102,8 @@
                         <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                                 <div type="button" class="queryWithVendorIndicatorText queryWithVendorTextWidth right-class">
-                                    {!$Label.c.CORE_LBL_QUERY_WITH_VENDOR}
+                                   <!-- {!$Label.c.CORE_LBL_QUERY_WITH_VENDOR} -->
+                                        {!$Label.c.CORE_LBL_QUERY_UPPER}
                                 </div>
                             </aura:if>
                         </aura:if>

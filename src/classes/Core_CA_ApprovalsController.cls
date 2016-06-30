@@ -90,12 +90,12 @@ public class Core_CA_ApprovalsController {
     
     @AuraEnabled
     public static boolean findFeedbacks(String appName) {
-        return CORE_Feedback_App_Controller.findFeedbacks(appName);
+        return CORE_FB_Feedback_App_Controller.findFeedbacks(appName);
     }
     
     @AuraEnabled
     public static boolean insertFeedback(String appName,Integer rating,String comment) {
-        return CORE_Feedback_App_Controller.insertFeedback(appName,rating,comment);
+        return CORE_FB_Feedback_App_Controller.insertFeedback(appName,rating,comment);
     }
     
    @AuraEnabled
@@ -103,19 +103,20 @@ public class Core_CA_ApprovalsController {
         string strgaid = CORE_CA_ApprovalReporting__c.getinstance('GA_ID').Text_Value__c;
         return strgaid;      
     }
-    /*
+    
+    
     @AuraEnabled
-    public static String getGAID1(){      
-        string strgaid = EA_ReportingGA__c.getinstance('GA_Id').Text_value__c;
-        return strgaid;      
-    }
-    @AuraEnabled
-    public static string getSourceSystem(string ReqId) {
-    String sourceSystem;
-    Core_Approval_Header__c  lstApprover = [SELECT Source_System__c FROM Core_Approval_Header__c WHERE Id =: ReqId limit 1];   
-    if(lstApprover != null)
-       sourceSystem = lstApprover.Source_System__c ;
-    return sourceSystem;
-    }*/
+    public static String getUIThemeDescription() {
+        String themedesc;
+        String theme = UserInfo.getUiThemeDisplayed();
+        if(theme=='Theme3' || theme=='Theme2'){
+            themedesc='Salesforce Classic';
+        }else if(theme=='Theme4d'){
+            themedesc='Lightning Experience';
+        }else if(theme=='Theme4t'){
+            themedesc='Salesforce1 Mobile';
+        }
+        return themedesc;   
+   }
    
 }

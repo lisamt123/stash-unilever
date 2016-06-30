@@ -1,8 +1,5 @@
 <aura:component controller="Core_CA_ApprovalsController" implements="force:appHostable">
-    <ltng:require styles="/resource/Lightning_designing_style/css/salesforce-lightning-design-system.min.css" />
-    <ltng:require styles="/resource/Feedback/styles/style.css" />
-    <ltng:require styles="/resource/ApprovalsLightning"/>
-    <ltng:require styles="/resource/Lightning_designing_style"/>
+    <!--<ltng:require styles="/resource/Lightning_designing_style/css/salesforce-lightning-design-system.min.css,/resource/Feedback/styles/style.css,/resource/ApprovalsLightning,/resource/Lightning_designing_style" afterScriptsLoaded="{!c.doInit}"/> -->
     <aura:attribute name="success_toast" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="comment_mand" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="isVisible" type="boolean" default="false"></aura:attribute>
@@ -15,7 +12,6 @@
     <aura:attribute name="sourcePage" type="string"/>
     <aura:attribute name="filterValue" type="string"/>
     <aura:attribute name="actionTaken" type="string"/>
-    
     <aura:attribute name="myBool" type="Boolean"/>
     <style>
        body{
@@ -37,16 +33,21 @@
         	color: #A8B8D0;  
         }       
     </style>
-  
+ 
     <div class="close-button" onclick="{!c.onCancel}"><img class="image" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg"></img></div>    
     <div class="Action_container">
         <aura:if isTrue="{!v.success_toast == false}">
             <div class="slds-text-heading--medium slds-text-align--center">
-                {!$Label.c.CORE_LBL_APPREJ_CONFIRM}
+                <!--{!$Label.c.CORE_LBL_APPREJ_CONFIRM}-->
+                <aura:if isTrue="{!v.actionTaken == 'Approve'}">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</aura:if>
+                <aura:if isTrue="{!v.actionTaken == 'Reject'}">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</aura:if>
+                <aura:if isTrue="{!v.actionTaken == 'Rework'}">{!$Label.c.CORE_LBL_REWORK}</aura:if>
+                <aura:if isTrue="{!v.actionTaken == 'RTAP'}">{!$Label.c.CORE_LBL_RETURN_TO_AP}</aura:if>
+                <aura:if isTrue="{!v.actionTaken == 'QWV'}">{!$Label.c.CORE_LBL_QUERY_WITH_VENDOR_SMALL}</aura:if>
             </div>    
             <hr></hr>           
             <aura:if isTrue="{!(v.actionTaken == 'Approve' &amp;&amp; v.ApprovalDetail.RequestType =='Expense')}">
-                <div>
+                <div style="margin-bottom: 10px;">
                 <img class="img" src="/resource/ApprovalsLightning/images/warning.svg"/>
                 <span > {!$Label.c.CORE_LBL_APPREJ_WARN_MSG} </span> 
                 </div>
@@ -57,27 +58,30 @@
                         <div class="slds-form-element">
                             <div class="slds-form-element__control">
                                 <aura:if isTrue="{!(v.actionTaken == 'Approve' &amp;&amp; (v.ApprovalDetail.RequestType =='Expense' || v.ApprovalDetail.RequestType =='Purchase Request' || v.ApprovalDetail.RequestType=='Clarity' || v.ApprovalDetail.RequestType=='Invoice'))}">
-                                    <textarea id="textarea-input-02" class="slds-textarea" placeholder="{!($Label.c.CORE_LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3)}"></textarea>
+                                    <textarea id="textarea-input-02" class="slds-textarea" placeholder="{!($Label.c.CORE_LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3)}" maxlength="255"></textarea>
                                     <aura:set attribute="else">       
-                                        <textarea id="textarea-input-02" class="slds-textarea" placeholder="{!($Label.c.CORE_LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3)+'*'}"></textarea>
+                                        <textarea id="textarea-input-02" class="slds-textarea" placeholder="{!($Label.c.CORE_LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3)+'*'}" maxlength="255"></textarea>
                                     </aura:set>                                    
                                 </aura:if>                                
                             </div>
                         </div>
                     </div> 
                 </div>
+                <aura:if isTrue="{!v.isRequired}" >
+                    <span class="slds-text-body--regular Required">{!$Label.c.CORE_LBL_APPREJ_REQUIRED_VALUE_MESSAGE}</span>
+                </aura:if>
                 </aura:set>
             </aura:if> 
              <!--<hr></hr> -->
             <div> 
                 <aura:if isTrue="{!(v.actionTaken == 'Approve' &amp;&amp; v.ApprovalDetail.RequestType =='Purchase Request')}">
-                	<span class="slds-text-body--regular">{!$Label.c.CORE_LBL_PUR_VISIBLE_TO_SUPPLIER} </span>
-                    <span class="slds-form-element">
+                	<div class="slds-text-body--regular" style="width:75%">{!$Label.c.CORE_LBL_PUR_VISIBLE_TO_SUPPLIER} </div>
+                    <div class="slds-form-element" style="margin-top: 11px;right: 2%;position: absolute;">
                         <label class="slds-checkbox--toggle slds-grid slds-grid--vertical-align-center checkbox">
                             <ui:inputCheckbox aura:id="taskCheckBox" value=""/>
-                            <span class="slds-checkbox--faux" data-check-on="On" data-check-off="Off"></span>
+                            <span class="slds-checkbox--faux chkBoxAllignment" data-check-on="On" data-check-off="Off"></span>
                         </label>
-                    </span>
+                    </div>
                 </aura:if>  
                 <aura:if isTrue="{!((v.ApprovalDetail.RequestType =='Clarity' &amp;&amp; (v.actionTaken == 'Rework' ||v.actionTaken == 'Reject' ||v.actionTaken == 'Approve')) || v.ApprovalDetail.RequestType =='Expense')}">
                 	<span class="slds-text-body--regular">{!$Label.c.CORE_LBL_APPREJ_LEGAL_DISCLAIMER}</span> 
@@ -94,23 +98,24 @@
                  <div class="Action-buttons" >
                      <button class="slds-button slds-button--neutral" aria-live="assertive" onclick="{!c.onCancel}">
                          <span class="slds-text-not-selected">
-                             Cancel
+                              {!$Label.c.CORE_LBL_CANCEL} 
                          </span>
                      </button>
                      
                      <button style="float:right;" class="slds-button slds-button--brand slds-button--neutral" aria-live="assertive" onclick="{!c.onSubmit}">
                          <span class="slds-text-not-selected">
-                             <aura:if isTrue="{!v.actionTaken == 'Approve'}">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</aura:if>
+                             {!$Label.c.CORE_LBL_SUBMIT}
+                             <!--<aura:if isTrue="{!v.actionTaken == 'Approve'}">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'Reject'}">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'Rework'}">{!$Label.c.CORE_LBL_REWORK}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'RTAP'}">{!$Label.c.CORE_LBL_RETURN_TO_AP_CAPS}</aura:if>
-                             <aura:if isTrue="{!v.actionTaken == 'QWV'}">{!$Label.c.CORE_LBL_QUERY_WITH_VENDOR}</aura:if>
+                             <aura:if isTrue="{!v.actionTaken == 'QWV'}">{!$Label.c.CORE_LBL_QUERY_WITH_VENDOR}</aura:if>-->
                          </span>
                      </button>
                 </div>                
         </aura:if>
     </div>  
-    
+   
     <aura:if isTrue="{!v.success_toast}">
         <div >
             <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">

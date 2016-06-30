@@ -7,6 +7,7 @@
             var ApproverId = event.getParam("ApproverId"); 
             var sourcePage = event.getParam("sourcePage");
             var filterValue = event.getParam("filterValue");
+            //var isNavigate = false ;
         }
         if(type == 'onload'){      
             var sourceSystem = component.get("v.Sourcesystem");         
@@ -14,6 +15,7 @@
             var ApproverId = component.get("v.ApproverId"); 
             var sourcePage ='Pending';
             var filterValue ='All';
+            var isNavigate = true;
         }
         var destination;
         if(sourceSystem == 'Purchase Request' || sourceSystem == 'Ariba') { 
@@ -36,7 +38,9 @@
                     ApproverId : ApproverId,
                     sourcePage : sourcePage,
                     filterValue : filterValue,
-                    isFeedBack : isFeedBack
+                    isFeedBack : isFeedBack,
+                    isNavigate : isNavigate
+                  
                 }
             }
         }, component);

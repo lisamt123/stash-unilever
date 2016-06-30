@@ -1,8 +1,18 @@
 ({
-		doInit : function(component, event, helper) {   
+	doInit : function(component, event, helper) { 
+        
+        var action = component.get("c.getUIThemeDescription");
+        var response;
+     //   $A.util.removeClass(component.find('item2'), 'tab-default-2__item');
+     //   $A.util.addClass(component.find('item1'), 'tab-default-2__item');
+        action.setCallback(this, function(response) { 
+            response=response.getReturnValue();        	
+                component.set("v.isDesktop",response);
+        });    
+        $A.enqueueAction(action); 
+            
         component.set("v.spinnercompAriba",true);
-        component.set("v.isActionPopup",false);
-        component.set("v.isFeedBack",false);                                            
+        component.set("v.isActionPopup",false);                                           
         var filterValue=component.get("v.filterValue");
         var sourcePage= component.get("v.sourcePage");
         var action = component.get("c.getApprovalDetailPageData");
@@ -38,16 +48,25 @@
             
     },
     
-    NavigateToFeed : function(component, event, helper) {  
+    NavigateToFeed : function(component, event, helper) {
+        component.set("v.spinnercompAriba",false);
+        $A.util.addClass(component.find('item2'), 'tab-default-2__item');
+        $A.util.removeClass(component.find('item1'), 'tab-default-2__item');                
     component.set("v.isFeed",true);
     component.set("v.isDetail",false);
+       
 },
-    NavigateToDetail : function(component, event, helper) {  
+    NavigateToDetail : function(component, event, helper) {
+        component.set("v.spinnercompAriba",false);
+        $A.util.removeClass(component.find('item2'), 'tab-default-2__item');
     component.set("v.isFeed",false);
     component.set("v.isDetail",true);
 },
     goToLineItemDetail : function(component, event, helper) {
-        helper.scrollToLocation(component, "top");
+        component.set("v.spinnercompAriba",true);
+        if(component.get("v.isDesktop") != 'Lightning Experience' && component.get("v.isNavigate") !=  true){
+            helper.scrollToLocation(component, "top");
+        }    
         var self = this
         var index = event.target.dataset.index;       
         var approvalDetailList =[];
@@ -56,6 +75,7 @@
         {            
             approvalDetailList.push(approvalDetail[i]);             
         } 
+        component.set("v.spinnercompAriba",true);
         var LineItemId = approvalDetailList[index].LineItemId;        
         var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
         selectEvent.setParams({ "compName": "LineItemDetail","subDivision":"Ariba","lineItemId":LineItemId,"ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage"),"filterValue": component.get("v.filterValue")}).fire();
@@ -72,16 +92,24 @@
         }
    },
     ApproveAction : function(component, event, helper) {
-        helper.scrollToLocation(component, "top");
+        if(component.get("v.isDesktop") != 'Lightning Experience'){
+            helper.scrollToLocation(component, "top");
+        }
         component.set("v.actTaken",'Approve'); 
         component.set("v.isActionPopup",true); 
+        component.set("v.spinnercompAriba",false);
     },
     RejectAction : function(component, event, helper) {
-        helper.scrollToLocation(component, "top");
+        if(component.get("v.isDesktop") != 'Lightning Experience'){
+            helper.scrollToLocation(component, "top");
+        }
         component.set("v.actTaken",'Reject'); 
         component.set("v.isActionPopup",true); 
+        component.set("v.spinnercompAriba",false);
     },
     showHide : function(component, event, helper) {
+        if(event.srcElement.id != "up" && event.srcElement.id != "down")
+        {
         var idd =event.srcElement.id+"2";
         var iid =event.srcElement.id+"3";
         var id =event.srcElement.id+"1";
@@ -97,9 +125,12 @@
             document.getElementById(iid).style.display = "block";
             document.getElementById(idd).style.display = "none";
         }
+        }
     },
     gotoFeedback: function(component, event, helper) { 
-        helper.scrollToLocation(component, "top"); 
+        if(component.get("v.isDesktop") != 'Lightning Experience'){
+            helper.scrollToLocation(component, "top");
+         } 
         component.set("v.isFeedBack",true);
     },
     gotoApp :function(component, event, helper){      
@@ -107,4 +138,15 @@
             var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
             selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();       
 	},
+    NavigateToFeedViaComment : function(component, event, helper) {
+        component.set("v.spinnercompAriba",false);
+        $A.util.addClass(component.find('item2'), 'tab-default-2__item');
+        $A.util.removeClass(component.find('item1'), 'tab-default-2__item');
+    if(component.get("v.isDesktop") != 'Lightning Experience' && component.get("v.isNavigate") !=  true){
+            helper.scrollToLocation(component, "top");
+    }                                                   
+    component.set("v.isFeed",true);
+    component.set("v.isDetail",false);
+       
+},
 })

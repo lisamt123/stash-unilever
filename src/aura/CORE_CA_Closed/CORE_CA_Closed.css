@@ -16,6 +16,7 @@
     padding: 10px 0;
     width: 100%;
     float: left;
+    cursor: pointer;
 }
 .THIS .name{
     color:#0070D2;
@@ -136,6 +137,7 @@
     margin-top: 10px;
     margin-right: 6px;
     background:url('/resource/ApprovalsLightning/images/filters_icon-04.svg') no-repeat;
+    cursor: pointer;
     
 }
 .THIS .icon-currentState img{
@@ -144,6 +146,7 @@
     margin-top: 10px;
     margin-right: 6px;
     background:url('/resource/ApprovalsLightning/images/filters_icon-05.svg') no-repeat;
+    cursor: pointer;
 }
 .THIS .icon-LockedState img{
     width: 33px !important;
@@ -151,6 +154,7 @@
     margin-top: 10px;
     margin-right: 6px;
     background:url('/resource/ApprovalsLightning/images/filters_icon-06.svg') no-repeat;
+    cursor: pointer;
 }
 .THIS .sort-box{
     float: right;

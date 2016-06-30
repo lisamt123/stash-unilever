@@ -110,6 +110,7 @@
         }, component); 
        
     },*/
+    /*
     ApproveScreen1 :function(component, event, helper) {
         
         var destination = "markup://c:"+ event.getParam("ApproveScreen");
@@ -126,7 +127,7 @@
         
     },
     
-    
+    */
     
     /*ReturntoVendor :function(component, event, helper) {
                     var destination = "markup://c:"+ event.getParam("ReturntoVendorScreen");

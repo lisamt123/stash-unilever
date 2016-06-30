@@ -10,4 +10,5 @@
     <aura:attribute name="ApproverId" type="String"/>
     <aura:attribute name="sourcePage" type="String"/>
     <aura:attribute name="filterValue" type="String"/>
+    
 </aura:event>

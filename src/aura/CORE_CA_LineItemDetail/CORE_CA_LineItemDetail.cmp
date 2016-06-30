@@ -30,6 +30,7 @@
         margin-top: 5px;
         padding-left: 13px;
         margin-bottom: 5px;
+        cursor: pointer;
         }
         .hiddenClass{
         color: red;
@@ -61,16 +62,16 @@
                 <div class="slds-section__title sectionTitle" id="ProductDescription" onclick="{!c.showHide}">
                     Product Description
                     <div style="display:block;" class="up" id="ProductDescription2">
-                            <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                            <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                     </div>
                     <div style="display:none;" class="up" id="ProductDescription3">
-                            <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                            <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                     </div>
                 </div>
                 <hr></hr>
                 <div class="DetailSectionTable" id="ProductDescription1" >
                     <div>
-                        <div class="slds-text-body--regular DetailData">{!lineItemData.ProductDesc}</div>
+                        <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.ProductDesc}</div>
                     </div>
                 </div>
             </div>
@@ -79,10 +80,10 @@
                     <div class="slds-section__title sectionTitle" id="Pricing" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_PRICING_SUPPLIER_DETAILS}
                         <div style="display:block;" class="up" id="Pricing2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="Pricing3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
@@ -153,10 +154,10 @@
                     <div class="slds-section__title sectionTitle" style="width:100%" id="SplitAccounting" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_SPLIT_ACCOUNTING}
                         <div style="display:block;" class="up" id="SplitAccounting2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="SplitAccounting3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
@@ -170,16 +171,16 @@
                     <div class="slds-section__title sectionTitle" id="Comments" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
                         <div style="display:block;" class="up" id="Comments2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="Comments3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
                     <div class="DetailSectionTable" id="Comments1">
                         <div>
-                            <div class="slds-text-body--regular DetailData">{!lineItemData.Comments}</div>
+                            <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Comments}</div>
                         </div>
                     </div>
                 </div>
@@ -191,10 +192,10 @@
                     <div class="slds-section__title sectionTitle" id="expnseDetails" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DETAILS}
                         <div style="display:block;" class="up" id="expnseDetails2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="expnseDetails3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
@@ -272,10 +273,10 @@
                 <div class="slds-section__title sectionTitle" id="purposeReason" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE_REASON}
                     	<div style="display:block;" class="up" id="purposeReason2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="purposeReason3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                 </div>
                 <hr></hr>
@@ -284,13 +285,13 @@
                         <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.Purpose}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Purpose}</td>
                     </tr>
                     <tr>
                         <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_REASON}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.Reason}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Reason}</td>
                     </tr>
                 </table>
             </div>
@@ -298,16 +299,16 @@
                 <div class="slds-section__title sectionTitle" id="expDescrp" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DESCRIPTION}
                     	<div style="display:block;" class="up" id="expDescrp2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="expDescrp3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                 </div>
                 <hr></hr>
                 <table class="DetailSectionTable" id="expDescrp1">
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.ExpenseDescription}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.ExpenseDescription}</td>
                     </tr>
                 </table>
             </div>
@@ -315,16 +316,16 @@
                 <div class="slds-section__title sectionTitle" id="attendees" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_ATTENDEES}
                     <div style="display:block;" class="up" id="attendees2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="attendees3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                 </div>
                 <hr></hr>
                 <table class="DetailSectionTable" id="attendees1">
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.Attendees}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Attendees}</td>
                     </tr>
                 </table>
             </div>
@@ -333,16 +334,16 @@
                     <div class="slds-section__title sectionTitle" id="carDetails" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINETEMS_DETAIL_CAR_DETAILS}
                         <div style="display:block;" class="up" id="carDetails2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="carDetails3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
                     <table class="DetailSectionTable" id="carDetails1">
                         <tr>
-                            <td class="slds-text-body--regular DetailData">{!TravelDetails.CarDetails}</td>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!TravelDetails.CarDetails}</td>
                         </tr>
                     </table>
                 </div>
@@ -350,16 +351,16 @@
                     <div class="slds-section__title sectionTitle" id="flightDetails" onclick="{!c.showHide}"> 
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_FLIGHT_DETAILS}
                         <div style="display:block;" class="up" id="flightDetails2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="flightDetails3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
                     <table class="DetailSectionTable" id="flightDetails1">
                         <tr>
-                            <td class="slds-text-body--regular DetailData">{!TravelDetails.FlightDetails}</td>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!TravelDetails.FlightDetails}</td>
                         </tr>
                     </table>
                 </div>
@@ -367,16 +368,16 @@
                     <div class="slds-section__title sectionTitle" id="hotel" onclick="{!c.showHide}">
                         {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_ROOM_DETAILS}
                         <div style="display:block;" class="up" id="hotel2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="hotel3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                     </div>
                     <hr></hr>
                     <table class="DetailSectionTable" id="hotel1">
                         <tr>
-                            <td class="slds-text-body--regular DetailData">{!TravelDetails.RoomDetails}</td>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!TravelDetails.RoomDetails}</td>
                         </tr>
                     </table>
                 </div>
@@ -385,10 +386,10 @@
                 <div class="slds-section__title sectionTitle" id="preDime" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS}
                     <div style="display:block;" class="up" id="preDime2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="preDime3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                 </div>
                 <hr></hr>
@@ -398,14 +399,14 @@
                             <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT}</td>
                         </tr>
                         <tr>
-                            <td class="slds-text-body--regular DetailData">{!lineItemData.PerDiemAmount}</td>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.PerDiemAmount}</td>
                         </tr>
                     </aura:if>
                     <tr>
                         <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS}</td>
                     </tr>
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.PerDiemDetails}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.PerDiemDetails}</td>
                     </tr>
                 </table>
             </div>
@@ -413,16 +414,16 @@
                 <div class="slds-section__title sectionTitle" id="commentsGtes" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
                     <div style="display:block;" class="up" id="commentsGtes2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="commentsGtes3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                 </div>
                 <hr></hr>
                 <table class="DetailSectionTable" id="commentsGtes1">
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.Comments}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Comments}</td>
                     </tr>
                 </table>
             </div>
@@ -430,16 +431,16 @@
                 <div class="slds-section__title sectionTitle" id="policy" onclick="{!c.showHide}">
                     {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_POLICY_EXCEPTIONS}
                     <div style="display:block;" class="up" id="policy2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
                         </div>
                         <div style="display:none;" class="up" id="policy3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"/>
+                                <img src="/resource/ApprovalsLightning/images/chevrondown.png" id="down"/>
                         </div>
                 </div>
                 <hr></hr>
                 <table class="DetailSectionTable" id="policy1">
                     <tr>
-                        <td class="slds-text-body--regular DetailData">{!lineItemData.PolicyExceptions}</td>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.PolicyExceptions}</td>
                     </tr>
                 </table>
             </div>

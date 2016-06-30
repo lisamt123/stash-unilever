@@ -1,5 +1,6 @@
 ({ 
         scrollToLocation : function(component, location) { 
+           // component.set("v.spinnercompClarity",true);
         var scroller = this.getScroller(component), 
             payload = { 
                 time: 300, 
@@ -11,8 +12,8 @@
             payload.destination = "custom"; 
                 payload.xcoord = location.offsetLeft; 
                 payload.ycoord = -location.offsetTop; 
-        } 
-        
+        }
+            component.set("v.spinnercompClarity",false);
             scroller.getEvent("scrollTo").setParams(payload).fire(); 
         }, 
     
