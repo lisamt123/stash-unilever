@@ -649,8 +649,6 @@ This method identifies date of manufacture from the daycode
     
     public void updateRetentionDate(List<Case> caseLst , Map<id,Case> oldMap){
         
-        List<Case> caseLstUpdate = new List<Case>();
-        
         Try{
             for(Case newCase: caseLst){
                 if(newCase.Status == caseStatusClosed && oldMap.get(newCase.id).status != caseStatusClosed && newCase.Reason_Code_Retention_Days__c!= NULL && String.isEmpty(newCase.Manual_Override_Reason__c)){
@@ -843,7 +841,7 @@ This method identifies date of manufacture from the daycode
         }
     }
     
-    private account updateAccountDetailsFromCaseDescription(Account accnt, string caseDescription){
+   /* private account updateAccountDetailsFromCaseDescription(Account accnt, string caseDescription){
         // fetch street Address
         accnt.PersonMailingStreet = CEC_CaseDescriptionParser.getPersonMailingStreet(caseDescription);
         // fetch City
@@ -856,7 +854,7 @@ This method identifies date of manufacture from the daycode
         accnt.PersonMailingCountry = CEC_CaseDescriptionParser.getPersonMailingCountry(caseDescription);
         
         return accnt;
-    }
+    }*/
     
     /******  END: Case description parsing *******/
     
@@ -901,7 +899,6 @@ This method identifies date of manufacture from the daycode
     public void updateCaseBrandAndSkillOnInsert(List<Case> newCaseList){
         set<string> emailSet = new set<string>();
         Map<Case, Map<String, Case>> emailMap2 = new Map<Case, Map<String, Case>>();
-        Map<String, String> emailAndSkillMap = new Map<String,String>();
         
         if(newCaseList!=null){
             System.debug('newCaseList~~~~~~~~'+newCaseList);
