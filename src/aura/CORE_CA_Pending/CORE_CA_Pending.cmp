@@ -6,7 +6,7 @@
 -->
 <aura:component controller="Core_CA_ApprovalsController" implements="flexipage:availableForAllPageTypes,force:appHostable">
     
-    <ltng:require styles="/resource/ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
+    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
     <aura:attribute name="spinnercomp" type="boolean" default="true"/>
     
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
@@ -30,7 +30,7 @@
     <aura:attribute name="RequestId" type="String"/>
     <aura:attribute name="ApproverId" type="String"/>
     <aura:attribute name="filterValue" type="String"/>
-   
+    
     <!--<aura:attribute name="isFeedBackPopup" type="boolean"/>-->
     <aura:attribute name="isFeedBackPopup" type="boolean" default="false"/>
     <aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
@@ -64,15 +64,37 @@
         
         } 
         .filterSelected{
-    font-weight:bold;
-}
+        font-weight:bold;
+        }
+        .slds-text-body--regular{
+        font-size:13px;
+        }
+        .slds-text-body--small{
+        font-size:12px;
+        }
+        .slds-text-heading--large{
+        font-size:28px;
+        }
+        .slds-text-heading--medium{
+        font-size:20px;
+        }
+        .slds-text-heading--small{
+        font-size:16px;
+        }
+        .slds-text-heading--label{
+        font-size:12px;
+        }
+        .slds-text-heading--label-normal{
+        font-size:12px;
+        }
+        
     </style>
     
     
     <div class="homePageHeader">
         <div class="defaultLeftSpace">
             <br/>
-            <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+            <img src="/resource/CORE_CA_ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
             
             <div class="homePageHeaderText slds-text-heading--medium">{!$Label.c.CORE_LBL_MY_APPROVALS}</div>
             
@@ -152,7 +174,7 @@
             <aura:if isTrue="{!v.ApprovalDataCount}"> 
                 <span>
                     <aura:iteration items="{!v.ApprovalData}" var="item3" > 
-                    <c:CORE_CA_PendingSection ApprovalData="{!item3}" retainfilterValue="{!v.filteroptions}" isFeedBackPopup="{!v.isFeedBackPopup}"/>                                   
+                        <c:CORE_CA_PendingSection ApprovalData="{!item3}" retainfilterValue="{!v.filteroptions}" isFeedBackPopup="{!v.isFeedBackPopup}"/>                                   
                         
                     </aura:iteration>
                 </span>
@@ -167,13 +189,13 @@
             </span>
         </div>
         
-    <!-- FeedBack popup -->
-    <aura:if isTrue="{!v.isFeedBackPopup}">          
-        <div class="slds-backdrop slds-backdrop--open">
-            <c:CORE_FB_Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" showTranslation="true"></c:CORE_FB_Feedback>
-        </div>  
-    </aura:if>
-       
+        <!-- FeedBack popup -->
+        <aura:if isTrue="{!v.isFeedBackPopup}">          
+            <div class="slds-backdrop slds-backdrop--open">
+                <c:CORE_FB_Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" showTranslation="true"></c:CORE_FB_Feedback>
+            </div>  
+        </aura:if>
+        
     </div>
     
 </aura:component>

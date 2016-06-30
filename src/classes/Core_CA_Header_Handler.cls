@@ -21,22 +21,30 @@ public class Core_CA_Header_Handler{
           When the Record is inserted by the External system depending on the Source System We are assigning the relevant record type to the record.
           there are 4 Recordtype for the approval console object.So its been retrived in the below code snippet 
         */
-        List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Header__c'];
-        List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Header__c'];
-        List<RecordType> clarityRecordType  = [SELECT Id FROM RecordType where Name ='Clarity' AND SobjectType = 'Core_Approval_Header__c'];
-        List<RecordType> invoiceRecordType   = [SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Header__c'];
-        
+        List<RecordType> LstRecordType  = [SELECT Id,Name FROM RecordType where Name IN ('ARIBA','GTES','Clarity','Invoice') AND SobjectType = 'Core_Approval_Header__c'];
+        String aribaId;
+        String gtesId;
+        String clarityId;
+        String invoiceId;
+        for(RecordType recordId : LstRecordType)
+        {
+                if(recordId.Name== 'Ariba')  {aribaId = recordId.Id;}
+                if(recordId.Name== 'GTES')   {gtesId = recordId.Id;}
+                if(recordId.Name== 'Clarity'){clarityId = recordId.Id;}
+                if(recordId.Name== 'Invoice'){invoiceId = recordId.Id;}
+            
+            }
         for(Core_Approval_Header__c headerRec : headerList){
-          
+            
            //Fetching Record Type Id for Selected Source System.
            if(headerRec.Source_System__c == 'GTES')
-                headerRec.RecordTypeId  = gtesRecordType[0].ID;                             
+                headerRec.RecordTypeId  = gtesId;                             
            if(headerRec.Source_System__c == 'Ariba')
-                headerRec.RecordTypeId  = aribaRecordType[0].ID;
+                headerRec.RecordTypeId  = aribaId;
            if(headerRec.Source_System__c == 'Clarity')
-                headerRec.RecordTypeId  = clarityRecordType[0].ID;                             
+                headerRec.RecordTypeId  = clarityId;                             
            if(headerRec.Source_System__c == 'Invoice')
-                headerRec.RecordTypeId  = invoiceRecordType[0].ID;
+                headerRec.RecordTypeId  = invoiceId;
            
            
            // Updating Name field with External System Value.

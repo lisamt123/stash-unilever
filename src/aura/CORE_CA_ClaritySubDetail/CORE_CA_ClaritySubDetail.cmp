@@ -307,10 +307,10 @@
             <div class="ProjectInformationSection">
                 <div class="slds-section__title sectionTitle" id="totalFte" onclick="{!c.showHide}">{!$Label.c.CORE_LBL_TOTAL_FTE_REDUCTIONS}
                 <div style="display:block;" class="up" id="totalFte2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                             </div>
                             <div style="display:none;" class="up" id="totalFte3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png"  id="down"/>
                             </div>
                 </div><hr></hr>
                 <table class="DetailSectionTable" id="totalFte1">
@@ -351,10 +351,10 @@
             <div class="ProjectInformationSection">
                 <div class="slds-section__title sectionTitle" id="nonFinance" onclick="{!c.showHide}">{!$Label.c.CORE_LBL_NON_FINANCIAL_INDIACTORS}
                 <div style="display:block;" class="up" id="nonFinance2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                             </div>
                             <div style="display:none;" class="up" id="nonFinance3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png"  id="down"/>
                             </div>
                 </div><hr></hr>
                 <table class="DetailSectionTable" id="nonFinance1">
@@ -381,10 +381,10 @@
             <div class="ProjectInformationSection">
                 <div class="slds-section__title sectionTitle" id="keyIndicator" onclick="{!c.showHide}">{!$Label.c.CORE_LBL_KEY_INDICATORS}
                 <div style="display:block;" class="up" id="keyIndicator2">
-                                <img src="/resource/ApprovalsLightning/images/chevronup.png"  id="up"/>
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                             </div>
                             <div style="display:none;" class="up" id="keyIndicator3">
-                                <img src="/resource/ApprovalsLightning/images/chevrondown.png"  id="down"/>
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png"  id="down"/>
                             </div>
                 </div><hr></hr>
                 <table class="DetailSectionTable" id="keyIndicator1">

@@ -1,5 +1,5 @@
 <aura:component controller="Core_CA_ApprovalsController" implements="force:appHostable">
-    <!--<ltng:require styles="/resource/Lightning_designing_style/css/salesforce-lightning-design-system.min.css,/resource/Feedback/styles/style.css,/resource/ApprovalsLightning,/resource/Lightning_designing_style" afterScriptsLoaded="{!c.doInit}"/> -->
+    <!--<ltng:require styles="/resource/Lightning_designing_style/css/salesforce-lightning-design-system.min.css,/resource/Feedback/styles/style.css,/resource/CORE_CA_ApprovalsLightning,/resource/Lightning_designing_style" afterScriptsLoaded="{!c.doInit}"/> -->
     <aura:attribute name="success_toast" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="comment_mand" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="isVisible" type="boolean" default="false"></aura:attribute>
@@ -48,7 +48,7 @@
             <hr></hr>           
             <aura:if isTrue="{!(v.actionTaken == 'Approve' &amp;&amp; v.ApprovalDetail.RequestType =='Expense')}">
                 <div style="margin-bottom: 10px;">
-                <img class="img" src="/resource/ApprovalsLightning/images/warning.svg"/>
+                <img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/warning.svg"/>
                 <span > {!$Label.c.CORE_LBL_APPREJ_WARN_MSG} </span> 
                 </div>
                 <aura:set attribute="else">       

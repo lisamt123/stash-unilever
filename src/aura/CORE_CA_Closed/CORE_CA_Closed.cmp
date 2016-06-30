@@ -10,8 +10,8 @@
         left: 12rem;
         }
     </style> 
-    <ltng:require styles="/resource/ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
- 
+    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
+    
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
     <aura:attribute name="ApprovalDataCount" type="boolean" />
     <aura:attribute name="showMoreCount" type="boolean" default="true"/>
@@ -32,9 +32,9 @@
     <aura:attribute name="AribaFilter" type="String"/>
     <aura:attribute name="ClearFilter" type="String"/>
     <aura:attribute name="filterValue" type="String"/>
-   
+    
     <aura:attribute name="isFeedBackPopup" type="boolean" default="false"/>
-     <!--<aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>-->
+    <!--<aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>-->
     <style>      
         .homePageHeader{
         background:#4F6A92;
@@ -55,17 +55,39 @@
         margin-left: 40%;
         }
         .uiSpinner.spinner {
-            margin-top: 68px;
-            margin-bottom: -74px;
-		}
+        margin-top: 68px;
+        margin-bottom: -74px;
+        }
         .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
         left: 12.6rem !important;
         } 
+        .slds-text-body--regular{
+        font-size:13px;
+        }
+        .slds-text-body--small{
+        font-size:12px;
+        }
+        .slds-text-heading--large{
+        font-size:28px;
+        }
+        .slds-text-heading--medium{
+        font-size:20px;
+        }
+        .slds-text-heading--small{
+        font-size:16px;
+        }
+        .slds-text-heading--label{
+        font-size:12px;
+        }
+        .slds-text-heading--label-normal{
+        font-size:12px;
+        }
+        
     </style>
     <div class="homePageHeader">
         <div class="defaultLeftSpace">
             <br/>
-            <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+            <img src="/resource/CORE_CA_ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
             
             <div class="homePageHeaderText">{!$Label.c.CORE_LBL_MY_APPROVALS}</div>
             
@@ -129,9 +151,9 @@
             </div>
         </aura:if>
         
-      <!--  <div class="spin" > </div>-->
-           <aura:if isTrue="{!v.showspinnerclosed}">
-               <center>
+        <!--  <div class="spin" > </div>-->
+        <aura:if isTrue="{!v.showspinnerclosed}">
+            <center>
                 <div class="slds-spinner_container">
                     <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
                         <div class="slds-spinner__dot-a"></div>
@@ -139,7 +161,7 @@
                     </div>
                 </div>
             </center>
-           </aura:if>
+        </aura:if>
         
         <div class = "padding-pending">
             <aura:if isTrue="{!v.ApprovalDataCount}"> 
@@ -154,13 +176,13 @@
             </aura:if>
             <span class="message">
                 <aura:if isTrue="{!v.ApprovalDataCount == 'false'}">
-                        {!$Label.c.CORE_MSG_NO_CLOSED_REQUEST_APPROVAL}
+                    {!$Label.c.CORE_MSG_NO_CLOSED_REQUEST_APPROVAL}
                 </aura:if>
-        	</span>
+            </span>
         </div>
         
     </div>
-     <!-- FeedBack popup -->
+    <!-- FeedBack popup -->
     <aura:if isTrue="{!v.isFeedBackPopup}">          
         <div class="slds-backdrop slds-backdrop--open">
             <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" ></c:Feedback>

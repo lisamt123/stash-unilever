@@ -6,7 +6,7 @@
 -->
 <aura:component implements="force:appHostable" controller="Core_CA_ApprovalsController">
  
-    <ltng:require styles="/resource/ApprovalsLightning,/resource/ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/>
+    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/CORE_CA_ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/>
  
     <aura:handler event="c:CORE_CA_HomeEvent" action="{!c.getClosed}" /> 
     <aura:handler event="c:CORE_CA_DetailsEvent" action="{!c.getDetail}" />

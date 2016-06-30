@@ -57,6 +57,8 @@ public class Core_CA_InterestedParty_Handler{
                 approverRec.RecordTypeId = invoiceRecordType[0].Id;
                 if(approverRec.Action__c== strActvTemp && approverRec.Status__c=='Return to AP')
                         approverRec.Status__c='';
+                if(approverRec.Action__c== strActvTemp)
+                        approverRec.Comments__c='';  
             }   
             
             //Updating Name field with Role.            
@@ -437,7 +439,7 @@ public class Core_CA_InterestedParty_Handler{
                     ||
                     (approverRec.Source_System__c==strInvoiceTemp && approverRec.Role__c==strAppTemp&& !bolMultipleRecInvoice &&
                     ((newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c == strApprTemp||approverRec.Action__c == strRejcTemp)) ||
-                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp ||approverRec.Status__c==strRejectedTemp))))
+                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp ||approverRec.Status__c=='Return to AP'))))
                     ){
                        lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE SubscriberId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
                     } 
@@ -656,7 +658,9 @@ public class Core_CA_InterestedParty_Handler{
         Set<Id> approverInterestedparty = new Set<Id>();
         List<Core_Approval_Header__Share> lstApexSharingDelete=new List<Core_Approval_Header__Share>();
         String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
-         
+         List<EntitySubscription> lstEntitySubDelete=new List<EntitySubscription>();
+       
+        
         for(Core_Approver_Details__c id : approverList){
             approverHeaderids.add(id.Approval_Header__c); 
             approverInterestedparty.add(id.Interested_Party__c);    
@@ -674,6 +678,16 @@ public class Core_CA_InterestedParty_Handler{
         
         Map<Id,User> mapUser = new Map<Id,User>([Select Name FROM User WHERE IsActive= true and Id IN : approverInterestedparty]);
         
+        /** unfollow Map**/
+        Map<Id,List<EntitySubscription>> mapSubscription = new Map<Id,List<EntitySubscription>>();
+        List<EntitySubscription> headerEntitySubObjUnfollow = [SELECT ParentId,SubscriberId FROM EntitySubscription WHERE ParentId IN : approverHeaderids ];
+        for(EntitySubscription subscription : headerEntitySubObjUnfollow){
+        if(!mapSubscription.containsKey(subscription.ParentId))
+            mapSubscription.put(subscription.ParentId,new List<EntitySubscription>());            
+            mapSubscription.get(subscription.ParentId).add(subscription);
+        }
+        /** unfollow Map**/
+        
         for(Core_Approver_Details__c approverRec : approverList){
             
             //****Delete access to record Start
@@ -686,15 +700,29 @@ public class Core_CA_InterestedParty_Handler{
                     }
                 }
                 List<Core_Approval_Header__Share> lstApexSharingQuery=new List<Core_Approval_Header__Share>();
-                /* Start of Apex Header record Entity Subscription code */
-                if(approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_By__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_For__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Manager__c && ((approverRec.Source_System__c==strGtesTemp )  || (approverRec.Source_System__c==strAribaTemp && !bolMultipleRec)) )  {
+                /* Start of Apex sharing code */
+                if(approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_By__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_For__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Manager__c && ((approverRec.Source_System__c==strGtesTemp ) || (approverRec.Source_System__c==strInvoiceTemp) || (approverRec.Source_System__c==strClarityTemp) || (approverRec.Source_System__c==strAribaTemp && !bolMultipleRec)) )  {
                     lstApexSharingQuery=[SELECT Id,ParentId,UserOrGroupId FROM Core_Approval_Header__Share WHERE UserOrGroupId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
                 }
                 if(!lstApexSharingQuery.isempty()) lstApexSharingDelete.add(lstApexSharingQuery[0]);
-            //}           
+                
+                /*Entity subscription follow record  */
+                if((approverRec.Source_System__c == strInvoiceTemp || approverRec.Source_System__c == strClarityTemp )  &&  mapSubscription.containsKey(approverRec.Approval_Header__c)){
+                    if(mapSubscription.get(approverRec.Approval_Header__c) != null){
+                       for(EntitySubscription appRec : mapSubscription.get(approverRec.Approval_Header__c)){
+                            if(appRec.SubscriberId == approverRec.Interested_Party__c)
+                                lstEntitySubDelete.add(appRec);
+                        }
+                    }   
+                }
+                       
+
         }
         //insert the list of feed item record.
         if(!lstFeedItem.isempty()) Database.insert(lstFeedItem);
+        
+        //delete entity subscription record
+        if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         
         //delete access to record
         if(!lstApexSharingDelete.isempty()) Database.delete(lstApexSharingDelete);

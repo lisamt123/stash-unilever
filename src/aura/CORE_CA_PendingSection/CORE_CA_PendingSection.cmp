@@ -5,8 +5,8 @@
   Requirement/Description: Closed tab of the Approval APP.
 -->
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller">
-   <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
-   <aura:attribute name="isFeedBackPopup" type="boolean" />
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+    <aura:attribute name="isFeedBackPopup" type="boolean" />
     <style>
         .hiddenClass{
         color: red;
@@ -48,7 +48,28 @@
         .cCORE_CA_PendingSection .expenseName {
         width: 60%;
         }
+        .slds-text-body--regular{
+        font-size:13px;
         }
+        .slds-text-body--small{
+        font-size:12px;
+        }
+        .slds-text-heading--large{
+        font-size:28px;
+        }
+        .slds-text-heading--medium{
+        font-size:20px;
+        }
+        .slds-text-heading--small{
+        font-size:16px;
+        }
+        .slds-text-heading--label{
+        font-size:12px;
+        }
+        .slds-text-heading--label-normal{
+        font-size:12px;
+        }
+        
     </style> 
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
     <aura:attribute name="retainfilterValue" type="string"/>
@@ -102,8 +123,8 @@
                         <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
                                 <div type="button" class="queryWithVendorIndicatorText queryWithVendorTextWidth right-class">
-                                   <!-- {!$Label.c.CORE_LBL_QUERY_WITH_VENDOR} -->
-                                        {!$Label.c.CORE_LBL_QUERY_UPPER}
+                                    <!-- {!$Label.c.CORE_LBL_QUERY_WITH_VENDOR} -->
+                                    {!$Label.c.CORE_LBL_QUERY_UPPER}
                                 </div>
                             </aura:if>
                         </aura:if>

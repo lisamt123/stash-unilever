@@ -10,6 +10,28 @@
         color: red;
         display: none;
         }
+        .slds-text-body--regular{
+        font-size:13px;
+        }
+        .slds-text-body--small{
+        font-size:12px;
+        }
+        .slds-text-heading--large{
+        font-size:28px;
+        }
+        .slds-text-heading--medium{
+        font-size:20px;
+        }
+        .slds-text-heading--small{
+        font-size:16px;
+        }
+        .slds-text-heading--label{
+        font-size:12px;
+        }
+        .slds-text-heading--label-normal{
+        font-size:12px;
+        }
+        
     </style>    
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
     <aura:attribute name="retainfilterValue" type="string"/>

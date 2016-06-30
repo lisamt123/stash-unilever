@@ -19,6 +19,7 @@
 .THIS .name{
     color:#0070D2;
     width: 100%;
+    font-size: 14px;
 }
 .THIS .names{
     float: right;
@@ -29,7 +30,7 @@
     height: 19px;
     
     font-weight: Normal;
-    font-size: 18 px;
+    font-size: 18px;
     background: #4AB471;
     color: #FFFFFF;
     
