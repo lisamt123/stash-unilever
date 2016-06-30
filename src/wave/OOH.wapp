@@ -7,4 +7,9 @@
         <sharedTo>nikhil.pradhan@accenture.com.prod</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>stephane.de-bernouis@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
 </WaveApplication>
