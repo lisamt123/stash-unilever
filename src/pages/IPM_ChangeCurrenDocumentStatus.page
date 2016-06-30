@@ -384,7 +384,7 @@
                                         <a class="ipmButton projectBKProcess primary pull-right" data-toggle="modal" data-target="#initiateProjectBKPanel" data-backdrop="static" data-keyboard="false">Change</a>
                                     </apex:outputPanel>
                                      <!-- Below rendered condition is used to provide button for changing status -->
-                                    <apex:outputPanel id="normalSave" rendered="{!AND(Status!='Approved',Status!='Postponed')}" >
+                                    <apex:outputPanel styleClass="changeChkBtn" id="normalSave" rendered="{!AND(Status!='Approved',Status!='Postponed')}" >
                                         <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onclick="skipValidation();" onComplete="goToParentPage();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>
                                     </apex:outputPanel>
                                 </div>
