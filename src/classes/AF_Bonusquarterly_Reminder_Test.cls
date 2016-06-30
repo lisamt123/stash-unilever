@@ -28,11 +28,11 @@ public class AF_Bonusquarterly_Reminder_Test
             // insert custom setting.
             List<AF_BonusQuarterly_Quarterdates__c> BonusQuarterlyList = AF_TestFactory_Helper.insertBonusQuarterlyQuarterdate(1,true);
             List<AF_BonusQuarterly_Quarterdates__c> BonusQuarterlyQuery = [SELECT Id From AF_BonusQuarterly_Quarterdates__c limit 1];
-            System.assert(BonusQuarterlyQuery[0].Id!=null,BONUSQUARTER_DATES);
+            System.assertEquals(BonusQuarterlyQuery[0].Id!=null,BonusQuarterlyList!=null,BONUSQUARTER_DATES);
             //insert send Email.
             List<Send_Email__c> sendEmail = AF_TestFactory_Helper.insertSendEmail(1,true);
             List<Send_Email__c> sendEmailQuery = [SELECT Id From Send_Email__c Limit 1];
-            System.assert(sendEmailQuery[0].Id!=null,SEND_EMAIL);
+            System.assertEquals(sendEmailQuery[0].Id!=null,sendEmail!=null,SEND_EMAIL);
             AF_BonusQuarterly_Reminder_schedule  BonusQuarterly =new AF_BonusQuarterly_Reminder_schedule();
             String CRON_VALUE = '0 0 3 ? * *';
             system.schedule('AF_Bonusquarterly_Reminder-yearly (TEST)', CRON_VALUE, BonusQuarterly);

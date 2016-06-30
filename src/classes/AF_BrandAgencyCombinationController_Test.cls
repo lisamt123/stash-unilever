@@ -73,6 +73,8 @@ public class AF_BrandAgencyCombinationController_Test
             brandAg.closePopup();
             ApexPages.currentPage().getParameters().put(year,currYear1);  
             AF_BrandAgencyCombinationController brandAg1=new AF_BrandAgencyCombinationController();
+            brandAg1.getBrands();
+            brandAg1.Save();
             Test.stopTest(); 
         }
     }
@@ -129,6 +131,7 @@ public class AF_BrandAgencyCombinationController_Test
             brandAg.closePopup();
             ApexPages.currentPage().getParameters().put(year,currYear1);  
             AF_BrandAgencyCombinationController brandAg1=new AF_BrandAgencyCombinationController();
+            brandAg1.getAgencies();
             Test.stopTest(); 
         }
     }
@@ -183,6 +186,7 @@ public class AF_BrandAgencyCombinationController_Test
             brandAg.closePopup();
             ApexPages.currentPage().getParameters().put(year,currYear1);  
             AF_BrandAgencyCombinationController brandAg1=new AF_BrandAgencyCombinationController();
+            brandAg1.getBrands();
             Test.stopTest(); 
         }
     }

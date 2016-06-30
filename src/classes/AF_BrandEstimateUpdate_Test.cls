@@ -27,10 +27,10 @@ public class AF_BrandEstimateUpdate_Test
         //insert custom setting.
         List<AF_AgencyDate__c> agencydateLst = AF_TestFactory_Helper.insertAgencyDate(1,true);
         List<AF_AgencyDate__c> agencydateLstQuery = [SELECT ID FROM AF_AgencyDate__c LIMIT 1];
-        system.assert(agencydateLstQuery[0].Id!=null,AGNECY_DATE );
+        system.assertEquals(agencydateLstQuery[0].Id!=null,agencydateLst!=null,AGNECY_DATE );
         //Insert Account
             List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-            List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+            List<Account> acctQuery = [SELECT id FROM account Where id IN:acc LIMIT 1 ];
             System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert category
             List<AF_Category_Brand__c> cb = AF_TestFactory_Helper.insertAFCBList(1,true);
