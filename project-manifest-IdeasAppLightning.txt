@@ -161,7 +161,7 @@ src/staticresources/Lightning_designing_style.resource-meta.xml
 src/staticresources/CORE_IC_IdeasLigthtning.resource
 src/staticresources/CORE_IC_IdeasLigthtning.resource-meta.xml
 src/labels
-src/labels/IdeasAppLightning.label
+src/labels/IdeasAppLightning.labels
 src/objects
 src/objects/CORE_FB_Feedback__c.object
 src/objects/Core_Ideation__c.object
