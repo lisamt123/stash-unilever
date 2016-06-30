@@ -574,7 +574,7 @@
         <fullName>RQS_Charter_Answered_3__c</fullName>
         <externalId>false</externalId>
         <formula>IF(IPM_Project__r.RQS_Charter_Answered_3__c &gt; 0,&apos;Yes&apos;,
-  IF(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Charter_Answered__c &gt;0 ), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
+IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Charter_Answered__c &gt;0 ), IPM_Project__r.CharterRiskIdentified__c), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Charter Answered &gt; 3</label>
         <required>false</required>
@@ -585,7 +585,7 @@
     <fields>
         <fullName>RQS_Charter_Answered__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(IPM_Project__r.RQS_Charter_Answered__c &gt; 0,&apos;Yes&apos;,&apos;No&apos;)</formula>
+        <formula>IF(OR(IPM_Project__r.RQS_Charter_Answered__c &gt; 0, IPM_Project__r.CharterRiskIdentified__c), &apos;Yes&apos;, &apos;No&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Charter Answered</label>
         <required>false</required>
@@ -597,7 +597,7 @@
         <fullName>RQS_Contract_Answered_3__c</fullName>
         <externalId>false</externalId>
         <formula>IF(IPM_Project__r.RQS_Contract_Answered_3__c &gt; 0,&apos;Yes&apos;,
-  IF(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0 ), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
+  IF(OR(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0), IPM_Project__r.ContractRiskIdentified__c ), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Contract Answered &gt; 3</label>
         <required>false</required>
@@ -608,7 +608,7 @@
     <fields>
         <fullName>RQS_Contract_Answered__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(IPM_Project__r.RQS_Contract_Answered__c&gt;0,&apos;Yes&apos;,&apos;No&apos;)</formula>
+        <formula>IF(OR(IPM_Project__r.RQS_Contract_Answered__c&gt;0, IPM_Project__r.ContractRiskIdentified__c), &apos;Yes&apos;,&apos;No&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Contract Answered</label>
         <required>false</required>

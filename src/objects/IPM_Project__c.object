@@ -500,6 +500,26 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>CharterRiskIdentified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CharterRiskIdentified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContractRiskIdentified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ContractRiskIdentified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Created_in_error__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To check if any error occurs.</description>
