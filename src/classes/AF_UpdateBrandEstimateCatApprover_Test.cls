@@ -20,6 +20,22 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 	static user userForupdateoopsEstcatApprover4;
 	static user userForupdateoopsEstcatApprover5;
 	static user userForupdateoopsEstcatApprover6;
+	static  List<contact> con;
+    static  List<contact> con1;
+    static  List<contact> con2;
+    static  List<contact> con3;
+    static  List<contact> con4;
+    static  List<contact> con5;
+    static  List<contact> con6;
+    static  List<contact> con7;
+    static  List<contact> con8;
+    static  List<contact> con9;
+    static User u1;
+    static User u2;
+    static User u3;
+    static User u4;
+    static User u5;
+    static User u6;
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : UpdOopsEstiCatApproverValues
@@ -38,11 +54,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery= [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//insert contact.
-			List<contact> con =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con1 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con1 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
+			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//Insert category
 			List<AF_Category_Brand__c> cb = AF_TestFactory_Helper.insertAFCBList(1,true);
 			List<AF_Category_Brand__c> categoryQuery = [SELECT id FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_CATEGORY_RECTYPE and Id IN:cb LIMIT 1];
@@ -74,7 +92,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null,Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandlist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(brandlist);
 			Test.stopTest();
@@ -92,9 +110,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		System.runAs(u2)
 		{
 			//Insert Account
@@ -102,12 +120,12 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
-			List<contact> con =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con1 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con5 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			 con =AF_TestFactory_Helper.AFInsertContact(1,true);
+			 con1 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			 con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			 con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			 con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			 con5 =AF_TestFactory_Helper.AFInsertContact(1,true);
 			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
 			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//Insert category
@@ -144,7 +162,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null, Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(Brandestiamtelist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(Brandestiamtelist);
 			Test.stopTest();
@@ -161,7 +179,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		System.runAs(u)
 		{
 			//Insert Account
@@ -169,13 +187,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
-			List<contact> con  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
-			List<contact> con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact> con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con5 =AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con6 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
+			con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con5 =AF_TestFactory_Helper.AFInsertContact(1,true);
+			con6 =AF_TestFactory_Helper.AFInsertContact(1,true);
 			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
 			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//Insert category
@@ -208,7 +226,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null, Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(Brandestiamtelist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(Brandestiamtelist);
 		}
@@ -225,11 +243,11 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
-		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		System.runAs(u)
 		{
 			//Insert Account
@@ -237,14 +255,14 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
-			List<contact> con  = AF_TestFactory_Helper.AFInsertContact(1,true); 
-			List<contact> con1  = AF_TestFactory_Helper.AFInsertContact(1,true);  
-			List<contact> con2  = AF_TestFactory_Helper.AFInsertContact(1,true);  
-			List<contact> con3  = AF_TestFactory_Helper.AFInsertContact(1,true);  
-			List<contact> con4  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con5  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con6  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con7  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con  = AF_TestFactory_Helper.AFInsertContact(1,true); 
+			con1  = AF_TestFactory_Helper.AFInsertContact(1,true);  
+			con2  = AF_TestFactory_Helper.AFInsertContact(1,true);  
+			con3  = AF_TestFactory_Helper.AFInsertContact(1,true);  
+			con4  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con5  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con6  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con7  = AF_TestFactory_Helper.AFInsertContact(1,true);
 			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
 			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);           
 			//Insert category
@@ -277,7 +295,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null,Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(Brandestiamtelist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(Brandestiamtelist);
 		}
@@ -293,13 +311,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
-		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		userForupdateoopsEstcatApprover4=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
-		User u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
+		u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
 		system.runAs(u)
 		{
 			//Insert Account
@@ -307,15 +325,15 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
-			List<contact> con  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
-			List<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con4 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con5 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con6 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con7 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con8 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
+			con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con4 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con5 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con6 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con7 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con8 = AF_TestFactory_Helper.AFInsertContact2(1,true);
 			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
 			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//Insert category
@@ -346,12 +364,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> bran1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> bran2= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
-			System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandEstQuery[0].id!=null, bran!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(bran1!=null, bran2!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			//insert OOPs Actual.
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null,Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(Brandestiamtelist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(Brandestiamtelist);
 			Test.stopTest();
@@ -368,15 +387,15 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
-		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		userForupdateoopsEstcatApprover4=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
-		User u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
+		u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
 		userForupdateoopsEstcatApprover5=AF_TestFactory_Helper.createUserAdmin3(true);
-		User u5=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover5.id LIMIT 1];
+		u5=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover5.id LIMIT 1];
 		system.runAs(u)
 		{
 			//Insert Account 
@@ -384,16 +403,16 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
-			List<contact> con  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
-			List<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con4 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con5 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con6 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con7 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con8 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con9 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
+			con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con4 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con5 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con6 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con7 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con8 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con9 = AF_TestFactory_Helper.AFInsertContact2(1,true);
 			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
 			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//Insert category
@@ -424,12 +443,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> bran1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> bran2= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
-			System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandEstQuery[0].id!=null, bran!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(bran1!=null, bran2!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			//insert OOPs Actual.
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null, Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(Brandestiamtelist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(Brandestiamtelist);
 			Test.stopTest();
@@ -446,17 +466,17 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
-		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		userForupdateoopsEstcatApprover4=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
-		User u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
+		u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
 		userForupdateoopsEstcatApprover5=AF_TestFactory_Helper.createUserAdmin3(true);
-		User u5=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover5.id LIMIT 1];
+		u5=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover5.id LIMIT 1];
 		userForupdateoopsEstcatApprover6=AF_TestFactory_Helper.createAgency(true);
-		User u6=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover6.id LIMIT 1];
+		u6=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover6.id LIMIT 1];
 		system.runAs(u)
 		{
 			//Insert Account 
@@ -464,10 +484,10 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
-			List<contact> con  = AF_TestFactory_Helper.AFInsertContact(1,true);
-			List<contact> con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
-			List<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-			List<contact>con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
+			con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
+			con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+			con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
 			List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
 			System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//Insert category
@@ -498,12 +518,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			List<AF_Brand_Estimate__c> bran1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> bran2= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
-			System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandEstQuery[0].id!=null,bran!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(bran1!=null, bran2!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			//insert OOPs Actual.
 			List<AF_Brand_Estimate__c> Brandestiamtelist= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> Brandestiamtelist1= AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandestiamtelistQuery = [SELECT ID,AF_Agency__c FROM AF_Brand_Estimate__c WHERE ID IN : Brandestiamtelist LIMIT 1];
-			System.assertEquals(BrandestiamtelistQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+			System.assertEquals(BrandestiamtelistQuery[0].id!=null, Brandestiamtelist1!=null,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(Brandestiamtelist);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagencyBulk(Brandestiamtelist);
 			Test.stopTest();
