@@ -1,3 +1,4 @@
 src
-src/staticresources
+src/staticresource
 src/staticresources/winatposapp.resource
+src/staticresources/winatposapp
