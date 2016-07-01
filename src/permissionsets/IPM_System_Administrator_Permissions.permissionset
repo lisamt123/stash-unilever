@@ -8282,7 +8282,7 @@
         <readable>false</readable>
     </fieldPermissions>
     
-    <label>IPMNG Basic</label>
+    <label>IPM_System_Administrator_Permissions</label>
 
     <objectPermissions>
         <allowCreate>true</allowCreate>
