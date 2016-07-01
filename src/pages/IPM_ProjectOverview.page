@@ -238,7 +238,7 @@
                                 <apex:outputPanel layout="block" rendered="{!displayGateDocument}"> 
 									<div class="col-sm-12 pr0">
 										<div class="keycontent">
-											{!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
+											{!$Label.IPM_Current_Gate_Document_Status} 
 										</div>
 									</div>
 								</apex:outputPanel>
