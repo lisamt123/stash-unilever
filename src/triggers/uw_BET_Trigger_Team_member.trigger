@@ -10,7 +10,7 @@
 
 trigger uw_BET_Trigger_Team_member on uw_BET_Team_Member__c (after delete, after insert, after undelete,
 after update, before delete, before insert, before update ) {
-
+// test commit
   if(((Trigger.isInsert && Trigger.isafter) || 
       (Trigger.isdelete && Trigger.isafter) || 
       (Trigger.isupdate && Trigger.isafter)|| 
