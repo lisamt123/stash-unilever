@@ -15,10 +15,10 @@ VERSION    AUTHOR            DATE            DETAIL
 ***********************************************************************/
 
 @isTest(SeeAllData = False)
-public class CEC_LiveAgentControllerTest{
+public class CEC_LiveAgentControllerSpanishTest{
 
     @testSetup static void setUpTestData() {
-         CEC_TestDataFactory.createStandardCECTestUser();
+        User u = CEC_TestDataFactory.createStandardCECTestUser();
      } 
     
 /**
@@ -28,7 +28,7 @@ Positive test for fetchRecords method
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         System.runAs(u) {
                         
-            CEC_LiveAgentController ControllerObj = new CEC_LiveAgentController();                    
+            CEC_LiveAgentControllerSpanish ControllerObj = new CEC_LiveAgentControllerSpanish();                    
             ControllerObj.chatKey = 'TestKey';
             ControllerObj.surveyId = 'ThisIsUnitTestMethodRunning';
             
@@ -49,7 +49,7 @@ Negetive test for  fetchRecords method
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         System.runAs(u) {
                         
-            CEC_LiveAgentController ControllerObj = new CEC_LiveAgentController();                    
+            CEC_LiveAgentControllerSpanish ControllerObj = new CEC_LiveAgentControllerSpanish();                    
             ControllerObj.chatKey = 'TestKey';
             ControllerObj.surveyId = '';
             

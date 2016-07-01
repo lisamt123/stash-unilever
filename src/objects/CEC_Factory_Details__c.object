@@ -82,7 +82,7 @@
         <description>Multiple emails can be entered with comma separated values</description>
         <externalId>false</externalId>
         <label>Email</label>
-        <length>100</length>
+        <length>255</length>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
