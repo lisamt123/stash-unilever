@@ -3509,11 +3509,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_General_Queue_Case</fullName>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>notEqual</operation>
+            <value>noreplysg@unilever.com,noreplycom@unilever.com</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>notEqual</operation>
+            <value>noreplyfi@unilever.com,noreplyme@unilever.com,noreplyph@unilever.com</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>notEqual</operation>
+            <value>noreplydn@unilever.com,noreplydk@unilever.com,noreplyewa@unilever.com</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>notEqual</operation>
+            <value>noreplyau@unilever.com,noreplybr@unilever.com,noreplyca@unilever.com</value>
         </filters>
         <label>CEC UKI Queue</label>
         <language>en_US</language>
@@ -5848,6 +5869,24 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Tier_2_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Tier 2 Queue</label>
+        <queue>CEC_North_America_Tier_2_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Tier_3_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Tier 3 Queue</label>
+        <queue>CEC_North_America_Tier_3_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_North_America_Unilever_General</fullName>
         <booleanFilter>1 and 5 and 4 and (2 or 3)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -6409,6 +6448,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_UKI_Dotcom_E_Mails</fullName>
+        <booleanFilter>1 AND (2 OR 4 OR 5 OR 6) AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -6426,12 +6466,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.EMAIL</field>
             <operation>equals</operation>
-            <value>noreplycom@unilever.com</value>
+            <value>noreplyau@unilever.com,noreplybr@unilever.com,noreplyca@unilever.com</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>equals</operation>
+            <value>noreplydn@unilever.com,noreplydk@unilever.com,noreplyewa@unilever.com</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>equals</operation>
+            <value>noreplyfi@unilever.com,noreplyme@unilever.com,noreplyph@unilever.com</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>equals</operation>
+            <value>noreplysg@unilever.com,noreplycom@unilever.com</value>
         </filters>
         <label>CEC UKI Dotcom E-Mails</label>
         <language>en_US</language>
@@ -7290,7 +7345,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3) AND 1</booleanFilter>
+        <booleanFilter>(3 OR 2) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7307,12 +7362,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>anbludau</value>
+            <value>bfric</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>InVenzke</value>
+            <value>TaHyseni</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
