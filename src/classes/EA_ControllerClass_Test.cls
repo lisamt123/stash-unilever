@@ -21,7 +21,7 @@ public class EA_ControllerClass_Test{
                                   timezonesidkey='Europe/Berlin'
                                  );
         insert localUser;
-        List<user> users=[select id,name from user where profileid =:adminProfileID];
+        // List<user> users=[select id,name from user where profileid =:adminProfileID]; // June 16 - SONAR Fix
         System.runAs(localUser){
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
@@ -110,7 +110,6 @@ public class EA_ControllerClass_Test{
             report.Text_value__c='dummyvalue2';
             insert report;
          
-            
             FeedItem chatterPost1 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment1', CreatedById = localUser.id);     
             insert chatterPost1;            
             FeedItem chatterPost2 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment2', CreatedById = localUser.id);     
@@ -119,20 +118,28 @@ public class EA_ControllerClass_Test{
             insert chatterPost3;
             
             Test.startTest();
-            EA_ControllerClass Eacontroller=new EA_ControllerClass();
+            // EA_ControllerClass Eacontroller=new EA_ControllerClass(); // June 16 - SONAR Fix
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
           
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp1=EA_ControllerClass.getActivitiesonfilter('Building Inclusion');
-         
+            System.assert(temp1 != null);
+            
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
+            System.assert(temp2 != null);
+   
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
+            System.assert(temp4 != null);
+            
             EA_ControllerClass.getbooleanvalue();
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');         
+            System.assert(temp6 != null);
+            
             try{
                 EA_ControllerClass.getUserDetail(); 
                  List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities(); 
-                      
+                 System.assert(temp7 != null);
+                
             }catch(exception e){
                 System.debug('Exception caught: ' + e.getMessage());}
                 
@@ -143,9 +150,14 @@ public class EA_ControllerClass_Test{
             EA_ControllerClass.getbooleanvalue();                                          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
+            System.assert(temp211 != null);
+            
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
+            System.assert(s1 != null);
+           
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
+            System.assert(test2 != null);
             
             string dateStr = '2015-12-05';
             string resultStr = EA_ControllerClass.getProperDate(dateStr);
@@ -153,19 +165,26 @@ public class EA_ControllerClass_Test{
             
             //["005c00000024XSZAA2","005E0000006cowkIAA"]
             
-            string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';            
+            string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';
             
+            system.debug('jsonStr=========>'+jsonStr);
             string result1 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Today');
+            System.assert(result1 != null);
             string result2 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Tomorrow');
+            System.assert(result2 != null);
             string result3 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Next Week');
+            System.assert(result3 != null);
             string result4 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Two Weeks');
+            System.assert(result4 != null);
             string result5 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'One Month');
+            System.assert(result5 != null);
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> lst = EA_ControllerClass.getcommentDetail(event.id);
-            
+            System.assert(lst != null);
             List<RecordType> testRecordType = [SELECT Name,Id,IsActive,SobjectType FROM RecordType WHERE SobjectType = 'Everyday_Activity__c']; 
             if((testRecordType.size()> 0) || (testRecordType!=null) ){
             string testThemeName = testRecordType.get(0).Name;
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp8 = EA_ControllerClass.getActivitiesonfilter(testThemeName);
+            System.assert(temp8 != null);
             }
             
             string testActivityid = null;
@@ -173,17 +192,17 @@ public class EA_ControllerClass_Test{
             System.assertEquals(testActivityParticipantCount,0);
             
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp10=EA_ControllerClass.getuserList(event.id);
-            
+            System.assert(temp10 != null);
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp13=EA_ControllerClass.getActivityPoints(event.id);
-        
-            try{
-            string testStrgaid = EA_ControllerClass.getGAID();
-            }catch(Exception e){
-            System.debug('Exception caught: ' + e.getMessage());
-            }
-     
-            Test.stopTest();
+            System.assert(temp13 != null);
             
+            EA_ReportingGA__c reportingGAObject = new EA_ReportingGA__c(Name = 'GA_Id', Text_value__c = 'testText');
+            insert reportingGAObject;
+       
+            string testStrgaid = EA_ControllerClass.getGAID();
+            System.assertEquals(testStrgaid, 'testText');
+           
+            Test.stopTest();
         }
     }
     static testMethod void negative() {
@@ -200,7 +219,7 @@ public class EA_ControllerClass_Test{
                                   timezonesidkey='Europe/Berlin'
                                  );
         insert localUser;
-        List<user> users=[select id,name from user where profileid =:adminProfileID];
+        // List<user> users=[select id,name from user where profileid =:adminProfileID]; // June 16 - SONAR Fix
         System.runAs(localUser){
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
@@ -230,7 +249,6 @@ public class EA_ControllerClass_Test{
             post.Body = 'test.Body2';
             insert post;
             
-            
             aa_agent_app_custom_setting__c app=new aa_agent_app_custom_setting__c();
             app.Name='agent';
             app.Key__c='key';
@@ -253,42 +271,60 @@ public class EA_ControllerClass_Test{
             re.Name='testreport1';
             re.Text_value__c =' EA_System_User_ID';
             insert re;
-             EA_ReportingGA__c re1=new EA_ReportingGA__c();
+            EA_ReportingGA__c re1=new EA_ReportingGA__c();
             re1.Name='testreport2';
             re1.Text_value__c ='GA_Id';
             insert re1;
             Test.startTest();
             
-            EA_ControllerClass Eacontroller=new EA_ControllerClass();
+            // EA_ControllerClass Eacontroller=new EA_ControllerClass(); // June 16 - SONAR Fix
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp1=EA_ControllerClass.getActivitiesonfilter('Building Inclusion');
+            System.assert(temp1 != null);
+            
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
+            System.assert(temp2 != null);
+      
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
+            System.assert(temp4 != null);
+            
             EA_ControllerClass.getbooleanvalue();
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
+            System.assert(temp6 != null);
+            
+            EA_ReportingGA__c reportingGAObject = new EA_ReportingGA__c(Name = 'GA_Id', Text_value__c = 'testText');
+            insert reportingGAObject;
+  
             try{
                 EA_ControllerClass.getUserDetail();
-                   string test1=EA_ControllerClass.getGAID(); 
-                   
-                   // List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);  
+                string test1=EA_ControllerClass.getGAID(); 
+                System.assertEquals(test1, 'testText'); 
+                // List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);  
             }catch(exception e){
                 System.debug('Exception caught: ' + e.getMessage());}
               
             EA_ControllerClass.insertfeeditem(event.id,'comment2');
             EA_ControllerClass.getbooleanvalue();                                 
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);          
+            System.assert(temp12 != null);            
             EA_ControllerClass.getToDoTimeline();
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities();    
+            System.assert(temp7 != null);
+            
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
+            System.assert(temp211 != null);
+            
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
+            System.assert(s1 != null);
+            
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
+            System.assert(test2 != null);
             
             string dateStr = '2015-12-05';
             string resultStr = EA_ControllerClass.getProperDate(dateStr);
             System.assertEquals(resultStr, '05-Dec-2015');
-            
             }
             
             Test.stopTest();

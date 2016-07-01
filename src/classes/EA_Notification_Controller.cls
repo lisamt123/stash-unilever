@@ -122,8 +122,8 @@ public with sharing class EA_Notification_Controller {
     /* Submit Invitation Response */ 
     @AuraEnabled
     public static void updateParticipantResponse(string activityId, string participantId, string responseText){ 
-        String actvityName = '';
-        String activityDesc = '';
+        //String actvityName = '';
+        //String activityDesc = '';
         Decimal points = 0; 
         List<Everyday_Activity__c> acts=new List<Everyday_Activity__c>();
         
@@ -133,8 +133,8 @@ public with sharing class EA_Notification_Controller {
                where id=:activityId];
         
         for(Everyday_Activity__c act : acts){
-            actvityName = act.Name;
-            activityDesc = act.Description__c;
+            //actvityName = act.Name;
+            //activityDesc = act.Description__c;
             points = act.Activity_Points__c;
         } 
                      

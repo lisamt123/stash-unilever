@@ -8,7 +8,7 @@ Requirement/Description: Test Class For EA_Wrapper_Class
 @IsTest
 public class EA_Wrapper_Class_Test{
   static testMethod void postive() {
-  EA_Wrapper_Class wrapper=new EA_Wrapper_Class();
+  // EA_Wrapper_Class wrapper=new EA_Wrapper_Class(); // June 16 - SONAR Fix
   EA_Wrapper_Class.EA_FeaturedContent_Wrapper temp1=new  EA_Wrapper_Class.EA_FeaturedContent_Wrapper();
   temp1.userName='mindtree';
   temp1.uerPhotoUrl='https://unilever--chazwa.cs14.my.salesforce.com/_ui/core/userprofile/UserProfilePage?u=005c0000002N2U3&tab=sfdc.ProfilePlatformFeed';

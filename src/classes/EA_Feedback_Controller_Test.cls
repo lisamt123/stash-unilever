@@ -21,7 +21,7 @@ public class EA_Feedback_Controller_Test{
                                   timezonesidkey='Europe/Berlin'
                                  );
         insert localUser;
-        List<user> users=[select id,name from user where profileid =:adminProfileID];
+        // List<user> users=[select id,name from user where profileid =:adminProfileID]; // June 16 - SONAR Fix
         System.runAs(localUser){
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
@@ -53,12 +53,15 @@ public class EA_Feedback_Controller_Test{
             System.assertEquals('test.comments', team.Feedback_Comments__c);
               Test.startTest();
            
-            EA_Feedback_Controller feed=new EA_Feedback_Controller();
+            // EA_Feedback_Controller feed=new EA_Feedback_Controller(); // June 16 - SONAR Fix
             string participantId=userinfo.getuserid();
+            System.assert(participantId != null);
             List<Everyday_Activity__c> temp1=EA_Feedback_Controller.getactivitydetail(event.id); 
+            System.assert(temp1 != null);
             EA_Feedback_Controller.updateActivityRating(event.id);
             List<Everyday_Activity__c> temp=EA_Feedback_Controller.provideRating(event.id,rating);
-             EA_Feedback_Controller.submitFeedback(event.id,'feedbackText',rating,team.id); 
+            System.assert(temp != null);
+            EA_Feedback_Controller.submitFeedback(event.id,'feedbackText',rating,team.id); 
             try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);
                
@@ -66,7 +69,7 @@ public class EA_Feedback_Controller_Test{
               System.debug('Exception caught: ' + e.getMessage());}
               
             Integer testActivityRating = EA_Feedback_Controller.getActivityRating(event.id);
-            
+            System.assertEquals(testActivityRating, 5);
             string testTeamId = null;
             EA_Feedback_Controller.submitFeedback(event.id,'testFeedbackText',rating,testTeamId);
                    
@@ -87,7 +90,7 @@ public class EA_Feedback_Controller_Test{
                                   timezonesidkey='Europe/Berlin'
                                  );
         insert localUser;
-        List<user> users=[select id,name from user where profileid =:adminProfileID];
+        // List<user> users=[select id,name from user where profileid =:adminProfileID]; // June 16 - SONAR Fix
         System.runAs(localUser){
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
@@ -115,12 +118,14 @@ public class EA_Feedback_Controller_Test{
             teamList.add(team);
             System.assertEquals('test.comments', team.Feedback_Comments__c);
               Test.startTest();
-            EA_Feedback_Controller feed=new EA_Feedback_Controller();
+            // EA_Feedback_Controller feed=new EA_Feedback_Controller(); // June 16 - SONAR Fix
             List<Everyday_Activity__c> temp1=EA_Feedback_Controller.getactivitydetail(event.id); 
+            System.assert(temp1 != null);
             EA_Feedback_Controller.updateActivityRating(event.id);
            
             List<Everyday_Activity__c>temp=EA_Feedback_Controller.provideRating(event.id,2);
-              try{
+            System.assert(temp != null); 
+            try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);
               }catch(exception e){  
               System.debug('Exception caught: ' + e.getMessage());}

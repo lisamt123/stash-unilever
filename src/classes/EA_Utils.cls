@@ -68,8 +68,8 @@ public with sharing class EA_Utils{
             
 			feedItemInput.subjectId = participantId;
 			            
-            ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
-            
+            //ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
+            ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
             
         }
     } 

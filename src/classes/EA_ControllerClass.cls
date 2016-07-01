@@ -64,7 +64,7 @@ public with sharing class EA_ControllerClass {
         
         List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> distinctmemberList=new List<EA_Wrapper_Class.EA_RecentlyCompletedUsers>();
         
-        Set<string> distinctuserSet=new Set<string>();
+        //Set<string> distinctuserSet=new Set<string>();
         
          for(Everyday_Activity__c act:lstAcivity )
          {
@@ -77,7 +77,7 @@ public with sharing class EA_ControllerClass {
            newObj.minutestoComplete=act.Minutes_to_Complete_Action__c;
            newObj.peopleRequired=act.Participants_Required__c;
            newObj.activityPoints=act.Activity_Points__c;
-           List<string> phtoUrl=new List<string>();
+           //List<string> phtoUrl=new List<string>();
            
             // set<string> strSet=new set<string>();
             // strSet=recentuserMap.get(act.id);
@@ -131,7 +131,7 @@ public with sharing class EA_ControllerClass {
         
         List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> distinctmemberList=new List<EA_Wrapper_Class.EA_RecentlyCompletedUsers>();
         
-        Set<string> distinctuserSet=new Set<string>();
+        //Set<string> distinctuserSet=new Set<string>();
         
          for(Everyday_Activity__c act:lstAcivity )
          {
@@ -145,7 +145,7 @@ public with sharing class EA_ControllerClass {
            newObj.peopleRequired=act.Participants_Required__c;
            newObj.activityPoints=act.Activity_Points__c;
            newObj.toptip=act.Top_Tip__c;
-           List<string> phtoUrl=new List<string>();
+           //List<string> phtoUrl=new List<string>();
            List<string> photoList=new List<string>(recentuserMap.get(act.id));
            newObj.userPhotoUrl1=photoList;
             
@@ -295,7 +295,7 @@ public with sharing class EA_ControllerClass {
         string status_self=EA_Constants.INVITATION_STATUS_SELF;
         //LIST<EA_Team_Member__c> team = [Select  Everyday_Activity__r.RecordTypeId,Everyday_Activity__r.Rating__c, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate From EA_Team_Member__c  Where(Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:status_accepted OR invitation_Status__c =:status_self) AND Everyday_Activity__c = :actID ];        
          LIST<EA_Team_Member__c> team = [Select  Everyday_Activity__r.RecordTypeId,Everyday_Activity__r.Rating__c, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate From EA_Team_Member__c  Where(Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:status_accepted OR invitation_Status__c =:status_self) ];        
-        Map<string ,boolean> memberMap=new Map<string,boolean>();
+        //Map<string ,boolean> memberMap=new Map<string,boolean>();
         List<Id> idList=new List<Id>();
         for(EA_Team_Member__c member:team )
         {

@@ -9,19 +9,17 @@ Requirement/Description: Test Class For EA_ConstantsClass.
 public class EA_ConstantsTestClass{
 
   static testMethod void postive() {
-      
-      EA_Constants ec = new EA_Constants();
-      string str1 = EA_Constants.BADGE_BRONZ;
-      string str2 = EA_Constants.BADGE_NEWBEE;
-      string str3 = EA_Constants.SOBJECT_NAME;
-      string str4 = EA_Constants.BADGE_SILVER;
-      string str5 = EA_Constants.BADGE_GOLD;
-      string str6 = EA_Constants.INVITATION_STATUS_ACCEPTED;
-      string str7 = EA_Constants.INVITATION_STATUS_DECLINED;
-      string str8 = EA_Constants.INVITATION_STATUS_INVITED;
-      string str9 = EA_Constants.INVITATION_STATUS_SELF;
-      
-      System.assertEquals('Self', str9);
-  }
-  
+            Everyday_Activity__c  event=new Everyday_Activity__c();
+            event.Active__c=true;
+            event.Activity_Points__c=44;
+            event.Description__c='test.Description';
+            event.Minutes_to_Complete_Action__c=4;
+            event.Participants_Required__c=5;
+            event.Rating__c=5;
+            event.Top_Tip__c='dummyvalue';
+            insert event;
+            
+            System.assertNotEquals(event,null);
+    }
+
  }

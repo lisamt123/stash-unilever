@@ -17,7 +17,7 @@ public with sharing class EA_Feedback_Controller {
     /* This method is used to submit the feedback */
     @AuraEnabled
     public static boolean submitFeedback(string activityId,  string feedbackText, integer rating,string teamId){   
-        string participantId=userinfo.getuserid();
+        //string participantId=userinfo.getuserid();
       /*  boolean strId=EA_Utils.isEmpty(activityId);
       //  boolean strText=EA_Utils.isEmpty(feedbackText);
         boolean strteamId=EA_Utils.isEmpty(teamId);*/
@@ -62,6 +62,7 @@ public with sharing class EA_Feedback_Controller {
         //if((activityId !=NUll) && (participantId !=NULL) && (rating !=null && rating>0)){            
         EA_Team_Member__c partcipantTeamMeberRec = new EA_Team_Member__c();                             
         partcipantTeamMeberRec = EA_Utils.getParticipantTeamMemberRec(activityId, participantId);                                    
+        //partcipantTeamMeberRec = EA_Utils.getParticipantTeamMemberRec(activityId, userinfo.getuserid());                                    
         partcipantTeamMeberRec.Rating_By_Participant__c = integer.valueof(rating);                   
         update partcipantTeamMeberRec;
         updateActivityRating(activityId); // Update parent Activity overall rating             
