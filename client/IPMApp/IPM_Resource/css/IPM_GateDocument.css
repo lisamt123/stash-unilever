@@ -447,3 +447,9 @@ input.misalignedField{border:2px solid red;}
 .ipmFinancetable.inverse{width:100%;max-width:100%;}
 .ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;float: none;}
 .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+.ipmAccordian .ipmAcrdnExpand .aHead span.expico.green {
+    background: #81bd42;
+}
+.ipmAccordian .ipmAcrdnExpand .aHead span.expico.grey {
+    background: #d4d4d4;
+}

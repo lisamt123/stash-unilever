@@ -9345,7 +9345,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
-        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please contact the relevant Regional Project Leader.</value>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please check on the rollout plan which regional rollout is 1st and contact the relevant Regional Project Leader.</value>
     </labels>
     <labels>
         <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
@@ -9452,3 +9452,4 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_BelowThresholdError_Msg</shortDescription>
         <value>Please be aware that your project is Below Threshold and has not been given Exempt status. If you wish for your Project to have Exempt status please contact your IPM Business Partner.</value>
     </labels>
+

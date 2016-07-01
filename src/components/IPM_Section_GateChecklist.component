@@ -10,7 +10,7 @@
     <apex:attribute name="editgatesect" type="Boolean" AssignTo="{!isEditable}" description="This is used for security"/>
     <apex:attribute name="getSecid" description="Pass the document type parameter" type="ID" required="true" assignTo="{!SecId}" />
     <apex:attribute name="getDocType" description="Pass the document type parameter" type="String" required="true" assignTo="{!gateType}" />
-    <apex:outputPanel layout="block" id="ren">
+     <apex:outputPanel layout="block" id="ren">
        <!--Below rendered condition is used to show the checklist question-->
         <apex:outputPanel layout="block" styleClass="altBGcolor" rendered="{!AND(gkChecklist!=null,gkChecklist.size>0)}"> 
             <table class="ipmTable table table-bordered gkTable otifTable"> 
@@ -46,6 +46,7 @@
                                             </div> 
                                         </apex:outputPanel>
                                     </apex:outputPanel>
+                                 
                                     <!--Below rendered condition is used to show the below text-->
                                     <apex:outputText rendered="{!!isEditable}" id="gkAnswer"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!gk.IPM_GK_Answers__c}</div></apex:outputText>
                                 </td>
@@ -70,10 +71,13 @@
         <apex:param name="thirdParam" assignTo="{!comment}" value=""/>
         <apex:param name="fourthParam" assignTo="{!cmts}" value=""/>
         </apex:actionFunction>
+        
         <apex:actionFunction name="updateReadOnlyAnswers" action="{!updateReadOnlyGKchecklist}" reRender="" rendered="{!isEditable}" />
+        
+        
        <!------------------Gatekeeper Checklist Section--------------->       
         <script>
-        var IPMAppSecGK = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', partly:'{!$Label.IPM_PARTLY}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}'};      
+        var IPMAppSecGK = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', partly:'{!$Label.IPM_PARTLY}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}',editable:'{!isEditable}'};      
         </script>        
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Section_GateChecklist.js')}" type="text/javascript"></script>
     </apex:outputPanel>
