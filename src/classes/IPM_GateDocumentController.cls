@@ -318,7 +318,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             gateDocument=printDoc;
             //Retrieving Project Document Record    
             List<IPM_Project_Document__c> lstProjectDoc = new List<IPM_Project_Document__c>();
-            lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Updated_User_By__r.smallPhotoURL,
+            lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Category_Status_while_Approved__c ,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Updated_User_By__r.smallPhotoURL,
                                   IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Updated_User_By__c,IPM_Updated_User_By__r.Name 
                            FROM IPM_Project_Document__c 
                            WHERE IPM_Project__c=:project.Id AND IPM_GateDocuments__c=:gateDocument];

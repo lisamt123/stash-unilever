@@ -599,6 +599,21 @@
 		{
 			div.gkcStatus{page-break-inside: avoid;}
 		}
+        .cTitle{text-align:left;}
+        .alertimg
+        {
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/alert_ico.png')}');
+            float:right;
+            margin:-18px 0px -10px -30px;
+            height:20px;
+            width:20px;
+        }
+        .redtxt{
+          color:red !important;
+        }
+        .textleftalign{
+        text-align:left !important; padding-left:5px !important
+        }
     </style>
 </head>
 <body class="docBody">
@@ -675,6 +690,7 @@
                     <td width="15%">                    
                         <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
                     </td> 
+                    <apex:outputpanel layout="none" rendered="{!if(project.IPM_Project_Type__c!='Original',true,false)}">
                     <td class="label" width="15%">
                         {!$Label.IPM_PROJECT_PRIORITY}
                     </td>      
@@ -687,8 +703,20 @@
                         </apex:outputPanel>-->
                         <!--CR0405 New CPP for regional/local rollout-->
 						<apex:outputText value="{!IF(localCPP != null, localCPP, regionalCPP)}" />
-                         
+                        </td>
+                    </apex:outputpanel>
+                    <apex:outputpanel layout="none" rendered="{!if(AND(project.IPM_Project_Type__c=='Original',!ISBLANK(project.IPM_Cluster__r.name)),true,false)}" >
+                        <td class="label" width="15%">      
+                            {!$Label.IPM_Project_Cluster }      
                     </td>
+                        <td width="20%">        
+                            {!project.IPM_Cluster__r.name }         
+                        </td>
+                    </apex:outputpanel>
+                    <apex:outputpanel layout="none" rendered="{!if(AND(project.IPM_Project_Type__c=='Original',ISBLANK(project.IPM_Cluster__r.name)),true,false)}">
+                        <td width="15%"></td>
+                        <td width="20%"></td>
+                    </apex:outputpanel>
                 </tr>
                 <tr>     
                     <td class="label">
@@ -738,29 +766,45 @@
                     <td>                    
                         <apex:outputText value="{!project.IPM_Complexity__c}"/>
                     </td>
+                    <apex:outputpanel layout="none" rendered="{!if(project.IPM_Project_Type__c!='Original',true,false)}" >
                     <td class="label">
                      {!$Label.IPM_Y3_ITO} <span class="ps">{!$Label.IPM_IN_THOUSAND_POUNDS}</span>
                     </td>
-                    
+                        <td>
                     
                      <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
-                    <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                    </td>
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/>
+                                <apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </apex:outputText>
                       
                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
-                    <td>
                     
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                    </td>
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/>
+                                <apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </apex:outputText>
                    
                     <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/>
+                                <apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                            </apex:outputText>  
+                        </td>
+                    </apex:outputpanel>                  
+                    <apex:outputpanel layout="none"  rendered="{!if(project.IPM_Project_Type__c=='Original',true,false)}">
+                        <td class="label textleftalign">
+                            <span class="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" >{!$Label.IPM_Y3_ITO}</span> <span class="ps {!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}">(mn€){!$Label.IPM_COLON}</span>
+                        </td>    
                     <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                            <apex:outputpanel layout="none" styleClass="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}"> 
+                                <apex:outputText styleClass="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/> <apex:outputText styleClass="threshold {!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}"  value="{!if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)}" />
+                            </apex:outputpanel>
+                            <apex:outputpanel styleClass="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}"> 
+                                <apex:outputText styleClass="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}"  value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold {!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}"  value="{!if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)}"/>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,true,false)}" >  
+                            	<span class="alertimg"></span>
+                            </apex:outputpanel>
                     </td>
-                    </apex:outputText>
+                    </apex:outputpanel>
                    
                     
                 </tr>
