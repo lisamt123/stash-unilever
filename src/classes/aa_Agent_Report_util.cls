@@ -20,11 +20,9 @@ public with sharing class aa_Agent_Report_util {
         
         for(aa_Agent_Report__c obj : listAgentOld){
             oldmap.put(obj.id,obj);
-        }
-        
-        
+        }      
 
-        Set<String> Set_Unilever_Brand=new set<String>();
+        //Set<String> Set_Unilever_Brand=new set<String>();
         Map<String,String> sendTochatterMap= new Map<String,String>();
         for(aa_Agent_Report__c report:listAgentNew){
             if(report.Status__c != oldmap.get(report.Id).Status__c) {
@@ -34,8 +32,24 @@ public with sharing class aa_Agent_Report_util {
                 else {              
                     AA_TheAgentSingleExecution.setAlreadyDone();
                     //go                
-                    if (report.Status__c == STATUS_VALUE_TO_POST_ON) {                    	
-                        // brand
+                    if (report.Status__c == STATUS_VALUE_TO_POST_ON) {        
+                        
+                        Map<String,String> map1 = addTosendChatter(report);   
+                        sendTochatterMap = map1;            
+                      
+              
+                    }
+
+                }
+            } 
+          }
+          AA_theAgent_ChatterPost_FutureClass.CallSendToChatter(sendTochatterMap);
+        
+    }
+    public static Map<String,String> addTosendChatter(aa_Agent_Report__c report)
+    {
+                       Map<String,String> sendTochatterMap= new Map<String,String>();
+                       // brand
                         if (String.isNotEmpty(report.Competitor_Brand__c)) {
                            sendTochatterMap.put(report.Competitor_Brand__c,JSON.serialize(report));
                         }                        
@@ -64,7 +78,7 @@ public with sharing class aa_Agent_Report_util {
                             sendTochatterMap.put(report.Topic__c,JSON.serialize(report));                   
                         }                                             
                         //Cluster   
-                        if(String.isNotEmpty(report.ClusterId__c) && report.Country__c==NULL){
+                        if(String.isNotEmpty(report.ClusterId__c)){
                             sendTochatterMap.put(report.ClusterId__c,JSON.serialize(report));                    
                         }                    
                         //User Name
@@ -72,14 +86,6 @@ public with sharing class aa_Agent_Report_util {
                         if (String.isNotEmpty(CaretedbyName)) {
                             sendTochatterMap.put(userInfo.getUserId(),JSON.serialize(report));
                         }
-              
-                    }
-
-                }
-            } 
-          }
-          AA_theAgent_ChatterPost_FutureClass.CallSendToChatter(sendTochatterMap);
-        
+                        return sendTochatterMap;
     }
-    
 }
