@@ -698,6 +698,7 @@ public with sharing class AA_AgentAppService  {
     @AuraEnabled
      public static AA_ApplicationWrapperObjLtng insertAgentApp(String clusterId,String countryId,String town, String reportName, String reportDescription,
      List<String> userIds ,String unileverBrandId, String retailerId, String reportingOnId,String recordType, String status,String contentId){
+     system.debug('Add notify user ids===>'+userIds );
          AA_ApplicationWrapperObjLtng appWrapperObj = new AA_ApplicationWrapperObjLtng();
          try{
             AA_WrapperClass.AgentAppDataRequest objAgentApp = new  AA_WrapperClass.AgentAppDataRequest();

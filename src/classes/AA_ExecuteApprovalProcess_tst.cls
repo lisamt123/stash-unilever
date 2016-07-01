@@ -7,12 +7,12 @@ public class AA_ExecuteApprovalProcess_tst {
  */
  
     static testMethod void myUnitTest() {
-	/**********************************************************************************************************************
+/**********************************************************************************************************************
 Purpose:Method to test the execution of Approval Process, Owner Assignment,Reporting values and the cancellation of the process.
 ************************************************************************************************************************/
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+       Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
       
         aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample);
@@ -36,7 +36,7 @@ Purpose:Method to test the execution of Approval Process, Owner Assignment,Repor
         aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample ,Cluster_Id__c = clusterData.id);
         insert countryData;
        
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample, Source__c = AA_Constants.SourceSample,Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample, Source__c = AA_Constants.SourceSample,Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,recordtypeID=recTypeId);
         insert competitorReport;
         
         // Test to execute Approval Process with Cluster and Country.
@@ -218,9 +218,9 @@ Purpose:Method to test the execution of Approval Process, Owner Assignment,Repor
   	/**********************************************************************************************************************
 Purpose:Method to test the execution of Approval Process From Mobile , Owner Assignment,Reporting values and the cancellation of the process.
 ************************************************************************************************************************/
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+       // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+       // Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       // Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
       
         aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample);
@@ -383,9 +383,9 @@ Purpose:Method to test the execution of Approval Process From Mobile , Owner Ass
      	/**********************************************************************************************************************
 Purpose:Method to test the execution Owner Assignment.
 ************************************************************************************************************************/
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+       // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+       // Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       // Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
       
         aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample);
@@ -425,9 +425,9 @@ Purpose:Method to test the execution Owner Assignment.
  	/***************************************************************
 Purpose:Method to test the execution of the report approved process.
 *********************************************************************/
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+        //Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+        //Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       // Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
       
         aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample);
@@ -473,9 +473,9 @@ Purpose:Method to test the execution of the report approved process.
  	 	/***************************************************************
 Purpose:Method to test the execution of the report rejected process.
 *********************************************************************/
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+      // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+       // Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       // Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
       
         aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample);

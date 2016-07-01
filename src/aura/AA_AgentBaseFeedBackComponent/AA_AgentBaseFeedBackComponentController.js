@@ -7,7 +7,7 @@
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var response=response.getReturnValue();
                 if(response === true){
-                    var destination = "c:Feedback";
+                    var destination = "c:CORE_FB_Feedback";
                     var contentFeedBack = component.find("content");
                     $A.createComponent(destination,
                                        {

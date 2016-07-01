@@ -31,8 +31,8 @@ private class AA_AgentAppServiceController_Test {
        insert countryData;
        aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Report_Description__c = 'This is a test description',Country__c = countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__C='New');
        insert unileverReport;
-       List<string> userList=new List<string>{'1234','3456'};
-       List<string> topicList=new List<string>{'1234','3456'};
+       List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
+       List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp.UnileverBrandId = uniBrand.id;
        objAgentApp.CountryId = countryData.id;
@@ -85,8 +85,8 @@ private class AA_AgentAppServiceController_Test {
        insert countryData;
        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Report_Description__c = AA_Constants.Stringwhatever ,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,TF_Mention_User__c='12345',TF_Topic_Name__c='2345');
        insert competitorReport;
-       List<string> userList=new List<string>{'1234','3456'};
-       List<string> topicList=new List<string>{'1234','3456'};
+       List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
+       List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
        aa_Topic__c newtopic=new aa_Topic__c(Name=AA_Constants.Topicsample,Sub_Topic__c=AA_Constants.SubtopicSample);
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
        
@@ -204,10 +204,15 @@ private class AA_AgentAppServiceController_Test {
         insert user;
         aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = AA_Constants.CategorySample);
        insert compCategory;
-        
-        aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id ,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
+        aa_Cluster__c clusterData3 = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
+        insert clusterData3;
+         aa_Country__c countryData2 = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData3.Id);
+        insert countryData2; 
+        aa_Agent_Retailer__c retailerData2 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
+       insert retailerData2;
+        aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id,Cluster__c=clusterData3.Id,Country__c= countryData2.Id,Retailer__c=retailerData2.Id,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
         insert userpref;
-        
+       
         system.runAs(user){
         
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -255,9 +260,11 @@ private class AA_AgentAppServiceController_Test {
        insert uniBrand1;
         aa_Cluster__c clusterData2 = new aa_Cluster__c(Name = 'Global');
         insert clusterData2;
-       aa_Agent_Retailer__c retailerData1 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
+       
+         aa_Agent_Retailer__c retailerData1 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData1;
-        List<string> userList=new List<string>{'1234','3456'};
+        
+        List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
         objAgentApp.usertomentionIds= userList;
        objAgentApp.CategoryId=cat1.id;
        objAgentApp.CountryId=countryData1.Id;
@@ -272,27 +279,52 @@ private class AA_AgentAppServiceController_Test {
        obj.retrieveAgentReportsOnMostliked(obj1);
        
        AA_WrapperUtility.AgentAppDataRequest objAgentApp2 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp2.FilterType = 'myReports';
+       objAgentApp2.FilterType ='myReport';
+       objAgentApp2.ApplyFilter = 'true';
+	   objAgentApp2.ReportingOn=AA_Constants.ReportingOnSample;
+     
+        objAgentApp2.usertomentionIds= userList;
+       objAgentApp2.CategoryId=cat1.id;
+       objAgentApp2.CountryId=countryData1.Id;
+       objAgentApp2.ClusterId=clusterData1.id;
+       objAgentApp2.RecordTypeId=recTypeId;      
+       objAgentApp2.Retailer=retailerData1.id;
+	   
       
        AA_ApplicationWrapperObj obj2 = new AA_ApplicationWrapperObj();
        obj2.objAgentAppDataRequest = objAgentApp2;
        obj.retriveAllAgentReports(obj2);
     
-      //All reports 
        AA_WrapperUtility.AgentAppDataRequest objAgentApp3 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp3.FilterType = 'AllReports';
-      
+            objAgentApp3.FilterType = 'filterReports';    
+            objAgentApp3.ApplyFilter = 'true';
+            objAgentApp3.RecordType='Unilever';
+            objAgentApp3.ReportingOn=AA_Constants.ReportingOnSample;
+            objAgentApp3.usertomentionIds= userList;
+            objAgentApp3.CategoryId=cat1.id;
+            objAgentApp3.CountryId=countryData1.Id;
+            objAgentApp3.ClusterId=clusterData1.id;
+            objAgentApp3.RecordTypeId=recTypeId;      
+            objAgentApp3.Retailer=retailerData1.id;
+            
        AA_ApplicationWrapperObj obj3 = new AA_ApplicationWrapperObj();
        obj3.objAgentAppDataRequest = objAgentApp3;
        obj.retriveAllAgentReports(obj3);
    
-      // filter False    
+       
        AA_WrapperUtility.AgentAppDataRequest objAgentApp4 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp4.FilterType = 'AllReports';
-       objAgentApp4.ApplyFilter = 'false';      
-    
+       objAgentApp4.FilterType = 'filterReports';    
+       objAgentApp4.ApplyFilter = 'true';
+       objAgentApp4.RecordType='Competitor';
+       objAgentApp4.ReportingOn=AA_Constants.ReportingOnSample;
+       objAgentApp4.usertomentionIds= userList;
+       objAgentApp4.CategoryId=cat1.id;
+       objAgentApp4.CountryId=countryData1.Id;
+       objAgentApp4.ClusterId=NULL;
+       objAgentApp4.RecordTypeId=recTypeId;      
+       objAgentApp4.Retailer=retailerData1.id;
        AA_ApplicationWrapperObj obj4 = new AA_ApplicationWrapperObj();
-       obj4.objAgentAppDataRequest = objAgentApp4;
+       obj4.objAgentAppDataRequest = objAgentApp4; 
        obj.retriveAllAgentReports(obj4);
   
      // filter False    
@@ -310,13 +342,13 @@ private class AA_AgentAppServiceController_Test {
     
        AA_ApplicationWrapperObj obj5 = new AA_ApplicationWrapperObj();
        obj5.objAgentAppDataRequest = objAgentApp5;
-       obj.retriveAllAgentReports(obj5);  
+       obj.retriveAllAgentReports(obj5);   
        
        // sort in most like 
        AA_WrapperUtility.AgentAppDataRequest objAgentApp1 = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp1.SortOnMostLike='true';
        AA_ApplicationWrapperObj obj6 = new AA_ApplicationWrapperObj();
-        AA_WrapperUtility.AgentAppDataRequest objAgentAppDataRequest=new AA_WrapperUtility.AgentAppDataRequest();
+    //    AA_WrapperUtility.AgentAppDataRequest objAgentAppDataRequest=new AA_WrapperUtility.AgentAppDataRequest();
       
        objAgentApp1.OffSet='0';
       objAgentApp1.LimitRecords='10';
@@ -328,6 +360,7 @@ private class AA_AgentAppServiceController_Test {
        system.assertEquals(result.serviceName ,'GetAgentAllReport');
        
         }
+        
     }
      
       //check updateUnlikeCount Test
@@ -354,8 +387,8 @@ private class AA_AgentAppServiceController_Test {
        aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Status__c='New',Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
                 
-                 List<string> userList=new List<string>{'1234','3456'};
-       List<string> topicList=new List<string>{'1234','3456'};
+                 List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
+       List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp.UnileverBrandId = uniBrand.id;
        objAgentApp.CountryId = countryData.id;
@@ -436,9 +469,9 @@ private class AA_AgentAppServiceController_Test {
         contentVersionObj.Title = 'test';           
         insert contentVersionObj;
         objAgentApp.ContentDocumentId=contentVersionObj.id;
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
+       // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+        //Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       // Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
@@ -522,7 +555,7 @@ private class AA_AgentAppServiceController_Test {
        insert competitorReport1;
         aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
        insert competitorReport2;
-       aa_Agent_Report__Feed agentFeed = new aa_Agent_Report__Feed();
+      // aa_Agent_Report__Feed agentFeed = new aa_Agent_Report__Feed();
       
       aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id ,Category__c=compCategory.Id);
       insert userpref;
@@ -573,7 +606,7 @@ private class AA_AgentAppServiceController_Test {
                      system.runAs(user){
         objFinalReport.add(objGetAllReports);
         AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
-         AA_WrapperUtility.AgentAppDataRequest objAgentAppDataRequest=new AA_WrapperUtility.AgentAppDataRequest();
+        // AA_WrapperUtility.AgentAppDataRequest objAgentAppDataRequest=new AA_WrapperUtility.AgentAppDataRequest();
        
         objAgentApp.OffSet='0';
       objAgentApp.LimitRecords='10';
@@ -588,8 +621,100 @@ private class AA_AgentAppServiceController_Test {
    
      //Check retriveAllAgentReportsTest_ApplyFilterFalse Test
      static testMethod void retriveAllAgentReportsTest_ApplyFilterFalse(){
+           
+        User user = new User();
+        user.Username ='testuser7@gmail.com';
+        user.LastName = 'LastTestName';
+        user.Email = AA_Constants.Stringtestemail;
+        user.alias = 'testAl';
+        user.TimeZoneSidKey = 'America/New_York';
+        user.LocaleSidKey = AA_Constants.Stringen_us;
+        user.EmailEncodingKey = 'ISO-8859-1';
+        user.ProfileId = [select id from Profile where Name='System Administrator'].Id;
+        user.LanguageLocaleKey = AA_Constants.Stringen_us;
+        insert user;
+        aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = AA_Constants.CategorySample);
+       insert compCategory;
+        aa_Cluster__c clusterData3 = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
+        insert clusterData3;
+         aa_Country__c countryData2 = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData3.Id);
+        insert countryData2; 
+        aa_Agent_Retailer__c retailerData2 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
+       insert retailerData2;
+         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
+        Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
+        Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
+             
+        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
+        insert uniBrand;
+        aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id,Cluster__c=clusterData3.Id,Country__c= countryData2.Id,Agent_App_Unilever_Brand__c=uniBrand.Id,Retailer__c=retailerData2.Id,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
+        insert userpref;
+       
+        system.runAs(user){
+        
+        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
        aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
+       setting.Name = 'Salesforce Instance URL Content';
+       setting.Value__c = AA_Constants.Stringwhatever;
+       insert setting;
+ 
+       aa_agent_app_custom_setting__c setting1 = new aa_agent_app_custom_setting__c();
+       setting1.Name = 'SFC Content';
+       setting1.Value__c =  AA_Constants.Stringwhatever;
+       insert setting1;
+
+       aa_agent_app_custom_setting__c setting2 = new aa_agent_app_custom_setting__c();
+       setting2.Name = 'Document URL Content';
+       setting2.Value__c =  AA_Constants.Stringwhatever;
+       insert setting2;              
+       
+       
+       AA_AgentAppServiceController obj = new AA_AgentAppServiceController();
+ 
+       AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
+      
+       objAgentApp.FilterType = 'filterReports';
+   
+       objAgentApp.ApplyFilter = 'false';
+       objAgentApp.ReportingOn=AA_Constants.ReportingOnSample;
+       aa_Agent_App_Category__c cat1= new aa_Agent_App_Category__c(Name=AA_Constants.CategorySample);
+       insert cat1;
+       
+        aa_Cluster__c clusterData1 = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
+       insert clusterData1;
+       
+       aa_Country__c countryData1 = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData1.id);
+       insert countryData1;
+       
+       
+        aa_Cluster__c clusterData2 = new aa_Cluster__c(Name = 'Global');
+        insert clusterData2;
+       
+         aa_Agent_Retailer__c retailerData1 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
+       insert retailerData1;
+        
+        List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
+        objAgentApp.usertomentionIds= userList;
+       objAgentApp.CategoryId=cat1.id;
+       objAgentApp.CountryId=countryData1.Id;
+       objAgentApp.ClusterId=clusterData1.id;
+       objAgentApp.RecordTypeId=recTypeId;  
+       objAgentApp.Retailer=retailerData1.id;
+	   objAgentApp.UnileverBrandId = uniBrand.id;
+       AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
+       obj1.objAgentAppDataRequest = objAgentApp;
+    
+       obj.retriveAllAgentReports(obj1);
+         
+         
+         
+         
+        }
+        
+     /*  aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
        setting.Name = 'Salesforce Instance URL Content';
        setting.Value__c =  AA_Constants.Stringwhatever;
        insert setting;
@@ -618,10 +743,14 @@ private class AA_AgentAppServiceController_Test {
         insert user;
         aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
         insert compCategory;
-        
-        aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id ,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
+          aa_Cluster__c clusterData3 = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
+        insert clusterData3;
+         aa_Country__c countryData2 = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData3.Id);
+        insert countryData2; 
+        aa_Agent_Retailer__c retailerData2 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
+       insert retailerData2;
+        aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id,Cluster__c=NULL,Country__c= countryData2.Id,Retailer__c=retailerData2.Id,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
         insert userpref;
-        
         
         AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
           
@@ -669,9 +798,9 @@ private class AA_AgentAppServiceController_Test {
        AA_ApplicationWrapperObj result= obj.retriveAllAgentReports(obj1);
         
        system.assert(result.objAgentAppDataRequest!=null);
-    }
-  }
-  
+    }*/  
+     }
+         
   //Check getUserList Positive Test.
   static testMethod void getUserList_Test_Positive(){
         User user = new User();
@@ -696,9 +825,9 @@ private class AA_AgentAppServiceController_Test {
         AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
         obj1.objAgentAppDataRequest = objAgentApp;
         obj1.serviceName=AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST;
-        AA_ApplicationWrapperObj result= obj.getUserList(obj1);
-       
-         Topic topictest=new Topic(Name=AA_Constants.testString);
+       // AA_ApplicationWrapperObj result= obj.getUserList(obj1);
+       obj.getUserList(obj1);
+        // Topic topictest=new Topic(Name=AA_Constants.testString);
        //for topics
         objAgentApp.searchString = 'test';
         objAgentApp.searchType='topics';

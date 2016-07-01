@@ -109,7 +109,7 @@ private class AA_BaseApplicationServices_Test {
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
         
-        Topic topicone=new Topic(Name=AA_Constants.testString); 
+       // Topic topicone=new Topic(Name=AA_Constants.testString); 
         objAgentApp.searchString=AA_Constants.testString;
         objAgentApp.searchType='topics';
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST;
