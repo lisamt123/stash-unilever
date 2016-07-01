@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="ipmMilestonetodosContent" id="newMstone">
+                             <div class="ipmMilestonetodosContent displaynone" id="newMstone">
                                 <div class="heading2 ipmHeading blue">
                                     {!$Label.IPM_MILESTONE}
                                  </div>                          
@@ -72,7 +72,7 @@
                                         <c:IPM_List_Milestones pId="{!IPM_Project__c.Id}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" />
                                     </apex:outputPanel>
                              </div>
-                             <div class="ipmMilestonetodosContent" id="todolistcontent"> 
+                             <div class="ipmMilestonetodosContent displaynone" id="todolistcontent"> 
                                 <div class="heading2 ipmHeading blue">
                                     {!$Label.IPM_Home_Todo}
                                  </div>
