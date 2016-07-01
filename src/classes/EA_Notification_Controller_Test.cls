@@ -7,6 +7,8 @@ Requirement/Description: Test Class For EA_Notification_Controller.
 */
 @IsTest
 public class EA_Notification_Controller_Test{
+    public static final String testDesc='test.desc';
+        
     static testMethod void postive() {
        ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
         user  localUser= new User(username='localuserforUnitTest@20110308test.com',
@@ -26,14 +28,14 @@ public class EA_Notification_Controller_Test{
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
             event.Activity_Points__c=4;
-            event.Description__c='test.desc';
+            event.Description__c=testDesc;
             event.Minutes_to_Complete_Action__c=4;
             event.Participants_Required__c=5;
             event.Rating__c=5;
             event.Top_Tip__c='dummyvalue';
             insert event;
             
-            System.assertEquals('test.desc', event.Description__c);
+            System.assertEquals(testDesc, event.Description__c);
             EA_Team_Member__c Team =new EA_Team_Member__c();
             team.Activity_Due_Day__c='Today';
             team.Activity_Points__c=5;
@@ -134,14 +136,14 @@ public class EA_Notification_Controller_Test{
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
             event.Activity_Points__c=4;
-            event.Description__c='test.desc';
+            event.Description__c=testDesc;
             event.Minutes_to_Complete_Action__c=4;
             event.Participants_Required__c=5;
             event.Rating__c=5;
             event.Top_Tip__c='dummyvalue';
             insert event;
             
-            System.assertEquals('test.desc', event.Description__c);
+            System.assertEquals(testDesc, event.Description__c);
             
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='test11';
@@ -179,7 +181,7 @@ public class EA_Notification_Controller_Test{
                 Decimal points = event.Activity_Points__c;
             
                 System.assert(actvityName == null);
-                System.assertEquals(activityDesc,'test.desc');
+                System.assertEquals(activityDesc,testDesc);
                 System.assertEquals(points,4);
 
             team1=[Select id,Everyday_Activity__r.RecordTypeId,Type__c,Activity_Points__c,Invited_By__c,

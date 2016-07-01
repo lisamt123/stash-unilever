@@ -21,7 +21,7 @@ public class EA_LookupSObjectController_Test{
                                   timezonesidkey='Europe/Berlin'
                                  );
         insert localUser;
-        List<user> users=[select id,name from user where profileid =:adminProfileID];
+        //List<user> users=[select id,name from user where profileid =:adminProfileID];
         System.runAs(localUser){
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
@@ -68,7 +68,7 @@ public class EA_LookupSObjectController_Test{
             insert badge;
          
             Test.startTest();    
-            EA_LookupSObjectController  temp1=new EA_LookupSObjectController(); 
+            new EA_LookupSObjectController(); 
             EA_LookupSObjectController.Result rs = new EA_LookupSObjectController.Result('object',event.id);//this is for 2nd constructor
             System.assert(rs != null);
             EA_LookupSObjectController.lookup('sobject','user');
