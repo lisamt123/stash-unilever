@@ -353,6 +353,9 @@
         <layout>CMS_Page_Article__c-CMS Page Article Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CORE_FB_Feedback__c-CORE_FB_Feedback Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CORE_NT_Project__c-Project Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
