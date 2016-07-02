@@ -245,6 +245,10 @@
         <name>ICB_Matricula__c</name>
     </fields>
     <fields>
+        <label><!-- Matricula --></label>
+        <name>ICB_Registration__c</name>
+    </fields>
+    <fields>
         <label><!-- Brand Name --></label>
         <name>IPM_Brand_Name__c</name>
     </fields>

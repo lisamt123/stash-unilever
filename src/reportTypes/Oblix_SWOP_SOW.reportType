@@ -524,6 +524,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Projected_Stage_CFY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Region__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>

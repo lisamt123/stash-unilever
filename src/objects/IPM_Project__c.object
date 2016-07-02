@@ -5443,6 +5443,15 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000c6bd_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_COCOON SOCO _LA</label>
+        <queue>IPM_a7IE0000000c6bd</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
