@@ -3181,6 +3181,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c6bd_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_COCOON SOCO _LA</label>
+        <queue>IPM_a7IE0000000c6bd</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

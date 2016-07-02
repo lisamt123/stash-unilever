@@ -208,6 +208,10 @@
         <name>Awards__c</name>
     </fields>
     <fields>
+        <label><!-- Bazaarvoice Username --></label>
+        <name>Bazaarvoice_Username__c</name>
+    </fields>
+    <fields>
         <help><!-- Please indicate the type of business activities your organisation is currently involved in. Please also distinguish between those that are currently provided to Unilever, and those that are not. --></help>
         <label><!-- Business activity types --></label>
         <name>Business_activity_types__c</name>
@@ -887,6 +891,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- CNPJ --></label>
+        <name>ICB_CNPJ__c</name>
+    </fields>
+    <fields>
         <name>Industry</name>
         <picklistValues>
             <masterLabel>Agriculture</masterLabel>
@@ -1251,6 +1259,10 @@
     <fields>
         <label><!-- Retention Record --></label>
         <name>Retention_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP ID --></label>
+        <name>SAP_ID__c</name>
     </fields>
     <fields>
         <label><!-- Strategic Capabilities Video --></label>

@@ -3573,6 +3573,15 @@ Case(Global_Project_Phase__c,
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000c6bd_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_COCOON SOCO _LA</label>
+        <queue>IPM_a7IE0000000c6bd</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Project Rollout Name</label>
         <trackHistory>false</trackHistory>

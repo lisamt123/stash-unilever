@@ -52,7 +52,15 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Ice_Cream</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Ice_Cream</fullName>
+        <fields>Subject</fields>
+        <fields>WhatId</fields>
+        <fields>Location</fields>
+        <fields>ICB_Status__c</fields>
+        <label>Ice Cream</label>
+    </compactLayouts>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>ActivityDate</fullName>
@@ -146,6 +154,18 @@
                 <fullName>Call</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manual</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executed</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -158,5 +178,136 @@
         <fullName>WhoId</fullName>
         <type>Lookup</type>
     </fields>
+    <recordTypes>
+        <fullName>ICB_IceCreamVisit</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Ice_Cream</compactLayoutAssignment>
+        <description>Salesrep visit in ice cream customers</description>
+        <label>Ice Cream Visit</label>
+        <picklistValues>
+            <picklist>Call_Type__c</picklist>
+            <values>
+                <fullName>Claims Recontacts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Mail - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out-of-Route</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Answerphone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Recontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound call - Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recommended Alternative Products %2F Stores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Concluded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <sharingModel>Private</sharingModel>
 </CustomObject>
