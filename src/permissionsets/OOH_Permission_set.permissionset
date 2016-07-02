@@ -102,6 +102,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Asset_Group__c.Win_POS</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Asset_Scoring__c.Asset</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

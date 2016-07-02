@@ -208,6 +208,10 @@
         <layout>Asset_Group__c-WP Asset Group Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Asset_Group__c-WP Asset Group Layout</layout>
+        <recordType>Asset_Group__c.Win_POS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2217,6 +2221,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Asset.OOH_Assets</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Asset_Group__c.Win_POS</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

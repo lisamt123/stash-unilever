@@ -105,6 +105,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Asset_Group__c.Win_POS</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Asset_Scoring__c.Asset</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
