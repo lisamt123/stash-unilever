@@ -246,8 +246,7 @@
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
                                                                     <!-- Rendered when IPM Financial object is updateable and project span is Global(including Consolidated other than Ideas), Regional, Local -->    
-                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,OR(AND(project.IPMProject_Span__c == 'Global',isConsolidated),project.IPMProject_Span__c == 'Local',project.IPM_Phase__c == 'Ideas',AND(project.IPMProject_Span__c == 'Regional',NOT(isConsolidated))),NOT(isEditMode))}">
-                                                                     <!-- Rendered when record is editable and project phase is not PLE-->   
+                                                                    <apex:outputPanel rendered="{!IF(AND(project.IPM_Phase__c <> 'Ideas',OR(project.IPM_Phase__c == 'PLE',project.IPM_Project_Type__c <> 'Operational'),OR(project.IPM_Phase__c == 'PLE',AND(project.IPMProject_Span__c == 'Global',NOT(isConsolidated)),AND(project.IPMProject_Span__c == 'Regional',isConsolidated))), IF(AND(project.IPMProject_Span__c == 'Global',isConsolidated,NOT(isEditMode)),true,false),NOT(isEditMode))}"> 
                                                                         <apex:outputPanel rendered="{!toShowEditButton}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
                                                                         <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">

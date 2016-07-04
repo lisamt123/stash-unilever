@@ -2590,7 +2590,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     private void updateEditableFlags(Boolean isLocalProjectAccept)
     {
-        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && !IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c)&& !isLocalProjectAccept)
+        if(!isLocalProjectAccept)
         {
             toShowEditButton=true;      
         }

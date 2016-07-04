@@ -486,33 +486,33 @@
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
-                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryGMbpsHelp}">
+                        <apex:outputText rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <span class="info" title="{!$Label.ipmFinSummaryGMbpsHelp}"  >
                                 <apex:outputText value="{0, number, ###,###,###}">
                                     <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Global__c}" />
                                 </apex:outputText>
-                            </a>
-                        </apex:outputPanel>
-
+                            </span>
+                        </apex:outputText>
+                    
                         <!-- Regional Values -->
                         <!-- For only Regional the following section will be rendered -->
-                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryGMbpsHelp}">
+                        <apex:outputText rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <span class="info" title="{!$Label.ipmFinSummaryGMbpsHelp}">
                                 <apex:outputText value="{0, number, ###,###,###}">
                                     <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Regional__c}" />
                                 </apex:outputText>
-                            </a>
-                        </apex:outputPanel>
-
+                            </span>
+                        </apex:outputText>
+                        
                         <!-- Local Values -->
                         <!-- For only Local the following section will be rendered -->
-                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryGMbpsHelp}">
+                        <apex:outputText rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <span class="info" title="{!$Label.ipmFinSummaryGMbpsHelp}">
                                 <apex:outputText value="{0, number, ###,###,###}">
                                     <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Local__c}" />
                                 </apex:outputText>
-                            </a>
-                        </apex:outputPanel>
+                            </span>
+                        </apex:outputText>
                     </td>
                 </tr>
                 <tr>
