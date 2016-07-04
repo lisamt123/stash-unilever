@@ -160,9 +160,8 @@
                         
                         <p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
                         <apex:outputpanel rendered="{!AND(isOriginal,!ISBLANK(project.IPM_Cluster__r.Name))}">
-                            <div class="greyborder"></div>
                             <div class="row">
-                                <div class="col-sm-7 pr0">
+                                <div class="col-sm-7 pr0 clusterSpacebtm">
                                     <div class="keycontent">{!$Label.IPM_Project_Cluster}</div>
                                 </div>
                                 <div class="col-sm-5">
