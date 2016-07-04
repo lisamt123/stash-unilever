@@ -1,7 +1,5 @@
 src
 src/objects
-src/objects/Account.object
-src/objects/Account.object
 src/objects/Product2.object
 src/objects/Pricebook2.object
 src/objects/PricebookEntry.object
