@@ -1,4 +1,35 @@
 src
+src/objects
+src/objects/Account.object
+src/objects/Account.object
+src/objects/Product2.object
+src/objects/Pricebook2.object
+src/objects/PricebookEntry.object
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Defined_Objective__c.object
+src/objects/FS_Segmentation__c.object
+src
 src/layouts
 src/layouts/Account-Distributor.layout
 src/layouts/Account-Operators.layout
+src/layouts/Product2-Food Solutions Product.layout
+src/layouts/Pricebook2-NAFS PriceBook Layout.layout
+src/layouts/PricebookEntry-Price Book Entry Layout.layout
+src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
+src/layouts/Opportunity-Opportunity Layout.layout
+src
+src/triggers
+src/triggers/OpportunityTrigger.trigger
+src/triggers/OpportunityTrigger.trigger-meta.xml
+src
+src/classes
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
+src/classes/FS_OpportunityHelper_Test.cls
+src/classes/FS_OpportunityHelper_Test.cls-meta.xml
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
