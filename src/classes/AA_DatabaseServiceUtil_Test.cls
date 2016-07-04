@@ -1,4 +1,4 @@
-@isTest(seealldata=true)
+@isTest
 /**
  * Name:        -   AA_DatabaseServiceUtil_Test
  * @description -   This is test class for AA_DatabaseServiceUtil class which includes all the DML operations
@@ -212,7 +212,7 @@ static testMethod void validateIdssss() {
        }
        system.assert(recNew!=null);
     }
-     static testMethod void sendToChatterTest(){
+    /* static testMethod void sendToChatterTest(){
         Test.startTest();
 
              
@@ -239,7 +239,7 @@ static testMethod void validateIdssss() {
         Test.stopTest();
     }
 
-
+*/
    
     
 }
