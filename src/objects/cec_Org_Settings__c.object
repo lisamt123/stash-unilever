@@ -4,6 +4,17 @@
     <description>CEC: Stores settings related to the CEC org and application</description>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>LiveChatQuestionaireSpanishId__c</fullName>
+        <description>CEC: to store survey id for live chats spanish</description>
+        <externalId>false</externalId>
+        <label>LiveChatQuestionaireSpanishId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AlertAction_Time_Scheduler__c</fullName>
         <description>CEC - Time past hour separated by semicolon for AlertAction Email Scheduler</description>
         <externalId>false</externalId>
