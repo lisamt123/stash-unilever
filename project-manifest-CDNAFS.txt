@@ -7,12 +7,10 @@ src/objects/Pricebook2.object
 src/objects/PricebookEntry.object
 src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
-src/objects/FS_Account_Plan__c.object
 src/objects/FS_Defined_Objective__c.object
 src/objects/FS_Segmentation__c.object
 src
 src/layouts
-src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
 src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
