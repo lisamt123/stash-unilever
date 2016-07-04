@@ -459,7 +459,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         url.getParameters().put('currentObjectName','Milestone');
         url.getParameters().put('currentObject','IPM_Milestone__c');
         url.getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
-        url.getParameters().put('whereClause','where IPM_Project__c =\''+projectId+'\'');
+        url.getParameters().put('whereClause','where IPM_Project__c =\''+projectId+'\' and IPM_Active__c = true');
         
         url.setRedirect(true);
         return url;

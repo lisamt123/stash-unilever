@@ -238,7 +238,7 @@
                                 <apex:outputPanel layout="block" rendered="{!displayGateDocument}"> 
 									<div class="col-sm-12 pr0">
 										<div class="keycontent">
-											{!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
+											{!$Label.IPM_Current_Gate_Document_Status} 
 										</div>
 									</div>
 								</apex:outputPanel>
@@ -294,49 +294,49 @@
                                                        
 			    </apex:outputPanel>
                             <div class="row">
-                                <div class="col-sm-8 pr0">
+                                <div class="col-sm-6 pr0">
                                     <div class="keycontent">{!$Label.IPM_TARGET_LAUNCH_DATE}</div>
                                 </div>
-                                <div class="col-sm-3 pl0">
+                                <div class="col-sm-6 pl0 txtalright">
                                     <div class="dueDate"><apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" /></div>
                                 </div>
                             </div>
                             <div class="greyborder"></div>
                             <div class="row">
-                                <div class="col-sm-8 pr0">
+                                <div class="col-sm-6 pr0">
                                     <div class="keycontent">{!$Label.IPM_ProjectRoute}</div>
                                 </div>
-                                <div class="col-sm-3 pl0">
+                                <div class="col-sm-6 pl0 txtalright">
                                     {!$Label.IPM_Description} {!project.IPM_Complexity__c}
                                 </div>
                             </div>
                             <!-- Display below outputPanel when hideFinSection is true-->
                             <apex:outputpanel layout="block" styleClass="{!if(AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal) ,'thRedBg','')}" rendered="{!hideFinSection}">
                             <div class="row">
-                                <div class="col-sm-8 pr0">
+                                <div class="col-sm-6 pr0">
                                     <div class="keycontent">{!$Label.IPM_Year_3_iTO}</div>
                                 </div>
-                                <div class="col-sm-3 pl0">
+                                <div class="col-sm-6 pl0 txtalright">
                                     &euro;{!project.IPM_Project_Y3iTO__c}mn
                                 </div>
                             </div>
                             </apex:outputpanel>
                             <apex:outputpanel layout="block" styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}" rendered="{!AND(isOrgPrjRLplancreated,isOriginal)}">
                             <div class="row">
-                                <div class="col-sm-8 pr0">
+                                <div class="col-sm-6 pr0">
                                     <div class="keycontent">{!$Label.IPM_Threshold_Status}</div> 
                                 </div>
-                                <div class= "col-sm-3 pl0 {!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'thBlueClr',''))}">
+                                <div class= "col-sm-6 pl0 txtalright {!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'thBlueClr',''))}">
                                     {!project.IPM_Threshold_Status__c} 
                                 </div>
                             </div>
                             </apex:outputpanel> 
                             <apex:outputpanel layout="block" styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}" rendered="{!isOriginal}">
                             <div class="row">
-                                <div class="col-sm-8 pr0">
+                                <div class="col-sm-6 pr0">
                                     <div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
                                 </div>
-                                <div class="col-sm-3 pl0">
+                                <div class="col-sm-6 pl0 txtalright">
                                     &euro;{!project.IPM_Category_Thresh__c}mn  
                                 </div>
                             </div>

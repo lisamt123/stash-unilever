@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    <labels>
+      <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2617,7 +2617,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM CurrentDocument</shortDescription>
-        <value>Current document</value>
+        <value>Current Gate Document</value>
     </labels>
     <labels>
         <fullName>IPM_CurrentInstanceURL</fullName>
@@ -9454,6 +9454,11 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_BelowThresholdError_Msg</shortDescription>
         <value>Please be aware that your project is Below Threshold and has not been given Exempt status. If you wish for your Project to have Exempt status please contact your IPM Business Partner.</value>
     </labels>
-
-
+    <labels>
+        <fullName>IPM_Current_Gate_Document_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Current Gate Document Status</shortDescription>
+        <value>Current Gate Document Status</value>
+    </labels>
 </CustomLabels>

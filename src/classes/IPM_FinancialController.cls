@@ -2659,8 +2659,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //for regioanl projects the defualtfinancialId is the associated regional consolidated financial id
         if(currentFinancialId == null)
         {
+        	//If lstRolloutWrappers.lstFinancials is not empty then the rollouts have been created (hence financials for the rollouts are created), then set the currentFinancialId = defaultFinancialId;
+        	//Also for operational projects, set the currentFinancialId = defaultFinancialId since only one financial is generated : Consolidated
+            if((!lstRolloutWrappers.isEmpty() && !lstRolloutWrappers.get(0).lstFinancials.isEmpty()) || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL ){
         	currentFinancialId = defaultFinancialId;
         }
+            //else show the No rollout generated error
+            else{
+            	isRolloutError = true;
+            }
+        }      
  
 	} 
 }
