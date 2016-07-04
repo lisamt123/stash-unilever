@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>AddPricebookEntryOnPricebook</actionName>
         <type>Default</type>
@@ -58,6 +58,24 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_End_Date__c</fullName>
+        <description>Pricing End Date coming from SAP</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Pricing End Date coming from SAP</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Start_Date__c</fullName>
+        <description>Price start date coming from SAP</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Price start date coming from SAP</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>IsActive</fullName>
     </fields>
     <fields>
@@ -97,5 +115,6 @@
         <searchResultsAdditionalFields>PRODUCT.DEFAULT_PRICE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT2.DESCRIPTION</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT2.FAMILY_ENUM</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
     </searchLayouts>
 </CustomObject>

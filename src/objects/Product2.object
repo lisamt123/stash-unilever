@@ -1189,6 +1189,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Sample__c</fullName>
+        <defaultValue>&apos;http://www.unileverfoodsolutions.ru/sample_order1.html&apos;</defaultValue>
+        <externalId>false</externalId>
+        <label>Sample</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
         <fullName>FS_ShelfLife__c</fullName>
         <description>Purpose : Shelf-life of SKU. This field is also used in Russia Food Solution
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -4767,6 +4776,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
     <listViews>
         <fullName>AllProducts</fullName>
         <columns>PRODUCT2.NAME</columns>
+        <columns>PackSize__c</columns>
         <columns>COGS__c</columns>
         <columns>MarketType__c</columns>
         <columns>ProfitabilityTarget__c</columns>

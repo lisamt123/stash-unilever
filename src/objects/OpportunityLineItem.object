@@ -35,6 +35,17 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>Additional_Discount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Opportunity.FS_Pre_paid__c = FALSE &amp;&amp;  Opportunity.FS_Self_Collection__c = FALSE, 0,  IF(Opportunity.FS_Pre_paid__c = FALSE &amp;&amp;  Opportunity.FS_Self_Collection__c = TRUE,  0.01,  IF(Opportunity.FS_Pre_paid__c = TRUE &amp;&amp;  Opportunity.FS_Self_Collection__c = FALSE, 0.02,  IF(Opportunity.FS_Pre_paid__c = TRUE &amp;&amp;  Opportunity.FS_Self_Collection__c = TRUE, 0.03, 0) ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Additional Discount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>ApprovalGranted__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -159,11 +170,69 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_Distr_markup_TPR__c</fullName>
+        <externalId>false</externalId>
+        <label>Distr markup</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>FS_FixedPrice__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Fixed Price</label>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_GM_TPR__c</fullName>
+        <description>Gross Margin = Gross Profit / Turnover</description>
+        <externalId>false</externalId>
+        <formula>FS_GP_TPR__c /   FS_Turnover_TPR__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_GM_when_TPR_equals_zero_percent__c</fullName>
+        <externalId>false</externalId>
+        <formula>0</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM when TPR = 0%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_GP_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_Turnover_TPR__c  -  FS_SCC_TPR__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GP</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_GSV_TPR__c</fullName>
+        <description>Gross Sales Value = List Price * Quantity</description>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL( Opportunity.FS_Cases_piece__c , &apos;box&apos;) ,  Quantity *  ListPrice ,  Quantity * ( ListPrice /  PricebookEntry.Product2.FS_ZSU__c ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Gross Sales Value</inlineHelpText>
+        <label>GSV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_HQRate__c</fullName>
@@ -193,6 +262,20 @@
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_NIV_TPR__c</fullName>
+        <description>Net Invoice Value = GSV - Off Invoice Discount</description>
+        <externalId>false</externalId>
+        <formula>FS_GSV_TPR__c  -   Opportunity.FS_Distributor__r.FS_On_Invoice__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Net Invoice Value</inlineHelpText>
+        <label>NIV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_NSV__c</fullName>
@@ -228,6 +311,30 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_PC_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( Opportunity.FS_Cases_piece__c , &apos;box&apos;) ,  Quantity *  PricebookEntry.Product2.COGS__c ,  Quantity * ( PricebookEntry.Product2.COGS__c /  PricebookEntry.Product2.FS_ZSU__c  ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Price_1_w_Disc_w_VAT_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_VAT_TPR__c  *  ListPrice</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Price 1 (w Disc, w VAT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_ProductMarket__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(PricebookEntry.Product2.MarketType__c)</formula>
@@ -245,6 +352,38 @@
         <required>false</required>
         <scale>2</scale>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_SCC_TPR__c</fullName>
+        <description>Supply Chain Cost</description>
+        <externalId>false</externalId>
+        <formula>FS_PC_TPR__c  +  FS_SC_TPR__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SCC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_SC_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity.FS_Distributor__r.FS_Supply_Cost__c *  FS_Turnover_TPR__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Sample__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Sample</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>FS_ServicePerYear__c</fullName>
@@ -284,9 +423,75 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_TPR_percent__c *  FS_GSV_TPR__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_TPR_percent__c</fullName>
+        <externalId>false</externalId>
+        <label>TPR %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_Turnover_TPR__c</fullName>
+        <description>Turnover = NIV - Off-Invoice Discount</description>
+        <externalId>false</externalId>
+        <formula>FS_NIV_TPR__c -  Opportunity.FS_Distributor__r.FS_Off_Invoice__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Turnover</inlineHelpText>
+        <label>Turnover</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_VAT_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL( PricebookEntry.CurrencyIsoCode , &apos;RUB&apos;) ,  IF( PricebookEntry.Product2.FS_VATRU__c = 1 , 10,  IF(PricebookEntry.Product2.FS_VATRU__c = 2, 18, 0) ) ,  IF(ISPICKVAL( PricebookEntry.CurrencyIsoCode , &apos;UAH&apos;),  IF(PricebookEntry.Product2.FS_VATRU__c = 2, 20, 0) , 0) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_Value_necessary_w_VAT_TPR__c</fullName>
+        <externalId>false</externalId>
+        <label>Value necessary (w/ VAT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_necessary_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>0</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>necessary TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>GPPercent__c</fullName>
         <externalId>false</externalId>
-        <formula>GrossProfit__c  /  Turnover__c</formula>
+        <formula>IF( FS_Sample__c =true, 0, GrossProfit__c  /  Turnover__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Profit %</label>
         <precision>18</precision>

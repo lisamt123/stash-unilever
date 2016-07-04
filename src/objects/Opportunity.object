@@ -204,6 +204,76 @@
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>FS_Cases_piece__c</fullName>
+        <externalId>false</externalId>
+        <label>Cases/piece</label>
+        <picklist>
+            <picklistValues>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>box</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Comment</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_Date_of_Send__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <externalId>false</externalId>
+        <label>Date of Send</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Distributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Distributor</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.Type</field>
+                <operation>equals</operation>
+                <value>Distributor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Distributor Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_End_Date_TPR__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date TPR</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>FS_ExistingTradeProContractID__c</fullName>
         <externalId>false</externalId>
         <label>Existing TradePro Contract ID</label>
@@ -241,6 +311,55 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Internal_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Internal Order</label>
+        <picklist>
+            <picklistValues>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_Kind_of_TPR__c</fullName>
+        <externalId>false</externalId>
+        <label>Kind of TPR</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>FS_LumpSum__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
@@ -265,6 +384,29 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_NoOFSampleOrders__c</fullName>
+        <externalId>false</externalId>
+        <label>No OF Sample Orders</label>
+        <summaryFilterItems>
+            <field>OpportunityLineItem.FS_Sample__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_Pre_paid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Pre-paid</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
         <label>Rate</label>
@@ -285,6 +427,15 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>FS_Self_Collection__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Self-Collection</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_SiebelID__c</fullName>
         <externalId>false</externalId>
         <label>Siebel ID</label>
@@ -294,6 +445,16 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Start_Date_TPR__c</fullName>
+        <description>TPR Calculation: Indicates the start date for TPR</description>
+        <externalId>false</externalId>
+        <label>Start Date TPR</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
@@ -742,6 +903,14 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>StageName</fullName>
         <picklist>
             <picklistValues>
+                <fullName>01 – Universe</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Prospecting</fullName>
                 <default>false</default>
                 <closed>false</closed>
@@ -806,30 +975,6 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
                 <won>false</won>
             </picklistValues>
             <picklistValues>
-                <fullName>Closed Won</fullName>
-                <default>false</default>
-                <closed>true</closed>
-                <forecastCategory>Closed</forecastCategory>
-                <probability>100</probability>
-                <won>true</won>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Closed Lost</fullName>
-                <default>false</default>
-                <closed>true</closed>
-                <forecastCategory>Omitted</forecastCategory>
-                <probability>0</probability>
-                <won>false</won>
-            </picklistValues>
-            <picklistValues>
-                <fullName>01 – Universe</fullName>
-                <default>false</default>
-                <closed>false</closed>
-                <forecastCategory>Pipeline</forecastCategory>
-                <probability>10</probability>
-                <won>false</won>
-            </picklistValues>
-            <picklistValues>
                 <fullName>02 - Above</fullName>
                 <default>false</default>
                 <closed>false</closed>
@@ -883,6 +1028,22 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
                 <closed>false</closed>
                 <forecastCategory>Pipeline</forecastCategory>
                 <probability>30</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed Won</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed Lost</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
                 <won>false</won>
             </picklistValues>
             <sorted>false</sorted>
@@ -1030,6 +1191,48 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <businessProcess>NA FS Sales Process</businessProcess>
         <description>CD Process Map</description>
         <label>CD Process</label>
+        <picklistValues>
+            <picklist>FS_Cases_piece__c</picklist>
+            <values>
+                <fullName>box</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Internal_Order__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>ForecastCategoryName</picklist>
             <values>
@@ -1291,6 +1494,48 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <businessProcess>NA FS Sales Process</businessProcess>
         <label>FS Opportunity</label>
         <picklistValues>
+            <picklist>FS_Cases_piece__c</picklist>
+            <values>
+                <fullName>box</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Internal_Order__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ForecastCategoryName</picklist>
             <values>
                 <fullName>Best Case</fullName>
@@ -1550,6 +1795,48 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <active>true</active>
         <businessProcess>NA FS Sales Process</businessProcess>
         <label>Opportunity with Pricing (MA-BE)</label>
+        <picklistValues>
+            <picklist>FS_Cases_piece__c</picklist>
+            <values>
+                <fullName>box</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Internal_Order__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>ForecastCategoryName</picklist>
             <values>
@@ -1815,6 +2102,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <lookupPhoneDialogsAdditionalFields>OPPORTUNITY.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>ACCOUNT.NAME</searchFilterFields>
         <searchResultsAdditionalFields>OPPORTUNITY.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.SITE</searchResultsAdditionalFields>
@@ -1852,6 +2140,13 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorMessage>You must save the opportunity in Stage 04 - Best Few before advancing to Stage 05 - Won</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Opportunity_Start_Date_TPR_validation</fullName>
+        <active>true</active>
+        <description>Start Date TPR must not be more than 2 days after Date of Send</description>
+        <errorConditionFormula>( FS_Start_Date_TPR__c -  FS_Date_of_Send__c ) &gt; 2</errorConditionFormula>
+        <errorMessage>Did you choose correct Start Date?</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Opportunity_Validation</fullName>
         <active>true</active>
         <description>An opportunity at stage 04 or 05 must have at least one line item. Please add a line item to your opportunity, then advance it to stage 04 or 05.</description>
@@ -1872,6 +2167,13 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>Samples_Line_Items_Per_Opportunity</fullName>
+        <active>true</active>
+        <description>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</description>
+        <errorConditionFormula>IF(FS_NoOFSampleOrders__c &gt;10, true, false)</errorConditionFormula>
+        <errorMessage>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Create_Opportunity</fullName>
         <availability>online</availability>
@@ -1890,5 +2192,27 @@ opp9={!FS_Defined_Objective__c.Objective_Start_Date__c}&amp;
 opp11=&quot;01 - Universe&quot;&amp;
 RecordType=0128A0000000BC8&amp;
 ent=Opportunity</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_Opportunity_on_Defined_Objective</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Create Opportunity on Defined Objective</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/006/e?
+CF00N8A000000VoBp={!FS_Account_Plan__c.Name}&amp;
+CF00N8A000000VoBp_lkid={!FS_Account_Plan__c.Id}&amp;
+CF00N8A000000VoEe={!FS_Defined_Objective__c.Name}&amp;
+CF00N8A000000VoEe_lkid={!FS_Defined_Objective__c.Id}&amp;
+opp9={!FS_Defined_Objective__c.Objective_Start_Date__c}&amp; 
+opp4={!Account.Name}&amp;
+opp4_lkid={!Account.Id}&amp;
+retURL=%2F{!Opportunity.Id} &amp;
+RecordType=0128A0000000BCD &amp;
+opp11=01 – Universe</url>
     </webLinks>
 </CustomObject>

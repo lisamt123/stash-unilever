@@ -1243,6 +1243,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_AmountOfVisitors__c</fullName>
+        <description>For amount of visitors</description>
+        <externalId>false</externalId>
+        <label>Amount Of Visitors</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_BuyingGroup__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Purpose : A BG is an overriding organization that can consolidate purchasing for other org. to get better rebates/discounts. 
@@ -1304,14 +1317,82 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_ConvenienceFactor__c</fullName>
+        <description>Created for displaying Convenience factor from Segment object</description>
+        <externalId>false</externalId>
+        <formula>FS_OperatorOutlet__r.FS_ConvenienceFactor__c</formula>
+        <label>Convenience Factor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Customer_Number__c</fullName>
         <description>Purpose : Auto Number to create Account ID for Food Solutions
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <displayFormat>Act-{00000000}</displayFormat>
         <externalId>false</externalId>
         <inlineHelpText>Auto Number to create Account ID for Food Solutions</inlineHelpText>
         <label>FS Customer Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>FS_Distributor_Type__c</fullName>
+        <description>Purpose: Used for TPR Calculation</description>
+        <externalId>false</externalId>
+        <label>Distributor Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FoodTurnover__c</fullName>
+        <description>Calculating the food turnover based on amount of visitors etc.</description>
+        <externalId>false</externalId>
+        <formula>(FS_AmountOfVisitors__c  *  FS_OperatorOutlet__r.FS_DaysPerWeek__c  *  FS_OperatorOutlet__r.FS_AveragePricePerMeal__c  *  FS_OperatorOutlet__r.FS_WeeksPerYear__c)/66.66265</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Food Turnover</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_Food_Price_Value__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_FoodTurnover__c  *  FS_OperatorOutlet__r.FS_FoodCost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Food Price Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_MasterCode__c</fullName>
@@ -1340,6 +1421,52 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Off_Invoice__c</fullName>
+        <description>Default value based on Distributor Type.</description>
+        <externalId>false</externalId>
+        <label>Off Invoice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_On_Invoice__c</fullName>
+        <description>Default value based on Distributor Type</description>
+        <externalId>false</externalId>
+        <label>On Invoice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_OperatorOutlet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Operator Outlet</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SubSegmentRussia__c</field>
+                <operation>equals</operation>
+                <valueField>FS_Segmentation__c.FS_OperatorKindOfOutlet__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>FS_Segmentation__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>FS_Payer__c</fullName>
         <description>Purpose : To display Payer
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -1348,6 +1475,30 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ProposedAccountOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is used for Account owner change Approval Process.</description>
+        <externalId>false</externalId>
+        <label>Proposed Account Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Accounts1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_Segmentation__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(FS_UFSPotentialShare__c &lt;3000,&apos;C&apos;,IF(FS_UFSPotentialShare__c&gt;=5000,&apos;A&apos;,IF(AND(FS_UFSPotentialShare__c&gt;=3000,FS_UFSPotentialShare__c&lt;5000),&apos;B&apos;,&apos;0&apos;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Segmentation</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1364,6 +1515,40 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Supply_Cost__c</fullName>
+        <description>Supply Cost</description>
+        <externalId>false</externalId>
+        <label>Supply Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_Top_Client__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To check if the notification send to top client</description>
+        <externalId>false</externalId>
+        <label>Top Client</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_UFSPotentialShare__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_Food_Price_Value__c  *  FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c  *  FS_ConvenienceFactor__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UFS Potential Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Fax</fullName>
@@ -1793,7 +1978,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Next_Review_Date__c</fullName>
@@ -1842,7 +2027,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <fields>
         <fullName>OwnerId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -2657,7 +2842,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -3241,7 +3426,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -3782,6 +3967,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <filterScope>Everything</filterScope>
         <label>Tous les comptes</label>
         <language>fr</language>
+    </listViews>
+    <listViews>
+        <fullName>All_Distributor_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Distributor</value>
+        </filters>
+        <label>All Distributor Accounts</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>All_Distributor_Accounts_2</fullName>
@@ -4810,6 +5014,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6192,6 +6415,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -7492,6 +7734,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8882,6 +9143,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10838,6 +11118,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12898,6 +13197,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -14199,6 +14517,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -15589,6 +15926,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -17333,6 +17689,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
