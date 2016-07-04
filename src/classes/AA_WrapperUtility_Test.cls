@@ -33,7 +33,7 @@ private class AA_WrapperUtility_Test {
         req.LimitRecords='12';
         req.SortOnMostLike='true';
         
-        List<aa_Agent_Report__c> reportList=new List<aa_Agent_Report__c>();
+       // List<aa_Agent_Report__c> reportList=new List<aa_Agent_Report__c>();
        aa_Country__c country =new aa_Country__c();
        aa_Agent_Report__c report1=new aa_Agent_Report__c(Report_Title__c='test report',country__c=country.id);
        aa_Agent_Report__c report2=new aa_Agent_Report__c(Report_Title__c='test report1',country__c=country.id); 

@@ -82,10 +82,10 @@ public with sharing class aa_Agent_Report_util {
                             sendTochatterMap.put(report.ClusterId__c,JSON.serialize(report));                    
                         }                    
                         //User Name
-                        String CaretedbyName=userInfo.getUserName();
-                        if (String.isNotEmpty(CaretedbyName)) {
-                            sendTochatterMap.put(userInfo.getUserId(),JSON.serialize(report));
-                        }
+                       // String CaretedbyName=userInfo.getUserName();
+                       // if (String.isNotEmpty(CaretedbyName)) {
+                       //     sendTochatterMap.put(userInfo.getUserId(),JSON.serialize(report));
+                       // }
                         return sendTochatterMap;
     }
 }

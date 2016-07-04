@@ -32,11 +32,11 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                 
                 //Handles service request to fetch all reports to show on landing page                   
                 if(svcName.equals(AA_Constants.SVC_AGENT_APP_GET_ALL_REPORTS)){
-                
+                     system.debug('in service name '+AA_Constants.SVC_AGENT_APP_GET_ALL_REPORTS);
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                 
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
-                
+                system.debug('requestBodySerializedMap====>'+requestBodySerializedMap);
                    if(!String.isBlank(requestBodySerializedMap)){ 
                 
                        appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
@@ -44,7 +44,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                     }
                                
                    responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.retriveAllAgentReports(appWrapperObj);
-                
+                  system.debug('response from controller'+responseObj);
                 }  
                 
                 //Handles service request to fetch most like reports                 
@@ -168,7 +168,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
         }
         
         return requestBodySerializedMap;
-    }  
+    }
 
 
 }

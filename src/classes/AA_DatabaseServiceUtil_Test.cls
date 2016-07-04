@@ -1,4 +1,4 @@
-@isTest
+@isTest(seealldata=true)
 /**
  * Name:        -   AA_DatabaseServiceUtil_Test
  * @description -   This is test class for AA_DatabaseServiceUtil class which includes all the DML operations
@@ -6,7 +6,14 @@
  */
 
 private class AA_DatabaseServiceUtil_Test {
-    
+   
+static testMethod void validateIdssss() {
+        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
+        insert retailerData;
+        Boolean res = AA_DatabaseServiceUtil.validateId(retailerData.id);
+      
+        system.assertEquals(res,true);
+    } 
     /**
      * @date        -   19/09/2015
      * @description -   Test class to test the method upsertOperation
@@ -21,16 +28,17 @@ private class AA_DatabaseServiceUtil_Test {
         retailerDataLst.add(retailerData);
         List<String> res = AA_DatabaseServiceUtil.upsertOperation(retailerDataLst);
         
-        List<String> res3 = AA_DatabaseServiceUtil.upsertOperation(retailerData);
-        
+      //  List<String> res3 = AA_DatabaseServiceUtil.upsertOperation(retailerData);
+        AA_DatabaseServiceUtil.upsertOperation(retailerData);
         //invalid obj
         sObject tst=new aa_Agent_Retailer__c(Name=AA_Constants.testString);
         //insert tst;
-        List<String> res1 = AA_DatabaseServiceUtil.upsertOperation(tst);        
-        
+        //List<String> res1 = AA_DatabaseServiceUtil.upsertOperation(tst);        
+        AA_DatabaseServiceUtil.upsertOperation(tst);        
         //invalid lst
         List<sobject> lst =new List<sObject>();
-        List<String> res2 = AA_DatabaseServiceUtil.upsertOperation(lst);
+        //List<String> res2 = AA_DatabaseServiceUtil.upsertOperation(lst);
+        AA_DatabaseServiceUtil.upsertOperation(lst);
         
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
@@ -46,11 +54,12 @@ private class AA_DatabaseServiceUtil_Test {
        //insert unileverReport;         
         
         
-        List<String> res4 = AA_DatabaseServiceUtil.upsertOperation(unileverReport);
-        
+       // List<String> res4 = AA_DatabaseServiceUtil.upsertOperation(unileverReport);
+         AA_DatabaseServiceUtil.upsertOperation(unileverReport);
         List<aa_Agent_Report__c> reportLst=new List<aa_Agent_Report__c>();
         reportLst.add(unileverReport);
-        List<String> res5 = AA_DatabaseServiceUtil.upsertOperation(reportLst);
+        //List<String> res5 = AA_DatabaseServiceUtil.upsertOperation(reportLst);
+         AA_DatabaseServiceUtil.upsertOperation(reportLst);
         system.assert(res.size()>0);
     }
     
@@ -66,12 +75,12 @@ private class AA_DatabaseServiceUtil_Test {
         insert retailerData;
         List<aa_Agent_Retailer__c> retailerDataLst = new   List<aa_Agent_Retailer__c>();
         retailerDataLst.add(retailerData);
-        List<String> res = AA_DatabaseServiceUtil.deleteOperation(retailerDataLst);
+       List<String> res = AA_DatabaseServiceUtil.deleteOperation(retailerDataLst);
         
         List<sObject> lst=new List<sObject>();
         lst.add(retailerData);
-        List<String> res1 = AA_DatabaseServiceUtil.deleteOperation(lst);
-        
+        //List<String> res1 = AA_DatabaseServiceUtil.deleteOperation(lst);
+        AA_DatabaseServiceUtil.deleteOperation(lst);
         system.assert(res.size()>0);
     }
     
@@ -90,10 +99,12 @@ private class AA_DatabaseServiceUtil_Test {
         List<String> res = AA_DatabaseServiceUtil.deleteOperation(retailerData);
         system.assert(res.size()>0);
         
-        List<String> res1 = AA_DatabaseServiceUtil.deleteOperation(retailerData);
+       // List<String> res1 = AA_DatabaseServiceUtil.deleteOperation(retailerData);
+        AA_DatabaseServiceUtil.deleteOperation(retailerData);
         
         sObject tst=new aa_Agent_Retailer__c(Name=AA_Constants.testString);
-        List<String> res2 = AA_DatabaseServiceUtil.deleteOperation(tst);
+        //List<String> res2 = AA_DatabaseServiceUtil.deleteOperation(tst);
+      AA_DatabaseServiceUtil.deleteOperation(tst);
         system.assert(res.size()>0);
         
     }
@@ -168,14 +179,16 @@ private class AA_DatabaseServiceUtil_Test {
        insert unileverReport;      
        
        
-        List<String> res = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,'');
+      //  List<String> res = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,'');
+         AA_DatabaseServiceUtil.insertOperation(unileverReport.id,'');
         
         ContentVersion contentVersionObj = new ContentVersion();
         contentVersionObj.ContentURL='http://www.google.com/';
         contentVersionObj.Title = AA_Constants.testString;           
         insert contentVersionObj;
         List<String> res1 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,contentVersionObj.id);
-        List<String> res2 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,AA_Constants.testString);
+       // List<String> res2 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,AA_Constants.testString);
+       AA_DatabaseServiceUtil.insertOperation(unileverReport.id,AA_Constants.testString);
         //commented as part of 10 Nov 2015 deployment 
         system.assert(res1.size()!=Null);
     }
@@ -199,6 +212,34 @@ private class AA_DatabaseServiceUtil_Test {
        }
        system.assert(recNew!=null);
     }
+     static testMethod void sendToChatterTest(){
+        Test.startTest();
+
+             
+          aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample);
+          insert compBrand;
+
+           aa_Agent_Report__c  reportId= new aa_Agent_Report__c(Name='test');
+           insert reportId;
+
+          aa_Agent_Report__c userToMentionId= new aa_Agent_Report__c (Name='test');
+          insert userToMentionId;
+          aa_Topic__c topic = new aa_Topic__c(Name = AA_Constants.Topicsample);
+          insert topic;
+        String postText='Test2';
+        String Country='India';
+         String userIds='gh';
+        String topicNames='testTopic';
+
+        AA_DatabaseServiceUtil.sendToChatter(compBrand.id , userInfo.getUserId(),  postText, reportId.id, Country,userInfo.getUserId(),topicNames);
+        //system.assert(userIds!=null);
+          //system.assert(topicNames!=null);
+
+        
+        Test.stopTest();
+    }
+
+
    
     
 }

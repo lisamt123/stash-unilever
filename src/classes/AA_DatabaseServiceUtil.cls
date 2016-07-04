@@ -8,6 +8,7 @@ public with sharing class AA_DatabaseServiceUtil {
             for(Database.UpsertResult saveResult:saveResultList) {
                 if(!saveResult.isSuccess()){
                     Database.Error err = saveResult.getErrors()[0];
+                    system.debug('Error: '+err);
                     break;
                 }
             idList.add(saveResult.getId()); 
@@ -33,7 +34,7 @@ public with sharing class AA_DatabaseServiceUtil {
             Database.Upsertresult upsertResult= Database.upsert(upsertObj, true);
             if(!upsertResult.isSuccess()){
                 Database.Error err = upsertResult.getErrors()[0];
-                
+                    system.debug('Error: '+err);
             }else{
                 idList.add(upsertResult.getId());            
             }
@@ -75,13 +76,14 @@ public with sharing class AA_DatabaseServiceUtil {
             idList.add(varAgentReportId);
             
             
-            aa_Agent_Report__c objReport=[select id,Report_Title__c, TF_Mention_User__c, TF_Topic_Name__c, Country__c,status__c, CreatedById from aa_Agent_Report__c where id =: varAgentReportId];
+           aa_Agent_Report__c objReport=[select id,Report_Title__c, TF_Mention_User__c, TF_Topic_Name__c, Country__c,status__c, CreatedById from aa_Agent_Report__c where id =: varAgentReportId];
            
-             if(objReport.status__c =='Published (Public)')
+           if(objReport.status__c =='Published (Public)')
              {
             
-                AA_DatabaseServiceUtil.sendToChatter(Id.valueof(objReport.id),objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c,objReport.TF_Topic_Name__c);
+                AA_DatabaseServiceUtil.sendToChatter(objReport.CreatedById,objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c,objReport.TF_Topic_Name__c);
              }
+        
         
             
         }catch(DMLException dmlEx){ 
@@ -100,7 +102,7 @@ public with sharing class AA_DatabaseServiceUtil {
     public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country,string userIds,string topicNames) {    
         
         String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
-        String reportName=[Select name from aa_Agent_Report__c where id=:reportId].name;
+        //String reportName=[Select name from aa_Agent_Report__c where id=:reportId].name;
         ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
         feedItemInput.body = new ConnectApi.MessageBodyInput();
         
@@ -108,7 +110,7 @@ public with sharing class AA_DatabaseServiceUtil {
 
         //intro
         ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
-        textSegment.text = 'New Agent Report by '+reportCreatorName ;
+        textSegment.text = 'New Agent Report by123 '+reportCreatorName ;
         feedItemInput.body.messageSegments.add(textSegment);
         ConnectApi.TextSegmentInput textSegment2 = new ConnectApi.TextSegmentInput();
         textSegment2.text = ': ' + postText+' ';
@@ -116,20 +118,20 @@ public with sharing class AA_DatabaseServiceUtil {
         
         // add the mention
         if(userIds !=null){
-        string[] splittedids=userIds.split(',',-1);
-        for(String ids:splittedids)
-        {
-          
-            if(ids !=',')
+            string[] splittedids=userIds.split(',');
+            for(String ids:splittedids)
             {
-          
-            ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
-            mentionSegment.id = Id.ValueOf(ids);
-            feedItemInput.body.messageSegments.add(mentionSegment);
+              
+                if(ids !=',')
+                {
+              
+                ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
+                mentionSegment.id = Id.ValueOf(ids);
+                feedItemInput.body.messageSegments.add(mentionSegment);
+                }
+               
             }
-           
-        }
-        }
+            }
         //Add Topics
         if(topicNames !=null)
         {
@@ -165,8 +167,8 @@ public with sharing class AA_DatabaseServiceUtil {
         } 
                     
         // post it!
-         ConnectApi.FeedItem new_chat = ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);
-    
+        // ConnectApi.FeedItem new_chat = ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);
+    	ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);
     } 
     
     /* Performs DB delete operation on List<SObject> passed */
@@ -178,6 +180,7 @@ public with sharing class AA_DatabaseServiceUtil {
             for(Database.DeleteResult deleteResult:deleteResultList) {
                 if(!deleteResult.isSuccess()){
                     Database.Error err = deleteResult.getErrors()[0];
+                    system.debug('Error : '+err);
                     dbErrMessage = dbErrMessage + err.getMessage();
                     
                 }
