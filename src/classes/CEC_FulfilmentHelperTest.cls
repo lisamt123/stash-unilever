@@ -117,7 +117,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -127,7 +127,7 @@ Test method for beforeInsert() method
             cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Cheque_Number__c, Refund_Currency__c 
                                                FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
             System.assertEquals(fulfilmentObj.Cheque_Number__c, '12');
-            System.assertEquals(fulfilmentObj.Refund_Currency__c, 'USD');
+            System.assertEquals(fulfilmentObj.Refund_Currency__c, CEC_Constants.USD);
             Test.stopTest();
         }
     }
@@ -144,7 +144,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
                 1, 1000, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -172,7 +172,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
                 1, 1000, 1000, cmmIndia.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -414,7 +414,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -509,7 +509,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -575,12 +575,12 @@ Test method for beforeInsert() method
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
             Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
             List<CEC_Debit_Card_Detail__c> issuedDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, CEC_Constants.issuedDebitCardNumber, CEC_Constants.ISSUED, 
-                                                        accountBeforeNewDebitCard.Id, geographyUK.Id);
+                1, CEC_Constants.issuedDebitCardNumber, CEC_Constants.ISSUED, 
+                accountBeforeNewDebitCard.Id, geographyUK.Id);
             insert issuedDebitCardDetailList;
             
             List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
+                1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newDebitCardDetailList; 
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c FROM cec_Fulfilment__c LIMIT 1];
@@ -614,12 +614,12 @@ Test method for beforeInsert() method
             Account accountBeforeReIssue = [SELECT Id,Debit_Card_Number__c FROM Account LIMIT 1];
             
             List<CEC_Debit_Card_Detail__c> issuedDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, CEC_Constants.issuedDebitCardNumber, CEC_Constants.ISSUED, 
-                                                        accountBeforeReIssue.Id, geographyUK.Id);
+                1, CEC_Constants.issuedDebitCardNumber, CEC_Constants.ISSUED, 
+                accountBeforeReIssue.Id, geographyUK.Id);
             insert issuedDebitCardDetailList;
             
             List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
+                1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newDebitCardDetailList;
             
             
@@ -627,7 +627,7 @@ Test method for beforeInsert() method
             update accountBeforeReIssue;
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c 
-                                                        FROM cec_Fulfilment__c LIMIT 1];
+                                                       FROM cec_Fulfilment__c LIMIT 1];
             fulfilmentList[0].Account_Card_Number__c = CEC_Constants.issuedDebitCardNumber;
             fulfilmentList[0].Issue_Card__c = false;
             update fulfilmentList;
@@ -649,12 +649,12 @@ Test method for beforeInsert() method
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
             Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
             List<CEC_Debit_Card_Detail__c> issuedDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, CEC_Constants.issuedDebitCardNumber, CEC_Constants.ISSUED, 
-                                                        accountBeforeNewDebitCard.Id, geographyUK.Id);
+                1, CEC_Constants.issuedDebitCardNumber, CEC_Constants.ISSUED, 
+                accountBeforeNewDebitCard.Id, geographyUK.Id);
             insert issuedDebitCardDetailList;
             
             List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
+                1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newDebitCardDetailList; 
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c FROM cec_Fulfilment__c LIMIT 1];
@@ -670,7 +670,7 @@ Test method for beforeInsert() method
             // update the card value
             fulfilmentList[0].isApproved__c=true;
             update fulfilmentList;
-
+            
             cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Debit_Card_Number__r.name
                                                FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
             
@@ -696,16 +696,16 @@ Test method for beforeInsert() method
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
             Account accountBeforeNewEVoucher = [SELECT Id FROM Account LIMIT 1];
             List<CEC_E_Voucher_Details__c> issuedEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '11111111', CEC_Constants.ISSUED, 
-                                                        accountBeforeNewEvoucher.Id, geographyUK.Id);
+                1, '11111111', CEC_Constants.ISSUED, 
+                accountBeforeNewEvoucher.Id, geographyUK.Id);
             insert issuedEvoucherDetailList;
             
             List<CEC_E_Voucher_Details__c> newEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
+                1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newEvoucherDetailList; 
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id FROM cec_Fulfilment__c LIMIT 1];
-
+            
             
             CEC_EvoucherProcess.getEvoucherNumber(fulfilmentList[0].Id);
             cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, E_Voucher_Number__r.name 
@@ -713,13 +713,13 @@ Test method for beforeInsert() method
             
             
             CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c FROM CEC_E_Voucher_Details__c 
-                                                              WHERE Name = '22222222' LIMIT 1];
-                                           
+                                                             WHERE Name = '22222222' LIMIT 1];
+            
             System.assertEquals(fulfilmentObj.E_Voucher_Number__r.name, '22222222');
             
             System.assertEquals(issuedEvoucherDetail.Status__c, CEC_Constants.ISSUED);
             
-
+            
         }
     }  
     
@@ -729,32 +729,31 @@ Test method for beforeInsert() method
             Account accountBeforeNewEVoucher = [SELECT Id FROM Account LIMIT 1];
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
             Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
-             List<CEC_E_Voucher_Details__c> issuedEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '11111111', CEC_Constants.ISSUED, 
-                                                        accountBeforeNewEvoucher.Id, geographyUK.Id);
+            List<CEC_E_Voucher_Details__c> issuedEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
+                1, '11111111', CEC_Constants.ISSUED, 
+                accountBeforeNewEvoucher.Id, geographyUK.Id);
             insert issuedEvoucherDetailList;
             
             List<CEC_E_Voucher_Details__c> newEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
+                1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newEvoucherDetailList;
             CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c, Voucher_Value__c FROM CEC_E_Voucher_Details__c 
-                                                              WHERE Name = '11111111' LIMIT 1];
+                                                             WHERE Name = '11111111' LIMIT 1];
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, E_Voucher_Number__r.name FROM cec_Fulfilment__c LIMIT 1];
-            //fulfilmentList[0].E_Voucher_Number__c = issuedEvoucherDetail.id;
             
             fulfilmentList[0].Local_Identifier__c='2112145';            
             fulfilmentList[0].Date_of_Birth__c=System.today();
             fulfilmentList[0].E_Voucher_Value__c=10;
-                        
+            
             update fulfilmentList;
             CEC_EvoucherProcess.getEvoucherNumber(fulfilmentList[0].Id);
-             fulfilmentList[0].isApproved__c=true;    
-             update fulfilmentList;
-             
+            fulfilmentList[0].isApproved__c=true;    
+            update fulfilmentList;
+            
             CEC_E_Voucher_Details__c issuedEvoucherDetail1 = [SELECT Id, Status__c, Voucher_Value__c FROM CEC_E_Voucher_Details__c 
                                                               WHERE Name = '22222222' LIMIT 1];
-                                                              
+            
             System.assertEquals(issuedEvoucherDetail1.Voucher_Value__c, 10);
             
         }
