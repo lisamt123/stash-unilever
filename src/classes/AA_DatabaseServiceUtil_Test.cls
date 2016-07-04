@@ -231,9 +231,9 @@ static testMethod void validateIdssss() {
          String userIds='gh';
         String topicNames='testTopic';
 
-        AA_DatabaseServiceUtil.sendToChatter(compBrand.id , userInfo.getUserId(),  postText, reportId.id, Country,userInfo.getUserId(),topicNames);
-        //system.assert(userIds!=null);
-          //system.assert(topicNames!=null);
+        AA_DatabaseServiceUtil.sendToChatter(compBrand.id , userInfo.getUserId(),  postText, reportId.id, Country,userInfo.getUserId());
+        system.assert(userIds!=null);
+         
 
         
         Test.stopTest();
