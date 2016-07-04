@@ -596,8 +596,8 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
     <fields>
         <fullName>RQS_Contract_Answered_3__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(IPM_Project__r.RQS_Contract_Answered_3__c &gt; 0,&apos;Yes&apos;,
-  IF(OR(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0), IPM_Project__r.ContractRiskIdentified__c ), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
+        <formula>IF(AND(NOT(IPM_Project__r.ContractRiskIdentified__c), IPM_Project__r.CharterRiskIdentified__c), RQS_Charter_Answered_3__c, IF(IPM_Project__r.RQS_Contract_Answered_3__c &gt; 0,&apos;Yes&apos;,
+  IF(OR(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0), IPM_Project__r.ContractRiskIdentified__c ), &apos;No&apos;, &apos;Not Applicable&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Contract Answered &gt; 3</label>
         <required>false</required>
