@@ -24,12 +24,13 @@ public class CEC_CaseTransferController {
     public list<CEC_Case_Market_Mapping__c> caseMarketMappings {get; set;}
     public String caseMktMapIdStr {get; set;}
     public Boolean isTransferSuccess {get; set;}
-    Case transferCase;
+    private static final string lineBreak = '\n\n';
+    Case transCase;
     
     
     public CEC_CaseTransferController(ApexPages.StandardController controller) {
         caseMarketMappings = new list<CEC_Case_Market_Mapping__c>();
-        transferCase =  (case)controller.getRecord();
+        transCase =  (case)controller.getRecord();
     }
     
     /*******************************************************************
@@ -48,7 +49,7 @@ Purpose: To display case market mapping on the basis of user input.
             String searchparam = '%' + marketMapping.removeEnd('*') + '%';
             System.debug('*******searchparam**********' + searchparam );
             caseMarketMappings  = [SELECT Id, Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, DefaultCaseOwnerId__c, Country__r.Name FROM CEC_Case_Market_Mapping__c
-                                   WHERE Market__c != :transferCase.Case_Market__c AND (Name Like :searchparam OR Market__c Like :searchparam)    limit 10000];
+                                   WHERE Market__c != :transCase.Case_Market__c AND (Name Like :searchparam OR Market__c Like :searchparam)    limit 10000];
             System.debug('*******caseMarketMappings **********' + caseMarketMappings  );
             if (caseMarketMappings.isEmpty()) {
                 ApexPages.Message searchResultNtFoundMsg = new ApexPages.Message(ApexPages.Severity.Info, Label.CEC_NoResultFoundMsg);
@@ -76,43 +77,43 @@ Purpose: To transfer case to the advisor selected market.
             case oldCase = [SELECT  Id, Country__c, Country__r.name, owner.Name, Store__c, Store__r.name, 
                                     CEC_Product__r.Name, Account.Name, Reason_Code__c, Reason_Code__r.Name
                                     FROM Case 
-                                    WHERE Id = : transferCase.Id];
+                                    WHERE Id = : transCase.Id];
             
             Map<Id, CEC_Case_Market_Mapping__c> mktMappingById = new Map<Id, CEC_Case_Market_Mapping__c>(caseMarketMappings);
             CEC_Case_Market_Mapping__c mktMapSelected = mktMappingById.get(caseMktMapId);
             Group currentCaseOwner;
             
-            transferCase.status = 'New';
-            transferCase.Country__c = mktMapSelected.Id;
-            transferCase.ownerId = mktMapSelected.DefaultCaseOwnerId__c;
-            transferCase.Store__c = null;
-            transferCase.CEC_Product__c = null;
-            transferCase.AccountId = null;
-            transferCase.ContactId = null;
-            transferCase.Reason_Code__c = null;
+            transCase.status = 'New';
+            transCase.Country__c = mktMapSelected.Id;
+            transCase.ownerId = mktMapSelected.DefaultCaseOwnerId__c;
+            transCase.Store__c = null;
+            transCase.CEC_Product__c = null;
+            transCase.AccountId = null;
+            transCase.ContactId = null;
+            transCase.Reason_Code__c = null;
             
             try {
-                update transferCase;
+                update transCase;
                 currentCaseOwner = [SELECT Id, Name FROM Group WHERE Id = : mktMapSelected.DefaultCaseOwnerId__c];
                 
-                 String commentBody = 'Changed Case Market Mapping from ' + oldCase.Country__r.Name  + ' to ' + mktMapSelected.Name  + '\n\n';
-                commentBody  += 'Changed Owner from ' + oldCase.owner.name + ' to ' + currentCaseOwner.Name + '\n\n';
+                 String commentBody = 'Changed Case Market Mapping from ' + oldCase.Country__r.Name  + ' to ' + mktMapSelected.Name  + lineBreak;
+                commentBody  += 'Changed Owner from ' + oldCase.owner.name + ' to ' + currentCaseOwner.Name + lineBreak;
                 
                 if (oldCase.Store__r.name != null)
-                    commentBody  += 'Removed Store : ' + oldCase.Store__r.name + '\n\n';
+                    commentBody  += 'Removed Store : ' + oldCase.Store__r.name + lineBreak;
     
                 if (oldCase.Account.Name != null)
-                    commentBody  += 'Removed Contact Name : ' + oldCase.Account.Name + '\n\n' ;
+                    commentBody  += 'Removed Contact Name : ' + oldCase.Account.Name + lineBreak ;
                 
                 if (oldCase.CEC_Product__r.Name != null)
-                    commentBody  += 'Removed Product : ' + oldCase.CEC_Product__r.Name + '\n\n' ;
+                    commentBody  += 'Removed Product : ' + oldCase.CEC_Product__r.Name + lineBreak ;
                 
                 if (oldCase.Reason_Code__r.Name != null)
-                    commentBody  += 'Removed Reason Code : ' + oldCase.Reason_Code__r.Name  + '\n\n' ;
+                    commentBody  += 'Removed Reason Code : ' + oldCase.Reason_Code__r.Name  + lineBreak ;
                 
                 CaseComment caseCommt = new CaseComment();
                 caseCommt.CommentBody = commentBody  ;
-                caseCommt.ParentId = transferCase.Id;
+                caseCommt.ParentId = transCase.Id;
                  insert caseCommt;
                 
             } Catch(DmlException ex) {
