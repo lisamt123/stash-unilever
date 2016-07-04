@@ -53,7 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -79,6 +79,15 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used in approval process and will not appear in page layout</description>
+        <externalId>false</externalId>
+        <label>Approved</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Cases__c</fullName>
@@ -111,6 +120,17 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>No_of_Opportunities__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Opportunities</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Objective_Description__c</fullName>
@@ -169,6 +189,77 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approval Requested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Sector__c</fullName>
+        <description>Values need to sync with Product.Sub_Sector__c</description>
+        <externalId>false</externalId>
+        <label>Sub Sector</label>
+        <picklist>
+            <picklistValues>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13 KNORR COOK-IN SAUCE/MEALMAKER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>14 LIZANO COOK-IN SAUCE/MEALMAKER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15 KNORR SIDE DISH/COMPLETE MEAL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2K 1 2 TEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Tension__c</fullName>
         <externalId>false</externalId>
         <label>Tension</label>
@@ -206,6 +297,11 @@
         <type>Currency</type>
     </fields>
     <label>Defined Objective</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>DO-{0000}</displayFormat>
         <label>Defined Objective Name</label>
@@ -220,7 +316,73 @@
         <picklistValues>
             <picklist>Objective_Type__c</picklist>
             <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Qualitative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retain %2F Differentiate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approval Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Sector__c</picklist>
+            <values>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 KNORR COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 LIZANO COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2K 1 2 TEA</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -252,7 +414,73 @@
         <picklistValues>
             <picklist>Objective_Type__c</picklist>
             <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Qualitative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retain %2F Differentiate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approval Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Sector__c</picklist>
+            <values>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 KNORR COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 LIZANO COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2K 1 2 TEA</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -278,6 +506,12 @@
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ChecknoodOpportunities</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(OR(IsPickVal(Objective_Type__c,&apos;Grow&apos;),IsPickVal( Objective_Type__c,&apos;Win&apos;)), IsPickVal(Status__c,&apos;Approval Requested&apos;), isNull(No_of_Opportunities__c), RecordType.Name=&apos;Operator Objective&apos;  )</errorConditionFormula>
+        <errorMessage>Please create an Opportunity prior to submission for approval</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Create_Distributor_Objective</fullName>
         <availability>online</availability>
@@ -293,12 +527,11 @@ CF00N8A000000Vo5h={!FS_Account_Plan__c.Name}&amp;
 CF00N8A000000Vo5h_lkid={!FS_Account_Plan__c.Id}&amp;
 CF00N8A000000VoOo={!Account.Name}&amp;
 CF00N8A000000VoOo_lkid={!Account.Id}&amp;
-00N8A000000Vtvd={!FS_Account_Plan__c.Start_Date__c}&amp;
-00N8A000000VoJK={!FS_Account_Plan__c.End_Date__c}&amp;
-00N8A000000VubF={!FS_Account_Plan__c.Plan_Statement__c}&amp;
-saveURL=%2F{!FS_Defined_Objective__c.Id}&amp;
-retURL=%2F{!FS_Account_Plan__c.Id}&amp;
-RecordType=0128A0000000Cvd</url>
+00N8A000000Vtvd={!FS_Account_Plan__c.FS_Start_Date__c}&amp;
+00N8A000000VoJK={!FS_Account_Plan__c.FS_End_Date__c}&amp;
+retURL=%2F{!FS_Defined_Objective__c.Id}&amp;
+RecordType=0128A0000000Cvd &amp;
+ent=01I8A0000000La1</url>
     </webLinks>
     <webLinks>
         <fullName>Create_Operator_Objective</fullName>
@@ -315,11 +548,11 @@ CF00N8A000000Vo5h={!FS_Account_Plan__c.Name}&amp;
 CF00N8A000000Vo5h_lkid={!FS_Account_Plan__c.Id}&amp;
 CF00N8A000000VoOo={!Account.Name}&amp;
 CF00N8A000000VoOo_lkid={!Account.Id}&amp;
-00N8A000000Vtvd={!FS_Account_Plan__c.Start_Date__c}&amp;
-00N8A000000VoJK={!FS_Account_Plan__c.End_Date__c}&amp;
-00N8A000000VubF={!FS_Account_Plan__c.Plan_Statement__c}&amp;
-saveURL=%2F{!FS_Defined_Objective__c.Id}&amp;
-retURL=%2F{!FS_Account_Plan__c.Id}&amp;
-RecordType=0128A0000000CvY</url>
+00N8A000000Vtvd={!FS_Account_Plan__c.FS_Start_Date__c}&amp;
+00N8A000000VoJK={!FS_Account_Plan__c.FS_End_Date__c}&amp;
+00N8A000000W1dm=Planning &amp;
+retURL=%2F{!FS_Defined_Objective__c.Id}&amp;
+RecordType=0128A0000000CvY &amp;
+ent=01I8A0000000La1</url>
     </webLinks>
 </CustomObject>

@@ -53,12 +53,25 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>Customer__c</fullName>
+        <fullName>FS_Completed__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( FS_No_of_Objectives__c=0,0,FS_No_of_Completed_Objectives__c/FS_No_of_Objectives__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Completed %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_Customer__c</fullName>
         <description>Lookup to Account</description>
         <externalId>false</externalId>
         <label>Customer</label>
@@ -73,7 +86,7 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>FS_End_Date__c</fullName>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -82,19 +95,32 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>NumberofObjectives__c</fullName>
+        <fullName>FS_No_of_Completed_Objectives__c</fullName>
         <externalId>false</externalId>
-        <label>Number of Objectives</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
+        <label>FS No of Completed Objectives</label>
+        <summaryFilterItems>
+            <field>FS_Defined_Objective__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Summary</type>
     </fields>
     <fields>
-        <fullName>PlanDollars__c</fullName>
+        <fullName>FS_No_of_Objectives__c</fullName>
+        <externalId>false</externalId>
+        <label>FS_No of Objectives</label>
+        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_PlanDollars__c</fullName>
         <externalId>false</externalId>
         <label>Plan $</label>
         <precision>18</precision>
@@ -105,7 +131,7 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>PlanPercent__c</fullName>
+        <fullName>FS_PlanPercent__c</fullName>
         <description>Objective for increase in %</description>
         <externalId>false</externalId>
         <label>Plan %</label>
@@ -117,7 +143,7 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>Plan_Statement__c</fullName>
+        <fullName>FS_Plan_Statement__c</fullName>
         <externalId>false</externalId>
         <label>Plan Statement</label>
         <required>false</required>
@@ -126,16 +152,20 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Plan_Type__c</fullName>
+        <fullName>FS_Plan_Type__c</fullName>
         <externalId>false</externalId>
         <label>Plan Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Win/Grow</fullName>
+                <fullName>Win</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Retain/Differentiate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grow</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -146,7 +176,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>FS_Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -155,7 +185,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Status__c</fullName>
+        <fullName>FS_Status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -164,7 +194,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Approval Request</fullName>
+                <fullName>Approval Requested</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -183,7 +213,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>of_Units__c</fullName>
+        <fullName>FS_of_Units__c</fullName>
         <externalId>false</externalId>
         <label># of Units</label>
         <precision>18</precision>
@@ -194,7 +224,56 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>No_of_Opportunities__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Opportunities</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity Potential</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Gain__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity Gain</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used in approval process and will not appear in page layout</description>
+        <externalId>false</externalId>
+        <label>approved</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Account Plan</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>AP-{0000}</displayFormat>
         <label>Account Plan Name</label>
@@ -209,20 +288,20 @@
         <description>An Account Plan for Distributor Accounts</description>
         <label>Distributor</label>
         <picklistValues>
-            <picklist>Plan_Type__c</picklist>
+            <picklist>FS_Plan_Type__c</picklist>
             <values>
                 <fullName>Retain%2FDifferentiate</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Win%2FGrow</fullName>
+                <fullName>Win</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Status__c</picklist>
+            <picklist>FS_Status__c</picklist>
             <values>
-                <fullName>Approval Request</fullName>
+                <fullName>Approval Requested</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -245,20 +324,24 @@
         <description>An Account Plan for Operator Accounts</description>
         <label>Operator</label>
         <picklistValues>
-            <picklist>Plan_Type__c</picklist>
+            <picklist>FS_Plan_Type__c</picklist>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Retain%2FDifferentiate</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Win%2FGrow</fullName>
+                <fullName>Win</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Status__c</picklist>
+            <picklist>FS_Status__c</picklist>
             <values>
-                <fullName>Approval Request</fullName>
+                <fullName>Approval Requested</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -278,6 +361,13 @@
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>CheckNoofDefineObjective</fullName>
+        <active>true</active>
+        <description>This validation rule is used to check if account plan record is associated with any defined objective</description>
+        <errorConditionFormula>AND(ISPICKVAL(FS_Status__c,&apos;Approval Requested&apos;) ,FS_No_of_Objectives__c =0)</errorConditionFormula>
+        <errorMessage>Please create Defined Objectives prior to submission for approval</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Create_Distributor_Action_Plan</fullName>
         <availability>online</availability>
@@ -310,7 +400,8 @@ ent=01I8A0000000LZw</url>
 CF00N8A000000Vo7T={!Account.Name}&amp;
 CF00N8A000000Vo7T_lkid={!Account.Id}&amp;
 00N8A000000VoJe=&quot;Planning&quot;&amp;
-retURL=%2F{!Account.Id}&amp;
+retURL=%2F{!FS_Account_Plan__c.Id}&amp; 
+ent=01I8A0000000LZw &amp;
 RecordType=0128A0000000CvT</url>
     </webLinks>
 </CustomObject>

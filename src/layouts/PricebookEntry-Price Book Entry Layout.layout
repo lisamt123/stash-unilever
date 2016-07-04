@@ -34,6 +34,10 @@
                 <behavior>Edit</behavior>
                 <field>SAP_ID__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_VAT__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -61,6 +61,10 @@
                 <behavior>Edit</behavior>
                 <field>FS_ProposedAccountOwner__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Top_Client__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -406,15 +410,15 @@
         <customButtons>Create_Distributor_Action_Plan</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Plan_Statement__c</fields>
-        <fields>Plan_Type__c</fields>
-        <fields>PlanDollars__c</fields>
-        <fields>PlanPercent__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
-        <fields>Status__c</fields>
-        <relatedList>FS_Account_Plan__c.Customer__c</relatedList>
-        <sortField>Status__c</sortField>
+        <fields>FS_Plan_Statement__c</fields>
+        <fields>FS_Plan_Type__c</fields>
+        <fields>FS_PlanDollars__c</fields>
+        <fields>FS_PlanPercent__c</fields>
+        <fields>FS_Start_Date__c</fields>
+        <fields>FS_End_Date__c</fields>
+        <fields>FS_Status__c</fields>
+        <relatedList>FS_Account_Plan__c.FS_Customer__c</relatedList>
+        <sortField>FS_Status__c</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>

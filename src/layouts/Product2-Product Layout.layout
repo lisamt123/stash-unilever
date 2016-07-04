@@ -37,7 +37,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_ImageID__c</field>
+                <field>ImageURL__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Sample__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -69,6 +73,10 @@
                 <behavior>Readonly</behavior>
                 <field>Active__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_EquivalentUnit__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -80,7 +88,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_Picture_Products__c</field>
+                <field>FS_ProductImage__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -160,11 +168,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NFS_Thrust__c</field>
+                <field>FS_Thrust__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NFS_Top_Sellers__c</field>
+                <field>FS_Top_Sellers__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -280,6 +288,10 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedPricebookEntryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Product_Objective__c.Product__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
