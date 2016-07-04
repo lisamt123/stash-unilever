@@ -75,6 +75,10 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Project_Y3iTO__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_ProjectGKM__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
