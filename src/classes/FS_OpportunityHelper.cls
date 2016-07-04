@@ -72,5 +72,93 @@ public with sharing class FS_OpportunityHelper {
               ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
           }
       }
-    }               
+    }  
+   //Purpose: To update Account Plan object to roll up Opportunity 
+   public static void rollUptoAccountPlan(List<Opportunity> listNewTrigger2){ 
+        if(FS_Utility.run2Once()){
+         Integer Opportunity_Gain = 0;
+         Integer Opportunity_Potential=0;
+         Integer recordCount = 0;
+         List<Id> listAccPlanId = new List<Id>();
+         List<FS_Account_Plan__c> AccPlanList = new List<FS_Account_Plan__C>();
+         List<FS_Account_Plan__c> AccPlanToUpdate = new List<FS_Account_Plan__C>();
+         List<Opportunity> OppList = new List<Opportunity>();
+         for(Opportunity opp : listNewTrigger2){
+              if(opp.Account_Plan__c !=null){
+                  listAccPlanId.add(opp.Account_Plan__c);
+              }
+            }
+        //Get Accoun Plan deatils where associated opportunities have been modified
+        AccPlanList=[select id,name,Opportunity_Gain__c,No_of_Opportunities__c,Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
+        //Roll up opportunity details up to account plan object
+        for(FS_Account_Plan__c AccPlan : AccPlanList )
+        {
+            Opportunity_Gain=0;
+            recordCount=0;
+            Opportunity_Potential=0;
+             OppList=[select id,name,StageName,Amount from Opportunity where Account_Plan__c=:AccPlan.id]  ;
+             for(Opportunity Opp : OppList)
+             {
+                 If(opp.amount !=null){
+                 IF(opp.StageName=='Closed Won'){
+                 Opportunity_Gain=Opportunity_Gain+Integer.valueOf(opp.Amount);
+                 }
+                 if(opp.StageName!='Closed Lost'){
+                  Opportunity_Potential=Opportunity_Potential+Integer.valueOf(opp.Amount); 
+                 }
+                 }
+                }
+            //Update roll up fields on account plan object
+            AccPlan.Opportunity_Gain__c=Opportunity_Gain;
+            AccPlan.No_of_Opportunities__c=OppList.size();
+            accPlan.Opportunity_Amount__c=Opportunity_Potential;
+            AccPlanToUpdate.add(accPlan);
+            OppList.clear();
+         }
+            try{
+              if(!AccPlanToUpdate.isEmpty()){
+                 update(AccPlanToUpdate);
+              }
+          }
+          Catch(DmlException e){
+              System.debug( 'The following exception has occurred: '+e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+          }
+        
+        }
+}
+    public static void rollUptoDefinedObjective(List<Opportunity> listNewTrigger2){ 
+        if(FS_Utility.run3Once()){
+         List<Id> listObjId = new List<Id>();
+         List<FS_Defined_Objective__c> ObjList = new List<FS_Defined_Objective__c>();
+         List<FS_Defined_Objective__c> ObjToUpdate = new List<FS_Defined_Objective__c>();
+         List<Opportunity> OppList = new List<Opportunity>();
+         for(Opportunity opp : listNewTrigger2){
+              if(opp.Defined_Objective__c !=null){
+                  listObjId.add(opp.Defined_Objective__c);
+              }
+            }
+        //Get Accoun Plan deatils where associated opportunities have been modified
+        ObjList=[select id,name,No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId];
+        //Roll up opportunity details up to account plan object
+        for(FS_Defined_Objective__c Obj : ObjList )
+        {
+            OppList=[select id,name,StageName,Amount from Opportunity where defined_objective__C=:Obj.id]  ;
+            //Update total no of opportunities on defined objective
+            Obj.No_of_Opportunities__c=OppList.size();
+            ObjToUpdate.add(obj);
+            OppList.clear();
+         }
+            try{
+              if(!ObjToUpdate.isEmpty()){
+                 update ObjToUpdate;
+              }
+          }
+          Catch(DmlException e){
+              System.debug( 'The following exception has occurred: '+e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+          }
+        
+        }
+ }
 }
