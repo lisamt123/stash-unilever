@@ -38,7 +38,8 @@ public class PBS_LMSStartController_Test {
 
         Test.startTest();
             PBS_LMSStartController_CC cont = new PBS_LMSStartController_CC();
-            PageReference resultRef = cont.initSampleData();
+            PageReference resultRef = cont.initSampleData(); //Sonar fix
+            cont.initSampleData();
             if(getTrainingPlanCount()== 0){
             System.assertEquals(0,getTrainingPlanCount());}
              else if(getTrainingPlanCount()==2){
@@ -46,6 +47,7 @@ public class PBS_LMSStartController_Test {
             System.assertEquals(0,getTrainingTrackCount());
             System.assert(cont.jsonData != null);
             resultRef = cont.initFromJSONString();
+            System.assert(resultRef == null);
             //System.assertEquals(2,getTrainingPlanCount());
             System.assertEquals(0,getTrainingTrackCount());
             //System.assert(ApexPages.hasMessages(ApexPages.Severity.ERROR) == false);
@@ -62,7 +64,8 @@ public class PBS_LMSStartController_Test {
         Test.startTest();
             PBS_LMSStartController_CC cont = new PBS_LMSStartController_CC();
             cont.jsonData = PBS_LMSInit_CC.fetchInitData('almond_LMSInitDataWithTracks');
-            PageReference resultRef = cont.initFromJSONString();
+            //PageReference resultRef = cont.initFromJSONString(); // sonar fix
+            cont.initFromJSONString();
             if(getTrainingPlanCount()== 0){
             System.assertEquals(0,getTrainingPlanCount());}
             else if(getTrainingPlanCount()==1){
@@ -86,7 +89,8 @@ public class PBS_LMSStartController_Test {
 
             PBS_LMSStartController_CC cont = new PBS_LMSStartController_CC();
             cont.jsonData = null;
-            PageReference resultRef = cont.initFromJSONString();
+            //PageReference resultRef = cont.initFromJSONString(); //sonar fix
+             cont.initFromJSONString();
             /*System.assert(ApexPages.hasMessages(ApexPages.Severity.ERROR) == true);*/
             System.assertEquals(true, ApexPages.hasMessages(ApexPages.Severity.ERROR));
 

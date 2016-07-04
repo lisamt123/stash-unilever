@@ -1,0 +1,48 @@
+<apex:page sidebar="false" controller="PBS_CourseStatsInDetailReport_CC" tabStyle="Plancraft_Admin_Reports__tab">
+<title>Reports</title> 
+<apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+<style type="text/css">
+   .reportcontainer{
+    background-color:#004976;
+    position: relative;
+    top: -30px;
+   }
+
+ .reportbody{
+   background-color:#13133D;
+   margin-left:250px;
+   margin-right:250px;
+   height:530px;
+  }
+  .reportbodyinside{
+    position:relative;
+    top:35px;
+    background-color:#ffffff;
+    margin-left:60px;
+    margin-right:60px;
+    height:460px;
+    text-align: center;
+   }
+</style>
+<br/>
+<div class="reportcontainer">
+     <div class="reportbody">
+      <apex:form >
+       <div class="reportbodyinside">
+         <br/>
+          <h1>
+              PBS Course Status In Detail
+           </h1> <br/><br/>
+           User Name:   
+            <apex:selectList required="true" multiselect="false" size="1" label="Type" value="{!selectedValue}">
+         <apex:selectOptions value="{!UserNames}"/>
+         </apex:selectList>    
+            <br/><br/>
+         <apex:commandlink action="{!gnertCrseStusInDtlRprt}" target="_blank">
+        <apex:commandButton Value="View Report"/>
+        </apex:commandLink>
+        </div>
+     </apex:form>
+    </div>
+</div>
+</apex:page>

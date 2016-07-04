@@ -42,11 +42,15 @@ public class PBS_LMSHeaderController_Test {
           //Assign corresponding perm sets
           PBS_TestUtilClass.addPermissionSet(adminUsers,'PBS_LMS_Admin');
       }
-
+       /* removed for sonar fix
       PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.PBS_MyTraining.getUrl(), STR_TRAINGING);
       PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.PBS_TrainingCatalogHome.getUrl(), STR_CATALOG);
       PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.PBS_MyProfile.getUrl(), STR_PROFILE);
-
+      */
+      
+      PBS_TestHelper.createNavItem(STR_TRAINGING, Page.PBS_MyTraining.getUrl(), STR_TRAINGING);
+      PBS_TestHelper.createNavItem(STR_CATALOG, Page.PBS_TrainingCatalogHome.getUrl(), STR_CATALOG);
+      PBS_TestHelper.createNavItem(STR_PROFILE, Page.PBS_MyProfile.getUrl(), STR_PROFILE);
       Test.startTest();
 
         System.runAs(adminUsers.get(0)){
@@ -77,11 +81,15 @@ public class PBS_LMSHeaderController_Test {
           PBS_TestUtilClass.addPermissionSet(adminUsers,'PBS_LMS_Admin');
           PBS_TestUtilClass.addPermissionSet(lmsUsers,'PBS_LMS_User');
       }
-
+      /* removed for sonar fix
       PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.PBS_MyTraining.getUrl(), STR_TRAINGING);
       PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.PBS_TrainingCatalogHome.getUrl(), STR_CATALOG);
       PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.PBS_MyProfile.getUrl(), STR_PROFILE);
-
+      */
+      PBS_TestHelper.createNavItem(STR_TRAINGING, Page.PBS_MyTraining.getUrl(), STR_TRAINGING);
+      PBS_TestHelper.createNavItem(STR_CATALOG, Page.PBS_TrainingCatalogHome.getUrl(), STR_CATALOG);
+      PBS_TestHelper.createNavItem(STR_PROFILE, Page.PBS_MyProfile.getUrl(), STR_PROFILE);
+      
       Test.startTest();
 
           System.runAs(lmsUsers.get(0)){
