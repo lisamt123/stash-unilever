@@ -343,7 +343,6 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        	String rolloutName;
 	            Date targetLaunchDate;
 	            for(IPM_Project_Rollout__c rollout: regionalProject.Regional_Project_Rollout__r) {
-    				if((rollout.Local_Project__c==null) || (regionalProject.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && regionalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) {
 		                rolloutName = rollout.name;
 		                targetLaunchDate = rollout.Target_Launch_Date__c;
 		                for(IPM_Financial__c ipmFinancial: regionalProject.IPM_Financials_Regional__r) {
@@ -354,8 +353,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 		                        break;
 		                    }
 		                }
-	            	}
-        		}
+	              }
 	        }
     	
     	}
