@@ -1333,6 +1333,10 @@
         <name>ManageReportsInPubFolders</name>
     </userPermissions>
     <userPermissions>
+        <enabled>false</enabled>
+        <name>ModifyAllData</name>
+    </userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>NewReportBuilder</name>
     </userPermissions>
