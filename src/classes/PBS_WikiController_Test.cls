@@ -1,6 +1,7 @@
 @isTest
 public Class PBS_WikiController_Test{
-@isTest static void noDataTest()
+ @isTest 
+ static void noDataTest()
     {
         Test.startTest();
         
