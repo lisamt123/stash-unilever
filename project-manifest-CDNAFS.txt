@@ -12,10 +12,6 @@ src/objects/FS_Defined_Objective__c.object
 src/objects/FS_Segmentation__c.object
 src
 src/layouts
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators.layout
-src/layouts/Product2-Food Solutions Product.layout
-src/layouts/Pricebook2-NAFS PriceBook Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
