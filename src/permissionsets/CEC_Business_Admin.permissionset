@@ -6819,6 +6819,15 @@
         <object>cec_Store__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>QuickText</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>CEC_CaseTransfer</apexPage>
         <enabled>false</enabled>
@@ -7694,6 +7703,10 @@
     <tabSettings>
         <tab>mdm_Reason_Code__c</tab>
         <visibility>None</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>standard-QuickText</tab>
+        <visibility>Available</visibility>
     </tabSettings>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
