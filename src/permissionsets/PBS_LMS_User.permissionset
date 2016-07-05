@@ -6,7 +6,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_CourseStatusInDtlReport_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_LMS_API_CC</apexClass>
@@ -34,7 +34,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_ReportGenerator_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_SubFolderController_CC</apexClass>
@@ -42,7 +42,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_SubFolderCtrl_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_TrainingCatalogController_Test</apexClass>
