@@ -31,6 +31,28 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>DO_NOT_DEPLOY_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>DO NOT DEPLOY (Account)</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Price Book Entries</relationshipLabel>
+        <relationshipName>Price_Book_Entries</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DO_NOT_DEPLOY_PBE__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>DO NOT DEPLOY (PBE)</label>
+        <referenceTo>Pricebook2</referenceTo>
+        <relationshipLabel>Price Book Entries</relationshipLabel>
+        <relationshipName>Price_Book_Entries</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>FS_Bracket_1__c</fullName>
         <externalId>false</externalId>
         <label>Bracket 1</label>
@@ -67,6 +89,15 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>FS_Sales_Org_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Org Code</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Start_Date__c</fullName>
         <description>Price start date coming from SAP</description>
         <externalId>false</externalId>
@@ -74,6 +105,27 @@
         <label>Start Date</label>
         <required>false</required>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_VAT__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( CurrencyIsoCode,
+ &apos;RUB&apos;,  
+  CASE( Product2.FS_VATRU__c, 
+        1,  $Setup.FSVATRU__c.FS_Value_1__c , 
+        2,  $Setup.FSVATRU__c.FS_Value_2__c , 
+        0) , 
+ &apos;UAH&apos;,
+  CASE( Product2.FS_VATUA__c, 
+        2,  $Setup.FSVATUA__c.FS_Value_2__c , 
+        0) , 
+ 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>IsActive</fullName>

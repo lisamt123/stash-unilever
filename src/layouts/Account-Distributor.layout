@@ -349,6 +349,13 @@
             <quickActionName>FeedItem.QuestionPost</quickActionName>
         </quickActionListItems>
     </quickActionList>
+    <relatedContent>
+        <relatedContentItems>
+            <layoutItem>
+                <component>wits:newsPanel</component>
+            </layoutItem>
+        </relatedContentItems>
+    </relatedContent>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -432,6 +439,13 @@
         <fields>ACCOUNT.NAME</fields>
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>Opportunity.FS_Distributor__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>PRODUCT.NAME</fields>
+        <fields>PRODUCT.CUSTOMER_PRODUCT_ID</fields>
+        <fields>PRODUCT.DEFAULT_PRICE</fields>
+        <fields>PRODUCT.ACTIVE</fields>
+        <relatedList>PricebookEntry.DO_NOT_DEPLOY_Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

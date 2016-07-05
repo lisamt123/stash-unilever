@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -24,6 +25,110 @@
                 <behavior>Edit</behavior>
                 <field>Subcategories__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Territory__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_BuyingGroup__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Master__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Segment__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SubSegment__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_ControllingAccountCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AccountCurrency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DistributorProgram__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_CHDNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_SoldToCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Payer__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>KeyCustomerLevel1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>KeyCustomerLevel1Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CustomerLegalCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CustomerLegalName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_MasterCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_MasterName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>KeyCustomerLevel4Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>KeyCustomerLevel4Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SAP_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>INN__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SubSegmentRussia__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SegmentRussia__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Top_Client__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -37,6 +142,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Website</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Zone__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -54,6 +163,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Industry</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Description</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -76,7 +189,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Description</field>
+                <field>FS_ChainTargetingModel__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -144,6 +257,16 @@
         </layoutColumns>
         <style>CustomLinks</style>
     </layoutSections>
+    <relatedContent>
+        <relatedContentItems>
+            <layoutItem>
+                <component>wits:newsPanel</component>
+            </layoutItem>
+        </relatedContentItems>
+    </relatedContent>
+    <relatedLists>
+        <relatedList>RelatedAccountContactRoleList</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -200,6 +323,60 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>ACCOUNT.PHONE1</fields>
+        <fields>PC_EMAIL</fields>
+        <fields>ACCOUNT.SITE</fields>
+        <fields>PC_ADDRESS2_CITY</fields>
+        <fields>PC_ADDRESS2_ZIP</fields>
+        <fields>UID_Region__c</fields>
+        <fields>UID_Branch__c</fields>
+        <fields>UID_Geography__c</fields>
+        <fields>UID_Segment__c</fields>
+        <relatedList>Account.FS_BuyingGroup__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>ACCOUNT.PHONE1</fields>
+        <fields>PC_EMAIL</fields>
+        <fields>ACCOUNT.SITE</fields>
+        <fields>PC_ADDRESS2_CITY</fields>
+        <fields>PC_ADDRESS2_ZIP</fields>
+        <fields>UID_Region__c</fields>
+        <fields>UID_Branch__c</fields>
+        <fields>UID_Geography__c</fields>
+        <fields>UID_Segment__c</fields>
+        <relatedList>Account.Master__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>CreatedDate</fields>
+        <fields>StepStatus</fields>
+        <fields>OriginalActor</fields>
+        <fields>Actor</fields>
+        <fields>Comments</fields>
+        <relatedList>RelatedProcessHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>FS_Plan_Statement__c</fields>
+        <fields>FS_Plan_Type__c</fields>
+        <fields>FS_PlanDollars__c</fields>
+        <fields>FS_PlanPercent__c</fields>
+        <fields>FS_Start_Date__c</fields>
+        <fields>FS_End_Date__c</fields>
+        <fields>FS_Status__c</fields>
+        <relatedList>FS_Account_Plan__c.FS_Customer__c</relatedList>
+        <sortField>FS_Status__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>PRODUCT.NAME</fields>
+        <fields>PRODUCT.CUSTOMER_PRODUCT_ID</fields>
+        <fields>PRODUCT.DEFAULT_PRICE</fields>
+        <fields>PRODUCT.ACTIVE</fields>
+        <relatedList>PricebookEntry.DO_NOT_DEPLOY_Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

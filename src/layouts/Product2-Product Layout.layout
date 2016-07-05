@@ -115,6 +115,10 @@
                 <behavior>Edit</behavior>
                 <field>FS_NetWeight__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_STD_per_Unit__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -211,6 +215,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_VATUA__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Temporary_TPR__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

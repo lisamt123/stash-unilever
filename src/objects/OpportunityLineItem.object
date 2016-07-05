@@ -267,7 +267,7 @@
         <fullName>FS_NIV_TPR__c</fullName>
         <description>Net Invoice Value = GSV - Off Invoice Discount</description>
         <externalId>false</externalId>
-        <formula>FS_GSV_TPR__c  -   Opportunity.FS_Distributor__r.FS_On_Invoice__c</formula>
+        <formula>( FS_GSV_TPR__c * (1 -  PricebookEntry.Product2.FS_Temporary_TPR__c -  FS_TPR_percent__c ) ) * (1 - Opportunity.FS_Distributor__r.FS_On_Invoice__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Net Invoice Value</inlineHelpText>
         <label>NIV</label>
@@ -425,9 +425,9 @@
     <fields>
         <fullName>FS_TPR__c</fullName>
         <externalId>false</externalId>
-        <formula>FS_TPR_percent__c *  FS_GSV_TPR__c</formula>
+        <formula>FS_Total_TPR__c * FS_GSV_TPR__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>TPR</label>
+        <label>Computed TPR</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -438,6 +438,17 @@
         <fullName>FS_TPR_percent__c</fullName>
         <externalId>false</externalId>
         <label>TPR %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_Total_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>Additional_Discount__c  +  FS_TPR_percent__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total TPR %</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>

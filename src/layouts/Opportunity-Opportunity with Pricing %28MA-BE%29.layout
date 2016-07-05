@@ -85,6 +85,14 @@
                 <field>Amount</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>NumberOfLocations__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Rate__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>ForecastCategoryName</field>
             </layoutItems>
@@ -198,6 +206,11 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedContent>
+        <relatedContentItems>
+            <layoutItem>
+                <component>wits:newsPanel</component>
+            </layoutItem>
+        </relatedContentItems>
         <relatedContentItems>
             <layoutItem>
                 <behavior>Readonly</behavior>

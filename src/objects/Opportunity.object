@@ -1075,6 +1075,28 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Picklist</type>
     </fields>
     <listViews>
+        <fullName>All_Best_Few_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.TYPE</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>CORE.USERS.FULL_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>04 – Best Few</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>All Best Few Opportunities</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>All_Opportunities</fullName>
         <columns>OPPORTUNITY.NAME</columns>
         <columns>ACCOUNT.NAME</columns>

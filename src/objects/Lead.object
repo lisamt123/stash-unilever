@@ -113,6 +113,10 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -419,23 +423,23 @@
         <picklist>
             <picklistValues>
                 <fullName>Contacted</fullName>
-                <converted>false</converted>
                 <default>false</default>
+                <converted>false</converted>
             </picklistValues>
             <picklistValues>
                 <fullName>Open</fullName>
-                <converted>false</converted>
                 <default>true</default>
+                <converted>false</converted>
             </picklistValues>
             <picklistValues>
                 <fullName>Qualified</fullName>
-                <converted>true</converted>
                 <default>false</default>
+                <converted>true</converted>
             </picklistValues>
             <picklistValues>
                 <fullName>Unqualified</fullName>
-                <converted>false</converted>
                 <default>false</default>
+                <converted>false</converted>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -596,6 +600,13 @@
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWriteTransfer</sharingModel>
+    <validationRules>
+        <fullName>FS_Lead_Owner_Change_Lock</fullName>
+        <active>true</active>
+        <description>Created for lead owner change lock for sales rep user</description>
+        <errorConditionFormula>AND(ISCHANGED(OwnerId),CONTAINS( $UserRole.Name ,&apos;Sales Rep&apos;))</errorConditionFormula>
+        <errorMessage>You do not have access to change the Lead owner.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>AltavistaNews</fullName>
         <availability>online</availability>

@@ -1189,6 +1189,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_STD_per_Unit__c</fullName>
+        <description>The base amount to produce this product</description>
+        <externalId>false</externalId>
+        <label>STD per Unit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>FS_Sample__c</fullName>
         <defaultValue>&apos;http://www.unileverfoodsolutions.ru/sample_order1.html&apos;</defaultValue>
         <externalId>false</externalId>
@@ -1209,6 +1220,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Temporary_TPR__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Temporary Price Reduction set for the product when calculating TPR in Opportunities</description>
+        <externalId>false</externalId>
+        <label>Temporary TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>FS_Thrust__c</fullName>
