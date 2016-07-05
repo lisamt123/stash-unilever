@@ -4,7 +4,7 @@ public class AA_WrapperClass{
      * @description -   In order to send response in wrapper object
      * @modifiedby  -
     */
-    public class AgentAppDataResponse {
+  /*  public class AgentAppDataResponse {
             @AuraEnabled
             public List<aa_Cluster__c> clusterList;
             
@@ -54,13 +54,13 @@ public class AA_WrapperClass{
             public String googleApiValue;
             // public Map<String,String> usernamesMap;
         }
-        
+    */    
         /**
      * @date        -   03/08/2015
      * @description -   In order to get request in wrapper object
      * @modifiedby  -
     */
-    public class AgentAppDataRequest {
+    /*public class AgentAppDataRequest {
             @AuraEnabled
             public String ReportName;
             @AuraEnabled
@@ -146,12 +146,12 @@ public class AA_WrapperClass{
            
         }
         
-         /**
+      */   /**
      * @date        -   03/08/2015
      * @description -   Provide list of reports to angularJS from salesforce
      * @modifiedby  -
     */
-     public class agentReportDetail  implements Comparable {
+    /* public class agentReportDetail  implements Comparable {
             @AuraEnabled
             public String agentReportID; 
             @AuraEnabled
@@ -218,7 +218,7 @@ public class AA_WrapperClass{
                    return -1; 
                 }          
             }
-    
+    */
     //Provide Ids that are required while filtering.
      public class AgentAppFilterRequest {
             @AuraEnabled
