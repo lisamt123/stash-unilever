@@ -180,7 +180,7 @@
                                                     <input type="button" class="ipmButton resetFilterBtn" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>
                                                     <input type="button" class="ipmButton primary" value="Apply" onClick="applyFilter();" />
                                                 </div>
-                                                <apex:actionFunction name="setFilterValues" action="{!setFilter}" reRender="MainTable,count,filterBlock" status="customStatus" oncomplete="setFiltersAsPrevious();filterBlock();">
+                                                <apex:actionFunction name="setFilterValues" action="{!setFilter}" reRender="MainTable,count,filterBlock" status="customStatus" oncomplete="setFiltersAsPrevious();filterBlock();resetPanelSub();">
                                                     
                                                     <apex:param name="type" assignTo="{!typeFilters}" value=""></apex:param>
                                                     <apex:param name="status" assignTo="{!statusFilters}" value=""></apex:param>
