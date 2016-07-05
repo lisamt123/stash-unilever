@@ -292,6 +292,9 @@
         <layout>CEC_ChequeBook_Detail__c-ChequeBook Detail Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CEC_Claim_Note__c-Claim Note Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CEC_Debit_Card_Detail__c-Debit Card Detail Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

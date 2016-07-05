@@ -167,7 +167,7 @@
                 <field>Case_Brand__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Country_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -353,6 +353,10 @@
                 <behavior>Edit</behavior>
                 <field>DW_Order_Number__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Case_Brand_Mapping__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -496,6 +500,15 @@
         <fields>OBJECT_ID</fields>
         <fields>URL__c</fields>
         <relatedList>cec_Additional_Case_Information__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>Note__c</fields>
+        <relatedList>CEC_Claim_Note__c.Case__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
