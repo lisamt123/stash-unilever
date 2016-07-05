@@ -30,6 +30,7 @@ public with sharing class AA_AgentAppServiceController {
     
     public AA_ApplicationWrapperObj insertAgentApp(AA_ApplicationWrapperObj appWrapperObj){
         try{
+            system.debug('Insert Agent app==>'+appWrapperObj);
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             system.debug('insert object in db'+convertRequestAgentReport(objAgentApp));
@@ -107,7 +108,7 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
             //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        
+        system.debug('COnvert agent app from userIds==>'+objAgentApp.usertomentionIds);
           if(objAgentApp.usertomentionIds !=NUll && objAgentApp.usertomentionIds.size()>0){
         for(string str:objAgentApp.usertomentionIds)
         {

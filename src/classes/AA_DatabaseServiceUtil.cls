@@ -80,6 +80,7 @@ public with sharing class AA_DatabaseServiceUtil {
            
            if(objReport.status__c =='Published (Public)')
              {
+                 system.debug('@ Mention user: '+objReport.TF_Mention_User__c);
             
 //                AA_DatabaseServiceUtil.sendToChatter(objReport.CreatedById,objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c,objReport.TF_Topic_Name__c);
      AA_DatabaseServiceUtil.sendToChatter(objReport.CreatedById,objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c);               
@@ -116,7 +117,7 @@ public with sharing class AA_DatabaseServiceUtil {
         ConnectApi.TextSegmentInput textSegment2 = new ConnectApi.TextSegmentInput();
         textSegment2.text = ': ' + postText+' ';
         feedItemInput.body.messageSegments.add(textSegment2);
-        
+        system.debug('Mention user to notify===> '+userIds);
         // add the mention
         if(userIds !=null){
             string[] splittedids=userIds.split(',');
