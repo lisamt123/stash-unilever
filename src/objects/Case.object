@@ -3338,7 +3338,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC Benelux queue</label>
+        <label>CEC Benelux queue WH</label>
         <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
@@ -3348,6 +3348,28 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_Benelux</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Benelux_queue</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Language__c</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>CEC Benelux queue</label>
+        <language>nl_NL</language>
+        <queue>CEC_Benelux_Queue</queue>
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Escalation_Queue_Case</fullName>
