@@ -8691,21 +8691,9 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>IPM_MilestoneStandardPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>IPM_MyToDoList</apexPage>
         <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_PDStandardPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_PSStandardPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
+    </pageAccesses>    
     <pageAccesses>
         <apexPage>IPM_PosQuestions</apexPage>
         <enabled>true</enabled>
@@ -8731,10 +8719,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>IPM_ProjectStandardPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>IPM_Resource_Allocation</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -8752,10 +8736,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_RolloutPlansRegional</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_SectionHistory</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
