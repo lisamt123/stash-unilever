@@ -1705,7 +1705,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //Validate Gross Turnover values.
         isFinancialInvalid = false;
         isValidationError = false;
-        validationErrorMessage = '';
         for(IPM_FinancialValueWrapper valueWrapper: lstGrossPLTurnover){
             valueWrapper.isValueInvalid = false;
             valueWrapper.isGrossTOValueInvalid = false;
@@ -2162,7 +2161,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isITOgrtGTO = false;
         isFinancialInvalidInnovation = false;
         isValidationError = false;
-        validationErrorMessage = '';
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){
             for(IPM_FinancialValueWrapper valueWrapperIncremental: lstIncrementalPLTurnover){
                valueWrapperGross.isValueInvalid = false;
@@ -2487,15 +2485,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     }  
                  }    
             } else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {// misalignment for the local projects 
-                    if(localRolloutProject != null && localRolloutProject.Previous_Target_Launch_Date__c !=null && localRolloutProject.IPM_Target_Launch_Dates__c !=null){
-                        showMisalignedConfirmbtn = localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c;
-                        previousTargetLaunchDate = localRolloutProject.Previous_Target_Launch_Date__c.format();
-                        currentTargetLaunchDate = localRolloutProject.IPM_Target_Launch_Dates__c.format();
-			// check for the misalignment
-                        if(project.IPM_Target_Launch_Dates__c == null || project.IPM_Target_Launch_Dates__c.format() == '' || project.Previous_Target_Launch_Date__c == null || project.Previous_Target_Launch_Date__c.format() == '' ){
-                            showMisalignedConfirmbtn = true;
-                        } else if (project.IPM_Target_Launch_Dates__c.format() == project.Previous_Target_Launch_Date__c.format()){
-                            showMisalignedConfirmbtn = true;
+                    if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
+                    showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
+                    previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
+                    currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();                 
+            	    // check for the misalignment
+                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == '' || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == ''){
+                        showMisalignedConfirmbtn = true;
+                    } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
+		    showMisalignedConfirmbtn = true;
                         } 
                     } 
                  
