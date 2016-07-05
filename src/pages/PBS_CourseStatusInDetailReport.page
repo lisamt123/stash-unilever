@@ -1,4 +1,4 @@
-<apex:page sidebar="false" controller="PBS_CourseStatsInDetailReport_CC" tabStyle="Plancraft_Admin_Reports__tab">
+<apex:page sidebar="false" controller="PBS_CourseStatsInDetailReport_CC" >
 <title>Reports</title> 
 <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
 <style type="text/css">
