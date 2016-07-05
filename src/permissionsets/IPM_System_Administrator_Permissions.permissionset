@@ -167,10 +167,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_CMIGateSectionPDFController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_CU_Complexity_Consolidated</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -292,10 +288,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_CountryHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_CountryTriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -428,10 +420,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_FinancialYearTriggerHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_FunnelController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -501,10 +489,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_GatekeeperChecklist_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_GenericExtCtrl</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -837,10 +821,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_ProjectSectionContentHelper_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_ProjectSetUpController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -858,10 +838,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectTriggerHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_QuestionnaireHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -898,10 +874,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_RolloutTriggerHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_SampleTestProjShare</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -957,19 +929,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_TestCovHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_TestFactory</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_TestFactory_Helper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_Test_ProjectUtility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -994,10 +958,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_Utils</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_Utils_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -2305,7 +2265,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>IPM_Clusters__c.IPM_Cluster_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2463,8 +2423,7 @@
         <editable>false</editable>
         <field>IPM_CorePara_helps_example__c.IPM_Core_Parameter_example_two__c</field>
         <readable>true</readable>
-    </fieldPermissions>   
-       
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country__c.AddedAtStage__c</field>
