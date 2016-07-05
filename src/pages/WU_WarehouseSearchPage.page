@@ -1,4 +1,4 @@
-<apex:page standardController="WU_Master_Warehouse__c" extensions="WU_WarehouseSearchController" tabStyle="WU_Master_Warehouse__c">
+<apex:page standardController="WU_Master_Warehouse__c" extensions="WU_WarehouseSearchController" tabStyle="WU_Warehouse_Search__tab">
 <apex:form >
 <apex:pageblock >
 
@@ -214,3 +214,4 @@ body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPa
 
 </style>
 </apex:page>
+             
