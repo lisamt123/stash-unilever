@@ -7,7 +7,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
         /* Get Context objects in order to read parameters like url, cookies */
         AA_BaseApplicationWrapperObj responseObj = null;
         RestRequest req = RestContext.request;
-        RestResponse res = RestContext.response;
+        //RestResponse res = RestContext.response;
         String requestBodySerializedMap = '';
         String svcName = null;
         if(null!=req){

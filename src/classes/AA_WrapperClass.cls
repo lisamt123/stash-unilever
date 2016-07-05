@@ -220,13 +220,13 @@ public class AA_WrapperClass{
             }
     */
     //Provide Ids that are required while filtering.
-     public class AgentAppFilterRequest {
+     public class AgentAppFilterRequest {     
             @AuraEnabled
             public Id GlobalClusterId;
             @AuraEnabled
             public Id UnileverRecordTypeId;
             @AuraEnabled
-            public Id CompetitorRecordTypeId;
+            public Id CompetitorRecordTypeId;  
             @AuraEnabled
             public String OtherCompetitorBrandId;
      } 
