@@ -1,7 +1,5 @@
 src
 src/layouts
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators.layout
 src/layouts/Product2-Food Solutions Product.layout
 src/layouts/Pricebook2-NAFS PriceBook Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
