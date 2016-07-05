@@ -65,8 +65,8 @@
 	            <div class="inputField">
 	                <apex:selectList size="1" value="{!selectedSectionId}"  id="listVal">
 	                    <apex:selectOptions value="{!ListSections}" id="sectionVal"/> 
-	                    <apex:actionSupport reRender="functionBlock,assigneeBlock" event="onchange"/>
-	                </apex:selectList>
+	                    <apex:actionSupport reRender="functionBlock,assigneeBlock" event="onchange" action="{!populateFunctionalRoleAndOwner}"/>
+                    </apex:selectList>
 	            </div>
 			</apex:outputPanel>
 			<!--Depending upon section list get functional role  -->

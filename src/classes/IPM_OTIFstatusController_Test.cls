@@ -18,6 +18,7 @@ private class IPM_OTIFstatusController_Test {
     private static User otifUser;
     private static string RECORD_NOT_SAVED_SUCCESSFULLY='record not saved successfully';
     private static string SECTION_CONTENT_LIST_IS_EMPTY='section content list empty';
+    private static List<IPM_Project_Document_Section_Content__c> secConList;
     static uw_BET__c bet;
 	static List<IPM_BET_Valid_Categories__c> betvalidCategories ;
 	static final string CAT_NAME ='Household Care' ;
@@ -111,15 +112,15 @@ private class IPM_OTIFstatusController_Test {
             otif.updateOTIFStatus();
             System.assertNotEquals(otif.secCon.IPM_Content_Type__c,IPM_ConstantUtils.OTIF_CONTENT_TYPE,System.Label.IPM_CATCH_BLOCK_CALLED);
             otif.iseditable=true;
-            otif.showSectionContent();
-            System.assertEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
+            secConList  = otif.getSecConList();
+            //System.assertEquals(secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
             otif.projDocSecId=projDocSec.Id;
             otif.otifType=IPM_ConstantUtils.OTIF_TABLE;
-            otif.showSectionContent();
-            System.assertNotEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
+            secConList  = otif.getSecConList();
+            System.assertNotEquals(secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
             otif.otifType=IPM_ConstantUtils.OTIF_SECTION;
-            otif.showSectionContent();
-            System.assertNotEquals(otif.secConList,Null,'');
+            secConList  = otif.getSecConList();
+            System.assertNotEquals(secConList,Null,'');
             otif.secConId=projDocSecCon.Id;
             otif.status='Red';
             otif.updateOTIFStatus();
@@ -138,15 +139,17 @@ private class IPM_OTIFstatusController_Test {
             otif.updateOTIFStatus();
             System.assertNotEquals(otif.secCon.IPM_Content_Type__c,IPM_ConstantUtils.OTIF_CONTENT_TYPE,System.Label.IPM_CATCH_BLOCK_CALLED);
             otif.iseditable=true;
-            otif.showSectionContent();
-            System.assertEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
+            secConList  = otif.getSecConList();
             otif.projDocSecId=projDocSec.Id;
             otif.otifType=IPM_ConstantUtils.OTIF_TABLE;
-            otif.showSectionContent();
-            System.assertNotEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
-            System.assertEquals(otif.secConList.size(), 1);
-            System.assertEquals(IPM_ConstantUtils.JOB_STATUS_NA, otif.secConList[0].BETCurrentStatus__c);	
-    		Test.stopTest();
-    	}
+            secConList  = otif.getSecConList();
+            System.assertNotEquals(secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
+            otif.updateOTIFReadOnlyStatus();
+            System.assertNotEquals(Null, otif.readOnlyOTIFContentMap.values());  
+        
+        Test.stopTest();
+      }
+      
+      
     }
 }
