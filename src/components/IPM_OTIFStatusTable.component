@@ -66,8 +66,7 @@
                   <td>
                        <apex:outputText value="{!con.IPM_OTIF_Sequence__c}" />
                    </td>
-                    <td>
-                    
+                    <td>    
                        <apex:outputText title="{!con.IPM_OTIF_Question_Help_Text__c}" styleClass="info" value="{!con.IPM_OTIF_Measure__c}" />
                     </td>
                     <td>
@@ -93,7 +92,9 @@
 <apex:param name="FirstParam" assignTo="{!secConId}" value="" />
 <apex:param name="SecondParam" assignTo="{!status}" value="" />
 </apex:actionFunction>
+
 <apex:actionFunction name="updateReadOnlyOTIF" action="{!updateOTIFReadOnlyStatus}" reRender="" />
+
 <script> 
 var IPMAppOTT = {select:'{!$Label.IPM_SELECT}', green:'{!$Label.IPM_OTIF_GREEN}', amber:'{!$Label.IPM_OTIF_AMBER}', red:'{!$Label.IPM_OTIF_RED}', na:'{!$Label.IPM_NO_APPLICABLE}'};            
 </script>

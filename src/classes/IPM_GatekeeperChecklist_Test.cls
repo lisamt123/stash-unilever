@@ -7,11 +7,17 @@
 private class IPM_GatekeeperChecklist_Test{
 
     public static IPM_Project__c project;// Project object initialization
+    public static IPM_Project_Document__c projDoc;
     public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     public static IPM_GatekeeperChecklist ipmGK;
     public static List<IPM_Questionnaire__c> quesList;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    private static final string RECORD_TYPE_UPDATED = 'Questionnaire Record Type is Updated'; 
+    public static PageReference  pRef;
+    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
     public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     public static User globalUser;
     private static final String GETTER_SETTER_STR='getterSetter';
@@ -19,6 +25,7 @@ private class IPM_GatekeeperChecklist_Test{
     private static final string PARTLY_STR = 'Partly';
     public static User stdUserForAGateKeeper;
     static uw_BET__c bet;
+    static List<IPM_BET_Valid_Categories__c> betvalidCategories ;
     static User runningUser=IPM_TestFactory_Helper.createUser(false); 
     static final   string CAT_NAME ='Household Care' ;
     public static IPM_Questionnaire__c dependentQuestion;
@@ -46,7 +53,7 @@ private class IPM_GatekeeperChecklist_Test{
         System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card insertion fails'); // Positive Test
         
         IPM_TestFactory_Helper.getProjectMasterData();
-        List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForAGateKeeper);
+        projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForAGateKeeper);
         System.runAs(stdUserForAGateKeeper) {
             insert projectList;
         
@@ -55,7 +62,7 @@ private class IPM_GatekeeperChecklist_Test{
         System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name is not validate');//positive test
     }
     }
-
+    
     
     /*************************************************************************************************************************
     * @description Test Data
@@ -65,11 +72,11 @@ private class IPM_GatekeeperChecklist_Test{
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         system.runAs(globalUser){
-            List<IPM_Project__c> projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+            projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
-            List<IPM_Project__c> projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
+            projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
             System.assertEquals(projlList[0].id,project.id, 'Project insertion fails');//positive test
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
@@ -109,87 +116,57 @@ private class IPM_GatekeeperChecklist_Test{
     @description Contains all common data for BET testing
     */
     static void betDataInitializer(){
-    
-        
-          bet = BET_TestUtils.getTestBet();
-        
-          insert bet; 
-        
-          system.assertEquals(1 , [Select count() from uw_BET__c where Id=:bet.Id ],'Failed to insert BET record.');
-        
-          //project = IPM_TestFactory_Helper.createOriginalProjectList(true,1)[0];
-        
-          List<IPM_BET_Valid_Categories__c> betvalidCategories = new List<IPM_BET_Valid_Categories__c>();
-        
-          betvalidCategories.add(new IPM_BET_Valid_Categories__c(Name = CAT_NAME ));
-        
-          insert betvalidCategories;
-        
-          system.assertEquals(1 , [Select count() from IPM_BET_Valid_Categories__c where Name =: CAT_NAME ] , 'Failed to insert category  records.');      
-        
-          MDO_Category__c category = IPM_TestFactory_Helper.createMDOCategory(false);
-        
-          category.Name = 'Household Care';
-        
-          insert category;
-        
-          system.assertEquals(1 , [Select count() from MDO_Category__c where Id =: category.Id ] , 'Failed to insert MDO category  records.');      
-    
-     
-    }  
-    
-        
+        	bet = BET_TestUtils.getTestBet();
+        	insert bet; 
+        	system.assertEquals(1 , [Select count() from uw_BET__c where Id=:bet.Id ],'Failed to insert BET record.');
+        	betvalidCategories = new List<IPM_BET_Valid_Categories__c>();
+        	betvalidCategories.add(new IPM_BET_Valid_Categories__c(Name = CAT_NAME ));
+        	insert betvalidCategories;
+        	system.assertEquals(1 , [Select count() from IPM_BET_Valid_Categories__c where Name =: CAT_NAME ] , 'Failed to insert category  records.');      
+        	MDO_Category__c category = IPM_TestFactory_Helper.createMDOCategory(false);
+        	category.Name = 'Household Care';
+        	insert category;
+        	system.assertEquals(1 , [Select count() from MDO_Category__c where Id =: category.Id ] , 'Failed to insert MDO category  records.');      
+    }	
           /*************************************************
     * @Description: Test invoke getChecklistQuestions Dependent Question Answer
     * ***********************************************/
     static testMethod void testBETGateChecklist()
-    {  
-         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-            globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
-            
-      // Share Master Project to Project Leader
-          IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser});
-        
-        System.runAs(globalUser) {
+    {	
+    		 Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+       		 globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+			// Share Master Project to Project Leader
+        	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser});
+    		System.runAs(globalUser) {
 
-           betDataInitializer();
-           List<IPM_Project__c> projectListObj = [Select Id, Name,BETCurrentStatus__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
-                (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID, RecordTypeID, IPM_Project__c,DependentFieldAPIName__c,BETCurrentStatus__c from IPM_Questionnaires__r)
+	    		 betDataInitializer();
+	    		 projectListObj = [Select Id, Name,BETCurrentStatus__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+           		 (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID, RecordTypeID, IPM_Project__c,DependentFieldAPIName__c,BETCurrentStatus__c from IPM_Questionnaires__r)
                  from IPM_Project__c where Name in:projectNameSet];
-                 project=projectListObj[0];        
-          
-           project.bet__c = bet.id;   
-           update project;
-          
-           for(IPM_Project__c projectObj : projectListObj) {
-                  projDocList = projectObj.Project_Documents__r;
-                  quesList=projectObj.IPM_Questionnaires__r;
-              
-                  System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);// Positive Test;
-                }
-        
-                 ipmGK=new IPM_GatekeeperChecklist();  
-                          
-         for(IPM_Questionnaire__c question : quesList)
-         {
-           if(question.recordTypeId == Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId     && question.IPM_Market_Ready_Score__c == 1 )
-           {
-             System.assertEquals(IPM_ConstantUtils.BET_CURRENT_STATUS, question.DependentFieldAPIName__c);
-             
-             System.assertEquals(IPM_ConstantUtils.JOB_STATUS_NA, question.BETCurrentStatus__c );
-             
-           }
-         }
-            
-        }
+                 project=projectListObj[0];   		 
+	    		 project.bet__c = bet.id;   
+	    		 update project;
+	    		 for(IPM_Project__c projectObj : projectListObj) {
+	                projDocList = projectObj.Project_Documents__r;
+	                quesList=projectObj.IPM_Questionnaires__r;
+	                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);// Positive Test;
+           		 }
+                 ipmGK=new IPM_GatekeeperChecklist();	
+				 for(IPM_Questionnaire__c question : quesList)
+				 {
+				 	if(question.recordTypeId == Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId     && question.IPM_Market_Ready_Score__c == 1 )
+				 	{
+				 		System.assertEquals(IPM_ConstantUtils.BET_CURRENT_STATUS, question.DependentFieldAPIName__c);
+				 		System.assertEquals(IPM_ConstantUtils.JOB_STATUS_NA, question.BETCurrentStatus__c );
+				 	}
+				 }
+    		}
 
     }
-    
-    
     /*************************************************
     * @Description: Test invoke update GatekeeperChecklist
     * ***********************************************/
-    static testmethod void testupdateGKchecklist(){
+    static testMethod void testupdateGKchecklist(){
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
@@ -223,7 +200,7 @@ private class IPM_GatekeeperChecklist_Test{
     /*************************************************
     * @Description: Test invoke sectionwise GatekeeperChecklist
     * ***********************************************/
-    static testmethod void testgetSectioWiseGKChecklist(){
+    static testMethod void testgetSectioWiseGKChecklist(){
         initializeTestMethodData();
         
         system.RunAs(globalUser){
@@ -251,7 +228,7 @@ private class IPM_GatekeeperChecklist_Test{
     /*************************************************
     * @Description: Test invoke getChecklistQuestions GatekeeperChecklist
     * ***********************************************/
-    static testmethod void testgetChecklistQuestions(){
+    static testMethod void testgetChecklistQuestions(){
         initializeTestMethodData();
         
         system.RunAs(globalUser){
@@ -259,7 +236,7 @@ private class IPM_GatekeeperChecklist_Test{
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
             update quesList[0];
             IPM_Questionnaire__c ipmQuestionnaire = [SELECT Id,RecordTypeId FROM IPM_Questionnaire__c WHERE Id =:quesList[0].id  LIMIT 1];
-            System.assertEquals(ipmQuestionnaire.RecordTypeId, quesList[0].RecordTypeId, 'Questionnaire Record Type is Updated');//Positive Test;
+            System.assertEquals(ipmQuestionnaire.RecordTypeId, quesList[0].RecordTypeId, RECORD_TYPE_UPDATED);//Positive Test;
             
             IPM_GatekeeperChecklist.recTypeTrademark=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
             ipmGk.projectID=project.Id;
@@ -272,7 +249,6 @@ private class IPM_GatekeeperChecklist_Test{
             test.stopTest();
         }
     }
-
     
     
 }
