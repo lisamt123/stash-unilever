@@ -67,7 +67,6 @@ src/permissionsets
 src/permissionsets/CEC_Claim_User.permissionset
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
-src/permissionsets/CEC_Business_Admin.permissionset
 src/staticresources
 src/staticresources/CEC_CaseTransferPage.resource
 src/staticresources/CEC_CaseTransferPage.resource-meta.xml
