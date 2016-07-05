@@ -81,7 +81,8 @@ public with sharing class AA_DatabaseServiceUtil {
            if(objReport.status__c =='Published (Public)')
              {
             
-                AA_DatabaseServiceUtil.sendToChatter(objReport.CreatedById,objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c,objReport.TF_Topic_Name__c);
+//                AA_DatabaseServiceUtil.sendToChatter(objReport.CreatedById,objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c,objReport.TF_Topic_Name__c);
+     AA_DatabaseServiceUtil.sendToChatter(objReport.CreatedById,objReport.CreatedById, objReport.Report_Title__c, objReport.id,objReport.Country__c,objReport.TF_Mention_User__c);               
              }
         
         
@@ -99,8 +100,8 @@ public with sharing class AA_DatabaseServiceUtil {
     }
     
     
-    public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country,string userIds,string topicNames) {    
-        
+   // public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country,string userIds,string topicNames) {    
+      public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country,string userIds) {       
         String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
         //String reportName=[Select name from aa_Agent_Report__c where id=:reportId].name;
         ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
@@ -132,7 +133,7 @@ public with sharing class AA_DatabaseServiceUtil {
                
             }
             }
-        //Add Topics
+      /*  //Add Topics
         if(topicNames !=null)
         {
         string[] splittedTopics=topicNames.split(',');
@@ -144,7 +145,7 @@ public with sharing class AA_DatabaseServiceUtil {
             }
          }
         }
-
+*/
         // add the text segment  
            ConnectApi.TextSegmentInput textSegment3 = new ConnectApi.TextSegmentInput();
           textSegment3.text = ' ' ;
@@ -204,6 +205,7 @@ public with sharing class AA_DatabaseServiceUtil {
             Database.Deleteresult deleteResult= Database.delete(deleteObj, true);
             if(!deleteResult.isSuccess()){
                 Database.Error err = deleteResult.getErrors()[0];
+                system.debug('Error: '+err);
             }else{
                 idList.add(deleteResult.getId());            
             }

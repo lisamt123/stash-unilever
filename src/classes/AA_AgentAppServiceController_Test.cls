@@ -190,7 +190,7 @@ private class AA_AgentAppServiceController_Test {
     
   	//Check retriveAllAgentReportsTest_ApplyFilterTrue Test
     static testMethod void retriveAllAgentReportsTest_ApplyFilterTrue(){
-        
+       String filterReports='filterReports';
         User user = new User();
         user.Username ='testuser7@gmail.com';
         user.LastName = 'LastTestName';
@@ -239,7 +239,7 @@ private class AA_AgentAppServiceController_Test {
  
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
       
-       objAgentApp.FilterType = 'filterReports';
+       objAgentApp.FilterType = filterReports;
    
        objAgentApp.ApplyFilter = 'true';
        objAgentApp.ReportingOn=AA_Constants.ReportingOnSample;
@@ -296,7 +296,7 @@ private class AA_AgentAppServiceController_Test {
        obj.retriveAllAgentReports(obj2);
     
        AA_WrapperUtility.AgentAppDataRequest objAgentApp3 = new AA_WrapperUtility.AgentAppDataRequest();
-            objAgentApp3.FilterType = 'filterReports';    
+            objAgentApp3.FilterType = filterReports;    
             objAgentApp3.ApplyFilter = 'true';
             objAgentApp3.RecordType='Unilever';
             objAgentApp3.ReportingOn=AA_Constants.ReportingOnSample;
@@ -313,7 +313,7 @@ private class AA_AgentAppServiceController_Test {
    
        
        AA_WrapperUtility.AgentAppDataRequest objAgentApp4 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp4.FilterType = 'filterReports';    
+       objAgentApp4.FilterType = filterReports;    
        objAgentApp4.ApplyFilter = 'true';
        objAgentApp4.RecordType='Competitor';
        objAgentApp4.ReportingOn=AA_Constants.ReportingOnSample;
@@ -337,7 +337,7 @@ private class AA_AgentAppServiceController_Test {
         
        insert upref; 
        AA_WrapperUtility.AgentAppDataRequest objAgentApp5 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp.FilterType = 'filterReports';
+       objAgentApp.FilterType = filterReports;
  
     
        AA_ApplicationWrapperObj obj5 = new AA_ApplicationWrapperObj();
