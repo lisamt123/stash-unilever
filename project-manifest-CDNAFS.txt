@@ -1,22 +1,8 @@
 src
-src/layouts
-src/layouts/Account-Account Layout.layout
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators.layout
-src/layouts/Lead-Lead Layout.layout
-src/layouts/Opportunity-Opportunity Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
-src/layouts/Pricebook2-FS PriceBook Layout.layout
-src/layouts/Pricebook2-Price Book Layout.layout
-src/layouts/PricebookEntry-Price Book Entry Layout.layout
-src/layouts/Product2-Food Solutions Product.layout
-src/layouts/Product2-Product Layout.layout
-src/
 src/objects
 src/objects/Lead.object
 src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
+src/objects/FSVATRU__c.object
+src/objects/FSVATUA__c.object
 src/objects/PricebookEntry.object
 src/objects/Product2.object
