@@ -1,4 +1,3 @@
 src
-src/classes
-src/classes/IPM_ChangProjectDocStatusController_Test.cls
-src/classes/IPM_ChangProjectDocStatusController_Test.cls-meta.xml
+src/objects
+src/objects/IPM_Project_Document_Section__c.object
