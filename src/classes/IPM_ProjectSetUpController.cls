@@ -704,7 +704,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 
         if(!skipValidation)
         {
-            if(!project.IPM_IsSaved__c && !isRollout.Equals(project.IPM_Project_Type__c))
+            if(!isRollout.Equals(project.IPM_Project_Type__c))
             {
                 associateProjectMetadata();
                 populateProjectMetadataAttributes(projectMetadata);
