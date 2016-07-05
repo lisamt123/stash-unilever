@@ -9,8 +9,6 @@ src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
 src/components
 src/components/IPM_FinancialSummaryTable.component
 src/components/IPM_FinancialSummaryTable.component-meta.xml
-src/layouts
-src/layouts/IPM_Project__c-IPM Project Layout.layout
 src/objects
 src/objects/IPM_Questionnaire__c.object
 src/objects/IPM_Task__c.object
