@@ -1,0 +1,123 @@
+<apex:page showHeader="true" sidebar="false" controller="PBS_WikiFeedBackController_CC" standardStylesheets="false" docType="html-5.0">
+<apex:includeScript value="/soap/ajax/26.0/connection.js"/>
+<apex:includeScript value="/support/console/26.0/integration.js"/>  
+  <!-- <script type="text/javascript">
+   $(document).ready(function() {
+   $(".errorsection").hide();
+    });
+   });
+   </script>-->
+
+    <style type="text/css">
+    .btnStyling{
+        color:black !important;
+        background:#8eb4e3  !important;
+        border: 1px solid #8eb4e3  !important;
+        font-size: 15px  !important;
+        padding: 8px 50px 8px 50px  !important;
+        margin-top: 20px  !important;
+    }
+       
+    .container{
+         height: 610px !important;
+    }     
+    ul li{
+      margin-left: 0em !important; 
+    }
+    .message .messageText h4 {       
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+      
+        }
+    </style>
+ 
+     
+     <meta charset="utf-8"></meta>
+     <title>Wiki</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1" ></meta>
+     <link rel="stylesheet" href="{!URLFOR($Resource.almond_uilib, 'css/wikifeedback.css')}" />
+     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
+     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/Wiki.css')}" />
+    
+    <apex:composition template="PBS_Header_Template" ></apex:composition>
+    <div class="row bodyRow group">
+        
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_MyProfile}" target="innerFrame">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+    </div> 
+ <body>
+ 
+  <!---Ad Main section---->
+     
+         <div class="container">
+         
+        <div class="col-md-12 col-lg-12 wiki-link">
+        <apex:repeat value="{!objwiki}" var="wiki">
+                <a href="/apex/PBS_Wiki?id={!wiki.id}" title="Go Back">&laquo; Go Back</a>      
+       </apex:repeat>
+            </div>
+             <img src="{!URLFOR($Resource.almond_uilib_mt, 'img/PlanWiki.png')}" style="width: 65px; margin-top: 10px;" alt="PlanWiki" />
+        <apex:form >
+        <apex:outputPanel id="errormessage">
+        <apex:pageMessages /> 
+        
+       </apex:outputPanel> 
+       <span><div class="message infoM3" role="alert"><table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;"><tbody><tr valign="top"><td><img alt="INFO" class="msgIcon" src="/s.gif" title="INFO" /></td><td class="messageCell"><div class="messageText">Thank you for deciding to contribute to PlanWiki. <br/>
+<br/>
+
+PlanWiki is a user created document so your contribution is very much encouraged.<br/>
+
+Have some feedback? Like to add to this Wiki? Like to make a correction? Like to request a new Wiki?<br/>
+
+Let us know in the window below!
+<br/></div></td></tr><tr><td></td><td></td></tr></tbody></table></div></span>
+<br/>
+        <apex:outputpanel rendered="{!recordId!=NULL}">
+        <div class="headsection">
+        <apex:repeat value="{!objwiki}" var="wiki">
+        <h1>Feedback for {!wiki.Title}</h1>
+        </apex:repeat>
+         </div> <br/>
+         <div>
+        <apex:inputTextarea value="{!feedback}" rows="4" cols="50" style="width: 1137px; height: 165px; margin: 0px;" id="inputTextid"/>
+        </div><br/>
+         <div class="btnsection">
+       <apex:commandButton styleClass="btnStyling"  value="Cancel" action="{!cancel}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <apex:commandButton styleClass="btnStyling" value="Save" rerender="errormessage"  status="actStatusId" onclick="confirmation(document.getElementById('{!$Component.inputTextid}').value);" reRender="errormessage" />
+        <apex:actionFunction action="{!save}" name="methodOneInJavascript">
+     
+        </apex:actionFunction>
+          </div> 
+          <apex:actionStatus id="actStatusId" >
+                <apex:facet name="start" >
+                  <img src="/img/loading.gif" />                    
+                </apex:facet>
+            </apex:actionStatus>
+          </apex:outputpanel>
+          </apex:form>
+     </div>
+     
+   </body>
+   
+   <script>
+function confirmation(testvalue) {
+    
+   
+    if(testvalue != null && testvalue != '' &&  0 != testvalue.length){
+        alert('Feedback saved successfully');
+    }    
+    methodOneInJavascript();
+    //window.location = '/apex/PBS_Wiki?ID='+'{!objwiki[0].id}';
+    
+}
+        
+
+
+</script>
+                                                         
+</apex:page>
