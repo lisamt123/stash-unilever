@@ -1,7 +1,6 @@
 src
 src/objects
 src/objects/Lead.object
-src/objects/Opportunity.object
 src/objects/FSVATRU__c.object
 src/objects/FSVATUA__c.object
 src/objects/PricebookEntry.object
