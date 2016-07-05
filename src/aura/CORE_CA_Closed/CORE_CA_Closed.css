@@ -137,7 +137,7 @@
     padding: 23px;
     margin-top: 10px;
     margin-right: 6px;
-    background:url('/resource/ApprovalsLightning/images/filters_icon-04.svg') no-repeat;
+    background:url('/resource/CORE_CA_ApprovalsLightning/images/filters_icon-04.svg') no-repeat;
     cursor: pointer;
     
 }
@@ -146,7 +146,7 @@
     padding: 23px;
     margin-top: 10px;
     margin-right: 6px;
-    background:url('/resource/ApprovalsLightning/images/filters_icon-05.svg') no-repeat;
+    background:url('/resource/CORE_CA_ApprovalsLightning/images/filters_icon-05.svg') no-repeat;
     cursor: pointer;
 }
 .THIS .icon-LockedState img{
@@ -154,7 +154,7 @@
     padding: 23px;
     margin-top: 10px;
     margin-right: 6px;
-    background:url('/resource/ApprovalsLightning/images/filters_icon-06.svg') no-repeat;
+    background:url('/resource/CORE_CA_ApprovalsLightning/images/filters_icon-06.svg') no-repeat;
     cursor: pointer;
 }
 .THIS .sort-box{
