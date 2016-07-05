@@ -9,3 +9,7 @@ src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
 src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
 src/layouts/Opportunity-Opportunity Layout.layout 
+src
+src/objects
+src/objects/user.object
+src/objects/Product_Objective__c.object
