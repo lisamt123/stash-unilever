@@ -4,6 +4,6 @@ src/classes/ICB_CalculatePlanDistance_BatchSch_Test.cls-meta.xml
 src/translations
 src/translations/pt_BR.translation
 src/permissionsets
-src/permissionsets/ICB_BackOffice_Salesforce.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce.permissionset
 src/labels
 src/labels/ICB.labels
