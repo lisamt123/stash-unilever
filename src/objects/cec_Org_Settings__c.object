@@ -159,6 +159,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>LiveChatQuestionaireSpanishId__c</fullName>
+        <description>CEC: to store survey id for live chats spanish</description>
+        <externalId>false</externalId>
+        <label>LiveChatQuestionaireSpanishId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Local_Identifier_Special_roles__c</fullName>
         <description>CEC This wil hold Roles separated by &apos;;&apos; for which special processing is required to get Local_Identifier_No_Special_Char__c</description>
         <externalId>false</externalId>
