@@ -1561,7 +1561,7 @@
         <layout>PBS_Training_Plan_Batch_Operation__c-PBS_Training Plan Batch Operation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Plan_Category__c-PBS_Training Plan Category Layout</layout>
+        <layout>PBS_Training_Plan_Category__c-Training Plan Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Training_Plan_Feedback__c-PBS_Training Plan Feedback Layout</layout>
@@ -1592,6 +1592,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Training_Track__c-Training Track Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Wiki_Feeback__c-PBS Wiki Feeback Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Wiki__kav-PBS Wiki Layout</layout>

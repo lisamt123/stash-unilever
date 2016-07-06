@@ -1587,6 +1587,9 @@
         <layout>PBS_Training_Track__c-PBS_Training Track Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>PBS_Wiki_Feeback__c-PBS Wiki Feeback Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PBS_Wiki__kav-PBS Wiki Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

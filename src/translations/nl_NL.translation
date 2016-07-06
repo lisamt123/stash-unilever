@@ -1824,6 +1824,236 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- PBS_Course Status --></description>
+        <label><!-- PBS_Course Status --></label>
+        <name>PBS_Course_Status</name>
+        <sections>
+            <columns>
+                <label><!-- Training Plan Name --></label>
+                <name>Training Plan Name</name>
+            </columns>
+            <label><!-- PBS_Training Plan Assignments --></label>
+            <name>PBS_Training Plan Assignments</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Email --></label>
+                <name>Email</name>
+            </columns>
+            <columns>
+                <label><!-- Full Name --></label>
+                <name>Full Name</name>
+            </columns>
+            <columns>
+                <label><!-- Geography --></label>
+                <name>Geography</name>
+            </columns>
+            <columns>
+                <label><!-- MCO --></label>
+                <name>MCO</name>
+            </columns>
+            <columns>
+                <label><!-- Manager --></label>
+                <name>Manager</name>
+            </columns>
+            <columns>
+                <label><!-- Market Cluster --></label>
+                <name>Market Cluster</name>
+            </columns>
+            <columns>
+                <label><!-- PC_Category --></label>
+                <name>PC_Category</name>
+            </columns>
+            <columns>
+                <label><!-- Profile Name --></label>
+                <name>Profile Name</name>
+            </columns>
+            <columns>
+                <label><!-- Role Name --></label>
+                <name>Role Name</name>
+            </columns>
+            <columns>
+                <label><!-- User Role --></label>
+                <name>User Role</name>
+            </columns>
+            <columns>
+                <label><!-- Work Level --></label>
+                <name>Work Level</name>
+            </columns>
+            <label><!-- User Information --></label>
+            <name>User Information</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_Course Status In Detail --></description>
+        <label><!-- PBS_Course Status In Detail --></label>
+        <name>PBS_Course_Status_In_Detail</name>
+        <sections>
+            <label><!-- PBS_Learning Assignments --></label>
+            <name>PBS_Learning Assignments</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- End Date --></label>
+                <name>End Date</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <columns>
+                <label><!-- Training Plan Name --></label>
+                <name>Training Plan Name</name>
+            </columns>
+            <label><!-- PBS_Training Plan --></label>
+            <name>PBS_Training Plan</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Optional --></label>
+                <name>Optional</name>
+            </columns>
+            <columns>
+                <label><!-- Total Section Items --></label>
+                <name>Total Section Items</name>
+            </columns>
+            <columns>
+                <label><!-- Training Plan Section Name --></label>
+                <name>Training Plan Section Name</name>
+            </columns>
+            <label><!-- PBS_Training Plan Section --></label>
+            <name>PBS_Training Plan Section</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Completed On --></label>
+                <name>Completed On</name>
+            </columns>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Duration --></label>
+                <name>Duration</name>
+            </columns>
+            <columns>
+                <label><!-- Expected Completion Date --></label>
+                <name>Expected Completion Date</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <columns>
+                <label><!-- Thirty Days Completed --></label>
+                <name>Thirty Days Completed</name>
+            </columns>
+            <label><!-- PBS_Training Plan Section Assignment --></label>
+            <name>PBS_Training Plan Section Assignment</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Duration (hours) --></label>
+                <name>Duration (hours)</name>
+            </columns>
+            <columns>
+                <label><!-- Duration (minutes) --></label>
+                <name>Duration (minutes)</name>
+            </columns>
+            <columns>
+                <label><!-- PBS_Training Plan Section Item ID --></label>
+                <name>PBS_Training Plan Section Item ID</name>
+            </columns>
+            <columns>
+                <label><!-- Training Plan Section Item --></label>
+                <name>Training Plan Section Item</name>
+            </columns>
+            <columns>
+                <label><!-- Training Plan Section Item ID --></label>
+                <name>Training Plan Section Item ID</name>
+            </columns>
+            <label><!-- PBS_Training Plan Section Items --></label>
+            <name>PBS_Training Plan Section Items</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Email --></label>
+                <name>Email</name>
+            </columns>
+            <columns>
+                <label><!-- Full Name --></label>
+                <name>Full Name</name>
+            </columns>
+            <columns>
+                <label><!-- Geography --></label>
+                <name>Geography</name>
+            </columns>
+            <columns>
+                <label><!-- Language Skill --></label>
+                <name>Language Skill</name>
+            </columns>
+            <columns>
+                <label><!-- Manager --></label>
+                <name>Manager</name>
+            </columns>
+            <columns>
+                <label><!-- Market Cluster --></label>
+                <name>Market Cluster</name>
+            </columns>
+            <columns>
+                <label><!-- PC_Category --></label>
+                <name>PC_Category</name>
+            </columns>
+            <columns>
+                <label><!-- Role --></label>
+                <name>Role</name>
+            </columns>
+            <columns>
+                <label><!-- User Role --></label>
+                <name>User Role</name>
+            </columns>
+            <columns>
+                <label><!-- User: Role: Name --></label>
+                <name>User: Role: Name</name>
+            </columns>
+            <columns>
+                <label><!-- Work Level --></label>
+                <name>Work Level</name>
+            </columns>
+            <label><!-- User --></label>
+            <name>User</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- PBS_LMS Achievement Assignments --></description>
         <label><!-- PBS_LMS Achievement Assignments --></label>
         <name>PBS_LMS_Achievement_Assignments</name>
