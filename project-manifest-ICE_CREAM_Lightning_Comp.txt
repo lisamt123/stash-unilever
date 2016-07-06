@@ -1,0 +1,3 @@
+src/aura
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.cmp
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.cmp-meta.xml
