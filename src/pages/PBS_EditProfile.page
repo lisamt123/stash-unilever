@@ -112,6 +112,21 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                             <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html" class="">Unsure Who You Are?</a>
                         </div>
                     </div>
+                     <div class="form-group">
+                        <label for="category" class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-6">
+                            <select id="category" class="form-control">
+                                <apex:repeat value="{!CategoryOptions}" var="caObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c == caObj}">
+                                        <option value="{!caObj}" selected="selected">{!caObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c != caObj}">
+                                        <option value="{!caObj}">{!caObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="jobProfile" class="col-sm-2 control-label">Buddy Name</label>
                         <div class="col-sm-6">
@@ -127,7 +142,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             </div>
 
             <script type="text/javascript">
-                function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}function hideModal(){$jk("#myModal").modal("hide")}var $jk=jQuery.noConflict(),availableOptions={};$jk(document).ready(function(){$jk('[data-toggle="tooltip"]').tooltip(),$jk(".save-btn").on("click",function(){showModal();var o=$jk("#geography").val(),a=$jk("#workLevel").val(),e=$jk("#jobProfile").val(),l=$jk("#buddyName").val();PBS_MyProfileController_CC.storeUserProfile(o,a,e,l,function(o,a){o!==!0||(window.parent.postMessage({itemId:"home"},"*"),window.location="{!$Page.PC_ContainerPage}"),hideModal()})})});
+                function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}function hideModal(){$jk("#myModal").modal("hide")}var $jk=jQuery.noConflict(),availableOptions={};$jk(document).ready(function(){$jk('[data-toggle="tooltip"]').tooltip(),$jk(".save-btn").on("click",function(){showModal();var o=$jk("#geography").val(),a=$jk("#workLevel").val(),e=$jk("#jobProfile").val(),c=$jk("#category").val(),l=$jk("#buddyName").val();PBS_MyProfileController_CC.storeUserProfile(o,a,e,c,l,function(o,a){o!==!0||(window.parent.postMessage({itemId:"home"},"*"),window.location="{!$Page.PC_ContainerPage}"),hideModal()})})});
             </script>
 
         </apex:define>

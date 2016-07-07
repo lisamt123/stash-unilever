@@ -7,7 +7,7 @@
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/pc_container_js.js')}" /> -->
     <div class="mainContainer group row"></div>
 
-    <div class="row bodyRow group">
+    <div class="row bodyRow group align-center">
     <div class="col-xs-12 headerDiv group">
             <div class="leftheader">
                 <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PCResources, 'img/UnileverLogo.jpg')}" width="81" height="85" />
@@ -23,7 +23,7 @@
                     <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_ContainerPage}" target="_self" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
                     <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage}" target="_self" >PBS</a></li>
                     <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum}" target="_self">Collaborate!</a></li>
-                    <li><a href="http://www.quizup.com" target ="_new"><span class="text-muted">Games</span></a></li>
+                    <li><a href="http://play.trivie.com/#/home/" target ="_new"><span class="text-muted">Games</span></a></li>
                     <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="_self">My Profile</a></li>
                     <!--<apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>-->
                 </ul>

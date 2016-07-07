@@ -1,6 +1,8 @@
 public with sharing  class PBS_WikiController_CC{
 public PBS_Wiki__kav objpbs {get;set;}
 public string recordId {get;set;}
+
+//Constructor
 public PBS_WikiController_CC() 
     {
         recordId = apexpages.currentpage().getparameters().get('ID');
@@ -12,5 +14,14 @@ Related_Files5__Body__s,Related_Files5__Name__s, KnowledgeArticleId,Group_Name__
               and Id =: recordId ];   
 
          
+     }
+     
+     //Redirect to Feedback page after click on feedback button on wiki page
+     public pageReference doSubmit(){
+     
+        PageReference reRend = new PageReference('/apex/PBS_Wiki_Feedback?Id='+recordId);
+        reRend.setRedirect(true);
+        return reRend;
+
      }
 }

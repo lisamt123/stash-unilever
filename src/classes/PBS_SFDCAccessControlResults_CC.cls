@@ -144,7 +144,10 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
      * Get the Database.DeleteResult [] returned by the delete operation.
      */
     global Database.DeleteResult [] getResults() {
-      return deleteResultsArr;
+      Database.DeleteResult [] deleteResultsArrClone  = new List<Database.DeleteResult>();
+      deleteResultsArrClone = deleteResultsArr;  
+     // return deleteResultsArr;
+      return deleteResultsArrClone;
     }
     
     /**

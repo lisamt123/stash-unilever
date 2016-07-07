@@ -329,6 +329,16 @@
         </picklist>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.Manager.FirstName  &amp; &quot;&quot;&amp; Owner:User.Manager.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Manager</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <listViews>
         <fullName>All_Events</fullName>
         <columns>TASK.SUBJECT</columns>
