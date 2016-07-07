@@ -787,8 +787,8 @@
                         </td>
                     </apex:outputpanel>                  
                     <apex:outputpanel layout="none"  rendered="{!if(project.IPM_Project_Type__c=='Original',true,false)}">
-                        <td class="label">
-                            <span class="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" >{!$Label.IPM_Y3_ITO}</span> <span class="ps {!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}">(mn€){!$Label.IPM_COLON}</span>
+                        <td class="label textleftalign">
+                            <span class="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" >{!$Label.IPM_Y3_iTO_notation}</span> 
                         </td>    
                     <td>
                             <apex:outputpanel layout="none" styleClass="{!if(if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)== $Label.IPM_BelowThreshold,'redtxt','')}" rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}"> 

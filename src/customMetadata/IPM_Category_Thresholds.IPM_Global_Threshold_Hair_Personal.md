@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>IPM RegionalSouthAs ThresholdSavouryFood</label>
+    <label>IPM Global Threshold Hair Personal</label>
     <values>
         <field>IPM_Category_Group__c</field>
-        <value xsi:type="xsd:string">Food</value>
+        <value xsi:type="xsd:string">Personal Care</value>
     </values>
     <values>
         <field>IPM_Category__c</field>
-        <value xsi:type="xsd:string">Savoury</value>
+        <value xsi:type="xsd:string">Hair</value>
     </values>
     <values>
         <field>IPM_Category_threshhold__c</field>
-        <value xsi:type="xsd:double">1500.0</value>
+        <value xsi:type="xsd:double">10000.0</value>
     </values>
     <values>
         <field>IPM_Market_Cluster__c</field>
-        <value xsi:type="xsd:string">South Asia</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>IPM_Project_Span__c</field>
-        <value xsi:type="xsd:string">Regional</value>
+        <value xsi:type="xsd:string">Global</value>
     </values>
 </CustomMetadata>

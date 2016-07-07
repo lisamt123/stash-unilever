@@ -9416,7 +9416,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Project Cluster</shortDescription>
-        <value>Project Cluster :</value>
+        <value>Project Cluster:</value>
     </labels>
     <labels>
         <fullName>IPM_Threshold_Status</fullName>
@@ -9429,8 +9429,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <fullName>IPM_Y3_iTO_notation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Y3 iTO (mn €) :</shortDescription>
-        <value>Y3 iTO (mn €) :</value>
+        <shortDescription>Y3 iTO (mn €):</shortDescription>
+        <value>Y3 iTO (mn €):</value>
     </labels>
     <labels>
         <fullName>IPM_MCO_Rollout_Leader</fullName>
@@ -9460,4 +9460,4 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM Current Gate Document Status</shortDescription>
         <value>Current Gate Document Status</value>
     </labels>
-</CustomLabels>
+ </CustomLabels>
