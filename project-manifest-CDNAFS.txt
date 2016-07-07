@@ -4,4 +4,5 @@ src/objects/Account.object
 src
 src/email
 src/email/FS_Email_Templates
+src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email-meta.xml
 src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email
