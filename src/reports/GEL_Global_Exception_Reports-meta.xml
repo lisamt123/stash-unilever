@@ -5,40 +5,5 @@
         <sharedTo>AllInternalUsers</sharedTo>
         <sharedToType>Organization</sharedToType>
     </folderShares>
-    <folderShares>
-        <accessLevel>Manage</accessLevel>
-        <sharedTo>chandana.mekala@capgemini.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>prakash.krishnani@raiser.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>megha.gavade@test.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>murali.krishan@uniliver.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>romil.gahlaut@test.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>sridhar.valiveti@test.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>tomasz.mis_dev@unilever.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
     <name>GEL_Global Exception Reports</name>
 </ReportFolder>
