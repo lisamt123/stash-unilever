@@ -1268,7 +1268,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void getAppendixSections()
     {
         try{
-            projDocAppdxSectionList=[SELECT ID,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
+            projDocAppdxSectionList=[SELECT ID,IPM_Section_Status__c,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
                                                          FROM IPM_Project_Document_Section__c 
                                                          WHERE IPM_Project_Document__c=:projectDoc.Id 
                                                          AND IPM_Has_Appendix__c=true AND IPM_Default_Section__c=true 
