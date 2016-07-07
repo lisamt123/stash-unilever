@@ -24,9 +24,11 @@
                 <div class="milestoneDescContainer">
                     <span class="mstoneDesc"><apex:outputText value="{!$Label.IPM_Milestone_Desc}" escape="false"/></span>
                 </div>
-                <div class="addMstoneContainer pull-right txtRight" data-target="#ipmaddMstonWizard" data-toggle="modal" data-keyboard="false" value="/apex/IPM_AddMilestoneWizard?projectId={!projectId}&Wizard=true" data-backdrop="static" aria-hidden="true">
-                    <span class="fa fa-plus" /> <span class="addLinkText">{!$Label.IPM_ADD_MILESTONE}</span>
-                </div>
+                <apex:outputPanel rendered="{!isMileEditable}">
+	                <div class="addMstoneContainer pull-right txtRight" data-target="#ipmaddMstonWizard" data-toggle="modal" data-keyboard="false" value="/apex/IPM_AddMilestoneWizard?projectId={!projectId}&Wizard=true" data-backdrop="static" aria-hidden="true">
+	                    <span class="fa fa-plus" /> <span class="addLinkText">{!$Label.IPM_ADD_MILESTONE}</span>
+	                </div>
+	            </apex:outputpanel>
             </div>            
         </div>
         </apex:outputPanel>  
@@ -92,7 +94,7 @@
                         <apex:outputfield value="{!p.record['IPM_Due_Date__c']}"/>
                     </apex:column>
                      <apex:column headerValue="{!$Label.IPM_Milestone_Action}" styleClass="{!IF(p.isChecked,'selected', 'notselected')} iconHeader">
-                        <apex:outputPanel styleClass="SecButtonSet">
+                        <apex:outputPanel styleClass="SecButtonSet" rendered="{!isMileEditable}">
                         
                              <!-- Edit button code starts here-------- -->
                              <apex:outputPanel rendered="{!p.isEditable}">
