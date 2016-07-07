@@ -1,13 +1,6 @@
 src
-src/layouts
-src/layouts/Product2-Food Solutions Product.layout
-src/layouts/Pricebook2-NAFS PriceBook Layout.layout
-src/layouts/PricebookEntry-Price Book Entry Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
-src/layouts/Opportunity-Opportunity Layout.layout 
+src/approvalProcesses
+src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
 src
-src/objects
-src/objects/user.object
-src/objects/Product_Objective__c.object
-src/objects/FS_Segmentation__c.object
+src/workflows
+src/workflows/Account.workflow
