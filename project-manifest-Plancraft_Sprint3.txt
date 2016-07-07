@@ -419,6 +419,7 @@ src/objects/PBS_Training_Plan_Category__c.object
 src/objects/PBS_Wiki_Feeback__c.object
 src/objects/PBS_Training_Plan_Feedback__c.object
 src/objects/User.object
+src/objects/PBS_Training_Plan_Access_Request__c.object
 src
 src/tabs
 src/tabs/PBS_Achievement_Category__c.tab

@@ -254,6 +254,31 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PBS_Training_Plan_Access_Request__c.Approver_Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Training_Plan_Access_Request__c.Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Training_Plan_Access_Request__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Training_Plan_Access_Request__c.Training_Plan__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Training_Plan_Access_Request__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PBS_Wiki_Feeback__c.Wiki_Feedback__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -305,6 +330,15 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>PBS_Response__c</object>
         <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	  <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>PBS_Training_Plan_Access_Request__c</object>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
