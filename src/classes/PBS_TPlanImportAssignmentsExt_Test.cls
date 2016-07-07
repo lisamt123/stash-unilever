@@ -62,7 +62,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
               
                 //This should return at least 1 report folder
                 for(SelectOption opt : folders){
-                    if(opt.getLabel() == 'PBS Reports'){
+                    if(opt.getLabel() == 'LMS Reports'){
                         selectedFolderId = opt.getValue();
                         break;
                     }
@@ -183,7 +183,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
 
                 //This should return at least 1 report folder
                 for(SelectOption opt : folders){
-                    if(opt.getLabel() == 'PBS Reports'){
+                    if(opt.getLabel() == 'LMS Reports'){
                         selectedFolderId = opt.getValue();
                         break;
                     }
