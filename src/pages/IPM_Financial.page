@@ -102,10 +102,12 @@
                                                             <div class="pHead accrHead filterSubTitle   {!IF(project.IPMProject_Span__c != 'Local' && currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
                                                             <!-- Rendered if project span is NOT Local-->    
                                                             <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
+                                                                <div class="filterTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}" >
                                                                 <span class='expico-square fa fa-minus'></span>
                                                                     <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                         <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
                                                                     </apex:commandLink>
+                                                                    </div>
                                                              </apex:outputText>        
                                                             </div> 
                                                             <div class="ipmAcrdnExpand"> 
@@ -116,10 +118,11 @@
                                                                                     <!-- Rendered if bollean showKeyFinancial is true and custom field IPM_Key_Financial__c is true-->    
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />
                                                                                 </span>
-                                                                            
+                                                                            <div class="filterTitle {!IF(currentFinancialId == financial.Id, 'selected', '')}" >
                                                                             <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                                 <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
                                                                             </apex:commandLink>
+                                                                            </div>
                                                                             </div>
                                                                         </li>           
                                                                    </apex:repeat>
