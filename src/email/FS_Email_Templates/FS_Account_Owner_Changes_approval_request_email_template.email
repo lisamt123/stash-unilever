@@ -1,1 +1,1 @@
-To approve Accounts owner changes  {!Account.Link}.
+Can you please replace existing Accounts owner to     {!Account.FS_ProposedAccountOwner__c}    {!Account.Link}.

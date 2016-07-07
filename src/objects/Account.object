@@ -1029,7 +1029,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <relationshipName>Accounts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1359,7 +1359,15 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C&amp;C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slabco</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -1495,7 +1503,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <fields>
         <fullName>FS_Segmentation__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(FS_UFSPotentialShare__c &lt;3000,&apos;C&apos;,IF(FS_UFSPotentialShare__c&gt;=5000,&apos;A&apos;,IF(AND(FS_UFSPotentialShare__c&gt;=3000,FS_UFSPotentialShare__c&lt;5000),&apos;B&apos;,&apos;0&apos;)))</formula>
+        <formula>IF(AND(FS_UFSPotentialShare__c &gt;0,FS_UFSPotentialShare__c &lt;3000),&apos;C&apos;,IF(FS_UFSPotentialShare__c&gt;=5000,&apos;A&apos;,IF(AND(FS_UFSPotentialShare__c&gt;=3000,FS_UFSPotentialShare__c&lt;5000),&apos;B&apos;,&apos;&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Segmentation</label>
         <required>false</required>
@@ -2624,7 +2632,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Retention Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Date</type>
     </fields>
     <fields>
@@ -2659,7 +2667,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2842,7 +2850,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -3423,10 +3431,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>53000 Sales Rep</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>89004 Sales Rep</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -5020,7 +5032,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6417,7 +6429,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7740,7 +7752,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9149,7 +9161,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>C%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9158,6 +9174,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slabco</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11124,7 +11144,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12087,6 +12107,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>82200 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89004 Sales Rep</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -13199,7 +13223,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14523,7 +14547,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15932,7 +15956,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -17695,7 +17719,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Distributor_Type__c</picklist>
             <values>
-                <fullName>Direct Client</fullName>
+                <fullName>Direct</fullName>
                 <default>false</default>
             </values>
             <values>
