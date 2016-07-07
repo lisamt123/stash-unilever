@@ -235,6 +235,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             bLinkBET = false;
         }
         resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
+        
+        // Access check for Business Partner user while reactivating the project
+    	isEditable = IPM_Utils.overrideAccessForBusinessPartner(project, isEditable);
     }
     @TestVisible private  void initialise(){
         isEditCoreparameter=false;
@@ -659,7 +662,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 
             }
             //BD user access
-            if(userRole.equals(IPM_ConstantUtils.IPM_ROLE_BD) && extraEditable){
+            if(userRole.equals(IPM_ConstantUtils.IPM_ROLE_BD) && extraEditable && !(IPM_Coreparameter.IPM_PrepareForArchival__c || IPM_Coreparameter.Is_Archieved__c)){
                 isEditCoreparam=true;
                 editMPAByBD=true;
                 editCPVByBD=true;
@@ -670,7 +673,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         //TPL user access
         if(IPM_Coreparameter.IPM_Technical_Project_Leader__c!=null && IPM_Coreparameter.IPM_Technical_Project_Leader__c==userinfo.getuserid() && 
             !IPM_Coreparameter.Is_Archieved__c && extraEditable && (IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.IPM_Project_Leader__c || 
-            IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.Deputy_Project_Leader__c )){
+            IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.Deputy_Project_Leader__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || IPM_Coreparameter.Is_Archieved__c)){
             editETByTPL=true;
             isEditCoreparam=true;
         }
@@ -791,7 +794,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             isShowFastTOrWhiteS=true;
         
         }
-        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c)){
+        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_Coreparameter.IPM_PrepareForArchival__c && !IPM_Coreparameter.Is_Archieved__c){
             isEditCoreparamPage=true;
         }
         if(coreConfig.IPM_MPA__c!=null && coreConfig.IPM_MPA__c && (isEditable||isEditCoreparam)){
@@ -806,7 +809,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(coreConfig.IPM_MPA__c!=null && !coreConfig.IPM_MPA__c && isEditable && !isEditCoreparameter){
             isMPABack=true;
         }
-        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && 
+        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || IPM_Coreparameter.Is_Archieved__c) &&
         !((IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
             ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)
             ))){
@@ -814,8 +817,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             isAdditionalPara=true;
         }
         if(isEditable && !IPM_ConstantUtils.PHASE_MARKET_READY.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.Equals(IPM_Coreparameter.IPM_Phase__c) &&
-        !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
-            ){
+        !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c)) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || IPM_Coreparameter.Is_Archieved__c))
+            {
             isEditCoreparam=true;
             
         }

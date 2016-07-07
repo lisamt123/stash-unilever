@@ -167,7 +167,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             project.IPM_Project_Name__c=project.IPM_Project_Name__c.substringBefore(IPM_ConstantUtils.UNDERSCORE);
         }
         getProjectResource();
-        if(project!=null && !project.Is_Archieved__c){
+        if(project!=null)
+        {
             getIpmuserType();   
             getMilesTaskIpmuserType();
         }
@@ -181,8 +182,15 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_BACKGROUNDPROCESS_INPROGRESS));
         }
         
-         IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
-         tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
+        if(isEditable)
+        {
+        	isEditable = !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c);
+        	// Access check for Business Partner user while reactivating the project
+        	isEditable = IPM_Utils.overrideAccessForBusinessPartner(project, isEditable);
+        } 
+         
+        IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
+        tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
     }  
     /****************************************************************************
     @Description : Inner class to get date
@@ -928,7 +936,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public void getIpmuserType(){
         try 
         {
-            list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c,IPM_IsCompleted__c  FROM IPM_Project__c WHERE
+            list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c,IPM_IsCompleted__c,IPM_PrepareForArchival__c,Is_Archieved__c  FROM IPM_Project__c WHERE
                                            id=:projectId and (IPM_Project_Leader__c =:userinfo.getuserid() 
                                                               or Deputy_Project_Leader__c=:userinfo.getuserid() ) limit 1];
             if(lstofuser.isEmpty()){
@@ -996,7 +1004,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             } 
             
             // Checking the user List
-            if(!project.Is_Archieved__c){
+            if(!(project.IPM_PrepareForArchival__c || project.Is_Archieved__c))
+            {
                 // To check the Project Leader
                if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
                 {
