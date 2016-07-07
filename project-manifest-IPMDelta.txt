@@ -34,6 +34,8 @@ src/classes/IPM_ProjectDocumentSectionController.cls
 src/classes/IPM_ProjectDocumentSectionController.cls-meta.xml
 src/classes/IPM_ProjectOverviewCtrl.cls
 src/classes/IPM_ProjectOverviewCtrl.cls-meta.xml
+src/classes/IPM_ProjectSearchCtrl.cls
+src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
 src/classes/IPM_ProjectSetUpController.cls
 src/classes/IPM_ProjectSetUpController.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController.cls
@@ -89,9 +91,12 @@ src/labels/CustomLabels.labels
 src/objects
 src/objects/IPM_Analytics_OTIF__c.object
 src/objects/IPM_Project__c.object
+src/objects/IPM_Project_Resource__c.object
 src/pages
 src/pages/IPM_CommentsPage.page
 src/pages/IPM_CommentsPage.page-meta.xml
+src/pages/IPM_Financial.page
+src/pages/IPM_Financial.page-meta.xml
 src/pages/IPM_GateDocument.page
 src/pages/IPM_GateDocument.page-meta.xml
 src/pages/IPM_GateDocumentPDF.page
@@ -100,6 +105,8 @@ src/pages/IPM_ProjectDocumentSectionEditor.page
 src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
 src/pages/IPM_ProjectOverview.page
 src/pages/IPM_ProjectOverview.page-meta.xml
+src/pages/IPM_ProjectSearchPage.page
+src/pages/IPM_ProjectSearchPage.page-meta.xml
 src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_TaskList.page
