@@ -1277,7 +1277,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>IPM_Clusters__c.IPM_Cluster_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1435,81 +1435,6 @@
         <editable>false</editable>
         <field>IPM_CorePara_helps_example__c.IPM_Core_Parameter_example_two__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPMCompany__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPMPlatform__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPMProject_Span__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPMProject_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPMRegion__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Answer_of_Q1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Answer_of_Q2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Answer_of_Q3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Category_Group__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_IsCompleted__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Market__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Project__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Sector__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_CoreParameters__c.IPM_Sub_sector__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -5743,6 +5668,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project__c.IPM_Finance_Member__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project__c.IPM_GateKeepingModel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7637,8 +7567,8 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>MDO_Market__c</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>   
-
+    </objectPermissions>
+    
     <recordTypeVisibilities>
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>
         <visible>true</visible>
