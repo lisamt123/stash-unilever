@@ -2546,8 +2546,8 @@ If approved your project will be linked after your Charter gate has been approve
         <fullName>IPM_Country_Project_leader_and_Target_Launch_Date</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM Country Project leader and Target Launch Date</shortDescription>
-        <value>Country Project leader and Target Launch Date</value>
+        <shortDescription>IPM MCO Rollout Leader and Target Launch Date</shortDescription>
+        <value>MCO Rollout Leader and Target Launch Date</value>
     </labels>
     <labels>
         <fullName>IPM_CreateBETMsg</fullName>
@@ -6474,9 +6474,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Local</shortDescription>
-        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
+        <value>If you have assigned your MCO Rollout Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
     </labels>
-    
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Regional</fullName>
         <language>en_US</language>
@@ -9348,7 +9347,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
-        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please contact the relevant Regional Project Leader.</value>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please check on the rollout plan which regional rollout is 1st and contact the relevant Regional Project Leader.</value>
     </labels>
     <labels>
         <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
@@ -9418,7 +9417,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Project Cluster</shortDescription>
-        <value>Project Cluster :</value>
+        <value>Project Cluster:</value>
     </labels>
     <labels>
         <fullName>IPM_Threshold_Status</fullName>
@@ -9431,10 +9430,10 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <fullName>IPM_Y3_iTO_notation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Y3 iTO (mn €) :</shortDescription>
-        <value>Y3 iTO (mn €) :</value>
+        <shortDescription>Y3 iTO (mn €):</shortDescription>
+        <value>Y3 iTO (mn €):</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>IPM_MCO_Rollout_Leader</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9461,5 +9460,12 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Current Gate Document Status</shortDescription>
         <value>Current Gate Document Status</value>
+    </labels>
+        <labels>
+        <fullName>IPM_ShowEntity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ShowEntity</shortDescription>
+        <value>IPM_ShowAt{0}__c</value>
     </labels>
 </CustomLabels>
