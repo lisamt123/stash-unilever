@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Approval_request_email_template_to_Step2</fullName>
+        <description>&quot;Approval request email template&quot; to Step 2 approver</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>AFM_Approvers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Approval_request_email_template_to_Step_1</fullName>
+        <ccEmails>ramesh.suddapalli@accenture.com</ccEmails>
+        <description>&quot;Approval request email template&quot; to Step 1 approver</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jyotirmoy.sharma@accenture.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maha.r.bhaskar.reddy@accenture.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Approval_request_email_template_to_Step_2</fullName>
+        <description>&quot;Approval request email template&quot; to Step 2 approver</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>samanway.chakraborty@accenture.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>FS_UpdateProposedAccountOwner</fullName>
+        <field>FS_ProposedAccountOwner__c</field>
+        <name>Update Proposed Account Owner</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>NAFS_Account_status_Update_to_Temporary</fullName>
         <description>Account status update to Temporary if type is operator</description>
@@ -13,7 +59,7 @@
     <fieldUpdates>
         <fullName>Update_Account_Number</fullName>
         <field>AccountNumber</field>
-        <formula>&quot;Act-&quot;  &amp;  GFS_Customer_Number__c</formula>
+        <formula>FS_Customer_Number__c</formula>
         <name>Update Account Number</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -30,14 +76,20 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>NAFS Account Status to Temporary</fullName>
+        <fullName>FS Account Status to Temporary</fullName>
         <actions>
             <name>NAFS_Account_status_Update_to_Temporary</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Account.Type</field>
+            <operation>contains</operation>
+            <value>Operator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.RecordTypeId</field>
             <operation>contains</operation>
             <value>Operator</value>
         </criteriaItems>
@@ -45,7 +97,7 @@
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>NAFS_Update Operator Account Number</fullName>
+        <fullName>FS_Update Operator Account Number</fullName>
         <actions>
             <name>Update_Account_Number</name>
             <type>FieldUpdate</type>
