@@ -76,11 +76,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	public Integer CountProuser;//Count of Users
 	public boolean isGlobalActionStandards{get;set;}
 	
+    public String showEntity{get;set;} // field API name of 'Show At Global /Regional / Loacal" fields. 
 	/****************************************************************************************************************************************************************
 	* @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
 	*/
 	public IPM_ProjectDocumentSectionController() {
 		//Initializing Variables
+        showEntity = IPM_ConstantUtils.BLANK;
 		RnDSection=IPM_ConstantUtils.RND_SECTION;
 		IsCRRTEditable=false;
 		isCreateTask=false;
@@ -110,6 +112,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		ecoDesignStr = new List<String>();
 		Frole=''; 
 		Map<string,IPM_Gate_Document_Section_Access__c> gdSectionAccess = IPM_Gate_Document_Section_Access__c.getAll();
+        showEntity = String.format(Label.IPM_ShowEntity,new String[]{project.IPMProject_Span__c});
 		for(IPM_Gate_Document_Section_Access__c userGDSectionAccess : gdSectionAccess.values()){
 			if(string.isNotBlank(userGDSectionAccess.Name) && IPM_ConstantUtils.IPM_ROLE_BD_MARKETING.equals(userGDSectionAccess.Name) && string.isNotBlank(userGDSectionAccess.IPM_Gate_Document_Section_Access_1__c)){
 				tempDocSectionAccess=userGDSectionAccess.IPM_Gate_Document_Section_Access_1__c;
@@ -222,14 +225,16 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		
 		//For Character Count on Gate Document Summary
 		projSectionList=new list<IPM_Project_Document_Section__c>();
-		
+        String queryString = '';
 		if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
 		{
-			countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Project__c=:project.id];
+            queryString = 'SELECT count() FROM IPM_Country__c WHERE ( isActive__c = true OR '+ showEntity +' = true ) AND IPM_Project__c =: projectId LIMIT 5000';
+            countOfCountries = Database.countQuery(queryString); 
 		}
 		else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
 		{
-			countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Regional_Project__c=:project.id];
+            queryString = 'SELECT count() FROM IPM_Country__c WHERE ( isActive__c = true OR '+ showEntity +' = true ) AND IPM_Regional_Project__c =: projectId LIMIT 5000';
+            countOfCountries = Database.countQuery(queryString); 
 		}
 		else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 		{
@@ -505,8 +510,12 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		}
 		//To get Central Team User permission
 		getCentralUserPermission();
-	}
-	
+        // If project is in 72 hours delay and Project gets stpped after 72 hours all project document section become readonly   
+        if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c)
+        {
+        	IsEditableOutC = IsEditableSumm = isTaskeditable = IsCRRTEditable = isEditGateCMI = isAssortEdit = isEcodesignEdit = showEcoDesign  = isCreateTask = false;
+        }
+    }
 	/****************************************************************************************************************************************************************
 	* @description Get user type with access permission     
 	*/
