@@ -2418,6 +2418,56 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>IPM Projects (Stopped Project)</relationshipLabel>
+        <relationshipName>IPM_StoppedProjects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByUser__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Stopped_By__r.FirstName + &apos; &apos; +  IPM_Stopped_By__r.LastName</formula>
+        <label>Stopped By User</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped_At_Span__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Stopped At Span</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Stopped_By__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>When the project is stopped, it notes who has actually stopped it last.</description>
@@ -4347,6 +4397,21 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+	<picklistValues>
+            <picklist>IPM_Stopped_At_Span__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
