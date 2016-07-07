@@ -24,7 +24,12 @@ jq(document).ready(function() {
         initSliderSecLabelGk(this, divId, sliderValArray);
         sliderIndex++;
     });
-    
+    jq(".sliderGk label span").each(function() {
+        var nvalue = jq(this).attr('title');
+        if(nvalue === ' null '){
+            jq(this).attr('title','');
+        }
+    });
     setSliderValBgcolor();
 });
 
@@ -64,8 +69,8 @@ function initSliderSecGk(sliderObj, valArray) {
             {
                 event.preventDefault();
             }else{            
-            jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-            jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();         
+                jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();        
             } 
         }
     });
@@ -77,15 +82,15 @@ jq(".legendSld label").on("click", function() {
         {
             event.preventDefault();
         }else{
-    var lpos = jq(".legendSld label").offset().left;
-    jq(this).parent().find('label').css({
-        'color': '#555555',
-        'font-weight': 'normal'
-    });
-    jq(this).css({
-        'color': '#e98824',
-        'font-weight': 'bold'
-    });
+            var lpos = jq(".legendSld label").offset().left;
+            jq(this).parent().find('label').css({
+                'color': '#555555',
+                'font-weight': 'normal'
+            });
+            jq(this).css({
+                'color': '#e98824',
+                'font-weight': 'bold'
+            });
         }
 });
 jq("input[type=radio][id^='s']").hide();

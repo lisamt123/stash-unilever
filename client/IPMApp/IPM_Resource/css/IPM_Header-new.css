@@ -78,10 +78,11 @@ ul.dropdown-menu li{margin-left:0 ;}
 .gateddown:after{display: block;  font-family: FontAwesome;  content: "\f107";  font-size: 1.4em; width: 20px; color: #fff;}
 .secNameHeader{margin-right:5px;}
 a.clear_input, a.clear_input:hover {text-decoration: none;}
-.orgIcon,.rollIcon,.oprtnIcon{width: 25px;height: 25px;margin-right: 0 ;display: block;float: left;}
+.orgIcon,.rollIcon,.oprtnIcon,.stopicon{width: 25px;height: 25px;margin-right: 0 ;display: block;float: left;}
 .orgIcon{background: url('../images/icon_original.svg');background-size: 100%;background-repeat: no-repeat;background-position: 0 -3px;}
 .rollIcon{background: url('../images/icon_rollout.svg');background-size: 52% 64%;background-repeat: no-repeat;background-position: 4px 0;}
-.oprtnIcon {    background: url('../images/icon_operational.svg');background-size: 81%;background-repeat: no-repeat;background-position: 0 0;}
+.oprtnIcon {background: url('../images/icon_operational.svg');background-size: 81%;background-repeat: no-repeat;background-position: 0 0;}
+.stopicon{background: url('../images/ico-hand.svg');background-size: 100%;background-repeat: no-repeat;background-position: 0 0px;}
 .projDetails .rollIcon {margin-top: 5px;}
 .projDetails .oprtnIcon {margin-top: 2px;}
 .projDetails .orgIcon {margin-top: 5px;} 
