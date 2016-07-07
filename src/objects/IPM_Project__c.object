@@ -231,6 +231,38 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_EligibleForReactivation__c</fullName>
+        <description>This field is to identify the project eligibility for reactivation.</description>
+        <externalId>false</externalId>
+        <formula>AND(Text(IPM_Phase__c) = &apos;Ideas&apos;, Is_Archieved__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eligible For Reactivation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+	<fields>
+        <fullName>IPM_CountDown_Reference_Time__c</fullName>
+        <description>This field will be referred for Countdown timer.</description>
+        <externalId>false</externalId>
+	<formula>TEXT(
+	ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*24,24),0) + (FLOOR((IPM_Stopped_Date_Time__c + 3) - now()) * 24) - 1
+	         )  &amp;&quot;:&quot; &amp;
+	TEXT(
+	ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*1380,60),0)
+	) &amp;&quot;:&quot; &amp;
+	TEXT(
+	ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*86400,60),0)
+	)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CountDown Reference Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BET_Archived_BET_Text__c</fullName>
         <description>To store the BET name of the last archived BET.</description>
         <externalId>false</externalId>

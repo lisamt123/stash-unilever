@@ -8,6 +8,9 @@
 -->
 
 <apex:page sidebar="false" standardStylesheets="false" controller="IPM_ProjDocumentSectionHstryController" extensions="IPM_ProjectOverviewCtrl,IPM_GetHelpDoc">
+    <style>
+    .countDownTimer{padding-bottom:10px;}
+    </style>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectOverview.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}"/>
     <apex:form >   
@@ -153,7 +156,7 @@
                         </div>
                          <div class="SecButtonSet" >
 								<!-- Display below outputPanel when project leader is logged in-->
-                                <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader)}">
+                                <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader, isStopped)})}">
                                 <a class="icoButton edit1 editTaskBtn"  href="apex/IPM_CoreParameters?id={!projectId}" ></a>
                                 </apex:outputPanel>
                          </div>
@@ -253,11 +256,15 @@
                                 </apex:outputPanel>
                                 <!-- Display below outputPanel when project phase is not in progress-->
                                 <apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">    
-									<apex:outputPanel layout="block" rendered="{!displayGateDocument}">
-										<div class="documentStatus pl0">
-											<div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
-										</div>
-									</apex:outputPanel>
+                                        <apex:outputPanel layout="block" >
+                                            <div class="documentStatus pl0">
+                                                <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
+	                                                <apex:outputPanel rendered="{!project.IPM_PrepareForArchival__c}">
+	                                                	<div class="countDownTimer">Stopping in : <span id="cd_h">00</span>:<span id="cd_m">00</span>:<span id="cd_s">00</span>
+                                                		</div>
+                                                	</apex:outputPanel>
+                                            </div>
+                                        </apex:outputPanel>
                                     <!-- Display below outputPanel when project phase is in PLE-->
                                     <apex:outputPanel rendered="{!bShowShipToTradeButton}">
                                         <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
@@ -272,6 +279,20 @@
                                         </div>
 										<apex:variable value="true" var="showGreyBorder"/>
                                     </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.Id == null)}">
+                                            <div class="col-sm-12">
+                                                <apex:commandLink styleClass="ipmButton statusButtonOrange orange" value="Cancel Stopping Project"
+                                                    action="{!cancelStoppingProject}" />
+                                             </div>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!reactivateProjectFlag}">
+                                            <div class="col-sm-12">
+                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="Reactivate Project" rerender="tskPanel" 
+                                                    action="/apex/IPM_ProjectSetUpView?Pid={!projectId}" > 
+                                                </apex:commandLink>
+                                             </div>
+                                        </apex:outputPanel>
    									<!--  Move to Next Phase button render related changes  starts here -->
                                     <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
 		

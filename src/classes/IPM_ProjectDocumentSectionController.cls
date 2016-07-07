@@ -610,6 +610,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 				projDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
 			}   
 			update projDoc;
+			// Update the project Current Document Status as per Project Docuement Status
+			IPM_Project__c project = new IPM_Project__c(id = projectId, IPM_Current_Document_Status__c = projDoc.IPM_Document_Status__c);
 
 			//To Update Project FilledIn Percentage
 			updateProjectFilledin();
@@ -701,6 +703,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			Decimal FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiableCount))*100);
 			project.IPM_FilledIn_Percentage__c=FilledinPer;
 		}
+        project.IPM_Current_Document_Status__c = projDoc.IPM_Document_Status__c;
 		update project;
 	}
 	
