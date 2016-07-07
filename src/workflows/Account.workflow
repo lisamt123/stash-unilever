@@ -5,8 +5,8 @@
         <description>&quot;Approval request email template&quot; to Step 2 approver</description>
         <protected>false</protected>
         <recipients>
-            <recipient>AFM_Approvers</recipient>
-            <type>group</type>
+            <recipient>ramesh.suddapalli@accenture.com</recipient>
+            <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</template>
@@ -18,10 +18,6 @@
         <protected>false</protected>
         <recipients>
             <recipient>jyotirmoy.sharma@accenture.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>maha.r.bhaskar.reddy@accenture.com</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>

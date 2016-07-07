@@ -55,7 +55,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>samanway.chakraborty@accenture.com</name>
+                <name>ramesh.suddapalli@accenture.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
