@@ -31,6 +31,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public static Map<String,IPM_Category__c> customSettingCategory = IPM_Category__c.getAll();
     public Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
     public static Map<String ,IPM_Category_Thresholds__mdt>  masterCategoryThrshMap ;
+    public static Map<String ,IPM_Cat_thrhl_Mrkt_cluster__c>  mrktClusterCategoryMap ;
     public static final String PROJECT_TYPE_ORIGINAL = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
     /***********************************************************************************************************************************
     * bulkBefore
@@ -44,6 +45,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     {
         //populating masterCategoryThrshMap from existing org data of IPM_Category_Thresholds__mdt
         masterCategoryThrshMap=IPM_Utils.getCategorythresholdMap();
+        mrktClusterCategoryMap=IPM_Cat_thrhl_Mrkt_cluster__c.getAll();
         List<IPM_Project__c> projectAssociatedWithProjectTypesList = new List<IPM_Project__c>();
         
         if(Trigger.isInsert || Trigger.isUpdate)
@@ -849,11 +851,21 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //populating project category threshold based on category,category group and few other parameters
         if(insertedProject.IPM_Category_Text__c !=null && insertedProject.IPM_Category_Group__c !=null && insertedProject.IPMProject_Span__c !=null && insertedProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL )
         {
-            String mdtMapKey =  insertedProject.IPM_Category_Text__c + insertedProject.IPM_Category_Group__c + insertedProject.Market_Cluster_Name__c + insertedProject.IPMProject_Span__c;
+            String mdtMapKey =  insertedProject.IPM_Category_Text__c + insertedProject.IPM_Category_Group__c +  insertedProject.IPMProject_Span__c;
+            
+            if(String.isNotBlank(insertedProject.Market_Cluster_Name__c) && mrktClusterCategoryMap.containsKey(insertedProject.IPM_Category_Text__c + insertedProject.IPMProject_Span__c) ) 
+            {
+            	if( mrktClusterCategoryMap.get(insertedProject.IPM_Category_Text__c + insertedProject.IPMProject_Span__c).IPM_Is_market_cluster_applicable__c)
+            	{
+            		mdtMapKey = mdtMapKey + insertedProject.Market_Cluster_Name__c;
+            	}
+            }
+              
             if(masterCategoryThrshMap.containsKey(mdtMapKey))
             {   
-                insertedProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c;
-        }
+                insertedProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c/1000;
+            }
+            
         }
         
         if(insertedProject.Exempt_from_Threshold__c !=null)
@@ -950,17 +962,21 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //populating project  category  threshold based on category,category group and few other parameters
         if(incomingProject.IPM_Category_Text__c !=null && incomingProject.IPM_Category_Group__c !=null && incomingProject.IPMProject_Span__c !=null && incomingProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL  )
         {
-            String mdtMapKey =  incomingProject.IPM_Category_Text__c + incomingProject.IPM_Category_Group__c + incomingProject.Market_Cluster_Name__c + incomingProject.IPMProject_Span__c;
-            if(masterCategoryThrshMap.containsKey(mdtMapKey))
+            String mdtMapKey =  incomingProject.IPM_Category_Text__c + incomingProject.IPM_Category_Group__c +  incomingProject.IPMProject_Span__c;
+            
+            if(String.isNotBlank(incomingProject.Market_Cluster_Name__c) && mrktClusterCategoryMap.containsKey(incomingProject.IPM_Category_Text__c + incomingProject.IPMProject_Span__c)) 
+            {
+            	if( mrktClusterCategoryMap.get(incomingProject.IPM_Category_Text__c + incomingProject.IPMProject_Span__c).IPM_Is_market_cluster_applicable__c)
+            	{
+            		mdtMapKey = mdtMapKey + incomingProject.Market_Cluster_Name__c;
+            	}
+            } 
+           
+            if(masterCategoryThrshMap.containsKey(mdtMapKey))  
             {   
-                incomingProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c;
+                incomingProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c/1000; 
             }
-        }
-        if(incomingProject.Is_Archieved__c !=null && incomingProject.Is_Archieved__c && incomingProject.Is_Archieved__c != oldProject.Is_Archieved__c)
-        {
-            incomingProject.IPM_Project_Stopped_By__c   = UserInfo.getName();
-            incomingProject.IPM_Stopped_Date_Time__c = System.now();        
-        }
+        } 
         
         if(incomingProject.Exempt_from_Threshold__c !=null && incomingProject.Exempt_from_Threshold__c != oldProject.Exempt_from_Threshold__c)
         {
