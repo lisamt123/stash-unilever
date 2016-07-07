@@ -1,4 +1,7 @@
 src
+src/objects
+src/objects/FS_Account_Plan__c.object
+src
 src/approvalProcesses
 src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
 src
