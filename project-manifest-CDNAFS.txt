@@ -1,7 +1,6 @@
 src
 src/objects
-src/objects/FS_Account_Plan__c.object
-src/objects/FS_Account_Plan__c.object
+src/objects/FS_Account_Plan__c
 src/objects/FS_Defined_Objective__c.object
 src
 src/layouts
