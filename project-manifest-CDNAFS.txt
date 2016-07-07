@@ -1,7 +1,11 @@
 src
 src/approvalProcesses
 src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
-src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
+src
+src/email
+src/email/FS_Email_Templates
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email-meta.xml
 src
 src/groups
 src/groups/AFM_Approvers.group
