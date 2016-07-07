@@ -637,7 +637,8 @@ public with sharing class CEC_FulfilmentHelper {
                 }
             }
         } catch (Exception e) {
-            throw e;
+            //throw e;
+            System.debug('Exception in CEC_FulfilmentHelper.updateAccountDetails method ' + e.getMessage());
         }
     }
 

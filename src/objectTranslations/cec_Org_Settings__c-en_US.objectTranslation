@@ -66,6 +66,10 @@
         <name>LiveChatQuestionaireId__c</name>
     </fields>
     <fields>
+        <label><!-- LiveChatQuestionaireSpanishId --></label>
+        <name>LiveChatQuestionaireSpanishId__c</name>
+    </fields>
+    <fields>
         <help><!-- Seperate the CEC roles by a seperator &apos;;&apos; --></help>
         <label><!-- Local Identifier Special roles --></label>
         <name>Local_Identifier_Special_roles__c</name>

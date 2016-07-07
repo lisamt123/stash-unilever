@@ -153,7 +153,7 @@
         <fullName>Brand_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports for the Brands.</description>
         <externalId>false</externalId>
-        <formula>IF(Not(ISBLANK(Case_product_category__c)),&apos;Unilever Corporate&apos;, Case_Brand__c )</formula>
+        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos;, Case_Brand__c )</formula>
         <label>Brand Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1817,6 +1817,16 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Careline.bd@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.philippines@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Philippines</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Comments.Canada@benjerry.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Canada</controllingFieldValues>
@@ -1832,9 +1842,25 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>South Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Consumer-Hotline.Thailand@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Thailand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>consumerproduct@mizkan.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumerrelations.uanz@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Australia</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.cl</fullName>
+                <default>false</default>
+                <controllingFieldValues>Chile</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>consumidor@sac-unilever.com</fullName>
@@ -1853,10 +1879,25 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>consumidor@sac-unilever.com.ar</fullName>
                 <default>false</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.bo</fullName>
+                <default>false</default>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
-                <controllingFieldValues>Chile</controllingFieldValues>
-                <controllingFieldValues>Paraguay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.pe</fullName>
+                <default>false</default>
                 <controllingFieldValues>Peru</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.py</fullName>
+                <default>false</default>
+                <controllingFieldValues>Paraguay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.uy</fullName>
+                <default>false</default>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -1885,6 +1926,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Raabta.upl@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ragu.ca@mizkan.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Canada</controllingFieldValues>
@@ -1910,9 +1956,19 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>Brazil</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>suara.konsumen@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Indonesia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>t2customercare@t2tea.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>tuvankhachhang@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UnileverConsumercare.CA@unilever.com</fullName>
@@ -3213,7 +3269,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>America,Brazil,Cone,Africa,ANZ</value>
+            <value>America,ANZ,Africa,Brazil</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -3338,7 +3394,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC Benelux queue WH</label>
+        <label>CEC Benelux queue</label>
         <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
@@ -3351,6 +3407,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue</fullName>
+        <columns>Language__c</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -3360,14 +3418,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>Case_Brand__c</columns>
-        <columns>Language__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC Benelux queue</label>
+        <label>CEC Benelux queue WH</label>
         <language>nl_NL</language>
         <queue>CEC_Benelux_Queue</queue>
     </listViews>
@@ -3504,6 +3561,30 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_France_Cases_In_Progress</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>On Hold</value>
+        </filters>
+        <label>CEC France - In Progress</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_France_Queue_Case</fullName>
         <columns>Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
@@ -3530,33 +3611,72 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_France_Review_needed</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Review Needed</value>
+        </filters>
+        <label>CEC France - Review needed</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_all_new_cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Brand__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>NAME</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>France</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notEqual</operation>
+            <value>France T.O.</value>
+        </filters>
+        <label>CEC France all new cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_General_Queue_Case</fullName>
-        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
-        </filters>
-        <filters>
-            <field>CASES.EMAIL</field>
-            <operation>notEqual</operation>
-            <value>noreplysg@unilever.com,noreplycom@unilever.com</value>
-        </filters>
-        <filters>
-            <field>CASES.EMAIL</field>
-            <operation>notEqual</operation>
-            <value>noreplyfi@unilever.com,noreplyme@unilever.com,noreplyph@unilever.com</value>
-        </filters>
-        <filters>
-            <field>CASES.EMAIL</field>
-            <operation>notEqual</operation>
-            <value>noreplydn@unilever.com,noreplydk@unilever.com,noreplyewa@unilever.com</value>
-        </filters>
-        <filters>
-            <field>CASES.EMAIL</field>
-            <operation>notEqual</operation>
-            <value>noreplyau@unilever.com,noreplybr@unilever.com,noreplyca@unilever.com</value>
         </filters>
         <label>CEC UKI Queue</label>
         <language>en_US</language>
@@ -6052,7 +6172,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Portugal_Queue_Aus_ncias</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Case_Brand__c</columns>
@@ -6079,12 +6199,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>TeVidal</value>
+            <value>RSous</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>CaSilva</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Santu</value>
         </filters>
         <label>CEC Portugal Queue_Ausências</label>
         <language>en_US</language>
@@ -6508,7 +6633,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.EMAIL</field>
             <operation>equals</operation>
-            <value>noreplysg@unilever.com,noreplycom@unilever.com</value>
+            <value>noreplysg@unilever.com,noreplycom@unilever.com,dotcomemails@unilever.com</value>
         </filters>
         <label>CEC UKI Dotcom E-Mails</label>
         <language>en_US</language>
@@ -7068,6 +7193,21 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>MyCases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Cases</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>My_Cases_DO_NOT_EDIT</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -7367,7 +7507,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(3 OR 2) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7384,12 +7524,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>bfric</value>
+            <value>HoRosent</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>TaHyseni</value>
+            <value>EvKniesb</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>JuStedin</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
@@ -7467,7 +7612,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>America,Brazil,Cone,Africa,ANZ</value>
+            <value>America,Brazil,Southern</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -7947,11 +8092,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Override_From_Address__c</picklist>
             <values>
+                <fullName>Careline%2Ebd%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Comments%2ECanada%40benjerry%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Consumer-Hotline%2EThailand%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Product%2EContactus%40benjerry%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raabta%2Eupl%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7987,6 +8144,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>comments%40talentigelato%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -7999,11 +8160,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>consumerrelations%2Euanz%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecl</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>consumidor%40sac-unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>consumidor%40sac-unilever%2Ecom%2Ear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Ebo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Euy</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8035,7 +8220,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>suara%2Ekonsumen%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>t2customercare%40t2tea%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tuvankhachhang%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8576,11 +8769,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Override_From_Address__c</picklist>
             <values>
+                <fullName>Careline%2Ebd%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Comments%2ECanada%40benjerry%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Consumer-Hotline%2EThailand%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Product%2EContactus%40benjerry%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raabta%2Eupl%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8616,6 +8821,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>comments%40talentigelato%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -8628,11 +8837,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>consumerrelations%2Euanz%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecl</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>consumidor%40sac-unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>consumidor%40sac-unilever%2Ecom%2Ear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Ebo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Euy</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8664,7 +8897,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>suara%2Ekonsumen%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>t2customercare%40t2tea%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tuvankhachhang%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
