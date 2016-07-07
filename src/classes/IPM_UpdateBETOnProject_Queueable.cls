@@ -32,7 +32,7 @@ public with sharing class IPM_UpdateBETOnProject_Queueable implements Queueable 
          		IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
                 updateBETOnProjectQ.betId =betId;
                 updateBETOnProjectQ.projectId =projectId; 
-                Id asyncJobId = System.enqueueJob(updateBETOnProjectQ);
+                System.enqueueJob(updateBETOnProjectQ);
          	}
          	else
          	{

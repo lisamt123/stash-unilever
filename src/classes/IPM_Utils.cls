@@ -1533,7 +1533,14 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         String categoryThresholdQuery = IPM_Utils.prepareSOQLQuery('IPM_Category_Thresholds__mdt',false,null,true); 
         for(IPM_Category_Thresholds__mdt Cat_mdt : (List<IPM_Category_Thresholds__mdt>)database.Query(categoryThresholdQuery) )
         {
-              masterCategoryThrshMap.put(Cat_mdt.IPM_Category__c+Cat_mdt.IPM_Category_Group__c+Cat_mdt.IPM_Market_Cluster__c+Cat_mdt.IPM_Project_Span__c ,Cat_mdt);
+              String thrMapKey = Cat_mdt.IPM_Category__c+Cat_mdt.IPM_Category_Group__c+Cat_mdt.IPM_Project_Span__c ;
+              
+              if(String.isNotBlank(Cat_mdt.IPM_Market_Cluster__c)) 
+              {
+              	thrMapKey = thrMapKey + Cat_mdt.IPM_Market_Cluster__c;
+              }
+               
+              masterCategoryThrshMap.put(thrMapKey ,Cat_mdt);
         }
         return masterCategoryThrshMap;
     }         	

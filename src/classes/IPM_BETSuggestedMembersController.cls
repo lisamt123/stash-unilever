@@ -26,11 +26,11 @@ public with sharing class IPM_BETSuggestedMembersController{
                update project;
             }
         }catch(Exception ex){
-	 //Enqueue IPM_UpdateBETOnProject_Queueable class  in case there is an exception due to concurrent update
-	 IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
-         updateBETOnProjectQ.betId =betId;
-         updateBETOnProjectQ.projectId =projectId; 
-         Id asyncJobId = System.enqueueJob(updateBETOnProjectQ); 
+		  //Enqueue IPM_UpdateBETOnProject_Queueable class  in case there is an exception due to concurrent update
+		  IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
+          updateBETOnProjectQ.betId =betId;
+          updateBETOnProjectQ.projectId =projectId; 
+          System.enqueueJob(updateBETOnProjectQ);  
         } 
         return pageRef ;
     }
