@@ -284,8 +284,8 @@ private class PBS_TaskViewerController_Test{
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections1 = PBS_TrainingPlanData_Test.createTrainingPlanSections(tplans.get(0).Id,1);
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,taskLearnings);
-
+        //List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,taskLearnings);
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,taskLearnings);
         List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;

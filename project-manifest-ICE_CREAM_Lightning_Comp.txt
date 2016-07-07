@@ -1,0 +1,10 @@
+src/aura
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.auradoc
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.cmp
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.cmp-meta.xml
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.css
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.design
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOut.svg
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOutController.js
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOutHelper.js
+src/aura/ICB_CheckInCheckOut/ICB_CheckInCheckOutRenderer.js

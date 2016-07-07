@@ -412,9 +412,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
                         emailIds.add(obj.Primary_RAP_Email__c); 
                 }
             }
-            system.debug('emailIds!!'+emailIds);
             List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.Email = :emailIds ];
-           system.debug('userList!!'+userList);
             if(userList.size()>0){
                 if(userinfo.getuserid() != userList[0].Assignee.id){
                     Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();

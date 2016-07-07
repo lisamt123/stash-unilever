@@ -103,11 +103,11 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-          //  System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
-            PageReference contRef = cont.quizContinue();
+            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
+            cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
-            //System.assert(countAssignmentResponses(learningAssignmentId) > 0, 'No responses were captured');
+            System.assert(countAssignmentResponses(learningAssignmentId) > 0, 'No responses were captured');
         }
 
     }
@@ -190,8 +190,8 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-         //   System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_FAILED,cont.evalResult);
-            PageReference contRef = cont.quizContinue();
+            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_FAILED,cont.evalResult);
+            cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
         }
@@ -277,8 +277,8 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-          //  System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
-            PageReference contRef = cont.quizContinue();
+            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
+            cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
         }
@@ -362,8 +362,8 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-           // System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
-            PageReference contRef = cont.quizContinue();
+            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
+            cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
             System.assert(countAssignmentResponses(learningAssignmentId) == 0, 'Responses were not deleted after submission');
@@ -379,7 +379,7 @@ public static final string aid = 'aid';
         //create question line
         List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 1);
         //create question
-        List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 1, 'SelectMultipleQuestion');
+        PBS_LearningData_Test.createTestQuestions(qline, 1, 'SelectMultipleQuestion');
         for(Integer i = 0;i < quizLearnings.size();i++){
             PBS_LearningData_Test.publishLearning(quizLearnings.get(i).Id,'quiz',quiz.get(i).Id,false);
         }
@@ -394,10 +394,11 @@ public static final string aid = 'aid';
         //create question line
         List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 2);
         //create question
-        List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+        PBS_LearningData_Test.createTestQuestions(qline, 4, null);
         for(Integer i = 0;i < quizLearnings.size();i++){
             PBS_LearningData_Test.publishLearning(quizLearnings.get(i).Id,'quiz',quiz.get(i).Id,false);
         }
+        System.debug('Quizlearning :'+quizLearnings);
         return quizLearnings;
     }
 
@@ -407,7 +408,7 @@ public static final string aid = 'aid';
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections1 = PBS_TrainingPlanData_Test.createTrainingPlanSections(tplans.get(0).Id,1);
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
 
         List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());

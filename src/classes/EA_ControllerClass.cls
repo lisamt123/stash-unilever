@@ -559,7 +559,7 @@ activities for current user.
             dateMsgStr = dateMsgStr.substring(0,10);               
             dateMsgStr = getProperDate(dateMsgStr);               
                
-            String msgLabel = UserInfo.getName() + ' has invited you to do "'+ actvityName +'"'+ ' activity together on '+dateMsgStr+'. Please respond to the request from Everyday Actions on Salesforce1 app.'+'More information can be found here https://apps.unilever.com/global/CollaborationHub/SitePages/DE%20Mobile.aspx ';
+            String msgLabel = UserInfo.getName() + ' has invited you to do "'+ actvityName +'"'+ ' activity together on '+dateMsgStr+'. Please respond to the request from Everyday Actions on Salesforce1 app.'+ ' ' +Label.EA_Invite;
               
             //Need to work on removing for loop
             if(lstUser.size() > 0 && lstUser != null){                   

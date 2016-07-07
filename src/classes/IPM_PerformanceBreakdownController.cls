@@ -27,28 +27,47 @@ public with sharing class IPM_PerformanceBreakdownController {
     public boolean isgreaterThan{get;set;}//check if values are greater than 100
     private final string CLASS_NAME=IPM_PerformanceBreakdownController.class.getName();//get class name
     public boolean isMisaligned{get;set;}//check for misaligned value
+    public decimal grossTurnover{get;set;}//store gross turn over
+    public decimal totalGrossTurnover{get;set;}//store total gross turnover
+    public decimal grossBMI{get;set;}//store gross BMI
+    public decimal totalGrossBMI{get;set;}//store total gross BMI
+    public decimal grossPBI{get;set;}//store gross PBI
+    public decimal totalGrossPBI{get;set;}//store Total gross PBI
+    public decimal averageRetailPrice{get;set;}//store Average Retail Price
+    public decimal mediaSpend {get;set;}//store Media Spend 
+    public decimal totalMediaSpend {get;set;}//store total Media Spend 
     /**************************************************************************************
     *@Description :Constructor to read the information from the page paramaters , 
     *get project details based on page url parameter.
     *display market performance data and market performance break down data.
     ***************************************************************************************/
     public IPM_PerformanceBreakdownController() {   
-	    Map<String,String> paramMap = Apexpages.currentpage().getparameters();
-	    period_STR=IPM_ConstantUtils.PERFORMANCE_PERIOD;
+        Map<String,String> paramMap = Apexpages.currentpage().getparameters();
+        period_STR=IPM_ConstantUtils.PERFORMANCE_PERIOD;
         greaterThanSet=new Set<string>();
         isgreaterThan=false;
         marketPerformanceBreakdownList=new List<IPM_MarketPerformanceBreakdown__c>();
         mapWithRecordNCell=new Map<string,string>();
-	    if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) {
-	        projectId =  paramMap.get(IPM_ConstantUtils.SF_ID);
-	        list<IPM_Project__c>projectDetails=new list<IPM_Project__c>();
-	        projectDetails=[Select id, Name,IPM_Project_Name__c From IPM_Project__c Where id =:projectId Limit 1];
-	        if(!projectDetails.isEmpty()){
-	        	project =projectDetails[0];	
-	        	loadMarketPerformanceBreakDown();
-	        }
-	        
-	    }
+        grossTurnover=0.00;
+        totalGrossTurnover=0.00;
+        grossBMI=0.00;
+        totalGrossBMI=0.00;
+        grossPBI=0.00;
+        totalGrossPBI=0.00;
+        averageRetailPrice=0.00;
+        mediaSpend =0.0;
+        totalMediaSpend =0.0;
+        decMultFactor=1;
+        if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) {
+            projectId =  paramMap.get(IPM_ConstantUtils.SF_ID);
+            list<IPM_Project__c>projectDetails=new list<IPM_Project__c>();
+            projectDetails=[Select id, Name,IPM_Project_Name__c From IPM_Project__c Where id =:projectId Limit 1];
+            if(!projectDetails.isEmpty()){
+                project =projectDetails[0]; 
+                loadMarketPerformanceBreakDown();
+            }
+            
+        }
     } 
     /**************************************************************************************
     *@Description :getting call from constructor.
@@ -76,11 +95,12 @@ public with sharing class IPM_PerformanceBreakdownController {
                 // Again fetch the final Breakdown list.
                  
                 marketPerformanceBreakdownList = database.query(marketPerformantceBrkQueryStr);
+                getMarketPerformanceValues(marketPerformanceBreakdownList);
                 checkMisalignments();
             }
         }
         if(marketPerformanceBreakdownList!=null && !marketPerformanceBreakdownList.isEmpty()){
-        	fieldMoreThanValue();
+            fieldMoreThanValue();
         }
         
     }
@@ -90,13 +110,13 @@ public with sharing class IPM_PerformanceBreakdownController {
     *Return:Null
     ***************************************************************************************/
     public void fieldMoreThanValue(){
-    	for(IPM_MarketPerformanceBreakdown__c mktPer : marketPerformanceBreakdownList)
-	        {
-	        	for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.UML_KeyMetrics.getFields())
-	            {
-	            	mapWithRecordNCell.put(mktPer.Id+fieldSetMember.getFieldPath() , '');
-	            }
-	        }
+        for(IPM_MarketPerformanceBreakdown__c mktPer : marketPerformanceBreakdownList)
+            {
+                for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.UML_KeyMetrics.getFields())
+                {
+                    mapWithRecordNCell.put(mktPer.Id+fieldSetMember.getFieldPath() , '');
+                }
+            }
     }
     /**************************************************************************************
     *@Description :get all currency code list along with exchange rate.
@@ -141,42 +161,42 @@ public with sharing class IPM_PerformanceBreakdownController {
                       if((Double)mktPer.get(fieldSetMember.getFieldPath()) > 100 )
                       {
                           mapWithRecordNCell.put(mktPer.id+fieldSetMember.getFieldPath(),IPM_ConstantUtils.MISALIGNED_CSS);
-		                  greaterThanSet.add(fieldSetMember.getLabel()+IPM_ConstantUtils.Colon+System.label.IPM_Can_not_be_greater );
-		            	  isgreaterThan=true; 
+                          greaterThanSet.add(fieldSetMember.getLabel()+IPM_ConstantUtils.Colon+System.label.IPM_Can_not_be_greater );
+                          isgreaterThan=true; 
                       }
                 }   
             
             
          }
         if(!isgreaterThan){
-	        //if user has selected currency change then below code will execute
-	        fieldMoreThanValue();
-	        if(appliedRate) {
-	        	List<IPM_MarketPerformanceBreakdown__c> mktPerBrkdownTempList = new List<IPM_MarketPerformanceBreakdown__c>(marketPerformanceBreakdownList);
-	            marketPerformanceBreakdownList.clear();     
-	            for(IPM_MarketPerformanceBreakdown__c mktPer : mktPerBrkdownTempList) {
-	                IPM_MarketPerformanceBreakdown__c mktPerTemp = new IPM_MarketPerformanceBreakdown__c();
-	                mktPerTemp = mktPer;
-	                for(String mktFld : mktPerFldList) {
-	                    integer scale=2;
-	                    if(scaleSet.contains(mktFld)){
-	                        scale=1;
-	                    }
-	                    if(mktPer.get(mktFld)!=null){
-	                    	decimal fieldvalue=(Double)mktPer.get(mktFld) / decMultFactor;
-	                    	mktPerTemp.put(mktFld,fieldvalue.setScale(scale));	
-	                    }
-	                }  
-	                marketPerformanceBreakdownList.add(mktPerTemp);     
-	            }
-	        
-	        }
-	        try{
-		        update marketPerformanceBreakdownList;//if validation successful then save the records
-		        applyRate();
-		        checkMisalignments();
-	        }catch(Exception ex){
-	        	isgreaterThan=true; 
+            //if user has selected currency change then below code will execute
+            fieldMoreThanValue();
+            if(appliedRate) {
+                List<IPM_MarketPerformanceBreakdown__c> mktPerBrkdownTempList = new List<IPM_MarketPerformanceBreakdown__c>(marketPerformanceBreakdownList);
+                marketPerformanceBreakdownList.clear();     
+                for(IPM_MarketPerformanceBreakdown__c mktPer : mktPerBrkdownTempList) {
+                    IPM_MarketPerformanceBreakdown__c mktPerTemp = new IPM_MarketPerformanceBreakdown__c();
+                    mktPerTemp = mktPer;
+                    for(String mktFld : mktPerFldList) {
+                        integer scale=2;
+                        if(scaleSet.contains(mktFld)){
+                            scale=1;
+                        }
+                        if(mktPer.get(mktFld)!=null){
+                            decimal fieldvalue=(Double)mktPer.get(mktFld) / decMultFactor;
+                            mktPerTemp.put(mktFld,fieldvalue.setScale(scale));  
+                        }
+                    }  
+                    marketPerformanceBreakdownList.add(mktPerTemp);     
+                }
+            
+            }
+            try{
+                update marketPerformanceBreakdownList;//if validation successful then save the records
+                applyRate();
+                checkMisalignments();
+            }catch(Exception ex){
+                isgreaterThan=true; 
                 greaterThanSet.add(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR);
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'saveRecords',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             } 
@@ -214,16 +234,49 @@ public with sharing class IPM_PerformanceBreakdownController {
                         scale=1;
                     } 
                     if(mktPer.get(mktFld)!=null){
-                    	decimal fieldvalue=(Double)mktPer.get(mktFld) * decMultFactor;
-	                    mktPerTemp.put(mktFld,fieldvalue.setScale(scale));	 
+                        decimal fieldvalue=(Double)mktPer.get(mktFld) * decMultFactor;
+                        mktPerTemp.put(mktFld,fieldvalue.setScale(scale));   
                     }
                     
                 }   
+                
                 marketPerformanceBreakdownList.add(mktPerTemp);     
             }
+            getMarketPerformanceValues(marketPerformanceBreakdownList);
+            
         }
         appliedRate = true;
+        checkMisalignments();
         return null;
+    }
+    /****************************************************************************************
+    *@Description :get market performance field values and get total field values
+    ****************************************************************************************/
+    public void getMarketPerformanceValues(List<IPM_MarketPerformanceBreakdown__c>markertPerformanceList){
+        totalGrossTurnover=0.00;
+        totalGrossBMI=0.00;
+        totalGrossPBI=0.00;
+        totalMediaSpend =0.0;
+        
+        integer newScale=2;
+        grossTurnover=marketperformance.IPM_Gross_Turnover__c* decMultFactor;
+        grossTurnover=grossTurnover.setScale(newScale);
+        grossBMI=marketperformance.IPM_Gross_BMI__c * decMultFactor;
+        grossBMI=grossBMI.setScale(newScale);
+        grossPBI=marketperformance.IPM_Gross_PBI__c * decMultFactor;
+        grossPBI=grossPBI.setScale(newScale);
+        averageRetailPrice=marketperformance.AverageRetailPrice__c* decMultFactor;
+        averageRetailPrice=averageRetailPrice.setScale(newScale);
+        newScale=1;
+        mediaSpend=marketperformance.MediaSpend__c * decMultFactor;
+        mediaSpend=mediaSpend.setScale(newScale);
+        for(IPM_MarketPerformanceBreakdown__c mktPer : markertPerformanceList) {
+            totalGrossTurnover=totalGrossTurnover+mktPer.GrossTurnover__c;
+            totalGrossBMI=totalGrossBMI+mktPer.Gross_AP__c;
+            totalGrossPBI=totalGrossPBI+mktPer.GrossPBO__c;
+            totalMediaSpend =totalMediaSpend+mktPer.MediaSpend__c;
+        }
+        
     }
     
    /**************************************************************************************
@@ -259,40 +312,34 @@ public with sharing class IPM_PerformanceBreakdownController {
         sMisalignmentMsg = IPM_ConstantUtils.BLANK;
         isMisaligned=false;
         misAlignedList=new List<String>();
-        for( IPM_MarketPerformance__c ipmMarketperformance : [Select Id, IPM_Gross_Turnover__c, AggregateGrossTurnover__c,
-                                                                                                  IPM_Gross_BMI__c, AggregateGrossAP__c,
-                                                                                              IPM_Gross_PBI__c, AggregateGrossPBO__c,
-                                                                                                  MediaSpend__c, AggregateMediaSpend__c
-                                                                                                 from IPM_MarketPerformance__c where Id =: marketperformance.Id Limit 1] )
-        { 
-            //check if sum of gross turnover value is greater than aggregate gross turnover 
-            if(ipmMarketperformance.IPM_Gross_Turnover__c <> ipmMarketperformance.AggregateGrossTurnover__c){
-                sMisalignmentMsg +=  sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_Turnover__c.getLabel()  + IPM_ConstantUtils.Colon+ ipmMarketperformance.AggregateGrossTurnover__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_Turnover__c.getLabel()  + IPM_ConstantUtils.Colon+ ipmMarketperformance.AggregateGrossTurnover__c);
-                
-            } 
-            //check if sum of gross BMI value is greater than aggregate gross BMI   
-            if(ipmMarketperformance.IPM_Gross_BMI__c <> ipmMarketperformance.AggregateGrossAP__c){
-                sMisalignmentMsg += sOriginalMsg +Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_BMI__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossAP__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg +Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_BMI__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossAP__c);
-                
-            } 
-            //check if sum of gross PBI value is greater than aggregate gross PBI    
-            if(ipmMarketperformance.IPM_Gross_PBI__c <> ipmMarketperformance.AggregateGrossPBO__c){
-                sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_PBI__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossPBO__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_PBI__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossPBO__c);
-                
-            }
-            //check if sum of media spend value is greater than aggregate media spend 
-            if(ipmMarketperformance.MediaSpend__c <> ipmMarketperformance.AggregateMediaSpend__c){
-                sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateMediaSpend__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateMediaSpend__c);
-                
-            } 
-             
+        
+        //check if sum of gross turnover value is greater than aggregate gross turnover 
+        if(grossTurnover<> totalGrossTurnover){
+            sMisalignmentMsg +=  sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_Turnover__c.getLabel()  + IPM_ConstantUtils.Colon+ totalGrossTurnover + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.GrossTurnover__c.getLabel()  + IPM_ConstantUtils.Colon+ totalGrossTurnover);
+            
         } 
+        //check if sum of gross BMI value is greater than aggregate gross BMI   
+        if(grossBMI <> totalGrossBMI){
+            sMisalignmentMsg += sOriginalMsg +Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_BMI__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossBMI + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg +Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.Gross_AP__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossBMI);
+            
+        } 
+        //check if sum of gross PBI value is greater than aggregate gross PBI    
+        if(grossPBI <> totalGrossPBI){
+            sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_PBI__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossPBI + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.GrossPBO__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossPBI);
+            
+        }
+        //check if sum of media spend value is greater than aggregate media spend 
+        if(mediaSpend<> totalMediaSpend){
+            sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + totalMediaSpend + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + totalMediaSpend);
+            
+        } 
+         
         if(!misAlignedList.isEmpty()){
-        	isMisaligned=true;
+            isMisaligned=true;
         }    
 
         

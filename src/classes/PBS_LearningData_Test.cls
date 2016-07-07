@@ -195,7 +195,8 @@ public class PBS_LearningData_Test
 
         insert lResult;
         //call create answer seq items
-        List<PBS_Answer_Sequence_Item__c> lasi = createTestAnswerSeqItems(lResult, PBS_UtilClass_Test.getRandomInteger(2, 6), qtype);
+        //List<PBS_Answer_Sequence_Item__c> lasi = createTestAnswerSeqItems(lResult, PBS_UtilClass_Test.getRandomInteger(2, 6), qtype); //Removed as part of sonar issues
+        createTestAnswerSeqItems(lResult, PBS_UtilClass_Test.getRandomInteger(2, 6), qtype);
         return lResult;
     }
 

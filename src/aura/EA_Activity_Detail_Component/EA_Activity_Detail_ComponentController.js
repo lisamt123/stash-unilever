@@ -136,7 +136,7 @@
         cmp.set("v.pageIndex",currentSlide);
         console.log("CurrentSlide"+ currentSlide);
         feedbacevent.setParams({"activityId":activity.activityId,"pagename":pagename,"index":index,"navigatePageIndex":currentSlide});
-        feedbacevent.setParams({"activityId":activity.Id,"pagename":pagename,"index":pageIndex});
+        //feedbacevent.setParams({"activityId":activity.Id,"pagename":pagename,"index":pageIndex});
         feedbacevent.fire();
     },
     calltodoactivity:function(cmp,event,helper){

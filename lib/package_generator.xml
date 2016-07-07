@@ -47,7 +47,31 @@
     <types>
         <members>*</members>
         <name>SharingOwnerRule</name>
-    </types>             
+    </types>   
+    <types>
+        <members>*</members>
+        <name>WaveApplication</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveDashboard</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveDataflow</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveDataset</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveLens</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>WaveTemplateBundle</name>
+    </types>              
 ]]></echo>
 
 		<antcall target="generatePackageMembers2">
@@ -222,6 +246,13 @@
 			<param name="objtyp"  value="Group" />
 			<param name="objext"  value="group" />
 			<param name="objdir"  value="groups" />
+			<param name="objflt"  value="*" />
+		</antcall>		
+
+		<antcall target="generatePackageMembers2">
+			<param name="objtyp"  value="GlobalPicklist" />
+			<param name="objext"  value="globalPicklist" />
+			<param name="objdir"  value="globalPicklists" />
 			<param name="objflt"  value="*" />
 		</antcall>				
 
@@ -456,7 +487,7 @@
 		<antcall target="generatePackageMembersAura" />
 		<antcall target="generatePackageMembersLabels" />		
 
-		<echo file="${stage.dir}/${target}" append="true"><![CDATA[	<version>36.0</version>
+		<echo file="${stage.dir}/${target}" append="true"><![CDATA[	<version>37.0</version>
 </Package>]]></echo>
 	</target>
 	

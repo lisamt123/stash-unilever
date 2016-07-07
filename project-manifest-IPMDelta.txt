@@ -1,3 +1,5 @@
 src
 src/permissionsets
-src/permissionsets/IPMNG_Basic.permissionset
+src/permissionsets/IPM_System_Administrator_Permissions.permissionset
+src/workflows
+src/workflows/IPM_Project__c.workflow

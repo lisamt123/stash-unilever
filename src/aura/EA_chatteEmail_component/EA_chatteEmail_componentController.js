@@ -6,7 +6,7 @@
         var label3=$A.get("$Label.c.EA_Chatter3");
         var label4=$A.get("$Label.c.EA_Chatter4");
        
-        var body = label1+ ' \" ' + activity.Name+' \" '+ label2;
+        var body = label1+ ' \"' + activity.Name+'\" '+ label2;
         var action=cmp.get("c.chatterfeeditem");
         action.setParams({"postbody" : body});
         action.setCallback(this, function(response) {
@@ -59,7 +59,10 @@
                 component.set("v.MailToBody4",label6);
                 component.set("v.MailToBody5",label7);
                 var subject=label1 +' \" ' + items[0].Name +' \" ' +label2;
+                
                 component.set("v.MailSubject",subject);
+                component.set("v.showspinner",false);
+                component.set("v.showData",true);
             }
         });
         action.setExclusive();
