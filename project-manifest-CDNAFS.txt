@@ -1,3 +1,9 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
+src/objects
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Defined_Objective__c.object
+src
+src/layouts
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Operators.layout
