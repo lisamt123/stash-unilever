@@ -409,7 +409,7 @@ public class IPM_ConstantUtils {
     
     public static final String FINANCIAL_ACTION_STANDARDS_SEQUENCE = '6.1';
     
-    public static final String BB_BD_ALIGNMENT = '6.5';
+    public static final String BB_BD_ALIGNMENT = '6.3';
     public static final String BB_BD_ALIGNMENT_APPENDIX = '8.10';
     
     public static final String INITIAL_ESTIMATE_OPPORTUNITY_SEC = '6.2';
