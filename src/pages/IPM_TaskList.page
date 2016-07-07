@@ -76,7 +76,7 @@
                                 <div class="heading2 ipmHeading blue">
                                     {!$Label.IPM_Home_Todo}
                                  </div>
-                                   <apex:outputPanel rendered="{!isvisible}" id="outerTaskPanel">
+                                   <apex:outputPanel rendered="{!if(AND(isvisible,isTaskVisible),TRUE,FALSE)}" id="outerTaskPanel">
                                         <c:IPM_List_Tasks updateIPMApproach="{!updateApproach}" createTask="{!isCreateTask}" pId="{!IPM_Project__c.Id}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" projectapproach="{!pmApproachMessage}" />
                                    </apex:outputPanel>
                              </div>

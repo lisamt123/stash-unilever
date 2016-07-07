@@ -421,7 +421,7 @@
                                                         </div>
                                                         <div class="ipmTabContent aTasks" id="aTasks">
                                                             <div class="row">
-                                                                <apex:outputPanel rendered="{!if(AND(isCreateTask,project.IPM_PM_Approach__c='Internal'),true,false)}">  
+                                                                <apex:outputPanel rendered="{!if(AND(isCreateTask,project.IPM_PM_Approach__c='Internal',isTaskReadOnly=false),true,false)}">  
                                                                     <div class="col-xs-4 pull-right addLink addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
                                                                 </apex:outputPanel>
                                                             </div>  
@@ -440,7 +440,7 @@
                                                                         <div class="aTabs">
                                                                             <div class="col-sm-10 noPadright noPadleft">
                                                                                 <div class="col-xs-1 cboxPadding">
-                                                                                    <apex:inputCheckbox value="{!tk.IPM_Completed__c}" styleClass="taskChkBox" disabled="{!if(AND(markTaskAccess=false),'true','false')}">
+                                                                                    <apex:inputCheckbox value="{!tk.IPM_Completed__c}" styleClass="taskChkBox" disabled="{!if(OR(markTaskAccess=false,isTaskReadOnly=TRUE),'true','false')}">
                                                                                         <apex:actionSupport action="{!UpdateTask}" reRender="tasklist, hilightTaskScript" event="onchange" oncomplete="hilightTaskScript()">
                                                                                             <apex:param assignTo="{!taskid}" name="UpdateTask" value="{!tk.Id}"/>
                                                                                         </apex:actionSupport>
@@ -468,7 +468,7 @@
                                                                                     </apex:outputPanel>
                                                                                 </div>
                                                                             </div> 
-                                                                            <apex:outputPanel rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+                                                                            <apex:outputPanel rendered="{! If(AND(isTaskeditable=true,isTaskReadOnly=FALSE),'true','false')}">
                                                                                 <div class="col-sm-2 SecButtonSet pull-right">
                                                                                     <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!tk.Id}" id="{!tk.Id}" 
                                                                                        onclick="ipmTaskDel('{!JSENCODE(tk.Id)}','{!JSENCODE(TEXT(lsttask.size))}','{!JSENCODE(tk.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c)}','{!JSENCODE(tk.IPM_Project_Document_Section__r.IPM_Section_Sequence__c)}')" 
@@ -649,7 +649,7 @@
                                                         </div>
                                                         <div class="ipmTabContent aTasks" id="aTasks">
                                                             <div class="row">
-                                                                <apex:outputPanel rendered="{!If(AND(isTaskeditable=true,isTaskViewable=true,project.IPM_PM_Approach__c='Internal'),'true','false')}">
+                                                                <apex:outputPanel rendered="{!If(AND(isTaskeditable=true,isTaskViewable=true,project.IPM_PM_Approach__c='Internal',isTaskReadOnly=FALSE),'true','false')}">
                                                                     <div class="col-xs-4 pull-right addLink addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
                                                                 </apex:outputPanel>
                                                             </div> 
@@ -668,7 +668,7 @@
                                                                         <div class="aTabs">
                                                                             <div class="col-sm-10 noPadright noPadleft">
                                                                                 <div class="col-xs-1 cboxPadding">
-                                                                                    <apex:inputCheckbox value="{!tk.IPM_Completed__c}" styleClass="taskChkBox" disabled="{!if(AND(markTaskAccess=false),'true','false')}">
+                                                                                    <apex:inputCheckbox value="{!tk.IPM_Completed__c}" styleClass="taskChkBox" disabled="{!if(OR(markTaskAccess=false,isTaskReadOnly=TRUE),'true','false')}">
                                                                                         <apex:actionSupport action="{!UpdateTask}" reRender="tasklist, hilightTaskScript" event="onchange" oncomplete="hilightTaskScript()">
                                                                                             <apex:param assignTo="{!taskid}" name="UpdateTask" value="{!tk.Id}"/>
                                                                                         </apex:actionSupport>
@@ -694,7 +694,7 @@
                                                                                     </apex:outputPanel>
                                                                                 </div>
                                                                             </div> 
-                                                                            <apex:outputPanel rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+                                                                            <apex:outputPanel rendered="{! If(AND(isTaskeditable=true,isTaskReadOnly=FALSE),'true','false')}">
                                                                                 <div class="col-sm-2 SecButtonSet pull-right">
                                                                                     <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!tk.Id}" 
                                                                                        onclick="ipmTaskDel('{!JSENCODE(tk.Id)}','{!JSENCODE(TEXT(lsttask.size))}','{!JSENCODE(tk.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c)}','{!JSENCODE(tk.IPM_Project_Document_Section__r.IPM_Section_Sequence__c)}')"

@@ -907,15 +907,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             
             
-            List<IPM_Project__c> toBeArchievedRolloutProjects =[Select Id,Is_Archieved__c,Name from IPM_Project__c where  Id IN :localRolloutProjectIds];
+            List<IPM_Project__c> toBeArchievedRolloutProjects =[Select Id,Is_Archieved__c,Name,IPM_Is_Invoked_From_Rollout__c from IPM_Project__c where  Id IN :localRolloutProjectIds];
             
             
             if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
             {
-              	
+                
               for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
               {
                 rollOutProj.Is_Archieved__c=true; 
+                rollOutProj.IPM_Is_Invoked_From_Rollout__c =true;
               }
              
             update   toBeArchievedRolloutProjects ;

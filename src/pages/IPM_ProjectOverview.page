@@ -570,8 +570,20 @@
                                         <apex:repeat value="{!tasks}" var="t">
                                             <div class="row">                       
                                                 <div class="col-sm-2 ipmCheckbox {!IF(t.IPM_Completed__c,'selected', 'notselected')}">
-                                                    <input type="checkbox" id="{!t.Id}" onClick="markComplete('{!t.Id}',this.checked);" class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"/> 
-                                                    <label for="{!t.Id}" class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
+						             <apex:outputPanel rendered="{!!project.IPM_PrepareForArchival__c}">
+                                                                <input type="checkbox" id="{!t.Id}"
+                                                                    onClick="markComplete('{!t.Id}',this.checked);"
+                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}" />
+                                                                <label for="{!t.Id}"
+                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
+                                                            </apex:outputPanel> 
+                                                            <apex:outputPanel rendered="{!project.IPM_PrepareForArchival__c}">
+                                                                <input type="checkbox" id="{!t.Id}"
+                                                                    onClick="markComplete('{!t.Id}',this.checked);"
+                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}" disabled="true"/>
+                                                                <label for="{!t.Id}"
+                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
+                                                            </apex:outputPanel>
                                                 </div>                        
                                                 <div class="col-sm-10 pl5">
                                                     <div class="checktext">

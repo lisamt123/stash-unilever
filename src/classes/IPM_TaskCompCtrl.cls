@@ -28,6 +28,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     public String pagintnDisp {get;set;}//pagination
     public boolean isCreateTask{get;set;}
     public boolean isApproachEdit{get;set;}//Update approach
+    public boolean isTaskReadOnly{get;set;}//Update approach
     //gettter & setter for taskId
     
       
@@ -78,6 +79,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         closedTasks = 0;
         isAsc = false;
         toggleTask = false;
+        isTaskReadOnly = false;
         //current sorting column applies to IPM_Completed__c field, 
         currentSort = new Map<String, String>{IPM_ConstantUtils.THIS_FIELD => 'IPM_Completed__c'};
         phaseTaskComp = new  Map<String,Boolean>();
@@ -94,6 +96,9 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
             string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null,true)+' where id =:projectId ';
             list<IPM_Project__c> projList = Database.query(query);
             projectObj  = projList[0];
+            if(projectObj.Is_Archieved__c || projectObj.IPM_PrepareForArchival__c){
+            	isTaskReadOnly = true;
+            }
         }
         
         if(projectObj == NULL)
@@ -203,10 +208,10 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Project__r.IPM_Current_Document_Status__c,';
-               soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,IPM_Project__r.IPM_Phase__c,';
+               soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,IPM_Project__r.IPM_Phase__c,IPM_Project__r.Is_Archieved__c,';
                soql += 'IPM_Section__c,IPM_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Section_Name__c, ';
                soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c FROM IPM_Task__c ';
-               soql += 'WHERE IPM_Active__c = true  AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
+               soql += 'WHERE IPM_Active__c = true  AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
                
         if(String.isNotBlank(phase) ) 
         {

@@ -735,20 +735,20 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		attachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId=:projDocSecId];
 	}
 
-	/****************************************************************************************************************************************************************
-	* @description For Getting Tasks Associated with Section        
-	*/
-	public void getAssociatedTask(){
-		lsttask=new list<IPM_Task__c >();
-		list<IPM_Task__c > lstUpdatedtask = [SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Due_Date1__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,
-		IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Completed_Date__c,
-		IPM_Completed__c,IPM_Task_Type__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,LastModifiedBy.Name,IPM_Master_Task__c,
-		IPM_Assignee__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c 
-		FROM IPM_Task__c 
-		WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName AND IPM_Function__c=:Frole AND IPM_Active__c = true order by IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC ];
-		lsttask = IPM_TaskHelper.removeDuplicateTaskForUser(lstUpdatedtask);
-		countOfTask =  [SELECT count() FROM IPM_Task__c WHERE IPM_Project__c=:projectId and IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName and IPM_Project_Document_Section__r.IPM_Negotiable__c=true];                                      
-	}
+    /****************************************************************************************************************************************************************
+    * @description For Getting Tasks Associated with Section        
+    */
+    public void getAssociatedTask(){
+        lsttask=new list<IPM_Task__c >();
+        list<IPM_Task__c > lstUpdatedtask = [SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Due_Date1__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_PrepareForArchival__c,
+        IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Completed_Date__c,
+        IPM_Completed__c,IPM_Task_Type__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,LastModifiedBy.Name,IPM_Master_Task__c 
+        FROM IPM_Task__c 
+        WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__c=:String.escapeSingleQuotes(String.valueOf(projDocSecId)) AND IPM_Active__c = true order by IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC ];
+        lsttask = IPM_TaskHelper.removeDuplicateTaskForUser(lstUpdatedtask);
+        countOfTask =  [SELECT count() FROM IPM_Task__c WHERE IPM_Project__c=:projectId and IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName and IPM_Project_Document_Section__r.IPM_Negotiable__c=true];                                      
+    	isTaskReadOnly = lsttask != null && !lsttask.isEmpty() ? lsttask[0].IPM_Project__r.IPM_PrepareForArchival__c : false;
+    }
 
 	/****************************************************************************************************************************************************************
 	* @description For Deleting task        
