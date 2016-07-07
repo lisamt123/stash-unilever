@@ -62,7 +62,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         Map<ID, IPM_Project__c> operationalProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> localProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> projects = new Map<ID, IPM_Project__c>(	
-    																	[ Select ID, Name, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,
+                                                                        [ Select ID, Name, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,IPM_Project_Rollout__c,IPM_Project_Rollout__r.Target_Launch_Date__c,
     																		 ( Select Name, Financial_External_ID__c 
     																		   From IPM_Financials_Consolidated__r where isActive__c=true ),
     																		 ( Select Name, Financial_External_ID__c 
@@ -127,7 +127,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    			// Update Local projects's financials with projects' TLD
          			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
 	    				if(ipmFinancial.Financial_External_ID__c==project.name) {
-	    					ipmFinancial.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
+                            ipmFinancial.Target_Launch_Date__c = project.IPM_Project_Rollout__r.Target_Launch_Date__c;
 					        financialsMap.put(ipmFinancial.id, ipmFinancial);
 	    				}
 	    			}
