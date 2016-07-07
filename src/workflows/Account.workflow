@@ -28,7 +28,7 @@
         <description>&quot;Approval request email template&quot; to Step 2 approver</description>
         <protected>false</protected>
         <recipients>
-            <recipient>samanway.chakraborty@accenture.com</recipient>
+            <recipient>ramesh.suddapalli@accenture.com</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
