@@ -3,7 +3,7 @@
 *@Date :            December 2015
 *@Description :     Handler class for trigger WU_SetWarehousePOC
 *************************************************************/
-public class WU_SetWarehousePOCHandler 
+public with sharing class WU_SetWarehousePOCHandler 
 {
     public static Boolean isInserted = false;
     private static Map<string, User> userMap=new Map<string, User>();
@@ -22,18 +22,8 @@ public class WU_SetWarehousePOCHandler
             if(Date.today().month()!=wc.WU_Previous_Month__c){
                 wc.WU_Previous_Month__c=Date.today().month();
             }
-            if(!userMap.isEmpty()){
-                if(userMap.containsKey(wc.WU_WarehousePOC_Email__c)  && wc.WU_WarehousePOC_Email__c!=null){
-                    User usr=userMap.get(wc.WU_WarehousePOC_Email__c);
-                    //wc.OwnerId =usr.Id;
-                    //if(mgrMap.containsKey(usr.ManagerId)){
-                        //wc.WU_WarehouseManager_Email__c=(mgrMap.get(usr.ManagerId)).Email;
-                    //}
-                }
-            }
-            else{
+            if(userMap.isEmpty()){
                 wc.OwnerId =UserInfo.getuserid();
-                
             }
         }
         isInserted = true;
@@ -258,8 +248,6 @@ public class WU_SetWarehousePOCHandler
     
     public static void wareHouseShare(List<WU_Master_Warehouse__c> newWareHouseShareList){
         Set<String> userEmail=new Set<String>();
-        Set<String> userWithAccess =new Set<String>();
-        
         List<WU_Master_Warehouse__Share> wareHouseShareList=new List<WU_Master_Warehouse__Share>();
         for(WU_Master_Warehouse__c masterWare:newWareHouseShareList){
             if(String.isNotBlank(masterWare.WU_WarehousePOC_Email__c)){
@@ -271,15 +259,10 @@ public class WU_SetWarehousePOCHandler
                 }
             }
         }
-        System.debug(userEmail+'*******userEmail*****');
-
         Map<String,User> userIdMap=new Map<String,User>();
         for(User u:[Select Id,Email from User where isActive=true and Email in:userEmail]){
             userIdMap.put(u.Email,u);
         }
-        System.debug(userIdMap+'*******userIdMap*****');
-
-
         for(WU_Master_Warehouse__c masterWareHouse:newWareHouseShareList){
              if(String.isNotBlank(masterWareHouse.WU_Warehouse_Secondary_POC_Email__c)){
                 for(String sEmail:masterWareHouse.WU_Warehouse_Secondary_POC_Email__c.split(',')){
@@ -292,8 +275,6 @@ public class WU_SetWarehousePOCHandler
                     }
                 }
             }
-            System.debug(wareHouseShareList+'*******wareHouseShareList*****');
-           
             if(String.isNotBlank(masterWareHouse.WU_WarehousePOC_Email__c) && userIdMap.containsKey(masterWareHouse.WU_WarehousePOC_Email__c)){
                 if(masterWareHouse.owner.Email != masterWareHouse.WU_WarehousePOC_Email__c){
                     WU_Master_Warehouse__Share wareShare=new WU_Master_Warehouse__Share();
@@ -303,14 +284,11 @@ public class WU_SetWarehousePOCHandler
                     wareHouseShareList.add(wareShare);
                 }
             }
-           
-            System.debug(wareHouseShareList+'*******wareHouseShareList*****');
-           
         }
-        System.debug(userIdMap+'*******userIdMap*****');
-        System.debug(wareHouseShareList+'*******wareHouseShareList*****');
-        
-        
+        updateWareHouseShare(wareHouseShareList);
+    }
+
+    public static void updateWareHouseShare(List<WU_Master_Warehouse__Share> wareHouseShareList){
         if(!wareHouseShareList.isEmpty()){
             list<string> lstExistingUsers = new list<string>();
             //Map<string,list<string>> mapExistingUser = new Map<string,list<string>>();
@@ -341,7 +319,7 @@ public class WU_SetWarehousePOCHandler
                     }
                 }
                 
-                if(isRecordExists == false){
+                if(!isRecordExists){
                     lstShareToInsert.add(objShare);
                 }
             }
@@ -349,5 +327,6 @@ public class WU_SetWarehousePOCHandler
             if(lstShareToInsert.size() > 0){
                 insert lstShareToInsert;
             }
-        }} 
+        }
+    }   
 }
