@@ -3,5 +3,8 @@ src/approvalProcesses
 src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
 src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
 src
+src/groups
+src/groups/AFM_Approvers.group
+src
 src/workflows
 src/workflows/Account.workflow
