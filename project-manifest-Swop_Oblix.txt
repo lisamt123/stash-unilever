@@ -7,4 +7,3 @@ src/pages/Oblix_CampaignCreate.page
 src/pages/Oblix_CampaignCreate.page-meta.xml
 src/pages/Oblix_SOWMain.page
 src/pages/Oblix_SOWMain.page-meta.xml
-src
