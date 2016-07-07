@@ -1,8 +1,6 @@
 src
-src/objects
-src/objects/Account.object
+src/approvalProcesses
+src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
 src
-src/email
-src/email/FS_Email_Templates
-src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email-meta.xml
-src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email
+src/workflows
+src/workflows/Account.workflow
