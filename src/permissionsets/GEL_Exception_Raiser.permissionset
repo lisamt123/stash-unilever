@@ -2,20 +2,8 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>Global_Exception_Logs</application>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
-    <classAccesses>
-        <apexClass>GEL_Global_Exception_TriggerFactory</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GEL_Global_Exception_TriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GEL_Global_Exception_Trigger_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>GEL_Global_Exception_Log__c.Country__c</field>
@@ -39,6 +27,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Expected_Closure_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.Legacy_Check__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

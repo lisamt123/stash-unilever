@@ -204,8 +204,12 @@
             <name>GEL_Update_Legacy_Owner</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
-        <formula>true</formula>
+        <active>true</active>
+        <criteriaItems>
+            <field>GEL_Global_Exception_Log__c.Legacy_Check__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>
