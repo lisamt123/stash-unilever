@@ -979,6 +979,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Business_Partner_User_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Company_Card__r.IPM_Business_Partner__r.FirstName + &apos; &apos; + IPM_Company_Card__r.IPM_Business_Partner__r.LastName</formula>
+        <label>Business Partner User Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Business_Partner_User_Name__c</fullName>
         <description>To capture the name of the business partner.</description>
         <externalId>false</externalId>
@@ -1635,6 +1646,27 @@ OwnerId))</formula>
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>IPM_Last_Modified_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(IPM_Last_Modified_Date_Time__c)</formula>
+        <label>Last Modified Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Last_Modified_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>MID(TEXT(IPM_Last_Modified_Date_Time__c),12,5)</formula>
+        <label>Last Modified Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Local_Project_Type__c</fullName>
         <description>To identify the Type of Local Project used to Setup Financial</description>
         <externalId>false</externalId>
@@ -1769,6 +1801,17 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Parent_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(IPMProject_Span__c) = &apos;Regional&apos; ,  IPM_Parent_Project__r.IPM_Project_Name__c ,  IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c )</formula>
+        <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Parent_Project__c</fullName>
@@ -2098,6 +2141,18 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Project_Stopped_Time__c</fullName>
+        <description>To get only the stopped time so as to display in email template</description>
+        <externalId>false</externalId>
+        <formula>MID(TEXT(IPM_Stopped_Date_Time__c),12,5)</formula>
+        <label>Project Stopped Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the related project template.</description>
@@ -2111,6 +2166,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_To_Be_Stopped_Date__c</fullName>
+        <description>To be used to display time in email template</description>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(IPM_Stopped_Date_Time__c)  + 3</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Project To Be Stopped Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Type__c</fullName>

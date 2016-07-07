@@ -374,8 +374,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
         ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
-        ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
-        (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
+        ,(SELECT Id,Is_Archieved__c,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r)
+        ,(SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
@@ -911,7 +911,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         Map<String, IPM_Milestone__c> mapToReturn = new Map<String, IPM_Milestone__c>();
         list<IPM_Milestone__c> lst = [SELECT IPM_Name__c,IPM_Phase__c,IPM_Completed__c,IPM_Type_of_gate__c,IPM_Project__r.IPM_Phase__c,LastModifiedBy.Name,
-        IPM_Project__r.Name,IPM_Project__r.IPM_Project_Name__c ,IPM_Due_Date__c,IPM_Project__r.IPM_Project_Leader__r.Name FROM IPM_Milestone__c WHERE Id IN :msIds limit 50000];
+        IPM_Project__r.Name,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Name__c ,IPM_Due_Date__c,IPM_Project__r.IPM_Project_Leader__r.Name FROM IPM_Milestone__c WHERE Id IN :msIds limit 50000];
         alertMessage = new Map<String,String>();
         alertMessageToday = new Map<String,String>();
         alertMessagePast = new Map<String,String>();
@@ -921,7 +921,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         List<IPM_Country__c> countryLst = [select id,name,Geography__r.Market_Type__c,IPM_Project__c from IPM_Country__c where IPM_Project__c =: projectId and Geography__r.Market_Type__c  =: IPM_ConstantUtils.MARKETTYPE_DEVELOPED limit 1] ;
         for(IPM_Milestone__c eachRec : lst) {
             mapToReturn.put(eachRec.Id, eachRec);
-            if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c){
+            if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c && !eachRec.IPM_Project__r.Is_Archieved__c){
                 if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && !eachRec.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(eachRec.IPM_Due_Date__c));
                     if(DateValue<0){

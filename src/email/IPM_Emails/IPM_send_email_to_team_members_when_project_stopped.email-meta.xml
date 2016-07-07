@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPM_Notification_Letterhead</letterhead>
+    <name>IPM send email to team members when project stopped</name>
+    <style>freeForm</style>
+    <subject>Your Project {!IPM_Project__c.IPM_Project_Name__c} has been Stopped</subject>
+    <textOnly>Please note, Project {!IPM_Project__c.IPM_Project_Name__c} has been stopped in {!IPM_Project__c.IPM_Phase__c} by {!IPM_Project__c.IPM_StoppedByUser__c} at {!IPM_Project__c.IPM_Project_Stopped_Time__c} on {!IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c}. The Project is no longer active.</textOnly>
+    <type>html</type>
+</EmailTemplate>
