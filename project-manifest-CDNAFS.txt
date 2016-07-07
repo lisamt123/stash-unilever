@@ -1,6 +1,12 @@
 src
+src/objects
+src/objects/Account.object
+src
 src/approvalProcesses
 src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
 src
 src/workflows
 src/workflows/Account.workflow
+src
+src/email
+src/email/FS_Email_Templates
