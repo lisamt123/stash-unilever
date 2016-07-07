@@ -9,8 +9,6 @@ src/labels/CustomLabels.labels
 src/pages
 src/pages/IPM_Financial.page
 src/pages/IPM_Financial.page-meta.xml
-src/permissionsets
-src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/staticresources
 src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
