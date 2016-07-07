@@ -106,6 +106,9 @@ public class IPM_ConstantUtils {
     public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
     public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';    
     
+    public static final String CONTRACT_PRODUCT ='What is the Consumer test scoring on Product?';
+    public static final String CONTRACT_FULL_MIX ='What is the Consumer test scoring on Full mix?';
+    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';    
      //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
     public static final String EXTERNAL_HEADER_SEQUENCE='2';

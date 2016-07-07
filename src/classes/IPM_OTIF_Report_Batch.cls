@@ -377,10 +377,14 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                    otifAnalyticObj.IPM_Materials_Sourcing_Strategies_Agreed__c = fr.IPM_OTIF_Status__c;
                 } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_TECHNICAL_ACTION_STANDARDS_ACHIEVED_BY_LEAD_REGION)){
                    otifAnalyticObj.Tech_Action_STD_Achieved_by_Lead_Region__c = fr.IPM_OTIF_Status__c;
-                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_BASES_II)){
-                   otifAnalyticObj.IPM_Base_II__c = fr.IPM_OTIF_Status__c;
                 } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_BASES_I)){
                    otifAnalyticObj.IPM_Base_I__c = fr.IPM_OTIF_Status__c;
+                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_PRODUCT)){
+                   otifAnalyticObj.Contract_Product__c = fr.IPM_OTIF_Status__c;
+                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_FULL_MIX)){
+                   otifAnalyticObj.Contract_Full_Mix__c = fr.IPM_OTIF_Status__c;
+                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_COMMUNICATION)){
+                   otifAnalyticObj.Contract_Communication__c = fr.IPM_OTIF_Status__c;
                 } 
             }
         return otifAnalyticObj;       
