@@ -58,6 +58,37 @@
     </delete>
     <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
   </target>
+
+  <target name="retrieve-updates" description="Retrieve update(s)">
+    <echo level="info">Performing a retrieve</echo>
+    <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
+    <sf:retrieve username="${sf.username}"
+     password="${sf.password}"
+     serverurl="${sf.serverurl}"
+     retrieveTarget="${basedir}/${sfdc.retrieveTarget}"
+     unpackaged="src/package.xml"
+     pollWaitMillis="${sfdc.pollWaitMillis}"
+     maxPoll="${sfdc.maxPoll}"/>
+    <copy todir="src">
+      <fileset dir="${basedir}/${sfdc.retrieveTarget}"/>
+    </copy>
+  </target>  
+
+  <target name="validate-updates" description="Validate updates">
+    <echo level="info">Performing a validation</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="${basedir}/${sfdc.retrieveTarget}"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+    </sf:deploy>    
+  </target>  
   <!-- ***************************************************************************** -->
   <!-- QuickDeploy the meta-data from code Repository to salesforce your org     -->
   <!-- ***************************************************************************** -->
@@ -166,8 +197,181 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-		  <runTest>PBS_LMSCommunitiesService_CC</runTest>
-		  <runTest>PBS_LMSCommunitiesService_Test</runTest>	  
+		    <runTest>PBS_AccessController_Test.cls</runTest>
+			<runTest>PBS_AchievementAssignmentsHelper_CC.cls</runTest>
+			<runTest>PBS_AchievementAssignmentsWorkCom_Test.cls</runTest>
+			<runTest>PBS_AchievementAssignmentWrapper_CC.cls</runTest>
+			<runTest>PBS_AchievementCategoryWrapper_CC.cls</runTest>
+			<runTest>PBS_AchievementData_Test.cls</runTest>
+			<runTest>PBS_AchievementsUserSearchController_CC.cls</runTest>
+			<runTest>PBS_AchievementsUserSearchCtrl_Test.cls</runTest>
+			<runTest>PBS_AchievementWorkComExt_CC.cls</runTest>
+			<runTest>PBS_AchievementWorkComExt_Test.cls</runTest>
+			<runTest>PBS_Character_Test.cls</runTest>
+			<runTest>PBS_CourseStatsInDetailReport_CC.cls</runTest>
+			<runTest>PBS_CourseStatusInDtlReport_Test.cls</runTest>
+			<runTest>PBS_Encoder_Test.cls</runTest>
+			<runTest>PBS_ESAPI_CC.cls</runTest>
+			<runTest>PBS_Learning_Preview_Ext_CC.cls</runTest>
+			<runTest>PBS_Learning_Publish_Ext_CC.cls</runTest>
+			<runTest>PBS_Learning_Test.cls</runTest>
+			<runTest>PBS_LearningAssignmentApproveExt_CC.cls</runTest>
+			<runTest>PBS_LearningAssignmentApproveExt_Test.cls</runTest>
+			<runTest>PBS_LearningAssignmentsHelper_CC.cls</runTest>
+			<runTest>PBS_LearningAssignmentsHelper_Helper.cls</runTest>
+			<runTest>PBS_LearningData_Test.cls</runTest>
+			<runTest>PBS_LearningDeleteSharedAsgmtsBatch_CC.cls</runTest>
+			<runTest>PBS_LearningDeleteSharedAsgmtsExt_Test.cls</runTest>
+			<runTest>PBS_LearningDeleteSharedAsgnmntsExt_CC.cls</runTest>
+			<runTest>PBS_LibraryController_CC.cls</runTest>
+			<runTest>PBS_LibraryController_Test.cls</runTest>
+			<runTest>PBS_LMS_API_CC.cls</runTest>
+			<runTest>PBS_LMS_API_Test.cls</runTest>
+			<runTest>PBS_LMS_ESAPI_CC.cls</runTest>
+			<runTest>PBS_LMSBaseController_CC.cls</runTest>
+			<runTest>PBS_LMSCommunitiesService_CC.cls</runTest>
+			<runTest>PBS_LMSCommunitiesService_Test.cls</runTest>
+			<runTest>PBS_LMSConstants_CC.cls</runTest>
+			<runTest>PBS_LMSConstants_Test.cls</runTest>
+			<runTest>PBS_LMSException.cls</runTest>
+			<runTest>PBS_LMSExport_CC.cls</runTest>
+			<runTest>PBS_LMSExport_Helper.cls</runTest>
+			<runTest>PBS_LMSHeaderController_CC.cls</runTest>
+			<runTest>PBS_LMSHeaderController_Test.cls</runTest>
+			<runTest>PBS_LMSInit_CC.cls</runTest>
+			<runTest>PBS_LMSInit_Helper.cls</runTest>
+			<runTest>PBS_LMSInit_Test.cls</runTest>
+			<runTest>PBS_LMSPlugins_CC.cls</runTest>
+			<runTest>PBS_LMSPlugins_Test.cls</runTest>
+			<runTest>PBS_LMSService_CC.cls</runTest>
+			<runTest>PBS_LMSSettings_CC.cls</runTest>
+			<runTest>PBS_LMSSettings_Test.cls</runTest>
+			<runTest>PBS_LMSStartController_CC.cls</runTest>
+			<runTest>PBS_LMSStartController_Test.cls</runTest>
+			<runTest>PBS_LMSTemplateController_CC.cls</runTest>
+			<runTest>PBS_LMSTemplateController_Test.cls</runTest>
+			<runTest>PBS_LMSUtils_CC.cls</runTest>
+			<runTest>PBS_LMSWrappersService_CC.cls</runTest>
+			<runTest>PBS_MyProfileController_CC.cls</runTest>
+			<runTest>PBS_MyProfileController_Test.cls</runTest>
+			<runTest>PBS_MyTraining_Test.cls</runTest>
+			<runTest>PBS_MyTrainingController_CC.cls</runTest>
+			<runTest>PBS_Params_Test.cls</runTest>
+			<runTest>PBS_ProfileHandler.cls</runTest>
+			<runTest>PBS_ProfileService.cls</runTest>
+			<runTest>PBS_ProfileService_Test.cls</runTest>
+			<runTest>PBS_QuestionNewController_CC.cls</runTest>
+			<runTest>PBS_QuestionNewController_Test.cls</runTest>
+			<runTest>PBS_QuizItem_CC.cls</runTest>
+			<runTest>PBS_QuizResultsController_CC.cls</runTest>
+			<runTest>PBS_QuizResultsController_Test.cls</runTest>
+			<runTest>PBS_QuizViewer_Test.cls</runTest>
+			<runTest>PBS_QuizViewerController_CC.cls</runTest>
+			<runTest>PBS_QuizViewerController_Helper.cls</runTest>
+			<runTest>PBS_ReportGenerator_CC.cls</runTest>
+			<runTest>PBS_ReportGenerator_Test.cls</runTest>
+			<runTest>PBS_ResourceViewerController_CC.cls</runTest>
+			<runTest>PBS_ResourceViewerController_Test.cls</runTest>
+			<runTest>PBS_SFDCAccessControlException.cls</runTest>
+			<runTest>PBS_SFDCAccessController_CC.cls</runTest>
+			<runTest>PBS_SFDCAccessControlResults_CC.cls</runTest>
+			<runTest>PBS_SFDCBaseValidationRule_CC.cls</runTest>
+			<runTest>PBS_SFDCCharacter_CC.cls</runTest>
+			<runTest>PBS_SFDCCreditCardValidationRule_CC.cls</runTest>
+			<runTest>PBS_SFDCEncoder_CC.cls</runTest>
+			<runTest>PBS_SFDCEncoderConstants_CC.cls</runTest>
+			<runTest>PBS_SFDCIntegerValidationRule_CC.cls</runTest>
+			<runTest>PBS_SFDCNumberValidationRule_CC.cls</runTest>
+			<runTest>PBS_SFDCPatterns_CC.cls</runTest>
+			<runTest>PBS_SFDCPlugins_CC.cls</runTest>
+			<runTest>PBS_SFDCStringUtils_CC.cls</runTest>
+			<runTest>PBS_SFDCStringValidationRule_CC.cls</runTest>
+			<runTest>PBS_SFDCValidator_CC.cls</runTest>
+			<runTest>PBS_SharedLearningAssignmentsHelper_CC.cls</runTest>
+			<runTest>PBS_StringUtils_Test.cls</runTest>
+			<runTest>PBS_StringValidationRule_Test.cls</runTest>
+			<runTest>PBS_SubFolderController_CC.cls</runTest>
+			<runTest>PBS_SubFolderCtrl_Test.cls</runTest>
+			<runTest>PBS_TaskViewerController_CC.cls</runTest>
+			<runTest>PBS_TaskViewerController_Test.cls</runTest>
+			<runTest>PBS_TestAchievementData_Test.cls</runTest>
+			<runTest>PBS_TestHelper.cls</runTest>
+			<runTest>PBS_TestLearningData_Test.cls</runTest>
+			<runTest>PBS_TestTrainingPlanData_Test.cls</runTest>
+			<runTest>PBS_TestUtilClass.cls</runTest>
+			<runTest>PBS_TPlanAchievementAsgmtsUpdateBatch_CC.cls</runTest>
+			<runTest>PBS_TPlanAchievementMnagmntExt_Test.cls</runTest>
+			<runTest>PBS_TPlanAsgmtExtensionBatch_Test.cls</runTest>
+			<runTest>PBS_TPlanAsgmtExtensionExisting_Test.cls</runTest>
+			<runTest>PBS_TPlanAsgnmtExtensionNew_Test.cls</runTest>
+			<runTest>PBS_TPlanImportAssignmentsExt_Test.cls</runTest>
+			<runTest>PBS_TPlanSectionAsgmtsDelExtension_Test.cls</runTest>
+			<runTest>PBS_TPlanSectionItemAsgmtsDelExt_Test.cls</runTest>
+			<runTest>PBS_TrainingCatalogController_Test.cls</runTest>
+			<runTest>PBS_TrainingCatalogDetailController_CC.cls</runTest>
+			<runTest>PBS_TrainingCatalogHomeController_CC.cls</runTest>
+			<runTest>PBS_TrainingCatalogHomeCtrl_Test.cls</runTest>
+			<runTest>PBS_TrainingPlan_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAchievementMngmtExt_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAchievementsHelper_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAsgmtExtNew_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAsgmtsDeleteBatch_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAsgmtsRecalclatBatch_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAsgmtsUpdateBatch_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAsgmtsUpsertBatch_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAssignmentExtBatch_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAssignmentExtExisting_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAssignmentHelper_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanAssignmentHelper_Part.cls</runTest>
+			<runTest>PBS_TrainingPlanData_Test.cls</runTest>
+			<runTest>PBS_TrainingPlanDetail_Test.cls</runTest>
+			<runTest>PBS_TrainingPlanDetailController_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanExportController_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanExportController_Test.cls</runTest>
+			<runTest>PBS_TrainingPlanFeedback_Test.cls</runTest>
+			<runTest>PBS_TrainingPlanFeedbackController_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanImportAssignmentsExt_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanPreviewController_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanPreviewCtrl_Test.cls</runTest>
+			<runTest>PBS_TrainingPlans_Test.cls</runTest>
+			<runTest>PBS_TrainingPlanSecAssigmtsDelBat_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSectemAssigmtsDelExt_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSection_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSectionAsgmtsDelExt_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSectionAsgnmtHelper_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSectionItem_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSectionsHelper_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanSectnItAsgmtsDelBatch_CC.cls</runTest>
+			<runTest>PBS_TrainingPlansSearchController_CC.cls</runTest>
+			<runTest>PBS_TrainingPlanWithAchievement_CC.cls</runTest>
+			<runTest>PBS_TrainingTrackDetailCtrl_CC.cls</runTest>
+			<runTest>PBS_TrainingTrackExportController_CC.cls</runTest>
+			<runTest>PBS_TrainingTrackHandler.cls</runTest>
+			<runTest>PBS_TrainingTrackLevel_CC.cls</runTest>
+			<runTest>PBS_TrainingTracksController_CC.cls</runTest>
+			<runTest>PBS_TrainingTracksController_Test.cls</runTest>
+			<runTest>PBS_Trigger.cls</runTest>
+			<runTest>PBS_TriggerException.cls</runTest>
+			<runTest>PBS_TriggerException_Test.cls</runTest>
+			<runTest>PBS_TriggerFactory.cls</runTest>
+			<runTest>PBS_UtilClass_Test.cls</runTest>
+			<runTest>PBS_Validator_Test.cls</runTest>
+			<runTest>PBS_ValidatorHelperTest.cls</runTest>
+			<runTest>PBS_WikiController_CC.cls</runTest>
+			<runTest>PBS_WikiController_Test.cls</runTest>
+			<runTest>PBS_WikiFeedBackController_CC.cls</runTest>
+			<runTest>PBS_WikiFeedBackController_Test.cls</runTest>
+			<runTest>PBS_WikiFeedbackViewController_CC.cls</runTest>
+			<runTest>PBS_WikiFeedbackViewController_Test.cls</runTest>
+			<runTest>PC_ContainerController_CC.cls</runTest>
+			<runTest>PC_ContainerController_Test.cls</runTest>
+			<runTest>PC_DataFactory.cls</runTest>
+			<runTest>PC_ForumController_CC.cls</runTest>
+			<runTest>PC_ForumController_Test.cls</runTest>
+			<runTest>PC_ForumGroupController_CC.cls</runTest>
+			<runTest>PC_ForumGroupController_Test.cls</runTest>
+			<runTest>PC_GroupHandler.cls</runTest>
+			<runTest>PC_GroupHandler_Test.cls</runTest>
     </sf:deploy>
   </target>  
   <!-- ***************************************************************************** -->

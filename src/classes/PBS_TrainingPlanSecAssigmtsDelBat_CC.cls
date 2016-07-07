@@ -67,6 +67,6 @@ global with sharing class PBS_TrainingPlanSecAssigmtsDelBat_CC implements Databa
     }
 
     global void finish(Database.BatchableContext BC){
-
+     //This is a void method which has nothing inside
     }
 }

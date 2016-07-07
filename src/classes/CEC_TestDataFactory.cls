@@ -461,7 +461,6 @@ public class CEC_TestDataFactory {
                                                                 Id accountId , Id geographyId) {
         List<CEC_Debit_Card_Detail__c> testDebitCardDetailList = new List<CEC_Debit_Card_Detail__c>();
         
-        List<mdm_Geography__c> georgraphyList = new List<mdm_Geography__c>();
         
         for(Integer i = 1; i <= noOfDebitCardDetail; i++){
             CEC_Debit_Card_Detail__c testDebitCardDetail = new CEC_Debit_Card_Detail__c();
@@ -483,7 +482,7 @@ public class CEC_TestDataFactory {
                                                                 Id accountId , Id geographyId) {
         List<CEC_E_Voucher_Details__c> testEvoucherDetailList = new List<CEC_E_Voucher_Details__c>();
         
-        List<mdm_Geography__c> georgraphyList = new List<mdm_Geography__c>();
+        
         
         for(Integer i = 1; i <= noOfVoucher; i++){
             CEC_E_Voucher_Details__c testEvoucherDetail = new CEC_E_Voucher_Details__c();

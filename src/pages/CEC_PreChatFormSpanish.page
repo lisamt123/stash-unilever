@@ -1,0 +1,63 @@
+<apex:page showHeader="false"> 
+    <!-- This script takes the endpoint URL parameter passed from the deployment 
+      page and makes it the action for the form -->
+    <script type="text/javascript">
+    (function() { 
+        function handlePageLoad() {
+            var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+            document.getElementById('prechatForm').setAttribute('action',
+            decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+        }
+        if (window.addEventListener) {
+            window.addEventListener('load', handlePageLoad, false);
+        } else {
+            window.attachEvent('onload', handlePageLoad, false);
+        }
+    })(); 
+    </script>
+    
+    <head><meta name="viewport" content="width=device-width, initial-scale=1"></meta></head>
+    <form method='post' id='prechatForm'>
+        <div class="centered">
+            <a style="font-weight:bold;">Cuál es tu Nombre? </a><a style="color:red;">*</a> <br/> 
+            <input type='text' name='liveagent.prechat:FirstNameDetail' required="true"/> <br/><br/>
+            <input type='submit' value='Solicitud de Chat' id='prechat_submit' />
+        </div>
+        
+        <div class='footer'>
+            <p style="color:red;">Los elementos obligatorios están marcados con *.</p>            
+        </div>
+        
+        <input type="hidden" name="liveagent.prechat:caseOrigin" value="Chat" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.map:Case" value="Origin,caseOrigin;Subject,caseSubject;" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.map.doCreate:Case" value="Origin,true;Subject,true;" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Case" value="true" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.saveToTranscript:Case" value="Case" /> 
+         
+
+        <style type="text/css">                       
+            .centered {
+                position: fixed;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -60%);
+            }
+            .footer {
+                position: fixed;
+                top: 85%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #prechat_submit{
+                background-color: #008CBA;
+                padding: 4px 25px;
+                text-align: center;
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                text-align: center;
+                display: inline-block;
+            }
+        </style>
+    </form>
+</apex:page>

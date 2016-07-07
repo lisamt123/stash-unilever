@@ -136,6 +136,16 @@
             <isRequired>false</isRequired>
         </availableFields>
         <availableFields>
+            <field>TASKRAY__trDepOffset__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TASKRAY__trDuration__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
             <field>TASKRAY__trEstimatedHours__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -232,7 +242,7 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>TASKRAY__trDuration__c</field>
+            <field>Duration__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -242,12 +252,7 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>TASKRAY__trDepOffset__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Budget__c</field>
+            <field>Dependency_Offset__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -421,6 +426,11 @@
             <isRequired>false</isRequired>
         </availableFields>
         <description>This is used to select fields which will display on the Task Card.</description>
+        <displayedFields>
+            <field>Country__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Task Card Labels</label>
     </fieldSets>
     <fieldSets>
@@ -473,6 +483,91 @@
         </displayedFields>
         <label>Task Groupings</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>TaskRay_Task_Field_Set_VIP</fullName>
+        <description>TaskRay Task Field Set VIP</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>OwnerId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__trStartDate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__List__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__Deadline__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__Priority__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__trIsMilestone__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__Blocked__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__trHideUntilOffset__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Duration__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TASKRAY__Dependent_On__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Dependency_Offset__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Country__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>RecordTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TaskRay Task Field Set VIP</label>
+    </fieldSets>
     <fields>
         <fullName>Budget__c</fullName>
         <externalId>false</externalId>
@@ -494,6 +589,162 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dependency_Offset__c</fullName>
+        <externalId>false</externalId>
+        <formula>TASKRAY__trDepOffset__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dependency Offset</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>TASKRAY__trDuration__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1.1 Support Growth through optimized sourcing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.2 Leadtime extreme compression Project Rapidoo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.3 Sync E2E Supply Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4 Tailor made Venezuela Supply Model</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.1 Support growth through local sourcing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.2 Lean E2E Network</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.1 Support Growth through Local Sourcing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2 Lean E2E Network</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.3 Benchmarked Indirects levels</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.1 Guaranteed Supply security Ecuador &amp; Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.2 Portfolio and Channel innovation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.3 Route to market redesign for growth potential</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.1 Service Operational Excellence</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.2 Customer Facing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.3 Customer Value Creation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.4 Boosting Business Growth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.1 Fix infra structure and product Foods&amp; IC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.2 Step change in quality culture</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.3 QA as enabler for growth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.1 Talent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.2 Organization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.3 Skills</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.4 Culture</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8.1 E2E Approach to SHE/Sustainability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8.2 Improve culture of Sustainability &amp; SHE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8.3 Excel in Superior Risk Assessment : Risk Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Pillar_Program__c</fullName>
+        <externalId>false</externalId>
+        <formula>TASKRAY__Project__r.TASKRAY__Project_Parent__r.TASKRAY__Project_Parent__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pillar Program</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pillar__c</fullName>
@@ -530,6 +781,282 @@
             </picklistValues>
             <picklistValues>
                 <fullName>8. Sustainable Living Plan / SHE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <externalId>false</externalId>
+        <label>Project</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1.1.1 New HPC Liquids Plant in Cali</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Projects__c</fullName>
+        <externalId>false</externalId>
+        <label>Projects</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1.1.1 New HPC Liquids Plant in Cali</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.1.2  Optimal Sourcing BOP Sachets MA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.1.3 Skin Cleansing optimal sourcing for MA (Internalization, Talisman)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.1.4 Optimal Source for Mini Roll-on &amp; Clinical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.2.1 Replenishment lead-time reduction (Core promotional &amp; Innovation)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.2.2 Panama Hub (Hubble)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.3.1 Segmentation &amp; Excellence in Building blocks and Innovation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.3.2 S&amp;OP Maturity 3.0 (Alignment DPL &amp; S&amp;OP &amp; Discipline in Sales Execution)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.1 Optimized Product Portfolio &amp; Distribution Network</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.2 Extreme sourcing responsiveness for VEN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.3 Local Manufacturing in PC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.1.1 New HPC Liquids Plant in Cali + E2E Debottlenecking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.1.2 VEN local production – SW Liquids</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.1.3 White Spaces Coverage – Acquisitions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.2.1 (Serrucho) - Cost models &amp; Localization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.2.2 Lean manufacturing through %CU maximize</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.2.3 (Ultralogistics) - Direct dispatches &amp; Warehouse optimization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.2.4 Non-value added complexity through SKU rationalization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.2.5 Competitor Benchmark-driven Product Optimization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.1 (Serrucho) Cost model, localization, In Shoring, Integration, Optimize E2E</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.2 Resilience – Supply Security, Risk Materials/Suppliers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.3 (Ultralogistics) - Inbound Optimization, Arrow, Merengue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.4 Max. CU% and layout optimizations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.5 Competitor Benchmark driven product Optimization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.6 Sourcing Network redesign (Foods CAM)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.2.7 Cali Foods Power house (Master Plan)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3.3.1 Aggressive Business Waste reduction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.2.1  Get capability &amp; launch Mono-bites</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.2.2 Home Sales Venezuela &amp; Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.3.1 Increase distributor&apos;s capacity EC &amp; VEN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.3.2 Reengineering Solutions for Mobile Channel, cabinets &amp; Cold Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4.3.3 Reengineered Logistics &amp; Distribution (Canaima)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.1.1 Customer Data Synchronization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.1.2 CRM High visibility and full tracking (NGOTC)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.1.3 Ultralogistik (Enabler for E2E Optimization &amp; Best Practice)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.2.1 Strong Collaborative Agenda with E2E Connectivity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.2.2 Winning Structure &amp; Capabilities for Customer Facing (skills &amp; Talent)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.3.1 Segmentation &amp; Service  Catalogue Differentiation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.3.2 Sell out (EPOS) info integration in to S&amp;OP process</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.3.3 Make to Order Models with Key Categories channel customer (VMI/CPFR)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.4.1 Right Assortment  by channel by retail environment by POS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.4.2 Outstanding CCFOT/DR/ OSA as an USG Enabler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5.4.3 Setting  profitable service  (cost to serve)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.1.1 Top Five for Zero program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.1.2 Ice Cream  Packaging, Logistics &amp; distribution re-engineering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.1.3 Spreads Develop New  formula &amp; packaging  for heat resistance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.2.1 CRQS on-shelf &amp; In-pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.2.2 Customer Quality In- store execution &amp; Early risk assessment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.2.3 IT  in Quality -WMS in VEN / Hon Power street traceability in TT custom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.3.1 Supply security for Magallanes ECU &amp; VEN,</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.3.2 Benchmark quality superiority through consumer perception</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6.3.3 Quality as enabler for new channel development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.1.1 Strengthen our Talent Pipeline (includes UFLP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.1.2 World class Talent Development Process and 3+1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.1.3 Strong EB &amp; EVP process</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.2.1 Capabilities Development Plan 2016-2018</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.3.1 SC Organization for the future (simplified &amp; Productivity)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.3.2 Gender Balance as sucess factor E2E SC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.4.1 Strong Career Path covering geographic SC E2E</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7.4.2 One SC Team-  TRUST as foundation for Teamwork</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8.1.1 USLP Committee MA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8.2.2 Mobility and Be SafE implementation in non manufacturing</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -982,6 +1509,50 @@
     </fields>
     <label>TaskRay Task</label>
     <listViews>
+        <fullName>All_No_Record_Type</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>TASKRAY__Project__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+        </filters>
+        <label>All (No Record Type)</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_Projects_With_Country_VIP</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>TASKRAY__Project__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>TASKRAY__Project_Task__c.VIP</value>
+        </filters>
+        <label>All Projects With Country (VIP)</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_Projects_with_country_s</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>TASKRAY__Project__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>TASKRAY__Project_Task__c.Strategy</value>
+        </filters>
+        <label>All Projects With Country (Strategy)</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>TASKRAY__AllProjectTasks</fullName>
         <columns>NAME</columns>
         <columns>TASKRAY__Project__c</columns>
@@ -999,6 +1570,1008 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>TaskRay Tasks</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Strategy</fullName>
+        <active>true</active>
+        <label>Strategy</label>
+        <picklistValues>
+            <picklist>Country</picklist>
+            <values>
+                <fullName>CAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Parent__c</picklist>
+            <values>
+                <fullName>1%2E1 Support Growth through optimized sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E2 Leadtime extreme compression Project Rapidoo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E3 Sync E2E Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4 Tailor made Venezuela Supply Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1 Support growth through local sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2 Lean E2E Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E1 Support Growth through Local Sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2 Lean E2E Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E3 Benchmarked Indirects levels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E1 Guaranteed Supply security Ecuador %26 Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E2 Portfolio and Channel innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3 Route to market redesign for growth potential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1 Service Operational Excellence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E2 Customer Facing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3 Customer Value Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4 Boosting Business Growth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1 Fix infra structure and product Foods%26 IC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2 Step change in quality culture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3 QA as enabler for growth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1 Talent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E2 Organization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E3 Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E4 Culture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E1 E2E Approach to SHE%2FSustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E2 Improve culture of Sustainability %26 SHE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E3 Excel in Superior Risk Assessment %3A Risk Management</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pillar__c</picklist>
+            <values>
+                <fullName>1%2E Responsive Personal care Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E Lean Home Care Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E Lean Foods Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E Agile Ice Cream Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E Customer Service Driven Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E Superior Quality On Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E One Talented and Engaged SC Team</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E Sustainable Living Plan %2F SHE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project__c</picklist>
+            <values>
+                <fullName>1%2E1%2E1 New HPC Liquids Plant in Cali</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Projects__c</picklist>
+            <values>
+                <fullName>1%2E1%2E1 New HPC Liquids Plant in Cali</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E1%2E2  Optimal Sourcing BOP Sachets MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E1%2E3 Skin Cleansing optimal sourcing for MA %28Internalization%2C Talisman%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E1%2E4 Optimal Source for Mini Roll-on %26 Clinical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E2%2E1 Replenishment lead-time reduction %28Core promotional %26 Innovation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E2%2E2 Panama Hub %28Hubble%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E3%2E1 Segmentation %26 Excellence in Building blocks and Innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E3%2E2 S%26OP Maturity 3%2E0 %28Alignment DPL %26 S%26OP %26 Discipline in Sales Execution%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4%2E1 Optimized Product Portfolio %26 Distribution Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4%2E2 Extreme sourcing responsiveness for VEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4%2E3 Local Manufacturing in PC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1%2E1 New HPC Liquids Plant in Cali %2B E2E Debottlenecking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1%2E2 VEN local production %E2%80%93 SW Liquids</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1%2E3 White Spaces Coverage %E2%80%93 Acquisitions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E1 %28Serrucho%29 - Cost models %26 Localization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E2 Lean manufacturing through %25CU maximize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E3 %28Ultralogistics%29 - Direct dispatches %26 Warehouse optimization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E4 Non-value added complexity through SKU rationalization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E5 Competitor Benchmark-driven Product Optimization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E1 %28Serrucho%29 Cost model%2C localization%2C In Shoring%2C Integration%2C Optimize E2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E2 Resilience %E2%80%93 Supply Security%2C Risk Materials%2FSuppliers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E3 %28Ultralogistics%29 - Inbound Optimization%2C Arrow%2C Merengue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E4 Max%2E CU%25 and layout optimizations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E5 Competitor Benchmark driven product Optimization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E6 Sourcing Network redesign %28Foods CAM%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E7 Cali Foods Power house %28Master Plan%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E3%2E1 Aggressive Business Waste reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E2%2E1  Get capability %26 launch Mono-bites</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E2%2E2 Home Sales Venezuela %26 Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3%2E1 Increase distributor%27s capacity EC %26 VEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3%2E2 Reengineering Solutions for Mobile Channel%2C cabinets %26 Cold Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3%2E3 Reengineered Logistics %26 Distribution %28Canaima%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1%2E1 Customer Data Synchronization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1%2E2 CRM High visibility and full tracking %28NGOTC%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1%2E3 Ultralogistik %28Enabler for E2E Optimization %26 Best Practice%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E2%2E1 Strong Collaborative Agenda with E2E Connectivity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E2%2E2 Winning Structure %26 Capabilities for Customer Facing %28skills %26 Talent%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3%2E1 Segmentation %26 Service  Catalogue Differentiation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3%2E2 Sell out %28EPOS%29 info integration in to S%26OP process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3%2E3 Make to Order Models with Key Categories channel customer %28VMI%2FCPFR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4%2E1 Right Assortment  by channel by retail environment by POS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4%2E2 Outstanding CCFOT%2FDR%2F OSA as an USG Enabler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4%2E3 Setting  profitable service  %28cost to serve%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1%2E1 Top Five for Zero program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1%2E2 Ice Cream  Packaging%2C Logistics %26 distribution re-engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1%2E3 Spreads Develop New  formula %26 packaging  for heat resistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2%2E1 CRQS on-shelf %26 In-pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2%2E2 Customer Quality In- store execution %26 Early risk assessment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2%2E3 IT  in Quality -WMS in VEN %2F Hon Power street traceability in TT custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3%2E1 Supply security for Magallanes ECU %26 VEN%2C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3%2E2 Benchmark quality superiority through consumer perception</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3%2E3 Quality as enabler for new channel development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1%2E1 Strengthen our Talent Pipeline %28includes UFLP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1%2E2 World class Talent Development Process and 3%2B1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1%2E3 Strong EB %26 EVP process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E2%2E1 Capabilities Development Plan 2016-2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E3%2E1 SC Organization for the future %28simplified %26 Productivity%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E3%2E2 Gender Balance as sucess factor E2E SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E4%2E1 Strong Career Path covering geographic SC E2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E4%2E2 One SC Team-  TRUST as foundation for Teamwork</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E1%2E1 USLP Committee MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E2%2E2 Mobility and Be SafE implementation in non manufacturing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__List__c</picklist>
+            <values>
+                <fullName>Finished</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holding</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prioritized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Started</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__Priority__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__Repeat_Interval_Type__c</picklist>
+            <values>
+                <fullName>Daily</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Does not repeat</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__Status__c</picklist>
+            <values>
+                <fullName>Finished</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Yet Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Started</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VIP</fullName>
+        <active>true</active>
+        <label>VIP</label>
+        <picklistValues>
+            <picklist>Country</picklist>
+            <values>
+                <fullName>CAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Parent__c</picklist>
+            <values>
+                <fullName>1%2E1 Support Growth through optimized sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E2 Leadtime extreme compression Project Rapidoo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E3 Sync E2E Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4 Tailor made Venezuela Supply Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1 Support growth through local sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2 Lean E2E Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E1 Support Growth through Local Sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2 Lean E2E Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E3 Benchmarked Indirects levels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E1 Guaranteed Supply security Ecuador %26 Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E2 Portfolio and Channel innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3 Route to market redesign for growth potential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1 Service Operational Excellence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E2 Customer Facing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3 Customer Value Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4 Boosting Business Growth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1 Fix infra structure and product Foods%26 IC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2 Step change in quality culture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3 QA as enabler for growth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1 Talent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E2 Organization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E3 Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E4 Culture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E1 E2E Approach to SHE%2FSustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E2 Improve culture of Sustainability %26 SHE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E3 Excel in Superior Risk Assessment %3A Risk Management</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pillar__c</picklist>
+            <values>
+                <fullName>1%2E Responsive Personal care Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E Lean Home Care Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E Lean Foods Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E Agile Ice Cream Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E Customer Service Driven Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E Superior Quality On Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E One Talented and Engaged SC Team</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E Sustainable Living Plan %2F SHE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project__c</picklist>
+            <values>
+                <fullName>1%2E1%2E1 New HPC Liquids Plant in Cali</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Projects__c</picklist>
+            <values>
+                <fullName>1%2E1%2E1 New HPC Liquids Plant in Cali</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E1%2E2  Optimal Sourcing BOP Sachets MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E1%2E3 Skin Cleansing optimal sourcing for MA %28Internalization%2C Talisman%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E1%2E4 Optimal Source for Mini Roll-on %26 Clinical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E2%2E1 Replenishment lead-time reduction %28Core promotional %26 Innovation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E2%2E2 Panama Hub %28Hubble%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E3%2E1 Segmentation %26 Excellence in Building blocks and Innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E3%2E2 S%26OP Maturity 3%2E0 %28Alignment DPL %26 S%26OP %26 Discipline in Sales Execution%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4%2E1 Optimized Product Portfolio %26 Distribution Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4%2E2 Extreme sourcing responsiveness for VEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1%2E4%2E3 Local Manufacturing in PC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1%2E1 New HPC Liquids Plant in Cali %2B E2E Debottlenecking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1%2E2 VEN local production %E2%80%93 SW Liquids</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E1%2E3 White Spaces Coverage %E2%80%93 Acquisitions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E1 %28Serrucho%29 - Cost models %26 Localization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E2 Lean manufacturing through %25CU maximize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E3 %28Ultralogistics%29 - Direct dispatches %26 Warehouse optimization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E4 Non-value added complexity through SKU rationalization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E2%2E5 Competitor Benchmark-driven Product Optimization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E1 %28Serrucho%29 Cost model%2C localization%2C In Shoring%2C Integration%2C Optimize E2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E2 Resilience %E2%80%93 Supply Security%2C Risk Materials%2FSuppliers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E3 %28Ultralogistics%29 - Inbound Optimization%2C Arrow%2C Merengue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E4 Max%2E CU%25 and layout optimizations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E5 Competitor Benchmark driven product Optimization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E6 Sourcing Network redesign %28Foods CAM%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E2%2E7 Cali Foods Power house %28Master Plan%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E3%2E1 Aggressive Business Waste reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E2%2E1  Get capability %26 launch Mono-bites</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E2%2E2 Home Sales Venezuela %26 Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3%2E1 Increase distributor%27s capacity EC %26 VEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3%2E2 Reengineering Solutions for Mobile Channel%2C cabinets %26 Cold Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E3%2E3 Reengineered Logistics %26 Distribution %28Canaima%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1%2E1 Customer Data Synchronization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1%2E2 CRM High visibility and full tracking %28NGOTC%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E1%2E3 Ultralogistik %28Enabler for E2E Optimization %26 Best Practice%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E2%2E1 Strong Collaborative Agenda with E2E Connectivity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E2%2E2 Winning Structure %26 Capabilities for Customer Facing %28skills %26 Talent%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3%2E1 Segmentation %26 Service  Catalogue Differentiation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3%2E2 Sell out %28EPOS%29 info integration in to S%26OP process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E3%2E3 Make to Order Models with Key Categories channel customer %28VMI%2FCPFR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4%2E1 Right Assortment  by channel by retail environment by POS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4%2E2 Outstanding CCFOT%2FDR%2F OSA as an USG Enabler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E4%2E3 Setting  profitable service  %28cost to serve%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1%2E1 Top Five for Zero program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1%2E2 Ice Cream  Packaging%2C Logistics %26 distribution re-engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E1%2E3 Spreads Develop New  formula %26 packaging  for heat resistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2%2E1 CRQS on-shelf %26 In-pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2%2E2 Customer Quality In- store execution %26 Early risk assessment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E2%2E3 IT  in Quality -WMS in VEN %2F Hon Power street traceability in TT custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3%2E1 Supply security for Magallanes ECU %26 VEN%2C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3%2E2 Benchmark quality superiority through consumer perception</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E3%2E3 Quality as enabler for new channel development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1%2E1 Strengthen our Talent Pipeline %28includes UFLP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1%2E2 World class Talent Development Process and 3%2B1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E1%2E3 Strong EB %26 EVP process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E2%2E1 Capabilities Development Plan 2016-2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E3%2E1 SC Organization for the future %28simplified %26 Productivity%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E3%2E2 Gender Balance as sucess factor E2E SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E4%2E1 Strong Career Path covering geographic SC E2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E4%2E2 One SC Team-  TRUST as foundation for Teamwork</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E1%2E1 USLP Committee MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2E2%2E2 Mobility and Be SafE implementation in non manufacturing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__List__c</picklist>
+            <values>
+                <fullName>Finished</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holding</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prioritized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Started</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__Priority__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__Repeat_Interval_Type__c</picklist>
+            <values>
+                <fullName>Daily</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Does not repeat</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TASKRAY__Status__c</picklist>
+            <values>
+                <fullName>Finished</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Yet Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Started</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>TASKRAY__Project__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>TASKRAY__List__c</customTabListAdditionalFields>

@@ -1,0 +1,44 @@
+.THIS .title {
+    
+ /*   font-weight: bold;
+    font-size: 18px;*/
+    color: #0C8EFF;
+    margin-top: -7px;
+    margin-bottom: 11px;
+}
+
+.THIS .backImageStyle {
+    height: 10px;
+    width: 10px;
+   /* display:inline;*/
+    float: right;
+    margin-top:5px;
+}
+
+.THIS .bodyText{
+    
+   /* font-weight: Regular;
+    font-size: 16px;
+    color: #344A5F;*/
+    text-align: left;
+    padding-top: 18px;
+}
+
+.THIS.itemPanel{
+    background-color: #F5F6F7 !important;
+    padding:0px;
+}
+.THIS hr{
+    margin: 1.3rem 0;
+}
+
+/*toggleCss.css
+
+
+.THIS .toggle {
+    display: none;
+}
+
+.THIS .upFaq{
+     display: block;
+}*/

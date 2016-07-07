@@ -401,7 +401,7 @@
     </rules>
     <rules>
         <fullName>IPM Project Archival On Inactive</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Project__c.Is_Archieved__c</field>
             <operation>equals</operation>

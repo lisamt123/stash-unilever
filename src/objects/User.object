@@ -99,18 +99,6 @@
         <label>BET Members to add</label>
     </fieldSets>
     <fields>
-        <fullName>ICB_CPF__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <description>CPF (Cadastro de Pessoa Fisica) of the user.</description>
-        <externalId>false</externalId>
-        <label>CPF</label>
-        <length>14</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>TaskRay_Last_Use__c</fullName>
         <externalId>false</externalId>
         <label>TaskRay Last Use</label>
@@ -440,6 +428,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ICB_Registration__c</fullName>
+        <description>User identification at SAP</description>
+        <externalId>true</externalId>
+        <label>Matricula</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Brand_Name__c</fullName>
         <description>to store brand name from AD</description>
         <externalId>false</externalId>
@@ -523,17 +522,6 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>ICB_Matricula__c</fullName>
-        <description>User identification at SAP</description>
-        <externalId>false</externalId>
-        <label>Matricula</label>
-        <length>18</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Sub_Category__c</fullName>
@@ -1101,6 +1089,47 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+	<fields>
+        <fullName>User_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>User Role</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	  <fields>
+        <fullName>PC_Category__c</fullName>
+        <description>PC_Categories</description>
+        <externalId>false</externalId>
+        <label>PC_Category</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	 <fields>
+        <fullName>Work_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Level</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	    <fields>
+        <fullName>Geography__c</fullName>
+        <externalId>false</externalId>
+        <label>Geography</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Product_Category_Skills_List2__c</fullName>
