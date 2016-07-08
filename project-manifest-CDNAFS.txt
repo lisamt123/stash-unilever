@@ -1,4 +1,3 @@
 src
-src/objects
-src/objects/Actual__c.object
-src/objects/Opportunity.object
+src/permissionsets
+src/permissionsets/FS_AFM.permissionset
