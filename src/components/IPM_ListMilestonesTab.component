@@ -12,6 +12,7 @@
     <apex:attribute name="Editmilestone" type="Boolean" AssignTo="{!isEditable}" description="this is used for security"/>
     <apex:attribute name="IsBD" type="Boolean" AssignTo="{!isBDuser}" description="this is used for security"/>
     <apex:attribute name="IsDateEditable" type="Boolean" AssignTo="{!isSDateEdit}" description="this is used for security"/>
+    <apex:attribute name="ReactivateProject" type="Boolean" AssignTo="{!reactivateProjectFlag}" description="this is used for giving edit access to Business Partner User"/>
      
     <!--------------- main panel ---------------->
         <apex:outputPanel id="statsPanelM">
@@ -24,7 +25,7 @@
                 <div class="milestoneDescContainer">
                     <span class="mstoneDesc"><apex:outputText value="{!$Label.IPM_Milestone_Desc}" escape="false"/></span>
                 </div>
-                <apex:outputPanel rendered="{!isMileEditable}">
+                <apex:outputPanel rendered="{!OR(isMileEditable,reactivateProjectFlag)}">
 	                <div class="addMstoneContainer pull-right txtRight" data-target="#ipmaddMstonWizard" data-toggle="modal" data-keyboard="false" value="/apex/IPM_AddMilestoneWizard?projectId={!projectId}&Wizard=true" data-backdrop="static" aria-hidden="true">
 	                    <span class="fa fa-plus" /> <span class="addLinkText">{!$Label.IPM_ADD_MILESTONE}</span>
 	                </div>
@@ -94,7 +95,7 @@
                         <apex:outputfield value="{!p.record['IPM_Due_Date__c']}"/>
                     </apex:column>
                      <apex:column headerValue="{!$Label.IPM_Milestone_Action}" styleClass="{!IF(p.isChecked,'selected', 'notselected')} iconHeader">
-                        <apex:outputPanel styleClass="SecButtonSet" rendered="{!isMileEditable}">
+                        <apex:outputPanel styleClass="SecButtonSet" rendered="{!OR(isMileEditable,reactivateProjectFlag)}">
                         
                              <!-- Edit button code starts here-------- -->
                              <apex:outputPanel rendered="{!p.isEditable}">
@@ -120,6 +121,7 @@
             </div> 
             <!--  Code to implement the Pagination to show the limited milestones per page  -->
             <div class="pull-right">
+            	<apex:outputPanel id="paginationId" >
                 <apex:panelGrid columns="5" styleClass="panel-group clearfix" id="cmdBtnPanel" rendered="{!OR(hasPrevious, hasnext)}">
                      <apex:commandButton styleClass="mstoneArrows {!If(hasPrevious,'mstoneActive','mstoneNotActive')}" disabled="{!!hasPrevious}" action="{!firstPage}" value="<<" rerender="tskPanelM,cmdBtnPanel"/ >
                      <apex:commandButton styleClass="mstoneArrows {!If(hasPrevious,'mstoneActive','mstoneNotActive')}" disabled="{!!hasPrevious}"  action="{!previousPage}" value="<" rerender="tskPanelM,cmdBtnPanel"/>
@@ -127,6 +129,7 @@
                      <apex:commandButton styleClass="mstoneArrows {!If(hasNext,'mstoneActive','mstoneNotActive')}" disabled="{!!hasnext}"  action="{!nextPage}" value=">" rerender="tskPanelM,cmdBtnPanel"/>
                      <apex:commandButton styleClass="mstoneArrows {!If(hasNext,'mstoneActive','mstoneNotActive')}" disabled="{!!hasnext}"  action="{!lastPage}"  value=">>" rerender="tskPanelM,cmdBtnPanel"/>
                 </apex:panelGrid>
+                </apex:outputPanel>
             </div>
             <div class="panel-group gateMilstone clearfix">
                 <div class="row">

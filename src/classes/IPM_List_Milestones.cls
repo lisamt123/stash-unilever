@@ -29,6 +29,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     public Boolean isSDateEdit{get;set;}//used by security
     public Boolean isWarningRequired {get;set;}//used to display warning message when difference between MRD and TLD is less than 6 months
     public Boolean showTLDInfoIcon{get;set;}
+    public Boolean reactivateProjectFlag{get;set;}
     public String displayPage{get;set;}
     public String strLink{get;set;}
     

@@ -130,6 +130,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 	//phase 2.0 variables
     public boolean isWithAppendix{get;set;}//set boolean value to display appendix on gate document PDF page
     public boolean isDisplayWithoutAppendix{get;set;}//check whether without appendix pdf to display on page or not
+    public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -303,6 +304,17 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c)))) && (project.Exempt_from_Threshold__c))){
          isExemptFromThresholdITO = true;
         }
+        /*** Logic to Display the "Reactivate Project" button on Gate Document page for IPM Business Partner   
+   			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
+       ***/
+       Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+       Date dateToCompare = System.today().addMonths(-noOfMonths); 
+       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
+       {
+   	      //security for central team and BP users
+          IPM_CustomPermission custPermission = new IPM_CustomPermission();
+          reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+       }
     } 
     
     /*************************************************************************************************************************************************************
@@ -361,15 +373,16 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             if(guestCount>0){
                 isPDFDownload=false;
             }
-            
+            IPM_Project__c associatedProject = null; 
             //Getting Current Logged-In User Role Type and Assigning Permission
-            list<IPM_Project__c> lstofuser=[SELECT IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c 
+            list<IPM_Project__c> projectList=[SELECT IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c, IPM_PrepareForArchival__c, Is_Archieved__c 
                                             FROM IPM_Project__c 
                                             WHERE id=:projectId AND (IPM_Project_Leader__c =:userinfo.getuserid() 
                                                                      OR Deputy_Project_Leader__c=:userinfo.getuserid()) and Is_Archieved__c=false  limit 1];
-            if(lstofuser!=null && !lstofuser.isEmpty()){
+            if(projectList!=null && !projectList.isEmpty()){
                 isReadable=false;
                 IsUpdateStatus=true;
+                associatedProject = projectList[0];
             }
             
             //security for central team and BP users
@@ -382,6 +395,14 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 IsUpdateStatus=true;
                 isReadable=false;
                 
+            }   
+            if(IsUpdateStatus && associatedProject !=null )
+            {
+            	IsUpdateStatus = !(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c);
+            }
+            else
+            {
+            	IsUpdateStatus = false;
             }    
             
         }
@@ -1325,4 +1346,21 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
     }
     
+    /***********************************************************************
+    @Description: This method will be invoked on click of 'Cancel Stopping Project' button from Project Overview page. This method is responsible to revert the project
+    			  Document status to previous state from Stopped.     
+    @param: none
+    @return: void
+    **********************************************************************/
+    public void cancelStoppingProject()
+    {	
+    	try
+    	{
+    		project.IPM_PrepareForArchival__c = false;
+    		update project;
+    	}
+    	catch (Exception ex)
+        {
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
 }

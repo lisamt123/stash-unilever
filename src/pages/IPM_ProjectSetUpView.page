@@ -559,7 +559,7 @@
                                             </div>
                                             <apex:actionFunction name="saveApproach" action="{!SaveIPMApproach}" reRender="showtask, showInfoMsg" status="displayTasksChkBoxStatus" onComplete="callbackLoadAction()"/>
                                         </apex:outputPanel>
-                                        <apex:outputPanel id="showtask" rendered="{!project.Is_Archieved__c == false}"> 
+                                        <apex:outputPanel id="showtask" rendered="{!OR(project.Is_Archieved__c == false,reactivateProject) }"> 
                                             <!-- To display below vf component when project approach is internal    -->
                                             <c:IPM_ToDos createTask="{!isCreateTask}" pId="{!projectId}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" rendered="{!project.IPM_PM_Approach__c='Internal'}" />  
                                             <!-- To display below outputPanel when project approach is not internal    -->

@@ -322,6 +322,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Contract_Pack__c</fullName>
+        <externalId>false</externalId>
+        <label>Pack</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Contract_Target_Launch_Month__c</fullName>
         <description>Contract Target Launch Month</description>
         <externalId>false</externalId>

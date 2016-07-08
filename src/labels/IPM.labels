@@ -9465,4 +9465,16 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM Current Gate Document Status</shortDescription>
         <value>Current Gate Document Status</value>
     </labels>
+	<labels>
+        <fullName>IPM_StopDisclaimer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer</shortDescription>
+        <value>This Project will be stopped after 72 hours.
 
+
+If you discover that stopping this Project was a mistake you can undo this action in the next 72 hours by using the Cancel Stopping Project button on the Project Overview Page.
+
+
+If you take no further action after 72 hours from now this Project and all its Rollout Projects will be stopped. Please note Stopped Projects cannot be reactivated</value>
+    </labels>

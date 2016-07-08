@@ -88,8 +88,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     private static final String PLANNED_STR= 'The planned ';
     public static final String KEY_FINANCE_STR = 'Key Financial Data is missing. Please update your business case: ';
     private static final String GATE_STR='gate';
-	//Phase 2.0
-    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
+
     public String projectDocStatusStyleClass{get;set;}
     public Boolean isOrgPrjRLplancreated{get;set;}
 

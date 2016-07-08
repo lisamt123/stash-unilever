@@ -96,11 +96,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     }
     set;
     }      
+    public Boolean reactivateProject{get; set;} // Param will be passed from 'Reactivate Project' button of Project Overview screen   
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
     public IPM_ProjectSetUpController(ApexPages.StandardController controller){
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
+	reactivateProject = false;
         if(project!=null){
            initialise();
         }
@@ -191,6 +193,18 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
          
         IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
         tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
+        //
+        /*** Logic to Display the give edit access for IPM Business Partner on Wizard   
+   			For Stopped project in Ideas phase for 38 months,
+       ***/
+       Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+       Date dateToCompare = System.today().addMonths(-noOfMonths); 
+       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
+       {
+   	      //security for central team and BP users
+          IPM_CustomPermission custPermission = new IPM_CustomPermission();
+          reactivateProject = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+       }
     }  
     /****************************************************************************
     @Description : Inner class to get date
