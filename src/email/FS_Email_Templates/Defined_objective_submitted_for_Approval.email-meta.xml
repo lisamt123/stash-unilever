@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Defined objective submitted for Approval</name>
+    <style>none</style>
+    <subject>{!FS_Defined_Objective__c.Name}  for account plan {!FS_Defined_Objective__c.FS_Account_Plan__c.Name} Needs Approval</subject>
+    <type>text</type>
+</EmailTemplate>

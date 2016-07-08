@@ -1,0 +1,2 @@
+{!FS_Account_Plan__c.Name} for {!FS_Account_Plan__c.FS_Customer__c} is approved
+Please visit:  {!FS_Account_Plan__c.Link}
