@@ -33,6 +33,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public static Map<String ,IPM_Category_Thresholds__mdt>  masterCategoryThrshMap ;
     public static Map<String ,IPM_Cat_thrhl_Mrkt_cluster__c>  mrktClusterCategoryMap ;
     public static final String PROJECT_TYPE_ORIGINAL = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+     // Project Rcord Type
+    public static ID recTypeClustering = Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(IPM_ConstantUtils.Clustering).RecordTypeId; 
+    
+    
+    
     /***********************************************************************************************************************************
     * bulkBefore
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
@@ -809,6 +814,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c insertedProject = (IPM_Project__c)so; 
 
+		// Set Record Type As blank
+		insertedProject.RecordTypeId = recTypeClustering;
+		
         // Set Data in Temporary Phase and make original Phase as Blank. Also only do that when Job Status is not processing.
         if(insertedProject.IPM_Phase__c!=null)
         {
@@ -890,7 +898,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c incomingProject = (IPM_Project__c)so;
         IPM_Project__c oldProject = (IPM_Project__c)oldSo;
- 
+        
+        // Set Record Type As blank
+		incomingProject.RecordTypeId = recTypeClustering;
+        
         if(incomingProject.IPM_Project_Name__c !=null && !String.isBlank(incomingProject.IPM_Project_Name__c) && 
         incomingProject.IPM_Project_Name__c != oldProject.IPM_Project_Name__c)
         {

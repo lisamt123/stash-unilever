@@ -58,7 +58,7 @@
     <fields>
         <fullName>BETCurrentStatus__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISPICKVAL(IPM_Project__r.IPMProject_Span__c, &apos;Global&apos;),
+        <formula>IF(ISBLANK(IPM_Project__r.IPM_Parent_Project__c),
 CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
 &apos;First release&apos;,&apos;Partly&apos;, 
 &apos;Final release&apos;,&apos;Yes&apos;, 
