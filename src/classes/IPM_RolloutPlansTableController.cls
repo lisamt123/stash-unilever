@@ -52,6 +52,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
     public Boolean isArchiveFalse = false;
 	public Boolean changeDateVal {get;set;}
+    public String showEntity{get;set;}
     @TestVisible private static final String ID_PARAMETER = 'Id';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
     @TestVisible private static final String SAVE_ROLLOUT = 'saveRollout';
@@ -72,7 +73,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         IPM_IECompatible.ieFix();//Added for compatibility fix
        
-
+        showEntity = IPM_ConstantUtils.BLANK;
         initialise();
         
     }
@@ -91,7 +92,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
  
             if( (lstcompleteProjects.isEmpty() && lstcompleteRollout.isEmpty())  && (cancelRedirect != BOOLEAN_TRUE))
             {
+                if( !( project.IPM_PrepareForArchival__c || project.Is_Archieved__c ) )
+                {
                 return addRollout();
+                }
             }
             return null;
         } 
@@ -156,8 +160,14 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     project = projectList[0];
                 }
                 
+                showEntity = String.format(Label.IPM_ShowEntity,new String[]{project.IPMProject_Span__c});
                 isEditable = IPM_Utils.getIPMRollOutUser(projectId);
                 
+                if(isEditable)
+                {
+                    isEditable = !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c);
+                } 
+
                 if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
                 {
                     isSpanGlobal = true;

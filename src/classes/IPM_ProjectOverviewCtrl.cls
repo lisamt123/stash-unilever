@@ -153,8 +153,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public string earliestTLD=null;//DEF3195 Mukul to review
     public String projectPriority{get;set;}//varibale to show project priority for local rollout projects
     public Boolean hideFinSection{get;set;}//varibale to check whether user has acces to financial record
+    //Phase 2.0
+    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
+    public boolean showStopButton{get;set;}//  to show Stop Project button 
     public boolean isStopped{get;set;}
-    public boolean reactivateProjectFlag{get;set;}
+    public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -355,6 +358,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         fin = new list<IPM_Financial__c>();
         hideFinSection =  true;
 	displayGateDocument=false;
+        showStopButton=false;
 	isStopped = false;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
@@ -390,7 +394,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
         From Project_Documents__r limit 10000),
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
-        ,(SELECT Id FROM IPM_Project_Rollout__r ),(SELECT Id FROM Regional_Project_Rollout__r ) 
+        ,(SELECT Id,isActive__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__r ),(SELECT Id,isActive__c,IPM_Rollout_Span__c FROM Regional_Project_Rollout__r ) 
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
         ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
@@ -777,6 +781,83 @@ public with sharing class IPM_ProjectOverviewCtrl {
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
         // checking if rollout plan for original project has been created
         isOrgPrjRLplancreated = isOriginal && (!project.IPM_Project_Rollout__r.isEmpty()  || !project.Regional_Project_Rollout__r.isEmpty() );  
+        if( project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL && !project.Is_Archieved__c && !project.IPM_PrepareForArchival__c && isProjLeader)
+        {   
+        	//Map<Id,IPM_Project_Rollout__c> idToProjMap = new Map<Id,IPM_Project_Rollout__c> (project.IPM_Project_Rollout__r);
+			//Map<Id,IPM_Project_Rollout__c> idToProjMap = new Map<Id,IPM_Project_Rollout__c> (project.Regional_Project_Rollout);
+       		Boolean isAllRegRLoutStpd = false;
+			Boolean isAllLocalRLoutStpd = false;
+        	if( project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+			{
+				//checking if all the regional rollouts are inactive for global project
+				for(IPM_Project_Rollout__c	ipmPrjRLout :project.IPM_Project_Rollout__r)
+				{
+					if(ipmPrjRLout.IPM_Rollout_Span__c =='Regional')
+					{
+						if(ipmPrjRLout.isActive__c)
+						{  
+							isAllRegRLoutStpd=false;
+							break;
+						}
+						else
+						{
+							isAllRegRLoutStpd=true;	
+						}
+					}
+				}
+				//checking if all the local  rollouts are inactive  for global project
+				for(IPM_Project_Rollout__c	ipmPrjRLout :project.IPM_Project_Rollout__r)
+				{
+					if(ipmPrjRLout.IPM_Rollout_Span__c=='Local')
+					{
+						if(ipmPrjRLout.isActive__c)
+						{    
+							isAllLocalRLoutStpd=false;
+							break;
+						}
+						else
+						{
+							isAllLocalRLoutStpd=true;	
+						}
+					}
+				}
+			}
+			if( project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
+			{
+				//checking if all the local  rollouts are inactive  for regional project 
+				for(IPM_Project_Rollout__c	ipmPrjRLout :project.Regional_Project_Rollout__r)
+				{
+					if(ipmPrjRLout.IPM_Rollout_Span__c=='Local')
+					{
+						if(ipmPrjRLout.isActive__c)
+						{  
+							isAllLocalRLoutStpd=false;
+							break;
+						}
+						else
+						{
+							isAllLocalRLoutStpd=true;	
+						}
+					}
+				}
+			}
+    
+         	IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && isOriginal) 
+			{
+				if(currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && (isAllRegRLoutStpd || isAllLocalRLoutStpd))
+				{
+					showStopButton = true; 
+				}
+			}  
+			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL  )
+			{
+				if(currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && isAllLocalRLoutStpd)
+				{
+					showStopButton = true; 
+				} 
+			}
+        }
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
@@ -1178,6 +1259,28 @@ public with sharing class IPM_ProjectOverviewCtrl {
 	 		displayGateDocument=true;
 	 	}
 	}    
+    /******************************************************************************************
+    @Description :Called on  click of the Stop Project  Button   .This  will stop the project .
+    @param: Not Applicable
+    @return: Void
+    *******************************************************************************************/
+     
+    public void stopProject() 
+    {
+        try
+        {
+        	project.Is_Archieved__c=true;               
+         	update project;
+        }
+        catch (Exception ex)
+        {
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                        'stopProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                        
+        }
+            
+    }
 /***********************************************************************
     @Description: This method will be invoked on click of 'Cancel Stopping Project' button from Project Overview page. This method is responsible to revert the project
     			  Document status to previous state from Stopped.     
