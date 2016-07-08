@@ -10086,28 +10086,12 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>Type</picklist>
             <values>
-                <fullName>Buying Group</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Direct Operator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Distributor</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Location %28unit%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Redistributor</fullName>
@@ -12137,11 +12121,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Direct Operator</fullName>
+                <fullName>Location %28unit%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Location %28unit%29</fullName>
+                <fullName>Manufacturer</fullName>
                 <default>false</default>
             </values>
             <values>

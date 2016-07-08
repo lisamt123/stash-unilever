@@ -1036,6 +1036,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>FS_Amount_of_box_per_pallet__c</fullName>
+        <description>Purpose: This will serve as the number of box per pallet.</description>
+        <externalId>false</externalId>
+        <label>Amount of box per pallet</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Compensable__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Purpose :Flag that indicates if the product is compensable i.e. provide compensation for damages, expiry, etc. (tbc) 
@@ -1073,11 +1085,10 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>DU Number</label>
-        <precision>18</precision>
+        <length>20</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1275,6 +1286,15 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_TopSellers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Top Sellers check box is used for Russia</description>
+        <externalId>false</externalId>
+        <label>Top Sellers</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_Top_Sellers__c</fullName>
         <description>Purpose : Locally maintained grouping of products for reporting
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
@@ -1414,11 +1434,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <inlineHelpText>Global Trade Item Number. Used to uniquely identify a product worldwide</inlineHelpText>
         <label>GTIN</label>
-        <precision>18</precision>
+        <length>20</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -4799,6 +4818,8 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
     <listViews>
         <fullName>AllProducts</fullName>
         <columns>PRODUCT2.NAME</columns>
+        <columns>GTIN__c</columns>
+        <columns>FS_DUNumber__c</columns>
         <columns>PackSize__c</columns>
         <columns>COGS__c</columns>
         <columns>MarketType__c</columns>
