@@ -1,0 +1,5 @@
+src/classes/WU_SetWarehousePOCHandler.cls
+src/triggers/WU_SetWarehousePOC.trigger
+src/pages/WU_WarehouseSearchPage.page
+src/objects/WU_Master_Warehouse__c.object
+src/objects/WU_Warehouse_Capacity_Detail__c.object
