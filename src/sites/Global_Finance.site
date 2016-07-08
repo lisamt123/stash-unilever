@@ -18,7 +18,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>chandana.mekala@capgemini.com</siteAdmin>
+    <siteAdmin>sridhar.valiveti@capgemini.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>globalfinance</urlPathPrefix>
