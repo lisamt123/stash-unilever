@@ -7,3 +7,4 @@ src/permissionsets
 src/permissionsets/TaskRayCustom.permissionset
 src/reports
 src/reports/TASKRAY__TaskRay_Reports
+src/reports/TASKRAY__TaskRay_Reports/Taskray_Usage.report
