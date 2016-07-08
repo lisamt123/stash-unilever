@@ -377,14 +377,16 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                    otifAnalyticObj.IPM_Materials_Sourcing_Strategies_Agreed__c = fr.IPM_OTIF_Status__c;
                 } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_TECHNICAL_ACTION_STANDARDS_ACHIEVED_BY_LEAD_REGION)){
                    otifAnalyticObj.Tech_Action_STD_Achieved_by_Lead_Region__c = fr.IPM_OTIF_Status__c;
-                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_BASES_I)){
-                   otifAnalyticObj.IPM_Base_I__c = fr.IPM_OTIF_Status__c;
                 } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_PRODUCT)){
                    otifAnalyticObj.Contract_Product__c = fr.IPM_OTIF_Status__c;
                 } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_FULL_MIX)){
                    otifAnalyticObj.Contract_Full_Mix__c = fr.IPM_OTIF_Status__c;
                 } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_COMMUNICATION)){
                    otifAnalyticObj.Contract_Communication__c = fr.IPM_OTIF_Status__c;
+                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_PACK)){
+                   otifAnalyticObj.IPM_Contract_Pack__c = fr.IPM_OTIF_Status__c;
+                } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_PRICE)){
+                   otifAnalyticObj.IPM_Contract_Price__c = fr.IPM_OTIF_Status__c;
                 } 
             }
         return otifAnalyticObj;       
@@ -408,8 +410,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                otifAnalyticObj.Spec_Bills_of_Materials_in_Interspec__c = fr.IPM_OTIF_Status__c;
             } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT)){
                otifAnalyticObj.Tech_Prod_Capability_Conf_Main_Plant__c = fr.IPM_OTIF_Status__c;
-            } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_BASES_III)){
-               otifAnalyticObj.IPM_Bases_III__c = fr.IPM_OTIF_Status__c;
             } else if(fr.IPM_OTIF_Measure__c.equalsignorecase(IPM_ConstantUtils.OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE)){
                otifAnalyticObj.Comm_Full_Think_Big_Pack_Available__c = fr.IPM_OTIF_Status__c;
             }
@@ -445,7 +445,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         map<Id,list<IPM_Project_Resource__c>> projResourceMap = new map<id,list<IPM_Project_Resource__c>>();  // this map will hold project id and corresponding project resource
         try{ 
         for(IPM_Project_Resource__c projResource : [SELECT Id,IPM_Project__c,IPM_Project__r.id,IPM_Role_Type__c,IPM_User__r.Name                                                                                 
-                                                              FROM IPM_Project_Resource__c WHERE IPM_Project__r.id IN:projectIdMap.keyset()]){
+                                                              FROM IPM_Project_Resource__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]){
         	 if(!projResourceMap.containskey(projResource.IPM_Project__r.id)){
                         projResourceMap.put(projResource.IPM_Project__r.id, new List<IPM_Project_Resource__c>{projResource});   
                 }else{
@@ -487,7 +487,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                           Local_Project__r.Name,
                                           IPM_Auto_Aligned_Fin_TLD__c,
                                           IPM_Project_Rollout__r.id                                                                                  
-                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset()]){
+                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset()  Limit 50000]){
                 if(fi.Local_Project__r.id !=null && fi.Local_Project__r.Name == fi.Financial_External_ID__c){
                     projFinMap.put(fi.Local_Project__r.id,fi);
                     financialIdSet.add(fi.id);
@@ -614,7 +614,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                            IPM_Due_Date_Idea__c,
                                            IPM_Due_Date_Market_Deployment__c,
                                            IPM_Due_Date_Market_Ready__c 
-                                           FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset()]){
+                                           FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]){
                 if(String.isNotBlank(im.IPM_Type_of_Milestone__c) && (im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_Utils.Standard) || im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_ConstantUtils.STRING_BET))){            
                     if(!projMilestoneMap.containskey(im.IPM_Project__r.id)){
                         projMilestoneMap.put(im.IPM_Project__r.id, new List<IPM_Milestone__c>{im});  
@@ -646,7 +646,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                    IPM_Project__c,
                                                    IPM_Project__r.id,
                                                    IPM_Document_Status__c
-                                                   FROM IPM_Project_Document__c WHERE IPM_Project__r.id IN:projectIdMap.keyset()]){
+                                                   FROM IPM_Project_Document__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]){
                 if(!projGateDocMap.containskey(im.IPM_Project__r.id)){
                     projGateDocMap.put(im.IPM_Project__r.id, new List<IPM_Project_Document__c>{im});  
                 }else{
@@ -695,7 +695,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	                                                Regional_Project__r.IPM_Phase__c,
 	                                                IPM_Rollout_Span__c
 	                                                FROM IPM_Project_Rollout__c 
-	                                                WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset()]){
+                                                  //WHERE IPM_Project__r.id IN:rolloutprojectIdSet Limit 50000]);
+                                                  WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]){
                   if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED){
                     if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id)){
                         projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
@@ -745,7 +746,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                                                   IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
                                                                                   IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.Name
                                                                                   from IPM_Project_Document_Section_Content__c
-                                                                                  WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN: projectIdMap.keyset()]){                                                                                       
+                                                                                  WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN: projectIdMap.keyset()  Limit 50000]){                                                                                       
                 if(!projDocSecContentMap.containskey(pDocSecContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c)){
                     projDocSecContentMap.put(pDocSecContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c, new List<IPM_Project_Document_Section_Content__c>{pDocSecContent});  
                 }else{
@@ -776,7 +777,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                             Financial_External_ID__c,
                                             IPM_Project_Rollout__r.Id
                                             FROM IPM_Financial__c 
-                                            WHERE IPM_Project_Rollout__c IN: regionalRolloutset]){
+                                            WHERE IPM_Project_Rollout__c IN: regionalRolloutset Limit 50000]){
                 if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});  
                 }else{
@@ -829,7 +830,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                     GM_of_TO_Global__c,
                                                     GM_of_TO_Regional__c                                                                                                            
                                                     FROM IPM_Financial_Year__C 
-                                                    WHERE IPM_Financial__c IN: finIdSet]){
+                                                    WHERE IPM_Financial__c IN: finIdSet Limit 50000]){
                 if(!rolloutFinancialYearmap.containskey(fiyr.Financial_External_ID__c)){
                     rolloutFinancialYearmap.put(fiyr.Financial_External_ID__c, new List<IPM_Financial_Year__c>{fiyr});  
                 }else{
@@ -861,7 +862,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                            IPM_Regional_Project__r.Id,
                                            IPM_Regional_Project__r.IPMProject_Span__c,
                                            Local_Rollout__r.id
-                                           FROM IPM_Country__c WHERE (IPM_Local_Project__r.Id IN : projectIdMap.keyset() or Local_Rollout__r.id IN: localRolloutIDSet)]){
+                                           FROM IPM_Country__c WHERE (IPM_Local_Project__r.Id IN : projectIdMap.keyset() or Local_Rollout__r.id IN: localRolloutIDSet) Limit 50000]){
                 if(ic.Country_Name__c != null){ 
                         if(ic.IPM_Local_Project__r.Id != null){
                             if(ipmCountryMap.containsKey(ic.IPM_Local_Project__r.Id)){

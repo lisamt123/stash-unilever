@@ -7,903 +7,1129 @@
 *************************************************************************
 -->
 
-<apex:page sidebar="false" standardStylesheets="false" controller="IPM_ProjDocumentSectionHstryController" extensions="IPM_ProjectOverviewCtrl,IPM_GetHelpDoc">
-    <style>
+<apex:page sidebar="false" standardStylesheets="false"
+	controller="IPM_ProjDocumentSectionHstryController"
+	extensions="IPM_ProjectOverviewCtrl,IPM_GetHelpDoc">
+	<style>
     .countDownTimer{padding-bottom:10px;}
-    </style>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectOverview.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}"/>
-    <apex:form >   
-    <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
-    <apex:composition template="IPM_TemplateRevamp">
-        <apex:define name="body">  
-        <apex:actionStatus id="teamDelete" startStyleClass="proInit" >
-        </apex:actionStatus>    
-            <div class="gradientbg">             
-				<!-- Display below outputPanel when project is archived-->
-                <apex:outputPanel layout="block" styleClass="col-sm-12" rendered="{!project.Is_Archieved__c=true}"><span class="projectStopped">{!$Label.IPM_PROJECT_STOP_HEADER} {!project.IPM_Phase__c} {!$Label.IPM_PROJECT_STOP_HEADER_PHASE} &nbsp; <apex:outputfield value=" {!project.IPM_Stopped_Date_Time__c}"/></span> </apex:outputPanel>                
+</style>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectOverview.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}" />
+	<apex:form>
+		<apex:actionStatus startText="" id="Loading" startStyleClass="proInit" />
+		<apex:composition template="IPM_TemplateRevamp">
+			<apex:define name="body">
+				<apex:actionStatus id="teamDelete" startStyleClass="proInit">
+				</apex:actionStatus>
+				<div class="gradientbg">
+					<!-- Display below outputPanel when project is archived-->
+					<apex:outputPanel layout="block" styleClass="col-sm-12"
+						rendered="{!project.Is_Archieved__c=true}">
+						<span class="projectStopped">{!$Label.IPM_PROJECT_STOP_HEADER}
+							{!project.IPM_Phase__c} {!$Label.IPM_PROJECT_STOP_HEADER_PHASE}
+                            &nbsp; <apex:outputfield value=" {!project.IPM_Stopped_Date_Time__c}" />
+						</span>
+					</apex:outputPanel>
 
-                        <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender="" oncomplete="location.reload();"/>
-                        <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
-                        <c:IPM_ProjectDetails project="{!project}" activeItem="overview" phasechangeInProgress="{!bPhaseChangeInProgress}" />
+					<apex:actionFunction name="movePLE" action="{!moveToPLE}"
+						reRender="" oncomplete="location.reload();" />
+					<!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
+					<c:IPM_ProjectDetails project="{!project}" activeItem="overview"
+						phasechangeInProgress="{!bPhaseChangeInProgress}" />
 
-            </div>
-			<!-- Display below outputPanel when current logged in user has alert messages-->
-            <apex:outputPanel rendered="{!bShowAlertsBar}">            
+				</div>
+				<!-- Display below outputPanel when current logged in user has alert messages-->
+				<apex:outputPanel rendered="{!bShowAlertsBar}">
 
-            <div class="col-sm-12 negMargin" >
-                <i class="minus fa fa-plus alertAccordian"></i>
-                <div class="col-sm-12">
-                    <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
-                    <div class="col-sm-11 alerttext">
-                        <p>{!$Label.IPM_YOU_HAVE_ALERT} {!alertscount + noOfNotifications } {!$Label.IPM_Alerts} </p>                        
-                    </div>
-                    <div class="col-sm-12 alertContent">
-                       <ul>
-							<!-- Display below outputPanel when child project is incomplete-->
-                           <apex:outputPanel rendered="{!childProjectsIncompleteAlert!= null}">
-                                <li>
-                                    <a href="{!URLFOR($Page.IPM_RolloutPlans)}?id={!projectId}" target="_top">{!childProjectsIncompleteAlert}</a>
-                                </li>
-                            </apex:outputPanel>
-                            <!-- Display below outputPanel when current user has some alert message-->
-                            <apex:outputPanel rendered="{!lstalertMessage != null}">
-                                <li>
-                                    {!lstalertMessage}
-                                </li>
-                            </apex:outputPanel>
-                            <apex:repeat var="key" value="{!additionalAlertMessages}">
-                               <li>
-                                    <div><apex:outputText escape="false" value="{!key}"/> </div>
-                               </li>
-                           </apex:repeat>
-                            <apex:repeat var="key" value="{!alertMessageToday}">
-                               <li>
-                                      <div>{!alertMessageToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}</div>
-                               </li>
-                           </apex:repeat>
-                             <apex:repeat var="key" value="{!alertMessagePast}">
-                                <li>
-                                        <apex:commandLink value="{!key} {!alertMessagePast[key]} {!$Label.IPM_PASSED_WITHOUT_APPROVAL} {!$Label.IPM_UPDATE_YOUR_DUE_DATE}" action="{!$Page.IPM_Tasklist}?id={!project.Id}"/>
-                               </li>
-                           </apex:repeat>
-                            <apex:repeat var="key" value="{!alertMessage}">
-                               <li>
-                                        <div>{!key} {!alertMessage[key]} </div>  
-                               </li>
-                            </apex:repeat>
+					<div class="col-sm-12 negMargin">
+						<i class="minus fa fa-plus alertAccordian"></i>
+						<div class="col-sm-12">
+							<div class="col-sm-1">
+								<img class="alertimg" alt="Alert"
+									src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}" />
+							</div>
+							<div class="col-sm-11 alerttext">
+								<p>{!$Label.IPM_YOU_HAVE_ALERT} {!alertscount +
+									noOfNotifications } {!$Label.IPM_Alerts}</p>
+							</div>
+							<div class="col-sm-12 alertContent">
+								<ul>
+									<!-- Display below outputPanel when child project is incomplete-->
+                                    <apex:outputPanel rendered="{!childProjectsIncompleteAlert!= null}">
+										<li><a
+											href="{!URLFOR($Page.IPM_RolloutPlans)}?id={!projectId}"
+											target="_top">{!childProjectsIncompleteAlert}</a></li>
+									</apex:outputPanel>
+									<!-- Display below outputPanel when current user has some alert message-->
+									<apex:outputPanel rendered="{!lstalertMessage != null}">
+										<li>{!lstalertMessage}</li>
+									</apex:outputPanel>
+									<apex:repeat var="key" value="{!additionalAlertMessages}">
+										<li>
+											<div>
+												<apex:outputText escape="false" value="{!key}" />
+											</div>
+										</li>
+									</apex:repeat>
+									<apex:repeat var="key" value="{!alertMessageToday}">
+										<li>
+											<div>{!alertMessageToday[key]}
+												{!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}</div>
+										</li>
+									</apex:repeat>
+									<apex:repeat var="key" value="{!alertMessagePast}">
+                                        <li><apex:commandLink value="{!key} {!alertMessagePast[key]} {!$Label.IPM_PASSED_WITHOUT_APPROVAL} {!$Label.IPM_UPDATE_YOUR_DUE_DATE}"
+												action="{!$Page.IPM_Tasklist}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<apex:repeat var="key" value="{!alertMessage}">
+										<li>
+											<div>{!key} {!alertMessage[key]}</div>
+										</li>
+									</apex:repeat>
 
-                           <apex:repeat var="message" value="{!lstFinAlertMessage}">
-                                        <li>
-                                                <apex:commandLink value="{!message}" action="{$Page.IPM_Financial}?id={!project.Id}"/>
-                                        </li>
-                                    </apex:repeat>
-                           <apex:repeat var="message" value="{!BusinessCaseMessageMap}">
-                              <li>
-                                    <apex:commandLink value="{!BusinessCaseMessageMap[message]}" action="{!$Page.IPM_Financial}?id={!project.Id}"/>
-                              </li>
-                           </apex:repeat>
-                                    <apex:repeat var="message" value="{!lstRolloutProjectAlertMessage}">
-                                        <li>
-                                                <apex:commandLink value="{!message}" action="{!$Page.IPM_RolloutPlans}?id={!project.Id}"/>
-                                        </li>
-                                    </apex:repeat>
-                                    <apex:repeat var="message" value="{!lstFinTLDAlertMessage}">
-                                        <li>
-                                                <apex:commandLink value="{!message}" action="{!$Page.IPM_RolloutPlans}?id={!project.Id}"/>
-                                        </li>
-                                    </apex:repeat>
-                                     <apex:repeat var="message" value="{!LstLocalFinTLDMisalignedMessage}">
-                                    <li>
-                                        <apex:commandLink value="{!message}" action="{!$Page.IPM_Tasklist}?id={!project.Id}"/>
-                                    </li>
-                                    </apex:repeat>
-                                 <apex:repeat var="message" value="{!lstFinDataMissingAlertMessage}">
-                                    <li>
-                                            <apex:commandLink value="{!message}" action="{!$Page.IPM_Financial}?id={!project.Id}"/>
-                                    </li>
-                                </apex:repeat>
-                            <!-- Display below outputPanel when current user has some document alert message-->
-                            <apex:outputPanel rendered="{!documentAlertMessage != null}">
-                               <li>
-                                    {!documentAlertMessage}
-                               </li>
-                             </apex:outputPanel>
-							 <!-- Display below alert message when user has bet messages-->
-                              <apex:outputPanel rendered="{!betMsgFirstReleaseDueDate != null}">
-                                <li>
-                                    {!betMsgFirstReleaseDueDate}
-                                </li>
-                              </apex:outputPanel>
-							  <!-- Display below alert message when user has bet messages-->
-                              <apex:outputPanel rendered="{!betMsgFinalReleaseDueDate != null}">
-                                <li>
-                                    {!betMsgFinalReleaseDueDate}
-                                </li>
-                               </apex:outputPanel>      
-								<!-- Display below alert message when user has eco design messages-->
-                               <apex:outputPanel rendered="{!ecoDesignAlert != null && ecoDesignSecId != null && rolloutsGenerated}">
-                                <li>
-                                        <apex:commandLink value="{!ecoDesignAlert}" action="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&projDocSecId={!ecoDesignSecId}"/>
-                                </li>
-                              </apex:outputPanel>   
-                              </ul>
-                            </div>                            
-                            
-                        </div>
-                    </div>
-                </apex:outputPanel>
-                <div class="ipmContent">
-                <div class="row">  
-                        <div class="col-sm-3">
-                        <div class="topheader">{!$Label.IPM_KeyProjectDetails}</div>
-                        <div class="greyborder"></div>
-                        <div class="globeContainer projOverview">
-                            <span class="keyTitle pull-left">{!project.IPM_Project_Name__c} | </span> 
-							<!-- Display below outputPanel when project type is Original-->
-                            <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
-                                 <span class="orgIcon"></span>
-                             </apex:outputPanel>
-							 <!-- Display below outputPanel when project type is Operational-->
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
-                                 <span class="oprtnIcon"></span>
-                             </apex:outputPanel>
-							 <!-- Display below outputPanel when project type is Rollout-->
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
-                                 <span class="rollIcon"></span>
-                             </apex:outputPanel>
-                            <span class="grentxt">{!project.IPMProject_Span__c}</span>
-                        </div>
-                         <div class="SecButtonSet" >
-								<!-- Display below outputPanel when project leader is logged in-->
-                                <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader, isStopped)})}">
-                                <a class="icoButton edit1 editTaskBtn"  href="apex/IPM_CoreParameters?id={!projectId}" ></a>
-                                </apex:outputPanel>
-                         </div>
-                        
-                        <p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
-                        <apex:outputpanel rendered="{!AND(isOriginal,!ISBLANK(project.IPM_Cluster__r.Name))}">
-                            <div class="row">
-                                <div class="col-sm-7 pr0 clusterSpacebtm">
-                                    <div class="keycontent">{!$Label.IPM_Project_Cluster}</div>
-                                </div>
-                                <div class="col-sm-5">
-                                    {!project.IPM_Cluster__r.Name}  
-                                </div>
-                            </div>
-                            </apex:outputpanel>
-                        <p class="keycontent">{!project.IPM_Brand__c} | {!project.IPM_Category_Text__c}</p>
-                        <div class="greyborder"></div>
-						<!-- Display below outputPanel when project is fast track and project type is not operational-->
-                        <apex:outputPanel rendered="{!project.IPM_Fast_Track_Project__c && project.IPM_Project_Type__c != 'Operational'}">
-                            
-                            <div class="row">
-								<!-- Display below outputPanel when project is fast track -->
-                                <apex:outputPanel layout="block" rendered="{!project.IPM_Fast_Track_Project__c}" styleClass="col-sm-2 pr0">
-                                    <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/flag_homescreen.svg')}" alt="Fast Track" class="fasttrack"/></div>
-                                </apex:outputPanel>
-								<!-- Display below outputPanel when project is fast track -->
-                                <apex:outputPanel layout="block" rendered="{!project.IPM_Fast_Track_Project__c}" styleClass="col-sm-9 flagMargin pl0">
-                                    <div class="keycontent mt6">{!$Label.IPM_FastTrackProject}</div>
-                                 </apex:outputPanel>
-                               
-                            </div>
-							<div class="greyborder"></div>
-                        </apex:outputPanel>
-						<!-- Display below outputPanel when project is white space and project type is not operational-->
-                        <apex:outputPanel rendered="{!project.IPM_White_Space_Project__c && project.IPM_Project_Type__c != 'Operational'}">
-                            
-                            <div class="row">
-								<!-- Display below outputPanel when project is white space -->
-                               <apex:outputPanel layout="block" styleClass="whiteSpaceContainer" rendered="{!project.IPM_White_Space_Project__c}" >
-                                    <p class="keycontent">{!$Label.IPM_White_Space_Project}</p>
-                                </apex:outputPanel>  
-                            </div>
-							<div class="greyborder"></div>
-                        </apex:outputPanel> 
-							<!-- Display below outputPanel when project cluster name is not null-->
-                            <apex:outputPanel rendered="{!NOT(ISNULL(project.IPM_Clustering__r.Name))}">
-                                <!-- Display below outputPanel when project phase is not in PLE-->
-                                <apex:outputPanel styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
-                                <div class="row">
-                                    <div class="col-sm-4 pr0">
-                                        <div class="keycontent">{!$Label.IPM_Cluster}</div>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="dueDate clusterAns"><apex:outputField value="{!project.IPM_Clustering__r.Name}" /></div>
-                                    </div>
-                                </div>
-				 <!-- Display below outputPanel when project phase is not in PLE-->				
-				<apex:outputPanel styleClass="greyborder" rendered="{!displayGateDocument}"></apex:outputPanel>
+									<apex:repeat var="message" value="{!lstFinAlertMessage}">
+										<li><apex:commandLink value="{!message}"
+												action="{$Page.IPM_Financial}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<apex:repeat var="message" value="{!BusinessCaseMessageMap}">
+                                        <li><apex:commandLink value="{!BusinessCaseMessageMap[message]}"
+												action="{!$Page.IPM_Financial}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<apex:repeat var="message"
+										value="{!lstRolloutProjectAlertMessage}">
+										<li><apex:commandLink value="{!message}"
+												action="{!$Page.IPM_RolloutPlans}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<apex:repeat var="message" value="{!lstFinTLDAlertMessage}">
+										<li><apex:commandLink value="{!message}"
+												action="{!$Page.IPM_RolloutPlans}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<apex:repeat var="message"
+										value="{!LstLocalFinTLDMisalignedMessage}">
+										<li><apex:commandLink value="{!message}"
+												action="{!$Page.IPM_Tasklist}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<apex:repeat var="message"
+										value="{!lstFinDataMissingAlertMessage}">
+										<li><apex:commandLink value="{!message}"
+												action="{!$Page.IPM_Financial}?id={!project.Id}" /></li>
+									</apex:repeat>
+									<!-- Display below outputPanel when current user has some document alert message-->
+									<apex:outputPanel rendered="{!documentAlertMessage != null}">
+										<li>{!documentAlertMessage}</li>
+									</apex:outputPanel>
+									<!-- Display below alert message when user has bet messages-->
+                                    <apex:outputPanel rendered="{!betMsgFirstReleaseDueDate != null}">
+										<li>{!betMsgFirstReleaseDueDate}</li>
+									</apex:outputPanel>
+									<!-- Display below alert message when user has bet messages-->
+                                    <apex:outputPanel rendered="{!betMsgFinalReleaseDueDate != null}">
+										<li>{!betMsgFinalReleaseDueDate}</li>
+									</apex:outputPanel>
+									<!-- Display below alert message when user has eco design messages-->
+                                    <apex:outputPanel rendered="{!ecoDesignAlert != null && ecoDesignSecId != null && rolloutsGenerated}">
+										<li><apex:commandLink value="{!ecoDesignAlert}"
+												action="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&projDocSecId={!ecoDesignSecId}" />
+										</li>
+									</apex:outputPanel>
+								</ul>
+							</div>
+
+						</div>
+					</div>
 				</apex:outputPanel>
-                 <!-- Display below outputPanel when project phase is not in PLE and current gate to display is not null-->
-			    <apex:outputPanel layout="block" rendered="{!displayGateDocument}">    
-                            
-                                <div class="row">
-                                    <div class="col-sm-7 pr0">
-                                        <div class="keycontent">
-                                            {!$Label.IPM_CurrentDocument}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
-                                    </div>
-                                </div>
-                             <!-- Display below outputPanel when project phase is not in PLE-->
-                            <apex:outputPanel layout="block" styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
-			    </apex:outputPanel>
-							 <!-- Display below outputPanel when project phase is not in PLE-->
-                            <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
-								<apex:variable value="false" var="showGreyBorder"/>
-                                <div class="row">
-								<!-- EPIC320 starts here -->
-                                <apex:outputPanel layout="block" rendered="{!displayGateDocument}"> 
-									<div class="col-sm-12 pr0">
-										<div class="keycontent">
-											{!$Label.IPM_Current_Gate_Document_Status} 
-										</div>
-									</div>
+				<div class="ipmContent">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="topheader">{!$Label.IPM_KeyProjectDetails}</div>
+							<div class="greyborder"></div>
+							<div class="globeContainer projOverview">
+								<span class="keyTitle pull-left">{!project.IPM_Project_Name__c}
+									| </span>
+								<!-- Display below outputPanel when project type is Original-->
+                                <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
+									<span class="orgIcon"></span>
 								</apex:outputPanel>
-                                <!-- EPIC320 end here -->
-                                 <!-- Display below outputPanel when project phase is in progress-->
-                                <apex:outputPanel rendered="{!bPhaseChangeInProgress}">
-									<!-- EPIC320 starts here -->
-									<apex:outputPanel layout="block" rendered="{!displayGateDocument}"> 
-										<div class="documentStatus pl0">
-											<div class="{!projectDocStatusStyleClass}"> {!$Label.IPM_PHASECHAGE_INPROGRESS} </div>
+								<!-- Display below outputPanel when project type is Operational-->
+                                <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
+									<span class="oprtnIcon"></span>
+								</apex:outputPanel>
+								<!-- Display below outputPanel when project type is Rollout-->
+                                <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
+									<span class="rollIcon"></span>
+								</apex:outputPanel>
+								<span class="grentxt">{!project.IPMProject_Span__c}</span>
+							</div>
+							<div class="SecButtonSet">
+								<!-- Display below outputPanel when project leader is logged in-->
+                                <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader, isStopped)}">
+									<a class="icoButton edit1 editTaskBtn"
+										href="apex/IPM_CoreParameters?id={!projectId}"></a>
+								</apex:outputPanel>
+							</div>
+
+							<p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c}
+								| {!project.IPM_Project_Type__c}</p>
+                            <apex:outputpanel rendered="{!AND(isOriginal,!ISBLANK(project.IPM_Cluster__r.Name))}">
+								<div class="row">
+									<div class="col-sm-7 pr0 clusterSpacebtm">
+										<div class="keycontent">{!$Label.IPM_Project_Cluster}</div>
+									</div>
+									<div class="col-sm-5">{!project.IPM_Cluster__r.Name}</div>
+								</div>
+							</apex:outputpanel>
+							<p class="keycontent">{!project.IPM_Brand__c} |
+								{!project.IPM_Category_Text__c}</p>
+							<div class="greyborder"></div>
+							<!-- Display below outputPanel when project is fast track and project type is not operational-->
+                            <apex:outputPanel rendered="{!project.IPM_Fast_Track_Project__c && project.IPM_Project_Type__c != 'Operational'}">
+
+								<div class="row">
+									<!-- Display below outputPanel when project is fast track -->
+									<apex:outputPanel layout="block"
+										rendered="{!project.IPM_Fast_Track_Project__c}"
+										styleClass="col-sm-2 pr0">
+										<div>
+											<img
+												src="{!URLFOR($Resource.IPM_Resource, 'images/flag_homescreen.svg')}"
+												alt="Fast Track" class="fasttrack" />
 										</div>
 									</apex:outputPanel>
-                                </apex:outputPanel>
-                                <!-- Display below outputPanel when project phase is not in progress-->
-                                <apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">    
-                                        <apex:outputPanel layout="block" >
-                                            <div class="documentStatus pl0">
-                                                <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
-	                                                <apex:outputPanel rendered="{!project.IPM_PrepareForArchival__c}">
-	                                                	<div class="countDownTimer">Stopping in : <span id="cd_h">00</span>:<span id="cd_m">00</span>:<span id="cd_s">00</span>
-                                                		</div>
-                                                	</apex:outputPanel>
+									<!-- Display below outputPanel when project is fast track -->
+									<apex:outputPanel layout="block"
+										rendered="{!project.IPM_Fast_Track_Project__c}"
+										styleClass="col-sm-9 flagMargin pl0">
+										<div class="keycontent mt6">{!$Label.IPM_FastTrackProject}</div>
+									</apex:outputPanel>
+
+								</div>
+								<div class="greyborder"></div>
+							</apex:outputPanel>
+							<!-- Display below outputPanel when project is white space and project type is not operational-->
+                            <apex:outputPanel rendered="{!project.IPM_White_Space_Project__c && project.IPM_Project_Type__c != 'Operational'}">
+
+								<div class="row">
+									<!-- Display below outputPanel when project is white space -->
+									<apex:outputPanel layout="block"
+										styleClass="whiteSpaceContainer"
+										rendered="{!project.IPM_White_Space_Project__c}">
+										<p class="keycontent">{!$Label.IPM_White_Space_Project}</p>
+									</apex:outputPanel>
+								</div>
+								<div class="greyborder"></div>
+							</apex:outputPanel>
+							<!-- Display below outputPanel when project cluster name is not null-->
+                            <apex:outputPanel rendered="{!NOT(ISNULL(project.IPM_Clustering__r.Name))}">
+								<!-- Display below outputPanel when project phase is not in PLE-->
+								<apex:outputPanel styleClass="greyborder"
+									rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
+								<div class="row">
+									<div class="col-sm-4 pr0">
+										<div class="keycontent">{!$Label.IPM_Cluster}</div>
+									</div>
+									<div class="col-sm-8">
+										<div class="dueDate clusterAns">
+											<apex:outputField value="{!project.IPM_Clustering__r.Name}" />
+										</div>
+									</div>
+								</div>
+								<!-- Display below outputPanel when project phase is not in PLE-->
+								<apex:outputPanel styleClass="greyborder"
+									rendered="{!displayGateDocument}"></apex:outputPanel>
+							</apex:outputPanel>
+                             <!-- Display below outputPanel when showStopButton is true-->
+                            <apex:outputPanel rendered="{!showStopButton}">   
+                                <div data-toggle="modal" data-target="#stopModal" class="toolpos"> 
+                                    <div>
+                                        <input type="button" data-original-title="{!$Label.IPM_Global_Hover_Text}" data-placement="bottom" data-toggle="tooltip" class="ipmButton statusButtonOrange stop_btn"
+                                            value="Stop this Project" />
+                                     </div>
+                                </div>
+                                <apex:actionfunction name="stopProject" action="{!stopProject}" /> 
+                                <div id="stopModal" tabindex="-1" data-backdrop-limit="1" 
+                                    class="modal fade ipmDeleteModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;</button>
+                                                <div class="modal-title">{!$Label.IPM_Stop_Project}</div>
                                             </div>
-                                        </apex:outputPanel>
-                                    <!-- Display below outputPanel when project phase is in PLE-->
-                                    <apex:outputPanel rendered="{!bShowShipToTradeButton}">
-                                        <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
-                                            <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
+                                            <div class="">
+                                                <div class="confirmMsg">
+                                                    <p>
+                                                        <apex:outputText value="{!$Label.IPM_stop_project_msg}">
+                                                        </apex:outputText>
+                                                    </p>
+                                                </div>
+                                                <div class="Btnhold">
+                                                    <div class="floatR ipmButtonGroup ipmFromAction pull-right">
+                                                        <a href="#" title="{!$Label.IPM_CANCEL}" class="ipmButton"
+                                                            data-dismiss="modal">{!$Label.IPM_CANCEL}</a> <a href="#"
+                                                            title="Stop Project" onClick="stopProject();"
+                                                            class="ipmButton primary" data-dismiss="modal">{!$Label.IPM_Stop_Project}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-										<apex:variable value="true" var="showGreyBorder"/>
-                                    </apex:outputPanel>
-									<!-- Display below outputPanel when bShowChangeStatusButton is true-->
-                                    <apex:outputPanel rendered="{!bShowChangeStatusButton}">
-                                        <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
-                                            <input type="button" class="ipmButton" value="Change status"/>
-                                        </div>
-										<apex:variable value="true" var="showGreyBorder"/>
-                                    </apex:outputPanel>
-                                        <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.Id == null)}">
-                                            <div class="col-sm-12">
-                                                <apex:commandLink styleClass="ipmButton statusButtonOrange orange" value="Cancel Stopping Project"
-                                                    action="{!cancelStoppingProject}" />
-                                             </div>
-                                        </apex:outputPanel>
-                                        
-                                        <apex:outputPanel rendered="{!reactivateProjectFlag}">
-                                            <div class="col-sm-12">
-                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="Reactivate Project" rerender="tskPanel" 
-                                                    action="/apex/IPM_ProjectSetUpView?Pid={!projectId}" > 
-                                                </apex:commandLink>
-                                             </div>
-                                        </apex:outputPanel>
-   									<!--  Move to Next Phase button render related changes  starts here -->
-                                    <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
-		
-										<apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
-                                            <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
-                                                <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
-                                            </div> 
-											<apex:variable value="true" var="showGreyBorder"/>
-                                    </apex:outputPanel>
-                                    <!--  Move to Next Phase button render related changes  ends here -->
-                                </apex:outputPanel>
-                            </div>
-                            
-                            <apex:outputPanel styleClass="greyborder" layout="block" rendered="{! OR(displayGateDocument,showGreyBorder='true')}"></apex:outputPanel>
-                            </apex:outputPanel>
-                            <!-- Display below outputPanel when rolloutProjectRecentMilestone is not null-->
-                            <apex:outputPanel layout="block" styleClass="charterApprover" rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0 && !rolloutProjectRecentMilestone[0].IPM_Project__r.Is_Archieved__c}">
-                                <a href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
-                                                       
-			    </apex:outputPanel>
-                            <div class="row">
-                                <div class="col-sm-6 pr0">
-                                    <div class="keycontent">{!$Label.IPM_TARGET_LAUNCH_DATE}</div>
-                                </div>
-                                <div class="col-sm-6 pl0 txtalright">
-                                    <div class="dueDate"><apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" /></div>
-                                </div>
-                            </div>
-                            <div class="greyborder"></div>
-                            <div class="row">
-                                <div class="col-sm-6 pr0">
-                                    <div class="keycontent">{!$Label.IPM_ProjectRoute}</div>
-                                </div>
-                                <div class="col-sm-6 pl0 txtalright">
-                                    {!$Label.IPM_Description} {!project.IPM_Complexity__c}
-                                </div>
-                            </div>
-                            <!-- Display below outputPanel when hideFinSection is true-->
-                            <apex:outputpanel layout="block" styleClass="{!if(AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal) ,'thRedBg','')}" rendered="{!hideFinSection}">
-                            <div class="row">
-                                <div class="col-sm-6 pr0">
-                                    <div class="keycontent">{!$Label.IPM_Year_3_iTO}</div>
-                                </div>
-                                <div class="col-sm-6 pl0 txtalright">
-                                    &euro;{!project.IPM_Project_Y3iTO__c}mn
-                                </div>
-                            </div>
-                            </apex:outputpanel>
-                            <apex:outputpanel layout="block" styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}" rendered="{!AND(isOrgPrjRLplancreated,isOriginal)}">
-                            <div class="row">
-                                <div class="col-sm-6 pr0">
-                                    <div class="keycontent">{!$Label.IPM_Threshold_Status}</div> 
-                                </div>
-                                <div class= "col-sm-6 pl0 txtalright {!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'thBlueClr',''))}">
-                                    {!project.IPM_Threshold_Status__c} 
-                                </div>
-                            </div>
-                            </apex:outputpanel> 
-                            <apex:outputpanel layout="block" styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}" rendered="{!isOriginal}">
-                            <div class="row">
-                                <div class="col-sm-6 pr0">
-                                    <div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
-                                </div>
-                                <div class="col-sm-6 pl0 txtalright">
-                                    &euro;{!project.IPM_Category_Thresh__c}mn  
-                                </div>
-                            </div>
-							</apex:outputpanel>
-                            <!-- Display below outputPanel when isExemptFromThresholdITO is true-->
-                            <apex:outputPanel layout="block" styleClass="" rendered="{!isExemptFromThresholdITO}">
-                            <div class="greyborder"></div>
-                                <div class="row">
-                                    <div class="col-sm-12 pr0">
-                                        <div class="keycontent">{!$Label.IPM_Exempt_from_Threshold}</div>
                                     </div>
-
-
                                 </div>
+                            </apex:outputPanel>  
+							<!-- Display below outputPanel when project phase is not in PLE and current gate to display is not null-->
+							<apex:outputPanel layout="block"
+								rendered="{!displayGateDocument}">
 
-                                
-                            </apex:outputPanel>
-                            
-                            <div class="greyborder"></div>
+								<div class="row">
+									<div class="col-sm-7 pr0">
+										<div class="keycontent">{!$Label.IPM_CurrentDocument}</div>
+									</div>
+									<div class="col-sm-5">
+										<div class="percentage">
+											<a
+												href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText
+													Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a>
+										</div>
+									</div>
+								</div>
+								<!-- Display below outputPanel when project phase is not in PLE-->
+								<apex:outputPanel layout="block" styleClass="greyborder"
+									rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
+							</apex:outputPanel>
+							<!-- Display below outputPanel when project phase is not in PLE-->
+							<apex:outputPanel layout="block" styleClass=""
+								rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
+								<apex:variable value="false" var="showGreyBorder" />
+								<div class="row">
+									<!-- EPIC320 starts here -->
+									<apex:outputPanel layout="block"
+										rendered="{!displayGateDocument}">
+										<div class="col-sm-12 pr0">
+											<div class="keycontent">
+												{!$Label.IPM_Current_Gate_Document_Status}</div>
+										</div>
+									</apex:outputPanel>
+									<!-- EPIC320 end here -->
+									<!-- Display below outputPanel when project phase is in progress-->
+									<apex:outputPanel rendered="{!bPhaseChangeInProgress}">
+										<!-- EPIC320 starts here -->
+										<apex:outputPanel layout="block"
+											rendered="{!displayGateDocument}">
+											<div class="documentStatus pl0">
+												<div class="{!projectDocStatusStyleClass}">
+													{!$Label.IPM_PHASECHAGE_INPROGRESS}</div>
+											</div>
+										</apex:outputPanel>
+									</apex:outputPanel>
+									<!-- Display below outputPanel when project phase is not in progress-->
+									<apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">
+										<apex:outputPanel layout="block">
+											<div class="documentStatus pl0">
+												<div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
+                                                    <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null)}">
+                                                        <div class="countDownTimer">Stopping in : <span id="cd_h">00</span>:<span id="cd_m">00</span>:<span id="cd_s">00</span>
+													</div>
+												</apex:outputPanel>
+											</div>
+										</apex:outputPanel>
+										<!-- Display below outputPanel when project phase is in PLE-->
+										<apex:outputPanel rendered="{!bShowShipToTradeButton}">
+											<div class="SecStatusUpdate dstatusButton shipTrade"
+												data-toggle="modal" data-target="#shipToPLE"
+												data-backdrop="static" data-keyboard="false">
+												<input type="button" class="ipmButton"
+													value="{!$Label.IPM_Ship_To_Trade_Button}" />
+											</div>
+											<apex:variable value="true" var="showGreyBorder" />
+										</apex:outputPanel>
+										<!-- Display below outputPanel when bShowChangeStatusButton is true-->
+										<apex:outputPanel rendered="{!bShowChangeStatusButton}">
+											<div class="openModal SecStatusUpdate dstatusButton"
+												modalTitle="Change current document status"
+												data-toggle="modal" data-target="#ipmModal"
+												value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}"
+												data-backdrop="static" data-keyboard="false"
+												title="{!$Label.IPM_UPDATE_STATUS}">
+												<input type="button" class="ipmButton" value="Change status" />
+											</div>
+											<apex:variable value="true" var="showGreyBorder" />
+										</apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null)}">
+											<div class="col-sm-12">
+                                                <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="Cancel Stopping Project"
+													action="{!cancelStoppingProject}" />
+											</div>
+										</apex:outputPanel>
+
+										<apex:outputPanel rendered="{!reactivateProjectFlag}">
+											<div class="col-sm-12">
+                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="Reactivate Project" rerender="tskPanel" 
+													action="/apex/IPM_ProjectSetUpView?Pid={!projectId}">
+												</apex:commandLink>
+											</div>
+										</apex:outputPanel>
+										<!--  Move to Next Phase button render related changes  starts here -->
+										<apex:outputPanel layout="block"
+											styleClass="col-sm-12 SecButtonSet"
+											rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
+
+											<apex:actionStatus startText="" id="Loading"
+												startStyleClass="proInit" />
+											<div class="SecStatusUpdate removebutton statusButton"
+												data-toggle="modal" data-target="#ipmMoveFeasibility"
+												data-backdrop="static" data-keyboard="false">
+												<span class="ipmButton Primary">{!$Label.IPM_Move_To}
+													{!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market
+													Ready','Market Deployment'))))}</span>
+											</div>
+											<apex:variable value="true" var="showGreyBorder" />
+										</apex:outputPanel>
+										<!--  Move to Next Phase button render related changes  ends here -->
+									</apex:outputPanel>
+								</div>
+
+								<apex:outputPanel styleClass="greyborder" layout="block"
+									rendered="{! OR(displayGateDocument,showGreyBorder='true')}"></apex:outputPanel>
+							</apex:outputPanel>
+							<!-- Display below outputPanel when rolloutProjectRecentMilestone is not null-->
+							<apex:outputPanel layout="block" styleClass="charterApprover"
+								rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0 && !rolloutProjectRecentMilestone[0].IPM_Project__r.Is_Archieved__c}">
+								<a
+									href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField
+									value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
+
+							</apex:outputPanel>
+							<div class="row">
+								<div class="col-sm-6 pr0">
+									<div class="keycontent">{!$Label.IPM_TARGET_LAUNCH_DATE}</div>
+								</div>
+								<div class="col-sm-6 pl0 txtalright">
+									<div class="dueDate">
+                                        <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" />
+									</div>
+								</div>
+							</div>
+							<div class="greyborder"></div>
+							<div class="row">
+								<div class="col-sm-6 pr0">
+									<div class="keycontent">{!$Label.IPM_ProjectRoute}</div>
+								</div>
+								<div class="col-sm-6 pl0 txtalright">
+									{!$Label.IPM_Description} {!project.IPM_Complexity__c}</div>
+							</div>
+							<!-- Display below outputPanel when hideFinSection is true-->
+							<apex:outputpanel layout="block"
+								styleClass="{!if(AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal) ,'thRedBg','')}"
+								rendered="{!hideFinSection}">
+								<div class="row">
+									<div class="col-sm-6 pr0">
+										<div class="keycontent">{!$Label.IPM_Year_3_iTO}</div>
+									</div>
+									<div class="col-sm-6 pl0 txtalright">
+										&euro;{!project.IPM_Project_Y3iTO__c}mn</div>
+								</div>
+							</apex:outputpanel>
+							<apex:outputpanel layout="block"
+								styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}"
+								rendered="{!AND(isOrgPrjRLplancreated,isOriginal)}">
+								<div class="row">
+									<div class="col-sm-6 pr0">
+										<div class="keycontent">{!$Label.IPM_Threshold_Status}</div>
+									</div>
+									<div
+										class="col-sm-6 pl0 txtalright {!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'thBlueClr',''))}">
+										{!project.IPM_Threshold_Status__c}</div>
+								</div>
+							</apex:outputpanel>
+							<apex:outputpanel layout="block"
+								styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}"
+								rendered="{!isOriginal}">
+								<div class="row">
+									<div class="col-sm-6 pr0">
+										<div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
+									</div>
+									<div class="col-sm-6 pl0 txtalright">
+										&euro;{!project.IPM_Category_Thresh__c}mn</div>
+								</div>
+							</apex:outputpanel>
+							<!-- Display below outputPanel when isExemptFromThresholdITO is true-->
+							<apex:outputPanel layout="block" styleClass=""
+								rendered="{!isExemptFromThresholdITO}">
+								<div class="greyborder"></div>
+								<div class="row">
+									<div class="col-sm-12 pr0">
+										<div class="keycontent">{!$Label.IPM_Exempt_from_Threshold}</div>
+									</div>
+
+
+								</div>
+
+
+							</apex:outputPanel>
+
+							<div class="greyborder"></div>
 							<!-- Display below outputPanel when project type is not operational and hideFinSection is true-->
                             <apex:outputpanel rendered="{!if(project.IPM_Project_Type__c!='Operational' && hideFinSection,true,false )}">
-                            
-                            <div class="row">
-                                <div class="col-sm-8 pr0">
-                                    <div class="keycontent">{!$Label.IPM_BusinessImpact}</div>
-                                </div>
-                                <div class="col-sm-3 pl0">
-                                    {!globalbusinessImpactStr}
-                                </div>
-                            </div>
-                            <div class="greyborder"></div>
-                            </apex:outputpanel>
-                            <!-- Display below outputPanel when projectPriority is not null-->
-                            <apex:outputpanel rendered="{!project.IPMProject_Span__c==$Label.IPM_Local}">  
-                                <div class="row">
-                                    <div class="col-sm-8 pr0">
-                                        <div class="keycontent">{!$Label.IPM_ProjectPriority}</div>
-                                    </div>
-                                    <div class="col-sm-3 pl0">
-                                        {!projectPriority}
-                                    </div>
-                                </div>
-                                <div class="greyborder"></div>
-                            </apex:outputpanel>
 
-                            <div class="row mt20">
-                                <div class="col-sm-2">                        
-                                    <img class="cirimg" alt="Project Leader" src="{!project.IPM_Project_Leader__r.SmallPhotoUrl}"/>
-                                </div>
-                                <div class="col-sm-10"> 
-                                    <div class="designation">{!$Label.IPM_Project_Leader}</div>
-                                    <div class="author">{!project.IPM_Project_Leader__r.Name}</div>
-                                </div>
-                            </div>
-                            <div class="greyborder"></div>
-                            <div class="row mt20">
-                                <div class="col-sm-2">                        
-                                    <img class="cirimg" alt="Project Gatekeeper" src="{!project.IPM_Project_Gatekeeper__r.SmallPhotoUrl}"/>
-                                </div>
-                                <div class="col-sm-10"> 
-                                    <div class="designation">{!$Label.IPM_Gatekeeper}</div>
-                                    <div class="author">{!project.IPM_Project_Gatekeeper__r.Name}</div>
-                                </div>
-                            </div>
-                            <div class="greyborder"></div>
-                            <div>
-                                <p class="keyprojectDetails mt20">{!$Label.IPM_DescriptionLabel}</p>
-                                <p class="keycontent">{!project.IPM_Project_Description__c}</p>
-                            </div>
-                        </div>
-                            <apex:actionFunction name="movethePLE" action="{!moveToPLE}" reRender=""/>
-                            <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
-                            <div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            
-                                            <div class="modal-title">{!$Label.IPM_UpdatePhaseConfirmation}</div>
-                                        </div>
-                                        
-                                        <div class="modal-body">
-                                            <div class="container-fluid">
-                                                <div class="row">    
-                                                    <div class="col-sm-12">
-                                                        <span class="skipDesc">{!nextPhaseMessage}</span>
-                                                    </div>
-                                                    
-                                                    <div class="skipButtoncontainer txtAlignright pull-right">
-                                                        <apex:outputPanel id="SkipBossC">
-                                                            <div class="buttonMarginRight noPadright pull-left" >
-                                                                <input type="button" data-dismiss="modal" class="ipmButton" value="Go back" />
-                                                            </div> 
-                                                        </apex:outputPanel>
-                                                        <div class="pull-left noPadright">
-                                                            <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c='Ideas'}">
-                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
-                                                        </apex:commandButton>
-                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c!='Ideas'}">
-                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
-                                                        </apex:commandButton>
-                                                        </div> 
-                                                        
-                                                    </div>
-                                                </div>  
-                                            </div>          
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        <!--   MOve to Next Phase Modal Pop-up Section ends here --------->
-                            
-                            <!-- ------Ship To trade Modal starts here  -->
-                            <div id="shipToPLE" class="modal fade">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <div class="modal-title">{!$label.IPM_Confirm}</div>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container-fluid">
-                                                <div class="row">    
-                                                    <div class="col-sm-12">
-                                                        <span class="tradeDesc">{!$label.IPM_Move_To_PLE_Details}</span>
-                                                    </div>
-                                                    <div class="tradeButtonContainer txtAlignright pull-right">
-                                                        <apex:outputPanel id="cancelPLEId">
-                                                            <div class="buttonMarginRight noPadright pull-left" >
-                                                                <input type="button" data-dismiss="modal" class="ipmButton" value="Cancel" />
-                                                            </div> 
-                                                        </apex:outputPanel>
-                                                        <div class="pull-left noPadright">
-                                                            <apex:actionStatus startText="" id="confLoading" startStyleClass="proInit"/>
-                                                            <input type="button" onclick="movePLE();" class="ipmButton primary" value="Confirm" />
-                                                        </div> 
-                                                    </div>
-                                                </div>  
-                                            </div>          
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ------Ship To trade Modal ends here  -->
-                            
-                    <!-- IPM_ProjectOverviewComp Ends-->                  
-					<!-- Display below outputPanel when bPhaseChangeInProgress is false and project phase is not PLE-->
-                    <apex:outputPanel rendered="{! AND( !bPhaseChangeInProgress, project.IPM_Phase__c!='PLE')}">                    
-						<!-- Display below outputPanel when project is not archived -->
-                        <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
-                            <div class="col-sm-3">
-                                <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay}
-                                <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_BELOW_ARE_QUICK}" data-placement="bottom" data-toggle="tooltip"></a>
-                                             </span>
-                                </div>
-                                <div class="greyborder"></div>
-								<!-- Display below outputPanel when projectSections is not null -->
-                                <apex:outputPanel layout="block" styleClass="overviewGreyBg" rendered="{!projectSections != NULL && projectSections.size ==  0 }" >
+								<div class="row">
+									<div class="col-sm-8 pr0">
+										<div class="keycontent">{!$Label.IPM_BusinessImpact}</div>
+									</div>
+									<div class="col-sm-3 pl0">{!globalbusinessImpactStr}</div>
+								</div>
+								<div class="greyborder"></div>
+							</apex:outputpanel>
+							<!-- Display below outputPanel when projectPriority is not null-->
+                            <apex:outputpanel rendered="{!project.IPMProject_Span__c==$Label.IPM_Local}">
+								<div class="row">
+									<div class="col-sm-8 pr0">
+										<div class="keycontent">{!$Label.IPM_ProjectPriority}</div>
+									</div>
+									<div class="col-sm-3 pl0">{!projectPriority}</div>
+								</div>
+								<div class="greyborder"></div>
+							</apex:outputpanel>
+
+							<div class="row mt20">
+								<div class="col-sm-2">
+									<img class="cirimg" alt="Project Leader"
+										src="{!project.IPM_Project_Leader__r.SmallPhotoUrl}" />
+								</div>
+								<div class="col-sm-10">
+									<div class="designation">{!$Label.IPM_Project_Leader}</div>
+									<div class="author">{!project.IPM_Project_Leader__r.Name}</div>
+								</div>
+							</div>
+							<div class="greyborder"></div>
+							<div class="row mt20">
+								<div class="col-sm-2">
+									<img class="cirimg" alt="Project Gatekeeper"
+										src="{!project.IPM_Project_Gatekeeper__r.SmallPhotoUrl}" />
+								</div>
+								<div class="col-sm-10">
+									<div class="designation">{!$Label.IPM_Gatekeeper}</div>
+									<div class="author">{!project.IPM_Project_Gatekeeper__r.Name}</div>
+								</div>
+							</div>
+							<div class="greyborder"></div>
+							<div>
+								<p class="keyprojectDetails mt20">{!$Label.IPM_DescriptionLabel}</p>
+								<p class="keycontent">{!project.IPM_Project_Description__c}</p>
+							</div>
+						</div>
+						<apex:actionFunction name="movethePLE" action="{!moveToPLE}"
+							reRender="" />
+						<!--   MOve to Next Phase Modal Pop-up Section starts here --------->
+						<div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+
+										<div class="modal-title">{!$Label.IPM_UpdatePhaseConfirmation}</div>
+									</div>
+
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-12">
+													<span class="skipDesc">{!nextPhaseMessage}</span>
+												</div>
+
+												<div class="skipButtoncontainer txtAlignright pull-right">
+													<apex:outputPanel id="SkipBossC">
+														<div class="buttonMarginRight noPadright pull-left">
+															<input type="button" data-dismiss="modal"
+																class="ipmButton" value="Go back" />
+														</div>
+													</apex:outputPanel>
+													<div class="pull-left noPadright">
+														<apex:commandButton action="{!moveToNextDocument}"
+															status="Loading"
+															value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}"
+															oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'"
+															styleClass="ipmButton primary"
+															rendered="{!project.IPM_Phase__c='Ideas'}">
+															<apex:param name="approveDocumentStatus" value="Approved"
+																assignTo="{!projectDoc.IPM_Document_Status__c}" />
+														</apex:commandButton>
+														<apex:commandButton action="{!moveToNextDocument}"
+															status="Loading"
+															value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}"
+															oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'"
+															styleClass="ipmButton primary"
+															rendered="{!project.IPM_Phase__c!='Ideas'}">
+															<apex:param name="approveDocumentStatus" value="Approved"
+																assignTo="{!projectDoc.IPM_Document_Status__c}" />
+														</apex:commandButton>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--   MOve to Next Phase Modal Pop-up Section ends here --------->
+
+						<!-- ------Ship To trade Modal starts here  -->
+						<div id="shipToPLE" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<div class="modal-title">{!$label.IPM_Confirm}</div>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-12">
+													<span class="tradeDesc">{!$label.IPM_Move_To_PLE_Details}</span>
+												</div>
+												<div class="tradeButtonContainer txtAlignright pull-right">
+													<apex:outputPanel id="cancelPLEId">
+														<div class="buttonMarginRight noPadright pull-left">
+															<input type="button" data-dismiss="modal"
+																class="ipmButton" value="Cancel" />
+														</div>
+													</apex:outputPanel>
+													<div class="pull-left noPadright">
+														<apex:actionStatus startText="" id="confLoading"
+															startStyleClass="proInit" />
+														<input type="button" onclick="movePLE();"
+															class="ipmButton primary" value="Confirm" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- ------Ship To trade Modal ends here  -->
+
+						<!-- IPM_ProjectOverviewComp Ends-->
+						<!-- Display below outputPanel when bPhaseChangeInProgress is false and project phase is not PLE-->
+                        <apex:outputPanel rendered="{! AND( !bPhaseChangeInProgress, project.IPM_Phase__c!='PLE')}">
+							<!-- Display below outputPanel when project is not archived -->
+                            <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}">
+								<div class="col-sm-3">
+									<div class="topheader">
+										{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay} <span
+											class="SecButtonSet infoMarTop"> <a
+											class="icoButton info smalllinfo"
+											data-original-title="{!$Label.IPM_BELOW_ARE_QUICK}"
+											data-placement="bottom" data-toggle="tooltip"></a>
+										</span>
+									</div>
+									<div class="greyborder"></div>
+									<!-- Display below outputPanel when projectSections is not null -->
+									<apex:outputPanel layout="block" styleClass="overviewGreyBg"
+										rendered="{!projectSections != NULL && projectSections.size ==  0 }">
                                     {!$Label.IPM_NoGateDocSecMesg}
                                 </apex:outputPanel>
-								<!-- Display below outputPanel when projectSections is not null -->
-                                <apex:outputPanel rendered="{!projectSections != NULL && projectSections.size > 0}" >    
-                                    <div class="">
-                                        <div class="fl">
-                                            <div class="fl submitted mr10"></div> 
-											<!-- Display below outputPanel when current user id is same as project leader user -->
-                                            <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >      
-                                            	<span class="f12 pr10">{!$Label.IPM_FILLED_IN}</span>
-                                            </apex:outputPanel>
-                                            <!-- Display below outputPanel when current user id is not same as project leader user -->
-                                            <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >         
-                                            	<span class="f12 pr10">{!$Label.IPM_STARTED}</span>
-                                            </apex:outputPanel>	
-                                            
-                                        </div>
-                                        <div class="fl">
-                                            <div class="fl notsubmitted mr10"></div> <span class="f12">{!$Label.IPM_NOT_STARTED}</span>
-                                        </div>           
-                                        <apex:repeat value="{!projectSections}" var="pS">
-                                            <div class="pb3 pt10 clearfix">                       
-													<!-- Display below outputPanel when current user id is same as project leader user -->
-                                                    <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >       
-                                                        <div class="{!IF(pS.IPM_Section_Status__c='Filled-in', 'secblock', 'secnofill')}">
-                                                            <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
-                                                                {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
-                                                            </a></span>
-                                                        </div>
-                                                    </apex:outputPanel>  
-													<!-- Display below outputPanel when current user id is not same as project leader user -->
-                                                    <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >       
-                                                        <div class="{!IF(pS.IPM_Functional_Input_Status__c='Started', 'secblock', 'secnofill')}">
-                                                            <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
-                                                                {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
-                                                            </a></span>
-                                                        </div>
-                                                    </apex:outputPanel>         
-                                             </div>                
-                                        </apex:repeat>
-                                    </div>
-                                </apex:outputPanel>
-                            </div>
-                        </apex:outputPanel>                     
-                        <!-- IPM_ToDoTaskComp Starts -->
-						<!-- Display below outputPanel when project is not archived -->
-                        <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
-                            <div class="col-sm-3">
-                                <apex:outputPanel id="headPnl">
-                                    
-                                        <div class="topheader">{!$Label.IPM_MY_TO_DOs_IN} {!currGateToDisplay}<span class="mlr5px greytxt">|</span>{! If(project.IPM_PM_Approach__c='Internal',allIncompleteTasks,'')}
-                                        <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_BELOW_ARE_THE_TYPICAL}" data-placement="bottom" data-toggle="tooltip"></a>
-                                             </span>
-                                        </div>
-                                    
-                                </apex:outputPanel>    
-                                <div class="greyborder"></div>
-                                <div class="">
-                                <apex:outputPanel id="nonnegotiabletodo"> 
-									<!-- Display below outputPanel when project approach is internal and tasks list has records -->
-                                    <apex:outputPanel rendered="{!tasks.size>0 && project.IPM_PM_Approach__c='Internal'}">   
-                                        <p class="itatxt"><i>* {!$Label.IPM_NON_NEGOTIABLE_TO_DOs}</i></p>
-                                    </apex:outputPanel>    
-                                    </apex:outputPanel>
-                                    <apex:actionStatus startText="updating..." id="myStatus">
-                                        <apex:facet name="start">
-                                            <img height="15" width="15" src="/img/loading32.gif" alt="Loading.." />
-                                        </apex:facet>
-                                    </apex:actionStatus>
-                                    <apex:outputPanel id="tskPanel">
-										<!-- Display below outputPanel when project approach is internal and tasks list has records -->
-                                        <apex:outputPanel rendered="{!tasks.size>0 && project.IPM_PM_Approach__c='Internal'}">
-                                        <apex:repeat value="{!tasks}" var="t">
-                                            <div class="row">                       
-                                                <div class="col-sm-2 ipmCheckbox {!IF(t.IPM_Completed__c,'selected', 'notselected')}">
-						             <apex:outputPanel rendered="{!!project.IPM_PrepareForArchival__c}">
-                                                                <input type="checkbox" id="{!t.Id}"
-                                                                    onClick="markComplete('{!t.Id}',this.checked);"
-                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}" />
-                                                                <label for="{!t.Id}"
-                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
-                                                            </apex:outputPanel> 
-                                                            <apex:outputPanel rendered="{!project.IPM_PrepareForArchival__c}">
-                                                                <input type="checkbox" id="{!t.Id}"
-                                                                    onClick="markComplete('{!t.Id}',this.checked);"
-                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}" disabled="true"/>
-                                                                <label for="{!t.Id}"
-                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
-                                                            </apex:outputPanel>
-                                                </div>                        
-                                                <div class="col-sm-10 pl5">
-                                                    <div class="checktext">
-														<!-- Display below outputPanel when task type is Non-Negotiable-->
-                                                        <apex:outputPanel rendered="{!t.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel> 
-                                                        {!t.IPM_Task_Name__c}
-                                                    <div class="dueDate"><apex:outputField value="{!t.IPM_Due_Date1__c}" /></div>
-                                                </div>
-                                                <div class="bluetxt">
-                                                    <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!t.IPM_Project__c}&projDocSecId={!t.IPM_Project_Document_Section__c}" >
-                                                        {!t.IPM_Project_Document_Section__r.IPM_Section_Sequence__c} {!t.IPM_Project_Document_Section__r.IPM_Section_Name__c}
-                                                    </a>
-                                                </div>                           
-                                            </div>
-                                        </div>
-                                        <div class="greybor"></div>
-                                    </apex:repeat>
-                                        <div class="pull-right">
-										<!-- Display below outputPanel when con.ResultSize is greater than zero-->
-                                        <apex:panelGrid columns="7" styleClass="panel-group clearfix" id="cmdBtnPanel" rendered="{!(if(con.ResultSize>0,true,false))}">
-                                            <apex:commandButton styleClass="proMytodoArrows {!If(hasPrevious,'proMytodoActive','proMytodoNotActive')}" disabled="{!!hasPrevious}" action="{!first}" value="<<" rerender="tskPanel,cmdBtnPanel"/ >
-                                             <apex:commandButton styleClass="proMytodoArrows {!If(hasPrevious,'mstoneActive','proMytodoNotActive')}" disabled="{!!hasPrevious}"  action="{!previous}" value="<" rerender="tskPanel,cmdBtnPanel"/>
-                                             <span class="paginationLink proMytodoPagination">Records {!IF(noOfRecords>0,(pageNumber * size)+1-size,0)}-{!IF((pageNumber * size)>noOfRecords, noOfRecords,(pageNumber * size))} of {!noOfRecords}</span>
-                                             <apex:commandButton styleClass="proMytodoArrows {!If(hasNext,'proMytodoActive','proMytodoNotActive')}" disabled="{!!hasNext}"  action="{!next}" value=">" rerender="tskPanel,cmdBtnPanel"/>
-                                             <apex:commandButton styleClass="proMytodoArrows {!If(hasNext,'proMytodoActive','proMytodoNotActive')}" disabled="{!!hasNext}"  action="{!last}"  value=">>" rerender="tskPanel,cmdBtnPanel"/>
+									<!-- Display below outputPanel when projectSections is not null -->
+                                    <apex:outputPanel rendered="{!projectSections != NULL && projectSections.size > 0}">
+										<div class="">
+											<div class="fl">
+												<div class="fl submitted mr10"></div>
+												<!-- Display below outputPanel when current user id is same as project leader user -->
+                                                <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}">
+													<span class="f12 pr10">{!$Label.IPM_FILLED_IN}</span>
+												</apex:outputPanel>
+												<!-- Display below outputPanel when current user id is not same as project leader user -->
+                                                <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}">
+													<span class="f12 pr10">{!$Label.IPM_STARTED}</span>
+												</apex:outputPanel>
 
-                                             <apex:outputPanel styleClass="pgFetch">
-                                                <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
-                                            </apex:outputPanel>
-                                        </apex:panelGrid>
-                                        </div>
-                                </apex:outputPanel>
-								<!-- Display below outputPanel when project approach is external or tasks list has no records -->
-                                <apex:outputPanel layout="block" styleClass="overviewGreyBg" rendered="{!NOT(tasks.size > 0) || project.IPM_PM_Approach__c='External'}">{!$Label.IPM_NoToDos}</apex:outputPanel>
-                                </apex:outputPanel>    
-                            </div>
-                        </div>
-                            <apex:actionFunction name="markComplete" action="{!markComplete}" reRender="compScript,tskPanel,nonnegotiabletodo,headPnl" status="myStatus">
-                                <apex:param name="tskId" assignTo="{!taskId}" value="" />
-                                <apex:param name="isChecked" assignTo="{!isChecked}" value="" />
-                            </apex:actionFunction>
-                    </apex:outputPanel>                   
-                </apex:outputPanel>
-                <!-- Display below outputPanel when project phase is PLE and bPhaseChangeInProgress is true -->
-                <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , project.IPM_Phase__c='PLE')}">                          
-                    <div class="col-sm-6 text-center stopsection" id="stopsection">
-                        <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_ple.png')}" alt="PLE" /></div>                                   
-                        <div class="successStyle">{!$Label.IPM_ProjectLaunchMeassage}</div>
-						<div class="launchDate">on&nbsp;<apex:outputField value="{!project.IPM_Actual_Launch_Date__c }"/></div>                                 
-                    </div>
-                </apex:outputPanel>  
-                <!-- Display below outputPanel when project is archived and bPhaseChangeInProgress is false -->                     
-                <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , if(project.Is_Archieved__c==true,true,false))}">            
-                    <div class="col-sm-6 text-center stopsection" id="stopsection">
-                        <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_g.png')}" alt="Stop" /></div>        
-                        <div>{!$Label.IPM_PROJECT_STOPPED}</div>
-                        <div>On &nbsp;<apex:outputfield value=" {!project.IPM_Stopped_Date_Time__c}"/> by {!project.IPM_Project_Stopped_By__c} </div>
-                        <div class="infosec">
-                            <p><strong>{!$Label.IPM_COMMENTS}</strong></p>
-                            <p>{!project.IPM_Stopped_Comments__c}</p>
-                        </div>
-                    </div>
-                </apex:outputPanel>
-                <!-- Display below outputPanel when bPhaseChangeInProgress is true -->  
-                <apex:outputPanel rendered="{!bPhaseChangeInProgress}">                        
-                    <div class="col-sm-6 text-center stopsection" id="stopsection">
-                       <div class="successStyle">{!$Label.IPM_PhaseChangeInProgressMsg}</div>
-                    </div>
-                </apex:outputPanel> 
-                
-                <!-- BET component Section Begins -->
-                <apex:outputPanel >
-                    <div class="col-sm-3">
-                    
-                    <!-- To place the help symbol in the top right hand corner of page -->
-                    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                    </apex:outputPanel>
-					<!-- Display below outputPanel when showBET is true -->  
-                    <apex:outputPanel rendered="{!showBET}">
-                    <div class="topheader">{!$Label.IPM_BETLabel}</div>                    
-                    <div class="greyborder"></div> 
-					<!-- Display below outputPanel when current user is PL and project is original -->  
-                    <apex:outputPanel layout="block" styleClass="changeBetLnk" rendered="{!isProjLeader && isOriginal}">
-                         <apex:outputLink value="{!$Page.IPM_CoreParameters}?id={!projectId}&BETOptions=1" >{!$Label.IPM_ChangeBETSelection}</apex:outputLink>
-                    </apex:outputPanel>
-					<!-- Display below outputPanel when betInformationMessage is not empty -->  
-                    <apex:outputPanel rendered="{!betInformationMessage != ''}" styleClass="infoMsg">
-                    <apex:outputText value="{!betInformationMessage}" escape="false"/>
-                    </apex:outputPanel>                    
-					<!-- Display below outputPanel when BETId should not be null -->  					
-                    <apex:outputpanel rendered="{!BETId!= null}">
-                        <div class="row">
-                            <div class="col-xs-3 headerlogo">
-                                <apex:image value="{!$Resource.IPM_BET_Logo}" />
-                            </div>  
-                            <div class="col-xs-8 noPadleft noPadright betName col-xs-8-1024"> 
-                                <div class="author">{!$Label.IPM_BETName}</div>
-                                <div class="designation">{!betWrapper.betName}</div>
-                            </div>
-                        </div>                        
-                        <div class="row">
-                            <div class="col-xs-12 betStatus"> 
-                                <div class="author">{!$Label.IPM_BETStatus}</div>
-                                <div class="designation">{!betWrapper.status}</div>
-                             </div>
-                        </div>
-                            <div class="col-xs-12 {!if(betWrapper.status == $Label.IPM_BETStatus_Unreleased,'betReleseDate','betReleseDateFull')}"> 
-                                <div class="author">{!if(betWrapper.status == $Label.IPM_BETStatus_Unreleased,$Label.IPM_BETFirstReleaseDate,$Label.IPM_BETFirstReleaseOn)}</div>
-                                <div class="designation">
-									<!-- Display below outputText when BET status is unreleased -->  
-                                    <apex:outputText value="{0,date,dd'/'MM'/'yyyy}" rendered="{!betWrapper.status == $Label.IPM_BETStatus_Unreleased}" >
-                                            <apex:param value="{!betWrapper.firstReleaseDueDate}" /> 
-                                            </apex:outputText>
-											<!-- Display below outputText when BET status is not unreleased --> 
-                                            <apex:outputText value="{0,date,dd'/'MM'/'yyyy}" rendered="{!betWrapper.status != $Label.IPM_BETStatus_Unreleased}" >
-                                        <apex:param value="{!betWrapper.firstReleaseDate}" /> 
-                                    </apex:outputText>
-                                </div>
-                             </div>                        
-                       
-                            <div class="col-xs-12 {!if(betWrapper.status == $Label.IPM_BETStatus_FinalRelease,'betReleseDateFull','betReleseDate')}"> 
-                                <div class="author">{!if(betWrapper.status == $Label.IPM_BETStatus_FinalRelease,$Label.IPM_BETFinalReleaseOn,$Label.IPM_BETFinalReleaseDate)}</div>
-                                <div class="designation">
-									<!-- Display below outputText when BET status is final released -->  
-                                    <apex:outputText value="{0,date,dd'/'MM'/'yyyy}" rendered="{!betWrapper.status == $Label.IPM_BETStatus_FinalRelease}" >
-                                        <apex:param value="{!betWrapper.finalReleaseDate}" /> 
-                                    </apex:outputText>
-									<!-- Display below outputText when BET status is not final released -->  
-                                    <apex:outputText value="{0,date,dd'/'MM'/'yyyy}" rendered="{!betWrapper.status != $Label.IPM_BETStatus_FinalRelease}">
-                                                <apex:param value="{!betWrapper.finalReleaseDueDate}" /> 
-                                            </apex:outputText>
-                                </div>
-                             </div> 
-                         <div class="row">
-                            <div class="col-xs-2">                        
-                                <img class="cirimg" alt="Profile" src="{!betOwner.SmallPhotoUrl}"/>
-                            </div>
-                            <div class="col-xs-10"> 
-                                <div class="author">{!$Label.IPM_BETOwner}</div>
-                                <div class="designation">{!betOwner.name}</div>
-                            </div>
-                         </div>
-                         <div class="greyborder"></div>
-                   	</apex:outputpanel>
-					<!-- Display below outputPanel when isIdeasPhase is false-->  
-                    <apex:outputPanel rendered="{!!isIdeasPhase}" id="betButtonSection">
-                        <apex:outputpanel rendered="{!hasBETAccess == $Label.IPM_BETRequestPending}">
-                            <div class="row">
-                                <div class="col-sm-10"> 
-                                    <div class="author">{!$Label.IPM_BETRequestStatus}:</div>
-                                    <div class="designation">{!$Label.IPM_BETApprovalPending}</div>
-                                 </div>
-                             </div>
-                        </apex:outputpanel>
-						<!-- Display below outputPanel when project is not original and BETid is not null and bet status is Unreleased--> 
-                        <apex:outputpanel rendered="{!!isOriginal  && BETId != null && betWrapper.status == $Label.IPM_BETStatus_Unreleased}">
-                            <div class="row">
-                                <div class="col-sm-10"> 
-                                    <div class="designation">{!if(isProjLeader,$Label.IPM_BETAccessMsgRegionalLocal,$Label.IPM_BETAccessMsgRegionalLocal)}</div>
-                                </div>
-                            </div>
-                        </apex:outputpanel>  
-						<!-- Display below commandLink when BETid is not null and hasBETAccess--> 
-                          <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='')}" styleclass="ipmButton primary" target="_blank"/>
-                        <!-- Display below outputPanel when project is not original,BETid is not null,hasBETAccess ==$Label.IPM_BETRequestNo, and bet status is Unreleased--> 
-                        <apex:outputPanel rendered="{!(BETId!=null && hasBETAccess ==$Label.IPM_BETRequestNo && !(!isOriginal  && betWrapper.status == $Label.IPM_BETStatus_Unreleased)&& isAcessDuetoTeam)}">
-                            <input type="button" class="ipmButton primary" value="{!$Label.IPM_RequestAccess}" onClick="requestBETAccess();"/>
-                         </apex:outputPanel>
-						 <!-- Display below outputPanel when project is original,current user is PL,not a ideas phase and toolkit option is not no bet--> 
-                        <apex:outputPanel rendered="{!(isOriginal && isProjLeader && !isIdeasPhase && toolkitOption != $Label.IPM_BET_NoBET)}">
-                            <!-- Display below outputPanel when BETid is null and toolkit option is not create new bet--> 
-                            <apex:outputPanel rendered="{!(BETId == null && toolkitOption == $Label.IPM_CreateNewBET)}">
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <a id="createBETButton" class="ipmButton createBET primary" data-toggle="modal" data-target="#initiateProjectBKPanel" data-backdrop="static" data-keyboard="false">{!$Label.IPM_CreateNewBET}</a>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
-							<!-- Display below outputPanel when showSuggestedMembers is true--> 
-                            <apex:outputPanel rendered="{!showSuggestedMembers}">
-                                <a id="suggestedMembersButton" class="suggestedmembers" data-toggle="modal" data-target="#initiateProjectBKPanel" data-backdrop="static" data-keyboard="false">{!$Label.IPM_AddBETMembers}</a>
-                            </apex:outputPanel>
-                            
-                            <div id="initiateProjectBKPanel" class="modal fade in" aria-hidden="true" data-keyboard="false" data-backdrop="static" data-focus-on="input:first">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                     
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <div class="modal-title">{!if(showSuggestedMembers && !memberCallFromURL,$Label.IPM_AddBETMembers,$Label.IPM_CreateNewBETTitle)}</div>
-                                        </div>
-                                    <div class="createNewBrandExp">
-                                        <div class="italicTxt">{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
-                                        <div id="ipmGetStartedTab" class="modal-body ipmGetStartedTab">
-                                        <!-- Display below outputPanel when showSuggestedMembers is false--> 
-                                        <apex:outputpanel rendered="{!!showSuggestedMembers}" >   
-                                            <ul class="ipmStartedTabs">
-                                                <li class="betdetails tabOdd active"><a href="#betdetails"  >{!$Label.IPM_BETDetails}</a></li>
-                                                <li class="betmembers tabEven"><a href="#betmembers" >{!$Label.IPM_BETMembers}</a></li>
-                                            </ul> 
-                                            
-                                                                                        
-                                            <div class="panel-body removePadd" id="betdetails">
-                                                <div class="container-fluid paddTB15">
-                                                    <div class="row">    
-                                                        <div class="col-sm-12">
-                                                            <span class="skipDesc">
-                                                                    <c:BET_UpsertBET ProjectId="{!ProjectId}" Project_name="{!project.name}" Category_name="{!CategoryGroupId}" category="{!categryId}" Brand_Position="{!BrandPositionId}" OwnerId="{!project.IPM_Project_Leader__c}" TLD="{!project.IPM_Target_Launch_Dates__c}" Description="{!project.IPM_Project_Description__c}" callback="{!URLFOR($Page.IPM_BETSuggestedMembers,null,[id=projectId ,showMembers=true] )+'&BETId='}"   CallbackSkip="{!URLFOR($Page.IPM_ProjectOverview,null,[id=project.id])}" />                                                                    
-                                                            </span>
-                                                        </div>            
-                                                    </div>  
-                                                </div>          
-                                            </div>
-                                       </apex:outputpanel>
-									   <!-- Display below outputPanel when showSuggestedMembers is true--> 
-                                       <apex:outputpanel rendered="{!showSuggestedMembers}">
-											<!-- Display below outputPanel when members are calling from url--> 
-                                            <apex:outputpanel rendered="{!memberCallFromURL}">
-                                                <ul class="ipmStartedTabs">
-                                                    <li class="betdetails tabOdd "><a href="#betdetails"  >{!$Label.IPM_BETDetails}</a></li>
-                                                    <li class="betmembers tabEven active"><a href="#betmembers" >{!$Label.IPM_BETMembers}</a></li>
-                                                </ul> 
-                                            </apex:outputPanel>
-                                            
-                                            
-                                            
-                                            <div class="panel-body" id="betmembers"> 
-                                                <div class="container-fluid">
-                                                    <div class="row"> 
-                                                        <div class="col-sm-12">
-                                                            <span class="skipDesc">                                                         
-                                                                    <c:BET_SuggestMembers BetID="{!IF(BETId!=null,BETId,requestedBETId)}" ProjectID="{!ProjectId}" Callback="{!URLFOR($Page.IPM_ProjectOverview,null,[id=project.id])}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
-                                                            </span>
-                                                        </div>            
-                                                    </div>  
-                                                </div>          
-                                            </div>
-                                      </apex:outputpanel>
-                                    </div>
-                                </div>                                  
-                                </div>
-                            </div>
-                        </div>
-                        </apex:outputPanel>   
-                        </apex:outputPanel>
-                            <apex:actionFunction name="requestBETAccess" action="{!requestBETAccess}" rerender="betButtonSection"/>
-                      
-                        <div class="greyborder"></div> 
-        </apex:outputpanel>
-                <!-- BET component Section Ends -->
-                
-                
-                
-                        <div class="topheader">{!$Label.IPM_RECENT_ACTIVITIES}</div>
-                        <div class="greyborder"></div>         
-                        <chatter:follow entityId="{!projectId}" />
-                        <div class="col-xs-12 secUsersHistory contentscroll">
-                            <div class="tlCircle"></div>
-                            <div>
-                                <div class="panel-group">
-                                    <apex:repeat value="{!activityHistory}" var="History">
-                                        <div class="row">
-                                            <div class="col-xs-2"><img src="{!History.whoImage}" class="circularimg" alt="History"/> 
-                                            </div>
-                                            <div class="col-xs-9 {!CASE(History.actionType, 'Change', 'listHistory-ltgreen', 'Complete', 'listHistory-blue', 'Owner', 'listHistory-green','listHistory-blue')}">
-                                                <div class="col-xs-12">
-                                                    <div class="row username">{!History.who}
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="row"> <apex:outputText value="{!History.thedate}" styleClass="date dueDate"/></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="row action"><span>
-                                                        {!History.action}</span>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                        </div>
-                                    </apex:repeat>
-                                    <div class="row mt70">
-                                        <div class="tlCircle cirpos">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>   
-                </apex:outputPanel>                
-            </div>
-        </div>
-        <div id="ipmModalDiv">
-            <c:IPM_ModalHeaderDiv />
-        </div> 
-        <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
-        <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
-        <apex:outputPanel id="compScript">
-            <script>         
+											</div>
+											<div class="fl">
+												<div class="fl notsubmitted mr10"></div>
+												<span class="f12">{!$Label.IPM_NOT_STARTED}</span>
+											</div>
+											<apex:repeat value="{!projectSections}" var="pS">
+												<div class="pb3 pt10 clearfix">
+													<!-- Display below outputPanel when current user id is same as project leader user -->
+                                                    <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}">
+														<div
+															class="{!IF(pS.IPM_Section_Status__c='Filled-in', 'secblock', 'secnofill')}">
+															<span><a
+																href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}">
+																	{!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
+															</a></span>
+														</div>
+													</apex:outputPanel>
+													<!-- Display below outputPanel when current user id is not same as project leader user -->
+                                                    <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}">
+														<div
+															class="{!IF(pS.IPM_Functional_Input_Status__c='Started', 'secblock', 'secnofill')}">
+															<span><a
+																href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}">
+																	{!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
+															</a></span>
+														</div>
+													</apex:outputPanel>
+												</div>
+											</apex:repeat>
+										</div>
+									</apex:outputPanel>
+								</div>
+							</apex:outputPanel>
+							<!-- IPM_ToDoTaskComp Starts -->
+							<!-- Display below outputPanel when project is not archived -->
+                            <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}">
+								<div class="col-sm-3">
+									<apex:outputPanel id="headPnl">
+
+										<div class="topheader">
+											{!$Label.IPM_MY_TO_DOs_IN} {!currGateToDisplay}<span
+												class="mlr5px greytxt">|</span>{!
+											If(project.IPM_PM_Approach__c='Internal',allIncompleteTasks,'')}
+											<span class="SecButtonSet infoMarTop"> <a
+												class="icoButton info smalllinfo"
+												data-original-title="{!$Label.IPM_BELOW_ARE_THE_TYPICAL}"
+												data-placement="bottom" data-toggle="tooltip"></a>
+											</span>
+										</div>
+
+									</apex:outputPanel>
+									<div class="greyborder"></div>
+									<div class="">
+										<apex:outputPanel id="nonnegotiabletodo">
+											<!-- Display below outputPanel when project approach is internal and tasks list has records -->
+                                            <apex:outputPanel rendered="{!tasks.size>0 && project.IPM_PM_Approach__c='Internal'}">
+												<p class="itatxt">
+													<i>* {!$Label.IPM_NON_NEGOTIABLE_TO_DOs}</i>
+												</p>
+											</apex:outputPanel>
+										</apex:outputPanel>
+										<apex:actionStatus startText="updating..." id="myStatus">
+											<apex:facet name="start">
+												<img height="15" width="15" src="/img/loading32.gif"
+													alt="Loading.." />
+											</apex:facet>
+										</apex:actionStatus>
+										<apex:outputPanel id="tskPanel">
+											<!-- Display below outputPanel when project approach is internal and tasks list has records -->
+                                            <apex:outputPanel rendered="{!tasks.size>0 && project.IPM_PM_Approach__c='Internal'}">
+												<apex:repeat value="{!tasks}" var="t">
+													<div class="row">
+                                                        <div class="col-sm-2 ipmCheckbox {!IF(t.IPM_Completed__c,'selected', 'notselected')}">
+                                                             <apex:outputPanel rendered="{!!project.IPM_PrepareForArchival__c}">
+																<input type="checkbox" id="{!t.Id}"
+																	onClick="markComplete('{!t.Id}',this.checked);"
+																	class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}" />
+																<label for="{!t.Id}"
+																	class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
+															</apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!project.IPM_PrepareForArchival__c}">
+																<input type="checkbox" id="{!t.Id}"
+																	onClick="markComplete('{!t.Id}',this.checked);"
+                                                                    class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}" disabled="true"/>
+																<label for="{!t.Id}"
+																	class="{!IF(t.IPM_Completed__c,'selected', 'notselected')}"></label>
+															</apex:outputPanel>
+														</div>
+														<div class="col-sm-10 pl5">
+															<div class="checktext">
+																<!-- Display below outputPanel when task type is Non-Negotiable-->
+                                                                <apex:outputPanel rendered="{!t.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+																{!t.IPM_Task_Name__c}
+																<div class="dueDate">
+																	<apex:outputField value="{!t.IPM_Due_Date1__c}" />
+																</div>
+															</div>
+															<div class="bluetxt">
+                                                                <apex:outputPanel >
+																<a
+																	href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!t.IPM_Project__c}&projDocSecId={!t.IPM_Project_Document_Section__c}">
+																	{!t.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}
+																	{!t.IPM_Project_Document_Section__r.IPM_Section_Name__c}
+																</a>
+                                                                </apex:outputPanel>
+															</div>
+														</div>
+													</div>
+													<div class="greybor"></div>
+												</apex:repeat>
+												<div class="pull-right">
+													<!-- Display below outputPanel when con.ResultSize is greater than zero-->
+													<apex:panelGrid columns="7"
+														styleClass="panel-group clearfix" id="cmdBtnPanel"
+														rendered="{!(if(con.ResultSize>0,true,false))}">
+                                                        <apex:commandButton styleClass="proMytodoArrows {!If(hasPrevious,'proMytodoActive','proMytodoNotActive')}"
+															disabled="{!!hasPrevious}" action="{!first}" value="<<"
+															rerender="tskPanel,cmdBtnPanel"/ >
+                                                            <apex:commandButton styleClass="proMytodoArrows {!If(hasPrevious,'mstoneActive','proMytodoNotActive')}"
+																disabled="{!!hasPrevious}" action="{!previous}"
+																value="<" rerender="tskPanel,cmdBtnPanel" />
+															<span class="paginationLink proMytodoPagination">Records
+																{!IF(noOfRecords>0,(pageNumber *
+																size)+1-size,0)}-{!IF((pageNumber * size)>noOfRecords,
+																noOfRecords,(pageNumber * size))} of {!noOfRecords}</span>
+                                                            <apex:commandButton styleClass="proMytodoArrows {!If(hasNext,'proMytodoActive','proMytodoNotActive')}"
+																disabled="{!!hasNext}" action="{!next}" value=">"
+																rerender="tskPanel,cmdBtnPanel" />
+                                                            <apex:commandButton styleClass="proMytodoArrows {!If(hasNext,'proMytodoActive','proMytodoNotActive')}"
+																disabled="{!!hasNext}" action="{!last}" value=">>"
+																rerender="tskPanel,cmdBtnPanel" />
+
+															<apex:outputPanel styleClass="pgFetch">
+																<apex:actionStatus id="fetchStatus"
+																	startText="Fetching..." stopText="" />
+															</apex:outputPanel>
+													</apex:panelGrid>
+												</div>
+											</apex:outputPanel>
+											<!-- Display below outputPanel when project approach is external or tasks list has no records -->
+											<apex:outputPanel layout="block" styleClass="overviewGreyBg"
+												rendered="{!NOT(tasks.size > 0) || project.IPM_PM_Approach__c='External'}">{!$Label.IPM_NoToDos}</apex:outputPanel>
+										</apex:outputPanel>
+									</div>
+								</div>
+								<apex:actionFunction name="markComplete"
+									action="{!markComplete}"
+									reRender="compScript,tskPanel,nonnegotiabletodo,headPnl"
+									status="myStatus">
+									<apex:param name="tskId" assignTo="{!taskId}" value="" />
+									<apex:param name="isChecked" assignTo="{!isChecked}" value="" />
+								</apex:actionFunction>
+							</apex:outputPanel>
+						</apex:outputPanel>
+						<!-- Display below outputPanel when project phase is PLE and bPhaseChangeInProgress is true -->
+                        <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , project.IPM_Phase__c='PLE')}">
+							<div class="col-sm-6 text-center stopsection" id="stopsection">
+								<div>
+									<img
+										src="{!URLFOR($Resource.IPM_Resource, 'images/img_ple.png')}"
+										alt="PLE" />
+								</div>
+								<div class="successStyle">{!$Label.IPM_ProjectLaunchMeassage}</div>
+								<div class="launchDate">
+									on&nbsp;
+									<apex:outputField value="{!project.IPM_Actual_Launch_Date__c }" />
+								</div>
+							</div>
+						</apex:outputPanel>
+						<!-- Display below outputPanel when project is archived and bPhaseChangeInProgress is false -->
+                        <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , if(project.Is_Archieved__c==true,true,false))}">
+							<div class="col-sm-6 text-center stopsection" id="stopsection">
+								<div>
+									<img
+										src="{!URLFOR($Resource.IPM_Resource, 'images/img_g.png')}"
+										alt="Stop" />
+								</div>
+								<div>{!$Label.IPM_PROJECT_STOPPED}</div>
+								<div>
+									On &nbsp;
+									<apex:outputfield value=" {!project.IPM_Stopped_Date_Time__c}" />
+                                    by {!project.IPM_StoppedByUser__c}
+								</div>
+								<div class="infosec">
+									<p>
+										<strong>{!$Label.IPM_COMMENTS}</strong>
+									</p>
+									<p>{!project.IPM_Stopped_Comments__c}</p>
+								</div>
+							</div>
+						</apex:outputPanel>
+						<!-- Display below outputPanel when bPhaseChangeInProgress is true -->
+						<apex:outputPanel rendered="{!bPhaseChangeInProgress}">
+							<div class="col-sm-6 text-center stopsection" id="stopsection">
+								<div class="successStyle">{!$Label.IPM_PhaseChangeInProgressMsg}</div>
+							</div>
+						</apex:outputPanel>
+
+						<!-- BET component Section Begins -->
+						<apex:outputPanel>
+							<div class="col-sm-3">
+
+								<!-- To place the help symbol in the top right hand corner of page -->
+								<apex:outputPanel layout="block"
+									styleClass="SecButtonSet delete pull-right">
+									<apex:outputLink value="{!URL}" id="theLink"
+										styleClass="icoButton question" target="_blank"
+										title="{!$Label.IPM_Help}">?</apex:outputLink>
+								</apex:outputPanel>
+								<!-- Display below outputPanel when showBET is true -->
+								<apex:outputPanel rendered="{!showBET}">
+									<div class="topheader">{!$Label.IPM_BETLabel}</div>
+									<div class="greyborder"></div>
+									<!-- Display below outputPanel when current user is PL and project is original -->
+									<apex:outputPanel layout="block" styleClass="changeBetLnk"
+										rendered="{!isProjLeader && isOriginal}">
+                                        <apex:outputLink value="{!$Page.IPM_CoreParameters}?id={!projectId}&BETOptions=1">{!$Label.IPM_ChangeBETSelection}</apex:outputLink>
+									</apex:outputPanel>
+									<!-- Display below outputPanel when betInformationMessage is not empty -->
+									<apex:outputPanel rendered="{!betInformationMessage != ''}"
+										styleClass="infoMsg">
+										<apex:outputText value="{!betInformationMessage}"
+											escape="false" />
+									</apex:outputPanel>
+									<!-- Display below outputPanel when BETId should not be null -->
+									<apex:outputpanel rendered="{!BETId!= null}">
+										<div class="row">
+											<div class="col-xs-3 headerlogo">
+												<apex:image value="{!$Resource.IPM_BET_Logo}" />
+											</div>
+											<div
+												class="col-xs-8 noPadleft noPadright betName col-xs-8-1024">
+												<div class="author">{!$Label.IPM_BETName}</div>
+												<div class="designation">{!betWrapper.betName}</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12 betStatus">
+												<div class="author">{!$Label.IPM_BETStatus}</div>
+												<div class="designation">{!betWrapper.status}</div>
+											</div>
+										</div>
+										<div
+											class="col-xs-12 {!if(betWrapper.status == $Label.IPM_BETStatus_Unreleased,'betReleseDate','betReleseDateFull')}">
+											<div class="author">{!if(betWrapper.status ==
+												$Label.IPM_BETStatus_Unreleased,$Label.IPM_BETFirstReleaseDate,$Label.IPM_BETFirstReleaseOn)}</div>
+											<div class="designation">
+												<!-- Display below outputText when BET status is unreleased -->
+												<apex:outputText value="{0,date,dd'/'MM'/'yyyy}"
+													rendered="{!betWrapper.status == $Label.IPM_BETStatus_Unreleased}">
+													<apex:param value="{!betWrapper.firstReleaseDueDate}" />
+												</apex:outputText>
+												<!-- Display below outputText when BET status is not unreleased -->
+												<apex:outputText value="{0,date,dd'/'MM'/'yyyy}"
+													rendered="{!betWrapper.status != $Label.IPM_BETStatus_Unreleased}">
+													<apex:param value="{!betWrapper.firstReleaseDate}" />
+												</apex:outputText>
+											</div>
+										</div>
+
+										<div
+											class="col-xs-12 {!if(betWrapper.status == $Label.IPM_BETStatus_FinalRelease,'betReleseDateFull','betReleseDate')}">
+											<div class="author">{!if(betWrapper.status ==
+												$Label.IPM_BETStatus_FinalRelease,$Label.IPM_BETFinalReleaseOn,$Label.IPM_BETFinalReleaseDate)}</div>
+											<div class="designation">
+												<!-- Display below outputText when BET status is final released -->
+												<apex:outputText value="{0,date,dd'/'MM'/'yyyy}"
+													rendered="{!betWrapper.status == $Label.IPM_BETStatus_FinalRelease}">
+													<apex:param value="{!betWrapper.finalReleaseDate}" />
+												</apex:outputText>
+												<!-- Display below outputText when BET status is not final released -->
+												<apex:outputText value="{0,date,dd'/'MM'/'yyyy}"
+													rendered="{!betWrapper.status != $Label.IPM_BETStatus_FinalRelease}">
+													<apex:param value="{!betWrapper.finalReleaseDueDate}" />
+												</apex:outputText>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-2">
+												<img class="cirimg" alt="Profile"
+													src="{!betOwner.SmallPhotoUrl}" />
+											</div>
+											<div class="col-xs-10">
+												<div class="author">{!$Label.IPM_BETOwner}</div>
+												<div class="designation">{!betOwner.name}</div>
+											</div>
+										</div>
+										<div class="greyborder"></div>
+									</apex:outputpanel>
+									<!-- Display below outputPanel when isIdeasPhase is false-->
+									<apex:outputPanel rendered="{!!isIdeasPhase}"
+										id="betButtonSection">
+                                        <apex:outputpanel rendered="{!hasBETAccess == $Label.IPM_BETRequestPending}">
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="author">{!$Label.IPM_BETRequestStatus}:</div>
+													<div class="designation">{!$Label.IPM_BETApprovalPending}</div>
+												</div>
+											</div>
+										</apex:outputpanel>
+										<!-- Display below outputPanel when project is not original and BETid is not null and bet status is Unreleased-->
+                                        <apex:outputpanel rendered="{!!isOriginal  && BETId != null && betWrapper.status == $Label.IPM_BETStatus_Unreleased}">
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="designation">{!if(isProjLeader,$Label.IPM_BETAccessMsgRegionalLocal,$Label.IPM_BETAccessMsgRegionalLocal)}</div>
+												</div>
+											</div>
+										</apex:outputpanel>
+										<!-- Display below commandLink when BETid is not null and hasBETAccess-->
+										<apex:commandLink value="{!$Label.IPM_AccessBET}"
+											status="teamDelete" action="/{!BETId}"
+											rendered="{!(BETId!=null && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='')}"
+											styleclass="ipmButton primary" target="_blank" />
+										<!-- Display below outputPanel when project is not original,BETid is not null,hasBETAccess ==$Label.IPM_BETRequestNo, and bet status is Unreleased-->
+                                        <apex:outputPanel rendered="{!(BETId!=null && hasBETAccess ==$Label.IPM_BETRequestNo && !(!isOriginal  && betWrapper.status == $Label.IPM_BETStatus_Unreleased)&& isAcessDuetoTeam)}">
+											<input type="button" class="ipmButton primary"
+												value="{!$Label.IPM_RequestAccess}"
+												onClick="requestBETAccess();" />
+										</apex:outputPanel>
+										<!-- Display below outputPanel when project is original,current user is PL,not a ideas phase and toolkit option is not no bet-->
+                                        <apex:outputPanel rendered="{!(isOriginal && isProjLeader && !isIdeasPhase && toolkitOption != $Label.IPM_BET_NoBET)}">
+											<!-- Display below outputPanel when BETid is null and toolkit option is not create new bet-->
+                                            <apex:outputPanel rendered="{!(BETId == null && toolkitOption == $Label.IPM_CreateNewBET)}">
+												<div class="row">
+													<div class="col-sm-10">
+														<a id="createBETButton"
+															class="ipmButton createBET primary" data-toggle="modal"
+															data-target="#initiateProjectBKPanel"
+															data-backdrop="static" data-keyboard="false">{!$Label.IPM_CreateNewBET}</a>
+													</div>
+												</div>
+											</apex:outputPanel>
+											<!-- Display below outputPanel when showSuggestedMembers is true-->
+											<apex:outputPanel rendered="{!showSuggestedMembers}">
+												<a id="suggestedMembersButton" class="suggestedmembers"
+													data-toggle="modal" data-target="#initiateProjectBKPanel"
+													data-backdrop="static" data-keyboard="false">{!$Label.IPM_AddBETMembers}</a>
+											</apex:outputPanel>
+
+											<div id="initiateProjectBKPanel" class="modal fade in"
+												aria-hidden="true" data-keyboard="false"
+												data-backdrop="static" data-focus-on="input:first">
+												<div class="modal-dialog">
+													<div class="modal-content">
+
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-hidden="true">&times;</button>
+															<div class="modal-title">{!if(showSuggestedMembers
+																&&
+																!memberCallFromURL,$Label.IPM_AddBETMembers,$Label.IPM_CreateNewBETTitle)}</div>
+														</div>
+														<div class="createNewBrandExp">
+															<div class="italicTxt">{!if(showSuggestedMembers &&
+																memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
+															<div id="ipmGetStartedTab"
+																class="modal-body ipmGetStartedTab">
+																<!-- Display below outputPanel when showSuggestedMembers is false-->
+																<apex:outputpanel rendered="{!!showSuggestedMembers}">
+																	<ul class="ipmStartedTabs">
+																		<li class="betdetails tabOdd active"><a
+																			href="#betdetails">{!$Label.IPM_BETDetails}</a></li>
+																		<li class="betmembers tabEven"><a
+																			href="#betmembers">{!$Label.IPM_BETMembers}</a></li>
+																	</ul>
+
+
+																	<div class="panel-body removePadd" id="betdetails">
+																		<div class="container-fluid paddTB15">
+																			<div class="row">
+																				<div class="col-sm-12">
+                                                                                    <span class="skipDesc"> <c:BET_UpsertBET ProjectId="{!ProjectId}"
+																							Project_name="{!project.name}"
+																							Category_name="{!CategoryGroupId}"
+																							category="{!categryId}"
+																							Brand_Position="{!BrandPositionId}"
+																							OwnerId="{!project.IPM_Project_Leader__c}"
+																							TLD="{!project.IPM_Target_Launch_Dates__c}"
+																							Description="{!project.IPM_Project_Description__c}"
+																							callback="{!URLFOR($Page.IPM_BETSuggestedMembers,null,[id=projectId ,showMembers=true] )+'&BETId='}"
+																							CallbackSkip="{!URLFOR($Page.IPM_ProjectOverview,null,[id=project.id])}" />
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</apex:outputpanel>
+																<!-- Display below outputPanel when showSuggestedMembers is true-->
+																<apex:outputpanel rendered="{!showSuggestedMembers}">
+																	<!-- Display below outputPanel when members are calling from url-->
+																	<apex:outputpanel rendered="{!memberCallFromURL}">
+																		<ul class="ipmStartedTabs">
+																			<li class="betdetails tabOdd "><a
+																				href="#betdetails">{!$Label.IPM_BETDetails}</a></li>
+																			<li class="betmembers tabEven active"><a
+																				href="#betmembers">{!$Label.IPM_BETMembers}</a></li>
+																		</ul>
+										</apex:outputPanel>
+
+
+
+										<div class="panel-body" id="betmembers">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-sm-12">
+                                                        <span class="skipDesc"> <c:BET_SuggestMembers BetID="{!IF(BETId!=null,BETId,requestedBETId)}"
+																ProjectID="{!ProjectId}"
+																Callback="{!URLFOR($Page.IPM_ProjectOverview,null,[id=project.id])}"
+																Suggested_Members="{!suggestedMembersList}"
+																User_buckets="{!memberBucketList}"
+																Suggested_Managers="{!suggestedManagerList}"
+																usedInPopup="true" />
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										</apex:outputpanel>
+							</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</apex:outputPanel>
+				</apex:outputPanel>
+				<apex:actionFunction name="requestBETAccess"
+					action="{!requestBETAccess}" rerender="betButtonSection" />
+
+				<div class="greyborder"></div>
+				</apex:outputpanel>
+				<!-- BET component Section Ends -->
+
+
+
+				<div class="topheader">{!$Label.IPM_RECENT_ACTIVITIES}</div>
+				<div class="greyborder"></div>
+				<chatter:follow entityId="{!projectId}" />
+				<div class="col-xs-12 secUsersHistory contentscroll">
+					<div class="tlCircle"></div>
+					<div>
+						<div class="panel-group">
+							<apex:repeat value="{!activityHistory}" var="History">
+								<div class="row">
+									<div class="col-xs-2">
+										<img src="{!History.whoImage}" class="circularimg"
+											alt="History" />
+									</div>
+									<div
+										class="col-xs-9 {!CASE(History.actionType, 'Change', 'listHistory-ltgreen', 'Complete', 'listHistory-blue', 'Owner', 'listHistory-green','listHistory-blue')}">
+										<div class="col-xs-12">
+											<div class="row username">{!History.who}</div>
+										</div>
+										<div class="col-xs-12">
+											<div class="row">
+												<apex:outputText value="{!History.thedate}"
+													styleClass="date dueDate" />
+											</div>
+										</div>
+										<div class="col-xs-12">
+											<div class="row action">
+												<span> {!History.action}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</apex:repeat>
+							<div class="row mt70">
+								<div class="tlCircle cirpos"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</apex:outputPanel>
+				</div>
+				</div>
+				<div id="ipmModalDiv">
+					<c:IPM_ModalHeaderDiv />
+				</div>
+				<script
+					src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}"
+					type="text/javascript"></script>
+				<script
+					src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}"
+					type="text/javascript"></script>
+				<apex:outputPanel id="compScript">
+					<script>         
                 var jq=jQuery.noConflict(); 
                 jq("[data-toggle=tooltip]").tooltip();
                 jq('.searchModal .form-control').clearSearch();        
@@ -914,9 +1140,9 @@
                     //jq(this).text(jq(this).text().replace('00:00:00 GMT',''));
                 });
             </script>
-        </apex:outputPanel>
-        <apex:outputPanel id="jsLoad">
-            <script>
+				</apex:outputPanel>
+				<apex:outputPanel id="jsLoad">
+					<script>
                 jq('.skipButtoncontainer .ipmButton').removeClass('btn');
                 function showDiv() {
                     document.getElementById('followchatter').style.display = "block";
@@ -932,15 +1158,17 @@
                     jq('.zen-media.zen-mediaExt img.chatter-checkedIcon').addClass('chatterIcon');
                 });
             </script>
-        </apex:outputPanel>
-    </apex:define>
-</apex:composition>    
-</apex:form>
-<script>
+				</apex:outputPanel>
+			</apex:define>
+		</apex:composition>
+	</apex:form>
+	<script>
 
-var IPMApp = {showSuggestedMembers:{!showSuggestedMembers}, ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
+var IPMApp = {showSuggestedMembers:{!showSuggestedMembers}, ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', countDownProjectStop:'{!project.IPM_CountDown_Reference_Time__c}'};
 
 </script>
-<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}" type="text/javascript"></script>   
-  
+
+   	<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}"
+		type="text/javascript"></script>
+
 </apex:page>
