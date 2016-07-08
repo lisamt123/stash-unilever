@@ -343,7 +343,7 @@
         <dataType>Boolean</dataType>
         <expression>{!myVariable_old.IPM_PrepareForArchival__c} &amp;&amp; (TEXT({!myVariable_old.IPM_Stopped_At_Span__c})&lt;&gt;  TEXT({!myVariable_old.IPMProject_Span__c}  ))</expression>
     </formulas>
-    <interviewLabel>IPM_email_alert_on_stopping_projects-12_IPM_Project__c</interviewLabel>
+    <interviewLabel>IPM_email_alert_on_stopping_projects-1_IPM_Project__c</interviewLabel>
     <label>IPM send email alert on preparing project for archival</label>
     <processMetadataValues>
         <name>ObjectType</name>

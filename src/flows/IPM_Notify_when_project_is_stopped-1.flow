@@ -297,7 +297,7 @@ TEXT([IPM_Project__c].IPM_Phase__c) = &apos;Ideas&apos;
         <expression>PRIORVALUE({!myVariable_old.Is_Archieved__c} )  = true &amp;&amp; PRIORVALUE({!myVariable_old.Is_Archieved__c} ) &lt;&gt; {!myVariable_old.Is_Archieved__c} &amp;&amp; 
 TEXT({!myVariable_old.IPM_Phase__c}) = &apos;Ideas&apos;</expression>
     </formulas>
-    <interviewLabel>IPM_Notify_when_project_is_stopped-8_IPM_Project__c</interviewLabel>
+    <interviewLabel>IPM_Notify_when_project_is_stopped-1_IPM_Project__c</interviewLabel>
     <label>IPM post chatter and send mail when project is stopped completely or reactivated</label>
     <processMetadataValues>
         <name>ObjectType</name>

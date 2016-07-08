@@ -211,7 +211,7 @@
         <dataType>Boolean</dataType>
         <expression>PRIORVALUE({!myVariable_current.IPM_NotifyProjectStop__c} ) = true &amp;&amp; {!myVariable_current.IPM_NotifyProjectStop__c} &lt;&gt; PRIORVALUE({!myVariable_current.IPM_NotifyProjectStop__c} ) &amp;&amp; TEXT({!myVariable_current.IPM_Project__c.IPM_Phase__c})= &apos;Ideas&apos;</expression>
     </formulas>
-    <interviewLabel>IPM_send_email_when_project_stopped_completely-4_IPM_Project_Resource__c</interviewLabel>
+    <interviewLabel>IPM_send_email_when_project_stopped_completely-1_IPM_Project_Resource__c</interviewLabel>
     <label>IPM send email when project stopped completely or reactivated</label>
     <processMetadataValues>
         <name>ObjectType</name>
