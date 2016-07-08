@@ -96,7 +96,10 @@
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</th>
                                         <th>{!$Label.Oblix_Lbl_UIUX_Last_updated}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.SOW_Status__c.label}</th>
-                                        <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_Current_FY_Total__c.label}</th>
+                                        <!--<th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_Current_FY_Total__c.label}</th>
+                                            Renamed 'SWOP Total(incl. risk adjustment)' column header to 'SOW Value'
+                                        -->
+                                        <th>SOW Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
