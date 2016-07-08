@@ -19,12 +19,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Country__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -34,7 +34,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Exception_Raiser__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -44,7 +44,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Legacy_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -54,7 +54,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Legacy_Exception_Raiser__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -79,7 +79,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Process__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -91,7 +91,7 @@
         <field>GEL_Global_Exception_Log__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>GEL_Process Owner</label>
+    <label>GEL Process Owner</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -103,11 +103,10 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>GEL_Global_Exception_Log__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    <userLicense>Salesforce</userLicense>
 </PermissionSet>

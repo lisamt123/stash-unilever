@@ -29,52 +29,52 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.ETC_BO_Owner__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Exception_Raiser__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Expected_Closure_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Legacy_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Legacy_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Legacy_Exception_Raiser__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Open_Exceptions_Categories__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.PPE_Category__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.PoC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Potential_Solution_at__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -84,14 +84,14 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Resolution_Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>GEL_Global_Exception_Log__c.Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
-    <label>GEL_Exception Raiser</label>
+    <label>GEL Exception Raiser</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -103,11 +103,10 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>GEL_Global_Exception_Log__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    <userLicense>Salesforce</userLicense>
 </PermissionSet>
