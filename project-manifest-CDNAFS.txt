@@ -1,4 +1,3 @@
 src
-src/layouts
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators.layout
+src/flows
+src/flows/FS_Assign_Territory_Based_on_User_Custom_Setting-1.flow
