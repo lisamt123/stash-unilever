@@ -106,6 +106,9 @@ public class IPM_ConstantUtils {
     public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
     public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';    
     
+    public static final String CONTRACT_PRODUCT ='What is the Consumer test scoring on Product?';
+    public static final String CONTRACT_FULL_MIX ='What is the Consumer test scoring on Full mix?';
+    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';    
      //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
     public static final String EXTERNAL_HEADER_SEQUENCE='2';
@@ -406,7 +409,7 @@ public class IPM_ConstantUtils {
     
     public static final String FINANCIAL_ACTION_STANDARDS_SEQUENCE = '6.1';
     
-    public static final String BB_BD_ALIGNMENT = '6.5';
+    public static final String BB_BD_ALIGNMENT = '6.3';
     public static final String BB_BD_ALIGNMENT_APPENDIX = '8.10';
     
     public static final String INITIAL_ESTIMATE_OPPORTUNITY_SEC = '6.2';
@@ -1220,4 +1223,5 @@ public class IPM_ConstantUtils {
    public static final string SIX_THREE='6.3'; 
    
    public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c'; 
+   public static final string Clustering = 'Clustering';
 }
