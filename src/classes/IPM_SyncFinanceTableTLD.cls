@@ -27,11 +27,12 @@ public with sharing class IPM_SyncFinanceTableTLD {
             IPM_Project_Rollout__c projectRollout = updatedRollouts.get(rolloutId);
             // Collec only local rollouts. Non-local rollouts will be handled via local rollouts
             if(projectRollout.RecordTypeId==LOCAL_ROLLOUT_RECORDTYPE) {
-                if(!projectRollout.KeyMCO__c && projectRollout.Local_Rollout_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) {
-                    // collect NONKEY Rollouts at ideas
+                if(!projectRollout.KeyMCO__c) {
+                     //collect NONKEY Rollouts at ideas
                     localNonkeyRollouts.put(rolloutId,projectRollout);
                    
-                } else {
+                }
+                if(projectRollout.KeyMCO__c || projectRollout.Local_Rollout_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS) {
                     // collectNKEY tollouts
                      localKeyRollouts.put(rolloutId,projectRollout);
                 }
@@ -370,6 +371,10 @@ public with sharing class IPM_SyncFinanceTableTLD {
     		if(!String.isEmpty(rollout.IPM_Project__c)){
     		   globalPrjIDs.add(rollout.IPM_Project__c);
     		}
+            else if(String.isEmpty(rollout.IPM_Project__c) && !String.isEmpty(rollout.Regional_Project__c))
+            {
+            	globalPrjIDs.add(rollout.Regional_Project__c);
+            }
     		
     		if(!String.isEmpty(rollout.Regional_Rollout__c)){
     		   regionalRolloutIDs.add(rollout.Regional_Rollout__c);
