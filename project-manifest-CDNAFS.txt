@@ -1,10 +1,4 @@
 src
-src/permissionsets
-src/permissionsets/FS_AFM.permissionset
-src
 src/objects
-src/objects/Account.object
 src/objects/Actual__c.object
 src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
-src/objects/Product2.object
