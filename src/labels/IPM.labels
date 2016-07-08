@@ -3313,14 +3313,14 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM EcoDesign EI Country With No Assessment</shortDescription>
-        <value>This EI country has not yet had an environmental impact assessment created in Eco-Design.</value>
+        <value>This country has not yet had an Environmental and Social Impact assessment created in Eco-Design.</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Environmental_metric</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Environmental_metric</shortDescription>
-        <value>Environmental metric</value>
+        <value>Environmental and Social Impact</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Expected</fullName>

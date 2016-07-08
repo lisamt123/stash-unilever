@@ -23,7 +23,7 @@ public with sharing class IPM_EcoDesignSection {
     public List<CountryAssessmentWrap> countryAssessmentWrapListNonEICountries {get;set;}
     public final Map<String,List<IPM_Assessment__c>> countryAssessmentMap ;
     public final Map<String, IPM_Country__c> countryMap ;
-	public final Set<String> nonEICountryWithIdeasPhase ;
+    public final Set<String> nonEICountryWithIdeasPhase ;
     public final IPM_Project_Type__c projectType ;
     public integer noOfEICountries {get;set;}
     public integer noOfNonEICountries {get;set;}
@@ -37,6 +37,8 @@ public with sharing class IPM_EcoDesignSection {
     public String projDocName;
     public IPM_Project_Document_Section__c projDocSec;
     public String projPhaseForCurrentDoc = '';
+    public map<string, boolean>  mapCatMetric {get; set;}
+    public map<string, boolean>  mapWaterScarce {get; set;}
     /*******************************************************************************************************
     * @description:initialise variables and get eco design data based on project document section id
     * @param:
@@ -47,35 +49,35 @@ public with sharing class IPM_EcoDesignSection {
         projId=Apexpages.currentpage().getparameters().get('Id');
         ProjDocumentSecId=Apexpages.currentpage().getparameters().get('projDocSecId');
         projDocName = Apexpages.currentpage().getparameters().get('printDoc');
-		if(projDocName == null && ProjDocumentSecId != null){
-        	projDocSec = [Select id,IPM_Gate_Document__c from IPM_Project_Document_Section__c WHERE Id =:ProjDocumentSecId Limit 1][0];
-        	projDocName = projDocSec.IPM_Gate_Document__c;
+        if(projDocName == null && ProjDocumentSecId != null){
+            projDocSec = [Select id,IPM_Gate_Document__c from IPM_Project_Document_Section__c WHERE Id =:ProjDocumentSecId Limit 1][0];
+            projDocName = projDocSec.IPM_Gate_Document__c;
         }
         if(projDocName != null){
-        	if(IPM_ConstantUtils.CHARTER_GATE.equalsIgnoreCase(projDocName)){
-	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_IDEAS;
-	        }
-	        else if(IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(projDocName)){
-	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_FEASIBILITY;
-	        }
-	        else if(IPM_ConstantUtils.MARKET_READY_GATE.equalsIgnoreCase(projDocName)){
-	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_CAPABILITY;
-	        }
-	        else if(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE.equalsIgnoreCase(projDocName)){
-	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_MARKET_READY;
-	        }
+            if(IPM_ConstantUtils.CHARTER_GATE.equalsIgnoreCase(projDocName)){
+                projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_IDEAS;
+            }
+            else if(IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(projDocName)){
+                projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            }
+            else if(IPM_ConstantUtils.MARKET_READY_GATE.equalsIgnoreCase(projDocName)){
+                projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_CAPABILITY;
+            }
+            else if(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE.equalsIgnoreCase(projDocName)){
+                projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_MARKET_READY;
+            }
         }
 
         countryAssessmentMap = new Map<String,List<IPM_Assessment__c>>();
         countryMap = new Map<String, IPM_Country__c>();
-		nonEICountryWithIdeasPhase = new Set<String>();
+        nonEICountryWithIdeasPhase = new Set<String>();
         noOfEICountries = 0;
         noOfNonEICountries = 0;
         Boolean hasLeadSKU = false;
         noRolloutSubmittedYet = false;
         firstSyncToEcoDesign = false;
         if(String.isNotBlank(projId)) {
-            project = [Select id, IPM_Project_Type__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c  From IPM_Project__c Where id =:projId Limit 1];
+            project = [Select id, IPM_Project_Type__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 
@@ -84,37 +86,47 @@ public with sharing class IPM_EcoDesignSection {
                                            Country_Name__c asc LIMIT 10000];     
         }
 
-		if(projPhaseForCurrentDoc.equalsIgnorecase(IPM_ConstantUtils.BLANK)){
-			projPhaseForCurrentDoc = project.IPM_Phase__c;
-		}
+        if(projPhaseForCurrentDoc.equalsIgnorecase(IPM_ConstantUtils.BLANK)){
+            projPhaseForCurrentDoc = project.IPM_Phase__c;
+        }
         projectType = IPM_Utils.retrieveProjectType(project);
         if(countriesList.isEmpty()) {
             noRolloutSubmittedYet = true;
         }
+        //Get all Water Scarce Countries
+        set<string> mapWScountries =  IPM_EI_Water_Scarce_Countries__c.getAll().keyset();
+        
+        mapWaterScarce = new map<string,boolean>();
         for(IPM_Country__c con : countriesList){
             countryMap.put(con.Country_Name__c,con);
             countryAssessmentMap.put(con.Country_Name__c, new List<IPM_Assessment__c>()) ;
+            if(mapWScountries.contains(con.Country_Name__c)){
+                mapWaterScarce.put(con.Country_Name__c,true);
+            }
+            else{
+                mapWaterScarce.put(con.Country_Name__c,false);
+            }
         }
         if(!countriesList.isEmpty()) { 
             countryAssessmentWrapListEICountries = new List<CountryAssessmentWrap>();   
             countryAssessmentWrapListNonEICountries = new List<CountryAssessmentWrap>();    
             //GKM 1 - Consolidated view of Regional Rollout Environment Impact Assessments in Global Original Project   
             if((project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE || project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) && project.IPM_GateKeepingModel__c == GKM1){
-            	for(IPM_Assessment__c assessmentEle : [Select IPM_SKU_Type__c, IPM_New_SKU__c, IPM_Assessment_Water_PCU__c, IPM_Assessment_Waste_PCU__c, IPM_New_SKU_Sourcing__c, 
-	                                                    IPM_Assessment_GHG_PCU__c, IPM_Assessment_Water_PCU_Percentage__c, IPM_Assessment_Waste_PCU_Percentage__c,  
-	                                                    IPM_Assessment_GHG_PCU_Percentage__c, IPM_Global_Category_Average_View_Water__c, IPM_Global_Category_Average_View_Waste__c, 
-	                                                    IPM_Sustainable_Sourcing__c, IPM_Global_Category_Average_View_GHG__c, IPM_Country__r.Country_Name__c, 
-	                                                    IPM_Country__c, IPM_Comparison_SKU__c, IPM_Comparison_Rep_GTU_Water_PCU__c, IPM_Comparison_SKU_Waste__c, 
-	                                                    IPM_Comparison_SKU_Sourcing__c, IPM_Comparison_Rep_GTU_GHG_PCU__c,IPM_Comparison_Rep_GTU_Waste_PCU__c,IPM_Country__r.IS_EI_Country__c,
-	                                                    IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
-	                                                    IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
-	                                                    IPM_Comparison_Rep_GTU_Name__c,IPM_Project__r.IPMProject_Span__c From IPM_Assessment__c 
-	                                                    Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
-	                                                    Order by IPM_SKU_Type__c asc LIMIT 50000]) {
-	                if(assessmentEle.IPM_Project__r.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-	                	countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);
-	                }       	
-	            }
+                for(IPM_Assessment__c assessmentEle : [Select IPM_SKU_Type__c, IPM_New_SKU__c, IPM_Assessment_Water_PCU__c, IPM_Assessment_Waste_PCU__c, IPM_New_SKU_Sourcing__c, 
+                                                        IPM_Assessment_GHG_PCU__c, IPM_Assessment_Water_PCU_Percentage__c, IPM_Assessment_Waste_PCU_Percentage__c,  
+                                                        IPM_Assessment_GHG_PCU_Percentage__c, IPM_Global_Category_Average_View_Water__c, IPM_Global_Category_Average_View_Waste__c, 
+                                                        IPM_Sustainable_Sourcing__c, IPM_Global_Category_Average_View_GHG__c, IPM_Country__r.Country_Name__c, 
+                                                        IPM_Country__c, IPM_Comparison_SKU__c, IPM_Comparison_Rep_GTU_Water_PCU__c, IPM_Comparison_SKU_Waste__c, 
+                                                        IPM_Comparison_SKU_Sourcing__c, IPM_Comparison_Rep_GTU_GHG_PCU__c,IPM_Comparison_Rep_GTU_Waste_PCU__c,IPM_Country__r.IS_EI_Country__c,
+                                                        IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
+                                                        IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
+                                                        IPM_Comparison_Rep_GTU_Name__c,IPM_Project__r.IPMProject_Span__c From IPM_Assessment__c 
+                                                        Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
+                                                        Order by IPM_SKU_Type__c asc LIMIT 50000]) {
+                    if(assessmentEle.IPM_Project__r.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                        countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);
+                    }           
+                }
             }
             else {
             for(IPM_Assessment__c assessmentEle : [Select IPM_SKU_Type__c, IPM_New_SKU__c, IPM_Assessment_Water_PCU__c, IPM_Assessment_Waste_PCU__c, IPM_New_SKU_Sourcing__c, 
@@ -131,11 +143,11 @@ public with sharing class IPM_EcoDesignSection {
                 countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);                                          
             }
             if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && project.IPM_GateKeepingModel__c == GKM4){
-            	for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
+                for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
                                                        Where IPM_Country__c IN:countriesList and Project_Phase__c =:IPM_ConstantUtils.PHASE_IDEAS Order by IPM_SKU_Type__c asc LIMIT 50000]) {
-				    nonEICountryWithIdeasPhase.add(assessmentEle.IPM_Country__r.Country_Name__c);
-		            }
-	            }
+                    nonEICountryWithIdeasPhase.add(assessmentEle.IPM_Country__r.Country_Name__c);
+                    }
+                }
             }
         }
         if(projectType != null) { 
@@ -166,13 +178,29 @@ public with sharing class IPM_EcoDesignSection {
                         }
                         countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),false,++noOfNonEICountries,hasLeadSKU));
                     }
-					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty() && nonEICountryWithIdeasPhase.contains(countryName)) {
-						countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfNonEICountries,hasLeadSKU));
+                    else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty() && nonEICountryWithIdeasPhase.contains(countryName)) {
+                        countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfNonEICountries,hasLeadSKU));
                     }
                 } 
             }
         }
         checkTakeMeEcoDesginButtonVisible();
+        
+        // Get Category specific data for displaying EI section Metrics
+        Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.IPM_Category_EI_Matrix__mdt.fields.getMap();
+        mapCatMetric = new map<string, boolean>();
+        string fields;
+        for (string fld :fieldMap.keySet()){
+            fields += ',' + fld ;   
+        }
+        fields = fields.subStringAfter(',');
+        string queryCatMetrics = 'select '+ fields +' from IPM_Category_EI_Matrix__mdt where masterlabel = \''+project.IPM_Category_Group__c+'_'+project.IPM_Category_Text__c+'\'';
+        IPM_Category_EI_Matrix__mdt CatMetrics = database.query(queryCatMetrics);
+        for (string fld :fieldMap.keySet()){
+            if(String.valueOf(fieldMap.get(fld).getDescribe().getType()).equalsIgnoreCase('BOOLEAN')){
+                mapCatMetric.put(string.valueOf(fieldMap.get(fld).getDescribe().getLabel()), boolean.ValueOf(CatMetrics.get(string.valueOf(fieldMap.get(fld).getDescribe().getName()))));
+            }   
+        }        
     }
     
     public void checkTakeMeEcoDesginButtonVisible() {
@@ -182,8 +210,8 @@ public with sharing class IPM_EcoDesignSection {
                 firstSyncToEcoDesign = true;    
         }
         else if(project.IPM_Project_Type__c == ROLLOUT) {
-			firstSyncToEcoDesign = true;
-	    }
+            firstSyncToEcoDesign = true;
+        }
         else if(project.First_Sync_To_EcoDesign__c && project.IPM_GateKeepingModel__c == GKM4) {
                 firstSyncToEcoDesign = true;    
         }
