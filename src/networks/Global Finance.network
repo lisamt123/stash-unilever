@@ -30,7 +30,7 @@
         <profile>admin</profile>
         <profile>standard</profile>
     </networkMemberGroups>
-    <picassoSite>Global_Finance1</picassoSite>
+    
     <selfRegistration>true</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Global_Finance</site>
