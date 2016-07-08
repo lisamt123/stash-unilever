@@ -160,7 +160,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>deploy.system@unilever.com</runningUser>
+    <runningUser>sridhar.valiveti@capgemini.com</runningUser>
     <textColor>#000000</textColor>
     <title>GEL_Global Exceptions</title>
     <titleColor>#000000</titleColor>
