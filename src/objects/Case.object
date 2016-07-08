@@ -3424,6 +3424,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
+        <filters>
+            <field>Language__c</field>
+            <operation>notEqual</operation>
+            <value>French</value>
+        </filters>
         <label>CEC Benelux queue WH</label>
         <language>nl_NL</language>
         <queue>CEC_Benelux_Queue</queue>
@@ -3574,7 +3579,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>On Hold</value>
+            <value>In Progress</value>
         </filters>
         <label>CEC France - In Progress</label>
         <language>fr</language>
@@ -4155,7 +4160,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed</value>
+            <value>,New,In Progress,Review Needed,Awaiting Information from Consumer</value>
         </filters>
         <filters>
             <field>Case_Market_Mapping_Country__c</field>
@@ -4230,6 +4235,113 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Nordic</role>
             <role>CEC_User_Nordic</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_24_7_In_Touch_Canada</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>United States - Spanish,United States - English</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Web,Email,Web North America</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>,Bazaar Trigger,Bazaar Voice,Bluewater,IVR,Sunlight,Sun,Ragu,CEC Facebook</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>Bertolli,Bertolli Oil,Snuggle,Gortons,Frequent Caller Queue</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>Ben &amp; Jerry&apos;s,Ben &amp; Jerry&apos;s Donations,Ben &amp; Jerry&apos;s Scoop,benjerry,Gorton&apos;s</value>
+        </filters>
+        <label>CEC North America 24-7 In Touch USA</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_24_7_In_Touch_Canada1</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>Canada - English,Canada - French</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Web,Email,Web North America</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>,Bazaar Trigger,Bazaar Voice,Bluewater,IVR,Sunlight,Sun,Ragu,CEC Facebook</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>Bertolli,Bertolli Oil</value>
+        </filters>
+        <label>CEC North America 24-7 In Touch Canada</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4750,15 +4862,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Canada_DIN_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC North America Canada DIN Queue</label>
-        <queue>CEC_North_America_Canada_DIN_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -7375,9 +7478,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>North_America_Canada_DIN_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Canada DIN Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Canada_DIN_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
