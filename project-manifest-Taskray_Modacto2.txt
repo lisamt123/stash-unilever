@@ -1,0 +1,7 @@
+src
+src/dashboards
+src/dashboards/TRDASHBOARDS__TaskRay/Strategy_Dashboard.dashboard
+src/objects
+src/objects/TASKRAY__Project_Task__c.object
+src/permissionsets
+src/permissionsets/TaskRayCustom.permissionset
