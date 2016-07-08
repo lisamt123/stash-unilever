@@ -1,4 +1,4 @@
-public class WU_MultiCreateMultiEdit3{
+public with sharing class WU_MultiCreateMultiEdit3{
 
     public String loggedInUser;
     public List<WU_Master_Warehouse__c> masterWarehouseList {get;set;}
@@ -19,7 +19,7 @@ public class WU_MultiCreateMultiEdit3{
         populateMasterList();    
     }
     
-	
+    
     public void fetchLatestRecords(){
         masterWarehouseList = [SELECT Id,Name,WU_Committed_Max_PalletStorage__c,WU_Current_Utilization__c,WU_SAPCode_s__c,
                                WU_ToDate__c,WU_FromDate__c,WU_Utilization_Type__c,OwnerId,WU_SAPName_s__c,WU_Average_Current_Utilization__c,
@@ -126,7 +126,6 @@ public class WU_MultiCreateMultiEdit3{
         List<WU_Warehouse_Capacity_Detail__c> capacityDetailToUpdateList = new List<WU_Warehouse_Capacity_Detail__c>();
         List<Database.SaveResult> updateDetailsResult = new List<Database.SaveResult>();
         Map<String,MasterWarehouseWrapper> selectedRecordsMap = new Map<String,MasterWarehouseWrapper>();
-        boolean isRecordSelected = false;
         if(!masterWarehouseWrapperList.isEmpty()){
             for(MasterWarehouseWrapper wrap : masterWarehouseWrapperList){
                 if(wrap.isSelected && wrap.latestDetailRecordId != null){
