@@ -44,6 +44,7 @@ public class AF_OOPSRecordManager_Test
             //insert oops setting.
             List<AF_OOPS_Settings__c> oopsettingLst = AF_TestFactory_Helper.insertOOPsetting(true,1);
             List<AF_OOPS_Settings__c> oopsettingLstQuery = [SELECT Id FROM AF_OOPS_Settings__c LIMIT 1];
+            System.assertEquals(oopsettingLst!=null, oopsettingLstQuery!=null,AF_TestFactory_Helper.OOPSACTUCAL_RECORD); 
             Set<Id> brandEstSet=new Set<Id>();
             brandEstSet.add(brandEst[0].Id);
             List<AF_Brand_Estimate__c> BrandEst1 = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
@@ -57,7 +58,7 @@ public class AF_OOPSRecordManager_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -88,6 +89,7 @@ public class AF_OOPSRecordManager_Test
             AF_OOPSRecordManager oopsRecMan1=new AF_OOPSRecordManager(brandEst[0]);
             AF_OOPSRecordManager oopsRecMan2=new AF_OOPSRecordManager(brandEstSet);
             oopsRecMan.bulkRecalculateOOPSEstimates();
+            oopsRecMan1.DeleteOOPSActualRecordsByCollection();
             oopsRecMan2.bulkOOPSEstimateCollection=OOPSEstimateList1;
             oopsRecMan2.MatrixErrorMessage=OOPSEstimateList1[0].id;
             oopsRecMan2.IsMatrixError=true;
