@@ -207,9 +207,16 @@ public with sharing class IPM_NewTask {
                 }
             }
         }
-        if(String.isNotBlank(sErrorMessage)){
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,'upsertTask',sErrorMessage,null, ERROR, null, null, null,null);
+        if(String.isNotBlank(sErrorMessage) ){
+        	validate = false;
+        	
+		if(sErrorMessage.containsIgnoreCase('Duplicate')){
+        		ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.duplicateTaskError)); 
+        	}
+        	else{
+        		ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
+        	}
+             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,'upsertTask',sErrorMessage,null, ERROR, null, null, null,null);
         }
     }
         
@@ -251,20 +258,14 @@ public with sharing class IPM_NewTask {
             
             checkTaskValidations(tasks);
                 
-              try{
-                if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
-                {
-                    upsertTask(new List<IPM_Task__c>{tasks});
-                }
-             }catch(Exception ex)
-             {
-                ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
-                validate =false;
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR, DO_SAVE_TASKS,ex.getMessage(),ex, ERROR, null, null, null,null);
+            if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
+            {
+            	upsertTask(new List<IPM_Task__c>{tasks});
             }
-            closePopup();
-        }catch(Exception ex)
-        {
+            
+           
+       }catch(Exception ex)
+       {
             ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR, DO_SAVE_TASKS,ex.getMessage(),ex, ERROR, null, null, null,null);
         }

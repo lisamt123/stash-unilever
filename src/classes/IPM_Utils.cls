@@ -156,7 +156,7 @@ public without sharing class IPM_Utils {
     public static String Internal = 'Internal';
     public static List<String> lstphaseValue = new List<String>{Ideas,Feasibility,Capability,MarketReady};
     public static String notapplicable = 'n/a';
-    
+    public static String duplicateTaskError ='Task already exists.';
     //batch finish email subject and body strings
     public static String emailSubject = 'Apex Sharing Recalculation ';
     public static String emailBody1 = 'The batch Apex job processed ';
