@@ -2,3 +2,5 @@ src
 src/classes
 src/classes/IPM_SyncFinanceTableTLD.cls
 src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
+src/classes/IPM_FinancialHandler.cls
+src/classes/IPM_FinancialHandler.cls-meta.xml
