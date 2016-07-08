@@ -5,7 +5,6 @@
         <fullName>Greenhouse_Gases_g__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Greenhouse Gases(g)</label>
         <type>Checkbox</type>
     </fields>
@@ -13,7 +12,6 @@
         <fullName>Health_Hygeine__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Health &amp; Hygeine</label>
         <type>Checkbox</type>
     </fields>
@@ -21,7 +19,6 @@
         <fullName>Nutrition__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Nutrition</label>
         <type>Checkbox</type>
     </fields>
@@ -29,7 +26,6 @@
         <fullName>Sustainable_Sourcing__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Sustainable Sourcing</label>
         <type>Checkbox</type>
     </fields>
@@ -37,7 +33,6 @@
         <fullName>Waste_g__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Waste(g)</label>
         <type>Checkbox</type>
     </fields>
@@ -45,7 +40,6 @@
         <fullName>Water_litres__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Water(litres)</label>
         <type>Checkbox</type>
     </fields>
