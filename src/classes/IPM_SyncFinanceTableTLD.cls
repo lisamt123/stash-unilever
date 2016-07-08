@@ -27,12 +27,13 @@ public with sharing class IPM_SyncFinanceTableTLD {
             IPM_Project_Rollout__c projectRollout = updatedRollouts.get(rolloutId);
             // Collec only local rollouts. Non-local rollouts will be handled via local rollouts
             if(projectRollout.RecordTypeId==LOCAL_ROLLOUT_RECORDTYPE) {
-            	if(projectRollout.KeyMCO__c) {
-                	// collect KEY Rollouts
-                	localKeyRollouts.put(rolloutId,projectRollout);
+                if(!projectRollout.KeyMCO__c && projectRollout.Local_Rollout_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) {
+                    // collect NONKEY Rollouts at ideas
+                    localNonkeyRollouts.put(rolloutId,projectRollout);
+                   
                 } else {
-                	// collect NONKEY tollouts
-                	localNonkeyRollouts.put(rolloutId,projectRollout);
+                    // collectNKEY tollouts
+                     localKeyRollouts.put(rolloutId,projectRollout);
                 }
 				consolidationTLDList.add(projectRollout);
             }
@@ -292,7 +293,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         regionalRolloutsMap = new Map<ID, IPM_Project_Rollout__c>(  [ Select id, External_Id__c, 
                                                                         ( Select Target_Launch_Date__c, Name 
                                                                           From Local_Rollouts__r
-                                                                          where KeyMCO__c =true AND isActive__c=true), 
+                                                                          where isActive__c=true), 
                                                                         ( Select Financial_External_ID__c 
                                                                           From IPM_Financials__r 
                                                                           where isActive__c=true AND ( NOT (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED') ) ) 
@@ -327,16 +328,16 @@ public with sharing class IPM_SyncFinanceTableTLD {
             	regionalProjectIDs.add(projRollout.Regional_Project__c);
             }
         }
-    	if(!regionalProjectIDs.isEmpty()) {
-	        List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
-	        											( Select Name, Target_Launch_Date__c, Local_Project__c 
-	        											  From Regional_Project_Rollout__r 
-	        											  where KeyMCO__c =true AND isActive__c=true),  
-	        											( Select id, Financial_External_ID__c, Target_Launch_Date__c 
-	        											  From IPM_Financials_Regional__r
-	        											  where  isActive__c=true AND (NOT (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED')) )   
-	        										  FROM IPM_Project__c 
-	        										  WHERE id in : regionalProjectIDs];
+        if(!regionalProjectIDs.isEmpty()) {
+            List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
+                                                        ( Select Name, Target_Launch_Date__c, Local_Project__c 
+                                                          From Regional_Project_Rollout__r 
+                                                          where isActive__c=true),  
+                                                        ( Select id, Financial_External_ID__c, Target_Launch_Date__c 
+                                                          From IPM_Financials_Regional__r
+                                                          where  isActive__c=true AND (NOT (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED')) )   
+                                                      FROM IPM_Project__c 
+                                                      WHERE id in : regionalProjectIDs];
         
 		   	for(IPM_Project__c regionalProject: regionalProjList) {
         		// handle regional original project
