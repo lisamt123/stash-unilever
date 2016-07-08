@@ -26,7 +26,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-@isTest(SeeAllData='true')
+@isTest
 private class PBS_TPlanImportAssignmentsExt_Test{
 
     @isTest
