@@ -340,4 +340,8 @@
         <recordType>TASKRAY__Project__c.VIP</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>MassInlineEdit</name>
+    </userPermissions>
 </PermissionSet>
