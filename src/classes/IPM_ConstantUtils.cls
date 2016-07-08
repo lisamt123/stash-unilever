@@ -1223,4 +1223,5 @@ public class IPM_ConstantUtils {
    public static final string SIX_THREE='6.3'; 
    
    public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c'; 
+   public static final string Clustering = 'Clustering';
 }
