@@ -5,3 +5,5 @@ src/objects
 src/objects/TASKRAY__Project_Task__c.object
 src/permissionsets
 src/permissionsets/TaskRayCustom.permissionset
+src/reports
+src/reports/TASKRAY__TaskRay_Reports
