@@ -530,6 +530,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Global_Category_Average_View_HlthHyg__c</fullName>
+        <externalId>false</externalId>
+        <label>Global Category Average View HealthHygne</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Global_Category_Average_View_Nutri__c</fullName>
+        <externalId>false</externalId>
+        <label>Global Category Average View Nutrition</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Global_Category_Average_View_Waste__c</fullName>
         <description>Stores Global Category Average Waste  value</description>
         <externalId>false</externalId>

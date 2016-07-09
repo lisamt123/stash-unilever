@@ -209,7 +209,7 @@ private class IPM_ProjectCountryDetails_Test {
             //Delete assessment so that there no assessment for the country and the IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag on the project is set to false
             delete assessment1;
             IPM_Project__c projWithNoAssessment = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
-           	System.assertEquals(false,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+           	System.assertEquals(true,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
             
             
             IPM_Country__c tempCountry2 = new  IPM_Country__c(
@@ -218,7 +218,7 @@ private class IPM_ProjectCountryDetails_Test {
            insert tempCountry2;
            
            IPM_Project__c projToCheck = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
-           System.assertEquals(false,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+           System.assertEquals(true,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
            test.stopTest();
         }    
     }

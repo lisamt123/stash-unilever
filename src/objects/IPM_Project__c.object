@@ -1446,7 +1446,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
-        <defaultValue>true</defaultValue>
+        <defaultValue>false</defaultValue>
         <description>If the EICountry has one assessment related to it then this checkbox is checked.</description>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>

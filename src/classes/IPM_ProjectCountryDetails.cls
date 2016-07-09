@@ -608,6 +608,7 @@ public with sharing class IPM_ProjectCountryDetails{
                     for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r){
                         if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
                             toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
+                        	break;
                         }
                     }
                 }

@@ -9520,5 +9520,21 @@ If you take no further action after 72 hours from now this Project and all its R
         <shortDescription>Cancel Stopping Project</shortDescription>
         <value>Cancel Stopping Project</value>
     </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_Health_and_Hygiene</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Health and Hygiene</shortDescription>
+        <value>Health &amp; Hygeine</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Ecodesign_Nutrition</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Ecodesign Nutrition</shortDescription>
+        <value>Nutrition</value>
+    </labels>
 
 	
