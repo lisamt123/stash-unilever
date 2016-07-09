@@ -17,6 +17,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     
     private static Set<Id> finCopyOverAlreadyInitiatedSet = new Set<Id>();
     
+    private Set<Id> finIdsforProjY3iToSync = new Set<Id> (); 
     //@description:Constructor
     public IPM_FinancialHandler() 
     {
@@ -80,6 +81,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             if(Trigger.isInsert)
             {
                 IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
+                
+                finIdsforProjY3iToSync.addAll(Trigger.newMap.keySet());    
             }   
                 
             if(Trigger.isUpdate) 
@@ -103,6 +106,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					    targetLaunchChangedDateMap.put(financial.Id,financial); 
 					    changedFinancialSet.add(financial.Id);
 					}
+                		if(financial.Year_3_iTO_Global__c!=oldFinancial.Year_3_iTO_Global__c || financial.Year_3_iTO_Regional__c != oldFinancial.Year_3_iTO_Regional__c || financial.Year_3_iTO_Local__c!=oldFinancial.Year_3_iTO_Local__c)
+                		{
+                    		finIdsforProjY3iToSync.add(financial.Id);    
+            			} 
 	            }
 					
 				//Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial.
@@ -340,6 +347,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             
             IPM_FinancialHelper.initializeConsolidation(deleteFinancialMap.values(),null,deleteFinancialMap,upsertConsolidatedFinancialMap,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE);
             deleteFinancialMap.clear();
+             finIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());
         }
         
         if(!upsertConsolidatedFinancialMap.isEmpty())
@@ -449,6 +457,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     */
     public void andFinally()
     {
+        if(!finIdsforProjY3iToSync.isEmpty())
+        {
+         	IPM_FinancialHelper.updateAssoProjectY3iToValue(finIdsforProjY3iToSync); 
+        }
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger  
         ExceptionLoggingHelper.insertLogRecordList();
     }

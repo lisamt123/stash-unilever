@@ -155,6 +155,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     //Phase 2.0
     public boolean displayGateDocument{get;set;}//display gate document status and document percentage
     public boolean showStopButton{get;set;}//  to show Stop Project button 
+    public String stopButtonHoverText{get;set;}//hover text of  Stop Project button 
     public boolean isStopped{get;set;}
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     //SD constructor
@@ -308,7 +309,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /**********************************************************
     Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
     ***********************************************************/     
-        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c) && 
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && !project.IPM_PrepareForArchival__c && !project.Is_Archieved__c && 
                     projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus)
         {
  	       bShowChangeStatusButton = true;
@@ -372,7 +373,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT IPM_GateKeepingModel__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        project = [SELECT IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,IPM_EligibleForReactivation__c,IPM_StoppedByProject__c,
         IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,IPM_Stopped_At_Span__c, 
@@ -780,83 +781,33 @@ public with sharing class IPM_ProjectOverviewCtrl {
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
         // checking if rollout plan for original project has been created
         isOrgPrjRLplancreated = isOriginal && (!project.IPM_Project_Rollout__r.isEmpty()  || !project.Regional_Project_Rollout__r.isEmpty() );  
-        if( project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL && !project.Is_Archieved__c && !project.IPM_PrepareForArchival__c && isProjLeader)
+        IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
+        if( project.IPM_ShowProjectStop__c && isProjLeader && currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c))
         {   
-        	//Map<Id,IPM_Project_Rollout__c> idToProjMap = new Map<Id,IPM_Project_Rollout__c> (project.IPM_Project_Rollout__r);
-			//Map<Id,IPM_Project_Rollout__c> idToProjMap = new Map<Id,IPM_Project_Rollout__c> (project.Regional_Project_Rollout);
-       		Boolean isAllRegRLoutStpd = false;
-			Boolean isAllLocalRLoutStpd = false;
-        	if( project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-			{
-				//checking if all the regional rollouts are inactive for global project
-				for(IPM_Project_Rollout__c	ipmPrjRLout :project.IPM_Project_Rollout__r)
+        	stopButtonHoverText=String.format(Label.IPM_Stop_project_hover_text,new List<String>{project.IPMProject_Span__c,project.IPMProject_Span__c});
+        	system.debug('Showstopbutton2 >>'+showStopButton);
+			Map<Id,IPM_Project_Rollout__c> assocoiatedRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+			assocoiatedRolloutMap.putAll(project.IPM_Project_Rollout__r);
+			assocoiatedRolloutMap.putAll(project.Regional_Project_Rollout__r);
+			assocoiatedRolloutMap.remove(null);
+			
+			Integer activeRolloutCounter = 0;
+			for(IPM_Project_Rollout__c	ipmPrjRLout :assocoiatedRolloutMap.values())
 				{
-					if(ipmPrjRLout.IPM_Rollout_Span__c =='Regional')
-					{
 						if(ipmPrjRLout.isActive__c)
-						{  
-							isAllRegRLoutStpd=false;
-							break;
-						}
-						else
 						{
-							isAllRegRLoutStpd=true;	
-						}
-					}
-				}
-				//checking if all the local  rollouts are inactive  for global project
-				for(IPM_Project_Rollout__c	ipmPrjRLout :project.IPM_Project_Rollout__r)
-				{
-					if(ipmPrjRLout.IPM_Rollout_Span__c=='Local')
-					{
-						if(ipmPrjRLout.isActive__c)
-						{    
-							isAllLocalRLoutStpd=false;
-							break;
-						}
-						else
-						{
-							isAllLocalRLoutStpd=true;	
-						}
-					}
-				}
-			}
-			if( project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
-			{
-				//checking if all the local  rollouts are inactive  for regional project 
-				for(IPM_Project_Rollout__c	ipmPrjRLout :project.Regional_Project_Rollout__r)
-				{
-					if(ipmPrjRLout.IPM_Rollout_Span__c=='Local')
-					{
-						if(ipmPrjRLout.isActive__c)
-						{  
-							isAllLocalRLoutStpd=false;
-							break;
-						}
-						else
-						{
-							isAllLocalRLoutStpd=true;	
-						}
-					}
+					activeRolloutCounter++;
 				}
 			}
     
-         	IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && isOriginal) 
-			{
-				if(currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && (isAllRegRLoutStpd || isAllLocalRLoutStpd))
+			
+			if(activeRolloutCounter == 0)
 				{
 					showStopButton = true; 
 				}
 			}  
-			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL  )
-			{
-				if(currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && isAllLocalRLoutStpd)
-				{
-					showStopButton = true; 
-				} 
-			}
-        }
+	
+        
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);

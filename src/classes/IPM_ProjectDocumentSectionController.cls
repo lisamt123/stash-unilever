@@ -75,8 +75,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	public list<IPM_Project__c>lstofuser; //For getting list of users
 	public Integer CountProuser;//Count of Users
 	public boolean isGlobalActionStandards{get;set;}
-	
-    public String showEntity{get;set;} // field API name of 'Show At Global /Regional / Loacal" fields. 
+	public boolean isTaskReadOnly{get;set;}
+	public String showEntity{get;set;} // field API name of 'Show At Global /Regional / Loacal" fields. 
 	/****************************************************************************************************************************************************************
 	* @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
 	*/
@@ -105,6 +105,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		showNext=true;
 		showEcoDesign = false;
 		isEditMarketPerformance=false;
+        	isTaskReadOnly = false;
 		Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);
 		projectResource=new list<IPM_Project_Resource__c>();
 		projectId=ApexPages.currentPage().getParameters().get('Id');

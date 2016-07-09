@@ -1364,3 +1364,5 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
          	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
 }
+	}
+}	

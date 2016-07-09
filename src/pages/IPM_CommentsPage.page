@@ -33,7 +33,7 @@
                 <div class="row clearfix">
                     <div class="col-xs-6 secButtonSet pull-right">
                         <div class="panel">
-                            <apex:commandButton value="Add Comment" styleClass="ipmButton primary"  action="{!AddComment}" reRender="onLoadComments1,pgmsg,viewall" onComplete="window.location.reload()"/>
+                            <apex:commandButton value="Add Comment" styleClass="ipmButton primary"  action="{!AddComment}" reRender="onLoadComments1,pgmsg,viewall" onComplete="window.location.reload()" rendered="{!isCommentEditable}"  />
                         </div>
                     </div>
                 </div>  

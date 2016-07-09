@@ -24,7 +24,6 @@ public with sharing class IPM_ProjectHelper
     public static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); 
     public static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId(); 
     
-    private static final String START_Msg='Started as project is unarchieved.';
     // Query Additional Parameters
     public static final String LIMIT_CLAUSE_STR = ' limit 50000 '; 
     public static final String WHERE_CLAUSE_STR = ' where ipm_project__c in :resultantprojectids ';

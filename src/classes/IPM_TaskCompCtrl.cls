@@ -29,7 +29,6 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     public boolean isCreateTask{get;set;}
     public boolean isApproachEdit{get;set;}//Update approach
     public boolean isTaskReadOnly{get;set;}//Update approach
-    public Boolean reactivateProjectFlag{get;set;} // used by security to give edit access on Wizard for IPM Busines Partner user
     //gettter & setter for taskId
     
       
@@ -74,7 +73,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     */
     public IPM_TaskCompCtrl() {
         IPM_IECompatible.ieFix();
-        reactivateProjectFlag = false;
+        
         //initialising variables
         openTasks = 0; 
         closedTasks = 0;

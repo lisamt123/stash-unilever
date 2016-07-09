@@ -1227,4 +1227,7 @@ public class IPM_ConstantUtils {
    
    public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c'; 
    public static final string Clustering = 'Clustering';
+   public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
+   public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
+   public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
 }

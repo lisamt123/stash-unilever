@@ -160,7 +160,7 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
     }
     
-    /**
+    /** 
     * @description:afterDelete
     * This method is called iteratively for each record to be delete during a AFTER
     * trigger.
@@ -178,10 +178,6 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     */
     public void andFinally()
     {
-        if(!finYearIdsforProjY3iToSync.isEmpty())
-        {
-         	IPM_FinancialYearHelper.updateAssoProjectY3iToValue(finYearIdsforProjY3iToSync);
-        }
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger
         ExceptionLoggingHelper.insertLogRecordList();
     }

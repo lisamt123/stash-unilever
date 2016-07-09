@@ -808,5 +808,32 @@ public with sharing class IPM_FinancialHelper
         	update updateFinActionStdsList;
         }            
    	  }  
+   	/************************************************************************************************************************
+    * @description          Method to  sync project y3iTo with financial's Global,Regional and Local Y3iTo's
+    * @param                financial Ids 
+    *************************************************************************************************************************/
+    public static void updateAssoProjectY3iToValue(Set<Id> financialIds) 
+    {
+    		List<Id> projIdsforY3iToSync = new  List<Id>();
+    		for(IPM_Financial__c  ipmFinRec: [Select Id ,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds])
+    		{
+               if(ipmFinRec.Local_Project__c!=null)
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Local_Project__c);
+               }
+               if(ipmFinRec.Regional_Project__c!=null)
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Regional_Project__c);
+               }
+               if(ipmFinRec.Parent_Project__c!=null)  
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Parent_Project__c);  
+               } 
+    		} 
+    		if(!projIdsforY3iToSync.isEmpty()) 
+    		{ 
+    		 	IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync); 
+    		}
+    }  
     
 }

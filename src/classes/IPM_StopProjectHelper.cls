@@ -2,8 +2,29 @@ public with sharing class IPM_StopProjectHelper
 {
     // Set of all Projects which are going to be Stopped including explicit and implicit stops.
     public static Map<Id,Set<Id>> parentToStoppedChildProjectIds = new Map<Id,Set<Id>>(); 
-    public static Map<string,map<string,boolean>> projStopMapArc = new map<string,map<string,boolean>> {'Global'=> new map<string,boolean>{'IPM_ShowAtGlobal__c' => true,'IPM_ShowAtRegional__c'=> true,'IPM_ShowAtLocal__c' => true},'Regional'=> new map<string,boolean>{'IPM_ShowAtGlobal__c' => false,'IPM_ShowAtRegional__c'=> true,'IPM_ShowAtLocal__c' => true},'Local'=> new map<string,boolean>{'IPM_ShowAtGlobal__c' => false,'IPM_ShowAtRegional__c'=> false,'IPM_ShowAtLocal__c' => true}};
-    public static Map<string,map<string,boolean>> projStopMapUnArc = new map<string,map<string,boolean>> {'Global'=> new map<string,boolean>{'IPM_ShowAtGlobal__c' => false,'IPM_ShowAtRegional__c'=> false,'IPM_ShowAtLocal__c' => false},'Regional'=> new map<string,boolean>{'IPM_ShowAtGlobal__c' => false,'IPM_ShowAtRegional__c'=> false,'IPM_ShowAtLocal__c' => false},'Local'=> new map<string,boolean>{'IPM_ShowAtGlobal__c' => false,'IPM_ShowAtRegional__c'=> false,'IPM_ShowAtLocal__c' => false}};
+    public static Map<string,map<string,boolean>> projStopMapArc = new map<string,map<string,boolean>> 
+    {
+        IPM_ConstantUtils.PROJECT_SPAN_GLOBAL => new map<string,boolean>{ IPM_ConstantUtils.SHOW_AT_GLOBAL => true,IPM_ConstantUtils.SHOW_AT_REGIONAL => true,IPM_ConstantUtils.SHOW_AT_LOCAL =>true },
+        IPM_ConstantUtils.PROJECT_SPAN_REGIONAL => new map<string,boolean>{ IPM_ConstantUtils.SHOW_AT_GLOBAL => false,IPM_ConstantUtils.SHOW_AT_REGIONAL => true,IPM_ConstantUtils.SHOW_AT_LOCAL =>true},
+        IPM_ConstantUtils.PROJECT_SPAN_LOCAL => new map<string,boolean>{ IPM_ConstantUtils.SHOW_AT_GLOBAL => false,IPM_ConstantUtils.SHOW_AT_REGIONAL => false,IPM_ConstantUtils.SHOW_AT_LOCAL =>true }
+    };
+
+    public static Map<Id,IPM_Project__c> relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
+    public static Map<Id,IPM_Project_Document__c> relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
+    public static Map<Id,IPM_Task__c> relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();
+    public static Map<Id,IPM_Project_Resource__c> relatedProjectResourceToStopMap = new Map<Id,IPM_Project_Resource__c>();
+    public static Map<Id,IPM_Project_Rollout__c> relatedRolloutsToStopMap = new Map<Id,IPM_Project_Rollout__c>();
+    public static Map<Id,IPM_financial__c> relatedFinancialsToStopMap = new Map<Id,IPM_financial__c>();
+    public static Map<Id,IPM_Country__c> relatedCountryToStopMap = new Map<Id,IPM_Country__c>();
+    public static Map<String,IPM_Project_Metadata__mdt> projectMetadataMap = new  Map<String,IPM_Project_Metadata__mdt>();
+    {
+        String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true);
+        List<IPM_Project_Metadata__mdt> projectMetadataList = (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery);
+        for(IPM_Project_Metadata__mdt projectMetada : projectMetadataList)
+        {
+            projectMetadataMap.put(projectMetada.Label,projectMetada);
+        }
+    }
 
     public static void prepareDataForArchiving(IPM_Project__c incomingProject,IPM_Project__c oldProject)
     {
@@ -16,6 +37,16 @@ public with sharing class IPM_StopProjectHelper
                 incomingProject.IPM_Stopped_Phase__c = incomingProject.IPM_Phase__c;
                 incomingProject.IPM_Stopped_At_Span__c = incomingProject.IPMProject_Span__c;
                 incomingProject.IPM_Document_Update_Comments__c = incomingProject.IPM_Stopped_Comments__c;
+                Integer cancelStopProjectDuration = 4320;
+                if(projectMetadataMap.containsKey(incomingProject.IPM_ProjectGKM__c))
+                {
+                    IPM_Project_Metadata__mdt projectMetadata  = projectMetadataMap.get(incomingProject.IPM_ProjectGKM__c);
+                    if(projectMetadata.IPM_CancelStopProjectDuration__c > 0 )
+                    {
+                        cancelStopProjectDuration = Integer.valueOf(projectMetadata.IPM_CancelStopProjectDuration__c);     
+                    }
+                }
+                incomingProject.IPM_CancelStoppingProjectTill__c = System.now().addMinutes(cancelStopProjectDuration);
             }
             else
             {
@@ -26,6 +57,7 @@ public with sharing class IPM_StopProjectHelper
                 incomingProject.IPM_Document_Update_Comments__c = null;
                 incomingProject.IPM_Stopped_Comments__c = null;
                 incomingProject.IPM_StoppedByProject__c = null;
+                incomingProject.IPM_CancelStoppingProjectTill__c = null;
             } 
         } 
     }
@@ -162,13 +194,17 @@ public with sharing class IPM_StopProjectHelper
     **********************************************************************/
     public static void processArchival(map<Id,IPM_Project__c> archivalProjectMap)
     { 
-        Map<Id,IPM_Project__c> relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
-        Map<Id,IPM_Project_Document__c> relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
-        Map<Id,IPM_Task__c> relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();
-        Map<Id,IPM_Project_Resource__c> relatedProjectResourceToStopMap = new Map<Id,IPM_Project_Resource__c>();
-        Map<Id,IPM_Project_Rollout__c> relatedRolloutsToStopMap = new Map<Id,IPM_Project_Rollout__c>();
-        Map<Id,IPM_financial__c> relatedFinancialsToStopMap = new Map<Id,IPM_financial__c>();
-        Map<Id,IPM_Country__c> relatedCountryToStopMap = new Map<Id,IPM_Country__c>();
+        relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
+        relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
+        relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();
+        relatedProjectResourceToStopMap = new Map<Id,IPM_Project_Resource__c>();
+        relatedRolloutsToStopMap = new Map<Id,IPM_Project_Rollout__c>();
+        relatedFinancialsToStopMap = new Map<Id,IPM_financial__c>();
+        relatedCountryToStopMap = new Map<Id,IPM_Country__c>();
+        IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true; 
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+        IPM_TaskHelper.SKIP_TRIGGER_EXECUTION = true;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
 
         // Set of Projects Stopped by User.
         set<Id> stoppedProjectIdSet =  new Set<Id>(archivalProjectMap.keySet()); 
@@ -208,9 +244,7 @@ public with sharing class IPM_StopProjectHelper
             
             /* Logic for stopped Project & Documents */
             
-            String projectspan = userStoppedProject.IPMProject_Span__c;
 
-            Map<String,Boolean> apiNameToValue = projStopMapArc.get(projectspan);
 
             Map<Id,IPM_Project__c> childProjectMap = new Map<Id,IPM_Project__c>();
             Map<Id,IPM_Project_Document__c> childProjectDocumentMap = new Map<Id,IPM_Project_Document__c>();
@@ -222,6 +256,7 @@ public with sharing class IPM_StopProjectHelper
             
             getChildRelatedRecords(userStoppedProjectId,childProjectMap,childProjectDocumentMap,childProjectTaskMap,childProjectResourceMap,childRolloutMap,childFinancialMap,childCountryMap,stopProjectMap);
             
+            // For double Checking 
             childProjectMap.remove(userStoppedProjectId);
 
             for(Id childProjectId : childProjectMap.keySet())
@@ -238,7 +273,16 @@ public with sharing class IPM_StopProjectHelper
                 
                 relatedProjectsToStopMap.put(childProjectId,childProject);
             } 
+            processProjectRelatedArchival(userStoppedProject,childProjectDocumentMap,childProjectTaskMap,childProjectResourceMap,childRolloutMap,childFinancialMap,childCountryMap);   
+        } 
 
+        updateChildProjects(relatedProjectsToStopMap);
+        updateprojectRelatedRecords(relatedProjectDocToStopMap,relatedProjectResourceToStopMap,relatedFinancialsToStopMap,relatedCountryToStopMap,relatedRolloutsToStopMap,relatedProjectTaskToStopMap);  
+    }
+    public static void processProjectRelatedArchival(IPM_Project__c userStoppedProject, Map<Id,IPM_Project_Document__c> childProjectDocumentMap, Map<Id,IPM_Task__c> childProjectTaskMap,Map<Id,IPM_Project_Resource__c> childProjectResourceMap,Map<Id,IPM_Project_Rollout__c> childRolloutMap,Map<Id,IPM_Financial__c> childFinancialMap,Map<Id,IPM_Country__c>  childCountryMap) 
+    {
+        String projectspan = userStoppedProject.IPMProject_Span__c;
+        Map<String,Boolean> apiNameToValue = projStopMapArc.get(projectspan);
             for(Id taskId : childProjectTaskMap.keySet())
             {
                 IPM_Task__c projectTask = new IPM_Task__c(id = taskId,IPM_Active__c=false);
@@ -264,7 +308,7 @@ public with sharing class IPM_StopProjectHelper
 
             for(Id rolloutId : childRolloutMap.keySet())
             {
-                IPM_Project_Rollout__c rollout = new IPM_Project_Rollout__c(id = rolloutId,isActive__c=false,IPM_StoppedByProject__c=userStoppedProjectId);
+            IPM_Project_Rollout__c rollout = new IPM_Project_Rollout__c(id = rolloutId,isActive__c=false,IPM_StoppedByProject__c=userStoppedProject.Id);
                 for(String apiName : apiNameToValue.keySet())
                 {   
                     rollout.put(apiName,(Boolean)apiNameToValue.get(apiName));     
@@ -274,7 +318,7 @@ public with sharing class IPM_StopProjectHelper
 
             for(Id financialId : childFinancialMap.keySet())
             {
-                IPM_financial__c financial = new IPM_financial__c(id = financialId,isActive__c=false,IPM_StoppedByProject__c= userStoppedProjectId);
+            IPM_financial__c financial = new IPM_financial__c(id = financialId,isActive__c=false,IPM_StoppedByProject__c= userStoppedProject.Id);
                 for(String apiName : apiNameToValue.keySet())
                 {
                     financial.put(apiName,(Boolean)apiNameToValue.get(apiName));
@@ -284,32 +328,30 @@ public with sharing class IPM_StopProjectHelper
 
             for(Id countryId : childCountryMap.keySet()) 
             {
-                IPM_Country__c country = new IPM_Country__c(id = countryId,isActive__c=false,IPM_StoppedByProject__c=userStoppedProjectId);
+            IPM_Country__c country = new IPM_Country__c(id = countryId,isActive__c=false,IPM_StoppedByProject__c=userStoppedProject.Id);
                 for(String apiName : apiNameToValue.keySet())
                 {
                     country.put(apiName,(Boolean)apiNameToValue.get(apiName));
                 }
                 relatedCountryToStopMap.put(countryId,country);
-            }
         }
 
-        IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true; 
-        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
-        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
 
-        prepareUpdatedProjectAndDocumentMap(relatedProjectDocToStopMap,relatedProjectsToStopMap);
-        projectRelatedRecords(relatedProjectResourceToStopMap,relatedFinancialsToStopMap,relatedCountryToStopMap,relatedRolloutsToStopMap,relatedProjectTaskToStopMap);  
     }
 
     public static void processUnArchival(map<Id,IPM_Project__c> unArchieveProjectMap)
     {
-        Map<Id,IPM_Project__c> relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
-        Map<Id,IPM_Project_Document__c> relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
-        Map<Id,IPM_Task__c> relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();
-        Map<Id,IPM_Project_Resource__c> relatedProjectResourceToStopMap = new Map<Id,IPM_Project_Resource__c>();
-        Map<Id,IPM_Project_Rollout__c> relatedRolloutsToStopMap = new Map<Id,IPM_Project_Rollout__c>();
-        Map<Id,IPM_financial__c> relatedFinancialsToStopMap = new Map<Id,IPM_financial__c>();
-        Map<Id,IPM_Country__c> relatedCountryToStopMap = new Map<Id,IPM_Country__c>();
+        relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
+        relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
+        relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();
+        relatedProjectResourceToStopMap = new Map<Id,IPM_Project_Resource__c>();
+        relatedRolloutsToStopMap = new Map<Id,IPM_Project_Rollout__c>();
+        relatedFinancialsToStopMap = new Map<Id,IPM_financial__c>();
+        relatedCountryToStopMap = new Map<Id,IPM_Country__c>();
+        IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+        IPM_TaskHelper.SKIP_TRIGGER_EXECUTION = true;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
 
         // Set of Projects Stopped by User.
         set<Id> unArchieveProjectIdSet =  new Set<Id>(unArchieveProjectMap.keySet());
@@ -363,6 +405,14 @@ public with sharing class IPM_StopProjectHelper
                sourceProject = dbProject; 
             }
             
+            processProjectRelatedUnArchival(dbProject,sourceProject);
+            /* Logic for Related Data ends */
+        } 
+        updateChildProjects(relatedProjectsToStopMap);
+        updateprojectRelatedRecords(relatedProjectDocToStopMap,relatedProjectResourceToStopMap,relatedFinancialsToStopMap,relatedCountryToStopMap,relatedRolloutsToStopMap,relatedProjectTaskToStopMap);  
+    }
+    public static void processProjectRelatedUnArchival(IPM_Project__c dbProject,IPM_Project__c sourceProject)
+    {
             /* Logic for stopped Project & Documents */
             String projectspan = sourceProject.IPMProject_Span__c;
             Map<String,Boolean> apiNameToValue = projStopMapArc.get(projectspan);
@@ -421,15 +471,8 @@ public with sharing class IPM_StopProjectHelper
                 relatedCountryToStopMap.put(countryId,country);
             }
 
-            /* Logic for Related Data ends */
-        } 
 
-        IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
-        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
-        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
 
-        prepareUpdatedProjectAndDocumentMap(relatedProjectDocToStopMap,relatedProjectsToStopMap);
-        projectRelatedRecords(relatedProjectResourceToStopMap,relatedFinancialsToStopMap,relatedCountryToStopMap,relatedRolloutsToStopMap,relatedProjectTaskToStopMap);  
     }
 
     
@@ -530,12 +573,8 @@ public with sharing class IPM_StopProjectHelper
     @param: map<Id,String> unArchieveProjectMap
     @Release:1.2
     **********************************************************************/
-    public static void prepareUpdatedProjectAndDocumentMap(map<Id,IPM_Project_Document__c> projectsDocumentMap,map<Id,IPM_Project__c> projectMap)
+    public static void updateChildProjects(map<Id,IPM_Project__c> projectMap)
     {
-        if(!projectsDocumentMap.isEmpty())
-        {
-            update projectsDocumentMap.values(); 
-        }
 
         if(!projectMap.isEmpty() )
         {
@@ -545,14 +584,9 @@ public with sharing class IPM_StopProjectHelper
         }
     }
 
-    public static void projectRelatedRecords(Map<Id,IPM_Project_Resource__c> updatedResourceMap,Map<Id,IPM_Financial__c> updatedFinancialMap, map<Id,IPM_Country__c> updatedCountryMap, map<Id,IPM_Project_Rollout__c> updatedRolloutMap,Map<Id,IPM_Task__c> updatedTaskMap)
+    public static void updateprojectRelatedRecords(Map<Id,IPM_Project_Document__c> projectsDocumentMap,Map<Id,IPM_Project_Resource__c> updatedResourceMap,Map<Id,IPM_Financial__c> updatedFinancialMap, map<Id,IPM_Country__c> updatedCountryMap, map<Id,IPM_Project_Rollout__c> updatedRolloutMap,Map<Id,IPM_Task__c> updatedTaskMap)
     {
-
-        System.debug(LoggingLevel.ERROR,'updatedResourceMap-->>'+updatedResourceMap);
-        System.debug(LoggingLevel.ERROR,'updatedFinancialMap-->>'+updatedFinancialMap);
-        System.debug(LoggingLevel.ERROR,'updatedCountryMap-->>'+updatedCountryMap);
-        System.debug(LoggingLevel.ERROR,'updatedRolloutMap-->>'+updatedRolloutMap);
-        
+    
         if(!updatedResourceMap.isEmpty())
         {
             update updatedResourceMap.values();    
