@@ -13,6 +13,11 @@
         <name>Checkbox_Value__c</name>
     </fields>
     <fields>
+        <help><!-- IdeasLigthningGA  Tracking ID --></help>
+        <label><!-- IdeasLigthningGA --></label>
+        <name>IdeasLigthningGA__c</name>
+    </fields>
+    <fields>
         <label><!-- Text Value --></label>
         <name>Text_Value__c</name>
     </fields>

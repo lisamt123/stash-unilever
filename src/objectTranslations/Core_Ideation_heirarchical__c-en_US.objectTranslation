@@ -16,5 +16,9 @@
         <label><!-- GoogleAnalyticsId --></label>
         <name>GoogleAnalyticsId__c</name>
     </fields>
+    <fields>
+        <label><!-- Record Display Limit --></label>
+        <name>Record_Display_Limit__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

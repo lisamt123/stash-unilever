@@ -237,6 +237,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Geography --></label>
+        <name>Geography__c</name>
+    </fields>
+    <fields>
         <label><!-- CPF --></label>
         <name>ICB_CPF__c</name>
     </fields>
@@ -730,6 +734,10 @@
     <fields>
         <label><!-- Max Refund Amount --></label>
         <name>Max_Refund_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- PC_Category --></label>
+        <name>PC_Category__c</name>
     </fields>
     <fields>
         <label><!-- Pass031212 --></label>
@@ -1423,8 +1431,16 @@
         <name>User_License__c</name>
     </fields>
     <fields>
+        <label><!-- User Role --></label>
+        <name>User_Role__c</name>
+    </fields>
+    <fields>
         <label><!-- User Unique --></label>
         <name>User_Unique__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Level --></label>
+        <name>Work_Level__c</name>
     </fields>
     <fields>
         <label><!-- External ID --></label>

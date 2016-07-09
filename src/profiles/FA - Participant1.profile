@@ -25424,6 +25424,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.Geography__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.ICB_CPF__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25499,6 +25504,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.PC_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.Pass031212__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25559,7 +25569,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.User_Role__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.User_Unique__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Work_Level__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -35975,10 +35995,6 @@
     <tabVisibilities>
         <tab>FA_Course_ChatterGroup__c</tab>
         <visibility>DefaultOff</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Ideas</tab>
-        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Inside_Unilever</tab>
