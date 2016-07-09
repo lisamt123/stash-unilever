@@ -120,7 +120,7 @@ public with sharing class IPM_EcoDesignSection {
                                                         IPM_Comparison_SKU_Sourcing__c, IPM_Comparison_Rep_GTU_GHG_PCU__c,IPM_Comparison_Rep_GTU_Waste_PCU__c,IPM_Country__r.IS_EI_Country__c,
                                                         IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
                                                         IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
-                                                        IPM_Comparison_Rep_GTU_Name__c,IPM_Project__r.IPMProject_Span__c From IPM_Assessment__c 
+                                                        IPM_Comparison_Rep_GTU_Name__c,IPM_Health_Hygiene__c,IPM_Nutrition__c,IPM_Global_Category_Average_View_HlthHyg__c,IPM_Global_Category_Average_View_Nutri__c,IPM_Project__r.IPMProject_Span__c From IPM_Assessment__c 
                                                         Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
                                                         Order by IPM_SKU_Type__c asc LIMIT 50000]) {
                     if(assessmentEle.IPM_Project__r.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
@@ -137,7 +137,7 @@ public with sharing class IPM_EcoDesignSection {
                                                     IPM_Comparison_SKU_Sourcing__c, IPM_Comparison_Rep_GTU_GHG_PCU__c,IPM_Comparison_Rep_GTU_Waste_PCU__c,IPM_Country__r.IS_EI_Country__c,
                                                     IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
                                                     IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
-                                                    IPM_Comparison_Rep_GTU_Name__c From IPM_Assessment__c 
+                                                    IPM_Comparison_Rep_GTU_Name__c,IPM_Health_Hygiene__c,IPM_Nutrition__c,IPM_Global_Category_Average_View_HlthHyg__c,IPM_Global_Category_Average_View_Nutri__c From IPM_Assessment__c 
                                                     Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
                                                     And IPM_Project__c =:projId Order by IPM_SKU_Type__c asc LIMIT 50000]) {
                 countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);                                          

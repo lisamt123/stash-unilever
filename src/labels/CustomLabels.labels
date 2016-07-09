@@ -9480,7 +9480,7 @@ If you discover that stopping this Project was a mistake you can undo this actio
 
 If you take no further action after 72 hours from now this Project and all its Rollout Projects will be stopped. Please note Stopped Projects cannot be reactivated</value>
     </labels>
-</CustomLabels>
+
 <labels>
         <fullName>IPM_NoOfMonths_ForReactivation</fullName>
         <language>en_US</language>
@@ -9523,5 +9523,21 @@ If you take no further action after 72 hours from now this Project and all its R
         <shortDescription>Cancel Stopping Project</shortDescription>
         <value>Cancel Stopping Project</value>
     </labels>
-
+    <labels>
+        <fullName>IPM_EcoDesign_Health_and_Hygiene</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Health and Hygiene</shortDescription>
+        <value>Health &amp; Hygeine</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Ecodesign_Nutrition</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Ecodesign Nutrition</shortDescription>
+        <value>Nutrition</value>
+    </labels>
+</CustomLabels>
 

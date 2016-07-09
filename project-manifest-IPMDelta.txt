@@ -4,6 +4,8 @@ src/classes/IPM_BETDueDateNotificationBatch.cls
 src/classes/IPM_BETDueDateNotificationBatch.cls-meta.xml
 src/classes/IPM_BETSuggestedMembersController.cls
 src/classes/IPM_BETSuggestedMembersController.cls-meta.xml
+src/classes/IPM_ChangProjectDocStatusController_Test.cls
+src/classes/IPM_ChangProjectDocStatusController_Test.cls-meta.xml
 src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
 src/classes/IPM_CommentsListController.cls
@@ -22,6 +24,10 @@ src/classes/IPM_EcoDesignSection.cls
 src/classes/IPM_EcoDesignSection.cls-meta.xml
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
+src/classes/IPM_FinancialHandler.cls
+src/classes/IPM_FinancialHandler.cls-meta.xml
+src/classes/IPM_FinancialHelper.cls
+src/classes/IPM_FinancialHelper.cls-meta.xml
 src/classes/IPM_FinancialUtils.cls
 src/classes/IPM_FinancialUtils.cls-meta.xml
 src/classes/IPM_FinancialYearHandler.cls
@@ -30,6 +36,8 @@ src/classes/IPM_GateDocumentController.cls
 src/classes/IPM_GateDocumentController.cls-meta.xml
 src/classes/IPM_GateDocumentRiskManagement.cls
 src/classes/IPM_GateDocumentRiskManagement.cls-meta.xml
+src/classes/IPM_Gate_RollOuts_Controller.cls
+src/classes/IPM_Gate_RollOuts_Controller.cls-meta.xml
 src/classes/IPM_GatekeeperChecklist.cls
 src/classes/IPM_GatekeeperChecklist.cls-meta.xml
 src/classes/IPM_GatekeeperChecklist_Test.cls
@@ -42,8 +50,12 @@ src/classes/IPM_List_Milestones.cls
 src/classes/IPM_List_Milestones.cls-meta.xml
 src/classes/IPM_MyList.cls
 src/classes/IPM_MyList.cls-meta.xml
+src/classes/IPM_MyList_Test.cls
+src/classes/IPM_MyList_Test.cls-meta.xml
 src/classes/IPM_NewTask.cls
 src/classes/IPM_NewTask.cls-meta.xml
+src/classes/IPM_OTIFStatusController.cls
+src/classes/IPM_OTIFStatusController.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch_Test.cls
@@ -52,6 +64,8 @@ src/classes/IPM_OTIFstatusController_Test.cls
 src/classes/IPM_OTIFstatusController_Test.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
+src/classes/IPM_ProjectCountryDetails_Test.cls
+src/classes/IPM_ProjectCountryDetails_Test.cls-meta.xml
 src/classes/IPM_ProjectDocumentSectionController.cls
 src/classes/IPM_ProjectDocumentSectionController.cls-meta.xml
 src/classes/IPM_ProjectHandler.cls
@@ -66,6 +80,8 @@ src/classes/IPM_ProjectSearchCtrl.cls
 src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
 src/classes/IPM_ProjectSetUpController.cls
 src/classes/IPM_ProjectSetUpController.cls-meta.xml
+src/classes/IPM_Resource_Allocation.cls
+src/classes/IPM_Resource_Allocation.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController.cls
 src/classes/IPM_RolloutPlansAddController.cls-meta.xml
 src/classes/IPM_RolloutPlansTableController.cls
@@ -105,6 +121,8 @@ src/components/IPM_MyToDoList.component
 src/components/IPM_MyToDoList.component-meta.xml
 src/components/IPM_MyToDoListHome.component
 src/components/IPM_MyToDoListHome.component-meta.xml
+src/components/IPM_OTIFStatusTable.component
+src/components/IPM_OTIFStatusTable.component-meta.xml
 src/components/IPM_RolloutPlansTable.component
 src/components/IPM_RolloutPlansTable.component-meta.xml
 src/components/IPM_Section_GateChecklist.component
@@ -189,6 +207,7 @@ src/layouts
 src/layouts/IPM_Project__c-IPM Project Layout.layout
 src/objects
 src/objects/IPM_Analytics_OTIF__c.object
+src/objects/IPM_Assessment__c.object
 src/objects/IPM_Cat_Thrhl_Mrkt_Cluster__c.object
 src/objects/IPM_Category_EI_Matrix__mdt.object
 src/objects/IPM_Country__c.object
