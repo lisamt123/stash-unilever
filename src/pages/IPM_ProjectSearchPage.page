@@ -524,7 +524,7 @@
                                             </td>
                                             <td>
                                                 <apex:outputPanel rendered="{!p.Is_Archieved__c}">
-                                                	Stopped
+                                                	{!$Label.IPM_GD_STOPPED}
                                                 </apex:outputPanel>
                                                 <apex:outputPanel rendered="{!Not(p.Is_Archieved__c)}">
                                                 	{!p.IPM_Phase__c}

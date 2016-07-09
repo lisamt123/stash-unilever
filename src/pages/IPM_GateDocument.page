@@ -149,12 +149,12 @@
                                             </apex:outputPanel>
                                             <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null)}">
                                                 <div class="SecCurrentStatus pull-right">
-                                                    <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="Cancel Stopping Project" action="{!cancelStoppingProject}" />
+                                                    <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_CancelStoppingProject}" action="{!cancelStoppingProject}" />
                                                  </div>
                                             </apex:outputPanel>
                                             <apex:outputPanel rendered="{!reactivateProjectFlag}">
                                             <div class="">
-                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="Reactivate Project" rerender="tskPanel" 
+                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_ReactivateProject}" rerender="tskPanel" 
                                                     action="/apex/IPM_ProjectSetUpView?Pid={!projectId}" > 
                                                 </apex:commandLink>
                                              </div>

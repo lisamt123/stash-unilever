@@ -29,6 +29,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     public boolean isCreateTask{get;set;}
     public boolean isApproachEdit{get;set;}//Update approach
     public boolean isTaskReadOnly{get;set;}//Update approach
+    public Boolean reactivateProjectFlag{get;set;} // used by security to give edit access on Wizard for IPM Busines Partner user
     //gettter & setter for taskId
     
       
@@ -73,7 +74,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     */
     public IPM_TaskCompCtrl() {
         IPM_IECompatible.ieFix();
-        
+        reactivateProjectFlag = false;
         //initialising variables
         openTasks = 0; 
         closedTasks = 0;
@@ -229,7 +230,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,IPM_Project__r.IPM_Phase__c,IPM_Project__r.Is_Archieved__c,';
                soql += 'IPM_Section__c,IPM_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Section_Name__c, ';
                soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c FROM IPM_Task__c ';
-               soql += 'WHERE IPM_Active__c = true  AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
+               soql += 'WHERE IPM_Active__c = '+ showActiveTask  +' AND IPM_Project__r.Is_Archieved__c = '+ showArchievedProjectTask  +' AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
                
         if(String.isNotBlank(phase) ) 
         {

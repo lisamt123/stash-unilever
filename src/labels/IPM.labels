@@ -9506,5 +9506,19 @@ If you take no further action after 72 hours from now this Project and all its R
         <shortDescription>Stop  project  hover text</shortDescription>
         <value>All the Rollouts for this {0} Project have been Stopped. Use this button to stop this {1} Project or create a new Rollout Plan to continue with the Project.</value>
     </labels>
+	<labels>
+        <fullName>IPM_ReactivateProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivate Project</shortDescription>
+        <value>Reactivate Project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_CancelStoppingProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Stopping Project</shortDescription>
+        <value>Cancel Stopping Project</value>
+    </labels>
 
 	

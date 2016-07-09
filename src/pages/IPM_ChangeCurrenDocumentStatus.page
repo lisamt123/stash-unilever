@@ -438,7 +438,7 @@
                         <apex:actionFunction action="{!updateStatus}" name="changeStatus" reRender="progress,propose,postpone,approve,stop,goto,approveWithEdit,changeAction" onComplete="gkmComplete()">
                             <apex:param name="status" value="" id="statusChange" assignTo="{!Status}" />
                         </apex:actionFunction>                      
-                            <apex:actionFunction action="{!submit}" name="changeStatusFromJS" reRender="srcp" onComplete="alert('Entering OnComplete-->>'+makeStop);navigateToHome();">
+                            <apex:actionFunction action="{!submit}" name="changeStatusFromJS" reRender="srcp" onComplete="skipValidation();navigateToHome();"> 
                                 <apex:param name="status" value="" id="StopProjectStatus" assignTo="{!Status}" />
                             </apex:actionFunction>
                        <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>

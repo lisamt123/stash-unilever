@@ -1039,6 +1039,16 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_CancelStoppingProjectTill__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancel Stopping Project Till</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>IPM_Category_Group__c</fullName>
         <description>To capture the category of the project.</description>
         <externalId>false</externalId>
@@ -1311,15 +1321,9 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <fullName>IPM_CountDown_Reference_Time__c</fullName>
         <description>This field will be referred for Countdown timer.</description>
         <externalId>false</externalId>
-        <formula>TEXT(
-ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*24,24),0) + (FLOOR((IPM_Stopped_Date_Time__c + 3) - now()) * 24) - 1
-         )  &amp;&quot;:&quot; &amp;
-TEXT(
-ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*1380,60),0)
-) &amp;&quot;:&quot; &amp;
-TEXT(
-ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*86400,60),0)
-)</formula>
+        <formula>Text(FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24))
+&amp;&quot;:&quot;&amp;Text(FLOOR(((IPM_CancelStoppingProjectTill__c - NOW()) * 24 - FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24))* 60))
+&amp;&quot;:&quot;&amp;Text(FLOOR((( (IPM_CancelStoppingProjectTill__c - NOW()) * 24 - FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24 )) * 60 - FLOOR(((IPM_CancelStoppingProjectTill__c - NOW()) * 24 - FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24 )) * 60 )) * 60 ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>CountDown Reference Time</label>
         <required>false</required>
@@ -2476,6 +2480,16 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowProjectStop__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOT(OR(Text(IPM_Project_Type__c) == &apos;Operational&apos;,Text(IPMProject_Span__c) ==&apos;Local&apos;,Is_Archieved__c,IPM_PrepareForArchival__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Show Stop Button</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_SourceProjectType__c</fullName>
