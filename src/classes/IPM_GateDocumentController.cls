@@ -1352,7 +1352,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     @param: none
     @return: void
     **********************************************************************/
-    public void cancelStoppingProject()
+    public PageReference cancelStoppingProject()
     {	
     	try
     	{
@@ -1362,7 +1362,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     	catch (Exception ex)
         {
          	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
-}
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,	
+                        'cancelStoppingProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
 	}
+        PageReference gateDocumentPage = new PageReference('/apex/IPM_GateDocument?id=' + project.Id + '&printDoc=Charter');
+    	return gateDocumentPage;    	
+    }
 }	
