@@ -1944,16 +1944,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-	<editable>false</editable>
-	<field>IPM_Assessment__c.IPM_Global_Category_Average_View_Nutri__c</field>
-	<readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Assessment__c.IPM_Global_Category_Average_View_HlthHyg__c</field>
-		<readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Assessment__c.IPM_EcoDesign_Assessment_Id__c</field>
         <readable>true</readable>
