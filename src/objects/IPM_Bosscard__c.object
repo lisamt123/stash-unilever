@@ -1184,15 +1184,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>IPM_a7IE00000004T2F_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_PUNKIN_N&amp;R</label>
-        <queue>IPM_a7IE00000004T2F</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>IPM_a7IE00000004T2K_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_ALMATI W2_N&amp;R</label>
@@ -3240,6 +3231,15 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_MURANOCOBALT</label>
         <queue>IPM_a7IE0000000c7R5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000cAS0_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ESSENTIALS SA_AFR</label>
+        <queue>IPM_a7IE0000000cAS0</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -436,6 +436,16 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Geography__c</fullName>
+        <externalId>false</externalId>
+        <label>Geography</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ICB_CPF__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>CPF (Cadastro de Pessoa Fisica) of the user.</description>
@@ -1086,6 +1096,17 @@
         <required>false</required>
         <scale>2</scale>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PC_Category__c</fullName>
+        <description>PC_Categories</description>
+        <externalId>false</externalId>
+        <label>PC_Category</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2799,6 +2820,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>User_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>User Role</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>User_Unique__c</fullName>
         <description>Field is used to generate unique user counts on various reports</description>
         <externalId>false</externalId>
@@ -2809,6 +2840,16 @@
         <required>false</required>
         <scale>0</scale>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Level</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
