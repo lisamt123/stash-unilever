@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>IPM_Send_email_to_team_resources_when_project_is_stopped</fullName>
+        <description>IPM Send email to team resources when project is stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_team_members_when_project_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_team_resources_when_project_reactivated</fullName>
+        <description>IPM send email to team resources when project reactivated</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_project_reactivated</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_To_send_an_email_to_functional_role_members</fullName>
         <description>To send an email to functional role members</description>
         <protected>false</protected>

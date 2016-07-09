@@ -58,10 +58,14 @@
     <fields>
         <fullName>BETCurrentStatus__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
+        <formula>IF(ISBLANK(IPM_Project__r.IPM_Parent_Project__c),
+CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
 &apos;First release&apos;,&apos;Partly&apos;, 
 &apos;Final release&apos;,&apos;Yes&apos;, 
-&apos;&apos;, &apos;Not Applicable&apos;,&apos;&apos;)</formula>
+&apos;&apos;, &apos;Not Applicable&apos;,&apos;&apos;), CASE(IPM_Project__r.IPM_Parent_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
+&apos;First release&apos;,&apos;Partly&apos;, 
+&apos;Final release&apos;,&apos;Yes&apos;, 
+&apos;&apos;, &apos;Not Applicable&apos;,&apos;&apos;))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>BET Current Status</label>
         <required>false</required>
@@ -596,8 +600,8 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
     <fields>
         <fullName>RQS_Contract_Answered_3__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(IPM_Project__r.RQS_Contract_Answered_3__c &gt; 0,&apos;Yes&apos;,
-  IF(OR(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0), IPM_Project__r.ContractRiskIdentified__c ), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
+        <formula>IF(AND(NOT(IPM_Project__r.ContractRiskIdentified__c), IPM_Project__r.CharterRiskIdentified__c), RQS_Charter_Answered_3__c, IF(IPM_Project__r.RQS_Contract_Answered_3__c &gt; 0,&apos;Yes&apos;,
+  IF(OR(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0), IPM_Project__r.ContractRiskIdentified__c ), &apos;No&apos;, &apos;Not Applicable&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Contract Answered &gt; 3</label>
         <required>false</required>

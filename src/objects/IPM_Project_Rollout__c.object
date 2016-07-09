@@ -436,6 +436,36 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_ShowAtGlobal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Global</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtLocal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Local</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtRegional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Regional</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Small_C__c</fullName>
         <externalId>false</externalId>
         <label>Small C</label>
@@ -465,6 +495,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>KeyMCOAtCharter__c</fullName>

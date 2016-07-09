@@ -135,7 +135,7 @@ public with sharing class IPM_HomePageController
         {
             List<IPM_Milestone__c> lstipmmilestones=[SELECT Id,IPM_Name__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__r.Name,IPM_Project__r.Name,IPM_Type_of_gate__c,IPM_Project__r.IPM_Phase__c,
                                IPM_Project__r.Id,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Project_Name__c,IPM_Completed__c,
-                                                 IPM_Project__r.IPM_Fast_Track_Project__c,IPM_Due_Date__c,IPM_Planned_Date__c,IPM_Completed_On__c,IPM_Phase__c FROM IPM_Milestone__c 
+							   IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Fast_Track_Project__c,IPM_Due_Date__c,IPM_Planned_Date__c,IPM_Completed_On__c,IPM_Phase__c FROM IPM_Milestone__c 
                                                  WHERE IPM_Project__c IN : lstProjects and IPM_Type_of_Milestone__c =: IPM_Utils.Standard And RecordtypeId = : recordtypeid limit 50000];
       
                 // Checking the Due dates for the Gate Phases which is used for Alerts
@@ -145,7 +145,7 @@ public with sharing class IPM_HomePageController
                 	ProjDueDateMap.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c);
                 	ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                     
-                    if(ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c && String.IsNotBlank(String.valueOf(ipmmiles.IPM_Due_Date__c)) && !ipmmiles.IPM_Completed__c){
+                    if(!ipmmiles.IPM_Project__r.Is_Archieved__c && ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c && String.IsNotBlank(String.valueOf(ipmmiles.IPM_Due_Date__c)) && !ipmmiles.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(ipmmiles.IPM_Due_Date__c));
                             if(DateValue<0){
                                   alertMessageDueDatePast.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,System.Label.IPM_DUE_DATE_FOR +IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Type_of_gate__c +IPM_ConstantUtils.IPM_SPACE+IPM_Utils.off+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Project__r.IPM_Project_Name__c);

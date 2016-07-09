@@ -24,10 +24,12 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     
     public Boolean isAsc{get;set;}//toggling property which sorts the columns
     public Boolean isEditable{get;set;}//used by security
+    public Boolean isMileEditable{get;set;}
     public Boolean isBDuser{get;set;}//used by security
     public Boolean isSDateEdit{get;set;}//used by security
     public Boolean isWarningRequired {get;set;}//used to display warning message when difference between MRD and TLD is less than 6 months
     public Boolean showTLDInfoIcon{get;set;}
+    public Boolean reactivateProjectFlag{get;set;}
     public String displayPage{get;set;}
     public String strLink{get;set;}
     
@@ -82,6 +84,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     ****************************************************************/
     public IPM_List_Milestones() {
         isWarningRequired = false;
+        isMileEditable = true;      
         postLaunchEvaluationPhase = IPM_ConstantUtils.PHASE_POSTLAUNCHEVAL;
         phaseMsList = new List<String>();
         isAsc = false;
@@ -92,8 +95,8 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         if(projectId =='' || projectId ==null){
             projectId = ApexPages.currentPage().getParameters().get('Pid');
         }
-        projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Project_Leader__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
-                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c, (SELECT Id, Name from IPM_Project_Rollout__r) FROM IPM_Project__c WHERE Id =:projectId];
+        projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Project_Leader__c, Is_Archieved__c, IPM_PrepareForArchival__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
+                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c, (SELECT Id, Name from IPM_Project_Rollout__r)  FROM IPM_Project__c WHERE Id =:projectId];
         projectPhase =  projectObj != null && projectObj.IPM_Phase__c != null ? projectObj.IPM_Phase__c : '';
         initializeMilestones();
         phaseMsList.sort();//customised sort
@@ -110,6 +113,10 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             isWarningRequired = true;   
             warningMessages.add(system.label.IPM_BETFinalReleaseMissed);
         }
+        if(projectObj.IPM_PrepareForArchival__c || projectObj.Is_Archieved__c){
+        	isMileEditable = false;
+        } 
+        
      }
     
     /**************************************************************

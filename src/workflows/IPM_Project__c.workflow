@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>IPM_Send_email_to_PL_DPL_TPL_and_Gatekeeper_when_project_stopped</fullName>
+        <description>IPM Send email to PL,DPL,TPL and Gatekeeper when project stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Gatekeeper__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Technical_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_team_members_when_project_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_PL_DPL_TPL_and_Gatekeeper_when_project_reactivated</fullName>
+        <description>IPM send email to PL,DPL,TPL and Gatekeeper when project reactivated</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Gatekeeper__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Technical_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_project_reactivated</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_RPL_and_BBPL_when_Global_project_stopped</fullName>
+        <description>IPM send email to RPL and BBPL when Global project stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_RPL_and_BBPL_when_Global_project_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_RPL_when_local_project_is_ready_for_archival_from_rollout_plan</fullName>
+        <description>IPM send email to RPL when local project is ready for archival from rollout plan</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Stopped_By__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_RPL_when_local_project_is_ready_for_archival_from_rollout_plan</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_when_current_project_is_stopped</fullName>
+        <description>IPM send email when current project is stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_current_project_is_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_when_current_project_is_stopped_in_ideas_phase</fullName>
+        <description>IPM send email when current project is stopped in ideas phase</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_current_project_is_stopped_in_ideas_phase</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_BET_EA_Archived</fullName>
         <description>IPM BET Linked BET Archived</description>
         <protected>false</protected>
@@ -401,7 +491,7 @@
     </rules>
     <rules>
         <fullName>IPM Project Archival On Inactive</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Project__c.Is_Archieved__c</field>
             <operation>equals</operation>

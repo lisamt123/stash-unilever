@@ -591,93 +591,32 @@ public with sharing class IPM_ProjectCountryDetails{
     
     
     /****************************************************************************
-    @Description : check if all the EI Countries of a project have at least one assessment for them
+    @Description : check if the Projects have at least one assessment for them
     @Params projIdSet:   the set of IDs of the projects which need to be updated with IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag.
+                @Update: As per new requirement for Release 2.0- Now this method will not enforce Assessment validation only for EI Countries.
+                                                All Countries' Assessment will be considered irrespective of whether they are EI or non-EI.
     *****************************************************************************/
     
     public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
         List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r Where IPM_Country__c != null ) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
-        Set<String> EICountriesForTheProject = new Set<String>();
-        Set<String> EICountriesForAssessmentsOfProject = new Set<String>();
-        List<IPM_Project__c> toUpdateProjList;
-        map<id, set<string>> mapProjCountries = new map<id,set<string>>();
-
-        //Map of projectId and set of it's EI Countries
-        for (IPM_Country__c country : [select id,Name, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c,IS_EI_Country__c from IPM_Country__c 
-                                        where (IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet) And IS_EI_Country__c = true AND isActive__c = true LIMIT 50000 ]){
-            if(country.IPM_Project__c != null){ 
-                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Project__c)){
-                    mapProjCountries.get(country.IPM_Project__c).add(country.Country_Name__c);
-                }
-                else{
-                    mapProjCountries.put(country.IPM_Project__c,new Set<String>{country.Country_Name__c});
-                }
-            }
-            
-            if(country.IPM_Regional_Project__c != null){
-                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Regional_Project__c)){
-                    mapProjCountries.get(country.IPM_Regional_Project__c).add(country.Country_Name__c);
-                }
-                else{
-                    mapProjCountries.put(country.IPM_Regional_Project__c,new Set<String>{country.Country_Name__c});
-                }
-            }
-            
-            if(country.IPM_Local_Project__c != null){
-                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Local_Project__c)){
-                    mapProjCountries.get(country.IPM_Local_Project__c).add(country.Country_Name__c);
-                }
-                else{
-                    mapProjCountries.put(country.IPM_Local_Project__c,new Set<String>{country.Country_Name__c});
-                }
-            }
-            
-        }
+        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();    
         
-        
-        if(projList != null && !projList.isEmpty()){
-            toUpdateProjList = new List<IPM_Project__c>();
+        //find all Projects which have an assessment for the current project phase
+                                if(projList != null && !projList.isEmpty()){
             for(IPM_Project__c proj : projList){
-            
-                
-                //find all the EI countries for the project
-                if(!mapProjCountries.isEmpty() && mapProjCountries.get(proj.Id) != null && !mapProjCountries.get(proj.Id).isEmpty()){
-                        EICountriesForTheProject = mapProjCountries.get(proj.Id);
-                }
-                
-                //find all the EI countries which have an assessment for the current project phase
                 if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty()){
                     for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r){
-                        if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && assmnt.IPM_Country__r.IS_EI_Country__c && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
-                            EICountriesForAssessmentsOfProject.add(assmnt.IPM_Country__r.Country_Name__c);
+                        if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
+                            toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
                         }
                     }
                 }
-
-                
-                if(!EICountriesForTheProject.isEmpty() && !EICountriesForAssessmentsOfProject.isEmpty()){
-                    
-                    //to change IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag from false to true when all the EI countries in the project have atleast one assessment
-                    if(EICountriesForTheProject.size() != EICountriesForAssessmentsOfProject.size()){
-                        toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = false ));
-                    }
-                    else{
-                        toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
-                    }
-                }
-                else if(!EICountriesForTheProject.isEmpty() && EICountriesForAssessmentsOfProject.isEmpty()){
-                    toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = false ));
-                }
-                else if(EICountriesForTheProject.isEmpty()){
-                    toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
-                }
             }
         }
-        
-        
+                                
         //update the project with appropriate value of IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag
         if(toUpdateProjList != null && !toUpdateProjList.isEmpty()){
-			IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             Update toUpdateProjList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
@@ -1110,7 +1049,7 @@ public with sharing class IPM_ProjectCountryDetails{
           
       
       {
-      	if(!rolloutIdSet.contains(country.Local_Rollout__c)){
+        if(!rolloutIdSet.contains(country.Local_Rollout__c)){
        
         newRollout=new IPM_Project_Rollout__c();
         
@@ -1119,7 +1058,7 @@ public with sharing class IPM_ProjectCountryDetails{
         newRollout.id=country.Local_Rollout__c; 
         rolloutList.add(newRollout);
         rolloutIdSet.add(newRollout.id);
-      	} 
+        } 
       }
       
     }

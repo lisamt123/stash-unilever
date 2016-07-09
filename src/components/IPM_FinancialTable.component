@@ -22,11 +22,12 @@
     <apex:attribute name="isITOgrtGTOCal" type="Boolean" description="Flag to check if iTO greater than GTO for Calendar year"/>
     <apex:attribute name="isValidationErrorCal" type="Boolean" description="Flag to check if there is validation error for financial values of calendar table"/>
     <apex:attribute name="validationErrorMessageCal" type="string" description="Flag to check if there is validation error message for financial values of calendar table"/>
+    <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." /> 
     <!-- Validation Message -->
     <!--
         Renders if there any validation error for innovation financial year records
     -->
-    <apex:outputPanel id="errorPanel" rendered="{!AND(OR(isValidationError, isValidationErrorCal), isInnovation)}">
+    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),OR(isValidationError, isValidationErrorCal), isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">
@@ -85,10 +86,10 @@
                 <!--<td colspan="3"></td>-->
                 <td class="y0BorderGay">{!IF(isInnovation, 'Y0', '')}</td>
                 <apex:repeat value="{!finWrapper.lstYearNames}" var="yearName">
-                    <td class="{!IF(AND(yearMisaligned,showMisalignment), 'misaligned', '')}">{!yearName}</td>
+                    <td class="{!IF(yearMisaligned, 'misaligned', '')}">{!yearName}</td>
                 </apex:repeat>
                 <apex:repeat value="{!finWrapper.lstYearNames}" var="yearName">
-                    <td class="iPLBorderGay {!IF(AND(yearMisaligned,showMisalignment), 'misaligned', '')}">{!yearName}</td>
+                    <td class="iPLBorderGay {!IF(yearMisaligned, 'misaligned', '')}">{!yearName}</td>
                 </apex:repeat>
             </tr>
 
@@ -104,7 +105,7 @@
                 
                 
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0ValueMarketShareMisaligned), 'misaligned', '')}" >
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0ValueMarketShareMisaligned,NOT(isProjectStop)), 'misaligned', '')}" >
                     <!--
                         Renders for innovation financial year records
                     -->
@@ -138,7 +139,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference == 0 )}" var="GrossValueMarketShareAligned" />  
                 
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( GrossValueMarketShareMisaligned,'misaligned', '' )}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),GrossValueMarketShareMisaligned),'misaligned', '' )}">
                         <!--
                             Renders if the Gross Value Market Share value is misaligned in non-edit mode
                         -->
@@ -167,7 +168,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), isConsolidated,isNonKey , valueWrapper.difference == 0 )}" var="IncrementalValueMarketShareAligned" /> 
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementalValueMarketShareMisaligned, 'misaligned', '') }">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalValueMarketShareMisaligned), 'misaligned', '') }">
                          <!--
                             Renders if the Incremental Value Market Share value is misaligned in non-edit mode 
                         -->
@@ -290,7 +291,7 @@
                 
                         <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeDifference==0 )}" var="Y0VolumeUnitsAligned" /> 
                 
-                        <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0VolumeUnitsMisAligned), 'misaligned', '')}">
+                        <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0VolumeUnitsMisAligned), 'misaligned', '')}">
                             <!--
                                 This block will be rendered for innovation records
                             -->
@@ -330,7 +331,7 @@
                 
                             <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossVolumeUnitsAligned" /> 
                         
-                            <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossVolumeUnitsMisAligned, 'misaligned', '') }">
+                            <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossVolumeUnitsMisAligned), 'misaligned', '') }">
                                 <!--
                                     This block will be rendered when the following condition is met
                                     Gross volume units aligned and non-Edit mode
@@ -368,7 +369,7 @@
                             <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementalVolumeUnitsAligned" /> 
                         
                         
-                            <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementalVolumeUnitsMisAligned, 'misaligned', '')}">
+                            <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalVolumeUnitsMisAligned), 'misaligned', '')}">
                                 <!--
                                     This block will be rendered when the following condition is met
                                     Incremental volume units aligned and non-Edit mode
@@ -484,7 +485,7 @@
                 
                             <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeTonsDifference==0 )}" var="Y0VolumeTonsAligned" />
                         
-                            <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(isInnovation,Y0VolumeTonsMisAligned),'misaligned', '')}">
+                            <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(isInnovation,NOT(isProjectStop),Y0VolumeTonsMisAligned),'misaligned', '')}">
                                 <!--
                                     Renders for innovation financial year records
                                 -->
@@ -522,7 +523,7 @@
                 
                                 <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossVolumeTonsAligned" />
                             
-                                <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossVolumeTonsMisAligned,'misaligned', '')}">
+                                <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossVolumeTonsMisAligned),'misaligned', '')}">
                                     <!--
                                         This block will be rendered when the following condition is met
                                         Gross volume Tones aligned and non-Edit mode
@@ -557,7 +558,7 @@
                 
                                 <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementVolumeTonsAligned" />
                                 
-                                <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementVolumeTonsMisAligned, 'misaligned', '')}">
+                                <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementVolumeTonsMisAligned), 'misaligned', '')}">
                                     <!--
                                         This block will be rendered when the following condition is met
                                         Incremental volume Tons aligned and non-Edit mode
@@ -600,7 +601,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0TurnoverDifference==0 )}" var="Y0TurnoverAligned" />
                                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND( isInnovation,Y0TurnoverMisAligned  ), 'misaligned', '')} ">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND( isInnovation,NOT(isProjectStop),Y0TurnoverMisAligned  ), 'misaligned', '')} ">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -639,7 +640,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossTurnoverAligned" />
                 
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational'), valueWrapper.isGrossTOGRTIto), 'misaligned', '')}" >
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational'), valueWrapper.isGrossTOGRTIto)), 'misaligned', '')}" > 
                         <!--
                             Renders if the Gross Turnover value is misaligned in non-edit mode
                         -->
@@ -758,7 +759,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementalTurnoverAligned" />
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(IncrementalTurnoverMisAligned,valueWrapper.isGrossTOGRTIto), 'misaligned', IF((valueWrapper.isMinorValueInvalid),'yellowmisaligned',''))} ">
+                    <td class=" iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),OR(IncrementalTurnoverMisAligned,valueWrapper.isGrossTOGRTIto)), 'misaligned', IF(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid),'yellowmisaligned',''))} "> 
                         <!--
                             Renders if the Incremental Turnover value is misaligned in non-edit mode
                         -->
@@ -819,7 +820,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0GrossProfitDifference==0 )}" var="Y0ProfitAligned" />
                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0ProfitMisAligned  ),'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0ProfitMisAligned  ),'misaligned', '')}">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -857,7 +858,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossProfitAligned" />
                 
-                    <td class=" {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossProfitMisAligned, 'misaligned', If(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class=" {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossProfitMisAligned), 'misaligned', If(AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross Profit value is misaligned in non-edit mode
                         -->
@@ -907,7 +908,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="IncrementalProfitAligned" />
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR( IncrementalProfitMisAligned), 'misaligned', If(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="iPLBorderGay { !IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalProfitMisAligned), 'misaligned', If( AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', '')) }"> 
                         <!--
                             Renders if the Incremental Profit value is misaligned in non-edit mode
                         -->
@@ -962,7 +963,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0AdvertisingDifference==0 )}" var="Y0AdvertisingAligned" />
                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0AdvertisingMisAligned), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0AdvertisingMisAligned), 'misaligned', '')}">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -1001,7 +1002,7 @@
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossAdvertisingAligned" />
                     
                     
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossAdvertisingMisAligned, 'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossAdvertisingMisAligned), 'misaligned', If(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross Advertising value is misaligned in non-edit mode
                         -->
@@ -1052,7 +1053,7 @@
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="IncrementalAdvertisingAligned" />
                     
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementalAdvertisingMisAligned,'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))} ">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),IncrementalAdvertisingMisAligned),'misaligned', If(AND(NOT(isProjectStop),OR(valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', ''))} "> 
                         <!--
                             Renders if the Incremental Advertising value is misaligned in non-edit mode
                         -->
@@ -1108,7 +1109,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0ProfitDifference ==0 )}" var="Y0POBAligned" />
                      
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0POBMisAligned), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0POBMisAligned), 'misaligned', '')}">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -1146,7 +1147,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossPOBAligned" />
                 
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg ', '')} {!IF(OR(GrossPOBMisAligned), 'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg ', '')} {!IF( AND(NOT(isProjectStop),GrossPOBMisAligned), 'misaligned', If(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross POB value is misaligned in non-edit mode
                         -->
@@ -1196,7 +1197,7 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="IncrementalPOBAligned" />
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(IncrementalPOBMisAligned), 'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),IncrementalPOBMisAligned), 'misaligned', If(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid), 'yellowmisaligned',''))} ">
                         <!--
                             Renders if the Incremental POB value is misaligned in non-edit mode
                         -->

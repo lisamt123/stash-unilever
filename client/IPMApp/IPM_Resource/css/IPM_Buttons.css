@@ -169,6 +169,7 @@ input.ipmButton.primary:hover {
 
 .ipmButtonGroup.ipmFromAction  .ipmButton {
 	min-width:80px;
+	margin-right: 10px;
 }
 
 .ipmButtonGroup.ipmFromAction.pull-right {
@@ -298,3 +299,16 @@ a.delete02{position:relative; background:url(../images/delete-02.svg) no-repeat 
 .active .Postponed{position:relative; background:url(../images/postpone-active.svg) no-repeat 50% 50%;display:block;width:28px;height: 38px;background-size: 28px;margin: 0 auto;margin-bottom: 10px;}
 .active .Proposed{position:relative; background:url(../images/propose-active.svg) no-repeat 50% 50%;display:block;width:28px;height: 38px;background-size: 28px;margin: 0 auto;margin-bottom: 10px;}
 .active .Stopped {position:relative; background:url(../images/stop.svg) no-repeat 50% 50%;width:28px;display:block;height: 38px;background-size: 28px;margin: 0 auto;margin-bottom: 10px;}
+.ipmButton.statusButtonOrange {
+    background: #F79C3E;
+    border: 1px solid #AD6B27;
+    color: #fff;
+}
+.stop_btn
+{
+width:100%;
+}
+.Btnhold
+{
+padding:0px 20px;
+}

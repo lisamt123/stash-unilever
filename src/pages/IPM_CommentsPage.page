@@ -26,7 +26,7 @@
                 
                     <div class="col-xs-12">
                         <div class="panel" id="CommentText">       
-                            <apex:inputTextarea value="{!CommentRecord.Body}" html-placeholder="Add your comments here" />
+                            <apex:inputTextarea value="{!CommentRecord.Body}" html-placeholder="Add your comments here" rendered="{!isCommentEditable}" />
                         </div>
                     </div>
                 </div>

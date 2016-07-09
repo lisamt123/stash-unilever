@@ -232,6 +232,11 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @description: checking whether current logged in user has edit permission to team assigned page.
     */
     public boolean isShowEditmode{get;set;}
+    
+     /*******************************************************************************************************
+    * @description: checking whether current logged in user has edit permission to team assigned page on stopped Projects.
+    */
+    public boolean isStopped{get;set;}
    
     /*******************************************************************************************************
     * @Description: This is IPM_Resource_Allocation_FinalRevamp constructor and Initialise all variables.Get Project id FROM url parameter
@@ -252,6 +257,7 @@ public with sharing class IPM_Team_Assignment_Controller {
         isGateKShow=false;
         isDPLeader=false;
         isPLeader=false;
+        isStopped=false;
         
         PLName=IPM_ConstantUtils.BLANK;
         GKImage=IPM_ConstantUtils.BLANK;
@@ -578,13 +584,16 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @Description:Get user type with access permission   
     */
     public void getIpmuserType(){
+        IPM_Project__c associatedProject = null;
+        list<IPM_Project__c> projectList = [SELECT IPM_Project_Leader__c,IPM_PrepareForArchival__c,Is_Archieved__c FROM IPM_Project__c WHERE 
+        id=:projectID AND (IPM_Project_Leader__c =:userinfo.getuserid() OR Deputy_Project_Leader__c=:userinfo.getuserid() ) AND Is_Archieved__c=false LIMIT 1];
         
-            list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c FROM IPM_Project__c WHERE 
-        id=:projectID AND (IPM_Project_Leader__c =:userinfo.getuserid() 
-        OR Deputy_Project_Leader__c=:userinfo.getuserid() ) AND Is_Archieved__c=false LIMIT 1];
-        if(lstofuser != NULL && !lstofuser.isEmpty()){
+        if(!projectList.isEmpty())
+        {
+        	associatedProject = projectList[0];
             isCoreMemEditable=true;
-            isEditable=true;  
+            isEditable=true;
+            isStopped = ( associatedProject.IPM_PrepareForArchival__c || associatedProject.Is_Archieved__c); 
         }
          
         //security for central team and BP users

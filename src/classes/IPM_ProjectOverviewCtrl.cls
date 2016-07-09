@@ -88,8 +88,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     private static final String PLANNED_STR= 'The planned ';
     public static final String KEY_FINANCE_STR = 'Key Financial Data is missing. Please update your business case: ';
     private static final String GATE_STR='gate';
-	//Phase 2.0
-    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
+
     public String projectDocStatusStyleClass{get;set;}
     public Boolean isOrgPrjRLplancreated{get;set;}
 
@@ -153,6 +152,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public string earliestTLD=null;//DEF3195 Mukul to review
     public String projectPriority{get;set;}//varibale to show project priority for local rollout projects
     public Boolean hideFinSection{get;set;}//varibale to check whether user has acces to financial record
+    //Phase 2.0
+    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
+    public boolean showStopButton{get;set;}//  to show Stop Project button 
+    public boolean isStopped{get;set;}
+    public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -246,6 +250,19 @@ public with sharing class IPM_ProjectOverviewCtrl {
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
        }
        
+       /*** Logic to Display the "Reactivate Project" button on Project Overview page for IPM Business Partner   
+   			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
+       ***/
+       Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+       Date dateToCompare = System.today().addMonths(-noOfMonths); 
+       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
+       {
+   	      //security for central team and BP users
+          IPM_CustomPermission custPermission = new IPM_CustomPermission();
+          reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+          
+       }
+       
        /**********************************************************
        Logic to set boolean variable bShowAlertsBar in order to show/hide Alerts
        if alert/notifications are not present or phase change is in progress, then don't show alerts
@@ -269,6 +286,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
             bPhaseChangeInProgress = true;
             bShowAlertsBar = false;
         }
+        if(!bPhaseChangeInProgress && !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c) )
+        {
+        	isStopped = true;	
+        }
         
         /**********************************************************
     Logic to set boolean variable bShowShipToTradeButton in order to show Ship to Trade button 
@@ -287,7 +308,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /**********************************************************
     Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
     ***********************************************************/     
-        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && 
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c) && 
                     projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus)
         {
  	       bShowChangeStatusButton = true;
@@ -335,7 +356,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
         rolloutsGenerated = false;//Eco Design
         fin = new list<IPM_Financial__c>();
         hideFinSection =  true;
-		displayGateDocument=false;
+	displayGateDocument=false;
+        showStopButton=false;
+	isStopped = false;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
@@ -349,12 +372,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
-        IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        project = [SELECT IPM_GateKeepingModel__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,IPM_EligibleForReactivation__c,IPM_StoppedByProject__c,
         IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
-        IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
+        IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,IPM_Stopped_At_Span__c, 
         IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
-        IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
+        IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, IPM_PreviousDocumentStatus__c,IPM_PrepareForArchival__c, IPM_CountDown_Reference_Time__c,
         Deputy_Project_Leader__c, IPM_Approver_of_Charter__c, IPM_Finance_Lead__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
         IPM_ProjectGKM__c,IPM_Company_Card__c,IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
@@ -370,12 +393,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
         From Project_Documents__r limit 10000),
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
-        ,(SELECT Id FROM IPM_Project_Rollout__r ),(SELECT Id FROM Regional_Project_Rollout__r ) 
+        ,(SELECT Id,isActive__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__r ),(SELECT Id,isActive__c,IPM_Rollout_Span__c FROM Regional_Project_Rollout__r ) 
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
         ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
-        ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
-        (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
+        ,(SELECT Id,Is_Archieved__c,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r)
+        ,(SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
@@ -596,8 +619,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         //Adding alert for Regional-Local financial
         List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
-        RegionalOrLocalFins = [SELECT Id, Name,Local_Project__r.Is_Archieved__c,Regional_Project__r.Is_Archieved__c, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
-                                FROM IPM_Financial__c WHERE (Regional_Project__c =: project.Id OR Local_Project__c=: project.Id) and Local_Project__r.Is_Archieved__c = false and Regional_Project__r.Is_Archieved__c = false limit 50000];
+        RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
+                                                        FROM IPM_Financial__c WHERE Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();
@@ -757,6 +780,83 @@ public with sharing class IPM_ProjectOverviewCtrl {
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
         // checking if rollout plan for original project has been created
         isOrgPrjRLplancreated = isOriginal && (!project.IPM_Project_Rollout__r.isEmpty()  || !project.Regional_Project_Rollout__r.isEmpty() );  
+        if( project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL && !project.Is_Archieved__c && !project.IPM_PrepareForArchival__c && isProjLeader)
+        {   
+        	//Map<Id,IPM_Project_Rollout__c> idToProjMap = new Map<Id,IPM_Project_Rollout__c> (project.IPM_Project_Rollout__r);
+			//Map<Id,IPM_Project_Rollout__c> idToProjMap = new Map<Id,IPM_Project_Rollout__c> (project.Regional_Project_Rollout);
+       		Boolean isAllRegRLoutStpd = false;
+			Boolean isAllLocalRLoutStpd = false;
+        	if( project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+			{
+				//checking if all the regional rollouts are inactive for global project
+				for(IPM_Project_Rollout__c	ipmPrjRLout :project.IPM_Project_Rollout__r)
+				{
+					if(ipmPrjRLout.IPM_Rollout_Span__c =='Regional')
+					{
+						if(ipmPrjRLout.isActive__c)
+						{  
+							isAllRegRLoutStpd=false;
+							break;
+						}
+						else
+						{
+							isAllRegRLoutStpd=true;	
+						}
+					}
+				}
+				//checking if all the local  rollouts are inactive  for global project
+				for(IPM_Project_Rollout__c	ipmPrjRLout :project.IPM_Project_Rollout__r)
+				{
+					if(ipmPrjRLout.IPM_Rollout_Span__c=='Local')
+					{
+						if(ipmPrjRLout.isActive__c)
+						{    
+							isAllLocalRLoutStpd=false;
+							break;
+						}
+						else
+						{
+							isAllLocalRLoutStpd=true;	
+						}
+					}
+				}
+			}
+			if( project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
+			{
+				//checking if all the local  rollouts are inactive  for regional project 
+				for(IPM_Project_Rollout__c	ipmPrjRLout :project.Regional_Project_Rollout__r)
+				{
+					if(ipmPrjRLout.IPM_Rollout_Span__c=='Local')
+					{
+						if(ipmPrjRLout.isActive__c)
+						{  
+							isAllLocalRLoutStpd=false;
+							break;
+						}
+						else
+						{
+							isAllLocalRLoutStpd=true;	
+						}
+					}
+				}
+			}
+    
+         	IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && isOriginal) 
+			{
+				if(currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && (isAllRegRLoutStpd || isAllLocalRLoutStpd))
+				{
+					showStopButton = true; 
+				}
+			}  
+			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL  )
+			{
+				if(currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && isAllLocalRLoutStpd)
+				{
+					showStopButton = true; 
+				} 
+			}
+        }
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
@@ -911,7 +1011,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         Map<String, IPM_Milestone__c> mapToReturn = new Map<String, IPM_Milestone__c>();
         list<IPM_Milestone__c> lst = [SELECT IPM_Name__c,IPM_Phase__c,IPM_Completed__c,IPM_Type_of_gate__c,IPM_Project__r.IPM_Phase__c,LastModifiedBy.Name,
-        IPM_Project__r.Name,IPM_Project__r.IPM_Project_Name__c ,IPM_Due_Date__c,IPM_Project__r.IPM_Project_Leader__r.Name FROM IPM_Milestone__c WHERE Id IN :msIds limit 50000];
+        IPM_Project__r.Name,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Name__c ,IPM_Due_Date__c,IPM_Project__r.IPM_Project_Leader__r.Name FROM IPM_Milestone__c WHERE Id IN :msIds limit 50000];
         alertMessage = new Map<String,String>();
         alertMessageToday = new Map<String,String>();
         alertMessagePast = new Map<String,String>();
@@ -921,7 +1021,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         List<IPM_Country__c> countryLst = [select id,name,Geography__r.Market_Type__c,IPM_Project__c from IPM_Country__c where IPM_Project__c =: projectId and Geography__r.Market_Type__c  =: IPM_ConstantUtils.MARKETTYPE_DEVELOPED limit 1] ;
         for(IPM_Milestone__c eachRec : lst) {
             mapToReturn.put(eachRec.Id, eachRec);
-            if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c){
+            if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c && !eachRec.IPM_Project__r.Is_Archieved__c){
                 if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && !eachRec.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(eachRec.IPM_Due_Date__c));
                     if(DateValue<0){
@@ -1158,5 +1258,48 @@ public with sharing class IPM_ProjectOverviewCtrl {
 	 		displayGateDocument=true;
 	 	}
 	}    
-
+    /******************************************************************************************
+    @Description :Called on  click of the Stop Project  Button   .This  will stop the project .
+    @param: Not Applicable
+    @return: Void
+    *******************************************************************************************/
+     
+    public void stopProject() 
+    {
+        try
+        {
+        	project.Is_Archieved__c=true;               
+         	update project;
+        }
+        catch (Exception ex)
+        {
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                        'stopProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                        
+        }
+            
+    }
+/***********************************************************************
+    @Description: This method will be invoked on click of 'Cancel Stopping Project' button from Project Overview page. This method is responsible to revert the project
+    			  Document status to previous state from Stopped.     
+    @param: none
+    @return: void
+    **********************************************************************/
+    public void cancelStoppingProject(){
+    	
+    	project.IPM_PrepareForArchival__c = false;
+    	
+    	try{
+    		update project;
+    	}
+    	catch (Exception ex)
+        {
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                        'cancelStoppingProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                        
+        }
+    	
+    }
 }

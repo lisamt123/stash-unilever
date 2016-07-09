@@ -77,7 +77,6 @@
                                                                     <div class="OuterBorderRight">
                                                                         <div class="colProject">
                                                                             <span><label>{!$Label.IPM_EcoDesign_Environmental_metric}</label>
-                                                                            <label class="normalfont">{!$Label.IPM_Consumer_Use}</label>
                                                                             </span>  
                                                                         </div>
                                                                     </div>
@@ -129,6 +128,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Waste]}">
                                                             <tr>
                                                                 <td><label>{!$Label.IPM_EcoDesign_Waste}</label>
                                                                 </td>
@@ -153,6 +153,8 @@
                                                                 </td>
                                                 
                                                             </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!AND(mapCatMetric[$Label.IPM_EcoDesign_Water_litres], mapWaterScarce[countryAssessmentWrapEle.country])}">
                                                             <tr>
                                                                 <td><label>{!$Label.IPM_EcoDesign_Water_litres}</label>
                                                                 </td>
@@ -176,6 +178,8 @@
                                                                     </div>
                                                                 </td>   
                                                             </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Greenhouse_Gases]}">
                                                             <tr>
                                                                 <td>
                                                                     <label>{!$Label.IPM_EcoDesign_Greenhouse_Gases}</label>
@@ -201,6 +205,8 @@
                                                                 </td>
                                                 
                                                             </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Sustainable_Sourcing]}">
                                                             <tr>
                                                                 <td>
                                                                     <label>{!$Label.IPM_EcoDesign_Sustainable_Sourcing}</label>
@@ -215,6 +221,7 @@
                                                                 <td>                                                              
                                                                 </td>
                                                             </tr>
+                                                            </apex:outputPanel>
                                                         </tbody>
                                                     </table>
                                                  </apex:repeat> 
@@ -269,7 +276,6 @@
                                                                     <div class="OuterBorderRight">
                                                                         <div class="colProject">
                                                                             <span><label>{!$Label.IPM_EcoDesign_Environmental_metric}</label>
-                                                                            <label class="normalfont">{!$Label.IPM_Consumer_Use}</label>
                                                                             </span>
                                                                          
                                                                         </div>
@@ -322,6 +328,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Waste]}">
                                                             <tr>
                                                                 <td>
                                                                     <label>{!$Label.IPM_EcoDesign_Waste}</label>
@@ -347,6 +354,8 @@
                                                                 </td>
                                                 
                                                             </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!AND(mapCatMetric[$Label.IPM_EcoDesign_Water_litres], mapWaterScarce[countryAssessmentWrapEle.country])}">
                                                             <tr>
                                                                 <td>
                                                                     <label>{!$Label.IPM_EcoDesign_Water_litres}</label>
@@ -371,6 +380,8 @@
                                                                     </div>
                                                                 </td>   
                                                             </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Greenhouse_Gases]}">
                                                             <tr>
                                                                 <td><label>{!$Label.IPM_EcoDesign_Greenhouse_Gases}</label>
                                                                 </td>
@@ -395,6 +406,8 @@
                                                                 </td>
                                                 
                                                             </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Sustainable_Sourcing]}">
                                                             <tr>
                                                                 <td>
                                                                     <label>{!$Label.IPM_EcoDesign_Sustainable_Sourcing}</label>
@@ -409,6 +422,7 @@
                                                                 <td>                                                              
                                                                 </td>
                                                             </tr>
+                                                            </apex:outputPanel>
                                                         </tbody>
                                                     </table>
                                                 </apex:repeat> 

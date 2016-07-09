@@ -156,7 +156,7 @@ public without sharing class IPM_Utils {
     public static String Internal = 'Internal';
     public static List<String> lstphaseValue = new List<String>{Ideas,Feasibility,Capability,MarketReady};
     public static String notapplicable = 'n/a';
-    
+    public static String duplicateTaskError ='Task already exists.';
     //batch finish email subject and body strings
     public static String emailSubject = 'Apex Sharing Recalculation ';
     public static String emailBody1 = 'The batch Apex job processed ';
@@ -1139,10 +1139,10 @@ public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) {
     */
 public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){   
 	List<IPM_Clusters__c> clusterListForY3iTOUpdate = new List<IPM_Clusters__c>();   
-	for( AggregateResult aggrResult : [SELECT IPM_Cluster__c  , SUM(IPM_Project_Y3iTO__c) FROM IPM_Project__c where IPM_Project_Type__c=:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL AND IPM_Cluster__c IN :clusterIDsForY3iTOUpdate GROUP BY IPM_Cluster__c ]){
+	for( AggregateResult aggrResult : [SELECT IPM_Cluster__c  , SUM(IPM_Project_Y3iTO__c) FROM IPM_Project__c where IPM_Project_Type__c=:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL AND Is_Archieved__c = false  AND IPM_Cluster__c IN :clusterIDsForY3iTOUpdate GROUP BY IPM_Cluster__c ]){
 		clusterListForY3iTOUpdate.add(new IPM_Clusters__c(Id=(Id)aggrResult.get('IPM_Cluster__c'),IPM_Sum_Y3iTO__c=(Decimal)aggrResult.get('expr0'))); 
 	}
-	if(clusterListForY3iTOUpdate!=Null && !clusterListForY3iTOUpdate.isEmpty()){
+	if(!clusterListForY3iTOUpdate.isEmpty()){ 
 		update clusterListForY3iTOUpdate; 
 	}
 } 
@@ -1533,8 +1533,63 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         String categoryThresholdQuery = IPM_Utils.prepareSOQLQuery('IPM_Category_Thresholds__mdt',false,null,true); 
         for(IPM_Category_Thresholds__mdt Cat_mdt : (List<IPM_Category_Thresholds__mdt>)database.Query(categoryThresholdQuery) )
         {
-              masterCategoryThrshMap.put(Cat_mdt.IPM_Category__c+Cat_mdt.IPM_Category_Group__c+Cat_mdt.IPM_Market_Cluster__c+Cat_mdt.IPM_Project_Span__c ,Cat_mdt);
+              String thrMapKey = Cat_mdt.IPM_Category__c+Cat_mdt.IPM_Category_Group__c+Cat_mdt.IPM_Project_Span__c ;
+              
+              if(String.isNotBlank(Cat_mdt.IPM_Market_Cluster__c)) 
+              {
+              	thrMapKey = thrMapKey + Cat_mdt.IPM_Market_Cluster__c;
+              }
+               
+              masterCategoryThrshMap.put(thrMapKey ,Cat_mdt);
         }
         return masterCategoryThrshMap;
     }         	
+    public static Map<Id,Set<Id>> getImmediateChildProjects(Set<Id> incrementalProjectSetId)
+    {
+        Set<Id> tempProjectSetIds = new Set<Id>(incrementalProjectSetId);
+        incrementalProjectSetId.clear(); 
+        Map<Id,Set<Id>> parentToChildProjectMap = new Map<Id,Set<Id>>();
+         //query project to get its parent and child project ids                      
+        for(IPM_Project__c project : [SELECT Id,(SELECT Id from IPM_Projects__r) FROM IPM_Project__c WHERE Id IN : tempProjectSetIds])
+        {   
+            if(!project.IPM_Projects__r.isEmpty()) 
+            {
+                Map<Id,IPM_Project__c> childProjectMap = new Map<Id,IPM_Project__c>(project.IPM_Projects__r);
+                parentToChildProjectMap.put(project.Id,childProjectMap.keySet());
+                incrementalProjectSetId.addAll(childProjectMap.keySet()); 
+            }
+            else
+            {
+                parentToChildProjectMap.put(project.Id,new Set<Id>());
+            }
+        }
+        return parentToChildProjectMap;
+    }
+    public static void getAllChildProjects(Id sourceProjectId, Id childProjectId,Map<Id,Set<Id>> immediateProjectChildMap,Set<Id> allChildProject)
+    {
+        for(Id tempChildProjectId : immediateProjectChildMap.get(childProjectId))  
+        {
+            getAllChildProjects(sourceProjectId,tempChildProjectId,immediateProjectChildMap,allChildProject);    
+            if(sourceProjectId != tempChildProjectId )
+            {
+                allChildProject.add(tempChildProjectId);    
+            }
+        }
+        if(sourceProjectId != childProjectId)
+        {
+            allChildProject.add(childProjectId);    
+        }
+    }
+	/**********
+	Business partner can reactivate the Stopped(Archieved) projects, Below changes have been added only for Archieved project 
+	********/ 
+    public static Boolean overrideAccessForBusinessPartner(IPM_Project__c project, Boolean isEditable){
+    	Boolean isEditAccess = isEditable; 
+    	if(project.Is_Archieved__c && !isEditAccess )
+    	{ 
+    		IPM_CustomPermission cpr = new IPM_CustomPermission();
+        	isEditAccess = cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+    	}
+    	return isEditAccess;
+	}
 }

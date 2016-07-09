@@ -174,7 +174,7 @@
         <fullName>IPM_Due_Date1__c</fullName>
         <description>The date by which the task should be completed</description>
         <externalId>false</externalId>
-        <label>Due Date1</label>
+        <label>Due Date</label>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -468,6 +468,17 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_TaskSpan__c</fullName>

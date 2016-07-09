@@ -979,6 +979,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Business_Partner_User_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Company_Card__r.IPM_Business_Partner__r.FirstName + &apos; &apos; + IPM_Company_Card__r.IPM_Business_Partner__r.LastName</formula>
+        <label>Business Partner User Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Business_Partner_User_Name__c</fullName>
         <description>To capture the name of the business partner.</description>
         <externalId>false</externalId>
@@ -1297,6 +1308,27 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_CountDown_Reference_Time__c</fullName>
+        <description>This field will be referred for Countdown timer.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(
+ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*24,24),0) + (FLOOR((IPM_Stopped_Date_Time__c + 3) - now()) * 24) - 1
+         )  &amp;&quot;:&quot; &amp;
+TEXT(
+ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*1380,60),0)
+) &amp;&quot;:&quot; &amp;
+TEXT(
+ROUND(MOD(((IPM_Stopped_Date_Time__c + 3) - now())*86400,60),0)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CountDown Reference Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Current_Document_Status__c</fullName>
         <description>To capture the current state of the gate document.</description>
         <externalId>false</externalId>
@@ -1396,6 +1428,17 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_EligibleForReactivation__c</fullName>
+        <description>This field is to identify the project eligibility for reactivation.</description>
+        <externalId>false</externalId>
+        <formula>AND(Text(IPM_Phase__c) = &apos;Ideas&apos;, Is_Archieved__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eligible For Reactivation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
@@ -1624,6 +1667,16 @@ OwnerId))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Is_Invoked_From_Rollout__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Invoked From Rollout</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Last_Modified_Date_Time__c</fullName>
         <description>To capture Last modified date to be used further for Project Archiving Workflow</description>
         <externalId>false</externalId>
@@ -1633,6 +1686,27 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Last_Modified_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(IPM_Last_Modified_Date_Time__c)</formula>
+        <label>Last Modified Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Last_Modified_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>MID(TEXT(IPM_Last_Modified_Date_Time__c),12,5)</formula>
+        <label>Last Modified Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Local_Project_Type__c</fullName>
@@ -1771,6 +1845,17 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Parent_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(IPMProject_Span__c) = &apos;Regional&apos; ,  IPM_Parent_Project__r.IPM_Project_Name__c ,  IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c )</formula>
+        <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Parent_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>To Capture Parent Project based on region and country rollouts</description>
@@ -1835,10 +1920,75 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    
+    <fields>
+        <fullName>IPM_Postponed_Comments__c</fullName>
+        <description>For Storing Postponement Comments</description>
+        <externalId>false</externalId>
+        <label>IPM Postponed Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_PrepareForArchival__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Prepare For Archival</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_PreviousDocumentStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>Previous Document Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stopped</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Postponed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved with Edits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>IPM_ProjectGKM__c</fullName>
-        <description>To tell which GKM the project follows.</description>
         <externalId>false</externalId>
         <label>IPM_ProjectGKM</label>
         <picklist>
@@ -1870,6 +2020,7 @@ OwnerId))</formula>
                 <fullName>GKM7</fullName>
                 <default>false</default>
             </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1922,6 +2073,24 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Based_Threshold_Status__c</fullName>
+        <description>Check independently of the cluster whether the Project is below or above threshold.</description>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
+  IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
+    IF(ISPICKVAL(IPM_Phase__c,&apos;Regional&apos;),
+       IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
+       IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
+       )
+  )</formula>
+        <label>IPM Project Based Threshold Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Description__c</fullName>
@@ -2085,13 +2254,12 @@ OwnerId))</formula>
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>IPM_Project_Stopped_By__c</fullName>
-        <description>Project Stopped By -</description>
+        <fullName>IPM_Project_Stopped_Time__c</fullName>
+        <description>To get only the stopped time so as to display in email template</description>
         <externalId>false</externalId>
-        <label>Project Stopped By</label>
-        <length>100</length>
+        <formula>MID(TEXT(IPM_Stopped_Date_Time__c),12,5)</formula>
+        <label>Project Stopped Time</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2111,6 +2279,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_To_Be_Stopped_Date__c</fullName>
+        <description>To be used to display time in email template</description>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(IPM_Stopped_Date_Time__c)  + 3</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Project To Be Stopped Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Type__c</fullName>
@@ -2311,6 +2491,67 @@ OwnerId))</formula>
                 <fullName>Operational</fullName>
                 <default>false</default>
             </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Stop_Child_Project__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If this field is true then all child projects will be stopped.</description>
+        <externalId>false</externalId>
+        <label>IPM Stop Child Project</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>IPM Projects (Stopped Project)</relationshipLabel>
+        <relationshipName>IPM_StoppedProjects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByUser__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Stopped_By__r.FirstName + &apos; &apos; +  IPM_Stopped_By__r.LastName</formula>
+        <label>Stopped By User</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped_At_Span__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Stopped At Span</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2600,7 +2841,7 @@ OwnerId))</formula>
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>30</length>
+        <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2651,18 +2892,6 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-	<fields>
-        <fullName>IPM_Postponed_Comments__c</fullName>
-        <description>For Storing Postponement Comments</description>
-        <externalId>false</externalId>
-        <label>IPM Postponed Comments</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Market_Cluster_Name__c</fullName>
@@ -4183,6 +4412,21 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+	<picklistValues>
+            <picklist>IPM_Stopped_At_Span__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

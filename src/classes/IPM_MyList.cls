@@ -114,7 +114,7 @@ public with sharing class IPM_MyList{
     public static final String ASCNULLSLAST_STR = ' ASC NULLS LAST';
     public static final String IPM_MYLIST_STR = IPM_MyList.class.getName();
     public static final String SELECTQUERY_STR = 'select ipm_completed__c,ipm_project__r.ipm_category_icon__c,ipm_project_document_section__r.ipm_section_sequence__c,ipm_project_document_section__r.ipm_section_name__c,';
-    public static final String QUERY_FIELDS_STR = 'IPM_Function__c,IPM_Project_Document_Section__c,IPM_Assignee__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
+    public static final String QUERY_FIELDS_STR = 'IPM_Function__c,IPM_Project_Document_Section__c,IPM_Assignee__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,IPM_Project__r.IPM_PrepareForArchival__c,';
     public static final String QUERY_FIELDS1_STR = 'IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.IPM_Project_Type__c, IPM_Task_Type__c,IPM_Task_Name__c,IPM_Phase__c,IPM_Due_Date1__c FROM IPM_Task__c';
     public static final String QUERY_WHERE_PROJECTNAME_STR = ' and IPM_Project__r.Name IN';
     public static final String QUERY_WHERE_PHASE_STR =  ' and ipm_project__r.ipm_phase__c in';
@@ -124,7 +124,7 @@ public with sharing class IPM_MyList{
     public static final String ERROR_STR = 'Error';
     public static final String ISARCHIEVED_FALSE_STR =' AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =  \'Internal\' ';
     public static final String QUERY_WHERE_ASSIGNEE_STR=' WHERE IPM_Assignee__c = ';
-    private static final String LIMIT_STR=' LIMIT 500 ';
+    private static final String LIMIT_STR=' LIMIT 200 ';
     public List<IPM_Task__c> lstTasks{get;set;}
     public String taskcountValue;
     private final Integer DAY_VALUE = 7;

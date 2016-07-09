@@ -28,6 +28,8 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     public String pagintnDisp {get;set;}//pagination
     public boolean isCreateTask{get;set;}
     public boolean isApproachEdit{get;set;}//Update approach
+    public boolean isTaskReadOnly{get;set;}//Update approach
+    public Boolean reactivateProjectFlag{get;set;} // used by security to give edit access on Wizard for IPM Busines Partner user
     //gettter & setter for taskId
     
       
@@ -72,12 +74,13 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     */
     public IPM_TaskCompCtrl() {
         IPM_IECompatible.ieFix();
-        
+        reactivateProjectFlag = false;
         //initialising variables
         openTasks = 0; 
         closedTasks = 0;
         isAsc = false;
         toggleTask = false;
+        isTaskReadOnly = false;
         //current sorting column applies to IPM_Completed__c field, 
         currentSort = new Map<String, String>{IPM_ConstantUtils.THIS_FIELD => 'IPM_Completed__c'};
         phaseTaskComp = new  Map<String,Boolean>();
@@ -94,6 +97,21 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
             string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null,true)+' where id =:projectId ';
             list<IPM_Project__c> projList = Database.query(query);
             projectObj  = projList[0];
+            if(projectObj.Is_Archieved__c || projectObj.IPM_PrepareForArchival__c){
+            	isTaskReadOnly = true;
+            }
+             /*** Logic to Display the give edit access for IPM Business Partner on Wizard   
+	   			For Stopped project in Ideas phase for 38 months,
+	        ***/
+	        Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+	        Date dateToCompare = System.today().addMonths(-noOfMonths); 
+	        if(projectObj.IPM_EligibleForReactivation__c && projectObj.IPM_Stopped_Date_Time__c > dateToCompare)
+	        {
+	   	       //security for central team and BP users
+	           IPM_CustomPermission custPermission = new IPM_CustomPermission();
+	           reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+	           isTaskReadOnly = !reactivateProjectFlag;
+	        }
         }
         
         if(projectObj == NULL)
@@ -199,14 +217,20 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
             soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ usrRole +'\' , \'BD\')' : 
                                                                              ' AND IPM_Function__c = \'' + usrRole + '\'';
         }
+        Boolean showActiveTask = true; // This boolean will be used to show active task 
+        Boolean showArchievedProjectTask = false; // This boolean will be used to show archieved project task
+        if(reactivateProjectFlag && projectObj.Is_Archieved__c){
+        	showActiveTask = false;
+        	showArchievedProjectTask = true;
+        }
         String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Master_Section_Name__c,IPM_Master_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Assignee__c,';
                soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Project__r.IPM_Current_Document_Status__c,';
-               soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,IPM_Project__r.IPM_Phase__c,';
+               soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,IPM_Project__r.IPM_Phase__c,IPM_Project__r.Is_Archieved__c,';
                soql += 'IPM_Section__c,IPM_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Section_Name__c, ';
                soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c FROM IPM_Task__c ';
-               soql += 'WHERE IPM_Active__c = true  AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
+               soql += 'WHERE IPM_Active__c = true  AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__c = \'' + String.escapeSingleQuotes(projectId) + '\'';
                
         if(String.isNotBlank(phase) ) 
         {

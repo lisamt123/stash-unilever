@@ -96,11 +96,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     }
     set;
     }      
+    public Boolean reactivateProject{get; set;} // Param will be passed from 'Reactivate Project' button of Project Overview screen   
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
     public IPM_ProjectSetUpController(ApexPages.StandardController controller){
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
+	reactivateProject = false;
         if(project!=null){
            initialise();
         }
@@ -167,7 +169,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             project.IPM_Project_Name__c=project.IPM_Project_Name__c.substringBefore(IPM_ConstantUtils.UNDERSCORE);
         }
         getProjectResource();
-        if(project!=null && !project.Is_Archieved__c){
+        if(project!=null)
+        {
             getIpmuserType();   
             getMilesTaskIpmuserType();
         }
@@ -181,8 +184,27 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_BACKGROUNDPROCESS_INPROGRESS));
         }
         
-         IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
-         tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
+        if(isEditable)
+        {
+        	isEditable = !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c);
+        	// Access check for Business Partner user while reactivating the project
+        	isEditable = IPM_Utils.overrideAccessForBusinessPartner(project, isEditable);
+        } 
+         
+        IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
+        tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
+        //
+        /*** Logic to Display the give edit access for IPM Business Partner on Wizard   
+   			For Stopped project in Ideas phase for 38 months,
+       ***/
+       Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+       Date dateToCompare = System.today().addMonths(-noOfMonths); 
+       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
+       {
+   	      //security for central team and BP users
+          IPM_CustomPermission custPermission = new IPM_CustomPermission();
+          reactivateProject = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+       }
     }  
     /****************************************************************************
     @Description : Inner class to get date
@@ -316,6 +338,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                             project.Market_Cluster__c=mcs.Name;
                         }
                     }
+                }
+                else
+                {
+               		project.Market_Cluster_Name__c = project.Market_Cluster__c = IPM_ConstantUtils.BLANK;
                 }
                 for(IPM_Company_Card__c asociatedCompanyCard : availableCategoryList)
                 {
@@ -704,7 +730,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 
         if(!skipValidation)
         {
-            if(!project.IPM_IsSaved__c && !isRollout.Equals(project.IPM_Project_Type__c))
+            if(!isRollout.Equals(project.IPM_Project_Type__c))
             {
                 associateProjectMetadata();
                 populateProjectMetadataAttributes(projectMetadata);
@@ -924,7 +950,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public void getIpmuserType(){
         try 
         {
-            list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c,IPM_IsCompleted__c  FROM IPM_Project__c WHERE
+            list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c,IPM_IsCompleted__c,IPM_PrepareForArchival__c,Is_Archieved__c  FROM IPM_Project__c WHERE
                                            id=:projectId and (IPM_Project_Leader__c =:userinfo.getuserid() 
                                                               or Deputy_Project_Leader__c=:userinfo.getuserid() ) limit 1];
             if(lstofuser.isEmpty()){
@@ -992,7 +1018,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             } 
             
             // Checking the user List
-            if(!project.Is_Archieved__c){
+            if(!(project.IPM_PrepareForArchival__c || project.Is_Archieved__c))
+            {
                 // To check the Project Leader
                if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
                 {

@@ -58,7 +58,9 @@
     <fields>
         <fullName>BETCurrentStatus__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;, &apos;Red&apos;, &apos;First release&apos;, &apos;Amber&apos;,&apos;Final release&apos; ,&apos;Green&apos;,&apos;&apos;, &apos;Not Applicable&apos;, &apos;&apos; )</formula>
+        <formula>IF(ISBLANK(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c), 
+CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;, &apos;Red&apos;, &apos;First release&apos;, &apos;Amber&apos;,&apos;Final release&apos; ,&apos;Green&apos;,&apos;&apos;, &apos;Not Applicable&apos;, &apos;&apos; ), 
+CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;, &apos;Red&apos;, &apos;First release&apos;, &apos;Amber&apos;,&apos;Final release&apos; ,&apos;Green&apos;,&apos;&apos;, &apos;Not Applicable&apos;, &apos;&apos; ))</formula>
         <label>BET Current Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -2211,7 +2213,9 @@
     <fields>
         <fullName>IPM_Project_BETStatus__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c == &apos;&apos;, &apos;No Bet&apos;, IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c)</formula>
+        <formula>IF(ISBLANK(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c), 
+IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c == &apos;&apos;, &apos;No Bet&apos;, IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.BETCurrentStatus__c), 
+IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__r.BETCurrentStatus__c == &apos;&apos;, &apos;No Bet&apos;, IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__r.BETCurrentStatus__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Project BETStatus</label>
         <required>false</required>

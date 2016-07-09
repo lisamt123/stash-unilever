@@ -510,7 +510,7 @@
                                             </div>
                                         </div>
                                         <apex:outputPanel id="miles">
-                                            <c:IPM_ListMilestonesTab pId="{!projectId}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" />
+                                            <c:IPM_ListMilestonesTab pId="{!projectId}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" ReactivateProject="{!reactivateProject}"/>
                                         </apex:outputPanel>   
                                     </div>
                                     <!-- To display below outputPanel when current user has edit access on page  -->
@@ -543,17 +543,23 @@
                             </span></span>
                                     </div>
                                     <div class="col-sm-12">
-                                        
+                                        <apex:outputPanel rendered="{!project.Is_Archieved__c == false}"> 
                                             <div class="col-sm-12 yellowBox todoBox noPadleft">
                                                 <div class="ipmCheckbox">
-                                                    <input id="displayTasksChkBox" isChecked="{!project.IPM_PM_Approach__c}" type="checkbox" onchange="saveApproach()"  isDisabled="{! if(isEditable=true,'false','true')}"/>
-                                                    <label for="displayTasksChkBox"></label>
+                                                    <apex:outputPanel rendered="{!if(AND(project.IPM_PrepareForArchival__c ==false,isEditable==true),true,false)}">
+                                                        <input id="displayTasksChkBox" isChecked="{!project.IPM_PM_Approach__c}" type="checkbox" onchange="saveApproach()" />
+                                                        <label for="displayTasksChkBox"></label>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!if(OR(project.IPM_PrepareForArchival__c ==true,isEditable==FALSE),TRUE,FALSE)}">
+                                                        <input id="displayTasksChkBox" isChecked="{!project.IPM_PM_Approach__c}" type="checkbox" onchange="saveApproach()"  Disabled="true"/>
+                                                        <label for="displayTasksChkBox"></label>
+                                                    </apex:outputPanel>
                                                     <span class="raLabelTodo">{!$Label.IPM_TO_DOs_VIA_NAVIGATOR}</span>
                                                 </div>  
                                             </div>
                                             <apex:actionFunction name="saveApproach" action="{!SaveIPMApproach}" reRender="showtask, showInfoMsg" status="displayTasksChkBoxStatus" onComplete="callbackLoadAction()"/>
-                                       
-                                        <apex:outputPanel id="showtask"> 
+                                        </apex:outputPanel>
+                                        <apex:outputPanel id="showtask" rendered="{!OR(project.Is_Archieved__c == false,reactivateProject) }"> 
                                             <!-- To display below vf component when project approach is internal    -->
                                             <c:IPM_ToDos createTask="{!isCreateTask}" pId="{!projectId}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" rendered="{!project.IPM_PM_Approach__c='Internal'}" />  
                                             <!-- To display below outputPanel when project approach is not internal    -->
