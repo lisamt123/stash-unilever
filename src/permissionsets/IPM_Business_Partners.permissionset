@@ -742,14 +742,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_Utils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -7093,7 +7085,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <label>IPM Business Partners</label>	
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -7101,15 +7093,7 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>IPM_Analytics_OTIF__c</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-	<userPermissions>
-        <enabled>true</enabled>
-        <name>ExportReport</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>RunReports</name>
-    </userPermissions>	
+    </objectPermissions>	
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -7606,4 +7590,12 @@
         <tab>IPM_My_To_Do_List</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
 </PermissionSet>
