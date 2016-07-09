@@ -92,6 +92,8 @@ src/classes/IPM_SyncFinanceTableTLD.cls
 src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
 src/classes/IPM_TaskCompCtrl.cls
 src/classes/IPM_TaskCompCtrl.cls-meta.xml
+src/classes/IPM_TaskHelper.cls
+src/classes/IPM_TaskHelper.cls-meta.xml
 src/classes/IPM_Taskview.cls
 src/classes/IPM_Taskview.cls-meta.xml
 src/classes/IPM_Team_Assignment_Controller.cls
@@ -180,6 +182,13 @@ src/customMetadata/IPM_Category_Thresholds.IPM_RegionalNorthAm_ThresholdSavouryF
 src/customMetadata/IPM_Category_Thresholds.IPM_RegionalNorthAs_ThresholdSavouryFood.md
 src/customMetadata/IPM_Category_Thresholds.IPM_RegionalSEAA_ThresholdSavouryFood.md
 src/customMetadata/IPM_Category_Thresholds.IPM_RegionalSouthAs_ThresholdSavouryFood.md
+src/customMetadata/IPM_Project_Metadata.GKM1.md
+src/customMetadata/IPM_Project_Metadata.GKM2.md
+src/customMetadata/IPM_Project_Metadata.GKM3.md
+src/customMetadata/IPM_Project_Metadata.GKM4.md
+src/customMetadata/IPM_Project_Metadata.GKM5.md
+src/customMetadata/IPM_Project_Metadata.GKM6.md
+src/customMetadata/IPM_Project_Metadata.GKM7.md
 src/email
 src/email/IPM_Emails
 src/email/IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created.email
@@ -215,6 +224,7 @@ src/objects/IPM_EI_Water_Scarce_Countries__c.object
 src/objects/IPM_Financial__c.object
 src/objects/IPM_Project__c.object
 src/objects/IPM_Project_Document_Section_Content__c.object
+src/objects/IPM_Project_Metadata__mdt.object
 src/objects/IPM_Project_Resource__c.object
 src/objects/IPM_Project_Rollout__c.object
 src/objects/IPM_Questionnaire__c.object
@@ -251,6 +261,8 @@ src/permissionsets/IPM_Integration_User_Permission_Set.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/permissionsets/IPMNG_Basic.permissionset
+src/reportTypes
+src/reportTypes/OTIF_Report.reportType
 src/reports
 src/reports/IPM_Reports
 src/reports/IPM_Reports/OTIF_Report.report
