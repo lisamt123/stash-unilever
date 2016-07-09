@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    <labels>
+      <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETIdNullMsg</shortDescription>
-        <value>BET Id cannot be null.</value>
-    </labels>
+        <value>BET Id cannot be null.</value></labels>
     <labels>
         <fullName>IPM_Bosscard_Shared_Chatter</fullName>
         <language>en_US</language>
@@ -9348,7 +9347,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
-        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please contact the relevant Regional Project Leader.</value>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please check on the rollout plan which regional rollout is 1st and contact the relevant Regional Project Leader.</value>
     </labels>
     <labels>
         <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
@@ -9434,7 +9433,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Y3 iTO (mn €) :</shortDescription>
         <value>Y3 iTO (mn €) :</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>IPM_MCO_Rollout_Leader</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9461,5 +9460,18 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Current Gate Document Status</shortDescription>
         <value>Current Gate Document Status</value>
+    </labels>
+	<labels>
+        <fullName>IPM_StopDisclaimer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer</shortDescription>
+        <value>This Project will be stopped after 72 hours.
+
+
+If you discover that stopping this Project was a mistake you can undo this action in the next 72 hours by using the Cancel Stopping Project button on the Project Overview Page.
+
+
+If you take no further action after 72 hours from now this Project and all its Rollout Projects will be stopped. Please note Stopped Projects cannot be reactivated</value>
     </labels>
 </CustomLabels>
