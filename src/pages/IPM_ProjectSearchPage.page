@@ -6,7 +6,7 @@
 *@Copyright Â© 2015  Unilever  
 *************************************************************************
 -->
-<apex:page sidebar="false" standardStylesheets="true" controller="IPM_ProjectSearchCtrl" extensions="IPM_GetHelpDoc">
+<apex:page sidebar="false" standardStylesheets="true" controller="IPM_ProjectSearchCtrl" extensions="IPM_GetHelpDoc" readOnly="true">
     <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">        
             <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/>
@@ -503,23 +503,32 @@
                                                             <a href="{!URLFOR($Page.IPM_ProjectSetupView,null,[Pid=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Original, then the respective icon will be displayed -->
-                                                        <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Original'}">
+                                                        <apex:outputPanel layout="block" rendered="{!AND(p.IPM_Project_Type__c='Original', !p.Is_Archieved__c) }">
                                                             <span class="orgIcon"></span>
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Rollout, then the respective icon will be displayed -->
-                                                        <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Rollout'}">
-                                                            <span class="rollIcon"></span>
+                                                        <apex:outputPanel layout="block" rendered="{!AND(p.IPM_Project_Type__c='Rollout', !p.Is_Archieved__c )}">
+                                                            <span class="rollIcon"></span> 
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Operational, then the respective icon will be displayed -->
-                                                        <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Operational'}">
+                                                        <apex:outputPanel layout="block" rendered="{!AND(p.IPM_Project_Type__c='Operational', !p.Is_Archieved__c)}">
                                                             <span class="oprtnIcon"></span>
                                                         </apex:outputPanel>
-                                                            
+                                                        <!--If the IPM_Project_Type__c is Archieved, then the respective icon will be displayed -->
+                                                        <apex:outputPanel layout="block" rendered="{!p.Is_Archieved__c}">
+                                                            <span class="stopicon"></span>
+                                                        </apex:outputPanel>
+                                                        
                                                     </div>
                                                 </div> 
                                             </td>
                                             <td>
-                                                {!p.IPM_Phase__c}   
+                                                <apex:outputPanel rendered="{!p.Is_Archieved__c}">
+                                                	{!$Label.IPM_GD_STOPPED}
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!Not(p.Is_Archieved__c)}">
+                                                	{!p.IPM_Phase__c}
+                                                </apex:outputPanel>   
                                             </td>
                                             <td>
                                                 {!p.IPM_Project_Leader__r.Name}

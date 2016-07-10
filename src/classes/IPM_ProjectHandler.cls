@@ -5,6 +5,10 @@
 @Description Trigger Handler for the IPM_Project__c SObject. 
 This is used : in creation of project specific data like task ,milestones etc.
                in validating /populating field values of  records , sending Rollout member access request , BET follow up request,chatter follow up and eco design sync etc.
+               in batch processing of  transaction management and  enqueing  IPM_ProjectShareJobQueue, IPM_ProjectJob_Queue jobs
+               in syncing rollout,milestone TLD's
+               in updating BET milestones  and setting BET status on project
+               in processing  FastTrack Projects and stopped projects
 @Version 1.0
 @reference Project Job Queue 
 */
@@ -14,7 +18,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                                                                 'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Lead__c'};
                                                                                 
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
-  	public static Boolean stopProjExecute = true;
+    public static Boolean INSIDE_STOP_PROJECT = false;
+    public static Boolean INSIDE_PREPARE_STOP_PROJECT = false;
     public static Boolean SKIP_TRANSACTION_MNG = false;
    
     // Constructor
@@ -96,7 +101,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         project.Bulk_BET_Member_Request__c = false;
                         BET_BETWrapper bwrap = new BET_BETWrapper();
                         bwrap = (BET_BETWrapper)BET_BETService.getBet(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c);
-                        if(bwrap!=null){
+                        if(bwrap!=null)
+                        {
                             project.BET_Last_BET__c = bwrap.betName;
                         }
                     }
@@ -633,9 +639,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             map<string, ipm_project__c> mapProjBETupdate = new map<string, ipm_project__c>();
             
             Map<Id, IPM_Project__c> ipmFastTrackProjectMap = new Map<Id, IPM_Project__c>(); // Fast Track Marked project Map 
-            Map<Id, String> stoppedProjectMap = new Map<Id, String>(); // Fast Track Marked project Map 
+            Map<Id, IPM_Project__c> archivingProjectMap = new Map<Id, IPM_Project__c>(); // Prepare Stopping Project Map
+            Map<Id, IPM_Project__c> archievedProjectMap = new Map<Id, IPM_Project__c>(); // Stopped Project Map
+            Map<Id, IPM_Project__c> unArchivingProjectMap = new Map<Id, IPM_Project__c>(); // Prepare Stopping Project Map
+            Map<Id, IPM_Project__c> unArchievedProjectMap = new Map<Id, IPM_Project__c>(); // Stopped Project Map
+            Map<Id,IPM_Project__c> stoppedBETProjects = new Map<Id,IPM_Project__c>(); 
            MAP<Id,IPM_Project__c> projectMPAMap = new MAP<Id,IPM_Project__c>(); //for copying over the MPA value from parent to child project
             
+            // populating maps in use
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
                    IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
@@ -696,18 +707,34 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
                     }  
                     
-                    if(String.isNotBlank(p.IPM_Phase__c) && (p.Is_Archieved__c != proj.Is_Archieved__c ) && stopProjExecute)
+                    if(String.isNotBlank(p.IPM_Phase__c) && (p.Is_Archieved__c != proj.Is_Archieved__c ) && !INSIDE_STOP_PROJECT) 
                     {   
                         
                         if(p.Is_Archieved__c  )
                         {
-                            stoppedProjectMap.put(p.id,p.IPM_Stopped_Comments__c);
+                            	archievedProjectMap.put(p.id,p);
+                            	// sending unfollow request in the BET system  when  the project is stopped and unlinking the BET
+			        if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && p.BET__c != null)
+			        { 
+			           stoppedBETProjects.put(p.Id,p); 
+			        }
                         }
                         else
                         {
-                            stoppedProjectMap.put(p.id,IPM_ConstantUtils.BLANK);
+                            unArchievedProjectMap.put(p.id,p);
                         }
                    }  
+                  if(String.isNotBlank(p.IPM_Phase__c) && !p.Is_Archieved__c && (p.IPM_PrepareForArchival__c != proj.IPM_PrepareForArchival__c ) && !INSIDE_PREPARE_STOP_PROJECT) 
+                  {   
+                      if(p.IPM_PrepareForArchival__c)
+                      {
+                          archivingProjectMap.put(p.id,p);
+                      }
+                      else
+                      {
+                          unArchivingProjectMap.put(p.id,p);
+                      }
+                 } 
                    // To populate clusterIDsforY3iToUpdate for updating Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the Y3iTo of project changes or the project is moved to another cluster
                    if(p.IPM_Project_Type__c == PROJECT_TYPE_ORIGINAL && (p.IPM_Project_Y3iTO__c != proj.IPM_Project_Y3iTO__c || p.IPM_Cluster__c != proj.IPM_Cluster__c))
                    {
@@ -728,18 +755,45 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                       IPM_ProjectHelper.copyOverMPAValue((projectMPAMap)); 
                }
                
+              if(!stoppedBETProjects.isEmpty())
+              {
+	        List<IPM_Project__c> updateBETNullList = new List<IPM_Project__c>();               	
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+             	for(IPM_Project__c stopBETProject : stoppedBETProjects.values())
+   		{
+		  BET_LinkingService.unfollow(stopBETProject.Id,stopBETProject.BET__c);	
+		  updateBETNullList.add(new IPM_Project__c(id = stopBETProject.Id,BET__c = null,BET_Link_Requested__c =null,BET_Link_Requested_on_Date__c =null));
+               	}
+		if(!updateBETNullList.isEmpty())
+		{
+			update updateBETNullList;
+		}
+               	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+               }
                  // Fast Track Global Original Project 
                 if(!ipmFastTrackProjectMap.isEmpty())
                 {
                     IPM_ProjectHelper.processFastTrackProjects(ipmFastTrackProjectMap);
                 }
                 
-                if(!stoppedProjectMap.isEmpty()) 
+              if(!archivingProjectMap.isEmpty()) 
                 {
-                   IPM_ProjectHelper.updateStoppedProject(stoppedProjectMap);
+                   IPM_StopProjectHelper.processArchiving(archivingProjectMap);  
                 }
                 
+              if(!unArchivingProjectMap.isEmpty()) 
+              {
+                 IPM_StopProjectHelper.processUnArchiving(unArchivingProjectMap);  
+              }
                       
+              if(!archievedProjectMap.isEmpty())   
+              { 
+                 IPM_StopProjectHelper.processArchival(archievedProjectMap);  
+              }
+              if(!unArchievedProjectMap.isEmpty())
+              {
+                IPM_StopProjectHelper.processUnArchival(unArchievedProjectMap);  
+              }
            //call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
@@ -989,6 +1043,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             }
         } 
         
+        IPM_StopProjectHelper.prepareDataForArchiving(incomingProject,oldProject);
+        IPM_StopProjectHelper.prepareDataForArchieve(incomingProject,oldProject);
         if(incomingProject.Exempt_from_Threshold__c !=null && incomingProject.Exempt_from_Threshold__c != oldProject.Exempt_from_Threshold__c)
         {
             if(incomingProject.Exempt_from_Threshold__c)
@@ -1112,7 +1168,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         }
         
         // To update Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the project under the cluster is deleted,project Y3 iTO changes or project is moved to another cluster
-        if( clusterIDsforY3iToUpdate!=Null && !clusterIDsforY3iToUpdate.isEmpty())
+        if(!clusterIDsforY3iToUpdate.isEmpty())
         {
             IPM_Utils.updateclusterSumY3iTOValue(clusterIDsforY3iToUpdate); 
         }

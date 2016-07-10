@@ -97,7 +97,12 @@
                                 <li class="milestones tabEven"><span>{!$Label.IPM_MILESTONES}</span></li>
                                 <li class="todos tabOdd "><span>{!$Label.IPM_TO_Dos}</span></li>
                             </ul> 
+                            <apex:outputPanel id="newProjectCloseIcon" rendered="{!!reactivateProject}">
                             <button type="button" class="close ipmModalGetStartedClose" data-target="#quitWizard" data-toggle="modal" data-keyboard="false" data-backdrop="static" aria-hidden="true">&times;</button>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="reactivatingProjectCloseIcon" rendered="{!reactivateProject}">
+                            	<button type="button" class="close ipmModalGetStartedClose" data-target="#quitReactivateWizard" data-toggle="modal" data-keyboard="false" data-backdrop="static" aria-hidden="true">&times;</button>
+                            </apex:outputPanel>
                         </div>
                         <div class="ipmGetStartedContent" id="projectdetails">
                             <div class="container-fluid">
@@ -413,7 +418,7 @@
                                                                                 <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox"  >
                                                                                     <!-- To display below outputPanel when fasttract is applicable    -->
                                                                                     <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}">
-                                                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!isEditable}"/>
+                                                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
                                                                                     <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                                                                     <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                                                     </apex:outputPanel>
@@ -493,12 +498,12 @@
                                             <span class="mStonequest">{!$Label.IPM_ProjectComplexityMessage} </span>
                                             <span class="mStonequest">{!$Label.IPM_MilestoneTodoMessage}</span>
                                             <div class="ipmRadioButton mstonebWidth proRoute">
-                                                <input id="lite" type="radio" name="mstone" ischecked="{!project.IPM_Complexity__c}" value="Lite" onChange="SaveComplexity()" isDisabled="{! if(isEditable=true,'false','true')}"/>
+                                                <input id="lite" type="radio" name="mstone" ischecked="{!project.IPM_Complexity__c}" value="Lite" onChange="SaveComplexity()" isDisabled="{!OR(isEditable,reactivateProject)}"/>
                                                 <label for="lite"></label>
                                                 <span class="raLabel">{!$Label.IPM_Lite}</span>
                                             </div>
                                             <div class="ipmRadioButton mstonebWidth proRoute">
-                                                <input id="full" type="radio" name="mstone" value="Full" ischecked="{!project.IPM_Complexity__c}" onChange="SaveComplexity1()" isDisabled="{! if(isEditable=true,'false','true')}"/>
+                                                <input id="full" type="radio" name="mstone" value="Full" ischecked="{!project.IPM_Complexity__c}" onChange="SaveComplexity1()" isDisabled="{!OR(isEditable,reactivateProject)}"/>
                                                 <label for="full"></label>
                                                 <span class="raLabel">{!$Label.IPM_Full}</span>  
                                             </div>
@@ -510,7 +515,7 @@
                                             </div>
                                         </div>
                                         <apex:outputPanel id="miles">
-                                            <c:IPM_ListMilestonesTab pId="{!projectId}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" />
+                                            <c:IPM_ListMilestonesTab pId="{!projectId}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" ReactivateProject="{!reactivateProject}"/>
                                         </apex:outputPanel>   
                                     </div>
                                     <!-- To display below outputPanel when current user has edit access on page  -->
@@ -543,17 +548,23 @@
                             </span></span>
                                     </div>
                                     <div class="col-sm-12">
-                                        
+                                        <apex:outputPanel rendered="{!project.Is_Archieved__c == false}"> 
                                             <div class="col-sm-12 yellowBox todoBox noPadleft">
                                                 <div class="ipmCheckbox">
-                                                    <input id="displayTasksChkBox" isChecked="{!project.IPM_PM_Approach__c}" type="checkbox" onchange="saveApproach()"  isDisabled="{! if(isEditable=true,'false','true')}"/>
-                                                    <label for="displayTasksChkBox"></label>
+                                                    <apex:outputPanel rendered="{!if(AND(project.IPM_PrepareForArchival__c ==false,isEditable==true),true,false)}">
+                                                        <input id="displayTasksChkBox" isChecked="{!project.IPM_PM_Approach__c}" type="checkbox" onchange="saveApproach()" />
+                                                        <label for="displayTasksChkBox"></label>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!if(OR(project.IPM_PrepareForArchival__c ==true,isEditable==FALSE),TRUE,FALSE)}">
+                                                        <input id="displayTasksChkBox" isChecked="{!project.IPM_PM_Approach__c}" type="checkbox" onchange="saveApproach()"  Disabled="true"/>
+                                                        <label for="displayTasksChkBox"></label>
+                                                    </apex:outputPanel>
                                                     <span class="raLabelTodo">{!$Label.IPM_TO_DOs_VIA_NAVIGATOR}</span>
                                                 </div>  
                                             </div>
                                             <apex:actionFunction name="saveApproach" action="{!SaveIPMApproach}" reRender="showtask, showInfoMsg" status="displayTasksChkBoxStatus" onComplete="callbackLoadAction()"/>
-                                       
-                                        <apex:outputPanel id="showtask"> 
+                                        </apex:outputPanel>
+                                        <apex:outputPanel id="showtask" rendered="{!OR(project.Is_Archieved__c == false,reactivateProject) }"> 
                                             <!-- To display below vf component when project approach is internal    -->
                                             <c:IPM_ToDos createTask="{!isCreateTask}" pId="{!projectId}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" rendered="{!project.IPM_PM_Approach__c='Internal'}" />  
                                             <!-- To display below outputPanel when project approach is not internal    -->
@@ -569,8 +580,8 @@
                                             <div class="buttonmarRight pull-left">
                                                 <input type="button" onClick="backTab(this)" class="milestones ipmButton" value="Back"/>
                                             </div>
-                                            <div class="buttonmarRight pull-left actionBox" value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=projectId])}">
-                                                <input type="button" class="ipmButton primary" value="Save and Continue" onClick="skipValidation();"/>
+                                            <div class="buttonmarRight pull-left">
+												<apex:commandLink styleClass="ipmButton primary"  value="Save and Continue" action="{!saveProject}"/>
                                             </div> 
                                         </div>
                                     </apex:outputpanel>
@@ -683,6 +694,35 @@
                                         </div> 
                                         <div class="buttonmarRight pull-left noPadright">
                                             <input type="button" class="ipmButton primary" data-dismiss="modal" value="Cancel"/>
+                                        </div> 
+                                    </div>
+                                </div>  
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="quitReactivateWizard" tabindex="-1" data-backdrop-limit="1" class="modal fade quitWizard">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <div class="modal-title">{!$Label.IPM_ReactivatingProject}</div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">    
+                                    <div class="col-sm-12">
+                                        <span class="skipDesc">{!$Label.IPM_ReactivateProjectMessage}</span>
+                                    </div>
+                                    <div class="skipButtoncontainer1 txtAlignright pull-right">
+                                        <div class="buttonmarRight pull-left noPadright fleft">
+                                            <apex:outputPanel id="refreshReactivatequit">
+                                                <input type="button" class="ipmButton" onClick="quit(this);changeAlertBosscardName();" value="{!$Label.IPM_CloseWizard}" />
+                                            </apex:outputPanel> 
+                                        </div> 
+                                        <div class="buttonmarRight pull-left noPadright">
+                                            <input type="button" class="ipmButton primary" data-dismiss="modal" value="{!$Label.IPM_ReturnToWizard}"/>
                                         </div> 
                                     </div>
                                 </div>  

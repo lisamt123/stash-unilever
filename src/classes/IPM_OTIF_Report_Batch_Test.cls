@@ -30,6 +30,8 @@ private class IPM_OTIF_Report_Batch_Test {
     public static final String CALENDAR = 'Calendar';
     private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
     private static final string GREEN='Green';  
+    private static final string RED='Red';
+    private static final string AMBER='Amber';  
 
     /**********************************************************************
     *  @Description: Test Method to create generic project and other related objects data that will be used by other methods of this test class
@@ -288,10 +290,20 @@ private class IPM_OTIF_Report_Batch_Test {
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
-              pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_BASES_II;
+              pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.CONTRACT_PRODUCT;
               pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
               
+              pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
+              pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
+              pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.CONTRACT_FULL_MIX;
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = RED;
+              pDSContectList.add(pojDocSectionSectionCont);
+              pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
+              pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
+              pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.CONTRACT_COMMUNICATION;
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = AMBER;
+              pDSContectList.add(pojDocSectionSectionCont);
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_BASES_I;
@@ -341,9 +353,19 @@ private class IPM_OTIF_Report_Batch_Test {
               pDSContectList.add(pojDocSectionSectionCont);           
               
               insert pDSContectList;
-              List<IPM_Project_Document_Section_Content__c> projDocSecContList=[SELECT ID,IPM_Project_Document_Section__c,IPM_OTIF_Measure__c FROM IPM_Project_Document_Section_Content__c WHERE ID IN:pDSContectList LIMIT 100];   
-              System.assertEquals(projDocSecContList.size(),17,RECORD_NOT_CREATED_SUCCESSFULLY); //positive test              
-              
+              List<IPM_Project_Document_Section_Content__c> projDocSecContList=[SELECT ID,IPM_Project_Document_Section__c,IPM_OTIF_Measure__c, IPM_OTIF_Status__c FROM IPM_Project_Document_Section_Content__c WHERE ID IN:pDSContectList LIMIT 100];   
+              System.assertEquals(projDocSecContList.size(),19,RECORD_NOT_CREATED_SUCCESSFULLY); //positive test              
+              for(IPM_Project_Document_Section_Content__c temp : projDocSecContList){
+              	if(temp.IPM_OTIF_Measure__c == IPM_ConstantUtils.CONTRACT_COMMUNICATION){
+              		system.assertEquals(temp.IPM_OTIF_Status__c, AMBER, RECORD_NOT_CREATED_SUCCESSFULLY);
+              	}
+              	if(temp.IPM_OTIF_Measure__c == IPM_ConstantUtils.CONTRACT_FULL_MIX){
+              		system.assertEquals(temp.IPM_OTIF_Status__c, RED, RECORD_NOT_CREATED_SUCCESSFULLY);
+              	}
+              	if(temp.IPM_OTIF_Measure__c == IPM_ConstantUtils.CONTRACT_PRODUCT){
+              		system.assertEquals(temp.IPM_OTIF_Status__c, GREEN, RECORD_NOT_CREATED_SUCCESSFULLY);
+              	}
+              }
                             
             }  
     }

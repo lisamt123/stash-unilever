@@ -97,10 +97,22 @@
         <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_Charter__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Base_I__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Pack__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Price__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Base_II__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$Contract_Communication__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$Contract_Product__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$Contract_Full_Mix__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$Tech_Action_STD_Achieved_by_Lead_Region__c</field>
@@ -122,9 +134,6 @@
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_Contract__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Bases_III__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$Tech_Prod_Capability_Conf_Main_Plant__c</field>
@@ -225,6 +234,7 @@
     <columns>
         <field>IPM_Analytics_OTIF__c$Y3_GM_BB__c</field>
     </columns>
+    <currency>EUR</currency>
     <description>OTIF Report</description>
     <format>Tabular</format>
     <name>OTIF Report</name>

@@ -734,7 +734,9 @@ private class IPM_ProjectOverviewCtrl_Test
             testIPMFinancialLocal.Project_Sustainability_Period__c = IPM_ConstantUtils.YEAR_3;
             financialList.add(testIPMFinancialLocal);
         }
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
         insert financialList;
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
         System.assertEquals(20, [Select count() from IPM_Financial__c where Parent_Project__c =: project.id limit 100], FINANCIAL_NOT_CREATED);
         
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);

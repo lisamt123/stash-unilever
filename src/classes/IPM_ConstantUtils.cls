@@ -109,6 +109,9 @@ public class IPM_ConstantUtils {
     public static final String CONTRACT_PRODUCT ='What is the Consumer test scoring on Product?';
     public static final String CONTRACT_FULL_MIX ='What is the Consumer test scoring on Full mix?';
     public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';    
+    // Newly added OTIF questions 
+    public static final String CONTRACT_PACK ='What is the Consumer test scoring on Pack ?';    
+    public static final String CONTRACT_PRICE ='What is the Consumer test scoring on Price ?';    
      //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
     public static final String EXTERNAL_HEADER_SEQUENCE='2';
@@ -1224,4 +1227,7 @@ public class IPM_ConstantUtils {
    
    public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c'; 
    public static final string Clustering = 'Clustering';
+   public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
+   public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
+   public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
 }

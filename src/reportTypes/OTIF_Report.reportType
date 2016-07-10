@@ -118,6 +118,21 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Contract_Communication__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Contract_Full_Mix__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Contract_Product__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Contract_Target_Launch_Month__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -420,6 +435,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Comm_Full_Think_Big_Pack_Available__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Contract_Pack__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Contract_Price__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
         <masterLabel>IPM Analytics OTIFs</masterLabel>

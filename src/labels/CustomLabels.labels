@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>IPM_ShowEntity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ShowEntity</shortDescription>
+        <value>IPM_ShowAt{0}__c</value>
+    </labels>
+    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3308,14 +3315,14 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM EcoDesign EI Country With No Assessment</shortDescription>
-        <value>This EI country has not yet had an environmental impact assessment created in Eco-Design.</value>
+        <value>This country has not yet had an Environmental and Social Impact assessment created in Eco-Design.</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Environmental_metric</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Environmental_metric</shortDescription>
-        <value>Environmental metric</value>
+        <value>Environmental and Social Impact</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Expected</fullName>
@@ -9460,4 +9467,112 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM Current Gate Document Status</shortDescription>
         <value>Current Gate Document Status</value>
     </labels>
- </CustomLabels>
+	<labels>
+        <fullName>IPM_StopDisclaimer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer</shortDescription>
+        <value>This Project will be stopped after 72 hours.
+
+
+If you discover that stopping this Project was a mistake you can undo this action in the next 72 hours by using the Cancel Stopping Project button on the Project Overview Page.
+
+
+If you take no further action after 72 hours from now this Project and all its Rollout Projects will be stopped. Please note Stopped Projects cannot be reactivated</value>
+    </labels>
+
+<labels>
+        <fullName>IPM_NoOfMonths_ForReactivation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Of Months For Reactivation</shortDescription>
+        <value>38</value>
+    </labels> 
+	  <labels>
+        <fullName>IPM_stop_project_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM stop project msg</shortDescription>
+        <value>Please confirm you wish to stop this Project. Once stopped the Project cannot be re-activated at any time.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Stop_Project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Stop Project</shortDescription>
+        <value>Stop Project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Stop_project_hover_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stop  project  hover text</shortDescription>
+        <value>All the Rollouts for this {0} Project have been Stopped. Use this button to stop this {1} Project or create a new Rollout Plan to continue with the Project.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivateProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivate Project</shortDescription>
+        <value>Reactivate Project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_CancelStoppingProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Stopping Project</shortDescription>
+        <value>Cancel Stopping Project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_Health_and_Hygiene</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Health and Hygiene</shortDescription>
+        <value>Health &amp; Hygeine</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Ecodesign_Nutrition</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Ecodesign Nutrition</shortDescription>
+        <value>Nutrition</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_Passed_Cancellation_Widnow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Passed Cancellation Widnow</shortDescription>
+        <value>Your Project has passed applicable cancellation window.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivateProjectMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivate Project Message</shortDescription>
+        <value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any changes made will be saved.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivatingProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivating Project</shortDescription>
+        <value>Reactivating Project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_CloseWizard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Wizard</shortDescription>
+        <value>Close Wizard</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReturnToWizard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return to Wizard</shortDescription>
+        <value>Return to Wizard</value>
+    </labels>
+</CustomLabels>
+

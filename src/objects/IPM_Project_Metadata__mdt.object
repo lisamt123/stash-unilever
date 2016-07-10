@@ -44,6 +44,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_CancelStopProjectDuration__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancel Stop Project Duration</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_DefaultComplexity__c</fullName>
         <description>Sets the default Complexity when creating the project.</description>
         <externalId>false</externalId>

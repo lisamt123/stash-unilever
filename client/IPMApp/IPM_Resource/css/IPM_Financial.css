@@ -367,3 +367,24 @@
 border: 3px solid #E13727;
 }
 .ipmButtonGroup .ipmButton.confirmAction.refreshFromRegional{margin-right:15px;}
+
+.projectContainer .accrHead .filterTitle.selected{
+    font-weight: normal;
+    font-size: 1.2em;
+    background: #e5f8ff;
+}
+.projectContainer .pHead.filterSubTitle{
+padding: 0px;
+}
+.ipmAcrdnExpand .accordionFilters li.finRecord{
+   padding:0px;
+   font-size:12px;
+}
+.ipmAcrdnExpand .accordionFilters li.finRecord div.filterTitle{
+font-weight:normal
+}
+
+.ipmAcrdnExpand .accordionFilters li.finRecord div.filterTitle.selected
+{
+background: #e5f8ff;
+}

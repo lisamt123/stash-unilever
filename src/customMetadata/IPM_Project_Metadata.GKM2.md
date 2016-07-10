@@ -23,6 +23,10 @@
         <value xsi:type="xsd:string">Ideas,Feasibility,Capability,Market Ready,Market Deployment,PLE</value>
     </values>
     <values>
+        <field>IPM_CancelStopProjectDuration__c</field>
+        <value xsi:type="xsd:double">4320.0</value>
+    </values>
+    <values>
         <field>IPM_DefaultComplexity__c</field>
         <value xsi:type="xsd:string">Lite</value>
     </values>

@@ -6,7 +6,7 @@
 @Version: 1.0
 @Reference: Gatekeeper Checklist Components
 */
-public with sharing class IPM_GatekeeperChecklist{    
+public with sharing class IPM_GatekeeperChecklist{  
     //For exception handler
     private static final String IPM_GATEKEEPERCHECKLIST_STR = IPM_GatekeeperChecklist.class.getName();
     private static final String GET_CHECKLIST_QUESTIONS_STR='getChecklistQuestions';
@@ -171,6 +171,7 @@ public with sharing class IPM_GatekeeperChecklist{
 	        }
 	        
 	        query += 'Id,IPM_Project_Document_Section__r.IPM_Section_Name__c from '+ sObjectName +' WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+            
             if(projDocSec!=null){
                 string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
                 gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
@@ -227,13 +228,7 @@ public with sharing class IPM_GatekeeperChecklist{
                                 }
                                 else
                                 {
-                                    String helpText = gkHelpTextMap.get(optionLabel);
-                                    
-                                    if(gkHelpTextMap.get(optionLabel)!=null)
-                                    {
-                                        helpText = gkHelpTextMap.get(optionLabel);
-                                    }
-                                    answerOption = new SelectOption(optionValue,'<span title= " '+helpText+ ' " >' +optionLabel+'</span>');
+                                    answerOption = new SelectOption(optionValue,'<span title= " '+  gkHelpTextMap.get(optionLabel)  + ' " >' +optionLabel+'</span>');
                                 }
                                 answerOption.setEscapeItem(false);
                                 applicableGKOptions.add(answerOption);              
@@ -244,14 +239,7 @@ public with sharing class IPM_GatekeeperChecklist{
                      {
                          for(String key :GK_DEF_APPLICABLE_ANSMAP.keyset())
                          {
-                            String helpText = GK_DEF_APPLICABLE_ANSMAP.get(key);
-                                    
-	                        if(gkHelpTextMap.get(key) !=null)
-	                        {
-	                           helpText = gkHelpTextMap.get(key);
-	                        }
-
-                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title= " '+  helpText + ' ">' +key+'</span>');
+                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title= " '+  gkHelpTextMap.get(key)  + ' ">' +key+'</span>');
                          
                             answerOption.setEscapeItem(false);
                          

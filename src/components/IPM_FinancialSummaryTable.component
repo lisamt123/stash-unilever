@@ -3,7 +3,7 @@
     <apex:attribute name="fieldSuffix" type="String" required="true" description="Field Suffix - Global/Regional/Local"/>
     <apex:attribute name="isEditMode" type="Boolean" default="false" description="Edit Mode"/>
     <apex:attribute name="showMisalignment" type="Boolean" default="false" description="showMisalignment"/>
-
+    <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." /> 
     <!-- Variables -->
     <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
 
@@ -13,7 +13,7 @@
                 <tr>
                     <td width="30%" class="finproject fintleblubg">{!$Label.ipmFinSummaryNPV}</td>
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -108,7 +108,7 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryIRR}</td>
                     <td width="30%" class="fintleblubg">%</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c > 0), 'misaligned', '')}">
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -191,7 +191,7 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPayback}</td>
                     <td width="30%" class="fintleblubg">Years</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c > 0), 'misaligned', '')}">
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -290,7 +290,7 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryCAPEX}</td>
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c > 0), 'misaligned', '')}">
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -385,7 +385,7 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryBIC}</td>
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c > 0) ), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c > 0) ), 'misaligned', '')}">
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">

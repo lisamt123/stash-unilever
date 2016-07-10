@@ -67,7 +67,7 @@
                         <apex:outputPanel id="stop" styleClass="stop">
                          <!-- Below rendered condition will show the output text for stopped status -->  
                             <apex:outputPanel rendered="{!If(Status='Stopped',true,false)}">
-                                
+                                    <span class="msgTxt">{!showErrorMsg}</span>
                                 <div class="col-xs-12 toolTipMsg marginTop"><apex:outputText value="{!$Label.IPM_ABOUT_STOPPED_STATE}"/>
                                 </div>
                                 <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop">
@@ -319,6 +319,7 @@
                             </apex:outputPanel>
                         </apex:outputPanel>
                          
+                            <!-- If Status is  Approved With Edits. -->
                         <apex:outputPanel id="approveWithEdit" styleClass="approveWithEdit">
                         <!-- Below rendered condition will execute for approve with edits -->
                             <apex:outputPanel rendered="{!If(Status='Approved with Edits',true,false)}" > 
@@ -376,20 +377,30 @@
                             </apex:outputPanel>
                         </apex:outputPanel>      
                         <apex:outputPanel layout="block" id="changeAction">
+                                 <!-- If Status is Not Approved With Edits. -->
                          <!-- Below rendered condition will execute if status is not equals to approve with edits -->
                             <apex:outputPanel rendered="{!If(Status!='Approved with Edits',true,false)}">
                                 <div class="marginTop ipmButtonGroup pull-right">
                                  <!-- Below rendered condition will execute for approved status -->
+                                         <!--If Status is Approved.  -->
                                     <apex:outputPanel id="projectBackGround" rendered="{!Status=='Approved'}" >
                                         <a class="ipmButton projectBKProcess primary pull-right" data-toggle="modal" data-target="#initiateProjectBKPanel" data-backdrop="static" data-keyboard="false">Change</a>
                                     </apex:outputPanel>
+                                        <apex:outputPanel styleClass="changeChkBtn" id="StopProjectPanel" rendered="{!Status='Stopped'}" >
+                                            <apex:outputLink styleClass="ipmButton projectBKProcess primary pull-right"  value="#" 
+                                            id="stopchangestatus" onclick="intiateStopProjectDisclaimer('{!Status}');">
+                                            {!$Label.IPM_CHANGE_DOC_STATUS} 
+                                            </apex:outputLink>  
+                                        </apex:outputPanel>
+                                        <!--If Status is Not Approved.  -->  
                                      <!-- Below rendered condition is used to provide button for changing status -->
-                                    <apex:outputPanel styleClass="changeChkBtn" id="normalSave" rendered="{!AND(Status!='Approved',Status!='Postponed')}" >
+                                        <apex:outputPanel styleClass="changeChkBtn" id="normalSave" rendered="{!AND(Status!='Approved',Status!='Stopped',Status!='Postponed')}" >
                                         <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onclick="skipValidation();" onComplete="goToParentPage();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>
                                     </apex:outputPanel>
                                 </div>
+                                     <!-- If Status is  Approved. -->     
                                  <!-- Below rendered condition will execute for approved status -->
-                                <apex:outputPanel layout="block" rendered="{!Status=='Approved'}">
+                                    <apex:outputPanel layout="block" rendered="{!OR(Status=='Approved',Status=='Stopped')}">
                                     <div id="initiateProjectBKPanel" class="modal fade" >
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -427,6 +438,9 @@
                         <apex:actionFunction action="{!updateStatus}" name="changeStatus" reRender="progress,propose,postpone,approve,stop,goto,approveWithEdit,changeAction" onComplete="gkmComplete()">
                             <apex:param name="status" value="" id="statusChange" assignTo="{!Status}" />
                         </apex:actionFunction>                      
+                            <apex:actionFunction action="{!submit}" name="changeStatusFromJS" reRender="srcp" onComplete="skipValidation();navigateToHome();"> 
+                                <apex:param name="status" value="" id="StopProjectStatus" assignTo="{!Status}" />
+                            </apex:actionFunction>
                        <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                        <div class="proInitLoader"></div>
                     </div>
@@ -490,6 +504,7 @@
             </div>
         </div> 
     </apex:form>
+        <c:IPM_ConfirmModal />
     <div id="ipmModalDiv">
         <c:IPM_ModalHeaderDiv />
     </div>
@@ -497,7 +512,8 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>
     <script>
-        var IPMApp = {gateStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}',wmessage:'{!$Label.IPM_Unsaved_Alert}', projectId:'{!URLENCODE(projectId)}', projectPhase: '{!project.IPM_Phase__c}', projectDoc:'{!URLENCODE(projectDoc.IPM_GateDocuments__c)}', Stopped:'{!$Label.IPM_GD_STOPPED}', Proposed:'{!$Label.IPM_GD_PROPOSED}', Postponed:'{!$Label.IPM_GD_POSTPONED}', Approved:'{!$Label.IPM_GD_APPROVED}', inProgress:'{!$Label.IPM_IN_PROGRESS}', ApprovedEdit:'{!$Label.IPM_APPROVED_WITH_EDITS}', GateDocumentPage:'{!URLFOR($Page.IPM_GateDocument)}',MilestonePage:'{!URLFOR($Page.IPM_GateDocument)}'};
+            var IPMApp = {gateStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}',wmessage:'{!$Label.IPM_Unsaved_Alert}', projectId:'{!URLENCODE(projectId)}', projectPhase: '{!project.IPM_Phase__c}', projectDoc:'{!URLENCODE(projectDoc.IPM_GateDocuments__c)}', Stopped:'{!$Label.IPM_GD_STOPPED}', Proposed:'{!$Label.IPM_GD_PROPOSED}', Postponed:'{!$Label.IPM_GD_POSTPONED}', Approved:'{!$Label.IPM_GD_APPROVED}', inProgress:'{!$Label.IPM_IN_PROGRESS}', ApprovedEdit:'{!$Label.IPM_APPROVED_WITH_EDITS}', GateDocumentPage:'{!URLFOR($Page.IPM_GateDocument)}', 
+                StopDeclaimer : '{!JSENCODE($Label.IPM_StopDisclaimer)}', MilestonePage:'{!URLFOR($Page.IPM_GateDocument)}'};
     </script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ChangeCurrenDocumentStatus.js')}" type="text/javascript"></script> 
 </apex:page>

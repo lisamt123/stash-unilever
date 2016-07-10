@@ -149,10 +149,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_CMIGateSectionPDFController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_CU_Complexity_Consolidated</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -244,10 +240,7 @@
         <apexClass>IPM_CountryHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_CountryTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <classAccesses>
         <apexClass>IPM_CreateProject</apexClass>
         <enabled>false</enabled>
@@ -330,10 +323,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_FinancialHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -424,10 +413,7 @@
         <apexClass>IPM_GatekeeperChecklist_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_GenericExtCtrl</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <classAccesses>
         <apexClass>IPM_GetHelpDoc</apexClass>
         <enabled>false</enabled>
@@ -652,10 +638,7 @@
         <apexClass>IPM_ProjectTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_QuestionnaireHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <classAccesses>
         <apexClass>IPM_Resource_Allocation</apexClass>
         <enabled>false</enabled>
@@ -684,10 +667,7 @@
         <apexClass>IPM_RolloutTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_SampleTestProjShare</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <classAccesses>
         <apexClass>IPM_ShareWithWorkLevel</apexClass>
         <enabled>false</enabled>
@@ -732,10 +712,7 @@
         <apexClass>IPM_Team_Assignment_Controller_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_TestCovHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+   
     <classAccesses>
         <apexClass>IPM_TestFactory</apexClass>
         <enabled>false</enabled>
@@ -744,10 +721,7 @@
         <apexClass>IPM_TestFactory_Helper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_Test_ProjectUtility</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <classAccesses>
         <apexClass>IPM_UpdateGlobalProjectName</apexClass>
         <enabled>false</enabled>
@@ -762,14 +736,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_UserProfileHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6880,22 +6846,13 @@
         <apexPage>IPM_ImageUpload</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_MilestoneStandardPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+   
     <pageAccesses>
         <apexPage>IPM_MyToDoList</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_PDStandardPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_PSStandardPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+    
+    
     <pageAccesses>
         <apexPage>IPM_PosQuestions</apexPage>
         <enabled>false</enabled>
@@ -6920,10 +6877,7 @@
         <apexPage>IPM_ProjectSetUpView</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_ProjectStandardPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+    
     <pageAccesses>
         <apexPage>IPM_Resource_Allocation</apexPage>
         <enabled>false</enabled>

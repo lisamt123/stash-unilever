@@ -52,6 +52,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
     public Boolean isArchiveFalse = false;
 	public Boolean changeDateVal {get;set;}
+    public String showEntity{get;set;}
     @TestVisible private static final String ID_PARAMETER = 'Id';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
     @TestVisible private static final String SAVE_ROLLOUT = 'saveRollout';
@@ -72,7 +73,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         IPM_IECompatible.ieFix();//Added for compatibility fix
        
-
+        showEntity = IPM_ConstantUtils.BLANK;
         initialise();
         
     }
@@ -91,7 +92,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
  
             if( (lstcompleteProjects.isEmpty() && lstcompleteRollout.isEmpty())  && (cancelRedirect != BOOLEAN_TRUE))
             {
+                if( !( project.IPM_PrepareForArchival__c || project.Is_Archieved__c ) )
+                {
                 return addRollout();
+                }
             }
             return null;
         } 
@@ -145,7 +149,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                            IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
                            IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
                            IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c,
-                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,  
+                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,IPM_PrepareForArchival__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,  
                            (SELECT Id, Is_Archieved__c,IPM_Project_Name__c FROM IPM_Projects__r),
                            (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
                            FROM IPM_Project__c 
@@ -156,8 +160,14 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     project = projectList[0];
                 }
                 
+                showEntity = String.format(Label.IPM_ShowEntity,new String[]{project.IPMProject_Span__c});
                 isEditable = IPM_Utils.getIPMRollOutUser(projectId);
                 
+                if(isEditable)
+                {
+                    isEditable = !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c);
+                } 
+
                 if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
                 {
                     isSpanGlobal = true;
@@ -374,9 +384,25 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             queryString+= ' Id from IPM_Projects__r  where Is_Archieved__c =: isArchiveFalse';
+            if(project.Is_Archieved__c)
+            {
+                queryString+= ' where Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= ' where Is_Archieved__c =: isArchiveFalse '; 
+            } 
             queryString+= ' ORDER BY IPM_Project_Name__c) ';
           
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan AND Is_Archieved__c =: isArchiveFalse ';
+            if(project.Is_Archieved__c)
+            {
+                queryString+= '  AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= '  AND Is_Archieved__c =: isArchiveFalse '; 
+            } 
             queryString+= ' ORDER BY IPM_Project_Name__c LIMIT 50000';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString) );
@@ -411,6 +437,14 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             String queryString = ' SELECT Id,Is_Archieved__c ,Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Lead__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan AND Is_Archieved__c =: isArchiveFalse';
+            if(project.Is_Archieved__c) 
+            {
+                queryString+= ' AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= ' AND Is_Archieved__c =: isArchiveFalse '; 
+            } 
             queryString+= ' ORDER BY IPM_Project_Name__c';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString));
@@ -959,6 +993,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                       IPM_Project__c toBeArchievedProject = new IPM_Project__c();
                       toBeArchievedproject.Id=deleteRolloutList[0].Local_Project__c;
                       toBeArchievedproject.Is_Archieved__c=true;
+                      toBeArchievedproject.IPM_Is_Invoked_From_Rollout__c =true;
                       update toBeArchievedProject;
                     
 						//recalculate TLD when rollout is inactive

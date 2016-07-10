@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="arial">Your {!IPM_Project__c.IPM_Stopped_At_Span__c} Project Leader {!IPM_Project__c.IPM_Stopped_By__c} has chosen to stop {!IPM_Project__c.IPM_Parent_Project_Name__c} in {!IPM_Project__c.IPM_Stopped_Phase__c}. This will take affect&nbsp;</font><span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">{!IPM_Project__c.IPM_Project_Stopped_Time__c}&nbsp;{!IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c}</span><font face="arial">&nbsp;at&nbsp;which time your project {!IPM_Project__c.IPM_Project_Name__c} will also be stopped. If you believe this to be an error please contact your &nbsp;{!IPM_Project__c.IPM_Stopped_At_Span__c} Project Leader, - {!IPM_Project__c.IPM_Stopped_By__c} can reverse this decision before&nbsp;</font><span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">{!IPM_Project__c.IPM_Project_Stopped_Time__c}&nbsp;{!IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c}</span><font face="arial">.</font>]]></td>
+</tr>
+</table>

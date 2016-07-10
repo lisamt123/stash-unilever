@@ -601,15 +601,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         if(!String.isBlank(projectDoc.IPM_Stopped_Comments__c))
             {
                 showStop=true;
-                Date dt=date.parse(System.today().format());
-                projectDoc.IPM_Stopped_Date__c=dt;
-                projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
-                project.IPM_Stopped_Date_Time__c=System.now();
-                project.Is_Archieved__c=true;
-                project.IPM_Stopped_By__c=UserInfo.getUserId();
+                project.IPM_PrepareForArchival__c = true; 
                 project.IPM_Stopped_Comments__c=projectDoc.IPM_Stopped_Comments__c;
-                project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
-                project.IPM_Document_Update_Comments__c = projectDoc.IPM_Stopped_Comments__c;
                 try
                 {               
                     update project;

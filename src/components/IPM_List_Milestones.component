@@ -23,27 +23,23 @@
                 <div class="pull-left blue heading3 padTop ipmPanelCount">{!milestoneCnt}</div>
                 
                 <div class="addmilelink pull-right noPadright">
-                    <apex:outputpanel rendered="{! if(AND(isEditable=true,isBDuser=false),'true','false')}">
+                    <apex:outputpanel rendered="{!NOT(isBDuser)}">
                     <div class="col-xs-5 toggleContainer SecButtonSet">
                         <div class="col-xs-6 listViewIcon selectedView1"><a class="icoButton list-selected"></a> </div>
                         <div class="col-xs-6 timelineIcon"><a class="icoButton timeline"></a></div>
                     </div> 
+                    <apex:outputPanel layout="inline" rendered="{!isMileEditable}">
                     <div class="col-xs-6 addLink addMilestone" id="addMilestone" data-toggle="modal" data-target="#ipmModal" 
                         value="{!$Page.IPM_AddMilestone}?projectId={!projectId}" title="{!$Label.IPM_ADD_MILESTONE}" data-backdrop="static" 
                         data-keyboard="false">
                         <span class="fa fa-plus" />&nbsp;<span class="addLinkText">{!$label.IPM_ADD_MILESTONE}</span>
                     </div> 
+                    </apex:outputpanel> 
 					<div class=" col-xs-2 SecButtonSet pull-right downloadbtnmilestone">
                        <!-- Below commandlink is used to provide excel download button -->   
                         <apex:commandLink styleClass="icoButton download" target="_blank" action="{!exportToExcel}" oncomplete="window.close();" title="{!$Label.IPM_Export_Milestones }"  />   
-                     </div> 
-                    </apex:outputpanel>  
-                    <apex:outputpanel rendered="{! if(AND(isEditable=true,isBDuser=false),'false','true')}">
-                        <div class="col-xs-5 toggleContainer SecButtonSet pull-right">
-                            <div class="col-xs-6 listViewIcon selectedView1"><a class="icoButton list-selected"></a> </div>
-                            <div class="col-xs-6 timelineIcon"><a class="icoButton timeline"></a></div>
-                        </div> 
-                    </apex:outputpanel>                 
+                     </div>   
+                    </apex:outputpanel>           
                 </div>
             </div>
         </apex:outputPanel>
@@ -170,11 +166,12 @@
                             <apex:outputPanel styleClass="misalignchck" rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
                                 <a class="icoButton edit1 editMilestoneBtn" id="editMilestone" data-toggle="modal" data-target="#ipmModal" data-backdrop="static" 
                         data-keyboard="false" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" >
-                                    <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c'] ),isSDateEdit=true,isEditable=true)),'false','true')}"/>
+                                    
+                                    <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c']),isSDateEdit=true,isEditable=true),isMileEditable=true),'false','true')}"/>
                                 </a>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!! AND(p.isEditable,isSDateEdit,isEditable)}">
-                                <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c'] ),isSDateEdit=true,isEditable=true)),'true','false')}"/>
+                                <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c']),isSDateEdit=true,isEditable=true),isMileEditable=false),'true','false')}"/>
                             </apex:outputPanel>
                            <label for="{!p.record['Id']}" class="{!IF(p.isChecked, 'selected', '')}" ></label>
                         </div>
@@ -260,7 +257,7 @@
                     
                     <!--  Edit and Delete icon column of milestone table  -->
                      <apex:column headerValue="{!$Label.IPM_Milestone_Action}" styleClass="{!IF(p.isChecked,'selected', 'notselected')} iconHeader">
-                        <apex:outputPanel styleClass="SecButtonSet" >
+                        <apex:outputPanel styleClass="SecButtonSet" rendered="{!isMileEditable}">
                             
                             <!-- Edit button code starts here-------- -->
                             <apex:outputPanel rendered="{!p.isEditable}">

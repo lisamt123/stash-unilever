@@ -111,7 +111,7 @@
                                                 
                                                 <!---New Requirement Approve with Edits Ends----->
                                                 <!-- Below panel get rendered when project document status is different from "Approved", "Approved with Edits" and "Not Started " -->
-                                                <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Approved with Edits' && projectDoc.IPM_Document_Status__c!='Not Started' && IsUpdateStatus=true),True,False)}">
+                                                <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Approved with Edits' && projectDoc.IPM_Document_Status__c!='Not Started' && IsUpdateStatus),True,False)}">
                                                     <div class="SecStatusUpdate statusButton pull-right openModal" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
                                                         <input type="button" class="ipmButton" value="Change status"/>
                                                     </div>
@@ -143,9 +143,21 @@
                                                 </div>
                                             </apex:outputPanel>
                                             <apex:outputPanel rendered="{!projectDoc.IPM_Document_Status__c != $Label.IPM_APPROVED_WITH_EDITS}">
-                                                <div class="SecCurrentStatus pull-right">
+                                                <div class="SecCurrentStatus">
                                                     {!$Label.IPM_CURRENT_DOCUMENT_STATUS}<span class="{!IF(projectDoc.IPM_Document_Status__c='Not Started','greyFont','')}{!IF(projectDoc.IPM_Document_Status__c='Stopped','stopped','')} {!IF(OR(projectDoc.IPM_Document_Status__c='In Progress',projectDoc.IPM_Document_Status__c='Proposed',projectDoc.IPM_Document_Status__c='Postponed'),'status','')} {!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Document_Status__c='Approved with Edits'),'completed','')}">{!projectDoc.IPM_Document_Status__c}</span>
                                                 </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null,(Now() < project.IPM_CancelStoppingProjectTill__c) ) }">
+                                                <div class="SecCurrentStatus pull-right">
+                                                    <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_CancelStoppingProject}" action="{!cancelStoppingProject}" />
+                                                 </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!reactivateProjectFlag}">
+                                            <div class="">
+                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_ReactivateProject}" rerender="tskPanel" 
+                                                    action="/apex/IPM_ProjectSetUpView?Pid={!projectId}" > 
+                                                </apex:commandLink>
+                                             </div>
                                             </apex:outputPanel>
                                        </apex:outputPanel>                                
                                     </div>
@@ -495,7 +507,7 @@
                                                             	<!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
                                                                 <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">    
                                                                 
-                                                                 <span class='expico fa fa-minus' id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
+                                                                 <span class="expico fa fa-minus {!if(OR(sub.IPM_Section_Status__c=='Filled-in',sub.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')}" id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
                                                                     
                                                                     <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header',True,False)}">
                                                                         <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c=='Appendix',True,False)}">
@@ -523,7 +535,7 @@
                                                                     <apex:repeat value="{!projSubLevelSectionList}" var="sub1">                                
                                                                     <!-- below panel renders when sub header section id is same as parent section id of sub sub header  -->                             
                                                                         <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF(AND(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,sub1.IPM_Default_Section__c=true),True,False)}">
-                                                                            <span class='expico fa fa-minus' id="{!sub1.IPM_Section__c}" onclick="fetchAttachment('{!sub1.Id}');"></span>                                      
+                                                                            <span class="expico fa fa-minus {!if(OR(sub1.IPM_Section_Status__c=='Filled-in',sub1.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')}" id="{!sub1.IPM_Section__c}" onclick="fetchAttachment('{!sub1.Id}');"></span> 
                                                                             <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section_Sequence__c}  {!sub1.IPM_Section__r.IPM_Section_Name__c} [{!sub1.IPM_FunctionalRole__c}] </a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>                                   
                                                                             
                                                                             <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
@@ -612,7 +624,7 @@
                                                             
                                                                 <apex:outputPanel styleClass="aHead" >    
                                                                 
-                                                                 <span class='expico fa fa-minus'> </span>
+                                                                 <span class="expico fa fa-minus {!if(apxSec.IPM_Section_Status__c=='Filled-in','green','grey')}"> </span>
                                                                      <a> {!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]</a>
                                                                                                      
                                                                 </apex:outputPanel>

@@ -20,10 +20,10 @@ This componet used for regional rollout project
         <div class="row">
             <apex:outputPanel id="topButtonPanel">
                 <div class="col-sm-6 pull-left mSpacing">
-                    <apex:commandLink styleClass="ipmButton" value="{!$Label.IPM_ADD_EDIT_ROLLOUTS}" action="{!addRollout}" rendered="{!isEditMode}"/>
+                    <apex:commandLink styleClass="ipmButton" value="{!$Label.IPM_ADD_EDIT_ROLLOUTS}" action="{!addRollout}" rendered="{!AND(isEditMode,isEditable)}"/>
                 </div>
                 <div class="col-sm-6 pull-right mSpacing">
-                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{! if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{!AND(NOT(isEditMode),isEditable)}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_TRUE}"/>
                     </apex:commandLink>
                     <apex:outputPanel rendered="{!AND(isEditMode,isEditable,projectType.IPM_CreateLocalProjects__c) }" layout="block">
@@ -41,7 +41,7 @@ This componet used for regional rollout project
                 </div>
             </apex:outputPanel>
         </div>        
-         <apex:outputPanel id="validationErrorMsg" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}">
+         <apex:outputPanel id="validationErrorMsg">
          <!-- This render condition will check for validation error should not blank -->
             <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}"/> 
         </apex:outputPanel>
@@ -231,7 +231,7 @@ This componet used for regional rollout project
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
 												<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
-                                                <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
+                                                <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}"  rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
                                         </th>
@@ -328,7 +328,7 @@ This componet used for regional rollout project
                 </div>
                 <div class="col-sm-6 pull-right mSpacing">                    
                      
-                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{! if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
+                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{!AND(NOT(isEditMode),isEditable)}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_TRUE}"/>
                     </apex:commandLink>
 

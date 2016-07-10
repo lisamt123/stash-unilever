@@ -91,6 +91,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
     public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     public boolean isFinancialInvalid{get;set;}
+    public boolean isProjectStop {
+        get
+        {
+            return (project.IPM_PrepareForArchival__c || project.Is_Archieved__c);
+        } 
+        set;} 
     public boolean isFinancialInvalidInnovation;
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
@@ -772,7 +778,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeId,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
-                                                            AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                            AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtRegional__c = true)
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
 
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
@@ -798,11 +804,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name,recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c   
                                                             FROM IPM_Financials__r
-                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
                                                             FROM IPM_Project_Rollout__c
                                                             WHERE IPM_Project__c =: project.Id
-                                                            AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND isActive__c = true
+                                                            AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true)
                                                             ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
        
         For (IPM_Project_Rollout__c regionalRollout : lstRegionalRollout)
@@ -814,7 +820,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
       
         lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c,recordTypeID, Status__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
-                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true)
                                                  AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
        
@@ -896,15 +902,26 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getGlobalRollupWrappers()
     {
         //Rollout Wrappers
-        
-        
-        List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  
-                                                            FROM IPM_Financials_Regional__r
-                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true                                                          
-                                                            ORDER BY Sorting_Order__c, Financial_External_Id__c)
-                                                            FROM IPM_Project__c
-                                                            WHERE IPM_Parent_Project__c =: project.Id 
-                                                            ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
+        String projectId = project.Id;
+        Integer maxLimit = IPM_ConstantUtils.MaxLimit;
+
+        String baseQuery = 'SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM IPM_Financials_Regional__r WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true  OR IPM_ShowAtGlobal__c = true )  ORDER BY Sorting_Order__c, Financial_External_Id__c )';                                             
+        String baseFromClause = ' FROM IPM_Project__c ';
+        String baseWhereClause = ' WHERE IPM_Project__c =:projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )';
+        String baseOrderByClause = ' ORDER BY Market_Cluster_Name__c limit:maxLimit '; 
+
+        if(project.Is_Archieved__c)
+        {
+            baseWhereClause = baseWhereClause + 'AND Is_Archieved__c = true AND IPM_StoppedByProject__c =:projectId ';
+        }
+        else
+        {
+            baseWhereClause = baseWhereClause + 'AND Is_Archieved__c = false';
+        }
+
+        String finalQuery = baseQuery + baseFromClause + baseWhereClause + baseOrderByClause;
+
+        List<IPM_Project__c> lstRegionalProject = database.query(finalQuery);
                                                     
                                              
         For (IPM_Project__c regionalProject : lstRegionalProject)
@@ -915,15 +932,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
        
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+        lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Project_Rollout__c,Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
-                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR   IPM_ShowAtGlobal__c  = true )
                                                      AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
            
         For(IPM_Financial__c ipmFinancial : lstIpmFinancial)
         {
-            if(ipmFinancial.Regional_Project__c == NULL)
+            if( ipmFinancial.IPM_Project_Rollout__c == NULL)  
             {
                 mapConsolidatedFinancials.put(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, ipmFinancial);
             }
@@ -946,7 +963,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
-                                                            WHERE Regional_Project__c =: project.Id AND isActive__c = true
+                                                            WHERE Regional_Project__c =: project.Id AND ( isActive__c = true OR IPM_ShowAtRegional__c = true) 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
                                                        
@@ -956,7 +973,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
       	lstIpmFinancial = [SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
-                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtRegional__c = true)
                                                      AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
                                                                                        
         for(IPM_Financial__c ipmFinancial : lstIpmFinancial)
@@ -1032,7 +1049,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c   
-                                                            WHERE Regional_Project__c =: project.Id AND isActive__c = true
+                                                            WHERE Regional_Project__c =: project.Id AND ( isActive__c = true OR IPM_ShowAtRegional__c = true)
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
                                                             AND (NOT Financial_External_ID__c LIKE: nonKeyLike)
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -1044,7 +1061,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                             FROM IPM_Financial__c
-                            WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
+                            WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtRegional__c = true)
                             AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
         if(!lstIpmFinancial.isEmpty())
@@ -1065,7 +1082,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
                                                             WHERE Local_Project__c =: project.Id
-                                                                AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true 
+                                                                AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtLocal__c = true )
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
         
                                              
@@ -1166,7 +1183,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 mapFinancialYears.put(generateMapKey(finYear.Year_Type__c, finYear.Year__c, finYear.PL_Type__c), finYear);
                 
                 //Innovation Years
-                if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION){
+                if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION)
+                {
                     generateFinancials(finYear, financialsInnovation);
                                   
                 }
@@ -1497,11 +1515,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     public void editFinancials() {
-        try{
+        try
+        {
             isEditMode = true;
             isEditModeBottomUp = false;
             
-			if(toShowEditOpern||toShowEditButton){
+            if(!isProjectStop && (toShowEditOpern||toShowEditButton))
+            {
                 isCopyfromSTDBC=true;   
             }
            
@@ -2593,12 +2613,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             toShowEditButton=true;      
         }
         
-        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c))
+        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c) && !IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c))
         {
             toShowEditOpern=true;       
         }
         
-        if((toShowEditOpern||toShowEditButton) && !isEditMode)
+        if((toShowEditOpern||toShowEditButton) && !isEditMode && !isProjectStop)
         {
             isCopyfromSTDBC=true;   
         }

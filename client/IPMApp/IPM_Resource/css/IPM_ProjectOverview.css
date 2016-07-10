@@ -1602,3 +1602,4 @@
 .thRedBg .keycontent {color: #fff;}
 .txtalright{text-align:right;}
 .clusterSpacebtm{margin-bottom:15px;}
+.toolpos .tooltip .tooltip-inner{max-width: 90%;width:100%;margin-left: 15px;}

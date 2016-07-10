@@ -135,6 +135,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_NotifyProjectStop__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Notify Project Stop</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Document_Section_Name__c</fullName>
         <description>section name from project document section is copied.</description>
         <externalId>false</externalId>

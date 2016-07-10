@@ -162,7 +162,7 @@
     </fields>
     <fields>
         <fullName>IPM_IS_Default_Section__c</fullName>
-        <defaultValue>true</defaultValue>
+        <defaultValue>false</defaultValue>
         <description>To display the section in gate document</description>
         <label>Default Section</label>
         <type>Checkbox</type>
