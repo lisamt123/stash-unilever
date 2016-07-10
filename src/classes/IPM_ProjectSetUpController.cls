@@ -1238,6 +1238,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	{
          	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTCONTROLLER_STR,
+                        'saveProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
 	}
        return null;
 	}
