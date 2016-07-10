@@ -42353,10 +42353,6 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Ideas</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Inside_Unilever</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
