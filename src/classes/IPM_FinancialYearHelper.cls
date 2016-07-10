@@ -491,27 +491,5 @@ public with sharing class IPM_FinancialYearHelper
     		}
     }
     
-    /************************************************************************************************************************
-    * @description          Method to  sync project y3iTo with financial year turnovers
-    * @param                financial YearIds 
-    */
-    public static void updateAssoProjectY3iToValue(Set<Id> financialYearIds)
-    {
-    		List<Id> projIdsforY3iToSync = new  List<Id>();
-    		for(IPM_Financial_Year__c  finYear: [Select Id ,IPM_Financial__r.Local_Project__c,IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Parent_Project__c from  IPM_Financial_Year__c where Id IN: financialYearIds])
-    		{
-               List<ID> finYearPrjIds =new List<Id>{finYear.IPM_Financial__r.Local_Project__c,finYear.IPM_Financial__r.Regional_Project__c,finYear.IPM_Financial__r.Parent_Project__c};
-               for(Id prjId :finYearPrjIds)
-               {
-                 if(prjId!=null) 
-                 {
-                 	projIdsforY3iToSync.add(prjId);          
-                 }     
-               }
-    		}
-    		if(!projIdsforY3iToSync.isEmpty()) 
-    		{ 
-    		 	IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync); 
-    		}
-    }
+    
 }

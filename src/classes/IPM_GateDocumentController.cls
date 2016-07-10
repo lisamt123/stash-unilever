@@ -403,6 +403,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             else
             {
             	IsUpdateStatus = false;
+            } 
+            if(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c)
+            {
+            	isReadable = true;
             }    
             
         }

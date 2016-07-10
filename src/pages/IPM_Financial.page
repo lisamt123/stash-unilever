@@ -232,17 +232,17 @@
                                                                     <!-- Variables -->
                                                                     <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Regional.-->
-                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated), project.IPMProject_Span__c == 'Regional', isEditable)}">
+                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop),project.IPMProject_Span__c == 'Regional', isEditable)}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_LOC_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
                                                                         <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local.-->
-                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated), project.IPMProject_Span__c == 'Local', isEditable)}">
+                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop), project.IPMProject_Span__c == 'Local', isEditable)}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>
                                                                         <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when project phase is not PLE and project type is not Operational and controller's -->
-                                                        			<apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',isTargetLaunchDateMisaligned)}">
+                                                                    <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',NOT(isProjectStop),isTargetLaunchDateMisaligned)}">
                                                                          <div class="ipmButton secondary" onclick="alignTLDRecords();">{! if(isTDLAcceptNBC_Confirm,tldAcceptedBCConfirmed,tldAcceptFromValue)}</div>
                                                                         <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="finacialButtons,rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
@@ -409,6 +409,7 @@
                                                                     fieldSuffix="{!fieldSuffix}"
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
+                                                                    isProjectStop="{!isProjectStop}"
                                                                 />
                                                                   <!-- DEF2676 fix Start -->
                                                      			<apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">

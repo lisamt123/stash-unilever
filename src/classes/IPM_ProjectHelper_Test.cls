@@ -352,4 +352,229 @@ private with sharing class IPM_ProjectHelper_Test
             Test.stopTest();
         }
      }
+     /**
+        *  Used for creatying global, regional project and local rollout creation
+        *  @name : projectDataCreation
+     */ 
+     public static list<IPM_Project__c> projectDataCreation(){
+     	// Get the newly created Projects from Database. 
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+        List<Id> globalProjectIdList = new List<Id>();
+        Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
+        List<IPM_Project__c> projectList=new List<IPM_Project__c>();
+        User globalProjectLeader = null;
+        User regionalProjectLeader = null;
+        Test.startTest();
+		    // Get the list of user's for project leaders.
+		    List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
+		    // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+		    IPM_TestFactory_Helper.shareMasterProject(userList); 
+		    for(User lUser  :userList)
+		    {
+		        if(lUser.lastName == 'GLOBAL_PL')
+		        {
+		            globalProjectLeader = lUser;
+		        }
+		        if(lUser.lastName == 'REGIONAL_PL')
+		        {
+		            regionalProjectLeader = lUser;
+		        }
+		    }
+		    System.RunAs(globalProjectLeader)
+		    {
+		        projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,IPM_PrepareForArchival__c,Is_Archieved__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,
+							   IPM_Document_Update_Comments__c,IPMProject_Span__c,IPM_Stopped_Comments__c,
+								(Select Id from Project_Documents__r),
+                                (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
+                                (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
+		        for(IPM_Project__c project : projectList)
+		        {
+		            projectMap.put(project.Id,project);
+		        }
+				IPM_ProjectHelper.copyOverMPAValue(projectMap);
+		        Id  mileMasterRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.mileMRecordType).getRecordTypeId();
+		        Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
+		        // Get Standard Milestones from database  
+		        System.assert(standardMileStoneMap.values().size() > 0,'Project Milestones not generated');
+		 		 /******************************** Create Regional Rollouts for Created Global project ****************************************/
+		        List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
+		        insert regionalRolloutList;
+		        Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+		        for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+		        {
+		            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+		            if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+		            {
+		                projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+		            }
+		            projectRolloutList.add(projectRollout);
+		            projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+		        }
+		        // Create local Rollouts for Created regional Rollouts.
+		        List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>());  
+		        insert localRolloutList; 
+		        List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
+		        System.assertEquals(dbRolloutList.size(),localRolloutList.size(),'Projects not Created Properly.Actual size should be '+localRolloutList.size());
+		        // Create Country specific information.
+		        List<IPM_Country__c> countryList= new List<IPM_Country__c>();
+		        for(IPM_Project_Rollout__c localRollout : localRolloutList)
+		        {
+		            String geoExternalId = '';
+		            if(localRollout.IPM_Rollout_Project__c.contains('AF'))
+		            {
+		                geoExternalId = 'AG';
+		            }
+		            else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
+		            {
+		                geoExternalId = 'BR';
+		            }
+		            IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
+		            IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
+		            countryList.add(tempCountry);
+		        }
+		        insert countryList;
+		        List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
+		        System.assertEquals(dbCountryList.size(),countryList.size(),'Projects not Created Properly.Actual size should be '+countryList.size());
+		        /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
+		         // Set GateKeeping Model as RCLT and start with Regional Project Creation.
+		        for(IPM_Project__c project : projectList)
+		        {
+		            project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+		        }  
+		        update projectList;
+		        for(IPM_Project__c project : projectList)
+		        {
+		            globalProjectIdList.add(project.Id);    
+		        }
+		       	// Initiate Phase Change would result in Rollout Project Creation.
+		        List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
+		        update projectListPhaseChange;
+		     Test.stopTest();
+			List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
+        	Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);
+            for(Id gbProjectId : globalToRegionalMap.keySet())
+            {
+               regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
+            }
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
+            for(IPM_Project__c regionalProject : DBRegionalProjects) 
+            {
+               Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
+               IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
+               // Only Contract document Available at Regional Level.
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Contract Document either doesnt have a document or has more document');
+               // MileStones would Copy from Parent Project. 
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Milestones didnt copy from Parent Project Properly');
+            }
+		}
+		return projectList;
+    }
+     /**
+        *  Used to test when global project is in phase of stopping, regional project should also be in the same phase
+        *  @name : projectDataCreation
+     */ 
+     public static testmethod void testForArchivalProject(){
+     	List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
+		User globalProjectLeader = null; 
+		User regionalProjectLeader = null; 
+	    // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+	    IPM_TestFactory_Helper.shareMasterProject(userList); 
+	    for(User lUser  :userList)
+	    {
+	        if(lUser.lastName == 'GLOBAL_PL')
+	        {
+	            globalProjectLeader = lUser;
+	        }
+	        if(lUser.lastName == 'REGIONAL_PL')
+	        {
+	            regionalProjectLeader = lUser;
+	        }
+	    }
+	    list<IPM_Project__c> projectList = projectDataCreation();
+	    set<id> projids = new set<id>();
+	    system.runAs(globalProjectLeader){
+	    	/************Project is in stopping phase**************************/
+	    	for(IPM_Project__c project : projectList)
+	        {
+	            project.IPM_PrepareForArchival__c= true;
+	            projids.add(project.id);
+	        }  
+	        update projectList;
+	        List<IPM_Project__c> prepareForArchivalProjects = [Select Id,IPM_PrepareForArchival__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,
+        													IPM_Document_Update_Comments__c,IPM_Phase__c,IPMProject_Span__c,IPM_Stopped_Comments__c
+         												   from IPM_Project__c where Id in:projids and IPM_Parent_Project__c in:projids ];  
+	        system.debug('prepareForArchivalProjects ====>'+prepareForArchivalProjects);
+	        //check that regional projects are also in prepare for archival state
+	        for(IPM_Project__c project : prepareForArchivalProjects)
+	        {
+	        	System.assertEquals(project.IPM_PrepareForArchival__c,true,'projects are not in archival state');
+	        	System.assertEquals(project.IPM_Stopped_By__c,UserInfo.getUserId(),'projects Archieved by user is not updated');
+	        	System.assertEquals(project.IPM_Stopped_At_Span__c,'Global','projects Archieved span is not updated');
+	        	System.assertEquals(project.IPM_Document_Update_Comments__c,project.IPM_Stopped_Comments__c,'projects Archieved comment updated');
+	       }
+	       /************Project is stopped**************************/
+	       for(IPM_Project__c project : projectList)
+	        {
+	            project.Is_Archieved__c= true;
+	            projids.add(project.id);
+	        }  
+	        update projectList;
+	        List<IPM_Project__c> archivalProjects = [Select Id,IPM_PrepareForArchival__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,Is_Archieved__c,
+        													IPM_Document_Update_Comments__c,IPM_Phase__c,IPMProject_Span__c,IPM_Stopped_Comments__c,
+        													(SELECT id,IPM_Stopped_Date__c,IPM_Updated_User_By__c,IPM_Stopped_Comments__c,IPM_Document_Status__c,IPM_GateDocuments__c From Project_Documents__r limit 10000),
+													        (SELECT id from Tasks__r where IPM_StoppedByProject__c in:projids limit 10000), 
+													        (SELECT id from IPM_Countries__r where IPM_StoppedByProject__c in:projids limit 10000), 
+													        (SELECT id from IPM_Countries1__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Countries2__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Project_Resources__r  limit 10000), 
+													        (SELECT id from IPM_Project_Rollout__r  where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from Regional_Project_Rollout__r  where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from Local_Project_Rollout__r  where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Financials_Consolidated__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Financials_Regional__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Financials_Local__r where IPM_StoppedByProject__c in:projids limit 10000)
+         												   from IPM_Project__c where Id in:projids and IPM_Parent_Project__c in:projids ];  
+	        system.debug('archivalProjects ====>'+archivalProjects);
+	        //check that regional projects are also in prepare for archival state
+	        for(IPM_Project__c project : archivalProjects)
+	        {
+	        	System.assertEquals(project.IPM_PrepareForArchival__c,false,'projects are not in archival state');
+	        	System.assertEquals(project.IPM_Stopped_By__c,UserInfo.getUserId(),'projects Archieved by user is not updated');
+	        	System.assertEquals(project.IPM_Stopped_At_Span__c,'Global','projects Archieved span is not updated');
+	        	System.assertEquals(project.IPM_Document_Update_Comments__c,project.IPM_Stopped_Comments__c,'projects Archieved comment updated');
+	       }
+	       /************Project is reactivated**************************/
+	       for(IPM_Project__c project : projectList)
+	        {
+	            project.Is_Archieved__c= false;
+	            projids.add(project.id);
+	        }  
+	        update projectList;
+	        List<IPM_Project__c> unArchivalProjects = [Select Id,IPM_PrepareForArchival__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,Is_Archieved__c,
+        													IPM_Document_Update_Comments__c,IPM_Phase__c,IPMProject_Span__c,IPM_Stopped_Comments__c,
+        													(SELECT id,IPM_Stopped_Date__c,IPM_Updated_User_By__c,IPM_Stopped_Comments__c,IPM_Document_Status__c,IPM_GateDocuments__c From Project_Documents__r limit 10000),
+													        (SELECT id from Tasks__r where IPM_StoppedByProject__c in:projids limit 10000), 
+													        (SELECT id from IPM_Countries__r where IPM_StoppedByProject__c in:projids limit 10000), 
+													        (SELECT id from IPM_Countries1__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Countries2__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Project_Resources__r  limit 10000), 
+													        (SELECT id from IPM_Project_Rollout__r  where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from Regional_Project_Rollout__r  where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from Local_Project_Rollout__r  where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Financials_Consolidated__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Financials_Regional__r where IPM_StoppedByProject__c in:projids limit 10000),
+													        (SELECT id from IPM_Financials_Local__r where IPM_StoppedByProject__c in:projids limit 10000)
+         												   from IPM_Project__c where Id in:projids and IPM_Parent_Project__c in:projids ];  
+	        system.debug('unArchivalProjects ====>'+unArchivalProjects);
+	        //check that regional projects are also in prepare for archival state
+	        for(IPM_Project__c project : unArchivalProjects)
+	        {
+	        	System.assertEquals(project.Is_Archieved__c,false,'projects are not in archival state');
+	        	System.assertEquals(project.IPM_PrepareForArchival__c,false,'projects are not in archival state');
+	        	System.assertEquals(project.IPM_Stopped_By__c,null,'projects Archieved by user is not updated');
+	        	System.assertEquals(project.IPM_Stopped_At_Span__c,null,'projects Archieved span is not updated');
+	        	System.assertEquals(project.IPM_Document_Update_Comments__c,null,'projects Archieved comment updated');
+	       }
+	    }
+	 }
 }

@@ -147,7 +147,7 @@
                                                     {!$Label.IPM_CURRENT_DOCUMENT_STATUS}<span class="{!IF(projectDoc.IPM_Document_Status__c='Not Started','greyFont','')}{!IF(projectDoc.IPM_Document_Status__c='Stopped','stopped','')} {!IF(OR(projectDoc.IPM_Document_Status__c='In Progress',projectDoc.IPM_Document_Status__c='Proposed',projectDoc.IPM_Document_Status__c='Postponed'),'status','')} {!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Document_Status__c='Approved with Edits'),'completed','')}">{!projectDoc.IPM_Document_Status__c}</span>
                                                 </div>
                                             </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null)}">
+                                            <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null,(Now() < project.IPM_CancelStoppingProjectTill__c) ) }">
                                                 <div class="SecCurrentStatus pull-right">
                                                     <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_CancelStoppingProject}" action="{!cancelStoppingProject}" />
                                                  </div>

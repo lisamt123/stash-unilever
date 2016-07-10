@@ -384,9 +384,25 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             queryString+= ' Id from IPM_Projects__r  where Is_Archieved__c =: isArchiveFalse';
+            if(project.Is_Archieved__c)
+            {
+                queryString+= ' where Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= ' where Is_Archieved__c =: isArchiveFalse '; 
+            } 
             queryString+= ' ORDER BY IPM_Project_Name__c) ';
           
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan AND Is_Archieved__c =: isArchiveFalse ';
+            if(project.Is_Archieved__c)
+            {
+                queryString+= '  AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= '  AND Is_Archieved__c =: isArchiveFalse '; 
+            } 
             queryString+= ' ORDER BY IPM_Project_Name__c LIMIT 50000';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString) );
@@ -421,6 +437,14 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             String queryString = ' SELECT Id,Is_Archieved__c ,Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Lead__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan AND Is_Archieved__c =: isArchiveFalse';
+            if(project.Is_Archieved__c) 
+            {
+                queryString+= ' AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= ' AND Is_Archieved__c =: isArchiveFalse '; 
+            } 
             queryString+= ' ORDER BY IPM_Project_Name__c';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString));
