@@ -465,6 +465,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

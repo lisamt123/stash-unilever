@@ -883,6 +883,13 @@
         <layout>FilesConnect_SFDev__x-FilesConnect-SFDev Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
+        <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Global-Global Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2671,6 +2678,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>FAU_Webinar__c.FAU_Registration</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
