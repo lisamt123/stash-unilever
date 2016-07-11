@@ -9536,5 +9536,40 @@ If you take no further action after 72 hours from now this Project and all its R
         <shortDescription>IPM Ecodesign Nutrition</shortDescription>
         <value>Nutrition</value>
     </labels>
+	 <labels>
+        <fullName>IPM_Passed_Cancellation_Widnow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Passed Cancellation Widnow</shortDescription>
+        <value>Your Project has passed applicable cancellation window.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivateProjectMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivate Project Message</shortDescription>
+        <value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any changes made will be saved.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivatingProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivating Project</shortDescription>
+        <value>Reactivating Project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_CloseWizard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Wizard</shortDescription>
+        <value>Close Wizard</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReturnToWizard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return to Wizard</shortDescription>
+        <value>Return to Wizard</value>
+    </labels>
 
 	

@@ -115,8 +115,6 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 }
             } 
             
-            // Checking the user List
-            if(!(project.Is_Archieved__c || project.IPM_PrepareForArchival__c)){
                 // To check the Project Leader
                if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
                 {
@@ -136,7 +134,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                             updateComplexity = true;
                         }
                }
-            }
+          
             //security for central team and BP users
                 IPM_CustomPermission cpr = new IPM_CustomPermission();
                 boolean isCentralTeam=false;
@@ -150,6 +148,9 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                     updateComplexity = true;
                     isCreateTask=true;
                     isAllTask=true;
+                } 
+             if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c){
+             	isTaskeditable = isCreateTask = isAllTask = isMilestoneEditable = isTaskeditable = updateApproach = updateComplexity =  false;
                 } 
             
             

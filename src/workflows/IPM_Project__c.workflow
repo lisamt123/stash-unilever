@@ -393,6 +393,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_Project_As_Archieved</fullName>
+        <field>Is_Archieved__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Project As Archieved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Rollout_TLD_on_Project</fullName>
         <description>Update Rollout TLD on Project</description>
         <field>Rollout_Plan_Target_Launch_Date__c</field>
@@ -653,6 +662,21 @@ ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;),
 ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;),
 ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Stop Project After 72 Hours</fullName>
+        <active>true</active>
+        <formula>AND(IPM_PrepareForArchival__c,IPM_StoppedByProject__c == NULL)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Update_Project_As_Archieved</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>IPM_Project__c.IPM_CancelStoppingProjectTill__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>Successful Project Phase</fullName>

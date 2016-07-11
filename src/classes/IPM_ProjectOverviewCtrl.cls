@@ -375,7 +375,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         */
         project = [SELECT IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,IPM_EligibleForReactivation__c,IPM_StoppedByProject__c,
-        IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
+        IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c, IPM_CancelStoppingProjectTill__c, 
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,IPM_Stopped_At_Span__c, 
         IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, IPM_PreviousDocumentStatus__c,IPM_PrepareForArchival__c, IPM_CountDown_Reference_Time__c,
@@ -1239,10 +1239,18 @@ public with sharing class IPM_ProjectOverviewCtrl {
     **********************************************************************/
     public void cancelStoppingProject(){
     	
+    	try
+        {
+            if(System.now() < project.IPM_CancelStoppingProjectTill__c)
+            {
     	project.IPM_PrepareForArchival__c = false;
     	
-    	try{
     		update project;
+            }
+            else
+            {
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,Label.IPM_Passed_Cancellation_Widnow));       
+            }
     	}
     	catch (Exception ex)
         {

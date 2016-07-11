@@ -7,7 +7,6 @@
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
     public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
-    public Set<Id> finYearIdsforProjY3iToSync = new Set<Id> ();
     
     //@description:Constructor
     public IPM_FinancialYearHandler ()
@@ -76,19 +75,16 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
         if(Trigger.isInsert){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
-            finYearIdsforProjY3iToSync.addAll(Trigger.NewMap.keySet());
         }
         else if(Trigger.isUpdate){
             for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New){
                 if(finYr.Turnover_Global__c!=((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Global__c || finYr.Turnover_Regional__c != ((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Regional__c || finYr.Turnover_Local__c!=((IPM_Financial_Year__c)  Trigger.Oldmap.get(finYr.id)).Turnover_Local__c){
                     lstFinYr.add(finYr);    
-                    finYearIdsforProjY3iToSync.add(finYr.Id);    
                 }   
             }   
         }
         else if(Trigger.isDelete){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
-            finYearIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());    
         }
 		
 		

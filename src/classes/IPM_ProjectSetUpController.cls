@@ -1214,23 +1214,32 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         return result;
     }
 	
-	public void getHelpTextGateKeeping()
+    /***********************************************************************
+    @Description: This method will be invoked on click of 'Save And Continue' button from Project Setup page. This method is responsible to revert the project
+    			  to unArchieve status(Activate the project).      
+    @param: none
+    @return: void
+    **********************************************************************/
+    public PageReference saveProject()
 	{
-		// For future implementations.
-	}
+    	try
 	
-	public void getHelpTextCharterQuestions()
 	{
-		// For future implementations.
+    		if(project.Is_Archieved__c){
+	    		project.Is_Archieved__c	 = false; 
+	    		update project;
 	}
-	
-	public void getGateKeepingModels()
+    		PageReference projectOverviewPage = Page.IPM_ProjectOverview;
+            projectOverviewPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            projectOverviewPage.setRedirect(true);
+            return projectOverviewPage; 
+    	}
+    	catch (Exception ex)
 	{
-		// For future implementations.
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTCONTROLLER_STR,
+                        'saveProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
 	}
-	
-	public void populateProjectInformation()
-	{
-		// For future implementations.
+       return null;
 	}
 }
