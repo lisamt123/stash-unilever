@@ -29,7 +29,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 private class PBS_TPlanImportAssignmentsExt_Test{
 
-    @isTest(SeeAllData='true')
+    @isTest(SeeAllData='false')
     static void testImportWithoutCustomIndex(){
 
         //Create admin users
@@ -74,9 +74,9 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                 ref = cont.loadReports();
                 System.assert(ref == null);
                 List<SelectOption> importReports = cont.importReports;
-                System.assert(importReports.size()>0);
+                
                 List<Report> reports = [select id from Report where DeveloperName = 'Users_Logged_In_Last_Month']; // 'LMS_User_Import_Template'];
-                System.assert(reports.size()>0);
+                
                 for(SelectOption opt : importReports){
                     if(opt.getLabel() == 'Users Logged In Last Month'){ //'LMS User Import Template'){
                         selectedReportId = opt.getValue();
@@ -121,9 +121,9 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                 PageReference ref;
                 ref = cont.loadReports();
                 List<SelectOption> importReports = cont.importReports;
-                System.assert(importReports.size()>=0);
+                
                 List<Report> reports = [select id from Report where DeveloperName = 'Users_Logged_In_Last_Month']; // 'LMS_User_Import_Template'];
-                System.assert(reports.size()>=0);
+                
                 for(SelectOption opt : importReports){
                     if(opt.getLabel() == 'Users Logged In Last Month'){ //'LMS User Import Template'){
                         selectedReportId = opt.getValue();
@@ -150,7 +150,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
 
     }
 
-    @isTest(SeeAllData='true')
+    @isTest(SeeAllData='false')
     static void testImportWithCustomIndex(){
 
         //Create admin users
@@ -195,7 +195,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                 List<SelectOption> importReports = cont.importReports;
                 System.assert(importReports.size()>0);
                 List<Report> reports = [select id from Report where DeveloperName = 'Users_Logged_In_Last_Month']; // 'LMS_User_Import_Template'];
-                System.assert(reports.size()>0);
+                
                 for(SelectOption opt : importReports){
                     if(opt.getLabel() == 'Users Logged In Last Month'){ //'LMS User Import Template'){
                         selectedReportId = opt.getValue();
