@@ -10,6 +10,7 @@
 @isTest
 private with sharing class IPM_ProjectHelper_Test 
 {
+	public static final String ASSERT_ERROR_STR = 'Projects not Created Properly.Actual size should be ';
      
      /**
         *  Used for Setting test Data for Project Creation . 
@@ -62,7 +63,7 @@ private with sharing class IPM_ProjectHelper_Test
             insert projectList;
             
             List<IPM_Project__c> dbProjectList =  [Select Id from IPM_Project__c where id in :projectList];
-            System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
+            System.assertEquals(dbProjectList.size(),projectList.size(),ASSERT_ERROR_STR+projectList.size());
         }
         
         
@@ -162,7 +163,7 @@ private with sharing class IPM_ProjectHelper_Test
             insert localRolloutList; 
            
             List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
-            System.assertEquals(dbRolloutList.size(),localRolloutList.size(),'Projects not Created Properly.Actual size should be '+localRolloutList.size());
+            System.assertEquals(dbRolloutList.size(),localRolloutList.size(),ASSERT_ERROR_STR+localRolloutList.size());
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             
@@ -186,7 +187,7 @@ private with sharing class IPM_ProjectHelper_Test
             
             insert countryList;
             List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
-            System.assertEquals(dbCountryList.size(),countryList.size(),'Projects not Created Properly.Actual size should be '+countryList.size());
+            System.assertEquals(dbCountryList.size(),countryList.size(),ASSERT_ERROR_STR+countryList.size());
             
             /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
             
@@ -375,7 +376,7 @@ private with sharing class IPM_ProjectHelper_Test
 		        {
 		            globalProjectLeader = lUser;
 		        }
-		        if(lUser.lastName == 'REGIONAL_PL')
+		        else if(lUser.lastName == 'REGIONAL_PL')
 		        {
 		            regionalProjectLeader = lUser;
 		        }
@@ -414,7 +415,7 @@ private with sharing class IPM_ProjectHelper_Test
 		        List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>());  
 		        insert localRolloutList; 
 		        List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
-		        System.assertEquals(dbRolloutList.size(),localRolloutList.size(),'Projects not Created Properly.Actual size should be '+localRolloutList.size());
+		        System.assertEquals(dbRolloutList.size(),localRolloutList.size(),ASSERT_ERROR_STR+localRolloutList.size());
 		        // Create Country specific information.
 		        List<IPM_Country__c> countryList= new List<IPM_Country__c>();
 		        for(IPM_Project_Rollout__c localRollout : localRolloutList)
@@ -434,7 +435,7 @@ private with sharing class IPM_ProjectHelper_Test
 		        }
 		        insert countryList;
 		        List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
-		        System.assertEquals(dbCountryList.size(),countryList.size(),'Projects not Created Properly.Actual size should be '+countryList.size());
+		        System.assertEquals(dbCountryList.size(),countryList.size(),ASSERT_ERROR_STR+countryList.size());
 		        /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
 		         // Set GateKeeping Model as RCLT and start with Regional Project Creation.
 		        for(IPM_Project__c project : projectList)

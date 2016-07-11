@@ -29,6 +29,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Previous_Target_Launch_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Type__c</field>
             </layoutItems>
             <layoutItems>
@@ -103,6 +107,14 @@
                 <behavior>Readonly</behavior>		
                 <field>IPM_Parent_Project_Name__c</field>		
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MisAligned_Confirmed_By_Finance_Leader__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_StoppedByProject__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
         
@@ -121,9 +133,13 @@
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
-            <layoutItems>		
-                <behavior>Edit</behavior>		
-                <field>isActive__c</field>		
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>isActive__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_CharterApproved__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -155,6 +171,22 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Local_Rollout_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Added_At_Stage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_ShowAtGlobal__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_ShowAtRegional__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_ShowAtLocal__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

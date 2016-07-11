@@ -331,9 +331,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                                         FROM IPM_Company_Card__c 
                                         WHERE Id=:project.IPM_Company_Card__c AND IPM_Managed_category__c !=null LIMIT 1];
                 Map<String,IPM_Market_Cluster_Short_Names__c> mcsNames= IPM_Market_Cluster_Short_Names__c.getAll();  
-                if(String.isNotBlank(availableCategoryList[0].RecordType.Name) && availableCategoryList[0].RecordType.Name==IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL){
-                    for(IPM_Market_Cluster_Short_Names__c mcs:mcsNames.Values()){
-                        if(mcs.Unilever_Cluster__c==availableCategoryList[0].IPM_TxtGeographical_Scope__c){
+                if(String.isNotBlank(availableCategoryList[0].RecordType.Name) && availableCategoryList[0].RecordType.Name==IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL)
+                {
+                    for(IPM_Market_Cluster_Short_Names__c mcs:mcsNames.Values())
+                    {
+                        if(mcs.Unilever_Cluster__c==availableCategoryList[0].IPM_TxtGeographical_Scope__c)
+                        {
                             project.Market_Cluster_Name__c=mcs.Unilever_Cluster__c;
                             project.Market_Cluster__c=mcs.Name;
                         }
@@ -354,9 +357,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(!availableCategoryStringSet.isEmpty())
                 {
                     availableCategoryStringList.addAll(availableCategoryStringSet);
-                    if(project.Market_Cluster_Name__c!=null){
+                    if(project.Market_Cluster_Name__c!=null)
+                    {
                         project.IPM_Region_Shr__c=project.Market_Cluster_Name__c;
-                    }else{
+                    }
+                    else
+                    {
                         project.IPM_Region_Shr__c=availableCategoryList[0].IPM_TxtGeographical_Scope__c;
                     } 
                     
@@ -403,19 +409,33 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         Set<String> brandPositionSet = new Set<String>(); 
         try
         {
-            if(!String.isBlank(project.IPM_Category_Text__c) && String.isNotBlank(project.IPM_Region_Shr__c))
+            if(!String.isBlank(project.IPM_Category_Text__c))
             {
                 String Query_STR=IPM_ConstantUtils.BLANK;
+                if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL))
+                {
                 Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
-                if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL)){
+                    Query_STR+=' LIMIT 50000';
+                    userBrandPos=database.query(Query_STR);    
+                }
+                else
+                {
+                    if(String.isNotBlank(project.IPM_Region_Shr__c))
+                    {
+                        Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
+                        if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL))
+	                    {
                    Query_STR+=' and geo_id__r.parent_L4__r.name=\''+ string.escapeSingleQuotes(project.IPM_Region_Shr__c) +'\' ';
                 }
-                else if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_LOCAL)){
+	                    else if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_LOCAL))
+	                    {
                     List<String>uniqueCountryList=project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
                     Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
                 }
                 Query_STR+=' LIMIT 50000';
                 userBrandPos=database.query(Query_STR);
+                    }
+                } 
                 
                 if(userBrandPos !=null && !userBrandPos.isEmpty())
                 {

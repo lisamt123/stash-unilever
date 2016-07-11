@@ -4456,11 +4456,18 @@ OwnerId))</formula>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>
     <validationRules>
-        <fullName>IPM_Cluster_not_allowed_Rollout_Projects</fullName>
-        <active>true</active>
-        <description>User are not allowed to edit IPM Project Cluster when project type is Rollout</description>
-        <errorConditionFormula>ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;)&amp;&amp; NOT(IPM_Cluster__c = PRIORVALUE(IPM_Cluster__c))</errorConditionFormula>
-        <errorMessage>IPM Project Cluster not allowed  to edit when Project type is Rollout</errorMessage>
+    	<fullName>IPM_Cluster_not_allowed_Rollout_Projects</fullName>
+	<active>true</active>
+	<description>User are not allowed to edit IPM Project Cluster when project type is Rollout</description>
+	<errorConditionFormula>ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;)&amp;&amp; NOT(IPM_Cluster__c = PRIORVALUE(IPM_Cluster__c)) &amp;&amp;  !Is_Archieved__c</errorConditionFormula>
+	<errorMessage>IPM Project Cluster not allowed  to edit when Project type is Rollout</errorMessage>
+    </validationRules>
+    <validationRules>
+	<fullName>IPM_exclude_stppd_prjcts_from_cluster</fullName>
+	<active>true</active>
+	<description>This ensures that the stopped projects are not added to a cluster.</description>
+	<errorConditionFormula>Is_Archieved__c &amp;&amp;  IPM_Cluster__c !=Null</errorConditionFormula>
+	<errorMessage>The stopped projects  can not be included  in a cluster.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>IPM_Cluster_not_allowed_for_Operational</fullName>

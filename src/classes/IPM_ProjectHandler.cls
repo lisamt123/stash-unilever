@@ -166,6 +166,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     * any data required into maps prior execution of the trigger. \
     * Use this if any processing required after records are saved to the database or saved record values are required.
       This is used  in creation of project specifc data like tasks ,milestones etc. and  to send BET follow up request on phase change from Ideas to Feasibility.
+    * This does the processsing of providing access to project Team   
+    * This also consists of logic  for stopping /stopped  projects like preapring child records like rollouts ,countries ,financials,
+    * project document etc  for stopping or making them inactive.
+    * This also auto enables  chatter follow up for project team . 
+    * This  sends IPM update to BET during different BET releases(status) .
     */
     public void bulkAfter()
     { 
