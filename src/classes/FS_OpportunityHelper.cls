@@ -4,6 +4,7 @@ History :
 VERSION  AUTHOR         DATE          DETAIL Description
 1.0     Accenture     04/April/2016     Created
                       25/May/2016       Updated handleOpportunityPackage
+                      01/July/2016      Updated for account planning
 ***********************************************************************/
 public with sharing class FS_OpportunityHelper {
 
@@ -90,16 +91,16 @@ public with sharing class FS_OpportunityHelper {
             }
         //Get Accoun Plan deatils where associated opportunities have been modified
         AccPlanList=[select id,name,Opportunity_Gain__c,No_of_Opportunities__c,Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
+        OppList=[select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId]  ;
         //Roll up opportunity details up to account plan object
         for(FS_Account_Plan__c AccPlan : AccPlanList )
         {
             Opportunity_Gain=0;
             recordCount=0;
-            Opportunity_Potential=0;
-             OppList=[select id,name,StageName,Amount from Opportunity where Account_Plan__c=:AccPlan.id]  ;
+            Opportunity_Potential=0;             
              for(Opportunity Opp : OppList)
              {
-                 If(opp.amount !=null){
+                 if(AccPlan.id==Opp.Account_Plan__c && opp.amount !=null){                 
                  IF(opp.StageName=='Closed Won'){
                  Opportunity_Gain=Opportunity_Gain+Integer.valueOf(opp.Amount);
                  }
@@ -130,6 +131,7 @@ public with sharing class FS_OpportunityHelper {
     public static void rollUptoDefinedObjective(List<Opportunity> listNewTrigger2){ 
         if(FS_Utility.run3Once()){
          List<Id> listObjId = new List<Id>();
+         Integer Gross_Amount;
          List<FS_Defined_Objective__c> ObjList = new List<FS_Defined_Objective__c>();
          List<FS_Defined_Objective__c> ObjToUpdate = new List<FS_Defined_Objective__c>();
          List<Opportunity> OppList = new List<Opportunity>();
@@ -140,12 +142,19 @@ public with sharing class FS_OpportunityHelper {
             }
         //Get Accoun Plan deatils where associated opportunities have been modified
         ObjList=[select id,name,No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId];
+        OppList=[select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId];
         //Roll up opportunity details up to account plan object
         for(FS_Defined_Objective__c Obj : ObjList )
         {
-            OppList=[select id,name,StageName,Amount from Opportunity where defined_objective__C=:Obj.id]  ;
+            Gross_Amount=0;
             //Update total no of opportunities on defined objective
+            for(Opportunity Opp : OppList){
+                  If(opp.amount !=null && opp.StageName!='Closed Lost' && obj.Id==opp.Defined_Objective__c){
+                  Gross_Amount=Gross_Amount+Integer.valueOf(opp.Amount);
+                 }
+             }
             Obj.No_of_Opportunities__c=OppList.size();
+            Obj.Opportunity_Amount__c=Gross_Amount;
             ObjToUpdate.add(obj);
             OppList.clear();
          }

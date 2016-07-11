@@ -1,0 +1,19 @@
+<apex:page standardcontroller="Task" extensions="FS_CentrallyLedChildAccount_Picklist" rendered="{!task.Task_Type__c=='Centrally Led'}">
+     <apex:form >        
+     <apex:actionRegion >
+     <apex:panelGrid >
+     <apex:outputLabel >Please select child account on which you need activities to be created : </apex:outputLabel> 
+     <br/>
+     <apex:selectList value="{!CentrallyLedList}" multiselect="true">
+     <apex:selectOptions value="{!ChildAccountList}"/>
+     </apex:selectList>
+     <br/>
+     <apex:panelGrid >
+     <apex:outputLabel >After click on create task please visit to respective child account to check..</apex:outputLabel>
+     <br/>
+     <apex:commandButton value="Create Task" action="{!CreateTask}"/>     
+     </apex:panelGrid>         
+     </apex:panelGrid>
+     </apex:actionRegion>      
+     </apex:form>
+ </apex:page>

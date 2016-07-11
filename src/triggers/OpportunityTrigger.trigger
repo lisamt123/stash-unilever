@@ -7,10 +7,10 @@ trigger OpportunityTrigger on Opportunity (after insert, after update, before in
         FS_OpportunityHelper.rollUpOpportunityLineItem(trigger.new);
       }   
     //Roll up opportunity upto account plan and defined objective
-    if(trigger.isAfter && trigger.isUpdate){
+    if(trigger.isAfter && (trigger.isUpdate||trigger.isInsert)){
         FS_OpportunityHelper.rollUptoAccountPlan(trigger.new); 
     }
-       if(trigger.isAfter && trigger.isInsert){
+       if(trigger.isAfter && (trigger.isInsert||trigger.isUpdate)){
         FS_OpportunityHelper.rollUptoDefinedObjective(trigger.new);
        
     }
