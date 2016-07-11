@@ -118,12 +118,8 @@
                 <field>IPM_Trigger_Time_05__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Fetch_Timestamp_Mulesoft__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Project_Members__c</field>
+                <behavior>Readonly</behavior>
+                <field>IPM_Business_Partner_User_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -150,11 +146,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Finance_Lead__c</field>
+                <field>IPM_Project_Gatekeeper__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Project_Gatekeeper__c</field>
+                <field>IPM_Finance_Lead__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -167,6 +163,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>IPM_PrepareForArchival__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Is_Archieved__c</field>
             </layoutItems>
             <layoutItems>
@@ -177,8 +177,79 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Stopped_Date_Time__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_CancelStoppingProjectTill__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IPM_StoppedByUser__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IPM_Project_Stopped_Time__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Stopped_At_Span__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+	<layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Stopped_Phase__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Stopped_Comments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IPM_CountDown_Reference_Time__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IPM_Project_To_Be_Stopped_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_PreviousDocumentStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_StoppedByProject__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Stop_Child_Project__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+	</layoutSections>
+	<layoutSections>
+		<customLabel>true</customLabel>
+	        <detailHeading>true</detailHeading>
+	        <editHeading>true</editHeading>
+	        <label>Project Document Section</label>
+	        <layoutColumns>
+	            <layoutItems>
+	                <behavior>Edit</behavior>
+	                <field>IPM_Current_Document_Status__c</field>
+	            </layoutItems>
+	            <layoutItems>
+	                <behavior>Edit</behavior>
+	                <field>IPM_Document_Update_Date__c</field>
+	            </layoutItems>
+	        </layoutColumns>
+	        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Document_Update_Comments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_FilledIn_Percentage__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Project_Stopped_By__c</field>
@@ -216,11 +287,19 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Success_Timestamp_EcoDesign__c</field>
+                <field>Project_Countries__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Project_Countries__c</field>
+                <field>Project_Members__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fetch_Timestamp_Mulesoft__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Success_Timestamp_EcoDesign__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -292,6 +371,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Target_Launch_Dates__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Previous_Target_Launch_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -460,6 +543,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>BET_Archive_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BETCurrentStatus__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -691,10 +778,20 @@
         <fields>KeyMCO__c</fields>
         <fields>RECORDTYPE</fields>
         <fields>isActive__c</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Project_Rollout__c.IPM_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
+        <fields>isActive__c</fields>
         <relatedList>IPM_Project_Rollout__c.Regional_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -704,6 +801,9 @@
         <fields>MCO__c</fields>
         <fields>isActive__c</fields>
         <fields>RECORDTYPE</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Project_Rollout__c.Local_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -713,6 +813,9 @@
         <fields>Regional_Project__c</fields>
         <fields>Financial_External_ID__c</fields>
         <fields>isActive__c</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Financial__c.Parent_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -721,14 +824,27 @@
         <fields>IPM_Project_Rollout__c</fields>
         <fields>Status__c</fields>
         <fields>Financial_External_ID__c</fields>
+        <fields>isActive__c</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Financial__c.Regional_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Financial__c.Local_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>isActive__c</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
+        <fields>Country_Name__c</fields>
+        <fields>IPM_Local_Project__c</fields>
         <relatedList>IPM_Country__c.IPM_Regional_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -737,6 +853,9 @@
         <fields>IPM_Rollout_Status__c</fields>
         <fields>Added_At_Stage__c</fields>
         <fields>isActive__c</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Country__c.IPM_Local_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -745,6 +864,9 @@
         <fields>AddedAtStage__c</fields>
         <fields>IPM_Rollout_Status__c</fields>
         <fields>isActive__c</fields>
+        <fields>IPM_ShowAtGlobal__c</fields>
+        <fields>IPM_ShowAtLocal__c</fields>
+        <fields>IPM_ShowAtRegional__c</fields>
         <relatedList>IPM_Country__c.IPM_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -759,6 +881,7 @@
         <fields>NAME</fields>
         <fields>IPM_Question__c</fields>
         <fields>RECORDTYPE</fields>
+        <fields>IPM_Active_RQS__c</fields>
         <relatedList>IPM_Questionnaire__c.IPM_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -784,6 +907,10 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IPM_Project__c.IPM_StoppedByProject__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
