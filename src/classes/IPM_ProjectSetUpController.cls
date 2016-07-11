@@ -331,7 +331,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                                         FROM IPM_Company_Card__c 
                                         WHERE Id=:project.IPM_Company_Card__c AND IPM_Managed_category__c !=null LIMIT 1];
                 Map<String,IPM_Market_Cluster_Short_Names__c> mcsNames= IPM_Market_Cluster_Short_Names__c.getAll();  
-                if(String.isNotBlank(availableCategoryList[0].RecordType.Name) && availableCategoryList[0].RecordType.Name==IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL)
+                project.Market_Cluster_Name__c = project.Market_Cluster__c = IPM_ConstantUtils.BLANK;
+                if(String.isNotBlank(availableCategoryList[0].RecordType.Name) && 
+                    availableCategoryList[0].RecordType.Name==IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL)
                 {
                     for(IPM_Market_Cluster_Short_Names__c mcs:mcsNames.Values())
                     {
@@ -342,10 +344,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                         }
                     }
                 }
-                else
-                {
-               		project.Market_Cluster_Name__c = project.Market_Cluster__c = IPM_ConstantUtils.BLANK;
-                }
+               
                 for(IPM_Company_Card__c asociatedCompanyCard : availableCategoryList)
                 {
                     String[] categoryArray = asociatedCompanyCard.IPM_Managed_category__c.split(IPM_ConstantUtils.DELIMITER);
@@ -357,7 +356,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(!availableCategoryStringSet.isEmpty())
                 {
                     availableCategoryStringList.addAll(availableCategoryStringSet);
-                    if(project.Market_Cluster_Name__c!=null)
+                    if(String.isNotBlank(project.Market_Cluster_Name__c) )
                     {
                         project.IPM_Region_Shr__c=project.Market_Cluster_Name__c;
                     }

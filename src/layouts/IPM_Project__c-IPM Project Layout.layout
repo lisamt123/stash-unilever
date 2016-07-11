@@ -254,14 +254,6 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Project_Stopped_By__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Stopped_Phase__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Stopped_Comments__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
