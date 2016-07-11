@@ -21,6 +21,8 @@ Test class for the class CEC_NewAccountCaseController
 public without sharing class CEC_NewAccountControllerTest{
     
     private static final string acctName = 'Test Account';
+    private static final string phoneNo = '0991236785';
+    
     static Case insertCase1(){
         
         CRMfusionDBR101.DB_Api.preventMatching();
@@ -32,15 +34,15 @@ public without sharing class CEC_NewAccountControllerTest{
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
-        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = '0991236785', PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
         accObj.RecordTypeId = rtId;
         insert accObj;
         
-        Account accObj2 = new Account(lastname=acctName+' 2', PersonMailingCity = 'TestCity', PersonMailingStreet = '123 Greenland Street', PersonMailingPostalCode =  CEC_Constants.PersonMailingPostalCode);
+        Account accObj2 = new Account(lastname=acctName+' 2', PersonMailingCity = 'TestCity', PersonMailingStreet = '123 Church Street', PersonMailingPostalCode =  CEC_Constants.PersonMailingPostalCode);
         accObj2.RecordTypeId = rtId;
         insert accObj2;
         
-        Account accObj3 = new Account(lastname=acctName+' 3', PersonMailingCity = 'TestCity', PersonMailingStreet = '101 Greenland Street', PersonMailingPostalCode =  CEC_Constants.PersonMailingPostalCode);
+        Account accObj3 = new Account(lastname=acctName+' 3', PersonMailingCity = 'Manchester', PersonMailingStreet = '101 Greenland Street', PersonMailingPostalCode =  CEC_Constants.PersonMailingPostalCode);
         accObj2.RecordTypeId = rtId;
         insert accObj3;
         
@@ -67,7 +69,7 @@ Insert Account, Case Objects and attach Account to Case Obj.
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
-        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = '0991236785', PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonMailingStreet = 'George Street');
+        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonMailingStreet = 'George Street');
         accObj.RecordTypeId = rtId;
         insert accObj;
         
@@ -142,7 +144,7 @@ Test method for Search Consumer
             
             CEC_NewAccountController testController= new CEC_NewAccountController();
             testController.newConsumer.lastname = CEC_Constants.lastName;
-            testController.newConsumer.Phone = '0991236785';
+            testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
             testController.newConsumer.PersonMailingStreet = 'George Street';
             testController.newConsumer.PersonEmail = 'account_test@test00de0000000bblj.com';
@@ -208,7 +210,7 @@ Test method for Attach Consumer to Case
             ApexPages.currentPage().getParameters().put('Id', caseObj.id);
             CEC_NewAccountController testController= new CEC_NewAccountController();
             testController.newConsumer.lastname = CEC_Constants.lastName;
-            testController.newConsumer.Phone = '0991236785';
+            testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
             testController.newConsumer.Local_Identifier__c = '111.222.333-44';
             
@@ -225,7 +227,7 @@ Test method for Attach Consumer to Case
             ApexPages.currentPage().getParameters().put('Id', caseObj.id);
             testController = new CEC_NewAccountController();
             testController.newConsumer.lastname = CEC_Constants.lastName;
-            testController.newConsumer.Phone = '0991236785';
+            testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
             pr = testController.searchConsumer();
             testController.selectedAccountId = testController.duplicateConsumerList.get(0).consumer.Id;
@@ -251,7 +253,7 @@ Test method for Save Consumer
             CEC_NewAccountController testController = new CEC_NewAccountController();
             
             testController.newConsumer.lastname = CEC_Constants.lastName;
-            testController.newConsumer.Phone = '0991236785';
+            testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = 'TA10 0AC';
             testController.newConsumer.Local_Identifier__c = '111.222.333-44';
             
@@ -266,7 +268,7 @@ Test method for Save Consumer
             ApexPages.currentPage().getParameters().put('Id', caseObj.id);
             testController = new CEC_NewAccountController();
             testController.newConsumer.lastname = CEC_Constants.lastName;
-            testController.newConsumer.Phone = '0991236785';
+            testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = 'TA10 0AC';
             
             pr = testController.saveAccount();
