@@ -30,7 +30,6 @@ src/labels/CustomLabels.labels
 src/layouts
 src/layouts/IPM_Assessment__c-Assessment Layout.layout
 src/layouts/IPM_Category_EI_Matrix__mdt-IPM Category EI Matrix Layout.layout
-src/layouts/IPM_Project__c-IPM Project Layout.layout
 src/layouts/IPM_Project_Rollout__c-Local Rollout.layout
 src/layouts/IPM_Project_Rollout__c-Regional Rollout.layout
 src/objects

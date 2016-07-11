@@ -4483,7 +4483,6 @@ OwnerId))</formula>
         <errorConditionFormula>AND($Profile.Name != &apos;IPM Data Migration&apos;,ISPICKVAL( IPM_Project_Type__c,&apos;Original&apos; ),ISNEW(),ISPICKVAL ( IPMProject_Span__c,&apos;Global&apos;),NOT(ISPICKVAL(IPM_Temporary_Phase__c,&apos;Ideas&apos;)))</errorConditionFormula>
         <errorMessage>Global Original Project must begin with Ideas Phase</errorMessage>
     </validationRules>
-</CustomObject>
     <recordTypes>
         <fullName>Clustering</fullName>
         <active>true</active>
@@ -5025,3 +5024,4 @@ OwnerId))</formula>
             </values>
         </picklistValues>
     </recordTypes>
+</CustomObject>
