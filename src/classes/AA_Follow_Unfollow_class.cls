@@ -24,9 +24,7 @@ public with sharing class AA_Follow_Unfollow_class {
 
 public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
 	    Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
-	    String lastbatchtime ;
-	    String BatchUserID;
-	    
+	    String lastbatchtime ;  String BatchUserID;	    
 	    if(BatchUserIDList.get('Follow Batch Last Run Time')!=null){
 	    	lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
 	    }else {
@@ -35,46 +33,34 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
 	    if(BatchUserIDList.get('Follow Batch User ID')!=null){
 	    	 BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c;
 	    }
-	     
-	    //String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
-	    //String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
- 
         List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c limit 1000]; 
         Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
         Set<ID> clustIdSet=new Set<ID>();
-        Id GlobalclusterID;
-        
+        Id GlobalclusterID;        
         //create cluser name & id map
         for(aa_Cluster__c clustone:ClusterIdName)
         {
             clusterNameIdMap.put(clustone.Name,clustone.Id);
             clustIdSet.add(clustone.Id);
             if(clustone.Name==AA_Constants.GlobalString){  GlobalclusterID =clustone.Id;}
-        }
-        
+        }        
         // Create userId set
         Set<Id> userIds = new Set<Id>();
         for(aa_Agent_App_User_Preference__c obj:UserSet){
          userIds.add(obj.UserId__c);
-        }
-        
+        }        
         //Creat map of cluster id & name
         List<aa_Country__c> CountryIds= [SELECT Id,Cluster_Id__c  FROM aa_Country__c limit 1000];
         Map<Id,Id> ClusterId= new Map<Id,Id>();
         for(aa_Country__c obj:CountryIds){
            ClusterId.put(obj.Id,obj.Cluster_Id__c);
-        }
-                    
+        }                    
         //fetch entires from entity subscribtion table for Agent User & countries & createdate >= lastjobRun              
         List<EntitySubscription> lstEntitySub= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:CountryIds and CreatedDate >=:
-        datetime.valueOf(lastbatchtime) ];
-        
-        List<EntitySubscription> lstUpsertSub= new List<EntitySubscription>();
-        
+        datetime.valueOf(lastbatchtime) ];        
+        List<EntitySubscription> lstUpsertSub= new List<EntitySubscription>();        
         Map<ID,string> globaluserid=new Map<ID, String>();
-
-        for(EntitySubscription obj:lstEntitySub){
-        
+        for(EntitySubscription obj:lstEntitySub){        
             EntitySubscription objTemp = new EntitySubscription();
 	        objTemp.SubscriberId = obj.SubscriberId;
 	        objTemp.ParentId = ClusterId.get(obj.ParentId);
@@ -85,8 +71,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
             {
                 globaluserid.put(obj.SubscriberId,AA_Constants.GlobalString);
             }  
-        }
-       
+        }       
         List<EntitySubscription> lstEntitySubCluster= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId  In:clustIdSet ];
          
          //if user is following any cluster it should follow global
@@ -108,8 +93,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
             objTemp.SubscriberId = userIDforclust;
             objTemp.ParentId = GlobalclusterID;
             lstUpsertSub.add(objTemp); 
-        }
-              
+        }              
         List<EntitySubscription> lstUpsertSubCopy = lstUpsertSub;
         
         //remove duplicate from the insert list
@@ -127,24 +111,18 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
             if (flag>1){lstUpsertSub.remove(i);}
         }
               
-        //remove objects if already present in the database 
-        
+        //remove objects if already present in the database        
         for(EntitySubscription singleclust:lstEntitySubCluster)
-        {
-           for (Integer  k=0; k<lstUpsertSub.size(); k++)
+        {  for (Integer  k=0; k<lstUpsertSub.size(); k++)
            {  
              if(singleClust.ParentId==lstUpsertSub[k].ParentID && singleClust.SubscriberId==lstUpsertSub[k].SubscriberId)
              {
-                lstUpsertSub.remove(k);
-                   
+                lstUpsertSub.remove(k);                   
              }
            }
-        }
-              
+        }              
         if(lstUpsertSub.size()>0){
-        	
         insert lstUpsertSub;
-        	
         }
 
         Map<ID,String> AfricaCountryMap=new Map<ID,String>();
@@ -154,13 +132,10 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         Map<ID,String> NorthAmericaCountryMap=new Map<ID,String>();
         Map<ID,String> SouthAsiaCountryMap=new Map<ID,String>();
         Map<ID,String> NorthAsiaCountryMap=new Map<ID,String>();
-        Map<ID,String> SEAACountryMap=new Map<ID,String>();
-        
-        
+        Map<ID,String> SEAACountryMap=new Map<ID,String>();        
           
         List<aa_Country__c> CountryIds1= [SELECT Id,Cluster_Id__c,Cluster_Id__r.Name,Name FROM aa_Country__c limit 1000];
-        List<EntitySubscription> UnfollowList = new List<EntitySubscription>();
-        
+        List<EntitySubscription> UnfollowList = new List<EntitySubscription>();        
              
         for(aa_Country__c country: CountryIds1)
         {
@@ -197,9 +172,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
                 SEAACountryMap.put(country.Id,country.Name);
             }
             
-        }       
-
-       
+        }              
         for(aa_Agent_App_User_Preference__c userid:UserSet)
         {
             Boolean AfricaFlag=false;
@@ -287,13 +260,9 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('SEAA');
                    UnfollowList.add(objTemp);
-             }              
-            
+             }  
                       
-        }//end outer for        
-        
-    
-    
+        }//end outer for     
     //delete UnFollowList for clusters
         String wherecondi= ' Where ';
         for(EntitySubscription unfollow:UnFollowList)
@@ -306,11 +275,9 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
             
         List<EntitySubscription> finaldeleteList=Database.query(Unfollowquery);
      
-        delete finaldeleteList;
+        delete finaldeleteList;      
         
-        
-     // global unfollow       
-    
+     // global unfollow    
     List<EntitySubscription> GlobalUnfollowList = new List<EntitySubscription>();
     List<EntitySubscription> lstEntitySubCluster1= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:clustIdSet and ParentId !=:clusterNameIdMap.get(AA_Constants.GlobalString)];
      
@@ -321,8 +288,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
       {
              if(entity1.SubscriberId==userid.UserId__c)
              {
-                 AllClusterFlag=true;
-                 
+                 AllClusterFlag=true;                 
              }
        }
            if(!AllClusterFlag)
@@ -347,10 +313,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         Globalwherecondi=Globalwherecondi.substringBeforeLast('OR');
         String GlobalUnfollowquery='Select ID from EntitySubscription'+Globalwherecondi;
             system.debug('Query===> '+GlobalUnfollowquery);
-        List<EntitySubscription> GlobalfinaldeleteList=Database.query(GlobalUnfollowquery);
-     
-        delete GlobalfinaldeleteList;      
-        
-        }
-         
+        List<EntitySubscription> GlobalfinaldeleteList=Database.query(GlobalUnfollowquery);     
+        delete GlobalfinaldeleteList;              
+        }         
 }
