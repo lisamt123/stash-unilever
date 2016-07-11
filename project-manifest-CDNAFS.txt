@@ -1,2 +1,2 @@
 src
-src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
