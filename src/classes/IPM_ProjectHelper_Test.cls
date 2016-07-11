@@ -397,8 +397,49 @@ private with sharing class IPM_ProjectHelper_Test
 		        Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
 		        // Get Standard Milestones from database  
 		        System.assert(standardMileStoneMap.values().size() > 0,'Project Milestones not generated');
+		        
+		        List<IPM_Project_Rollout__c> regionalRolloutList = createRegionalRollout(projectList,globalProjectLeader,regionalProjectLeader);
+		        /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
+		         // Set GateKeeping Model as RCLT and start with Regional Project Creation.
+		        for(IPM_Project__c project : projectList)
+		        {
+		            project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+		        }  
+		        update projectList;
+		        for(IPM_Project__c project : projectList)
+		        {
+		            globalProjectIdList.add(project.Id);    
+		        }
+		       	// Initiate Phase Change would result in Rollout Project Creation.
+		        List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
+		        update projectListPhaseChange;
+		    Test.stopTest();
+			List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
+        	Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);
+            for(Id gbProjectId : globalToRegionalMap.keySet())
+            {
+               regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
+            }
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
+            for(IPM_Project__c regionalProject : DBRegionalProjects) 
+            {
+               Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
+               IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
+               // Only Contract document Available at Regional Level.
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Contract Document either doesnt have a document or has more document');
+               // MileStones would Copy from Parent Project. 
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Milestones didnt copy from Parent Project Properly');
+            }
+		}
+		return projectList;
+    }
+    public static list<IPM_Project_Rollout__c> createRegionalRollout(List<IPM_Project__c> projectList, User globalProjectLeader,User regionalProjectLeader)
+    {
+    	List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
+    	System.RunAs(globalProjectLeader)
+    	{
 		 		 /******************************** Create Regional Rollouts for Created Global project ****************************************/
-		        List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
+	        regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
 		        insert regionalRolloutList;
 		        Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
 		        for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -436,39 +477,9 @@ private with sharing class IPM_ProjectHelper_Test
 		        insert countryList;
 		        List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
 		        System.assertEquals(dbCountryList.size(),countryList.size(),ASSERT_ERROR_STR+countryList.size());
-		        /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-		         // Set GateKeeping Model as RCLT and start with Regional Project Creation.
-		        for(IPM_Project__c project : projectList)
-		        {
-		            project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+    		
 		        }  
-		        update projectList;
-		        for(IPM_Project__c project : projectList)
-		        {
-		            globalProjectIdList.add(project.Id);    
-		        }
-		       	// Initiate Phase Change would result in Rollout Project Creation.
-		        List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
-		        update projectListPhaseChange;
-		     Test.stopTest();
-			List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
-        	Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);
-            for(Id gbProjectId : globalToRegionalMap.keySet())
-            {
-               regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
-            }
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
-            for(IPM_Project__c regionalProject : DBRegionalProjects) 
-            {
-               Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
-               IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
-               // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Contract Document either doesnt have a document or has more document');
-               // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Milestones didnt copy from Parent Project Properly');
-            }
-		}
-		return projectList;
+    	return regionalRolloutList;
     }
      /**
         *  Used to test when global project is in phase of stopping, regional project should also be in the same phase
@@ -477,7 +488,7 @@ private with sharing class IPM_ProjectHelper_Test
      public static testmethod void testForArchivalProject(){
      	List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
 		User globalProjectLeader = null; 
-
+		User regionalProjectLeader = null; 
 	    // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
 	    IPM_TestFactory_Helper.shareMasterProject(userList); 
 	    for(User lUser  :userList)
@@ -485,6 +496,10 @@ private with sharing class IPM_ProjectHelper_Test
 	        if(lUser.lastName == 'GLOBAL_PL')
 	        {
 	            globalProjectLeader = lUser;
+	        }
+	        if(lUser.lastName == 'REGIONAL_PL')
+	        {
+	            regionalProjectLeader = lUser;
 	        }
 	    }
 	    list<IPM_Project__c> projectList = projectDataCreation();
@@ -514,7 +529,7 @@ private with sharing class IPM_ProjectHelper_Test
 	       {
 	           project.Is_Archieved__c= true;
 	           projids.add(project.id);
-	       
+	        }  
 	        update projectList;
 	        List<IPM_Project__c> archivalProjects = [Select Id,IPM_PrepareForArchival__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,Is_Archieved__c,
         													IPM_Document_Update_Comments__c,IPM_Phase__c,IPMProject_Span__c,IPM_Stopped_Comments__c,
