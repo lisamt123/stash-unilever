@@ -527,15 +527,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_TPR__c</fullName>
-        <externalId>false</externalId>
-        <label>TPR</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>FS_TPR_percent__c</fullName>
         <externalId>false</externalId>
         <label>TPR %</label>
@@ -550,15 +541,6 @@
         <formula>Additional_Discount_DEL__c  +  FS_TPR_percent__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL Total TPR %</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_Total_TPR__c</fullName>
-        <externalId>false</externalId>
-        <label>Total TPR %</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
