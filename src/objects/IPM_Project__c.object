@@ -3410,28 +3410,8 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
-                <fullName>GIC Deodorants %26 Fragrances</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>GIC Hair Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GIC Oral Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GIC Skin Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GIC Skin Cleansing</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3525,14 +3505,6 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Category_Group__c</picklist>
             <values>
-                <fullName>Home Care</fullName>
-                <default>true</default>
-            </values>
-	    <values>
-                <fullName>Refreshment</fullName>
-                <default>false</default>
-            </values>
-	    <values>
                 <fullName>Food</fullName>
                 <default>false</default>
             </values>
@@ -3660,11 +3632,7 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Market__c</picklist>
             <values>
-                <fullName>Dishwash</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Household Cleaning</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
