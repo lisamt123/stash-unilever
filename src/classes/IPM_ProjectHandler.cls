@@ -541,7 +541,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         regionalRolloutProjectMap.put(proj.Id, proj.IPM_Finance_Lead__c);
                 }
                 // To populate clusterIDsforY3iToUpdate for updating Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the Y3iTo and IPM_Cluster__c are populated
-                if(proj.IPM_Project_Type__c == PROJECT_TYPE_ORIGINAL && String.isNotBlank(String.valueOf(proj.IPM_Project_Y3iTO__c)) && String.isNotBlank(proj.IPM_Cluster__c) )
+                if(String.isNotBlank(String.valueOf(proj.IPM_Project_Y3iTO__c)) && String.isNotBlank(proj.IPM_Cluster__c) )
                 {
                     clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
                 }
@@ -741,7 +741,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                       }
                  } 
                    // To populate clusterIDsforY3iToUpdate for updating Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the Y3iTo of project changes or the project is moved to another cluster
-                   if(p.IPM_Project_Type__c == PROJECT_TYPE_ORIGINAL && (p.IPM_Project_Y3iTO__c != proj.IPM_Project_Y3iTO__c || p.IPM_Cluster__c != proj.IPM_Cluster__c))
+                   if(p.IPM_Project_Y3iTO__c != proj.IPM_Project_Y3iTO__c || p.IPM_Cluster__c != proj.IPM_Cluster__c)
                    {
                         if(p.IPM_Cluster__c!=Null)
                         {
@@ -855,7 +855,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
      if(Trigger.isDelete)
      {
         for(IPM_project__c proj : (List<IPM_Project__c>)Trigger.old){
-            if(proj.IPM_Project_Type__c==PROJECT_TYPE_ORIGINAL && proj.IPM_Cluster__c!=Null)
+            
+            if(proj.IPM_Cluster__c!=Null)
             {
                 clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
             }
