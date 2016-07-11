@@ -60,7 +60,7 @@
     <fields>
         <fullName>FS_Completed__c</fullName>
         <externalId>false</externalId>
-        <formula>if( FS_No_of_Objectives__c=0,0,FS_No_of_Completed_Objectives__c/FS_No_of_Objectives__c)</formula>
+        <formula>if( No_of_Objectives__c=0,0,No_of_Completed_Objectives__c/No_of_Objectives__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Completed %</label>
         <precision>18</precision>
@@ -95,31 +95,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>FS_No_of_Completed_Objectives__c</fullName>
-        <externalId>false</externalId>
-        <label>FS No of Completed Objectives</label>
-        <summaryFilterItems>
-            <field>FS_Defined_Objective__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Completed</value>
-        </summaryFilterItems>
-        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>FS_No_of_Objectives__c</fullName>
-        <externalId>false</externalId>
-        <label>FS_No of Objectives</label>
-        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
     </fields>
     <fields>
         <fullName>FS_PlanDollars__c</fullName>
@@ -232,6 +207,31 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Completed_Objectives__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Completed Objectives</label>
+        <summaryFilterItems>
+            <field>FS_Defined_Objective__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Objectives__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Objectives</label>
+        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>No_of_Opportunities__c</fullName>
@@ -380,8 +380,17 @@
         <fullName>CheckNoofDefineObjective</fullName>
         <active>true</active>
         <description>This validation rule is used to check if account plan record is associated with any defined objective</description>
-        <errorConditionFormula>AND(ISPICKVAL(FS_Status__c,&apos;Approval Requested&apos;) ,FS_No_of_Objectives__c =0)</errorConditionFormula>
+        <errorConditionFormula>AND(ISPICKVAL(FS_Status__c,&apos;Approval Requested&apos;) ,No_of_Objectives__c =0)</errorConditionFormula>
         <errorMessage>Please create Defined Objectives prior to submission for approval</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_approved_Account_Plan_change</fullName>
+        <active>true</active>
+        <description>Sales rep are not allowed to make certain changes in account plan once it is approved</description>
+        <errorConditionFormula>And(OR(ISPICKVAL(PriorValue(FS_Status__c),&apos;Approved&apos;),
+ISPICKVAL(FS_Status__c,&apos;Approved&apos;)),
+OR( ISCHANGED(FS_Status__c), ISCHANGED( FS_Start_Date__c), ISCHANGED(FS_End_Date__c),ISCHANGED(FS_PlanDollars__c), ISCHANGED(FS_PlanPercent__c), ISCHANGED(FS_Plan_Type__c), ISCHANGED( FS_Plan_Statement__c)),$Profile.Name &lt;&gt; &quot;System Administrator&quot;)</errorConditionFormula>
+        <errorMessage>You are not allowed to make changes to account plan once it is approved</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>Create_Distributor_Action_Plan</fullName>

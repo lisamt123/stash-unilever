@@ -529,6 +529,14 @@
         <errorConditionFormula>AND(OR(IsPickVal(Objective_Type__c,&apos;Grow&apos;),IsPickVal( Objective_Type__c,&apos;Win&apos;)), IsPickVal(Status__c,&apos;Approval Requested&apos;), isNull(No_of_Opportunities__c), RecordType.Name=&apos;Operator Objective&apos;  )</errorConditionFormula>
         <errorMessage>Please create an Opportunity prior to submission for approval</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>Objective_Completion_Based_on_Approval</fullName>
+        <active>true</active>
+        <description>It is used to restrict user to make objective as complete only once it is approved</description>
+        <errorConditionFormula>And(ISCHANGED(Status__c), Not(isPickVal(PRIORVALUE(Status__c),&apos;Approved&apos;))
+,isPickVal(Status__c,&apos;Completed&apos;))</errorConditionFormula>
+        <errorMessage>Please get this objective approved prior to mark it as Completed</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Create_Distributor_Objective</fullName>
         <availability>online</availability>

@@ -1399,7 +1399,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>Purpose : Unit conversion factor from Sales Unit to Base UOM
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
-        <label>Unit conversion factor from Sales Unit t</label>
+        <label>Unit conversion factor from Sales Unit</label>
         <precision>17</precision>
         <required>false</required>
         <scale>0</scale>
