@@ -3632,7 +3632,11 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Market__c</picklist>
             <values>
-                <fullName>None</fullName>
+                <fullName>Dishwash</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Household Cleaning</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
