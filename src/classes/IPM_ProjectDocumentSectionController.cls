@@ -514,7 +514,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         // If project is in 72 hours delay and Project gets stpped after 72 hours all project document section become readonly   
         if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c)
         {
-        	IsEditableOutC = IsEditableSumm = isTaskeditable = IsCRRTEditable = isEditGateCMI = isAssortEdit = isEcodesignEdit = showEcoDesign  = isCreateTask = false;
+        	isEditMarketPerformance = isGlobalActionStandards = IsEditableOutC = IsEditableSumm = isTaskeditable = IsCRRTEditable = isEditGateCMI = isAssortEdit = isEcodesignEdit = showEcoDesign  = isCreateTask = false;
         }
     }
 	/****************************************************************************************************************************************************************
