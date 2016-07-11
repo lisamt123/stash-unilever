@@ -85,8 +85,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     @TestVisible private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
     public String searchCountry{get;set;}// Hold country name to search
     public Boolean isNoResult{get;set;}//checking for rollout search
-	private Set<String> existingPrjList =new Set <String>(); //list of ids of existing   projects associated with rollouts 
-	public Boolean updateRollouts{get;set;}
+    private Set<String> existingPrjList =new Set <String>(); //list of ids of existing   projects associated with rollouts 
+    public Boolean updateRollouts{get;set;}
+    public IPM_Country__c countryProj;
+    public integer localProjCnt{get;set;}
+    public boolean removeCountryFeasiCap {get;set;}
+    public boolean removeCountryOtherFeasiCap {get;set;}
+    public boolean countryRelatedProj {get;set;}
+    public boolean invokedFromRollouts{get;set;}
+    public boolean noAllRolloutFromSameMCO{get;set;}
     
     /**
     *  @Description Constructor of the class 
@@ -100,6 +107,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         IPM_IECompatible.ieFix();//For IE Compatibility
         isCompleted = false;
         selectedMCO = null;
+        localProjCnt = 0;
+        invokedFromRollouts = false;
         initializeRollouts();
     }
     /**
@@ -611,6 +620,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             initializeRollouts();
             
+	    invokedFromRollouts = false;	            
             isCompleted = true;
         } 
         catch (Exception ex) 
@@ -838,7 +848,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         
         //Countries
         queryString = null;
-        queryString = 'SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
+        queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
         {
             queryString+= 'WHERE IPM_Project__c =: projectId LIMIT 10000';
@@ -907,7 +917,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             
             
-            List<IPM_Project__c> toBeArchievedRolloutProjects =[Select Id,Is_Archieved__c,Name,IPM_Is_Invoked_From_Rollout__c from IPM_Project__c where  Id IN :localRolloutProjectIds];
+            List<IPM_Project__c> toBeArchievedRolloutProjects =[Select Id,Is_Archieved__c,Name,IPM_Phase__c,IPM_Is_Invoked_From_Rollout__c from IPM_Project__c where  Id IN :localRolloutProjectIds];
             
             
             if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
@@ -917,6 +927,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
               {
                 rollOutProj.Is_Archieved__c=true; 
                 rollOutProj.IPM_Is_Invoked_From_Rollout__c =true;
+                if(rollOutProj.IPM_Phase__c == IPM_Utils.Feasibility || rollOutProj.IPM_Phase__c == IPM_Utils.Capability)
+              	{
+                	rollOutProj.IPM_PrepareForArchival__c = true;
+              	}
+              	else
+              	{
+              		rollOutProj.Is_Archieved__c=true;
+              	}
               }
              
             update   toBeArchievedRolloutProjects ;
@@ -1627,6 +1645,76 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 removeReferences(countryRollNameToCountryCodeMap,ipmRollout);
             } 
         }     
+    }
+    
+    @TestVisible public void checkLocalProjectAssociatedOrNot()
+    {
+    	localProjCnt = 0;
+    	String queryString = null;
+    	removeCountryFeasiCap = false;
+    	removeCountryOtherFeasiCap = false;
+    	countryRelatedProj = false;
+    	invokedFromRollouts = true;
+    	noAllRolloutFromSameMCO = false ;
+    	
+    	mapExistingCountries = new Map<String,IPM_Country__c>();
+        queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c,Local_Rollout__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
+        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        {
+            queryString+= 'WHERE IPM_Project__c =: projectId LIMIT 10000';
+        }
+        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        {
+            queryString+= 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
+        }
+          
+        for (IPM_Country__c country : Database.query(queryString))
+        {
+            if(IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(searchCountry))
+            {
+                mapExistingCountries.put(country.Project_Country__c, country);
+            }
+        }
+    	List<String> regionalNoRollList = new List<String>();
+    	if(regionalNoRoll!=null && regionalNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+        {
+                regionalNoRollList = regionalNoRoll.split(IPM_ConstantUtils.COMMA); 
+        }
+        String MCOName = null;
+        integer counter = 0;
+    	for (String countryCode : regionalNoRollList)
+        {
+            String countryRolloutName = getCountryExternalId(countryCode);
+            if(mapExistingCountries.containsKey(countryRolloutName))
+            {
+            	countryProj = mapExistingCountries.get(countryRolloutName);
+            	if(counter == 0 && countryProj != null && countryProj.Local_Rollout__c != null)
+            	{
+            		MCOName = countryProj.Local_Rollout__c;
+            	} 
+            	if(MCOName != countryProj.Local_Rollout__c)
+            	{
+            		noAllRolloutFromSameMCO = true;
+            	} 
+            	if(countryProj.IPM_Local_Project__c != null)
+            	{
+            		localProjCnt++;
+            	}
+            }
+            counter++;
+        }
+        if(project.IPMProject_Span__c == 'Regional' && (project.IPM_Phase__c == 'Feasibility' || project.IPM_Phase__c == 'Capability'))
+        {
+       	     removeCountryFeasiCap = true;
+        }
+        else
+        {
+        	 removeCountryOtherFeasiCap = true;
+        }
+        if(localProjCnt > 0)
+        {
+        	countryRelatedProj = true;
+        }	
     }
     
      /**
