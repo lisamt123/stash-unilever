@@ -3536,10 +3536,10 @@ OwnerId))</formula>
                 <fullName>Food</fullName>
                 <default>false</default>
             </values>
-	    <values>
-                <fullName>Personal Care</fullName>
-                <default>false</default>
-            </values>	
+            <values>
+                <fullName>Home Care</fullName>
+                <default>true</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Child_Complexity__c</picklist>
@@ -3707,6 +3707,41 @@ OwnerId))</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_PreviousDocumentStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved with Edits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postponed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stopped</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_ProjectGKM__c</picklist>
             <values>
                 <fullName>GKM1</fullName>
@@ -3847,6 +3882,21 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Original</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Stopped_At_Span__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4483,545 +4533,4 @@ OwnerId))</formula>
         <errorConditionFormula>AND($Profile.Name != &apos;IPM Data Migration&apos;,ISPICKVAL( IPM_Project_Type__c,&apos;Original&apos; ),ISNEW(),ISPICKVAL ( IPMProject_Span__c,&apos;Global&apos;),NOT(ISPICKVAL(IPM_Temporary_Phase__c,&apos;Ideas&apos;)))</errorConditionFormula>
         <errorMessage>Global Original Project must begin with Ideas Phase</errorMessage>
     </validationRules>
-    <recordTypes>
-        <fullName>Clustering</fullName>
-        <active>true</active>
-        <label>Clustering</label>
-        <picklistValues>
-            <picklist>EcoDesign_Sync_Status__c</picklist>
-            <values>
-                <fullName>Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ready</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Success</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPMCompany__c</picklist>
-            <values>
-                <fullName>GIC HHC</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPMPlatform__c</picklist>
-            <values>
-                <fullName>Sample 1</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPMProject_Span__c</picklist>
-            <values>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Local</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Regional</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPMProject_Type__c</picklist>
-            <values>
-                <fullName>Original</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPMRegion__c</picklist>
-            <values>
-                <fullName>Europe</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Approver_of_Charter__c</picklist>
-            <values>
-                <fullName>GCLT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RCLT</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Approver_of_Contract_Market_Ready__c</picklist>
-            <values>
-                <fullName>GCLT %26 RCLT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RCLT</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_BET_Toolkit__c</picklist>
-            <values>
-                <fullName>Create new BET</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Link to existing BET</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No BET</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_CPP__c</picklist>
-            <values>
-                <fullName>Bronze</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Silver</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Category_Group__c</picklist>
-            <values>
-                <fullName>Food</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Home Care</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Child_Complexity__c</picklist>
-            <values>
-                <fullName>Full</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Complexity__c</picklist>
-            <values>
-                <fullName>Full</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Current_Document_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approved with Edits</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Started</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Postponed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Proposed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stopped</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Data_Migrated_Gate__c</picklist>
-            <values>
-                <fullName>Contract</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Ready</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_GateKeeping_Model__c</picklist>
-            <values>
-                <fullName>GCLT %26 RCLT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RCLT</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Gate_Keeping_Module__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Local_Project_Type__c</picklist>
-            <values>
-                <fullName>Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MCO</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Market_Type__c</picklist>
-            <values>
-                <fullName>Developed</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Developing %26 Emerging</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Market__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_PM_Approach__c</picklist>
-            <values>
-                <fullName>External</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Internal</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Phase__c</picklist>
-            <values>
-                <fullName>Capability</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Feasibility</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ideas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Deployment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Ready</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PLE</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_PreviousDocumentStatus__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approved with Edits</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Close</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Started</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Postponed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Proposed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stopped</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_ProjectGKM__c</picklist>
-            <values>
-                <fullName>GKM1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GKM2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GKM3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GKM4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GKM5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GKM6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GKM7</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_ProjectJobType__c</picklist>
-            <values>
-                <fullName>Phase Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Project Creation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_ProjectSubType__c</picklist>
-            <values>
-                <fullName>Brand Led Growth%28BLG%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Innovation%2FRenovation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operational</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Project_Job_Status__c</picklist>
-            <values>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eligible For Processing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Failed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Applicable</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Processing</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Project_Type__c</picklist>
-            <values>
-                <fullName>Operational</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Original</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rollout</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Rollout_Status__c</picklist>
-            <values>
-                <fullName>Follower</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Leader</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Sector__c</picklist>
-            <values>
-                <fullName>Cleaning Tools</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Disinfectants</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hand Dishwash</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hard Surface Cleaners</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Dishwash</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Specialist Cleaners</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_SourceProjectType__c</picklist>
-            <values>
-                <fullName>Operational</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Original</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Stopped_At_Span__c</picklist>
-            <values>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Local</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Regional</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Sub_sector__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Temporary_Phase__c</picklist>
-            <values>
-                <fullName>Capability</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Feasibility</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ideas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Deployment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Ready</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PLE</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Threshold_Value__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Sustainability_Period__c</picklist>
-            <values>
-                <fullName>3</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
 </CustomObject>
