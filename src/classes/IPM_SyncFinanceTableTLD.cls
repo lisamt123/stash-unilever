@@ -365,15 +365,16 @@ public with sharing class IPM_SyncFinanceTableTLD {
     	
     	Set<ID> globalPrjIDs = new Set<ID>();
     	Set<ID> regionalRolloutIDs = new Set<ID>();
+    	Set<ID> regionalOriginalProjId = new Set<ID>();
     	
-    	for(IPM_Project_Rollout__c  rollout : consolidationTLDList){
+    	for(IPM_Project_Rollout__c  rollout : consolidationTLDList){ 
     		
     		if(!String.isEmpty(rollout.IPM_Project__c)){
     		   globalPrjIDs.add(rollout.IPM_Project__c);
     		}
             else if(String.isEmpty(rollout.IPM_Project__c) && !String.isEmpty(rollout.Regional_Project__c))
             {
-            	globalPrjIDs.add(rollout.Regional_Project__c);
+            	regionalOriginalProjId.add(rollout.Regional_Project__c);
             }
     		
     		if(!String.isEmpty(rollout.Regional_Rollout__c)){
@@ -430,6 +431,24 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	      }
 	      
 	    }
+	    
+	    //Regional Original Projects
+	    list<IPM_Project__c> regionalOriginalList=[Select Id,(
+	    										Select Target_Launch_Date__c From Regional_Project_Rollout__r  where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST),
+	    										(Select Target_Launch_Date__c, Financial_External_ID__c From IPM_Financials_Regional__r 
+	                                                  where isActive__c=true AND IPM_Project_Rollout__c=null AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) )
+	                                                   From IPM_Project__c  where Id in : regionalRolloutIDs AND Is_Archieved__c=false];
+	    if(!regionalOriginalList.isEmpty()){
+	    	for(IPM_Project__c prj: regionalOriginalList) {
+	      		      	
+	      	Date earliestTLd = prj.Regional_Project_Rollout__r[0].Target_Launch_Date__c;
+	      	for(IPM_Financial__c conFin :prj.IPM_Financials_Regional__r) {
+	      	   conFin.Target_Launch_Date__c=earliestTLd;
+	      	   financialsMap.put(conFin.id, conFin);
+	      	} 
+	      
+	   	 }
+	   }
 	}
 	
 	private void updateFinancialTables() {
