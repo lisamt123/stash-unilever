@@ -14,15 +14,30 @@ public with sharing class AA_Follow_Unfollow_class {
      * @return      -  None
      * @modifiedby  -  Aslesha
      */  	
-public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
 /*   
-   Here we have not created sepearte method for follow / Unfollow as we are using the same set of result we got from the particular queries e.g UserSet, set created for each cluster with country ids names etc 
-   If we seperate the methods same code will repeated & makes it unmanagable in future.complexity of this class can be reduce in future changes as per the feedback from users 
+   This method is used by the batch job which will run daily. It is required to make sure user will receive notification in case any report created for global Or created for particular cluster  
+   We have not created sepearte method for follow / Unfollow as we are using the same set of result we got from the particular queries e.g UserSet, set created for each cluster with country ids names etc 
+   If we seperate the methods same code will repeated & makes it unmanagable in future.
+   Complexity of this class can be reduce in future changes as per the feedback from users on this Or it can be diabled immediatly.  
      
 */
+
+public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
 	    Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
-	    String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
-	    String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
+	    String lastbatchtime ;
+	    String BatchUserID;
+	    
+	    if(BatchUserIDList.get('Follow Batch Last Run Time')!=null){
+	    	lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
+	    }else {
+	       lastbatchtime =  string.valueOfGmt(system.now());
+	    }
+	    if(BatchUserIDList.get('Follow Batch User ID')!=null){
+	    	 BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c;
+	    }
+	     
+	    //String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
+	    //String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
  
         List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c limit 1000]; 
         Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
@@ -319,9 +334,11 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
                            
               }
         }
-   
+   String Globalwherecondi='';
         //delete UnFollowList for global 
-        String Globalwherecondi= ' Where ';
+    if(GlobalUnfollowList.size()>0)    {
+     Globalwherecondi= ' Where ';
+    }
         for(EntitySubscription unfollow:GlobalUnfollowList)
         {
             Globalwherecondi=Globalwherecondi+'( SubscriberId =\''+unfollow.SubscriberId+'\' and ParentId=\''+unfollow.ParentId+'\' and CreatedById =\''+BatchUserID+'\' ) OR';
@@ -329,7 +346,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         }
         Globalwherecondi=Globalwherecondi.substringBeforeLast('OR');
         String GlobalUnfollowquery='Select ID from EntitySubscription'+Globalwherecondi;
-            
+            system.debug('Query===> '+GlobalUnfollowquery);
         List<EntitySubscription> GlobalfinaldeleteList=Database.query(GlobalUnfollowquery);
      
         delete GlobalfinaldeleteList;      
