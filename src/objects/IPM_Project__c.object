@@ -3410,28 +3410,8 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
-                <fullName>GIC Deodorants %26 Fragrances</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>GIC Hair Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GIC Oral Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GIC Skin Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GIC Skin Cleansing</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3525,21 +3505,13 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Category_Group__c</picklist>
             <values>
-                <fullName>Home Care</fullName>
-                <default>true</default>
-            </values>
-	    <values>
-                <fullName>Refreshment</fullName>
-                <default>false</default>
-            </values>
-	    <values>
                 <fullName>Food</fullName>
                 <default>false</default>
             </values>
-	    <values>
-                <fullName>Personal Care</fullName>
-                <default>false</default>
-            </values>	
+            <values>
+                <fullName>Home Care</fullName>
+                <default>true</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Child_Complexity__c</picklist>
@@ -3660,11 +3632,7 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Market__c</picklist>
             <values>
-                <fullName>Dishwash</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Household Cleaning</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3703,6 +3671,41 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_PreviousDocumentStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved with Edits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postponed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stopped</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3847,6 +3850,21 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Original</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Stopped_At_Span__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
