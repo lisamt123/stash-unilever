@@ -69,6 +69,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
     public id documentSectionId{get;set;}
+    public boolean isEcoDesignSecNegotiable;
     public string stopDisclaimer{get;set;}
     //REQ03006
     public Integer invalidFinancialsCount;
