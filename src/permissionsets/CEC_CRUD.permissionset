@@ -670,7 +670,7 @@
         <editable>true</editable>
         <field>Contact.Phone</field>
         <readable>true</readable>
-    </fieldPermission>
+    </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
         <field>Contact.Sapient_Language_Preference__c</field>
