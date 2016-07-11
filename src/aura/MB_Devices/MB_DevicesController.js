@@ -30,7 +30,7 @@
             var state = response.getState(); 
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var result=response.getReturnValue();
-               if(result.iPassTotalAmount>0)
+                if(result.iPassTotalAmount>0 || result.iPassDataConsumedinMB>0)
                {
                    component.set("v.showDevice",true);
                }

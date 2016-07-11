@@ -580,12 +580,18 @@ if(res.size()>1){
                                   
       MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperList=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
       wrapperList.iPassTotalAmount=0;
+      wrapperList.iPassDataConsumedinMB=0;
+     
       for(MB_Billing_Entity__c Total_iPass:billingEntityList)
       {
        if(Total_iPass.Local_Net_Amount__c !=null)
        {
           wrapperList.iPassTotalAmount +=Total_iPass.Local_Net_Amount__c;
           System.debug('test##'+Total_iPass.Local_Net_Amount__c);
+       }
+       if(Total_iPass.Data_Consumed_In_MB__c!=null)
+       {
+          wrapperList.iPassDataConsumedinMB +=Total_iPass.Data_Consumed_In_MB__c;
        }
       }
       wrapperList.userCurrency=CurrencySym();
