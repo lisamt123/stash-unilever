@@ -6394,6 +6394,11 @@
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Project__c.IPM_CountDown_Reference_Time__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
 		<editable>true</editable>
 		<field>IPM_Project__c.IPM_StoppedByUser__c</field>
 		<readable>true</readable>
