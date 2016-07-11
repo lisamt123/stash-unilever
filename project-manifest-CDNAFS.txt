@@ -1,6 +1,10 @@
 src
 src/permissionsets
 src/permissionsets/FS_AFM.permissionset
-src/permissionsets/FS_Sales_Rep.permissionset
 src
 src/objects/Opportunity.object
+src/objects/Campaign.object
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Defined_Objective__c.object
+src/objects/PricebookEntry.object
+src/objects/Product2.object
