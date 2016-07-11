@@ -17,6 +17,7 @@ public with sharing class MB_Wrapper_Class_Test {
     Test.startTest();
     
     MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+    deviceWrapperClassObject.iPassTotalAmount= 100.00;
     deviceWrapperClassObject.userName = 'UN';
     deviceWrapperClassObject.deviceName = 'DN';
     deviceWrapperClassObject.deviceId = 'DI';

@@ -3,7 +3,7 @@
        var action = component.get("c.getUsageDetails");
        action.setParams({ month : component.get("v.CurrentMonth")});
        action.setCallback(this, function(response){
-           var state = response.getState();
+           var state = response.getState(); 
            console.log("result"+response.getReturnValue());
            console.log();
             if (component.isValid() && state === "SUCCESS" ) {

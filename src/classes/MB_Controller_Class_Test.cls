@@ -171,6 +171,15 @@ public with sharing class MB_Controller_Class_Test {
   billingEntityObject11.Charge_Type__c = chargeTypeObject3.Id;
   billingEntityObject11.User__c = UserInfo.getUserId();
   insert billingEntityObject11;
+      
+  MB_Billing_Entity__c billingEntityObject12 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+                                    iPass_Consumed_In_MB__c = 100.00, Item_Count__c = 10.00, Local_Net_Amount__c = 50.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
+                                    Service_Name__c = 'SN2');
+  billingEntityObject12.Device_Details__c = deviceDetailsObject.Id;
+  billingEntityObject12.Usage_Type__c = usageTypeObject2.Id;
+  billingEntityObject12.Charge_Type__c = chargeTypeObject2.Id;
+  billingEntityObject12.User__c = UserInfo.getUserId();
+  insert billingEntityObject12;
              
   boolean testVariance1 = MB_Controller_Class.getVariance(200,100);
   System.assertEquals(testVariance1, true);
@@ -192,6 +201,18 @@ public with sharing class MB_Controller_Class_Test {
       
   List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList1 = MB_Controller_Class.deviceSpendDetailsForUser(Month_May);
   System.assert(wrapperList1 != null);
+       
+  MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperList11 = MB_Controller_Class.iPassSpendDetailsForUser(Month_May);
+  System.assert(wrapperList11 != null);
+  
+  List<MB_Billing_Entity__c> billingList = new List<MB_Billing_Entity__c>(); 
+  billingList.add(billingEntityObject1);
+  billingList.add(billingEntityObject2);  
+  decimal totaliPassDeviceSpend = MB_Controller_Class.iPassDeviceSpend(billingList);
+  System.assertEquals(totaliPassDeviceSpend, 50.00);
+      
+  MB_Wrapper_Class  wrapperObject2 = MB_Controller_Class.getIpassSpendDetails(Month_May);
+  System.assert(wrapperObject2 != null);
  }
          
   Test.stopTest();
@@ -370,7 +391,7 @@ static testMethod void testMBControllerWithCollegue(){
   MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperObject2 = MB_Controller_Class.getUsageDetails(Month_May);
   System.assertEquals(wrapperObject2.totalCallUsagePattern,'00:49:60');
   System.assertEquals(wrapperObject2.totalDataUsage,500.00);
-  System.assertEquals(wrapperObject2.totalIpassUsage,100.00);
+  System.assertEquals(wrapperObject2.totalIpassUsage,0.00);
   System.assertEquals(wrapperObject2.totalMessageUsage,90.00);
   System.assertEquals(wrapperObject2.totalUsage,325.00);
  
@@ -385,11 +406,12 @@ static testMethod void testMBControllerWithCollegue(){
       
   String minsSecond3 = MB_Controller_Class.getMinsSecond(105.00);
   System.assertEquals(minsSecond3,'01:45:00');
-      
-  MB_ReportingGA__c reportingGAObject = new MB_ReportingGA__c(Name = 'MB_GA_Value',MB_GA__c = 'MGA');
+    
+  MB_ReportingGA__c reportingGAObject = new MB_ReportingGA__c(Name = 'GA_ID',Text_Value__c= 'MGA');
   insert reportingGAObject;
   string strgaid = MB_Controller_Class.getGAID();
   System.assertEquals(strgaid,'MGA');
+  
  }
          
   Test.stopTest();

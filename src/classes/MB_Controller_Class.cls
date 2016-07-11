@@ -58,9 +58,9 @@ public with sharing class MB_Controller_Class{
      public static List<MB_Wrapper_Class.MB_Device_Wrapper_Class>deviceSpendDetailsForUser(String month){
      
       List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name !=:'iPass' ]; 
                                   
       List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList=new List<MB_Wrapper_Class.MB_Device_Wrapper_Class>();
       set<Id> deviceIds=new set<Id>();
@@ -131,7 +131,22 @@ public with sharing class MB_Controller_Class{
         }
         return totalDeviceAmount;
     }  
-     
+     /*******************************************************************************************************
+    * @description This method returns total spend of a user device for a particular month.
+    * @param  month 
+    * @return decimal  
+    */ 
+     public static  decimal iPassDeviceSpend(List<MB_Billing_Entity__c> billingList) {
+        decimal totalDeviceAmount = 0; 
+
+        for(MB_Billing_Entity__c beObj : billingList){
+             
+              if(beObj.Local_Net_Amount__c !=null ){
+                totalDeviceAmount += beObj.Local_Net_Amount__c;
+                }
+        }System.debug('!@#$'+totalDeviceAmount );
+        return totalDeviceAmount;
+    }  
      /*******************************************************************************************************
     * @description This method returns total spend of a user device for a particular month.
     * @param  month, device Id
@@ -167,7 +182,7 @@ public with sharing class MB_Controller_Class{
               
         
         string previousMonth=getPreviousMonth(month);
-        List<MB_Billing_Entity__c> lstyourChargeType=[Select Usage_Type__r.Name, Billing_Currency__c,Data_Consumed_In_MB__c,Call_Minutes__c,Messages__c,Local_Net_Amount__c,iPass_Consumed_In_MB__c,Billing_Month__c from MB_Billing_Entity__c where Billing_Month__c in (:month,:previousMonth) and User__c=:UserInfo.getUserId()];   
+        List<MB_Billing_Entity__c> lstyourChargeType=[Select Usage_Type__r.Name, Billing_Currency__c,Data_Consumed_In_MB__c,Call_Minutes__c,Messages__c,Local_Net_Amount__c,Billing_Month__c from MB_Billing_Entity__c where Billing_Month__c in (:month,:previousMonth) and User__c=:UserInfo.getUserId()];   
         List<MB_Billing_Entity__c> currentMnthList=new List<MB_Billing_Entity__c> ();
         for(MB_Billing_Entity__c item:lstyourChargeType){
          if(item.Billing_Month__c ==month){
@@ -214,17 +229,17 @@ public with sharing class MB_Controller_Class{
               totalSpend=totalSpend+CurrentUserData.Local_Net_Amount__c; 
                 wrprobj.userCurrency=CurrencySym();
               }
-          if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data){
+          if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data && CurrentUserData.Data_Consumed_In_MB__c!=null){
                 DataUsage +=CurrentUserData.Data_Consumed_In_MB__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls && CurrentUserData.Call_Minutes__c!=null){
               CallUsage +=CurrentUserData.Call_Minutes__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging && CurrentUserData.Messages__c!=null){
               MessageUsage +=CurrentUserData.Messages__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass){
-              IpassUsage +=CurrentUserData.iPass_Consumed_In_MB__c;
+           if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass && CurrentUserData.Data_Consumed_In_MB__c!=null){
+              IpassUsage +=CurrentUserData.Data_Consumed_In_MB__c;
             }
           }       
        }
@@ -232,17 +247,17 @@ public with sharing class MB_Controller_Class{
        
            if(CurrentUserData.Billing_Month__c ==previousMonth){
            
-           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data && CurrentUserData.Data_Consumed_In_MB__c!=null){
                previousDataUsage +=CurrentUserData.Data_Consumed_In_MB__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls && CurrentUserData.Call_Minutes__c!=null){
              previousCallUsage +=CurrentUserData.Call_Minutes__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging){
+           if(CurrentUserData.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging && CurrentUserData.Messages__c!=null){
              previousMessageUsage +=CurrentUserData.Messages__c;
            }
-           if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass){
-              previousIpassUsage +=CurrentUserData.iPass_Consumed_In_MB__c; 
+           if(CurrentUserData.Usage_Type__r.Name == MB_Constants.Usage_Type_iPass && CurrentUserData.Data_Consumed_In_MB__c!=null){
+              previousIpassUsage +=CurrentUserData.Data_Consumed_In_MB__c; 
             }
          
              }    
@@ -282,13 +297,13 @@ public with sharing class MB_Controller_Class{
   System.debug('deviceId--->'+deviceId+',,,month--->'+month);
        string previous=getPreviousMonth(month);
        List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:'iPass']; 
     List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:'iPass']; 
        
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
        List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
@@ -304,7 +319,6 @@ public with sharing class MB_Controller_Class{
        Map<string,MB_Wrapper_Class.DataChargeType_Wraper> dataMap=new Map<string,MB_Wrapper_Class.DataChargeType_Wraper>();
        Map<string,MB_Wrapper_Class.CallsChargeType_Wraper> callsMap=new Map<string,MB_Wrapper_Class.CallsChargeType_Wraper>();
        Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper> messagingMap= new Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper>();
-       Map<string,MB_Wrapper_Class.IpassChargeType_Wraper> ipassMap=new  Map<string,MB_Wrapper_Class.IpassChargeType_Wraper>();
        Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper> nonusageMap=new Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper>();
        
        for(MB_Billing_Entity__c entity:currentmonthBillingList)
@@ -391,31 +405,7 @@ public with sharing class MB_Controller_Class{
         
        }
        
-        if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_iPass)
-        {
-          if(!ipassMap.containsKey(entity.Charge_Type__r.Name)){
-              system.debug('coming'+entity.Charge_Type__r.Name);
-              MB_Wrapper_Class.IpassChargeType_Wraper objData=new MB_Wrapper_Class.IpassChargeType_Wraper ();
-              objData.chargeTypeName=entity.Charge_Type__r.Name;
-              if(entity.Local_Net_Amount__c !=null){
-              objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
-              }
-              ipassMap.put(entity.Charge_Type__r.Name,objData);
-         
-          }
-          else if(ipassMap.containsKey(entity.Charge_Type__r.Name)){
-             //decimal amount=0;
-             MB_Wrapper_Class.IpassChargeType_Wraper objData=ipassMap.get(entity.Charge_Type__r.Name);
-             ipassMap.remove(entity.Charge_Type__r.Name);
-             if(entity.Local_Net_Amount__c !=null){
-             objData.totalSpend+=entity.Local_Net_Amount__c.setScale(2);
-             objData.chargeTypeName=entity.Charge_Type__r.Name;
-             ipassMap.put(entity.Charge_Type__r.Name,objData);
-        }
-        }
-       }
-       
-       
+      
        if(entity.Usage_Type__r.Name != MB_Constants.Usage_Type_iPass && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Messaging && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Calls && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Data)
         {
             if(!nonusageMap.containsKey(entity.Usage_Type__r.Name)){
@@ -423,16 +413,16 @@ public with sharing class MB_Controller_Class{
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
                                     FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId and Usage_Type__r.Name=:entity.Usage_Type__r.Name]; */
-    		List<MB_Billing_Entity__c> nonUsageBillingEntity=new List<MB_Billing_Entity__c>();
+            List<MB_Billing_Entity__c> nonUsageBillingEntity=new List<MB_Billing_Entity__c>();
                 for(MB_Billing_Entity__c nonUsageBE:billingEntityList1){
                     if(nonUsageBE.Usage_Type__r.Name!=null && nonUsageBE.Usage_Type__r.Name!='' && nonUsageBE.Usage_Type__r.Name==entity.Usage_Type__r.Name){
                         nonUsageBillingEntity.add(nonUsageBE);
                     }
                 }
-                
+                 
             decimal amt=0;
             for(MB_Billing_Entity__c billObj:nonUsageBillingEntity){
-                if(billObj.Local_Net_Amount__c!=null){
+                if(billObj.Local_Net_Amount__c!=null ){
                 System.debug('t.Local_Net_Amount__c---->'+billObj.Local_Net_Amount__c);
                 amt += billObj.Local_Net_Amount__c;
                 }
@@ -453,10 +443,8 @@ public with sharing class MB_Controller_Class{
         objWrapper.dataWrapperList=dataMap.values();
         objWrapper.callsWrapperList=callsMap.values();
         objWrapper.messageWrapperList=messagingMap.values();
-        objWrapper.ipassWrapperList=ipassMap.values();
         objWrapper.nonusageWrapperList=nonusageMap.values();
-        system.debug('@@@@'+objWrapper.ipassWrapperList.size());
-        
+         
         previousDataUsage =0;
         previousCallUsage =0; 
         previousMessageUsage =0;
@@ -467,7 +455,6 @@ public with sharing class MB_Controller_Class{
          previousDataUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Data).setScale(2);
          previousCallUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);
          previousMessageUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Messaging).setScale(2);
-         previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
          previousnonUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
          previouSpend=totalDeviceSpend(previousmonthBillingList,deviceId).setScale(2);
         
@@ -476,10 +463,9 @@ public with sharing class MB_Controller_Class{
         objdevice.userName=userinfo.getfirstname();
         objdevice.totalDataUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Data).setScale(2);
         objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);
-       System.debug('Total Call Usage-->'+objdevice.totalCallUsage);
+        System.debug('Total Call Usage-->'+objdevice.totalCallUsage);
         objdevice.totalMessageUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Messaging).setScale(2);
-        objdevice.totalIpassUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
-       
+        
        
        List<MB_Usage_Type__c> nonUsageTypes=[Select id,Name from MB_Usage_Type__c where Name not in (:'Data',:'Calls',:'Messaging',:'ipass')]; 
        objdevice.totalnonUsage=0;
@@ -488,15 +474,14 @@ public with sharing class MB_Controller_Class{
            objdevice.totalnonUsage+=totalDeviceUsageSpend(currentmonthBillingList,nonUsage.Name).setScale(2);
        }
         
-       objdevice.totalUsage=totalDeviceSpend(currentmonthBillingList,deviceId).setScale(2);
+        objdevice.totalUsage=totalDeviceSpend(currentmonthBillingList,deviceId).setScale(2);
         objdevice.dataVariance=getVariance(objdevice.totalDataUsage,previousDataUsage);
         objdevice.callVariance=getVariance(objdevice.totalCallUsage,previousCallUsage);
         objdevice.smsVariance=getVariance(objdevice.totalMessageUsage,previousMessageUsage);
-        objdevice.ipassVariance=getVariance(objdevice.totalIpassUsage,previousIpassUsage);
         objdevice.nonUsageVariance=getVariance(objdevice.totalnonUsage,previousnonUsage);
         objdevice.totalSpendVariance=getVariance(objdevice.totalUsage,previouSpend);
         objWrapper.objdeviceWrapper=objdevice;
-        
+        System.debug('@@!!'+objWrapper);
         return objWrapper;
         
   }
@@ -584,9 +569,121 @@ if(res.size()>1){
      System.debug('--'+str);
      return str;
     }
-     @AuraEnabled
+    
+    @AuraEnabled
+    public static MB_Wrapper_Class.MB_Device_Wrapper_Class iPassSpendDetailsForUser(String month){
+     System.debug('test#'+ month);
+      List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c, Data_Consumed_In_MB__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name='iPass']; 
+                                  
+      MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperList=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+      wrapperList.iPassTotalAmount=0;
+      for(MB_Billing_Entity__c Total_iPass:billingEntityList)
+      {
+       if(Total_iPass.Local_Net_Amount__c !=null)
+       {
+          wrapperList.iPassTotalAmount +=Total_iPass.Local_Net_Amount__c;
+          System.debug('test##'+Total_iPass.Local_Net_Amount__c);
+       }
+      }
+      wrapperList.userCurrency=CurrencySym();
+      return wrapperList;
+      }
+    @AuraEnabled
+    public static MB_Wrapper_Class  getIpassSpendDetails(string month){
+    System.debug(',,,month--->'+month);
+       string previous=getPreviousMonth(month);
+       List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Usage_Type__r.Name =:'iPass']; 
+       List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
+                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Usage_Type__r.Name =:'iPass']; 
+           
+       List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
+       List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
+       for(MB_Billing_Entity__c entity:billingEntityList){
+         if(entity.Billing_Month__c ==month){
+            currentmonthBillingList.add(entity);
+         }
+         if(entity.Billing_Month__c ==previous){
+            previousmonthBillingList.add(entity);
+         }
+       }
+       
+        
+       Map<string,MB_Wrapper_Class.IpassChargeType_Wraper> ipassMap=new  Map<string,MB_Wrapper_Class.IpassChargeType_Wraper>();
+            for(MB_Billing_Entity__c entity:currentmonthBillingList)
+       {
+       
+        if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_iPass)
+        {
+          if(!ipassMap.containsKey(entity.Charge_Type__r.Name)){
+              system.debug('coming'+entity.Charge_Type__r.Name);
+              MB_Wrapper_Class.IpassChargeType_Wraper objData=new MB_Wrapper_Class.IpassChargeType_Wraper ();
+              objData.chargeTypeName=entity.Charge_Type__r.Name;
+              if(entity.Local_Net_Amount__c !=null){
+              objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
+              }
+              ipassMap.put(entity.Charge_Type__r.Name,objData);
+         
+          }
+          else if(ipassMap.containsKey(entity.Charge_Type__r.Name)){
+             //decimal amount=0;
+             MB_Wrapper_Class.IpassChargeType_Wraper objData=ipassMap.get(entity.Charge_Type__r.Name);
+             ipassMap.remove(entity.Charge_Type__r.Name);
+             if(entity.Local_Net_Amount__c !=null){
+             objData.totalSpend+=entity.Local_Net_Amount__c.setScale(2);
+             objData.chargeTypeName=entity.Charge_Type__r.Name;
+             ipassMap.put(entity.Charge_Type__r.Name,objData);
+        }
+        }
+       }
+       
+       
+        
+        }
+    
+        MB_Wrapper_Class objWrapper=new MB_Wrapper_Class();
+        objWrapper.ipassWrapperList=ipassMap.values();
+         
+        system.debug('@@@@'+objWrapper.ipassWrapperList.size());
+        
+         
+        previousIpassUsage =0;
+       
+        previouSpend =0;
+        
+          
+         previousIpassUsage=totalDeviceUsageSpend(previousmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
+        
+         previouSpend=iPassDeviceSpend(previousmonthBillingList).setScale(2);
+        
+        MB_Wrapper_Class.MB_Device_Wrapper_Class objdevice=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+        objdevice.userCurrency=CurrencySym();
+        objdevice.userName=userinfo.getfirstname();
+         
+        objdevice.totalIpassUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_iPass).setScale(2);
+       
+       
+        
+       objdevice.totalUsage=iPassDeviceSpend(currentmonthBillingList).setScale(2);
+         
+        objdevice.ipassVariance=getVariance(objdevice.totalIpassUsage,previousIpassUsage);
+         
+        objdevice.totalSpendVariance=getVariance(objdevice.totalUsage,previouSpend);
+        objWrapper.objdeviceWrapper=objdevice;
+        
+        return objWrapper;
+        
+  }
+    @AuraEnabled
     public static string getGAID(){      
-        string strgaid = MB_ReportingGA__c.getinstance('MB_GA_Value').MB_GA__c;
+        string strgaid = MB_ReportingGA__c.getinstance('GA_ID').Text_Value__c;
         return strgaid;      
     }
 }

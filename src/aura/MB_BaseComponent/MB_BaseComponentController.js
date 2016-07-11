@@ -285,5 +285,72 @@ getDetail:function(component, event, helper) {
                 }
             }
         }, component);
-    }
+    },
+     gotoIpassCharts:function(component, event, helper){
+        helper.scrollToLocation(component, "top");
+         //alert(event.getParam("CurrentMonth"));
+        var destination = "markup://c:MB_iPass_Charts";
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("content");
+            content.set("v.body", view);
+        }, {
+            componentDef: destination,
+            attributes: {
+                values:{
+                    CurrentMonth:event.getParam("CurrentMonth"),
+                    UsageType:event.getParam("UsageType"),
+                }
+            }
+        }, component);
+    },
+    gotoIpassDetail:function(component, event, helper){
+        helper.scrollToLocation(component, "top");
+         //alert(event.getParam("CurrentMonth"));
+        var destination = "markup://c:MB_iPass_SpendDetails";
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("content");
+            content.set("v.body", view);
+        }, {
+            componentDef: destination,
+            attributes: {
+                values:{
+                    CurrentMonth:event.getParam("CurrentMonth"),
+                }
+            }
+        }, component);
+    },
+    goBacktoIpassDetail:function(component, event, helper){
+        helper.scrollToLocation(component, "top");
+         //alert(event.getParam("CurrentMonth"));
+        var destination = "markup://c:MB_iPass_Charts";
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("content");
+            content.set("v.body", view);
+        }, {
+            componentDef: destination,
+            attributes: {
+                values:{
+                    CurrentMonth:event.getParam("CurrentMonth"),
+                    UsageType:'iPass',
+                }
+            }
+        }, component);
+    },
+    gotoiPassVarience:function(component, event, helper){
+        helper.scrollToLocation(component, "top");
+         //alert(event.getParam("CurrentMonth"));
+        var destination = "markup://c:MB_iPass_Varience";
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("content");
+            content.set("v.body", view);
+        }, {
+            componentDef: destination,
+            attributes: {
+                values:{
+                    CurrentMonth:event.getParam("CurrentMonth"),
+                    usageType:event.getParam("usageType"),
+                }
+            }
+        }, component);
+    },
 })

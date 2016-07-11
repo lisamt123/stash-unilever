@@ -34,8 +34,8 @@ public with sharing Class MB_Controller_Charts{
                totalIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
              }  
             
-           if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass && AvgofCollegueData.iPass_Consumed_In_MB__c!=null){
-               totalAverageIpassUsageIn +=(AvgofCollegueData.iPass_Consumed_In_MB__c).setScale(2);
+           if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
+               totalAverageIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
              } 
      datamap.put('totalIpassUsageIn',totalIpassUsageIn);
      datamap.put('totalAverageIpassUsageIn',totalAverageIpassUsageIn);
@@ -98,17 +98,17 @@ public with sharing Class MB_Controller_Charts{
     return datamap;
  }
              
- public static Map<String,Decimal> getTotaliPass(MB_Billing_Entity__c beObj, Map<Id,string> chargeTypeMap){
+ public static Map<String,Decimal> getTotaliPass(MB_Billing_Entity__c pbeObj, Map<Id,string> chargeTypeMap){
   
   Map<String,Decimal> datamap=new  Map<String,Decimal>();
-     if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains('Domestic')){
-         if(beObj.iPass_Consumed_In_MB__c!=null){
-             totalDomesticIpassUsage+= (beObj.iPass_Consumed_In_MB__c).setScale(2);
+     if(string.valueOf(chargeTypeMap.get(pbeObj.Charge_Type__c)).contains('Domestic')){
+         if(pbeObj.Data_Consumed_In_MB__c!=null){
+             totalDomesticIpassUsage+= (pbeObj.Data_Consumed_In_MB__c).setScale(2);
           }
      }
-         if(string.valueOf(chargeTypeMap.get(beObj.Charge_Type__c)).contains(Roaming_Type)){
-        if(beObj.iPass_Consumed_In_MB__c!=null){
-             totalInternationalIpassUsage+= (beObj.iPass_Consumed_In_MB__c).setScale(2);
+         if(string.valueOf(chargeTypeMap.get(pbeObj.Charge_Type__c)).contains(Roaming_Type)){
+        if(pbeObj.Data_Consumed_In_MB__c!=null){
+             totalInternationalIpassUsage+= (pbeObj.Data_Consumed_In_MB__c).setScale(2);
              System.debug('$$$$$'+totalInternationalIpassUsage);
             }
      }
@@ -130,8 +130,8 @@ public with sharing Class MB_Controller_Charts{
            if(AvgofCollegueData.Messages__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Messaging){
                AverageMessageUsage+=AvgofCollegueData.Messages__c;  
            }  
-           if(AvgofCollegueData.iPass_Consumed_In_MB__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
-                AverageIpassUsage+=AvgofCollegueData.iPass_Consumed_In_MB__c ; 
+           if(AvgofCollegueData.Data_Consumed_In_MB__c!= null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
+                AverageIpassUsage+=AvgofCollegueData.Data_Consumed_In_MB__c; 
            }
      Map<String,Decimal> getColleagueTotalMap=new Map<String,Decimal>();
      getColleagueTotalMap.put(Colleague_Data,AverageDataUsage);
@@ -158,8 +158,8 @@ public with sharing Class MB_Controller_Charts{
            MessageUsage +=AvgofCollegueData.Messages__c;
            System.debug('-------$$----'+MessageUsage );
           }
-         if(AvgofCollegueData.iPass_Consumed_In_MB__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
-           IpassUsage +=AvgofCollegueData.iPass_Consumed_In_MB__c;
+         if(AvgofCollegueData.Data_Consumed_In_MB__c!= null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
+           IpassUsage +=AvgofCollegueData.Data_Consumed_In_MB__c;
            System.debug('-------$$----'+IpassUsage );
            }
      Map<String,Decimal> getUserTotalMap=new Map<String,Decimal>();
@@ -181,19 +181,16 @@ public with sharing Class MB_Controller_Charts{
      wrprobj.totalInternationalCallUsage=0;
      wrprobj.totalDomesticSMSUsage=0;
      wrprobj.totalInternationalSMSUsage=0;
-     wrprobj.totalDomesticIpassUsage=0;
-     wrprobj.totalInternationalIpassUsage=0;
-     
      
      Map<String,Decimal> datamap=new Map<String,Decimal>();
 
   string  country=[SELECT Country FROM User WHERE Id =:userinfo.getuserid() ].Country ;
   System.debug('@#$%'+country);
   List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
+                                    Device_Details__c,Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c
                                     FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND User_Country__c=:country AND Device_Details__c =:deviceId AND Billing_Month__c =: month]; 
-                              
+                          
     List<ID> usageIDlist=new  List<ID>();
     List<ID> chargeIDlist=new  List<ID>();
     for(MB_Billing_Entity__c Idlist:billingEntityList)
@@ -235,16 +232,58 @@ public with sharing Class MB_Controller_Charts{
              wrprobj.totalInternationalSMSUsage=datamap.get('InternationalSMS');
        
              }
-           if(string.valueOf(usageTypeMap.get(beObj.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
-             datamap=getTotaliPass(beObj,chargeTypeMap);
-               wrprobj.totalDomesticIpassUsage=datamap.get('Domesticipass');
-               wrprobj.totalInternationalIpassUsage=datamap.get('Internationalipass');
-             } 
           }  
        } 
        
        return wrprobj;
     }
+     @AuraEnabled              
+ public static MB_Wrapper_Class.MB_Device_Wrapper_Class getiPassChargeType(String month, String UsageType) {
+     System.debug('@mon'+month+'-----'+UsageType);
+     MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+     wrprobj.totalDomesticIpassUsage=0;
+     wrprobj.totalInternationalIpassUsage=0;
+     
+     
+     Map<String,Decimal> datamap=new Map<String,Decimal>();
+
+  string  country=[SELECT Country FROM User WHERE Id =:userinfo.getuserid() ].Country ;
+     
+  List<MB_Billing_Entity__c> iPassbillingEntityList = [SELECT Id, Name,Data_Consumed_In_MB__c, Local_Net_Amount__c,Usage_Type__c,Usage_Type__r.Name,Charge_Type__c,Charge_Type__r.Name, User__c, User_Country__c 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND User_Country__c=:country AND Billing_Month__c =: month AND Usage_Type__r.Name=:UsageType]; 
+                            
+    List<ID> usageIDlist=new  List<ID>();
+    List<ID> chargeIDlist=new  List<ID>();
+    for(MB_Billing_Entity__c Idlist:iPassbillingEntityList )
+    {
+    usageIDlist.add(Id.valueof(Idlist.Usage_Type__c));
+    chargeIDlist.add(Id.valueof(Idlist.Charge_Type__c));
+    }
+     List<MB_Usage_Type__c> usageList=[select id,name from MB_Usage_Type__c where Id in :usageIDlist];
+     List<MB_Charge_Type__c> chargegeList=[select id ,name from MB_Charge_Type__c where Id in :chargeIDlist];
+
+     Map<Id,string> usageTypeMap=new  Map<Id,string>();
+     Map<Id,string> chargeTypeMap=new Map<Id,string>();
+        for(MB_Charge_Type__c charge:chargegeList){
+            chargeTypeMap.put(charge.id,string.valueof(charge.name));
+         }
+         
+          for(MB_Usage_Type__c usage:usageList){
+            usageTypeMap.put(usage.id,string.valueof(usage.name));
+         }
+        System.debug('@@'+iPassbillingEntityList.size());
+        if(iPassbillingEntityList.size()>0){
+        for(MB_Billing_Entity__c pbeObj : iPassbillingEntityList){
+             if(string.valueOf(usageTypeMap.get(pbeObj.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
+             datamap=getTotaliPass(pbeObj,chargeTypeMap);
+               wrprobj.totalDomesticIpassUsage=datamap.get('Domesticipass');
+               wrprobj.totalInternationalIpassUsage=datamap.get('Internationalipass');
+             }  
+       } }
+       System.debug('@dom'+ wrprobj.totalDomesticIpassUsage+'@int'+wrprobj.totalInternationalIpassUsage);
+       return wrprobj;
+    }
+
     @AuraEnabled
      public static MB_Wrapper_Class.MB_Device_Wrapper_Class getyourCollegueChargeType(String month,ID deviceId) {
      System.debug('---#----'+deviceId);
@@ -262,7 +301,7 @@ public with sharing Class MB_Controller_Charts{
     Map<String,Decimal> getUserTotalMap =new Map<String,Decimal>();
         Integer UserCount=0;
        
-       List<MB_Billing_Entity__c> lstCollegueChargeType=[Select Id, Name, Data_Consumed_In_MB__c,Usage_Type__c,Charge_Type__c,User__c,Call_Minutes__c,Messages__c,iPass_Consumed_In_MB__c from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND Device_Details__c =:deviceId ];   
+       List<MB_Billing_Entity__c> lstCollegueChargeType=[Select Id, Name, Data_Consumed_In_MB__c,Usage_Type__c,Charge_Type__c,User__c,Call_Minutes__c,Messages__c from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND Device_Details__c =:deviceId ];   
         System.debug('------------------------'+lstCollegueChargeType);
         Set<Id> userIdSet=new Set<Id>();
         List<ID> usageIDlist=new  List<ID>();
@@ -358,7 +397,7 @@ public with sharing Class MB_Controller_Charts{
     Map<String,Decimal> getUserTotalMap =new Map<String,Decimal>();
         Integer UserCount=0;
        
-       List<MB_Billing_Entity__c> lstCollegueChargeType=[Select Id, Name, Data_Consumed_In_MB__c,Usage_Type__c,Charge_Type__c,User__c,Call_Minutes__c,Messages__c,iPass_Consumed_In_MB__c from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country ];   
+       List<MB_Billing_Entity__c> lstCollegueChargeType=[Select Id, Name, Data_Consumed_In_MB__c,Usage_Type__c,Charge_Type__c,User__c,Call_Minutes__c,Messages__c from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country ];   
         System.debug('------------------------'+lstCollegueChargeType);
         Set<Id> userIdSet=new Set<Id>();
         List<ID> usageIDlist=new  List<ID>();

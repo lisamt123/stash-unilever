@@ -1,5 +1,5 @@
 /***************************************************************
-Class Name: MB_Controller_UsageDetailClass_Test.cls
+Class Name: MB_Controller_IPassVarienceClass_Test.cls
 Copyright © 2016 Salesforce
 
 Purpose:
@@ -12,7 +12,7 @@ VERSION     AUTHOR         DATE              DETAIL Description
 ***************************************************************/
 
 @IsTest
-public class MB_Controller_UsageDetailClass_Test{
+public class MB_Controller_IPassVarienceClass_Test{
   static testMethod void testUsageDetailClass(){
    
   Test.startTest();
@@ -35,9 +35,9 @@ public class MB_Controller_UsageDetailClass_Test{
   {   
       MB_Device_Details__c deviceDetailsObject = new MB_Device_Details__c(Name = 'Nokia Lumia 625');
       insert deviceDetailsObject;
-      MB_Usage_Type__c usageTypeObject1 = new MB_Usage_Type__c(Name = 'Calls');
+      MB_Usage_Type__c usageTypeObject1 = new MB_Usage_Type__c(Name = 'iPass');
       insert usageTypeObject1;
-      MB_Charge_Type__c chargeTypeObject1 = new MB_Charge_Type__c(Name = 'Domestic Outgoing Calls');
+      MB_Charge_Type__c chargeTypeObject1 = new MB_Charge_Type__c(Name = 'Domestic Wi-Fi Offloading');
       insert chargeTypeObject1; 
       MB_Usage_Type__c usageTypeObject2 = new MB_Usage_Type__c(Name = 'NonUsage');
       insert usageTypeObject2;
@@ -116,71 +116,67 @@ public class MB_Controller_UsageDetailClass_Test{
       billingEntityObject8.User__c = UserInfo.getUserId();
       insert billingEntityObject8;
       
-      Decimal totalUsageAmount1 = MB_Controller_UsageDetailClass.getSpendDetails(deviceDetailsObject.Id,billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);
+      Decimal totalUsageAmount1 = MB_Controller_IPassVarienceClass.getSpendDetails(billingEntityObject1.Billing_Month__c,usageTypeObject1.Name);
       System.assertEquals(totalUsageAmount1,25.00); 
       
-      Decimal totalUsageAmount2 = MB_Controller_UsageDetailClass.getSpendDetails(deviceDetailsObject.Id,billingEntityObject5.Billing_Month__c ,usageTypeObject2.Name);
+      Decimal totalUsageAmount2 = MB_Controller_IPassVarienceClass.getSpendDetails(billingEntityObject5.Billing_Month__c ,usageTypeObject2.Name);
       System.assertEquals(totalUsageAmount2,25.00);
      
-      Decimal TotalUsageAmount3 = MB_Controller_UsageDetailClass.getSpendDetailsforchargetype(deviceDetailsObject.Id,billingEntityObject1.Billing_Month__c ,chargeTypeObject1.Name); 
+      Decimal TotalUsageAmount3 = MB_Controller_IPassVarienceClass.getSpendDetailsforchargetype(billingEntityObject1.Billing_Month__c ,chargeTypeObject1.Name); 
       System.assertEquals(totalUsageAmount3,25.00); 
      
-      Decimal TotalUsageAmount4 = MB_Controller_UsageDetailClass.getSpendDetailsforchargetype(deviceDetailsObject.Id,billingEntityObject5.Billing_Month__c ,chargeTypeObject2.Name); 
+      Decimal TotalUsageAmount4 = MB_Controller_IPassVarienceClass.getSpendDetailsforchargetype(billingEntityObject5.Billing_Month__c ,chargeTypeObject2.Name); 
       System.assertEquals(totalUsageAmount4,0.00); 
       
-      String previousBillingPeriod = MB_Controller_UsageDetailClass.getPreviousMonth(billingEntityObject1.Billing_Month__c); 
+      String previousBillingPeriod = MB_Controller_IPassVarienceClass.getPreviousMonth(billingEntityObject1.Billing_Month__c); 
       System.assertEquals(previousBillingPeriod,'December 2015'); 
       
       MB_Billing_Currency__c billingCurrencyObject = new MB_Billing_Currency__c(Name = 'GBP',Symbol__c= 'S1');
       insert billingCurrencyObject;
       
-      MB_Wrapper_Class.UsageAmountType_Wraper wraperObject1 = MB_Controller_UsageDetailClass.getUsageTotalAmount(deviceDetailsObject.Id,billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);
-      System.assertEquals(wraperObject1.chargeTypeName,'Calls'); 
+      MB_Wrapper_Class.UsageAmountType_Wraper wraperObject1 = MB_Controller_IPassVarienceClass.getUsageTotalAmount(billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);
+      System.assertEquals(wraperObject1.chargeTypeName,'iPass'); 
       System.assertEquals(wraperObject1.UsageCurrentAmount,25.00); 
       System.assertEquals(wraperObject1.UsagePreviousAmount,0.00); 
       System.assertEquals(wraperObject1.UsageChangeAmount,25.00); 
       System.assertEquals(wraperObject1.UsageVarience,0); 
       System.assertEquals(wraperObject1.VarianceArrow,1); 
       
-      MB_Wrapper_Class.UsageAmountType_Wraper wraperObject2 = MB_Controller_UsageDetailClass.getUsageTotalAmount(deviceDetailsObject.Id,billingEntityObject2.Billing_Month__c ,usageTypeObject1.Name);
+      MB_Wrapper_Class.UsageAmountType_Wraper wraperObject2 = MB_Controller_IPassVarienceClass.getUsageTotalAmount(billingEntityObject2.Billing_Month__c ,usageTypeObject1.Name);
       System.assertEquals(wraperObject2.UsageCurrentAmount,44.00); 
       System.assertEquals(wraperObject2.UsagePreviousAmount,25.00); 
       System.assertEquals(wraperObject2.UsageChangeAmount,19.00); 
       System.assertEquals(wraperObject2.UsageVarience,76); 
-      System.assertEquals(wraperObject2.VarianceArrow,1);
+      System.assertEquals(wraperObject2.VarianceArrow,1); 
       
-      MB_Wrapper_Class.UsageAmountType_Wraper wraperObject3 = MB_Controller_UsageDetailClass.getUsageTotalAmount(deviceDetailsObject.Id,billingEntityObject4.Billing_Month__c ,usageTypeObject1.Name);
+      MB_Wrapper_Class.UsageAmountType_Wraper wraperObject3 = MB_Controller_IPassVarienceClass.getUsageTotalAmount(billingEntityObject4.Billing_Month__c ,usageTypeObject1.Name);
       System.assertEquals(wraperObject3.UsageCurrentAmount,30.00); 
       System.assertEquals(wraperObject3.UsagePreviousAmount,30.00); 
       System.assertEquals(wraperObject3.UsageChangeAmount,0.00); 
       System.assertEquals(wraperObject3.UsageVarience,0); 
-      System.assertEquals(wraperObject3.VarianceArrow,3);
+      System.assertEquals(wraperObject3.VarianceArrow,3); 
       
-      List<MB_FAQ_List__c> list1 = MB_Controller_UsageDetailClass.getFaqList();
-      System.assertEquals(list1.size(),0); 
+       
       
-      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList1 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);
+      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList1 = MB_Controller_IPassVarienceClass.getSpendDetailsforChargelist(billingEntityObject1.Billing_Month__c ,usageTypeObject1.Name);
       System.assert(wraperList1 != null); 
       
-      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList2 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject2.Billing_Month__c ,usageTypeObject1.Name);
+      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList2 = MB_Controller_IPassVarienceClass.getSpendDetailsforChargelist(billingEntityObject2.Billing_Month__c ,usageTypeObject1.Name);
       System.assert(wraperList2 != null);  
             
-      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList3 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject4.Billing_Month__c ,usageTypeObject1.Name);
+      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList3 = MB_Controller_IPassVarienceClass.getSpendDetailsforChargelist(billingEntityObject4.Billing_Month__c ,usageTypeObject1.Name);
       System.assert(wraperList3 != null); 
       
-      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList4 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject5.Billing_Month__c ,usageTypeObject2.Name);
+      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList4 = MB_Controller_IPassVarienceClass.getSpendDetailsforChargelist(billingEntityObject5.Billing_Month__c ,usageTypeObject2.Name);
       System.assert(wraperList4 != null);  
       
-      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList5 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject6.Billing_Month__c ,usageTypeObject2.Name);
+      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList5 = MB_Controller_IPassVarienceClass.getSpendDetailsforChargelist(billingEntityObject6.Billing_Month__c ,usageTypeObject2.Name);
       System.assert(wraperList5 != null); 
             
-      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList6 = MB_Controller_UsageDetailClass.getSpendDetailsforChargelist(deviceDetailsObject.Id,billingEntityObject8.Billing_Month__c ,usageTypeObject2.Name);
+      List<MB_Wrapper_Class.UsageAmountType_Wraper> wraperList6 = MB_Controller_IPassVarienceClass.getSpendDetailsforChargelist(billingEntityObject8.Billing_Month__c ,usageTypeObject2.Name);
       System.assert(wraperList6 != null); 
       
-      MB_Info_ReportingGA__c reportingGAObject = new MB_Info_ReportingGA__c(Name = 'GA_ID',Text_Value__c= 'IGA');
-      insert reportingGAObject;
-      string strgaid = MB_Controller_UsageDetailClass.getGAID();
-      System.assertEquals(strgaid,'IGA');
+      
   }
   
   Test.stopTest();

@@ -21,6 +21,10 @@
     <aura:handler event="c:MB_Faq_Event" action="{!c.gotoFaqPage}"/>
     <aura:handler event="c:MB_UsageTypeSummary_Event" action="{!c.gotoUsageTypeDetail}"/>
     <aura:handler event="c:MB_SummarySpend_Event" action="{!c.gotoSummarySpend}"/>
+    <aura:handler event="c:MB_IPassDevice_Event" action="{!c.gotoIpassCharts}"/>
+    <aura:handler event="c:MB_iPass_Detail_Event" action="{!c.gotoIpassDetail}"/>
+    <aura:handler event="c:MB_iPass_charts_Event" action="{!c.goBacktoIpassDetail}"/>
+    <aura:handler event="c:MB_iPassUsageVarience_Event" action="{!c.gotoiPassVarience}"/>
     <div aura:id="content"></div>
    
     <aura:if isTrue="{!v.showspinner}">

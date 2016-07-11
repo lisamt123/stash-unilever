@@ -35,6 +35,9 @@ public class MB_Wrapper_Class{
     public class MB_Device_Wrapper_Class{
     
      @AuraEnabled
+     public decimal iPassTotalAmount{get;set;}
+     
+     @AuraEnabled
      public string userName{get;set;}
      
      @AuraEnabled

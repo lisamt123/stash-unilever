@@ -104,20 +104,7 @@
                         	<span class="charttext">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalSMSUsage}</span>
                         </div>
                     </div>
-                </div>
-                <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS (MB)</div>
-                    <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
-                    <div class="chartstext">
-                        <div style="width:25%;float:left">
-                            <div id="pie4" class="sub_carousel"></div>
-                        </div>
-                        <div style="width:39%;float:right;padding: 1.2rem 0.5rem 0 2.3rem;text-align: left;">
-                            <span class="charttext" style="color:#0C8EFF;font-size:10px">DOMESTIC</span><br/><span style="color:#0C8EFF">{!v.result.totalDomesticIpassUsage}MB</span><br/><br/>
-                        	<span class="charttext" style="color:#4F6A92;font-size:10px">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalIpassUsage}MB</span>
-                        </div>
-                    </div>
-                </div>              
+                </div>            
             </div>
         </div>
   <!-- code for column charts -->
@@ -178,24 +165,7 @@
                         </div>
                         
                     </div>
-                </div>
-                <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS  (MB)</div>
-                    <div class="slds-text-body--regular chart_sub">Roaming Data -vs- Roaming iPass</div>
-                   <div class="Insights">
-                        <div class="slds-text-body--regular">
-                            <div class="bar_data">
-                                <div  class="line_bars_ipass"></div>
-                                <div  class="line_bar_ipass"></div>
-                            </div>
-                            <div class="bar_text">
-                                <div Style="color:#0C8EFF"><span class="charttext" >YOU</span><br/><span>{!v.Avgresult.totalIpassUsage}MB</span><br/><br/></div>
-                                <div Style="color:#F88962"><span class="charttext" >YOUR COLLEAGUES</span><br/><span>{!v.Avgresult.totalAverageIpassUsage}MB</span></div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>              
+                </div>           
             </div>
         </div><br/> 
         <c:MB_Action_bar componentName="MB_Devices" selectedMonth="{!v.CurrentMonth}"/>
