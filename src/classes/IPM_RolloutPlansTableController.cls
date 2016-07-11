@@ -372,7 +372,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id, Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Regional_PL__r.smallphotourl,Finance_Member__r.smallphotourl FROM Regional_Project_Rollout__r  where isActive__c = true ';
+            queryString+= ' Id, Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Regional_PL__r.smallphotourl,Finance_Member__r.smallphotourl FROM Regional_Project_Rollout__r  where ( isActive__c = true OR '+ showEntity + ' = true )' ;
             queryString+= ' ORDER BY IPM_Rollout_Project__c), ';
             
             queryString+= ' (SELECT ';
@@ -383,7 +383,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id from IPM_Projects__r  where Is_Archieved__c =: isArchiveFalse';
+            queryString+= ' Id from IPM_Projects__r ';
             if(project.Is_Archieved__c)
             {
                 queryString+= ' where Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
@@ -394,7 +394,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             } 
             queryString+= ' ORDER BY IPM_Project_Name__c) ';
           
-            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan AND Is_Archieved__c =: isArchiveFalse ';
+            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan';
             if(project.Is_Archieved__c)
             {
                 queryString+= '  AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
@@ -475,7 +475,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             
-            queryLocalRolloutString+= 'Id,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Id in:localProjectAssociatedRollouts and isActive__c = true ORDER BY IPM_Rollout_Project__c '; 
+            queryLocalRolloutString+= 'Id,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Id in:localProjectAssociatedRollouts and ( isActive__c = true OR '+ showEntity + ' = true ) ORDER BY IPM_Rollout_Project__c '; 
            
             Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)Database.query(queryLocalRolloutString) );
             
@@ -554,7 +554,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             
-            localRolloutQuery += 'Id FROM IPM_Countries_Local__r where isActive__c = true ) ,Finance_Member__r.SmallPhotoUrl,IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c where isActive__c = true AND  Id in :localRolloutIdSet LIMIT 50000 ';
+            localRolloutQuery += 'Id FROM IPM_Countries_Local__r where ( isActive__c = true OR '+ showEntity + ' = true ) ) ,Finance_Member__r.SmallPhotoUrl,IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c where ( isActive__c = true OR '+ showEntity + ' = true ) AND  Id in :localRolloutIdSet LIMIT 50000 ';
             
             Map<Id,IPM_Project_Rollout__c> localRolloutMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)database.query(localRolloutQuery) );
             
@@ -601,9 +601,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             queryString+= ' Id FROM Local_Rollouts__r';
-            queryString+= ' WHERE Regional_Project__c =: nullRegionalProject AND isActive__c = true';
+            queryString+= ' WHERE Regional_Project__c =: nullRegionalProject AND ( isActive__c = true OR '+ showEntity + ' = true ) ';
             queryString+= ' ORDER BY IPM_Rollout_Project__c),';
-            queryString+= ' IPM_Project__r.IPM_Phase__c, IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setRegionalProjectNames) AND isActive__c = true';
+            queryString+= ' IPM_Project__r.IPM_Phase__c, IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setRegionalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true ) ';
             
         } 
         else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
@@ -616,7 +616,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Regional_Project__c =: projectId AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND isActive__c = true'; 
+            queryString+= ' Id,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Regional_Project__c =: projectId AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
         }       
         
         queryString+= ' ORDER BY IPM_Rollout_Project__c LIMIT 50000';
