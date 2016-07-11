@@ -25,7 +25,7 @@ public with sharing class MB_Controller_Class{
     public static Decimal previousnonUsage {get;set;}
     public static Decimal previouSpend {get;set;}
     public static Decimal totalSpend {get;set;}
-
+    public static final String iPass_Type = 'iPass';
      public static string CurrencySym()
      {
       MB_Billing_Currency__c CurrencySymbol = MB_Billing_Currency__c.getInstance('GBP');
@@ -60,7 +60,7 @@ public with sharing class MB_Controller_Class{
       List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name !=:'iPass' ]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name !=:iPass_Type]; 
                                   
       List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList=new List<MB_Wrapper_Class.MB_Device_Wrapper_Class>();
       set<Id> deviceIds=new set<Id>();
@@ -299,11 +299,11 @@ public with sharing class MB_Controller_Class{
        List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:'iPass']; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:iPass_Type]; 
     List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:'iPass']; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:iPass_Type]; 
        
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
        List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
@@ -576,7 +576,7 @@ if(res.size()>1){
       List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name='iPass']; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name=: iPass_Type]; 
                                   
       MB_Wrapper_Class.MB_Device_Wrapper_Class wrapperList=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
       wrapperList.iPassTotalAmount=0;
@@ -598,11 +598,12 @@ if(res.size()>1){
        List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Usage_Type__r.Name =:'iPass']; 
-       List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Usage_Type__r.Name =:iPass_Type ]; 
+      /* List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Usage_Type__r.Name =:'iPass']; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Usage_Type__r.Name =:'iPass'];
+                                 */ 
            
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
        List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
