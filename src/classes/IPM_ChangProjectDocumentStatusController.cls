@@ -69,8 +69,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
     public id documentSectionId{get;set;}
-    public boolean isEcoDesignSecNegotiable;
-    
+    public string stopDisclaimer{get;set;}
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
@@ -97,6 +96,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT;  
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
         belowThresholdError=false;
+        stopDisclaimer=Label.IPM_StopDisclaimer2;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
         if(projectId!=null)
@@ -106,7 +106,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             if(associatedProjectType!=null)
             {
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
-                        
+                
+                getStopDisclaimer(currentGate);
+                
                 projectDoc=[SELECT Id,IPM_Proposed_Date__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,
                 LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Updated_User_By__c,
                 IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Stopped_Comments__c,IPM_Project__r.IPM_Current_Document_Status__c
@@ -622,6 +624,33 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
       
     }
+    
+    /******************getStopDisclaimer*************/
+	public void getStopDisclaimer(String currentGate)
+	{
+		if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
+		{
+			if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer2;
+			}
+			else
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer4;
+			}
+		}
+		else if(String.isNotBlank(currentGate)) 
+		{
+			if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer;
+			}
+			else
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer3;
+			}
+		}
+	}
     
     /***********************************************************************
     @Description :Used on click of the Submit Button if postpone     

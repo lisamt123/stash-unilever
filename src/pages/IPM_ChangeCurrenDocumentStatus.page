@@ -513,7 +513,10 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>
     <script>
             var IPMApp = {gateStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}',wmessage:'{!$Label.IPM_Unsaved_Alert}', projectId:'{!URLENCODE(projectId)}', projectPhase: '{!project.IPM_Phase__c}', projectDoc:'{!URLENCODE(projectDoc.IPM_GateDocuments__c)}', Stopped:'{!$Label.IPM_GD_STOPPED}', Proposed:'{!$Label.IPM_GD_PROPOSED}', Postponed:'{!$Label.IPM_GD_POSTPONED}', Approved:'{!$Label.IPM_GD_APPROVED}', inProgress:'{!$Label.IPM_IN_PROGRESS}', ApprovedEdit:'{!$Label.IPM_APPROVED_WITH_EDITS}', GateDocumentPage:'{!URLFOR($Page.IPM_GateDocument)}', 
-                StopDeclaimer : '{!JSENCODE($Label.IPM_StopDisclaimer)}', MilestonePage:'{!URLFOR($Page.IPM_GateDocument)}'};
-    </script>
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ChangeCurrenDocumentStatus.js')}" type="text/javascript"></script> 
-</apex:page>
+                StopDeclaimer : '{!JSENCODE(stopDisclaimer)}', MilestonePage:'{!URLFOR($Page.IPM_GateDocument)}'};
+                
+                
+                      
+        </script>
+        <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ChangeCurrenDocumentStatus.js')}" type="text/javascript"></script>  
+    </apex:page>

@@ -9469,7 +9469,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <fullName>IPM_StopDisclaimer</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM_StopDisclaimer</shortDescription>
+        <shortDescription>IPM_StopDisclaimer1</shortDescription>
         <value>This Project will be stopped after 72 hours.
 
 
@@ -9571,5 +9571,43 @@ If you take no further action after 72 hours from now this Project and all its R
         <shortDescription>Return to Wizard</shortDescription>
         <value>Return to Wizard</value>
     </labels>
+     <labels>
+        <fullName>IPM_RegionalRolloutAlertMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_RegionalRolloutAlertMsg</shortDescription>
+        <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page. Once stopped the project cannot be reactivated.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_RemoveAllCountriesForReg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_RemoveAllCountriesForReg</shortDescription>
+        <value>You have chosen to mark all the countries in this MCO as  \&apos;No Rollout\&apos;. This will stop the associated Local rollout project if it exists. Additionally any associated financials at the Regional level will be removed.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_StopDisclaimer2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer2</shortDescription>
+        <value>This project will be stopped after 72 hours. 
 
+After this period only your IPM Business Partner can reactivate this project. 
+
+If you discover that stopping this project was a mistake you can undo this action in the next 72 hours by using the &apos;Cancel Stopping Project&apos; button on the Project Overview Page.&apos;</value>
+    </labels>
+    <labels>
+        <fullName>IPM_StopDisclaimer3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer3</shortDescription>
+        <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_StopDisclaimer4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer4</shortDescription>
+        <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page. Once stopped the project cannot be reactivated.</value>
+    </labels>
 	
