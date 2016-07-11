@@ -4,8 +4,6 @@
         <application>IPM_NG</application>
         <visible>false</visible>
     </applicationVisibilities>
-	
-
     <classAccesses>
         <apexClass>IPM_AddManageSection</apexClass>
         <enabled>false</enabled>
@@ -2420,6 +2418,26 @@
         <field>IPM_CorePara_helps_example__c.IPM_Core_Parameter_example_two__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Country__c.IPM_StoppedByProject__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Country__c.IPM_ShowAtGlobal__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Country__c.IPM_ShowAtRegional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Country__c.IPM_ShowAtLocal__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country__c.AddedAtStage__c</field>
@@ -3255,6 +3273,26 @@
         <field>IPM_Financial_Year__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+	<editable>true</editable>
+	<field>IPM_Financial__c.IPM_ShowAtGlobal__c</field>
+	<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.IPM_StoppedByProject__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.IPM_ShowAtRegional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.IPM_ShowAtLocal__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Financial__c.Added_At_Stage__c</field>
@@ -5920,6 +5958,11 @@
         <field>IPM_Project_Resource_History__c.User_Role__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project_Resource__c.IPM_NotifyProjectStop__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Resource__c.IPM_Category__c</field>
@@ -6000,6 +6043,26 @@
         <field>IPM_Project_Resource__c.Project_Leader__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project_Rollout__c.IPM_StoppedByProject__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project_Rollout__c.IPM_ShowAtGlobal__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project_Rollout__c.IPM_ShowAtRegional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project_Rollout__c.IPM_ShowAtLocal__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Rollout__c.Added_At_Stage__c</field>
@@ -6300,6 +6363,41 @@
         <field>IPM_Project_Template__c.IPM_Template_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_Is_Invoked_From_Rollout__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_ShowProjectStop__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_CancelStoppingProjectTill__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_PrepareForArchival__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_PreviousDocumentStatus__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_StoppedByProject__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_StoppedByUser__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project__c.BETCurrentStatus__c</field>
@@ -7401,6 +7499,11 @@
         <field>IPM_Section__c.ProjectSpan__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Task__c.IPM_StoppedByProject__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Task__c.ExternalField__c</field>

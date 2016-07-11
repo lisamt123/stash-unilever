@@ -477,7 +477,7 @@ private with sharing class IPM_ProjectHelper_Test
      public static testmethod void testForArchivalProject(){
      	List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
 		User globalProjectLeader = null; 
-		User regionalProjectLeader = null; 
+
 	    // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
 	    IPM_TestFactory_Helper.shareMasterProject(userList); 
 	    for(User lUser  :userList)
@@ -485,10 +485,6 @@ private with sharing class IPM_ProjectHelper_Test
 	        if(lUser.lastName == 'GLOBAL_PL')
 	        {
 	            globalProjectLeader = lUser;
-	        }
-	        if(lUser.lastName == 'REGIONAL_PL')
-	        {
-	            regionalProjectLeader = lUser;
 	        }
 	    }
 	    list<IPM_Project__c> projectList = projectDataCreation();
@@ -504,7 +500,7 @@ private with sharing class IPM_ProjectHelper_Test
 	        List<IPM_Project__c> prepareForArchivalProjects = [Select Id,IPM_PrepareForArchival__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,
         													IPM_Document_Update_Comments__c,IPM_Phase__c,IPMProject_Span__c,IPM_Stopped_Comments__c
          												   from IPM_Project__c where Id in:projids and IPM_Parent_Project__c in:projids ];  
-	        system.debug('prepareForArchivalProjects ====>'+prepareForArchivalProjects);
+
 	        //check that regional projects are also in prepare for archival state
 	        for(IPM_Project__c project : prepareForArchivalProjects)
 	        {
@@ -515,10 +511,10 @@ private with sharing class IPM_ProjectHelper_Test
 	       }
 	       /************Project is stopped**************************/
 	       for(IPM_Project__c project : projectList)
-	        {
-	            project.Is_Archieved__c= true;
-	            projids.add(project.id);
-	        }  
+	       {
+	           project.Is_Archieved__c= true;
+	           projids.add(project.id);
+	       
 	        update projectList;
 	        List<IPM_Project__c> archivalProjects = [Select Id,IPM_PrepareForArchival__c,IPM_Stopped_By__c,IPM_Stopped_Phase__c,IPM_Stopped_At_Span__c,Is_Archieved__c,
         													IPM_Document_Update_Comments__c,IPM_Phase__c,IPMProject_Span__c,IPM_Stopped_Comments__c,
@@ -535,7 +531,7 @@ private with sharing class IPM_ProjectHelper_Test
 													        (SELECT id from IPM_Financials_Regional__r where IPM_StoppedByProject__c in:projids limit 10000),
 													        (SELECT id from IPM_Financials_Local__r where IPM_StoppedByProject__c in:projids limit 10000)
          												   from IPM_Project__c where Id in:projids and IPM_Parent_Project__c in:projids ];  
-	        system.debug('archivalProjects ====>'+archivalProjects);
+
 	        //check that regional projects are also in prepare for archival state
 	        for(IPM_Project__c project : archivalProjects)
 	        {
@@ -566,7 +562,7 @@ private with sharing class IPM_ProjectHelper_Test
 													        (SELECT id from IPM_Financials_Regional__r where IPM_StoppedByProject__c in:projids limit 10000),
 													        (SELECT id from IPM_Financials_Local__r where IPM_StoppedByProject__c in:projids limit 10000)
          												   from IPM_Project__c where Id in:projids and IPM_Parent_Project__c in:projids ];  
-	        system.debug('unArchivalProjects ====>'+unArchivalProjects);
+
 	        //check that regional projects are also in prepare for archival state
 	        for(IPM_Project__c project : unArchivalProjects)
 	        {
