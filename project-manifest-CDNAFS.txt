@@ -1,2 +1,2 @@
 src
-src/permissionsets/FS_Sales_Rep.permissionset
+src/permissionsets/FS_Integration_User.permissionset
