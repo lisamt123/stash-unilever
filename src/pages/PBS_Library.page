@@ -16,6 +16,9 @@
         text-indent: -10px;
     
     }
+    ul li{
+      margin-left: 0em !important; 
+    }
 </style>
     <apex:composition template="PBS_Header_Template"></apex:composition>
     <div class="row bodyRow group">
@@ -86,7 +89,7 @@
                     </div>
                     <div class="col-md-9 col-lg-9 table-library">
                     <apex:outputPanel id="theSearchResults" >
-                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover" >
+                        <apex:dataTable value="{!PbsArticleSearchList}" var="article" styleClass="table table-bordered table-striped table-hover" >
                            
                             <apex:column >
                                 <apex:facet name="header">
@@ -141,7 +144,14 @@
                                     <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 5, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
                                 </div>
                             </apex:column>
-                            
+                           
+                             <apex:column styleClass="statsCol">
+                                <apex:facet name="header">Feedback</apex:facet>
+                                  <apex:outputPanel rendered="{!(article.ArticleType == 'PBS_Wiki__kav')}"> <a href="/apex/PBS_WikiFeedbackview?ID={!article.id}" target="_self" title=""><apex:outputText value="View"/></a></apex:outputPanel>
+                                   <apex:outputPanel rendered="{!(article.ArticleType != 'PBS_Wiki__kav')}"><apex:outputText value="No Feedback"/></apex:outputPanel>
+                                
+                            </apex:column>
+                              
                         </apex:dataTable>
                         
                         <nav>

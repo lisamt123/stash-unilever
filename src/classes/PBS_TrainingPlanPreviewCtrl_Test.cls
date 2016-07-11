@@ -153,7 +153,7 @@ private class PBS_TrainingPlanPreviewCtrl_Test extends PBS_LMSBaseController_CC{
                 contRef = cont.requestAccessForTrainingPlan();
                 System.assert(contRef == null);
                 //Confirm request creation
-                //System.assertEquals(1,getTrainingPlanAccessRequestCount(tplan.Id));
+               // System.assertEquals(1,getTrainingPlanAccessRequestCount(tplan.Id));
 
             }
 

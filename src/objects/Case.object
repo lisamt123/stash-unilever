@@ -153,7 +153,7 @@
         <fullName>Brand_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports for the Brands.</description>
         <externalId>false</externalId>
-        <formula>IF(Not(ISBLANK(Case_product_category__c)),&apos;Unilever Corporate&apos;, Case_Brand__c )</formula>
+        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos;, Case_Brand__c )</formula>
         <label>Brand Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1804,6 +1804,16 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Careline.bd@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.philippines@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Philippines</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Comments.Canada@benjerry.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Canada</controllingFieldValues>
@@ -1819,9 +1829,25 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>South Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Consumer-Hotline.Thailand@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Thailand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>consumerproduct@mizkan.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumerrelations.uanz@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Australia</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.cl</fullName>
+                <default>false</default>
+                <controllingFieldValues>Chile</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>consumidor@sac-unilever.com</fullName>
@@ -1840,10 +1866,25 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>consumidor@sac-unilever.com.ar</fullName>
                 <default>false</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.bo</fullName>
+                <default>false</default>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
-                <controllingFieldValues>Chile</controllingFieldValues>
-                <controllingFieldValues>Paraguay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.pe</fullName>
+                <default>false</default>
                 <controllingFieldValues>Peru</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.py</fullName>
+                <default>false</default>
+                <controllingFieldValues>Paraguay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.uy</fullName>
+                <default>false</default>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -1872,6 +1913,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Raabta.upl@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ragu.ca@mizkan.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Canada</controllingFieldValues>
@@ -1897,9 +1943,19 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>Brazil</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>suara.konsumen@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Indonesia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>t2customercare@t2tea.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>tuvankhachhang@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UnileverConsumercare.CA@unilever.com</fullName>
@@ -7037,11 +7093,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Override_From_Address__c</picklist>
             <values>
+                <fullName>Careline%2Ebd%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Comments%2ECanada%40benjerry%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Consumer-Hotline%2EThailand%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Product%2EContactus%40benjerry%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raabta%2Eupl%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7077,6 +7145,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>comments%40talentigelato%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -7089,11 +7161,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>consumerrelations%2Euanz%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecl</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>consumidor%40sac-unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>consumidor%40sac-unilever%2Ecom%2Ear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Ebo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Euy</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7125,7 +7221,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>suara%2Ekonsumen%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>t2customercare%40t2tea%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tuvankhachhang%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7601,11 +7705,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Override_From_Address__c</picklist>
             <values>
+                <fullName>Careline%2Ebd%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Comments%2ECanada%40benjerry%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Consumer-Hotline%2EThailand%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Product%2EContactus%40benjerry%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raabta%2Eupl%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7641,6 +7757,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>comments%40talentigelato%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -7653,11 +7773,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>consumerrelations%2Euanz%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecl</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>consumidor%40sac-unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>consumidor%40sac-unilever%2Ecom%2Ear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Ebo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Epy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>consumidor%40sac-unilever%2Ecom%2Euy</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7689,7 +7833,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>suara%2Ekonsumen%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>t2customercare%40t2tea%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tuvankhachhang%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7720,6 +7872,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
+
         <picklistValues>
             <picklist>Product_Skill__c</picklist>
             <values>
