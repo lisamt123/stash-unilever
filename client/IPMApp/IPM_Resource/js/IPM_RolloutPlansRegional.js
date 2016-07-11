@@ -66,7 +66,10 @@ var jq=jQuery.noConflict();
     {
         generateRollouts(selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString());
     }
-    
+	function invokeCheckLocalAssociationProject()
+	{
+		checkLocalProjectAssociatedOrNot(selectedNoRollouts.toString());
+	}
 /* Below code is to redirect to regional page */
     function setRedirect()
     {
@@ -203,71 +206,91 @@ var jq=jQuery.noConflict();
         e.stopPropagation();
         getRecentCountrySelection();
         getChangedCountries();
-        
+        invokeCheckLocalAssociationProject();
         if(!validateNoRolloutSelectionChange())
         {
             invokeRolloutGeneration();
         }
         else
         {
-            jq('#ipmDeleteModal').modal('show');
-            jq('#ipmDeleteModal .modal-title').text(IPMregionalApp.warningTitle);
-            if(jq(':radio[name ^=grp]').length/3 === selectedNoRollouts.length) {
-                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeAllCountriesWarningMsg); 
-            }
-            else{
-                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeCountryWarningMsg);
-            }
-            jq('#ipmDeleteModal .cancelAction').text(IPMregionalApp.cancelBtnText);
-            jq('#ipmDeleteModal .confirmAction').text(IPMregionalApp.acceptBtnText);
-            
             jq('#ipmDeleteModal .modal-body').css({
             "height": "120px",
             "margin-right": "15px"
             });
-            
-            jq('#ipmDeleteModal .confirmAction').on("click",function(){invokeRolloutGeneration();});
+           
             jq('#ipmDeleteModal .cancelAction').on("click",function(){
                 window.top.location = IPMregionalApp.baseUrl+'?Id='+IPMregionalApp.proid;
             });
         }
     });
-    
-    
+   
+        function showProjectStopDisclaimer()
+        {
+            checkLocalProjectAssociatedOrNot
+            jq('#stopProjectConfirmation').modal('show');
+            jq('#stopProjectConfirmation .modal-title').text(IPMregionalApp.warningTitle);
+            jq('#stopProjectConfirmation .confirmMsg').text(IPMregionalApp.localMRMsg);
+            jq('#stopProjectConfirmation .confirmAction').on("click",function(){invokeRolloutGeneration();});
+        }
     function hilightTaskScript(){
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
     jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
     jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
     jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
+    	function displayMessages()
+    	{
+                var IPMmessageArr1 = {removeCountryFeasCap:'{!removeCountryFeasiCap}',removeCountryOtherFeasCap:'{!removeCountryOtherFeasiCap}', singleCountryAsscoaitedProj:'{!countryRelatedProj}'};
 
-var unsaved = false;
-
-jq(function(){
- /* DOM ready */
-    jq(':input').change(function() {
-        unsaved = true;
-    });
- });     
-function unloadPage()
-{ 
-    if(unsaved){
-        return IPMregionalApp.wmessage;             
-    }
-} 
-
-window.onbeforeunload = unloadPage;
-
-/* Below code is to skip the unsaved changes*/
-function skipValidation() {
-    unsaved = false;
-}
-
-jq("[id*=srchTxt]").keypress(function(){
-    var keyCode = (event.keyCode ? event.keyCode : event.which);
-    if (keyCode === 13) {
-        callsearch();
-        skipValidation();
-        return false;
-    }
-});
+            jq('#ipmDeleteModal').modal('show');
+            jq('#ipmDeleteModal .modal-title').text(IPMregionalApp.warningTitle);
+            if(IPMmessageArr.removeCountryFeasCap == 'true' && IPMmessageArr.singleCountryAsscoaitedProj == 'true')
+            {
+                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.regionalAllCountryMsg);
+            }                                
+            else if(IPMmessageArr.removeCountryOtherFeasCap == 'true' && IPMmessageArr.singleCountryAsscoaitedProj == 'true')
+            {
+                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.localMRMsg);
+            }
+            jq('#ipmDeleteModal .cancelAction').text(IPMregionalApp.cancelBtnText);
+            jq('#ipmDeleteModal .confirmAction').on("click",function(){invokeRolloutGeneration();});  
+    	}
+                    	
+    	function defaultLoading()
+    	{
+    		if(IPMmessageArr.singleCountryAsscoaitedProj == 'false')
+            {
+            	invokeRolloutGeneration();  
+            }	
+    	}
+                    	
+        var unsaved = false;
+                        
+        jq(function(){
+         /* DOM ready */
+            jq(':input').change(function() {
+                unsaved = true;
+            });
+         });     
+        function unloadPage()
+        { 
+            if(unsaved){
+                return IPMregionalApp.wmessage;             
+            }
+        } 
+                            
+        window.onbeforeunload = unloadPage;
+                        
+        /* Below code is to skip the unsaved changes*/
+        function skipValidation() {
+            unsaved = false;
+        }
+                        
+        jq("[id*=srchTxt]").keypress(function(){
+            var keyCode = (event.keyCode ? event.keyCode : event.which);
+            if (keyCode === 13) {
+                callsearch();
+                skipValidation();
+                return false;
+            }
+        });

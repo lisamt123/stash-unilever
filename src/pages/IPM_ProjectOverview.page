@@ -325,7 +325,7 @@
 										<apex:outputPanel layout="block">
 											<div class="documentStatus pl0">
 												<div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
-                                                    <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null, (Now() < project.IPM_CancelStoppingProjectTill__c))}">
+                                                    <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, OR(project.IPM_StoppedByProject__c == null,project.IPM_Is_Invoked_From_Rollout__c), (Now() < project.IPM_CancelStoppingProjectTill__c))}">
                                                         <div class="countDownTimer">Stopping in : <span id="cd_h">00</span>:<span id="cd_m">00</span>:<span id="cd_s">00</span>
 													</div>
 												</apex:outputPanel>
@@ -354,7 +354,7 @@
 											<apex:variable value="true" var="showGreyBorder" />
 										</apex:outputPanel>
                                         
-                                        <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, project.IPM_StoppedByProject__c == null,(Now() < project.IPM_CancelStoppingProjectTill__c))}">
+                                        <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, OR(project.IPM_StoppedByProject__c == null,project.IPM_Is_Invoked_From_Rollout__c) ,(Now() < project.IPM_CancelStoppingProjectTill__c))}">
 											<div class="col-sm-12">
                                                 <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_CancelStoppingProject}"
 													action="{!cancelStoppingProject}" />

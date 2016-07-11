@@ -27,7 +27,12 @@ public with sharing class IPM_UpdateBETOnProject_Queueable implements Queueable 
         }
         catch(Exception ex)
         {
-         	if(ex.getMessage().contains('UNABLE_TO_LOCK_ROW'))
+         	/*Retry logic on unable to lock row - Record currently unavailable errors
+         	  UNABLE_TO_LOCK_ROW
+              Record Currently Unavailable
+              Unable to obtain exclusive access to this record. */ 
+            
+         	if(ex.getMessage().contains('UNABLE_TO_LOCK_ROW') ||ex.getMessage().contains('Record Currently Unavailable') ||ex.getMessage().contains('Unable to obtain exclusive access to this record'))
          	{         	
          		IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
                 updateBETOnProjectQ.betId =betId;

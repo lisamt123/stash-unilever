@@ -1886,6 +1886,8 @@ public class IPM_TestFactory_Helper
         assessment.IPM_Global_Category_Average_View_Water__c =9;
         assessment.IPM_Country__c = countryId;
         assessment.IPM_Project__c = projectId;
+         assessment.IPM_Global_Category_Average_View_HlthHyg__c = 1;
+        assessment.IPM_Global_Category_Average_View_Nutri__c = 1;
         assessment.Project_Phase__c = projPhase;
         
         if(doInsert)

@@ -125,3 +125,134 @@ function hilightTaskScript(){
     jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
     jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
+/*JQUERY: STOPWATCH & COUNTDOWN*/
+jq(document).ready(function() {
+ (function(jq){    
+        jq.extend({            
+            APP : {
+                formatTimer : function(a) {
+                    if (a < 10) {
+                        a = '0' + a;
+                    }                              
+                    return a;
+                }, 
+                startTimer : function(dir) { 
+                    var a;
+                    // save type
+                    jq.APP.dir = dir;
+                    // get current date
+                    jq.APP.d1 = new Date();
+                    
+                    switch(jq.APP.state) {  
+                        case 'pause' :
+                            // resume timer
+                            // get current timestamp (for calculations) and
+                            // substract time difference between pause and now
+                            jq.APP.t1 = jq.APP.d1.getTime() - jq.APP.td;  
+                        break;
+                        default :
+                            // get current timestamp (for calculations)
+                            jq.APP.t1 = jq.APP.d1.getTime(); 
+                            
+                            // if countdown add ms based on seconds in textfield
+                            if (jq.APP.dir === 'cd') {
+                var hms = IPMApp.countDownProjectStop;   // your input string
+                var a1 = hms.split(':'); // split it at the colons
+
+                // minutes are worth 60 seconds. Hours are worth 60 minutes.
+                var seconds_val = (+a1[0]) * 60 * 60 + (+a1[1]) * 60 + (+a1[2]); 
+                jq.APP.t1 += parseInt(seconds_val)*1000;
+              }     
+            break;
+                
+        }                                   
+                    // reset state
+                    jq.APP.state = 'alive';   
+                    jq('#' + jq.APP.dir + '_status').html('Running');
+                    
+                    // start loop
+                    jq.APP.loopTimer();
+                    
+                },
+                loopTimer : function() {
+                    var td;
+                    var d2,t2;
+                    var ms = 0;
+                    var s  = 0;
+                    var m  = 0;
+                    var h  = 0;
+                    
+                    if (jq.APP.state === 'alive') {
+                                
+                        // get current date and convert it into 
+                        // timestamp for calculations
+                        d2 = new Date();
+                        t2 = d2.getTime();   
+                        
+                        // calculate time difference between
+                        // initial and current timestamp
+                        if (jq.APP.dir === 'sw') {
+                            td = t2 - jq.APP.t1;
+                        // reversed if countdown
+                        } else {
+                            td = jq.APP.t1 - t2;
+                            if (td <= 0) {
+                                // if time difference is 0 end countdown
+                                jq.APP.endTimer(function(){
+                                    jq.APP.resetTimer();
+                                    jq('#' + jq.APP.dir + '_status').html('Ended & Reset');
+                                });
+                            }    
+                        }    
+                        
+                        // calculate milliseconds
+                        ms = td%1000;
+                        if (ms < 1) {
+                            ms = 0;
+                        } else {    
+                            // calculate seconds
+                            s = (td-ms)/1000;
+                            if (s < 1) {
+                                s = 0;
+                            } else {
+                                // calculate minutes   
+                                var m = (s-(s%60))/60;
+                                if (m < 1) {
+                                    m = 0;
+                                } else {
+                                    // calculate hours
+                                    var h = (m-(m%60))/60;
+                                    if (h < 1) {
+                                        h = 0;
+                                    }                             
+                                }    
+                            }
+                        }
+                      
+                        // substract elapsed minutes & hours
+                        ms = Math.round(ms/100);
+                        s  = s-(m*60);
+                        m  = m-(h*60);                                
+                        
+                        // update display
+                        //$('#' + $.APP.dir + '_ms').html($.APP.formatTimer(ms));
+                        jq('#' + jq.APP.dir + '_s').html(jq.APP.formatTimer(s));
+                        jq('#' + jq.APP.dir + '_m').html(jq.APP.formatTimer(m));
+                        jq('#' + jq.APP.dir + '_h').html(jq.APP.formatTimer(h));
+                        
+                        // loop
+                        jq.APP.t = setTimeout(jq.APP.loopTimer,1);
+                    } else {
+                    
+                        // kill loop
+                        clearTimeout(jq.APP.t);
+                        return true;
+                    }     
+                }       
+            }
+        });
+       window.onload = function(){
+           jq.APP.startTimer('cd');
+        }           
+    })(jQuery);
+});
