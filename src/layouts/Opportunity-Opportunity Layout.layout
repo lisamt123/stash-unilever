@@ -151,6 +151,10 @@
                 <behavior>Edit</behavior>
                 <field>FS_Self_Collection__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Comment__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

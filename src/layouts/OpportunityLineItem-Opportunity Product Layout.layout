@@ -42,6 +42,10 @@
                 <behavior>Edit</behavior>
                 <field>ApprovalGranted__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Actual__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -118,52 +122,52 @@
                 <field>FS_TPR_percent__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Additional_Discount__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_Additional_Discount__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>FS_Total_TPR__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_GSV_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_GSV__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_NIV_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_NIV__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
+                <field>FS_Turnover__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>FS_TPR__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_Turnover_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_PC__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_PC_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_SC__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_SC_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_SCC__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_SCC_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_GP__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_GP_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_GM__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_GM_TPR__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_GM_when_TPR_equals_zero_percent__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_GM_when_TPR_equals_zero__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
