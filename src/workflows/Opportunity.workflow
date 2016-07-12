@@ -5,10 +5,6 @@
         <description>&quot;Approval request email template&quot; to Step3 approver</description>
         <protected>false</protected>
         <recipients>
-            <recipient>maha.r.bhaskar.reddy@accenture.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
             <recipient>ramesh.suddapalli@accenture.com</recipient>
             <type>user</type>
         </recipients>
@@ -22,10 +18,6 @@
         <protected>false</protected>
         <recipients>
             <recipient>jyotirmoy.sharma@accenture.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>maha.r.bhaskar.reddy@accenture.com</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
