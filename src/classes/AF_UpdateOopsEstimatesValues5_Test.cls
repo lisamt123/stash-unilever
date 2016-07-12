@@ -82,7 +82,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
             }   
             insert AFEntityLst;
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntityLst LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntityLst = new  List<AF_Entity__c>();
@@ -190,7 +190,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
             }   
             insert AFEntityLst;
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntityLst LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntityLst = new  List<AF_Entity__c>();
@@ -301,7 +301,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
             }   
             insert AFEntityLst;
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntityLst LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntityLst = new  List<AF_Entity__c>();
@@ -411,7 +411,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
             }   
             insert AFEntityLst;
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntityLst LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntityLst = new  List<AF_Entity__c>();

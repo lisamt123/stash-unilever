@@ -59,7 +59,7 @@ public class AF_UpdateAgencyEstimatesValues2_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -101,7 +101,7 @@ public class AF_UpdateAgencyEstimatesValues2_Test
             bonMatrixList.add(AFBonusMat[0]);
             //insert Matrix Table.
             List<AF_Matrix_Table__c> MatrixTableList = AF_TestFactory_Helper.insertmatrixtable(1,true);
-            List<AF_Matrix_Table__c> MatrixTableListQuery = [SELECT Id FROM AF_Matrix_Table__c LIMIT 1];
+            List<AF_Matrix_Table__c> MatrixTableListQuery = [SELECT Id FROM AF_Matrix_Table__c where id IN:MatrixTableList LIMIT 1];
             system.assert(MatrixTableListQuery[0].Id!=null ,AF_TestFactory_Helper.MATRIX_RECORD);
             AF_UpdateAgencyEstimatesValues2.UpdateExchageRates(agencylist);
         }
@@ -209,7 +209,7 @@ public class AF_UpdateAgencyEstimatesValues2_Test
             System.assert(MatrixTableLstQuery[0]!=null,AF_TestFactory_Helper.MATRIX_RECORD);
             //insert matrix table
             List<AF_Matrix_Table__c> MatrixTableList1 = AF_TestFactory_Helper.insertmatrixtable(1,true);
-            List<AF_Matrix_Table__c> MatrixTableListQuery1 = [SELECT Id FROM AF_Matrix_Table__c LIMIT 1];
+            List<AF_Matrix_Table__c> MatrixTableListQuery1 = [SELECT Id FROM AF_Matrix_Table__c where id IN:MatrixTableList1 LIMIT 1];
             system.assert(MatrixTableListQuery1[0].Id!=null ,AF_TestFactory_Helper.MATRIX_RECORD);
             AF_UpdateAgencyEstimatesValues2.UpdateExchageRates(agencylist);
         }

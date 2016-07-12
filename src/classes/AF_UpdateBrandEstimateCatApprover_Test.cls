@@ -51,7 +51,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery= [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery= [SELECT id FROM account where ID IN:acc LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
 			//insert contact.
 			con =AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -117,7 +117,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where ID IN:acc  LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
 			 con =AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -184,7 +184,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where ID IN:acc  LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
 			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -252,7 +252,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where ID IN:acc  LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
 			con  = AF_TestFactory_Helper.AFInsertContact(1,true); 
@@ -322,7 +322,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where ID IN:acc  LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
 			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -349,6 +349,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			}
 			insert AFCategoryBrandlist;
 			List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrandlist LIMIT 1];
+			System.Assert(brandQuery!= null, AF_TestFactory_Helper.CATEGORY_RECORD);
 			//Insert BrandEstimate
 			List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
 			list<AF_Brand_Estimate__c> Brandlist=new list<AF_Brand_Estimate__c>();
@@ -400,7 +401,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account 
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where ID IN:acc LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
 			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -428,6 +429,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			}
 			insert AFCategoryBrandlist;
 			List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrandlist LIMIT 1];
+			System.Assert(brandQuery!= null, AF_TestFactory_Helper.CATEGORY_RECORD);
 			//Insert BrandEstimate
 			List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
 			list<AF_Brand_Estimate__c> Brandlist=new list<AF_Brand_Estimate__c>();
@@ -481,7 +483,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		{
 			//Insert Account 
 			List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
-			List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
+			List<Account> acctQuery = [SELECT id FROM account where ID IN:acc  LIMIT 1];
 			System.Assert(acctQuery[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//insert contact.
 			con  = AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -503,6 +505,7 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 			}
 			insert AFCategoryBrandlist;
 			List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrandlist LIMIT 1];
+			System.Assert(brandQuery!= null, AF_TestFactory_Helper.CATEGORY_RECORD);
 			//Insert BrandEstimate
 			List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
 			list<AF_Brand_Estimate__c> Brandlist=new list<AF_Brand_Estimate__c>();

@@ -459,6 +459,7 @@ public class AF_UpdateBonusEstimatesValues5_Test
             }
             insert AFBonusMatNew1;
             List<AF_Bonus_Matrix__c> AFBonusMatQuery1 = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat1 LIMIT 1];
+            System.Assert(AFBonusMatQuery1 != null, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
             // insert Matrix Table.
             List<AF_Matrix_Table__c> MatrixTableLst =AF_TestFactory_Helper.insertmatrixtable(1,false);
             List<AF_Matrix_Table__c> MatrixTableList =new List<AF_Matrix_Table__c>();
