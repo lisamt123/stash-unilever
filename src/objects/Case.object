@@ -3566,6 +3566,186 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_France_Ang_lique</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Angélique</value>
+        </filters>
+        <label>CEC France : Angélique</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Aur_lia</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Aurélia</value>
+        </filters>
+        <label>CEC France : Aurélia</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Aurore</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Aurore</value>
+        </filters>
+        <label>CEC France : Aurore</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Awaiting_Factory_Response</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Awaiting Factory Response</value>
+        </filters>
+        <label>CEC France - Awaiting Factory Response</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Awaiting_Info_from_Consumer</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Awaiting Information from Consumer</value>
+        </filters>
+        <label>CEC France - Awaiting Info from Consumer</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Awaiting_Knowledge_Response</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Awaiting Knowledge Response</value>
+        </filters>
+        <label>CEC France - Awaiting Knowledge Response</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Betty</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Betty</value>
+        </filters>
+        <label>CEC France : Betty</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_France_Cases_In_Progress</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -3582,6 +3762,132 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>In Progress</value>
         </filters>
         <label>CEC France - In Progress</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Escalated</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
+        </filters>
+        <label>CEC France - Escalated</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_M_line</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Méline</value>
+        </filters>
+        <label>CEC France : Méline</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Nad_ge</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Nadège</value>
+        </filters>
+        <label>CEC France : Nadège</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_On_Hold</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>On Hold</value>
+        </filters>
+        <label>CEC France - On Hold</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Pending_with_Courier</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Pending with Courier</value>
+        </filters>
+        <label>CEC France - Pending with Courier</label>
         <language>fr</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
@@ -3640,6 +3946,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_France_Salom</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Salomé</value>
+        </filters>
+        <label>CEC France : Salomé</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_France_all_new_cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Brand__c</columns>
@@ -3676,12 +4009,62 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_France_all_new_cases1</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Brand__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>NAME</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>France</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notEqual</operation>
+            <value>France T.O.</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>notEqual</operation>
+            <value>igea,charrier,verite,berthol,catoire,nicolaudie</value>
+        </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>notEqual</operation>
+            <value>CEC France Queue</value>
+        </filters>
+        <label>CEC France - To be reassigned</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_General_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.EMAIL</field>
+            <operation>notEqual</operation>
+            <value>dotcomemails@unilever.com,noreplyca@unilever.com</value>
         </filters>
         <label>CEC UKI Queue</label>
         <language>en_US</language>
@@ -6862,8 +7245,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>es</language>
     </listViews>
     <listViews>
-        <fullName>DACH_Training_Queue</fullName>
-        <booleanFilter>(2 OR 3) AND 1</booleanFilter>
+        <fullName>DACH_Vacation_Queue_2</fullName>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -6880,14 +7263,39 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>MoTilge</value>
+            <value>AnLasser</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>HoRosent</value>
+            <value>MavonBa</value>
         </filters>
-        <label>DACH Training Queue</label>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>ChTobabe</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>LaReuman</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>GaSwyter</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>MaWilhel</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>InVenzke</value>
+        </filters>
+        <label>DACH Vacation Queue 2</label>
         <language>de</language>
         <sharedTo>
             <role>CEC_Manager_DACH</role>
@@ -7635,7 +8043,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7663,6 +8071,36 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>JuStedin</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>MoTilge</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>AnBludau</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>GuKunkel</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>AnEisens</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>mschn</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>MaSeidel</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
