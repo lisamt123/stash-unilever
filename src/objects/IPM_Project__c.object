@@ -1801,6 +1801,17 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_No_Rollout_Disabled__c</fullName>
+        <description>This is used to disable &apos;No Rollout&apos; and remove delete icon when the local project is past Market Deployment phase.</description>
+        <externalId>false</externalId>
+        <formula>AND( Text(IPMProject_Span__c)==&apos;Local&apos; ,OR(Text(IPM_Phase__c)==&apos;Market Deployment&apos;,Text(IPM_Phase__c)==&apos;PLE&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No Rollout/Delete Disabled</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_No_of_Country_Rollouts__c</fullName>
         <description>To keep count of the number of country rollouts.</description>
         <externalId>false</externalId>
@@ -1992,6 +2003,19 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_PreviouslyStoppedBy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Previously Stopped By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_PreviouslyStopped</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_ProjectGKM__c</fullName>
         <externalId>false</externalId>
         <label>IPM_ProjectGKM</label>
@@ -2052,6 +2076,18 @@ OwnerId))</formula>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ProjectStoppedDatetime__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Stopped Datetime String</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_ProjectSubType__c</fullName>
@@ -2256,18 +2292,6 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Project_Stopped_Time__c</fullName>
-        <description>To get only the stopped time so as to display in email template</description>
-        <externalId>false</externalId>
-        <formula>MID(TEXT(IPM_Stopped_Date_Time__c),12,5)</formula>
-        <label>Project Stopped Time</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Template__c</fullName>
@@ -2522,6 +2546,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProjectPhase__c</fullName>
+        <externalId>false</externalId>
+        <label>Stopped By Project Phase</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_StoppedByProject__c</fullName>

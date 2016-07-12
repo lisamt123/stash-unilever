@@ -6,6 +6,6 @@
     <name>IPM send email to team members when project stopped</name>
     <style>freeForm</style>
     <subject>Your Project {!IPM_Project__c.IPM_Project_Name__c} has been Stopped</subject>
-    <textOnly>Please note, Project {!IPM_Project__c.IPM_Project_Name__c} has been stopped in {!IPM_Project__c.IPM_Phase__c} by {!IPM_Project__c.IPM_StoppedByUser__c} at {!IPM_Project__c.IPM_Project_Stopped_Time__c} on {!IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c}. The Project is no longer active.</textOnly>
+    <textOnly>Please note, Project {!IPM_Project__c.IPM_Project_Name__c} has been stopped in {!IPM_Project__c.IPM_Phase__c} by {!IPM_Project__c.IPM_StoppedByUser__c} at {!IPM_Project__c.00NS0000001TD7f} on {!IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c}. The Project is no longer active.</textOnly>
     <type>html</type>
 </EmailTemplate>

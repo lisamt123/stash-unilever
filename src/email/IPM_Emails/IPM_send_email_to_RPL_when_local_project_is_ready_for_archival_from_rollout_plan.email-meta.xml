@@ -6,6 +6,6 @@
     <name>IPM send email to RPL when local project is ready for archival from rollout plan</name>
     <style>freeForm</style>
     <subject>Your Project {!IPM_Project__c.IPM_Project_Name__c} is Stopping</subject>
-    <textOnly>You have chosen to stop project {!IPM_Project__c.IPM_Project_Name__c} in {!IPM_Project__c.IPM_Phase__c}. You can reverse this decision within 72 hours via the Project Overview Page [{!IPM_Project__c.IPMProjectBaseURL__c}/apex/IPM_ProjectOverview?id={!IPM_Project__c.Id}] before the project is stopped. Once stopped the project cannot be reactivated. The 72 hour period will end on [stop decision time and date plus 72 hours expressed as {!IPM_Project__c.IPM_Project_Stopped_Time__c} {!IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c}.</textOnly>
+    <textOnly>You have chosen to stop project {!IPM_Project__c.IPM_Project_Name__c} in {!IPM_Project__c.IPM_Phase__c}. You can reverse this decision within 72 hours via the Project Overview Page [{!IPM_Project__c.IPMProjectBaseURL__c}/apex/IPM_ProjectOverview?id={!IPM_Project__c.Id}] before the project is stopped. Once stopped the project cannot be reactivated. The 72 hour period will end on {!IPM_Project__c.IPM_ProjectStoppedDatetime__c}.</textOnly>
     <type>html</type>
 </EmailTemplate>
