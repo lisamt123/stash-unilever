@@ -1,11 +1,4 @@
-src
-src/approvalProcesses
-src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
-src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
-src/approvalProcesses/FS_Account_Plan__c.Account_Plan_Approval.approvalProcess
-src/approvalProcesses/FS_Account_Plan__c.FS_Account_Plan_Approval.approvalProcess
-src/approvalProcesses/FS_Defined_Objective__c.Defined_Objective_Approval.approvalProcess
-src/approvalProcesses/Opportunity.FS_MABE_Opportunity_Process.approvalProcess
+
 src
 src/classes
 src/classes/FS_CentrallyLedChildAccount_Picklist.cls
