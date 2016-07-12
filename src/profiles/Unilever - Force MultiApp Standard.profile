@@ -1673,7 +1673,7 @@
         <layout>SuMo_Job_Courses__c-SuMo Job Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>SuMo_PBS_Course__c-SuMo PBS Course Layout</layout>
+        <layout>SuMo_PBS_Course__c-PBS Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Sub_Category__c-Sub Category Layout</layout>
