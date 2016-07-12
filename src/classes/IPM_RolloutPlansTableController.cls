@@ -475,7 +475,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             
-            queryLocalRolloutString+= 'Id,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Id in:localProjectAssociatedRollouts and ( isActive__c = true OR '+ showEntity + ' = true ) ORDER BY IPM_Rollout_Project__c '; 
+            queryLocalRolloutString+= 'Id,Local_Project__r.IPM_No_Rollout_Disabled__c,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Id in:localProjectAssociatedRollouts and ( isActive__c = true OR '+ showEntity + ' = true ) ORDER BY IPM_Rollout_Project__c '; 
            
             Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)Database.query(queryLocalRolloutString) );
             
@@ -616,7 +616,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Regional_Project__c =: projectId AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
+            queryString+= ' Id,Local_Project__r.IPM_No_Rollout_Disabled__c,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Regional_Project__c =: projectId AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
         }       
         
         queryString+= ' ORDER BY IPM_Rollout_Project__c LIMIT 50000';
@@ -986,26 +986,43 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             if(!deleteRolloutList.isEmpty())
             {
+                IPM_Project_Rollout__c deleteRollout = deleteRolloutList[0];
+                if(deleteRollout.Local_Project__c!=null)
+                {
+                    Id associatedLocalProjectId = deleteRollout.Local_Project__c;
+                    String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
+                    String projectWhereClause = ' WHERE Id = :associatedLocalProjectId LIMIT 5000';
+                    projectQuery = projectQuery + projectWhereClause; 
+                    List<IPM_Project__c> toBeArchievedRolloutProjects =  database.query(projectQuery);
                     
-                    if(deleteRolloutList[0].Local_Project__c!=null)
+                    if(!toBeArchievedRolloutProjects.isEmpty())
                     {
-                    	
-                      IPM_Project__c toBeArchievedProject = new IPM_Project__c();
-                      toBeArchievedproject.Id=deleteRolloutList[0].Local_Project__c;
-                      toBeArchievedproject.Is_Archieved__c=true;
-                      toBeArchievedproject.IPM_Is_Invoked_From_Rollout__c =true;
-                      update toBeArchievedProject;
-                    
-						//recalculate TLD when rollout is inactive
-					  Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> ();
-					  rolloutProjectTLDChanged.put(deleteRolloutList[0].id,deleteRolloutList[0]);
-					  IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-					  rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
+                        IPM_Project__c rollOutProj = toBeArchievedRolloutProjects[0];
+                        IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(rollOutProj);
+                        if(currentProjectType != null && String.isNotBlank(currentProjectType.IPM_Gate_Document__c) )
+                        {
+                            rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
+                            rollOutProj.Is_Archieved__c = false;
+                            rollOutProj.IPM_PrepareForArchival__c = true;
+                            update rollOutProj;
+                        }
+                        else
+                        {
+                            rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
+                            rollOutProj.Is_Archieved__c=true;
+                            update rollOutProj;
+                        }
                     }
+                    //recalculate TLD when rollout is inactive
+                    Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> ();
+                    rolloutProjectTLDChanged.put(deleteRolloutList[0].id,deleteRolloutList[0]);
+                    IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+                    rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
+                }
                 else if(deleteRolloutList[0].IPM_CharterApproved__c)
-        		{
-        			deleteRolloutList[0].isActive__c = false; 
-                	update deleteRolloutList[0];
+                {
+                    deleteRolloutList[0].isActive__c = false; 
+                    update deleteRolloutList[0];
                 }
                 else
                 {
@@ -1015,11 +1032,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             //For CRUD
             initialise();
             
-        	PageReference rolloutPlans = Page.IPM_RolloutPlans;
-       		rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
-       		rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_TRUE);               
-        	rolloutPlans.setRedirect(true);
-        	return rolloutPlans;
+            PageReference rolloutPlans = Page.IPM_RolloutPlans;
+            rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
+            rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_TRUE);               
+            rolloutPlans.setRedirect(true);
+            return rolloutPlans;
             
                         
         } 
