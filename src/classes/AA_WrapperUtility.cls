@@ -79,6 +79,7 @@ global class AgentReportDataResponse extends AA_BaseApplicationWrapperObj{
             public List<aa_Agent_App_Brand_Category__c> selectedCompetitorCategoryOnBrand;
             public List<aa_Topic__c> topicList;
             public String agentReportId;
+           // public String googleApiVaue;
             public List<sObject>  autocompleteList;
     }
         
