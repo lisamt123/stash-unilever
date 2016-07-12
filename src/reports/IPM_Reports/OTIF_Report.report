@@ -93,7 +93,7 @@
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Scoping_Complete__c</field>
     </columns>
-	<columns>
+    <columns>
         <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_Charter__c</field>
     </columns>
     <columns>
@@ -101,9 +101,6 @@
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Contract_Price__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Base_II__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$Contract_Communication__c</field>
