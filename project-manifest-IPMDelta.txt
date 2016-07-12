@@ -1,6 +1,7 @@
 src
 src/classes
-src/classes/IPM_ProjectDocumentSectionController.cls
-src/classes/IPM_ProjectDocumentSectionController.cls-meta.xml
-src/classes/IPM_ProjectHandler.cls
-src/classes/IPM_ProjectHandler.cls-meta.xml
+src/classes/IPM_ProjectHelper_Test.cls
+src/classes/IPM_ProjectHelper_Test.cls-meta.xml
+src/staticresources
+src/staticresources/IPM_Resource.resource
+src/staticresources/IPM_Resource.resource-meta.xml
