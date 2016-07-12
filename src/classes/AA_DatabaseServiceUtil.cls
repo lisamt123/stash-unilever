@@ -112,7 +112,7 @@ public with sharing class AA_DatabaseServiceUtil {
 
         //intro
         ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
-        textSegment.text = 'New Agent Report by123 '+reportCreatorName ;
+        textSegment.text = 'New Agent Report by '+reportCreatorName ;
         feedItemInput.body.messageSegments.add(textSegment);
         ConnectApi.TextSegmentInput textSegment2 = new ConnectApi.TextSegmentInput();
         textSegment2.text = ': ' + postText+' ';

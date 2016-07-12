@@ -6,7 +6,6 @@ global with sharing class AA_RemoteServiceCallController {
         
         try{ 
             system.debug('in remote service call controller'+serviceName);
-            system.debug('requstbody'+constructRequestBody(serviceJSONObject, serviceName, requestType,''));
             responseObj = AA_BaseApplicationServices.invokeService(constructRequestBody(serviceJSONObject, serviceName, requestType,''));
             
         }catch(Exception e){  
@@ -31,7 +30,6 @@ global with sharing class AA_RemoteServiceCallController {
     private static AA_ApplicationWrapperObj constructRequestBody(String serviceJSONObject,String serviceName,String requestType,String urlParameter){
         AA_ApplicationWrapperObj appWrapperObj = new AA_ApplicationWrapperObj();
         try{
-        	system.debug('in costructrequestbody');
             appWrapperObj.serviceJSONObjectasString = serviceJSONObject;
             appWrapperObj.serviceName = serviceName;
             appWrapperObj.requestType = requestType;
@@ -40,7 +38,7 @@ global with sharing class AA_RemoteServiceCallController {
             //throw new BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method ',baseAppEx);
             system.debug('Exception'+e);
         }
-        system.debug('return appWrapperObj'+appWrapperObj);
+        
         return appWrapperObj;
     }
 

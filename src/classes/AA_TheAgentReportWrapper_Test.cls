@@ -15,9 +15,9 @@ private class AA_TheAgentReportWrapper_Test {
      * @modifiedby  -
      */   
     static testMethod void myUnitTest() {
-      // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-       //Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-       //Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
+       Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+       Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
        
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
@@ -57,7 +57,7 @@ private class AA_TheAgentReportWrapper_Test {
        
        
        AA_TheAgentReportWrapper obj = new AA_TheAgentReportWrapper();
-       //AA_TheAgentReportWrapper obj1 = new AA_TheAgentReportWrapper(unileverReport);
+       AA_TheAgentReportWrapper obj1 = new AA_TheAgentReportWrapper(unileverReport);
      
        
        aa_Agent_Report__c report=new aa_Agent_Report__c(Report__c='test test');
@@ -66,9 +66,9 @@ private class AA_TheAgentReportWrapper_Test {
        aa_Agent_Report__c report1=new aa_Agent_Report__c(Report__c='test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest t testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtesttest');
        obj.display_report_summary(report1);
       
-       //aa_Agent_Report__c report2=new aa_Agent_Report__c(report_title__c='test');
+       aa_Agent_Report__c report2=new aa_Agent_Report__c(report_title__c='test');
       
-       //StaticResource res=new StaticResource(Name='test');     
+       StaticResource res=new StaticResource(Name='test');     
        
       
       AA_TheAgentReportWrapper.GetResourceURL('test');
