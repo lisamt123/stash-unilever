@@ -364,7 +364,7 @@ private with sharing class IPM_ProjectHelper_Test
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         List<IPM_Project__c> projectList=new List<IPM_Project__c>();
         User globalProjectLeader = null;
-        User regionalProjectLeader = null;
+
         Test.startTest();
 		    // Get the list of user's for project leaders.
 		    List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
@@ -376,10 +376,7 @@ private with sharing class IPM_ProjectHelper_Test
 		        {
 		            globalProjectLeader = lUser;
 		        }
-		        else if(lUser.lastName == 'REGIONAL_PL')
-		        {
-		            regionalProjectLeader = lUser;
-		        }
+		        
 		    }
 		    System.RunAs(globalProjectLeader)
 		    {
@@ -398,7 +395,7 @@ private with sharing class IPM_ProjectHelper_Test
 		        // Get Standard Milestones from database  
 		        System.assert(standardMileStoneMap.values().size() > 0,'Project Milestones not generated');
 		        
-		        List<IPM_Project_Rollout__c> regionalRolloutList = createRegionalRollout(projectList,globalProjectLeader,regionalProjectLeader);
+		        
 		        /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
 		         // Set GateKeeping Model as RCLT and start with Regional Project Creation.
 		        for(IPM_Project__c project : projectList)
@@ -488,7 +485,7 @@ private with sharing class IPM_ProjectHelper_Test
      public static testmethod void testForArchivalProject(){
      	List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
 		User globalProjectLeader = null; 
-		User regionalProjectLeader = null; 
+		
 	    // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
 	    IPM_TestFactory_Helper.shareMasterProject(userList); 
 	    for(User lUser  :userList)
@@ -497,10 +494,7 @@ private with sharing class IPM_ProjectHelper_Test
 	        {
 	            globalProjectLeader = lUser;
 	        }
-	        if(lUser.lastName == 'REGIONAL_PL')
-	        {
-	            regionalProjectLeader = lUser;
-	        }
+	    
 	    }
 	    list<IPM_Project__c> projectList = projectDataCreation();
 	    set<id> projids = new set<id>();
