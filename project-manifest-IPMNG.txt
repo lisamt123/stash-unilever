@@ -1,5 +1,9 @@
 src
 src/classes
+src/classes/IPM_ProjectSetUpController.cls
+src/classes/IPM_ProjectSetUpController.cls-meta.xml
+src/classes/IPM_ProjectSetUpController_Test.cls
+src/classes/IPM_ProjectSetUpController_Test.cls-meta.xml
 src/classes/AbstractStandardSetExtension.cls
 src/classes/AbstractStandardSetExtension.cls-meta.xml
 src/classes/IPM_BD_BB_Report_Batch.cls
@@ -374,6 +378,8 @@ src/objects/IPM_Section__c.object
 src/objects/IPM_Task__c.object
 src/objects/IPM_User_Profile__c.object
 src/pages
+src/pages/IPM_ProjectSetUpView.page
+src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_AddMilestone.page
 src/pages/IPM_AddMilestone.page-meta.xml
 src/pages/IPM_AddTaskNew.page
