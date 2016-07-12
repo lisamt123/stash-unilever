@@ -1235,15 +1235,31 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	
     /***********************************************************************
     @Description: This method will be invoked on click of 'Save And Continue' button from Project Setup page. This method is responsible to revert the project
-    			  to unArchieve status(Activate the project).      
+    			  to unArchieve status(Activate the project). and Project Document status will also be set the previous gate document status.       
     @param: none
     @return: void
     **********************************************************************/
     public PageReference saveProject()
-	{
+    {	
+    	System.savePoint sp = Database.setSavePoint();
     	try
-	
-	{
+    	{	
+    		IPM_project_Document__c currentProjectDocuement = null;
+    	    // get the current project type
+	        IPM_Project_Type__c currentProjecttype =  IPM_Utils.retrieveProjectType(project);
+	        String currentGateDocuementName = null;
+	        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
+	            currentGateDocuementName = currentProjecttype.IPM_Gate_Document__c;
+	        }
+    		
+    		currentProjectDocuement = [Select Id, IPM_Document_Status__c from IPM_project_Document__c WHERE IPM_Project__c =:project.Id AND IPM_GateDocuments__c =: currentGateDocuementName];
+    		
+    		if(currentProjectDocuement != null){
+    			currentProjectDocuement.IPM_Document_Status__c = project.IPM_PreviousDocumentStatus__c;
+    			
+    			update currentProjectDocuement; 
+    		}
+    		
     		if(project.Is_Archieved__c){
 	    		project.Is_Archieved__c	 = false; 
 	    		update project;
@@ -1258,7 +1274,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
          	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTCONTROLLER_STR,
                         'saveProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-	}
+            Database.Rollback(sp);             
+        }
        return null;
 	}
 }
