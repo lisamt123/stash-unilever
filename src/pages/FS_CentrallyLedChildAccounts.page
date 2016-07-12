@@ -1,19 +1,43 @@
-<apex:page standardcontroller="Task" extensions="FS_CentrallyLedChildAccount_Picklist" rendered="{!task.Task_Type__c=='Centrally Led'}">
-     <apex:form >        
-     <apex:actionRegion >
-     <apex:panelGrid >
-     <apex:outputLabel >Please select child account on which you need activities to be created : </apex:outputLabel> 
-     <br/>
-     <apex:selectList value="{!CentrallyLedList}" multiselect="true">
-     <apex:selectOptions value="{!ChildAccountList}"/>
-     </apex:selectList>
-     <br/>
-     <apex:panelGrid >
-     <apex:outputLabel >After click on create task please visit to respective child account to check..</apex:outputLabel>
-     <br/>
-     <apex:commandButton value="Create Task" action="{!CreateTask}"/>     
-     </apex:panelGrid>         
-     </apex:panelGrid>
-     </apex:actionRegion>      
-     </apex:form>
- </apex:page>
+<apex:page standardcontroller="Task" extensions="FS_CentrallyLedChildAccount_Picklist" rendered="{!task.Task_Type__c=='Centrally Led'}">        
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1">  
+            <apex:actionRegion >
+                <apex:panelGrid columns="2" style="width:80%;hight=100%;">
+                    <apex:panelGroup >
+                       <apex:panelGrid columns="1" style="width:200px;hight:200px;"> 
+                            <apex:outputLabel >List of Child accounts :</apex:outputLabel>
+                            <br/>
+                            <apex:selectList value="{!CentrallyLedList}" multiselect="true" style="width:100%;hight:100%;">
+                                <apex:selectOptions value="{!ChildAccountList}"/>
+                            </apex:selectList>
+                            <br/>
+                            <apex:commandButton value="Create Task" action="{!CreateTask}" reRender="ChildAccountTask,PageMessages"/>
+                        </apex:panelGrid>
+                    </apex:panelGroup>   
+                    <apex:outputPanel title="List of child account tasks" id="ChildAccountTask" style="width:80%;hight:100%;"> 
+                        <apex:outputLabel >Centrally led task created for below accounts:</apex:outputLabel>
+                        <br/><br/>
+                        <apex:dataTable value="{!ChildAccountTaskList}" var="ChdAccTask">
+                            <apex:column headerValue="Account Name">    
+                                <apex:outputLink value="/{!ChdAccTask.accountid}" target="_blank">
+                                    <apex:outputText value="{!ChdAccTask.account.name}"/>
+                                </apex:outputLink>
+                            </apex:column>
+                            <apex:column />
+                            <apex:column headerValue="Task">
+                                <apex:outputLink value="/{!ChdAccTask.id}" target="_blank">
+                                    <apex:outputText value="Click Here"/>
+                                </apex:outputLink>
+                            </apex:column>        
+                        </apex:dataTable>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="PageMessages">
+                        <apex:pageMessages />
+                    </apex:outputPanel>
+                </apex:panelGrid>
+            </apex:actionRegion>
+                 </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

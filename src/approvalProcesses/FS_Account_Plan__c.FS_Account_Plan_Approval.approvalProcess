@@ -52,7 +52,7 @@
             <value>Approval Requested</value>
         </criteriaItems>
         <criteriaItems>
-            <field>FS_Account_Plan__c.FS_No_of_Objectives__c</field>
+            <field>FS_Account_Plan__c.No_of_Objectives__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
     </entryCriteria>
@@ -62,26 +62,26 @@
             <type>Alert</type>
         </action>
         <action>
-            <name>Update_Account_Plan_status</name>
+            <name>FS_UpdateAccountPlanStatusApproved</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>Update_Approved_Checkbox</name>
+            <name>FS_UpdateApprovedCheckbox</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
-    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
             <name>Email_alert_to_account_plan_owner_for_rejection</name>
             <type>Alert</type>
         </action>
         <action>
-            <name>Update_Account_Plan_status_rejected</name>
+            <name>FS_UpdateAccountPlanStatus</name>
             <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
-    <finalRejectionRecordLock>true</finalRejectionRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>FS_Account Plan Approval</label>
     <nextAutomatedApprover>
         <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>

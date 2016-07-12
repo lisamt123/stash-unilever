@@ -46,7 +46,7 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>Update_Account_Status</name>
+            <name>FS_UpdateAccountStatus</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>

@@ -30,27 +30,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>FS_UpdateStatus</fullName>
-        <description>It is updating Status to Active</description>
-        <field>FS_Status__c</field>
-        <literalValue>Approved</literalValue>
-        <name>Update Status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Account_Plan_status</fullName>
-        <description>It is used to update status of account plan with Approved</description>
-        <field>FS_Status__c</field>
-        <literalValue>Approved</literalValue>
-        <name>Update Account Plan status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Account_Plan_status_rejected</fullName>
+        <fullName>FS_UpdateAccountPlanStatus</fullName>
         <description>It is used to update account plan status with Planning</description>
         <field>FS_Status__c</field>
         <literalValue>Planning</literalValue>
@@ -60,11 +40,31 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_Approved_Checkbox</fullName>
+        <fullName>FS_UpdateAccountPlanStatusApproved</fullName>
+        <description>It is used to update status of account plan with Approved</description>
+        <field>FS_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Account Plan status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FS_UpdateApprovedCheckbox</fullName>
         <description>It is used to update Approved checkbox on account plan</description>
         <field>approved__c</field>
         <literalValue>1</literalValue>
         <name>Update Approved Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FS_UpdateStatus</fullName>
+        <description>It is updating Status to Active</description>
+        <field>FS_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Status</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>

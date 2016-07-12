@@ -1233,18 +1233,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_Temporary_TPR__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>Temporary Price Reduction set for the product when calculating TPR in Opportunities</description>
-        <externalId>false</externalId>
-        <label>Temporary TPR</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>FS_Thrust__c</fullName>
         <description>Purpose : Locally maintained grouping of products for reporting
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
@@ -1406,6 +1394,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_temporaryTPR__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Temporary Price Reduction set for the product when calculating TPR in Opportunities</description>
+        <externalId>false</externalId>
+        <label>Temporary TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Family</fullName>

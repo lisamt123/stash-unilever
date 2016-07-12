@@ -204,26 +204,6 @@
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
-        <fullName>FS_Cases_piece__c</fullName>
-        <externalId>false</externalId>
-        <label>Cases/piece</label>
-        <picklist>
-            <picklistValues>
-                <fullName>piece</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>box</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>FS_Comment__c</fullName>
         <externalId>false</externalId>
         <label>Comment</label>
@@ -233,41 +213,10 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>FS_Date_of_Send__c</fullName>
+        <fullName>FS_DateOfSend__c</fullName>
         <defaultValue>TODAY()</defaultValue>
         <externalId>false</externalId>
         <label>Date of Send</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>FS_Distributor__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Distributor</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>Account.Type</field>
-                <operation>equals</operation>
-                <value>Distributor</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Distributor Opportunities</relationshipLabel>
-        <relationshipName>Opportunities</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>FS_End_Date_TPR__c</fullName>
-        <externalId>false</externalId>
-        <label>End Date TPR</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -311,7 +260,148 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_Internal_Order__c</fullName>
+        <fullName>FS_LumpSum__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
+        <label>Lump Sum</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_MSCS__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_LumpSum__c  /  FS_TotalNumberOfCases__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MS/CS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_NoOFSampleOrders__c</fullName>
+        <externalId>false</externalId>
+        <label>No OF Sample Orders</label>
+        <summaryFilterItems>
+            <field>OpportunityLineItem.FS_Sample__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_ReasonDescription__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Description</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_SiebelID__c</fullName>
+        <externalId>false</externalId>
+        <label>Siebel ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_TotalNumberOfCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Number of Cases</label>
+        <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TradeProContractID__c</fullName>
+        <externalId>false</externalId>
+        <label>TradePro Contract ID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_casesPiece__c</fullName>
+        <externalId>false</externalId>
+        <label>Cases/piece</label>
+        <picklist>
+            <picklistValues>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>box</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_distributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Distributor</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.Type</field>
+                <operation>equals</operation>
+                <value>Distributor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Distributor Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_endDateTPR__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date TPR</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_internalOrder__c</fullName>
         <externalId>false</externalId>
         <label>Internal Order</label>
         <picklist>
@@ -351,7 +441,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_Kind_of_TPR__c</fullName>
+        <fullName>FS_kindOfTPR__c</fullName>
         <externalId>false</externalId>
         <label>Kind of TPR</label>
         <required>false</required>
@@ -360,45 +450,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>FS_LumpSum__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
-        <label>Lump Sum</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_MSCS__c</fullName>
-        <externalId>false</externalId>
-        <formula>FS_LumpSum__c  /  FS_TotalNumberOfCases__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>MS/CS</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_NoOFSampleOrders__c</fullName>
-        <externalId>false</externalId>
-        <label>No OF Sample Orders</label>
-        <summaryFilterItems>
-            <field>OpportunityLineItem.FS_Sample__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </summaryFilterItems>
-        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>FS_Pre_paid__c</fullName>
+        <fullName>FS_prePaid__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Pre-paid</label>
@@ -407,27 +459,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FS_Rate__c</fullName>
-        <externalId>false</externalId>
-        <label>Rate</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_ReasonDescription__c</fullName>
-        <externalId>false</externalId>
-        <label>Reason Description</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>FS_Self_Collection__c</fullName>
+        <fullName>FS_selfCollection__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Self-Collection</label>
@@ -436,18 +468,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FS_SiebelID__c</fullName>
-        <externalId>false</externalId>
-        <label>Siebel ID</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_Start_Date_TPR__c</fullName>
+        <fullName>FS_startDateTPR__c</fullName>
         <description>TPR Calculation: Indicates the start date for TPR</description>
         <externalId>false</externalId>
         <label>Start Date TPR</label>
@@ -455,27 +476,6 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>FS_TotalNumberOfCases__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Number of Cases</label>
-        <summarizedField>OpportunityLineItem.Quantity</summarizedField>
-        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>FS_TradeProContractID__c</fullName>
-        <externalId>false</externalId>
-        <label>TradePro Contract ID</label>
-        <length>40</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IsPrivate</fullName>
@@ -1213,7 +1213,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <businessProcess>NA FS Sales Process</businessProcess>
         <label>FS Opportunity</label>
         <picklistValues>
-            <picklist>FS_Cases_piece__c</picklist>
+            <picklist>FS_casesPiece__c</picklist>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>
@@ -1224,7 +1224,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Internal_Order__c</picklist>
+            <picklist>FS_internalOrder__c</picklist>
             <values>
                 <fullName>40002843 TPRs of Chains team_RUS</fullName>
                 <default>true</default>
@@ -1515,7 +1515,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <businessProcess>NA FS Sales Process</businessProcess>
         <label>Opportunity with Pricing (MA-BE)</label>
         <picklistValues>
-            <picklist>FS_Cases_piece__c</picklist>
+            <picklist>FS_casesPiece__c</picklist>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>
@@ -1526,7 +1526,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Internal_Order__c</picklist>
+            <picklist>FS_internalOrder__c</picklist>
             <values>
                 <fullName>40002843 TPRs of Chains team_RUS</fullName>
                 <default>true</default>
@@ -1818,7 +1818,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <description>Record to store existing volumes</description>
         <label>NFS Actuals</label>
         <picklistValues>
-            <picklist>FS_Cases_piece__c</picklist>
+            <picklist>FS_casesPiece__c</picklist>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>
@@ -1829,7 +1829,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Internal_Order__c</picklist>
+            <picklist>FS_internalOrder__c</picklist>
             <values>
                 <fullName>40002843 TPRs of Chains team_RUS</fullName>
                 <default>true</default>
@@ -2165,7 +2165,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <fullName>Opportunity_Start_Date_TPR_validation</fullName>
         <active>true</active>
         <description>Start Date TPR must not be more than 2 days after Date of Send</description>
-        <errorConditionFormula>( FS_Start_Date_TPR__c -  FS_Date_of_Send__c ) &gt; 2</errorConditionFormula>
+        <errorConditionFormula>( FS_startDateTPR__c -  FS_DateOfSend__c ) &gt; 2</errorConditionFormula>
         <errorMessage>Did you choose correct Start Date?</errorMessage>
     </validationRules>
     <validationRules>

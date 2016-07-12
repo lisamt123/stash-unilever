@@ -21,7 +21,7 @@
         <template>FS_Email_Templates/FS_Defined_Objectives_Rejected</template>
     </alerts>
     <fieldUpdates>
-        <fullName>Update_Approved_for_defined_objective</fullName>
+        <fullName>FS_UpdateApprovedOfDefObj</fullName>
         <description>It is used to update Approved field on defined objective</description>
         <field>Approved__c</field>
         <literalValue>1</literalValue>
@@ -31,7 +31,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_Defined_objective_status</fullName>
+        <fullName>FS_UpdateDefinedObjectiveStatus</fullName>
         <description>It is used to cheange the status on defined objective when rejected</description>
         <field>Status__c</field>
         <literalValue>Planning</literalValue>
@@ -41,7 +41,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_status_on_defined_objective</fullName>
+        <fullName>FS_UpdateStatusOnDefObj</fullName>
         <description>Is is used to update status on defined objective</description>
         <field>Status__c</field>
         <literalValue>Approved</literalValue>

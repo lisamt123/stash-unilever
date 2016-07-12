@@ -77,11 +77,11 @@
             <type>Alert</type>
         </action>
         <action>
-            <name>Update_Approved_for_defined_objective</name>
+            <name>FS_UpdateApprovedOfDefObj</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>Update_status_on_defined_objective</name>
+            <name>FS_UpdateStatusOnDefObj</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
@@ -92,7 +92,7 @@
             <type>Alert</type>
         </action>
         <action>
-            <name>Update_Defined_objective_status</name>
+            <name>FS_UpdateDefinedObjectiveStatus</name>
             <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>

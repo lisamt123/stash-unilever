@@ -48,7 +48,7 @@
     <fields>
         <fullName>Additional_Discount_DEL__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( Opportunity.FS_Pre_paid__c = FALSE &amp;&amp;  Opportunity.FS_Self_Collection__c = FALSE, 0,  IF(Opportunity.FS_Pre_paid__c = FALSE &amp;&amp;  Opportunity.FS_Self_Collection__c = TRUE,  0.01,  IF(Opportunity.FS_Pre_paid__c = TRUE &amp;&amp;  Opportunity.FS_Self_Collection__c = FALSE, 0.02,  IF(Opportunity.FS_Pre_paid__c = TRUE &amp;&amp;  Opportunity.FS_Self_Collection__c = TRUE, 0.03, 0) ) ) )</formula>
+        <formula>IF( Opportunity.FS_prePaid__c = FALSE &amp;&amp;  Opportunity.FS_selfCollection__c = FALSE, 0,  IF(Opportunity.FS_prePaid__c = FALSE &amp;&amp;  Opportunity.FS_selfCollection__c = TRUE,  0.01,  IF(Opportunity.FS_prePaid__c = TRUE &amp;&amp;  Opportunity.FS_selfCollection__c = FALSE, 0.02,  IF(Opportunity.FS_prePaid__c = TRUE &amp;&amp;  Opportunity.FS_selfCollection__c = TRUE, 0.03, 0) ) ) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL Additional Discount</label>
         <precision>18</precision>
@@ -139,15 +139,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_Additional_Discount__c</fullName>
-        <externalId>false</externalId>
-        <label>Additional Discount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>FS_BR3__c</fullName>
         <externalId>false</externalId>
         <label>BR3</label>
@@ -170,7 +161,7 @@
     <fields>
         <fullName>FS_DSTMI__c</fullName>
         <externalId>false</externalId>
-        <formula>UnitPrice *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
+        <formula>PricebookEntry.FS_Bracket_1__c *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DS TMI/Cs</label>
         <precision>18</precision>
@@ -190,7 +181,7 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>FS_Distr_markup_TPR__c</fullName>
+        <fullName>FS_DistributorMarkup__c</fullName>
         <externalId>false</externalId>
         <label>Distr markup</label>
         <precision>18</precision>
@@ -212,24 +203,6 @@
         <formula>FS_GP_TPR_DEL__c /   FS_Turnover_TPR_DEL__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL GM</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_GM__c</fullName>
-        <externalId>false</externalId>
-        <label>GM</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_GM_when_TPR_equals_zero__c</fullName>
-        <externalId>false</externalId>
-        <label>GM when TPR = 0%</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -259,15 +232,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_GP__c</fullName>
-        <externalId>false</externalId>
-        <label>GP</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>FS_GSV_TPR_DEL__c</fullName>
         <description>Gross Sales Value = List Price * Quantity</description>
         <externalId>false</externalId>
@@ -282,7 +246,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_GSV__c</fullName>
+        <fullName>FS_GrossSalesValue__c</fullName>
         <externalId>false</externalId>
         <label>GSV</label>
         <precision>18</precision>
@@ -323,7 +287,7 @@
         <fullName>FS_NIV_TPR_DEL__c</fullName>
         <description>Net Invoice Value = GSV - Off Invoice Discount</description>
         <externalId>false</externalId>
-        <formula>( FS_GSV_TPR_DEL__c * (1 -  PricebookEntry.Product2.FS_Temporary_TPR__c -  FS_TPR_percent__c ) ) * (1 - Opportunity.FS_Distributor__r.FS_On_Invoice__c )</formula>
+        <formula>( FS_GSV_TPR_DEL__c * (1 -  PricebookEntry.Product2.FS_temporaryTPR__c -  FS_tprPercent__c ) ) * (1 - Opportunity.FS_distributor__r.FS_On_Invoice__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Net Invoice Value</inlineHelpText>
         <label>DEL NIV</label>
@@ -334,18 +298,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_NIV__c</fullName>
-        <externalId>false</externalId>
-        <label>NIV</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>FS_NSV__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( Quantity &lt;&gt;0,  Quantity  *   UnitPrice   * 0.99, 0)</formula>
+        <formula>IF( Quantity &lt;&gt;0,  Quantity  *  PricebookEntry.FS_Bracket_1__c * 0.99, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NSV</label>
         <precision>18</precision>
@@ -378,7 +333,7 @@
     <fields>
         <fullName>FS_PC_TPR_DEL__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISPICKVAL( Opportunity.FS_Cases_piece__c , &apos;box&apos;) ,  Quantity *  PricebookEntry.Product2.COGS__c ,  Quantity * ( PricebookEntry.Product2.COGS__c /  PricebookEntry.Product2.FS_ZSU__c  ))</formula>
+        <formula>IF( ISPICKVAL( Opportunity.FS_casesPiece__c , &apos;box&apos;) ,  Quantity *  PricebookEntry.Product2.COGS__c ,  Quantity * ( PricebookEntry.Product2.COGS__c /  PricebookEntry.Product2.FS_ZSU__c  ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL PC</label>
         <precision>18</precision>
@@ -388,16 +343,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_PC__c</fullName>
-        <externalId>false</externalId>
-        <label>PC</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_Price_1_w_Disc_w_VAT_TPR__c</fullName>
+        <fullName>FS_Price1WithDiscountWithVAT__c</fullName>
         <externalId>false</externalId>
         <formula>FS_VAT_TPR__c  *  ListPrice</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -441,18 +387,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_SCC__c</fullName>
-        <externalId>false</externalId>
-        <label>SCC</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>FS_SC_TPR_DEL__c</fullName>
         <externalId>false</externalId>
-        <formula>Opportunity.FS_Distributor__r.FS_Supply_Cost__c *  FS_Turnover_TPR_DEL__c</formula>
+        <formula>Opportunity.FS_distributor__r.FS_Supply_Cost__c *  FS_Turnover_TPR_DEL__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL SC</label>
         <precision>18</precision>
@@ -460,15 +397,6 @@
         <scale>2</scale>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_SC__c</fullName>
-        <externalId>false</externalId>
-        <label>SC</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_Sample__c</fullName>
@@ -527,18 +455,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_TPR_percent__c</fullName>
-        <externalId>false</externalId>
-        <label>TPR %</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>FS_Total_TPR_DEL__c</fullName>
         <externalId>false</externalId>
-        <formula>Additional_Discount_DEL__c  +  FS_TPR_percent__c</formula>
+        <formula>Additional_Discount_DEL__c  +  FS_tprPercent__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL Total TPR %</label>
         <precision>18</precision>
@@ -550,19 +469,10 @@
         <fullName>FS_Turnover_TPR_DEL__c</fullName>
         <description>Turnover = NIV - Off-Invoice Discount</description>
         <externalId>false</externalId>
-        <formula>( FS_GSV_TPR_DEL__c  -  FS_Total_TPR_DEL__c  - 0 ) * (1 -  Opportunity.FS_Distributor__r.FS_On_Invoice__c ) - ( FS_NIV_TPR_DEL__c  *  Opportunity.FS_Distributor__r.FS_Off_Invoice__c )</formula>
+        <formula>( FS_GSV_TPR_DEL__c  -  FS_Total_TPR_DEL__c  - 0 ) * (1 -  Opportunity.FS_distributor__r.FS_On_Invoice__c ) - ( FS_NIV_TPR_DEL__c  *  Opportunity.FS_distributor__r.FS_Off_Invoice__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Turnover</inlineHelpText>
         <label>DEL Turnover</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_Turnover__c</fullName>
-        <externalId>false</externalId>
-        <label>Turnover</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -580,14 +490,40 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>FS_Value_necessary_w_VAT_TPR__c</fullName>
+        <fullName>FS_additionalDiscount__c</fullName>
         <externalId>false</externalId>
-        <label>Value necessary (w/ VAT)</label>
+        <label>Additional Discount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_gmWhenTPREqualsZero__c</fullName>
+        <externalId>false</externalId>
+        <label>GM when TPR = 0%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_grossMargin__c</fullName>
+        <externalId>false</externalId>
+        <label>GM</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_grossProfit__c</fullName>
+        <externalId>false</externalId>
+        <label>GP</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_necessary_TPR__c</fullName>
@@ -599,6 +535,88 @@
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_netInvoiceValue__c</fullName>
+        <externalId>false</externalId>
+        <label>NIV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_profitCost__c</fullName>
+        <externalId>false</externalId>
+        <label>PC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_supplyCostChain__c</fullName>
+        <externalId>false</externalId>
+        <label>SCC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_supplyCost__c</fullName>
+        <externalId>false</externalId>
+        <label>SC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_temporaryPriceReduction__c</fullName>
+        <externalId>false</externalId>
+        <label>TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_totalTPRPercentage__c</fullName>
+        <externalId>false</externalId>
+        <label>Total TPR %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_tprPercent__c</fullName>
+        <externalId>false</externalId>
+        <label>TPR %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_turnover__c</fullName>
+        <externalId>false</externalId>
+        <label>Turnover</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_valueNecessaryWithVAT__c</fullName>
+        <externalId>false</externalId>
+        <label>Value necessary (w/ VAT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>GPPercent__c</fullName>

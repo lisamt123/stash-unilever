@@ -36,7 +36,7 @@
         <description>&quot;Approval request email template&quot; to Step 2 approver</description>
         <protected>false</protected>
         <recipients>
-            <recipient>AFM_Approvers</recipient>
+            <recipient>FS_AFM_Approvers</recipient>
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -85,7 +85,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Deal_Update</fullName>
+        <fullName>FS_DealUpdate</fullName>
         <field>DealApproved__c</field>
         <literalValue>0</literalValue>
         <name>Deal Update</name>
@@ -115,7 +115,7 @@
                 <type>Alert</type>
             </actions>
             <actions>
-                <name>Deal_Update</name>
+                <name>FS_DealUpdate</name>
                 <type>FieldUpdate</type>
             </actions>
             <timeLength>60</timeLength>

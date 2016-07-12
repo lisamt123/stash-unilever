@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
     <links>Terms_Of_Use</links>
+    <links>Canada_HUB</links>
+    <links>US_HUB</links>
     <pageComponentType>links</pageComponentType>
 </HomePageComponent>

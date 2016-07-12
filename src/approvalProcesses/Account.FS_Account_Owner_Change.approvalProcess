@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>false</active>
-    <allowRecall>false</allowRecall>
+    <allowRecall>true</allowRecall>
     <allowedSubmitters>
-        <type>owner</type>
+        <submitter>FS_AFM_Approvers</submitter>
+        <type>group</type>
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>Owner</field>
+        <field>RecordType</field>
+        <field>AccountNumber</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -15,29 +19,22 @@
                 <type>userHierarchyField</type>
             </approver>
         </assignedApprover>
-        <label>Step 1</label>
-        <name>Step_1</name>
+        <label>step1</label>
+        <name>step1</name>
     </approvalStep>
-    <emailTemplate>FS_Email_Templates/FS_Account_Plan_Request_For_Approval</emailTemplate>
+    <description>To approve accounts&apos; owner changes requested by other users</description>
+    <emailTemplate>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <criteriaItems>
-            <field>FS_Account_Plan__c.FS_Status__c</field>
-            <operation>equals</operation>
-            <value>Approval Requested</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>FS_Account_Plan__c.No_of_Objectives__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
+        <formula>true</formula>
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
-    <label>Account Plan Approval</label>
+    <label>FS Account Owner Change</label>
     <nextAutomatedApprover>
-        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <useApproverFieldOfRecordOwner>true</useApproverFieldOfRecordOwner>
         <userHierarchyField>Manager</userHierarchyField>
     </nextAutomatedApprover>
-    <recordEditability>AdminOnly</recordEditability>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>
