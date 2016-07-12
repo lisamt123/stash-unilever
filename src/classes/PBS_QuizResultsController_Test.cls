@@ -103,7 +103,6 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
             cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
@@ -190,7 +189,7 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_FAILED,cont.evalResult);
+          
             cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
@@ -277,7 +276,7 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
+           
             cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
@@ -362,7 +361,7 @@ public static final string aid = 'aid';
             pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
-            System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
+            
             cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
