@@ -3,11 +3,13 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
 
 @HttpPost
     webservice static AA_BaseApplicationWrapperObj invokeService(AA_ApplicationWrapperObj appWrapperObj){
+    	
+    	system.debug('appWrapperObj in invoke service===>'+appWrapperObj);
 
         /* Get Context objects in order to read parameters like url, cookies */
         AA_BaseApplicationWrapperObj responseObj = null;
         RestRequest req = RestContext.request;
-        RestResponse res = RestContext.response;
+        //RestResponse res = RestContext.response;
         String requestBodySerializedMap = '';
         String svcName = null;
         if(null!=req){
@@ -155,8 +157,10 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
             if(!Utility.isEmpty(serviceJSONObjectasString)){
                 
                 Map<String, Object> mapOfJSONData = (Map<String, Object>) JSON.deserializeUntyped(serviceJSONObjectasString);
+               // system.debug('userids getting from froment1231=====>'+mapOfJSONData.get('CountryId'));
                 for(String str : mapOfJSONData.KeySet())
                 {
+                    system.debug('userids getting from frontend1231=====>'+mapOfJSONData.get(str));
                     Object obj = mapOfJSONData.get(str);
                     requestBodySerializedMap = JSON.serialize(obj);
                 }                

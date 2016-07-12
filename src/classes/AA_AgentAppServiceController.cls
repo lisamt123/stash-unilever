@@ -545,6 +545,15 @@ public with sharing class AA_AgentAppServiceController {
      */    
    public AA_ApplicationWrapperObj retriveAllAgentReports(AA_ApplicationWrapperObj appWrapperObj){
   // try{
+  /* 
+     Comment for Npath:
+     Agent app is more like a single page application. This method is used to display the agent reports on homepage 
+     There are different options available on home to filter,sort the report & the whole logic of filteration & sorting are written in this method 
+     there are two types of filters available one is on right side with three option All Reports, filtered reports, my reports & other is on left side where 
+     user choose values to filter the reports. sort is also linked with filter & hence cannot be separeated. Considering all this we need a huge change to break this method
+     As this application is already existing in prod there is no imapact on other app due to this. However resrtucturing can be considered in the upcoming
+     enhancement with estimation.  
+  */   
       
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
         String urlHost =  objURL.get('Salesforce Instance URL Content').Value__c;  // Salesforce Instance URL
