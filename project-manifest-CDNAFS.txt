@@ -1,3 +1,5 @@
 src
-src/profiles
-src/profiles/Admin.profile
+src/permissionsets
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_Marketing.permissionset
+src/permissionsets/FS_SCP_And_Corp.permissionset
