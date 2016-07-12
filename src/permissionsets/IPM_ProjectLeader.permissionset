@@ -7820,9 +7820,23 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project__c.IPM_Project_Stopped_Time__c</field>
-        <readable>true</readable>
+	<editable>true</editable>
+	<field>IPM_Project__c.IPM_ProjectStoppedDatetime__c</field>
+	<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_PreviouslyStoppedBy__c</field>
+		<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_StoppedByProjectPhase__c</field>
+		<readable>true</readable>
+    </fieldPermissions><fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Project__c.IPM_No_Rollout_Disabled__c</field>
+		<readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
