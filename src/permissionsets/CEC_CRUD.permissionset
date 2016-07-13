@@ -3752,11 +3752,6 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_ChequeBook_Detail__c.Product_Category__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
         <editable>true</editable>
         <field>CEC_ChequeBook_Detail__c.Starting_Number__c</field>
         <readable>true</readable>
