@@ -5283,10 +5283,6 @@
         <visibility>Visible</visibility>
     </tabSettings>
 	<tabSettings>
-        <tab>New_Case</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-	<tabSettings>
         <tab>User_Default_Setting__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>

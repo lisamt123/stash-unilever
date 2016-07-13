@@ -4510,7 +4510,7 @@
         <editable>true</editable>
         <field>mdm_Reason_Code__c.Unique_Key__c</field>
         <readable>true</readable>
-    </fieldPermissions
+    </fieldPermissions>
     <label>CEC - CRUD</label>
 	<objectPermissions>
         <allowCreate>true</allowCreate>
