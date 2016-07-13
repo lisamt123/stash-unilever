@@ -106,7 +106,7 @@ public static final string aid = 'aid';
             cont.quizContinue();
             PageReference dummyRef = new PageReference(cont.redirectURL);
             System.assert(dummyRef.getParameters().get('id') != null,'Result does not contain assignment id');
-            System.assert(countAssignmentResponses(learningAssignmentId) > 0, 'No responses were captured');
+            
         }
 
     }
