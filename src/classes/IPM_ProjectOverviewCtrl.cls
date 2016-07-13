@@ -1237,20 +1237,25 @@ public with sharing class IPM_ProjectOverviewCtrl {
     @param: none
     @return: void
     **********************************************************************/
-    public void cancelStoppingProject(){
+    public PageReference cancelStoppingProject(){
     	
     	try
         {
             if(System.now() < project.IPM_CancelStoppingProjectTill__c)
             {
-    	project.IPM_PrepareForArchival__c = false;
-    	
-    		update project;
+                project.IPM_PrepareForArchival__c = false;
+                update project;    
             }
             else
             {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,Label.IPM_Passed_Cancellation_Widnow));       
             }
+            
+            PageReference projectOverviewPage = Page.IPM_ProjectOverview;
+            projectOverviewPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            projectOverviewPage.setRedirect(true);
+            return projectOverviewPage; 
+            
     	}
     	catch (Exception ex)
         {
@@ -1260,5 +1265,6 @@ public with sharing class IPM_ProjectOverviewCtrl {
                         
         }
     	
+    	return null;	
     }
 }

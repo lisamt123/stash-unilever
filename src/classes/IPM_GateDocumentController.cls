@@ -1359,17 +1359,25 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public PageReference cancelStoppingProject()
     {	
     	try
-    	{
-    		project.IPM_PrepareForArchival__c = false;
-    		update project;
+    	{	
+    		if(System.now() < project.IPM_CancelStoppingProjectTill__c)
+            {
+				project.IPM_PrepareForArchival__c = false; 
+				update project;
+            }
+            PageReference gateDocumentPage = Page.IPM_GateDocument;
+            gateDocumentPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            gateDocumentPage.getParameters().put('printDoc', printDoc);
+            gateDocumentPage.setRedirect(true);
+            return gateDocumentPage;
     	}
     	catch (Exception ex)
         {
          	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,	
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                         'cancelStoppingProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-	}
-        PageReference gateDocumentPage = new PageReference('/apex/IPM_GateDocument?id=' + project.Id + '&printDoc=Charter');
-    	return gateDocumentPage;    	
+                        
+        }
+       return null;
     }
 }	
