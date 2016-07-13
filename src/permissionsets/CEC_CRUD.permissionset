@@ -2432,11 +2432,6 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
-        <editable>true</editable>
-        <field>CEC_Debit_Card_Detail__c.Country__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
         <editable>false</editable>
         <field>CEC_Debit_Card_Detail__c.Country_Name__c</field>
         <readable>true</readable>

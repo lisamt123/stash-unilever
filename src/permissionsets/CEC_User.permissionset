@@ -84,10 +84,6 @@
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-	<classAccesses>
-        <apexClass>CEC_Test_NewAccountController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <classAccesses>
         <apexClass>CEC_TypeaheadTest</apexClass>
         <enabled>true</enabled>
