@@ -1254,10 +1254,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     		
     		currentProjectDocuement = [Select Id, IPM_Document_Status__c from IPM_project_Document__c WHERE IPM_Project__c =:project.Id AND IPM_GateDocuments__c =: currentGateDocuementName];
     		
-    		if(currentProjectDocuement != null){
-    			currentProjectDocuement.IPM_Document_Status__c = project.IPM_PreviousDocumentStatus__c;
-    			
-    			update currentProjectDocuement; 
+    		if(currentProjectDocuement != null && project.IPM_PreviousDocumentStatus__c != null){
+
+                    currentProjectDocuement.IPM_Document_Status__c = project.IPM_PreviousDocumentStatus__c;
+
+    		    update currentProjectDocuement; 
     		}
     		
     		if(project.Is_Archieved__c){
