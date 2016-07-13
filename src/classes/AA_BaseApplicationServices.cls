@@ -3,11 +3,11 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
 
 @HttpPost
     webservice static AA_BaseApplicationWrapperObj invokeService(AA_ApplicationWrapperObj appWrapperObj){
-
-        /* Get Context objects in order to read parameters like url, cookies */
+    	
+    	/* Get Context objects in order to read parameters like url, cookies */
         AA_BaseApplicationWrapperObj responseObj = null;
         RestRequest req = RestContext.request;
-        RestResponse res = RestContext.response;
+        //RestResponse res = RestContext.response;
         String requestBodySerializedMap = '';
         String svcName = null;
         if(null!=req){
@@ -16,7 +16,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
         else{
             svcName = appWrapperObj.serviceName;
         }
-        System.debug(LoggingLevel.INFO, 'Within invokeService method with svcName ['+svcName+']' );
+        
         try{
             if(!Utility.isEmpty(svcName)){
                 
@@ -26,18 +26,16 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                     appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                    system.debug(LoggingLevel.INFO,'**??** inside AA_BaseApplicationServices'+appWrapperObj.objAgentAppDataRequest);
-                    responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.insertAgentApp(appWrapperObj);
+                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.insertAgentApp(appWrapperObj);
                     
                 }
                 
                 //Handles service request to fetch all reports to show on landing page                   
                 if(svcName.equals(AA_Constants.SVC_AGENT_APP_GET_ALL_REPORTS)){
-                
+                     system.debug('in service name '+AA_Constants.SVC_AGENT_APP_GET_ALL_REPORTS);
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                 
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
-                
                    if(!String.isBlank(requestBodySerializedMap)){ 
                 
                        appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
@@ -45,7 +43,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                     }
                                
                    responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.retriveAllAgentReports(appWrapperObj);
-                
+                  system.debug('response from controller'+responseObj);
                 }  
                 
                 //Handles service request to fetch most like reports                 
@@ -54,34 +52,29 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                     if(!String.isBlank(requestBodySerializedMap)){ 
                         appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                        system.debug(LoggingLevel.INFO,'**??** inside AA_BaseApplicationServices + AA_Constants.SVC_AGENT_APP_UNILEVER_CREATE '+appWrapperObj.objAgentAppDataRequest);
+                
                     }
                    responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.retrieveAgentReportsOnMostliked(appWrapperObj);
-                   system.debug(LoggingLevel.INFO,'**??** Response '+responseObj);
+                
                 }    
                 
                  //Handles service request to get auto populate values like category ,company name compititor brand 
                 if(svcName.equals(AA_Constants.SVC_AGENT_APP_GET_AUTO_POPULATED_VALUES)){
-                    system.debug('in base app'+svcName);
-                    AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();          
+                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();          
                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.getAutoPopulatedValues_UnileverReport(appWrapperObj);   
                 }
                 
                  //Handles service request to auto populate the category & company name based on compititor brand  
                 if(svcName.equals(AA_Constants.SVC_AGENT_APP_GET_COMPETITOR_NAME_AND_CATEGORY)){
-                    system.debug('in base app'+svcName);
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController(); 
                     
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                     appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                    system.debug(LoggingLevel.INFO,'**??** inside AA_BaseApplicationServices'+appWrapperObj.objAgentAppDataRequest);   
-                          
                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.getCompetitorNameAndCategory_CompetitorReport(appWrapperObj);   
                 }
                 
                 //Handles service request to get values for source retailer topic & country 
                 if(svcName.equals(AA_Constants.SVC_AGENT_APP_GET_COMPETITOR_SOURCE_RETAILER_TOPIC_COUNTRY)){
-                    system.debug('in base app'+svcName);
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();          
                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.getSourceRetailerTopicCountry_CompetitorReport(appWrapperObj);   
                 }
@@ -92,7 +85,6 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                     appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                    system.debug(LoggingLevel.INFO,'**??** inside AA_BaseApplicationServices'+appWrapperObj.objAgentAppDataRequest);
                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.insertAgentApp_Competitor(appWrapperObj);
                     
                 }
@@ -105,9 +97,6 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                 //Handles service request to update the terms & conditions
                 if(svcName.equals(AA_Constants.SVC_AGENT_APP_UPDATE_TERMS_AND_CONDITION)){
                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
-                    //requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
-                    //appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                    //system.debug(LoggingLevel.INFO,'**??** inside AA_BaseApplicationServices'+appWrapperObj.objAgentAppDataRequest);
                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.updateIsAcceptedTermsAndCondition(appWrapperObj);
                 }
                 
@@ -116,7 +105,6 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                      AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                      requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                      appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                     system.debug('in updateLikeCount'+appWrapperObj);
                      responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.updateLikeCount(appWrapperObj);
                 }
                 
@@ -126,7 +114,6 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                      AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                      requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                      appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                     system.debug('in updateLikeCount'+appWrapperObj);
                      responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.updateUnlikeCount(appWrapperObj);
                 }
                 
@@ -138,21 +125,9 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                      AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                      requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
                      appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                     //system.debug('in updateLikeCount'+appWrapperObj);
                      responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.getUserList(appWrapperObj);
                 }
-                
-                //Get topiclistfor typeahead
-                
-              /* if(svcName.equals(AA_Constants.SVC_AGENT_APP_TOPICLIST)){
-                    
-                     AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
-                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
-                     appWrapperObj.objAgentAppDataRequest = (AA_WrapperUtility.AgentAppDataRequest) JSON.deserialize(requestBodySerializedMap, AA_WrapperUtility.AgentAppDataRequest.class);
-                     //system.debug('in updateLikeCount'+appWrapperObj);
-                     responseObj = (AA_BaseApplicationWrapperObj)objAgentAppController.getTopics(appWrapperObj);
-                } */
-                
+                         
             }
             else{
                 /* Case of invalid service requested */
@@ -162,14 +137,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
         }catch(Exception e){
              System.debug('Exception:' + e);
         }
-        /*catch(BaseServiceException baseAppEx){
-            BaseServiceException.resolveExceptions(baseAppEx.getMessage(),baseAppEx);
-            responseObj = constructResponseBody( responseObj, baseAppEx );
-        }
-        catch(Exception ex){
-            BaseServiceException.resolveExceptions('Exception occured: AccountServiceController : callAccountInsert method ',ex);
-            responseObj = constructResponseBody( responseObj, ex );
-        }*/
+       
         return responseObj;
 
     }
@@ -180,12 +148,13 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
     }
     
     public static String createSerializedMapString(String serviceJSONObjectasString){
-    	system.debug('createSerializedMapString string should be....................'+serviceJSONObjectasString);
+    	
         String requestBodySerializedMap = '';
         try{
             if(!Utility.isEmpty(serviceJSONObjectasString)){
                 
                 Map<String, Object> mapOfJSONData = (Map<String, Object>) JSON.deserializeUntyped(serviceJSONObjectasString);
+              
                 for(String str : mapOfJSONData.KeySet())
                 {
                     Object obj = mapOfJSONData.get(str);
