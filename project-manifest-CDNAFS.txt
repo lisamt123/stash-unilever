@@ -1,10 +1,10 @@
 src
-src/layouts
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators.layout
-src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
-src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective.layout
-src/layouts/Opportunity-Opportunity Layout.layout
-src/layouts/PricebookEntry-Price Book Entry Layout.layout
-src/layouts/Product2-Food Solutions Product.layout
+src/quickActions
+src/quickActions/Account.New_Dist_Account_Plan.quickAction
+src/quickActions/Account.New_Op_Account_Plan.quickAction
+src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
+src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
+src/quickActions/FS_Defined_Objective__c.Create_Trade_Event.quickAction
+src/quickActions/FS_Defined_Objective__c.New_Opportunity.quickAction
+src/quickActions/FS_Defined_Objective__c.New_Product_Objective.quickAction
+
