@@ -8,3 +8,8 @@ src/roles/Ice_WCH_SalesReps.role
 src/objects/Territory__c.object
 src/layouts/Account-Ice Cream.layout
 src/objects/Account.object
+src/permissionsets/ICB_Admin.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce_Plataform.permissionset
+src/permissionsets/ICB_Sales_Representative_Salesforce.permissionset
+src/permissionsets/ICB_Sales_Representative_Standard.permissionset
