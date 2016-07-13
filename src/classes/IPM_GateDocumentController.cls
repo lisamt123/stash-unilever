@@ -378,7 +378,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             list<IPM_Project__c> projectList=[SELECT IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c, IPM_PrepareForArchival__c, Is_Archieved__c 
                                             FROM IPM_Project__c 
                                             WHERE id=:projectId AND (IPM_Project_Leader__c =:userinfo.getuserid() 
-                                                                     OR Deputy_Project_Leader__c=:userinfo.getuserid()) and Is_Archieved__c=false  limit 1];
+                                                                     OR Deputy_Project_Leader__c=:userinfo.getuserid())  limit 1];
             if(projectList!=null && !projectList.isEmpty()){
                 isReadable=false;
                 IsUpdateStatus=true;

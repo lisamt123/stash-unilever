@@ -2613,7 +2613,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             toShowEditButton=true;      
         }
         
-        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c) && !IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c))
+        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c) && !IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && !IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c))
         {
             toShowEditOpern=true;       
         }
