@@ -2114,6 +2114,309 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
     </recordTypes>
+    <recordTypes>
+        <fullName>UFS_Opportunity_Russia</fullName>
+        <active>true</active>
+        <businessProcess>NA FS Sales Process</businessProcess>
+        <description>UFS Opportunity Russia</description>
+        <label>UFS Opportunity Russia</label>
+        <picklistValues>
+            <picklist>FS_casesPiece__c</picklist>
+            <values>
+                <fullName>box</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_internalOrder__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Cycle__c</picklist>
+            <values>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Deleted%2FInactive Accts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>OPPORTUNITY.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>

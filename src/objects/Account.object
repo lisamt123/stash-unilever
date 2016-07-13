@@ -1429,30 +1429,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_Off_Invoice__c</fullName>
-        <description>Default value based on Distributor Type.</description>
-        <externalId>false</externalId>
-        <label>Off Invoice</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_On_Invoice__c</fullName>
-        <description>Default value based on Distributor Type</description>
-        <externalId>false</externalId>
-        <label>On Invoice</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>FS_OperatorOutlet__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1525,18 +1501,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_Supply_Cost__c</fullName>
-        <description>Supply Cost</description>
-        <externalId>false</externalId>
-        <label>Supply Cost</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>FS_Top_Client__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To check if the notification send to top client</description>
@@ -1557,6 +1521,42 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_offInvoice__c</fullName>
+        <description>Default value based on Distributor Type.</description>
+        <externalId>false</externalId>
+        <label>Off Invoice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_onInvoice__c</fullName>
+        <description>Default value based on Distributor Type</description>
+        <externalId>false</externalId>
+        <label>On Invoice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_supplyCost__c</fullName>
+        <description>Supply Cost</description>
+        <externalId>false</externalId>
+        <label>Supply Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Fax</fullName>

@@ -35,17 +35,6 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Actual__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Actual</label>
-        <referenceTo>Actual__c</referenceTo>
-        <relationshipLabel>Opportunity Product</relationshipLabel>
-        <relationshipName>Opportunity_Product</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Additional_Discount_DEL__c</fullName>
         <externalId>false</externalId>
         <formula>IF( Opportunity.FS_prePaid__c = FALSE &amp;&amp;  Opportunity.FS_selfCollection__c = FALSE, 0,  IF(Opportunity.FS_prePaid__c = FALSE &amp;&amp;  Opportunity.FS_selfCollection__c = TRUE,  0.01,  IF(Opportunity.FS_prePaid__c = TRUE &amp;&amp;  Opportunity.FS_selfCollection__c = FALSE, 0.02,  IF(Opportunity.FS_prePaid__c = TRUE &amp;&amp;  Opportunity.FS_selfCollection__c = TRUE, 0.03, 0) ) ) )</formula>
@@ -70,6 +59,17 @@
         <externalId>false</externalId>
         <label>Approval Required</label>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contract Product</label>
+        <referenceTo>Contract_Product__c</referenceTo>
+        <relationshipLabel>Opportunity Product</relationshipLabel>
+        <relationshipName>Opportunity_Product</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Description</fullName>
@@ -246,15 +246,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_GrossSalesValue__c</fullName>
-        <externalId>false</externalId>
-        <label>GSV</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>FS_HQRate__c</fullName>
         <externalId>false</externalId>
         <label>HQ Rate</label>
@@ -287,7 +278,7 @@
         <fullName>FS_NIV_TPR_DEL__c</fullName>
         <description>Net Invoice Value = GSV - Off Invoice Discount</description>
         <externalId>false</externalId>
-        <formula>( FS_GSV_TPR_DEL__c * (1 -  PricebookEntry.Product2.FS_temporaryTPR__c -  FS_tprPercent__c ) ) * (1 - Opportunity.FS_distributor__r.FS_On_Invoice__c )</formula>
+        <formula>( FS_GSV_TPR_DEL__c * (1 -  PricebookEntry.Product2.FS_temporaryTPR__c -  FS_tprPercent__c ) ) * (1 - Opportunity.FS_distributor__r.FS_onInvoice__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Net Invoice Value</inlineHelpText>
         <label>DEL NIV</label>
@@ -389,7 +380,7 @@
     <fields>
         <fullName>FS_SC_TPR_DEL__c</fullName>
         <externalId>false</externalId>
-        <formula>Opportunity.FS_distributor__r.FS_Supply_Cost__c *  FS_Turnover_TPR_DEL__c</formula>
+        <formula>Opportunity.FS_distributor__r.FS_supplyCost__c *  FS_Turnover_TPR_DEL__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DEL SC</label>
         <precision>18</precision>
@@ -469,7 +460,7 @@
         <fullName>FS_Turnover_TPR_DEL__c</fullName>
         <description>Turnover = NIV - Off-Invoice Discount</description>
         <externalId>false</externalId>
-        <formula>( FS_GSV_TPR_DEL__c  -  FS_Total_TPR_DEL__c  - 0 ) * (1 -  Opportunity.FS_distributor__r.FS_On_Invoice__c ) - ( FS_NIV_TPR_DEL__c  *  Opportunity.FS_distributor__r.FS_Off_Invoice__c )</formula>
+        <formula>( FS_GSV_TPR_DEL__c  -  FS_Total_TPR_DEL__c  - 0 ) * (1 -  Opportunity.FS_distributor__r.FS_onInvoice__c ) - ( FS_NIV_TPR_DEL__c  *  Opportunity.FS_distributor__r.FS_offInvoice__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Turnover</inlineHelpText>
         <label>DEL Turnover</label>
@@ -520,6 +511,15 @@
         <fullName>FS_grossProfit__c</fullName>
         <externalId>false</externalId>
         <label>GP</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_grossSalesValue__c</fullName>
+        <externalId>false</externalId>
+        <label>GSV</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
