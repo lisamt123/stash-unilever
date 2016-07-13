@@ -1,9 +1,8 @@
 src
-src/objects
-src/objects/Account.object
-src/objects/FS_Account_Plan__c.object
-src/objects/FS_Defined_Objective__c.object
-src/objects/Opportunity.object
-src/objects/Pricebook2.object
-src/objects/PricebookEntry.object
-src/objects/Product2.object
+src/approvalProcesses
+src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
+src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
+src/approvalProcesses/FS_Account_Plan__c.Account_Plan_Approval.approvalProcess
+src/approvalProcesses/FS_Account_Plan__c.FS_Account_Plan_Approval.approvalProcess
+src/approvalProcesses/FS_Defined_Objective__c.Defined_Objective_Approval.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_Process.approvalProcess
