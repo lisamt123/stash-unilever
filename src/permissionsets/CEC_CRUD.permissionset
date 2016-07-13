@@ -3518,11 +3518,6 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
-        <field>cec_Reason_Information__kav.Appointment_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
         <field>CEC_Retrieval_Request__c.Best_Visiting_Hour__c</field>
         <readable>true</readable>
     </fieldPermissions>
