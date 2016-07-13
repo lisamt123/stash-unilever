@@ -1,4 +1,6 @@
 src/layouts
 src/layouts/WU_Master_Warehouse__c-Warehouse Capacity CustomLayout.layout
+src/objects
+src/objects/WU_Master_Warehouse__c.object
 
 
