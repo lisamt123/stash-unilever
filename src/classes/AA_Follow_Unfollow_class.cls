@@ -264,6 +264,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
                       
         }//end outer for     
     //delete UnFollowList for clusters
+    
         String wherecondi= ' Where ';
         for(EntitySubscription unfollow:UnFollowList)
         {
@@ -272,7 +273,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         }
         whereCondi=whereCondi.substringBeforeLast('OR');
         String Unfollowquery='Select ID from EntitySubscription'+whereCondi;
-            
+            system.debug('delete Unfollow Query===>'+Unfollowquery);
         List<EntitySubscription> finaldeleteList=Database.query(Unfollowquery);
      
         delete finaldeleteList;      

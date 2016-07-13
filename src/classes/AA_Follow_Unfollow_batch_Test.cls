@@ -1,9 +1,37 @@
 @isTest
-public with sharing class AA_Follow_Unfollow_class_Test {
+public class AA_Follow_Unfollow_batch_Test {    
+    public static testMethod void testMethodFollowUnfollowBatch(){
+    test.starttest();
+    AA_Follow_Unfollow_batch obj= new AA_Follow_Unfollow_batch();
+   /*      Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
 
-    static testMethod void ExecuteFollowUnFollowTest(){
-                                 
+        User u2 = new User(Alias = 'tdfss', Email='tes23132t@testorg.com',ProfileId = p.Id ,
         
+        EmailEncodingKey='UTF-8', LastName='Tes3423423ting', LanguageLocaleKey=AA_Constants.Stringen_us,
+        LocaleSidKey=AA_Constants.Stringen_us, TimeZoneSidKey='America/Los_Angeles', UserName='sdadaas123@testorg.com');
+        insert u2;
+        system.debug('Test user Id==>'+u2.Id);
+          aa_Cluster__c clusterData = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
+        insert clusterData;
+        system.debug('Test cluster Id==>'+clusterData.Id);
+        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.Id);
+        insert countryData; 
+        EntitySubscription objTemp = new EntitySubscription();
+            objTemp.SubscriberId = u2.Id;
+            objTemp.ParentId = clusterData.Id;
+            insert objTemp;
+         EntitySubscription objTemp2 = new EntitySubscription();
+            objTemp2.SubscriberId = u2.Id;
+            objTemp2.ParentId = countryData.Id;
+            insert objTemp2;
+        */
+         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
+
+        User u2 = new User(Alias = 'tdfss', Email='tes23132t@testorg.com',ProfileId = p.Id ,
+        
+        EmailEncodingKey='UTF-8', LastName='Tes3423423ting', LanguageLocaleKey=AA_Constants.Stringen_us,
+        LocaleSidKey=AA_Constants.Stringen_us, TimeZoneSidKey='America/Los_Angeles', UserName='sdadaas123@testorg.com');
+        insert u2;
         aa_agent_app_custom_setting__c customsetting = new aa_agent_app_custom_setting__c(Name='Follow batch Last Run Time');
         customsetting.key__c='Follow Batch Last Run Time';
         customsetting.Value__c='2016-06-29 09:59:02';
@@ -121,8 +149,15 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         aa_Agent_App_User_Preference__c objUserSet = new aa_Agent_App_User_Preference__c();
         objUserSet.UserId__c = userinfo.getuserid();     
         UserSet.add(objUserSet);
-   
-        AA_Follow_Unfollow_class.ExecuteFollow(UserSet);
-          
+    aa_Agent_App_User_Preference__c userPref = new aa_Agent_App_User_Preference__c(Auto_follow__c= true,UserId__c =u2.Id);
+    insert userPref;
+    List<aa_Agent_App_User_Preference__c> objAgent =  new  List<aa_Agent_App_User_Preference__c>();
+    objAgent.add(userPref);
+    Database.BatchableContext BC;
+    obj.start(BC);
+    obj.execute(BC,objAgent);
+    obj.finish(BC);
+    test.stoptest();
+    
     }
-}
+  }

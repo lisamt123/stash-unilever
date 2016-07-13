@@ -1,5 +1,4 @@
-Public with sharing class AA_theAgent_ChatterPost_FutureClass{    
-   
+Public with sharing class AA_theAgent_ChatterPost_FutureClass{      
        
     @future 
     Public static void CallSendToChatter(Map<String,String> lsttriggerList)
@@ -7,23 +6,24 @@ Public with sharing class AA_theAgent_ChatterPost_FutureClass{
       Map<ID,aa_Agent_Report__c> countryList=new Map<ID,aa_Agent_Report__c>(); 
         for ( String objOnfeedID : lsttriggerList.keySet() ){
           aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
-               if(objOnfeedID!='Cluster_Id'){
-                           
+               //if(objOnfeedID!='Cluster_Id'){
+                       system.debug('create chatter post for '+Id.valueof(objOnfeedID));    
                  AA_theAgent_ChatterPost_FutureClass.sendToChatter(Id.valueof(objOnfeedID), report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
-                 }else{
+                // }else{
                 
-                   countryList.put(report.Country__c,report);
-                 }
+                 //  countryList.put(report.Country__c,report);
+                // }
      
          }
-          List<aa_Country__c> countryclusterlist=[select Cluster_Id__c from aa_Country__c where Id IN:countryList.keySet()];
+     /*     List<aa_Country__c> countryclusterlist=[select Cluster_Id__c from aa_Country__c where Id IN:countryList.keySet()];
               for(aa_Country__c countryobj :countryclusterlist)
                {
                    for ( String objreport : countryList.keySet() ){
                      aa_Agent_Report__c report = (aa_Agent_Report__c)countryList.get(countryobj.Id);
                      AA_theAgent_ChatterPost_FutureClass.sendToChatter(countryobj.Cluster_Id__c, report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
                    }
-               }        
+               }  
+               */      
     }
     
     public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country) {    
@@ -31,6 +31,7 @@ Public with sharing class AA_theAgent_ChatterPost_FutureClass{
         String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
         ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
         feedItemInput.body = new ConnectApi.MessageBodyInput();
+        system.debug('In sent to chatter'+objectId);
         
         feedItemInput.body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
 
@@ -76,53 +77,5 @@ Public with sharing class AA_theAgent_ChatterPost_FutureClass{
         }  */
     }
     
-     //@future 
-    public static void CreateChatterPost(Id objectId,String postText, Id reportId){
-      
-      system.debug('In createChatterPost method');
-      //String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
-        /*ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
-        feedItemInput.body = new ConnectApi.MessageBodyInput();
-        
-        feedItemInput.body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
-
-        //intro
-        ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
-       // textSegment.text = 'New Agent Report by '+reportCreatorName +' ';
-       textSegment.text = 'New Agent Report by Aslesha';
-        feedItemInput.body.messageSegments.add(textSegment);
-      
-      // add the text segment       
-        ConnectApi.TextSegmentInput textSegment2 = new ConnectApi.TextSegmentInput();
-        textSegment2.text = ': ' + postText;
-        feedItemInput.body.messageSegments.add(textSegment2);
-        
-        // add inline link
-        ConnectApi.LinkSegmentInput report_link = new ConnectApi.LinkSegmentInput();
-        String fullRecordURL = URL.getSalesforceBaseUrl().toExternalForm() + '/' + reportId;
-        report_link.url = fullRecordURL;
-        feedItemInput.body.messageSegments.add(report_link);
-        
-        //Adding Attachment            
-        List<COntentDocumentLink> documentlist=[SELECT ContentDocument.id FROM ContentDocumentLink WHERE LinkedEntityId = :reportId LIMIT 1];
-        if(!documentlist.IsEmpty()){
-             ConnectApi.ContentAttachmentInput attachmentInput = new ConnectApi.ContentAttachmentInput(); 
-             attachmentInput.contentDocumentId=documentlist[0].ContentDocument.id;
-             system.debug('attachmentInput.contentDocumentId===='+attachmentInput.contentDocumentId);  
-             feedItemInput.attachment = attachmentInput;
-        } 
-        
-        system.debug('final feed item'+feedItemInput);
-        ConnectApi.FeedItem new_chat = ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);
-        //system.debug('post created here'+new_chat);
-    }*/
-    
-    /*    ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
-        ConnectApi.MessageBodyInput messageBodyInput = new ConnectApi.MessageBodyInput();
-        feedItemInput.body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
-        feedItemInput.body.messageSegments.add('djkldjfds dsfkjsdlkfds');
-        addMessageSegments(messageBodyInput, 'tyuyyi gfhgf gfhgfghfffffjj');
-      //  ConnectApi.FeedType targetFeedType = FeedFormatter.getFeedType(feedType);
-        ConnectApi.ChatterFeeds.postFeedItem('a6Hc0000000054a',  ConnectApi.FeedType.Record,objectId, feedItemInput, null);*/
-    } 
+     
 }
