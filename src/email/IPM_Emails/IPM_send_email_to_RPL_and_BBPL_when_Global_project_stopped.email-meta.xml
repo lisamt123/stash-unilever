@@ -6,6 +6,6 @@
     <name>IPM send email to RPL and BBPL when Global project stopped</name>
     <style>freeForm</style>
     <subject>Your Project {!IPM_Project__c.IPM_Project_Name__c} is Stopping</subject>
-    <textOnly>Your {!IPM_Project__c.IPM_Stopped_At_Span__c} Project Leader {!IPM_Project__c.IPM_Stopped_By__c} has chosen to stop {!IPM_Project__c.IPM_Parent_Project__c.IPM_Project_Name__c} in {!IPM_Project__c.IPM_Stopped_Phase__c}. This will take affect {!IPM_Project__c.IPM_CountDown_Reference_Time__c} at which time your project {!IPM_Project__c.IPM_Project_Name__c} will also be stopped. If you believe this to be an error please contact your  {!IPM_Project__c.IPM_Stopped_At_Span__c} Project Leader, - {!IPM_Project__c.IPM_Stopped_By__c} can reverse this decision before  {!IPM_Project__c.IPM_CountDown_Reference_Time__c}.</textOnly>
+    <textOnly>Your {!IPM_Project__c.IPM_Stopped_At_Span__c} Project Leader {!IPM_Project__c.IPM_Stopped_By__c} has chosen to stop {!IPM_Project__c.IPM_Parent_Project_Name__c} in {!IPM_Project__c.IPM_StoppedByProjectPhase__c}. This will take affect {!IPM_Project__c.IPM_ProjectStoppedDatetime__c} at which time your project {!IPM_Project__c.IPM_Project_Name__c} will also be stopped. If you believe this to be an error please contact your  {!IPM_Project__c.IPM_Stopped_At_Span__c} Project Leader - {!IPM_Project__c.IPM_Stopped_By__c} can reverse this decision before {!IPM_Project__c.IPM_ProjectStoppedDatetime__c}.</textOnly>
     <type>html</type>
 </EmailTemplate>
