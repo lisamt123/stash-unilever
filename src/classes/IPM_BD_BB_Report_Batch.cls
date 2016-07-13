@@ -925,8 +925,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     a.IPM_1st_Full_Year_iGP_BD__c=globalORregionalValues?fr.Gross_Profit_Global__c:fr.Gross_Profit_Regional__c;
                 }
         
+        		// this is the logic for getting the BD year even for the Rollout Projects
+        		 Integer bdYEAR=(p.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)?integer.valueof(p.IPM_Target_Launch_Year__c):p.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();
+        		
                 // Populating Gross TO (BD) - Y0 - Y8
-                if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross) && String.isNotBlank(p.IPM_Target_Launch_Year__c) && fr.Name >= p.IPM_Target_Launch_Year__c){
+                if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross) && String.isNotBlank(p.IPM_Target_Launch_Year__c) && fr.Name >= string.ValueOF(bdYEAR)){
         
                     if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_Gross_TO_Y0_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
                     if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_Gross_TO_Y1_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
@@ -940,7 +943,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         
                 }
         
-                if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental) && String.isNotBlank(p.IPM_Target_Launch_Year__c) && fr.Name >= p.IPM_Target_Launch_Year__c){
+                if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental) && String.isNotBlank(p.IPM_Target_Launch_Year__c) && fr.Name >= string.ValueOF(bdYEAR)){
         
                     // Populating iTO (BD) - Y0 - Y8  
                     if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_iTO_Y0_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
