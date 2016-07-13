@@ -694,10 +694,12 @@ private class IPM_ChatterFeedHelper_Test {
         
         Map<Id,IPM_Project__c> newProjectMap= new Map<Id,IPM_Project__c>();
         Map<Id,IPM_Project__c> oldProjectMap= new Map<Id,IPM_Project__c>();
-        for(IPM_Project__c proj:lstProjects)
-        {
-            newProjectMap.put(proj.id,proj);
-        }   
+        if(lstProjects!=null){
+            for(IPM_Project__c proj:lstProjects)
+            {
+                newProjectMap.put(proj.id,proj);
+            }
+        }  
         for(IPM_Project__c proj:regionalProjectList)
         {
             oldProjectMap.put(proj.id,proj);
@@ -769,17 +771,17 @@ private class IPM_ChatterFeedHelper_Test {
             IPM_ProjectTriggerHandlerctrl.onBeforeUpdate(regionalProjectList);
             
             Map<Id,IPM_Project__c> newProjectMap= new Map<Id,IPM_Project__c>();
-            
-            for(IPM_Project__c proj:lstProjects)
-            {
-               proj.IPM_Project_Leader__c = UserInfo.getUserId();
-               proj.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
-               proj.Deputy_Project_Leader__c = UserInfo.getUserId();
-               proj.IPM_Finance_Lead__c = UserInfo.getUserId();
-               proj.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-               newProjectMap.put(proj.id,proj);
-            }   
-    
+            if(lstProjects!=null){
+                for(IPM_Project__c proj:lstProjects)
+                {
+                   proj.IPM_Project_Leader__c = UserInfo.getUserId();
+                   proj.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
+                   proj.Deputy_Project_Leader__c = UserInfo.getUserId();
+                   proj.IPM_Finance_Lead__c = UserInfo.getUserId();
+                   proj.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+                   newProjectMap.put(proj.id,proj);
+                }   
+            }
             IPM_ProjectTriggerHandler.getProjectUsersMap(regionalProjectList, newProjectMap, false);
             
             system.assertNotEquals(Null, IPM_GroupManagement.grpList,PROJECT_GROUP_CREATED );
