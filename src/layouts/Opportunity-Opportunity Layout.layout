@@ -24,7 +24,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Distributor__c</field>
+                <field>FS_distributor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -119,37 +119,37 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Internal_Order__c</field>
+                <field>FS_internalOrder__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Start_Date_TPR__c</field>
+                <field>FS_startDateTPR__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_End_Date_TPR__c</field>
+                <field>FS_endDateTPR__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Date_of_Send__c</field>
+                <field>FS_DateOfSend__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Cases_piece__c</field>
+                <field>FS_casesPiece__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Kind_of_TPR__c</field>
+                <field>FS_kindOfTPR__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Pre_paid__c</field>
+                <field>FS_prePaid__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Self_Collection__c</field>
+                <field>FS_selfCollection__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

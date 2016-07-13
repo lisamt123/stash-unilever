@@ -45,11 +45,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_STD_per_Unit__c</field>
+                <field>FS_stdPerUnit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Temporary_TPR__c</field>
+                <field>FS_temporaryTPR__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_TopSellers__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -296,6 +300,14 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Product_Objective__c.Product__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Contract_Product_Monthly_Actual__c.Product__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Contract_Product__c.Product__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

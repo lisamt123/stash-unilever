@@ -1,8 +1,10 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
-src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
-src/approvalProcesses/FS_Account_Plan__c.Account_Plan_Approval.approvalProcess
-src/approvalProcesses/FS_Account_Plan__c.FS_Account_Plan_Approval.approvalProcess
-src/approvalProcesses/FS_Defined_Objective__c.Defined_Objective_Approval.approvalProcess
-src/approvalProcesses/Opportunity.FS_MABE_Opportunity_Process.approvalProcess
+src/layouts
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Operators.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective.layout
+src/layouts/Opportunity-Opportunity Layout.layout
+src/layouts/PricebookEntry-Price Book Entry Layout.layout
+src/layouts/Product2-Food Solutions Product.layout
