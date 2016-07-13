@@ -239,7 +239,7 @@ private class AA_AgentAppServiceController_Test {
  
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
       
-       objAgentApp.FilterType = 'filterReports';
+       objAgentApp.FilterType = AA_Constants.StringfilterReports;
    
        objAgentApp.ApplyFilter = 'true';
        objAgentApp.ReportingOn=AA_Constants.ReportingOnSample;
@@ -296,7 +296,7 @@ private class AA_AgentAppServiceController_Test {
        obj.retriveAllAgentReports(obj2);
     
        AA_WrapperUtility.AgentAppDataRequest objAgentApp3 = new AA_WrapperUtility.AgentAppDataRequest();
-            objAgentApp3.FilterType = 'filterReports';    
+            objAgentApp3.FilterType = AA_Constants.StringfilterReports;    
             objAgentApp3.ApplyFilter = 'true';
             objAgentApp3.RecordType='Unilever';
             objAgentApp3.ReportingOn=AA_Constants.ReportingOnSample;
@@ -313,7 +313,7 @@ private class AA_AgentAppServiceController_Test {
    
        
        AA_WrapperUtility.AgentAppDataRequest objAgentApp4 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp4.FilterType = 'filterReports';    
+       objAgentApp4.FilterType = AA_Constants.StringfilterReports;    
        objAgentApp4.ApplyFilter = 'true';
        objAgentApp4.RecordType='Competitor';
        objAgentApp4.ReportingOn=AA_Constants.ReportingOnSample;
@@ -337,7 +337,7 @@ private class AA_AgentAppServiceController_Test {
         
        insert upref; 
        AA_WrapperUtility.AgentAppDataRequest objAgentApp5 = new AA_WrapperUtility.AgentAppDataRequest();
-       objAgentApp.FilterType = 'filterReports';
+       objAgentApp.FilterType = AA_Constants.StringfilterReports;
  
     
        AA_ApplicationWrapperObj obj5 = new AA_ApplicationWrapperObj();
@@ -577,7 +577,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.Longitude = '73.8567° E';
        objAgentApp.RecordTypeId = recTypeId;
        objAgentApp.ClusterId = clusterData.id;
-       objAgentApp.FilterType = 'filterReports';
+       objAgentApp.FilterType = AA_Constants.StringfilterReports;
        objAgentApp.ApplyFilter = 'true';
        objAgentApp.RecordType = 'Competitor';
        objAgentApp.SortOnMostLike = 'true'; 
@@ -676,7 +676,7 @@ private class AA_AgentAppServiceController_Test {
  
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
       
-       objAgentApp.FilterType = 'filterReports';
+       objAgentApp.FilterType = AA_Constants.StringfilterReports;
    
        objAgentApp.ApplyFilter = 'false';
        objAgentApp.ReportingOn=AA_Constants.ReportingOnSample;

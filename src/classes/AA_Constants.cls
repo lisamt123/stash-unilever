@@ -48,9 +48,9 @@ public with sharing class AA_Constants {
     public static final String Stringen_us='en_us';
     public static final String Stringtestemail='testemail@test.com'; 
     public static final String Stringwhatever='whatever';
-     public static final String StringFirstRandomNumber='1234';
+    public static final String StringFirstRandomNumber='1234';
     public static final String StringSecondRandomNumber='3456';
-    
+    public static final String StringfilterReports='filterReports';
     public static final String SVC_AGENT_APP_AUTOCOMPLETELIST='getAutocompleteList';
     
    //cluster names Constants
