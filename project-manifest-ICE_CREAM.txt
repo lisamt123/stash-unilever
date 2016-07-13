@@ -101,10 +101,3 @@ src/staticresources/ICB_CheckInCheckOut_CSS.resource-meta.xml
 src/translations/pt_BR.translation
 src/workflows
 src/workflows/Event.workflow
-src/roles
-src/roles/ICE_GlobalHead.role
-src/roles/Ice_BR65.role
-src/roles/Ice_Brazil.role
-src/roles/Ice_LATAM.role
-src/roles/Ice_WCH.role
-src/roles/Ice_WCH_SalesReps.role
