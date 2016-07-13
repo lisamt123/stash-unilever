@@ -148,7 +148,7 @@ public class cec_TestEmailMessageHelper{
             cbm.Default_Template_Name__c = 'DoveIndia';
             
             insert cbm;
-            cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
+            //cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
             
             System.assertEquals(cbm.Inbound_Email__c,CEC_Constants.unknownEmail);          
             
@@ -244,7 +244,7 @@ public class cec_TestEmailMessageHelper{
             mail.setToAddresses(new String[] {Notifymail.EmailId__c});
             mail.setSubject(emailSubject);
             mail.setHTMLBody(msgString);
-            if(!Test.isRunningTest()){ Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}); }
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
             
             CEC_Util.sendNotificationEmail(msgString, emailSubject);
         }

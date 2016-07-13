@@ -170,12 +170,27 @@ false
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>WU_Current_Pallet_Utilization_Week__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( WU_Committed_Max_PalletStorage__c = 0,
-    0,
-    ( WU_Current_Pallet_Utilization__c / WU_Committed_Max_PalletStorage__c ) * 100)</formula>
+        <formula>IF( 
+
+
+AND(NOT(WU_Committed_Max_PalletStorage__c = 0),NOT(ISBLANK(WU_Committed_Max_PalletStorage__c))),
+
+
+IF(AND(NOT(WU_Current_Pallet_Utilization__c = 0),NOT(ISBLANK(WU_Current_Pallet_Utilization__c))),  
+
+IF( (WU_Current_Pallet_Utilization__c / WU_Committed_Max_PalletStorage__c)  * 100 &gt; 100, 100 , (WU_Current_Pallet_Utilization__c / WU_Committed_Max_PalletStorage__c ) * 100 ),
+
+100 ),
+
+100
+
+
+
+
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Pallet Utilization (%)</label>
         <precision>18</precision>
