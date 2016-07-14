@@ -407,7 +407,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 	            {
             		isReadable = true;
                 } 
-            }    
+            }  
+
             
         }
         catch(Exception ex){
