@@ -25,5 +25,3 @@ src/objects/WU_Warehouse_Capacity_Detail__c.object
 src/triggers
 src/triggers/WU_SetWarehousePOC.trigger
 src/triggers/WU_SetWarehousePOC.trigger-meta.xml
-
-

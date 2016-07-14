@@ -107,7 +107,6 @@ public class PBS_TrainingPlanFeedback_Test {
             System.assert(ref == null);
         }
 
-       // System.assertEquals(1,getFeedbackCount(tplanId));
     }
 
     static testmethod void testTrainingPlanWithPreview(){
