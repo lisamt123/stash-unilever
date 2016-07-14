@@ -57,7 +57,7 @@ public with sharing class IPM_OTIFStatusController{
               }
               else if(otifType==IPM_ConstantUtils.OTIF_SECTION)
               {
-                  secConList = Database.query(query+'  WHERE IPM_Section_Id__c=\''+ string.escapeSingleQuotes(projDocSecId) +'\' '+' order by IPM_OTIF_Sequence__c ASC');                           
+                  secConList = Database.query(query+'  WHERE IPM_Section_Id__c=\''+ string.escapeSingleQuotes(projDocSecId) +'\' '+' and IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c=\''+ string.escapeSingleQuotes(projectId) +'\' '+' order by IPM_OTIF_Sequence__c ASC');
               }
               
               

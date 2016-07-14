@@ -271,7 +271,7 @@ public with sharing class IPM_ProjectSearchCtrl{
            soql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
            soql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';
            soql += 'IPM_Target_Launch_Dates__c,IPM_Project_Description__c, (Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries1__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries2__r) FROM IPM_Project__c ';
-           soql += 'WHERE (IPM_Stopped_Date_Time__c = LAST_N_MONTHS:' +noOfMonths+ ' OR IPM_Stopped_Date_Time__c = null) ';
+           soql += 'WHERE (IPM_Stopped_Date_Time__c = THIS_MONTH OR IPM_Stopped_Date_Time__c = LAST_N_MONTHS:' +noOfMonths+ ' OR IPM_Stopped_Date_Time__c = null) ';
        
        /*******************************************************
        Prepare the search query for input from search box
