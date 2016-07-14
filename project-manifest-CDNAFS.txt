@@ -3,6 +3,3 @@ src/layouts
 src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
 src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
 src/layouts/FS_Defined_Objective__c-Operator Objective.layout
-src/layouts/FS_Segmentation__c-FS Segmentation Layout.layout
-
-
