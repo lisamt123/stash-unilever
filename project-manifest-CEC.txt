@@ -8,8 +8,8 @@ src/classes/CEC_FufilmentProductInlineControllerTest.cls
 src/classes/CEC_FufilmentProductInlineControllerTest.cls-meta.xml
 src/classes/CEC_FulfilmentHelperTest.cls
 src/classes/CEC_FulfilmentHelperTest.cls-meta.xml
-src/classes/CEC_LiveAgentController.cls
-src/classes/CEC_LiveAgentController.cls-meta.xml
+src/classes/CEC_LiveAgentControllerSpanishTest.cls
+src/classes/CEC_LiveAgentControllerSpanishTest.cls-meta.xml
 src/classes/CEC_NewAccountControllerTest.cls
 src/classes/CEC_NewAccountControllerTest.cls-meta.xml
 src/classes/CEC_CaseInlineController.cls
