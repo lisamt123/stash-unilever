@@ -22,6 +22,7 @@ public class AA_theAgent_ChatterPost_FutureClass_Test {
        reportMap.put(unileverReport.Country__c ,JSON.serialize(unileverReport));
        test.starttest();
       // AA_theAgent_ChatterPost_FutureClass.CallSendToChatter(reportMap);
+      system.assert(unileverReport.id!=null);
        test.stoptest();
     }
 }

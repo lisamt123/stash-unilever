@@ -123,6 +123,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         UserSet.add(objUserSet);
    
         AA_Follow_Unfollow_class.ExecuteFollow(UserSet);
+        system.assert(UserSet!=null);
           
     }
 }
