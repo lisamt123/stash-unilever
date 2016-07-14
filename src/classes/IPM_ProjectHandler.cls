@@ -378,7 +378,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         
                     
                          
-                    if(String.isNotBlank(incomingProject.IPM_Phase__c) &&  incomingProject.IPM_Project_Leader__c != null  && (incomingProject.IPM_Project_Leader__c != oldProject.IPM_Project_Leader__c ) )
+                    if(String.isNotBlank(incomingProject.IPM_Phase__c) &&  ((incomingProject.IPM_Project_Leader__c != null  && incomingProject.IPM_Project_Leader__c != oldProject.IPM_Project_Leader__c )||
+                    	(incomingProject.IPM_Technical_Project_Leader__c != null  && incomingProject.IPM_Technical_Project_Leader__c != oldProject.IPM_Technical_Project_Leader__c )))
                     {   
                         updateTaskAssignee =  true;
                         masterProjectMap.put(incomingProject.Id,incomingProject);

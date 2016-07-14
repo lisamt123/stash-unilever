@@ -396,17 +396,17 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 isReadable=false;
                 
             }   
-            if(IsUpdateStatus && associatedProject !=null )
+           	if(associatedProject !=null)
             {
-            	IsUpdateStatus = !(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c);
-            }
-            else
-            {
-            	IsUpdateStatus = false;
-            } 
-            if(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c)
-            {
-            	isReadable = true;
+                if(IsUpdateStatus)
+                {
+            		IsUpdateStatus = !(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c);
+            	}
+ 
+	            if(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c)
+	            {
+            		isReadable = true;
+                } 
             }    
             
         }
