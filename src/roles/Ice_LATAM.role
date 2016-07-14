@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Ice LATAM</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>Ice_Global_Head</parentRole>
+    <parentRole>ICE_GlobalHead</parentRole>
 </Role>

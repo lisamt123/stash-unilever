@@ -31,8 +31,8 @@
         <profile>Standard</profile>
     </networkMemberGroups>
     <picassoSite>Global_Finance1</picassoSite>
-    <selfRegistration>true</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Global_Finance</site>
     <status>Live</status>
     <tabs>
