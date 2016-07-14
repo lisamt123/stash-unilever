@@ -20,7 +20,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster;        
         //Creating country 
         aa_Country__c objCountry = new aa_Country__c();
-        objCountry.Name ='India';
+        objCountry.Name =AA_Constants.CountrySample;
         objCountry.Cluster_Id__c =objCluster.Id;
         insert objCountry;
         
@@ -34,8 +34,8 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         objCluster2.Name ='Europe';
         insert objCluster2;        
         //Creating country 
-        aa_Country__c objCountry2 = new aa_Country__c(Name='India');
-       // objCountry2.Name ='India';
+        aa_Country__c objCountry2 = new aa_Country__c( Name = AA_Constants.CountrySample);
+       // objCountry2.Name ==AA_Constants.CountrySample;
         objCountry2.Cluster_Id__c =objCluster2.Id;
         insert objCountry2;
         
@@ -55,7 +55,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster4;
         //Creating country 
         aa_Country__c objCountry4 = new aa_Country__c();
-        objCountry4.Name ='India';
+        objCountry4.Name =AA_Constants.CountrySample;
         objCountry4.Cluster_Id__c =objCluster4.Id;
         insert objCountry4;
         
@@ -65,7 +65,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster5;
         //Creating country 
         aa_Country__c objCountry5 = new aa_Country__c();
-        objCountry5.Name ='India';
+        objCountry5.Name =AA_Constants.CountrySample;
         objCountry5.Cluster_Id__c =objCluster5.Id;
         insert objCountry5;
         
@@ -75,7 +75,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster6;
         //Creating country
         aa_Country__c objCountry6 = new aa_Country__c();
-        objCountry6.Name ='India';
+        objCountry6.Name =AA_Constants.CountrySample;
         objCountry6.Cluster_Id__c =objCluster6.Id;
         insert objCountry6;
         
@@ -85,7 +85,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster7;
         //Creating country
         aa_Country__c objCountry7 = new aa_Country__c();
-        objCountry7.Name ='India';
+        objCountry7.Name =AA_Constants.CountrySample;
         objCountry7.Cluster_Id__c =objCluster7.Id;
         insert objCountry7;
         
@@ -95,7 +95,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster8;
         //Creating country
         aa_Country__c objCountry8 = new aa_Country__c();
-        objCountry8.Name ='India';
+        objCountry8.Name =AA_Constants.CountrySample;
         objCountry8.Cluster_Id__c =objCluster8.Id;
         insert objCountry8; 
         
@@ -105,7 +105,7 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         insert objCluster9;
         //Creating country
         aa_Country__c objCountry9 = new aa_Country__c();
-        objCountry9.Name ='India';
+        objCountry9.Name =AA_Constants.CountrySample;
         objCountry9.Cluster_Id__c =objCluster9.Id;
         insert objCountry9; 
         

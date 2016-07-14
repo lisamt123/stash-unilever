@@ -3,29 +3,8 @@ public class AA_Follow_Unfollow_batch_Test {
     public static testMethod void testMethodFollowUnfollowBatch(){
     test.starttest();
     AA_Follow_Unfollow_batch obj= new AA_Follow_Unfollow_batch();
-   /*      Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
-
-        User u2 = new User(Alias = 'tdfss', Email='tes23132t@testorg.com',ProfileId = p.Id ,
-        
-        EmailEncodingKey='UTF-8', LastName='Tes3423423ting', LanguageLocaleKey=AA_Constants.Stringen_us,
-        LocaleSidKey=AA_Constants.Stringen_us, TimeZoneSidKey='America/Los_Angeles', UserName='sdadaas123@testorg.com');
-        insert u2;
-        system.debug('Test user Id==>'+u2.Id);
-          aa_Cluster__c clusterData = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
-        insert clusterData;
-        system.debug('Test cluster Id==>'+clusterData.Id);
-        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.Id);
-        insert countryData; 
-        EntitySubscription objTemp = new EntitySubscription();
-            objTemp.SubscriberId = u2.Id;
-            objTemp.ParentId = clusterData.Id;
-            insert objTemp;
-         EntitySubscription objTemp2 = new EntitySubscription();
-            objTemp2.SubscriberId = u2.Id;
-            objTemp2.ParentId = countryData.Id;
-            insert objTemp2;
-        */
-         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
+  
+        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
 
         User u2 = new User(Alias = 'tdfss', Email='tes23132t@testorg.com',ProfileId = p.Id ,
         
@@ -48,7 +27,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster;        
         //Creating country 
         aa_Country__c objCountry = new aa_Country__c();
-        objCountry.Name ='India';
+        objCountry.Name =AA_Constants.CountrySample;
         objCountry.Cluster_Id__c =objCluster.Id;
         insert objCountry;
         
@@ -62,8 +41,8 @@ public class AA_Follow_Unfollow_batch_Test {
         objCluster2.Name ='Europe';
         insert objCluster2;        
         //Creating country 
-        aa_Country__c objCountry2 = new aa_Country__c(Name='India');
-       // objCountry2.Name ='India';
+        aa_Country__c objCountry2 = new aa_Country__c(Name=AA_Constants.CountrySample);
+       // objCountry2.Name =AA_Constants.CountrySample;
         objCountry2.Cluster_Id__c =objCluster2.Id;
         insert objCountry2;
         
@@ -73,7 +52,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster3;
         //Creating country 
         aa_Country__c objCountry3 = new aa_Country__c();
-        objCountry3.Name ='India';
+        objCountry3.Name =AA_Constants.CountrySample;
         objCountry3.Cluster_Id__c =objCluster3.Id;
         insert objCountry3;
         
@@ -83,7 +62,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster4;
         //Creating country 
         aa_Country__c objCountry4 = new aa_Country__c();
-        objCountry4.Name ='India';
+        objCountry4.Name =AA_Constants.CountrySample;
         objCountry4.Cluster_Id__c =objCluster4.Id;
         insert objCountry4;
         
@@ -93,7 +72,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster5;
         //Creating country 
         aa_Country__c objCountry5 = new aa_Country__c();
-        objCountry5.Name ='India';
+        objCountry5.Name =AA_Constants.CountrySample;
         objCountry5.Cluster_Id__c =objCluster5.Id;
         insert objCountry5;
         
@@ -103,7 +82,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster6;
         //Creating country
         aa_Country__c objCountry6 = new aa_Country__c();
-        objCountry6.Name ='India';
+        objCountry6.Name =AA_Constants.CountrySample;
         objCountry6.Cluster_Id__c =objCluster6.Id;
         insert objCountry6;
         
@@ -113,7 +92,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster7;
         //Creating country
         aa_Country__c objCountry7 = new aa_Country__c();
-        objCountry7.Name ='India';
+        objCountry7.Name =AA_Constants.CountrySample;
         objCountry7.Cluster_Id__c =objCluster7.Id;
         insert objCountry7;
         
@@ -123,7 +102,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster8;
         //Creating country
         aa_Country__c objCountry8 = new aa_Country__c();
-        objCountry8.Name ='India';
+        objCountry8.Name =AA_Constants.CountrySample;
         objCountry8.Cluster_Id__c =objCluster8.Id;
         insert objCountry8; 
         
@@ -133,7 +112,7 @@ public class AA_Follow_Unfollow_batch_Test {
         insert objCluster9;
         //Creating country
         aa_Country__c objCountry9 = new aa_Country__c();
-        objCountry9.Name ='India';
+        objCountry9.Name =AA_Constants.CountrySample;
         objCountry9.Cluster_Id__c =objCluster9.Id;
         insert objCountry9; 
         
@@ -153,11 +132,13 @@ public class AA_Follow_Unfollow_batch_Test {
     insert userPref;
     List<aa_Agent_App_User_Preference__c> objAgent =  new  List<aa_Agent_App_User_Preference__c>();
     objAgent.add(userPref);
-    Database.BatchableContext BC;
-    obj.start(BC);
-    obj.execute(BC,objAgent);
-    obj.finish(BC);
-    test.stoptest();
+        
+         AA_Follow_Unfollow_class.ExecuteFollow(UserSet);
+  //  Database.BatchableContext BC //= new  Database.BatchableContext();
+  //  obj.start(BC);
+  //  obj.execute(BC,objAgent);
+  //  obj.finish(BC);
+  //  test.stoptest();
     
-    }
+   }
   }
