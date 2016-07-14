@@ -383,7 +383,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
     	
     	 }
     	
-    	List<IPM_Project_Rollout__c> regionalRolloutList =  [ Select Id, Target_Launch_Date__c,
+    	List<IPM_Project_Rollout__c> regionalRolloutList =  [ Select Id, Target_Launch_Date__c,Regional_Rollout__c,Regional_Project__r.IPM_Target_Launch_Dates__c,
 	                                                           ( Select Target_Launch_Date__c  From Local_Rollouts__r 
 	                                                              where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                           ( Select Target_Launch_Date__c, Financial_External_ID__c 
@@ -395,7 +395,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	      
 	      for(IPM_Project_Rollout__c regRlout : regionalRolloutList){
 	      	
-	      	Date regTLd = regRlout.Target_Launch_Date__c;
+	      	Date regTLd =!String.isEmpty(regRlout.Regional_Rollout__c)? regRlout.Target_Launch_Date__c:regRlout.Regional_Project__r.IPM_Target_Launch_Dates__c;
 	      	Date earliestLocalTLd = regRlout.Local_Rollouts__r[0].Target_Launch_Date__c;
 	      	Date earliestTLd = regTLd < earliestLocalTLd ? regTLd : earliestLocalTLd ;
 	      	
@@ -410,7 +410,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	      
 	    }
 	      
-	    List<IPM_Project__c> globalPrjRLoutList = [ Select Id,
+	    List<IPM_Project__c> globalPrjRLoutList = [ Select Id,IPM_Target_Launch_Dates__c,
 	                                                ( Select Target_Launch_Date__c From IPM_Project_Rollout__r
 	                                                  where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                ( Select Target_Launch_Date__c, Financial_External_ID__c From IPM_Financials_Consolidated__r 
