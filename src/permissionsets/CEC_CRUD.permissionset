@@ -468,6 +468,7 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L5_Product_Reporting__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -678,6 +679,8 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
+=======
+>>>>>>> feature/Sprint-18_1
         <field>Common_Issue__kav.Attached_File_1__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -711,6 +714,7 @@
         <field>Common_Issue__kav.Information__c</field>
         <readable>true</readable>
     </fieldPermissions>
+<<<<<<< HEAD
 	<fieldPermissions>
         <editable>true</editable>
         <field>Third_Party_Survey__c.Case__c</field>
@@ -4498,12 +4502,29 @@
     </fieldPermissions>
     <label>CEC - CRUD</label>
 	<objectPermissions>
+=======
+    <label>CEC - CRUD</label>
+	<objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Common_Issue__kav</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+>>>>>>> feature/Sprint-18_1
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+<<<<<<< HEAD
         <object>Account</object>
+=======
+        <object>CEC_Claim_Note__c</object>
+>>>>>>> feature/Sprint-18_1
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

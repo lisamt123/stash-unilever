@@ -14,6 +14,11 @@ src/classes/CEC_NewAccountControllerTest.cls
 src/classes/CEC_NewAccountControllerTest.cls-meta.xml
 src/classes/CEC_CaseInlineController.cls
 src/classes/CEC_CaseInlineController.cls-meta.xml
+<<<<<<< HEAD
+=======
+src/classes/CEC_IRIProductLocatorController.cls
+src/classes/CEC_IRIProductLocatorController.cls-meta.xml
+>>>>>>> feature/Sprint-18_1
 src/objects
 src/objects/Common_Issue__kav.object
 src/package.xml
@@ -22,8 +27,12 @@ src/permissionsets/CEC_Knowledge_Manager.permissionset
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/workflows
+<<<<<<< HEAD
 src/workflows/Account.workflow
 
 
 
 
+=======
+src/workflows/Account.workflow
+>>>>>>> feature/Sprint-18_1
