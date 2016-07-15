@@ -195,14 +195,14 @@
                     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
                     <apex:outputPanel id="scriptPanel">
                         <script>
-                        var IPMregionalApp = {completed: '{!isCompleted}',wmessage:'{!$Label.IPM_Unsaved_Alert}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',removeCountryWarningMsg:'{!$Label.IPM_RemoveCountryMsg}',removeAllCountriesWarningMsg:'{!$Label.IPM_RemoveAllCountriesMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeAndProceed}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}',regionalAllCountryMsg:'{!$Label.IPM_RemoveAllCountriesForReg}',localMRMsg:'{!$Label.IPM_RegionalRolloutAlertMsg}',closeWizard:'{!$Label.IPM_CloseWizard}'};
+                        var IPMregionalApp = {completed: '{!isCompleted}',wmessage:'{!$Label.IPM_Unsaved_Alert}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',removeCountryWarningMsg:'{!$Label.IPM_RemoveCountryMsg}',removeAllCountriesWarningMsg:'{!$Label.IPM_RemoveAllCountriesMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}',regionalAllCountryMsg:'{!$Label.IPM_RemoveAllCountriesForReg}',localMRMsg:'{!$Label.IPM_RegionalRolloutAlertMsg}'};
                          </script>                      
                     </apex:outputPanel>
                     <apex:outputpanel id="counterLocal">
-                        <script>
-                        var IPMmessageArr = {removeCountryFeasCap:'{!removeCountryFeasiCap}',removeCountryOtherFeasCap:'{!removeCountryOtherFeasiCap}', singleCountryAsscoaitedProj:'{!countryRelatedProj}',allRolloutFromSameMCO : '{!allRolloutFromSameMCO}'};
-                        </script>
-                        
+                    	<script>
+                    	var IPMmessageArr = {removeCountryFeasCap:'{!removeCountryFeasiCap}',removeCountryOtherFeasCap:'{!removeCountryOtherFeasiCap}', singleCountryAsscoaitedProj:'{!countryRelatedProj}',notAllRolloutFromSameMCO : '{!noAllRolloutFromSameMCO}'};
+                    	</script>
+                    	
                         <apex:inputHidden value="{!localProjCnt}" id="counterLocalVar" />
 
                         <apex:outputPanel rendered="{!invokedFromRollouts}" >
