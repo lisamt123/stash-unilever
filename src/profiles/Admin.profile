@@ -1493,7 +1493,7 @@
         <layout>PBS_FAQ_s__kav-PBS FAQ Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning_Assignment__c-PBS_Learning Assignment Layout</layout>
+        <layout>PBS_Learning_Assignment__c-Learning Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Learning_Category__c-Learning Category Layout</layout>
@@ -1526,13 +1526,13 @@
         <layout>PBS_Question__c-Question Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Quiz__c-PBS_Quiz Layout</layout>
+        <layout>PBS_Quiz__c-Quiz Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Response__c-PBS_Response Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Shared_Learning_Assignment__c-PBS_Shared Learning Assignment Layout</layout>
+        <layout>PBS_Shared_Learning_Assignment__c-Shared Learning Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Standard_Job_Profile__c-PBS Standard Job Profile Layout</layout>
