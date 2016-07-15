@@ -33,6 +33,8 @@ src/classes/AA_ExecuteApprovalProcess_tst.cls
 src/classes/AA_ExecuteApprovalProcess_tst.cls-meta.xml
 src/classes/AA_Follow_Unfollow_batch.cls
 src/classes/AA_Follow_Unfollow_batch.cls-meta.xml
+src/classes/AA_Follow_Unfollow_batch_Test.cls
+src/classes/AA_Follow_Unfollow_batch_Test.cls-meta.xml
 src/classes/AA_Follow_Unfollow_class.cls
 src/classes/AA_Follow_Unfollow_class.cls-meta.xml
 src/classes/AA_Follow_Unfollow_class_Test.cls
