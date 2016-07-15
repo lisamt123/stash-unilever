@@ -53,6 +53,8 @@ src/classes/AA_TheAgentReportWrapper_Test.cls
 src/classes/AA_TheAgentReportWrapper_Test.cls-meta.xml
 src/classes/AA_theAgent_ChatterPost_FutureClass.cls
 src/classes/AA_theAgent_ChatterPost_FutureClass.cls-meta.xml
+src/classes/AA_theAgent_ChatterPost_FutureClass_Test.cls
+src/classes/AA_theAgent_ChatterPost_FutureClass_Test.cls-meta.xml
 src/classes/AA_TriggerFactory.cls
 src/classes/AA_TriggerFactory.cls-meta.xml
 src/classes/AA_WrapperUtility.cls
