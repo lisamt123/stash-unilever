@@ -245,8 +245,13 @@ private class IPM_ProjectSetUpController_Test {
         sic.saveComplexityType();
         sic.removeProjectLogo();
         sic.none();
+        sic.project.IPM_Category_Text__c = 'Household Care';
+        sic.project.IPM_ProjectSubType__c = 'Operational';
         System.assertEquals(sic.project.IPM_Project_Logo_Id__c,'','Project logo id is Empty');
         Test.stopTest();
+        sic.associateProjectMetadata();
+
+        System.debug(LoggingLevel.ERROR,'get the metadata before multibrandpos -->>'+sic.projectMetadata);
         
         sic.project.IPM_Brand_Positioning__c='val1,val2,val3,val4,val5,val6,val7,val8,val9,val10,val11,val12,val13,val14,val15,val16,val17,val18,val19,val20,val21,val22,val23,val24';
         sic.saveProceed();

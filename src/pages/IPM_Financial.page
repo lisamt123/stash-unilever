@@ -257,17 +257,7 @@
                                                                             <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
-                                                                    </apex:outputPanel>
-                                                                    <!-- Rendered when project is updateable as per logged in user's rights and there is no error in controller-->    
-                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,NOT(OR(isEditMode,isProjectStop)))}">   
-<!-- Rendered when project phase is not PLE and type is operational-->  
-                                                                        <apex:outputPanel rendered="{!toShowEditOpern}">
-                                                                         <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
-                                                                        <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
-                                                                            <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
-                                                                        </apex:actionFunction>
-                                                                       </apex:outputPanel>
-                                                                   </apex:outputPanel>                                                                                                                                            
+                                                                    </apex:outputPanel>                                                                                                                                            
                                                                     <!-- Rendered when financial record is updatebale based on security model and edit mode is true.-->
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
                                                                         <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</div>
