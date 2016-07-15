@@ -813,7 +813,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
        
         For (IPM_Project_Rollout__c regionalRollout : lstRegionalRollout)
         { 
+            if(!regionalRollout.IPM_Financials__r.isEmpty())
+            {
             lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c,regionalRollout.IPM_Financials__r) );
+            }
         }
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
@@ -926,7 +929,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                              
         For (IPM_Project__c regionalProject : lstRegionalProject)
         {
+            if(!regionalProject.IPM_Financials_Regional__r.isEmpty())
+            {
             lstRolloutWrappers.add( new RolloutWrapper( regionalProject.Market_Cluster_Name__c,regionalProject.IPM_Financials_Regional__r));
+            }
         }
         
        
