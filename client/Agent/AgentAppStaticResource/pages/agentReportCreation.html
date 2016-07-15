@@ -82,7 +82,7 @@
 		</p>	
 		<p>
 				<label class="titleLabel">Country </label>
-				<select class="form-control" ng-class="{invalidbox : invalidMsg}" name="country" ng-model="selectedcountry" ng-disabled="isClusterIdNull" id="countrylist" ng-options="country as country.Name disabled when(isClusterIdNull == true) for country in Country "  ng-change='getSelectCountry()'>
+				<select class="form-control" ng-class="{invalidbox : invalidMsg}" name="country" ng-model="selectedcountry" ng-disabled="isClusterIdNull" id="countrylist" ng-options="country as country.Name for country in Country "  ng-change='getSelectCountry()'>
 				</select>
 				<span style="color:red;" ng-if="invalidMsg">This field is required. Select either cluster or country.</span>
 		</p>
