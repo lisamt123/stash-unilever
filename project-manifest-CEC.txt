@@ -4,6 +4,8 @@ src/classes/CEC_CaseActionControllerTest.cls
 src/classes/CEC_CaseActionControllerTest.cls-meta.xml
 src/classes/CEC_CaseInlineControllerTest.cls
 src/classes/CEC_CaseInlineControllerTest.cls-meta.xml
+src/classes/CEC_FufilmentProductInlineController.cls
+src/classes/CEC_FufilmentProductInlineController.cls-meta.xml
 src/classes/CEC_FufilmentProductInlineControllerTest.cls
 src/classes/CEC_FufilmentProductInlineControllerTest.cls-meta.xml
 src/classes/CEC_FulfilmentHelperTest.cls
