@@ -78,9 +78,18 @@ public with sharing class aa_Agent_Report_util {
                             sendTochatterMap.put(report.Topic__c,JSON.serialize(report));                   
                         }                                             
                         //Cluster   
-                        if(String.isNotEmpty(report.ClusterId__c)){
+                        if(String.isNotEmpty(report.ClusterId__c) && String.isEmpty(report.Country__c)){
                             sendTochatterMap.put(report.ClusterId__c,JSON.serialize(report));                    
-                        }                    
+                        }   
+                        System.debug('Report Details==>'+report);
+                        Id rTypeId=report.RecordTypeId;
+                        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+                        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+                        Id cReportTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+                        
+                        if(rTypeId == cReportTypeId && report.status__c =='Published (Public)'){
+                                AA_DatabaseServiceUtil.sendToChatter(report.CreatedById,report.CreatedById, report.Report_Title__c, report.id,report.Country__c,report.TF_Mention_User__c);               
+                        }
                         //User Name
                        // String CaretedbyName=userInfo.getUserName();
                        // if (String.isNotEmpty(CaretedbyName)) {
