@@ -907,10 +907,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //Rollout Wrappers
         String projectId = project.Id;
         Integer maxLimit = IPM_ConstantUtils.MaxLimit;
-
+	
         String baseQuery = 'SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM IPM_Financials_Regional__r WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true  OR IPM_ShowAtGlobal__c = true )  ORDER BY Sorting_Order__c, Financial_External_Id__c )';                                             
         String baseFromClause = ' FROM IPM_Project__c ';
-        String baseWhereClause = ' WHERE IPM_Project__c =:projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )';
+        String baseWhereClause = ' WHERE IPM_Parent_Project__c =:projectId ';
         String baseOrderByClause = ' ORDER BY Market_Cluster_Name__c limit:maxLimit '; 
 
         if(project.Is_Archieved__c)
@@ -927,7 +927,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Project__c> lstRegionalProject = database.query(finalQuery);
                                                     
                                              
-        For (IPM_Project__c regionalProject : lstRegionalProject)
+        for (IPM_Project__c regionalProject : lstRegionalProject)
         {
             if(!regionalProject.IPM_Financials_Regional__r.isEmpty())
             {
