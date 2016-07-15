@@ -26694,7 +26694,51 @@
 		<field>uw_Terms_Conditions__c.uw_BET__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Attached_File_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Attached_File_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Attached_File_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Attached_File_4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Attached_File_5__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Information_Source_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Common_Issue__kav.Information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<label>CEC - Knowledge Manager</label>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Common_Issue__kav</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 	<objectPermissions>
 		<allowCreate>true</allowCreate>
 		<allowDelete>true</allowDelete>
