@@ -8,13 +8,8 @@ src/classes/CEC_FufilmentProductInlineControllerTest.cls
 src/classes/CEC_FufilmentProductInlineControllerTest.cls-meta.xml
 src/classes/CEC_FulfilmentHelperTest.cls
 src/classes/CEC_FulfilmentHelperTest.cls-meta.xml
-<<<<<<< HEAD
-src/classes/CEC_LiveAgentController.cls
-src/classes/CEC_LiveAgentController.cls-meta.xml
-=======
 src/classes/CEC_LiveAgentControllerSpanishTest.cls
 src/classes/CEC_LiveAgentControllerSpanishTest.cls-meta.xml
->>>>>>> feature/Sprint-18_1
 src/classes/CEC_NewAccountControllerTest.cls
 src/classes/CEC_NewAccountControllerTest.cls-meta.xml
 src/classes/CEC_CaseInlineController.cls
@@ -27,12 +22,4 @@ src/permissionsets/CEC_Knowledge_Manager.permissionset
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/workflows
-<<<<<<< HEAD
 src/workflows/Account.workflow
-
-
-
-
-=======
-src/workflows/Account.workflow
->>>>>>> feature/Sprint-18_1
