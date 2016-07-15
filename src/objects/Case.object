@@ -3418,20 +3418,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>Case_Brand__c</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
         </filters>
         <filters>
-            <field>Language__c</field>
-            <operation>notEqual</operation>
-            <value>French</value>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC Benelux queue WH</label>
         <language>nl_NL</language>
-        <queue>CEC_Benelux_Queue</queue>
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Escalation_Queue_Case</fullName>
@@ -6943,29 +6942,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Escalated</value>
+            <value>New,In Progress,On Hold,Escalated</value>
         </filters>
         <label>CEC Southern Cone Queue</label>
         <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Southern_Cone_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>CEC Southern Cone Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Southern_Cone_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_South_America</role>
-            <role>CEC_Manager_Southern_Cone</role>
-            <role>CEC_User_Southern_Cone</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Uruguay_Escalation</fullName>
@@ -7830,6 +7811,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
         <label>My Cases</label>
         <language>en_US</language>
     </listViews>
