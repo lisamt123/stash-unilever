@@ -10,40 +10,44 @@ function drawChart() {
     ['Static Imagery', 2],
     ['Stimulus Materials',    7]
 ]);*/
-    console.log($('#chart_div').data('chart-data'));
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Asset');
-    data.addColumn('number', 'Count of Items');
-    var arrayCreated = $('#chart_div').data('chart-data');
-    var newArray = [];
-    for (var i=0; i < arrayCreated.length; i++){
-        console.log(arrayCreated[i][0]);
-        console.log(arrayCreated[i][1]);
-        //data.addRow([i[0], parseInt(i[1])]); 
-        newArray.push([arrayCreated[i][0], parseInt(arrayCreated[i][1])]);
-    }
-    data.addRows(newArray);
-    if(data.getNumberOfRows() > 0){
-        console.log(JSON.stringify(data));
-        var options = {
-            pieHole: 0.5,
-            colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
-            legend: {position : 'none', alignment : 'center'},
-            chartArea: {width: '75%', height: '75%'},
-            fontSize: 15
-        };
+    var totalAssets = $('#chart_div').data('chart-total-assets');
+    if(typeof totalAssets !== 'undefined' && totalAssets !== 0){
+        console.log($('#chart_div').data('chart-data'));
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Asset');
+        data.addColumn('number', 'Count of Items');
+        var arrayCreated = $('#chart_div').data('chart-data');
+        var newArray = [];
+        for (var i=0; i < arrayCreated.length; i++){
+            console.log(arrayCreated[i][0]);
+            console.log(arrayCreated[i][1]);
+            //data.addRow([i[0], parseInt(i[1])]); 
+            newArray.push([arrayCreated[i][0], parseInt(arrayCreated[i][1])]);
+        }
+        data.addRows(newArray);
+        if(data.getNumberOfRows() > 0){
+            console.log(JSON.stringify(data));
+            var options = {
+                pieHole: 0.5,
+                colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9','#FFC62C'],
+                legend: {position : 'none', alignment : 'center'},
+                chartArea: {width: '75%', height: '75%'},
+                fontSize: 15
+            };
 
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
     }
 }
 $(document).ready(function() { 
     console.log('in here');
     var table = $('#sowListTable').DataTable({
         "dom": 'lrtip',
-        'pageLength': 100,
-        'lengthChange': false,
-        'pagingType': 'full_numbers'
+        //'pageLength': 100,
+        //'lengthChange': false,
+        'pagingType': 'full_numbers',
+        'bPaginate' : false
     });
     $('#sowListTable tbody').on('click', 'td', function() {
         if ($(this).hasClass("redirect_td")) {
@@ -80,6 +84,11 @@ $(document).ready(function() {
     });
     $("[data-toggle=popover]").popover();
 
+    $('#cancelCampaignModal').on('shown.bs.modal', function (e) {
+        blockCancelModal(); 
+        refreshPopUpStageIdentifier();
+    });
+
 
     /*Check if Adjust fee value is empty, if empty disable button*/
     if($('.adjust_allocation_box').val() == ""){
@@ -97,6 +106,20 @@ $(document).ready(function() {
         }
     });
 
+    $("[id$=AdjustPercentage]").on("keyup",function(e) {
+        console.log(e);
+        console.log('### target: ');
+        console.log(e.currentTarget);
+        validateTotalAdjustFee(e.currentTarget, 'adjustFeeExcessWarning');
+    });
+
+    $("[id$=manualPercentage]").on("keyup",function(e) {
+        console.log(e);
+        console.log('### target: ');
+        console.log(e.currentTarget);
+        validateTotalAdjustFee(e.currentTarget, 'adjustFeeExcessWarningOnCancel');
+    });
+
 });
 
 function validate(inputId) {
@@ -110,13 +133,38 @@ function validate(inputId) {
     return valid;
 }
 
+validateTotalAdjustFee = function(item, panelId) {
+
+    var maxAllowedAdjustValue = parseFloat($('#maxAllowedAdjustValue').val());
+    var currValue = parseFloat($(item).val());
+
+    if (currValue > maxAllowedAdjustValue) {
+        $('#'+panelId).removeClass('hidden');
+    } else {
+        $('#'+panelId).addClass('hidden');
+        //$('#adjustFeeExcessWarning').addClass('hidden');
+        //$('#adjustFeeExcessWarningOnCancel').addClass('hidden');
+    }
+}
+
 function calculateFee(){
     var percentageElement = $('input[id$=manualPercentage]');
+    var percentageFeePFY = $('input[id$=percentageFeePFY]').val();
+    var feesPFYwithFXadjustment = $('input[id$=feesPFYwithFXadjustment]').val();
+
+    if($.isNumeric(percentageFeePFY) == false){
+        percentageFeePFY = 0;
+    }
+
+    if($.isNumeric(feesPFYwithFXadjustment) == false){
+        feesPFYwithFXadjustment = 0;
+    }
+
     if($.isNumeric(percentageElement.val()) == false){
         $('#calculatedFee').html('#Error');
     } else {
         var fullFee = $(percentageElement).data('fullfee');
-        var calculatedfee = Math.round(fullFee * percentageElement.val() / 100);
+        var calculatedfee = Math.round(((parseFloat(percentageElement.val()) + parseFloat(percentageFeePFY)) * parseFloat(fullFee) / 100) - parseFloat(feesPFYwithFXadjustment));
 
         var formatter = new Intl.NumberFormat({
           maximumFractionDigits: 0,
@@ -129,5 +177,27 @@ function calculateFee(){
         $('#calculatedFee').html('€ ' + formattedFee);
         $('#calculatedFee').data('calculatedfee', calculatedfee);
     }
+}
+
+var blockCancelModal = function() {
+    //console.log('### block: ' + containerId);
+    //$("span[id$=\'"+containerId+"\'] .campaign_stage_chevron_blockme").block({ 
+    $("#cancelCampaignModal .modal-body").block({ 
+        message: 'Please wait...',
+        css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+     });
+}
+
+var unblockCancelModal = function() {
+    //console.log('### unblock: ' + containerId);
+    $("#cancelCampaignModal .modal-body").unblock();
 }
 

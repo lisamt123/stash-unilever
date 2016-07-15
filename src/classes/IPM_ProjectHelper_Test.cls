@@ -8,7 +8,7 @@
   */
   
 @isTest
-public with sharing class IPM_ProjectHelper_Test 
+private with sharing class IPM_ProjectHelper_Test 
 {
      
      /**
@@ -37,6 +37,8 @@ public with sharing class IPM_ProjectHelper_Test
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
             update userList;
          
+            List<User> dbUserList =  [Select Id from User where id in :userList];
+            System.assertEquals(dbUserList.size(),userList.size(),'Users not Created Properly.Actual no of Users should be'+userList.size());
             // Create Company Card information(Master Data)
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
             IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
@@ -59,6 +61,8 @@ public with sharing class IPM_ProjectHelper_Test
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList;
             
+            List<IPM_Project__c> dbProjectList =  [Select Id from IPM_Project__c where id in :projectList];
+            System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
         }
         
         
@@ -111,28 +115,28 @@ public with sharing class IPM_ProjectHelper_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
         
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,'Project Milestones not generated');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'Project Documents dont match the actual Documents');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Complexity doesnt match the Original Complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones not equal to Master Milestones');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'Project Documents dont match the actual Documents'); // One for Global consolidated Financials
                 
                 // Project default phase would always be set as IDEAS.
-                System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
+                System.assertEquals(project.IPM_Phase__c,'Ideas','Project not equal to Ideas'); // Phase would be always ideas for Global Project.
             }
                 
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -156,6 +160,8 @@ public with sharing class IPM_ProjectHelper_Test
              
             insert localRolloutList; 
            
+            List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
+            System.assertEquals(dbRolloutList.size(),localRolloutList.size(),'Projects not Created Properly.Actual size should be '+localRolloutList.size());
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             
@@ -178,6 +184,8 @@ public with sharing class IPM_ProjectHelper_Test
             }
             
             insert countryList;
+            List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
+            System.assertEquals(dbCountryList.size(),countryList.size(),'Projects not Created Properly.Actual size should be '+countryList.size());
             
             /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
             
@@ -223,10 +231,10 @@ public with sharing class IPM_ProjectHelper_Test
                IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
                // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Contract Document either doesnt have a document or has more document');
    
                // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Milestones didnt copy from Parent Project Properly');
             }
         }
         
@@ -239,22 +247,22 @@ public with sharing class IPM_ProjectHelper_Test
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not generated by transaction management');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);
-                    System.assertEquals(task.IPM_Phase__c,regionalProject.IPM_Phase__c);   
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity doesnt match Project complexity.');
+                    System.assertEquals(task.IPM_Phase__c,regionalProject.IPM_Phase__c,'Task Phase is not equal to Project Phase');   
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not present or not visible to Regional Project Leader');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Regional has more financials than expected'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility','Regional Project Phase not equal to feasiblity.'); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -270,37 +278,53 @@ public with sharing class IPM_ProjectHelper_Test
             }  
             
             update projectList;  
-            IPM_ProjectJobHelper.markProjectAsFailed(projids);
         }
-     }
-     
+     } 
+      
      public static testmethod void testEcodesignSyncStatus()
      {
         List<User> users = [Select Id,Email from User where LastName = 'GLOBAL_PL' limit 1];        
+        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+        
         User globalUser = null;
         globalUser = users[0];
-               
+        
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
         // Create Regional Projects.
         System.runAs(globalUser)
         {
             Test.startTest();
-            IPM_Project__c proj = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c,
+            IPM_Project__c proj = [Select Id,EcoDesign_Sync_Status__c,IPM_GateKeeping_Model__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c,
                                     BET_Update__c,BET_Link_Requested__c,BET_Link_Requested_on_Date__c,IPM_SourceProjectType__c,IPM_Project_Type__c,
-                                    IPM_Answer_of_Q1__c from IPM_Project__c limit 1000][0];
+                                    IPM_Answer_of_Q1__c from IPM_Project__c where Name in:projectNameSet  limit 1000][0];
+            proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
             proj.EcoDesign_Sync_Status__c = 'Ready';
             update proj;
-            
+			
+            List<IPM_Project__c> readyprojList = [Select id from IPM_Project__c where EcoDesign_Sync_Status__c = 'Ready' limit 100];
+            System.assert(readyprojList.size() > 0, 'Project status changed to Ready');
+			
+            //The status is changes to Success by Mulesoft. When Mulesoft changes the sync status from ready to success then , the status should again be revereted back to Ready
+            //This ensures that the project is still ready for sync, even after the previous sync was successful.
             proj.EcoDesign_Sync_Status__c = 'Success';
             update proj;
-            
-            IPM_Project__c projNew = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c limit 1000][0];
-            System.assertEquals('Ready',projNew.EcoDesign_Sync_Status__c);
-            
+            IPM_Project__c projSyncSuccess = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c Where Id =:proj.id limit 100][0];
+            System.assertEquals('Ready',projSyncSuccess.EcoDesign_Sync_Status__c,'Project status not changed to Ready');
             proj.EcoDesign_Sync_Status__c = 'Error';
             update proj;
-            
+			
+            //The status is changes to Error by Mulesoft. When mulesoft changes the sync status from ready to Error then , the status should again be revereted back to Ready
+            //This ensures that the project is still ready for sync, even after the previous sync failed.
+            IPM_Project__c projSyncError = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c Where Id =:proj.id limit 1000][0];
+            System.assertEquals('Ready',projSyncError.EcoDesign_Sync_Status__c,'Project status not changed to Ready');
             proj.EcoDesign_Sync_Status__c = 'In Progress';
             update proj;
+			
+            //The status is changes to In Prohress by Mulesoft. When Mulesoft changes the status from Ready to In-Progress , this means that the project was fetched for syncing to Eco-design,
+            //So project status should change to In Progress successfully
+            IPM_Project__c projSyncInProgress = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c Where Id =:proj.id limit 1000][0];
+            System.assertEquals('In Progress',projSyncInProgress.EcoDesign_Sync_Status__c,'Project status not changed to In Progress');
             string projectAPI='IPM_Project__c';
             List<String>apiList=new List<String>();
             apiList.add(projectAPI);
@@ -313,22 +337,18 @@ public with sharing class IPM_ProjectHelper_Test
             List<IPM_Project__c>projNewList=New List<IPM_Project__c>();
             Map<id,IPM_Project__c>oldProjectMap=new Map<id,IPM_Project__c>();
             IPM_Project__c addnewValue=new IPM_Project__C();
-            addnewValue.id=projNew.id;
+            addnewValue.id=proj.id;
             addnewValue.IPM_Project_Leader__c=globalUser.id;
             addnewValue.IPM_Technical_Project_Leader__c=globalUser.id;
             addnewValue.Deputy_Project_Leader__c=globalUser.id;
             addnewValue.IPM_Project_Gatekeeper__c=globalUser.id;
             addnewValue.IPM_Finance_Member__c=globalUser.id;
             projNewList.add(addnewValue);
-            oldProjectMap.put(projNew.id,addnewValue);
+            oldProjectMap.put(proj.id,addnewValue);
             IPM_ProjectTriggerHandler.getProjectUsersMap(projNewList, oldProjectMap, false) ;
             proj.Created_in_error__c=true;
             update proj;
-            
             Test.stopTest();
         }
-         
-        
      }
-   
 }

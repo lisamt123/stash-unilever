@@ -1,16 +1,18 @@
 @isTest
 public class Amr_JobSheetController_Test{
-       
+    
+   
    static testMethod void methodToGetRecords(){
         
+
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = Amr_ConstantForAdManager.TESTALIAS, Email=Amr_ConstantForAdManager.EMAIL, 
-            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing21',LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
-            LocaleSidKey= Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
+            EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing21', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
+            LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
             TimeZoneSidKey=Amr_ConstantForAdManager.ZONEKEY, UserName='standuser@org.com');
         
         User selectedUser = new User(Alias = Amr_ConstantForAdManager.TESTALIAS, Email=Amr_ConstantForAdManager.EMAIL, 
-            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName=Amr_ConstantForAdManager.TESTLASTNAME , LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
+            EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName=Amr_ConstantForAdManager.TESTLASTNAME , LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
             TimeZoneSidKey=Amr_ConstantForAdManager.ZONEKEY, UserName=Amr_ConstantForAdManager.TESTUSERNAME);
         
@@ -23,7 +25,7 @@ public class Amr_JobSheetController_Test{
             insert selectedUser;
             insert sharedJobUser;
           Id permissionSetId =  [select id, PermissionSet.Name from PermissionSet  where Name = 'RAP' Limit 1].Id;  
-          Id usharedRap = sharedJobUser.Id;
+          //Id usharedRap = sharedJobUser.Id;
       PermissionSetAssignment permission= new PermissionSetAssignment(PermissionSetId = permissionSetId, AssigneeId = u.id);
        PermissionSetAssignment selectedPermission= new PermissionSetAssignment(PermissionSetId = permissionSetId, AssigneeId = selectedUser.id);
       insert permission; 
@@ -51,7 +53,7 @@ public class Amr_JobSheetController_Test{
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
         
-        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
         
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
@@ -94,7 +96,7 @@ public class Amr_JobSheetController_Test{
         jobAllocation.selectedCountry = String.valueOf(currencyConversion.Currency_Unit_To_Euro__c);
         jobAllocation.selectedRapName=selRap;
         jobAllocation.currencyRecords=options;
-        Amr_JobSheetController_CC job = new Amr_JobSheetController_CC();
+        //Amr_JobSheetController_CC job = new Amr_JobSheetController_CC();
         jobAllocation.changePriority();
         jobAllocation.acceptJob();
         //jobAllocation.categoryString.add(Amr_ConstantForAdManager.TESTCATEGORY);
@@ -185,7 +187,7 @@ public class Amr_JobSheetController_Test{
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
         
-        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
       
            Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
@@ -198,7 +200,7 @@ public class Amr_JobSheetController_Test{
         insert jobAllocation1;
       //  insert jobSharedDet;
       
-         List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
+       //  List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
       
        Test.setCurrentPageReference(new PageReference(Amr_ConstantForAdManager.JOBSHEETLOCATION)); 
         System.currentPageReference().getParameters().put(Amr_ConstantForAdManager.ID, jobDetail.id);
@@ -237,7 +239,7 @@ public class Amr_JobSheetController_Test{
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
         
-        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
         
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
@@ -251,7 +253,7 @@ public class Amr_JobSheetController_Test{
         insert jobAllocation1;
       //  insert jobSharedDet;
       
-         List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
+      //   List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
       
        Test.setCurrentPageReference(new PageReference(Amr_ConstantForAdManager.JOBSHEETLOCATION)); 
         System.currentPageReference().getParameters().put(Amr_ConstantForAdManager.ID, jobDetail.id);
@@ -304,7 +306,7 @@ public class Amr_JobSheetController_Test{
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
         
-        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
         
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
@@ -320,7 +322,7 @@ public class Amr_JobSheetController_Test{
         insert jobAllocation1;
       //  insert jobSharedDet;
       
-         List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
+       //  List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
       
        Test.setCurrentPageReference(new PageReference(Amr_ConstantForAdManager.JOBSHEETLOCATION)); 
         System.currentPageReference().getParameters().put(Amr_ConstantForAdManager.ID, jobDetail.id);
@@ -376,7 +378,7 @@ public class Amr_JobSheetController_Test{
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
         
-        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
        Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
       
@@ -391,7 +393,7 @@ public class Amr_JobSheetController_Test{
         insert jobAllocation1;
       //  insert jobSharedDet;
       
-         List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
+      //   List <Amr_Job_Allocation__c > jobSharedDetailList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobDetail.id AND Is_Primary__c = False ];
       
        Test.setCurrentPageReference(new PageReference(Amr_ConstantForAdManager.JOBSHEETLOCATION)); 
         System.currentPageReference().getParameters().put(Amr_ConstantForAdManager.ID, jobDetail.id);
@@ -412,7 +414,7 @@ public class Amr_JobSheetController_Test{
    static testMethod  void testMehod2(){
    
 
-          List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
+          //List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
          Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
          User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
             EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing321', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
@@ -560,7 +562,7 @@ public class Amr_JobSheetController_Test{
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
         
-        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
         Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
        

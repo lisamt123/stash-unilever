@@ -7,15 +7,16 @@
 @reference IPM_OTIFstatusController
 */
 @isTest
-public class IPM_OTIFstatusController_Test {
+private class IPM_OTIFstatusController_Test {
     
-    public static IPM_Project__c project;
-    public static IPM_Project_Document__c projDoc;
-    public static List<IPM_Project_Document__c> projDocList;
-    public static IPM_Project_Document_Section__c projDocSec;
-    public static IPM_Project_Document_Section_Content__c projDocSecCon;
-    public static User otifUser;
-    public static final string IDEA_STR = 'Idea';
+    private static IPM_Project__c project;
+    private static IPM_Project_Document__c projDoc;
+    private static List<IPM_Project_Document__c> projDocList;
+    private static IPM_Project_Document_Section__c projDocSec;
+    private static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static User otifUser;
+    private static string RECORD_NOT_SAVED_SUCCESSFULLY='record not saved successfully';
+    private static string SECTION_CONTENT_LIST_IS_EMPTY='section content list empty';
     
     /*Name: initializeData
     * @Description: Initialises the data needed for creating OTIF situation
@@ -30,7 +31,7 @@ public class IPM_OTIFstatusController_Test {
             project.IPM_IsCompleted__c=true; 
             insert project;
             IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
-            system.assert(projectObj.IPM_IsCompleted__c,System.Label.IPM_Record_successfully_saved);
+            system.assert(projectObj.IPM_IsCompleted__c,RECORD_NOT_SAVED_SUCCESSFULLY);
             
             projDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
             projDoc.IPM_Project__c=project.ID;
@@ -38,7 +39,7 @@ public class IPM_OTIFstatusController_Test {
             projDoc.IPM_Project_Document_External_Id__c = 'Test_Ext_Id';
             insert projDoc;
             IPM_Project_Document__c projectDocObj=[select IPM_Project__c from IPM_Project_Document__c where id=:projDoc.Id];
-            system.assertEquals(projectDocObj.IPM_Project__c,project.ID,System.Label.IPM_Record_successfully_saved);
+            system.assertEquals(projectDocObj.IPM_Project__c,project.ID,RECORD_NOT_SAVED_SUCCESSFULLY);
             
             projDocList=new List<IPM_Project_Document__c>();
             projDocList.add(projDoc);
@@ -48,7 +49,7 @@ public class IPM_OTIFstatusController_Test {
             insert projDocSec;
             
             IPM_Project_Document_Section__c projectDocSecObj=[select IPM_Project_Document__c from IPM_Project_Document_Section__c where id=:projDocSec.Id];
-            system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,System.Label.IPM_Record_successfully_saved);
+            system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,RECORD_NOT_SAVED_SUCCESSFULLY);
             
             projDocSecCon = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
             projDocSecCon.IPM_Project_Document_Section__c=projDocSec.ID;
@@ -68,7 +69,7 @@ public class IPM_OTIFstatusController_Test {
             insert projDocSecCon;
             
             IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
-            system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,System.Label.IPM_Record_successfully_saved);
+            system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,RECORD_NOT_SAVED_SUCCESSFULLY);
         }
     }
     
@@ -85,14 +86,14 @@ public class IPM_OTIFstatusController_Test {
             System.assertNotEquals(otif.secCon.IPM_Content_Type__c,IPM_ConstantUtils.OTIF_CONTENT_TYPE,System.Label.IPM_CATCH_BLOCK_CALLED);
             otif.iseditable=true;
             otif.showSectionContent();
-            System.assertEquals(otif.secConList,Null,System.Label.IPM_FUNC_CALLED_SUCCESSFULLY);
+            System.assertEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
             otif.projDocSecId=projDocSec.Id;
             otif.otifType=IPM_ConstantUtils.OTIF_TABLE;
             otif.showSectionContent();
-            System.assertNotEquals(otif.secConList,Null,System.Label.IPM_FUNC_CALLED_SUCCESSFULLY);
+            System.assertNotEquals(otif.secConList,Null,SECTION_CONTENT_LIST_IS_EMPTY);
             otif.otifType=IPM_ConstantUtils.OTIF_SECTION;
             otif.showSectionContent();
-            System.assertNotEquals(otif.secConList,Null,System.Label.IPM_FUNC_CALLED_SUCCESSFULLY);
+            System.assertNotEquals(otif.secConList,Null,'');
             otif.secConId=projDocSecCon.Id;
             otif.status='Red';
             otif.updateOTIFStatus();

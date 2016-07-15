@@ -29,23 +29,36 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 private class PBS_MyProfileController_Test {
 
-private static final string STR_GUEST = 'Guest'; 
-static testMethod void testWithNoAchievements(){
+    static testMethod void testWithNoAchievements(){
 
         //Create admin users
-        List<User> adminUsers = PBS_TestUtilClass.createUsers(2,'System Administrator');
-        List<User> lmsUsers = PBS_TestUtilClass.createUsers(2,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_TestUtilClass.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_TestUtilClass.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         //Update manager for user 1
         User u1 = [select id,managerId from User where id = :lmsUsers.get(0).id];
         u1.managerId = lmsUsers.get(1).Id;
         update u1;
+
+        PBS_TrainingPlanData_Test.createSampleData();
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        System.assertEquals(1,tplan.size());
+        Id tplanId = tplan.get(0).Id;
+        Set<Id> selectedUserIds = new Set<Id>();
+
+        for(User u : lmsUsers){
+            selectedUserIds.add(u.Id);
+        }
+
+        System.runAs(adminUsers.get(0)){
+            PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
+        }
 
         PageReference ref = Page.PBS_MyProfile;
         Test.setCurrentPageReference(ref);
@@ -56,14 +69,19 @@ static testMethod void testWithNoAchievements(){
 
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assert(cont.oManager != null);
-                
+                System.assert(cont.achievementType == 'Achievements');
                 System.assert(cont.oUser != null);
-           
+                System.assertEquals(0,cont.lcategories.size());
+
+                List<PBS_MyProfileController_CC.AchievementTypeWrapper> atypes = cont.getAchievementTypes();
+                System.assert(atypes.size()>0);
+
+
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 
-              
-               
+                PageReference ctypeRef = cont.changeAchievementType();
+                System.assert(ctypeRef != null);
 
             }
 
@@ -74,13 +92,13 @@ static testMethod void testWithNoAchievements(){
     static testMethod void testWithAchievements(){
 
         //Create admin users
-        List<User> adminUsers = PBS_TestUtilClass.createUsers(2,'System Administrator');
-        List<User> lmsUsers = PBS_TestUtilClass.createUsers(2,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_TestUtilClass.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_TestUtilClass.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         //Update manager for user 1
@@ -88,7 +106,24 @@ static testMethod void testWithNoAchievements(){
         u1.managerId = lmsUsers.get(1).Id;
         update u1;
 
-       
+        PBS_TrainingPlanData_Test.createSampleData();
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        System.assertEquals(1,tplan.size());
+
+        List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+
+        Id tplanId = tplan.get(0).Id;
+        Set<Id> selectedUserIds = new Set<Id>();
+
+        for(User u : lmsUsers){
+            selectedUserIds.add(u.Id);
+        }
+
+        System.runAs(adminUsers.get(0)){
+            PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
+        }
 
         PageReference ref = Page.PBS_MyProfile;
         Test.setCurrentPageReference(ref);
@@ -98,49 +133,72 @@ static testMethod void testWithNoAchievements(){
             System.runAs(lmsUsers.get(0)){
 
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
-               
-               // PBS_MyProfileController_CC.storeUserProfile(STR_GUEST, STR_GUEST, lmsUsers.get(0).id, 'Guest');
+                System.assertEquals(1,cont.lcategories.size());
+
+                List<PBS_MyProfileController_CC.AchievementTypeWrapper> atypes = cont.getAchievementTypes();
+                System.assert(atypes.size()>0);
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 
-               
-                
+                PageReference ctypeRef = cont.changeAchievementType();
+                System.assert(ctypeRef != null);
+
             }
 
         Test.stopTest();
-        System.assert(ref != null);
-    }
 
+    }
 
     static testMethod void testWithAchievementsAndOverrideURL(){
 
         //Create admin users
-        List<User> adminUsers = PBS_TestUtilClass.createUsers(2,'System Administrator');
-        List<User> lmsUsers = PBS_TestUtilClass.createUsers(2,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_TestUtilClass.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_TestUtilClass.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         //Update manager for user 1
         User u1 = [select id,managerId from User where id = :lmsUsers.get(0).id];
         u1.managerId = lmsUsers.get(1).Id;
         update u1;
-        
-        PBS_Standard_Job_Profile__c  objPBS_Standard_Job_Profile = new PBS_Standard_Job_Profile__c();
-        objPBS_Standard_Job_Profile.name = 'Demand Planner';
-       
-        insert objPBS_Standard_Job_Profile;
-        
-        PBS_Profile__c objProfile = new PBS_Profile__c (User_Role__c = objPBS_Standard_Job_Profile.Id,
-                                                         User__c = lmsUsers.get(0).id,
-                                                         Work_Level__c = STR_GUEST,
-                                                         Geography__c = STR_GUEST,
-                                                         Buddy__c = STR_GUEST);
-        insert objProfile ;
-                
+
+        PBS_TrainingPlanData_Test.createSampleData();
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        System.assertEquals(1,tplan.size());
+
+        //Override achievement url
+        List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
+        PBS_Achievement__c ach = [select id,Override_URL__c from PBS_Achievement__c where Id = :lAchievement.get(0).Id];
+        ach.Override_URL__c = 'https://www.salesforce.com';
+        update ach;
+
+
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+
+        Id tplanId = tplan.get(0).Id;
+        Set<Id> selectedUserIds = new Set<Id>();
+
+        for(User u : lmsUsers){
+            selectedUserIds.add(u.Id);
+        }
+
+        System.runAs(adminUsers.get(0)){
+            PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
+        }
+
+
+        //Change achievement status
+        List<PBS_Achievement_Assignment__c> achievementAssignments = [select Id,Status__c from PBS_Achievement_Assignment__c where Training_Plan_Achievement__r.Training_Plan__c = :tplanId];
+        for(PBS_Achievement_Assignment__c aa : achievementAssignments){
+            aa.Status__c = PBS_LMSConstants_CC.AA_ACQUIRED_STATUS;
+        }
+        update achievementAssignments;
+
         PageReference ref = Page.PBS_MyProfile;
         Test.setCurrentPageReference(ref);
 
@@ -148,22 +206,47 @@ static testMethod void testWithNoAchievements(){
 
             System.runAs(lmsUsers.get(0)){
 
-               PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
-                                                     
-               cont.getGeographyOptions();
-               cont.getWorkLevelOptions();
-               cont.getJobProfileOptions();
-               cont.getProfile();
-               PBS_MyProfileController_CC.storeUserProfile(STR_GUEST, STR_GUEST, objPBS_Standard_Job_Profile.Id, 'Guest');
+                PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
+                System.assertEquals(1,cont.lcategories.size());
+
+                List<PBS_MyProfileController_CC.AchievementTypeWrapper> atypes = cont.getAchievementTypes();
+                System.assert(atypes.size()>0);
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 
-              
+                PageReference ctypeRef = cont.changeAchievementType();
+                System.assert(ctypeRef != null);
 
             }
 
         Test.stopTest();
-        System.assert(ref != null);
+
+    }
+    
+    static testMethod void testSelectOptions(){
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
+
+        System.runAs(adminUsers.get(0)){
+            //Assign corresponding perm sets
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
+        }
+        
+        PageReference ref = Page.PBS_MyProfile;
+        Test.setCurrentPageReference(ref);
+
+        Test.startTest();
+
+        System.runAs(lmsUsers.get(0)){
+            
+            PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
+            System.assert(cont.getCategoryOptions().size()>=0);
+                System.assert(cont.getGeographyOptions().size()>=0);
+                System.assert(cont.getJobProfileOptions().size()>=0);
+                System.assert(cont.getWorkLevelOptions().size()>=0);
+        }
+        Test.stopTest();
     }
 
 }

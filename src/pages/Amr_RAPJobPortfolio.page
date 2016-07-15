@@ -2,7 +2,7 @@
     <apex:include pageName="Amr_common" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/rap-jobportfolio.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_rap_jobportfolio.js')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/rap-job-portfoio.css')}" />    
     <!--[if IE]>
     <style type='text/css'>
@@ -24,19 +24,19 @@
             text-transform:capitalize;
         }
         .scrollbar-table-parent table.list thead th:nth-child(4) div, .scrollbar-table-parent table.list thead th:nth-child(8) div, .scrollbar-table-parent table.list thead th:nth-child(9) div {
-        	padding-left:8px;
+            padding-left:8px;
         }
         .scrollbar-table-parent table.list thead th:nth-child(5) div {
-        	padding-left:16px;
-        }
+            padding-left:16px;
+        }        
     </style>
     <script type="text/javascript">
     
         function setFocusOnLoad() {}
     
         $j(function(){ 
-            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });     
-                 
+            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });  
+            $j('#datepick1').datepicker({ dateFormat: 'dd/mm/yy' });                   
         });        
         
     </script>
@@ -48,7 +48,7 @@
             <script type="text/javascript">
                 showPopupRAPPortfolio();
             </script>
-                <div class="absolute padding10-10-0-0 pointer" style="right:25px;top:260px;">
+                <div class="absolute padding10-10-0-0 pointer" style="right:25px;top:130px;">
                     <div class="left bold bell-text-label">
                         {!totalAlertCount}
                     </div>
@@ -59,11 +59,11 @@
                     </div>
                 </div>
             </apex:outputPanel>
-            <div class="rapjobportfolio-main-section margin-top30">
+            <div class="rapjobportfolio-main-section padding-top30">
                 <div class="leftbar">
                     <div class="leftbar-container bg-w8">
                         <div class="leftbar-container-header dark-blue-header" style="border-radius:6px;padding:11px 10px;">
-                            {!$Label.Amr_DashboardSpace}
+                            {!$Label.Amr_Dashboard}
                         </div>
                         <div class="leftbar-container-content margin0-12 bg-w8" style="text-align: center;">
                             <div class="leftbar-container-content93">
@@ -92,7 +92,7 @@
                                     <div class="clear">
                                     </div>
                                 </div>
-                                <div class="right total-jobs-class margin-btwn-inner-container">
+                                <div class="right total-jobs-class margin-btwn-inner-container margin-top3">
                                     {!$Label.Amr_Total_Jobs} <span>{!TotalJobs}</span>
                                 </div>
                                 <div class="clear margin-btwn-inner-container">
@@ -100,7 +100,7 @@
                                         <div class="left margin-right12" style="background:#86CCF2;width:15px;">
                                             &nbsp;
                                         </div>
-                                        <div class="left" style="text-align: left;">
+                                        <div class="left margin-top3" style="text-align: left;">
                                             {!$Label.Amr_Pending}
                                         </div>
                                         <div class="clear"></div>
@@ -110,7 +110,7 @@
                                             <!--#59B577-->
                                             &nbsp;
                                         </div>
-                                        <div class="left" style="text-align: left;">
+                                        <div class="left margin-top3" style="text-align: left;">
                                             {!$Label.Amr_Live}
                                         </div>
                                         <div class="clear"></div>
@@ -120,7 +120,7 @@
                                             <!--#F3922A-->
                                             &nbsp;
                                         </div>
-                                        <div class="left" style="text-align: left;">
+                                        <div class="left margin-top3" style="text-align: left;">
                                             {!$Label.Amr_Priority}
                                         </div>
                                         <div class="clear"></div>
@@ -129,7 +129,7 @@
                                         <div class="left margin-right12" style="background:#F3922A;width:15px;">                                            
                                             &nbsp;
                                         </div>
-                                        <div class="left" style="text-align: left;">
+                                        <div class="left margin-top3" style="text-align: left;">
                                             {!$Label.Amr_Dormant}
                                         </div>
                                         <div class="clear"></div>
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="clear"></div>
                                 <div style="width:100%" class="relative">
-                                    <div class="absolute bold" style="right:50px;">You v&apos;s Team Monthly</div>
+                                    <div class="absolute bold" style="right:50px;top:7px;">You v&apos;s Team Monthly</div>
                                     <apex:pageblock >
                                         <apex:chart height="100" width="300" data="{!PieDataSaving}">
                                             <apex:pieSeries dataField="data" donut="50" colorSet="#70309F,#1E4E78">
@@ -147,11 +147,11 @@
                                             <apex:legend position="right" />
                                         </apex:chart>
                                     </apex:pageblock>
-                                </div>
+                                </div> 
                                 <div class="clear">
                                 </div>
                                 <div style="width:100%" class="relative">
-                                    <div class="absolute bold" style="right:50px;">You v&apos;s Team YTD</div>
+                                    <div class="absolute bold" style="right:72px;top:7px;">You v&apos;s Team YTD</div>
                                     <apex:pageblock >
                                         <apex:chart height="100" width="300" data="{!PieData}">
                                             <apex:pieSeries dataField="data"  donut="50" colorSet="#70AB46,#4472C3">
@@ -279,7 +279,7 @@
                               <!--  <div class="job-field-label">{!$Label.Amr_Date_logged}</div> -->
                              
                                 <div class="job-field-input">
-                                    <input type="text" id="datepick" placeholder="{!$Label.Amr_Date_logged}" onchange="callActionFunctionStartDate(this.value);" />                                   
+                                    <input type="text" id="datepick" placeholder="{!$Label.Amr_Start_Date}" onchange="callActionFunctionStartDate(this.value);" />                                   
                                 </div>
                                
                                 <apex:actionStatus id="actStatusId123">
@@ -289,7 +289,22 @@
                                  </apex:actionStatus>
                             </div>
                             
-                            <div class="job-field-parent displayinlineblock ">
+                            
+                            <div class="job-field-parent displayinlineblock margin-top40imp">
+                              <!--  <div class="job-field-label">{!$Label.Amr_Date_logged}</div> -->
+                             
+                                <div class="job-field-input">
+                                    <input type="text" placeholder="{!$Label.Amr_End_Date}" class="inputTextCommon" id="datepick1" onchange="callActionFunctionEndDate(this.value);" />                                   
+                                </div>
+                               
+                                <apex:actionStatus id="enddateloading">
+                                        <apex:facet name="start">
+                                            <img src="/img/loading.gif" alt="loading" />
+                                        </apex:facet>
+                                 </apex:actionStatus>
+                            </div>
+                            
+                            <div class="job-field-parent displayinlineblock margin-top40imp">
                               <!--  <div class="job-field-label">{!$Label.Amr_Date_logged}</div> -->
                                 <div class="job-field-input">
                                    <apex:inputText value="{!projectLeaderLocation}" html-placeholder="{!$Label.Amr_Location_of_Unilever_project_leader}"/>
@@ -303,7 +318,7 @@
                                 </div>
                             </div>
 
-                            <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-parent displayinlineblock" style="margin-top:35px;">
                                <div class="job-field-label"></div>   
                               
                                 <div class="job-field-input">
@@ -367,7 +382,7 @@
                     <apex:actionFunction action="{!getJobDetailSearch}" name="callContrlStartDate" reRender="listRefresh1" status="actStatusId123">
                         <apex:param name="param" value="" id="y" assignTo="{!startDate}" />
                     </apex:actionFunction>
-                    <apex:actionFunction action="{!getJobDetailSearch}" name="callContrlEndDate" reRender="listRefresh1" status="actStatusId123">
+                    <apex:actionFunction action="{!getJobDetailSearch}" name="callContrlEndDate" reRender="listRefresh1" status="enddateloading">
                         <apex:param name="param16" value="" id="y16" assignTo="{!endDate}" />
                     </apex:actionFunction>
                     <apex:actionFunction action="{!getSortedPriorityList}" name="callContrlPrioritySort" reRender="listRefresh" status="actionStatusPriSort">
@@ -973,13 +988,24 @@
                 </div>
             </div>
             <div class="clear">
-            </div>
+            </div>    <!--
             <apex:actionFunction action="{!getJobDetailSearch}" name="callContrlStartDate" reRender="listRefresh1" status="actStatusId123">
                 <apex:param name="param" value="" assignTo="{!startDate}" />
-            </apex:actionFunction>
+            </apex:actionFunction>    -->
             <apex:actionFunction name="hideAlert" action="{!alertHide}" reRender="alertCountNumber">
                 <apex:param id="aname" assignTo="{!selectedAlert}" name="selectedAlert" value="{!selectedAlert}" />
             </apex:actionFunction>
         </apex:form>
     </div>
+    <script type="text/javascript">
+     $j(function(){                             
+            setTimeout(function() {
+		       $j('rect').each(function(){
+            		if($j(this).attr('stroke-width')) {
+            			$j(this).attr('stroke-width','0');
+            		}
+            	});
+		    }, 3000);                 
+        });
+     </script>
 </apex:page>

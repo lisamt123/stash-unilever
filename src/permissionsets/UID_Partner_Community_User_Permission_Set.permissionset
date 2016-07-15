@@ -855,6 +855,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>UID_Performance__c.UID_Apr_IOP__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1045,6 +1050,11 @@
         <field>UID_Stocked_Product_Summary__c.UID_WS_Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Stock_Cover_Calculation_Flag__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     
     <fieldPermissions>
         <editable>false</editable>
@@ -1085,6 +1095,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>UID_Stocked_Product__c.UID_Stocked_Product_External_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>UID_Stocked_Product__c.UID_Summarized_Invoice_Ranking_Flag__c</field>
         <readable>true</readable>
     </fieldPermissions>
     

@@ -110,7 +110,7 @@ public class Amr_CAPJobPortfolioController_Test{
     User u = new User(Alias = 'standt12', Email='standarduser12@testorg.com', 
             EmailEncodingKey='UTF-8', LastName='Testing12', LanguageLocaleKey='en_US', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
-            TimeZoneSidKey='America/Los_Angeles', UserName='standarduser12@testorg.com');
+            TimeZoneSidKey='America/Los_Angeles', UserName='stanuseramrms12@amrorg.com');
             insert u;
          Amr_Project_Details__c projDetail = new Amr_Project_Details__c(Name='testProject');
         insert projDetail;    
@@ -147,7 +147,7 @@ public class Amr_CAPJobPortfolioController_Test{
     jobPortFolio.totalSizeForActiveJobs=2;
     
    //   jobPortFolio.WrapperList[0].SelectBox=true;
-   Amr_CAPJobPortfolioController_CC.WrapperClass wrap = new Amr_CAPJobPortfolioController_CC.WrapperClass(true,jobAllocation);
+   //Amr_CAPJobPortfolioController_CC.WrapperClass wrap = new Amr_CAPJobPortfolioController_CC.WrapperClass(true,jobAllocation);
    List<Amr_CAPJobPortfolioController_CC.WrapperClass> wrapList=new List<Amr_CAPJobPortfolioController_CC.WrapperClass>();
    for(Amr_Job_Allocation__c sObj:jobList1){
     wrapList.add(new Amr_CAPJobPortfolioController_CC.WrapperClass(true,sObj));

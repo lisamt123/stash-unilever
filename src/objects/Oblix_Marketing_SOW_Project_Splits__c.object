@@ -128,7 +128,7 @@
         <fullName>Lock_Record_if_Sync_in_Progress</fullName>
         <active>true</active>
         <description>If a roll over Sync in Progress. Record Locked</description>
-        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Project_Splits__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Project_Splits__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorConditionFormula>IF($Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Project_Splits__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Project_Splits__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>
 </CustomObject>

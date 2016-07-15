@@ -2,7 +2,10 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirectToMain</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>CancelEdit</actionName>
@@ -10,7 +13,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>Oblix_VF02OverrideAsetNewLookup</content>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirect</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
@@ -20,7 +24,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -28,11 +35,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF02OverrideAsetNewLookup</content>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirectToMain</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
@@ -42,11 +53,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_AssetRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -939,6 +956,19 @@ Changed to Campaign on 26/10/2015</description>
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Enforce_Trigger_Update__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FULL_Description__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1118,6 +1148,18 @@ Changed to Campaign on 26/10/2015</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sync_Step__c</fullName>
+        <description>Stamps the record with the processed step to ensure the next batch does not pick up the same record. DO NOT EDIT as this field is set by automated job</description>
+        <externalId>false</externalId>
+        <label>Sync Step</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Target_Delivery_Date__c</fullName>
@@ -3006,6 +3048,9 @@ Changed to Campaign on 26/10/2015</description>
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <lookupDialogsAdditionalFields>FULL_Description__c</lookupDialogsAdditionalFields>
         <searchFilterFields>OBJECT_ID</searchFilterFields>
         <searchFilterFields>NAME</searchFilterFields>
@@ -3016,7 +3061,7 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
         <active>true</active>
         <description>Lock Campaign Record if Campaign Sync in Progress.</description>
-        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorConditionFormula>IF($Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>
 </CustomObject>

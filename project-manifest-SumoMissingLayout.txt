@@ -1,0 +1,4 @@
+src
+src/layouts
+src/layouts/SuMo_Job_Courses__c-SuMo Job Course Layout.layout
+src/layouts/SuMo_PBS_Course__c-PBS Course Layout.layout

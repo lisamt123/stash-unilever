@@ -4,8 +4,8 @@ Name:  Amr_AdManagerController_CC ()  Copyright © 2015  Salesforce
 ====================================================== 
 Purpose:                                                           
 -------   This class is holds the  business logic for Creation Of New Saving,Quote and Accepted Quote.                                                         
- ====================================================== 
- ====================================================== 
+ =======================================================
+ =======================================================
  History                                                             
  -------                                                             
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
@@ -24,7 +24,6 @@ public with sharing class Amr_AdManagerController_CC{
             List<selectOption> optionsNew = new List<selectOption>();
             options.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
-            System.debug('Currency List Size --> ' + lstcov.size());
             lstcov.sort();
             
             Map<String,String> mapAmountToCurrency = new Map<String,String>();
@@ -64,10 +63,12 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean flag{get;set;}
     public boolean display{get;set;}
     public boolean displayRap{get;set;}
+    public boolean boolIsProductionActivityError{get;set;}
     public String CheckWithCMI{get;set;}
 
     public Amr_AdManagerController_CC(){
         try{
+            boolIsProductionActivityError = false;
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             jobDetails = new Amr_Job_Details__c();
             r = [SELECT Introduction__c, Header__c, Footer__c, Allocation__c, Automatic_Allocation_On__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
@@ -88,7 +89,6 @@ public with sharing class Amr_AdManagerController_CC{
 
             listOfBrandPosition = new List<SelectOption>();
             listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-            system.debug('inside constructor ===>'+listOfBrandPosition);
         
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -122,8 +122,7 @@ public with sharing class Amr_AdManagerController_CC{
 
    ********************************************************************/ 
     
-    public String getMethodToPassProjectNames(){
-       
+    public String getMethodToPassProjectNames(){       
         return JSON.serialize(listString);
     }
     
@@ -139,13 +138,23 @@ public with sharing class Amr_AdManagerController_CC{
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
             Set<String> brnadPosNameSet = new Set<String>();
-            system.debug('inside brand postition======>'+listOfBrandPosition);
+            
+            /* start Added later */
+            brandNameFromPage   = null;
+            
+            listOfBrandPosition = new List<SelectOption>(); 
+            listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            listOfBrand = new List<SelectOption>();
+            listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            
+            /* end Added later */
+            
             for(MDO_BrandPositions__c bps : brandPositionlst){
                 if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
                     listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
                     brnadPosNameSet.add(bps.brand_position_id__r.name);
                 }
-            }
+            }            
            }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -380,7 +389,8 @@ public with sharing class Amr_AdManagerController_CC{
             if(jobDetails.Stage_of_Production_Activity__c == null){
                 StageProductionActivity = true;           
             }
-            //okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
+            okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
+            boolIsProductionActivityError = true;
            
             if( !okayToSave || CheckWithCMIflag || yourEmailAddressFlag || unileverFinanceMemberEmailFlag || projectLeaderCountryClusterFlag || finalApproverMaterialEmailFlag || functionYouArePartFlag
                  || budgetResponsibilityFlag || budgetAllocatedCountryFlag || budgetAllocatedInputFlag || categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag || agencyDirectorEmailFlag
@@ -461,19 +471,15 @@ public with sharing class Amr_AdManagerController_CC{
             UserLoginId = userinfo.getuserid();  
             User userObj = [select id,SessionId__c from User where id = :UserLoginId];
             PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id,PermissionSet.Name from PermissionSetAssignment where (PermissionSet.Name = :Label.Amr_CAP OR PermissionSet.Name = :Label.Amr_RAP OR PermissionSet.Name = :Label.Amr_AdManager) order by Assignee.name];
-            system.debug('------>PermissionSetAssignmentList=='+PermissionSetAssignmentList );
             PageReference pageRef =null;
             flag = false;
             display = false;
             displayRap = false;
-            system.debug(userObj.SessionId__c +'======'+sessionIdVal);
             
             for(PermissionSetAssignment permissionObject:PermissionSetAssignmentList ){
-                system.debug('=======>'+permissionObject.PermissionSet.Name);
                 
           //      if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
                           if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
-                    system.debug('inside cap==>');
         
                     pageRef = Page.Amr_CAPJobPortfolio;
                     pageRef.setRedirect(true);
@@ -482,7 +488,6 @@ public with sharing class Amr_AdManagerController_CC{
                                 } 
          //       if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
                           if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
-                    system.debug('inside RAP==>');
     
                     pageRef = Page.Amr_RAPJobPortfolio;
                     pageRef.setRedirect(true);
@@ -505,9 +510,6 @@ public with sharing class Amr_AdManagerController_CC{
     }
     
     public void prodActivity(){
-       
-       
-        System.debug('PRod -> ' + productionActivityData);
         
     }
     

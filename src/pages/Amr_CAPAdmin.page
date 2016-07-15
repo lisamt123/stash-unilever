@@ -11,7 +11,7 @@
     </style>
     <apex:pagemessages id="msgs"></apex:pagemessages>  
     <div class="container">
-        <div class="outer_section margin-top20">
+        <div class="outer_section padding-top20">
             <div class="main_inner_section margin-btwn-container bg-g1">
                 <h4 class="main_inner_sectionh4">
                     Logging Page Maintenance                    

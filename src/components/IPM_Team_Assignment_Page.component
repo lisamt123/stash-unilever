@@ -274,7 +274,7 @@
                                  <apex:outputPanel rendered="{!!isCoreMemEditable}">
                                      <a href="#" class="milestones ipmButton primary" onClick="custnextTab(this)">{!$Label.IPM_Continue}</a> 
                                  </apex:outputPanel>                                
-                                 <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_SAVE_AND_CONTINUE}" styleClass="milestones ipmButton primary" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
+                                 <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_SAVE_AND_CONTINUE}" styleClass="milestones ipmButton primary" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" onClick="skipValidation();"/>
                                 </div> 
                             </div>
                         </apex:outputPanel>

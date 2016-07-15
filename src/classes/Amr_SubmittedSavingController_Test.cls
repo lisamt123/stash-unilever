@@ -51,10 +51,15 @@ public class Amr_SubmittedSavingController_Test{
             insert feedObj;
             FeedItem feedObj2 = new FeedItem(ParentId = jobDetail.id, Body = 'Attachment added');
             insert feedObj2;
+           // Amr_Quote__Feed  quoteFeed= new Amr_Quote__Feed (ParentId = jobDetail.id, Body = 'Attachment added');
+            
             
             List<FeedItem> feedItemList = new List<FeedItem>();
             feedItemList.add(feedObj);
             feedItemList.add(feedObj2);
+            List<Amr_Quote__Feed> feedItemListQuote = [select id from Amr_Quote__Feed where parentId = :jobDetail.id];
+             List<Amr_Saving__Feed> feedItemListSaving = [select id from Amr_Saving__Feed where parentId = :jobDetail.id];
+           // feedItemListQuote.add(quoteFeed);
               Test.setCurrentPageReference(new PageReference('Page.Amr_SubmittedSavingPage')); 
               System.currentPageReference().getParameters().put('id', savingObj.id);
             
@@ -73,8 +78,8 @@ public class Amr_SubmittedSavingController_Test{
         submittedSavings.quoteRelatedToSavingList = quoteList;
         submittedSavings.savingId = savingObj.id;
         submittedSavings.acceptedQuoteId = quoteObj1.id;
-        submittedSavings.feedItemAcceptedList = feedItemList;
-        submittedSavings.feedItemAdditionalList = feedItemList;
+        submittedSavings.feedItemAcceptedList = feedItemListQuote;
+        submittedSavings.feedItemAdditionalList = feedItemListSaving;
         submittedSavings.pcTimeMangCategoryValue = 2;
         submittedSavings.pcCostMangCategoryValue = 1;
         submittedSavings.pcProcessMangCategoryValue = 3;

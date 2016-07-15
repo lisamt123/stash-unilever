@@ -24,7 +24,7 @@ public with sharing virtual class Oblix_SWOPparentController {
             if(NULL == selected_sow){
                 return Oblix_PermissionHandler.hasEditAccess(null);
             } else{
-                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow);
             }
         }
     }
@@ -56,6 +56,34 @@ public with sharing virtual class Oblix_SWOPparentController {
             } else{
                 return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
             }
+        }
+    }
+
+    //Identifies NFY campaign that is in the middle of Roll Over process for which only
+    //Projected stages chevron should be editable. Above does not apply if that campaign is cloned.
+    public Boolean is_NFY_campaign_in_the_middle_of_rollover {
+        get {
+            return selected_project.Campaign_PFY__c <> NULL && selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c != Oblix_Utils.SOW_STATUS_FINALISED;
+        }
+    }
+
+    public Boolean can_see_advanced_links_during_rollover {
+        get {
+            return !is_NFY_campaign_in_the_middle_of_rollover || 
+                    (
+                        is_NFY_campaign_in_the_middle_of_rollover && 
+                        (
+                            Oblix_PermissionHandler.isSystemAdmin() || 
+                            Oblix_PermissionHandler.hasSuperUserpermissionSet()
+                        )
+                    ); 
+        }
+    }
+
+    //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
+    public Boolean can_see_rollover_warning {
+        get {
+            return !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet();
         }
     }
 
@@ -155,7 +183,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  retrieves attachments attached to this SOW
     ********************************************************************************/
     public List<Attachment> getSOWAttachments(Id sowId){
-        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
+        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description, OwnerId FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
     }
 
     /*******************************************************************************
@@ -184,14 +212,23 @@ public with sharing virtual class Oblix_SWOPparentController {
     public virtual PageReference checkUserHasPermissionToSOW(){
 
         if (NULl == selected_sow){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();
         }
         else{
             return null;
         }
 
+    }
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Send user to permission denied page
+    ********************************************************************************/
+    public PageReference redirectToPermissionDeniedPage(){
+        Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+        permission_denied_page.setRedirect(true);
+        return permission_denied_page;   
     }
 
     /*******************************************************************************
@@ -203,9 +240,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     public PageReference checkUserHasPermissionToProject(){
 
         if (NULl == selected_project){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();            
         }
         else{
             return null;

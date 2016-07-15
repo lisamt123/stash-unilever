@@ -20,7 +20,7 @@
             <div class="ipmContent">  
                 <c:IPM_Team_Assignment_Page />
             </div>
-            <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+            <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade ipmAddMemberModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div> 
-            <div id="ipmModalDelete" class="modal fade">
+            <div id="ipmModalDelete" class="modal fade ipmModalDelete">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

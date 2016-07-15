@@ -31,7 +31,7 @@ public with sharing virtual class PBS_LMSBaseController_CC {
     public transient Boolean showSFHeader{get;private set;}
 
     public PBS_LMSBaseController_CC(){
-        showSFHeader =  Almond.LMSSettings.getShowSalesforceHeader() && !PBS_LMSUtils_CC.isMobileDevice();
+        showSFHeader =  PBS_LMSSettings_CC.getShowSalesforceHeader() && !PBS_LMSUtils_CC.isMobileDevice();
     }
 
 }

@@ -27,7 +27,7 @@
             
                   <div class="waitingSearchDiv popupPanel">
                    <div  class="waitingHolder waitingTopWidth">
-                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <img class="waitingImage" src="/img/loading.gif" alt="loading" title="Please Wait..." />
                     <span class="waitingDescription"> Loading..
                     </span>
                 </div>
@@ -41,7 +41,7 @@
             <apex:outputText style="font-weight:bold;font-size:16px;" value="Loading..."/>
               <div class="waitingSearchDiv popupBackground">
                 <div class="waitingHolder waitingTopWidth">
-                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <img class="waitingImage" src="/img/loading.gif" alt="loading" title="Please Wait..." />
                     <span class="waitingDescription">Loading...</span>
 
                 </div>
