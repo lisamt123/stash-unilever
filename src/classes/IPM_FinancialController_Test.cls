@@ -183,7 +183,7 @@ public class IPM_FinancialController_Test {
         ipmFinCon.refreshFinancials();
         system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
         //assert fieldsuffix is set to Regional after financials are refreshed
-        system.assertEquals(ipmFinCon.fieldsuffix, 'Regional', 'field suffix not set properly, financials will not be loaded as per tab');
+        system.assertEquals(ipmFinCon.fieldsuffix, 'Global', 'field suffix not set properly, financials will not be loaded as per tab');
         
         ipmFinCon.editFinancials();
         ipmFinCon.toShowEditButton = null;
