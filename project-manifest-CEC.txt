@@ -14,6 +14,8 @@ src/classes/CEC_NewAccountControllerTest.cls
 src/classes/CEC_NewAccountControllerTest.cls-meta.xml
 src/classes/CEC_CaseInlineController.cls
 src/classes/CEC_CaseInlineController.cls-meta.xml
+src/classes/CEC_IRIProductLocatorController.cls
+src/classes/CEC_IRIProductLocatorController.cls-meta.xml
 src/objects
 src/objects/Common_Issue__kav.object
 src/package.xml

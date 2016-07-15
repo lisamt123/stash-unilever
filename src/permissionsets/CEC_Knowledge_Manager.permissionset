@@ -29049,10 +29049,6 @@
 		<visibility>None</visibility>
 	</tabSettings>
 	<tabSettings>
-		<tab>Assign_Category</tab>
-		<visibility>None</visibility>
-	</tabSettings>
-	<tabSettings>
 		<tab>Brand_Centre_New__c</tab>
 		<visibility>None</visibility>
 	</tabSettings>
