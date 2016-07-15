@@ -648,6 +648,9 @@ public with sharing class IPM_NewTask {
         for(Schema.PicklistEntry role :functionalRole)
         {
             funcAssigneeId.put(role.getValue(),projectObj.IPM_Project_Leader__c);
+            if(role.getValue().equalsIgnoreCase('TPL') && projectObj.IPM_Project_Leader__c != projectObj.IPM_Technical_Project_Leader__c){
+        		funcAssigneeId.put(role.getValue(),projectObj.IPM_Technical_Project_Leader__c);
+        	}
         }
         if(projectObj.IPM_Project_Resources__r != null)
         {

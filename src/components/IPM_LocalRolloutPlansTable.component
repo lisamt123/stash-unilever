@@ -23,7 +23,7 @@ This componet used for regional rollout project
                     <apex:commandLink styleClass="ipmButton" value="{!$Label.IPM_ADD_EDIT_ROLLOUTS}" action="{!addRollout}" rendered="{!AND(isEditMode,isEditable)}"/>
                 </div>
                 <div class="col-sm-6 pull-right mSpacing">
-                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{!AND(NOT(isEditMode),isEditable)}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{!if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_TRUE}"/>
                     </apex:commandLink>
                     <apex:outputPanel rendered="{!AND(isEditMode,isEditable,projectType.IPM_CreateLocalProjects__c) }" layout="block">

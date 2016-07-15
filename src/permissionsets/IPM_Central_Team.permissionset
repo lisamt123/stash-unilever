@@ -1477,6 +1477,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.Contract_Full_Mix__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Contract_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Contract_Pack__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Assessment__c.Assessment_Batch_ID__c</field>
         <readable>false</readable>

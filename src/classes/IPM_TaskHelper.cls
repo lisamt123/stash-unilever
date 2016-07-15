@@ -340,7 +340,7 @@ public with sharing class IPM_TaskHelper {
     public static void assignUserToTask(set<Id> projectIdSet){
         
         // query all the task belonging to thhe project 
-        list<IPM_Project__c>projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,
+        list<IPM_Project__c>projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,IPM_Technical_Project_Leader__c,
                                                     (SELECT Id,IPM_User__c,IPM_Role_Type__c,IPM_Project_Role_Owner__c FROM IPM_Project_Resources__r),
                                                     (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c,IPM_Completed__c
                                                     from Tasks__r where IPM_Completed__c != true)
@@ -366,6 +366,11 @@ public with sharing class IPM_TaskHelper {
                     if(funcAssigneeIdMap.containsKey(eachTask.IPM_Function__c) && eachTask.IPM_Assignee__c != funcAssigneeIdMap.get(eachTask.IPM_Function__c) )
                     {
                         tskObj.IPM_Assignee__c = funcAssigneeIdMap.get(eachTask.IPM_Function__c);
+                        tasksToUpdate.add(tskObj);
+                    }
+                    else if(eachTask.IPM_Function__c.equalsIgnoreCase('TPL') && eachTask.IPM_Assignee__c != project.IPM_Technical_Project_Leader__c)
+                    {
+                    	tskObj.IPM_Assignee__c = project.IPM_Technical_Project_Leader__c;
                         tasksToUpdate.add(tskObj);
                     }
                 }
