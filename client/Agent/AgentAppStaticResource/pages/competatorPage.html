@@ -1,0 +1,272 @@
+<div class="container needMarginBottom">
+<div id="mainform">
+	<div class="row">
+	<form id="theForm" name ="report.myForm" enctype="multipart/form-data" ng-model="unileverForm" novalidate>
+		<!-- CANCEL BUTTON -->
+	
+			<div class="col-xs-12 cancelButton">
+			<button class="btn btn-default"  type="button" ng-click="Cancel()">Cancel</button>
+			</div>
+		<!-- INSERT IMAGE & GRAPH -->
+			<div class="col-xs-12 needMargin">
+				<p class="titleLabel">Insert image or file</p>
+					<ul class="imageInfo col-xs-12">
+						<li class="col-xs-4 col-xl-12 activeImage">
+						<div id="cameraDivBtn" ng-click="callJQueryBtn('file','previewLoadingCamera')">
+							<span  class="cameraImg center-block"> &nbsp; 
+								<input id="file" type="file" accept="image/*;capture=camera" capture="camera" onchange="upload('file','previewLoadingCamera')" resize-max-height="300" resize-max-width="250" resize-quality="0.7" style="z-index:2;display:none;"></input>
+							</span>
+							 <div class="loading_image_preview loadingOff" id="previewLoadingCamera"></div>
+							 </div>
+						</li>						
+						<li class="col-sm-6">
+						<div id="ImageDivBtn" ng-click="callJQueryBtn('file1','previewLoadingImage')">	
+						<span href="#" class="center-block imageIcon cameraImg" >
+								<div ng-if="!safariBroser">
+							<input id="file1" type="file" accept="image/*" capture="camera" onchange="upload('file1','previewLoadingImage')" resize-max-height="300" resize-max-width="250" resize-quality="0.7" style="z-index:2;display:none;"></input>
+							</div>
+							<div ng-if="safariBroser">
+							<input id="file1" type="file" accept="image/*" capture="camera" onchange="upload('file1','previewLoadingImage')" resize-max-height="300" resize-max-width="250" resize-quality="0.7" style="z-index:2"></input>
+							</div>
+						</span>
+						<div class="loading_image_preview loadingOff" id="previewLoadingImage"></div>
+							</div>
+						</li>
+						
+						<li class="col-sm-6">
+						<div id="attachmentDivBtn" ng-click="callJQueryBtn('file2','previewLoadingAttach')">
+                        <span href="#" class="center-block imageIcon attachImage activeImage" >
+							<div ng-if="!safariBroser">
+						<input id="file2" type="file"  onchange="upload('file2','previewLoadingAttach')" style="z-index:2;display:none;"></input>
+							</div>
+							<div ng-if="safariBroser">
+						<input id="file2" type="file"  onchange="upload('file2','previewLoadingAttach')"></input>
+							</div>
+                        </span>
+						<div class="loading_image_preview loadingOff" id="previewLoadingAttach"></div>
+						</div>
+                        </li>
+					</ul>
+						<div class="productImage" id="previewFile" style="display:none;">
+						<img  class="img-responsive pull-left prodImage" id="preview" alt=" " height="100" width="100"/>
+						<i class="fa fa-times pull-right" onclick="closePrev('#previewFile')"></i>
+					</div>
+					
+			</div>
+			
+           <!-- Freeze the map -->
+ 
+	<div growl="growl"></div>
+	<!-- USE MY LOCATION -->
+			<div class="col-xs-12">
+					<p class="pull-left titleLabel"><i class="fa fa-map-marker"></i> Use my location</p>
+					<p class="pull-right"><button class="img-responsive"  ng-class="{ mapOff : mapHidden ,mapOn : !mapHidden}" ng-click="showMap()"></button></p>
+					
+				</div>				
+					<div class="col-xs-12 mapSpace"> 
+							<div  id="map" ng-if="!mapHidden">
+							</div>
+					</div>
+			
+	
+	<!-- form element-->
+	<div class="col-xs-12 formElements needbottom">
+		<div id="adressblock">
+	<p>
+	
+			<label class="titleLabel">Cluster </label>
+			<select class="form-control"  ng-class="{invalidbox : invalidClusterMsg}" name="cluster" ng-model="selectedCluster"  id="clusterlist" ng-options="cluster as cluster.Name for cluster in clusterList"  ng-change="selectedCountryList()">
+			</select>
+			<span style="color:red;" ng-if="invalidClusterMsg">This field is required. Select either cluster or country.</span>
+    </p>
+	<p>
+	
+			<label class="titleLabel">Country </label>
+			<select class="form-control"  ng-class="{invalidbox : invalidMsg}" name="country" ng-model="selectedcountry" ng-disabled="clusterSelectedId" id="countrylist" ng-options="country as country.Name for country in Country"  ng-change='getSelectCountry()'>
+			</select>
+			<span style="color:red;" ng-if="invalidMsg">This field is required. Select either cluster or country.</span>
+    </p>
+
+	<p>
+			<label class="titleLabel">Town</i></label>
+			<input type='text' class="form-control" name="town" id="townList" ng-model="report.town" placeholder="Town" ng-disabled="isGlobalCountry || clusterSelectedId"/>
+		
+
+		</p>
+		</div>
+				
+				<p class="clear-defualt">
+					<label class="titleLabel">Report title <i class="fa fa-star"></i> </label>
+					<input type="text" class="form-control" ng-class="{invalidbox : invalidMsg1}" name="reptitle" ng-model="report.reportTitle"  placeholder="Add brand, location and activity in the report title" aria-describedby="basic-addon1" maxLength ="80" required>
+					<span style="color:red;" ng-if="invalidMsg1">This field is required.</span>
+				
+				</p>
+				<p>
+					<label class="titleLabel">Report Description</label>
+					<textarea  class="form-control" ng-model="report.reportDesc" rows="3" maxRows="3" maxLength="131072"></textarea>
+				</p>
+				<p>
+					<label class="titleLabel">Add Notify Users</label><!--p style="margin-top: -14px;" class="subText">Type # with a topic name or @ with a userâ€™s or groupâ€™s name and press ENTER to add themâ€¦</p-->
+					<typeahead   ng-model="reportTitleModel" attr-placeholder="Type @ with a user's name and press ENTER to add them." on-type="reportTitleAtMention" sel-data="selectedtagdata" data="autoCompleteUserListData" > </typeahead>
+				
+					<div class="tags">
+					
+					<div ng-if="usersTag.length > 0">
+					Users:
+					<div ng-repeat="(idx, obj) in usersTag">
+						<div class="tag label label-success">{{obj.Name}} <a class="close" href ng-click="removeUserTag(idx)">x</a></div>
+					</div>
+					</div>
+					<!--div ng-if="topicsTag.length > 0" class="clear-defualt">
+					Topics:
+					<div ng-repeat="(idxT, objT) in topicsTag">
+						<div class="tag label label-success">{{objT.Name}} <a class="close" href ng-click="removeTopicsTag(idxT)">x</a></div>
+					</div>
+					</div-->
+					</div>
+
+				</p>
+				<p class="clear-defualt">
+					<label class="titleLabel">Source<i class="fa fa-star"></i></label>
+					<select class="form-control" name="sourceval" ng-model="sourcelist" ng-class="{invalidbox : invalidMsg2}" id="sourcelistval" ng-options="source for source in sourceList" required>
+					</select>
+					<span style="color:red;" ng-if="invalidMsg2">This field is required</span>
+				</p>
+				
+				<p>
+					<label class="titleLabel">Competitor Brand</label>
+				<autocomplete   ng-model="competatorBrandModel" attr-placeholder="Type to search competitor Brand" click-activation="true" data="competatorBrandData" on-type="competatorBrand"  sel-data="selecteddata" brand-flag="'true'" error-msg="errMsg"></autocomplete>
+				<span ng-if="matchWord" style="color:red;">Please select appropriate values from the list for Competitor Brand. </span>
+				</p>
+				<p>
+				    <span ng-if="otherBrandAndCompetitor">
+					Enter Other Brand Name: <input type="text" class="form-control" name="otherbrandname" ng-model="report.reportOtherBrandName"/> </br>
+					Enter Other Competitor Name: <input type="text" class="form-control" name="othercompetitor" ng-model="report.reportOtherCompetitor"/> 
+					</span>
+				</p>
+			<p ng-if="!otherBrandAndCompetitor">
+			<label class="titleLabel">Competitor Name</label>
+			<select class="form-control" name="compititorVal" ng-model="competitorNameSelected"  id="competitorName" ng-options="competitor as competitor.Name for competitor in competatorNameData">
+			</select>
+			</p>		
+				<p>
+			<label class="titleLabel">Category</label>
+			<select class="form-control" name="category" ng-model="categorylist"  id="category" ng-options="category as category.Name for category in categoryList">
+			</select>
+			</p>
+
+				<p>
+			<label class="titleLabel">Retailer</label>
+			<autocomplete   ng-model="Retailer" attr-placeholder="E.g. Walmart" click-activation="true" data="uniliverRetailerData" on-type="uniliverRetailer"  ret-data="retailerdata" ret-msg="reterrMsg"></autocomplete>
+			<span ng-if="matchRetword" style="color:red;">Please select appropriate values from the list for Retailer.</span>
+				</p>
+	
+	<p>
+				<label class="titleLabel">Topic</label>
+				<select class="form-control" name="topicval" ng-model="topiclist"  ng-options="topic as topic.Name for topic in topicList"  ng-change='getSubTopicList()'>
+				
+				</select>
+    </p>
+	<p>
+				<label class="titleLabel">Sub-topic</label>
+				<select class="form-control" name="subtopicval" ng-model="subtopiclist"  ng-disabled="enableSubtopic" ng-options="subtopic for subtopic in subTopicListarray"  ng-change=''>
+				
+				</select>
+    </p>
+	
+				<p>
+				<div class="loading_image loadingOff" id="previewLoading"></div>
+								<div id="backgroundPopup"></div>
+			
+				</p>
+	</div>
+		</form>
+	<!--	<div class="fixSubmitBtnComp">
+		<button class="btn btn-primary col-xs-12 marginTen" id="submitButton" ng-click="divShowHide()">
+					<b>Submit this Report</b>
+		</button>
+		</div>-->
+		<div class="col-xs-1" ></div>
+<div class="col-xs-9 navbar  navbar-fixed-bottom" style="margin-left: 12.5%;">
+		<button class="btn btn-primary col-xs-12" id="submitButton" style="margin-top: 1em;" ng-click="divShowHide()">
+					<b>Submit this Report</b>
+		</button>
+</div>
+<div class="col-xs-1"></div>
+	</div>
+	</div>
+
+
+                <div class="row"  id="confirmform">
+                                                <div class="col-xs-12 cancelButton">
+                                                            	<button class="btn btn-default" ng-click="CancelBack()">Cancel</button>
+                                                </div>
+                                <div class="col-xs-12 needMargin">
+                                                <div class="confirmBox">
+                                                                <p class="lead"><i class="fa fa-exclamation-triangle"></i> <b>Confirm</b></p>
+                                                           <p class="col-xs-10">By clicking the submit button, I accept the code of business principles.</p>
+															 <p class="col-xs-10"> <span ng-click="showTermsAndCondition()">Show more &nbsp;<span class="show-more-filter-down"></span></span></p>
+                                                </div>
+                                                <div class="col-xs-12 submitReport agreeSubmit1" style="text-align: center;cursor: pointer;" ng-click="submitForm()">
+												<img src="{{rootPath.image_confirm_url}}" style="width: 50px; height: 50px;">
+                                   <button  ng-disabled="afterSubmitForm" style="color:#4bb371;font-weight:Â bold;">Agree and Submit</button>
+                                                </div>                   
+                                </div>
+                </div>
+				
+				<div class="row" id="businessTerms">
+			<div class="col-xs-12 cancelButton">
+			<button class="btn btn-default" ng-click="showConfirmationPage()">Back</button>
+			</div>
+			<div class="col-xs-12">
+							<div>&nbsp;</div>
+							<div>&nbsp;</div>
+								<div> <h3 class="ng-binding">Code of business principles</h3></div>
+								<div><h3 class="ng-binding">Unilever Code of Business Principles and Policies impose a global ban on cartel activity</h2></div>
+								<div>&nbsp;</div>
+				<div class="businessPrinciples">
+<h3>Standard of Conduct</h3>
+<p>We conduct our operations with honesty, integrity and openness, and with respect for the human rights and interests of our employees. We shall similarly respect the legitimate interests of those with whom we have relationships.</p>
+<h3>Obeying the Law</h3>
+<p>Unilever companies and employees are required to comply with the laws and regulations of the countries in which we operate.</p>
+<h3>Employees</h3>
+<p>Unilever is committed to diversity in a working environment where there is mutual trust and respect and where everyone feels responsible for the performance and reputation of our company. We will recruit, employ and promote employees on the sole basis of the qualiﬁcations and abilities needed for the work to be performed. We are committed to safe and healthy working conditions for all employees. We will not use any form of forced, compulsory or child labour.We are committed to working with employees to develop and enhance each individual’s skills and capabilities. We respect the dignity of the individual and the right of employees to freedom of association. We will maintain good communications with employees through company based information and consultation procedures</p>
+<h3>Consumers</h3>
+<p>Unilever is committed to providing branded products and services which consistently offer value in terms of price and quality, and which are safe for their intended use. Products and services will be accurately and properly labelled, advertised and communicated.</p>
+<h3>Shareholders</h3>
+<p>Unilever will conduct its operations in accordance with internationally accepted principles of good corporate governance. We will provide timely, regular and reliable information on our activities, structure, ﬁnancial situation and performance to all shareholders.</p>
+<h3>Business Partners</h3>
+<p>Unilever is committed to establishing mutually beneﬁcial relations with our suppliers, customers and business partners. In our business dealings we expect our partners to adhere to business principles consistent with our own.</p>
+<h3>Community Involvement</h3>
+<p>Unilever strives to be a trusted corporate citizen and, as an integral part of society, to fulﬁl our responsibilities to the societies and communities in which we operate.</p>
+<h3>Public Activities</h3>
+<p>Unilever companies are encouraged to promote and defend their legitimate business interests. Unilever will co-operate with governments and other organisations, both directly and through bodies such as trade associations, in the development of proposed legislation and other regulations which may affect legitimate business interests. Unilever neither supports political parties nor contributes to the funds of groups whose activities are calculated to promote party interests.</p>
+<h3>The Environment</h3>
+<p>Unilever is committed to making continuous improvements in the management of our environmental impact and to the longer-term goal of developing a sustainable business. Unilever will work in partnership with others to promote environmental care, increase understanding of environmental issues and disseminate good practice.</p>
+<h3>Innovation</h3>
+<p>In our scientiﬁc innovation to meet consumer needs we will respect the concerns of our consumers and of society. We will work on the basis of sound science, applying rigorous standards of product safety.</p>
+<h3>Competition</h3>
+<p>Unilever believes in vigorous yet fair competition and supports the development of appropriate competition laws. Unilever companies and employees will conduct their operations in accordance with the principles of fair competition and all applicable regulations.</p>
+<h3>Business Integrity</h3>
+<p>Unilever does not give or receive, whether directly or indirectly, bribes or other improper advantages for business or ﬁnancial gain. No employee may offer, give or receive any gift or payment which is, or may be construed as being, a bribe. Any demand for, or offer of, a bribe must be rejected immediately and reported to management. Unilever accounting records and supporting documents must accurately describe and reﬂect the nature of the underlying transactions. No undisclosed or unrecorded account, fund or asset will be established or maintained.</p>
+<h3>Conﬂicts of Interests</h3>
+<p>All Unilever employees are expected to avoid personal activities and ﬁnancial interests which could conﬂict with their responsibilities to the company. Unilever employees must not seek gain for themselves or others through misuse of their positions.</p>
+<h3>Compliance – Monitoring – Reporting</h3>
+<p>Compliance with these principles is an essential element in our business success. The Unilever Board is responsible for ensuring these principles are applied throughout Unilever. The Chief Executive Ofﬁcer is responsible for implementing these principles and is supported in this by the Corporate Code Committee chaired by the Chief Legal Ofﬁcer. Members of the Committee are the Group Secretary, the Chief Auditor, the SVP HR and the SVP Communications. The Global Code Ofﬁcer is Secretary to the Committee. The Committee presents quarterly updates to the Corporate Responsibility and Reputation and the Audit Committee, half-yearly reports to the Unilever Executive and an annual report to the Board. Day-to-day responsibility is delegated to all senior management of the regions, categories, functions, and operating companies. They are responsible for implementing these principles, if necessary through more detailed guidance tailored to local needs, and are supported in this by Regional Code Committees comprising the Regional General Counsel together with representatives from all relevant functions and categories. Assurance of compliance is given and monitored each year. Compliance with the Code is subject to review by the Board supported by the Corporate Responsibility and Reputation Committee and for ﬁnancial and accounting issues the Audit Committee. Any breaches of the Code must be reported in accordance with the procedures speciﬁed by the Chief Legal Ofﬁcer. The Board of Unilever will not criticise management for any loss of business resulting from adherence to these principles and other mandatory policies and instructions. The Board of Unilever expects employees to bring to their attention, or to that of senior management, any breach or suspected breach of these principles. Provision has been made for employees to be able to report in conﬁdence and no employee will suffer as a consequence of doing so.</p>
+<h3>Any sharing of information on The Agent MUST ALWAYS fully comply with competition rules</h3>
+<p>NEVER ask/accept directly or indirectly (e.g. via a common customer or supplier)</br>
+"Commercially Sensitive Information" [ refers to any information that reveals, directly or indirectly, current or future commercial plans or strategies of an actual or potential competitor of a Party. Such information includes (but is not limited to) non-public information on prices or other terms of sale, investment plans, production costs, market shares and sales territories, bidding or refraining from bidding plans, and the selection, rejection or termination of customers and suppliers ] on competitors
+Treat "Confidential Information" [includes information that is not in the public domain and information that is not specifically designated for public disclosure or circulation] VERY CAREFULLY; if relevant, mark info with "Confidential to Unilever - this information should not be communicated to any third party" 
+NEVER allow The Agent to be used in a way that may be seen as in breach of competition rules ïƒ  if you see sensitive info on The Agent that may be problematic <strong>ALERT Legal</strong> </p>
+<p></p>
+<p><strong>The information has been gathered only from public sources and <span style="color:red;">non</span> compliance of the same will be treated as a breach of COBP</strong></p>
+<p><span class="text-italic"><i>In this Code the expressions "Unilever" and "Unilever companies" are used for convenience and mean the Unilever Group of companies comprising Unilever N.V., Unilever PLC and their respective subsidiary companies. The Board of Unilever means the Directors of Unilever N.V. and Unilever PLC.</i></span></p>
+<p>&nbsp;</p>
+
+				</div>
+			</div>		
+</div>	
+
+</div>
+
+ 
