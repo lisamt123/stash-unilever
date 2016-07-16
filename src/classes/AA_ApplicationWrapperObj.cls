@@ -12,10 +12,4 @@ global class AA_ApplicationWrapperObj extends AA_BaseApplicationWrapperObj{
     Public List<AA_WrapperUtility.agentReportDetail> objPassAgentReportsToNG{get;set;}
     public Integer TotalAgentReports;
     public Boolean UpdateLikeCount;
-    
-    @AuraEnabled
-    Public List<AA_WrapperClass.agentReportDetail> objAgentReportsData{get;set;}
-    @AuraEnabled
-    public Integer TotalAgentReportsCount{get;set;}
-    
 }
