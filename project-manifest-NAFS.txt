@@ -1,12 +1,7 @@
 src
-src/classes
-src/classes/FS_CentrallyLedChildAccount_Picklist.cls
-src/classes/FS_CentrallyLedChildAccount_Picklist.cls-meta.xml
-src/classes/FS_OpportunityHelper.cls
-src/classes/FS_OpportunityHelper.cls-meta.xml
-src/classes/FS_Utility.cls
-src/classes/FS_Utility.cls-meta.xml
 src
-src/pages
-src/pages/FS_CentrallyLedChildAccounts.page
-src/pages/FS_CentrallyLedChildAccounts.page-meta.xml
+src/permissionsets
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_SCP_And_Corp.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+
