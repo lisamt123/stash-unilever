@@ -1,7 +1,9 @@
 src
-src/permissionsets
-src/permissionsets/FS_Integration_User.permissionset
-src/permissionsets/FS_Marketing.permissionset
-src/permissionsets/FS_SCP_And_Corp.permissionset
-src/permissionsets/FS_Sales_Rep.permissionset
-
+src/classes
+src/classes/FS_CentrallyLedChildAccount_Picklist.cls
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper_Test.cls
+src/classes/FS_Utility.cls
+src
+src/pages
+src/pages/FS_CentrallyLedChildAccounts.page

@@ -11,19 +11,29 @@ private class FS_OpportunityHelper_Test {
     //Set up Test Data for unit test    
      @testSetup static void setupTestData(){
         String profile='Unilever - Salesforce MultiApp Standard';
-        String permissionset='NAFS_Sales_Rep';
-        //Call Utility method to create test user
-        user SalesRepUser=FS_Utility.CreateTestUser(profile,permissionset);
+        String permissionset='FS_Sales_Rep';        
+        Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
+        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'FS 10100 Sales Rep'];
+        User SalesRepUser = new User(Alias = 'newUser', Email='newuser@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,UserRoleId=role.id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newuseropphelper@testorg.com');
+        insert SalesRepUser;
+        PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name =:permissionset];
+        PermissionSetAssignment psetassignment = new PermissionSetAssignment();
+        psetassignment.AssigneeId = SalesRepUser.Id;
+        psetassignment.PermissionSetId = ps.Id;
+        insert psetassignment;
             
         system.runAs(SalesRepUser){
             //Set up Custom settings for Opportunity Trigger
             FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-            insert OppCustomSettings;
-            
+            insert OppCustomSettings;            
             // Set up the Account records
             List<Account> accounts = new List<Account>();
+            RecordType rt=[select id,name from RecordType where SObjectType='Account'and Name='Operator'];
             for(Integer i=0;i < 100;i++){
-               accounts.add(new Account(Name = 'FS Test Acc_'+i,recordtype=new recordtype(name='Operator')));
+               accounts.add(new Account(Name = 'FS Test Acc_'+i,recordtypeid=rt.Id));
             }
             insert accounts;
             
@@ -48,7 +58,7 @@ private class FS_OpportunityHelper_Test {
             List<priceBookEntry> pricebookentries= new List<priceBookEntry>();
             for(Product2 prod : products)
             {
-               pricebookentries.add(new priceBookEntry ( pricebook2id = pricebookId,Product2Id = prod.id,  unitPrice = 1000, IsActive = true,UseStandardPrice = false)); 
+               pricebookentries.add(new priceBookEntry ( pricebook2id = pricebookId,Product2Id = prod.id,  unitPrice = 1000, IsActive = true,UseStandardPrice = false,FS_Bracket_1__c=1)); 
             }
             insert pricebookentries;
         }     
@@ -76,7 +86,7 @@ private class FS_OpportunityHelper_Test {
                 i++;
                 if(i>10){     //To keep few Opportunity records without Opportunity Line item
                     for (pricebookentry pbookentry : pricebookentries2){
-                        oli.add(new OpportunityLineItem(Opportunityid = opportunity.id,PricebookentryId =pbookentry.id,quantity=i/2+1,totalPrice=pbookentry.unitPrice,Distributor__c='Reinhart'));
+                        oli.add(new OpportunityLineItem(Opportunityid = opportunity.id,PricebookentryId =pbookentry.id,quantity=i/2+1,totalPrice=pbookentry.unitPrice,Distributor__c='CA GFS'));
                     }               
                 } 
             }             
@@ -91,7 +101,8 @@ private class FS_OpportunityHelper_Test {
             List<opportunity> opportunities3= new List<opportunity>();
             Map<opportunity,list<OpportunityLineItem>> mapOppOli = new Map<opportunity,list<OpportunityLineItem>>(); 
             
-            olilist=[select id,name,GPPercent__c,FS_MarketTarget__c,OpportunityId from OpportunityLineItem where opportunity.Name='FS Test Opportunity'];
+            olilist=[select id,name,FS_MarketTarget__c,OpportunityId,GPPercent__c,GrossProfit__c, FS_Sample__c,Turnover__c from OpportunityLineItem where opportunity.Name='FS Test Opportunity'];
+            system.debug(olilist);
             opportunities3=[select id,name,AccountId,AverageGrossProfit__c,MarketTarget__c,FS_TotalNumberOfCases__c from opportunity where name='FS Test Opportunity']; 
             system.debug('Size:'+opportunities3.size());
             
@@ -104,7 +115,7 @@ private class FS_OpportunityHelper_Test {
                         olineitem.add(olitem);
                     }
                     mapOppOli.put(opportunity, olineitem);
-                }
+                    }
             }
             i=0;          
             for (Opportunity opportunity:opportunities3){
@@ -113,10 +124,14 @@ private class FS_OpportunityHelper_Test {
                  MrktTarget=0;
                  List<OpportunityLineItem> opplineItem = new List<OpportunityLineItem>();
                  opplineItem=mapOppOli.get(opportunity);
+                 system.debug(opplineItem);
                  //To check if the opportunity is having Opportunity Line Item             
                  if(opplineItem.size()>0)
                  {
+                    system.debug(opplineItem);
                     for(OpportunityLineItem opplitem:opplineItem){
+                        system.debug(opplitem.FS_MarketTarget__c);
+                        system.debug(opplitem.GPPercent__c);
                         GrossProfit=GrossProfit+Integer.valueOf(opplitem.GPPercent__c);
                         MrktTarget=MrktTarget+Integer.valueOf(opplitem.FS_MarketTarget__c);
                     }            

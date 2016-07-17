@@ -1,33 +1,30 @@
-public class FS_CentrallyLedChildAccount_Picklist {
-   //public list<selectoption> childaccountlist {get;set;}   
+public with sharing class FS_CentrallyLedChildAccount_Picklist {
    public list<string> CentrallyLedList {get;set;}   
-   //public list<account> ChildAccounts=new list<account>();
-   public List<SelectOption> ChildAccountList1=new List<SelectOption>();
+   public List<SelectOption> ChildAccList=new List<SelectOption>();
    private task centrallyledtask;
-   //private task task1;   
+   //Getting task record on which the page is requested  
    public FS_CentrallyLedChildAccount_Picklist(Apexpages.StandardController stdcontroller){
    centrallyledtask=(task)stdcontroller.getRecord();       
-    }    
+   }
+   //Populating multiselect picklist options
    public List<SelectOption> ChildAccountList
     {
         get
            {
-            task task1=[select id,accountid from task where id=:centrallyledtask.id]; 
-            list<account> ChildAccounts=[select id,name from account where parentid =:task1.AccountId];  
+            task ParentTask=[select id,accountid from task where id=:centrallyledtask.id];
+            //Fetch all the child accounts
+            list<account> ChildAccounts=[select id,name from account where parentid =:ParentTask.AccountId];  
             system.debug(ChildAccounts);
-            ChildAccountList1.clear();
+            ChildAccList.clear();//Resetting child account list
             for(account acc : ChildAccounts){
-                ChildAccountList1.add(new SelectOption(acc.id,acc.name));
+                ChildAccList.add(new SelectOption(acc.id,acc.name));//Add child account to multi select picklist option
             }            
-            return ChildAccountList1;          
+            return ChildAccList;          
            }
-        set;
+         set;
     }
-        
-    //List<task> ChildaccountTaskList1;          
-    //system.debug(childactivityset);
-    public List<Task> ChildAccountTaskList
-    {
+     //Fetch all tasks which have already been created on child accounts for centrally led activities
+     public List<Task> ChildAccountTaskList{
         get{
           task task2=[select id,accountid,subject from task where id=:centrallyledtask.id];
           list<account> ChildAccounts1=[select id,name from account where parentid =:task2.AccountId];
@@ -36,23 +33,24 @@ public class FS_CentrallyLedChildAccount_Picklist {
         }
         set;
     }
-    public pagereference CreateTask(){
-        
+    //Created task on child accounst which have been choosen for centrally led activities
+    public pagereference CreateTask(){        
         List<task> tasktoinsert=new list<task>();        
-        List<account> AccList=[select id,name,ownerid from account where id in : CentrallyLedList];
-        task task1=[select id,accountid,subject,status,activitydate from task where id=:centrallyledtask.id];
-        list<task> childtasklist=[select id,subject,accountid from task where subject=:task1.subject and accountid in: acclist];
+        List<account> AccList=[select id,name,ownerid from account where id in : CentrallyLedList];//Fetch all the selected accounts
+        task ParentTask=[select id,accountid,subject,status,activitydate from task where id=:centrallyledtask.id];
+        list<task> childtasklist=[select id,subject,accountid from task where subject=:ParentTask.subject and accountid in: acclist];
         set<id> childactivityset=new set<id>();
         string existingaccountlist;
         for(task childtask : childtasklist){
         childactivityset.add(childtask.accountid);            
         }        
         system.debug(childtasklist);        
-        for(account acc1: AccList){            
-            if(!(childactivityset.contains(acc1.id))){
-                tasktoinsert.add(new Task(whatid=acc1.id,ownerid=acc1.ownerid,subject=task1.subject,status=task1.Status,activitydate=task1.ActivityDate));
+        for(account acc: AccList){            
+            if(!(childactivityset.contains(acc.id))){
+                tasktoinsert.add(new Task(whatid=acc.id,ownerid=acc.ownerid,subject=ParentTask.subject,status=ParentTask.Status,activitydate=ParentTask.ActivityDate));
             }
-            if((childactivityset.contains(acc1.id))){
+            //Add warning if task already created for any of the selected accounts
+            if((childactivityset.contains(acc.id))){
               ApexPages.Message MyMsg= new ApexPages.Message(ApexPages.Severity.Warning,'Task already created for one of the selected account');
               ApexPages.addMessage(MyMsg);
               system.debug(MyMsg);

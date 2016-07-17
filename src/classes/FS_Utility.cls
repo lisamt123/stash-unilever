@@ -34,23 +34,5 @@ public Class FS_Utility{
         }else{
             return run3;
         }
-    }
-    
-    //Purpose: To create and return a test user as per the Profile and Permission provided in test class
-    public static user CreateTestUser(String Profilename,String PermissionsetName) 
-    {
-            Profile p = [SELECT Id FROM Profile WHERE Name=:Profilename];
-            Userrole role=[SELECT Id FROM UserRole WHERE Name = 'NAFS 54100 Sales Rep'];
-            User testuser = new User(Alias = 'newUser', Email='newuser@testorg.com',
-            EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-            LocaleSidKey='en_US', ProfileId = p.Id,UserRoleId=role.id,
-            TimeZoneSidKey='America/Los_Angeles', UserName='newuseropphelper@testorg.com');
-            insert testuser;
-            PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name =:PermissionsetName];
-            PermissionSetAssignment psa = new PermissionSetAssignment();
-            psa.AssigneeId = testuser.Id;
-            psa.PermissionSetId = ps.Id;
-            insert psa;
-        return testuser;
-    }
-}
+    } 
+   }

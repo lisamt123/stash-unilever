@@ -39,10 +39,8 @@
                 <apex:outputPanel id="PageMessages">
                     <apex:pageMessages />
                 </apex:outputPanel>
-                </apex:pageBlock>
-                
-            </apex:pageBlockSection>
-            
+                </apex:pageBlock>                
+            </apex:pageBlockSection>            
         </apex:pageBlock>
     </apex:form>  
 </apex:page>

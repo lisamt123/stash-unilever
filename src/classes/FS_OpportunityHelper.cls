@@ -79,7 +79,7 @@ public with sharing class FS_OpportunityHelper {
         if(FS_Utility.run2Once()){
          Integer Opportunity_Gain = 0;
          Integer Opportunity_Potential=0;
-         Integer recordCount = 0;
+         Integer Record_Count;
          List<Id> listAccPlanId = new List<Id>();
          List<FS_Account_Plan__c> AccPlanList = new List<FS_Account_Plan__C>();
          List<FS_Account_Plan__c> AccPlanToUpdate = new List<FS_Account_Plan__C>();
@@ -95,13 +95,14 @@ public with sharing class FS_OpportunityHelper {
         //Roll up opportunity details up to account plan object
         for(FS_Account_Plan__c AccPlan : AccPlanList )
         {
-            Opportunity_Gain=0;
-            recordCount=0;
-            Opportunity_Potential=0;             
+            Opportunity_Gain=0;            
+            Opportunity_Potential=0;
+            Record_Count=0;
              for(Opportunity Opp : OppList)
              {
-                 if(AccPlan.id==Opp.Account_Plan__c && opp.amount !=null){                 
-                 IF(opp.StageName=='Closed Won'){
+                 if(AccPlan.id==Opp.Account_Plan__c && opp.amount !=null){
+                 Record_Count=Record_Count+1;
+                 if(opp.StageName=='Closed Won'){
                  Opportunity_Gain=Opportunity_Gain+Integer.valueOf(opp.Amount);
                  }
                  if(opp.StageName!='Closed Lost'){
@@ -111,10 +112,9 @@ public with sharing class FS_OpportunityHelper {
                 }
             //Update roll up fields on account plan object
             AccPlan.Opportunity_Gain__c=Opportunity_Gain;
-            AccPlan.No_of_Opportunities__c=OppList.size();
+            AccPlan.No_of_Opportunities__c=Record_Count;
             accPlan.Opportunity_Amount__c=Opportunity_Potential;
-            AccPlanToUpdate.add(accPlan);
-            OppList.clear();
+            AccPlanToUpdate.add(accPlan);            
          }
             try{
               if(!AccPlanToUpdate.isEmpty()){
@@ -132,6 +132,7 @@ public with sharing class FS_OpportunityHelper {
         if(FS_Utility.run3Once()){
          List<Id> listObjId = new List<Id>();
          Integer Gross_Amount;
+         Integer Record_Count;
          List<FS_Defined_Objective__c> ObjList = new List<FS_Defined_Objective__c>();
          List<FS_Defined_Objective__c> ObjToUpdate = new List<FS_Defined_Objective__c>();
          List<Opportunity> OppList = new List<Opportunity>();
@@ -147,16 +148,19 @@ public with sharing class FS_OpportunityHelper {
         for(FS_Defined_Objective__c Obj : ObjList )
         {
             Gross_Amount=0;
+            Record_Count=0;
             //Update total no of opportunities on defined objective
             for(Opportunity Opp : OppList){
-                  If(opp.amount !=null && opp.StageName!='Closed Lost' && obj.Id==opp.Defined_Objective__c){
-                  Gross_Amount=Gross_Amount+Integer.valueOf(opp.Amount);
+                if(obj.Id==opp.Defined_Objective__c){
+                  Record_Count=Record_Count+1;
+                  If(opp.amount !=null && opp.StageName!='Closed Lost'){
+                  Gross_Amount=Gross_Amount+Integer.valueOf(opp.Amount);                  
                  }
              }
-            Obj.No_of_Opportunities__c=OppList.size();
+            }
+            Obj.No_of_Opportunities__c=Record_Count;
             Obj.Opportunity_Amount__c=Gross_Amount;
-            ObjToUpdate.add(obj);
-            OppList.clear();
+            ObjToUpdate.add(obj);            
          }
             try{
               if(!ObjToUpdate.isEmpty()){
