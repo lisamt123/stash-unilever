@@ -6,16 +6,9 @@ src/layouts/Campaign-Campaign Layout.layout
 src/layouts/FS_Segmentation__c-FS Segmentation Layout.layout
 src/layouts/Lead-Lead Layout.layout
 src/layouts/Opportunity-Opportunity Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
 src/layouts/Pricebook2-FS PriceBook Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
-src/layouts/Product2-Food Solutions Product.layout
-src/layouts/FS_Defined_Objective__c-Defined Objective Layout.layout
-src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective.layout
 src/layouts/Contract_Product_Monthly_Actual__c-Actual Layout.layout
 src/layouts/Contract_Product__c-Contract Product Layout.layout
 src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
 src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective.layout
