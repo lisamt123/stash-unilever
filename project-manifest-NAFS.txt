@@ -1,4 +1,14 @@
 src
 src/objects
-src/objects/FSVATRU__c.object
-src/objects/FSVATUA__c.object
+src/objects/Account.object
+src/objects/Actual__c.object
+src/objects/Campaign.object
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Defined_Objective__c.object
+src/objects/FS_Segmentation__c.object
+src/objects/Lead.object
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/objects/Pricebook2.object
+src/objects/PricebookEntry.object
+src/objects/Product2.object
