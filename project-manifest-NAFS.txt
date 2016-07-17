@@ -1,15 +1,21 @@
 src
-src/objects
-src/objects/Account.object
-src/objects/Contract_Product__c.object
-src/objects/Contract_Product_Monthly_Actual__c.object
-src/objects/Campaign.object
-src/objects/FS_Account_Plan__c.object
-src/objects/FS_Defined_Objective__c.object
-src/objects/FS_Segmentation__c.object
-src/objects/Lead.object
-src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
-src/objects/Pricebook2.object
-src/objects/PricebookEntry.object
-src/objects/Product2.object
+src/layouts
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Operators.layout
+src/layouts/Campaign-Campaign Layout.layout
+src/layouts/FS_Segmentation__c-FS Segmentation Layout.layout
+src/layouts/Lead-Lead Layout.layout
+src/layouts/Opportunity-Opportunity Layout.layout
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/layouts/Pricebook2-FS PriceBook Layout.layout
+src/layouts/PricebookEntry-Price Book Entry Layout.layout
+src/layouts/Product2-Food Solutions Product.layout
+src/layouts/FS_Defined_Objective__c-Defined Objective Layout.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective.layout
+src/layouts/Contract_Product_Monthly_Actual__c-Actual Layout.layout
+src/layouts/Contract_Product__c-Contract Product Layout.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective.layout

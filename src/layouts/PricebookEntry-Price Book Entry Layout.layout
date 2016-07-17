@@ -40,7 +40,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Sales_Org_Code__c</field>
+                <field>FS_salesOrgCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
