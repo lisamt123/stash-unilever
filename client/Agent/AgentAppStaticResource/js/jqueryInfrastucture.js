@@ -1,1 +1,0 @@
-define("jqueryInfrastucture",["require","jquery-lib"],function(require,jq){window.$j=window.jQuery=jq.noConflict(!0)});
