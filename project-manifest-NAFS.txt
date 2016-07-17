@@ -3,7 +3,6 @@ src/objects
 src/objects/Account.object
 src/objects/Contract_Product__c.object
 src/objects/Contract_Product_Monthly_Actual__c.object
-src/objects/Actual__c.object
 src/objects/Campaign.object
 src/objects/FS_Account_Plan__c.object
 src/objects/FS_Defined_Objective__c.object
