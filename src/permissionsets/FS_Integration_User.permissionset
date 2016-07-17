@@ -8,6 +8,7 @@
         <apexClass>FS_OpportunityHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <classAccesses>
         <apexClass>FS_OpportunityTrigger_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2451,7 +2452,6 @@
         <field>Task.IsVisibleInSelfService</field>
         <readable>false</readable>
     </fieldPermissions>
-    
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Type</field>
