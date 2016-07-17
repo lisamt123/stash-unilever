@@ -1438,7 +1438,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <filterItems>
                 <field>$Source.SubSegmentRussia__c</field>
                 <operation>equals</operation>
-                <valueField>FS_Segmentation__c.FS_OperatorKindOfOutlet__c</valueField>
+                <valueField>FS_Segmentation__c.Name</valueField>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>

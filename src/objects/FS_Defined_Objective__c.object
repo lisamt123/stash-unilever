@@ -128,6 +128,101 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>Estimated_Timing__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Timing</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FS_Other_Reason__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide an explanation of &quot;Other&quot;</inlineHelpText>
+        <label>Other Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_Probability__c</fullName>
+        <externalId>false</externalId>
+        <label>Probability</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_Sub_Type__c</fullName>
+        <description>If Objective Type = Retain/Differentiate, then Sub Type is required.</description>
+        <externalId>false</externalId>
+        <label>Sub Type</label>
+        <picklist>
+            <controllingField>Objective_Type__c</controllingField>
+            <picklistValues>
+                <fullName>USLP</fullName>
+                <default>false</default>
+                <controllingFieldValues>Retain / Differentiate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumer insights</fullName>
+                <default>false</default>
+                <controllingFieldValues>Retain / Differentiate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital</fullName>
+                <default>false</default>
+                <controllingFieldValues>Retain / Differentiate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Culinary</fullName>
+                <default>false</default>
+                <controllingFieldValues>Retain / Differentiate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer&apos;s Events</fullName>
+                <default>false</default>
+                <controllingFieldValues>Retain / Differentiate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Retain / Differentiate</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>NSV__c</fullName>
+        <externalId>false</externalId>
+        <label>NSV</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>No_of_Opportunities__c</fullName>
         <externalId>false</externalId>
         <label>No of Opportunities</label>
@@ -180,6 +275,10 @@
                 <fullName>Retain / Differentiate</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Risk</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -198,6 +297,30 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Risk_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Risk Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Penetration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
@@ -278,19 +401,43 @@
         <label>Tension</label>
         <picklist>
             <picklistValues>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improve Profitability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Drive Traffic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Drive Check Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improve Product Quality</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manage Labor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Menu Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kitchen Efficiency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Gross Margin</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Volume</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Traffic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Relationship</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -331,6 +478,33 @@
         <description>An objective for a Distributor Account Plan</description>
         <label>Distributor Objective</label>
         <picklistValues>
+            <picklist>FS_Sub_Type__c</picklist>
+            <values>
+                <fullName>Consumer insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Culinary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer%27s Events</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USLP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Objective_Type__c</picklist>
             <values>
                 <fullName>Grow</fullName>
@@ -346,6 +520,21 @@
             </values>
             <values>
                 <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Category__c</picklist>
+            <values>
+                <fullName>Market Penetration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -406,19 +595,7 @@
         <picklistValues>
             <picklist>Tension__c</picklist>
             <values>
-                <fullName>Gross Margin</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Relationship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Traffic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volume</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -429,6 +606,33 @@
         <description>Objectives related to Operator Accounts</description>
         <label>Operator Objective</label>
         <picklistValues>
+            <picklist>FS_Sub_Type__c</picklist>
+            <values>
+                <fullName>Consumer insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Culinary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer%27s Events</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USLP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Objective_Type__c</picklist>
             <values>
                 <fullName>Grow</fullName>
@@ -444,6 +648,21 @@
             </values>
             <values>
                 <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Category__c</picklist>
+            <values>
+                <fullName>Market Penetration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -504,19 +723,151 @@
         <picklistValues>
             <picklist>Tension__c</picklist>
             <values>
-                <fullName>Gross Margin</fullName>
+                <fullName>Drive Check Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drive Traffic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improve Product Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improve Profitability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitchen Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manage Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Menu Development</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Relationship</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Risk</fullName>
+        <active>true</active>
+        <description>Used to record a risk - defined as an opportunity to lose business or a blocker to obtain new business</description>
+        <label>Risk</label>
+        <picklistValues>
+            <picklist>FS_Sub_Type__c</picklist>
             <values>
-                <fullName>Traffic</fullName>
+                <fullName>Consumer insights</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Volume</fullName>
+                <fullName>Culinary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer%27s Events</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USLP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Objective_Type__c</picklist>
+            <values>
+                <fullName>Risk</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Category__c</picklist>
+            <values>
+                <fullName>Market Penetration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approval Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Sector__c</picklist>
+            <values>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 KNORR COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 LIZANO COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2K 1 2 TEA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tension__c</picklist>
+            <values>
+                <fullName>Relationship</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -528,6 +879,17 @@
         <active>true</active>
         <errorConditionFormula>AND(OR(IsPickVal(Objective_Type__c,&apos;Grow&apos;),IsPickVal( Objective_Type__c,&apos;Win&apos;)), IsPickVal(Status__c,&apos;Approval Requested&apos;), isNull(No_of_Opportunities__c), RecordType.Name=&apos;Operator Objective&apos;  )</errorConditionFormula>
         <errorMessage>Please create an Opportunity prior to submission for approval</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>If_Sub_Type_is_Other_Need_Reason</fullName>
+        <active>true</active>
+        <description>If Sub Type = Other, need Other Reason</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(FS_Sub_Type__c,&quot;Other&quot;),
+ISBLANK(FS_Other_Reason__c)
+)</errorConditionFormula>
+        <errorDisplayField>FS_Other_Reason__c</errorDisplayField>
+        <errorMessage>If Sub Type = Other, please provide an explanation in Other Reason</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Objective_Completion_Based_on_Approval</fullName>

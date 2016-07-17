@@ -35,6 +35,18 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>Actual_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contract_Product__r.Actual_Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Actual Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Additional_Discount_DEL__c</fullName>
         <externalId>false</externalId>
         <formula>IF( Opportunity.FS_prePaid__c = FALSE &amp;&amp;  Opportunity.FS_selfCollection__c = FALSE, 0,  IF(Opportunity.FS_prePaid__c = FALSE &amp;&amp;  Opportunity.FS_selfCollection__c = TRUE,  0.01,  IF(Opportunity.FS_prePaid__c = TRUE &amp;&amp;  Opportunity.FS_selfCollection__c = FALSE, 0.02,  IF(Opportunity.FS_prePaid__c = TRUE &amp;&amp;  Opportunity.FS_selfCollection__c = TRUE, 0.03, 0) ) ) )</formula>
@@ -70,6 +82,40 @@
         <relationshipName>Opportunity_Product</relationshipName>
         <required>false</required>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DEL_FS_Price1WithDiscountWithVAT__c</fullName>
+        <externalId>false</externalId>
+        <formula>DEL_FS_VAT_TPR__c  *  ListPrice</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DEL Price 1 (w Disc, w VAT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DEL_FS_VAT_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL( PricebookEntry.CurrencyIsoCode , &apos;RUB&apos;) ,  IF( PricebookEntry.Product2.FS_VATRU__c = 1 , 10,  IF(PricebookEntry.Product2.FS_VATRU__c = 2, 18, 0) ) ,  IF(ISPICKVAL( PricebookEntry.CurrencyIsoCode , &apos;UAH&apos;),  IF(PricebookEntry.Product2.FS_VATRU__c = 2, 20, 0) , 0) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DEL VAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>DEL_FS_necessary_TPR__c</fullName>
+        <externalId>false</externalId>
+        <formula>0</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DEL necessary TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Description</fullName>
@@ -336,14 +382,11 @@
     <fields>
         <fullName>FS_Price1WithDiscountWithVAT__c</fullName>
         <externalId>false</externalId>
-        <formula>FS_VAT_TPR__c  *  ListPrice</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Price 1 (w Disc, w VAT)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_ProductMarket__c</fullName>
@@ -434,6 +477,14 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_TPRCalculationFlag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If unchecked, this will trigger the Opportunity Product to recalculate its TPR</description>
+        <externalId>false</externalId>
+        <label>TPR Calculation Flag</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_TPR_DEL__c</fullName>
         <externalId>false</externalId>
         <formula>FS_Total_TPR_DEL__c * FS_GSV_TPR_DEL__c</formula>
@@ -468,17 +519,6 @@
         <required>false</required>
         <scale>2</scale>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_VAT_TPR__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(  ISPICKVAL( PricebookEntry.CurrencyIsoCode , &apos;RUB&apos;) ,  IF( PricebookEntry.Product2.FS_VATRU__c = 1 , 10,  IF(PricebookEntry.Product2.FS_VATRU__c = 2, 18, 0) ) ,  IF(ISPICKVAL( PricebookEntry.CurrencyIsoCode , &apos;UAH&apos;),  IF(PricebookEntry.Product2.FS_VATRU__c = 2, 20, 0) , 0) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>VAT</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>FS_additionalDiscount__c</fullName>
@@ -526,10 +566,8 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>FS_necessary_TPR__c</fullName>
+        <fullName>FS_necessaryTPR__c</fullName>
         <externalId>false</externalId>
-        <formula>0</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>necessary TPR</label>
         <precision>18</precision>
         <required>false</required>
@@ -617,6 +655,15 @@
         <scale>2</scale>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_vat__c</fullName>
+        <externalId>false</externalId>
+        <label>VAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>GPPercent__c</fullName>

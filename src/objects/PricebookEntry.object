@@ -143,15 +143,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>FS_Sales_Org_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>Sales Org Code</label>
-        <length>20</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>FS_Start_Date__c</fullName>
         <description>Price start date coming from SAP</description>
         <externalId>false</externalId>
@@ -205,6 +196,15 @@
         <required>false</required>
         <scale>3</scale>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_salesOrgCode__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Org Code</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
