@@ -102,28 +102,33 @@
         <picklist>
             <picklistValues>
                 <fullName>Not Started</fullName>
-                <closed>false</closed>
                 <default>true</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>In Progress</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Completed</fullName>
-                <closed>true</closed>
                 <default>false</default>
+                <closed>true</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Waiting on someone else</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Deferred</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Checked</fullName>
+                <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -182,5 +187,137 @@
         <fullName>WhoId</fullName>
         <type>Lookup</type>
     </fields>
+    <recordTypes>
+        <fullName>FS_Task</fullName>
+        <active>true</active>
+        <description>Task for Food Solutions</description>
+        <label>FS Task</label>
+        <picklistValues>
+            <picklist>Call_Type__c</picklist>
+            <values>
+                <fullName>Claims Recontacts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Mail - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Answerphone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Recontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound call - Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recommended Alternative Products %2F Stores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Checked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Task_Type__c</picklist>
+            <values>
+                <fullName>Centrally Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Locally Led</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <sharingModel>Private</sharingModel>
 </CustomObject>
