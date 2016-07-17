@@ -8,7 +8,6 @@
         <apexClass>FS_OpportunityHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
         <apexClass>FS_OpportunityTrigger_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2635,10 +2634,6 @@
     <recordTypeVisibilities>
         <recordType>Product2.GFS_Product</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Task.FS_Task</recordType>
-        <visible>false</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>standard-Campaign</tab>
