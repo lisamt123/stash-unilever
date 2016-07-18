@@ -20,6 +20,7 @@ src/classes/CEC_IRIProductLocatorController.cls
 src/classes/CEC_IRIProductLocatorController.cls-meta.xml
 src/objects
 src/objects/Common_Issue__kav.object
+src/package.xml
 src/permissionsets
 src/permissionsets/CEC_Knowledge_Manager.permissionset
 src/permissionsets/CEC_CRUD.permissionset
