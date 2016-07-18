@@ -782,10 +782,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         // checking if rollout plan for original project has been created
         isOrgPrjRLplancreated = isOriginal && (!project.IPM_Project_Rollout__r.isEmpty()  || !project.Regional_Project_Rollout__r.isEmpty() );  
         IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
-        if( project.IPM_ShowProjectStop__c && isProjLeader && currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c))
+        
+        Set<String> projectPhasesToBeExcluded = new Set<String>{IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT, IPM_ConstantUtils.PHASE_PLE};
+        
+        if( project.IPM_ShowProjectStop__c && isProjLeader && currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && !projectPhasesToBeExcluded.contains(project.IPM_Phase__c))
         {   
         	stopButtonHoverText=String.format(Label.IPM_Stop_project_hover_text,new List<String>{project.IPMProject_Span__c,project.IPMProject_Span__c});
-        	system.debug('Showstopbutton2 >>'+showStopButton);
 			Map<Id,IPM_Project_Rollout__c> assocoiatedRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
 			assocoiatedRolloutMap.putAll(project.IPM_Project_Rollout__r);
 			assocoiatedRolloutMap.putAll(project.Regional_Project_Rollout__r);
