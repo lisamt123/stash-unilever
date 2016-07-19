@@ -7,11 +7,11 @@
   */
 
 @isTest(SeeAllData=false)
-public class IPM_Milestone_Test
+private class IPM_Milestone_Test
 {
     
     private static User stdUserForMilestone;
-    private static IPM_Milestone__c ipm2,ipm3,milestone1;
+    private static IPM_Milestone__c IPM2,IPM3,milestone1;
     private static final Id mileStoneRecordType=Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
     private static final String PROJECTID_STRING = 'projectId'; 
     private static final String MINIMSID_STRING = 'minMsId'; 
@@ -46,10 +46,11 @@ public class IPM_Milestone_Test
         
         List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(1, stdUserForMilestone);
         
+        
+        
         List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProject'];
         
         List<IPM_Milestone__c> masterMilestones = [Select Id, IPM_Phase__c from IPM_Milestone__c WHERE IPM_Project__c =: masterProjectList[0].Id];
-        
         System.assert(masterMilestones.size() > 0, 'Milestone successfully not created');
         
         // Insert Master MINI Milestone Data 
@@ -179,14 +180,14 @@ public class IPM_Milestone_Test
 	        
            	Apexpages.currentpage().getparameters().put(MINIMSID_STRING, miniMSList1[0].Id);
 	       	ipmMSCtrl.selectMiniMs();
-            system.assertEquals(miniMSList1[0].IPM_Due_Date__c, null, 'Due Date field is filled');
+            system.assertEquals(miniMSList1[0].IPM_Due_Date__c, null, 'Due Date field is empty');
             system.assertEquals(ipmMSCtrl.milestones[4].checked, false, 'Milestone is checked');          
             
             ipmMSCtrl.createMileStones();
             
             // Checking for the Test Method
-            ipm2 = (IPM_Milestone__c)IPM_TestFactory.createSObject('IPM_Milestone__c', new Map<string,object> {'IPM_Project__c'=>proj.id,'name'=>IPM_Utils.MarketReadyGateApproval,'IPM_BET__c'=>true,'IPM_Type_of_Milestone__c'=>IPM_ConstantUtils.STANDARD,'IPM_Name__c'=>IPM_Utils.BETFirstRelease, 'IPM_Phase__c' => IPM_ConstantUtils.PHASE_IDEAS} , true);
-            IPM_Milestone milestoneCtrl = new IPM_Milestone(new ApexPages.StandardController(ipm2));
+            IPM2 = (IPM_Milestone__c)IPM_TestFactory.createSObject('IPM_Milestone__c', new Map<string,object> {'IPM_Project__c'=>proj.id,'name'=>IPM_Utils.MarketReadyGateApproval,'IPM_BET__c'=>true,'IPM_Type_of_Milestone__c'=>IPM_ConstantUtils.STANDARD,'IPM_Name__c'=>IPM_Utils.BETFirstRelease, 'IPM_Phase__c' => IPM_ConstantUtils.PHASE_IDEAS} , true);
+            IPM_Milestone milestoneCtrl = new IPM_Milestone(new ApexPages.StandardController(IPM2));
             
             for (IPM_Milestone.MilestoneWrapper msWrap : milestoneCtrl.milestones) {
                     msWrap.checked=true;
@@ -194,12 +195,12 @@ public class IPM_Milestone_Test
             milestoneCtrl.createMileStones(); 
             System.Assert(milestoneCtrl.createMileStones() == null , RETURN_NULL); // NO SONAR. 'Retuen null' is expected as part of assert statement in multiple senarios
             
-            ipm3 = (IPM_Milestone__c)IPM_TestFactory.createSObject('IPM_Milestone__c', new Map<string,object> {'IPM_Project__c'=>proj.id,'name'=>IPM_Utils.MarketReadyGateApproval,'IPM_BET__c'=>true,'IPM_Type_of_Milestone__c'=>IPM_ConstantUtils.STANDARD,'IPM_Name__c'=>IPM_Utils.BETFinalReleasecompletewithApprovedCommunication} , true);
+            IPM3 = (IPM_Milestone__c)IPM_TestFactory.createSObject('IPM_Milestone__c', new Map<string,object> {'IPM_Project__c'=>proj.id,'name'=>IPM_Utils.MarketReadyGateApproval,'IPM_BET__c'=>true,'IPM_Type_of_Milestone__c'=>IPM_ConstantUtils.STANDARD,'IPM_Name__c'=>IPM_Utils.BETFinalReleasecompletewithApprovedCommunication} , true);
             
             IPM_Milestone.MilestoneWrapper ic2 = new IPM_Milestone.MilestoneWrapper();
             System.assertEquals(False, ic2.checked, 'Milestone is checked');
             
-            IPM_Milestone.MilestoneWrapper ic1 = new IPM_Milestone.MilestoneWrapper(ipm3,System.today());
+            IPM_Milestone.MilestoneWrapper ic1 = new IPM_Milestone.MilestoneWrapper(IPM3,System.today());
             System.AssertEquals(True, ic1.checked ,'Milestone Not Checked');
             
             //Explicit calls to Method

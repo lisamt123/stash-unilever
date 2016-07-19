@@ -13,7 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
 1.0        Masood Ansari     Feb-2016     INITIAL DEVELOPMENT   
 
 ***********************************************************************/
-global class CEC_ClearAlertTracker_Batch implements Database.Batchable<sObject>{
+global with sharing class CEC_ClearAlertTracker_Batch implements Database.Batchable<sObject>{
     
     String query;
     CEC_AlertHelper clearAlertHelper;

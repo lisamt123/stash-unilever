@@ -10,7 +10,7 @@
            var selectedCategoryJobSheet = '{!selectedCategory}';
            var stringArrayJobSheet = JSON.parse('{!MethodToPassProjectNames}');           
            var projFormPageJobSheet = '{!projectNameFromPage}';           
-           catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);                        		                                  
+           catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);                                                                  
         });
                         
         function openDefaultEmailClient() {                         
@@ -983,7 +983,7 @@
                                 <div class="production-activity-section">    
                                     <!--  <h2 class="margintop25" style="margin-bottom:10px;">Production Activity Detail</h2> -->
                     <div class="production-activity-sub-section pos-rel" style="margin-left:20px;margin-bottom:15px;position:relative;">
-                    	<apex:pagemessages id="msgsPA" rendered="{!if(boolIsProductionActivityError == true,true,false)}"> </apex:pagemessages>
+                        <apex:pagemessages id="msgsPA" rendered="{!if(boolIsProductionActivityError == true,true,false)}"> </apex:pagemessages>
                         <div class="setinactivemask">&nbsp;</div>
                         <div id="productionactivitytypegroup">
                             <div class="form-field" style="padding:5px 0; margin-bottom: 3px;">
@@ -1801,6 +1801,9 @@
                                     <!--Job Information-->
                                     <apex:column headerValue="View">
                                         <apex:outputlink target="_blank" value="Amr_SubmittedSavingPage?id={!obj.id}">View</apex:outputlink>
+                                    </apex:column>
+                                    <apex:column headerValue="Clone">
+                                        <apex:outputlink value="Amr_JobSheet?savingid={!obj.id}&id={!jobList.id}&defaultPage=new_saving">Clone</apex:outputlink>
                                     </apex:column>
                                     <apex:column headerValue="AdManager No">
                                      <apex:outputText value="{!adManagerNumber}" />

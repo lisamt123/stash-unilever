@@ -96,7 +96,10 @@
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</th>
                                         <th>{!$Label.Oblix_Lbl_UIUX_Last_updated}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.SOW_Status__c.label}</th>
-                                        <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_Current_FY_Total__c.label}</th>
+                                        <!--<th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_Current_FY_Total__c.label}</th>
+                                            Renamed 'SWOP Total(incl. risk adjustment)' column header to 'SOW Value'
+                                        -->
+                                        <th>SOW Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,22 +147,13 @@
 
         <apex:define name="page_scripts">
             <script type="text/javascript">
-
                 $(document).ready(function() {
-
                     var table = $('#sowListTable').on( 'init.dt', function () {
                         $('#Oblix_DashId .blockUI_table').hide();
-                    } ).DataTable({
-                        "dom": 'lrtip',
-                        'pagingType': 'full_numbers',
-                        'order': [[ 5, "desc" ]]
-                    });
+                    } ).DataTable({"dom": 'lrtip', 'pagingType': 'full_numbers', 'order': [[ 5, "desc" ]], 'bPaginate': false});
                     //setTimeout(function(){ $('#Oblix_DashId .blockUI1').hide(); console.log('Test123')}, 3000);
-
-
                     $('#searchBox').on('keyup', function() {
                         table.search(this.value).draw();
-
                     });
                     $('#sowListTable tbody').on('click', 'tr', function() {
                         blockme();
@@ -170,7 +164,6 @@
                         });
                         redirectToSOWDetailPage(ids);
                     });
-
                 });
             </script>
         </apex:define>

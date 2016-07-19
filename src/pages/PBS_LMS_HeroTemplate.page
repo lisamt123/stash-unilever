@@ -25,14 +25,17 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<apex:page controller="almond.LMSTemplateController" docType="html-5.0" sidebar="false" showHeader="{!showSFHeader}" standardStylesheets="false" cache="false">
+
+<apex:page controller="PBS_LMSTemplateController_CC" docType="html-5.0" sidebar="false" showHeader="{!showSFHeader}" standardStylesheets="false" cache="false">
 
     <head>
         <apex:insert name="head"/>
         <link href="{!URLFOR($Resource.almond_uilib, '/css/bootstrap-namespaced.min.css')}" rel="stylesheet" media="screen" />
         <link href="{!URLFOR($Resource.almond_uilib, '/css/almondui.min.css')}" rel="stylesheet" media="screen" />
 
+
         <!-- web app config -->
+        
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no" />
 
@@ -80,8 +83,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                             <apex:insert name="hero-banner-footer" />
                         </div>
                     </div>
-                </div> <!-- /hero-banner -->
-
+                </div> 
+               
+                <!-- /hero-banner -->
+                
                 <div class="lms-body-container container">
                     <div class="herotmpl-body-container" >
 
@@ -95,16 +100,19 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                     <hr class="lms-template-hr"/>
 
                     <c:PBS_LMSFooter id="lms-footer" />
-                </div> <!-- /container -->
-
+                </div> 
+               
+                <!-- /container -->
+                
                 <!-- js files needed to load -->
+                
                 <apex:includeScript value="{!URLFOR($Resource.almond_uilib, '/js/jquery.min.js')}"/>
                 <apex:includeScript value="{!URLFOR($Resource.almond_uilib, '/js/bootstrap.min.js')}"/>
                 <apex:includeScript value="{!URLFOR($Resource.almond_uilib, '/js/almondutils.min.js')}"/>
                 <apex:includeScript value="{!URLFOR($Resource.almond_uilib, '/js/fastclick.min.js')}"/>
 
                 <apex:insert name="additional-scripts" />
-
+                
             </div>
         </div>
 

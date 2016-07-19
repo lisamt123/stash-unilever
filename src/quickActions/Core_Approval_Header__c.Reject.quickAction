@@ -6,4 +6,5 @@
     <page>Core_CA_HeaderReject</page>
     <type>VisualforcePage</type>
     <width>-100</width>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

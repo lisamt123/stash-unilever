@@ -31,7 +31,7 @@
     font-size:1.4rem;
 }
 .THIS .td_img_icon {
-    width: 7%;
+    width: 6%;
 }
 .THIS .imageBorder {
    
@@ -76,7 +76,7 @@
 .THIS .tdFont{
   color: #4F6A92;
   font-weight: 300;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   line-height: 1.25;
   width:28%;  
     vertical-align:bottom;
@@ -103,7 +103,6 @@
   color: black;
   width: 90%;
   margin-left: 5%;
-    font-size:1.4rem;
 }
 
 .THIS .desc {
@@ -127,7 +126,6 @@
     margin-left:30px;
 }
 .THIS .recent {
-  font-size: 1.25rem;
   line-height: 1.25;
   letter-spacing: .0625em;
   color: #4F6A92;
@@ -145,8 +143,6 @@
   margin-left:5%; 
 }
 .THIS .topTip_para {
-  font-weight: 300;
-  font-size: 1.4rem;
   line-height: 1.25;
   color: black;
   margin-left:5px;

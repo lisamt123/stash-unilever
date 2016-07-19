@@ -21,6 +21,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_AssetRedirectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_AssetRedirectController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_BasketSectionWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -43,6 +51,14 @@
     <classAccesses>
         <apexClass>Oblix_CampaignCreateHelper</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_CampaignRedirectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_CampaignRedirectController_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_CampaignStageController</apexClass>
@@ -77,12 +93,28 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_DashboardsHandler_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_NonCampaignRedirectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_NonCampaignRedirectController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_NonCampaignWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_OuterPageTemplateController</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_OuterPageTemplateControllerTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_PermissionHandler</apexClass>
@@ -139,6 +171,10 @@
     <classAccesses>
         <apexClass>Oblix_SOWMainDetalControllerExt</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SOWMainDetalControllerExt_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_SOWNonCampaignCreateController</apexClass>
@@ -237,8 +273,8 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_wrapper_NonCamp</apexClass>
-        <enabled>true</enabled>
+        <apexClass>Oblix_VersionControl_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <description>Readonly User with no record visibility restriction for SWOP related objects</description>
     <fieldPermissions>
@@ -308,6 +344,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.Activity_Fee_UL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Agency_Department__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -328,6 +369,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.FTE_report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Financial_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -344,6 +390,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Hourly_Rate_or_FTE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -390,6 +441,11 @@
         <editable>false</editable>
         <field>Marketing_Basics__c.Resource_Fee_Agency__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.Resource_Fee_UL__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1088,6 +1144,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.BET_Required_Yes_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.BET_Required__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.BET_first_release__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1735,6 +1801,18 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>Oblix_AssetRedirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_AssetRedirectToMain</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_AssetRedirectToMain_List</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_CampaignAddAsset</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -1743,7 +1821,31 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Oblix_CampaignRedirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_CampaignRedirectToMain</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_CampaignRedirectToMain_List</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_CampaignSummary</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_NonCampaignRedirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_NonCampaignRedirectToMain</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_NonCampaignRedirectToMain_List</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -1776,6 +1878,14 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SWOPredirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirectToMain</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirectToMain_List</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>

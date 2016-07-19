@@ -390,20 +390,6 @@ function commonCurrencyRelatedCall(stringArray, PCLocalAmount, PCEuroAmount, PCC
 
 }
 
-function multiSelectShootLocation() {
-    var multiselectJq_selected = $j('.job-field-input-multiselectJq select').attr('datalist');
-    //	alert(multiselectJq_selected_array);
-    if (multiselectJq_selected) {
-        var multiselectJq_selected_array = multiselectJq_selected.split(",");
-        $j.each(multiselectJq_selected_array, function(i) {
-            var multiselectJq_selected_arrayvalue = multiselectJq_selected_array[i];
-            $j('.job-field-input-multiselectJq select option[value="' + multiselectJq_selected_arrayvalue + '"]').attr('selected', 1);
-            //system.debug(multiselectJq_selected_arrayvalue);
-            //	alert(multiselectJq_selected_arrayvalue);
-        });
-    }
-}
-
 function starRatingProcess(data) {
 
     var divclass;
@@ -558,5 +544,17 @@ $j(function() {
         removeMasterDurationRows();
         addMasterDurationrowsCall();
         $j('.show-on-edit').show();
+		
+		loadAdditionalFilmProcess(); //
+		noOfAdditionalFilmdurationkeypress(); //
+		removeAdditionalFilmDurationRows(); //
+		addAdditionalFilmsDurationrowsCall(); //
     }
+	
+	$j('a.cloneSaving').click(function(ev){
+		ev.preventDefault();
+		var savingId = $j(this).attr('savingId');
+		var jobId    = $j(this).attr('jobId');
+		window.location.href = 'apex/Amr_JobSheet?savingid='+savingId+'&id='+jobId+'&defaultPage=new_saving';
+	});
 });
