@@ -18,7 +18,7 @@ VERSION    AUTHOR            DATE            DETAIL
 public class CEC_LiveAgentControllerSpanishTest{
 
     @testSetup static void setUpTestData() {
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+         CEC_TestDataFactory.createStandardCECTestUser();
      } 
     
 /**
