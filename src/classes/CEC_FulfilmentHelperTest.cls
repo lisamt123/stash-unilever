@@ -22,7 +22,8 @@ Test class for the Helper class CEC_FulfilmentHelper
 
 @isTest(SeeAllData=false)
 public class CEC_FulfilmentHelperTest {
-    
+    private static final string dollarConst = 'Dollars';
+    private static final string centConst = 'Cents';
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
@@ -117,7 +118,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -144,7 +145,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 1000, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -172,7 +173,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 1000, 1000, cmmIndia.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -414,7 +415,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -509,7 +510,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, CEC_Constants.USD, 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -728,7 +729,7 @@ Test method for beforeInsert() method
         System.runAs(u) {
             Account accountBeforeNewEVoucher = [SELECT Id FROM Account LIMIT 1];
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
-            Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
+            //Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
             List<CEC_E_Voucher_Details__c> issuedEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
                 1, '11111111', CEC_Constants.ISSUED, 
                 accountBeforeNewEvoucher.Id, geographyUK.Id);
@@ -737,8 +738,8 @@ Test method for beforeInsert() method
             List<CEC_E_Voucher_Details__c> newEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
                 1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newEvoucherDetailList;
-            CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c, Voucher_Value__c FROM CEC_E_Voucher_Details__c 
-                                                             WHERE Name = '11111111' LIMIT 1];
+            //CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c, Voucher_Value__c FROM CEC_E_Voucher_Details__c 
+            //                                                 WHERE Name = '11111111' LIMIT 1];
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, E_Voucher_Number__r.name FROM cec_Fulfilment__c LIMIT 1];
             
