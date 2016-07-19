@@ -2373,6 +2373,19 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_ReactivationDateTime__c</fullName>
+        <description>To store the reactivation date and time without day light saving issur</description>
+        <externalId>false</externalId>
+        <label>Reactivation Date/Time</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Region_Shr__c</fullName>
         <description>To capture the region of the project.</description>
         <externalId>false</externalId>
