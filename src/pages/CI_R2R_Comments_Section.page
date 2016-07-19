@@ -1,0 +1,20 @@
+<apex:page standardController="CI_R2R_Innovation__c" extensions="CI_R2R_GetHistory" showChat="false">
+  <apex:form >
+   <apex:pageBlock >
+      <!--<apex:pageBlockSection title="r2rcomments" collapsible="false" >-->
+          
+          <!--<apex:pageBlockTable value="{!rrvalues}" var="rr"> 
+            
+           <apex:column headerValue="Comments"> <div> <b> {!changedby} </b> Changed Comments from  <b>{!rr.OldValue} </b> to <b>{!rr.NewValue} </b></div></apex:column>
+                  
+          </apex:pageBlockTable>-->
+          
+          <apex:pageBlockTable value="{!wrappervalues}" var="rr">            
+              <apex:column headerValue="Comments"> <div> <b> {!rr.changedby} </b> Changed Comments from <b>{!rr.name1} </b> to <b>{!rr.name}</b> on {!rr.cDate}</div></apex:column>
+          </apex:pageBlockTable>
+          
+      <!--</apex:pageBlockSection>-->
+          
+   </apex:pageBlock> 
+  </apex:form>
+</apex:page>

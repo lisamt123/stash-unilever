@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>SME_Weekly_Update_Help_Page</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>CIR2R_Innovation__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CIR2R Innovation</label>
+        <referenceTo>CI_R2R_Innovation__c</referenceTo>
+        <relationshipName>SME_Weekly_Update1_del</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>SME Weekly Comments</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Funnel_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>CIR2R_Innovation__r.Project__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Funnel Ref#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Category_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>APM/SCOA/Reporting updates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business / Global Functions initiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Continuous Improvements</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Controls Embedding / enhancement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dependency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EFCR roll out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Efficiency (with 3PSP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPM &amp; Exception resolution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local / Fiscal projects</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>System Related</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(CIR2R_Innovation__r.Project_Category__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Name_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>R2R_SME_Area__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(CIR2R_Innovation__r.R2R_SME_Area__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>R2R SME Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RAG_Color__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  OR( ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Green&apos;) ,  ISPICKVAL(RAG__c, &apos;Green&apos;)), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvi&quot;, &quot;Green&quot;),
+IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Amber&apos;),ISPICKVAL(RAG__c, &apos;Amber&apos;)), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvd&quot;, &quot;Yellow&quot;),
+IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__c, &apos;Red&apos;)), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvY&quot;, &quot;Red&quot;),
+&apos;&apos;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RAG Color</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RAG__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Updates/changes of this field will be reflected in CI_R2R Innovation</inlineHelpText>
+        <label>RAG</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Scope__c</fullName>
+        <externalId>false</externalId>
+        <label>Scope</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>u2k2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cordilliera - SoCo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cordilliera - CAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius - Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius - Finland (SP 2013069)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Target_Closure__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Updates/changes of this field will be reflected in CI_R2R Innovation</inlineHelpText>
+        <label>Target Closure</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Test_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CI_SME Weekly Update</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Funnel_Ref__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>RAG_Color__c</columns>
+        <columns>Scope__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>{0000}</displayFormat>
+        <label>CI_SMS Weekly Update Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>CI_SME Weekly Update</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Without_CI_Funnel</fullName>
+        <active>true</active>
+        <label>Without CI Funnel</label>
+        <picklistValues>
+            <picklist>Project_Category_2__c</picklist>
+            <values>
+                <fullName>APM%2FSCOA%2FReporting updates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business %2F Global Functions initiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Continuous Improvements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Controls Embedding %2F enhancement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dependency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EFCR roll out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency %28with 3PSP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM %26 Exception resolution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local %2F Fiscal projects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Related</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RAG__c</picklist>
+            <values>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scope__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cordilliera - CAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cordilliera - SoCo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius - Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius - Finland %28SP 2013069%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>u2k2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>with_CI_Funnel</fullName>
+        <active>true</active>
+        <label>with CI Funnel</label>
+        <picklistValues>
+            <picklist>Project_Category_2__c</picklist>
+            <values>
+                <fullName>APM%2FSCOA%2FReporting updates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business %2F Global Functions initiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Continuous Improvements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Controls Embedding %2F enhancement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dependency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EFCR roll out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency %28with 3PSP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM %26 Exception resolution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local %2F Fiscal projects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Related</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RAG__c</picklist>
+            <values>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scope__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cordilliera - CAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cordilliera - SoCo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius - Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius - Finland %28SP 2013069%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>u2k2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Funnel_Ref__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Scope__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Funnel_Ref__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
+        <searchResultsAdditionalFields>RAG_Color__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Scope__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

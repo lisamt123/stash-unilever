@@ -1,0 +1,69 @@
+<apex:page sidebar="false" showHeader="false">
+  
+  <apex:pageBlock title="GuideLines">
+  
+      <apex:pageBlock title="How to fill, group and count: Details tab" >
+          * The first step is to determine a unique 'Project Name' for each of the initiatives. This will enable us to group the initiatives based on 'Project Name'. 
+              Use Data--> Group/ Ungroup/ Subtotal functionality in MS Excel to achieve subtotal of each unique 'Project Name'<br/>          
+          * Subtotal must be done based on 'Project Name' and the subtotal must be displayed in the 'Project Description' column  <br/>        
+          * Primary filter will be applied on the column 'Project Name'. Hence, it is imperative to determine and group the initiatives in broad buckets      <br/>    
+          * Once the grouping and counting is done, fields like 'Project Categories', 'Funnel stage', 'Project Lead',  'Landscape', 'Benefit Type', 'RAG status' and 
+             'Target Completion dates' must be populated manually, based on the cummulative analysis of the initiatives grouped under the broader bucket. 
+              For eg: RAG status of the broader project bucket is green if all the underlying initiatives are green.
+      </apex:pageBlock>
+      
+      <apex:pageBlock title="Dashboard tab">
+          * Information from details tab must be reflected in Dashboard tab         
+      </apex:pageBlock>
+      
+      <apex:pageBlock title="Summary tab">
+          * Information from Dashboard tab must be reflected in Summary tab.       <br/>     
+          * Benefit type must be reflected in Summary tab to enable a high level view of the benefit details         
+      </apex:pageBlock>
+      
+      <apex:pageBlock title="Other guidelines: ">
+          * 'Project Name' should be kept minimal, to enable effective grouping <br/>        
+          * 'Project Description' contains a short summary of the project             <br/>
+          * 'Project Categories' are hard-coded with values mentioned in the table below      <br/>    
+          * 'Capability and Launch dates' details is mandatory. If the project is in Feasability stage, then dates must be provided.  <br/>        
+          * For RAG status that shows amber or red, explanation and mitigation actions must be provided. Status should be updated every week         <br/> 
+          * The tab 'Summary' shows the projects' movement throught the project phases in each of the SME areas           <br/>
+          * Once the grouping is done, mention the overall landscape spread for each project          <br/>
+          * Cost to implement, for Capacity and Launch - IT cost vs. Non-IT cost  
+      </apex:pageBlock>
+      <apex:pageBlock >
+      <apex:pageBlock title="Project Type">
+          <table style="width:100%">
+          <tr>
+            <td><h1>Project Categories</h1></td>
+            <td><h1>Suggested Benefit Types</h1></td> 
+          </tr>
+          <tr><td>Dependency</td><td>Cost Reduction</td></tr>
+          <tr><td>Efficiency (with 3PSP)</td><td>Cost Reduction</td></tr>
+          <tr><td>GPM and Exception resolution</td><td>Harmonization and Standardization</td></tr>
+          <tr><td>EFCR Roll out</td><td>Harmonization and Standardization</td></tr>
+          <tr><td>Business / Global Functions initiated</td><td>As applicable</td></tr>
+          <tr><td>APM/SCOA/Reporting updates</td><td>Compliance requirement</td></tr>
+          <tr><td>Controls Embedding / enhancement</td><td>Compliance requirement</td></tr>
+          <tr><td>Local / Fiscal projects</td><td>Compliance requirement</td></tr>
+          <tr><td>Continuous Improvements</td><td>As applicable</td></tr>
+          <tr><td>System Related</td><td>System Improvement / alignment</td></tr>
+          </table>
+      </apex:pageBlock>
+      <apex:pageBlock title="Benifit">
+          <table style="width:100%">
+          <tr> <td><h1>Available Benefit Types(More benefits can be mapped to one project, better when prioritizing project)</h1></td> </tr>
+          <tr><td>Cost Reduction</td></tr>
+          <tr><td>Harmonization and Standardization</td></tr>
+          <tr><td>Compliance requirement</td></tr>
+          <tr><td>System Improvement / alignment</td></tr>
+          </table>
+      </apex:pageBlock>
+      </apex:pageBlock>
+  </apex:pageBlock>
+  
+   <apex:pageBlock title="GPD Project Phase">
+      <apex:image id="theImage" value="{!$Resource.CI_R2R_Innovations_Image}" width="1000" height="500"/>
+  </apex:pageBlock> 
+  
+</apex:page>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CI_R2R_Innovation__c.Project2__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Project_Name__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Project_Category__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.R2R_SME_Area__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.RAG_Color__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Target_Completion_Date__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>CI_R2R Quarter_Wise_Summary</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$CI_R2R_Innovation__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>CI_R2R_Innovation__c.Project_Category__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CI_R2R_Innovation__c.Target_Completion_Date__c</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>
