@@ -718,7 +718,7 @@
                                     <div class="skipButtoncontainer1 txtAlignright pull-right">
                                         <div class="buttonmarRight pull-left noPadright fleft">
                                             <apex:outputPanel id="refreshReactivatequit">
-                                                <input type="button" class="ipmButton" onClick="quit(this);navigateToOverviewPage();" value="{!$Label.IPM_CloseWizard}" />
+                                                <input type="button" class="ipmButton" onClick="navigateToOverviewPage();" value="{!$Label.IPM_CloseWizard}" />
                                             </apex:outputPanel> 
                                         </div> 
                                         <div class="buttonmarRight pull-left noPadright">
@@ -811,23 +811,27 @@
     </script>
 </apex:outputPanel> 
 <script>
-function quit(qelem){
+    function quit(qelem)
+    {
     var gClass= jq("#ipmModalGetStarted .ipmStartedTabs li.active").attr('class').split(' ');
     var gId = gClass[0];
-    Visualforce.remoting.Manager.invokeAction(
+        Visualforce.remoting.Manager.invokeAction
+        (
         '{!$RemoteAction.IPM_ProjectSetUpController.savetabname}',gId,'{!projectId}',
-        function(result, event){
-            if (event.status) {
+            function(result, event)
+            {
+                if (event.status) 
+                {
                 window.parent.location.href="/apex/IPM_ProjectSetUpView?Pid={!projectId}";
             }
         }
     );
 }
-</script> 
-	<script>
-		function navigateToOverviewPage(){
-			window.parent.location.href="/apex/IPM_ProjectOverview?id={!projectId}";
-		}	
+
+    function navigateToOverviewPage() 
+    {  
+    	window.parent.location.href="/apex/IPM_ProjectOverview?id={!projectId}";
+    }	
 	</script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectSetUpView.js')}" type="text/javascript"></script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreparameterDesign.js')}" type="text/javascript"></script>
