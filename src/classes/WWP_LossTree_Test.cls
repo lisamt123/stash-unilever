@@ -5,6 +5,16 @@ public class WWP_LossTree_Test {
     String oRString = 'Output Reliability';
     String ORName1 = 'ORName1';
     String ORSubfamily1 = 'ORSubfamily1';
+    
+        //custom setting 
+        list<WWP_Master_Table__c> wwpMasterList = new list<WWP_Master_Table__c>();
+        WWP_Master_Table__c wwpMaster = new WWP_Master_Table__c();
+        wwpMaster.name = 'B100';
+        wwpMaster.OR_Tolerance__c = 95;
+        insert wwpMaster;
+       // wwpMasterList.add(wwpMaster);
+        //insert wwpMasterList;
+    
         WWP_PlantCode_User_Mapping__c pcuser = new WWP_PlantCode_User_Mapping__c();
         pcuser.name='pcuser1';
         pcuser.plant_code__c = 'B100';
@@ -65,6 +75,10 @@ public class WWP_LossTree_Test {
         wwp.lossTree.Plant_Code__c= 'B100';
         wwp.selectedWeek= '201512';
         wwp.dispalyAll = true;
+        
+        
+        
+        
         
         
         wwp.fetchLossTree();
