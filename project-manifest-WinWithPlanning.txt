@@ -16,3 +16,5 @@ src/permissionsets/WWP_User_Permissions.permissionset
 src/permissionsets/WWP_Admin_Permissions.permissionset
 src/permissionsets/WWP_Super_Admin_Permissions.permissionset
 src/tabs/WWP_Loss_Tree__c.tab
+src/staticresources/CCFOT_Reports_UnileverLogo.resource
+src/staticresources/CCFOT_Reports_UnileverLogo.resource-meta.xml
