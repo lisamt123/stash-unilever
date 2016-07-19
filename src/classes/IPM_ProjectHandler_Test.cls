@@ -141,9 +141,9 @@ private class IPM_ProjectHandler_Test {
         betRecord1.Status__c = IPM_ConstantUtils.BET_FINAL_RELEASE;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Launch_Date__c = Date.today().addDays(10);
-        betRecord1.name = 'testBet0';
+        betRecord1.name = 'testBet0123';
         uw_BET__c betRecord2 = BET_TestUtils.getTestBet();
-        betRecord2.name = 'testBet';
+        betRecord2.name = 'testBet567';
         betRecord2.Status__c = IPM_ConstantUtils.BET_FIRST_RELEASE;
         betRecord2.FinalReleaseDate__c = Date.Today() + 365;
         betRecord2.Launch_Date__c = Date.Today() + 10;
@@ -221,8 +221,8 @@ private class IPM_ProjectHandler_Test {
      This method creates BET specific test data to be used in bet test methods.
     ***************************************************************************/
     static void betInitializeData() {
-        bet1 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = 'testBet0' limit 1000];
-        bet2 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = : 'testBet' limit 1000];
+        bet1 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = 'testBet0123' limit 1000];
+        bet2 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = : 'testBet567' limit 1000];
         betProjectList[0].name = 'testPrj1';
         betProjectList[0].IPM_Project_Type__c = Rollout;
         betProjectList[0].IPMProject_Span__c = REGIONAL;
@@ -370,7 +370,11 @@ private class IPM_ProjectHandler_Test {
             
             project.IPM_Finance_Lead__c = UserInfo.getUserId(); 
             Test.StartTest();
+            
+            project.IPM_Cluster__c =null;
             update project;
+            IPM_ProjectHandler ip= new IPM_ProjectHandler();
+            ip.beforeDelete(project);
             Test.StopTest();
             List<IPM_Project_Resource_History__c> lstPrjResourceHistory = [Select Id from IPM_Project_Resource_History__c where IPM_Project__c =: project.Id limit 100];
             System.assert(lstPrjResourceHistory.size() >= 1, 'Project resource history inserted');

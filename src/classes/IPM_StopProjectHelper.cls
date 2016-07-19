@@ -270,9 +270,9 @@ public with sharing class IPM_StopProjectHelper
         (SELECT id from IPM_Countries1__r where isActive__c = true limit 10000),
         (SELECT id from IPM_Countries2__r where isActive__c = true limit 10000),
         (SELECT id from IPM_Project_Resources__r  limit 10000), 
-        (SELECT id from IPM_Project_Rollout__r  where isActive__c = true limit 10000),
-        (SELECT id from Regional_Project_Rollout__r  where isActive__c = true limit 10000),
-        (SELECT id from Local_Project_Rollout__r  where isActive__c = true limit 10000),
+        (SELECT id, IPM_Project__c, Regional_Project__c from IPM_Project_Rollout__r  where isActive__c = true limit 10000),
+        (SELECT id, IPM_Project__c, Regional_Project__c from Regional_Project_Rollout__r  where isActive__c = true limit 10000),
+        (SELECT id, IPM_Project__c, Regional_Project__c from Local_Project_Rollout__r  where isActive__c = true limit 10000),
         (SELECT id from IPM_Financials_Consolidated__r where isActive__c = true limit 10000),
         (SELECT id from IPM_Financials_Regional__r where isActive__c = true limit 10000),
         (SELECT id from IPM_Financials_Local__r where isActive__c = true limit 10000),
@@ -349,7 +349,8 @@ public with sharing class IPM_StopProjectHelper
 
         for(Id rolloutId : childRolloutMap.keySet())
         {
-            IPM_Project_Rollout__c rollout = new IPM_Project_Rollout__c(id = rolloutId,isActive__c=false,IPM_StoppedByProject__c=userStoppedProject.Id);
+        	IPM_Project_Rollout__c rolloutDBObj = childRolloutMap.get(rolloutId);
+            IPM_Project_Rollout__c rollout = new IPM_Project_Rollout__c(id = rolloutId,isActive__c=false,IPM_StoppedByProject__c=userStoppedProject.Id, IPM_Project__c = rolloutDBObj.IPM_Project__c,Regional_Project__c = rolloutDBObj.Regional_Project__c);
             for(String apiName : apiNameToValue.keySet())
             {   
                 rollout.put(apiName,(Boolean)apiNameToValue.get(apiName));     
@@ -407,9 +408,9 @@ public with sharing class IPM_StopProjectHelper
         (SELECT id from IPM_Countries1__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
         (SELECT id from IPM_Countries2__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
         (SELECT id from IPM_Project_Resources__r  limit 10000), 
-        (SELECT id from IPM_Project_Rollout__r  where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
-        (SELECT id from Regional_Project_Rollout__r  where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
-        (SELECT id from Local_Project_Rollout__r  where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
+        (SELECT id,IPM_Project__c, Regional_Project__c from IPM_Project_Rollout__r  where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
+        (SELECT id,IPM_Project__c, Regional_Project__c from Regional_Project_Rollout__r  where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
+        (SELECT id,IPM_Project__c, Regional_Project__c from Local_Project_Rollout__r  where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
         (SELECT id from IPM_Financials_Consolidated__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
         (SELECT id from IPM_Financials_Regional__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
         (SELECT id from IPM_Financials_Local__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000),
@@ -477,9 +478,11 @@ public with sharing class IPM_StopProjectHelper
             relatedProjectResourceToStopMap.put(resourceId,projectResource);
         }
 
-        for(Id rolloutId : processRolloutStop(dbProject).keySet()) 
+		Map<Id,IPM_Project_Rollout__c> childRolloutMap = processRolloutStop(dbProject);
+        for(Id rolloutId : childRolloutMap.keySet()) 
         {
-            IPM_Project_Rollout__c rollout = new IPM_Project_Rollout__c(id = rolloutId,isActive__c= true,IPM_StoppedByProject__c= IPM_ConstantUtils.BLANK);
+        	IPM_Project_Rollout__c rolloutDBObj = childRolloutMap.get(rolloutId);
+            IPM_Project_Rollout__c rollout = new IPM_Project_Rollout__c(id = rolloutId,isActive__c= true,IPM_StoppedByProject__c= IPM_ConstantUtils.BLANK,IPM_Project__c = rolloutDBObj.IPM_Project__c,Regional_Project__c = rolloutDBObj.Regional_Project__c);
             for(String apiName : apiNameToValue.keySet())
             {   
                 rollout.put(apiName,false);     
@@ -570,10 +573,10 @@ public with sharing class IPM_StopProjectHelper
     public static Map<Id,IPM_Project_Rollout__c> processRolloutStop(IPM_Project__c stopProject)
     {
         Map<Id,IPM_Project_Rollout__c> tempRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+        tempRolloutMap.put(stopProject.IPM_Project_Rollout__c,new IPM_Project_Rollout__c(id=stopProject.IPM_Project_Rollout__c));
         tempRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>(stopProject.IPM_Project_Rollout__r));
         tempRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>(stopProject.Regional_Project_Rollout__r));
         tempRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>(stopProject.Local_Project_Rollout__r));
-        tempRolloutMap.put(stopProject.IPM_Project_Rollout__c,new IPM_Project_Rollout__c(id=stopProject.IPM_Project_Rollout__c));
         tempRolloutMap.remove(null);
         return tempRolloutMap;
     }
@@ -634,7 +637,21 @@ public with sharing class IPM_StopProjectHelper
         }
         if(!updatedRolloutMap.isEmpty())
         {
+            Set<Id> setTopLevelProjectIds = new Set<Id>();
+            for(IPM_Project_Rollout__c rollout: updatedRolloutMap.values())
+            {
+            	if(rollout.IPM_Project__c != null)
+		{
+			setTopLevelProjectIds.add(rollout.IPM_Project__c); 
+		}
+		// regional project
+		else if (rollout.Regional_Project__c != null)
+		{
+			setTopLevelProjectIds.add(rollout.Regional_Project__c);
+		}
+            }
             update updatedRolloutMap.values();
+            IPM_ProcessRolloutStatusAndDates.execute(setTopLevelProjectIds,new Set<Id>()); 
         }
 
         if(!updatedTaskMap.isEmpty())

@@ -292,17 +292,17 @@
                 <div class="col-sm-12">
                     <div class="col-sm-12 noPadleft coreBg noPadright additionalMarbottom aboutProContainer">
                         <div class="col-sm-12 noPadleft noPadright fieldSection">
-                            <div class="col-sm-6 noPadright custFieldsborder">
+                            <div class="col-sm-12 custFieldsborder">
                                 <!--check whether project is applicable for sub sector or not-->
                                 <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}">
                                 <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Sub_Sector}
                                          <span class="SecButtonSet infoMarTop">
                                                  <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
                                              </span></span>
                                     </div>
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-9 noPadleft noPadright">
                                         <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Sub_sector__c}</span>
                                     </div>
                                 </div>
@@ -310,13 +310,13 @@
                                 <!--check whether project is applicable for market or not-->
                                  <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Market__c}">
                                      <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Market}
                                         <span class="SecButtonSet infoMarTop">  
                                         <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>   
                                         </span></span>
                                     </div>
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-9 noPadleft noPadright">
                                         <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Market__c}</span>
                                     </div>
                                 </div>

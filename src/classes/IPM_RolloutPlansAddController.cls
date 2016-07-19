@@ -93,7 +93,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public boolean removeCountryOtherFeasiCap {get;set;}
     public boolean countryRelatedProj {get;set;}
     public boolean invokedFromRollouts{get;set;}
-    public boolean noAllRolloutFromSameMCO{get;set;}
+    public boolean allRolloutFromSameMCO{get;set;}
     private Set<String > noRolloutDisabledCountrycodeSet = new Set<String >();
     
     /**
@@ -1676,15 +1676,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     
     @TestVisible public void checkLocalProjectAssociatedOrNot()
     {
-    	localProjCnt = 0;
-    	String queryString = null;
-    	removeCountryFeasiCap = false;
-    	removeCountryOtherFeasiCap = false;
-    	countryRelatedProj = false;
-    	invokedFromRollouts = true;
-    	noAllRolloutFromSameMCO = false ;
-    	
-    	mapExistingCountries = new Map<String,IPM_Country__c>();
+      localProjCnt = 0;
+      String queryString = null;
+      removeCountryFeasiCap = false;
+      removeCountryOtherFeasiCap = false;
+      countryRelatedProj = false;
+      invokedFromRollouts = true;
+      allRolloutFromSameMCO = false ;
+      
+      mapExistingCountries = new Map<String,IPM_Country__c>();
         queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c,Local_Rollout__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
         {
@@ -1694,12 +1694,18 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
             queryString+= 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
         }
-          
+        Map<String,Set<String>> relatedMCOAndCountry = new Map<String,Set<String>>();  
         for (IPM_Country__c country : Database.query(queryString))
         {
-            if(IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(searchCountry))
+            if(IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(searchCountry) && country.Local_Rollout__c != null)
             {
                 mapExistingCountries.put(country.Project_Country__c, country);
+                if(relatedMCOAndCountry.containsKey(country.Local_Rollout__c)){
+                  relatedMCOAndCountry.get(country.Local_Rollout__c).add(country.Country_Code__c);
+                }
+                else{
+                  relatedMCOAndCountry.put(country.Local_Rollout__c,new Set<String>{country.Country_Code__c});
+                }
             }
         }
     	List<String> regionalNoRollList = new List<String>();
@@ -1707,28 +1713,33 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
                 regionalNoRollList = regionalNoRoll.split(IPM_ConstantUtils.COMMA); 
         }
-        String MCOName = null;
-        integer counter = 0;
+
     	for (String countryCode : regionalNoRollList)
         {
             String countryRolloutName = getCountryExternalId(countryCode);
             if(mapExistingCountries.containsKey(countryRolloutName))
             {
             	countryProj = mapExistingCountries.get(countryRolloutName);
-            	if(counter == 0 && countryProj != null && countryProj.Local_Rollout__c != null)
-            	{
-            		MCOName = countryProj.Local_Rollout__c;
-            	} 
-            	if(MCOName != countryProj.Local_Rollout__c)
-            	{
-            		noAllRolloutFromSameMCO = true;
-            	} 
-            	if(countryProj.IPM_Local_Project__c != null)
-            	{
-            		localProjCnt++;
-            	}
+              if(relatedMCOAndCountry.containsKey(countryProj.Local_Rollout__c)){
+                relatedMCOAndCountry.get(countryProj.Local_Rollout__c).remove(countryCode);
+              }
+
+              if(countryProj.IPM_Local_Project__c != null)
+	          {
+	            localProjCnt++;
+	            countryRelatedProj = true;
+	          }
             }
-            counter++;
+        }
+        
+        for(String relMCO : relatedMCOAndCountry.keySet())
+        {
+          
+          if(relatedMCOAndCountry.get(relMCO).size() == 0)
+          { 
+            System.debug(LoggingLevel.Error,'))))))))))))))))'+relatedMCOAndCountry.get(relMCO).size());
+            allRolloutFromSameMCO = true;      
+          } 
         }
         if(project.IPMProject_Span__c == 'Regional' && (project.IPM_Phase__c == 'Feasibility' || project.IPM_Phase__c == 'Capability'))
         {
@@ -1737,10 +1748,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         else
         {
         	 removeCountryOtherFeasiCap = true;
-        }
-        if(localProjCnt > 0)
-        {
-        	countryRelatedProj = true;
         }	
     }
     

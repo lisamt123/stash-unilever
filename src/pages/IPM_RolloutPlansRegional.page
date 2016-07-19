@@ -159,7 +159,7 @@
                                         <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}" onClick="skipValidation();"/>
                                         
                                         <apex:outputPanel rendered="{!isEditable}" >
-                                            <div class="ipmButton primary generateRolloutBtn" >{!IF(updateRollouts, $Label.IPM_UPDATE_ROLLOUTS, $Label.IPM_GENERATE_ROLLOUTS)}</div>
+                                            <div class="ipmButton primary generateRolloutBtn" onClick="skipValidation();">{!IF(updateRollouts, $Label.IPM_UPDATE_ROLLOUTS, $Label.IPM_GENERATE_ROLLOUTS)}</div>
                                         </apex:outputPanel>    
                                     </div>
                                 </div> 
@@ -168,6 +168,7 @@
                     </apex:outputPanel>
 
                    <c:IPM_ConfirmModal />
+                   <c:IPM_StopConfirmation />
                    <!-- function will used for change MCO and generate rollout -->
                     <apex:actionFunction name="changeMCO" action="{!changeMCO}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" onComplete="regionalscriptpanel();">
                         <apex:param name="p1" assignTo="{!regionalMco}" value=""/>

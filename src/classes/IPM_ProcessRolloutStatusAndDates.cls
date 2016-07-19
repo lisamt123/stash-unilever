@@ -38,7 +38,7 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                                                             
                                                         (SELECT Id FROM IPM_Projects__r)
                                                       FROM IPM_Project__c 
-                                                      WHERE Id IN: setTopLevelProjectIds LIMIT 50000];
+                                                      WHERE Id IN: setTopLevelProjectIds and Is_Archieved__c = false LIMIT 50000];
         
          
            
@@ -89,7 +89,8 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                                                                 WHERE RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND isActive__c = true AND id not in :deleteRolloutIds  
                                                                 order By Target_Launch_Date__c) 
                                                             FROM IPM_Project__c 
-                                                            WHERE Id IN: regionalProjectList LIMIT 50000];
+                                                            WHERE Id IN: regionalProjectList and Is_Archieved__c = false LIMIT 50000];
+               System.debug(LoggingLevel.ERROR,'PS::lstRegionalProjects:'+lstRegionalProjects);
                 for(IPM_Project__c regionalProject : lstRegionalProjects)
                 {
                     IPM_Project_Rollout__c minimumdateRollout = null;

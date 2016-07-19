@@ -637,7 +637,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 			}
 			else
 			{
-				stopDisclaimer = Label.IPM_StopDisclaimer4;
+				stopDisclaimer = Label.IPM_StopDisclaimer3;
 			}
 		}
 		else if(String.isNotBlank(currentGate)) 
@@ -648,7 +648,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 			}
 			else
 			{
-				stopDisclaimer = Label.IPM_StopDisclaimer3;
+				stopDisclaimer = Label.IPM_StopDisclaimer4;
 			}
 		}
 	}
