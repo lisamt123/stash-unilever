@@ -9613,5 +9613,12 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_StopDisclaimer4</shortDescription>
         <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page. Once stopped the project cannot be reactivated.</value>
     </labels>
+    <labels>
+        <fullName>IPM_AgreeAndProceed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree and Proceed</shortDescription>
+        <value>Agree and Proceed</value>
+    </labels>
 </CustomLabels>
 

@@ -79,6 +79,40 @@ public class IPM_BETSuggestedMembersController_Test {
             system.assertEquals(bet.id, [select bet__c from IPM_Project__c where id = : ipmproject.id].bet__c, 'BET not updated on project');
         }
     }
+    
+     //test Method to  test updation of  BET on project through IPM_UpdateBETOnProject_Queueable class
+    static testMethod void testAsyncUpdateBETonProject() {
+        initialSetup();
+        
+        system.runAs(runningUser) {
+            uw_bet__c bet = BET_TestUtils.getTestBet();
+            insert bet;
+            
+            System.assertEquals(1 , [Select count()  from uw_bet__c where Id =:bet.Id] ,'Failed to create a BET record.');
+            
+            IPM_Project__c ipmProject = (IPM_TestFactory_Helper.createOriginalProjectList(true, 1))[0];
+            
+            System.assertEquals(1 , [Select count()  from IPM_Project__c where Id =:ipmProject.Id] ,'Failed to create a project record.');
+            
+            
+             ipmproject.ipm_phase__c = IPM_ConstantUtils.PHASE_IDEAS;
+             
+             ipmproject.name ='ANZ2'; 
+             
+             update ipmProject; 
+             
+             System.assertEquals(ipmproject.name  , [Select name  from IPM_Project__c where Id =:ipmProject.Id].name ,'Failed to update the project phase.');
+             
+             IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
+             updateBETOnProjectQ.betId =bet.id;
+             updateBETOnProjectQ.projectId =ipmproject.id; 
+             Test.startTest();
+             System.enqueueJob(updateBETOnProjectQ);
+             Test.stopTest();
+            
+            system.assertEquals(bet.id, [select bet__c from IPM_Project__c where id = : ipmproject.id].bet__c, 'The BET not updated on the project');
+        }
+    }
 
    
 }

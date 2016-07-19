@@ -541,7 +541,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	                                              GM_of_TO_Global__c,
 	                                              GM_of_TO_Regional__c,
 	                                              PL_Type__c FROM IPM_Financial_Year__C 
-	                                              WHERE IPM_Financial__c IN:financialIdSet]){
+                                                WHERE IPM_Financial__c IN:financialIdSet Limit 50000]){
                 
                 //For Local Projects 
                 if(fy.IPM_Financial__r.Local_Project__r.id != null){
@@ -1000,7 +1000,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 				}
            } else if(p.IPMProject_Span__c == IPM_ConstantUtils.Local &&  p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                 otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;
-           } else {
+           } else if(p.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && p.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){ 
+           		// Defect 3701 fix
+           		otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
+           }else {
                 otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
            }
             // Populating Y3 iTO BB
