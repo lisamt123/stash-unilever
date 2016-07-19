@@ -91,6 +91,21 @@
         <field>GEL_Global_Exception_Log__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Territory__c.Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Territory__c.Territory_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Territory__c.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <label>GEL Exception Raiser</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -102,8 +117,12 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>GEL_Global_Exception_Log__c</tab>
