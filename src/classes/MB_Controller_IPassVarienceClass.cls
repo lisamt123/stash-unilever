@@ -35,26 +35,27 @@ public with sharing class MB_Controller_IPassVarienceClass{
     for(MB_Billing_Entity__c UsageTotalAmount:billingEntityList){
       if(UsageTotalAmount.Local_Net_Amount__c!=null){
          TotalUsageAmount+=UsageTotalAmount.Local_Net_Amount__c;
+         System.debug(TotalUsageAmount+'@@##');
          }
     }
     return TotalUsageAmount;
  }
   @AuraEnabled
-  public static Decimal getSpendDetailsforchargetype(string month,string chargetype){
+  public static Decimal getSpendDetailsforchargetype(string month,string chargetype,string UsageType){
   
       List<MB_Billing_Entity__c> billingEntityList;
       if(chargetype!='NonUsage'&&chargetype!='Recurring'&&chargetype!='Tax'&&chargetype!='Discount'&&chargetype!='Recurring Credit'&&chargetype!='Usage Credit'&&chargetype!='Miscellaneous'&&chargetype!='Disputed'&&chargetype!='None'){
             billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Charge_Type__r.Name=:chargetype]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Charge_Type__r.Name=:chargetype and Usage_Type__r.Name=:UsageType]; 
             System.debug('Inside charge type if-->'+billingEntityList);
       }
       else{
             billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name=:chargetype]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Usage_Type__r.Name=:chargetype and Usage_Type__r.Name=:UsageType]; 
             System.debug('else flow');
       }
     Decimal TotalUsageAmount=0;
@@ -86,7 +87,7 @@ public with sharing class MB_Controller_IPassVarienceClass{
  public static MB_Wrapper_Class.UsageAmountType_Wraper getUsageTotalAmount(string month,string usagetype){
      MB_Wrapper_Class.UsageAmountType_Wraper wprClass=new MB_Wrapper_Class.UsageAmountType_Wraper();
      //if(usagetype!='NonUsage'){
-     Decimal usageamount=getSpendDetails(month,usagetype);
+     Decimal usageamount =getSpendDetails(month,usagetype);
      string previousMonth= getPreviousMonth(month);
      Decimal  previoususageamount=getSpendDetails(previousMonth,usagetype);
      Decimal change=(usageamount-previoususageamount);
@@ -116,6 +117,7 @@ public with sharing class MB_Controller_IPassVarienceClass{
  /*-------------------------------------------------------------------------*/  
   @AuraEnabled
   public static List<MB_Wrapper_Class.UsageAmountType_Wraper> getSpendDetailsforChargelist(string month,string usagetype){
+  System.debug('@u'+usagetype);
       List<MB_Wrapper_Class.UsageAmountType_Wraper> lst;
       if(usagetype!='NonUsage'){
           System.debug('usagetype!=nonusage');
@@ -127,14 +129,15 @@ public with sharing class MB_Controller_IPassVarienceClass{
             Set<String> chargelist=new Set<String>();
             for(MB_Billing_Entity__c chargelst:billingEntityList){
                  chargelist.add(chargelst.Charge_Type__r.Name);
+                 System.debug('@ch'+chargelst.Charge_Type__r.Name);
             }
             Decimal  previoususageamount=0;
             
             for(string chargelstforUsage:chargelist){System.debug('####$$$$'+chargelstforUsage);
-             Decimal usageamount=getSpendDetailsforchargetype(month,chargelstforUsage);
-             
+             Decimal usageamount=getSpendDetailsforchargetype(month,chargelstforUsage,usagetype);
+             System.debug('@am'+chargelstforUsage+'#'+usageamount);
              string previousMonth= getPreviousMonth(month);
-             previoususageamount=getSpendDetailsforchargetype(previousMonth,chargelstforUsage);
+             previoususageamount=getSpendDetailsforchargetype(previousMonth,chargelstforUsage,usagetype);
              System.debug('@@@!!@$$$'+previoususageamount+'----'+usageamount+'------'+chargelstforUsage);
              Decimal change=(usageamount-previoususageamount);
              
@@ -181,9 +184,9 @@ public with sharing class MB_Controller_IPassVarienceClass{
             
             for(string chargelstforUsage:chargelist){
                  System.debug('####$$$$'+chargelstforUsage);
-                 Decimal usageamount=getSpendDetailsforchargetype(month,chargelstforUsage);
+                 Decimal usageamount=getSpendDetailsforchargetype(month,chargelstforUsage,usagetype);
                  string previousMonth= getPreviousMonth(month);
-                 previoususageamount=getSpendDetailsforchargetype(previousMonth,chargelstforUsage);
+                 previoususageamount=getSpendDetailsforchargetype(previousMonth,chargelstforUsage,usagetype);
                  System.debug('@@@!!@$$$'+previoususageamount+'----'+usageamount+'------'+chargelstforUsage);
                  Decimal change=(usageamount-previoususageamount);
                  

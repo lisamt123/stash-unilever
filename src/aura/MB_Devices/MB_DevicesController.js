@@ -49,7 +49,15 @@
                 var result=response.getReturnValue();
                 console.log("image url"+result.length );
                 if(result.length > 0){
-                    console.log("image url"+result[0].deviceImageUrl);
+                     for(var i=0;i<result.length;i++)
+                        {   str=result[i].deviceImageUrl;
+                           var s=str.substring(str.length-4, str.length);
+                         if(s== 'null'){
+                            result[i].deviceImageUrl='';
+                            result[i].deviceImageUrl='/resource/MB_Icons/MB_Icons/phone_portrait_120.png';
+                         }
+                        }
+                    
                     component.set("v.showDevice",true);
                     component.set("v.Device_Details",response.getReturnValue());
                     component.set("v.userName",result[0].userName);

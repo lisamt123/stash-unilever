@@ -201,7 +201,10 @@ getDetail:function(component, event, helper) {
             attributes: {
                 values:{
                     CurrentMonth:event.getParam("month"),
-                    selectedMonth:selectedmonth
+                    selectedMonth:selectedmonth,
+                    UsageType:event.getParam("UsageType"),
+                    deviceName:event.getParam("deviceName"),
+                    deviceId:event.getParam("deviceId")
                 }
             }
         }, component);

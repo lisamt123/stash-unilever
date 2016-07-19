@@ -4,9 +4,7 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Text_Value__c</fullName>
-        <description>Google Analytics Tracking Id</description>
         <externalId>false</externalId>
-        <inlineHelpText>Google Analytics Tracking Id</inlineHelpText>
         <label>Text Value</label>
         <length>255</length>
         <required>false</required>
@@ -14,6 +12,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>MB_ReportingGA</label>
+    <label>MB_Info_ReportingGA</label>
     <visibility>Public</visibility>
 </CustomObject>

@@ -53,6 +53,9 @@
         float: left;
         width: 79px;
         text-align: center;
+        height: 100px;
+    	display: flex;
+    	align-items: center;
         }
         .device_desc_a {
         border-bottom: 1px solid #CFD7E6;
@@ -90,9 +93,12 @@
             Hi {!v.userName},<br/>Your total spend for {!v.CurrentMonth} is <span class="amount"> {!v.localCurrency}  {!v.totalUsage}</span><br/><br/>
         </div>
         <div class="device_section">
-            <div class="slds-text-heading--small Device_main"><span class="info_icon">
+            <div class="slds-text-heading--small Device_main">
+                <!-- <span class="info_icon">
                 <img src="/resource/MB_Icons/MB_Icons/info_60.png"></img>
-                </span>Devices
+                </span>
+                -->
+    Devices
             </div> 
             <aura:iteration items="{!v.Device_Details}" var="device" indexVar="indx" >
               
@@ -115,7 +121,7 @@
             <div class="Device_main_sub" onclick="{!c.gotoIpassCharts}" >
                     <div class="device_img">
                        <!--  <img src="/resource/Device/Apple.jpg"> </img> -->
-                        <img src="/resource/MB_Icons/MB_Icons/iPass_Icon.png"/>
+                        <img src="/resource/MB_Icons/MB_Icons/iPass_Icon_old.png" style="width: 50px;border-radius: 7px;    margin-left: 15px;"/>
                         
                     </div>
                     <div class="device_desc">

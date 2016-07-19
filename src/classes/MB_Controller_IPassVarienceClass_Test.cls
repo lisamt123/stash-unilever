@@ -121,12 +121,6 @@ public class MB_Controller_IPassVarienceClass_Test{
       
       Decimal totalUsageAmount2 = MB_Controller_IPassVarienceClass.getSpendDetails(billingEntityObject5.Billing_Month__c ,usageTypeObject2.Name);
       System.assertEquals(totalUsageAmount2,25.00);
-     
-      Decimal TotalUsageAmount3 = MB_Controller_IPassVarienceClass.getSpendDetailsforchargetype(billingEntityObject1.Billing_Month__c ,chargeTypeObject1.Name); 
-      System.assertEquals(totalUsageAmount3,25.00); 
-     
-      Decimal TotalUsageAmount4 = MB_Controller_IPassVarienceClass.getSpendDetailsforchargetype(billingEntityObject5.Billing_Month__c ,chargeTypeObject2.Name); 
-      System.assertEquals(totalUsageAmount4,0.00); 
       
       String previousBillingPeriod = MB_Controller_IPassVarienceClass.getPreviousMonth(billingEntityObject1.Billing_Month__c); 
       System.assertEquals(previousBillingPeriod,'December 2015'); 

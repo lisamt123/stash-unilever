@@ -29,7 +29,7 @@
     //This method redirects to device tab 
       gotoDevices:function(component, event, helper) {
         var backEvent=$A.get("e.c:MB_Back_Evt");
-        backEvent.setParams({"month":component.get("v.CurrentMonth"),"pagename":"MB_Devices"}).fire();
+        backEvent.setParams({"month":component.get("v.CurrentMonth"),"pagename":"MB_SpendSummary_Charts","deviceId":component.get("v.deviceId"),"deviceName":component.get("v.deviceName")}).fire();
                                                     
     },
     gotoDetailSummaryCalls:function(component, event, helper) {

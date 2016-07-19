@@ -155,9 +155,6 @@
                          </aura:if>
                        </aura:iteration>
                    </div>               
-               <div class="Right_cevro">
-                    <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img> 
-               </div>
             </div>
            </div>
       </aura:if>
@@ -210,10 +207,6 @@
                        </aura:if>
                      </aura:iteration> 
                  </div>              
-             
-             <div class="Right_cevro">
-                  <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
-             </div>
           </div>
         </div>
        </aura:if>
@@ -269,9 +262,7 @@
                  </aura:if>
                </aura:iteration>  
            </div>  
-          <div class="Right_cevro">
-             <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
-          </div>
+          
            </div>
 
            </div>
@@ -327,9 +318,7 @@
                    </aura:if>
                   </aura:iteration> 
               </div>
-           <div class="Right_cevro">
- 			<img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img> 
-           </div>
+           
           </div>
 
           </div>
@@ -436,7 +425,7 @@
                    <aura:if isTrue="{!v.deviceDetails.nonUsageVariance==false}"> 
                        <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
                    </aura:if>
-                   {!v.deviceDetails.userCurrency} Test 0
+                   {!v.deviceDetails.userCurrency} 0.00
                </div>
                <div class="section_a-new">
                    <aura:iteration items="{!v.spendDetails.nonusageWrapperList}" var="data">
@@ -447,9 +436,7 @@
                        </aura:if>
                    </aura:iteration> 
                </div>
-            <div class="Right_cevro">
-                 <img src="/resource/MB_Icons/MB_Icons/chevronnext-13.svg"></img>  
-            </div>
+            
            </div>
            
 

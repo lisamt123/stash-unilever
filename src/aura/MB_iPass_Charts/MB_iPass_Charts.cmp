@@ -65,7 +65,7 @@
             <div class="carousel">
                 
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS (MB)</div>
+                    <div class="slds-text-body--small chart_main">iPass (MB)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                     <div class="chartstext">
                         <div style="width:25%;float:left">
@@ -87,7 +87,7 @@
             <div class="carousel_column">
  
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">iPASS  (MB)</div>
+                    <div class="slds-text-body--small chart_main">iPass (MB)</div>
                     <div class="slds-text-body--regular chart_sub">Roaming Data -vs- Roaming iPass</div>
                    <div class="Insights">
                         <div class="slds-text-body--regular">

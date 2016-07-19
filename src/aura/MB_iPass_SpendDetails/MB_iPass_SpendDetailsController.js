@@ -17,7 +17,7 @@
    },
     gotoDevices:function(component, event, helper) {
         var backEvent=$A.get("e.c:MB_Back_Evt");
-        backEvent.setParams({"month":component.get("v.CurrentMonth"),"pagename":"MB_Devices"}).fire();
+        backEvent.setParams({"month":component.get("v.CurrentMonth"),"pagename":"MB_iPass_Charts","UsageType":"iPass"}).fire();
                                                     
     },
     iPass_charts: function(component, event, helper) {
