@@ -163,7 +163,19 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>   
+    </fields>
+    <fields>
+        <fullName>Non_Usage_Consumed__c</fullName>
+        <description>Non Usage Consumed</description>
+        <externalId>false</externalId>
+        <label>Non Usage Consumed</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Service_Name__c</fullName>
         <description>Device service name</description>
@@ -223,7 +235,19 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>   
+    </fields>
+    <fields>
+        <fullName>iPass_Consumed_In_MB__c</fullName>
+        <description>iPass usage in MB</description>
+        <externalId>false</externalId>
+        <label>iPass Consumed In MB</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>Billing Entity</label>
     <listViews>
         <fullName>All</fullName>
@@ -246,7 +270,7 @@
         </filters>
         <label>All</label>
         <language>en_US</language>
-    </listViews>   
+    </listViews>
     <nameField>
         <displayFormat>BE-{0000000}</displayFormat>
         <label>Name</label>

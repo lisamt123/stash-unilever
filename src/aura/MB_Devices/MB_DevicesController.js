@@ -4,14 +4,8 @@
         //Getting current Month and Year
         console.log("in devices"+component.get("v.selectedMonth"));
         var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        
-        var d;
-        var month;
-        var list=[];
-        
-        
+        var d;var month;var list=[];
         if(component.get("v.CurrentMonth") == undefined ){
-            
             var d = new Date();
             var month=d.getMonth();
             var currentmonthName=monthNames[month];
@@ -34,7 +28,6 @@
                {
                    component.set("v.showDevice",true);
                }
-              
                 component.set("v.iPassTotalAmount",result);
             }                  
         });
@@ -57,7 +50,6 @@
                             result[i].deviceImageUrl='/resource/MB_Icons/MB_Icons/phone_portrait_120.png';
                          }
                         }
-                    
                     component.set("v.showDevice",true);
                     component.set("v.Device_Details",response.getReturnValue());
                     component.set("v.userName",result[0].userName);
@@ -71,7 +63,6 @@
                     usertotalUsage=Number(usertotalUsage+ipassAmount.iPassTotalAmount).toFixed(2);
                     component.set("v.totalUsage",usertotalUsage);
                 }
-                
                 //Get the current username if the current user does not have any spend for current month
                 else{
                     var action1=component.get("c.getUserName");
@@ -98,15 +89,11 @@
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                                         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-                
-                ga('create', 'UA-79802501-1', 'auto');
-                ga('send', 'pageview');
-                
-                
+                ga('create',response.getReturnValue(), 'auto');
+                ga('send', 'pageview');  
             }                  
         });
         $A.enqueueAction(action2);
-        
     },
     
     //This method redirects selected device's spend details page
