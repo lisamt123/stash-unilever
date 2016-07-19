@@ -601,25 +601,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_France_Queue_cec_Enclosure</fullName>
-        <columns>NAME</columns>
-        <columns>Country__c</columns>
-        <columns>FileName__c</columns>
-        <columns>MailItemName__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>Active__c</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC France Queue</label>
-        <language>en_US</language>
-        <queue>CEC_France_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_France</role>
-            <role>CEC_User_France</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_General_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
