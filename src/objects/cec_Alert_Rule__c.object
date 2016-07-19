@@ -534,6 +534,27 @@
     </fields>
     <label>Alert Rule</label>
     <listViews>
+        <fullName>Abhishek_Alerts</fullName>
+        <columns>NAME</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>L1_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>Market__c</columns>
+        <columns>Active__c</columns>
+        <columns>Alert_Type_Image__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UPDATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Abhishek Kumar Singh</value>
+        </filters>
+        <label>Abhishek Alerts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>Alert_Ansicht_Test</fullName>
         <columns>NAME</columns>
         <columns>L5_Reason_Code__c</columns>

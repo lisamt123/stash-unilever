@@ -3429,6 +3429,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>New</value>
         </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>7/9/2016 12:00 AM</value>
+        </filters>
         <label>CEC Benelux queue WH</label>
         <language>nl_NL</language>
     </listViews>
@@ -7111,6 +7116,37 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_UK_All_New_Cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Brand__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>NAME</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <label>CEC UKI All New Cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_UK</role>
+            <role>CEC_User_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Vietnam_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
@@ -7464,12 +7500,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email</value>
+            <value>Email,Web</value>
         </filters>
         <filters>
-            <field>CORE.USERS.ALIAS</field>
+            <field>CASES.SUBJECT</field>
             <operation>notEqual</operation>
-            <value>CEC Southern Cone Queue</value>
+            <value>SPAM</value>
         </filters>
         <label>Emails Q&amp;A</label>
         <language>es_MX</language>

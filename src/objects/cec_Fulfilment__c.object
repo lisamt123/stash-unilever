@@ -1817,6 +1817,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <columns>Full_Name__c</columns>
         <columns>Enclosure1__c</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>Document_Approval__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>QA_flag__c</field>
