@@ -1316,10 +1316,6 @@
         <object>Product2</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>FS_CentrallyLedChildAccounts</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Account.Agency</recordType>
         <visible>false</visible>
