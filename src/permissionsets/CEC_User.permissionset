@@ -3012,6 +3012,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Alert_Tracker_Item__c.Case_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Tracker__c.Alert_Threshold__c</field>
         <readable>true</readable>
@@ -3019,11 +3024,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Tracker__c.Alert_Tracker_Item_count__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Alert_Tracker__c.Case_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
@@ -5143,14 +5143,6 @@
     </tabSettings>
 	<tabSettings>
         <tab>cec_Fulfilment__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-	<tabSettings>
-        <tab>Home</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-	<tabSettings>
-        <tab>Knowledge</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
