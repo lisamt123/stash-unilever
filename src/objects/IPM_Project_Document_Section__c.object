@@ -44,22 +44,20 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To be used in IPM project to store Gate Document Sections. It refers to the IPM Section object to pick what section/subsection it needs.</description>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
+    <enableBulkApi>true</enableBulkApi>   
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Comments__c</fullName>
-        <description>To store comments</description>
+	<description>To store comments</description>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>32768</length>
@@ -70,20 +68,8 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Gate_With_Sequence__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(IPM_Gate_Document__c) &amp; &apos; &apos; &amp;&apos;Gate&apos;&amp;&apos; &apos;&amp; IPM_Section_Sequence__c &amp; &apos; &apos; &amp; IPM_Section_Name__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Gate With Sequence</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Assortment_CU__c</fullName>
-        <description>To store the CU&apos;s selected for assortment channel</description>
+	<description>To store the CU&apos;s selected for assortment channel</description>
         <externalId>false</externalId>
         <label>IPM Assortment CU</label>
         <length>255</length>
@@ -96,7 +82,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_Channel__c</fullName>
-        <description>To capture Assortment Channel name</description>
+	<description>To capture Assortment Channel name</description>
         <externalId>false</externalId>
         <label>IPM Assortment Channel</label>
         <picklist>
@@ -193,7 +179,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_Date_From__c</fullName>
-        <description>To capture Assortment Strategy From Date</description>
+    	<description>To capture Assortment Strategy From Date</description>
         <externalId>false</externalId>
         <label>IPM_Assortment_Date_From</label>
         <required>false</required>
@@ -204,7 +190,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_Date_To__c</fullName>
-        <description>To capture Assortment Strategy To Date</description>
+	<description>To capture Assortment Strategy To Date</description>
         <externalId>false</externalId>
         <label>IPM_Assortment_Date_To</label>
         <required>false</required>
@@ -215,8 +201,9 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_Distribution_Type__c</fullName>
-        <description>This Distribution type is being used in &quot;Assortment Strategy&quot;</description>
         <externalId>false</externalId>
+	<description>This Distribution type is being used in &quot;Assortment Strategy&quot;</description>
+        <inlineHelpText>This Distribution type is being used in &quot;Assortment Strategy&quot;</inlineHelpText>
         <label>IPM_Assortment_Distribution_Type</label>
         <picklist>
             <picklistValues>
@@ -236,7 +223,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Selected_Countries__c</fullName>
-        <description>To capture the countries name where CMI conducted</description>
+	<description>To capture the countries name where CMI conducted</description>
         <externalId>false</externalId>
         <label>IPM CMI Selected Countries</label>
         <picklist>
@@ -298,7 +285,7 @@
     </fields>
     <fields>
         <fullName>IPM_Channel_Name__c</fullName>
-        <description>This capture Assortment Channel name</description>
+    	<description>This capture Assortment Channel name</description>
         <externalId>false</externalId>
         <label>IPM_Channel_Name</label>
         <length>50</length>
@@ -328,7 +315,7 @@
         <fullName>IPM_Customer_Channel_Info__c</fullName>
         <defaultValue>&quot;Experiential,Routine,Needs for Today&quot;</defaultValue>
         <description>To store the customer channel info</description>
-        <externalId>false</externalId>
+	<externalId>false</externalId>
         <label>IPM Customer Channel Info</label>
         <length>255</length>
         <required>false</required>
@@ -351,7 +338,7 @@
     </fields>
     <fields>
         <fullName>IPM_DocSec_Project_Leader__c</fullName>
-        <description>To capture project leader email id</description>
+	<description>To capture project leader email id</description>
         <externalId>false</externalId>
         <formula>IPM_Project_Document__r.IPM_Project__r.IPM_Project_Leader__r.Email</formula>
         <label>IPM Project Leader</label>
@@ -363,7 +350,7 @@
     </fields>
     <fields>
         <fullName>IPM_FunctionalRole__c</fullName>
-        <description>To store Functional Role of the section</description>
+	<description>To store Functional Role of the section</description>
         <externalId>false</externalId>
         <label>IPM_FunctionalRole</label>
         <picklist>
@@ -424,7 +411,7 @@
     </fields>
     <fields>
         <fullName>IPM_Functional_Input_Status__c</fullName>
-        <description>To store function input status of section</description>
+	<description>To store function input status of section</description>
         <externalId>false</externalId>
         <label>IPM Functional Input Status</label>
         <picklist>
@@ -449,7 +436,7 @@
     </fields>
     <fields>
         <fullName>IPM_Functional_Input_or_Summary__c</fullName>
-        <description>To store functional summary</description>
+	<description>To store functional summary</description>
         <externalId>false</externalId>
         <formula>IF( IPM_GateHistory_Date__c&gt; IPM_PDPHistoty_Date__c, &apos;Summary&apos;,&apos;Functional Input&apos;)</formula>
         <label>IPM Functional Input or Summary</label>
@@ -485,7 +472,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gate_Document_Summary__c</fullName>
-        <description>To capture gate document summary</description>
+	<description>To capture gate document summary</description>
         <externalId>false</externalId>
         <label>Gate Document Summary</label>
         <length>32768</length>
@@ -497,7 +484,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gate_Document__c</fullName>
-        <description>To store gate document name</description>
+	<description>To store gate document name</description>
         <externalId>false</externalId>
         <label>Gate Document</label>
         <picklist>
@@ -548,7 +535,7 @@
     </fields>
     <fields>
         <fullName>IPM_Locale_Time__c</fullName>
-        <description>To store locale time when function input summary saved</description>
+	<description>To store locale time when function input summary saved</description>
         <externalId>false</externalId>
         <formula>IF(CONTAINS(IPM_Functional_Input_or_Summary__c, &apos;Summary&apos;) ,SUBSTITUTE(TRIM( RIGHT(TEXT( IPM_GateHistory_Date__c),8)),&apos;Z&apos;,&apos;&apos;) ,SUBSTITUTE(TRIM( RIGHT(TEXT( IPM_PDPHistoty_Date__c),8)),&apos;Z&apos;,&apos;&apos;))</formula>
         <label>IPM Locale Time</label>
@@ -560,7 +547,7 @@
     </fields>
     <fields>
         <fullName>IPM_Master_Section_External_Id__c</fullName>
-        <description>To store Master Section External Id</description>
+	<description>To store Master Section External Id</description>
         <externalId>false</externalId>
         <label>Master Section External Id</label>
         <length>255</length>
@@ -585,7 +572,7 @@
     <fields>
         <fullName>IPM_Notify_Team__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>For sending notification to project leader</description>
+	<description>For sending notification to project leader</description>
         <externalId>false</externalId>
         <label>Notify Team</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -619,8 +606,8 @@
     </fields>
     <fields>
         <fullName>IPM_PDP_Document_Summary__c</fullName>
-        <description>To store PDP document summary</description>
         <externalId>false</externalId>
+	<description>To store PDP document summary</description>
         <label>PDP Document Summary</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
@@ -632,18 +619,13 @@
     <fields>
         <fullName>IPM_ProjectTemplate__c</fullName>
         <description>To Refer Document Template</description>
-        <externalId>false</externalId>
         <formula>CASESAFEID(IPM_Project_Document__r.IPM_Project_Template__c)</formula>
         <label>IPM ProjectTemplate</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Document__c</fullName>
-        <description>Relationship to Project Document</description>
+	<description>Relationship to Project Document</description>
         <externalId>false</externalId>
         <label>IPM Project Document</label>
         <referenceTo>IPM_Project_Document__c</referenceTo>
@@ -659,8 +641,8 @@
     </fields>
     <fields>
         <fullName>IPM_Project_ID__c</fullName>
-        <description>To capture the project id</description>
         <externalId>false</externalId>
+	<description>To capture the project id</description>
         <formula>CASESAFEID(IPM_Project_Document__r.IPM_Project__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Project ID</label>
@@ -684,8 +666,8 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Name__c</fullName>
-        <description>To capture project name</description>
         <externalId>false</externalId>
+	<description>To capture project name</description>
         <formula>IPM_Project_Document__r.IPM_Project__r.IPM_Project_Name__c</formula>
         <label>IPM Project Name</label>
         <required>false</required>
@@ -696,12 +678,12 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Section__c</fullName>
+	<description>Self Relationship to Project Document Section</description>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Self Relationship to Project Document Section</description>
         <externalId>false</externalId>
         <label>IPM Project Section</label>
         <referenceTo>IPM_Project_Document_Section__c</referenceTo>
-        <relationshipLabel>IPM Project Document Sections</relationshipLabel>
+	<relationshipLabel>IPM Project Document Sections</relationshipLabel>
         <relationshipName>IPM_Project_Sections</relationshipName>
         <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
@@ -711,7 +693,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Help_Text_Long__c</fullName>
-        <description>Contains section help text</description>
+	<description>Contains section help text</description>
         <externalId>false</externalId>
         <label>Section Help Text Long</label>
         <length>32768</length>
@@ -723,7 +705,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Help_Text__c</fullName>
-        <description>Contains section help text</description>
+	<description>Contains section help text</description>
         <externalId>false</externalId>
         <label>Section Help Text</label>
         <required>false</required>
@@ -734,8 +716,8 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Name__c</fullName>
-        <description>Contains section name</description>
         <externalId>false</externalId>
+	<description>Contains section name</description>
         <label>Section Name</label>
         <length>80</length>
         <required>false</required>
@@ -747,8 +729,8 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Number__c</fullName>
-        <description>To capture section number</description>
         <externalId>false</externalId>
+	<description>To capture section number</description>
         <formula>VALUE(IPM_Section__r.IPM_Section_Sequence__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Section Number</label>
@@ -762,8 +744,8 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Owner__c</fullName>
+	<description>Relationship to User</description>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Relationship to User</description>
         <externalId>false</externalId>
         <label>Section Owner</label>
         <referenceTo>User</referenceTo>
@@ -789,7 +771,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Sequence__c</fullName>
-        <description>To display section sequence number</description>
+	<description>To display section sequence number</description>
         <externalId>false</externalId>
         <formula>IPM_Section__r.IPM_Section_Sequence__c</formula>
         <label>IPM_Section_Sequence</label>
@@ -801,7 +783,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Status__c</fullName>
-        <description>To store section status</description>
+	<description>To store section status</description>
         <externalId>false</externalId>
         <label>IPM_Section_Status</label>
         <picklist>
@@ -826,7 +808,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Type__c</fullName>
-        <description>To describe the type of section</description>
+	<description>To describe the type of section</description>
         <externalId>false</externalId>
         <label>Section Type</label>
         <picklist>
@@ -866,7 +848,7 @@
     </fields>
     <fields>
         <fullName>IPM_Selected_Channel_Name__c</fullName>
-        <description>To store the selected channel name</description>
+	<description>To store the selected channel name</description>
         <externalId>false</externalId>
         <label>IPM Selected Channel Name</label>
         <length>255</length>
@@ -879,7 +861,7 @@
     </fields>
     <fields>
         <fullName>IPM_Selected_Consumer_Evidence_Countries__c</fullName>
-        <description>To store the countries where consumer evidence conducted</description>
+	<description>To store the countries where consumer evidence conducted</description>
         <externalId>false</externalId>
         <label>IPM Selected Consumer Evidence Countries</label>
         <picklist>
@@ -897,7 +879,7 @@
     </fields>
     <fields>
         <fullName>IPM_Status_Icon__c</fullName>
-        <description>To display section status icon</description>
+	<description>To display section status icon</description>
         <externalId>false</externalId>
         <formula>CASE( IPM_Section_Status__c, &quot;Not Started&quot;,  IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,30,30), 
 &quot;In Progress&quot;, IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,30,30),
@@ -916,7 +898,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>IPM_Summary_Character_Remaining__c</fullName>
-        <description>To display the number of characters remaining in gate document summary</description>
+	<description>To display the number of characters remaining in gate document summary</description>
         <externalId>false</externalId>
         <label>IPM Summary Character Remaining</label>
         <precision>18</precision>
@@ -930,7 +912,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>IPM_User_Id__c</fullName>
-        <description>To store project leader user id</description>
+	<description>To store project leader user id</description>
         <externalId>false</externalId>
         <formula>IPM_Project_Document__r.IPM_Project__r.IPM_Project_Leader__c</formula>
         <label>IPM User Id</label>
@@ -942,7 +924,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>IPM_Version_Number__c</fullName>
-        <description>Contains section version number</description>
+	<description>Contains section version number</description>
         <externalId>false</externalId>
         <label>Version Number</label>
         <length>10</length>
@@ -955,7 +937,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>Input__c</fullName>
-        <description>To capture CMI input</description>
+	<description>To capture CMI input</description>
         <externalId>false</externalId>
         <label>Input</label>
         <picklist>
@@ -1033,8 +1015,8 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     <fields>
         <fullName>Is_IPM_Global_Consolidated__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>To show global consolidated component</description>
         <externalId>false</externalId>
+	<description>To show global consolidated component</description>
         <label>Is IPM Global Consolidated</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1043,7 +1025,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>Project_Doc_Section_Ext_Id__c</fullName>
-        <description>For data loading from external source</description>
+	<description>For data loading from external source</description>
         <externalId>true</externalId>
         <label>Project Doc Section Ext Id</label>
         <length>100</length>
@@ -1056,7 +1038,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>Results__c</fullName>
-        <description>For capturing CMI results</description>
+	<description>For capturing CMI results</description>
         <externalId>false</externalId>
         <label>Results</label>
         <picklist>
