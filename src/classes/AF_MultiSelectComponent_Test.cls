@@ -35,14 +35,15 @@ public class AF_MultiSelectComponent_Test{
             system.assert(permissionsetLstQuery[0].Id!=null,User_permissonset_SUCCESS1);
             system.assertEquals(permissionsetLstQuery[0].Id!=null,permissionsetLst[0].Id!=null,User_permissonset_SUCCESS1);
             List<PermissionSet> permissionsetLst1 = AF_TestFactory_Helper.insertPermissionset1(true,1);
-            List<PermissionSet> permissionsetLstQuery1 = [SELECT ID FROM PermissionSet LIMIT 1];
-            system.assert(permissionsetLstQuery1[0].Id!=null,User_permissonset_SUCCESS2);
+            List<PermissionSet> permissionsetLstQuery1 = [SELECT ID FROM PermissionSet where id IN:permissionsetLst1 LIMIT 1];
+            system.assert(permissionsetLstQuery1!=null,User_permissonset_SUCCESS2);
             List<PermissionSetAssignment> permassign =AF_TestFactory_Helper.insertpermissionsetassign(true,1);
             List<PermissionSetAssignment> permassignQuery = [SELECT Id FROM PermissionSetAssignment LIMIT 1];
             System.assert(permassignQuery[0].id!=null,User_permissonset_RECORD);
             System.assertEquals(permassignQuery[0].id!=null,permassign[0].id!=null,User_permissonset_RECORD);
             List<Group> grplst = AF_TestFactory_Helper.insertgroup(true,1);
             List<GroupMember> groupmem = AF_TestFactory_Helper.insertgroupmem(true,1);
+            System.assertEquals(grplst!=null,groupmem!=null,User_permissonset_RECORD);
             ApexPages.currentPage().getParameters().put('userid', u.id); 
             //Intialize the Class
             AF_MultiSelectComponent af=new AF_MultiSelectComponent();
@@ -78,14 +79,15 @@ public class AF_MultiSelectComponent_Test{
             system.assert(permissionsetLstQuery[0].Id!=null,User_permissonset_SUCCESS1);
             system.assertEquals(permissionsetLstQuery[0].Id!=null,permissionsetLst[0].Id!=null,User_permissonset_SUCCESS1);
             List<PermissionSet> permissionsetLst1 = AF_TestFactory_Helper.insertPermissionset1(true,1);
-            List<PermissionSet> permissionsetLstQuery1 = [SELECT ID FROM PermissionSet LIMIT 1];
-            system.assert(permissionsetLstQuery1[0].Id!=null,User_permissonset_SUCCESS2);
+            List<PermissionSet> permissionsetLstQuery1 = [SELECT ID FROM PermissionSet where id IN:permissionsetLst1  LIMIT 1];
+            system.assert(permissionsetLstQuery1!=null,User_permissonset_SUCCESS2);
             List<PermissionSetAssignment> permassign =AF_TestFactory_Helper.insertpermissionsetassign(true,1);
             List<PermissionSetAssignment> permassignQuery = [SELECT Id FROM PermissionSetAssignment LIMIT 1];
             System.assert(permassignQuery[0].id!=null,User_permissonset_RECORD);
             System.assertEquals(permassignQuery[0].id!=null,permassign[0].id!=null,User_permissonset_RECORD);
             List<Group> grplst = AF_TestFactory_Helper.insertgroup(true,1);
             List<GroupMember> groupmem = AF_TestFactory_Helper.insertgroupmem(true,1);
+            System.assertEquals(grplst!=null,groupmem!=null,User_permissonset_RECORD);
             ApexPages.currentPage().getParameters().put('userid', u.id); 
             //Intialize the Class
             AF_MultiSelectComponent af=new AF_MultiSelectComponent();

@@ -47,14 +47,14 @@ public with sharing class AF_AgencyHomePageController {
     public String selectedBrandValue{get;set;}
     public List<AF_BonusQuarterly_Quarterdates__c> bonusQuarterlyDateList{get;set;}
     public Boolean IsCMCOFinance{get;set;}
-	map<Id,AF_Brand_Estimate__c> brandEstMap;
-	set<Id> agencySetId;
-	map<String, AF_Brand_Estimate__c> uniqueBrandEstMap;
-	Boolean bonusDate;
+    map<Id,AF_Brand_Estimate__c> brandEstMap;
+    set<Id> agencySetId;
+    map<String, AF_Brand_Estimate__c> uniqueBrandEstMap;
+    Boolean bonusDate;
     Boolean bonusDateQ2;
     Boolean bonusDateQ3;
-	private static string className_STR=AF_AgencyHomePageController.class.getName();
-	
+    private static string className_STR=AF_AgencyHomePageController.class.getName();
+  
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AgencyHomePageController
@@ -82,12 +82,12 @@ public with sharing class AF_AgencyHomePageController {
         brandList = new set<String>();
         id userId=UserInfo.getUserId();
         selectedbrandList = new List<SelectOption>();
-		brandEstMap= new map<Id,AF_Brand_Estimate__c>();
-		agencySetId = new set<Id>();
-		uniqueBrandEstMap = new map<String, AF_Brand_Estimate__c>();
+        brandEstMap= new map<Id,AF_Brand_Estimate__c>();
+        agencySetId = new set<Id>();
+        uniqueBrandEstMap = new map<String, AF_Brand_Estimate__c>();
         List<PermissionSetAssignment> permissionSetAssign =[select PermissionSet.Name from PermissionSetAssignment where Assignee.Id = :userId and (PermissionSet.Name like'%CMCO%' or PermissionSet.Name like'%Category%' or PermissionSet.Name like'%Agency%' or PermissionSet.Name like'%Procurement%' or PermissionSet.Name like'%Controllers%')  order by PermissionSet.Name];
         checkLoggedUserPermissionSet(permissionSetAssign);
-		
+    
         User userObj = new User();
         userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
         AgencyAccountName=userObj.Contact.Account.Name;          
@@ -133,7 +133,7 @@ public with sharing class AF_AgencyHomePageController {
             selectedBrandValue=Selectbrandval_url;
             selectedBrandOption=Selectbrandval_url;
         }
-		checkLoggedUserType(userObj);
+    checkLoggedUserType(userObj);
         
         //Iterate each record to display it as Picklist values
         for(AF_Category_Brand__c catBrandObj: [select Id, Name,AF_Super_category__c from AF_Category_Brand__c where recordType.Name=:AF_Constants.RT_CATEGORY AND Name IN :categoryList order by Name asc]){
@@ -198,8 +198,8 @@ public with sharing class AF_AgencyHomePageController {
 *  @param : List<PermissionSetAssignment>
 *  @return: none.
 *************************************************************************************/
-	public void checkLoggedUserPermissionSet(List<PermissionSetAssignment> permissionSetAssign){
-		for (PermissionSetAssignment Names:permissionSetAssign )
+  public void checkLoggedUserPermissionSet(List<PermissionSetAssignment> permissionSetAssign){
+    for (PermissionSetAssignment Names:permissionSetAssign )
         {
             string permissionSetName = Names.PermissionSet.Name;
             if(permissionSetName.contains(AF_Constants.PERM_CMCO)){
@@ -218,10 +218,10 @@ public with sharing class AF_AgencyHomePageController {
                 IsCatFinanceRegional=true;
             }
         }
-	}
-	
-	public void checkLoggedUserType(User userObj){
-		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
+  }
+  
+  public void checkLoggedUserType(User userObj){
+    if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
             isAgencyFlag=true;
             for(AF_isBonusLinkForAgency__c bonusObj : AF_isBonusLinkForAgency__c.getAll().values()){
                 if(bonusObj.Bonus_Date__c<=Date.Today() && bonusObj.Name==AF_Constants.QUARTERLY_BONUS_REC_TYPE){
@@ -238,7 +238,7 @@ public with sharing class AF_AgencyHomePageController {
         if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
             IsCMCOFinance = true;
         }
-	}
+  }
     /***********************************************************************************
 *  @Description: this method is used to provide drop down options for Financial Year
 *  @name : getfinancialYearOption
@@ -274,6 +274,7 @@ public with sharing class AF_AgencyHomePageController {
 *  @return: List of AF_Brand_Estimate__c.
 ***********************************************************************************************************/
     public list<AF_Brand_Estimate__c> getbrandEstimateDetailList() {
+        totalAgencyFee = 0;
         list<AF_Brand_Estimate__c> brandEstimateObjList = new list<AF_Brand_Estimate__c>();
         bonusDate = false;
         bonusDateQ2 = false;
@@ -295,7 +296,7 @@ public with sharing class AF_AgencyHomePageController {
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND Brand__r.Name=:brandList AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__c!=null AND Brand__c !=null order by Brand__r.Name asc];
         }
         /*Calling the method to populate OOPS Data to HomePage*/
-		getOOPDataList(brandEstimateObjList);
+    getOOPDataList(brandEstimateObjList);
         getBonusQuaterlyStatus();
         getBonusQuarterlyData();
         getBonusSummaryData();
@@ -307,10 +308,13 @@ public with sharing class AF_AgencyHomePageController {
 *  @name : getOOPDataList
 *  @param : list<AF_Brand_Estimate__c>
 *  @return: none.
-***********************************************************************************************************/	
-	public void getOOPDataList(list<AF_Brand_Estimate__c> brandEstimateObjList){
-	totalUnileverFee=0;
-	for(AF_Brand_Estimate__c brandEstObj :brandEstimateObjList){
+***********************************************************************************************************/  
+  public void getOOPDataList(list<AF_Brand_Estimate__c> brandEstimateObjList){
+  totalUnileverFee=0;
+  agencySetId.clear();
+  uniqueBrandEstMap.clear();
+  brandEstMap.clear();
+  for(AF_Brand_Estimate__c brandEstObj :brandEstimateObjList){
             string unq=string.valueOf(brandEstObj.Brand__c).substring(0,15)+'::'+string.valueOf(brandEstObj.AF_Agency__c).substring(0,15)+'::'+brandEstObj.AF_Fiscal_Year__c;
             if(!uniqueBrandEstMap.containsKey(unq)){
                 uniqueBrandEstMap.put(unq,brandEstObj);
@@ -337,7 +341,7 @@ public with sharing class AF_AgencyHomePageController {
 *  @return: none.
 ***********************************************************************************************************/
 public void getBonusQuaterlyStatus(){
-	bonusQuarterlyDateList = new List<AF_BonusQuarterly_Quarterdates__c>();     
+  bonusQuarterlyDateList = new List<AF_BonusQuarterly_Quarterdates__c>();     
     bonusQuarterlyDateList = [select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c LIMIT 1];
         if(bonusQuarterlyDateList.size()>0){
             if(bonusQuarterlyDateList[0].AF_Q1__c <= system.today()){
@@ -359,15 +363,15 @@ public void getBonusQuaterlyStatus(){
 }
    /******************************************************************************************************
 *  @Description: this method is used to show the Bonus Quarterly status for each quarter 
-				 depending on the logged in user,also the status will vary depending on the custom 
-				 settings date for each quarter
+         depending on the logged in user,also the status will vary depending on the custom 
+         settings date for each quarter
 *  @name : getBonusQuarterlyData
 *  @param : none
 *  @return: none.
 ***********************************************************************************************************/
 public void getBonusQuarterlyData(){
-	set<String> uniqueBonusThrSet = new set<String>();
-	List<AF_Bonus_Threshold__c> bonusThresObj = new List<AF_Bonus_Threshold__c>();
+  set<String> uniqueBonusThrSet = new set<String>();
+  List<AF_Bonus_Threshold__c> bonusThresObj = new List<AF_Bonus_Threshold__c>();
         set<String> bonusThresholdObj = new set<String>();
         List<AF_Bonus_Results__c> bonusResultObj = new List<AF_Bonus_Results__c>();
         for(AF_Bonus_Threshold__c bonusObj:[select id,Brand_Agency_Combination__c from AF_Bonus_Threshold__c where Brand_Agency_Combination__c IN:uniqueBrandEstMap.keyset()])
@@ -440,7 +444,7 @@ public void getBonusQuarterlyData(){
 *  @return: none.
 ***********************************************************************************************************/
 public void getBonusSummaryData(){
-	set<String> uniqueBonusSumSet = new set<String>();
+  set<String> uniqueBonusSumSet = new set<String>();
         for(AF_Bonus_Summary__c bonusSummObj : [select id, AF_Brand_Agency_Uq_Combination__c, AF_Status__c,AF_No_Of_CrossBorders__c from AF_Bonus_Summary__c where AF_Brand_Agency_Uq_Combination__c IN:uniqueBrandEstMap.keyset()]){
             if(uniqueBrandEstMap.containsKey(bonusSummObj.AF_Brand_Agency_Uq_Combination__c) && !uniqueBonusSumSet.contains(bonusSummObj.AF_Brand_Agency_Uq_Combination__c)){
                 uniqueBrandEstMap.get(bonusSummObj.AF_Brand_Agency_Uq_Combination__c).AF_Bonus_Yearly_Status__c=bonusSummObj.AF_Status__c;
@@ -451,14 +455,14 @@ public void getBonusSummaryData(){
 }
  /******************************************************************************************************
 *  @Description: this method is used to calculate the total of Traditional,Digital,and Adapatation of
-				 all the Agency Estimates records for a particular BrandEstimate record.It also calculates the overall
-				 total of all the Traditional,Digital and Adapatation.
+         all the Agency Estimates records for a particular BrandEstimate record.It also calculates the overall
+         total of all the Traditional,Digital and Adapatation.
 *  @name : getAgencyEstDataList
 *  @param : none
 *  @return: none.
 ***********************************************************************************************************/
 public void getAgencyEstDataList(){
-	totalAgencyFee=0;
+  totalAgencyFee=0;
         totalCroBordFee=0;
         totalTraditionalFee=0;
         totalDigitalFee=0;
@@ -471,7 +475,7 @@ public void getAgencyEstDataList(){
         tradDecimalPerStr=0;
         adaptDecimalPerStr=0;
         digitDecimalPerStr=0;
-		//for Agency fee and crossborder calculation
+    //for Agency fee and crossborder calculation
         //map variable to store crossborder fee and Agency fee related to individual Brands
         map<Id,string> brandAgencyFeeMap = new map<Id,string>();
         List<AF_Agency_Estimate__c> agencyEstimateList = new List<AF_Agency_Estimate__c>();

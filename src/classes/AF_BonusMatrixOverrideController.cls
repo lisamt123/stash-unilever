@@ -139,7 +139,7 @@ public with sharing class AF_BonusMatrixOverrideController
 		}
 		catch(Exception ex) 
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_BonusMatrixOverrideController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createObjectData(UserInfo.getUserId(),className_STR,'AF_BonusMatrixOverrideController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString(),AF_Constants.APP_NAME);
 			
 		}
 	}
