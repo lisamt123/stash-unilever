@@ -36329,18 +36329,6 @@
         <tab>uw_Brand__c</tab>
         <visibility>None</visibility>
     </tabSettings>
-    <tabSettings>
-        <tab>uw_Inoplan_Project__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>uw_Links__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>uw_Terms_Conditions__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
         <name>ChatterInternalUser</name>
