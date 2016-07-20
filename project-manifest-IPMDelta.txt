@@ -18,7 +18,6 @@ src/flows
 src/flows/IPM_send_email_when_project_stopped_completely-3.flow
 src/labels
 src/labels/CustomLabels.labels
-src/labels/IPM.labels
 src/objects
 src/objects/IPM_Project__c.object
 src/pages
