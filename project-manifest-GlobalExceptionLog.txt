@@ -19,6 +19,7 @@ src/email/GEL_Global_Exception_Log/GEL_Further_details_are_provided_by_exception
 src/email/GEL_Global_Exception_Log/GEL_When_exception_is_Closed_Raiser_Notified.email
 src/email/GEL_Global_Exception_Log/GEL_When_exception_is_Closed_Raiser_Notified.email-meta.xml
 src/layouts/GEL_Global_Exception_Log__c-GEL Global Exception Log Layout.layout
+src/layouts/GEL_Global_Exception_Log__c-GEL Global Exception Log Final.layout
 src/objects/GEL_Global_Exception_Log__c.object
 src/objects/Global_Exception_Users__c.object
 src/permissionsets/GEL_Admin.permissionset
