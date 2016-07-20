@@ -58,9 +58,20 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>FS_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used in approval process and will not appear in page layout</description>
+        <externalId>false</externalId>
+        <label>approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_Completed__c</fullName>
         <externalId>false</externalId>
-        <formula>if( No_of_Objectives__c=0,0,No_of_Completed_Objectives__c/No_of_Objectives__c)</formula>
+        <formula>if( FS_No_of_Objectives__c=0,0,FS_No_of_Completed_Objectives__c/FS_No_of_Objectives__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Completed %</label>
         <precision>18</precision>
@@ -95,6 +106,73 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_No_of_Completed_Objectives__c</fullName>
+        <description>This fields rolls up no of completed defined objectives</description>
+        <externalId>false</externalId>
+        <label>No of Completed Objectives</label>
+        <summaryFilterItems>
+            <field>FS_Defined_Objective__c.FS_Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_No_of_Objectives__c</fullName>
+        <description>This field rolls up no of defined objectives</description>
+        <externalId>false</externalId>
+        <label>No of Objectives</label>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_No_of_Opportunities__c</fullName>
+        <description>This field used to roll up no of opportunities</description>
+        <externalId>false</externalId>
+        <label>No of Opportunities</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Opportunity_Amount__c</fullName>
+        <description>This field is used to store Custom roll-up summary SUM of Opportunity.Amount where Stage &lt;&gt; Lost Existing Business, Closed Lost, Not Pursued</description>
+        <externalId>false</externalId>
+        <label>Opportunity Potential</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_Opportunity_Gain__c</fullName>
+        <description>This field is used to store SUM of Opportunity.Amount where Stage = Closed Won</description>
+        <externalId>false</externalId>
+        <label>Opportunity Gain</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_PlanDollars__c</fullName>
@@ -208,79 +286,6 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>No_of_Completed_Objectives__c</fullName>
-        <externalId>false</externalId>
-        <label>No of Completed Objectives</label>
-        <summaryFilterItems>
-            <field>FS_Defined_Objective__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Completed</value>
-        </summaryFilterItems>
-        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>No_of_Objectives__c</fullName>
-        <externalId>false</externalId>
-        <label>No of Objectives</label>
-        <summaryForeignKey>FS_Defined_Objective__c.Account_Plan__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>No_of_Opportunities__c</fullName>
-        <externalId>false</externalId>
-        <label>No of Opportunities</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Opportunity_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Opportunity Potential</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Opportunity_Gain__c</fullName>
-        <externalId>false</externalId>
-        <label>Opportunity Gain</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>approved__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>This field is used in approval process and will not appear in page layout</description>
-        <externalId>false</externalId>
-        <label>approved</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <label>Account Plan</label>
     <listViews>
         <fullName>All</fullName>
@@ -380,7 +385,7 @@
         <fullName>CheckNoofDefineObjective</fullName>
         <active>true</active>
         <description>This validation rule is used to check if account plan record is associated with any defined objective</description>
-        <errorConditionFormula>AND(ISPICKVAL(FS_Status__c,&apos;Approval Requested&apos;) ,No_of_Objectives__c =0)</errorConditionFormula>
+        <errorConditionFormula>AND(ISPICKVAL(FS_Status__c,&apos;Approval Requested&apos;) ,FS_No_of_Objectives__c =0)</errorConditionFormula>
         <errorMessage>Please create Defined Objectives prior to submission for approval</errorMessage>
     </validationRules>
     <validationRules>
