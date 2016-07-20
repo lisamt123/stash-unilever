@@ -8,6 +8,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //*@Description: default sub project type for company card selection
     private static final Map<String,String> COMPANYCARDTODEFAULTSUBPROJECTTYPE = new Map<String,String>
     {'Global Company Card' => 'Innovation/Renovation','Regional Company Card' => 'Innovation/Renovation','Local Company Card'=>'Operational'};
+    private static final Map<String,String> COMPANYCARDTODEFAULTPROJECTTYPE = new Map<String,String>
+    {'Global Company Card' => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,'Regional Company Card' => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,'Local Company Card'=>IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL};
     private static final String IPM_PROJECTCONTROLLER_STR = 'IPM_ProjectController';
     private static final Map<String,Boolean> APPENDREGIONMAP = new Map<String,Boolean>{'Regional' => true};
     private static final List<String> DEFAULT_MANDATORY_FIELDS = new List<String>{'IPM_Project_Name__c','IPM_Category_Text__c','IPM_Brand_Positioning__c','IPM_Company_Card__c','IPM_ProjectSubType__c','IPM_Target_Launch_Dates__c'};
@@ -95,7 +97,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
     }
     set;
-    }      
+    }   
+    
     public Boolean reactivateProject{get; set;} // Param will be passed from 'Reactivate Project' button of Project Overview screen   
     /****************************************************************************
     @Description : Initialization of the constructor
@@ -103,7 +106,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public IPM_ProjectSetUpController(ApexPages.StandardController controller){
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
 	reactivateProject = false;
-        if(project!=null){
+        if(project!=null)
+        {
            initialise();
         }
     }
@@ -226,14 +230,14 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             Map<Id,String> resultantCompanyCardMap = new Map<Id,String>();
             // Preparing resultant company cards
             for(IPM_User_Profile__c userProfile : [SELECT ID,IPM_Company_Card__c,IPM_Company_Card__r.recordType.Name,IPM_Company_Card__r.name FROM IPM_User_Profile__c 
-                                                   WHERE IPM_User__c=:userinfo.getuserid() AND IPM_Company_Card__c <>null AND IPM_Company_Card__r.name!=null 
+                                                   WHERE IPM_User__c=:userinfo.getuserid()
                                                    ORDER BY IPM_Company_Card__r.name ASC LIMIT 10000])
             {
                 resultantCompanyCardMap.put(userProfile.IPM_Company_Card__c,userProfile.IPM_Company_Card__r.Name);
                 companyCardToRecordType.put(userProfile.IPM_Company_Card__c,userProfile.IPM_Company_Card__r.RecordType.Name);
             }
             for(IPM_Company_Card__c companyCard : [SELECT id,Name,RecordTypeId,RecordType.Name FROM IPM_Company_Card__c 
-                                                   WHERE IPM_Business_Partner__c=:userinfo.getuserid() AND Name !=null
+                                                   WHERE IPM_Business_Partner__c=:userinfo.getuserid()
                                                    ORDER BY Name ASC LIMIT 10000])
             {
                 if(!resultantCompanyCardMap.containsKey(companyCard.Id))
@@ -423,8 +427,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     {
                         Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
                         if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL))
-	                    {
-                   Query_STR+=' and geo_id__r.parent_L4__r.name=\''+ string.escapeSingleQuotes(project.IPM_Region_Shr__c) +'\' ';
+	                	    {
+                   		Query_STR+=' and geo_id__r.parent_L4__r.name=\''+ string.escapeSingleQuotes(project.IPM_Region_Shr__c) +'\' ';
                 }
 	                    else if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_LOCAL))
 	                    {
@@ -563,6 +567,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
             projectTypeList = IPM_Utils.getProjectTypesBasedOnCompanyCard(project);  
             String defaultSubProjectType = IPM_ConstantUtils.BLANK;
+            String defaultProjectType = IPM_ConstantUtils.BLANK;
             
             for(IPM_Project_Metadata__mdt projectMetadataObj : projectTypeList)
             {
@@ -571,6 +576,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(projectMetadataObj.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && COMPANYCARDTODEFAULTSUBPROJECTTYPE.containsKey(projectMetadataObj.IPM_ApplicableCompanyCard__c))
                 {
                     String tempDefaultSubProjectType = COMPANYCARDTODEFAULTSUBPROJECTTYPE.get(projectMetadataObj.IPM_ApplicableCompanyCard__c);  
+                    defaultProjectType = COMPANYCARDTODEFAULTPROJECTTYPE.get(projectMetadataObj.IPM_ApplicableCompanyCard__c);
                     if(!String.isBlank(tempDefaultSubProjectType) && 
                        !String.isBlank(projectSubTypeString) && projectSubTypeString.contains(tempDefaultSubProjectType))
                     {
@@ -596,10 +602,14 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(projectSubTypeSet.size() == 1)
                 {
                     List<String> subProjectTypeList = new List<String>(projectSubTypeSet);
+                    project.IPM_Project_Type__c  = defaultProjectType;
+                    project.IPM_SourceProjectType__c  = defaultProjectType;    
                     project.IPM_ProjectSubType__c = subProjectTypeList.get(0); 
                 }
                 else if(!String.isBlank(defaultSubProjectType) && String.isBlank(project.IPM_ProjectSubType__c))
                 {
+                    project.IPM_Project_Type__c  = defaultProjectType;
+                    project.IPM_SourceProjectType__c  = defaultProjectType;    
                         project.IPM_ProjectSubType__c = defaultSubProjectType;
                 } 
             }
@@ -749,7 +759,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 
         if(!skipValidation)
         {
-            if(!isRollout.Equals(project.IPM_Project_Type__c))
+            if(!isRollout.Equals(project.IPM_Project_Type__c) && !isSavedDB)
             {
                 associateProjectMetadata();
                 populateProjectMetadataAttributes(projectMetadata);
@@ -836,10 +846,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
            
             project.IPM_Project_Navigate__c = true;
-            if(!isSavedDB && !skipValidation && projectMetadata!=null )
-            {
-                project.IPM_IsSaved__c = true;
-            }
+
             if(!projectMetadata.IPM_FastTrackApplicable__c && !projectMetadata.IPM_WhiteSpaceApplicable__c )
             {
                 project.IPM_White_Space_Project__c=false;
@@ -860,6 +867,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c; 
                 } 
             }   
+            if(!isSavedDB && !skipValidation && projectMetadata!=null)
+            {
+                project.IPM_IsSaved__c = true;
+            }
             update project;
             
             if(!skipValidation)
@@ -1254,17 +1265,20 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     		
     		currentProjectDocuement = [Select Id, IPM_Document_Status__c from IPM_project_Document__c WHERE IPM_Project__c =:project.Id AND IPM_GateDocuments__c =: currentGateDocuementName];
     		
-    		if(currentProjectDocuement != null && project.IPM_PreviousDocumentStatus__c != null){
-
+            if(currentProjectDocuement != null)
+	    {
+                if(project.IPM_PreviousDocumentStatus__c != null)
+                {
                     currentProjectDocuement.IPM_Document_Status__c = project.IPM_PreviousDocumentStatus__c;
-
-    		    update currentProjectDocuement; 
-    		}
+                }
+    		update currentProjectDocuement; 
+    	    }
     		
-    		if(project.Is_Archieved__c){
-	    		project.Is_Archieved__c	 = false; 
-	    		update project;
-	}
+    	    if(project.Is_Archieved__c)
+	    {
+	    	project.Is_Archieved__c	 = false; 
+	    	update project;
+	    }
     		PageReference projectOverviewPage = Page.IPM_ProjectOverview;
             projectOverviewPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
             projectOverviewPage.setRedirect(true);

@@ -1217,12 +1217,16 @@ public with sharing class IPM_ProjectOverviewCtrl {
     @return: Void
     *******************************************************************************************/
      
-    public void stopProject() 
+    public PageReference stopProject() 
     {
         try
         {
-        	project.Is_Archieved__c=true;               
-         	update project;
+            project.Is_Archieved__c=true;               
+            update project; 
+            PageReference projectOverviewPage = Page.IPM_ProjectOverview;
+            projectOverviewPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            projectOverviewPage.setRedirect(true);
+            return projectOverviewPage; 
         }
         catch (Exception ex)
         {
@@ -1231,7 +1235,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                         'stopProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
                         
         }
-            
+        return null;   
     }
 /***********************************************************************
     @Description: This method will be invoked on click of 'Cancel Stopping Project' button from Project Overview page. This method is responsible to revert the project

@@ -438,11 +438,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         selectedCluster = clusterWrapper.code;
                     }
                 }                
-                if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() ))
-                {
-                    selectedCluster = lstClusterWrappers[0].code;
-                }
+                
             }
+	    if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() ))
+	    {
+	        selectedCluster = lstClusterWrappers[0].code;
+	    }
          
     }
     
