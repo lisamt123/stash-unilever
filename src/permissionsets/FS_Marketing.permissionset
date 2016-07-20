@@ -1193,11 +1193,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FS_Defined_Objective__c.FS_Risk_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FS_Defined_Objective__c.FS_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2651,10 +2646,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>FS_Defined_Objective__c.Operator_Objective</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FS_Defined_Objective__c.Risk</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
