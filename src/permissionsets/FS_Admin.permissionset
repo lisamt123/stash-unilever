@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <classAccesses>
-        <apexClass>FS_CentrallyLedChildAccount_Picklist</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FS_OpportunityHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FS_OpportunityHelper_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FS_OpportunityTrigger_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FS_Utility</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <description>This permission set is used for NAFS Admin</description>
     <fieldPermissions>
         <editable>true</editable>
