@@ -58,7 +58,7 @@ public class PBS_QuizViewer_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -150,7 +150,7 @@ public class PBS_QuizViewer_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -240,7 +240,7 @@ public class PBS_QuizViewer_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -332,7 +332,7 @@ public class PBS_QuizViewer_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -420,7 +420,7 @@ public class PBS_QuizViewer_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();

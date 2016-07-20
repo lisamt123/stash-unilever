@@ -107,7 +107,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ICB_Distance_Limit</shortDescription>
-        <value>0.1</value>
+        <value>0.5</value>
     </labels>
     <labels>
         <fullName>ICB_ERROR_CHECKIN_BEFORE_CHECKOUT</fullName>
