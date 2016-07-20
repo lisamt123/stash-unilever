@@ -1258,11 +1258,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PricebookEntry.FS_salesOrgCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>PricebookEntry.SAP_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
