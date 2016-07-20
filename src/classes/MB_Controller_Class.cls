@@ -293,151 +293,36 @@ public with sharing class MB_Controller_Class{
     
       @AuraEnabled
    public static MB_Wrapper_Class  getSpendDetails(string deviceId,string month){
-  // public static  MB_Wrapper_Class.MB_Device_Wrapper_Class  getSpendDetails(string deviceId,string month){
-  System.debug('deviceId--->'+deviceId+',,,month--->'+month);
+  
        string previous=getPreviousMonth(month);
        List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
                                     FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:iPass_Type]; 
-    List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
-                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:iPass_Type]; 
-       
+                                    
+               
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
        List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
        for(MB_Billing_Entity__c entity:billingEntityList){
-         if(entity.Billing_Month__c ==month){
-            currentmonthBillingList.add(entity);
-         }
-         if(entity.Billing_Month__c ==previous){
-            previousmonthBillingList.add(entity);
-         }
+         if(entity.Billing_Month__c ==month) currentmonthBillingList.add(entity);
+         if(entity.Billing_Month__c ==previous) previousmonthBillingList.add(entity);
        }
-       
+       //===============Code Optimization Starts================================
        Map<string,MB_Wrapper_Class.DataChargeType_Wraper> dataMap=new Map<string,MB_Wrapper_Class.DataChargeType_Wraper>();
        Map<string,MB_Wrapper_Class.CallsChargeType_Wraper> callsMap=new Map<string,MB_Wrapper_Class.CallsChargeType_Wraper>();
        Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper> messagingMap= new Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper>();
        Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper> nonusageMap=new Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper>();
-       
-       for(MB_Billing_Entity__c entity:currentmonthBillingList)
-       {
-        if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Data)
-        {
-          
-          if(!dataMap.containsKey(entity.Charge_Type__r.Name)){
-              MB_Wrapper_Class.DataChargeType_Wraper objData=new MB_Wrapper_Class.DataChargeType_Wraper();
-              objData.chargeTypeName=entity.Charge_Type__r.Name;
-              if(entity.Local_Net_Amount__c !=null){
-                objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
-                dataMap.put(entity.Charge_Type__r.Name,objData);
-            }
-          }
-          
-          else if(dataMap.containsKey(entity.Charge_Type__r.Name)){
-             decimal amount=0;
-             MB_Wrapper_Class.DataChargeType_Wraper objData=dataMap.get(entity.Charge_Type__r.Name);
-             dataMap.remove(entity.Usage_Type__r.Name);
-             if(entity.Local_Net_Amount__c !=null  )
-             {
-              
-               amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
-             }
-             objData.totalSpend=amount.setScale(2);
-             objData.chargeTypeName=entity.Charge_Type__r.Name;
-             dataMap.put(entity.Charge_Type__r.Name,objData);
-        }
-        
-       }
-       
-       if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Calls)
-        {
-          if(!callsMap.containsKey(entity.Charge_Type__r.Name)){
-              MB_Wrapper_Class.CallsChargeType_Wraper objData=new MB_Wrapper_Class.CallsChargeType_Wraper();
-              objData.chargeTypeName=entity.Charge_Type__r.Name;
-              if(entity.Local_Net_Amount__c !=null){
-                objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
-                callsMap.put(entity.Charge_Type__r.Name,objData);
-               }
-          }
-          
-         else  if(callsMap.containsKey(entity.Charge_Type__r.Name)){
-             system.debug('###'+callsMap.get(entity.Charge_Type__r.Name));
-             system.debug('###'+entity.Local_Net_Amount__c);
-             
-             decimal amount=0;
-             MB_Wrapper_Class.CallsChargeType_Wraper objData=new MB_Wrapper_Class.CallsChargeType_Wraper();
-             objData=callsMap.get(entity.Charge_Type__r.Name);
-             system.debug('****'+callsMap.get(entity.Usage_Type__r.Name));
-             if(entity.Local_Net_Amount__c !=null){
-             amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
-             objData.totalSpend=amount.setScale(2);
-             callsMap.remove(entity.Charge_Type__r.Name);
-             objData.chargeTypeName=entity.Charge_Type__r.Name;
-             callsMap.put(entity.Charge_Type__r.Name,objData);
-             }
-        }
-        
-       }
-       
-       if(entity.Usage_Type__r.Name ==MB_Constants.Usage_Type_Messaging)
-        {
-          if(!messagingMap.containsKey(entity.Charge_Type__r.Name)){
-              MB_Wrapper_Class.MessagingChargeType_Wraper objData=new MB_Wrapper_Class.MessagingChargeType_Wraper();
-              objData.chargeTypeName=entity.Charge_Type__r.Name;
-              if(entity.Local_Net_Amount__c !=null){
-              objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
-              messagingMap.put(entity.Charge_Type__r.Name,objData);
-           }
-          }
-          
-          else if(messagingMap.containsKey(entity.Charge_Type__r.Name)){
-             decimal amount=0;
-             MB_Wrapper_Class.MessagingChargeType_Wraper objData=messagingMap.get(entity.Charge_Type__r.Name);
-             messagingMap.remove(entity.Charge_Type__r.Name);
-             if(entity.Local_Net_Amount__c !=null){
-             amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
-             objData.totalSpend=amount.setScale(2);
-             objData.chargeTypeName=entity.Charge_Type__r.Name;
-             messagingMap.put(entity.Charge_Type__r.Name,objData);
-        }}
-        
-       }
-       
       
-       if(entity.Usage_Type__r.Name != MB_Constants.Usage_Type_iPass && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Messaging && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Calls && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Data)
-        {
-            if(!nonusageMap.containsKey(entity.Usage_Type__r.Name)){
-            /*List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
-                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Device_Details__c=:deviceId and Usage_Type__r.Name=:entity.Usage_Type__r.Name]; */
-            List<MB_Billing_Entity__c> nonUsageBillingEntity=new List<MB_Billing_Entity__c>();
-                for(MB_Billing_Entity__c nonUsageBE:billingEntityList1){
-                    if(nonUsageBE.Usage_Type__r.Name!=null && nonUsageBE.Usage_Type__r.Name!='' && nonUsageBE.Usage_Type__r.Name==entity.Usage_Type__r.Name){
-                        nonUsageBillingEntity.add(nonUsageBE);
-                    }
-                }
-                 
-            decimal amt=0;
-            for(MB_Billing_Entity__c billObj:nonUsageBillingEntity){
-                if(billObj.Local_Net_Amount__c!=null ){
-                System.debug('t.Local_Net_Amount__c---->'+billObj.Local_Net_Amount__c);
-                amt += billObj.Local_Net_Amount__c;
-                }
-            }
-            
-                MB_Wrapper_Class.NonUsageChargeType_Wrapper objData=new MB_Wrapper_Class.NonUsageChargeType_Wrapper();
-                objData.chargeTypeName=entity.Usage_Type__r.Name;
-                objData.totalSpend=amt;
-                System.debug('objData--->'+objData);
-                nonusageMap.put(entity.Usage_Type__r.Name,objData);
-            }
-            
-        
-        }     
-        }
+       
+       dataMap = getDataMap(currentmonthBillingList, MB_Constants.Usage_Type_Data);
+       callsMap = getCallMap(currentmonthBillingList, MB_Constants.Usage_Type_Calls);
+       messagingMap = getMessageMap(currentmonthBillingList, MB_Constants.Usage_Type_Messaging);
+       nonUsageMap = getNonUsageMap(currentmonthBillingList);
+      
+      
+       //===============Code Optimization Ends ================================  
+       
+       
     
         MB_Wrapper_Class objWrapper=new MB_Wrapper_Class();
         objWrapper.dataWrapperList=dataMap.values();
@@ -462,28 +347,23 @@ public with sharing class MB_Controller_Class{
         objdevice.userCurrency=CurrencySym();
         objdevice.userName=userinfo.getfirstname();
         objdevice.totalDataUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Data).setScale(2);
-        objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);
-        System.debug('Total Call Usage-->'+objdevice.totalCallUsage);
+        objdevice.totalCallUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Calls).setScale(2);       
         objdevice.totalMessageUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Messaging).setScale(2);
         
        
        List<MB_Usage_Type__c> nonUsageTypes=[Select id,Name from MB_Usage_Type__c where Name not in (:'Data',:'Calls',:'Messaging',:'ipass')]; 
        objdevice.totalnonUsage=0;
-       for(MB_Usage_Type__c nonUsage:nonUsageTypes){ 
-           //objdevice.totalnonUsage=totalDeviceUsageSpend(currentmonthBillingList,MB_Constants.Usage_Type_Recurring).setScale(2);
+       for(MB_Usage_Type__c nonUsage:nonUsageTypes){           
            objdevice.totalnonUsage+=totalDeviceUsageSpend(currentmonthBillingList,nonUsage.Name).setScale(2);
-       }
-        
+       }        
         objdevice.totalUsage=totalDeviceSpend(currentmonthBillingList,deviceId).setScale(2);
         objdevice.dataVariance=getVariance(objdevice.totalDataUsage,previousDataUsage);
         objdevice.callVariance=getVariance(objdevice.totalCallUsage,previousCallUsage);
         objdevice.smsVariance=getVariance(objdevice.totalMessageUsage,previousMessageUsage);
         objdevice.nonUsageVariance=getVariance(objdevice.totalnonUsage,previousnonUsage);
         objdevice.totalSpendVariance=getVariance(objdevice.totalUsage,previouSpend);
-        objWrapper.objdeviceWrapper=objdevice;
-        System.debug('@@!!'+objWrapper);
-        return objWrapper;
-        
+        objWrapper.objdeviceWrapper=objdevice;        
+        return objWrapper;        
   }
   
   /*******************************************************************************************************
@@ -605,12 +485,7 @@ if(res.size()>1){
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
                                     FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Usage_Type__r.Name =:iPass_Type ]; 
-      /* List<MB_Billing_Entity__c> billingEntityList1 = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
-                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =: month AND Usage_Type__r.Name =:'iPass'];
-                                 */ 
-           
+              
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();
        List<MB_Billing_Entity__c> currentmonthBillingList=new List<MB_Billing_Entity__c>();
        for(MB_Billing_Entity__c entity:billingEntityList){
@@ -693,4 +568,153 @@ if(res.size()>1){
         string strgaid = MB_ReportingGA__c.getinstance('GA_ID').Text_Value__c;
         return strgaid;      
     }
+    
+    //===============Code Optimization Starts================================
+     //Get DataChargeType_Wraper
+       @AuraEnabled
+       public static Map<string,MB_Wrapper_Class.DataChargeType_Wraper> getDataMap(List<MB_Billing_Entity__c> beList , String usageTypeName){
+        
+        Map<string,MB_Wrapper_Class.DataChargeType_Wraper> dataInnerMap=new Map<string,MB_Wrapper_Class.DataChargeType_Wraper>();
+        for(MB_Billing_Entity__c entity:beList){
+        if(entity.Usage_Type__r.Name ==usageTypeName)
+        {
+          
+          if(!dataInnerMap.containsKey(entity.Charge_Type__r.Name)){
+                  MB_Wrapper_Class.DataChargeType_Wraper objData=new MB_Wrapper_Class.DataChargeType_Wraper();
+                  objData.chargeTypeName=entity.Charge_Type__r.Name;
+                  if(entity.Local_Net_Amount__c !=null){
+                    objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
+                    dataInnerMap.put(entity.Charge_Type__r.Name,objData);
+                }
+              }
+              
+              else if(dataInnerMap.containsKey(entity.Charge_Type__r.Name)){
+                 decimal amount=0;
+                 MB_Wrapper_Class.DataChargeType_Wraper objData=dataInnerMap.get(entity.Charge_Type__r.Name);
+                 dataInnerMap.remove(entity.Usage_Type__r.Name);
+                 if(entity.Local_Net_Amount__c !=null  )
+                 {              
+                   amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
+                 }
+                 objData.totalSpend=amount.setScale(2);
+                 objData.chargeTypeName=entity.Charge_Type__r.Name;
+                 dataInnerMap.put(entity.Charge_Type__r.Name,objData);
+            }
+            
+           }
+            
+        }
+        return dataInnerMap;
+       }
+       
+        //Get CallsChargeType_Wraper
+       @AuraEnabled
+       public static Map<string,MB_Wrapper_Class.CallsChargeType_Wraper> getCallMap(List<MB_Billing_Entity__c> beList , String usageTypeName){
+       
+       Map<string,MB_Wrapper_Class.CallsChargeType_Wraper> callsInnerMap=new Map<string,MB_Wrapper_Class.CallsChargeType_Wraper>();
+           for(MB_Billing_Entity__c entity:beList){
+               if(entity.Usage_Type__r.Name ==usageTypeName)
+                {
+                  if(!callsInnerMap.containsKey(entity.Charge_Type__r.Name)){
+                      MB_Wrapper_Class.CallsChargeType_Wraper objData=new MB_Wrapper_Class.CallsChargeType_Wraper();
+                      objData.chargeTypeName=entity.Charge_Type__r.Name;
+                      if(entity.Local_Net_Amount__c !=null){
+                        objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
+                        callsInnerMap.put(entity.Charge_Type__r.Name,objData);
+                       }
+                  }
+                  
+                 else  if(callsInnerMap.containsKey(entity.Charge_Type__r.Name)){            
+                     decimal amount=0;
+                     MB_Wrapper_Class.CallsChargeType_Wraper objData=new MB_Wrapper_Class.CallsChargeType_Wraper();
+                     objData=callsInnerMap.get(entity.Charge_Type__r.Name);
+                     
+                     if(entity.Local_Net_Amount__c !=null){
+                     amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
+                     objData.totalSpend=amount.setScale(2);
+                     callsInnerMap.remove(entity.Charge_Type__r.Name);
+                     objData.chargeTypeName=entity.Charge_Type__r.Name;
+                     callsInnerMap.put(entity.Charge_Type__r.Name,objData);
+                     }
+                }
+                
+               }
+           }
+           return callsInnerMap;
+       }
+       
+       //Get MessagingChargeType_Wraper
+       @AuraEnabled
+       public static Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper> getMessageMap(List<MB_Billing_Entity__c> beList , String usageTypeName){
+       
+            Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper> messagingInnerMap= new Map<string,MB_Wrapper_Class.MessagingChargeType_Wraper>();
+            for(MB_Billing_Entity__c entity:beList){
+                
+                if(entity.Usage_Type__r.Name ==usageTypeName)
+                {
+                  if(!messagingInnerMap.containsKey(entity.Charge_Type__r.Name)){
+                      MB_Wrapper_Class.MessagingChargeType_Wraper objData=new MB_Wrapper_Class.MessagingChargeType_Wraper();
+                      objData.chargeTypeName=entity.Charge_Type__r.Name;
+                      if(entity.Local_Net_Amount__c !=null){
+                      objData.totalSpend=entity.Local_Net_Amount__c.setScale(2);
+                      messagingInnerMap.put(entity.Charge_Type__r.Name,objData);
+                   }
+                  }
+                  
+                  else if(messagingInnerMap.containsKey(entity.Charge_Type__r.Name)){
+                     decimal amount=0;
+                     MB_Wrapper_Class.MessagingChargeType_Wraper objData=messagingInnerMap.get(entity.Charge_Type__r.Name);
+                     messagingInnerMap.remove(entity.Charge_Type__r.Name);
+                     if(entity.Local_Net_Amount__c !=null){
+                         amount=objData.totalSpend+entity.Local_Net_Amount__c.setScale(2);
+                         objData.totalSpend=amount.setScale(2);
+                         objData.chargeTypeName=entity.Charge_Type__r.Name;
+                         messagingInnerMap.put(entity.Charge_Type__r.Name,objData);
+                        }
+                    }
+                
+                }
+            }
+            
+            return messagingInnerMap;
+       }
+       
+       //Get NonUsageChargeType_Wrapper
+       @AuraEnabled
+       public static Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper> getNonUsageMap(List<MB_Billing_Entity__c> beList){
+       
+       Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper> nonusageInnerMap=new Map<string,MB_Wrapper_Class.NonUsageChargeType_Wrapper>();         
+       for(MB_Billing_Entity__c entity:beList){
+         
+       if(entity.Usage_Type__r.Name != MB_Constants.Usage_Type_iPass && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Messaging && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Calls && entity.Usage_Type__r.Name !=MB_Constants.Usage_Type_Data)
+        {
+            if(!nonusageInnerMap.containsKey(entity.Usage_Type__r.Name)){            
+            List<MB_Billing_Entity__c> nonUsageBillingEntity=new List<MB_Billing_Entity__c>();
+                for(MB_Billing_Entity__c nonUsageBE: beList){
+                    if(nonUsageBE.Usage_Type__r.Name!=null && nonUsageBE.Usage_Type__r.Name!='' && nonUsageBE.Usage_Type__r.Name==entity.Usage_Type__r.Name){
+                        nonUsageBillingEntity.add(nonUsageBE);
+                    }
+                }
+                 
+            decimal amt=0;
+            for(MB_Billing_Entity__c billObj:nonUsageBillingEntity){
+                if(billObj.Local_Net_Amount__c!=null ){                
+                amt += billObj.Local_Net_Amount__c;
+                }
+            }
+            
+                MB_Wrapper_Class.NonUsageChargeType_Wrapper objData=new MB_Wrapper_Class.NonUsageChargeType_Wrapper();
+                objData.chargeTypeName=entity.Usage_Type__r.Name;
+                objData.totalSpend=amt;               
+                nonusageInnerMap.put(entity.Usage_Type__r.Name,objData);
+            }
+            
+        
+        }     
+        }
+        return nonusageInnerMap;
+       }
+       
+       
+    //===============Code Optimization Ends================================
 }
