@@ -35926,9 +35926,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Asset__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
         <tab>Content_Uploader</tab>
         <visibility>Visible</visibility>
     </tabSettings>
