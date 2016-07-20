@@ -1,0 +1,12 @@
+Hi {!GEL_Global_Exception_Log__c.Exception_Raiser__c},
+
+W.r.t. to the exception “{!GEL_Global_Exception_Log__c.Name}”, please note that based on the description and details provided, the issue doesn’t qualify for an exception, hence, it is being rejected.
+Please get in touch with the “Process Owner” if you have questions or need clarification.
+
+The Exception details are as follows.
+Status : {!GEL_Global_Exception_Log__c.Status__c}
+REF Number : {!GEL_Global_Exception_Log__c.Name}
+Description :  {!GEL_Global_Exception_Log__c.Description__c} 
+
+Thank you
+{!GEL_Global_Exception_Log__c.OwnerFullName}
