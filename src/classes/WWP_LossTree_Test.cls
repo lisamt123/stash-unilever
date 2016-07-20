@@ -7,7 +7,7 @@ public class WWP_LossTree_Test {
     String ORSubfamily1 = 'ORSubfamily1';
     String S = '0';
          
-        list<WWP_Master_Table__c> wwpMasterList = new list<WWP_Master_Table__c>();
+        
         WWP_Master_Table__c wwpMaster = new WWP_Master_Table__c();
         wwpMaster.name = 'B100';
         wwpMaster.OR_Tolerance__c = 95;
