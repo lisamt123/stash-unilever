@@ -4,7 +4,7 @@
 @Created Date : 09/09/2014.
 @Description : This Test class for AF_MultiSelectComponent apex class.
 @Version : 1.0
-@reference : none
+@reference : none  
 ****************************************************************************************************************************/
 @istest(seealldata=false)
 public class AF_MultiSelectComponent_Test{

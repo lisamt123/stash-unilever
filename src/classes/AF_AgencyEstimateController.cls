@@ -8,7 +8,7 @@
 @reference : none
 ****************************************************************************************************************************/
 public with sharing class AF_AgencyEstimateController
-{
+{ 
     public Boolean IsReadyforPO { get; set; }
     public Boolean fieldsReadOnly {get;set;}
     public Boolean isAgency{get;set;}
