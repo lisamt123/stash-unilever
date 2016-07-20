@@ -129,6 +129,7 @@ public with sharing class IPM_StopProjectHelper
             else 
             {
                 clearProjectData(incomingProject);
+                incomingProject.IPM_ReactivationDateTime__c = System.now().format();
             }
         }
     }
@@ -401,7 +402,7 @@ public with sharing class IPM_StopProjectHelper
         Map<Id,IPM_Project__c> unArchieveRelatedProjectMap =  new map<Id,IPM_Project__c>([SELECT Id,Name,IPM_StoppedByProject__c,IPM_Parent_Project__c,
                 IPM_PreviousDocumentStatus__c,IPM_Project_Rollout__c,Is_Archieved__c,IPM_Stopped_Date_Time__c,IPM_Stopped_By__c,IPM_Stopped_Comments__c,
                 IPM_Current_Document_Status__c,IPM_Document_Update_Comments__c,IPM_Parent_Project__r.IPM_Parent_Project__c,IPMProject_Span__c,
-                IPM_Current_Gate_Name__c,IPM_Stopped_At_Span__c,
+                IPM_Current_Gate_Name__c,IPM_Stopped_At_Span__c, IPM_ReactivationDateTime__c, 
         (SELECT id,IPM_Stopped_Date__c,IPM_Updated_User_By__c,IPM_Stopped_Comments__c,IPM_Document_Status__c,IPM_GateDocuments__c From Project_Documents__r limit 10000),
         (SELECT id from Tasks__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000), 
         (SELECT id from IPM_Countries__r where IPM_StoppedByProject__c in :unArchieveProjectIdSet limit 10000), 
@@ -433,6 +434,7 @@ public with sharing class IPM_StopProjectHelper
             { 
                 dbProject.IPM_Current_Document_Status__c = dbProject.IPM_PreviousDocumentStatus__c;
                 clearProjectData(dbProject);
+             	dbProject.IPM_ReactivationDateTime__c = sourceProject.IPM_ReactivationDateTime__c;
                 relatedProjectsToStopMap.put(dbProject.Id,dbProject);
             }
             else
