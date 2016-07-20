@@ -240,6 +240,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Task_Type__c</picklist>
+            <values>
+                <fullName>Centrally Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Locally Led</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Priority</picklist>
             <values>
                 <fullName>High</fullName>
@@ -289,17 +300,6 @@
             </values>
             <values>
                 <fullName>Send Quote</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Task_Type__c</picklist>
-            <values>
-                <fullName>Centrally Led</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Locally Led</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

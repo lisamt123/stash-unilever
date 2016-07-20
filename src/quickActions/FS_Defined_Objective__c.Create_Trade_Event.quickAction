@@ -2,19 +2,27 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldOverrides>
         <field>Account_Plan__c</field>
-        <formula>FS_Defined_Objective__c.Account_Plan__c</formula>
+        <formula>FS_Defined_Objective__c.FS_Account_Plan__c</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Customer__c</field>
-        <formula>FS_Defined_Objective__c.Customer__c</formula>
+        <formula>FS_Defined_Objective__c.FS_Customer__c</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Defined_Objective__c</field>
         <formula>FS_Defined_Objective__c.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>EndDate</field>
+        <formula>FS_Defined_Objective__c.FS_Completion_Date__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Name</field>
         <formula>FS_Defined_Objective__c.Name &amp; &quot; &quot; &amp; &quot;Campaign&quot;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>StartDate</field>
+        <formula>FS_Defined_Objective__c.FS_Account_Plan__r.FS_Start_Date__c</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Status</field>
@@ -32,12 +40,22 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>Account_Plan__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Defined_Objective__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>IsActive</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>ParentId</field>
+                <field>Customer__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -71,7 +89,13 @@
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
-        <quickActionLayoutColumns/>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>ParentId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
     </quickActionLayout>
     <targetObject>Campaign</targetObject>
     <targetParentField>Defined_Objective__c</targetParentField>

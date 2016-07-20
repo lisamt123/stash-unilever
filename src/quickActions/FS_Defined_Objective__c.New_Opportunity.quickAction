@@ -3,11 +3,15 @@
     <description>Create a new Opportunity</description>
     <fieldOverrides>
         <field>Account_Plan__c</field>
-        <formula>FS_Defined_Objective__c.Account_Plan__c</formula>
+        <formula>FS_Defined_Objective__c.FS_Account_Plan__r.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>AccountId</field>
-        <formula>Defined_Objective__c.00N8A000000Vo5h.00N8A000000Vo7T</formula>
+        <formula>FS_Defined_Objective__c.FS_Customer__r.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Defined_Objective__c</field>
+        <formula>FS_Defined_Objective__c.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>StageName</field>
@@ -22,6 +26,16 @@
                 <emptySpace>false</emptySpace>
                 <field>Name</field>
                 <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Account_Plan__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Defined_Objective__c</field>
+                <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>

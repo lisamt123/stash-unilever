@@ -13,27 +13,27 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Account_Plan__c</field>
+                <field>FS_Account_Plan__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Customer__c</field>
+                <field>FS_Customer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Status__c</field>
+                <field>FS_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>No_of_Opportunities__c</field>
+                <field>FS_No_of_Opportunities__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Sub_Sector__c</field>
+                <field>FS_Sub_Sector__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NSV__c</field>
+                <field>FS_NSV__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
