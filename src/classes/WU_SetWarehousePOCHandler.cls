@@ -49,6 +49,7 @@ public with sharing class WU_SetWarehousePOCHandler
     
     public static void onBeforeUpdate(Map<Id, WU_Master_Warehouse__c>  oldMapItems, List<WU_Master_Warehouse__c> updatedItems, Map<Id, WU_Master_Warehouse__c> newMapItems) {
         userMap=getUserMap(updatedItems);
+        system.debug ('###@@UserMap--->'+userMap);
         //mgrMap=GetManagerMap(updatedItems);
         WU_Master_Warehouse__c oldWc;
         for(WU_Master_Warehouse__c wc:updatedItems){
@@ -329,4 +330,5 @@ public with sharing class WU_SetWarehousePOCHandler
             }
         }
     }   
+}
 }
