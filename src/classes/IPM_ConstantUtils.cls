@@ -1230,4 +1230,6 @@ public class IPM_ConstantUtils {
    public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
    public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
    public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
+   
+   public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
 }

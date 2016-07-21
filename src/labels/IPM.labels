@@ -1,4 +1,18 @@
     <labels>
+	<fullName>IPM_Brand_Not_Found</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Brand Not Found</shortDescription>
+	<value>No matching brand (yet), please contact your IPM BP</value>
+    </labels>
+    <labels>
+	<fullName>IPM_Rollout_Brand</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Brand</shortDescription>
+	<value>Brand</value>
+    </labels>
+    <labels>
         <fullName>IPM_ShowEntity</fullName>
         <language>en_US</language>
         <protected>false</protected>

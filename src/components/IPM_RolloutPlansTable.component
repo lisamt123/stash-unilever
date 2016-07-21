@@ -214,7 +214,7 @@
                                             <td width="15%"> 
                                                 <strong>{!$Label.IPM_MCO}: </strong>{!localRollout.MCO_Name__c}
                                             </td>
-                                            <td  width="47%" class="noBorder" colspan="4">
+                                            <td width="40%" class="noBorder" colspan="3">
                                                 <div class="separator">
                                                     <strong>{!$Label.IPM_INCLUDED_COUNTRIES}: </strong>
                                                     <apex:variable var="countryString" value="" />
@@ -225,8 +225,12 @@
                                                     <apex:outputText value="{!countryString}"/>
                                                 </div>
                                             </td>
-                                            <td class="text-right" width="26%">
+                                            <td class="" colspan="3">
+												<strong>{!$Label.IPM_Rollout_Brand}: </strong>
+                                                <apex:outputText value="{!localRolloutBrandMap[localRolloutId].IPM_Brand__c}"/>  
                                             </td>
+                                            <td class="text-right" width="6%">
+											</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -359,8 +363,8 @@
                                             <td width="15%"> 
                                                 <strong>MCO: </strong>{!localRollout.MCO_Name__c}
                                             </td>
-                                            <td  width="47%" class="noBorder" colspan="4">
-                                                <div class="separator">
+                                            <td scope="col" colspan="3" width="40%" class="noBorder">
+                                                <span class="separator">
                                                     <strong>{!$Label.IPM_INCLUDED_COUNTRIES}: </strong>
                                                     
                                                     <apex:variable var="countryString" value="" />
@@ -370,9 +374,21 @@
                                                     </apex:repeat>
                                                     <apex:outputText value="{!countryString}"/>
                                                     
-                                                </div>
+                                                </span>
                                             </td>
-                                            <td class="text-right" width="26%">
+											<td scope="col" class="" colspan="3">
+                                            <strong>{!$Label.IPM_Rollout_Brand}: </strong>
+                                                <apex:outputText styleClass="lclNoselect" value="{!localRollout.IPM_Brand__c}" rendered="{!!AND(isEditMode,isEditable)}"/>
+                                                <apex:outputPanel styleClass="localSelectList" rendered="{!AND(isEditMode,isEditable)}">
+                                                    <span class="hideDupfield" data-holder="{!localRolloutId}" value="{!localRolloutBrandMap[localRolloutId].IPM_Brand__c}"></span>
+                                                    <select class="rollSelectList" id="">  
+                                                        <apex:repeat value="{!holdRolloutidBrandMap[localRolloutId]}" var="brandVal">
+                                                            <option value="{!brandVal}">{!brandVal}</option>
+                                                        </apex:repeat>
+                                                    </select>
+                                                </apex:outputPanel> 
+                                            </td>
+                                            <td scope="col" class="text-right" width="6%">
                                                 <div class="mr15 inlineBlk">
                                                     <div class="SecButtonSet">                                                       
                                                         <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!AND(isEditable,isEditMode)}" onComplete="reRenderPanels();" status="loadingStatus">
@@ -394,6 +410,10 @@
             </div>
         </apex:outputPanel>
         </apex:outputPanel>
+		<apex:actionFunction name="holdRolloutsBrand" action="{!holdLocalRolloutBrandVal}" reRender="topButtonPanel" status="Loading1">
+            <apex:param name="localRolloutIdBrand" value="" assignTo="{!localRolloutIdBrand}"/>
+            <apex:param name="localRolloutBrandVal" value="" assignTo="{!localRolloutBrand}"/>
+        </apex:actionFunction>
         <div class="row"> 
             <apex:outputPanel id="bottomButtonPanel">
                 <div class="col-sm-6 pull-left mSpacing">

@@ -1017,67 +1017,168 @@ public with sharing class IPM_ProjectCountryDetails{
     }
     
       /*************************************************************************************************************
-  * @description:Assign Company Card to rollouts
-  */
- public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
-{
-  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
-  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
-                id IN:countyrMap.keyset() LIMIT 5000]; 
-  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
-  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
-  where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL Limit 5000];
-                                       
-  
-  List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
-  IPM_Project_Rollout__c newRollout;
-  Set<id> rolloutIdSet=new Set<id>();
+	  * @description:Assign Company Card to rollouts
+	  */
+	 public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
+	{
+	  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
+	  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
+					id IN:countyrMap.keyset() LIMIT 5000]; 
+	  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
+	  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
+	  where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL Limit 5000];
+										   
+	  
+	  List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
+	  IPM_Project_Rollout__c newRollout;
+	  Set<id> rolloutIdSet=new Set<id>();
 
 
-    
-  for(IPM_Country__c country : countryList)
-  {
-    for(IPM_Company_Card__c companyCard : companyCardLst)
-    {
-      
-      
-      
-      if(companyCard.IPM_Managed_Category__c!=null && country.Local_Rollout__r.IPM_Small_C__c!=null && 
-        companyCard.IPM_TxtGeographical_Scope__c!=null && country.Country_Name__c!=null && 
-        companyCard.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && 
-               companyCard.IPM_Managed_Category__c.contains(country.Local_Rollout__r.IPM_Small_C__c) && 
-               country.Local_Rollout__c !=null)
-          
-      
-      {
-        if(!rolloutIdSet.contains(country.Local_Rollout__c)){
-       
-        newRollout=new IPM_Project_Rollout__c();
+		
+	  for(IPM_Country__c country : countryList)
+	  {
+		for(IPM_Company_Card__c companyCard : companyCardLst)
+		{
+		  
+		  
+		  
+		  if(companyCard.IPM_Managed_Category__c!=null && country.Local_Rollout__r.IPM_Small_C__c!=null && 
+			companyCard.IPM_TxtGeographical_Scope__c!=null && country.Country_Name__c!=null && 
+			companyCard.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && 
+				   companyCard.IPM_Managed_Category__c.contains(country.Local_Rollout__r.IPM_Small_C__c) && 
+				   country.Local_Rollout__c !=null)
+			  
+		  
+		  {
+			if(!rolloutIdSet.contains(country.Local_Rollout__c)){
+		   
+			newRollout=new IPM_Project_Rollout__c();
+			
+			
+			newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
+			newRollout.id=country.Local_Rollout__c; 
+			rolloutList.add(newRollout);
+			rolloutIdSet.add(newRollout.id);
+			} 
+		  }
+		  
+		}
+		
+	  
+	  
+	 
+	  
+	}
+	 if(!rolloutList.isEmpty()){
+		 IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+							
+						
+	  update rolloutList;
+	 
+	  IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+	 }
+	 }
+    /**********************************************************************************************
+      *@Description:Assign brand to MCO Rollout based on project brand position and rllout country
+      *@Param:List of ipm country
+      ***********************************************************************************************/
+      public static void assignBrandToRollout(List<IPM_Country__c>countryList){
+        map<string,string> brandPosMap = new map<string,string>();//map of country name and brand positioning
+        set<string> localRolloutsSet = new set<string>();//set of local rollout id's
+        List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();//list of rollout which all need to update with brand value.
+        IPM_Project_Rollout__c newRollout;// declaration of local rollout
         
+        Set<id> rolloutIdSet=new Set<id>();//set of local rollout id's
+        for(IPM_Country__c country :countryList){
+        	if(country.IPM_Brand_Position__c !=null)
+        	{ 
+            	brandPosMap.put(country.Country_Name__c,country.IPM_Brand_Position__c);
+        	}
+            localRolloutsSet.add(country.Local_Rollout__c);  
+        }
+        //get all brand values based on country and brand positioning.
+        List<MDO_BrandPositions__c>brandPosList = New list<MDO_BrandPositions__c>();
+        brandPosList=[SELECT id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+                         geo_id__r.Name IN :brandPosMap.Keyset() AND brand_position_id__r.Name IN :brandPosMap.values() ORDER BY brand_id__r.Name ASC NULLS LAST
+                         LIMIT 50000];
         
-        newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
-        newRollout.id=country.Local_Rollout__c; 
-        rolloutList.add(newRollout);
-        rolloutIdSet.add(newRollout.id);
+        for(IPM_Country__c country :countryList)
+        {
+            for(MDO_BrandPositions__c  brandPos:brandPosList)
+            {
+                
+                if(!rolloutIdSet.contains(country.Local_Rollout__c) && country.Country_Name__c !=null && country.Country_Name__c.equals(brandPos.geo_id__r.Name) && country.IPM_Brand_Position__c !=null 
+                    && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name))
+                {
+                    newRollout=new IPM_Project_Rollout__c();
+                    newRollout.id=country.Local_Rollout__c; 
+                    //brand and brand positioning matached then assign brand as brand positioning
+                    if(brandPos.brand_id__r.Name != null && country.IPM_Brand_Position__c.equals(brandPos.brand_id__r.Name))
+                    {
+                        newRollout.IPM_Brand__c=country.IPM_Brand_Position__c;      
+                    }
+                    else if(brandPos.brand_id__r.Name == null)
+                    {
+                        newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
+                     }
+                    else
+                    {
+                    	newRollout.IPM_Brand__c=brandPos.brand_id__r.Name;	
+                    }
+                    rolloutList.add(newRollout);
+                    rolloutIdSet.add(newRollout.id);
+                    localRolloutsSet.remove(newRollout.id);
+                }
+            }
         } 
-      }
-      
-    }
-    
-  
-  
- 
-  
-}
- if(!rolloutList.isEmpty()){
-     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
-                        
-                    
-  update rolloutList;
- 
-  IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
- }
- }
+        //update default brand to local rollout when no brand values found for brand positioning and country. 
+        for(id localRollId : localRolloutsSet)
+        {
+        	newRollout=new IPM_Project_Rollout__c(); 
+            newRollout.id=localRollId; 
+            newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
+            rolloutList.add(newRollout);
+        } 
         
+        if(!rolloutList.isEmpty()){
+           IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+           update rolloutList;
+           IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+         }
+       }
+       
+      /**********************************************************************************************
+      *@Description:Returns the selectoptions for brands available to a local project 
+      *@Param:Local project  , IPM_LocalProject_Brand__c,IPM_Parent_Project__r.IPM_Brand_Positioning__c,IPM_Project_Rollout__r.IPM_Brand__c
+      ***********************************************************************************************/
+       public static List<selectoption> getAvailableBrands(IPM_project__c localProject){ 
+		
+			List<selectoption> brandOptions = new List<selectoption> {new selectoption(localProject.IPM_LocalProject_Brand__c,localProject.IPM_LocalProject_Brand__c)};
+	        
+			Map<String,IPM_Country__c> countryMap = new Map<String,IPM_Country__c>();
+			
+			for(IPM_Country__c country: [SELECT IPM_Brand_Position__c,Country_Name__c,Local_Rollout__c  FROM IPM_Country__c WHERE IPM_Local_Project__c=: localProject.Id LIMIT 50000])
+			{
+				countryMap.put(country.Country_Name__c,country);
+			}
+	        
+			for(MDO_BrandPositions__c  brandPos:[SELECT Id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+												 brand_position_id__r.Name =: localProject.IPM_Parent_Project__r.IPM_Brand_Positioning__c ORDER BY brand_id__r.Name ASC LIMIT 50000])
+			{
+				if(countryMap.containsKey(brandPos.geo_id__r.Name) && !String.isBlank(brandPos.brand_id__r.Name)&& brandPos.brand_id__r.Name!=localProject.IPM_LocalProject_Brand__c)
+				{
+					IPM_Country__c country = countryMap.get(brandPos.geo_id__r.Name);
+					
+					if(country.IPM_Brand_Position__c!=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name) )
+					{
+						brandOptions.add(new selectoption(brandPos.brand_id__r.Name,brandPos.brand_id__r.Name));
+					}
+				}
+				
+			}  
+			
+			return brandOptions;
+            
+    	}    
     
   }
