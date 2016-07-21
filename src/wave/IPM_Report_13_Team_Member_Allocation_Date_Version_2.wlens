@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;groups&quot;:[&quot;CreatedDate_Day&quot;],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}
