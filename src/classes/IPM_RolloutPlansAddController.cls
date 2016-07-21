@@ -65,6 +65,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     @TestVisible private Map<String,IPM_Country__c> mapUpsertCountries; //List of countries that need to be upserted
     
     @TestVisible private Map<String,IPM_Project_Rollout__c> deleteRolloutsMap; //List of Rollouts that need to be deleted
+    @TestVisible private Map<Id,IPM_Project_Rollout__c> actualDeleteRolloutMap;
+    @TestVisible private Set<Id> checkRolloutsForProjects;
     
     @TestVisible private Map<String,IPM_Country__c> deleteCountriesMap; //List of countries that need o be deleted 
     @TestVisible private static String REGIONAL_ROLLOUT_RECORDTYPE = IPM_ConstantUtils.EMPTY_STRING_INITIAL; //Recordtype Id for Regional Rollouts on IPM_Project_Rollout__c object
@@ -95,6 +97,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public boolean invokedFromRollouts{get;set;}
     public boolean allRolloutFromSameMCO{get;set;}
     private Set<String > noRolloutDisabledCountrycodeSet = new Set<String >();
+    private Set<Id> localRolloutProjectIds;
+    public Set<Id> projPurgeIdSet = new Set<Id>();
+    
     
     /**
     *  @Description Constructor of the class 
@@ -438,12 +443,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         selectedCluster = clusterWrapper.code;
                     }
                 }                
-                
+                if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() ))
+                {
+                    selectedCluster = lstClusterWrappers[0].code;
+                }
             }
-	    if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() ))
-	    {
-	        selectedCluster = lstClusterWrappers[0].code;
-	    }
          
     }
     
@@ -848,10 +852,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         mapUpsertRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertCountries = new Map<String,IPM_Country__c>();
         deleteRolloutsMap = new Map<String,IPM_Project_Rollout__c>();
+        actualDeleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+        checkRolloutsForProjects = new Set<Id>(); 
         deleteCountriesMap = new Map<String,IPM_Country__c>();
+        localRolloutProjectIds = new Set<Id>();
         
         //Existing Rollouts
-        String queryString = 'SELECT Id,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
+        String queryString = 'SELECT Id,name,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
         queryString+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
         queryString+= 'FROM IPM_Project_Rollout__c ';
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
@@ -862,11 +869,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
             queryString+= ' WHERE Regional_Project__c =: projectId LIMIT 10000';
         }
-
+		
+	Set<String> regionalLocalRegional = new Set<String>();
         for(IPM_Project_Rollout__c ipmRollout : Database.query(queryString))
         {
             mapExistingRollouts.put(ipmRollout.IPM_Rollout_Project__c, ipmRollout);
-			existingPrjList.add(ipmRollout.Local_Project__c);
+            regionalLocalRegional.add(ipmRollout.name);
+            existingPrjList.add(ipmRollout.Local_Project__c);
         }
         
         //Countries
@@ -906,8 +915,153 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 processRegionalCountryRollouts(); 
         }
         
+       
+        filterRollouts();
+        //Call Your method to check if there are projects available which are already stopped.
+        processPurgeFunctionality();
+        processRegionalRollouts();
+        archiveProjects();
+        processLocalRollouts();
+        processCountry();
+        deleteRollout();
+    }
+        
+    public void filterRollouts()
+    {
+        // Rollouts that might have deleted as part of Trigger Logic of updating Key Rollouts To Non Keys.
+        List<IPM_Project_Rollout__c> rolloutListToDelete = [Select Id,Name,Local_Project__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,isActive__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c  in :deleteRolloutsMap.KeySet() AND isActive__c = true  ];
+            
+        for(IPM_Project_Rollout__c rollout : rolloutListToDelete)
+        {
+            if(rollout.IPM_CharterApproved__c || rollout.Local_Project__c!=null)
+             {
+                checkRolloutsForProjects.add( rollout.Local_Project__c);
+                rollout.isActive__c = false;
+                localRolloutProjectIds.add( rollout.Local_Project__c);
+                if(rollout.IPM_Rollout_Project__c != null )
+                {
+                  mapUpsertRollouts.put(rollout.IPM_Rollout_Project__c,rollout);
+                }
+             }
+             else
+             {
+                actualDeleteRolloutMap.put(rollout.Id,rollout);
+             }
+        }
+    } 
+    public void processPurgeFunctionality()
+    {
+    	for(IPM_Project_Rollout__c rolloutProj : mapUpsertRollouts.values())
+    	{
+    		if(rolloutProj.Regional_Project__c != null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+    		{
+    			projPurgeIdSet.add(rolloutProj.Regional_Project__c);
+    		}
+    		if(rolloutProj.Local_Project__c != null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+    		{
+    			projPurgeIdSet.add(rolloutProj.Local_Project__c);
+    		}		
+    	}	
+    	List<IPM_Project__c>  purgeProjList = new List<IPM_Project__c>();
+    	Map<String,IPM_Project__c> purgeProjMap = new Map<String,IPM_Project__c>();
+    	Set<String> purgeProjNameSet = new Set<String>();
+    	for(IPM_Project__c purgeProj : [Select id,IPM_Project_Name__c From IPM_Project__c Where id =:projPurgeIdSet AND Is_Archieved__c = true])
+    	{
+    		purgeProjMap.put(purgeProj.id,purgeProj);	
+    		purgeProjList.add(purgeProj);
+    		purgeProjNameSet.add(purgeProj.IPM_Project_Name__c);	
+    	}
+    	for(IPM_Project_Rollout__c rollout :  mapUpsertRollouts.values())
+    	{
+			if(purgeProjMap.containsKey(rollout.Regional_Project__c))
+    		{
+    			rollout.put('Regional_Project__c',null);//rollout.Regional_Project__c = null;
+    		}
+    		else if(purgeProjMap.containsKey(rollout.Local_Project__c))
+    		{
+    			rollout.put('Local_Project__c',null);
+    			//rollout.put('Target_Launch_Date__c',null);
+    			rollout.put('IPM_Regional_PL__c',null);
+    			rollout.put('IPM_Regional_PL_Text__c',null);
+	    		rollout.put('IPM_StoppedByProject__c',null);
+	    		rollout.put('Added_At_Stage__c',null);	
+    		}   		
+    	}
+    	for(IPM_Project_Rollout__c rolloutReg :  mapUpsertRegionalRollouts.values())
+    	{
+			if(purgeProjNameSet.contains(rolloutReg.IPM_Rollout_Project__c))
+    		{
+	    		rolloutReg.put('IPM_Regional_PL_Text__c',null);//rollout.IPM_Regional_PL_Text__c = null;
+	    		rolloutReg.put('IPM_Regional_PL__c',null);
+	    		rolloutReg.put('Previous_Target_Launch_Date__c',null);
+	    		rolloutReg.put('Target_Launch_Date__c',null);
+	    		rolloutReg.put('IPM_StoppedByProject__c',null);
+	    		rolloutReg.put('Added_At_Stage__c',null);	
+    		}
+    	}
+    	////System.assert(false);
+    	Map<String, Schema.SobjectField> finFldMap = Schema.SObjectType.IPM_Financial__c.fields.getMap();
+    	List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
+    	Set<Id> finIdSet = new Set<Id>();
+    	Map<String, Schema.SobjectField> finYearFldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();
+    	List<IPM_Financial_Year__c> finYearList = new List<IPM_Financial_Year__c>();
+    	for(IPM_Financial__c fin : [Select id,IRR_Global__c From IPM_Financial__c Where Regional_Project__c =:purgeProjMap.keySet() OR 	Local_Project__c =:purgeProjMap.keySet()])
+    	{
+			for( String finFld : finFldMap.keySet())
+			{
+			    if(finFldMap.get(finFld).getDescribe().isUpdateable() && (finFldMap.get(finFld).getDescribe().getType() == Schema.DisplayType.Currency || finFldMap.get(finFld).getDescribe().getType() == Schema.DisplayType.Percent 
+			    	|| finFldMap.get(finFld).getDescribe().getType() == Schema.DisplayType.Double || finFldMap.get(finFld).getDescribe().getType() == Schema.DisplayType.Integer) && (finFld.ContainsIgnoreCase('global') || finFld.ContainsIgnoreCase('regional') || finFld.ContainsIgnoreCase('local')))
+			    {
+			         fin.put(finFld,0);     
+			         fin.Regional_Project__c = null; 
+			    }
+			}
+			finIdSet.add(fin.id);
+			finList.add(fin);	
+    	}
 
-        if(!mapUpsertRegionalRollouts.isEmpty())
+    	for(IPM_Financial_Year__c finYear : [Select id From IPM_Financial_Year__c Where IPM_Financial__c IN: finIdSet])
+    	{
+			for( String finYrFld : finYearFldMap.keySet())
+			{
+			    if(finYearFldMap.get(finYrFld).getDescribe().isUpdateable() && (finYearFldMap.get(finYrFld).getDescribe().getType() == Schema.DisplayType.Currency || finYearFldMap.get(finYrFld).getDescribe().getType() == Schema.DisplayType.Percent 
+			    	|| finYearFldMap.get(finYrFld).getDescribe().getType() == Schema.DisplayType.Double || finYearFldMap.get(finYrFld).getDescribe().getType() == Schema.DisplayType.Integer) && (finYrFld.ContainsIgnoreCase('global') || finYrFld.ContainsIgnoreCase('regional') || finYrFld.ContainsIgnoreCase('local')))
+			    {
+			         finYear.put(finYrFld,0);     
+			         //fin.Regional_Project__c = null; 
+			    }
+			}
+			finYearList.add(finYear);	
+    	}
+    	if(!finYearList.isEmpty())
+    	{
+    		update finYearList;
+    	}
+    	
+    	if(!finList.isEmpty())
+    	{
+    		update finList;
+    	}
+    	
+    	if(!purgeProjList.isEmpty())
+    	{
+    		IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+    		delete purgeProjList;
+    		IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+    	}
+    }
+
+    public void deleteRollout()
+    {
+    	//System.assert(false);
+        if(!actualDeleteRolloutMap.isEmpty())
+        {
+            delete actualDeleteRolloutMap.values();
+        }
+    }
+    public void processRegionalRollouts()
+    {
+    	if(!mapUpsertRegionalRollouts.isEmpty())
         {
             // Remove Id from Upsert call in case it is an insert that might happen for record which got deleted as part of above operation
             for(IPM_Project_Rollout__c regionalRollout : mapUpsertRegionalRollouts.values())
@@ -916,127 +1070,90 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             upsert mapUpsertRegionalRollouts.values() IPM_Rollout_Project__c;
         }
-        if(!deleteRolloutsMap.isEmpty())
+    }
+	
+    public void processLocalRollouts()
+    { 
+    	//System.assert(false);
+	 	if(!mapUpsertRollouts.isEmpty())
         {
-            Set<Id> localRolloutProjectIds = new Set<Id>();
-            
-            Map<Id,IPM_Project_Rollout__c> filteredDeleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
-            // Rollouts that might have deleted as part of Trigger Logic of updating Key Rollouts To Non Keys.
-            List<IPM_Project_Rollout__c> rolloutListToDelete = [Select Id,Name,Local_Project__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,isActive__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c  in :deleteRolloutsMap.KeySet() AND isActive__c = true  ];
-            
-            for(IPM_Project_Rollout__c rollout : rolloutListToDelete)
-            {
-                if(rollout.IPM_CharterApproved__c || rollout.Local_Project__c!=null)
-                 {
-                    localRolloutProjectIds.add( rollout.Local_Project__c);
-                    rollout.isActive__c = false;
-                    if(rollout.IPM_Rollout_Project__c != null)
-                    {
-                    	mapUpsertRollouts.put(rollout.IPM_Rollout_Project__c,rollout);
-                    }
-                 }
-                 else
-                 {
-                    filteredDeleteRolloutMap.put(rollout.Id,rollout);
-                 }
-            }
-
-            String childProjectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
-	        String childProjectWhereClause = ' WHERE Id in :localRolloutProjectIds LIMIT 5000';
-	        childProjectQuery = childProjectQuery + childProjectWhereClause; 
-	        List<IPM_Project__c> toBeArchievedRolloutProjects =  database.query(childProjectQuery);
-	         
-            if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
-            {
-      			for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
-              	{	
-	              	IPM_Project_Type__c currentProjecttype = IPM_Utils.retrieveProjectType(rollOutProj);
-	              	
-	              	if(currentProjecttype != null && String.isNotBlank(currentProjecttype.IPM_Gate_Document__c) )
-	              	{
-	              		rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
-	              		rollOutProj.Is_Archieved__c = false;
-	              		rollOutProj.IPM_PrepareForArchival__c = true;
-	              	}
-	              	else
-	              	{
-	              		rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
-	              		rollOutProj.Is_Archieved__c=true;
-	              	}
-              	}
-            	update   toBeArchievedRolloutProjects ;
-            }
-            
-            delete filteredDeleteRolloutMap.values(); 
-        }
-        if(!deleteCountriesMap.isEmpty())
-        {   
-            Map<Id,IPM_Country__c> filteredDeleteCountryMap = new Map<Id,IPM_Country__c>();
-            // Before deleting Query the Countries again to validate whether certain countries got deleted as part of Rollout Deletion.
-            List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
-            for(IPM_Country__c country : countryListToDelete)
-            {
-                if(country.IPM_CharterApproved__c)
-                {
-                    country.isActive__c = false;
-                    mapUpsertCountries.put(country.Project_Country__c,country);
-                }
-                else
-                {
-                    filteredDeleteCountryMap.put(country.Id,country);
-                }
-            }                  
-            delete filteredDeleteCountryMap.values();
-        }
-        
-        if(!mapUpsertRollouts.isEmpty())
-        {
-        	Set<String> unarchPrjIds =new  Set<String>(); // list of ids of projects to be unarchieved
             // Remove Id from Upsert call in case it is an insert that might happen for record which got deleted as part of above operation
             for(IPM_Project_Rollout__c localRollout : mapUpsertRollouts.values())
             {
                 localRollout.Id = null;
             }
             upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
-            for(IPM_Project_Rollout__c  rollout : mapUpsertRollouts.values())
-            {
-                if(rollout.isActive__c)
-                {
-                    if(rollout.Local_Project__c != null && existingPrjList.contains(rollout.Local_Project__c))
-                    {
-                        unarchPrjIds.add(rollout.Local_Project__c);
-                    }
-                }
-            } 
-            
-            List<IPM_Project__c> tobeStrtdPrjcts =[Select Id,Is_Archieved__c,Name,IPM_Is_Invoked_From_Rollout__c from IPM_Project__c where  Id IN :unarchPrjIds and Is_Archieved__c=true];
-            if(tobeStrtdPrjcts!=null && !tobeStrtdPrjcts.isEmpty())
-            {
-              for(IPM_Project__c strtPrj : tobeStrtdPrjcts) 
-              {
-              	strtPrj.IPM_Is_Invoked_From_Rollout__c = false;
-              	strtPrj.Is_Archieved__c=false;
-              }
-            update   tobeStrtdPrjcts ;
-            }
         }
-        
+    }
+    
+    public void processCountry()
+    {
+	    if(!deleteCountriesMap.isEmpty())
+	    {   
+	        Map<Id,IPM_Country__c> filteredDeleteCountryMap = new Map<Id,IPM_Country__c>();
+	        // Before deleting Query the Countries again to validate whether certain countries got deleted as part of Rollout Deletion.
+	        List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
+	        for(IPM_Country__c country : countryListToDelete)
+	        {
+	            if(country.IPM_CharterApproved__c)
+	            {
+	                country.isActive__c = false;
+	                mapUpsertCountries.put(country.Project_Country__c,country);
+	            }
+	            else
+	            {
+	                filteredDeleteCountryMap.put(country.Id,country);
+	            }
+	        }                  
+	        delete filteredDeleteCountryMap.values();
+	    }
         if(!mapUpsertCountries.isEmpty())
         { 
             // Remove Id from Upsert call in case it is an insert that might happen for record which got deleted as part of above operation
             for(IPM_Country__c country : mapUpsertCountries.values())
             {
                 country.Id = null;
+                if(projPurgeIdSet.contains(country.IPM_Regional_Project__c))
+                {
+                	country.IPM_Regional_Project__c = null;	
+                }
+                if(projPurgeIdSet.contains(country.IPM_Local_Project__c))
+                {
+                	country.IPM_Local_Project__c = null;	
+                }
             }
             upsert mapUpsertCountries.values() Project_Country__c;
         }
-        
-            
-            
-                
-            
-        
-            
+    }
+    
+    public void archiveProjects()
+    {
+	 	String childProjectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
+      	String childProjectWhereClause = ' WHERE Id in :localRolloutProjectIds LIMIT 5000';
+      	childProjectQuery = childProjectQuery + childProjectWhereClause; 
+          	
+    	List<IPM_Project__c> toBeArchievedRolloutProjects =  database.query(childProjectQuery);
+
+        if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
+        {
+       		for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
+            {  
+              	IPM_Project_Type__c currentProjecttype = IPM_Utils.retrieveProjectType(rollOutProj);
+              
+              	if(currentProjecttype != null && String.isNotBlank(currentProjecttype.IPM_Gate_Document__c) )
+              	{
+                	rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
+                	rollOutProj.Is_Archieved__c = false;
+               	 	rollOutProj.IPM_PrepareForArchival__c = true;
+              	}
+              	else
+              	{
+                	rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
+                	rollOutProj.Is_Archieved__c=true;
+              	}
+			}
+          	update   toBeArchievedRolloutProjects ;
+        }   
     }
     
     /**
@@ -1050,6 +1167,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     @TestVisible private void processGlobalMCORollouts()
     {    
+        Map<Id,IPM_Project__c> tobeRelatedToRolloutMap = new Map<Id,IPM_Project__c>([Select Id,Created_in_error__c,Is_Archieved__c,Name,IPM_Is_Invoked_From_Rollout__c from IPM_Project__c where  name IN: mapExistingRollouts.keySet() and Is_Archieved__c=true]);
         //MCO Rollouts
         for (String countryCodeGlobal : setCountryCodesGlobal)
         {
@@ -1738,7 +1856,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
           
           if(relatedMCOAndCountry.get(relMCO).size() == 0)
           { 
-            System.debug(LoggingLevel.Error,'))))))))))))))))'+relatedMCOAndCountry.get(relMCO).size());
             allRolloutFromSameMCO = true;      
           } 
         }
