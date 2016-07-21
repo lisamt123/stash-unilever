@@ -1149,8 +1149,8 @@ public with sharing class IPM_ProjectCountryDetails{
        
       /**********************************************************************************************
       *@Description:Returns the selectoptions for brands available to a local project 
-      *@Param:Local project  , IPM_LocalProject_Brand__c,IPM_Parent_Project__r.IPM_Brand_Positioning__c,IPM_Project_Rollout__r.IPM_Brand__c
-      ***********************************************************************************************/
+      *@Param:Local project  with fields IPM_LocalProject_Brand__c,IPM_Parent_Project__r.IPM_Brand_Positioning__c
+      *************************************************************************************************************/
        public static List<selectoption> getAvailableBrands(IPM_project__c localProject){ 
 		
 			List<selectoption> brandOptions = new List<selectoption> {new selectoption(localProject.IPM_LocalProject_Brand__c,localProject.IPM_LocalProject_Brand__c)};

@@ -9638,4 +9638,25 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>Parent Project Stop Disclaimer</shortDescription>
         <value>and all its Rollout Projects</value>
     </labels>
+    <labels>
+        <fullName>IPM_AllSummaryAttachDwnldBttn_Hovertext</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gate Document All Summary Attachments download button hover text</shortDescription>
+        <value>Download all Summary section attachments</value>
+    </labels>
+		<labels>
+        <fullName>IPM_DwnldAllSummaryAttachBttn_ModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gate Document download all summary section attachment modal header</shortDescription>
+        <value>Download  Summary section attachments</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Local_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label forBrand of Local project</shortDescription>
+        <value>Brand</value>
+    </labels>
 	

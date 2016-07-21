@@ -217,6 +217,19 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+		<fullName>IPM_LocalProject_Brand__c</fullName>
+		<description>Brand of local rollout project</description>
+		<externalId>false</externalId>
+		<formula>If(AND(text(IPM_Project_Type__c)==&apos;Rollout&apos; ,text(IPMProject_Span__c)==&apos;Local&apos;),IPM_Project_Rollout__r.IPM_Brand__c,Null)</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Brand</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
     <fields>
         <fullName>BET_Archive_Status__c</fullName>
         <description>To store BET status when BET is archived (first release, final release, unreleased).</description>

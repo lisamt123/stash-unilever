@@ -15,25 +15,26 @@
        <thead>
             <tr>
                 <apex:repeat var="header" value="{!headers}" >
-                   <th width="20%">{!header}</th>
+                   <th width="15%">{!header}</th>
                 </apex:repeat>  
             </tr>
         </thead>
         <tbody>
             <apex:repeat value="{!regionalRollOutWrapperList}" var="regionalRollOutWrap"> 
                 <tr> 
-                    <td width="20%"><apex:outputText value="{!regionalRollOutWrap.regionalRollOutName}"/></td>
-                    <td width="80%" colspan="4">
+                    <td width="15%"><apex:outputText value="{!regionalRollOutWrap.regionalRollOutName}"/></td>
+                    <td width="100%" colspan="5">
                         <table class="nestedTable gateRolloutTable">
                             <apex:repeat value="{!regionalRollOutWrap.localRollOutWrapList}" var="localRollOutWrap" id="localRollRep">
                                 <tr>                      
-                                    <td class="gateRolloutPadding" width="20%"><span class="gateRCountry">{!localRollOutWrap.associatedCountryString}</span></td>
-                                    <td class="gateRolloutPadding" width="20%">
+                                    <td class="gateRolloutPadding" width="15%"><span class="gateRCountry">{!localRollOutWrap.associatedCountryString}</span></td>
+                                    <td class="gateRolloutPadding" width="15%">
                                       <apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Status__c}"  rendered="{!span = 'Global'}"/>
                                       <apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Regional_Rollout_Status__c}"  rendered="{!span = 'Regional'}"/>
                                      </td>
-                                    <td class="gateRolloutPadding" width="20%"><apex:outputField value="{!localRollOutWrap.localRollOut.Target_Launch_Date__c}"/></td>
-                                    <td class="gateRolloutPadding gateRname" width="20%"><apex:outputField value="{!localRollOutWrap.localRollOut.Name}"/></td>                      
+                                    <td class="gateRolloutPadding" width="15%"><apex:outputField value="{!localRollOutWrap.localRollOut.Target_Launch_Date__c}"/></td>
+                                    <td class="gateRolloutPadding gateRname" width="15%"><apex:outputField value="{!localRollOutWrap.localRollOut.Name}"/></td>
+                                    <td class="gateRolloutPadding gateRname" width="15%"><apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Brand__c}" rendered="{!span != 'Local'}"/></td>                      
                                 </tr>
                             </apex:repeat>
                         </table>

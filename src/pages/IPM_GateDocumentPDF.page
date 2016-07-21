@@ -639,12 +639,12 @@
             <div class="dataTable">
             <table width="100%" cellpadding="0" cellspacing="0">            
                 <tr>
-                    <td class="label" width="20%">
-                      {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
+                    <td class="label" width="15%">
+                      {!IF(projectDoc.IPM_GateDocuments__c!='Market Deployment',$Label.IPM_BRAND_POSITIONING,$Label.IPM_Local_Brand)}{!$Label.IPM_COLON}
                     </td>      
-                    <td width="10%">
+                    <td width="15%">
                      
-                       <apex:outputText value="{!brandPosition}"/> 
+                       <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c!='Market Deployment',brandPosition,project.IPM_LocalProject_Brand__c)}"/> 
                     </td> 
                     <td class="label" width="20%">
                        {!$Label.IPM_Project_Leader}{!$Label.IPM_COLON}
