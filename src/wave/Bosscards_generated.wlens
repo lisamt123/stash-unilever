@@ -1,1 +1,0 @@
-{"query":{"query":"{&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]],&quot;groups&quot;:[&quot;IPM_Bosscard_Status__c&quot;],&quot;filters&quot;:[[&quot;Created Date&quot;,[[1455062400000,1466572678000]],&quot;&gt;=&lt;=&quot;]]}","version":-1.0}}
