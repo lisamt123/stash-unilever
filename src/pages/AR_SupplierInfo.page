@@ -1,129 +1,129 @@
 <!--
-	Unilever
+    Unilever
 
-	Page Name: AR_FixedPriceRatecard
-	Marc Saelzler | 2013-09-06
+    Page Name: AR_FixedPriceRatecard
+    Marc Saelzler | 2013-09-06
 
-	Page for rate card.
+    Page for rate card.
 
-	Timeline
-	Date 					| Name 				| Description
-	2013-09-06 13:48 (CET) 	| Marc Saelzler 	| Initial development.
+    Timeline
+    Date                    | Name              | Description
+    2013-09-06 13:48 (CET)  | Marc Saelzler     | Initial development.
 -->
 <apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" controller="AR_SupplierInfoController" action="{!initPage}">
-	
-	<apex:composition template="AR_Template">
-	
-		<apex:define name="content">
-		
-			<section role="main" id="content" class="form global-content">
-			
-				<apex:form styleClass="form-validate">
-			
-		            <header class="main-header">
-		            	
-		            	<nav class="steps-wrapper" style="margin-bottom:15px;">
-	                   		<c:AR_ProgressBar pController="{!this}" />
-		                </nav>
-		            
-		                <h1>Supplier Info</h1>
-		                <p>
-		                    Please complete the following information on your third party suppliers. This Includes any activities or services that will be outsourced or subcontracted to a 3rd party supplier as part of the delivery of the creative services e.g. photography, images, mock ups etc. should clearly be highlighted below.
-		                </p>
-	
-		            </header>
-	                        
-	            	<apex:outputPanel id="mainContainer">
-		            
-		                <div class="form-fields-wrapper">
-		                
-		                    <ul class="form-errors active">
-								<apex:messages />
-		                    </ul>
-		                    
-		                    <apex:actionRegion >
-			                    <apex:outputPanel layout="block" id="supplierTable" rendered="{!SupplierInfoObjectList.size > 0}">
-				                    <table class="table">
-				                    	<thead>
-					                    	<tr>
-						                    	<apex:repeat value="{!FieldSetMap['ar_Supplier_Info__c']['supplier_info']}" var="field">
-						                    		<th><apex:outputText value="{!field.label}" /></th>
-						                    	</apex:repeat>
-						                    	<td>
-						                    		<apex:actionStatus id="delRowStatus">
-								                		<apex:facet name="start">
-								                			<apex:image value="/img/loading.gif" />
-								                		</apex:facet>
-								                	</apex:actionStatus>
-								                </td>
-					                    	</tr>
-					                    </thead>
-					                    <tbody>
-					                    	<apex:repeat value="{!SupplierInfoObjectList}" var="supplierInfo">
-						                    	<tr style="{!IF(supplierInfo.isDeleted,'display:none','')}">
-						                    		<apex:repeat value="{!FieldSetMap['ar_Supplier_Info__c']['supplier_info']}" var="field">
-						                    			<td>
-						                    				<apex:outputField value="{!supplierInfo.obj[field.fieldPath]}" />
-						                    			</td>
-						                    		</apex:repeat>
-						                    		<td>
-						                            	<apex:commandLink action="{!supplierInfo.remove}" status="delRowStatus" rerender="supplierTable">
-						                            		<img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
-														</apex:commandLink>
-						                            </td>
-						                    	</tr>
-					                    	</apex:repeat>
-					                    </tbody>
-				                    </table>
-			                    </apex:outputPanel>
-		                    </apex:actionRegion>
-		                    
-			                <fieldset class="repeater"><legend>New Supplier</legend>
-			                	<apex:repeat value="{!FieldSetMap['ar_Supplier_Info__c']['supplier_info']}" var="field">
-			                		 <div class="form-row {!CASE(field.Type,'string','text','url','text','double','text','percent','text',field.Type)}-row clearfix">
-			                		 	<label class="form-row-label">
-				                            <apex:outputText value="{!field.label}" />
-				                        </label>
-				                        <div class="form-input">
-				                        	<apex:outputText rendered="{!field.Type!='picklist'}">
-				                        		<apex:inputField value="{!SupplierInfoObject.obj[field.fieldPath]}" />
-				                        	</apex:outputText>
-				                        	<apex:outputText rendered="{!field.Type=='picklist'}">
-				                        		<label class="select-label">
-				                        			<apex:inputField value="{!SupplierInfoObject.obj[field.fieldPath]}" />
-				                        		</label>
-				                        	</apex:outputText>
-											<apex:outputText rendered="{!$ObjectType['ar_Supplier_Info__c'].fields[field.fieldPath].InlineHelpText != null}">
-					                        	<p class="helper">{!$ObjectType['ar_Supplier_Info__c'].fields[field.fieldPath].InlineHelpText}</p>
-					                        </apex:outputText>
-										</div>
-			                		 </div>
-			                	</apex:repeat>
-			                	<div class="form-row file-row clearfix">
-			                        <label for="7-rates" class="form-row-label">
-			                        	Upload copy of rates
-			                        </label>
-			                        <div class="form-input">
-			                            <c:AR_FileUpload fileNamePrefix="one" holder="{!SupplierInfoObject}" />
-			                        </div>
-			                    </div>
-			                    
-			                    <p class="submit-instruction">Once you included all of the above information, press the button below to submit and add another one.</p>
-			                    
-			                    <apex:commandButton action="{!addNewSupplierInfoObject}" styleClass="repeater-add" value="Add Supplier" />
+    
+    <apex:composition template="AR_Template">
+    
+        <apex:define name="content">
+        
+            <section role="main" id="content" class="form global-content">
+            
+                <apex:form styleClass="form-validate">
+            
+                    <header class="main-header">
+                        
+                        <nav class="steps-wrapper" style="margin-bottom:15px;">
+                            <c:AR_ProgressBar pController="{!this}" />
+                        </nav>
+                    
+                        <h1>Supplier Info</h1>
+                        <p>
+                            Please complete the following information on your third party suppliers. This Includes any activities or services that will be outsourced or subcontracted to a 3rd party supplier as part of the delivery of the creative services e.g. photography, images, mock ups etc. should clearly be highlighted below.
+                        </p>
+    
+                    </header>
+                            
+                    <apex:outputPanel id="mainContainer">
+                    
+                        <div class="form-fields-wrapper">
+                        
+                            <ul class="form-errors active">
+                                <apex:messages />
+                            </ul>
+                            
+                            <apex:actionRegion >
+                                <apex:outputPanel layout="block" id="supplierTable" rendered="{!SupplierInfoObjectList.size > 0}">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <apex:repeat value="{!FieldSetMap['ar_Supplier_Info__c']['supplier_info']}" var="field">
+                                                    <th><apex:outputText value="{!field.label}" /></th>
+                                                </apex:repeat>
+                                                <td>
+                                                    <apex:actionStatus id="delRowStatus">
+                                                        <apex:facet name="start">
+                                                            <apex:image value="/img/loading.gif" />
+                                                        </apex:facet>
+                                                    </apex:actionStatus>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <apex:repeat value="{!SupplierInfoObjectList}" var="supplierInfo">
+                                                <tr style="{!IF(supplierInfo.isDeleted,'display:none','')}">
+                                                    <apex:repeat value="{!FieldSetMap['ar_Supplier_Info__c']['supplier_info']}" var="field">
+                                                        <td>
+                                                            <apex:outputField value="{!supplierInfo.obj[field.fieldPath]}" />
+                                                        </td>
+                                                    </apex:repeat>
+                                                    <td>
+                                                        <apex:commandLink action="{!supplierInfo.remove}" status="delRowStatus" rerender="supplierTable">
+                                                            <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" alt="DelRow Supplier Info" class="remove-row"/>
+                                                        </apex:commandLink>
+                                                    </td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </tbody>
+                                    </table>
+                                </apex:outputPanel>
+                            </apex:actionRegion>
+                            
+                            <fieldset class="repeater"><legend>New Supplier</legend>
+                                <apex:repeat value="{!FieldSetMap['ar_Supplier_Info__c']['supplier_info']}" var="field">
+                                     <div class="form-row {!CASE(field.Type,'string','text','url','text','double','text','percent','text',field.Type)}-row clearfix">
+                                        <label class="form-row-label">
+                                            <apex:outputText value="{!field.label}" />
+                                        </label>
+                                        <div class="form-input">
+                                            <apex:outputText rendered="{!field.Type!='picklist'}">
+                                                <apex:inputField value="{!SupplierInfoObject.obj[field.fieldPath]}" />
+                                            </apex:outputText>
+                                            <apex:outputText rendered="{!field.Type=='picklist'}">
+                                                <label class="select-label">
+                                                    <apex:inputField value="{!SupplierInfoObject.obj[field.fieldPath]}" />
+                                                </label>
+                                            </apex:outputText>
+                                            <apex:outputText rendered="{!$ObjectType['ar_Supplier_Info__c'].fields[field.fieldPath].InlineHelpText != null}">
+                                                <p class="helper">{!$ObjectType['ar_Supplier_Info__c'].fields[field.fieldPath].InlineHelpText}</p>
+                                            </apex:outputText>
+                                        </div>
+                                     </div>
+                                </apex:repeat>
+                                <div class="form-row file-row clearfix">
+                                    <label for="7-rates" class="form-row-label">
+                                        Upload copy of rates
+                                    </label>
+                                    <div class="form-input">
+                                        <c:AR_FileUpload fileNamePrefix="one" holder="{!SupplierInfoObject}" />
+                                    </div>
+                                </div>
+                                
+                                <p class="submit-instruction">Once you included all of the above information, press the button below to submit and add another one.</p>
+                                
+                                <apex:commandButton action="{!addNewSupplierInfoObject}" styleClass="repeater-add" value="Add Supplier" />
 
-			            	</fieldset>
-		                </div>
-		        	</apex:outputPanel>
-			        <footer class="form-footer">
-		                <ul>
-		                    <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
-		                    <li><apex:commandButton styleClass="save" action="{!save}" /></li>
-		                    <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
-		                </ul>
-		            </footer>
-		    	</apex:form>
-			</section>
-		</apex:define>
-	</apex:composition>
+                            </fieldset>
+                        </div>
+                    </apex:outputPanel>
+                    <footer class="form-footer">
+                        <ul>
+                            <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
+                            <li><apex:commandButton styleClass="save" action="{!save}" /></li>
+                            <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
+                        </ul>
+                    </footer>
+                </apex:form>
+            </section>
+        </apex:define>
+    </apex:composition>
 </apex:page>

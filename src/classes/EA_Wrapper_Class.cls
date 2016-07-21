@@ -76,16 +76,11 @@ public class EA_Wrapper_Class {
             @AuraEnabled
             public string invitation_status;
             
-            @AuraEnabled
-            public boolean isActive;
-            
               
         }
         
         public class EA_RecentlyCompletedUsers{
             
-            @AuraEnabled
-            public string activityId;
             @AuraEnabled
             public string userPhotoUrl;
             
@@ -114,9 +109,6 @@ public class EA_Wrapper_Class {
               
                @AuraEnabled
               public List<string> userPhotoUrl1;
-              
-               @AuraEnabled
-              public string toptip;
         }
 
 }

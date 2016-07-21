@@ -9,7 +9,7 @@
 
 
 <apex:component controller="IPM_RolloutPlansTableController" allowDML="true"> 
-     
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/>  
 
     <apex:outputPanel rendered="{!isError}">
         <div class="finGreyBG">
@@ -33,12 +33,12 @@
                         <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
                    
-                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,NOT(projectType.IPM_CreateRegionalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
+                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,NOT(projectType.IPM_CreateRegionalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                     
                                        
-                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
+                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                 </div>
@@ -132,14 +132,14 @@
                                             
                                         </th>
                                         <th scope="col" width="180px" colspan="1">
-                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!regionalProject.IPM_Project_Leader__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                        	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                	<apex:image styleClass="rounded" url="{!regionalProject.IPM_Project_Leader__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             <apex:outputField value="{!regionalProject.IPM_Project_Leader__c}"/>
                                         </th>
                                         <th scope="col" width="120px" colspan="1">
-                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!regionalProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                        	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                	<apex:image styleClass="rounded" url="{!regionalProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             <apex:outputField value="{!regionalProject.IPM_Finance_Member__c}"/>
                                         </th>
@@ -152,6 +152,7 @@
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!projectTolocalRolloutToCountryMap[regionalProjectID]}" var="localRolloutId">
                                 <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
+                                <apex:variable var="localProject" value="{!lstcompleteProjects[localRollout.Local_Project__c]}" rendered="{!NOT(ISNULL(localRollout.Local_Project__c))}"/>
                                 
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
@@ -177,7 +178,6 @@
                                             <td scope="col" width="60px">
                                                 <div class="incHeight">              
                                                     <span class="key wordwrap">
-                                                    <!-- This render condition will check if rollout is keyMCO and local project is null and project phase is ideas -->
                                                         <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null,project.IPM_Phase__c=='Ideas')}"/>
                                                     </span>
                                                 </div>
@@ -192,19 +192,19 @@
                                                 <apex:outputField value="{!localRollout.IPM_Status__c}"/>
                                             </td>
                                             <td scope="col" width="180px">
-                                                
-                                                <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!localRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
-                                                </apex:outputPanel>
-                                                
+                                            	
+                                            	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                	<apex:image styleClass="rounded" url="{!localRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                           		</apex:outputPanel>
+                                           		
                                                 <apex:outputField value="{!localRollout.IPM_Regional_PL__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>
                                             <td scope="col" width="120px">
-                                                
-                                                <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                    <apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
-                                                </apex:outputPanel>
-                                                
+                                            	
+                                            	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                	<apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                           		</apex:outputPanel>
+                                            	
                                                 <apex:outputField value="{!localRollout.Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
@@ -276,7 +276,7 @@
                                             <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                                                                            
                                                <apex:outputPanel id="projectLeaderPanel" rendered="{!isEditMode}">
-                                                    <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Regional_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Project_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
+                                                    <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Regional_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Project_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
                                                         <span class="" >{!$Label.IPM_Select_Project_Leader}</span>
                                                     </div>
                                                 </apex:outputPanel>
@@ -284,7 +284,7 @@
                                             </apex:outputPanel>
                                         </th>
                                         
-                                        <th scope="col" width="130px" colspan="1"> 
+                                        <th scope="col" width="120px" colspan="1"> 
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
@@ -292,7 +292,7 @@
                                             <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">   
                                                                                       
                                                 <apex:outputPanel id="financeLeaderPanel" rendered="{!isEditMode}"> 
-                                                    <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
+                                                    <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
                                                         <span class="">{!$Label.IPM_Select_Finance_Leader}</span>
                                                     </div>
                                                 </apex:outputPanel>
@@ -308,7 +308,7 @@
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[regionalRolloutID]}" var="localRolloutId" >  
                             <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
-                            <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
+                                
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
                                         <tr>
@@ -334,13 +334,11 @@
                                             </td>
                                             <td scope="col" width="190px">
                                                 <div class="incHeight">                                                    
-													<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
-                                                	<apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!isEditMode}" onchange="checkTLDDate(this)"/> 
+                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
+                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/> 
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">
-                                            	<!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
                                                 <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
                                             </td>
@@ -348,7 +346,7 @@
                                                 <div class="incHeight">
                                                 </div>
                                             </td>
-                                            <td scope="col" width="130px">
+                                            <td scope="col" width="120px">
                                                 <div>
                                                 </div>
                                             </td>                
@@ -402,7 +400,7 @@
                         <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
                    
-                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,NOT(projectType.IPM_CreateRegionalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
+                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,NOT(projectType.IPM_CreateRegionalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                     
@@ -410,7 +408,7 @@
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_TRUE}"/>
                     </apex:commandLink>
                     
-                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
+                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                 </div>
@@ -420,7 +418,7 @@
      
     </apex:outputPanel>
     
-    <div id="ipmRegionalRollout" class="modal fade ipmRegionalRollout">
+    <div id="ipmRegionalRollout" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -443,7 +441,7 @@
                                 <apex:actionStatus startText="" id="Loading1" startStyleClass="proInit"/>
                                 <div class="pull-left noPadright">                                  
                                     
-                                    <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary" onComplete="reRenderPanels();" reRender="createNewProject" status="loadingStatus" html-data-dismiss="modal" action="{!saveRollout}" onclick="skipValidation();">
+                                    <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary" onComplete="reRenderPanels();" reRender="createNewProject" status="loadingStatus" html-data-dismiss="modal" action="{!saveRollout}" >
                                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                                     </apex:commandLink>    
                                 </div> 
@@ -471,15 +469,53 @@
                             </div>
                             <div class="buttonMarginRight noPadright pull-left" >
                                 <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                    <apex:commandLink value="{!$Label.Agree_and_Proceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();" oncomplete="hideTldWarningDialog();"  >
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
                     </apex:commandLink>
                         
-                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}"/>
-                         </div>
+                            </div>
                         </div>
                     </div>        
                 </div>
             </div>
         </div>
     </div>
+<script>
+    function deleteRcountries() {
+        var title = jq('.delrout').attr('value');
+        jq('#deleteRcountry').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });
+        jq('#deleteRcountry .modal-title').html(title);
+        <!--jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);-->
+        jq('#deleteRcountry .modal-dialog').width('600px');
+        jq('#deleteRcountry .modal-dialog').height('170px');
+        jq('#deleteRcountry .modal-dialog').css({
+            'margin-top': '10%',
+            'z-index': '999'
+        });
+        jq(".confirmdelrollout").addClass("removerollout");
+    }
+    function TLDDateCheck(param){
+        var newTLDValue = param.value;
+        tldOrignalValue = param.defaultValue;
+        selectedDateField = param;
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
+        }
+        return true;
+    }
+    function revertTLDValue(){
+        selectedDateField.value = tldOrignalValue;
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    var tldOrignalValue = "";
+    var selectedDateField = "";
+ 
+  
+</script>
 </apex:component>

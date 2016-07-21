@@ -1,118 +1,118 @@
 <apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" controller="AR_BusinessBreakdownController" action="{!InitPage}">
-	
-	<apex:composition template="AR_Template">
-	
-		<apex:define name="content">
-		
-			<!--  putting this here to override the SF dependant select -->
-			<style>
-				.form .form-row select {
-					width: 250px !important;
-					height: 30px;
-					padding: 5px 2%;
-					margin: 0;
-					-webkit-border-radius: 0px;
-					-moz-border-radius: 0px;
-					border-radius: 0px;
-					-webkit-box-shadow: 0;
-					-moz-box-shadow: 0;
-					box-shadow: 0;
-					background: #fff;
-					color: #000;
-					border: 1px solid #000;
-					outline: none;
-					display: inline-block;
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					cursor: pointer;
-					}
-			</style>
-		
-			<section role="main" id="content" class="form global-content">
-			
-				<apex:form styleClass="form-validate form">
-				
-		            <header class="main-header">
-		            
-		            	<nav class="steps-wrapper" style="margin-bottom:15px;">
-	                   		<c:AR_ProgressBar pController="{!this}" />
-		                </nav>
-		                
-		                <h1>Business Breakdown</h1>
-		                <p>
-		                    Please complete below breakdown, indicating which disciplines/categories your organisation is involved in, and the approximate contribution to your overall revenue, so that we fully understand your business, and all its offerings. 
-		                </p>
-
-		            </header>
-	            	            
-	                <div class="form-fields-wrapper">
-	                
-	                    <ul class="form-errors active">
-							<apex:messages />
-	                    </ul>
-	                    
-	                    <apex:outputPanel layout="block" id="breakdownTable">
-		                    <table class="table">
-		                        <thead>
-		                            <tr>
-		                            	<apex:repeat value="{!FieldSetMap['ar_Revenue_Breakdown__c']['agency_profile']}" var="field">
-			                                <th>{!field.Label}</th>
-			                             </apex:repeat>
-			                            <td style="width:125px;">
-			                            	<apex:commandButton action="{!AddRowToRevenueBreakdownObjectList}" value="Add Row" styleClass="btn-add-row" status="addRowStatus" reRender="breakdownTable" oncomplete="initMaskFunc();" />
-			                            	<apex:actionStatus id="addRowStatus">
-			                            		<apex:facet name="start">
-			                            			<apex:image value="/img/loading.gif" />
-			                            		</apex:facet>
-			                            	</apex:actionStatus>
-			                            </td>
-		                            </tr>
-		                        </thead>
-		                        <tbody>
-		                        	<apex:repeat value="{!RevenueBreakdownObjectList}" var="revenuebreakdown">
-			                            <tr style="{!IF(revenuebreakdown.isDeleted,'display:none','')}">
-			                            	<apex:repeat value="{!FieldSetMap['ar_Revenue_Breakdown__c']['agency_profile']}" var="field">
-			                                	<td>
-			                                		<apex:outputPanel rendered="{!field.Type != 'picklist'}">
-			                                			<apex:inputField value="{!revenuebreakdown.obj[field.fieldPath]}" styleclass="{!field.Type}" style="{!IF(field.Type = 'percent', 'margin-left:30%; width:50%;', '')}" />
-			                                		</apex:outputPanel>
-													
-													<div class="form-row">
-				                                		<apex:outputText rendered="{!field.Type == 'picklist'}">
-				                                			<label class="select-label">
-				                                				<apex:inputField value="{!revenuebreakdown.obj[field.fieldPath]}" />
-				                                			</label>
-				                                		</apex:outputText>
-				                                	</div>
-			                                	</td>
-			                                </apex:repeat>
-			                                
-			                                <td>
-				                            	<apex:commandLink action="{!revenuebreakdown.remove}" rerender="breakdownTable" status="addRowStatus">
-				                            		<img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
-												</apex:commandLink>
-				                            </td>
-				                            
-			                            </tr>
-			                        </apex:repeat>
-		                        </tbody>
-		                    </table>
-		                </apex:outputPanel>
-	                    
-	                </div>
-	                
-	                <footer class="form-footer">
-		                <ul>
-		                    <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
-		                    <li><apex:commandButton styleClass="save" action="{!save}" /></li>
-		                    <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
-		                </ul>
-		            </footer>
-	            </apex:form>
-			</section>
+    
+    <apex:composition template="AR_Template">
+    
+        <apex:define name="content">
         
-		</apex:define>
-		
-	</apex:composition>
+            <!--  putting this here to override the SF dependant select -->
+            <style>
+                .form .form-row select {
+                    width: 250px !important;
+                    height: 30px;
+                    padding: 5px 2%;
+                    margin: 0;
+                    -webkit-border-radius: 0px;
+                    -moz-border-radius: 0px;
+                    border-radius: 0px;
+                    -webkit-box-shadow: 0;
+                    -moz-box-shadow: 0;
+                    box-shadow: 0;
+                    background: #fff;
+                    color: #000;
+                    border: 1px solid #000;
+                    outline: none;
+                    display: inline-block;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    cursor: pointer;
+                    }
+            </style>
+        
+            <section role="main" id="content" class="form global-content">
+            
+                <apex:form styleClass="form-validate form">
+                
+                    <header class="main-header">
+                    
+                        <nav class="steps-wrapper" style="margin-bottom:15px;">
+                            <c:AR_ProgressBar pController="{!this}" />
+                        </nav>
+                        
+                        <h1>Business Breakdown</h1>
+                        <p>
+                            Please complete below breakdown, indicating which disciplines/categories your organisation is involved in, and the approximate contribution to your overall revenue, so that we fully understand your business, and all its offerings. 
+                        </p>
+
+                    </header>
+                                
+                    <div class="form-fields-wrapper">
+                    
+                        <ul class="form-errors active">
+                            <apex:messages />
+                        </ul>
+                        
+                        <apex:outputPanel layout="block" id="breakdownTable">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <apex:repeat value="{!FieldSetMap['ar_Revenue_Breakdown__c']['agency_profile']}" var="field">
+                                            <th>{!field.Label}</th>
+                                         </apex:repeat>
+                                        <td style="width:125px;">
+                                            <apex:commandButton action="{!AddRowToRevenueBreakdownObjectList}" value="Add Row" styleClass="btn-add-row" status="addRowStatus" reRender="breakdownTable" oncomplete="initMaskFunc();" />
+                                            <apex:actionStatus id="addRowStatus">
+                                                <apex:facet name="start">
+                                                    <apex:image value="/img/loading.gif" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!RevenueBreakdownObjectList}" var="revenuebreakdown">
+                                        <tr style="{!IF(revenuebreakdown.isDeleted,'display:none','')}">
+                                            <apex:repeat value="{!FieldSetMap['ar_Revenue_Breakdown__c']['agency_profile']}" var="field">
+                                                <td>
+                                                    <apex:outputPanel rendered="{!field.Type != 'picklist'}">
+                                                        <apex:inputField value="{!revenuebreakdown.obj[field.fieldPath]}" styleclass="{!field.Type}" style="{!IF(field.Type = 'percent', 'margin-left:30%; width:50%;', '')}" />
+                                                    </apex:outputPanel>
+                                                    
+                                                    <div class="form-row">
+                                                        <apex:outputText rendered="{!field.Type == 'picklist'}">
+                                                            <label class="select-label">
+                                                                <apex:inputField value="{!revenuebreakdown.obj[field.fieldPath]}" />
+                                                            </label>
+                                                        </apex:outputText>
+                                                    </div>
+                                                </td>
+                                            </apex:repeat>
+                                            
+                                            <td>
+                                                <apex:commandLink action="{!revenuebreakdown.remove}" rerender="breakdownTable" status="addRowStatus">
+                                                    <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" alt="BusinessBreakdown DelRow" class="remove-row"/>
+                                                </apex:commandLink>
+                                            </td>
+                                            
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                        
+                    </div>
+                    
+                    <footer class="form-footer">
+                        <ul>
+                            <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
+                            <li><apex:commandButton styleClass="save" action="{!save}" /></li>
+                            <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
+                        </ul>
+                    </footer>
+                </apex:form>
+            </section>
+        
+        </apex:define>
+        
+    </apex:composition>
 </apex:page>

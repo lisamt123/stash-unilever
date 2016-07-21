@@ -1,351 +1,351 @@
 <apex:page standardStylesheets="false" sidebar="false" docType="html-5.0" tabStyle="Sustainable_Living_Lab__tab" controller="isll_EventController">
 <style type="text/css">
-	.imagePanel{
-		width : 400px;
-		padding-top: 15px;
-		padding-bottom: 15px;
-	}
-	.bar{
-		width: 1px;
-		margin-right: 10px;
-		height: 400px;
-		float: left;
-		background-color: lightgray;
-		top: 61px;
-		position: relative;
-		margin-left: 10px;
-		left : 13px;
-	}
-	 #table_container{
-	 	min-width:400px;
-	 	margin:0 auto;
-	 	height: 406px;
-	 	overflow: auto;
-	 }
-	 
-	 .monthTitle{
-	 	color : #343434;
-	 	font-size : 16px;
-	 	text-transform: uppercase;
-	 }
+    .imagePanel{
+        width : 400px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .bar{
+        width: 1px;
+        margin-right: 10px;
+        height: 400px;
+        float: left;
+        background-color: lightgray;
+        top: 61px;
+        position: relative;
+        margin-left: 10px;
+        left : 13px;
+    }
+     #table_container{
+        min-width:400px;
+        margin:0 auto;
+        height: 406px;
+        overflow: auto;
+     }
+     
+     .monthTitle{
+        color : #343434;
+        font-size : 16px;
+        text-transform: uppercase;
+     }
 /*
-	 .calendarTbl tbody{
-	 	height: 426px;
-	 }
-	 
-	.calendarTbl {
-	  border-collapse: collapse;
-	}
-	.calendarTbl td {
-	  border-left: 1px solid #999;
-	}
-	
-	.calendarTbl tr td:first-child{
-	  border-left: 0;
-	}
+     .calendarTbl tbody{
+        height: 426px;
+     }
+     
+    .calendarTbl {
+      border-collapse: collapse;
+    }
+    .calendarTbl td {
+      border-left: 1px solid #999;
+    }
+    
+    .calendarTbl tr td:first-child{
+      border-left: 0;
+    }
 */
-	div.eventDescription {
-		text-overflow: ellipsis;
-		width: 350px;
-		white-space: nowrap;
-		overflow: hidden;
-		padding:5px;
-	}
-	 .eventsTable td{
-	 	color : #6e6cb8;
-	 	padding: 3px 0 3px 0;
-	 	height: 52px;
-	 	overflow: hidden;
-	 }
-	 
-	 .eventsTable a{
-	 	color : #6e6cb8;
-	 	text-decoration: none;
-	 }
-	 
-	.eventsTable tr:nth-child(odd) {background: #CCC;}
- 	.eventsTable tr:nth-child(even) {background: #FFF;}
- 	
-	 #table_container td{
-	 	vertical-align: top;
-	 }
-	 
-	 .arrow-right {
-		width: 0; 
-		height: 0; 
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent;
-		
-		border-left: 10px solid #e6e6e6;
-	}
-	
-	.arrow-left {
-		float: left;
-		margin: 2px 0 0 -20px;
-		width: 0; 
-		height: 0; 
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent; 
-		
-		border-right:10px solid #e6e6e6; 
-	}
-	
-	.pastEvents{ }
-	
-	.pastEvents table{
-		border-spacing: 0px;
-	}
-	
-	.pastEvents td {
-		padding: 5px 0 5px 5px;
-		color : #7b7b7b;
-	 	font-size : 12px;
-	}
-	.pastEvents .title{
-		font-weight: bold;
-		color: #343434;
-	}
-	.pastEvents .more{
-		color: #6e6cb8;
+    div.eventDescription {
+        text-overflow: ellipsis;
+        width: 350px;
+        white-space: nowrap;
+        overflow: hidden;
+        padding:5px;
+    }
+     .eventsTable td{
+        color : #6e6cb8;
+        padding: 3px 0 3px 0;
+        height: 52px;
+        overflow: hidden;
+     }
+     
+     .eventsTable a{
+        color : #6e6cb8;
+        text-decoration: none;
+     }
+     
+    .eventsTable tr:nth-child(odd) {background: #CCC;}
+    .eventsTable tr:nth-child(even) {background: #FFF;}
+    
+     #table_container td{
+        vertical-align: top;
+     }
+     
+     .arrow-right {
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        
+        border-left: 10px solid #e6e6e6;
+    }
+    
+    .arrow-left {
+        float: left;
+        margin: 2px 0 0 -20px;
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
+        
+        border-right:10px solid #e6e6e6; 
+    }
+    
+    .pastEvents{ }
+    
+    .pastEvents table{
+        border-spacing: 0px;
+    }
+    
+    .pastEvents td {
+        padding: 5px 0 5px 5px;
+        color : #7b7b7b;
+        font-size : 12px;
+    }
+    .pastEvents .title{
+        font-weight: bold;
+        color: #343434;
+    }
+    .pastEvents .more{
+        color: #6e6cb8;
 
-	}
-	.pastEvents tr:nth-child(odd) {background: #CCC;}
- 	.pastEvents tr:nth-child(even) {background: #FFF;}
+    }
+    .pastEvents tr:nth-child(odd) {background: #CCC;}
+    .pastEvents tr:nth-child(even) {background: #FFF;}
 
- 	.theDesc{
- 		vertical-align: middle;
- 		position: relative;
- 		width: 100%;
- 		height: 100%;
-		/*height: 13px;*/
-		overflow: hidden;
-		/*width: 124%;*/
- 	}
+    .theDesc{
+        vertical-align: middle;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        /*height: 13px;*/
+        overflow: hidden;
+        /*width: 124%;*/
+    }
 </style>
-	<apex:form >
-		<apex:composition template="isll_TemplateMain">
-			<apex:define name="firstColumn">
-				<div style="width: 94%; float: left; ">
-					<c:isll_CmsContentComponent cmsContentName="EventsLeftTitle" editable="true"/>
-					<c:isll_CmsContentComponent cmsContentName="EventsLeftDescription" editable="true"/><br/>
-					<c:isll_CmsContentComponent cmsContentName="Events_eventAd" editable="true" isEventRelated="true"/>
-					<c:isll_CmsContentComponent cmsContentName="EventsBelowAdDescription" editable="true"/><br/>
-				</div>
-				<div class = "bar"/>
-			
-			</apex:define>
-			<apex:define name="secondColumn">
+    <apex:form >
+        <apex:composition template="isll_TemplateMain">
+            <apex:define name="firstColumn">
+                <div style="width: 94%; float: left; ">
+                    <c:isll_CmsContentComponent cmsContentName="EventsLeftTitle" editable="true"/>
+                    <c:isll_CmsContentComponent cmsContentName="EventsLeftDescription" editable="true"/><br/>
+                    <c:isll_CmsContentComponent cmsContentName="Events_eventAd" editable="true" isEventRelated="true"/>
+                    <c:isll_CmsContentComponent cmsContentName="EventsBelowAdDescription" editable="true"/><br/>
+                </div>
+                <div class = "bar"/>
+            
+            </apex:define>
+            <apex:define name="secondColumn">
 
-				<div style="width: 100%; float: right; ">
-					<apex:outputText rendered="{!liveEvents.size > 0}">
-						<c:isll_CmsContentComponent cmsContentName="EventsRightTitle" editable="true"/>
-						<c:isll_CmsContentComponent cmsContentName="EventsRightDescription" editable="true"/><br/><br/>
-					</apex:outputText>
+                <div style="width: 100%; float: right; ">
+                    <apex:outputText rendered="{!liveEvents.size > 0}">
+                        <c:isll_CmsContentComponent cmsContentName="EventsRightTitle" editable="true"/>
+                        <c:isll_CmsContentComponent cmsContentName="EventsRightDescription" editable="true"/><br/><br/>
+                    </apex:outputText>
 
-					<apex:outputpanel id="liveEventsPanel" rendered="{!liveEvents.size > 0}">
-						<!-- LIVE EVENTS - START -->
-						<table style="border-collapse:collapse; border-width:0px;"><tbody>
-							<apex:repeat value="{!liveEvents}" var="e">
-								<tr>
-									<td style="width:45px; min-height:45px; vertical-align:middle;">
-										<apex:panelGroup layout="block" rendered="{!e.Attachments.size > 0}">
-											<apex:repeat value="{!e.Attachments}" var="logoAtt">
-												<img src="/servlet/servlet.FileDownload?file={!logoAtt.Id}" style="width:45px; max-height:45px;" />
-											</apex:repeat>
-										</apex:panelGroup>
-									</td>
-									<td style="width:15px; vertical-align:middle;">															
-										<apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px" rendered="{!e.Is_Big_Six__c}" />
-									</td>
-									<td style="text-align:left; vertical-align:middle; color:#767676;">
-										<apex:panelGroup layout="block" rendered="{!e.Locked__c == false}">
-											<a href="/apex/isll_EventsDetail?id={!e.Id}">
-												{!UPPER(e.Name)}
-											</a>
-										</apex:panelGroup>
-										<apex:panelGroup layout="block" rendered="{!e.Locked__c == true}">
-											{!UPPER(e.Name)}
-										</apex:panelGroup>&nbsp;
-										<apex:outputText value="{0, date, EEEE dd MMMM HH:mm}">
-											<apex:param value="{!e.Start_Date_Time__c}" />
-										</apex:outputText>
-										<br/>
-										<div class="eventDescription" style="color:#767676;">
-											{!e.Event_Description__c}
-										</div>
-									</td>
-								</tr>
-							</apex:repeat>
-						</tbody></table>
-						<!-- LIVE EVENTS - END -->
-					</apex:outputpanel>
-					<br/>
-					<c:isll_CmsContentComponent cmsContentName="UpcomingEventsTitle" editable="true"/>
-					<apex:outputpanel id="calendarPanel">
+                    <apex:outputpanel id="liveEventsPanel" rendered="{!liveEvents.size > 0}">
+                        <!-- LIVE EVENTS - START -->
+                        <table style="border-collapse:collapse; border-width:0px;"><tbody>
+                            <apex:repeat value="{!liveEvents}" var="e">
+                                <tr>
+                                    <td style="width:45px; min-height:45px; vertical-align:middle;">
+                                        <apex:panelGroup layout="block" rendered="{!e.Attachments.size > 0}">
+                                            <apex:repeat value="{!e.Attachments}" var="logoAtt">
+                                                <img src="/servlet/servlet.FileDownload?file={!logoAtt.Id}" alt="Events file logo" style="width:45px; max-height:45px;" />
+                                            </apex:repeat>
+                                        </apex:panelGroup>
+                                    </td>
+                                    <td style="width:15px; vertical-align:middle;">                                                         
+                                        <apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px" rendered="{!e.Is_Big_Six__c}" />
+                                    </td>
+                                    <td style="text-align:left; vertical-align:middle; color:#767676;">
+                                        <apex:panelGroup layout="block" rendered="{!e.Locked__c == false}">
+                                            <a href="/apex/isll_EventsDetail?id={!e.Id}">
+                                                {!UPPER(e.Name)}
+                                            </a>
+                                        </apex:panelGroup>
+                                        <apex:panelGroup layout="block" rendered="{!e.Locked__c == true}">
+                                            {!UPPER(e.Name)}
+                                        </apex:panelGroup>&nbsp;
+                                        <apex:outputText value="{0, date, EEEE dd MMMM HH:mm}">
+                                            <apex:param value="{!e.Start_Date_Time__c}" />
+                                        </apex:outputText>
+                                        <br/>
+                                        <div class="eventDescription" style="color:#767676;">
+                                            {!e.Event_Description__c}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                        </tbody></table>
+                        <!-- LIVE EVENTS - END -->
+                    </apex:outputpanel>
+                    <br/>
+                    <c:isll_CmsContentComponent cmsContentName="UpcomingEventsTitle" editable="true"/>
+                    <apex:outputpanel id="calendarPanel">
 
-						<apex:actionfunction action="{!prewMonth}" rerender="calendarPanel" name="prewMonth">
-							<apex:param value="{!currentMonth}" name="month"/>
-							<apex:param value="{!currentYear}" name="year"/>
-						</apex:actionfunction>
-						<apex:actionfunction action="{!nextMonth}" rerender="calendarPanel" name="nextMonth">
-							<apex:param value="{!currentMonth}" name="month"/>
-							<apex:param value="{!currentYear}" name="year"/>
-						</apex:actionfunction>
-						
-						<!-- CALENDAR - START -->
-						<table style="border-collapse:collapse; border-width:0px;"><tbody>
-								<apex:repeat value="{!months}" var="month">
-									<tr>
-										<td>
-											<span style="font-size:16px; font-weight:bold; color:#767676; font-family:din;">
-												{!month}
-											</span>	
-										</td>
-									</tr>
-									<apex:repeat value="{!calendar[month]}" var="event">
-										<tr>
-											<td>
-												<table style="border-collapse:collapse; border-width:0px;"><tbody>
-													<tr>
-														<td style="width:45px; min-height:45px; vertical-align:middle;">
-															<apex:panelGroup layout="block" rendered="{!event.Attachments.size > 0}">
-																<apex:repeat value="{!event.Attachments}" var="logoAtt">
-																	<img src="/servlet/servlet.FileDownload?file={!logoAtt.Id}" style="width:45px; max-height:45px;" />
-																</apex:repeat>
-															</apex:panelGroup>
-														</td>
-														<td style="width:15px; vertical-align:middle;">															
-															<apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px" rendered="{!event.Is_Big_Six__c}" />
-														</td>
-														<td style="text-align:left; vertical-align:middle; color:#767676;">
-															<apex:panelGroup layout="block" rendered="{!event.Locked__c == false}">
-																<a href="/apex/isll_EventsDetail?id={!event.Id}">
-																	{!UPPER(event.Name)}
-																</a>
-															</apex:panelGroup>
-															<apex:panelGroup layout="block" rendered="{!event.Locked__c == true}">
-																{!UPPER(event.Name)}
-															</apex:panelGroup>&nbsp;
-															<apex:outputText value="{0, date, EEEE dd MMMM HH:mm}">
-																<apex:param value="{!event.Start_Date_Time__c}" />
-															</apex:outputText>
-															<br/>
-															<div class="eventDescription" style="color:#767676;">
-																{!event.Event_Description__c}
-															</div>
-														</td>
-													</tr>
-												</tbody></table>
-											</td>
-										</tr>
-									</apex:repeat>
-								</apex:repeat>
-						</tbody></table>
-						<!-- CALENDAR - END -->
+                        <apex:actionfunction action="{!prewMonth}" rerender="calendarPanel" name="prewMonth">
+                            <apex:param value="{!currentMonth}" name="month"/>
+                            <apex:param value="{!currentYear}" name="year"/>
+                        </apex:actionfunction>
+                        <apex:actionfunction action="{!nextMonth}" rerender="calendarPanel" name="nextMonth">
+                            <apex:param value="{!currentMonth}" name="month"/>
+                            <apex:param value="{!currentYear}" name="year"/>
+                        </apex:actionfunction>
+                        
+                        <!-- CALENDAR - START -->
+                        <table style="border-collapse:collapse; border-width:0px;"><tbody>
+                                <apex:repeat value="{!months}" var="month">
+                                    <tr>
+                                        <td>
+                                            <span style="font-size:16px; font-weight:bold; color:#767676; font-family:din;">
+                                                {!month}
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <apex:repeat value="{!calendar[month]}" var="event">
+                                        <tr>
+                                            <td>
+                                                <table style="border-collapse:collapse; border-width:0px;"><tbody>
+                                                    <tr>
+                                                        <td style="width:45px; min-height:45px; vertical-align:middle;">
+                                                            <apex:panelGroup layout="block" rendered="{!event.Attachments.size > 0}">
+                                                                <apex:repeat value="{!event.Attachments}" var="logoAtt">
+                                                                    <img src="/servlet/servlet.FileDownload?file={!logoAtt.Id}" alt="Event Attachments logo" style="width:45px; max-height:45px;" />
+                                                                </apex:repeat>
+                                                            </apex:panelGroup>
+                                                        </td>
+                                                        <td style="width:15px; vertical-align:middle;">                                                         
+                                                            <apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px" rendered="{!event.Is_Big_Six__c}" />
+                                                        </td>
+                                                        <td style="text-align:left; vertical-align:middle; color:#767676;">
+                                                            <apex:panelGroup layout="block" rendered="{!event.Locked__c == false}">
+                                                                <a href="/apex/isll_EventsDetail?id={!event.Id}">
+                                                                    {!UPPER(event.Name)}
+                                                                </a>
+                                                            </apex:panelGroup>
+                                                            <apex:panelGroup layout="block" rendered="{!event.Locked__c == true}">
+                                                                {!UPPER(event.Name)}
+                                                            </apex:panelGroup>&nbsp;
+                                                            <apex:outputText value="{0, date, EEEE dd MMMM HH:mm}">
+                                                                <apex:param value="{!event.Start_Date_Time__c}" />
+                                                            </apex:outputText>
+                                                            <br/>
+                                                            <div class="eventDescription" style="color:#767676;">
+                                                                {!event.Event_Description__c}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </apex:repeat>
+                        </tbody></table>
+                        <!-- CALENDAR - END -->
 <!--
-							<apex:repeat value="{!months}" var="month">
-								{!month} <br/>
-								
-								<apex:repeat value="{!calendar[month]}" var="event">
-								{!event.name} - 
-								<apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
-							       <apex:param value="{!event.Start_Date_Time__c}" />
-							   </apex:outputText>	
+                            <apex:repeat value="{!months}" var="month">
+                                {!month} <br/>
+                                
+                                <apex:repeat value="{!calendar[month]}" var="event">
+                                {!event.name} - 
+                                <apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
+                                   <apex:param value="{!event.Start_Date_Time__c}" />
+                               </apex:outputText>   
 
-							   <apex:outputpanel rendered="{!event.Is_Big_Six__c}">
-									<apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px"/>
-								</apex:outputpanel>
+                               <apex:outputpanel rendered="{!event.Is_Big_Six__c}">
+                                    <apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px"/>
+                                </apex:outputpanel>
 
-								{!event.Status__c} <br/>
-								</apex:repeat>
-							
-							</apex:repeat>
+                                {!event.Status__c} <br/>
+                                </apex:repeat>
+                            
+                            </apex:repeat>
 -->
 
-							
+                            
 
-				<!--		
-							<apex:outputpanel >
-									<div class="arrow-left" onclick="prewMonth();"></div>
-								</apex:outputpanel>
-							<table class="calendarTbl" width="100%" cellpadding="0" cellspacing="0">
-									<thead>
-								  		<apex:repeat value="{!selectedMonths}" var="month">
-								  			<th class="monthTitle" width="33%">{!month}</th>
-								  		</apex:repeat>
-								  		<th width="0px"><div class="arrow-right" onclick="nextMonth();"></div></th>
-							  		</thead>
-							  </table>
-							<div id="table_container">
-								
-								<table class="calendarTbl" width="407px" cellpadding="0" cellspacing="0">
-							  		<tbody>
-							  		<tr>
-								  		<apex:repeat value="{!selectedMonths}" var="month">
-								  			<td width="33%">
-								  				<table class="eventsTable" width="100%" cellpadding="5" cellspacing="0">
-									  				<apex:repeat value="{!calendar[month]}" var="event">
-														<tr><td>
-															<apex:outputpanel rendered="{!event.Id != null}">
-																<apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
-															       <apex:param value="{!event.Start_Date_Time__c}" />
-															   </apex:outputText>		
-																		<br/>
-																<apex:outputpanel rendered="{!event.Is_Big_Six__c}">
-																	<apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px"/>
-																</apex:outputpanel>
-																<apex:outputpanel rendered="{!!event.locked__c}">
-																	<a href="isll_EventsDetail?id={!event.Id}">{!event.Name}</a>
-																</apex:outputpanel>
-																<apex:outputpanel rendered="{!event.locked__c}">
-																	{!event.Name}
-																</apex:outputpanel>
-																<br/>Status: {!event.Status__c}
-															</apex:outputpanel>		
-														</td></tr>		
-													</apex:repeat>
-												</table>
-								  			</td>
-								  		</apex:repeat>
-								  	</tr>
-								  	</tbody>
-							 	</table>
-							 </div>-->
-					</apex:outputpanel>
-				</div>
-			</apex:define>
-			
-			<apex:define name="footerContent"> 
+                <!--        
+                            <apex:outputpanel >
+                                    <div class="arrow-left" onclick="prewMonth();"></div>
+                                </apex:outputpanel>
+                            <table class="calendarTbl" width="100%" cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <apex:repeat value="{!selectedMonths}" var="month">
+                                            <th class="monthTitle" width="33%">{!month}</th>
+                                        </apex:repeat>
+                                        <th width="0px"><div class="arrow-right" onclick="nextMonth();"></div></th>
+                                    </thead>
+                              </table>
+                            <div id="table_container">
+                                
+                                <table class="calendarTbl" width="407px" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <apex:repeat value="{!selectedMonths}" var="month">
+                                            <td width="33%">
+                                                <table class="eventsTable" width="100%" cellpadding="5" cellspacing="0">
+                                                    <apex:repeat value="{!calendar[month]}" var="event">
+                                                        <tr><td>
+                                                            <apex:outputpanel rendered="{!event.Id != null}">
+                                                                <apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
+                                                                   <apex:param value="{!event.Start_Date_Time__c}" />
+                                                               </apex:outputText>       
+                                                                        <br/>
+                                                                <apex:outputpanel rendered="{!event.Is_Big_Six__c}">
+                                                                    <apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" width="15px"/>
+                                                                </apex:outputpanel>
+                                                                <apex:outputpanel rendered="{!!event.locked__c}">
+                                                                    <a href="isll_EventsDetail?id={!event.Id}">{!event.Name}</a>
+                                                                </apex:outputpanel>
+                                                                <apex:outputpanel rendered="{!event.locked__c}">
+                                                                    {!event.Name}
+                                                                </apex:outputpanel>
+                                                                <br/>Status: {!event.Status__c}
+                                                            </apex:outputpanel>     
+                                                        </td></tr>      
+                                                    </apex:repeat>
+                                                </table>
+                                            </td>
+                                        </apex:repeat>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                             </div>-->
+                    </apex:outputpanel>
+                </div>
+            </apex:define>
+            
+            <apex:define name="footerContent"> 
                 
                     <c:isll_CmsContentComponent cmsContentName="Past Events" editable="true"/>
-               	<div class="pastEvents">
-                	<table width="100%">
-	                	<apex:repeat value="{!pastEvents}" var="event">
-	                 		<tr>
-		                 		<td class="title" width="25%"><a href="isll_EventsDetail?id={!event.Id}">{!event.Name}</a></td>
-		                 		<td width="15%">
-		                 			<apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
-								       <apex:param value="{!event.Start_Date_Time__c}" />
-								   </apex:outputText>		
-								</td>
-								<td>
-									<div  class ="theDesc">
-										<apex:outputText value="{!LEFT(event.Event_Description__c,80)} {!IF(LEN(event.Event_Description__c)>80,'...','')}" escape="false"/>
-									</div>
-								</td>
-								<td class="more" width="15%">
-									<apex:outputPanel rendered="{!IF(null != event.Event_Summary_Document_Link__c && event.Event_Summary_Document_Link__c != '' ,true, false)}">
-										<a class="more" href="{!event.Event_Summary_Document_Link__c}">Summary of Event</a>
-									</apex:outputPanel>
-								</td>
-		                 	</tr>
-		                 </apex:repeat>
-	                 </table><br/>
-	                 <a class="more" href="isll_PastEvents">View all</a>
-           		</div>
+                <div class="pastEvents">
+                    <table width="100%">
+                        <apex:repeat value="{!pastEvents}" var="event">
+                            <tr>
+                                <td class="title" width="25%"><a href="isll_EventsDetail?id={!event.Id}">{!event.Name}</a></td>
+                                <td width="15%">
+                                    <apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
+                                       <apex:param value="{!event.Start_Date_Time__c}" />
+                                   </apex:outputText>       
+                                </td>
+                                <td>
+                                    <div  class ="theDesc">
+                                        <apex:outputText value="{!LEFT(event.Event_Description__c,80)} {!IF(LEN(event.Event_Description__c)>80,'...','')}" escape="false"/>
+                                    </div>
+                                </td>
+                                <td class="more" width="15%">
+                                    <apex:outputPanel rendered="{!IF(null != event.Event_Summary_Document_Link__c && event.Event_Summary_Document_Link__c != '' ,true, false)}">
+                                        <a class="more" href="{!event.Event_Summary_Document_Link__c}">Summary of Event</a>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                         </apex:repeat>
+                     </table><br/>
+                     <a class="more" href="isll_PastEvents">View all</a>
+                </div>
             </apex:define>
 
-					
-		</apex:composition>
-	</apex:form>
+                    
+        </apex:composition>
+    </apex:form>
 </apex:page>

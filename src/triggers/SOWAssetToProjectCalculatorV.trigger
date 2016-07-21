@@ -16,7 +16,7 @@
     Update History
     --------------    
 */
-trigger SOWAssetToProjectCalculatorV on Oblix_Project_Assets__c (after insert, after update, after delete, before insert, before update) {
+trigger SOWAssetToProjectCalculatorV on Oblix_Project_Assets__c (after insert, after update, after delete) {
     //Fire the trigger on After insert to calculate Project Score Asset
     TriggerFactory.createHandler(Oblix_Project_Assets__c.sObjectType);
     

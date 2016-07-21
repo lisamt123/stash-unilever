@@ -38,7 +38,6 @@
               <apex:outputpanel id="message">  
               <apex:pageMessages />  
               </apex:outputpanel>
-              <!-- check if the code is editable this value comes from Controller. -->
             <apex:outputPanel rendered="{!isEditable}">                   
             <table style="IPM_Table" class="ipmTable table">
               <tr>
@@ -50,15 +49,14 @@
                                 <apex:selectOptions value="{!CountryValue}"  id="CValue"></apex:selectOptions>                  
                            </apex:selectList>
                            <div Id = "DivButton" Style="display: none;">
-                              <apex:commandButton value="{!$Label.IPM_FinancialGrid_Submit}" action="{!submit}" id="SubBtn" styleclass="ipmButton green" disabled="{!flag}" reRender="C,outdata,CValue,message" onclick="skipValidation();" oncomplete="chdropdown('{!ListCountries}');"/> 
+                              <apex:commandButton value="{!$Label.IPM_FinancialGrid_Submit}" action="{!submit}" id="SubBtn" styleclass="ipmButton green" disabled="{!flag}" reRender="C,outdata,CValue,message" oncomplete="chdropdown('{!ListCountries}');"/> 
                            </div>    
-                            <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green" /> 
-                            <button onclick="clearAll();skipValidation();" id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
-                            
-                                <!-- render only if the flag is true this is for the appropriate message to be displayed on the page. -->
-                                <apex:outputPanel layout="block" styleClass="gridInfo" rendered="{!flag}">
-                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}"  />
-                            </apex:outputPanel>
+                            <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green"  /> 
+                            <button onclick="clearAll();"  id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
+                            <div class="gridInfo">
+                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}" rendered="{!flag}" />
+                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
+                            </div> 
                         </apex:outputpanel> 
                       </div> 
     <apex:outputpanel id="grid">
@@ -69,7 +67,6 @@
 
 <td class="TDwidth2">
       <apex:outputpanel id="outdata">
-          <!-- This the render condition for the side table that displays on copypaste page. -->
          <apex:dataTable value="{!submittedList}" rendered="{!showdata}" var="c" title="{!$Label.IPM_FinancialGrid_Tableheader}" Id="datatbl" headerClass="headerRenderer" >
               <apex:facet name="header" >{!$Label.IPM_FinancialGrid_Tableheader}</apex:facet>
                     <apex:column value="{!c}"/> 
@@ -80,7 +77,7 @@
 </table>
 </apex:outputPanel>   
 <script> 
-    var IPMAppFin = {BI: '{!BI}', projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}',projectType: '{!projectType}' ,Sustainability:'{!Sustainability}',IPM_CopyPastevolumevalid: '{!$Label.IPM_CopyPastevolumevalid}', FinancialGrid_MSG3:'{!$Label.IPM_FinancialGrid_MSG3}', FinancialGrid_MSG4:'{!$Label.IPM_FinancialGrid_MSG4}', IPM_AandP: '{!$Label.IPM_AandP}', IPM_AdvertisingCP: '{!$Label.IPM_AdvertisingCP}',IPM_ITOCalValidation:'{!$Label.IPM_ITOCalValidation}',IPM_GMCP:'{!$Label.IPM_GMCP}',IPM_GrossProfitCP:'{!$Label.IPM_GrossProfitCP}',IPM_ITOValidation: '{!$Label.IPM_ITOValidation}',IPM_PBOPCP: '{!$Label.IPM_PBOPCP}', IPM_PBOCP: '{!$Label.IPM_PBOCP}', IPM_TurnOverCP: '{!$Label.IPM_TurnOverCP}', GetFinancialYearRA:'{!$RemoteAction.IPM_FinancialCopyPasteGrid.GetFinancialYear}', span:'{!span}', UploadBusinessCase:'{!URLFOR($Page.IPM_UploadBusinessCase)}'};
+    var IPMAppFin = {BI: '{!BI}', projectId:'{!projectId}',projectType: '{!projectType}' ,Sustainability:'{!Sustainability}',IPM_CopyPastevolumevalid: '{!$Label.IPM_CopyPastevolumevalid}', FinancialGrid_MSG3:'{!$Label.IPM_FinancialGrid_MSG3}', FinancialGrid_MSG4:'{!$Label.IPM_FinancialGrid_MSG4}', IPM_AandP: '{!$Label.IPM_AandP}', IPM_AdvertisingCP: '{!$Label.IPM_AdvertisingCP}',IPM_ITOCalValidation:'{!$Label.IPM_ITOCalValidation}',IPM_GMCP:'{!$Label.IPM_GMCP}',IPM_GrossProfitCP:'{!$Label.IPM_GrossProfitCP}',IPM_ITOValidation: '{!$Label.IPM_ITOValidation}',IPM_PBOPCP: '{!$Label.IPM_PBOPCP}', IPM_PBOCP: '{!$Label.IPM_PBOCP}', IPM_TurnOverCP: '{!$Label.IPM_TurnOverCP}', GetFinancialYearRA:'{!$RemoteAction.IPM_FinancialCopyPasteGrid.GetFinancialYear}', span:'{!span}', UploadBusinessCase:'{!URLFOR($Page.IPM_UploadBusinessCase)}'};
 </script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}"></script> 
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/handsontable.full.min.js')}"></script>

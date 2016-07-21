@@ -11,55 +11,96 @@ History
 -------                                                            
 VERSION    AUTHOR            DATE            DETAIL                   
 1.0      Sreya           Jan-2016      INITIAL DEVELOPMENT   
-1.1      Sathish         Mar-2016      Code Refactoring 
+
 ***********************************************************************/
 
 @isTest(SeeAllData = False)
 public class CEC_IRIProductLocatorControllerTest{
-   
-       @testSetup static void setUpTestData() {
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
-        System.runAs(u) {
-            List<mdm_Product_Category__c> prodCategoryList = 
-                                                CEC_TestDataFactory.createProductCategory(1);
-            insert prodCategoryList;
-
-            mdm_Case_Product__c caseprod = new mdm_Case_Product__c(name='Test Case Product', 
-                                            Global_CPG_Code__c = prodCategoryList.get(0).Id, ISO_Country_Code__c = 'US', 
-                                            brand__c= 'Dove',GTIN_EAN_UPC_Code__c = 'Test Code', Active_for_CEC__c = True);
-            insert caseprod;
-
-            List<Account> accountList = CEC_TestDataFactory.createTestAccounts(1, 'TestAccount', null, null, '560023',
-                                                'Mumbai', null, null);
-            insert accountList;
-
-            List<Case> caseList = CEC_TestDataFactory.createTestCases(1, 'New', 'Email', null, null,
-                                                caseprod.Id, null, accountList.get(0).Id, null, false);
-            insert caseList;
+    
+    /* method to create test user*/
+    public static User insertUser() {
+        Profile p = [SELECT Id FROM Profile WHERE Name='Unilever - Salesforce MultiApp Standard'];
+        User u = new User(LastName = 'Testing', 
+                          Username = 'cectestuser@test00DE0000000bbLj.org', 
+                          Email = 'cectestuser@test00DE0000000bbLj.org', 
+                          Alias = 'utest', 
+                          TimeZoneSidKey = 'Europe/London', 
+                          LocaleSidKey = 'en_GB', 
+                          EmailEncodingKey = 'UTF-8', 
+                          ProfileId = p.Id, 
+                          LanguageLocaleKey = 'en_US',
+                          UserPermissionsKnowledgeUser = true);  
+        
+        insert u;
+        
+        List<PermissionSet> pslist = [SELECT Id FROM PermissionSet WHERE Name IN ('CEC_User','CEC_Manager','CEC_CRUD','CEC_Business_Admin','CEC_Knowledge_Manager','CEC_Automated_User')];
+        List<PermissionSetAssignment> psalist = new List<PermissionSetAssignment>();
+        for(PermissionSet ps:pslist)
+        {
+            PermissionSetAssignment psa = new PermissionSetAssignment();
+            psa.AssigneeId = u.Id;
+            psa.PermissionSetId = ps.Id;
+            
+            psalist.add(psa);
+            
         }
+        
+        insert psalist;
+        
+        Group GR = [SELECT Id,name FROM Group WHERE Name = 'CEC - Knowledge Manager'];
+        GroupMember GM = new GroupMember();
+        GM.GroupId = GR.id;
+        GM.UserOrGroupId = u.Id;
+        insert GM;
+        
+        return u;
     }
-
+    
     /**
-        Test method for  fetchRecords method
-    **/  
+Test method for  fetchRecords method
+**/  
     public static testMethod void test_fetchrecords(){
         
-        User u = CEC_TestDataFactory.getStandardCECTestUser();
+        User u = insertUser();
         System.runAs(u){
-            Case caseRec = [Select Id, CEC_Product__c, Product_UPC__c, Account.PersonMailingPostalCode 
-                                    FROM Case LIMIT 1];
-            Account account = [SELECT Id, PersonMailingPostalCode, PersonMailingCity, PersonMailingCountry FROM Account Limit  1];
-            System.debug('Case = ' + caseRec);
-            System.debug('account = ' + account);
-            System.debug('PersonMailingPostalCode = ' + caseRec.Account.PersonMailingPostalCode);
+            /***** CREATING TEST DATA *****/
+            
+            //Create Account
+            
+            Account accountObj = new Account();
+            accountObj.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
+            accountObj.PersonMailingCity = 'Mumbai';
+            accountObj.PersonMailingPostalCode = '560023';
+            accountObj.LastName = 'TestAccount';        
+            insert accountObj;
+            
+            //Create Product Category
+            
+            mdm_Product_Category__c categoryObj = new mdm_Product_Category__c(name='Test Category', Corp_Prod_Grouping_Name__c='Group1', L2_Product_Category__c = 'L2 Category', L7_Product_Category__c = 'Test Category');
+            insert categoryObj;
+            
+            //Create Case Product
+            
+            mdm_Case_Product__c caseprod = new mdm_Case_Product__c(name='Test Case Product', Global_CPG_Code__c = categoryObj.Id, ISO_Country_Code__c = 'GB', brand__c= 'Dove',GTIN_EAN_UPC_Code__c = 'Test Code', Active_for_CEC__c = True);
+            insert caseprod;
+            
+            //Create Case
+            
+            Case caseObj = new Case();
+            caseObj .Status = 'New';
+            caseObj .Origin = 'Email';
+            caseObj.AccountID =  accountObj.id;
+            caseObj.CEC_Product__c = caseprod.id;
+            insert caseObj;
+            
+            case caseRec = [Select Id, CEC_Product__c, Product_UPC__c, Account.PersonMailingPostalCode FROM case WHERE id =:caseObj.Id];
+            
             Test.setCurrentPage(Page.CEC_IRIProductLocator);
             ApexPages.currentPage().getParameters().put('Id', caseRec.id);
             
             Test.startTest();
            
             CEC_IRIProductLocatorController ControllerObj = new CEC_IRIProductLocatorController();
-
-            System.debug('ControllerObj = ' + ControllerObj);
             
             System.assertEquals(ControllerObj.postCode , '560023');
             
@@ -81,7 +122,7 @@ public class CEC_IRIProductLocatorControllerTest{
             
             for(CEC_IRIWrapper.STORE storeToCase : storeDetails){
             
-                storeToCase.ISSELECTED = true;
+            storeToCase.ISSELECTED = true;
             
             }
        

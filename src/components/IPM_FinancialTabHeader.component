@@ -13,21 +13,18 @@
     	
         <div class="staticLabel2">{!$Label.IPM_FIN_Tab} &nbsp;
             <!-- Global Values -->
-            <!-- Renders only for Global projects -->
             <apex:outputPanel rendered="{!IF(fieldSuffix==$Label.IPM_GLOBAL,TRUE,FALSE)}">
                 <apex:outputText value="{!IF(ipmFinancial.Last_Saved_By_Global__r.Name!='',ipmFinancial.Last_Saved_By_Global__r.Name,'NA')}"/> &nbsp;
                 <apex:outputText rendered="{ipmFinancial.Last_Saved_By_Global__r.Name!=''}" value="{!ipmFinancial.Last_Saved_Global__c}"/>
             </apex:outputPanel>
 
             <!-- Regional Values -->  
-            <!-- Renders only for Regional projects -->
             <apex:outputPanel rendered="{!IF(fieldSuffix==$Label.IPM_Regional,TRUE,FALSE)}">
                 <apex:outputText value="{!IF(ipmFinancial.Last_Saved_By_Regional__r.Name!='',ipmFinancial.Last_Saved_By_Regional__r.Name,'NA')}"/> &nbsp;
                 <apex:outputText rendered="{ipmFinancial.Last_Saved_By_Regional__r.Name!=''}" value="{!ipmFinancial.Last_Saved_Regional__c}"/>
             </apex:outputPanel>
 
             <!-- Local Values -->
-            <!-- Renders only for Local projects -->
             <apex:outputPanel rendered="{!IF(fieldSuffix==$Label.IPM_Project_Span_Local,TRUE,FALSE)}">
                 <apex:outputText value="{!IF(ipmFinancial.Last_Saved_By_Local__r.Name!='',ipmFinancial.Last_Saved_By_Local__r.Name,'NA')}"/> &nbsp;
                 <apex:outputText rendered="{ipmFinancial.Last_Saved_By_Local__r.Name!=''}" value="{!ipmFinancial.Last_Saved_Local__c}"/>

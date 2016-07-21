@@ -14,14 +14,14 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditMilestone.css')}"/> 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/> 
     
-    <div class="">
-        <div class="" id="newMstone"> 
-            <div class="EditTask" id="EditTask">
+    <div class="container-fluid">
+        <div class="row" id="EditTask">
             <apex:form id="form"> 
                 <apex:pageMessages id="messages"/> 
-                    <apex:outputPanel styleClass="tableContainer" layout="block">
-                        <div class="col-xs-12 marginTop">
-                            <div class=""><apex:outputLabel value="{!$Label.IPM_MILESTONE}" styleClass="fieldLabel fieldFont" /></div>
+                <div class="row inlineEdit">
+                    <div class="firstBox">
+                    </div>
+                    <div class="col-xs-3 wid32P">                            
                         <div class="inputField">                            
                             <apex:outputPanel rendered="{!!editMsNameFlag}">
                                 <apex:outputField id="mName" value="{!milestoneObj.IPM_Name__c}"  styleClass="fieldFont" />
@@ -34,68 +34,68 @@
                         document.getElementById('{!$Component.mName}').disabled = {!if(milestoneObj.IPM_Type_of_Milestone__c == 'Standard',true,false)};
                         </script> 
                     </div>
-                        <apex:outputPanel layout="block" styleClass="col-xs-12"> 
-                            <div class="">                           
-                                <div class=""><apex:outputLabel value="{!$Label.IPM_PhaseLabel}" styleClass="fieldLabel fieldFont"/></div>                           
+                    
+                    <div class="col-xs-2">                           
                         <div class="inputField">
                             <apex:outputPanel rendered="{!!editPhaseFlag}">
-                                            <apex:outputField id="mPhase" value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont"/>
+                                <apex:outputField id="mPhase" value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont mPhaseEdit"/>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!editPhaseFlag}">
-                                            <apex:inputField value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont fieldFont"/>
+                                <apex:inputField value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont mPhaseEdit"/>
                             </apex:outputPanel>
                         </div>
                         <script>
                         document.getElementById('{!$Component.mPhase}').disabled = {!if(milestoneObj.IPM_Type_of_Milestone__c == 'Standard',true,false)};
                         </script>
                     </div>
-                        </apex:outputPanel>
-                        <apex:outputPanel layout="block" styleClass="col-xs-12">
-                            <div class="">
-                                <div class=""><apex:outputLabel value="{!$Label.IPM_DUE_DATE}" styleClass="fieldLabel fieldFont"/></div>                          
+                    <div class="col-xs-2 dateDropDown">                          
                         <div class="inputField">
-                                        <apex:inputField value="{!milestoneObj.IPM_Due_Date__c}" id="DateP" styleClass="dateInputBox calendar" />                                   
-                                        <script>
-                                            document.getElementById('{!$Component.DateP}').disabled = {!if(AND(milestoneObj.IPM_Type_of_Milestone__c == 'Standard',IsDateEdit='false'),'true','false')};
+                            <apex:inputField value="{!milestoneObj.IPM_Due_Date__c}" id="DateP" styleClass="dateInputBox calendar" >                                   
+                            </apex:inputField>
+                            <script>document.getElementById('{!$Component.DateP}').disabled = {!if(AND(milestoneObj.IPM_Type_of_Milestone__c == 'Standard',IsDateEdit='false'),'true','false')};
                             </script>                      
                         </div>
                     </div>
-                        </apex:outputPanel>
-                        <apex:outputPanel layout="block" styleClass="col-xs-12"> 
                     <apex:outputPanel rendered="{!complDateFlag}">
-                                <div class=""> 
-                                    <div class=""><apex:outputLabel value="{!$Label.IPM_Completed_On}" styleClass="fieldLabel fieldFont"/></div>                            
+                        <div class="col-xs-1 dateDropDown">                            
                             <div class="inputField">
                                 <apex:inputField value="{!milestoneObj.IPM_Completed_On__c}" styleClass="dateInputBox calendar" id="Completeon" />                             
                             </div> 
                         </div>
                     </apex:outputPanel>
-                        </apex:outputPanel>
-                        <apex:outputPanel layout="block" styleClass="col-xs-12">            
-                            <div class="buttonMarginRight marginTop ipmButtonGroup pull-right">   
+
+                    <div class="buttonMarginRight ipmButtonGroup pull-right">   
+                        <div class="pull-right">    
                                                        
-								<span class="ipmButton buttonMarginRight" onClick="pageclose();">{!$Label.IPM_CANCEL}</span>
-                                <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green buttonMarginRight" action="{!saveMilestones}" reRender="form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
-                                <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green buttonMarginRight" action="{!promptForTaskUpdate}" reRender="form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
+                            <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton buttonMarginRight" immediate="true" onClick="pageclose();"/>
+                            <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!saveMilestones}" reRender="form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
+                            <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!promptForTaskUpdate}" reRender="form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
                         </div>
-                        </apex:outputPanel>
+                    </div>
+                </div> 
+            </apex:form>
             
-                        <apex:outputPanel layout="block" styleClass="col-xs-12"> 
+            <apex:form >
                 <apex:outputPanel id="displaymessage">
                     <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
                     <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
                         <div class="buttonMarginRight popupContent ipmButtonGroup noPadding">
                             <span class="buttonMarginRight">{!$Label.IPM_DO_WE_NEED_TO_UPDATE_TASKS}</span>
-                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_NO}" styleClass="ipmButton grey buttonMarginRight" action="{!saveMilestones}" rerender="displaymessage" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
-                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_YES}" styleClass="ipmButton green" action="{!saveMilestoneAndTasks}" rerender="displaymessage" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
+                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_NO}" styleClass="ipmButton grey buttonMarginRight" action="{!saveMilestones}" rerender="displaymessage" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
+                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_YES}" styleClass="ipmButton green" action="{!saveMilestoneAndTasks}" rerender="displaymessage" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
                         </div>
                         <div class="ipmButtonGroup pull-center"></div>
                     </apex:outputPanel>
                 </apex:outputPanel>
+                <apex:outputPanel id="popup">
+                    <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
+                    <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                        <div class="popupContent">{!$Label.IPM_DO_YOU_WANT_TO_CRT_PRO_RESOURCE}
+                        </div>
+                        <div class="ipmButtonGroup pull-center"></div>
                     </apex:outputPanel>
                 </apex:outputPanel>
             </apex:form>
-                    </div>
         </div>
     </div>      
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>
@@ -103,7 +103,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap-datepicker.js')}" type="text/javascript"></script>                    
     <apex:outputPanel id="scriptToRender">
         <script type="text/javascript">
-        var IPMApp = {projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}', TasklistPageRef:'{!$Label.IPM_TasklistPageRef}'};
+        var IPMApp = {projectId:'{!projectId}', TasklistPageRef:'{!$Label.IPM_TasklistPageRef}'};
         </script>
     </apex:outputPanel>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_EditMilestone.js')}" type="text/javascript"></script>

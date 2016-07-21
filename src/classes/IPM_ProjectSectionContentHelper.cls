@@ -837,8 +837,8 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
     * NPATHComplexity: This function is used for copying Customer Channel across all gate documnet for Charter/Contract and Market Ready documents. 
-                       Customer Channel created at the Previous gate should be copied over the the Next gate document. The below fucntion enbles the copy of the
-                       Project Document Section Content record related to customer channel from Previous gate document to the current gate document
+    				   Customer Channel created at the Previous gate should be copied over the the Next gate document. The below fucntion enbles the copy of the
+    				   Project Document Section Content record related to customer channel from Previous gate document to the current gate document
     *                 
     */
     ///Carrying the Customer Channel Section 
@@ -1194,7 +1194,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                             // If Refer from Parent is true, it means we need to only get records which are applicable for that child. In case it is false, it is a phase change.
                             IPM_Project_Document_Section_Content__c newSectionContent = new IPM_Project_Document_Section_Content__c();
                             newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
-                            newSectionContent.IPM_Section_Name__c=sectionContent.IPM_Section_Name__c;
                             newSectionContent.IPM_GM_Action_Standards_Charter__c = sectionContent.IPM_GM_Action_Standards_Charter__c;
                             newSectionContent.IPM_GM_Action_Standards_Charter_Cmts__c = sectionContent.IPM_GM_Action_Standards_Charter_Cmts__c;
                             newSectionContent.IPM_gTO_Action_Standard_Charter__c = sectionContent.IPM_gTO_Action_Standard_Charter__c;
@@ -1592,120 +1591,4 @@ public with sharing class IPM_ProjectSectionContentHelper
             insert insertedSectionContent;
         }           
     }
-    
-    /************************************************************************************************
-    * @description: Used for Creating Financial Action Standard on Global Project Creation for Charter Gate.
-    * @param1 projectDocToSectionMap : newly Created project Document To Section Map
-    * @param2 projectToDocumentMap : project to Project Document Map 
-    * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating Action Standards for Charter gate documnet which is a complex functionality.
-                       The table for the section Business Case vs Action Standard Section for Charter Document
-                       based on the current Financials of the Project. The Action Standad Field Values are Editable at Charter Only, the user has the ability to save these values. 
-                       Using this function the record for Financial Action Standard is created at IPM_Financial_Action_Standards__c object.
-                   
-    */
-    public static void createGlobalFinancialActionStandard(Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Map<Id,IPM_Project__c> projectMap)
-    {
-        List<IPM_Financial_Action_Standards__c> insertGlobalFinancialActionStandard = new List<IPM_Financial_Action_Standards__c>();//list of global financial action standard
-        
-        for(IPM_Project__c project : projectMap.values())
-        {
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-            {
-                IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
-     
-                if(associatedProjectType!=null)
-                {
-                    String projectGate = associatedProjectType.IPM_Gate_Document__c;
-                                  
-                    if(projectToDocumentMap.containsKey(project.Id) && projectToDocumentMap.get(project.Id)!=null)
-                    {
-                        Map<String,IPM_Project_Document__c> gateToDocMap = projectToDocumentMap.get(project.Id);
-                        if(gateToDocMap.containsKey(projectGate) && gateToDocMap.get(projectGate)!=null)
-                        {
-                            IPM_Project_Document__c associatedProjectDocument = gateToDocMap.get(projectGate);
-                            if(projectDocToSectionMap.containsKey(associatedProjectDocument.Id) && projectDocToSectionMap.get(associatedProjectDocument.Id)!=null && associatedProjectDocument.IPM_GateDocuments__c==IPM_ConstantUtils.CHARTER_GATE)
-                            {
-                               List<IPM_Project_Document_Section__c> associatedSectionsList = projectDocToSectionMap.get(associatedProjectDocument.Id);
-                               for(IPM_Project_Document_Section__c projectSection : associatedSectionsList)
-                               {
-                                   if(projectSection.IPM_Master_Section_External_Id__c==IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD)
-                                   {
-                                        if(!IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id))
-                                        {
-                                           IPM_Financial_Action_Standards__c finActionStandard = new IPM_Financial_Action_Standards__c();
-                                           finActionStandard.IPM_Project_Document_Section__c = projectSection.Id;
-                                           finActionStandard.IPM_Financial_Action_Standard_Name__c = IPM_ConstantUtils.IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS;
-                                           finActionStandard.IPM_GM_Action_Standards_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_gTO_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_Innov_Value_Share_Action_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_Inc_Value_Share_Action_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_IRR_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_iTo_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_NPV_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_Payback_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                                           finActionStandard.IPM_Project_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-                                           finActionStandard.IPM_Project__c = project.Id;
-                                           insertGlobalFinancialActionStandard.add(finActionStandard);
-                                        }
-                                   }
-                               }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        if(!insertGlobalFinancialActionStandard.isEmpty())
-        {
-            insert insertGlobalFinancialActionStandard; 
-        }
-    }
-    
-    /****************************************************************************************************************
-    * @description: Used for copying regional action standards to contract gate document financial action standards.
-    * @param1 proDocSecConList : newly Created project Document Section Content List
-    *****************************************************************************************************************/
-    @InvocableMethod
-    public static void copyRegionalFinancialActionStandards(List<IPM_Project_Document_Section_Content__c> proDocSecConList){
-        Set<Id> conIdSet=new Set<Id>();
-        for(IPM_Project_Document_Section_Content__c pdsc:proDocSecConList){
-            conIdSet.add(pdsc.Id);
-        }
-        Set<Id> parentProjectIdSet=new Set<Id>();
-        List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
-        List<IPM_Project_Document_Section_Content__c> updateProjDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
-        for(IPM_Project_Document_Section_Content__c sectionContent:[SELECT Id,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
-                                                                           IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.Market_Cluster__c,
-                                                                           IPM_Section_Name__c,IPM_GM_Action_Standards_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_IRR_Action_Standard_Charter__c,
-                                                                           IPM_gTO_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Rollout__c,
-                                                                           IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Rollout__r.Name FROM IPM_Project_Document_Section_Content__c
-                                                                    WHERE Id In:conIdSet]){
-            projDocSecConList.add(sectionContent);
-            parentProjectIdSet.add(sectionContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c);
-        }
-        for(IPM_Financial_Action_Standards__c finAction:[SELECT Id,IPM_Financial_Action_Standard_Name__c,IPM_GM_Action_Standards_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,
-                                                                IPM_IRR_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Project_Span__c,IPM_Project__c,IPM_Financial_Year_Y1_Gross__c,
-                                                                IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c FROM IPM_Financial_Action_Standards__c
-                                                         WHERE IPM_Project_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Project__c In:parentProjectIdSet]){
-            for(IPM_Project_Document_Section_Content__c content:projDocSecConList){
-                if(finAction.IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c==content.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Rollout__r.Name){
-                    content.IPM_Section_Name__c = finAction.IPM_Financial_Action_Standard_Name__c;
-                    content.IPM_GM_Action_Standards_Charter__c = finAction.IPM_GM_Action_Standards_Charter__c;
-                    content.IPM_gTO_Action_Standard_Charter__c = finAction.IPM_gTO_Action_Standard_Charter__c;
-                    content.IPM_Innov_Value_Share_Action_Charter__c = finAction.IPM_Innov_Value_Share_Action_Charter__c;
-                    content.IPM_Inc_Value_Share_Action_Charter__c = finAction.IPM_Inc_Value_Share_Action_Charter__c;
-                    content.IPM_IRR_Action_Standard_Charter__c = finAction.IPM_IRR_Action_Standard_Charter__c;
-                    content.IPM_iTo_Action_Standard_Charter__c = finAction.IPM_iTo_Action_Standard_Charter__c;
-                    content.IPM_NPV_Action_Standard_Charter__c = finAction.IPM_NPV_Action_Standard_Charter__c;
-                    content.IPM_Payback_Action_Standard_Charter__c = finAction.IPM_Payback_Action_Standard_Charter__c;
-                    updateProjDocSecConList.add(content);
-                }
-            }   
-        }
-        if(updateProjDocSecConList!=null && !updateProjDocSecConList.isEmpty()){
-            update updateProjDocSecConList;
-        }
-    }  
 }

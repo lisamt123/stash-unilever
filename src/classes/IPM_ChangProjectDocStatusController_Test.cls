@@ -5,7 +5,7 @@
 	Lots of valdations needs to be fullfilled hence there are many fields in this test class
 */
 @isTest
-private class  IPM_ChangProjectDocStatusController_Test { 
+public class  IPM_ChangProjectDocStatusController_Test {
     private static PageReference  pRef;
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();// Project Documetn List
@@ -17,8 +17,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
     private static List<IPM_Project_Document__c>docStatus;
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
     private static User stdUserForChangStatus;
-   private static final string STATUS_NOT_MATCHED_STR='status not matched';// assert statements
-    private static final string STATUS_NOT_CHANGED_STR='status not changed';// assert statements
+    private static final string STATUS_MATCHED_STR='status matched';// assert statements
+    private static final string STATUS_CHANGED_STR='status changed';// assert statements
     private static User globalUser;
     private static string REGIONAL_STR='Regional';
     private static IPM_Project__c regProject;// Project object initialization\
@@ -30,19 +30,6 @@ private class  IPM_ChangProjectDocStatusController_Test {
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static IPM_Gate_CMI__c gateCMICountry;
     private static final string INVALID_NAME='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTes';
-    private static IPM_Project__c childProj;
-    private static IPM_Project__c childProjs;
-    private static IPM_Financial__c localFin;
-    private static string ROLLOUT_STR='Rollout';
-    private static string GLOBALCOMPANY_CARD_STR='Global Company Card';
-    private static string INNOVATIONRENO_STR='Innovation/Renovation';
-    private static string RCLT_STR='RCLT';
-    private static string LITE_STR='Lite';
-    private static string PROJECT_CREATION_STR='Project Creation';
-    private static string PROJECT_STATUS_STR='Eligible For Processing';
-    private static string PROJECT_CATEGORY_STR='Household Care';
-    private static string CURRENTPHASE_STR='Current Phase is';
-    private static string ERRORONPAGE_STR='display error message on page';
     /*************************************************************************************************************************
     * @description Test Data
     */
@@ -62,7 +49,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForChangStatus);
@@ -71,7 +58,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             project=projectList[0];
             
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project not inserted');//positive test
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project inserted');//positive test
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForChangStatus,stdUserForChangStatus,stdUserForChangStatus});
             insert regionalRolloutList;
@@ -80,7 +67,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             regionalRolloutList[0].IPM_Project__c=project.Id;
             update regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created');//positive test
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
             
             
            
@@ -114,12 +101,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             for(IPM_Project__c projectObj : projectListObj){
                 projDocList = projectObj.Project_Documents__r;
                 mileListObj = projectObj.IPM_Milestones__r;
-                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document not created'); 
+                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document created'); 
             }
             
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
-            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id,'Project Document Sections not created');
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
             
             
             gateCMICountry=new IPM_Gate_CMI__c();
@@ -129,7 +116,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             
             insert gateCMICountry;
             List<IPM_Gate_CMI__c>cmicounList=[select Results__c,IPM_Skip_Test__c from IPM_Gate_CMI__c where Id=:gateCMICountry.Id];
-            System.assertEquals(cmicounList[0].IPM_Skip_Test__c,false,'cmi not created');
+            System.assertEquals(cmicounList[0].IPM_Skip_Test__c,false,'cmi created');
             
             projectDocSecConListObj = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
             projectDocSecConListObj.IPM_Project_Document_Section__c = projectDocSecListObj[0].ID;
@@ -138,7 +125,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             insert projectDocSecConListObj;
             
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConListObj.Id];
-            System.assertEquals(conList[0].IPM_CMI_Result__c,RESULT_STR,'content not created');
+            System.assertEquals(conList[0].IPM_CMI_Result__c,RESULT_STR,'content created');
             
             
             mileListObj[0].IPM_Type_of_Milestone__c= IPM_ConstantUtils.STANDARD;
@@ -149,60 +136,6 @@ private class  IPM_ChangProjectDocStatusController_Test {
             List<IPM_Milestone__c>mileList1=[select Id,IPM_Active__c,IPM_Due_Date__c from IPM_Milestone__c where Id=:mileListObj[0].Id];
             System.assert(mileList1[0].IPM_Active__c,'milestones not updated');
             
-            List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where NAME='Test Local Company Card' limit 1];
-            //regional project and local project creation
-            childProj=new IPM_Project__c();
-            childProj.IPM_Parent_Project__c=project.id;
-            childProj.IPM_Project_Name__c=project.Name+'_Name';
-            childProj.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            childProj.IPM_Target_Launch_Dates__c=system.today();
-            childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-            childProj.IPM_Company_Card__c=comList[0].id;
-            childProj.IPM_CompanyCardText__c=GLOBALCOMPANY_CARD_STR;
-            childProj.IPM_ProjectSubType__c=INNOVATIONRENO_STR;
-            childProj.IPM_Project_Type__c=ROLLOUT_STR;
-            childProj.IPM_GateKeeping_Model__c=RCLT_STR;
-            childProj.IPM_Complexity__c=LITE_STR;
-            childProj.IPM_Temporary_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-            childProj.IPM_ProjectJobType__c=PROJECT_CREATION_STR;
-            childProj.IPM_Project_Job_Status__c=PROJECT_STATUS_STR;
-            childProj.IPM_Category_Text__c=PROJECT_CATEGORY_STR;
-            insert childProj;
-            list<IPM_Project__c>lstLocalProj=[SELECT IPM_Category_Text__c FROM IPM_Project__c WHERE ID=:childProj.ID LIMIT 1];
-          System.assertEquals(lstLocalProj[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is'+lstLocalProj[0].IPM_Category_Text__c);
-            childProjs=new IPM_Project__c();
-            childProjs.IPM_Parent_Project__c=childProj.id;
-            childProjs.IPM_Project_Name__c=project.Name+'_Names';
-            childProjs.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-            childProjs.Rollout_Plan_Target_Launch_Date__c=system.today().addDays(4);
-            childProjs.IPM_Target_Launch_Dates__c=system.today().addDays(1);
-            childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-            childProjs.IPM_Company_Card__c=comList[0].id;
-            childProjs.IPM_CompanyCardText__c=GLOBALCOMPANY_CARD_STR;
-            childProjs.IPM_ProjectSubType__c=INNOVATIONRENO_STR;
-            childProjs.IPM_Project_Type__c=ROLLOUT_STR;
-            childProjs.IPM_GateKeeping_Model__c=RCLT_STR;
-            childProjs.IPM_Complexity__c=LITE_STR;
-            childProjs.IPM_Temporary_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-            childProjs.IPM_ProjectJobType__c=PROJECT_CREATION_STR;
-            childProjs.IPM_Project_Job_Status__c=PROJECT_STATUS_STR;
-            childProjs.IPM_Category_Text__c=PROJECT_CATEGORY_STR;
-            insert childProjs;
-            list<IPM_Project__c>lstLocalProjs=[SELECT IPM_Category_Text__c FROM IPM_Project__c WHERE ID=:childProjs.ID LIMIT 1];
-          System.assertEquals(lstLocalProjs[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is:'+lstLocalProjs[0].IPM_Category_Text__c);
-            //create local financial
-            Id LOCAL_FIN_RECTYPE = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
-        localFin=new IPM_Financial__c();
-        localFin.Local_Project__c=childProjs.id;
-        localFin.IPM_Business_Case_Confirmed__c=false;
-      localFin.Is_BC_Confirmed_Capability__c=false;
-      localFin.recordTypeId =LOCAL_FIN_RECTYPE;
-        localFin.Target_Launch_Date__c=system.today();
-        localFin.Financial_External_ID__c=project.Name+'Names';
-        localFin.Volume_Unit_Local__c='Total 000 Units';
-        insert localFin;
-        list<IPM_Financial__c>lstLocalFin=[SELECT Local_Project__c FROM IPM_Financial__c WHERE ID=:localFin.ID LIMIT 1];
-          System.assertEquals(lstLocalFin[0].Local_Project__c,childProjs.id,'Financial local project is'+lstLocalFin[0].Local_Project__c);
             pRef = Page.IPM_ProjectDocumentSectionEditor;
             pRef.getParameters().put('id', projectListObj[0].Id);
             Test.setCurrentPage(pRef);
@@ -211,53 +144,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
         }  
 
     }
-    /****************************************************************************************
-    *@Description:below test method is used to test local rollout functionality.
-    * example:if local project BB document is not confirmed and regional PL try to propose gate document
-                     then Pl will get page meesage and he/she is not able to propose gate document.
-    *****************************************************************************************/
-    static testMethod void testgetLocalProjectDetails(){
-       test.startTest();
-       initializeTestMethodData();
-       test.stopTest();
-        
-        List<IPM_Project__c>lstNewPhaseProj=new List<IPM_Project__c>();
-        system.runAs(IPM_TestFactory_Helper.createUserAdmin(false)){
-              childProj.IPM_Project_Type__c=ROLLOUT_STR;
-              childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-              update childProjs;
-              list<ipm_project__c>localProjectList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
-              system.assertEquals(localProjectList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY,'regional project phase is not feasibility');
-              chngPro.project=childProj;
-              chngPro.projectId=childProj.id;
-              chngPro.showValidation=true;
-              chngPro.getLocalProjectDetails(); 
-              system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
-              childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
-              childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
-              lstNewPhaseProj.add(childProjs);
-              lstNewPhaseProj.add(childProj);
-              update lstNewPhaseProj;
-              list<ipm_project__c>localProjectsList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProj.id LIMIT 1];
-              system.assertEquals(localProjectsList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY,'LOCAL project phase is not capability');
-              chngPro.showValidation=true;
-              chngPro.getLocalProjectDetails();
-              system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
-              localFin.IPM_Business_Case_Confirmed__c=true;
-              localFin.Is_BC_Confirmed_Capability__c=true;
-              update localFin;
-              list<ipm_financial__c>localFinList=[SELECT IPM_Business_Case_Confirmed__c FROM ipm_financial__c WHERE id=:localFin.id LIMIT 1];
-              system.assertEquals(localFinList[0].IPM_Business_Case_Confirmed__c,true,'business case is not confirmed');
-              IPM_FinancialController finController=new IPM_FinancialController();
-              finController.project=childProjs;
-              finController.currentFinancial=localFin;
-              finController.isTargetLaunchDateMisaligned=true;
-              finController.localProjectConditions();
-              system.assertEquals(finController.tldAcceptFromValue==null,false,'Tld date text should not be empty');//positive test
-              
-        }
-              
-    }
+    
     static testMethod void dotestNotStarted(){
         initializeTestMethodData();
         test.startTest();
@@ -281,12 +168,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             chngPro.updateStatus();
             update projDocList;
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_CHANGED_STR);
             
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where IPM_Project__c=:chngPro.projectId];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_MATCHED_STR);
             test.stopTest();
             
         }
@@ -303,12 +190,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList[0];
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_CHANGED_STR);
             
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where IPM_Project__c=:chngPro.projectId];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_MATCHED_STR);
             test.stopTest();
             
         }
@@ -325,14 +212,14 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Stopped_Comments__c='abc';
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_CHANGED_STR);
             chngPro.submit();
             projDocList[0].IPM_Stopped_Comments__c='';
             update  projDocList;
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.projectDoc.IPM_Stopped_Comments__c='testcomments';
             chngPro.stopProject();
@@ -349,11 +236,11 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_CHANGED_STR);
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.approvedWithEditsProject();
             test.stopTest();
@@ -363,11 +250,9 @@ private class  IPM_ChangProjectDocStatusController_Test {
     
     static testMethod void dotestPostponed(){
         initializeTestMethodData();
-        
+        test.startTest();
         system.runAs(globalUser){
-            test.startTest();
-			
-	    projDocList[0].IPM_Postponed_Comments__c='abc';
+            projDocList[0].IPM_Postponed_Comments__c='abc';
             projDocList[0].IPM_Postponement_Date__c=system.today();
             update projDocList;
             docList=[select IPM_Postponement_Date__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
@@ -377,22 +262,14 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_CHANGED_STR);
             projDocList[0].IPM_Postponement_Date__c=system.today().addDays(7); 
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
-            
             chngPro.postponeProject();
-            
-            // To test validation when No comments is added 
-            projDocList[0].IPM_Postponed_Comments__c= '';
-            projDocList[0].IPM_Postponement_Date__c = system.today();
-            update projDocList;
-            chngPro.postponeProject();
-			
             test.stopTest();
             
         }
@@ -408,12 +285,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_CHANGED_STR);
             
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_MATCHED_STR);
             chngPro.showValidation=true;
             chngPro.proposeProject();
             chngPro.project.Name=INVALID_NAME;
@@ -433,7 +310,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_CHANGED_STR);
             
             chngPro.project.IPM_GateKeeping_Model__c =IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
             
@@ -449,7 +326,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_MATCHED_STR);
        test.stopTest();
             
         }
@@ -463,11 +340,11 @@ private class  IPM_ChangProjectDocStatusController_Test {
             secOpt=chngPro.getcomplexities();
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_NOT_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_CHANGED_STR);
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_NOT_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.approveProject();
             test.stopTest();

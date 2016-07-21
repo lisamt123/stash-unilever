@@ -1,556 +1,959 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to BaseFees matrix page 
-   *@Author: Cognizant
-   *@Created Date: 30/07/2014 
-   *************************************************************************
-   -->
-<apex:page standardController="AF_Brand_Estimate__c" extensions="AF_BrandEstimateStdCtrlExt,AF_BrandEstimateStCtrlExtSummary,AF_BrandEstimateRemote" showHeader="false">
-   <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
-   <head>
-      <meta charset="utf-8" />
-      <!-- Bootstrap_css File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
-      <!-- Bootstrap_css File End -->
-      <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
-      <!--<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>-->
-      <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+<apex:page standardController="AF_Brand_Estimate__c" extensions="AF_BrandEstimateStdCtrlExt,AFBrandEstimateStCtrlExtSummary,AF_BrandEstimateRemote" showHeader="false">
+<apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+<head>
+    <meta charset="utf-8" />
+    <!-- Bootstrap_css File Start -->
+      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+     <!-- Bootstrap_css File End -->
+     
+    <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+    <!--<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>-->
+    <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
       <!-- Add fancyBox -->
-      <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
-         <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>-->
-      <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
-      <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
-      
+    <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>-->
+    
+    
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
       <style>
-         /*body.AF_UL_AgencyMatrix .tableborder th, 
-         body.AF_UL_AgencyMatrix .tableborder td
-         {
+      /*body.AF_UL_AgencyMatrix .tableborder th, 
+      body.AF_UL_AgencyMatrix .tableborder td
+      {
          height:40px;
-         }*/
-         body.AF_UL_AgencyMatrix a.modalButton3 div:last-child {
-         font-size: 13px !important;
+      }*/
+       body.AF_UL_AgencyMatrix a.modalButton3 div:last-child {
+          font-size: 13px !important;
+        }
+        body.AF_UL_AgencyMatrix #gridPanel table td a {
+            width:100%!important;
+            margin:0 auto;
+            text-decoration:underline;
+        }
+        body.AF_UL_AgencyMatrix #gridPanel table td a div {
+            text-decoration:underline!important;
+        }
+        body.AF_UL_AgencyMatrix a.modalButton3 div img {
+          margin: 1px 10px 0px 0px !important;
          }
-         body.AF_UL_AgencyMatrix #gridPanel table td a {
-         width:100%!important;
-         margin:0 auto;
-         text-decoration:underline;
-         }
-         body.AF_UL_AgencyMatrix #gridPanel table td a div {
-         text-decoration:underline!important;
-         }
-         body.AF_UL_AgencyMatrix a.modalButton3 div img {
-         margin: 1px 10px 0px 0px !important;
-         }
-         body.AF_UL_AgencyMatrix a.modalButton3 div.imageHolder{
-         width:25px;
-         }
-         body.AF_UL_AgencyMatrix #gridPanel table td a div:first-child
-         {
-         width:7%;
-         margin-top: 8px;
-         padding-left: 0px;
-         }
-         body.AF_UL_AgencyMatrix a.modalButton3 div:last-child
-         {
-         width:93%;
-         }
-         #iframe_cont
-         {
-         width:100%;
-         }
-         .modal-body
-         {
-         height: 93%;
-         } 
-         .modal-body #iframe_cont
-         {
-         height:100%;
-         }
-         .modal-dialog
-         {
-         width:90% !important;
-         height:95% !important;
-         margin-top:8px;
-         }
-         .modal-content
-         {
-         height:102%;
-         }
+         
+        body.AF_UL_AgencyMatrix a.modalButton3 div.imageHolder{
+          width:25px;
+        }
+        
+        
+        body.AF_UL_AgencyMatrix #gridPanel table td a div:first-child
+        {
+           width:7%;
+           margin-top: 8px;
+           padding-left: 0px;
+        }
+        
+        body.AF_UL_AgencyMatrix a.modalButton3 div:last-child
+        {
+           width:93%;
+        }
+        
+        
+        
+        #iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:90% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
       </style>
       <script>
-         $(document).ready(function(){
-        alert(brandvalue);
-           $(".outText1").hover(function(){
-               $('.outText1').prop('title', {!tradDecimalPerStr}+'%');
-           }
-           );
-           $(".outText2").hover(function(){
-               $('.outText2').prop('title', {!digitDecimalPerStr}+'%');
-           }
-           );
-           $(".outText3").hover(function(){
-               $('.outText3').prop('title', {!adaptDecimalPerStr}+'%');
-           }
-           );
-           });
-      </script> 
-  
-            <!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
-      <!-- Optionally add helpers - button, thumbnail and/or media -->
-      <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
-         <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
-         <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>-->
-      <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
-      <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-      <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0"/>
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/css/jquery.dataTables.css')}"/>
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
-      <!-- <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_UL_Resources,'styles/AF_Uniform_Styles.css')}"/> -->
-      <!-- Common_Style File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
-      <!-- Common_Style File End -->
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js')}"></script>
-      <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/ColVis/js/dataTables.colVis.js')}"></script>
-         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.js')}"></script>
-         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.js')}"></script>-->
-      <script type="text/javascript" language="javascript">
-         //Page Initialisation....
-         var colsSelected = [];
-         var agencyEntities = [];
-         var rowsSelected;
-         var agencyId = "{!agencyId}";
-         var sObjectId = '{!brandEstimateId}';
-         var advFilter = [];
-         var progressValue = '{!progressValue}';
-         var sObjectName = 'AF_Brand_Estimate__c';
-         var isRow = location.search.split('bRow=')[1];
-         var isCol = location.search.split('bCol=')[1];
-         var dataSet, cols, oTable, singleRow, singleCol;
-      </script>
-      
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functions.js')}"></script>
-      <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
-      <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
-      <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
-      <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/loadBaseFeeMatrix.js')}"></script> -->
-      
-      <script>
-         
-         $(document).ready(function() {
-             loadAgMatrix();
-                           
+  $(document).ready(function(){
+    $(".outText1").hover(function(){
+        $('.outText1').prop('title', {!tradDecimalPerStr}+'%');
+    }
+    );
+    $(".outText2").hover(function(){
+        $('.outText2').prop('title', {!digitDecimalPerStr}+'%');
+    }
+    );
+    $(".outText3").hover(function(){
+        $('.outText3').prop('title', {!adaptDecimalPerStr}+'%');
+    }
+    );
+    });
     
-         });
-      </script>
-      
-      
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionBaseFeeMatrix.js')}"></script>
-      
-      
-   </head>
-   <script>
-      function openComments(url){
-           var pagetitle = 'Double click to add/modify comments';
-           var $dialog = jQuery('<div style="display: block; width: 922px; min-height: 0px; max-height: none; height: 546.222222328186px;"></div>')
-           .html('<iframe style="border: 0px; border-radius: 5px; margin-top: 10px;" src="' + url + '" height="310" width="922" scrolling="no"></iframe>')
-           .dialog({
-               autoOpen: false,
-               modal: true,
-               height: 390,
-               width: 970,
-               maxHeight: 400,
-               maxWidth: 600,
-               title: pagetitle
-           });
-           $dialog.dialog('open');           
-      }
-      function openHelpLink(){
-      if({!isAgencyFlag}) {
-       var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
-       window.open(urlStr);
-      }else{   
-      var urlStr = '{!$Label.AF_UrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
-      window.open(urlStr);
-      }
-      }
-   </script>
-   <!-- jquery library Start-->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
-   <!-- jquery library End--> 
-   <!-- <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"/> -->
-   <!--   Bootstrap_Js File start 
-      <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"/> -->
-   <!-- Bootstrap_Js File start-->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
-   <!--Bootstrap Js File End -->
+  </script>    
+      <script type="text/javascript">
+    
+    // commentsToggleClose(commentAddTable); 
+            $('a.addfancy').fancybox({
+              autoSize: false,
+                    width: 900,
+                    height: 500,
+                    type: 'iframe',
+                    titlePosition: 'inside',
+                    hideOnOverlayClick:'false',
+                    hideOnContentClick:'false',
+                    helpers     : { 
+                    overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                    },
+                    afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                       //parent.location.reload(true);
+                        location.reload();
+                     }
+            });
+            
+        </script>
+    
+    <!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>-->
+    
+    
+    <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0"/>
+
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/css/jquery.dataTables.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/styles/AF_Uniform_Styles.css')}"/> -->
+ 
+    <!-- Common_Style File Start -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+    <!-- Common_Style File End -->
    
-   <body class="dt-example AF_UL_AgencyMatrix">
-      <apex:form styleClass="overHidden">
-         <!--  <div class="heading_main">
-            <h1 class="heading_text"> Create Brand / Agency Combination  </h1>
-            </div>
-            <span class="heading_bottom"></span>    -->            
-         <apex:outputpanel >
-            <div class="row">
-               <div class="col-lg-12 charttable1">
-                  <table class="floatL wid96P">
-                     <tr>
-                        <td class="logoCont">
-                           <apex:image url="{!$Resource.logo_Unilever}" width="70px" height="70px"/>
-                        </td>
-                        <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
-                        <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
-                        <td class="User_Name"> {!$User.FirstName} {!$User.LastName} &nbsp;
-                        </td>
-                        <td class="helpicon">
-                           <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();"/>
-                        </td>
-                     </tr>
-                  </table>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 charttable1">
-                  <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 charttable1">
-                  <div class="chartDiv">
-                     <div class="firstdiv">
-                        <div class="companyName"><b>{!categoryNameStr}</b></div>
-                        <div class="UnileverBaseFeesCont">
-                           <div class="UnileverLable">
-                              <apex:outputLabel rendered="{!!isAgencyFlag}"> {!$Label.AF_Unilever_Base_Fees} </apex:outputLabel>
-                           </div >
-                           <div class="FeeAmount">
-                              <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}">
-                                 €
-                                 <apex:param value="{!totalUnileverFee}"/>
-                              </apex:outputText>
-                           </div>
-                        </div>
-                        <div class="AgencyBaseFeesCont">
-                           <div class="AgencyLable">{!$Label.AF_Agency_Base_Fees} </div>
-                           <div class="FeeAmount">
-                              <apex:outputText value="{0,number,###,###,###}">
-                                 €
-                                 <apex:param value="{!totalAgencyFee}"/>
-                              </apex:outputText>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- First Div closed -->
-                     <div class="seconddiv">
-                        <div>
-                           <div class="CrossBorder_PO"> {!$Label.AF_Cross_Border_Po} </div >
-                           <div class="Div_Space">&nbsp;&nbsp;&nbsp;&nbsp;</div >
-                           <div class="Traditional"> {!$Label.AF_Traditional} </div >
-                           <div class="Digital"> {!$Label.AF_Digital} </div >
-                           <div class="Adaptation"> {!$Label.AF_Adapation} </div >
-                        </div>
-                        <div>
-                           <div class="Chart_CrossBorder">
-                              <!--   <span class="circle">{!crosPerStr}</span>-->
-                              <canvas id="mycrosscanvas" height="100" width="150"></canvas>
-                           </div>
-                           <div class="Char_divider">  <span class="circle_vertical"></span></div>
-                           <div class="Chart_Traditional">
-                              <!-- 
-                                 <span class="circle1">{!tradPerStr}%</span> -->
-                              <canvas id="mytradcanvas" height="100" width="150"></canvas>
-                           </div>
-                           <div class="Chart_Digital">
-                              <!--  <span class="circle1">{!digitPerStr}%</span> -->
-                              <canvas id="mydigitcanvas" height="100" width="150"></canvas>
-                           </div>
-                           <div class="Chart_Adaptation">
-                              <!--  <span class="circle1">{!adaptPerStr}%</span>  -->
-                              <canvas id="myadapcanvas" height="100" width="150"></canvas>
-                           </div>
-                        </div>
-                        <div class="Char_AmountDiv">
-                           <div class="Chart_CrossBorderAmount">
-                              <apex:outputText value="{0,number,###,###,###}">
-                                 €
-                                 <apex:param value="{!totalCroBordFee}"/>
-                              </apex:outputText>
-                           </div>
-                           <div class="Chart_Amountspace">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                           <div class="Chart_Traditional">
-                              <apex:outputText styleclass="outText1" value="{0,number,###,###,###}">
-                                 €
-                                 <apex:param value="{!totalTraditionalFee}"/>
-                              </apex:outputText>
-                           </div>
-                           <div class="Chart_Digital">
-                              <apex:outputText styleclass="outText2" value="{0,number,###,###,###}">
-                                 €
-                                 <apex:param value="{!totalDigitalFee}"/>
-                              </apex:outputText>
-                           </div>
-                           <div class="Chart_Adaptation">
-                              <apex:outputText styleclass="outText3" value="{0,number,###,###,###}">
-                                 €
-                                 <apex:param value="{!totalAdaptiveFee}"/>
-                              </apex:outputText>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Second Div closed -->
-                  </div>
-                  <!-- MainDiv closed -->        
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 charttable1">
-                  <table class="dropButtonCont">
-                     <tr>
-                        <td id="first">
-                           <select multiple="multiple"  id="advFltr" >
-                              <option value="all">All Currency</option>
-                              <option value="l">Local</option>
-                              <option value="e">Euro</option>
-                              <option value="tf">Traditional</option>
-                              <option value="df">Digital</option>
-                              <option value="af">Adaptation</option>
-                           </select>
-                        </td>
-                        <!--    <td style="width:50px;"></td>
-                           <td style="width:50px;"></td> <td style="width:50px;"></td> <td style="width:165px;"></td> -->
-                        <td class="addCommentButton"> 
-                           <a onClick="commentsToggleOpen('commentAddTable');window.location.hash='commentAddTable';return false;">Add Comment</a>
-                        </td>
-                        <td class="uploadDocumentButton"> 
-                           <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="modalButton3" 
-                              data-src="apex/AF_UploadAnAttachment?parentId={!brandEstimateId}" data-target="#myModal3">Upload Document</a>
-                        </td>
-                        <!--<apex:outputPanel rendered="{!OR(Not(isAgencyFlag),iscmcoAgencyFlag)}">-->
-                        <apex:outputPanel rendered="{!iscmcoAgencyFlag}">
-                           <td class="reviewButton">
-                              <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="modalButton3" 
-                                 data-src="apex/AF_ControllerReview?Id={!brandEstimateId}" data-target="#myModal3">Review</a>
-                              <!--<a href="#" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" onClick="openComments('/apex/AF_AgencyReviewComments?id={!brandEstimateId}');return false;">Review</a>-->
-                           </td>
-                        </apex:outputPanel>
-                        <td class="wid280P" style="width:330px">
-                           <c:AF_ApprovalProcessForBrandEstimates ParentRecordValue="{!brandEstimateId}" brandvalue="{!$CurrentPage.parameters.brandvalue}" catageory="{!$CurrentPage.parameters.category}" year="{!$CurrentPage.parameters.Year}"/>
-                        </td>
-                        <td class="printimg">
-                           <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="window.print();" />
-                        </td>
-                     </tr>
-                  </table>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 charttable1">
-                  <div class="table_control">
-                     <!-- <div class="postSummary"> -->
-                     <div class="fiscalYearDetailsDiv">
-                        <div align="left" class="brandName">{!AF_Brand_Estimate__c.Name}</div>
-                     </div>
-                     <apex:outputpanel rendered="{!isAgencyFlag1}">
-                        <div class="progressbarCont">
-                           <div id="progressbar1" class="progressbar">
-                              <div class="progress-label progresschange">{!progressReviewValue}%</div>
-                           </div>
-                           <div class="progressbarControllerReview"> Controller Review</div>
-                        </div>
-                     </apex:outputpanel>
-                     <div class="progressbarContValue">
-                        <div id="progressbar" class="progressbar">
-                           <div class="progress-label progresschange">{!progressValue}%</div>
-                        </div>
-                        <div class="progressbarStatusPro"> {!statusProcess}</div>
-                     </div>
-                     <div class="agencyEntitiesContspace"></div>
-                     <!-- </div> --> 
-                  </div>
-               </div>
-            </div>
-         </apex:outputpanel>
-         <br/>
-         <!-- Matrix page loads from here -->
-         <div class="row marginT-14P">
-            <div class="col-lg-12 charttable1">
-               <div class="agencyEntitiesCont">
-                  <apex:outputPanel rendered="{!noEstimates}">
-                     <div id="gridPanel">
-                        <div class="col-lg-12 charttable_agency padding0P">
-                           <div align="right" class="fontSize16P">{!$Label.Matrix_Currency_Desc}</div>
-                           <div class="agencyBar">
-                              <div align="left" class="agencyLeft">{!$Label.AF_Agency_Entities}</div>
-                              <div align="right" class="agencyRight">
-                                 <div id="colPanel" align="right">
-                                    <select multiple="multiple" class="toggle-vis dropMutiple" id="agCol"/>
-                                    <img id="submit-col"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
-                                 </div>
-                                 <div id="loadColSpinner" class="spinner">
-                                    loading Agency Entities...<img src='/img/loading.gif' alt="Spinner"/>
-                                 </div>
-                                 <apex:outputpanel rendered="{!IF(statusProcess!='Ready for PO','true','false')}">
-                                    <img id="add-col-panel" style="margin-top:-15px"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
-                                 </apex:outputpanel>
-                              </div>
-                           </div>
-                        </div>
-                        <table class="display mydisplay tableborder " width="100%" border="0">
-                           <thead class="borderNone">
-                              <tr>
-                                 <th id="0" isDisplay="y" class="firstCol"></th>
-                                 <th id="1" isDisplay="y" class="firstCol custCol"></th>
-                              </tr>
-                           </thead>
-                           <tbody class="tBodybgcolor">
-                           </tbody>
-                        </table>
-                        <div class="ulRowControl">
-                           <div align="center">
-                              <apex:outputpanel rendered="{!IF(statusProcess!='Ready for PO','true','false')}">
-                                 <img id="add-row-panel" style="vertical-align:top;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
-                              </apex:outputpanel>
-                           </div>
-                        </div>
-                        <div id="rowPanel">
-                           <select multiple="multiple" id="ulRow" class="wid140P"/>
-                           <img id="submit-row" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go button"/>
-                        </div>
-                        <div id="loadRowSpinner" class="spinner">
-                           loading UL Entities...<img src='/img/loading.gif' alt="Spinner"/>
-                        </div>
-                        <div id="fourth" class="floatR">
-                           <table>
-                              <tr>
-                                 <td align="right">
-                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div>
-                                    <img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15" alt="Cross Border Billing"/>&nbsp;Represents Cross Border billing&nbsp;
-                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div>
-                                    <img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15" alt="Comment Change"/>&nbsp;Comment/Change to review&nbsp;
-                                 </td>
-                              </tr>
-                           </table>
-                        </div>
-                     </div>
-                     <div id="gridSpinner" class="spinner">
-                        loading Matrix...<img src='/img/loading.gif' alt="Spinner Image"/>
-                     </div>
-                     <!-- <br/><br/><br/>Demo Button: <apex:commandButton action="{!SetStatus}" value="Ready for PO" /><br/><br/><br/> -->
-                     <!-- <c:AF_AddCommentComp ParentRecordValue="{!brandEstimateId}" ParentObjectTypeDesc="AF_Brand_Estimate__c" /> -->
-                     <!-- <c:AF_ApprovalProcessForBrandEstimates ParentRecordValue="{!brandEstimateId}" brandvalue="{!$CurrentPage.parameters.brandvalue}" catageory="{!$CurrentPage.parameters.category}" year="{!$CurrentPage.parameters.Year}"/> -->
-                     <c:AF_CommentsListComp ParentRecordValue="{!brandEstimateId}" ParentObjectTypeDesc="AF_Brand_Estimate__c"  IsViewAllValue="false"  ReturnPageURLValue="AF_UL_AgencyMatrix?Id={!brandEstimateId}" />
-                     <!-- <apex:outputLink onclick="openAttachmentWindow();return false;" >Upload Document</apex:outputLink> -->
-                     <c:AF_DocumentListComp ParentRecordValue="{!brandEstimateId}"/>
-                  </apex:outputPanel>
-                  <!-- Matrix code ends, single row/col interface begins -->
-                  <apex:outputPanel rendered="{!!noEstimates}">
-                     <div id="wrapper">
-                        <br /><br />
-                        <div align="center" class="fontSizeM">
-                           Lets add the first Row/Column to the matrix by adding Unilever/Agency Entity respectively
-                        </div>
-                        <br /><br />
-                        <table align="center">
-                           <tr>
-                              <td valign="middle">
-                                 <div id="rowSPanel" class="hidden">
-                                    Add Unilever Entity (Row to the matrix) : <select multiple="multiple" id="ulSRow" class="wid370P"/>
-                                 </div>
-                                 <div id="loadSRowSpinner" class="spinner">
-                                    loading Unilever Entities...<img src='/img/loading.gif' alt="Spinner"/>
-                                 </div>
-                              </td>
-                              <td valign="middle">
-                                 <div id="colSPanel" class="hidden">
-                                    Add Agency Entity (Column to the matrix) : <select multiple="multiple" class="toggle-vis wid370P" id="agSCol"/>
-                                 </div>
-                                 <div id="loadSColSpinner" class="spinner">
-                                    loading Agency Entities...<img src='/img/loading.gif' alt="Loding Image"/>
-                                 </div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td valign="middle">&nbsp;&nbsp;</td>
-                              <td valign="middle"><button id="ldMatrix" class="createMatrix">Create Matrix</button></td>
-                           </tr>
-                        </table>
-                     </div>
-                  </apex:outputPanel>
-               </div>
-            </div>
-         </div>
-      </apex:form>
-      <!-- Bootstrap bootstrap modal window Start -->    
-      <div class="model_container">
-         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
-                  </div>
-                  <div class="modal-body">
-                     <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
-                     <div id="loader_cont">
-                     </div>
-                     <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
-                  </div>
-                  <!--
-                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                     </div>
-                     -->
-               </div>
-               <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-         </div>
-         <!-- /.modal -->
-      </div>
-      <!-- Bootstrap bootstrap modal window End -->
-      
-      
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_UL_AgencyMatrix.js')}"></script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/matrixControls.js')}"></script>
-      <script>
-    var jsDeclareBaseFees = {isAgencyFlag1: '{!isAgencyFlag}', crosPerStr1:'{!crosPerStr}', tradPerStr1:'{!tradPerStr}', digitPerStr1:'{!digitPerStr}',adaptPerStr1:'{!adaptPerStr}'};
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js')}"></script>
+   <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/ColVis/js/dataTables.colVis.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.js')}"></script>-->
+    <script type="text/javascript" language="javascript">
+        //Page Initialisation....
+        var colsSelected = [];
+        var agencyEntities = [];
+        var rowsSelected;
+        var agencyId = "{!agencyId}";
+        var sObjectId = '{!brandEstimateId}';
+        var advFilter = [];
+        var progressValue = '{!progressValue}';
+        var sObjectName = 'AF_Brand_Estimate__c';
+        var isRow = location.search.split('bRow=')[1];
+        var isCol = location.search.split('bCol=')[1];
+        var dataSet, cols, oTable, singleRow, singleCol;
     </script>
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasBaseFeesChart.js')}"></script>
-      
-   
-      <script>
-      var $j = jQuery.noConflict();
-         $j(document).ready(function() {
-             $j(".statusBrand").multiselect({
-                 multiple: false,
-                 header: "Status Brand",
-                 noneSelectedText: "--None--",
-                 selectedList: 1
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
+    <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/loadBaseFeeMatrix.js')}"></script> -->
+    <script>
+    function openAgentEstimateModel(url, title){
+    
+         var pagetitle = title;
+         var $dialog = jQuery('<div style="display: block; width: 922px; min-height: 0px; max-height: none; height: 546.222222328186px;"></div>')
+         .html('<iframe style="border: 0px; " src="' + url + '" height="1000" width="890" scrolling="no"></iframe>')
+        <!-- outer -->
+         .dialog({
+             autoOpen: false,
+             modal: true,
+             height: 900,
+             width: 935,
+             maxHeight: 1000,
+             maxWidth: 1000,
+             title: pagetitle
+         });
+         $dialog.dialog('open');           
+    }
+    loadAgMatrix();
+    
+    $(document).ready(function() {
+        $('#agCol').on( 'click', function (e) {
+            e.preventDefault();
+            $.when( addUnileverEntityToEstimates(colsSelected) ).then( function(status){
+                if(typeof isCol === 'undefined') {
+                    location.replace(addParameterToURL('bCol=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#agCol").html(status);
+            });
+        });
+        $('#ulRow').on( 'click', function () {
+            $.when( addAgencyEntityToEstimates(rowsSelected) ).then( function(status){
+                console.log('isRow :' + isRow);
+                //loadAgMatrix();
+                if(typeof isRow === 'undefined') {
+                    location.replace(addParameterToURL('bRow=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#ulRow").html(status);
+            });
+         });
+         $('#advFltr').on( 'click', function (e) {
+            $.each( advFilter, function( k, v ) {
+                $( ".display tbody tr td" ).each(function() {
+                    if(v == 'tf' || v == 'df' || v == 'af') {
+                        var selectedVal = $(this).attr(v);
+                        if(typeof selectedVal != 'undefined') {
+                            var pos = selectedVal.split("/");
+                            $(this).children("a").html(pos[0] + '<br/>' + pos[1]);
+                        }
+                    }else {
+                        if(v != 'all') {
+                            var selectedVal = $(this).children("a").attr(v);
+                            if(typeof selectedVal != 'undefined') {
+                                $(this).children("a").text(selectedVal);
+                            }
+                        } else {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+        $('.display tbody').on('click', 'td .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
+                $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
+                    alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+         $('.display thead tr').on('click', 'th .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
+                $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
+                    alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+        $( "#ldMatrix" )
+        .click(function( event) {
+           event.preventDefault();
+           $.when( addSingleULAGEntity() ).then( function(status){
+               location.reload();
+           },
+           function(status){},
+           function(status){
+           });
+        });
+    });
+</script>
+</head>
+ <script>
+        function openComments(url){
+        
+             var pagetitle = 'Double click to add/modify comments';
+             var $dialog = jQuery('<div style="display: block; width: 922px; min-height: 0px; max-height: none; height: 546.222222328186px;"></div>')
+             .html('<iframe style="border: 0px; border-radius: 5px; margin-top: 10px;" src="' + url + '" height="310" width="922" scrolling="no"></iframe>')
+             .dialog({
+                 autoOpen: false,
+                 modal: true,
+                 height: 390,
+                 width: 970,
+                 maxHeight: 400,
+                 maxWidth: 600,
+                 title: pagetitle
              });
-         });
-         $j(function() {
-         $j( "#progressbar" ).progressbar({
-         value: {!progressValue}
-         });
-          $j( "#progressbar1" ).progressbar({
-         value: {!progressReviewValue}
-         });
-         });
-      </script>
-      <!--Chart Javascript -->
-      <script>
-         window.onload = function() {
-               var urlChartCircles;
+             $dialog.dialog('open');           
+        }
+    function openHelpLink(){
+        if({!isAgencyFlag}) {
+         var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
+         window.open(urlStr);
+
+        }else{   
+        var urlStr = '{!$Label.AF_UrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
+        window.open(urlStr);
+        
+      }
+    }
+    </script>
+    <!-- jquery library Start-->
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+    <!-- jquery library End--> 
+    
+     <!-- <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/> -->
+     <!--   Bootstrap_Js File start 
+     <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/> -->
+     
+     <!-- Bootstrap_Js File start-->
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+     <!--Bootstrap Js File End -->
+     
+     <!-- Bootstrap Tooltip methods Start -->
+     <script type="text/javascript" language="javascript">
+        var bsjQuery = $.noConflict(true);
+        bsjQuery.fn.bsTooltip= bsjQuery.fn.tooltip; 
+        bsjQuery(document).ready(function() {
+              bsjQuery('[data-toggle=tooltip]').bsTooltip();
+        });
+    </script>
+    <!-- Bootstrap Tooltip methods End -->
+<body class="dt-example AF_UL_AgencyMatrix">
+    <apex:form styleClass="overHidden">            
+       <!--  <div class="heading_main">
+       <h1 class="heading_text"> Create Brand / Agency Combination  </h1>
+      </div>
+      <span class="heading_bottom"></span>    -->            
+         <apex:outputpanel >
+                <div class="row">            
+     <div class="col-lg-12 charttable1"> 
+        <table class="floatL wid96P">
+        <tr>
+           <td class="logoCont"> <apex:image url="{!$Resource.logo_Unilever}" width="70px" height="70px"/> </td>        
+           <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
+           <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
+           <td class="User_Name"> {!$User.FirstName} {!$User.LastName} &nbsp;
+            </td>
+           <td class="helpicon"> <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();"/> </td>
+       </tr>
+       </table>
+  </div>    
+   </div>
+             <div class="row">           
+        <div class="col-lg-12 charttable1">         
+        
+        <apex:image url="{!$Resource.header_new}" styleClass="headimg"/> 
+        </div>            
+                       
+        </div>          
+            <div class="row">
+     <div class="col-lg-12 charttable1">
+<div class="chartDiv">
+
+            <div class="firstdiv">
+               <div class="companyName"><b>{!categoryNameStr}</b></div>
+                    <div class="UnileverBaseFeesCont">
+                       <div class="UnileverLable"><apex:outputLabel rendered="{!!isAgencyFlag}"> Unilever Base Fees </apex:outputLabel></div >
+                       <div class="FeeAmount">
+                           <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}">
+                           €<apex:param value="{!totalUnileverFee}"/>
+                           </apex:outputText>
+                        </div>
+                    </div>      
+                            
+                    <div class="AgencyBaseFeesCont">    
+                        <div class="AgencyLable">Agency Base Fees&nbsp; </div>
+                        <div class="FeeAmount">
+                            <apex:outputText value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalAgencyFee}"/>
+                            </apex:outputText>
+                        </div>
+                    </div>    
+              
+            </div> <!-- First Div closed -->
+   
+   
+               <div class="seconddiv">
+                    <div>
+                        <div class="CrossBorder_PO"> Cross Border PO</div >
+                        <div class="Div_Space">&nbsp;&nbsp;&nbsp;&nbsp;</div >
+                        <div class="Traditional"> Traditional </div >
+                        <div class="Digital"> Digital </div >
+                        <div class="Adaptation"> Adaptation </div >
+                    </div>
+                    <div>  
+                        <div class="Chart_CrossBorder"> 
+                        <!--   <span class="circle">{!crosPerStr}</span>-->
+                        <canvas id="mycrosscanvas" height="100" width="150"></canvas>
+                        </div> 
+                        <div class="Char_divider">  <span class="circle_vertical"></span></div>
+                        <div class="Chart_Traditional"> <!-- 
+                        <span class="circle1">{!tradPerStr}%</span> -->
+                        <canvas id="mytradcanvas" height="100" width="150"></canvas></div> 
+                        <div class="Chart_Digital"> 
+                        <!--  <span class="circle1">{!digitPerStr}%</span> -->
+                        <canvas id="mydigitcanvas" height="100" width="150"></canvas>
+                        </div> 
+                        <div class="Chart_Adaptation"> 
+                        <!--  <span class="circle1">{!adaptPerStr}%</span>  -->
+                        <canvas id="myadapcanvas" height="100" width="150"></canvas>
+                        </div> 
+                    </div>
+                    <div class="Char_AmountDiv">
+                        <div class="Chart_CrossBorderAmount">
+                            <apex:outputText value="{0,number,###,###,###}">
+                            €<apex:param value="{!totalCroBordFee}"/>
+                            </apex:outputText> 
+                        </div>
+                        <div class="Chart_Amountspace">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="Chart_Traditional">
+                            <apex:outputText styleclass="outText1" value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalTraditionalFee}"/>
+                            </apex:outputText> 
+                        </div>
+                        <div class="Chart_Digital">
+                            <apex:outputText styleclass="outText2" value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalDigitalFee}"/>
+                            </apex:outputText>
+                        </div>
+                        <div class="Chart_Adaptation">
+                            <apex:outputText styleclass="outText3" value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalAdaptiveFee}"/>
+                            </apex:outputText>
+                        </div>
+                    </div>
+            </div> <!-- Second Div closed -->
+         </div>  <!-- MainDiv closed -->        
+     </div>
+ </div>
+
+  <div class="row">
+    <div class="col-lg-12 charttable1">
+        <table class="dropButtonCont">
+           <tr>
+                        <td id="first">
+                            <select multiple="multiple"  id="advFltr" >
+                                <option value="all">All Currency</option>
+                                <option value="l">Local</option>
+                                <option value="e">Euro</option>
+                                <option value="tf">Traditional</option>
+                                <option value="df">Digital</option>
+                                <option value="af">Adaptation</option>
+                            </select>
+                        </td>
+                    
+ 
+                             <!--    <td style="width:50px;"></td>
+                                 <td style="width:50px;"></td> <td style="width:50px;"></td> <td style="width:165px;"></td> -->
+                                 
+                                
+                                  
+       
+                                 
+                                   <td class="addCommentButton"> 
+                                           <a onClick="commentsToggleOpen('commentAddTable');window.location.hash='commentAddTable';return false;">Add Comment</a>
+                                      </td> 
+                                      <td class="uploadDocumentButton"> 
+                                           <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="modalButton3" 
+                                           data-src="apex/AF_UploadAnAttachment?parentId={!brandEstimateId}" data-target="#myModal3">Upload Document</a>
+                                      </td>
+                                       <!--<apex:outputPanel rendered="{!OR(Not(isAgencyFlag),iscmcoAgencyFlag)}">-->
+                                       <apex:outputPanel rendered="{!iscmcoAgencyFlag}">
+                                       <td class="reviewButton"> 
+                                           <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="modalButton3" 
+                                           data-src="apex/AF_ControllerReview?Id={!brandEstimateId}" data-target="#myModal3">Review</a>
+                                           <!--<a href="#" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" onClick="openComments('/apex/AF_AgencyReviewComments?id={!brandEstimateId}');return false;">Review</a>-->
+                                           
+                                      </td>
+                                      
+                                    </apex:outputPanel>
+                                    
+                                     <td class="wid280P" style="width:330px"> 
+                                    <c:AF_ApprovalProcessForBrandEstimates ParentRecordValue="{!brandEstimateId}" brandvalue="{!$CurrentPage.parameters.brandvalue}" catageory="{!$CurrentPage.parameters.category}" year="{!$CurrentPage.parameters.Year}"/> 
+                                      </td>
+                                      
+                                      <td class="printimg">
+                                              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="window.print();" /> 
+                                      </td>
+                                  </tr>
+        </table>
+    </div>
+</div>
+ 
+
+ 
+  <div class="row">
+     <div class="col-lg-12 charttable1">
+ <div class="table_control">
+   <!-- <div class="postSummary"> -->
+<div class="fiscalYearDetailsDiv"> 
+
+      <div align="left" class="brandName">{!AF_Brand_Estimate__c.Name}</div>       
+</div> 
+<apex:outputpanel rendered="{!isAgencyFlag1}"> 
+<div class="progressbarCont">
+      
+        
+         <div id="progressbar1" class="progressbar">
+            <div class="progress-label progresschange">{!progressReviewValue}%</div>
+        </div> 
+       
+        <div class="progressbarControllerReview"> Controller Review</div>
+        
+</div>    
+</apex:outputpanel> 
+<div class="progressbarContValue">
+        <div id="progressbar" class="progressbar">
+            <div class="progress-label progresschange">{!progressValue}%</div>
+        </div> 
+     
+            <div class="progressbarStatusPro"> {!statusProcess}</div>
+
+</div>   
+<div class="agencyEntitiesContspace"></div>      
+        
+      
+  <!-- </div> --> 
+   
+   
+   
+ </div>
+ 
+  </div>
+ </div>
+ 
+         </apex:outputpanel>    
+         <br/>
+        <!-- Matrix page loads from here -->
+        
+        
+        <div class="row marginT-14P">
+               <div class="col-lg-12 charttable1">
+               <div class="agencyEntitiesCont">
+        
+        
+        
+        <apex:outputPanel rendered="{!noEstimates}">
+    <div id="gridPanel">
+       
+               <div class="col-lg-12 charttable_agency padding0P">
+       <div align="right" class="fontSize16P">{!$Label.Matrix_Currency_Desc}</div>
+       <div class="agencyBar">
+            <div align="left" class="agencyLeft">Agency Entities</div>
+            <div align="right" class="agencyRight">
+            <div id="colPanel" align="right">
+                <select multiple="multiple" class="toggle-vis dropMutiple" id="agCol"/>
+                <img id="submit-col"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+             </div>
+             <div id="loadColSpinner" class="spinner">
+                loading Agency Entities...<img src='/img/loading.gif' />
+             </div>
+              <apex:outputpanel rendered="{!IF(statusProcess!='Ready for PO','true','false')}">
+             <img id="add-col-panel" style="margin-top:-15px"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+             </apex:outputpanel>
+            </div>
+        </div>
+        
+        </div>
+        
+        <table class="display mydisplay tableborder " width="100%" border="0">
+            <thead class="borderNone">
+                <tr><th id="0" isDisplay="y" class="firstCol"></th><th id="1" isDisplay="y" class="firstCol custCol"></th></tr>
+            </thead>
+            <tbody class="tBodybgcolor">
+            </tbody>
+        </table>
+         <div class="ulRowControl">
+             <div align="center">
+             <apex:outputpanel rendered="{!IF(statusProcess!='Ready for PO','true','false')}">
+                 <img id="add-row-panel" style="vertical-align:top;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+             </apex:outputpanel>
+             </div>
+         </div>
+         <div id="rowPanel">
+             <select multiple="multiple" id="ulRow" class="wid140P"/>
+             <img id="submit-row" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+         </div>
+         <div id="loadRowSpinner" class="spinner">
+             loading UL Entities...<img src='/img/loading.gif' />
+         </div>
+         <div id="fourth" class="floatR">
+                        <table>
+                            <tr>
+                                <td align="right">
+                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
+                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15"/>&nbsp;Comment/Change to review&nbsp;
+                                </td>
+                            </tr>
+                         </table>
+            </div>
+    </div>
+    <div id="gridSpinner" class="spinner">
+        loading Matrix...<img src='/img/loading.gif' />
+    </div>
+    
+    
+   <!-- <br/><br/><br/>Demo Button: <apex:commandButton action="{!SetStatus}" value="Ready for PO" /><br/><br/><br/> -->
+    
+    
+    
+    
+   <!-- <c:AF_AddCommentComp ParentRecordValue="{!brandEstimateId}" ParentObjectTypeDesc="AF_Brand_Estimate__c" /> -->
+    
+                
+    
+   <!-- <c:AF_ApprovalProcessForBrandEstimates ParentRecordValue="{!brandEstimateId}" brandvalue="{!$CurrentPage.parameters.brandvalue}" catageory="{!$CurrentPage.parameters.category}" year="{!$CurrentPage.parameters.Year}"/> -->
+      
+    <c:AF_CommentsListComp ParentRecordValue="{!brandEstimateId}" ParentObjectTypeDesc="AF_Brand_Estimate__c"  IsViewAllValue="false"  ReturnPageURLValue="AF_UL_AgencyMatrix?Id={!brandEstimateId}" />
+   
+    <!-- <apex:outputLink onclick="openAttachmentWindow();return false;" >Upload Document</apex:outputLink> -->
+    <c:AF_DocumentListComp ParentRecordValue="{!brandEstimateId}"/> 
+     
+    
+    
+    </apex:outputPanel>
+  
+    
+    <!-- Matrix code ends, single row/col interface begins -->
+   
+
+
+
+   <apex:outputPanel rendered="{!!noEstimates}">
+        <div id="wrapper">
+            <br /><br />
+            <div align="center" class="fontSizeM">
+                Lets add the first Row/Column to the matrix by adding Unilever/Agency Entity respectively
+            </div>
+            <br /><br /><table align="center">
+               <tr>
+                   <td valign="middle">
+                       <div id="rowSPanel" class="hidden">
+                           Add Unilever Entity (Row to the matrix) : <select multiple="multiple" id="ulSRow" class="wid370P"/>
+                       </div>
+                       <div id="loadSRowSpinner" class="spinner">
+                          loading Unilever Entities...<img src='/img/loading.gif' />
+                       </div>
+                   </td>
+                   <td valign="middle">
+                       <div id="colSPanel" class="hidden">
+                           Add Agency Entity (Column to the matrix) : <select multiple="multiple" class="toggle-vis wid370P" id="agSCol"/>
+                       </div>
+                       <div id="loadSColSpinner" class="spinner">
+                          loading Agency Entities...<img src='/img/loading.gif' />
+                       </div>
+                   </td>
+               </tr>
+               <tr>
+                   <td valign="middle">&nbsp;&nbsp;</td>
+                   <td valign="middle"><button id="ldMatrix" class="createMatrix">Create Matrix</button></td>
+               </tr>
+            </table>
+        </div>
+    </apex:outputPanel>
+    
+      </div></div></div>
+    </apex:form>
+    
+    
+<!-- Bootstrap bootstrap modal window Start -->    
+<div class="model_container">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+           </div>
+         <div class="modal-body">
+              <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+              <div id="loader_cont">
+                
+              </div>
+              <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+         </div>
+         <!--
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+         -->
+        </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div> 
+<!-- Bootstrap bootstrap modal window End -->
+
+
+<!-- Bootstrap modal window methods  Start-->
+<script>
+document.body.setAttribute("data-shouldRefreshPage", "0");
+$(document).ready(function(){
+ $(document).on('click','.modalButton3', function(e) {
+    $("#iframe_cont").contents().find("body").html('');
+    var src = $(this).attr('data-src');
+    var height = $(this).attr('data-height') || 466;
+    var width = $(this).attr('data-width') || 900;
+    
+    $("#myModal3 iframe").attr({'src':src,
+                        'height': height,
+                        'width': width}); 
+    $('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
+    window.setTimeout(timerForPageRefresh, 1000);
+ });
+});
+
+function timerForPageRefresh(){
+    shouldRefreshPage(!$('#myModal3').is(":visible"));
+}
+function shouldRefreshPage(flag) {
+   if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
+       document.body.setAttribute("data-shouldRefreshPage", "0");
+       window.location.reload(true);
+   }
+   else if(!flag){
+       window.setTimeout(timerForPageRefresh, 100);
+   }
+}
+/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
+function initializePageRefresh(){
+    var originalClick = $(this).attr("onclick");
+    $(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}
+
+$('#iframe_cont').load(function(){
+    var popupFrame = $("#iframe_cont").contents();
+    if(popupFrame.find("iframe").length ){
+        popupFrame.find("iframe").each(function(){
+            $(this).contents().find(".upLoadDoc, .save_btn_review, .submit_btn_addcomment, .continue_btn, .save_btn, .EditSave").each(initializePageRefresh);
+        });
+    }
+    popupFrame.find(".upLoadDoc, .save_btn_review, .submit_btn_addcomment, .continue_btn, .save_btn, .EditSave").each(initializePageRefresh);
+    
+});
+   </script>
+<!-- Bootstrap modal window methods End--> 
+<!--
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
+  -->
+
+<!-- Bootstrap bootstrap modal window loading_img methods Start-->
+<script> 
+    $(document).ready(function () {
+        $('#iframe_cont').on('load', function () {
+         $('#loader_cont, .loading_img').show();
+            console.log("madhu");
+            $('#loader_cont, .loading_img').delay(1000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",1000 );
+        });
+    });   
+</script>
+<!-- Bootstrap bootstrap modal window loading_img methods End--> 
+  
+  <script>
+  var $j = jQuery.noConflict();
+        $j("#advFltr").multiselect({
+            multiple: false,
+            header: "Advanced Filters",
+            noneSelectedText: "All Currency",
+            selectedList: 1
+        });
+        $j("#advFltr").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall", function( event, ui ){
+            advFilter = [];
+            advFilter = $j.map($j(this).multiselect("getChecked"), function(input ){
+                return input.value;
+            });
+            
+            $j('#advFltr').trigger( "click");
+        })
+        $j("#agCol").multiselect({
+           show: ["slide", 300],
+           hide: ["explode", 1000]
+        });
+        $j("#ulRow").multiselect({
+           show: ["slide", 300],
+           hide: ["explode", 1000]
+        });
+        $j("#agCol").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall multiselectuncheckall", function( event, ui ){
+            colsSelected = [];
+            colsSelected = $j.map($j(this).multiselect("getChecked"), function(input ){
+                return input.value;
+            });
+            //$j('#agCol').trigger( "click");
+        })
+        .triggerHandler("multiselectclick"); // trigger above logic when page first loads
+        $j( "#colPanel :button span" ).text("Add Agency Entities");
+        $j( "#rowPanel :button span" ).text("Add Unilever Entities");
+        loadAgEnts();
+        function loadAgEnts() {
+            $j.when( getAgencyEntities( ) ).then( function(status){
+                $j("#loadColSpinner").removeClass('displayed').addClass('hidden');
+                $j.each(status, function(key, value) {
+                    var i = key+1;
+                    console.log('key: ' + i + ' : val ' + value );
+                    $j('#agCol').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    $j('#agSCol').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    i++;
+                    $j('#agCol').multiselect( 'refresh' );
+                    $j('#agSCol').multiselect( 'refresh' );
+                });
+            },
+            function(status){
+                $("#agCol").html(status+', unable to load Agency Entities.');
+                //alert( status+', unable to load Agency Entities' );
+            },
+            function(status){
+               $j("#agCol").html(status);
+            });
+        }
+        
+        $j("#ulRow").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall multiselectuncheckall", function( event, ui ){
+            rowsSelected = [];
+            rowsSelected = $j.map($j(this).multiselect("getChecked"), function( input ){
+                return input.value;
+            });
+            //$j('#ulRow').trigger( "click");
+        })
+        .triggerHandler("multiselectclick"); // trigger above logic when page first loads
+        
+        loadUlEnts();
+        function loadUlEnts() {
+            $j.when( getUnileverEntities() ).then( function(status){
+                $j("#loadRowSpinner").removeClass('displayed').addClass('hidden');
+                
+                $j.each(status, function(key, value) {
+                    console.log('key: ' + key + ' : val ' + value );
+                    $j('#ulRow').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    
+                    $j('#ulSRow').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    $j('#ulSRow').multiselect( 'refresh' );
+                    $j('#ulRow').multiselect( 'refresh' );
+                });
+            },
+            function(status){
+                $("#ulRow").html(status+', unable to load Unilever Entities.');
+                //alert( status+', unable to load Unilever Entities.' );
+            },
+            function(status){
+               //$("#ulRow").html(status);
+            });
+        }
+        // Add event listener for opening and closing details
+        $j('.display tbody').on('mouseover', 'td.details-control', function () {
+            var tr = $j(this).closest('tr');
+            var t = $j(this).attr('t');
+            var d = $j(this).attr('d');
+            var a = $j(this).attr('a');
+            $j(this).tooltip( {content : format(t, d, a)}, { track: true });
+        } );
+        
+        $j('#add-row-panel').on('click', function () {
+            $j("#rowPanel").removeClass('hidden').addClass('displayed');
+            $j("#add-row-panel").removeClass('displayed').addClass('hidden');
+        } );
+        
+        $j('#add-col-panel').on('click', function () {
+            $j("#colPanel").removeClass('hidden').addClass('displayed');
+            $j("#add-col-panel").removeClass('displayed').addClass('hidden');
+        } );
+        $j('#submit-col').on('click', function () {
+            $j('#agCol').trigger( "click");
+        } );
+        $j('#submit-row').on('click', function () {
+            $j('#ulRow').trigger( "click");
+        } );
+        var progressbar = $j( "#progressbar" ),
+        progressLabel = $j( ".progress-label" );
+        progressbar.progressbar({
+            value: progressValue,
+        complete: function() {
+            progressLabel.text( progressValue );
+        }
+        });
+        $j("#ulSRow").multiselect({
+            multiple: false,
+            noneSelectedText: "None",
+            selectedList: 1
+        });
+        $j("#agSCol").multiselect({
+            multiple: false,
+            noneSelectedText: "None",
+            selectedList: 1
+        });
+        $j("#ulSRow").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall", function( event, ui ){
+            $j.map($j(this).multiselect("getChecked"), function( input ){
+                singleRow = input.value;
+            });
+        })
+        $j("#agSCol").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall", function( event, ui ){
+            $j.map($j(this).multiselect("getChecked"), function(input ){
+                singleCol = input.value;
+            });
+        });
+      
+        
+  </script>
+   
+    <script>
+    $j(document).ready(function() {
+        $j(".statusBrand").multiselect({
+            multiple: false,
+            header: "Status Brand",
+            noneSelectedText: "--None--",
+            selectedList: 1
+        });
+    });
+    
+    $j(function() {
+    $j( "#progressbar" ).progressbar({
+    value: {!progressValue}
+    });
+     $j( "#progressbar1" ).progressbar({
+    value: {!progressReviewValue}
+    });
+    });
+    </script>
+    
+    <!--Chart Javascript -->
+    <script>
+     window.onload = function() {console.log('onlod fn');
+           var urlChartCircles;
             if({!isAgencyFlag}){
             urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
             }
@@ -558,25 +961,130 @@
             urlChartCircles='/resource/1435031136000/ChartNewJs';
             }
             $.getScript(urlChartCircles,function(){
-                var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
-                var mytradBar = new Chart(document.getElementById("mytradcanvas").getContext("2d")).Doughnut(DoughnutTradData,tradopts);
-                var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
-                var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);            
-               
-            });
-            }
-         function commentsToggleOpen(elementId) 
-         {
-          //alert(elementId);
-          document.getElementById(elementId).style.display = 'block';
-         }
-         function commentsToggleClose(elementId) 
-         { 
-          //alert(elementId);
-          document.getElementById(elementId).style.display = 'none';
-         }
-         commentsToggleClose('commentAddTable');
-      </script>
-     
-   </body>
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+            var mytradBar = new Chart(document.getElementById("mytradcanvas").getContext("2d")).Doughnut(DoughnutTradData,tradopts);
+            var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
+            var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);            
+           });
+
+        }
+        var DoughnutCrossData = 
+       [{
+            value : 100,
+            color: "#FF0000",
+        },
+        {
+            value : 0,
+            color: "#E6E6E6",
+        }]
+        var crossper = {!crosPerStr}+'';
+        var crossopts= {legend : true,
+           crossText : [crossper],
+           crossTextIter: ["all"],
+           crossTextOverlay :   [true],
+           crossTextFontSize : [20],
+           crossTextFontColor : ["black"],
+           crossTextRelativePosX : [2],
+           crossTextRelativePosY : [2],
+           crossTextPosX : [0],
+           crossTextPosY : [0],
+           crossTextAlign : ["center"],
+           crossTextBaseline : ["middle"],
+           canvasBorders : false,
+           
+        };
+    var trad ={!tradPerStr};
+    var DoughnutTradData = 
+                [{
+                    value : trad,
+                    color: "#74AE00",
+                 },
+                 {
+                    value : 100-trad,
+                    color: "#ECF0F1",
+
+                 }]
+var tradPer = trad+'%';
+var tradopts= {legend : true,
+   crossText : [tradPer],
+   crossTextIter: ["all"],
+   crossTextOverlay :   [true],
+   crossTextFontSize : [20],
+   crossTextFontColor : ["black"],
+   crossTextRelativePosX : [2],
+   crossTextRelativePosY : [2],
+   crossTextPosX : [0],
+   crossTextPosY : [0],
+   crossTextAlign : ["center"],
+   crossTextBaseline : ["middle"],
+   canvasBorders : false,
+};
+
+var digt={!digitPerStr};
+var DoughnutDigtData = 
+       [{
+            value : digt,
+            color: "#007DBB",
+        },
+        {
+            value : 100-digt,
+            color: "#ECF0F1",
+        }]
+var digtper = digt+'%';
+var digtopts= {legend : true,
+   crossText : [digtper],
+   crossTextIter: ["all"],
+   crossTextOverlay :   [true],
+   crossTextFontSize : [20],
+   crossTextFontColor : ["black"],
+   crossTextRelativePosX : [2],
+   crossTextRelativePosY : [2],
+   crossTextPosX : [0],
+   crossTextPosY : [0],
+   crossTextAlign : ["center"],
+   crossTextBaseline : ["middle"],
+   canvasBorders : false,
+};
+var adap ={!adaptPerStr};
+var DoughnutAdapData = 
+                [{
+                    value : adap,
+                    color: "#E400A7",
+                 },
+                 {
+                    value : 100-adap,
+                    color: "#ECF0F1",
+
+                 }]
+var adapPer = adap+'%';
+var adapopts= {legend : true,
+   crossText : [adapPer],
+   crossTextIter: ["all"],
+   crossTextOverlay :   [true],
+   crossTextFontSize : [20],
+   crossTextFontColor : ["black"],
+   crossTextRelativePosX : [2],
+   crossTextRelativePosY : [2],
+   crossTextPosX : [0],
+   crossTextPosY : [0],
+   crossTextAlign : ["center"],
+   crossTextBaseline : ["middle"],
+   canvasBorders : false,
+};
+
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+
+    </script>
+</body>
 </apex:page>

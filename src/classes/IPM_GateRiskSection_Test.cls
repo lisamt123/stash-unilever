@@ -4,21 +4,23 @@
 * @description  This class is used to test the functionality of IPM_GateRiskSection class 
 */
 @isTest
-private class IPM_GateRiskSection_Test{
+public class IPM_GateRiskSection_Test{
 
-    private static IPM_Project__c project;// Project object initialization
-    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    private static List<IPM_Project_Document_Section__c> projectDocSecListObj =new List<IPM_Project_Document_Section__c>();
+    public static IPM_Project__c project;// Project object initialization
+    public static IPM_Project_Document__c projDoc;
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    public static List<IPM_Project_Document_Section__c> projectDocSecListObj =new List<IPM_Project_Document_Section__c>();
     private static List<IPM_Project__c>projectListObj;
     private static List<IPM_Project__c>projectList=new List<IPM_Project__c>();
-    private static IPM_GateRiskSection ipm_gaterisksection;
-    private static List<IPM_Questionnaire__c> quesList;
+    public static IPM_GateRiskSection ipm_gaterisksection;
+    public static List<IPM_Questionnaire__c> quesList;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    public static PageReference  pRef;
     private static final string COMMENTS_STR='this is comment string';
-    private static User globalUser;
-    private static User stdUserForRiskSec;
-    private static List<IPM_Questionnaire__c>quesListObj=new List<IPM_Questionnaire__c>();
+    public static User globalUser;
+    public static User stdUserForRiskSec;
+    public static List<IPM_Questionnaire__c>quesListObj=new List<IPM_Questionnaire__c>();
 
     /*************************************************************************************************************************
     * @description Test Data

@@ -24,7 +24,6 @@ public with sharing class IPM_ConsumerImageUploadController {
         }
         set;
     }
-    public string urlCountry{get; set;} //For getting country from url
     //For exception handler
     private static final String IPM_CONSUMERIMAGEUPLOADCONTROLLER_STR = IPM_ConsumerImageUploadController.class.getName();
     private static final String UPLOAD_STR = 'upload';
@@ -41,7 +40,6 @@ public with sharing class IPM_ConsumerImageUploadController {
         projId=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
         projDocSecId=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_PROJ_DOC_SEC_ID);
         projDocSecConId=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_PROJ_DOC_SEC_CON_ID);
-        urlCountry=ApexPages.currentPage().getParameters().get('urlCountry');
     } 
 
     /************************************************************************************************************************

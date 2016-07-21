@@ -19,7 +19,6 @@
         <div class="col-sm-3 noPadright noPadleft width4 H30">
           
         </div>
-        <!-- Count is zero then don't show the count else show the count -->
         <apex:outputPanel rendered="{! IF(OR(count==''),'false','true')}">
             <div class="col-sm-2 headingBorder">
                 {!count}

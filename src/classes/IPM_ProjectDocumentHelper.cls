@@ -36,6 +36,10 @@ public with sharing class IPM_ProjectDocumentHelper
         List<IPM_Project_Document__c> preparedprojectDocumentList = new List<IPM_Project_Document__c>(); 
         for(IPM_Project__c project : ProjectMap.values())
         {
+            // Get incoming projects complexity
+            String projectComplexity = project.IPM_Complexity__c;
+            String projectType = project.IPM_SourceProjectType__c; 
+            String projectCategory = project.IPM_Category_Text__c;
             
             // Get Project Type Setting From Custom Settings 
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
@@ -47,84 +51,66 @@ public with sharing class IPM_ProjectDocumentHelper
                 if(projectGate!=null && !String.isEmpty(projectGate))
                 {
                     projectGate = projectGate.trim();
-                    createProjectdocument(project,associatedProjectType,preparedprojectDocumentList,projectGate);
+                    for(IPM_Project_Template__c complexityTemplate: IPM_ProjectHelper.complexityTemplateMap.values())
+                    {
+                        // If project Complexity matches project Template Complexity. ****We need to check Category Also Here ***
+                        if(!String.isblank(projectComplexity) && !String.isBlank(complexityTemplate.IPM_Template_Complexity__c) && projectComplexity == complexityTemplate.IPM_Template_Complexity__c && 
+                           !String.isBlank(projectCategory) && !String.isBlank(complexityTemplate.IPM_Category__c) && complexityTemplate.IPM_Category__c.contains(projectCategory) &&
+                           !String.isBlank(projectType) && !String.isBlank(complexityTemplate.IPM_Project_Type__c) && complexityTemplate.IPM_Project_Type__c == projectType )
+                        {
+                            if(IPM_ProjectHelper.complexitySpecificDocumentTemplates.containsKey(complexityTemplate.Id) && IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id)!=null)
+                            {
+                                for(IPM_Document_Template__c docTemplate : IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id))
+                                {
+                                    // If project Gate Matches Document Type Gate, We need to build Project Documents for that Gate. 
+                                    if( projectGate == docTemplate.IPM_Document_Type__c)
+                                    {
+                                        // Prepare Project Document
+                                        IPM_Project_Document__c projDoc = new IPM_Project_Document__c(); 
+                                        projDoc.IPM_Project__c = project.Id;
+                                        projDoc.IPM_Project_Template__c = docTemplate.IPM_Project_Template__c;
+                                        projDoc.IPM_Document_Template__c = docTemplate.ID; 
+                                        projDoc.IPM_GateDocuments__c = docTemplate.IPM_Document_Type__c; 
+                                        projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c;                                         
+                                        projDoc.IPM_Contract_GateKeeper_Model__c = associatedProjectType.IPM_GateKeeping_Model__c;
+                                        projDoc.IPM_Document_Order__c=docTemplate.IPM_Document_Order__c; 
+                                        projDoc.IPM_Project_External_Id__c=project.Project_External_ID__c;
+                                        /* if there is already a document attached to Project for incoming Gate, update project document */    
+                                        if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id)!=null)
+                                        {
+                                           List<IPM_Project_Document__c> existingProjectDocuments  = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id);
+                                                
+                                            for(IPM_Project_Document__c tempProjectDocument : existingProjectDocuments)
+                                            {
+                                                // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
+                                                // Map Id to existing Document to this document.
+                                                if(tempProjectDocument.IPM_GateDocuments__c == projectGate) 
+                                                {
+                                                    projDoc.Id = tempProjectDocument.Id;
+                                                    projDoc.IPM_Document_Status__c = tempProjectDocument.IPM_Document_Status__c;                    
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        
+                                        if(projDoc.IPM_Document_Status__c == null || String.isBlank(projDoc.IPM_Document_Status__c))
+                                        {
+                                            projDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
+                                        }
+                                        preparedprojectDocumentList.add(projDoc);
+                                        break;
+                                    }
+                                }
+                            }
+                            break;     
+                        }
+                    }
                 }
             }  
         }
         return preparedprojectDocumentList;
     }
-    public static void createProjectdocument(IPM_Project__c project,IPM_Project_Type__c associatedProjectType,List<IPM_Project_Document__c> preparedprojectDocumentList, String projectGate)
-    {   
-         // Get incoming projects complexity
-        String projectComplexity = project.IPM_Complexity__c;
-        String projectType = project.IPM_SourceProjectType__c; 
-        String projectCategory = project.IPM_Category_Text__c;
-	    for(IPM_Project_Template__c complexityTemplate: IPM_ProjectHelper.complexityTemplateMap.values())
-	    {
-	        // If project Complexity matches project Template Complexity. ****We need to check Category Also Here ***
-	        if(!String.isblank(projectComplexity) && !String.isBlank(complexityTemplate.IPM_Template_Complexity__c) && projectComplexity == complexityTemplate.IPM_Template_Complexity__c && 
-	           !String.isBlank(projectCategory) && !String.isBlank(complexityTemplate.IPM_Category__c) && complexityTemplate.IPM_Category__c.contains(projectCategory) &&
-	           !String.isBlank(projectType) && !String.isBlank(complexityTemplate.IPM_Project_Type__c) && complexityTemplate.IPM_Project_Type__c == projectType )
-	        {
-	            if(IPM_ProjectHelper.complexitySpecificDocumentTemplates.containsKey(complexityTemplate.Id) && IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id)!=null)
-	            {
-	                for(IPM_Document_Template__c docTemplate : IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id))
-	                {
-	                    // If project Gate Matches Document Type Gate, We need to build Project Documents for that Gate. 
-	                    if( projectGate == docTemplate.IPM_Document_Type__c)
-	                    {
-                            IPM_Project_Document__c projDoc = populateProjectDocument(project,docTemplate,associatedProjectType,projectGate);
-                            preparedprojectDocumentList.add(projDoc);
-                            break;
-                        }
-                    }
-                }
-                break;     
-            }
-        }
-    }
-    /**************************************************************
-    * @description: Used for Updating Project Document Status as Approved.
-    * @param1 incomingProjectMap : Trigger.New projects Map
-    */
-    public static IPM_Project_Document__c populateProjectDocument(IPM_Project__c project,IPM_Document_Template__c docTemplate, IPM_Project_Type__c associatedProjectType, String projectGate)
-    {
-	                        // Prepare Project Document
-	                        IPM_Project_Document__c projDoc = new IPM_Project_Document__c(); 
-	                        projDoc.IPM_Project__c = project.Id;
-	                        projDoc.IPM_Project_Template__c = docTemplate.IPM_Project_Template__c;
-	                        projDoc.IPM_Document_Template__c = docTemplate.ID; 
-	                        projDoc.IPM_GateDocuments__c = docTemplate.IPM_Document_Type__c; 
-	                        projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c;                                         
-	                        projDoc.IPM_Contract_GateKeeper_Model__c = associatedProjectType.IPM_GateKeeping_Model__c;
-	                        projDoc.IPM_Document_Order__c=docTemplate.IPM_Document_Order__c; 
-	                        projDoc.IPM_Project_External_Id__c=project.Project_External_ID__c;
-	                        /* if there is already a document attached to Project for incoming Gate, update project document */    
-	                        if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id)!=null)
-	                        {
-	                           List<IPM_Project_Document__c> existingProjectDocuments  = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id);
-                                                
-	                            for(IPM_Project_Document__c tempProjectDocument : existingProjectDocuments)
-	                            {
-	                                // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-	                                // Map Id to existing Document to this document.
-	                                if(tempProjectDocument.IPM_GateDocuments__c == projectGate) 
-	                                {
-	                                    projDoc.Id = tempProjectDocument.Id;
-	                                    projDoc.IPM_Document_Status__c = tempProjectDocument.IPM_Document_Status__c;                    
-	                                    break;
-	                                }
-	                            }
-	                        }
-                                        
-	                        if(projDoc.IPM_Document_Status__c == null || String.isBlank(projDoc.IPM_Document_Status__c))
-	                        {
-	                            projDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
-	                        }
-        return projDoc;
-    }
-
-
+    
     /**************************************************************
     * @description: Used for Updating Project Document Status as Approved.
     * @param1 incomingProjectMap : Trigger.New projects Map
@@ -221,12 +207,17 @@ public with sharing class IPM_ProjectDocumentHelper
             
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
             
+            String projectCurrentPhase = associatedProjectType.IPM_Phase__c;
+            
             String associatedGate = associatedProjectType.IPM_Gate_Document__c;
             
+            if(associatedGate!=null && !String.isblank(associatedGate))
+            {
+                if(projectToDocumentMap.containsKey(associatedProjectID) && projectToDocumentMap.get(associatedProjectID)!=null)
+                {
                     // check if that Gate Exists in the Map
                     Map<String,IPM_Project_Document__c> gateToProjectDocumentMap = projectToDocumentMap.get(associatedProjectID);
-            if(!String.isblank(associatedGate) &&  gateToProjectDocumentMap!=null && gateToProjectDocumentMap.containsKey(associatedGate) 
-                && gateToProjectDocumentMap.get(associatedGate)!=null)
+                    if(gateToProjectDocumentMap.containsKey(associatedGate) && gateToProjectDocumentMap.get(associatedGate)!=null)
                     {
                         IPM_Project_Document__c projectDocument = gateToProjectDocumentMap.get(associatedGate);
                         Id associatedTemplateId = projectDocument.IPM_Document_Template__c;
@@ -265,7 +256,27 @@ public with sharing class IPM_ProjectDocumentHelper
                                     for(IPM_Section__c section : associatedSectionList)
                                     {
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
-                                        checkExistingProjectDocumentSection(project,projDocSect,existingProjectDocument,section,matchedDocumentSectionsSet);
+                                        // If there is an existing Product document Template associated,we assume sections are already associated with them.
+                                        // In that case we need to update references to those project document section to point to proper master sec.
+                                        
+                                        if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id) 
+                                        && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id)  )
+                                        {
+                                            for(IPM_Project_Document_Section__c existingProjectDocSec : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingProjectDocument.Id) )
+                                            {
+                                                // If the sections are Same
+                                                if(section.External_ID__c !=null && existingProjectDocSec.IPM_Master_Section_External_Id__c !=null && 
+                                                    existingProjectDocSec.IPM_Master_Section_External_Id__c == section.External_ID__c && 
+                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) && section.ProjectSpan__c.contains(project.IPMProject_Span__c) )
+                                                {
+                                                    matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
+                                                    projDocSect.Id = existingProjectDocSec.Id;
+                                                    projDocSect.IPM_Gate_Document_Summary__c = existingProjectDocSec.IPM_Gate_Document_Summary__c;
+                                                    projDocSect.IPM_PDP_Document_Summary__c = existingProjectDocSec.IPM_PDP_Document_Summary__c;
+                                                    break;
+                                                }
+                                            }
+                                        }
                                         
                                         projDocSect.IPM_Project_Document__c = projectDocument.Id;
                                         projDocSect.IPM_Section_Name__c = section.IPM_Section_Name__c;
@@ -276,22 +287,61 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
                                         projDocSect.IPM_Section_Help_Text_Long__c = section.IPM_Section_Help_Text__c;
                                         projDocSect.IPM_Negotiable__c = section.IPM_Negotiable__c;
-                                	projDocSect.IPM_Default_Section__c=section.IPM_IS_Default_Section__c;
                                         projDocSect.IPM_Section_Type__c = section.IPM_Section_Type__c;
                                         projDocSect.IPM_Has_Appendix__c=section.IPM_Has_Appendix__c;
                                         projDocSect.Is_IPM_Global_Consolidated__c=section.Is_IPM_Global_Consolidated__c;
                                         
-                                        
+                                        // Based on Complexity set the Default Section Flag.
+                                        if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL){
+                                            projDocSect.IPM_Default_Section__c=true;
+                                        }   
+                                        else if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
+                                        {
+                                            projDocSect.IPM_Default_Section__c= !section.IPM_Negotiable__c; 
+                                        } 
                                         
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
                                         
+                                        String summary=projDocSect.IPM_Gate_Document_Summary__c; 
+                                        if(String.isNotBlank(summary)){
+                                            summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
+                                         }  
+                                         
+                                         // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
+                                         if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c){
+                                            projDocSect.IPM_Gate_Document_Summary__c=summary.subString(0,(Integer)section.IPM_Character_Limit__c);
+                                        }
+                                        if(section.IPM_Character_Limit__c!=NULL){
+                                            if(String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c)){
+                                                projDocSect.IPM_Summary_Character_Remaining__c=(Integer)section.IPM_Character_Limit__c-projDocSect.IPM_Gate_Document_Summary__c.length();
+                                            }
+                                            else{
+                                                projDocSect.IPM_Summary_Character_Remaining__c=section.IPM_Character_Limit__c;
+                                            }
+                                        }
+                                        // Update the Status based on Whether Gate Summary information is filled or not.
+                                        if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
+                                            section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
+                                        {
+                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015
+                                            if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
+                                            {
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+                                            }
+                                            else if(String.isNotBlank(projDocSect.IPM_PDP_Document_Summary__c) && projDocSect.IPM_PDP_Document_Summary__c.length() >=15)
+                                            {
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
+                                            projDocSect.IPM_Functional_Input_Status__c = IPM_ConstantUtils.BLANK;
+                                        }
                                         
-										copyOverSummaryData(projDocSect,section,associatedGate);
-                                        
-										if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
-											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
-											{
+                                       if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
                                             projectDocumentSectionList.add(projDocSect);
+                                       }
                                     }
                                 }
                             }
@@ -301,75 +351,6 @@ public with sharing class IPM_ProjectDocumentHelper
             }       
         }
         return projectDocumentSectionList;
-    }
-    
-    public static void copyOverSummaryData(IPM_Project_Document_Section__c  projDocSect, IPM_Section__c section,String associatedGate)
-    {
-        String summary=projDocSect.IPM_Gate_Document_Summary__c; 
-        summary=String.isNotBlank(summary)? summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,''):summary;    
-
-        // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
-        if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c)
-        {
-            projDocSect.IPM_Gate_Document_Summary__c=summary.subString(0,(Integer)section.IPM_Character_Limit__c);
-        }
-        
-        if(section.IPM_Character_Limit__c!=NULL)
-        {
-            if(String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c)){
-                projDocSect.IPM_Summary_Character_Remaining__c=(Integer)section.IPM_Character_Limit__c-projDocSect.IPM_Gate_Document_Summary__c.length();
-            }
-            else{
-                projDocSect.IPM_Summary_Character_Remaining__c=section.IPM_Character_Limit__c; 
-            }
-        }
-
-        // Update the Status based on Whether Gate Summary information is filled or not.
-        if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
-                section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
-        {
-            // DEF2994 Restrict the copy over of Filled in logic 16/12/2015
-            if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
-            {
-                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
-            }
-            else if(String.isNotBlank(projDocSect.IPM_PDP_Document_Summary__c) && projDocSect.IPM_PDP_Document_Summary__c.length() >=15)
-            {
-                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
-            }
-        }
-        else
-        {
-            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
-            projDocSect.IPM_Functional_Input_Status__c = IPM_ConstantUtils.BLANK;
-        }
-        
-    }
-    
-    public static void checkExistingProjectDocumentSection(IPM_Project__c project, IPM_Project_Document_Section__c projDocSect,IPM_Project_Document__c existingProjectDocument, IPM_Section__c  section,Set<Id> matchedDocumentSectionsSet)
-    {
-        // If there is an existing Product document Template associated,we assume sections are already associated with them.
-        // In that case we need to update references to those project document section to point to proper master sec.
-        
-        if(section.External_ID__c !=null && existingProjectDocument!=null && section.ProjectSpan__c.contains(project.IPMProject_Span__c) && 
-        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id))
-        {
-            for(IPM_Project_Document_Section__c existingProjectDocSec : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingProjectDocument.Id) )
-            { 
-                // If the sections are Same
-                if(existingProjectDocSec.IPM_Master_Section_External_Id__c !=null && 
-                existingProjectDocSec.IPM_Master_Section_External_Id__c == section.External_ID__c && 
-                !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
-                {
-                    matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
-                    projDocSect.Id = existingProjectDocSec.Id;
-                    projDocSect.IPM_Gate_Document_Summary__c = existingProjectDocSec.IPM_Gate_Document_Summary__c;
-                    projDocSect.IPM_PDP_Document_Summary__c = existingProjectDocSec.IPM_PDP_Document_Summary__c;
-                    break;
-                }
-            }
-        }
-        
     }
     
     /**************************************************************

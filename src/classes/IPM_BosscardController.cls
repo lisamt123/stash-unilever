@@ -9,7 +9,7 @@ Global with sharing class IPM_BosscardController {
     //*@Description: bosscard for inserting a new bosscard
     public IPM_Bosscard__c bosscard {get; set;}
     //*@Description: listofProjectName for quering the list and display as auto suggestion.
-    public set<string> listofProjectName{get; set;}
+    public List<IPM_Bosscard__c> listofProjectName{get; set;}
     //*@Description: isSave to understand whether the save button is clicked on the BOSSCARD
     public Boolean isSave {get; set;}
     //*@Description: selBrand to capture the selected Brand on the BOSSCARD screen
@@ -553,11 +553,8 @@ Global with sharing class IPM_BosscardController {
         bosscard.IPM_Region_Shr__c=geoScope_STR;
         
         if(String.isNotBlank(BossCUrl_ID))
-        {
             bosscard.id=BossCUrl_ID;
-        }
-        if(String.isNotBlank(bosscard.id))
-        {
+        if(String.isNotBlank(bosscard.id)){
             Bossupdatedlst.add(bossCard);
             try{
                 update bossCard;
@@ -645,7 +642,7 @@ Global with sharing class IPM_BosscardController {
     *@Description : cancel bosscard
     *********************************************************************************/
     public pagereference cancelBosscard(){
-        PageReference pg = Page.IPM_HomePage;
+        pagereference pg=new pagereference(IPM_ConstantUtils.IPM_HOMEPAGE_URL);
         if(bosscard.IPM_IsSaved__c){
             return pg;
         }
@@ -698,9 +695,9 @@ Global with sharing class IPM_BosscardController {
     *********************************************************************************/
     
     public void searchDuplicateBosscard(){
-        listofprojectname=new set<String>();
-        listofprojectname=IPM_WithoutShareController.allBosscardList(bosscardId,bosscard.IPM_BosscardName__c);
-        if(listofprojectname.isEmpty()){
+        listofProjectName=new List<IPM_Bosscard__c>();
+        listofProjectName=IPM_WithoutShareController.allBosscardList(bosscardId,bosscard.IPM_BosscardName__c);
+        if(listofProjectName.isEmpty()){
                 isBosscardNameBlank=true;
         }
         else{

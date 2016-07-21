@@ -33,7 +33,6 @@
                   <apex:outputText value="{!que.IPM_Question__c}"/>
               </td>
               <td>  
-              <!--Below rendered condition is used to show the below output text-->
                      <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(que.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,que.IPM_GK_Answers__c)}">{!IF(que.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,que.IPM_GK_Answers__c)}</div></apex:outputText>
                      
             </td>

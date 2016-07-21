@@ -1,4 +1,4 @@
-public with sharing class CEC_CaseActionController {
+public class CEC_CaseActionController {
     
     // to store the caseId from parent page
     public String CurrentCaseId{get; set;}

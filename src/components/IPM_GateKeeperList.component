@@ -72,7 +72,7 @@
     <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!gk.IPM_Project__c}&projDocSecId={!gk.IPM_Project_Document_Section__c}">
      <apex:outputText value="{!gk.IPM_Section_Sequence_Number__c} {!gk.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/> </a>
     </td>
-    <td>     <!--Below rendered condition is used for showing slider  -->
+    <td>    
             <apex:outputPanel id="gkSlide" styleClass="sliderGk" rendered="{!IF(AND(editTable,gk.IPM_Section_Sequence_Number__c=null, gk.IPM_Section_Sequence_Number__c='',isEditable) ,true,false)}">
                <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
                <div class="legendSld gateKeeperSlider">
@@ -88,13 +88,10 @@
                    <input type="radio" name="score" id="s4" value="{!$Label.IPM_NO_APPLICABLE}"  />
              </div>              
              </apex:outputPanel>                
-              <!-- Below rendered condition is used for showing output text -->               
              <apex:outputText rendered="{!IF(OR(editTable=false,gk.IPM_Section_Sequence_Number__c!=null, gk.IPM_Section_Sequence_Number__c!='',isEditable=false),true,false)}"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!IF(gk.IPM_GK_Answers__c=='Not Applicable','Not Applicable',gk.IPM_GK_Answers__c)}</div></apex:outputText> 
     </td>
     <td>
-     <!-- Below rendered condition is used for showing input field -->
         <apex:inputField value="{!gk.IPM_Comments__c}"  rendered="{!IF(AND(editTable,gk.IPM_Section_Sequence_Number__c=null, gk.IPM_Section_Sequence_Number__c='',isEditable) ,true,false)}" onchange="callupdateGKList('{!gk.Id}','{!gk.IPM_GK_Answers__c}',this.value,true);"/> 
-<!-- Below rendered condition is used for showing output text --> 
 <apex:outputText value="{!gk.IPM_Comments__c}" rendered="{!IF(OR(editTable=false,gk.IPM_Section_Sequence_Number__c!=null, gk.IPM_Section_Sequence_Number__c!='',isEditable=false),true,false)}"/> 
     </td>
   </tr>  

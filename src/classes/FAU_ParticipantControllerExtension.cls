@@ -256,7 +256,7 @@ public with sharing class FAU_ParticipantControllerExtension
  
         if(inviteState == INVITE_STATE_INVITED)
         {          
-            if (participant.FAU_Is_deferred_To_PA__c == true){
+            if (participant.FAU_Is_deferred_To_PA__c){
                 this.stage = STAGE_REGISTERING;
             }else{
                 this.stage = STAGE_INITIAL; 

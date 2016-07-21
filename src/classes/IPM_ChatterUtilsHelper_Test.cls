@@ -8,19 +8,13 @@
 *********************************************/
 
 @isTest
-private with sharing class IPM_ChatterUtilsHelper_Test {
+public with sharing class IPM_ChatterUtilsHelper_Test {
     
-    private static List<IPM_Company_Card__c> companyCardList; 
-    private static List<IPM_Project__c> projectList;
-    private static List<IPM_Project_Resource__c> ipmProjectResourceList;
-    private static List<IPM_Country__c> ipmCountryList;
-    private static User platformUser;
-    private static Set<Id> iDs;
-    private static final String COMPANY_CARD_NOT_INSERTED='Company Cards are not inserted';
-    private static final String PROJECT_NOT_INSERTED = 'Projects not Inserted';
-    private static final String COUNTRY_NOT_INSERTED = 'Country not Inserted';
-    private static final String COUNTRY_NOT_DELETED='Countries not deleted!';
-    private static final String PROJECTRESOURCE_NOT_INSERTED_ASSERTION = 'Project Resources not Inserted';
+    public static List<IPM_Company_Card__c> companyCardList; 
+    public static List<IPM_Project__c> projectList;
+    public static List<IPM_Project_Resource__c> ipmProjectResourceList;
+    public static List<IPM_Country__c> ipmCountryList;
+    public static User platformUser;
     
      /***********************************
       Description of the purpose of the method. 
@@ -33,8 +27,6 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
     
      @testSetup static void projectSetUpData() 
      {
-     	iDs = new Set<Id>();
-     	
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             
@@ -47,11 +39,6 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
         companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         
-        for(IPM_Company_Card__c eachCompanyCard : companyCardList) {
-            iDs.add(eachCompanyCard.Id);
-        }
-        System.assertEquals(3, [Select count() from IPM_Company_Card__c where id in:iDs],COMPANY_CARD_NOT_INSERTED );
-         
          IPM_TestFactory_Helper.getProjectMasterData();
          
          projectList = IPM_TestFactory_Helper.projectSetUp(20,platformUser);
@@ -70,15 +57,9 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
                 proj.IPM_Project_Name__c = 'proj'+counter++;
               }
            insert projectList;
-           
-           iDs.clear();
-           for(IPM_Project__c eachProj : projectList) {
-           iDs.add(eachProj.Id);
-           }
-           System.assertEquals(20, [Select count() from IPM_Project__c where id in:iDs],PROJECT_NOT_INSERTED);
-        
          }  
-        
+         system.assertEquals(projectList.size(),20,'Projects are not created');
+
       }
 
      /***********************************
@@ -89,10 +70,7 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
       @return: none
       @throws: none
     ***********************************/     
-    static testMethod void testChatterUtilsHelper(){ 
-    	
-    	iDs = new Set<Id>();
-    	       
+    static testMethod void testChatterUtilsHelper(){        
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         
            ipmProjectResourceList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 20);
@@ -103,12 +81,6 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
                 
            }
            insert ipmProjectResourceList;
-           iDs.clear(); 
-           for(IPM_Project_Resource__c eachResource : ipmProjectResourceList) {
-           iDs.add(eachResource.Id);
-           }
-           System.assertEquals(20, [Select count() from IPM_Project_Resource__c where id in:iDs],PROJECTRESOURCE_NOT_INSERTED_ASSERTION);
-        
         system.runAs(globalUser){
            projectList = [Select Id, name,First_Sync_To_EcoDesign__c ,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Leader__c,IPM_Project_Name__c from IPM_Project__c Limit 1000];
            ipmCountryList = IPM_TestFactory_Helper.createIPMCountryList(false, 20);
@@ -118,18 +90,10 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
            test.startTest();
            insert ipmCountryList;
            
-           iDs.clear(); 
-           for(IPM_Country__c eachCountry : ipmCountryList) {
-           iDs.add(eachCountry.Id);
-           }
-           System.assertEquals(20, [Select count() from IPM_Country__c where id in:iDs],COUNTRY_NOT_INSERTED);
-        
-           
            List<IPM_Country__c> countriesToDeleteLst = [Select id,IPM_project__c from IPM_Country__c limit 2];
            delete countriesToDeleteLst;
            
-           //Eco design sync status should be Ready when the countries are deleted
-           System.assertEquals('Ready',[Select Id,EcoDesign_Sync_Status__c from IPM_Project__c where ID =:countriesToDeleteLst[0].IPM_project__c limit 1 ][0].EcoDesign_Sync_Status__c,COUNTRY_NOT_DELETED);
+           System.assertEquals('Ready',[Select Id,EcoDesign_Sync_Status__c from IPM_Project__c where ID =:countriesToDeleteLst[0].IPM_project__c limit 1 ][0].EcoDesign_Sync_Status__c);
            
            test.stopTest();
         }
@@ -145,9 +109,7 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
       @return: none
       @throws: none
     ***********************************/     
-    static testMethod void testChatterUtilsHelperWithOutRnDLeader(){   
-    	iDs = new Set<Id>();
-    	     
+    static testMethod void testChatterUtilsHelperWithOutRnDLeader(){        
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         
            projectList = [Select Id, name,First_Sync_To_EcoDesign__c ,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Leader__c,IPM_Project_Name__c from IPM_Project__c Limit 1000];
@@ -160,17 +122,10 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
            test.startTest();
            insert ipmCountryList;
            
-           iDs.clear(); 
-           for(IPM_Country__c eachCountry : ipmCountryList) {
-           iDs.add(eachCountry.Id);
-           }
-           System.assertEquals(20, [Select count() from IPM_Country__c where id in:iDs],COUNTRY_NOT_INSERTED);
-        
            List<IPM_Country__c> countriesToDeleteLst = [Select id,IPM_project__c from IPM_Country__c limit 2];
            delete countriesToDeleteLst;
            
-           //Eco design sync status should be Ready when the countries are deleted
-           System.assertEquals('Ready',[Select Id,EcoDesign_Sync_Status__c from IPM_Project__c where ID =:countriesToDeleteLst[0].IPM_project__c limit 1 ][0].EcoDesign_Sync_Status__c,COUNTRY_NOT_DELETED);
+           System.assertEquals('Ready',[Select Id,EcoDesign_Sync_Status__c from IPM_Project__c where ID =:countriesToDeleteLst[0].IPM_project__c limit 1 ][0].EcoDesign_Sync_Status__c);
            
            test.stopTest();
         }

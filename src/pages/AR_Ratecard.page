@@ -36,16 +36,16 @@ a   Page Name: AR_RateCard
                 
                     <header class="main-header">
                     
-                    	<nav class="steps-wrapper" style="margin-bottom:15px;">
-	                   		<c:AR_ProgressBar pController="{!this}" />
-		                </nav>
-                    	
+                        <nav class="steps-wrapper" style="margin-bottom:15px;">
+                            <c:AR_ProgressBar pController="{!this}" />
+                        </nav>
+                        
                         <h1>Ratecard</h1>
                         <p>
                             To complete the below ratecard, use the Role Type &amp; Role dropdown menus to select a role, which will display Unilever’s standard definition for this role. Ensure you complete this information in the local currency to the role location.
-						</p>
-						<p>
-							If you have more than one office, please enter a role for each office location. 
+                        </p>
+                        <p>
+                            If you have more than one office, please enter a role for each office location. 
                         </p>
                     </header>
                 
@@ -62,8 +62,8 @@ a   Page Name: AR_RateCard
                                     <thead>
                                         <tr>
                                             <apex:repeat value="{!FieldSetMap['ar_Rate_Card__c']['ratecard']}" var="field">
-                                            	<apex:outputText rendered="{!field.fieldPath != 'Role_Description__c'}">
-                                                	<th>{!field.Label}</th>
+                                                <apex:outputText rendered="{!field.fieldPath != 'Role_Description__c'}">
+                                                    <th>{!field.Label}</th>
                                                 </apex:outputText>
                                             </apex:repeat>
                                         </tr>
@@ -72,14 +72,14 @@ a   Page Name: AR_RateCard
                                         <apex:repeat value="{!RateCardObjectList}" var="ratecard">
                                             <tr style="{!IF(ratecard.isDeleted,'display:none','')}">
                                                 <apex:repeat value="{!FieldSetMap['ar_Rate_Card__c']['ratecard']}" var="field">
-                                                	<apex:outputText rendered="{!field.fieldPath != 'Role_Description__c'}">
-                                                    	<td><apex:outputText value="{!ratecard.obj[field.fieldPath]}" /></td>
+                                                    <apex:outputText rendered="{!field.fieldPath != 'Role_Description__c'}">
+                                                        <td><apex:outputText value="{!ratecard.obj[field.fieldPath]}" /></td>
                                                     </apex:outputText>
                                                 </apex:repeat>
                                                 
                                                 <td>
                                                     <apex:commandLink action="{!ratecard.remove}" rerender="rateCardPanel">
-                                                        <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
+                                                        <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" alt="Ratecard" class="remove-row"/>
                                                     </apex:commandLink>
                                                 </td>
                                             </tr>
@@ -89,57 +89,57 @@ a   Page Name: AR_RateCard
                             </apex:outputPanel>
                             
                             <apex:outputPanel layout="block" id="newRolePanel">
-	                            <fieldset class="repeater"><legend>New Role</legend>
-	                                <apex:repeat value="{!FieldSetMap['ar_Rate_Card__c']['ratecard']}" var="field">
-	                                    <div class="form-row {!CASE(field.Type,'string','text','url','text','double','text','percent','text','currency','text',field.Type)}-row clearfix">
-	                                        <label class="form-row-label">
-	                                            <apex:outputText value="{!field.label}" />
-	                                        </label>
-	                                        <div class="form-input">
-	                                            <apex:outputText rendered="{!AND(field.fieldPath != 'Role__c',field.fieldPath != 'Role_Description__c')}">
-	                                                <apex:outputText rendered="{!field.Type=='picklist'}">
-	                                                    <label class="select-label">
-	                                                        <apex:inputField value="{!RateCardObject.obj[field.fieldPath]}" styleClass="select" />
-	                                                    </label>
-	                                                </apex:outputText>
-	                                                <apex:outputText rendered="{!AND(field.Type!='picklist',field.Type!='textarea')}">
-	                                                    <apex:inputField value="{!RateCardObject.obj[field.fieldPath]}" />
-	                                                </apex:outputText>
-	                                                <apex:outputText rendered="{!field.Type=='textarea'}">
-	                                                    <apex:inputTextArea value="{!RateCardObject.obj[field.fieldPath]}" rows="10" />
-	                                                </apex:outputText>
-	                                            </apex:outputText>
-	                                            
-	                                            <apex:outputText rendered="{!field.fieldPath == 'Role__c'}">
-	                                                <label class="select-label">
-	                                                    <apex:inputField value="{!RateCardObject.obj[field.fieldPath]}">
-	                                                        <apex:actionSupport event="onchange" action="{!populateRoleDescription}" reRender="newRolePanel" status="loadDescriptionStatus" />
-	                                                        <apex:actionStatus id="loadDescriptionStatus">
-	                                                            <apex:facet name="start">
-	                                                                <apex:image value="/img/loading.gif" />
-	                                                            </apex:facet>   
-	                                                        </apex:actionStatus>
-	                                                    </apex:inputField>
-	                                                </label>
-	                                            </apex:outputText>
-	                                            
-	                                            <apex:outputText rendered="{!field.fieldPath == 'Role_Description__c'}">
-	                                            	<apex:outputField value="{!RateCardObject.obj['Role_Description__c']}" />
-	                                            </apex:outputText>
-	                                            
-	                                            <apex:outputText rendered="{!$ObjectType['ar_Rate_Card__c'].fields[field.fieldPath].InlineHelpText != null}">
-	                                                <p class="helper">{!$ObjectType['ar_Rate_Card__c'].fields[field.fieldPath].InlineHelpText}</p>
-	                                            </apex:outputText>
-	                                        </div>
-	                                    </div>
-	                                </apex:repeat>
-	                                
-	                                <p class="submit-instruction">Once you included all of the above information, press the button below to submit and add another one</p>
-	                            	<apex:commandButton action="{!addNewRateCardObject}" styleClass="repeater-add" value="Add Role" rerender="mainContainer" />
-	                            	
-	                            </fieldset>
+                                <fieldset class="repeater"><legend>New Role</legend>
+                                    <apex:repeat value="{!FieldSetMap['ar_Rate_Card__c']['ratecard']}" var="field">
+                                        <div class="form-row {!CASE(field.Type,'string','text','url','text','double','text','percent','text','currency','text',field.Type)}-row clearfix">
+                                            <label class="form-row-label">
+                                                <apex:outputText value="{!field.label}" />
+                                            </label>
+                                            <div class="form-input">
+                                                <apex:outputText rendered="{!AND(field.fieldPath != 'Role__c',field.fieldPath != 'Role_Description__c')}">
+                                                    <apex:outputText rendered="{!field.Type=='picklist'}">
+                                                        <label class="select-label">
+                                                            <apex:inputField value="{!RateCardObject.obj[field.fieldPath]}" styleClass="select" />
+                                                        </label>
+                                                    </apex:outputText>
+                                                    <apex:outputText rendered="{!AND(field.Type!='picklist',field.Type!='textarea')}">
+                                                        <apex:inputField value="{!RateCardObject.obj[field.fieldPath]}" />
+                                                    </apex:outputText>
+                                                    <apex:outputText rendered="{!field.Type=='textarea'}">
+                                                        <apex:inputTextArea value="{!RateCardObject.obj[field.fieldPath]}" rows="10" />
+                                                    </apex:outputText>
+                                                </apex:outputText>
+                                                
+                                                <apex:outputText rendered="{!field.fieldPath == 'Role__c'}">
+                                                    <label class="select-label">
+                                                        <apex:inputField value="{!RateCardObject.obj[field.fieldPath]}">
+                                                            <apex:actionSupport event="onchange" action="{!populateRoleDescription}" reRender="newRolePanel" status="loadDescriptionStatus" />
+                                                            <apex:actionStatus id="loadDescriptionStatus">
+                                                                <apex:facet name="start">
+                                                                    <apex:image value="/img/loading.gif" />
+                                                                </apex:facet>   
+                                                            </apex:actionStatus>
+                                                        </apex:inputField>
+                                                    </label>
+                                                </apex:outputText>
+                                                
+                                                <apex:outputText rendered="{!field.fieldPath == 'Role_Description__c'}">
+                                                    <apex:outputField value="{!RateCardObject.obj['Role_Description__c']}" />
+                                                </apex:outputText>
+                                                
+                                                <apex:outputText rendered="{!$ObjectType['ar_Rate_Card__c'].fields[field.fieldPath].InlineHelpText != null}">
+                                                    <p class="helper">{!$ObjectType['ar_Rate_Card__c'].fields[field.fieldPath].InlineHelpText}</p>
+                                                </apex:outputText>
+                                            </div>
+                                        </div>
+                                    </apex:repeat>
+                                    
+                                    <p class="submit-instruction">Once you included all of the above information, press the button below to submit and add another one</p>
+                                    <apex:commandButton action="{!addNewRateCardObject}" styleClass="repeater-add" value="Add Role" rerender="mainContainer" />
+                                    
+                                </fieldset>
 
-	                        </apex:outputPanel>
+                            </apex:outputPanel>
                             
                         </div>
                         

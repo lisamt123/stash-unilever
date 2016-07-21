@@ -1,393 +1,267 @@
 <apex:page standardStylesheets="false" sidebar="false" docType="html-5.0" tabStyle="Sustainable_Living_Lab__tab" standardcontroller="Event__c" 
-		extensions="isll_EventDetailExtention" action="{!createUniqueVisit}">
-<script>
-	var count;
-	var counter;
-	
-	function timer()
-	{
-		count--;
-	
-		if(count <= 0)
-		{
-			stopPolling();
-	
-			if(textAreaHasContent())
-			{
-				resetCount();
-				startPolling(); 
-			}
-			else
-			{
-				stopPolling();
-				//location.reload();
-				refreshChatter();
-				refreshStats(); // attendees counter and so on
-			}
-		}
-	
-		document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
-	}
-	
-	function textAreaHasContent()
-	{
-		var defaultPromptText = $("#publisherprompttext").val();
-		var taContent = $("#publishereditablearea").val();
-		var textAreaContent = $.trim( taContent );
-	
-		if( !$.trim(textAreaContent) )
-		{
-			return false;
-		}
-		else if( textAreaContent === defaultPromptText )
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	
-	function stopPolling()
-	{
-		clearInterval(counter);
-		counter = null
-	}
-	
-	function startPolling()
-	{
-		stopPolling();
-		
-		counter = setInterval(timer, 1000);
-	}
-	
-	function resetCount()
-	{
-		count = {!autoRefreshSeconds};
-		document.getElementById("timer").innerHTML=count + " secs";
-	}
-	
-	function hideTimer()
-	{
-		$("#timer-container").hide();
-	}
-	
-	function showTimer()
-	{
-		$("#timer-container").show();
-	}
-	
-	$( document ).ready(function()
-	{
-		count = {!autoRefreshSeconds};
-	}); // end ready
-</script>
+        extensions="isll_EventDetailExtention" action="{!createUniqueVisit}">
+        
+        
+<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_EventsDetail_Page1.js')}" />
+
+<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_EventsDetail_Page2.js')}" />
+ 
 
 <style type="text/css">
-	#firstColumn {
-	    margin-bottom: 20px;
-	    width: 45% !important;
-	    float: left;
-	}
-	        
-	#secondColumn {
-	    margin-bottom: 20px;
-	    width: 30% !important;
-	    float: left;
-	    margin-left: 22px;
-	}
+    #firstColumn {
+        margin-bottom: 20px;
+        width: 45% !important;
+        float: left;
+    }
+            
+    #secondColumn {
+        margin-bottom: 20px;
+        width: 30% !important;
+        float: left;
+        margin-left: 22px;
+    }
 
-	#thirdColumn {
-	    margin-bottom: 20px;
-	    width: 20% !important;
-	    float: left;
-	}
+    #thirdColumn {
+        margin-bottom: 20px;
+        width: 20% !important;
+        float: left;
+    }
 
-	.hearderImage{
-		width : 99%;
-		height: 150px;
-	}
+    .hearderImage{
+        width : 99%;
+        height: 150px;
+    }
 /*chatter*/
-	div.feedrightbar{
-		visibility : hidden;
-	}
-	div#chatterDiv {height:400px;}
-	
-	.publishercontainer {width:400px;}
-	
-	.feedcontainer {width: 450px; height:400px; overflow-y : scroll;  overflow-x : hidden; }
-	
-	.feeditem div.feeditemaux {width: 230px; }
-	
-	.view {width: 200px;}
-	
-	.feeditemActionMenuButton {margin-right : 50px;}
+    div.feedrightbar{
+        visibility : hidden;
+    }
+    div#chatterDiv {height:400px;}
+    
+    .publishercontainer {width:400px;}
+    
+    .feedcontainer {width: 450px; height:400px; overflow-y : scroll;  overflow-x : hidden; }
+    
+    .feeditem div.feeditemaux {width: 230px; }
+    
+    .view {width: 200px;}
+    
+    .feeditemActionMenuButton {margin-right : 50px;}
 
-	.feedpage .feedmain {width :400px;}
-	
-	.viewLink {
-	 	clear:both;
-	 }
-	 
-	 .viewLink a{ 
-		color : #6e6cb8;
-	 	text-decoration: none;
-	 	text-transform: uppercase;
-	 	font-size: 11px;
-	 }
+    .feedpage .feedmain {width :400px;}
+    
+    .viewLink {
+        clear:both;
+     }
+     
+     .viewLink a{ 
+        color : #6e6cb8;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 11px;
+     }
 
-	 .joinDiv{
-	 	height: 15px;
-	 	width: 80px;
-		overflow: hidden;
-		display: block;
-	 }
-	 
-	 div.jcarousel-skin-tango .jcarousel-container-horizontal, div.jcarousel-skin-tango .jcarousel-clip-horizontal {
-		width: 345px;
-	}
-	.feedcontainer {width:400px;}
-	.btn-refresh.active {color:red;}
-	
-	.membersAmount {font-size: 16px; color: #767676;}
+     .joinDiv{
+        height: 15px;
+        width: 80px;
+        overflow: hidden;
+        display: block;
+     }
+     
+     div.jcarousel-skin-tango .jcarousel-container-horizontal, div.jcarousel-skin-tango .jcarousel-clip-horizontal {
+        width: 345px;
+    }
+    .feedcontainer {width:400px;}
+    .btn-refresh.active {color:red;}
+    
+    .membersAmount {font-size: 16px; color: #767676;}
 
-	.right { text-align: right; }
-	
-	.theStartBtn
-	{
-		visibility: hidden;
-	}
-	
-	.theStopBtn
-	{
-		visibility: hidden;
-	}
+    .right { text-align: right; }
+    
+    .theStartBtn
+    {
+        visibility: hidden;
+    }
+    
+    .theStopBtn
+    {
+        visibility: hidden;
+    }
 </style>
 
 <!--[if IE 9]>
 <style type="text/css">
-	
-</style>		
+    
+</style>        
 <![endif]-->
 
-		<apex:composition template="isll_TemplateMain">
-			<apex:define name="headerContent">
+        <apex:composition template="isll_TemplateMain">
+            <apex:define name="headerContent">
 
-        		<apex:pagemessages id="pagemessages"/>
-			 	<apex:outputpanel id="buttonsPanel">
-			 	<apex:form id="buttonForm">
- 					<apex:commandButton styleClass="theStartBtn" action="{!start}" value="Start" rendered="{!!theEvent.IsStarted__c}" rerender="buttonsPanel, feedPanel"/>
- 					<apex:commandButton styleClass="theStopBtn" action="{!stop}" value="Stop" rendered="{!theEvent.IsStarted__c}" rerender="buttonsPanel, feedPanel"/>
- 					<br/>
- 				</apex:form>
- 				</apex:outputpanel>
-		
-				<apex:image value="/servlet/servlet.FileDownload?file={!headerImage.id}"  styleClass="hearderImage" rendered="{!IF(null != headerImage, TRUE, FALSE)}"/>
+                <apex:pagemessages id="pagemessages"/>
+                <apex:outputpanel id="buttonsPanel">
+                <apex:form id="buttonForm">
+                    <apex:commandButton styleClass="theStartBtn" action="{!start}" value="Start" rendered="{!!theEvent.IsStarted__c}" rerender="buttonsPanel, feedPanel"/>
+                    <apex:commandButton styleClass="theStopBtn" action="{!stop}" value="Stop" rendered="{!theEvent.IsStarted__c}" rerender="buttonsPanel, feedPanel"/>
+                    <br/>
+                </apex:form>
+                </apex:outputpanel>
+        
+                <apex:image value="/servlet/servlet.FileDownload?file={!headerImage.id}"  styleClass="hearderImage" rendered="{!IF(null != headerImage, TRUE, FALSE)}"/>
 
 
-			</apex:define>
-			<apex:define name="firstColumn">
-				<span class = "cmsContentTitle">{!Event__c.Name},&nbsp;
-					<apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
-				       <apex:param value="{!Event__c.Start_Date_Time__c}" />
-				       
-					</apex:outputText></span>
-				<apex:form id="filterForm">
- 				<c:isll_CarouselComponent name="{!Event__c.Event_Carousel__r.name}" /><br/>
- 				
- 				<apex:outputpanel rendered="{!showExperts}">Filter : 
-	 				<apex:selectList id="filter" value="{!filter}" size="1" onchange="filterFeed();">
-			            <apex:selectOption itemValue="all" itemLabel="All"/>
-			            <apex:selectOption itemValue="experts" itemLabel="Experts"/>
-			        </apex:selectList>
-		        </apex:outputpanel>
-		        <apex:actionfunction name="filterFeed" action="{!filterExperts}" rerender="feedPanel">
-		        	<apex:param value="{!Event__c.Chatter_Group_Name__c}" name="chatterId"/>
-		        	<apex:param value="{!Event__c.Id}" name="id"/>
-		        </apex:actionfunction>
+            </apex:define>
+            <apex:define name="firstColumn">
+                <span class = "cmsContentTitle">{!Event__c.Name},&nbsp;
+                    <apex:outputText value="{0,date,dd.MM.yyyy HH:mm:ss}">
+                       <apex:param value="{!Event__c.Start_Date_Time__c}" />
+                       
+                    </apex:outputText></span>
+                <apex:form id="filterForm">
+                <c:isll_CarouselComponent name="{!Event__c.Event_Carousel__r.name}" /><br/>
+                
+                <apex:outputpanel rendered="{!showExperts}">Filter : 
+                    <apex:selectList id="filter" value="{!filter}" size="1" onchange="filterFeed();">
+                        <apex:selectOption itemValue="all" itemLabel="All"/>
+                        <apex:selectOption itemValue="experts" itemLabel="Experts"/>
+                    </apex:selectList>
+                </apex:outputpanel>
+                <apex:actionfunction name="filterFeed" action="{!filterExperts}" rerender="feedPanel">
+                    <apex:param value="{!Event__c.Chatter_Group_Name__c}" name="chatterId"/>
+                    <apex:param value="{!Event__c.Id}" name="id"/>
+                </apex:actionfunction>
 
-		        <apex:actionFunction reRender="feedPanel" name="refreshChatter" status="refreshChatterStatus" />
-		        <apex:actionFunction reRender="eventStats" name="refreshStats" status="refreshStatsStatus" action="{!countVisitsPostsComments}" />
-		        
-		        </apex:form>
-		        
-		        <apex:outputpanel id="errorFeedPanel" rendered="{!!isChatterGroupExists}">
-		        	<span style="color:red;">{!$Label.isll_ChatterGroupMissingForEventMsg}</span>
-		        </apex:outputpanel>
-		        <apex:outputpanel id="feedPanel" rendered="{!isChatterGroupExists}">
-		        	
-			        <apex:outputPanel rendered="{!filter!='experts'}">
-			        	<apex:outputPanel rendered="{!theEvent.IsStarted__c}">
+                <apex:actionFunction reRender="feedPanel" name="refreshChatter" status="refreshChatterStatus" />
+                <apex:actionFunction reRender="eventStats" name="refreshStats" status="refreshStatsStatus" action="{!countVisitsPostsComments}" />
+                
+                </apex:form>
+                
+                <apex:outputpanel id="errorFeedPanel" rendered="{!!isChatterGroupExists}">
+                    <span style="color:red;">{!$Label.isll_ChatterGroupMissingForEventMsg}</span>
+                </apex:outputpanel>
+                <apex:outputpanel id="feedPanel" rendered="{!isChatterGroupExists}">
+                    
+                    <apex:outputPanel rendered="{!filter!='experts'}">
+                        <apex:outputPanel rendered="{!theEvent.IsStarted__c}">
 
-			        	<apex:actionStatus id="refreshChatterStatus">
+                        <apex:actionStatus id="refreshChatterStatus">
 
-				        	<apex:facet name="start">
-				        		<apex:image value="/img/loading.gif" />
-				        	</apex:facet>
+                            <apex:facet name="start">
+                                <apex:image value="/img/loading.gif" />
+                            </apex:facet>
 
-			        		<apex:facet name="stop">
-			        		
-			        			<a title="Turn Auto Refresh On" id="refreshOn" class="btn-refresh active" href="javascript:void();">On</a>
-					        	&nbsp;|&nbsp;
-					        	<a title="Turn Auto Refresh Off" id="refreshOff" class="btn-refresh" href="javascript:void();">Off</a>
-					        	&nbsp;&nbsp;
-					        	<span id="timer-container">
-					        		This feed will auto refresh in: 
-					        		<span id="timer"></span>
-					        	</span>
-			        		</apex:facet>
-			       		</apex:actionStatus>
-			        	
-			        	<script>
-							$( document ).ready(function()
-							{
-								count = {!autoRefreshSeconds};
-								
-								$("#refreshOff").click();
-								
-								$("#refreshOn").unbind( "click" );
-								$("#refreshOff").unbind( "click" );
-								
-								$("#refreshOn").click(function(e)
-								{
-									refreshStats();
-									
-									stopPolling();
-									
-									e.preventDefault();
-									
-									var currentId = $(this).attr("id");
-									
-									$(".btn-refresh").removeClass("active");
-									$(this).addClass("active");
-									
-									resetCount();
-									startPolling();
-									showTimer();
-									
-									return null;
-								});
-								
-								$("#refreshOff").click(function(e)
-								{
-									stopPolling();
-									
-									e.preventDefault();
-									
-									var currentId = $(this).attr("id");
-									
-									$(".btn-refresh").removeClass("active");
-									$(this).addClass("active");
-									
-									hideTimer();
-									
-									return null;
-								});
-						
-								$("#refreshOn").click();
-							}); // end ready
-						</script>
-			        	
-			        		<chatter:feedWithFollowers entityId="{!Event__c.Chatter_Group_Name__c}"/>
-						</apex:outputPanel>
-						<apex:outputPanel rendered="{!!theEvent.IsStarted__c}">
-							<c:isll_Chatter feedId="{!Event__c.Chatter_Group_Name__c}" />
-						</apex:outputPanel>
-					</apex:outputPanel>
-					
-					<apex:outputPanel rendered="{!filter=='experts'}">
-				        <br/><br/>
-				        <c:isll_Chatter feedId="{!Event__c.Chatter_Group_Name__c}" filtered="true"/>
-				        
-					</apex:outputPanel>
-				</apex:outputpanel>      
-			</apex:define>
-			<apex:define name="secondColumn">
-				<span class = "cmsContentTitle">
-					<apex:outputpanel rendered="{!daysToGo > 0}">
-						{!daysToGo} {!IF(daysToGo > 1, "days", "day")} to go
-					</apex:outputpanel>
-					<apex:outputpanel rendered="{!daysToGo == 0}">
-						Today
-					</apex:outputpanel>&nbsp;
-				</span>
-			 	<apex:outputText value="{!Event__c.Event_Description__c}" escape="false"/>
-				
-			</apex:define>
-			<apex:define name="thirdColumn">
-				<apex:outputPanel id="join" styleclass="joinDiv" rendered="{!Event__c.Type__c == 'Private' && showJoinLink}" style="padding-left:10px;">
-				<apex:form id="joinEventForm">
-					<apex:commandLink action="{!joinEvent}" rerender="pagemessages, join, buttonForm, filterForm, joinEventForm, theMembers, theExperts, theInternalMembers, theExternalMembers, showMoreMembers">
-							<div style = "float:left;">
-								<apex:image value="/img/feeds/follow_sprite.png"/>
-							</div>
-							<span style = "float : right; margin-top: 1px;">Join Event</span>
+                            <apex:facet name="stop">
+                            
+                                <a title="Turn Auto Refresh On" id="refreshOn" class="btn-refresh active" href="javascript:void();">On</a>
+                                &nbsp;|&nbsp;
+                                <a title="Turn Auto Refresh Off" id="refreshOff" class="btn-refresh" href="javascript:void();">Off</a>
+                                &nbsp;&nbsp;
+                                <span id="timer-container">
+                                    This feed will auto refresh in: 
+                                    <span id="timer"></span>
+                                </span>
+                            </apex:facet>
+                        </apex:actionStatus>
+                        
+                   
+                            <chatter:feedWithFollowers entityId="{!Event__c.Chatter_Group_Name__c}"/>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!!theEvent.IsStarted__c}">
+                            <c:isll_Chatter feedId="{!Event__c.Chatter_Group_Name__c}" />
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!filter=='experts'}">
+                        <br/><br/>
+                        <c:isll_Chatter feedId="{!Event__c.Chatter_Group_Name__c}" filtered="true"/>
+                        
+                    </apex:outputPanel>
+                </apex:outputpanel>      
+            </apex:define>
+            <apex:define name="secondColumn">
+                <span class = "cmsContentTitle">
+                    <apex:outputpanel rendered="{!daysToGo > 0}">
+                        {!daysToGo} {!IF(daysToGo > 1, "days", "day")} to go
+                    </apex:outputpanel>
+                    <apex:outputpanel rendered="{!daysToGo == 0}">
+                        Today
+                    </apex:outputpanel>&nbsp;
+                </span>
+                <apex:outputText value="{!Event__c.Event_Description__c}" escape="false"/>
+                
+            </apex:define>
+            <apex:define name="thirdColumn">
+                <apex:outputPanel id="join" styleclass="joinDiv" rendered="{!Event__c.Type__c == 'Private' && showJoinLink}" style="padding-left:10px;">
+                <apex:form id="joinEventForm">
+                    <apex:commandLink action="{!joinEvent}" rerender="pagemessages, join, buttonForm, filterForm, joinEventForm, theMembers, theExperts, theInternalMembers, theExternalMembers, showMoreMembers">
+                            <div style = "float:left;">
+                                <apex:image value="/img/feeds/follow_sprite.png"/>
+                            </div>
+                            <span style = "float : right; margin-top: 1px;">Join Event</span>
 
-					</apex:commandLink>
-				</apex:form>
-				</apex:outputPanel>	
-				<apex:outputPanel id="theMembers">
-					<apex:outputpanel layout="block" id="eventStats" style="margin-left:10px;margin-top:10px;width:95%;">
-		            	<apex:actionStatus id="refreshStatsStatus">
-			            	<apex:facet name="start">
-			            		<apex:image value="/img/loading.gif" />
-			            	</apex:facet>
-			            	<apex:facet name="stop">
-				            	<table style="width:100%;">
-				            		<tr>
-				            			<td style="color:#767676 !important;"><strong>Attendees</strong></td>
-				            			<td class="right" style="color:#767676 !important;">{!totalVisitCount}</td>
-				            		</tr>
-				            		<tr>
-				            			<td style="color:#767676 !important;"><strong>Total Posts</strong></td>
-				            			<td class="right" style="color:#767676 !important;">{!totalPostCount}</td>
-				            		</tr>
-				            		<tr>
-				            			<td style="color:#767676 !important;"><strong>Total Comments</strong></td>
-				            			<td class="right" style="color:#767676 !important;">{!totalCommentCount}</td>
-				            		</tr>
-				            	</table>
-				            </apex:facet>
-				        </apex:actionStatus>
-		            	<br/>
-		            </apex:outputpanel>
-		            <div style="clear: both;"></div>
-					<apex:outputpanel rendered="{!showExperts}" id="theExperts" style="padding-left:10px;">
-						<span class="cmsContentTitle">Experts</span>
-						<apex:repeat value="{!experts}" var="aExpert">
-							<apex:outputpanel rendered="{!aExpert != null}">
-			               		<a href="/{!aExpert.Id}" ><c:isll_UserpicWithFlagV2 user="{!aExpert}" width="60" height="60" style="float:left; margin-right:3px;"/></a>
-			               	</apex:outputpanel>
-			            </apex:repeat><br/>
-			            <apex:outputpanel rendered="{!showExpertsViewMore}">
-			            	<div class="viewLink"><a href="/apex/isll_EventMembers?id={!Event__c.Id}">View more</a></div>
-			            </apex:outputpanel>
-		            </apex:outputpanel>
-		            <div style="clear: both;"></div>
-		            <apex:outputpanel rendered="{!showInternalMembers}" id="theInternalMembers" style="padding-left:10px;">
-		            	<span class="cmsContentTitle">Internal Members&nbsp;&nbsp;<span class="membersAmount">(&nbsp;{!internalMembersAmount}&nbsp;)</span></span>
-			            <apex:repeat value="{!internalMembers}" var="member">
-			            	<a href="/{!member.Id}" ><c:isll_UserpicWithFlagV2 user="{!member}" width="60" height="60" style="float:left;margin-right:3px;"/></a>
-			            </apex:repeat><br/>
-			            <apex:outputpanel rendered="{!showInternalMembersViewMore}">
-			            	<div class="viewLink"><a href="/apex/isll_EventMembers?id={!Event__c.Id}">View more</a></div>
-			            </apex:outputpanel>
-		            </apex:outputpanel>
-		            <div style="clear: both;"></div>
-		            <apex:outputpanel rendered="{!showExternalMembers}"  id="theExternalMembers" style="padding-left:10px;">
-						<span class="cmsContentTitle">External Members&nbsp;&nbsp;<span class="membersAmount">(&nbsp;{!externalMembersAmount}&nbsp;)</span></span>
-			            <apex:repeat value="{!externalMembers}" var="member">
-			            	<apex:outputpanel rendered="{!member != null}">
-			               		<a href="/{!member.Id}" ><c:isll_UserpicWithFlagV2 user="{!member}" width="60" height="60" style="float:left;margin-right:3px;"/></a>
-			               	</apex:outputpanel>
-			            </apex:repeat> 
-			            <apex:outputpanel rendered="{!showExternalMembersViewMore}" id="showMoreMembers">
-			            	<div class="viewLink"><a href="/apex/isll_EventMembers?id={!Event__c.Id}">View more</a></div>
-			            </apex:outputpanel>  
-		            </apex:outputpanel>
-		        </apex:outputPanel>  
-			</apex:define>
-		</apex:composition>
+                    </apex:commandLink>
+                </apex:form>
+                </apex:outputPanel> 
+                <apex:outputPanel id="theMembers">
+                    <apex:outputpanel layout="block" id="eventStats" style="margin-left:10px;margin-top:10px;width:95%;">
+                        <apex:actionStatus id="refreshStatsStatus">
+                            <apex:facet name="start">
+                                <apex:image value="/img/loading.gif" />
+                            </apex:facet>
+                            <apex:facet name="stop">
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td style="color:#767676 !important;"><strong>Attendees</strong></td>
+                                        <td class="right" style="color:#767676 !important;">{!totalVisitCount}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:#767676 !important;"><strong>Total Posts</strong></td>
+                                        <td class="right" style="color:#767676 !important;">{!totalPostCount}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:#767676 !important;"><strong>Total Comments</strong></td>
+                                        <td class="right" style="color:#767676 !important;">{!totalCommentCount}</td>
+                                    </tr>
+                                </table>
+                            </apex:facet>
+                        </apex:actionStatus>
+                        <br/>
+                    </apex:outputpanel>
+                    <div style="clear: both;"></div>
+                    <apex:outputpanel rendered="{!showExperts}" id="theExperts" style="padding-left:10px;">
+                        <span class="cmsContentTitle">Experts</span>
+                        <apex:repeat value="{!experts}" var="aExpert">
+                            <apex:outputpanel rendered="{!aExpert != null}">
+                                <a href="/{!aExpert.Id}" ><c:isll_UserpicWithFlagV2 user="{!aExpert}" width="60" height="60" style="float:left; margin-right:3px;"/></a>
+                            </apex:outputpanel>
+                        </apex:repeat><br/>
+                        <apex:outputpanel rendered="{!showExpertsViewMore}">
+                            <div class="viewLink"><a href="/apex/isll_EventMembers?id={!Event__c.Id}">View more</a></div>
+                        </apex:outputpanel>
+                    </apex:outputpanel>
+                    <div style="clear: both;"></div>
+                    <apex:outputpanel rendered="{!showInternalMembers}" id="theInternalMembers" style="padding-left:10px;">
+                        <span class="cmsContentTitle">Internal Members&nbsp;&nbsp;<span class="membersAmount">(&nbsp;{!internalMembersAmount}&nbsp;)</span></span>
+                        <apex:repeat value="{!internalMembers}" var="member">
+                            <a href="/{!member.Id}" ><c:isll_UserpicWithFlagV2 user="{!member}" width="60" height="60" style="float:left;margin-right:3px;"/></a>
+                        </apex:repeat><br/>
+                        <apex:outputpanel rendered="{!showInternalMembersViewMore}">
+                            <div class="viewLink"><a href="/apex/isll_EventMembers?id={!Event__c.Id}">View more</a></div>
+                        </apex:outputpanel>
+                    </apex:outputpanel>
+                    <div style="clear: both;"></div>
+                    <apex:outputpanel rendered="{!showExternalMembers}"  id="theExternalMembers" style="padding-left:10px;">
+                        <span class="cmsContentTitle">External Members&nbsp;&nbsp;<span class="membersAmount">(&nbsp;{!externalMembersAmount}&nbsp;)</span></span>
+                        <apex:repeat value="{!externalMembers}" var="member">
+                            <apex:outputpanel rendered="{!member != null}">
+                                <a href="/{!member.Id}" ><c:isll_UserpicWithFlagV2 user="{!member}" width="60" height="60" style="float:left;margin-right:3px;"/></a>
+                            </apex:outputpanel>
+                        </apex:repeat> 
+                        <apex:outputpanel rendered="{!showExternalMembersViewMore}" id="showMoreMembers">
+                            <div class="viewLink"><a href="/apex/isll_EventMembers?id={!Event__c.Id}">View more</a></div>
+                        </apex:outputpanel>  
+                    </apex:outputpanel>
+                </apex:outputPanel>  
+            </apex:define>
+        </apex:composition>
 
 </apex:page>

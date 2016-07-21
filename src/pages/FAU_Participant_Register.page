@@ -197,9 +197,9 @@
         <div id="main-container-one">
             <div id="header-one">
             <span id="logos">
-                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" height="117" /></span>
-                    <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" height="117" /></span>
-                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" height="117" /></span>
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" alt="FAU Side Logo" height="117" /></span>
+                    <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" alt="FAU Program Banner" height="117" /></span>
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" alt="FAU Side Logo Right" height="117" /></span>
             </span>
             </div>
             

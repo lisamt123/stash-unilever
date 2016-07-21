@@ -13,15 +13,12 @@ public with sharing class IPM_SyncFinanceTableTLD {
     Map<ID, IPM_Financial__c> financialsMap;
     Map<ID, IPM_Financial_Year__c> financialsYearMap;  
     Set<String> fYearExternalIds;  
-    Set<String> updatedfYearExternalIds;
-    List<IPM_Project_Rollout__c> consolidationTLDList;	
-    
-	public void syncProjectRolloutFinancialTLD( Map<ID,IPM_Project_Rollout__c> updatedRollouts ) {
+    Set<String> updatedfYearExternalIds;  
+    public void syncProjectRolloutFinancialTLD( Map<ID,IPM_Project_Rollout__c> updatedRollouts ) {
          
         financialsMap = new Map<ID,IPM_Financial__c>();  
         localKeyRollouts = new Map<ID, IPM_Project_Rollout__c>();
         localNonkeyRollouts = new Map<ID, IPM_Project_Rollout__c>();
-		consolidationTLDList = new List<IPM_Project_Rollout__c>();
         
         for(ID rolloutId: updatedRollouts.keySet()) {
             IPM_Project_Rollout__c projectRollout = updatedRollouts.get(rolloutId);
@@ -34,7 +31,6 @@ public with sharing class IPM_SyncFinanceTableTLD {
                 	// collect NONKEY tollouts
                 	localNonkeyRollouts.put(rolloutId,projectRollout);
                 }
-				consolidationTLDList.add(projectRollout);
             }
 
         }
@@ -43,9 +39,6 @@ public with sharing class IPM_SyncFinanceTableTLD {
         }
         if(!localKeyRollouts.isEmpty()) {
             handleLoalKeyRollouts();
-        }
-		if(!consolidationTLDList.isEmpty()){
-            updateConsolidatedFinTLDs();
         }
         updateFinancialTables();
     }
@@ -276,8 +269,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
     	@param  IPM_Project__c, updated rollouts from the trigger
   		@return None
     */
-    
-	private void handleLoalKeyRollouts() {
+    private void handleLoalKeyRollouts() {
         // Get regional rollout ids from local rollouts. 
         // We need this ids to retrieve sibling key local rollouts. 
         // The Target_Launch_Date__c of the sibling key local rollouts is going to be the TLD of finalcial and financial year records
@@ -361,74 +353,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
     	}
 
     }
-    private void updateConsolidatedFinTLDs(){
-    	
-    	Set<ID> globalPrjIDs = new Set<ID>();
-    	Set<ID> regionalRolloutIDs = new Set<ID>();
-    	
-    	for(IPM_Project_Rollout__c  rollout : consolidationTLDList){
-    		
-    		if(!String.isEmpty(rollout.IPM_Project__c)){
-    		   globalPrjIDs.add(rollout.IPM_Project__c);
-    		}
-    		
-    		if(!String.isEmpty(rollout.Regional_Rollout__c)){
-    		   regionalRolloutIDs.add(rollout.Regional_Rollout__c);
-    		}
-    	
-    	 }
-    	
-    	List<IPM_Project_Rollout__c> regionalRolloutList =  [ Select Id, Target_Launch_Date__c,
-	                                                           ( Select Target_Launch_Date__c  From Local_Rollouts__r 
-	                                                              where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
-	                                                           ( Select Target_Launch_Date__c, Financial_External_ID__c 
-	                                                              From IPM_Financials__r   where isActive__c=true
-	                                                              AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) ) 
-	                                                         From IPM_Project_Rollout__c  where Id IN : regionalRolloutIDs AND isActive__c=true];
-	  
-	    if(!regionalRolloutList.isEmpty()) {    
-	      
-	      for(IPM_Project_Rollout__c regRlout : regionalRolloutList){
-	      	
-	      	Date regTLd = regRlout.Target_Launch_Date__c;
-	      	Date earliestLocalTLd = regRlout.Local_Rollouts__r[0].Target_Launch_Date__c;
-	      	Date earliestTLd = regTLd < earliestLocalTLd ? regTLd : earliestLocalTLd ;
-	      	
-	      	for(IPM_Financial__c conFin :regRlout.IPM_Financials__r){
-	      	   
-	      	   conFin.Target_Launch_Date__c=earliestTLd;  
-	      	   financialsMap.put(conFin.id, conFin);
-	      	   
-	        }
-	      
-	      }
-	      
-	    }
-	      
-	    List<IPM_Project__c> globalPrjRLoutList = [ Select Id,
-	                                                ( Select Target_Launch_Date__c From IPM_Project_Rollout__r
-	                                                  where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
-	                                                ( Select Target_Launch_Date__c, Financial_External_ID__c From IPM_Financials_Consolidated__r 
-	                                                  where isActive__c=true AND IPM_Project_Rollout__c=null AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) ) 
-	                                                 From IPM_Project__c  where Id in : globalPrjIDs AND Is_Archieved__c=false] ;
-	   
-	   
-	    if(!globalPrjRLoutList.isEmpty()) {    
-	      
-	      for(IPM_Project__c prj: globalPrjRLoutList) {
-	      	
-	      	Date earliestTLd = prj.IPM_Project_Rollout__r[0].Target_Launch_Date__c;
-	      	for(IPM_Financial__c conFin :prj.IPM_Financials_Consolidated__r) {
-	      	   conFin.Target_Launch_Date__c=earliestTLd;
-	      	   financialsMap.put(conFin.id, conFin);
-	      	} 
-	      
-	      }
-	      
-	    }
-	}
-	
-	private void updateFinancialTables() {
+    private void updateFinancialTables() {
         if(!financialsMap.isEmpty()) {
            // removed exception handling as any exceptions/Messages  would be handled at controller 
 	        Database.update(financialsMap.values(),false);

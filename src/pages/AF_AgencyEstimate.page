@@ -1,690 +1,1055 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to input the AgencyEstimate figures 
-   *@Author: Cognizant
-   *@Created Date: 12/07/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_AgencyEstimateController" showHeader="false">
-   <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
-   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
-   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
-   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
-   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
-   <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-   <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
-   <!-- Common_Style File End -->
-   <!--Bootstrap_css File  start-->
-   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
-   <!--Bootstrap_css File End -->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
-   <style>
-      .helpAbsolute
-      {
+<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+    <style>
+    .helpAbsolute
+    {
       position:absolute; 
       right:2px; top:3px
-      }
-      .centerAlignCont
-      {
-      width:94.5%; margin:0 auto; overflow:hidden
-      }
-      .marginL4
-      {
+    }
+    .centerAlignCont
+    {
+       width:94.5%; margin:0 auto; overflow:hidden
+    }
+    .marginL4
+    {
       margin-left:4px;
-      }
-      div ul.helpListStyle
-      {
-      margin:5px 0px 0px -47px;
-      font-size:13px;
-      }
-      div ul.helpListStyle li {
-      list-style:none;
-      padding:2px 0px;
-      }
-      div ul.helpListStyle li:before {
-      content: "";
-      position:relative;
-      left: -8px;
-      background-color:#74AE00;
-      display:inline-block;
-      width:6px;
-      height:6px;
-      border-radius:50%
-      }
-      h5.titleHelpStyle
-      {
-      margin: 10px 0px 10px 5px;
-      font-weight: bold;
-      float: left;
-      clear: both;
-      width: 100%;
-      font-size: 16px;
-      }
+    }
+       div ul.helpListStyle
+{
+   margin:5px 0px 0px -47px;
+   font-size:13px;
+}
+div ul.helpListStyle li {
+    list-style:none;
+    padding:2px 0px;
+}
+
+div ul.helpListStyle li:before {
+    content: "";
+    position:relative;
+    left: -8px;
+    background-color:#74AE00;
+    
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%
+}
+h5.titleHelpStyle
+{
+  margin: 10px 0px 10px 5px;
+  font-weight: bold;
+  float: left;
+  clear: both;
+  width: 100%;
+  font-size: 16px;
+}
       .poNumberAlone
       {
-      margin:0 auto; width:35%
+         margin:0 auto; width:35%
       }
       .poNumberAlone tr td
       {
-      text-align:center;
+         text-align:center;
       }
       .poNumberAlone tr td input[type="button"]
       {
-      text-align: center;
-      margin-left: 128px;
-      margin-top: 9px !important;
+          text-align: center;
+          margin-left: 128px;
+          margin-top: 9px !important;
       }
       .poNumberAlone tr th
       {
-      font-size:15px;
-      padding:5px 0px;
-      text-align:center;
-      font-weight:normal;
+          font-size:15px;
+          padding:5px 0px;
+          text-align:center;
+          font-weight:normal;
       }
       .containerwithBorder
       {
-      border: 2px solid #74AE00;
-      border-radius: 10px;
-      padding: 0.8%;
-      width: 100%;
-      float:left;
-      margin-bottom:8px;
+          border: 2px solid #74AE00;
+          border-radius: 10px;
+          padding: 0.8%;
+          width: 100%;
+          float:left;
+          margin-bottom:8px;
       }
       .tableTitleStyle
       {
-      width:100%;
-      text-align:center;
+         width:100%;
+         text-align:center;
       }
       .tableTitleStyle tr td
       {
-      padding:5px 0px;
+         padding:5px 0px;
       }
       .fontSize15
       {
-      font-size:15px;
+         font-size:15px;
       }
       form.AF_AgencyEstimate .lastGrid {
-      width: 64% !important;
-      }
+    width: 64% !important;
+}
+      
+      
+      
       #iframe_cont
-      {
-      width:100%;
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:85% !important;
+  height:95% !important;
+  margin-top:8px !important;
+}
+.modal-content
+{
+  height:102%;
+}
+    </style>
+    <!-- Common_Style File Start -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+    <!-- Common_Style File End -->
+    
+    <!--Bootstrap_css File  start-->
+      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+     <!--Bootstrap_css File End -->
+     
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+     <!-- <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/> -->
+     <!--   Bootstrap_Js File start 
+     <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/> -->
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+     
+          <!-- Bootstrap Tooltip Method Start--> 
+<script type="text/javascript" language="javascript">
+        var bsjQuery = jQuery.noConflict();
+        bsjQuery(document).ready(function() {
+           bsjQuery(myFunction);
+         }); 
+         function myFunction() {
+             bsjQuery('[data-toggle=tooltip]').tooltip(); 
+             bsjQuery(".submit_btn_addcomment, .continue_btn, .save_btn").each(function(){
+    var originalClick = bsjQuery(this).attr("onclick");
+    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}) 
+        }
+    </script>
+    <!-- Adding comma in Text box -->
+<script>
+jQuery( function() {
+ jQuery('input.number').keyup(function(event){
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40){
+          event.preventDefault();
       }
-      .modal-body
-      {
-      height: 93%;
-      } 
-      .modal-body #iframe_cont
-      {
-      height:100%;
-      }
-      .modal-dialog
-      {
-      width:85% !important;
-      height:95% !important;
-      margin-top:8px !important;
-      }
-      .modal-content
-      {
-      height:102%;
-      }
-   </style>
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_AgencyEstimate_NumCheck.js')}"></script>
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_AgencyEstimate.js')}"></script>
-   <!-- Adding comma in Text box -->
+      var $this = jQuery(this);
+      var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
+      var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join("")); 
+      console.log(num2);
+      
+      
+      // the following line has been simplified. Revision history contains original.
+      $this.val(num2);
+  });
+});
+
+ function RemoveRougeChar(convertString){
+    
+    
+    if(convertString.substring(0,1) == ","){
+        
+        return convertString.substring(1, convertString.length)            
+        
+    }
+    return convertString;
+    
+}
+</script>
 <!-- Adding comma in Text box End -->
+<!-- Bootstrap Tooltip Method End-->
+
+     <!-- Bootstrap_Js File End -->
+     
+<apex:form styleClass="AF_AgencyEstimate">
+      <SCRIPT language="javascript">
+   function closeAndRefresh(){
    
-   <apex:form styleClass="AF_AgencyEstimate">
-      <div class="row">
-         <div class="col-lg-12 charttable1">
-            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>
-         </div>
-      </div>
-      <div >
-         <div class="alertMessage">
-            <!-- start of functional border -->           
-            <apex:outputText value="{!$Label.AF_Central_Billing_Hub}" title="Central Billing" styleClass="alertFont" rendered="{!IsCentralHub}"></apex:outputText>
-         </div>
-         <apex:tabPanel switchType="client" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" selectedTab="{!ActivePanel}">
-            <apex:tab label="Agency Estimate" name="Agency Estimate" id="AgencyEstimate" styleClass="padding7P"  oncomplete="myFunction();" >
-               <apex:actionSupport action="{!clearErrorMsg}" event="onchange" rerender="pm1,agencyestimatepanel" />
-               <apex:pagemessages id="pm1"></apex:pagemessages>
-               <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" styleClass="floatR" html-data-toggle="tooltip" title="{!$Label.AF_BFML_Label_4k7g}" html-data-placement="left" />
-               <table align="center" >
-                  <tr>
-                     <td class="unileverEntityCell">
-                        <span class="unileverEntityCellLable">{!$Label.AF_Unilever_Entity}</span>  
-                        <span class="unileverEntityCellTxtoutput">{!AgencyEstimate.AF_Unilever_Entity_Name__c}
-                        </span>
-                     </td>
-                     <td class="agencyEntityCell">
-                        <span class="agencyEntityCellLable">{!$Label.AF_Agency_Entity}</span> 
-                        <span class="agencyEntityCellTxtoutput"> {!AgencyEstimate.AF_Agency_Entity_Name__c}
-                        </span>  
-                     </td>
-                  </tr>
-               </table>
-               <div class="alertMessage2">
-                  <!--Please enter all figures in thousands Euros: -->
-               </div>
-               <div class="regTitleAlert"  id="regTitle1"></div>
-               <apex:outputPanel id="agencyestimatepanel">
-                  <table align="center">
-                     <tr>
-                        <td class="traditionalCell"> 
-                           <span>€ </span>
-                        </td>
-                        <td class="paddingR10P">
-                           <span class="traditionalCellLable">
-                           {!$Label.AF_Traditional}
-                           </span>
-                           <apex:outputpanel rendered="{!IsReadyforPO}">
-                              <span class="traditionalTxtLable">
-                                 <apex:outputText value="{!TraditionalDisplay}"  rendered="{!IsReadyforPO}" id="tradoutput">
-                                 </apex:outputText>
-                              </span>
-                           </apex:outputpanel>
-                           <apex:outputpanel rendered="{!!IsReadyforPO}">
-                              <apex:inputText value="{!TraditionalDisplay}" maxlength="10"  styleClass="values1 number" disabled="false" rendered="{!IsEditMode}" id="tradinput">
-                                 <apex:actionSupport event="onchange" 
-                                    action="{!calculateTotal}" 
-                                    rerender="totalFigure2" />
-                              </apex:inputText>
-                           </apex:outputpanel>
-                        </td>
-                        <td class="paddingR10P">
-                           <span class="digitalCell">
-                           {!$Label.AF_Digital}
-                           </span>
-                           <apex:outputpanel rendered="{!IsReadyforPO}">
-                              <span class="digitalTxtoutput">
-                                 <apex:outputText value="{!DigitalDisplay}"  rendered="{!IsReadyforPO}">
-                                 </apex:outputText>
-                              </span>
-                           </apex:outputpanel>
-                           <apex:outputpanel rendered="{!!IsReadyforPO}">
-                              <apex:inputText value="{!DigitalDisplay}" maxlength="10"  styleClass="values1 number" disabled="false" rendered="{!IsEditMode}">
-                                 <apex:actionSupport event="onchange" 
-                                    action="{!calculateTotal}" 
-                                    rerender="totalFigure2" />
-                              </apex:inputText>
-                           </apex:outputpanel>
-                        </td>
-                        <td class="paddingR30P">
-                           <span class="adaptationLable">
-                           {!$Label.AF_Adapation}
-                           </span>
-                           <apex:outputpanel rendered="{!IsReadyforPO}">
-                              <span class="adaptationTxtoutput">
-                                 <apex:outputText value="{!AdaptationDisplay}" rendered="{!IsReadyforPO}">
-                                 </apex:outputText>
-                              </span>
-                           </apex:outputpanel>
-                           <apex:outputpanel rendered="{!!IsReadyforPO}">
-                              <apex:inputText maxlength="10" value="{!AdaptationDisplay}" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}">
-                                 <apex:actionSupport event="onchange" action="{!calculateTotal}" rerender="AdataiveLocal,totalFigure2"/>
-                              </apex:inputText>
-                           </apex:outputpanel>
-                        </td>
-                        <td class="totalCell">
-                           <span>
-                           {!$Label.AF_Total}
-                           </span>
-                           <span class="totalTxtOutput">
-                              <apex:outputText value="{0,number,###,###,###}" id="totalFigure2" styleClass="values_Unileverestimate" style="margin-left:-40px;width:163px;">
-                                 <apex:param value="{!TotalDisplayN}" />
-                              </apex:outputText>
-                           </span>
-                           <apex:outputPanel rendered="false">
-                              <span class="txtOutputfasle">
-                                 <apex:OutputText value="{0,number,###,###,###}" id="totalFigure" styleClass="marginL31P">
-                                    <apex:param value="{!AgencyEstimate.AF_Total__c}" id="totalFigure1"/>
-                                 </apex:OutputText>
-                              </span>
-                           </apex:outputPanel>
-                        </td>
-                        <td class="paddingR30P">
-                           <span class="exRateLable">
-                           {!$Label.AF_EX_Rate}
-                           </span>  
-                           <apex:outputPanel styleClass="exRateTxtOutput">
-                              <apex:outputText ></apex:outputText>
-                           </apex:outputPanel>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="textalignR">
-                           <span class="lcLable">
-                              <apex:outputPanel styleClass="LcLabelTxt">
-                                 <apex:outputText id="DigitalRateOT1" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}" >LC-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
-                              </apex:outputPanel>
-                           </span>
-                        </td>
-                        <td>
-                           <span class="lcTxtOutput">
-                              <apex:outputText value="{0,number,###,###,###}" rendered="{!!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_Traditional_Local__c}"/>
-                              </apex:outputText>
-                              <apex:outputText value="{0,number,###,###,###}" rendered="{!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_LC_Traditional__c}"/>
-                              </apex:outputText>
-                           </span>
-                        </td>
-                        <td>
-                           <span class="lcTxtOutput">
-                              <apex:outputText value="{0,number,###,###,###}" rendered="{!!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_Digital_Local__c}"  />
-                              </apex:outputText>
-                              <apex:outputText value="{0,number,###,###,###}" rendered="{!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_LC_Digital__c}"  />
-                              </apex:outputText>
-                           </span>
-                        </td>
-                        <td>
-                           <span class="lcTxtOutput marginL0P">
-                              <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocal1" rendered="{!!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_Adaptation_Local__c}"/>
-                              </apex:outputText>
-                              <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocal2" rendered="{!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_LC_Adaptation__c}"/>
-                              </apex:outputText>
-                           </span>
-                        </td>
-                        <td>
-                           <span class="lcTxtOutput marginL20P">
-                              <apex:outputText value="{0,number,###,###,###}" id="TotalLocal" rendered="{!!IsReadyforPO}">
-                                 <apex:param value="{!TotalLocal}"/>
-                              </apex:outputText>
-                              <apex:outputText value="{0,number,###,###,###}" id="TotalLocal2" rendered="{!IsReadyforPO}">
-                                 <apex:param value="{!AgencyEstimate.AF_LC_Total__c}"/>
-                              </apex:outputText>
-                           </span>
-                        </td>
-                        <td>
-                           <span>
-                              <apex:outputPanel styleClass="lcTxtOutput marginL20P">
-                                 <apex:outputText rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}" >{!AgencyEstimate.AF_Agency_Exchange_Rate__c}</apex:outputText>
-                              </apex:outputPanel>
-                           </span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null,IsReadyforPO,AgencyEstimate.AF_IsCrossborder__c),'true', 'false')}">
-                           <td class="textalignR">
-                              <span class="poLable">
-                                 <apex:outputPanel StyleClass="poLabelTxt">
-                                    <apex:outputText >PO-{!AgencyEstimate.AF_Ready_For_PO_Entry_Currency__c}
-                                    </apex:outputText>
-                                 </apex:outputPanel>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="poTxtOutput">
-                                 <apex:outputText value="{0,number,###,###,###}">
-                                    <apex:param value="{!AgencyEstimate.Traditional_USD_Formula__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="poTxtOutput">
-                                 <apex:outputText value="{0,number,###,###,###}">
-                                    <apex:param value="{!AgencyEstimate.AF_Digital_USD_Formula__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="poTxtOutput">
-                                 <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocalUSD">
-                                    <apex:param value="{!AgencyEstimate.Adaptation_USD_Formula__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="poTxtOutput marginL20P">
-                                 <apex:outputText value="{0,number,###,###,###}" id="TotalLocalUSD">
-                                    <apex:param value="{!AgencyEstimate.AF_Total_USD__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span>
-                                 <apex:outputPanel styleClass="poTxtOutput marginL20P">
-                                    <apex:outputText >
-                                       {!AgencyEstimate.AF_Agency_Spot_Rate__c}
-                                    </apex:outputText>
-                                 </apex:outputPanel>
-                              </span>
-                           </td>
-                        </apex:outputPanel>
-                     </tr>
-                     <tr>
-                        <apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c==Null,IsReadyforPO,NOT(AgencyEstimate.AF_IsCrossborder__c)),'true', 'false')}">
-                           <td class="textalignR">
-                              <span class="r4poLable">
-                                 <apex:outputPanel styleClass="r4poLableTxt" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}">
-                                    <apex:outputText >PO-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}
-                                    </apex:outputText>
-                                 </apex:outputPanel>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="r4poTxtOutput">
-                                 <apex:outputText value="{0,number,###,###,###}">
-                                    <apex:param value="{!AgencyEstimate.AF_Traditional_Local__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="r4poTxtOutput">
-                                 <apex:outputText value="{0,number,###,###,###}">
-                                    <apex:param value="{!AgencyEstimate.AF_Digital_Local__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="r4poTxtOutput">
-                                 <apex:outputText value="{0,number,###,###,###}" >
-                                    <apex:param value="{!AgencyEstimate.AF_Adaptation_Local__c}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span class="r4poTxtOutput marginL20P">
-                                 <apex:outputText value="{0,number,###,###,###}" >
-                                    <apex:param value="{!TotalLocal}"/>
-                                 </apex:outputText>
-                              </span>
-                           </td>
-                           <td>
-                              <span>
-                                 <apex:outputPanel styleClass="r4poTxtOutput marginL20P" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}">
-                                    <apex:outputText >
-                                       {!AgencyEstimate.AF_Agency_Exchange_Rate__c}
-                                    </apex:outputText>
-                                 </apex:outputPanel>
-                              </span>
-                           </td>
-                        </apex:outputPanel>
-                     </tr>
-                     <tr>
-                        <td colspan="8" align="right">
-                        </td>
-                     </tr>
-                  </table>
-               </apex:outputPanel>
-               <div class="containerDiv">
-                  <!-- start of functional border -->    
-                  <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment floatL marginT20P" action="{!AddComment}"/>
-                  <apex:commandButton value="Save" action="{!JustSave}" styleClass="save_btn floatL marginT20P" reRender="agencyestimatepanel,pm1,CountryAddPanel"  rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),AND(isCMCOSuperUser,NOT(IsReadyforPO))),'true', 'false')}" status="status" />
-                  <apex:commandButton value="Edit" action="{!NowInEditMode}" reRender="agencyestimatepanel" styleClass="submit_btn" rendered="false"/>
-               </div>
-               <!-- end of functional border -->
-               <c:AF_CommentsListComp ParentRecordValue="{!ParentId}" IsViewAllValue="false" ParentObjectTypeDesc="AF_Agency_Estimate__c"  />
-               <c:AF_FieldHistoryComp ParentRecordValue="{!ParentId}" IsViewAllValue="false"  ParentObjectName="AF_Agency_Estimate__c"/>
-            </apex:tab>
-            <apex:tab label="Country Breakdown" name="Country Breakdown" id="CountryBreakdown" rendered="{!IsCentralHub}">
-               <apex:actionSupport event="onchange" reRender="CountryAddPanel,pm3" action="{!clearErrorMsg}"/>
-               <apex:pagemessages id="pm3"/>
-               <apex:outputPanel id="CountryAddPanel" rendered="{!IsCentralHub}">
-                  <div>
-                  </div>
-                  <div class="regTitleAlert"  id="regTitle"></div>
-                  <apex:pageBlock id="pgentity">
-                     <apex:pageblockTable value="{!Wrapperlist }" var="Entity" id="pbt" styleClass="WrapperlistStyle">
-                        <apex:column headerValue="Country">
-                           <apex:selectList id="Countryname" value="{!Entity.EntityEX.AF_Country__c}" styleClass="values1_dropdown" size="1">
-                              <apex:selectOptions value="{!Countrynames}"/>
-                           </apex:selectList>
-                        </apex:Column>
-                        <apex:column headerValue="%" styleClass="headPercentage">
-                           <apex:facet name="footer">
-                              <apex:outputText value="{!TotalPercent}" id="entityper" styleClass="totalPercentStyle"/>
-                           </apex:facet>
-                           <apex:inputField id="percent" value="{!Entity.EntityEX.AF_Value__c}"  styleClass="values1_add" >
-                              <apex:actionSupport action="{!CalculateCountryValue}" event="onchange" reRender="entityval,val,entityper" />
-                           </apex:inputField>
-                        </apex:column>
-                        <apex:column headerValue="Value €" StyleClass="euroValue">
-                           <apex:facet name="footer">
-                              <apex:outputText value="{0,number,###,###,###.##}" id="entityval">
-                                 <apex:param value="{!TotalValue}"/>
-                              </apex:outputText>
-                           </apex:facet>
-                           <apex:outputField id="val" value="{!Entity.EntityEX.AF_Value_Euro__c}" />
-                        </apex:column>
-                        <apex:column styleClass="delCountry">
-                           <apex:commandLink action="{!delCounrtyRecord}" rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),isCMCOSuperUser),'true', 'false')}" rerender="pbt,entityval,pm3" styleClass="deleteButtonStyle">
-                              Delete 
-                              <apex:param name="DelCountry" value="{!Entity.EntityEX.Id}" assignTo="{!delCountryId}"/>
-                              <apex:param name="PosDelete" value="{!Entity.position}" assignTo="{!posDelete}"/>
-                           </apex:commandLink>
-                        </apex:column>
-                     </apex:pageblockTable>
-                     <apex:commandButton value="Add" action="{!AddNewRow}" rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),isCMCOSuperUser),'true', 'false')}" reRender="pbt" styleClass="submit_btn_add marginL250P"/>
-                     <apex:commandButton value="Save" rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),isCMCOSuperUser),'true', 'false')}" action="{!SaveEntityExceptionRecords}" reRender="pm1,pm3,pbt" styleClass="submit_btn" status="status"/>
-                  </apex:pageBlock>
-                  <apex:outputPanel rendered="false">
-                     <table rowClasses="even,odd">
-                        <tr>
-                           <td class="countryCell">
-                              <span class="countryLable">
-                              Country:
-                              </span>   
-                              <apex:inputField value="{!EntityException.AF_Country__c}" styleClass="country_values">
-                              </apex:inputField>
-                           </td>
-                           <td class="paddingR10P">
-                              <span class="unitStyle">
-                              %
-                              </span>            
-                              <apex:inputField value="{!EntityException.AF_Value__c}" id="EntityException_val" onkeypress="return isNumberKey(event)" styleClass="values1" />
-                           </td>
-                           <td class="paddingR30P">
-                              <span class="countryValue">
-                              Value
-                              </span>
-                              <apex:inputField value="{!EntityException.AF_Value_Euro__c}" onkeypress="return isNumberKey(event)" styleClass="values1" />
-                           </td>
-                           <td >
-                              <apex:commandButton value="Add"  action="{!SaveEntityException}" styleClass="submit_btn_add"/>
-                           </td>
-                        </tr>
-                     </table>
-                  </apex:outputPanel>
-                  <apex:outputPanel id="CountryListPanel" rendered="{!DisplayExceptionList}">
-                     <table>
-                     </table>
-                  </apex:outputPanel>
-               </apex:outputPanel>
-            </apex:tab>
-            <apex:tab label="PO Details" styleClass="padding7P" name="PO Number" id="ReadyforPO" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}">
-               <apex:pagemessages id="PO_Num"/>
-               <apex:outputtext styleClass="poNumberHeader" style="display:none" value="{!$Label.AF_PONumberTab_Header}" id="ponumberheader"/>
-               <br/>
-               <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" html-data-toggle="tooltip" title="{!$Label.AF_PO_OverrideHelp}" html-data-placement="left" styleClass="helpAbsolute"/>
-               <div class="centerAlignCont">
-                  <!--PO Details-->
-                  <div class="containerwithBorder">
-                     <apex:outputPanel id="optReadyPo">
-                        <table class="poNumberAlone">
-                           <tr>
-                              <td>
-                                 <span class="fontSize16 fontWeightB">{!$Label.AF_PO_Number}</span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <apex:inputField value="{!AgencyEstimate.AF_PO_Number__c}" id="Ponumber" styleClass="values1" rendered="{!isPOEditable}" />
-                                 <apex:outputPanel styleClass="poNumTxtbox" rendered="{!IsReadonlyPO}">
-                                    <apex:outputField value="{!AgencyEstimate.AF_PO_Number__c}" id="ReadPonumber"  />
-                                 </apex:outputPanel>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <apex:commandButton value="Save" action="{!UpdatPO}" styleClass="continue_btn wid70PX floatL" reRender="optReadyPo,PO_Num,ReadPoTotal"/>
-                              </td>
-                           </tr>
-                        </table>
-                     </apex:outputPanel>
-                  </div>
-                  <apex:outputPanel rendered="{!IF(AND(POOverrideDisplay,isCMCOSuperUser),true,false)}">
-                     <div class="containerwithBorder">
-                        <table class="tableTitleStyle">
-                           <tr>
-                              <td>
-                                 <span class="fontSize16 fontWeightB">{!$Label.AF_PO_Override}</span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <span class="fontSize15">If your Purchase Order has been raised to a different value than advised in the PO report please amend below</span>
-                              </td>
-                           </tr>
-                        </table>
-                        <table Align="center" class="lastGrid" id="table1">
-                           <tr>
-                              <td>
-                                 <span>{!$Label.AF_Currency}</span>
-                              </td>
-                              <td>
-                                 <span>{!$Label.AF_Traditional}</span>
-                              </td>
-                              <td>
-                                 <span>{!$Label.AF_Digital}</span>
-                              </td>
-                              <td>
-                                 <span>{!$Label.AF_Adapation}</span>
-                              </td>
-                              <td>
-                                 <span>{!$Label.AF_Total}</span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan="5">
-                                 &nbsp;
-                              </td>
-                           </tr>
-                           <tr>
-                              <td class="textalignC">
-                                 <span class="lcLable" style="display:inline">
-                                    <apex:outputPanel styleClass="LcLabelTxt marginL4" rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null,IsReadyforPO,AgencyEstimate.AF_IsCrossborder__c),'true', 'false')}">
-                                       <apex:outputText >LC-{!AgencyEstimate.AF_Ready_For_PO_Entry_Currency__c}</apex:outputText>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel styleClass="LcLabelTxt" rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c==Null,IsReadyforPO,NOT(AgencyEstimate.AF_IsCrossborder__c)),'true', 'false')}">
-                                       <apex:outputText >LC-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel styleClass="LcLabelTxt" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c==Null,NOT(IsReadyforPO)),'true', 'false')}">
-                                       <apex:outputText >LC-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
-                                    </apex:outputPanel>
-                                 </span>
-                              </td>
-                              <td class="textalignC">
-                                 <apex:inputField value="{!AgencyEstimate.AF_OverridePO_Traditional_LC__c}" id="Potraditional" styleClass="values1" rendered="{!isCMCOSuperUser}" />
-                                 <apex:outputPanel styleClass="lcTxtOutput" rendered="{!!isCMCOSuperUser}">
-                                    <apex:outputField value="{!AgencyEstimate.AF_OverridePO_Traditional_LC__c}" id="ReadPoTrad" />
-                                 </apex:outputPanel>
-                              </td>
-                              <td class="textalignC">
-                                 <apex:inputField value="{!AgencyEstimate.AF_OverridePO_Digital_LC__c}" id="Podigital" styleClass="values1" rendered="{!isCMCOSuperUser}" />
-                                 <apex:outputPanel styleClass="lcTxtOutput" rendered="{!!isCMCOSuperUser}">
-                                    <apex:outputField value="{!AgencyEstimate.AF_OverridePO_Digital_LC__c}" id="ReadPoDigital" />
-                                 </apex:outputPanel>
-                              </td>
-                              <td class="textalignC">
-                                 <apex:inputField value="{!AgencyEstimate.AF_OverridePO_Adaptation_LC__c}" id="Poadaptation" styleClass="values1" rendered="{!isCMCOSuperUser}" />
-                                 <apex:outputPanel styleClass="lcTxtOutput" rendered="{!!isCMCOSuperUser}">
-                                    <apex:outputField value="{!AgencyEstimate.AF_OverridePO_Adaptation_LC__c}" id="ReadPoAdapt"/>
-                                 </apex:outputPanel>
-                              </td>
-                              <td class="textalignC">
-                                 <span class="lcTxtOutput">
-                                    <apex:outputPanel >
-                                       <apex:outputText value="{!OverrideTotal}" id="ReadPoTotal"/>
-                                    </apex:outputPanel>
-                                 </span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan = "5" class="txtAlignR">
-                                 <apex:commandButton value="Save" action="{!confirmBox}" styleClass="save_btn alignMargin floatR" rendered="{!isCMCOSuperUser}" reRender="popuprej" status="status" />
-                              </td>
-                           </tr>
-                        </table>
-                        <table id="tablecalc" style="margin-left:40px;">
-                           <td colspan="3">
-                              <h5 class="titleHelpStyle">Help on this functionality:</h5>
-                              <div>
-                                 <ul class="helpListStyle">
-                                    <li>Leave the field blank if you raised the correct PO for the period</li>
-                                    <li>Insert zero into the field if you didn’t raise a PO for the period</li>
-                                    <li>Insert value into the field if you have raised a different number on your PO than advised on the PO report</li>
-                                 </ul>
-                              </div>
-                           </td>
-                        </table>
-                     </div>
-                  </apex:outputPanel>
-               </div>
-               <apex:outputPanel id="popuprej">
-                  <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!bConfirmBox}"/>
-                  <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!bConfirmBox}">
-                     <div class="floatR">
-                        <apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" styleClass="buttonX"/>
-                     </div>
-                     <div style="margin:20px;">
-                        <h2>
-                           <apex:outputLabel value="{!$Label.AF_POOveride_Warning}" styleClass="fontSize16"/>
-                        </h2>
-                        <br/><br/>
-                        <apex:commandButton value="Confirm" action="{!OverridePO}" styleClass="continue_btn wid70PX" reRender="popuprej,optReadyPo,PO_Num,table1,tablecalc"/>
-                     </div>
-                     ,
-                  </apex:outputPanel>
-               </apex:outputPanel>
-            </apex:tab>
-         </apex:tabPanel>
-      </div>
-      <!-- Bootstrap bootstrap modal window Start -->    
-      <div class="model_container">
-         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                     <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
-                     <div id="loader_cont">
-                     </div>
-                     <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
-                  </div>
-               </div>
-               <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-         </div>
-         <!-- /.modal -->
-      </div>
-      <!-- Bootstrap bootstrap modal window End --> 
-      <apex:ActionStatus id="status" >
-         <apex:facet name="start">
-            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
-         </apex:facet>
-      </apex:ActionStatus>
-   </apex:form>
-   <script>
-         function commentsToggleOpen(elementId) 
-         {
-             document.getElementById(elementId).style.display = 'block';
-         }
-         function commentsToggleClose(elementId) 
-         { 
-             document.getElementById(elementId).style.display = 'none';
-         }
-         commentsToggleClose('commentAddTable');
+  //parent.location.reload(); // or opener.location.href = opener.location.href;
+}
+ 
+            function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : event.keyCode;
+          var result = false;
+          var errorMsg = document.getElementById("regTitle");
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+          { 
+             errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
+             result = false;
+          }
+          else 
+          {
+           errorMsg.innerHTML = "";
+           result = true;
+          
+          }             
+          return result;          
+       }
+        
+        function handleChange(input) {
+    if (input.value < 0) input.value = 0;
+    if (input.value > 100) input.value = 100;
+  }
+        
+        function addRow(tableID) { 
+            var table = document.getElementById(tableID); 
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount); 
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+            element1.name="chkbox[]";
+            cell1.appendChild(element1);                   
+            var cell2 = row.insertCell(1);          
+            cell2.innerHTML = '<b>' + document.getElementById('inputCountryValue').value + '</b>';          
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = '<b>' + document.getElementById('inputPercentageValue').value + ' (%)</b>';        
+            var cell4 = row.insertCell(3);
+            cell4.innerHTML = "OR";
+            var cell5 = row.insertCell(4);
+            cell5.innerHTML = '<b>' + document.getElementById('inputActualValue').value + ' (Value)</b>';
+      
+        }
+ 
+        function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                } 
+            }
+            }catch(e) {
+                alert(e);
+            }
+        }
+ 
+    </SCRIPT>
+  <!--  <h1 style="padding: 0px 0px 0px 10px ! important; font-weight: normal; font-size: 20px; color: grey; display: block;">
+         Agency Estimate - Base Fees
+    </h1>  -->
+              <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
+        </div>          
+    </div>
+    <div > 
+    
+    <div class="alertMessage">   <!-- start of functional border -->           
+       
+       <!-- <apex:outputText value="{!AgencyEstimate.AF_CentralBillingMessage__c}" title="Central Billing" style="font-size:16px;"></apex:outputText>-->
+       <apex:outputText value="{!$Label.AF_Central_Billing_Hub}" title="Central Billing" styleClass="alertFont" rendered="{!IsCentralHub}"></apex:outputText>
+        </div>       
+ <apex:tabPanel switchType="client" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" selectedTab="{!ActivePanel}">
+     <apex:tab label="Agency Estimate" name="Agency Estimate" id="AgencyEstimate" styleClass="padding7P"  oncomplete="myFunction();" >
+            <apex:actionSupport action="{!clearErrorMsg}" event="onchange" rerender="pm1,agencyestimatepanel" />
+             <apex:pagemessages id="pm1"></apex:pagemessages> 
+             <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" styleClass="floatR" html-data-toggle="tooltip" title="{!$Label.AF_BFML_Label_4k7g}" html-data-placement="left" />
+            <table align="center" >
+        <tr>
+            <td class="unileverEntityCell">
+                 <span class="unileverEntityCellLable">Unilever Entity</span>  
+                 <span class="unileverEntityCellTxtoutput">{!AgencyEstimate.AF_Unilever_Entity_Name__c}
+            </span>
+            </td>
+            <td class="agencyEntityCell">
+                <span class="agencyEntityCellLable">Agency Entity</span> 
+                <span class="agencyEntityCellTxtoutput"> {!AgencyEstimate.AF_Agency_Entity_Name__c}
+                </span>  
+            </td>           
+        </tr>
+    </table> 
+  
+   
+        <div class="alertMessage2"> 
+            <!--Please enter all figures in thousands Euros: -->
+        </div>  
+         <apex:outputPanel id="agencyestimatepanel">
+         <table align="center">
+        <tr>
+          <td class="traditionalCell"> 
+           
+           <span>€ </span>
+           </td>
+           <td class="paddingR10P"> 
+                
+             <span class="traditionalCellLable">
+                 Traditional
+             </span>
+              <apex:outputpanel rendered="{!IsReadyforPO}">
+              <span class="traditionalTxtLable">
+              <apex:outputText value="{!TraditionalDisplay}"  rendered="{!IsReadyforPO}" id="tradoutput">
+              </apex:outputText>
+               </span>  
+               </apex:outputpanel>  
+             <apex:outputpanel rendered="{!!IsReadyforPO}">
+            <apex:inputText value="{!TraditionalDisplay}" maxlength="10" onkeypress="return isNumberKey(event)" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}" id="tradinput">
+                    <apex:actionSupport event="onchange" 
+                                action="{!calculateTotal}" 
+                                rerender="totalFigure2" /> 
+            
+            </apex:inputText>
+            </apex:outputpanel>
+         <!--   <span style="font-size: 14px; display: block;text-align: center;padding-top:5px;">
+            <apex:outputText id="TraditionalRateOT" >{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}
+            </apex:outputText>
+                                :
+                <apex:outputText value="{0,number,###,###,###}">
+                   <apex:param value="{!AgencyEstimate.AF_Traditional_Local__c}"/>
+               </apex:outputText>
+            </span>-->
+            </td>        
+            <td class="paddingR10P"> 
+            <span class="digitalCell">
+              Digital
+            </span>
+             <apex:outputpanel rendered="{!IsReadyforPO}">
+             <span class="digitalTxtoutput">
+               <apex:outputText value="{!DigitalDisplay}"  rendered="{!IsReadyforPO}">
+               </apex:outputText> 
+              </span>
+               </apex:outputpanel>
+                <apex:outputpanel rendered="{!!IsReadyforPO}">
+                <apex:inputText value="{!DigitalDisplay}" maxlength="10" onkeypress="return isNumberKey(event)" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}">
+                   <apex:actionSupport event="onchange" 
+                                action="{!calculateTotal}" 
+                                rerender="totalFigure2" /> 
+                </apex:inputText>
+                 </apex:outputpanel>
+                <!-- <span style="font-size: 14px; display: block;text-align: center;padding-top:5px;">
+                 <apex:outputText id="DigitalRateOT" >{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
+                :
+                <apex:outputText value="{0,number,###,###,###}">
+                   <apex:param value="{!AgencyEstimate.AF_Digital_Local__c}"/>
+               </apex:outputText> 
+                </span>-->
+            </td>
+            
+             <td class="paddingR30P"> 
+             <span class="adaptationLable">
+                 Adaptation
+             </span>
+             <apex:outputpanel rendered="{!IsReadyforPO}">
+              <span class="adaptationTxtoutput">
+               <apex:outputText value="{!AdaptationDisplay}" rendered="{!IsReadyforPO}">
+                </apex:outputText> 
+               </span>
+                 </apex:outputpanel>
+              <apex:outputpanel rendered="{!!IsReadyforPO}">
+              <apex:inputText onkeypress="return isNumberKey(event)" maxlength="10" value="{!AdaptationDisplay}" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}">
+                                <apex:actionSupport event="onchange" action="{!calculateTotal}" rerender="AdataiveLocal,totalFigure2"/> 
+                </apex:inputText>
+                </apex:outputpanel>
+            <!--   <span style="font-size: 14px; display: block;text-align: center;padding-top:5px;">
+                <apex:outputText id="AdaptationRateOT" >{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
+               :
+               <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocal">
+                   <apex:param value="{!AgencyEstimate.AF_Adaptation_Local__c}"/>
+               </apex:outputText>
+                 </span> -->                  
+            </td>            
+            <!-- <td> <div style="padding-right: 30px;">                  
+                 <input type='button' value='Update Total' class="updatetotal_btn" >
+                 <apex:actionSupport event="onclick" action="{!calculateTotal}" rerender="totalFigure"/>                 
+                 </input>                  
+            </div> </td> -->
+            
+           <td class="totalCell">  
+              <span>
+                 Total
+              </span>
+                         
+            <!--  <span class="values_total1">-->
+                 <span class="totalTxtOutput">
+                <apex:outputText value="{0,number,###,###,###}" id="totalFigure2" styleClass="values_Unileverestimate">
+                 <apex:param value="{!TotalDisplayN}"/> 
+                </apex:outputText>
+               </span>  
+               <!-- </span> -->
+               
+        <apex:outputPanel rendered="false">
+         <span class="txtOutputfasle">
+              <apex:OutputText value="{0,number,###,###,###}" id="totalFigure" styleClass="marginL31P">
+                  <apex:param value="{!AgencyEstimate.AF_Total__c}" id="totalFigure1"/>
+              </apex:OutputText> 
+              
+              </span> 
+        </apex:outputPanel> 
+                
+            </td>
+            <td class="paddingR30P">
+            <span class="exRateLable">
+                 Ex Rate
+             </span>  
+       <apex:outputPanel styleClass="exRateTxtOutput">
+       <apex:outputText ></apex:outputText>
+       </apex:outputPanel>
+       
+       </td>
+            
+        </tr>
+   <tr>
+       
+       <td class="textalignR">
+       <span class="lcLable">
+       <!-- <apex:outputText rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}"> Local Currency</apex:outputText> &nbsp;&nbsp;-->
+       <apex:outputPanel styleClass="LcLabelTxt">   
+       <apex:outputText id="DigitalRateOT1" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}" >LC-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
+       </apex:outputPanel>
+       
+       </span>
+       </td>
+       <td>
+        <span class="lcTxtOutput">
+        <apex:outputText value="{0,number,###,###,###}" rendered="{!!IsReadyforPO}">
+             <apex:param value="{!AgencyEstimate.AF_Traditional_Local__c}"/>
+        </apex:outputText>
+        
+        <apex:outputText value="{0,number,###,###,###}" rendered="{!IsReadyforPO}">
+             <apex:param value="{!AgencyEstimate.AF_LC_Traditional__c}"/>
+        </apex:outputText>
+        </span>
+       </td>
+       <td>
+        <span class="lcTxtOutput">
+         <apex:outputText value="{0,number,###,###,###}" rendered="{!!IsReadyforPO}">
+                   <apex:param value="{!AgencyEstimate.AF_Digital_Local__c}"  />
+         </apex:outputText> 
+         <apex:outputText value="{0,number,###,###,###}" rendered="{!IsReadyforPO}">
+                   <apex:param value="{!AgencyEstimate.AF_LC_Digital__c}"  />
+         </apex:outputText>
+        </span>
+       </td>
+       <td>
+        <span class="lcTxtOutput marginL0P">
+         <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocal1" rendered="{!!IsReadyforPO}">
+                   <apex:param value="{!AgencyEstimate.AF_Adaptation_Local__c}"/>
+         </apex:outputText>
+         <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocal2" rendered="{!IsReadyforPO}">
+                   <apex:param value="{!AgencyEstimate.AF_LC_Adaptation__c}"/>
+         </apex:outputText>
+        </span>
+       </td>
+        <td>
+        <span class="lcTxtOutput marginL20P">
+         <apex:outputText value="{0,number,###,###,###}" id="TotalLocal" rendered="{!!IsReadyforPO}">
+                   <apex:param value="{!TotalLocal}"/>
+         </apex:outputText>
+         <apex:outputText value="{0,number,###,###,###}" id="TotalLocal2" rendered="{!IsReadyforPO}">
+                   <apex:param value="{!AgencyEstimate.AF_LC_Total__c}"/>
+         </apex:outputText>
+        </span>
+       </td>
+       <td>
+       <span>
+       
+       <apex:outputPanel styleClass="lcTxtOutput marginL20P">
+       <apex:outputText rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}" >{!AgencyEstimate.AF_Agency_Exchange_Rate__c}</apex:outputText>
+       </apex:outputPanel>
+       </span>
+       </td>
+       
+   </tr>
+   <tr>
+   
+   <apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null,IsReadyforPO,AgencyEstimate.AF_IsCrossborder__c),'true', 'false')}">
+       <td class="textalignR">
+       <span class="poLable">
+        <!--<apex:outputText> ReadyforPO Currency</apex:outputText> &nbsp;&nbsp;-->
+        <apex:outputPanel StyleClass="poLabelTxt">
+          <apex:outputText >PO-{!AgencyEstimate.AF_Ready_For_PO_Entry_Currency__c}
+          </apex:outputText> 
+        </apex:outputPanel>
+      
+       </span>
+       </td>
+       <td>
+        <span class="poTxtOutput">
+        <apex:outputText value="{0,number,###,###,###}">
+             <apex:param value="{!AgencyEstimate.Traditional_USD_Formula__c}"/>
+        </apex:outputText>
+        </span>
+       </td>
+       <td>
+        <span class="poTxtOutput">
+         <apex:outputText value="{0,number,###,###,###}">
+                   <apex:param value="{!AgencyEstimate.AF_Digital_USD_Formula__c}"/>
+               </apex:outputText> 
+        </span>
+       </td>
+       <td>
+        <span class="poTxtOutput">
+         <apex:outputText value="{0,number,###,###,###}" id="AdataiveLocalUSD">
+                   <apex:param value="{!AgencyEstimate.Adaptation_USD_Formula__c}"/>
+               </apex:outputText>
+        </span>
+       </td>
+        <td>
+        <span class="poTxtOutput marginL20P">
+         <apex:outputText value="{0,number,###,###,###}" id="TotalLocalUSD">
+                   <apex:param value="{!AgencyEstimate.AF_Total_USD__c}"/>
+               </apex:outputText>
+        </span>
+       </td>
+       <td>
+       <span>
+         <apex:outputPanel styleClass="poTxtOutput marginL20P">      
+          <apex:outputText >
+         {!AgencyEstimate.AF_Agency_Spot_Rate__c}
+          </apex:outputText> 
+        </apex:outputPanel>
+       </span>
+       </td>
+     </apex:outputPanel>
+   </tr>
+   <tr>
+   <apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c==Null,IsReadyforPO,NOT(AgencyEstimate.AF_IsCrossborder__c)),'true', 'false')}">
+       <td class="textalignR">
+       <span class="r4poLable">
+        
+        <apex:outputPanel styleClass="r4poLableTxt" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}">
+          <apex:outputText >PO-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}
+          </apex:outputText> 
+        </apex:outputPanel>
+      
+       </span>
+       </td>
+       <td>
+        <span class="r4poTxtOutput">
+        <apex:outputText value="{0,number,###,###,###}">
+             <apex:param value="{!AgencyEstimate.AF_Traditional_Local__c}"/>
+        </apex:outputText>
+        </span>
+       </td>
+       <td>
+        <span class="r4poTxtOutput">
+         <apex:outputText value="{0,number,###,###,###}">
+                   <apex:param value="{!AgencyEstimate.AF_Digital_Local__c}"/>
+               </apex:outputText> 
+        </span>
+       </td>
+       <td>
+        <span class="r4poTxtOutput">
+         <apex:outputText value="{0,number,###,###,###}" >
+                   <apex:param value="{!AgencyEstimate.AF_Adaptation_Local__c}"/>
+               </apex:outputText>
+        </span>
+       </td>
+        <td>
+        <span class="r4poTxtOutput marginL20P">
+         <apex:outputText value="{0,number,###,###,###}" >
+                   <apex:param value="{!TotalLocal}"/>
+               </apex:outputText>
+        </span>
+       </td>
+       <td>
+       <span>
+         <apex:outputPanel styleClass="r4poTxtOutput marginL20P" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c!=Null),'true', 'false')}">      
+          <apex:outputText >
+         {!AgencyEstimate.AF_Agency_Exchange_Rate__c}
+          </apex:outputText> 
+        </apex:outputPanel>
+       </span>
+       </td>
+     </apex:outputPanel>
+   </tr>
+         <tr>
+         <td colspan="8" align="right">
+         <!--
+         <br / >
+         <apex:commandButton value="Undo" image="http://www.veryicon.com/icon/16/System/Must%20Have/Undo.png"  action="{!Reload}" /> 
+          <br/><br/>
+          -->
+          </td>
+          </tr> 
+        </table>
+         </apex:outputPanel>
+        <!-- <div style="font-size: 16px;margin-left: 163px;margin-bottom:20px;"> 
+            <apex:outputText value="Unilever average exchange rate:" rendered="{!if(OR(AND(AgencyEstimate.AF_Agency_Spot_Rate__c==Null,IsReadyforPO),NOT(IsReadyforPO)),'true', 'false')}"></apex:outputText>
+            <apex:outputText value="Unilever Monthly Exchange Rate" rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null,IsReadyforPO),'true', 'false')}"></apex:outputText>
+             
+            <apex:outputField value="{!AgencyEstimate.AF_Agency_Exchange_Rate__c}" rendered="{!!IsReadyforPO}" /> 
+            
+           <!-- <apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null),'true', 'false')}">
+            <apex:outputField value="{!AgencyEstimate.AF_Agency_Spot_Rate__c}" rendered="{!IsReadyforPO}"/>
+            </apex:outputPanel>-->
+            <!--<apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null),'true', 'false')}">
+            <apex:outputField value="{!AgencyEstimate.AF_Agency_Spot_Rate__c}" rendered="{!IsReadyforPO}"/>
+            </apex:outputPanel>-->
+           <!-- <apex:outputPanel rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c==Null),'true', 'false')}">
+            <apex:outputField value="{!AgencyEstimate.AF_Agency_Exchange_Rate__c}" rendered="{!IsReadyforPO}" /> 
+             </apex:outputPanel>
+        </div>-->
+        
          
-   </script>
+             <div class="containerDiv">   <!-- start of functional border -->    
+
+
+     <!--<apex:commandButton value="Save" action="{!JustSave}" styleClass="save_btn" reRender="agencyestimatepanel,pm1,CountryAddPanel" rendered="{!if(AND(isAgencyEstEditable,NOT(IsReadyforPO)),true,false)}"  />-->
+    <!-- <apex:commandButton value="Save" action="{!JustSave}" styleClass="save_btn" reRender="agencyestimatepanel,pm1,CountryAddPanel" disabled="true" rendered="{!if(OR(AND(isAgency,NOT(fieldsReadOnly)),AND(isCatFinance,NOT(catFieldsReadOnly)),AND(isCMCO,NOT(cmcoFieldsReadOnly)),isCMCO,AND(isCMCOSuperUser,IsReadyforPO)),'true', 'false')}"  />-->
+    <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment floatL marginT20P" action="{!AddComment}"/>
+    <apex:commandButton value="Save" action="{!JustSave}" styleClass="save_btn floatL marginT20P" reRender="agencyestimatepanel,pm1,CountryAddPanel"  rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),AND(isCMCOSuperUser,NOT(IsReadyforPO))),'true', 'false')}" status="status" />
+     
+     <apex:commandButton value="Edit" action="{!NowInEditMode}" reRender="agencyestimatepanel" styleClass="submit_btn" rendered="false"/>
+    <!-- <apex:commandButton value="Submit" styleClass="submit_btndis" rendered="{!(SubmitButtonDisplay==true)}" disabled="{!SubmitButtonDisplay}"/>-->
+    
+    <!--             
+    <apex:commandButton value="Save and Close" onclick="submitData();return false;"  styleClass="submit_btn" rendered="{!(SubmitButtonDisplay==false)}" >
+        <apex:actionfunction id="submitData" name="submitData" action="{!Save}" oncomplete="closeAndRefresh();" />
+    </apex:commandButton>
+    -->
+    </div>     <!-- end of functional border -->
+    <c:AF_CommentsListComp ParentRecordValue="{!ParentId}" IsViewAllValue="false" ParentObjectTypeDesc="AF_Agency_Estimate__c"  />
+    
+    <c:AF_FieldHistoryComp ParentRecordValue="{!ParentId}" IsViewAllValue="false"  ParentObjectName="AF_Agency_Estimate__c"/>  
+         
+     </apex:tab>
+     <apex:tab label="Country Breakdown" name="Country Breakdown" id="CountryBreakdown" rendered="{!IsCentralHub}">
+   <apex:actionSupport event="onchange" reRender="CountryAddPanel,pm3" action="{!clearErrorMsg}"/>
+   
+    <apex:pagemessages id="pm3"/>         
+    <apex:outputPanel id="CountryAddPanel" rendered="{!IsCentralHub}">
+  
+  
+  <div>
+  
+    
+  
+  </div>
+
+        <div class="regTitleAlert"  id="regTitle"></div>  
+ <apex:pageBlock id="pgentity">
+ <apex:pageblockTable value="{!Wrapperlist }" var="Entity" id="pbt" styleClass="WrapperlistStyle">
+ 
+ <apex:column headerValue="Country">
+    <apex:selectList id="Countryname" value="{!Entity.EntityEX.AF_Country__c}" styleClass="values1_dropdown" size="1">
+      <apex:selectOptions value="{!Countrynames}"/>
+   </apex:selectList>
+  </apex:Column>
+  <apex:column headerValue="%" styleClass="headPercentage">
+   <apex:facet name="footer">
+  
+    <apex:outputText value="{!TotalPercent}" id="entityper" styleClass="totalPercentStyle"/>
+  </apex:facet>
+  <apex:inputField id="percent" value="{!Entity.EntityEX.AF_Value__c}"  styleClass="values1_add" >
+   <apex:actionSupport action="{!CalculateCountryValue}" event="onchange" reRender="entityval,val,entityper" />  
+  </apex:inputField>
+  </apex:column>
+  <apex:column headerValue="Value €" StyleClass="euroValue">
+  <apex:facet name="footer">
+    <apex:outputText value="{0,number,###,###,###.##}" id="entityval">
+         <apex:param value="{!TotalValue}"/>
+     </apex:outputText>
+  </apex:facet>
+  
+  <apex:outputField id="val" value="{!Entity.EntityEX.AF_Value_Euro__c}" />
+  </apex:column>
+  <apex:column styleClass="delCountry">
+    <apex:commandLink action="{!delCounrtyRecord}" rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),isCMCOSuperUser),'true', 'false')}" rerender="pbt,entityval,pm3" styleClass="deleteButtonStyle"> Delete 
+        <apex:param name="DelCountry" value="{!Entity.EntityEX.Id}" assignTo="{!delCountryId}"/>
+        <apex:param name="PosDelete" value="{!Entity.position}" assignTo="{!posDelete}"/>
+    </apex:commandLink>
+ </apex:column>
+ <!-- <apex:column HeaderValue="Select Delete">
+   <apex:commandLink value="Delete" style="color:white;font-size: 14px;font-weight: bold;text-decoration: none;padding-left: 11px;/* height: 30px; */" action="{!DeleteEntityException}"><apex:param name="deleteException" value="{!Entity.EntityEX.Id}" assignTo="{!ExceptionId}"/></apex:commandLink>
+  </apex:column>-->
+  
+ </apex:pageblockTable>
+ 
+ <apex:commandButton value="Add" action="{!AddNewRow}" rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),isCMCOSuperUser),'true', 'false')}" reRender="pbt" styleClass="submit_btn_add marginL250P"/>
+ <apex:commandButton value="Save" rendered="{!if(OR(AND(isAgency,fieldsReadOnly),AND(isCatFinance,catFieldsReadOnly),isCMCOSuperUser),'true', 'false')}" action="{!SaveEntityExceptionRecords}" reRender="pm1,pm3,pbt" styleClass="submit_btn" status="status"/>
+ </apex:pageBlock>
+
+ <apex:outputPanel rendered="false">
+ <table rowClasses="even,odd">
+        <tr>
+            <td class="countryCell"> 
+             <span class="countryLable">
+                 Country:
+             </span>   
+            <apex:inputField value="{!EntityException.AF_Country__c}" styleClass="country_values">
+            </apex:inputField>                                              
+            </td>                    
+            <td class="paddingR10P"> 
+            <span class="unitStyle">
+              %
+            </span>            
+            <apex:inputField value="{!EntityException.AF_Value__c}" id="EntityException_val" onkeypress="return isNumberKey(event)" styleClass="values1" />                
+            </td>            
+             <td class="paddingR30P"> 
+             <span class="countryValue">
+                Value
+             </span>
+             <apex:inputField value="{!EntityException.AF_Value_Euro__c}" onkeypress="return isNumberKey(event)" styleClass="values1" />                                                
+            </td>                        
+           <td >  
+            <apex:commandButton value="Add"  action="{!SaveEntityException}" styleClass="submit_btn_add"/>
+            </td>             
+        </tr>            
+    </table> 
+     
+</apex:outputPanel>
+         <apex:outputPanel id="CountryListPanel" rendered="{!DisplayExceptionList}"> 
+<table>
+<!-- <tr>
+
+    <td style="padding-left: 45px;padding-right: 40px;"> 
+         <span style="font-size: 14px; display: block;text-align: left;font-weight:bold;">
+              Country
+            </span>         
+    </td>
+    <td>
+        <span style="font-size: 16px; display: block;text-align: left;font-weight:bold;">
+              %
+         </span>         
+    </td>
+    <td>
+        <span style="font-size: 16px; display: block;text-align: left;font-weight:bold;">
+            Value
+         </span>        
+    </td>   
+    <td></td>
+</tr>  
+-->
+<!--
+<apex:repeat value="{!EntityExceptionCollection}" var="c">
+<tr>
+     <td style="padding-left: 29px;padding-right: 10px;"> 
+    <span style="font-size: 16px; display: block;text-align: left;">
+        <apex:outputText value="{!c.AF_Country__c}" />
+    </span> 
+    </td>
+   <td style="padding-right: 10px;"> 
+        <span style="font-size: 16px; display: block;text-align: left;margin-left: 62px;">
+        <apex:outputText value="{!c.AF_Value__c}" /> 
+        </span>
+    </td>
+    <td style="padding-right: 30px;"> 
+    <span style="font-size: 16px; display: block;text-align: left;margin-left: 118px;margin-right: 46px;">
+        <apex:outputText value="{!c.AF_Value_Euro__c}" /> 
+        </span>
+    </td>
+    <td class="submit_btn_delete">
+    <span>
+    <apex:commandLink value="Delete" style="color:white;font-size: 14px;font-weight: bold;text-decoration: none;padding-left: 11px;/* height: 30px; */" action="{!DeleteException}">
+    <apex:param name="deleteException" value="{!c.Id}" assignTo="{!ExceptionId}"/>
+    </apex:commandLink>
+    </span>
+    </td>
+     
+</tr>
+</apex:repeat>  
+-->
+</table>  
+</apex:outputPanel>   
+</apex:outputPanel> 
+</apex:tab>
+<apex:tab label="PO Details" styleClass="padding7P" name="PO Number" id="ReadyforPO" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}">
+    <apex:pagemessages id="PO_Num"/>
+    <apex:outputtext styleClass="poNumberHeader" style="display:none" value="{!$Label.AF_PONumberTab_Header}" id="ponumberheader"/><br/>
+    <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" html-data-toggle="tooltip" title="{!$Label.AF_PO_OverrideHelp}" html-data-placement="left" styleClass="helpAbsolute"/>
+    <div class="centerAlignCont">  
+    <!--PO Details-->
+    <div class="containerwithBorder">
+    <apex:outputPanel id="optReadyPo">
+            <table class="poNumberAlone">
+               <!--<tr>
+                  <th>
+                     <span>Please enter your Purchase Order Number and Save</span>
+                  </th>
+               </tr>-->
+               <tr>
+                  <td>
+                    <span class="fontSize16 fontWeightB">PO Number</span>
+                   </td>
+               </tr>
+               <tr>
+                  <td>
+                        <apex:inputField value="{!AgencyEstimate.AF_PO_Number__c}" id="Ponumber" styleClass="values1" rendered="{!isPOEditable}" />
+                        <apex:outputPanel styleClass="poNumTxtbox" rendered="{!IsReadonlyPO}">
+                            <apex:outputField value="{!AgencyEstimate.AF_PO_Number__c}" id="ReadPonumber"  />
+                        </apex:outputPanel>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  <apex:commandButton value="Save" action="{!UpdatPO}" styleClass="continue_btn wid70PX floatL" reRender="optReadyPo,PO_Num,ReadPoTotal"/>
+                  </td>
+               </tr>
+            </table>
+            </apex:outputPanel>
+            </div>
+            <apex:outputPanel rendered="{!IF(AND(POOverrideDisplay,isCMCOSuperUser),true,false)}">
+            <div class="containerwithBorder">
+            
+                <table class="tableTitleStyle">
+                    <tr>
+                       <td>
+                         <span class="fontSize16 fontWeightB">PO Amount Override</span>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                          <span class="fontSize15">If your Purchase Order has been raised to a different value than advised in the PO report please amend below</span>
+                       </td>
+                    </tr>
+                </table>
+                <table Align="center" class="lastGrid" id="table1">
+                    <tr>
+                        <td>
+                            <span>Currency</span>
+                        </td>
+                        <td>
+                            <span>Traditional</span>
+                        </td>
+                        <td>
+                            <span>Digital</span>
+                        </td>
+                        <td>
+                            <span>Adaptation</span>
+                        </td>
+                        <td>
+                            <span>Total</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            &nbsp;
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="textalignC">
+                            <span class="lcLable" style="display:inline">
+                                <apex:outputPanel styleClass="LcLabelTxt marginL4" rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c!=Null,IsReadyforPO,AgencyEstimate.AF_IsCrossborder__c),'true', 'false')}">   
+                                    <apex:outputText >LC-{!AgencyEstimate.AF_Ready_For_PO_Entry_Currency__c}</apex:outputText>
+                                </apex:outputPanel>
+                                <apex:outputPanel styleClass="LcLabelTxt" rendered="{!if(AND(AgencyEstimate.AF_Agency_Spot_Rate__c==Null,IsReadyforPO,NOT(AgencyEstimate.AF_IsCrossborder__c)),'true', 'false')}">   
+                                    <apex:outputText >LC-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
+                                </apex:outputPanel>
+                                <apex:outputPanel styleClass="LcLabelTxt" rendered="{!if(AND(AgencyEstimate.AF_Agency_Exchange_Rate__c==Null,NOT(IsReadyforPO)),'true', 'false')}">   
+                                    <apex:outputText >LC-{!AgencyEstimate.AF_Matrix_Data_Entry_Currency__c}</apex:outputText>
+                                </apex:outputPanel>
+                            </span>
+                        </td>
+                        
+                        <td class="textalignC">
+                        
+                            <apex:inputField value="{!AgencyEstimate.AF_OverridePO_Traditional_LC__c}" id="Potraditional" styleClass="values1" rendered="{!isCMCOSuperUser}" />
+                            <apex:outputPanel styleClass="lcTxtOutput" rendered="{!!isCMCOSuperUser}">
+                                <apex:outputField value="{!AgencyEstimate.AF_OverridePO_Traditional_LC__c}" id="ReadPoTrad" />
+                            </apex:outputPanel>
+                        </td>
+                        <td class="textalignC">
+                        
+                            <apex:inputField value="{!AgencyEstimate.AF_OverridePO_Digital_LC__c}" id="Podigital" styleClass="values1" rendered="{!isCMCOSuperUser}" />
+                            <apex:outputPanel styleClass="lcTxtOutput" rendered="{!!isCMCOSuperUser}">
+                                <apex:outputField value="{!AgencyEstimate.AF_OverridePO_Digital_LC__c}" id="ReadPoDigital" />
+                            </apex:outputPanel>
+                        </td>
+                        <td class="textalignC">
+                        
+                            <apex:inputField value="{!AgencyEstimate.AF_OverridePO_Adaptation_LC__c}" id="Poadaptation" styleClass="values1" rendered="{!isCMCOSuperUser}" />
+                            <apex:outputPanel styleClass="lcTxtOutput" rendered="{!!isCMCOSuperUser}">
+                                <apex:outputField value="{!AgencyEstimate.AF_OverridePO_Adaptation_LC__c}" id="ReadPoAdapt"/>
+                            </apex:outputPanel>
+                        </td>
+                        
+                        <td class="textalignC">
+                        <span class="lcTxtOutput">
+                               
+                                <apex:outputPanel >
+                                <apex:outputText value="{!OverrideTotal}" id="ReadPoTotal"/>
+                            </apex:outputPanel>
+                            </span>
+                        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan = "5" class="txtAlignR">
+                            <apex:commandButton value="Save" action="{!confirmBox}" styleClass="save_btn alignMargin floatR" rendered="{!isCMCOSuperUser}" reRender="popuprej" status="status" />
+                        </td>
+                    </tr>
+                    </table>
+                    
+                                   
+                    
+                <table id="tablecalc" style="margin-left:40px;">
+                  <td colspan="3">
+                     <h5 class="titleHelpStyle">Help on this functionality:</h5>
+                    <div>
+                      <ul class="helpListStyle">
+                       <li>Leave the field blank if you raised the correct PO for the period</li>
+                       <li>Insert zero into the field if you didn’t raise a PO for the period</li>
+                       <li>Insert value into the field if you have raised a different number on your PO than advised on the PO report</li>
+                     </ul>
+                    </div>
+                  </td>
+               </table>
+            
+            </div>
+            </apex:outputPanel>
+            </div>
+            <apex:outputPanel id="popuprej">
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!bConfirmBox}"/>
+                    <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!bConfirmBox}">
+                        <div class="floatR"><apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" styleClass="buttonX"/></div>
+                            <center style="margin:20px;"><h2><apex:outputLabel value="{!$Label.AF_POOveride_Warning}" styleClass="fontSize16"/> </h2><br/><br/>
+                                <apex:commandButton value="Confirm" action="{!OverridePO}" styleClass="continue_btn wid70PX" reRender="popuprej,optReadyPo,PO_Num,table1,tablecalc"/>
+                            </center>                ,
+                    </apex:outputPanel>
+            </apex:outputPanel>
+    
+    
+ </apex:tab>
+ 
+ </apex:tabPanel>
+   <!-- 
+   <br/>
+    <c:AF_AddCommentComp ParentRecordValue="{!ParentId}" ParentObjectTypeDesc="AF_Agency_Estimate__c" />
+   --> 
+   <!-- <c:AF_ApprovalButtonsComp ParentRecordValue="{!ParentId}" ApprovedEnabled="true" ReturnEnabled="false" rendered="false"/>   -->
+</div>
+
+<!-- Bootstrap bootstrap modal window Start -->    
+<div class="model_container">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+           </div>
+         <div class="modal-body">
+              <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+              <div id="loader_cont">
+                
+              </div>
+              <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+         </div>
+         <!--
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+         -->
+        </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div> 
+<!-- Bootstrap bootstrap modal window End --> 
+     
+ 
+<script>
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+</script>
+
+
+<!-- Bootstrap bootstrap modal window methods  Start-->
+<script>
+document.body.setAttribute("data-shouldRefreshPage", "0");
+bsjQuery(document).ready(function(){
+ bsjQuery(document).on('click','.modalButton3', function(e) {
+    bsjQuery("#iframe_cont").contents().find("body").html('');
+    var src = bsjQuery(this).attr('data-src');
+    var height = bsjQuery(this).attr('data-height') || 300;
+    var width = bsjQuery(this).attr('data-width') || 600;
+    bsjQuery('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
+    bsjQuery("#myModal3 iframe").attr({'src':src,
+                        'height': height,
+                        'width': width});                                  
+});
+});
+
+function timerForPageRefresh(){
+    shouldRefreshPage(!bsjQuery('#myModal3').is(":visible"));
+}
+function shouldRefreshPage(flag) {
+   if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
+       document.body.setAttribute("data-shouldRefreshPage", "0");
+       window.location.reload(true);
+   }
+   else if(!flag){
+       window.setTimeout(timerForPageRefresh, 100);
+   }
+}
+/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
+function initializePageRefresh(){
+    var originalClick = bsjQuery(this).attr("onclick");
+    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}
+
+bsjQuery('#iframe_cont').load(function(){
+    var popupFrame = bsjQuery("#iframe_cont").contents();
+    if(popupFrame.find("iframe").length ){
+        popupFrame.find("iframe").each(function(){
+            bsjQuery(this).contents().find(".EditSave").each(initializePageRefresh);
+        });
+    }
+    popupFrame.find(".EditSave").each(initializePageRefresh);
+    
+});
+</script>
+<!-- Bootstrap bootstrap modal window methods End-->
+
+<!-- Bootstrap bootstrap modal window loading_img methods Start-->
+<script> 
+    bsjQuery(document).ready(function () {
+        bsjQuery('#iframe_cont').on('load', function () {
+         bsjQuery('#loader_cont, .loading_img').show();
+            bsjQuery('#loader_cont, .loading_img').delay(1000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
+        });
+    });   
+</script>
+<!-- Bootstrap bootstrap modal window loading_img methods End--> 
+
+<apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+</apex:form> 
 </apex:page>

@@ -49,9 +49,9 @@ global with sharing class Core_CA_LineItemDetail {
             objLineItemDetailResponseAriba.SplitAccountingDetails = objApprovalDetails.Split_Accounting_Details__c;
             objLineItemDetailResponseAriba.Comments = objApprovalDetails.Expense_Comments__c ;                         
         }
-        /*catch(Core_CA_BaseServiceException baseServEx){ 
+        catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-        }*/
+        }
         catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_LineItemDetail : getLineItemDetailAriba method ', ex);
         }     
@@ -91,11 +91,11 @@ global with sharing class Core_CA_LineItemDetail {
                 objExpenseDetails.EndDate =objApprovalDetails.End_Date__c.format('dd-MM-yyyy');
             }    
            
-            if(objApprovalDetails.Reimbursable__c)
+            if(objApprovalDetails.Reimbursable__c == True)
                 objExpenseDetails.Reimbursable = 'Yes';
             else
                 objExpenseDetails.Reimbursable = 'No';
-            if(objApprovalDetails.Receipt__c)
+            if(objApprovalDetails.Receipt__c == True)
                 objExpenseDetails.Receipt = 'Yes';
             else
                 objExpenseDetails.Receipt = 'No';   
@@ -130,9 +130,9 @@ global with sharing class Core_CA_LineItemDetail {
             }
             
         }
-        /*catch(Core_CA_BaseServiceException baseServEx){ 
+        catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-        }*/
+        }
         catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_LineItemDetail : getLineItemDetailGTES method ', ex);
         }     
@@ -140,36 +140,6 @@ global with sharing class Core_CA_LineItemDetail {
         return objLineItemDetailResponseGTES;
     }
       
-    /*******************************************************************************************************
-    * @description This method get LineItem detail for Invoice and convert it into wrapper format.
-    * @param Core_CA_ApplicationWrapper wrapper 
-    * @return Core_CA_WrapperUtility.LineItemDetailResponseInvoice  wrapper
-    */
-    global static Core_CA_WrapperUtility.LineItemDetailResponseInvoice  getLineItemDetailInvoice(Core_CA_ApplicationWrapper appWrapperObj) {
-        Core_CA_WrapperUtility.LineItemDetailResponseInvoice objLineItemDetailResponseInvoice = new Core_CA_WrapperUtility.LineItemDetailResponseInvoice();
-        try{ 
-            string LineItemId = appWrapperObj.lineItemDetailRequest.LineItemID;
-            Core_Approval_Details__c objApprovalDetails = getLineItemdetail(LineItemID); 
-            Core_Approval_Header__c objApprovalHeader = [SELECT External_System_Id__c FROM Core_Approval_Header__c WHERE Id =: objApprovalDetails.Approval_Header__c ];
-               
-            objLineItemDetailResponseInvoice.RequestName =objApprovalHeader.External_System_Id__c;
-            objLineItemDetailResponseInvoice.IntOrder =objApprovalDetails.Air_Fare_Details__c;
-            objLineItemDetailResponseInvoice.GLAccount =objApprovalDetails.Allowance_Details__c;
-            objLineItemDetailResponseInvoice.NetAmnt =objApprovalDetails.Amount__c;
-            objLineItemDetailResponseInvoice.CstCntr =objApprovalDetails.Attachment__c;
-            objLineItemDetailResponseInvoice.ProfitCntr =objApprovalDetails.Attendees_Details__c;
-            objLineItemDetailResponseInvoice.Description =objApprovalDetails.Description__c;
-            objLineItemDetailResponseInvoice.Currencies =objApprovalDetails.Currency__c;         
-        }
-        /*catch(Core_CA_BaseServiceException baseServEx){ 
-            throw new Core_CA_BaseServiceException(baseServEx);
-        }*/
-        catch(Exception ex){
-            throw new Core_CA_BaseServiceException('Exception occured: Core_CA_LineItemDetail : getLineItemDetailGTES method ', ex);
-        }     
-             
-        return objLineItemDetailResponseInvoice;
-    }
      
     /*******************************************************************************************************
     * @description retrive required Line Item detail for the id passed in parameter.
@@ -181,7 +151,7 @@ global with sharing class Core_CA_LineItemDetail {
         Core_Approval_Details__c objApprovalDetails = new Core_Approval_Details__c();
         try{
         objApprovalDetails = [SELECT Name,Approval_Header__c,Amount__c,Commodity_Code__c,Currency__c,Charge_To__c,CA_Payment_Type__c,City__c,Description__c,Price__c, Quantity__c,SAPMaterialMaster__c,
-                             Expense_Country__c,Split_Accounting_Details__c,Supplier_ERP_ID__c,Supplier_Name__c,Tax_Code__c,Unit_of_Measure__c,Allowance_Details__c,Attachment__c,
+                             Expense_Country__c,Split_Accounting_Details__c,Supplier_ERP_ID__c,Supplier_Name__c,Tax_Code__c,Unit_of_Measure__c,
                              Air_Fare_Details__c,Attendees_Details__c,Car_Details__c,End_Date__c,Expense_Date__c,Expense_Comments__c,Per_Diem_Amount__c,
                              Per_Diem_Details__c,Policy_Exceptions__c,Purpose__c,Reason__c,Receipt__c,Reimbursable__c,Room_Details__c,Expense_Code__c  
                              FROM Core_Approval_Details__c WHERE Id =: LineItemId ];

@@ -29,23 +29,18 @@
                           <span>{!$Label.IPM_Gate} {!$Label.IPM_Document}<div class="gateddown"></div></span>
                         </a>
                     <ul class="dropdown-menu" role="menu" aria-hidden="true">
-                     <!--Below rendered condition provide link to bosscard page-->
                     <apex:outputPanel layout="block" rendered="{!AND(projType!='Rollout',bosscardStatus)}">
                     <li class="{!IF(activeItem=='bosscard', 'active', '')}"><a href="{!$Page.IPM_Bosscard}?id={!bosscardId}"><span>{!$Label.IPM_BOSSCARD}</span></a></li>
                     </apex:outputPanel>
-                     <!-- Below rendered condition provide link to gate document page-->
                     <apex:outputPanel layout="block" rendered="{!AND(OR(projSpan='Global',projType='Operational',AND(projSpan='Regional',projType!='Rollout')),OR(projPhase='Ideas',projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='charter', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Charter"><span>{!$Label.IPM_CHARTER}</span></a></li>
                     </apex:outputPanel>
-                     <!--Below rendered condition provide link to gate document page -->
                     <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='contract', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Contract"><span>{!$Label.IPM_Contract}</span></a></li>
                     </apex:outputPanel>
-                     <!--Below rendered condition provide link to gate document page -->
                     <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='market ready', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Ready"><span>{!$Label.IPM_MARKET_READY}</span></a></li>
                     </apex:outputPanel>
-                     <!-- Below rendered condition provide link to gate document page-->
                     <apex:outputPanel layout="block" rendered="{!AND(projSpan='Local',projType!='Operational',OR(projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='market deployment', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Deployment"><span>{!$Label.IPM_MARKET_DEPLOYMENT}</span></a></li>
                     </apex:outputPanel>
@@ -57,7 +52,6 @@
                         </a>
                     <ul class="dropdown-menu" role="menu" aria-hidden="true">
                     <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECT} {!$Label.IPM_Parameters}</span></a></li>
-                    <!--This will provide link to rollout page if span is not local and project type is not operational-->
                     <apex:outputPanel layout="block" rendered="{!AND(projSpan!='Local',projType!='Operational')}">
                     <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlans}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
                     </apex:outputPanel>

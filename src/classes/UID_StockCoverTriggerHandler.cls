@@ -23,7 +23,6 @@ public class UID_StockCoverTriggerHandler {
     //before update
     public void onAfterUpdate(Map<Id, UID_Stocked_Product__c> newStockedProductMap , Map<Id, UID_Stocked_Product__c> oldStockedProductMap){
         UID_StockCoverTriggerHelper.computeStockCover(newStockedProductMap.values(), oldStockedProductMap);
-        UID_StockCoverTriggerHelper.calculateRanking(newStockedProductMap.values(), oldStockedProductMap);
     }
     
 }

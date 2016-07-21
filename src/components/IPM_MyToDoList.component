@@ -59,7 +59,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown completedFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="{!IF(isCompleteTasks != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a>
+                                                    <a class="fa filterIcon icoButton filter"></a>
                                                 </div>
                                                 <ul class="dropdown-menu pull-right complete" role="menu">
                                                     <li>
@@ -98,7 +98,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown projectFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="{!IF(projectName != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
+                                                    <a class="fa filterIcon icoButton filter"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right project" role="menu">
                                                     <li>
@@ -149,7 +149,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown brandFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="{!IF(brandName != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
+                                                    <a class="fa filterIcon icoButton filter"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right brand" role="menu">
                                                     <apex:repeat value="{!brandlist}" var="phs">
@@ -184,7 +184,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown categoryFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="{!IF(categoryName != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
+                                                    <a class="fa filterIcon icoButton filter"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right category" role="menu">
                                                     <apex:repeat value="{!CategoryList}" var="phs">
@@ -218,7 +218,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown phaseFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="{!IF(phase != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
+                                                    <a class="fa filterIcon icoButton filter"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right phase" role="menu">
                                                     <apex:repeat value="{!phasesList}" var="phs">
@@ -264,7 +264,7 @@
                                 <div class="toDoContainer">
                                     <div class="colDuedate incHeight">
                                         <span>{!$Label.IPM_DUE_DATE}</span>
-                                        <span id="sortDueDate" class="sortDueDate fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+                                        <span id="sortDueDate" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
                                     </div>   
                                 </div>
                             </th>
@@ -321,7 +321,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                     {!p.IPM_Phase__c}
+                                                    {!p.IPM_Project__r.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -349,7 +349,7 @@
                                         
                                     </tbody>
                                 </table>
-                                <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not complted then pagination is visible  -->
+                                
                                 <apex:outputPanel rendered="{!if(setCon.ResultSize > setCon.PageSize && isCompleteTasks != 'Yes',true,false)}">
                                     <table class="table ipmTable paginationTable">
                                         <tbody>
@@ -420,7 +420,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                     {!p.IPM_Phase__c}
+                                                    {!p.IPM_Project__r.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -444,7 +444,6 @@
                                         </apex:repeat> 
                                     </tbody>
                                 </table>
-                                <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not complted then pagination is visible  -->
                                 <apex:outputPanel rendered="{!if(setControl.ResultSize > setControl.PageSize && isCompleteTasks != 'Yes',true,false)}">
                                     <table class="table ipmTable paginationTable">
                                         <tbody>
@@ -515,7 +514,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                     {!p.IPM_Phase__c}
+                                                    {!p.IPM_Project__r.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -539,7 +538,6 @@
                                         </apex:repeat> 
                                     </tbody>
                                 </table>  
-                                <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not complted then pagination is visible  -->
                                 <apex:outputPanel rendered="{!if(setCont.ResultSize > setCont.PageSize && isCompleteTasks != 'Yes',true,false)}">
                                     <table class="table ipmTable paginationTable">
                                         <tbody>
@@ -610,7 +608,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                     {!p.IPM_Phase__c}
+                                                    {!p.IPM_Project__r.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -634,7 +632,6 @@
                                         </apex:repeat>     
                                     </tbody>    
                                 </table>
-                                <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not complted then pagination is visible  -->
                                 <apex:outputPanel rendered="{!if(setContr.ResultSize > setContr.PageSize && isCompleteTasks != 'Yes',true,false)}">
                                     <table class="table ipmTable paginationTable">
                                         <tbody>
@@ -710,7 +707,7 @@
                                                     {!p.IPM_Project__r.IPM_Category_Text__c}
                                                 </td>
                                                 <td class="collistPhase">
-                                                     {!p.IPM_Phase__c}
+                                                    {!p.IPM_Project__r.IPM_Phase__c}
                                                 </td>
                                                 <td class="colTaskName">
                                                     <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
@@ -736,7 +733,6 @@
                                         </apex:repeat> 
                                     </tbody>        
                                 </table>
-                                <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are complted then pagination is visible  -->
                                 <apex:outputPanel rendered="{!if(setController.ResultSize > setController.PageSize && isCompleteTasks != 'No',true,false)}">
                                     <table class="table ipmTable paginationTable">
                                         <tbody>

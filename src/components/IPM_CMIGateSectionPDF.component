@@ -1,4 +1,4 @@
-﻿<!--  
+<!--  
 *************************************************************************
 *@Description:This component is used to display Gate CMI responses in Gate Document PDF Page
 *@Author: Cognizant
@@ -22,19 +22,16 @@
                 <div class="cmiTabHeader cmiTimingHead pull-left"><div>{!$Label.IPM_RESULTS}</div><div>{!$Label.IPM_TIMINGS}</div></div>
                 <div class="cmiTabHeader {!If(gate!='Charter','cmiActionStnds','cmiChrtrResWidth')} pull-left"><apex:outputText value="{!If(gate!='Charter','Action Standards',$Label.IPM_RESULTS)}"></apex:outputText></div>
                 <div class="cmiTabHeader {!If(gate!='Charter','cmiActionOvrall','cmiConResOvrall')} pull-left"><apex:outputText value="{!If(gate!='Charter','Action Standards',$Label.IPM_RESULTS)}"></apex:outputText><div> {!$Label.IPM_OVERALL}</div><div>{!$Label.IPM_COLOR_CODING}</div></div>
-                <!-- Condition for checking gate is contract or market ready -->
                 <apex:outputPanel layout="block" styleClass="" rendered="{!OR(gate='Contract',gate='Market Ready')}">
                     <div class="cmiTabHeader cmiConResHeader pull-left"><apex:outputText value="{!$Label.IPM_RESULTS}"></apex:outputText></div>
                     <div class="cmiTabHeader cmiResultsOvrall pull-left">{!$Label.IPM_RESULTS}<div>{!$Label.IPM_OVERALL}</div><div>{!$Label.IPM_COLOR_CODING}</div></div>
                 </apex:outputPanel>
-                <!-- Condition for checking gate is charter -->
                 <div class="cmiTabHeader {!If(gate!='Charter','cmiConComments','cmiComments')} pull-left">{!$Label.IPM_COMMENTS}<div><apex:outputText value=" / Follow up plan in Feasibility phase" rendered="{!gate='Charter'}"/></div></div>
             </div> 
             <div class="cmiGateName pull-left">
                 <span class="cmiColumnTitle">{!gate}</span> <apex:outputText styleClass="cmiColumnDesc" value="{!If(gate='Contract','Adviced timings are based on planned contract gate minus 4 weeks',If(gate='Market Ready','Adviced Timings are based on planned mkt ready gate minus 4 weeks',''))}" />
             </div> 
             <apex:repeat value="{!gateCMIList}" var="cmi">
-            <!-- Condition for displaying gate cmi records -->
                 <apex:outputPanel layout="block" styleClass="cmiValContainer pull-left cmiRenBlock" rendered="{!AND(gateCMIList.size>0,cmi.Gate__c=gate)}">
                     <div class="cmiLeftContainer">
                         <span class="cmiValue elemWidth pull-left">{!cmi.Element__c}</span>
@@ -43,13 +40,11 @@
                     </div>
                     <div class="cmiTabRight pull-left">
                         <apex:repeat value="{!countryNames}" var="key">
-                        	<!-- Condition for checking countries belongs to cmi record -->
                             <apex:outputpanel layout="block" styleClass="cmiRightContainer " rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                 <div class="ciContainer pull-left">
                                     <div class="cpart1 pull-left">
-                                    	<!-- Condition for displaying country name -->
                                         <apex:outputpanel layout="block" styleClass="cmiCntryContainer pull-left" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
-                                            <apex:outputText styleClass="cmiCountryContainer cmiCountryValue pull-left" value="{!mapCountryNameWithCode[displayCon[key].IPM_CMI_Country__c]}" />
+                                            <apex:outputText styleClass="cmiCountryContainer cmiCountryValue pull-left" value="{!displayCon[key].IPM_CMI_Country__c}" />
                                         </apex:outputPanel>
                                         <apex:variable var="i" value="{!1}"/>
                                     </div>
@@ -57,33 +52,26 @@
                                 </div>                                       
                                 <div class="cmiChrtrResMcontainer pull-left">
                                     <div class="cpart2 pull-left">
-                                    <!-- Condition for displaying cmi values -->
                                         <apex:outputpanel layout="block" styleClass="cmiInputContainer pull-left" rendered="{!AND(secConList.size>0,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                             <apex:repeat value="{!secConList}" var="con">
-                                            	<!-- For displaying country name -->
                                                 <apex:outputpanel styleClass="cmiInputVal" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}">{!con.IPM_CMI_Input__c} </apex:outputPanel>    
                                             </apex:repeat>  
                                         </apex:outputPanel>
                                     </div>
                                     <div class="cmiTimeContainer1 pull-left">                                                                     
-                                    <!-- Condition for displaying result timing -->                                                                   
                                         <apex:outputPanel styleClass="cmiTimingValue pull-left" layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1)}">
                                             <apex:outputField value="{!displayCon[key].IPM_CMI_Result_Timing__c}" />
                                         </apex:outputPanel>
                                     </div>
                                     <div class="cmiTimeContainer2 pull-left">
                                         <apex:variable var="j" value="{!1}"/>
-                                        <!-- Condition for displaying cmi result -->
                                         <apex:outputPanel styleclass="cmiRes1Container pull-left" layout="block" rendered="{!AND(secConList.size>0,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                             <apex:repeat value="{!secConList}" var="con">
-                                            	<!-- Checking country name -->
                                                 <apex:outputText styleClass="cmiChrtrLeftValue" value="{!con.IPM_CMI_Result__c}" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}" />                                     
                                             </apex:repeat>
                                         </apex:outputPanel>
-                                        <!-- Condition for displaying cmi color score value -->
                                         <apex:outputPanel styleclass="cmiRes2Container pull-left" layout="block" rendered="{!AND(secConList.size>0,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                             <apex:repeat value="{!secConList}" var="con">
-                                            	<!-- Checking country name -->
                                                 <apex:outputPanel layout="block" styleclass="cmiChrtrRightValue" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}">
                                                     <apex:outputText styleClass="{!con.IPM_CMI_Outcome_Color__c}" value="{!con.IPM_CMI_Color_Score_Value__c}" />    
                                                 </apex:outputPanel>
@@ -91,18 +79,14 @@
                                         </apex:outputPanel>
                                     </div> 
                                 </div> 
-                                  <!-- Condition for displaying cmi overall color score value -->
                                 <apex:outputPanel styleClass="pull-left cmichrtrOvrallClr" layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate='Charter')}">
                                     <span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" /></span>
                                 </apex:outputPanel>
-                                <!-- For displaying comments -->
                                 <apex:outputPanel styleClass="cmiCommentsContainer pull-left" layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate='Charter')}">
                                     <apex:repeat value="{!secConList}" var="con">
-                                    	<!-- Checking country name -->
                                         <apex:outputText styleClass="cmiCommentsValue cmiChrtrComment" value="{!con.IPM_CMI_Comments__c}" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/>
                                     </apex:repeat>
                                 </apex:outputPanel>                               
-                                   <!-- Condition for displaying cmi overall color -->                         
                                 <apex:outputPanel styleClass="cmiActOvrValContainer pull-left" layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,j=1,gate!='Charter')}">
                                     <span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}">
                                         <apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" />
@@ -110,26 +94,20 @@
                                 </apex:outputPanel>                                         
                                 <apex:variable var="j" value="{!j+1}"/>
                                 <div class="cmiConResContainer pull-left">  
-                                	<!-- checking gate document is not charter -->
                                     <apex:outputPanel styleClass="cmiConRes1 pull-left" layout="block" rendered="{!AND(cmi.Gate__c!='Charter',gate!='Charter',secConList.size>0,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                         <apex:repeat value="{!secConList}" var="con">
-                                        	<!-- Checking country name -->
                                             <apex:outputText styleClass="cmiConResValue1" value="{!con.IPM_CMI_Results_Acheived__c}" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}" />                                    
                                         </apex:repeat>
                                     </apex:outputPanel>
-                                    <!-- checking gate document is not charter -->
                                     <apex:outputPanel styleClass="cmiConRes2 pull-left" layout="block" rendered="{!AND(cmi.Gate__c!='Charter',gate!='Charter',secConList.size>0,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                         <apex:repeat value="{!secConList}" var="con">
-                                        		<!-- Checking country name -->
                                                 <apex:outputText styleClass="cmiConResValue2 {!con.IPM_CMI_Color_Score_Value_Achieved__c}" value="{!con.IPM_CMI_Outcome_Color_Achieved__c}" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/>
                                         </apex:repeat>
                                     </apex:outputPanel>
                                 </div>                                        
-                                <!-- For displaying cmi overall color achieved -->                                       
                                 <apex:outputPanel styleClass="pull-left cmiconOvrallClr" layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate!='Charter')}">
                                     <span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour_Achieved__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score_Achieved__c}" /></span>
                                 </apex:outputPanel>
-                                <!-- For displaying comments -->
                                 <apex:outputPanel styleClass="cmiCommentsContainer pull-left" layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate!='Charter')}">
                                     <apex:repeat value="{!secConList}" var="con">
                                         <apex:outputText styleClass="cmiCommentsValue" value="{!con.IPM_CMI_Comments__c}" rendered="{!AND(cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/>

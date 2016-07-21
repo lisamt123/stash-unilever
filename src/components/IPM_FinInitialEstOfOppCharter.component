@@ -4,7 +4,6 @@
 <!------------------------------------------------------------------------------------------------------------------>
     <!-- FINANCIAL INITIAL ESTIMATE OF OPPORTUNITY                                                                    -->
     <!------------------------------------------------------------------------------------------------------------------>
-    <!-- Render condition for checking charter gate -->
     <apex:outputPanel rendered="{!renderGate}">
         <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered">
             <thead>

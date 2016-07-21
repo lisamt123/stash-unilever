@@ -152,7 +152,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         if(!system.isBatch() && !system.isFuture())
         {
             map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
-                updateGroupMember(oldProjectResources,oldProjectResourcesmap);
+            updateGroupMember(oldProjectResources,oldProjectResourcesmap);
         }
     }
     
@@ -191,7 +191,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
   
     //List of all Project records which have been previously synced to EcoDesign
     prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
     projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -202,9 +202,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject))
             {
                 //set status as ready only when the rollout is created and countires are there for the project
-                if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
-                    prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
-                }
+            	if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
+            		prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+            	}
             
                 if(projMembersMap != null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id) != null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
                 {
@@ -218,7 +218,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     //Update The List
     if(!toUpdateProjList.isEmpty())
     {
-        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+    	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
         update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class
         IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
       }
@@ -241,7 +241,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             projIdsSet.add(projResource.IPM_Project__c);
         }
         prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
         projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -251,10 +251,10 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             {
                 if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject))
                 {
-                    //set status as ready only when the rollout is created and countires are there for the project
-                    if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
-                        prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
-                    }
+                	//set status as ready only when the rollout is created and countires are there for the project
+                	if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
+                		prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+                	}
                     
                     if(projMembersMap!=null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id)!=null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
                     {
@@ -293,9 +293,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
              projidset.add(projres.IPM_Project__c);
            }
        } //FOR END       
-       if(projidset != null && !projidset.isEmpty()){
+       if(projidset != null && projidset.size()>0){
          projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 1000]);
-         if(projectmap != null && !projectmap.isEmpty()){ 
+         if(projectmap != null && projectmap.size()>0){ 
            for(IPM_Project__c proj:projectmap.values()){
              projglobalidset.add(proj.IPM_Global_Project_Id__c); 
              projglobalidset.add(proj.id);
@@ -306,11 +306,11 @@ public with sharing class IPM_ProjectResourceTriggerHandler
                 projglobalidset.add(proj.IPM_Parent_Project__r.IPM_Parent_Project__c);   
              }
            }
-           if(projglobalidset != null && !projglobalidset.isEmpty()){
+           if(projglobalidset != null && projglobalidset.size()>0){
              projectGlobalmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where id IN: projglobalidset]);  
            }      
          }
-         if(projectGlobalmap != null && !projectGlobalmap.isEmpty()){  
+         if(projectGlobalmap != null && projectGlobalmap.size()>0){  
               IPM_GroupManagement.groupmemberupdate(projectGlobalmap.keySet());  
          }
         }        

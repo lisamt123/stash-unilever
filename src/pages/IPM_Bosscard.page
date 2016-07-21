@@ -64,7 +64,6 @@
                                                 <div class="fillProgressTxt">{!$Label.IPM_FILLED_IN}</div>
                                             </apex:outputPanel>
                                         </div>  
-                                        <!-- Below render condition is used to skip bosscard -->
                                         <apex:outputPanel rendered="{!isSkipBosscard}">
                                             <div class="skipButton" id="skipbosscard" data-toggle="modal" data-target="#ipmModalSkipBossConfirm" title="Skip Bosscard" data-backdrop="static" data-keyboard="false">
                                                 <span class="ipmButton">{!$Label.IPM_BOSSCARD_SKIP}</span>
@@ -73,12 +72,11 @@
                                     </div>
                                     <div class="bosscardStatusContainer pull-right clearfix">   
                                         <div class="SecButtonSet pull-right"> 
-                                                <!-- Below render condition is used to provide download button -->                        
-                                            <apex:commandLink action="{!PDFAfterApproved}" styleClass="icoButton download" title="{!$Label.IPM_DOWNLOAD}" rendered="{!!isBosscardEdit}" onclick="skipValidation();">
+                                                                        
+                                            <apex:commandLink action="{!PDFAfterApproved}" styleClass="icoButton download" title="{!$Label.IPM_DOWNLOAD}" rendered="{!!isBosscardEdit}">
                                                 <apex:param name="exportpdf" assignTo="{!exportPDFBooln}" value="true"/>
                                             </apex:commandLink>
-                                             <!-- Below render condition is used to provide download button -->   
-                                            <apex:commandLink action="{!PDFAfterApproved}" styleClass="icoButton download" title="{!$Label.IPM_DOWNLOAD}" rendered="{!isBosscardEdit}" onclick="skipValidation();"/>
+                                            <apex:commandLink action="{!PDFAfterApproved}" styleClass="icoButton download" title="{!$Label.IPM_DOWNLOAD}" rendered="{!isBosscardEdit}"/>
                                             
                                             <!-- To place the help symbol in the top right hand corner of page -->
                                             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
@@ -87,8 +85,7 @@
                                         <apex:outputPanel id="updateModal">
                                             <apex:outputPanel >
                                                 <div class="SecStatusUpdate pull-right updateBox" value="{!$Page.IPM_BosscardStatus}?id={!bosscard.Id}&goto={!gotopage}" >
-                                                    <!-- Below render condition is used to provide change status button -->
-                                                    <apex:commandLink value="{!$Label.IPM_Change_Status}" onComplete="checkValidation();" styleClass="ipmButton orangebg" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" rendered="{!!isBosscardEdit}" onclick="skipValidation();">
+                                                    <apex:commandLink value="{!$Label.IPM_Change_Status}" onComplete="checkValidation();" styleClass="ipmButton orangebg" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" rendered="{!!isBosscardEdit}">
                                                         <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsg"/>   
                                                     </apex:commandLink>
                                                 </div>
@@ -108,17 +105,15 @@
                     
                     <div class="bosscardErrMsg">
                         <apex:outputPanel id="nameMsg">
-                         <!-- Below render condition is used to provide below output text -->   
                             <apex:outputText value="{!$Label.IPM_MANDATORY_BOSSCARD_NAME}" rendered="{!isNameMandatory}" styleClass="redAlerticon ErrMsg"/>
                             
                         </apex:outputPanel>
                     </div>
                     <div class="col-sm-12 noPadright bosscardMtop">
                         <div class="col-sm-5 pull-right noPadright txtAlignright">
-                        <!-- Below render condition is used to execute code if we don't have bosscard edit access  -->
                             <apex:outputPanel rendered="{!!isBosscardEdit}">
-                                <apex:commandLink action="{!cancelBosscard}" value="{!$Label.IPM_CANCEL}" styleClass="ipmButton bosscardmright" onclick="skipValidation();"/>
-                                <apex:commandLink action="{!save}" value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary saveBosscard" reRender="companyMand,CateMand,specialchar,pgmsg,nameMsg,fill,showMsg,bossHeader,modalpop" onComplete="checksavedone();" onclick="skipValidation();">
+                                <apex:commandLink action="{!cancelBosscard}" value="{!$Label.IPM_CANCEL}" styleClass="ipmButton bosscardmright"/>
+                                <apex:commandLink action="{!save}" value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary saveBosscard" reRender="companyMand,CateMand,specialchar,pgmsg,nameMsg,fill,showMsg,bossHeader,modalpop" onComplete="checksavedone();">
                                     <apex:param name="IsSave" assignTo="{!bosscard.IPM_IsSaved__c}" value="{!isBossCSaved}"/>
                                 </apex:commandLink>
                             </apex:outputPanel>
@@ -137,31 +132,23 @@
                                         <apex:outputPanel id="imgpn">
                                             
                                             <apex:outputPanel id="isID" >
-                                            <!-- Below render condition is used to execute code if we have bosscard edit access  -->
                                                 <apex:outputPanel rendered="{!isBosscardEdit}">                                                      
                                                     <div>
-                                                    <!-- Below render condition is used to provide image -->
                                                         <apex:image styleClass="ipmImage custUploadImage" value="{!URLFOR($Resource.IPM_Resource, 'images/upload_placeholder.png')}" rendered="{!isClickToUpload}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"/>
-                                                        <!-- Below render condition is used to provide below output field -->
                                                         <apex:outputfield value="{!bosscard.IPM_Bosscard_Logo__c}" rendered="{!!isClickToUpload}"/>                                                    
                                                     </div>
                                                 </apex:outputPanel>
                                                 <apex:outputPanel id="deltImg">
-                                                <!-- Below render condition is used to execute code if we don't have bosscard edit access  -->
                                                     <apex:outputPanel rendered="{!!isBosscardEdit}"> 
                                                         <div value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage upImageContainer" data-target="#ipmModal" >
-                                                           <!-- Below render condition is used to provide image -->
                                                             <apex:image styleClass="ipmImage" value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" rendered="{!isClickToUpload}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"/>
-                                                              <!-- Below render condition is used to provide below output field -->
                                                             <apex:outputfield value="{!bosscard.IPM_Bosscard_Logo__c}" rendered="{!!isClickToUpload}"/>                                                   
                                                             
                                                         </div>
-                                                          <!-- Below render condition is used to execute code if we don't click on upload image button -->
                                                         <apex:outputPanel layout="block" rendered="{!!isClickToUpload}">
                                                             <div class="imgHoverContainer">
                                                                 <div class="imgHbuttonContainer">
                                                                    <span value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmModal" >
-                                                                       <!-- Below render condition is used to provide update button-->
                                                                        <apex:commandLink value="{!$Label.IPM_Update}" styleClass="imgUpdateButton" action="{!save}" reRender="none" rendered="{!!isClickToUpload}">
                                                                            <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsgUpdateImg"/>        
                                                                        </apex:commandLink>
@@ -183,25 +170,22 @@
                                         <div class="required BosscardNameInputBoxDiv">
                                             <apex:outputLabel value="{!$Label.IPM_BOSSCARD_NAME}" styleClass="bsFieldLabel" />
                                             <span class="mandatorycolor">{!$Label.IPM_Bosscard_Mandatory}</span>
-                                            
-                                            <apex:inputText value="{!bosscard.IPM_BosscardName__c}" id="proname" styleClass="brandautocomplete BosscardNameInputBox" onblur="hideSuggetion();" maxlength="{!bossMaxLength}" disabled="{!isBosscardEdit}" onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupBosscard();"  html-onfocusout="changeAlertBosscardName();"/>
+                                            <apex:inputText value="{!bosscard.IPM_BosscardName__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" onblur="hideSuggetion();" onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupBosscard();"  maxlength="{!bossMaxLength}" disabled="{!isBosscardEdit}">
+                                            </apex:inputText>
                                         </div> 
                                         <apex:actionfunction name="dupBosscard" action="{!searchDuplicateBosscard}" rerender="refreshBosscardName"/>
                                         <apex:actionfunction name="hideSuggetion" action="{!hideBosscardSuggetion}" rerender="refreshBosscardName"/>
                                         
                                         <apex:outputpanel id="refreshBosscardName" >
-                                        <!-- Below render condition is used to execute code if bosscard name is not blank -->
                                             <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isBosscardNameBlank}">
                                                 <apex:repeat value="{!listofprojectname}" var="proList">          
-                                                    <apex:outputLabel styleClass="bcAuto" value="{!proList}"/>         
+                                                    <apex:outputLabel styleClass="bcAuto" value="{!proList.IPM_BosscardName__c}"/>         
                                                 </apex:repeat> 
                                             </apex:outputpanel> 
                                         </apex:outputpanel>
                                         
                                         <apex:outputPanel id="specialchar">
-                                        <!-- Below render condition is used to provide below output text -->
                                             <apex:outputText value="{!$Label.IPM_BOSSCARD_DO_NOT_SPECIALCHAR}" rendered="{!isContainSpecialChars}" styleclass="fieldErrmsg"/>
-                                           <!-- Below render condition is used to provide below output text -->
                                             <apex:outputText value="{!$Label.IPM_BOSSCARD_Name_Exists}" rendered="{!isDuplicateBoss}" styleclass="fieldErrmsg"/>
                                             <span class="hiddenBossname" data-target="{!isDuplicateBoss}"></span>
                                         </apex:outputPanel>
@@ -212,9 +196,6 @@
                                             <div class="inputField">
                                                 <apex:outputLabel value="{!$Label.IPM_COMPANY_CARD}" styleClass="bsFieldLabel" />
                                                 <span class="mandatorycolor">{!$Label.IPM_Bosscard_Mandatory}</span>
-                                                 <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_THIS_WILL_DESCRIBE}"></a>
-                                             </span>
                                                 <label class="ipmSelect">
                                                     <apex:selectList size="1" value="{!selectedCompany}" styleClass="compC" onchange="CCchange(this.value)" disabled="{!isBosscardEdit}" >
                                                         <apex:selectOptions value="{!Allcompanycard}"/>
@@ -226,7 +207,6 @@
                                                 </label>
                                                 
                                                  <apex:outputPanel id="companyMand">
-                                                 <!-- Below render condition is used to provide below output text -->
                                                    <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!company_Booln}" styleclass="fieldErrmsg"/>
                                                  </apex:outputPanel>
                                             </div>
@@ -246,10 +226,8 @@
                                              
                                             <div class="inputField">
                                                 <apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_PERIOD}" styleClass="bsFieldLabel" />                                               
-                                                <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_YOUR_ESTIMATE}"></a>
-                                             </span>
-                                                <apex:inputText value="{!expectedTLD}" id="pos1" styleClass="quarterForward calendar"  disabled="{!isBosscardEdit}" onchange="changeAlert()" />
+                                                
+                                                <apex:inputText value="{!expectedTLD}" id="pos1" styleClass="quarterForward calendar" disabled="{!isBosscardEdit}" />
                                                 <span class="fieldnote"><span class="">{!$Label.IPM_Bosscard_Mandatory}</span> {!$Label.IPM_MARKED_FIELDS_MANDATORY}</span>
                                             </div>
                                         </div>
@@ -268,32 +246,25 @@
                                                     </apex:actionFunction>
                                                 </label>
                                                 <apex:outputPanel id="CateMand">
-                                                <!-- Below render condition is used to provide below output text -->
                                                    <apex:outputText value="{!$Label.IPM_Category_Mandatory}" rendered="{!category_Booln}" styleclass="fieldErrmsg"/>
                                                  </apex:outputPanel>
                                             </div>                                     
                                             <div class="inputField">
-                                                <apex:outputLabel value="{!$Label.IPM_APPROVER}" styleClass="bsFieldLabel" />
-                                                <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_SELECT_THE_APPROVER}"></a>
-                                             </span>
+                                                <apex:outputLabel value="{!$Label.IPM_APPROVER}" styleClass="bsFieldLabel clrBoth" />
                                                 <apex:outputPanel styleClass="approvContainer" id="deltappr">  
                                                     <apex:outputPanel styleClass="selectContainer" html-value="{!$Page.IPM_ApproverList}?Id={!bosscard.id}" html-data-target="#editApprover" layout="block" rendered="{!isAddApprover}">
-                                                        <!-- Below render condition is used to provide select approver label -->
                                                         <apex:outputpanel rendered="{!if(bosscard.IPM_Bosscard_Status__c='In Progress',true,false)}">
-                                                            <span class="selectAppr" onclick="saveboss();skipValidation();" >{!$Label.IPM_Select_Approver}</span>
+                                                            <span class="selectAppr" onclick="saveboss();" >{!$Label.IPM_Select_Approver}</span>
                                                         </apex:outputPanel>  
                                                     </apex:outputPanel>                                                                                        
                                                     <apex:actionfunction name="saveboss" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" onComplete="slctApprover();">
                                                         <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsgApprover"/>   
                                                     </apex:actionFunction>
-                                                    <!-- Below render is used to execute code if isAddApprover is false -->
                                                     <apex:outputPanel styleClass="apprSelectContainer pull-left" layout="block" rendered="{!!isAddApprover}">
                                                         <div class="apprImageContainer pull-left">
                                                             <apex:image styleClass="circular apprImage pull-left" url="{!bosscard.IPM_Gate_Keeper__r.smallphotourl}"/>
                                                         </div>
                                                         <span class="apprName">{!bosscard.IPM_Gate_Keeper__r.name}</span> 
-                                                        <!-- Below render is used to execute code if we don't have bosscard edit access -->
                                                        <apex:outputpanel rendered="{!!isBosscardEdit}">
                                                         <div class="SecButtonSet editApprover pull-left" data-target="#removeApprover" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                             <a class="icoButton delete02 deleteTeamMember"></a>    
@@ -322,9 +293,8 @@
                                                 <div>
                                                 
                                                     <span class="bcFielddesc">{!$Label.IPM_FOCUS_ON_STRATEGIC_FIT}</span>
-                                                 <!-- Below render condition is used to provide below input field -->
+                                                 
                                                     <apex:inputField value="{!bosscard.IPM_Background__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                   <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Background__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
                                                     <span id="lblMessage"></span><span id="lblTotalCharCount"></span>
                                                     <span id="lblWarning"></span>   
@@ -339,20 +309,16 @@
                                             </span>
                                             <div class="ipmAcrdnExpand">
                                                 <div>
-                                                    
+                                                    <span class="bcFielddesc"><strong>{!$Label.IPM_CONSUM_NEED}:</strong> {!$Label.IPM_REFERENCE_MARKET_RESEARCH}</span>
                                                     <apex:outputLabel value="{!$ObjectType.IPM_Bosscard__c.fields.IPM_Consumer_Need__c.label}" styleClass="subSectionLabel" />
-                                                     <span class="bcFielddesc">{!$Label.IPM_REFERENCE_MARKET_RESEARCH}</span>
-                                                    <!-- Below render condition is used to provide below input field -->                                       
+                                                                                                  
                                                     <apex:inputField value="{!bosscard.IPM_Consumer_Need__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Consumer_Need__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />   
 
-                                                    
+                                                    <span class="bcFielddesc"><strong>{!$Label.IPM_POTENTIAL_BUSINESS_OPP}</strong>{!$Label.IPM_SOME_CONSIDERATIONS}</span>
                                                     <apex:outputLabel value="{!$ObjectType.IPM_Bosscard__c.fields.IPM_Potential_Business_Opportunity__c.label}" styleClass="subSectionLabel" />
-                                                     <span class="bcFielddesc">{!$Label.IPM_SOME_CONSIDERATIONS}</span>
-                                                    <!-- Below render condition is used to provide below input field -->
+                                                   
                                                     <apex:inputField value="{!bosscard.IPM_Potential_Business_Opportunity__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Potential_Business_Opportunity__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />   
                                                     
                                                 </div>
@@ -365,9 +331,8 @@
                                             <div class="ipmAcrdnExpand">
                                                 <div>
                                                     <span class="bcFielddesc">{!$Label.IPM_IS_IN_AND_OUT_OF_SCOPE}</span>
-                                                         <!-- Below render condition is used to provide below input field -->                                              
+                                                                                                       
                                                   <apex:inputField value="{!bosscard.IPM_Scope__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                  <!-- Below render condition is used to provide below output field -->
                                                   <apex:outputField value="{!bosscard.IPM_Scope__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />   
                                                   
                                                 </div>
@@ -382,9 +347,8 @@
                                                 <div>
                                                     <span class="bcFielddesc">{!$Label.IPM_PROVIDE_PRELIMINARY_VIEW}
                                                     </span>
-                                                   <!-- Below render condition is used to provide below input field -->
+                                                   
                                                     <apex:inputField value="{!bosscard.IPM_Sustainibility__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Sustainibility__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
                                                     
                                                 </div>
@@ -398,9 +362,8 @@
                                             <div class="ipmAcrdnExpand">
                                                 <div>
                                                     <span class="bcFielddesc">{!$Label.IPM_WHAT_WE_CANT_CHANGE}</span>
-                                                          <!-- Below render condition is used to provide below input field -->                                             
+                                                                                                       
                                                    <apex:inputField value="{!bosscard.IPM_Constraints__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                   <!-- Below render condition is used to provide below output field -->
                                                    <apex:outputField value="{!bosscard.IPM_Constraints__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
 
                                                 </div>
@@ -415,9 +378,8 @@
                                                 <div>
                                                     <span class="bcFielddesc">{!$Label.IPM_INITIAL_HUNCHES_AND_HYPOTHESES}
                                                     </span>
-                                                     <!-- Below render condition is used to provide below input field -->
+                                                     
                                                     <apex:inputField id="IPM_Assumptions" value="{!bosscard.IPM_Assumptions__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Assumptions__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
                                                 </div>
                                             </div>
@@ -431,9 +393,8 @@
                                                 <div>
                                                     <span class="bcFielddesc">{!$Label.IPM_HAVE_RESOURCES}
                                                     </span>
-                                                       <!-- Below render condition is used to provide below input field -->
+                                                       
                                                     <apex:inputField value="{!bosscard.IPM_Resources__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Resources__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
 
                                                 </div>
@@ -448,9 +409,8 @@
                                                 <div>
                                                     <span class="bcFielddesc">{!$Label.IPM_TIMING_OF_CHARTER}
                                                     </span>
-                                                          <!-- Below render condition is used to provide below input field -->                                    
+                                                                                              
                                                     <apex:inputField value="{!bosscard.IPM_Deliverables__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <!-- Below render condition is used to provide below output field -->
                                                     <apex:outputField value="{!bosscard.IPM_Deliverables__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
 
                                                 </div>
@@ -460,10 +420,9 @@
                                 </div>
                                 <div class="col-sm-12 noPadright">
                                     <div class="col-sm-5 pull-right noPadright txtAlignright">
-                                    <!-- Below render condition is used to execute code if we don't have bosscard edit permission -->
                                         <apex:outputPanel rendered="{!!isBosscardEdit}">
-                                            <apex:commandLink action="{!cancelBosscard}" value="{!$Label.IPM_CANCEL}" styleClass="ipmButton bosscardmright" onclick="skipValidation();"/>
-                                            <apex:commandLink action="{!save}" value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary" reRender="fill,companyMand,CateMand,pgmsg,nameMsg,floatedSaveMsg,bossHeader,modalpop" onComplete="checksavedone();" onclick="skipValidation();">
+                                            <apex:commandLink action="{!cancelBosscard}" value="{!$Label.IPM_CANCEL}" styleClass="ipmButton bosscardmright"/>
+                                            <apex:commandLink action="{!save}" value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary" reRender="fill,companyMand,CateMand,pgmsg,nameMsg,floatedSaveMsg,bossHeader,modalpop" onComplete="checksavedone();">
                                                 <apex:param name="IsSave" assignTo="{!bosscard.IPM_IsSaved__c}" value="{!isBossCSaved}"/>
                                             </apex:commandLink>
                                         </apex:outputPanel>
@@ -552,7 +511,7 @@
                 </div>
             </div>
             <apex:form >
-                <div id="ipmModalSkipBossConfirm" class="modal fade ipmModalSkipBossConfirm">
+                <div id="ipmModalSkipBossConfirm" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             
@@ -591,12 +550,13 @@
         </apex:define>
     </apex:composition>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.js')}" type="text/javascript"></script>
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>   
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.ui.quarterpicker.js')}" type="text/javascript" ></script>                 
-         <script>
-         var IPMApp = {changeStatus:'{!$Label.IPM_CHANGE_CURRENT_STATUS_OF_THE_BOSSCARD}',wmessage:'{!$Label.IPM_Unsaved_Alert}', bossurl:'{!URLFOR($Page.IPM_Bosscard)}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', bosscardId:'{!bosscard.Id}', RemoteAction:'{!$RemoteAction.IPM_BosscardController.DeleteBosscard}', systemMsg:'{!$Label.IPM_System_Admin}'};     
-         </script>
-    <apex:outputPanel id="modalpop">
+     <script>
+     var IPMApp = {changeStatus:'{!$Label.IPM_CHANGE_CURRENT_STATUS_OF_THE_BOSSCARD}', bossurl:'{!URLFOR($Page.IPM_Bosscard)}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', bosscardId:'{!bosscard.Id}', RemoteAction:'{!$RemoteAction.IPM_BosscardController.DeleteBosscard}', systemMsg:'{!$Label.IPM_System_Admin}'};     
+     </script>
+     <apex:outputPanel id="modalpop">
         <script>                    
             var jq=jQuery.noConflict();                       
             var apexAccountList = [];
@@ -612,10 +572,8 @@
                 window.location.reload(true);
             }
         }                
-        
         </script>
         
     </apex:outputPanel> 
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript" ></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Bosscard.js')}" type="text/javascript" ></script>
 </apex:page>

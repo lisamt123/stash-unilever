@@ -14,12 +14,6 @@ global with sharing class Core_CA_MyApprovalData {
     * @param Core_CA_ApplicationWrapper wrapper 
     * @return Core_CA_WrapperUtility.MyApprovalsDataResponse wrapper
     */    
-    public static String strSystemAriba=  'Ariba'; 
-    public static String strSystemGtes=  'GTES';  
-    public static String strSystemInvoice=  'Invoice'; 
-    public static String strSystemClarity=  'Clarity'; 
-    
-    
     global static Core_CA_WrapperUtility.MyApprovalsDataResponse getMyApprovalsData(Core_CA_ApplicationWrapper appWrapperObj) {
         Core_CA_WrapperUtility.MyApprovalsDataResponse objMyApprovalsData = new Core_CA_WrapperUtility.MyApprovalsDataResponse();
         try{
@@ -40,7 +34,7 @@ global with sharing class Core_CA_MyApprovalData {
             }
                 
         }
-        //catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx);  }
+        catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx);  }
         catch(Exception ex){throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getMyApprovalsData method ', ex); }     
         
         return objMyApprovalsData;   
@@ -60,8 +54,8 @@ global with sharing class Core_CA_MyApprovalData {
             objPendingApproval.ExpenseTypeSelected = appWrapperObj.myApprovalsDataRequest.ExpenseTypeSelected;
             objPendingApproval.ExpenseData = lstExpenseData;    
         }
-        //catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
-        catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : processPendingApprovals method ', ex); }
+        catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
+        catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : processPendingApprovals method ', ex); }  
         return objPendingApproval;
     }
     
@@ -79,7 +73,7 @@ global with sharing class Core_CA_MyApprovalData {
             objClosedApprovals.ExpenseTypeSelected = appWrapperObj.myApprovalsDataRequest.ExpenseTypeSelected;
             objClosedApprovals.ExpenseData = lstExpenseData;  
         }
-        //catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
+        catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
         catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : processClosedApprovals method ', ex); }  
         return objClosedApprovals;
         
@@ -89,11 +83,6 @@ global with sharing class Core_CA_MyApprovalData {
     * @description This method convert the Core_Approver_Details__c data into wrapper format.
     * @param list of Core_Approver_Details__c 
     * @return Core_CA_WrapperUtility.ExpenseData wrapper.
-    */
-    
-     /* -- SONAR Issue explanation -- 
-       This method retrieve the data from Approval console,Approval status and line item object and bind with the wrapper class fields
-       and send to the UI. So multiple SOQL query and too many fields and multiple if condtions that is leading to Npath complexity. 
     */  
     private static List<Core_CA_WrapperUtility.ExpenseData> processExpenseData(List<Core_Approver_Details__c> lstApproverDetail){ 
         List<Core_CA_WrapperUtility.ExpenseData> lstExpenseData = new List<Core_CA_WrapperUtility.ExpenseData>();
@@ -103,30 +92,29 @@ global with sharing class Core_CA_MyApprovalData {
             for(Core_Approver_Details__c approver : lstApproverDetail){
                 setHeaderIds.add(approver.Approval_Header__c);
             }
-            Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Description__c,Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c,Name,Attachment__c,Category__c,Urgency__c,Ariba_Company_Code__c  FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
+            Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Description__c,Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
             for(Core_Approver_Details__c penddingExpense : lstApproverDetail){
                  objExpensedata = new Core_CA_WrapperUtility.ExpenseData();
-                 
+                 //objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c;
                  objExpensedata.ExpenseID = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_System_Id__c;                
                  objExpensedata.Amount = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Total_amount__c;
+                 
+                 if( mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_Created_Date__c != null)
+                    objExpensedata.Dates = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_Created_Date__c.format('dd/MM/yyyy');
                  objExpensedata.ApproverId = penddingExpense.Id;
                  objExpensedata.RequestId = penddingExpense.Approval_Header__c;
                  objExpensedata.Status = penddingExpense.Status__c;
                  objExpensedata.Action=penddingExpense.Action__c;
-                 objExpensedata.Currencies = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Currency__c;
-                 if( mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_Created_Date__c != null)
-                    objExpensedata.Dates = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_Created_Date__c.format('dd/MM/yyyy');
-                  
-                 // Data binding for Ariba 
-                 if(penddingExpense.Source_System__c == strSystemAriba){    
-                     objExpensedata.ExpenseType = Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA; 
-                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Description__c;     
-                     objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_For_Details__c;                 
+                                 
+                 if(penddingExpense.Source_System__c == 'Ariba'){    
+                     objExpensedata.ExpenseType = Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA;
+                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Description__c;      
+                     objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_For_Details__c;
+                     objExpensedata.Currencies = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Currency__c;                 
                  }
-                 // Data binding for GTES
-                 if(penddingExpense.Source_System__c == strSystemGtes){
+                 if(penddingExpense.Source_System__c == 'GTES'){
                      objExpensedata.ExpenseType = Core_CA_AppConstants.DATA_REQUEST_TYPE_GTES; 
-                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c;
+                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c; 
                      objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_by_details__c; 
                      
                      string currency0 = mapHeaderRecord.get(penddingExpense.Approval_Header__c).TF_Currency__c;
@@ -141,32 +129,15 @@ global with sharing class Core_CA_MyApprovalData {
                      if((currency0 == '' || currency0 == null) && (currency1 == '' || currency1 == null) && (currency2 !='' && currency2 != null))   
                          objExpensedata.Currencies = currency2;
                      if((currency0 == '' || currency0 == null) && (currency1 == '' || currency1 == null) && (currency2 == '' || currency2 == null) && (currency3 !='' && currency3 != null))  
-                         objExpensedata.Currencies = currency3;                   
+                         objExpensedata.Currencies = currency3;
+                    
                                 
-                 }
-                 // Data binding for Clarity
-                 if(penddingExpense.Source_System__c == strSystemClarity){    
-                     objExpensedata.ExpenseType = strSystemClarity; 
-                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Attachment__c;     
-                     objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_For_Details__c;                    
-                     objExpensedata.ProjectBug = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Urgency__c;
-                 }
-                 // Data binding for Invoice
-                 if(penddingExpense.Source_System__c==strSystemInvoice){
-                     objExpensedata.ExpenseID = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_For_Details__c;
-                     objExpensedata.ExpenseType = strSystemInvoice; 
-                     if(mapHeaderRecord.get(penddingExpense.Approval_Header__c).Category__c == 'INV')
-                         objExpensedata.ExpenseName = 'Invoice'; 
-                     if(mapHeaderRecord.get(penddingExpense.Approval_Header__c).Category__c == 'CN')
-                         objExpensedata.ExpenseName = 'Credit Note';    
-                     objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Ariba_Company_Code__c;
-                     objExpensedata.ProjectBug = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Urgency__c;                         
                  }
                  lstExpenseData.add(objExpensedata);         
              } 
              
          }
-         //catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
+         catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
          catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : processClosedApprovals method ', ex);  }        
          return lstExpenseData;        
     }
@@ -179,7 +150,7 @@ global with sharing class Core_CA_MyApprovalData {
     private static Set<ID> getRecalledExpense(){            
        Set<Id> setRecalledExpenseID = new Set<Id>();
        try{
-       List<Core_Approver_Details__c> lstRecalledExpenseID =[SELECT Approval_Header__c FROM Core_Approver_Details__c where  Role__c = 'EMP' AND Action__c = 'CANC' AND Source_System__c = :strSystemGtes];
+       List<Core_Approver_Details__c> lstRecalledExpenseID =[SELECT Approval_Header__c FROM Core_Approver_Details__c where  Role__c = 'EMP' AND Action__c = 'CANC' AND Source_System__c = 'GTES'];
        for(Core_Approver_Details__c id: lstRecalledExpenseID)
             setRecalledExpenseID.add(id.Approval_Header__c);
              
@@ -196,34 +167,27 @@ global with sharing class Core_CA_MyApprovalData {
     private static List<Core_Approver_Details__c> getPendingApprovals(Integer recordFetchLimit, String ExpenseTye){
         Set<Id> recalledExpenseID = null;
         List<Core_Approver_Details__c>  lstPendingApprovals = null;
-        List<Core_Approver_Details__c>  lstQueryWithVendor = null;
         try{            
             recalledExpenseID =  getRecalledExpense(); 
             //Retrive pending approval records.
             if(ExpenseTye.equalsIgnoreCase('All')){
                 lstPendingApprovals=[SELECT Approval_Header__c,CreatedDate,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                                       AND ( (Is_Active__c=: true and Source_System__c=: strSystemAriba AND Role__c = 'APP' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' )
-                                                              OR (Source_System__c=:strSystemGtes    AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :recalledExpenseID))
-                                                              OR (Source_System__c=:'Clarity' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND Status__c!='Rework'AND (Role__c = 'APP' OR Role__c = 'END')) 
-                                                              OR (Source_System__c=:strSystemInvoice AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Return to AP' AND Status__c!='Query with Vendor' AND  Role__c = 'APP') )  
-                                                              ORDER BY TF_CreatedDate__c DESC];  
-                                                              
-                lstQueryWithVendor=[SELECT Approval_Header__c,CreatedDate,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                    AND (Source_System__c=:strSystemInvoice AND (Action__c = 'QUER' OR Status__c ='Query with Vendor') AND Status__c !='Approved' AND Status__c!='Return to AP'  AND Role__c = 'APP') ORDER BY TF_CreatedDate__c DESC ];   
-                lstPendingApprovals.addall(lstQueryWithVendor);                                                                                                           
+                                                       AND ( (Is_Active__c=: true and Source_System__c=: 'Ariba' AND Role__c = 'APP' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' )
+                                                              OR (Source_System__c=:'GTES' AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :recalledExpenseID)))  
+                                                              ORDER BY CreatedDate DESC];
             }
             else if(ExpenseTye.equalsIgnoreCase('PurchaseRequest')){
                 lstPendingApprovals=[SELECT Approval_Header__c,CreatedDate,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                                       AND Is_Active__c=: true and Source_System__c=: strSystemAriba AND Role__c = 'APP' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected'   
+                                                       AND Is_Active__c=: true and Source_System__c=: 'Ariba' AND Role__c = 'APP' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected'   
                                                               ORDER BY CreatedDate DESC];
             }
             else if(ExpenseTye.equalsIgnoreCase('Expense')){
                 lstPendingApprovals=[SELECT Approval_Header__c,CreatedDate,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                                       AND Source_System__c=:strSystemGtes AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND Approval_Header__c not in :recalledExpenseID   
+                                                       AND Source_System__c=:'GTES' AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND Approval_Header__c not in :recalledExpenseID   
                                                               ORDER BY CreatedDate DESC];
             }                                                                      
         }
-        //catch(Core_CA_BaseServiceException baseServEx){  throw new Core_CA_BaseServiceException(baseServEx); }
+        catch(Core_CA_BaseServiceException baseServEx){  throw new Core_CA_BaseServiceException(baseServEx); }
         catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getPendingApprovals method ', ex);}                                                  
         return lstPendingApprovals;                                                       
     }
@@ -244,24 +208,22 @@ global with sharing class Core_CA_MyApprovalData {
             
             if(ExpenseTye.equalsIgnoreCase('All')){
                 lstClosedApprovals =[SELECT Approval_Header__c,Action__c,CreatedDate,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                                        AND( (Role__c = 'APP' AND Source_System__c=:strSystemAriba AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')) OR
-                                                              (Role__c = 'APP' AND Source_System__c=:strSystemGtes AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in : setRecalledExpenseID) ) OR
-                                                              (Source_System__c=:'Clarity' AND (Role__c = 'APP' OR Role__c = 'END' ) AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Action__c = 'REWO' OR Status__c ='Approved' OR Status__c='Rejected' OR Status__c='Rework'))OR
-                                                              (Source_System__c=:strSystemInvoice AND Role__c = 'APP' AND (Status__c ='Approved' OR Status__c='Return to AP')))
-                                                              ORDER BY LastModifiedDate DESC ];
+                                                        AND( (Role__c = 'APP' AND Source_System__c=:'Ariba' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')) OR
+                                                              (Role__c = 'APP' AND Source_System__c=:'GTES' AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in : setRecalledExpenseID) ))
+                                                         ORDER BY LastModifiedDate DESC limit : Integer.valueof(CORE_Chatter_Approval_MobileApp__c.getinstance('InitialLoad').Value__c) ];
             }
             else if(ExpenseTye.equalsIgnoreCase('PurchaseRequest')){
                 lstClosedApprovals =[SELECT Approval_Header__c,Action__c,CreatedDate,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                                        AND  Role__c = 'APP' AND Source_System__c=:strSystemAriba AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')
+                                                        AND  Role__c = 'APP' AND Source_System__c=:'Ariba' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')
                                                          ORDER BY LastModifiedDate DESC limit : Integer.valueof(CORE_Chatter_Approval_MobileApp__c.getinstance('InitialLoad').Value__c) ];
             }
             else if(ExpenseTye.equalsIgnoreCase('Expense')){
                 lstClosedApprovals =[SELECT Approval_Header__c,Action__c,CreatedDate,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
-                                                        AND Role__c = 'APP' AND Source_System__c=:strSystemGtes AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in : setRecalledExpenseID) 
+                                                        AND Role__c = 'APP' AND Source_System__c=:'GTES' AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in : setRecalledExpenseID) 
                                                          ORDER BY LastModifiedDate DESC limit : Integer.valueof(CORE_Chatter_Approval_MobileApp__c.getinstance('InitialLoad').Value__c) ];
             }
         }
-        //catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
+        catch(Core_CA_BaseServiceException baseServEx){ throw new Core_CA_BaseServiceException(baseServEx); }
         catch(Exception ex){ throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getClosedApprovals method ', ex); }  
         return lstClosedApprovals;                                                       
    } 

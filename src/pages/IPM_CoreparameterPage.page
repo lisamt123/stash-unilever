@@ -62,9 +62,5 @@
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreparameterDesign.js')}" type="text/javascript"></script> 
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script> 
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Coreparameter_BET.js')}" type="text/javascript"></script>
-		<script>		
-           var IPMAppCPP = { corePage:'{!URLFOR($Page.IPM_CoreParameters)}',wmessage:'{!$Label.IPM_Unsaved_Alert}', projectId:'{!projectId}'};		
-        </script>
-		<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_PopUp_Navigation.js')}" type="text/javascript"></script>
     </apex:form>
 </apex:page>

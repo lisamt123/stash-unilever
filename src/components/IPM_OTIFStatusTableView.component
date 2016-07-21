@@ -79,7 +79,6 @@
                     </td>
                     
                     <td>
-                    <!-- Below rendered condition is used for below output text -->
                     <apex:outputText rendered="{!IF(OR(con.IPM_OTIF_Sequence__c!=null,Iseditable=false),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
                     </td>       
                   </tr>

@@ -46,18 +46,18 @@
         }
         
         .jcarousel-skin-tango .jcarousel-item .thumbnail-container {
-        	border:1px #D8D8D8 solid;
-        	padding:5px;
-          	margin-left:5px;
+            border:1px #D8D8D8 solid;
+            padding:5px;
+            margin-left:5px;
         }
         
         
         li.jcarousel-item-1 .thumbnail-container {
-        	margin-left:0;
+            margin-left:0;
         }
         /*
         .jcarousel-skin-tango ul > li.jcarousel-item:first-child .thumbnail-container {
-        	margin-left:0; border-left:1px red solid;
+            margin-left:0; border-left:1px red solid;
         } 
         */
         
@@ -73,27 +73,27 @@
         }
         
         #VideoContent {
-        	/*
-        	width: 400px;
-        	height: 235px;
-        	*/
+            /*
+            width: 400px;
+            height: 235px;
+            */
         }
         
         .thumbnail-text {
-        	display:block;
-        	margin-top:5px;
+            display:block;
+            margin-top:5px;
         }
         
         .jcarousel-skin-tango .jcarousel-prev-horizontal, .jcarousel-skin-tango .jcarousel-next-horizontal {
-        	top:30px;
+            top:30px;
         }
         
         .content-container {
-        	height:235px; padding:0; /*padding-bottom:20px;*/ margin:0; margin-left:34px; text-align:center;
+            height:235px; padding:0; /*padding-bottom:20px;*/ margin:0; margin-left:34px; text-align:center;
         }
         
         .panel.video-panel {
-        	text-align:center !important;margin:0 0 3px 0;
+            text-align:center !important;margin:0 0 3px 0;
         }
         
         .jcarousel-skin-tango .jcarousel-next-horizontal { right:-5px; }
@@ -103,9 +103,9 @@
     <script type="text/javascript">
     
     function log(s) {
-  		try { console.log(s) } catch (e) { alert(s) }
-	}
-	
+        try { console.log(s) } catch (e) { alert(s) }
+    }
+    
     var DoFoward = function(p_url)
     {
         if(p_url != null && p_url != '')
@@ -129,8 +129,8 @@
     
     var ShowFullImage = function(p_elem)
     {
-    	
-   // 	var iconResoureUrl = '{!URLFOR($Resource.isll_images, 'infoButton.png')}';
+        
+   //   var iconResoureUrl = '{!URLFOR($Resource.isll_images, 'infoButton.png')}';
         var tmp_elem = $(p_elem);
 
         var tmp_dataType    = tmp_elem.data('type').toLowerCase();
@@ -152,15 +152,15 @@
         
         if(tmp_dataType == null || tmp_dataType == '' || tmp_dataType == 'image')
         {
-        	var tmp_linkAttribute = '';
-        	
-        	if(tmp_linkUrl != null && tmp_linkUrl != '')
-        	{
-        		tmp_linkAttribute = 'onclick="DoFoward(\'' + tmp_linkUrl + '\');"';
-        	}
-        	
-        	//tmp_imagePanel.html('<img style="width: 400px; height: 235px;"' + tmp_linkAttribute + ' src="' + tmp_source + '" />');
-        	tmp_imagePanel.html('<img style="height: 235px; max-width: 400px;"' + tmp_linkAttribute + ' src="' + tmp_source + '" />');
+            var tmp_linkAttribute = '';
+            
+            if(tmp_linkUrl != null && tmp_linkUrl != '')
+            {
+                tmp_linkAttribute = 'onclick="DoFoward(\'' + tmp_linkUrl + '\');"';
+            }
+            
+            //tmp_imagePanel.html('<img style="width: 400px; height: 235px;"' + tmp_linkAttribute + ' src="' + tmp_source + '" />');
+            tmp_imagePanel.html('<img style="height: 235px; max-width: 400px;"' + tmp_linkAttribute + ' src="' + tmp_source + '" />');
             tmp_imagePanel.show();
         }
         else if(tmp_dataType == 'video')
@@ -178,38 +178,38 @@
             tmp_videoPanel.show();
         } else if(tmp_dataType == 'document')
         {
-        	insertFlexComponent('/_swf/121310/sfc/flex/DocViewer', 
-				'shepherd_prefix=/sfc/servlet.shepherd&v='+tmp_source+'&mode=chatterfilepreview&in_tests=false', 
-				'100%', '100%', '#f3f3f3', 'VideoContent', 'renditionLarge', false, 
-				{ adobeFlashVersionLbl : 'You must enable or download Adobe Flash Player version 9.0.115 or later to use this feature.', 
-					downloadAdobeLbl : 'Download Adobe Flash Player', 
-					downloadAdobeLinkLbl : 'Click the link below to download the Adobe Flash Player:', 
-					closeDialogLbl : 'Cancel'
-			});
+            insertFlexComponent('/_swf/121310/sfc/flex/DocViewer', 
+                'shepherd_prefix=/sfc/servlet.shepherd&v='+tmp_source+'&mode=chatterfilepreview&in_tests=false', 
+                '100%', '100%', '#f3f3f3', 'VideoContent', 'renditionLarge', false, 
+                { adobeFlashVersionLbl : 'You must enable or download Adobe Flash Player version 9.0.115 or later to use this feature.', 
+                    downloadAdobeLbl : 'Download Adobe Flash Player', 
+                    downloadAdobeLinkLbl : 'Click the link below to download the Adobe Flash Player:', 
+                    closeDialogLbl : 'Cancel'
+            });
             tmp_videoPanel.show();
         }
 
-		/*
+        /*
         if((tmp_descrptContent != null && tmp_descrptContent != '') || tmp_dataType == 'document')
         {
-        	if(tmp_linkUrl != null && tmp_linkUrl != '')
-        	{
-        		tmp_descrptContent = '<div onclick="DoFoward(\'' + tmp_linkUrl + '\');" style="cursor:pointer; text-decoration:underline;">' + tmp_descrptContent + '</div>';
-        	}
-        	if(tmp_dataType == 'document'){
-        		tmp_descrptContent = '<div><span style="display: inline-block; margin-top: -15px; vertical-align: middle;">'+tmp_descrptContent+'</span>&nbsp;'+
-        			'<a href="/'+tmp_source+'"><img src="{!URLFOR($Resource.isll_images, 'infoButton.png')}" width="25" height="25"/></a>' +
-        			'<a href="/sfc/servlet.shepherd/version/download/'+tmp_source+'">'+
+            if(tmp_linkUrl != null && tmp_linkUrl != '')
+            {
+                tmp_descrptContent = '<div onclick="DoFoward(\'' + tmp_linkUrl + '\');" style="cursor:pointer; text-decoration:underline;">' + tmp_descrptContent + '</div>';
+            }
+            if(tmp_dataType == 'document'){
+                tmp_descrptContent = '<div><span style="display: inline-block; margin-top: -15px; vertical-align: middle;">'+tmp_descrptContent+'</span>&nbsp;'+
+                    '<a href="/'+tmp_source+'"><img src="{!URLFOR($Resource.isll_images, 'infoButton.png')}" width="25" height="25"/></a>' +
+                    '<a href="/sfc/servlet.shepherd/version/download/'+tmp_source+'">'+
                         '<img src="{!URLFOR($Resource.isll_images, 'download.png')}" width="25" height="25"/>' +
                     '</a>'+
                     '<a href="javascript:addToLibrary(\''+tmp_source+'\');"><img src="{!URLFOR($Resource.isll_images, 'plus.png')}" width="25" height="25"/></a>'+
-        			'</div>';
-        	}
-        	
+                    '</div>';
+            }
+            
             tmp_descrptPanel.html(tmp_descrptContent);
             tmp_descrptPanel.show();
         } else {
-        	tmp_descrptPanel.html('').show();
+            tmp_descrptPanel.html('').show();
         }
         */
     }
@@ -259,10 +259,10 @@
             });
             
             $(this).hover(function(){
-			  $(this).css("cursor","pointer");
-			  },function(){
-			  $(this).css("cursor","default");
-			});
+              $(this).css("cursor","pointer");
+              },function(){
+              $(this).css("cursor","default");
+            });
 
             if(p_index == x_start)
             {
@@ -275,34 +275,34 @@
     });
     </script>
     <div style="width: 100%;">
-	    <apex:outputPanel layout="block" style="text-align:center; width: 400px;" rendered="{!a_elementsSize > 0}">
-	        <div class="content-container">
-	            <div id="VideoPanel" class="panel video-panel">
-	            	<div id="VideoContent"></div>
-	            </div>
-	            <div id="ImagePanel" class="panel image-panel"></div>
-	            <!-- <div id="ImageDescription"></div>-->
-	            
-	            <apex:actionFunction name="addToLibrary" action="{!addToLibrary}" rerender="Panel">
+        <apex:outputPanel layout="block" style="text-align:center; width: 400px;" rendered="{!a_elementsSize > 0}">
+            <div class="content-container">
+                <div id="VideoPanel" class="panel video-panel">
+                    <div id="VideoContent"></div>
+                </div>
+                <div id="ImagePanel" class="panel image-panel"></div>
+                <!-- <div id="ImageDescription"></div>-->
+                
+                <apex:actionFunction name="addToLibrary" action="{!addToLibrary}" rerender="Panel">
                     <apex:param name="cvidf" value=""/>
                 </apex:actionFunction>
-	            <!-- <div id="LinkPanel"></div> -->
-	        </div>
-	        
-	        <ul id="mycarousel" class="jcarousel-skin-tango" style="height:300px !important;]">
-	            <apex:repeat value="{!a_elements}" var="elem">
-	                <li>
-	                	<div class="thumbnail-container">
-	                	<img src="{!elem.ThumbnailLink__c}" class="thumbnail-img"
-	                		data-source="{!elem.Content__c}" data-description="{!elem.MediaDescription__c}" 
-	                		data-type="{!elem.MediaType__c}" data-url="{!elem.Link__c}" height="70" />
-	                	</div>
-	                	<span class="thumbnail-text">{!elem.ThumbnailText__c}</span>
-	                </li>
-	            </apex:repeat>
-	        </ul>
-	    </apex:outputPanel>
-	    
-	    <apex:outputPanel id="Panel" rendered="{!ShowEditLink}"><a href="/apex/isll_CarouselEditPage?id={!a_carousel.Id}&retURL={!URLENCODE($CurrentPage.url)}">Edit</a></apex:outputPanel>
+                <!-- <div id="LinkPanel"></div> -->
+            </div>
+            
+            <ul id="mycarousel" class="jcarousel-skin-tango" style="height:300px !important;]">
+                <apex:repeat value="{!a_elements}" var="elem">
+                    <li>
+                        <div class="thumbnail-container">
+                        <img src="{!elem.ThumbnailLink__c}" alt="Carousel Component" class="thumbnail-img"
+                            data-source="{!elem.Content__c}" data-description="{!elem.MediaDescription__c}" 
+                            data-type="{!elem.MediaType__c}" data-url="{!elem.Link__c}" height="70" />
+                        </div>
+                        <span class="thumbnail-text">{!elem.ThumbnailText__c}</span>
+                    </li>
+                </apex:repeat>
+            </ul>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="Panel" rendered="{!ShowEditLink}"><a href="/apex/isll_CarouselEditPage?id={!a_carousel.Id}&retURL={!URLENCODE($CurrentPage.url)}">Edit</a></apex:outputPanel>
     </div>
 </apex:component>

@@ -1,170 +1,282 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to input BonusQuarterly Figures 
-   *@Author: Cognizant
-   *@Created Date: 21/07/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_BonusQuarterly" showHeader="false" sidebar="false" docType="HTML-5.0">
-   <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
-   <!-- Common_Style File End -->
-   <!-- jquery library Start-->
-   <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"/>
-   <!-- jquery library End-->
+ 
+<!-- Common_Style File Start -->
+  <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+<!-- jquery library Start-->
+  <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+<!-- jquery library End-->
+ <script>  
+function twoDecimalCheck(){
+    $('.two-digits').keyup(function(){
+        //alert('Hi2');
+        if($(this).val().indexOf('.')!=-1){         
+            if($(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
+    
+    
+     
+  $(".two-digits").keypress(function (e) {
+      
+     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
+        
+        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        alert("Please enter numbers only.");
+               return false;
+    }
+   });
+   }
    
-   <script>
-      function custFunc(){
-          parent.document.body.setAttribute("data-shouldRefreshPage", "1");
-      }
-   </script>
-   <apex:message />
-   <div class="AF_QuarterlyBonus">
-      <div class="row">
-         <div class="col-lg-12 charttable1">
-            <apex:image url="{!$Resource.header_new}" styleClass="helpimg"/>
-         </div>
+$( function () {
+    //alert('Hi1');
+    $('.two-digits').keyup(twoDecimalCheck);
+});
+ </script>
+ <script>
+ 
+  function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : event.keyCode;
+          var result = false;
+          var errorMsg = document.getElementById("regTitle");
+         
+          if ( charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57 ) && charCode != 45)
+          {
+             errorMsg.innerHTML = "<b>Please use numerical characters only.</b>";
+             result = false;
+          }
+          else
+          {
+           errorMsg.innerHTML = "";
+           result = true;         
+          }             
+          return result;
+       }
+ 
+  function emptybox(id)
+     {
+       var temp=document.getElementById(id).value;https://unilever--agfeescog--c.cs14.visual.force.com/s.gif
+       var errorMsg = document.getElementById("regTitle");
+       
+       if(temp==null||temp==''){
+         errorMsg.innerHTML = "<b>Please enter</b>";
+         return false;
+       }else{
+         return true;
+       }
+     }
+     
+  function custFunc(){
+      parent.document.body.setAttribute("data-shouldRefreshPage", "1");
+  }
+ </script>
+ <apex:message />
+<div class="AF_QuarterlyBonus">
+  <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" styleClass="helpimg"/>            
+        </div>          
+    </div>
+ <div class="heading_main">
+       <h1 class="heading_text"> Enter Quantitative Results </h1>
       </div>
-      <div class="heading_main">
-         <h1 class="heading_text"> Enter Quantitative Results </h1>
-      </div>
-      <apex:pageMessages id="pmsg" >
-      </apex:pageMessages>
-      <apex:pageBlock id="pg1" rendered="{!showmainblock}">
-         <apex:form id="frm">
-            <apex:outputPanel >
-               <div class="alertMessage">
-                  Please select Quarter below:
-               </div>
-               <apex:outputLabel value="Quarter" for="Quarter" styleClass="lableQuarter"/>
-               <apex:selectList id="chooseColor"  size="1"  value="{!Quarterinfo}">
-                  <apex:selectOption itemValue="Q1" itemLabel="Q1" />
-                  <apex:selectOption itemValue="Q2" itemLabel="Q2"/>
-                  <apex:selectOption itemValue="Q3" itemLabel="Q3"/>
-                  <apex:actionsupport event="onchange" rerender="pbt,Trad_Digi,buttons,pmsg" action="{!CallBonusQuarterly}" oncomplete="twoDecimalCheck();"/>
-               </apex:selectList>
-            </apex:outputpanel>
-            <div class="clearB"></div>
-            <div class="BonusableFeeLable">{!$Label.AF_Bonusable_Fees}</div>
-            <apex:outputPanel id="Trad_Digi">
-               <div class="digitalLable">
-                  <span class="marginL4P">
-                     {!$Label.AF_Digital} 
-                     <span class="marginL61P">&euro;</span>
-                     <apex:outputText value="{0,number,###,###,###}"  >
-                        <apex:param value="{!Totals_BonusMeasureDigital}"/>
-                     </apex:outputText>
-                  </span>
-                  <br/>
-               </div>
-               <div class="traditionalLable">
-                  <span class="marginL2P">
-                     {!$Label.AF_Traditional}
-                     <span class="marginL30P">&euro;</span>
-                     <apex:outputText value="{0,number,###,###,###}">
-                        <apex:param value="{!Totals_BonusMeasureTrad}"/>
-                     </apex:outputText>
-                  </span>
-               </div>
-            </apex:outputPanel>
-            <div class="fontSize16P">
-               <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" styleClass="wid100P tableSection">
-                  <apex:column headerValue="Bonus Measure">
-                     <apex:outputText value="{!QB.Bonus_Threshold_Measure}"/>
-                  </apex:column>
-                  <apex:column headerValue="Country">
-                     <apex:outputText value="{!QB.Countryname}"/>
-                     <apex:facet name="footer">
-                        <apex:outputText value="Total"/>
-                     </apex:facet>
-                  </apex:column>
-                  <apex:column headerValue="Bonusable Fee (€)">
-                     <apex:outputText value="{0,number,###,###,###}" rendered="{!If(AND(NOT(QB.bonusResObj.AF_Locked__c),QB.countryCount==1),'true',false)}">
-                        <apex:param value="{!QB.total_bonus_fees}"/>
-                     </apex:outputText>
-                     <apex:inputText value="{!QB.total_bonus_fees}" rendered="{!IF(AND(QB.countryCount>1,NOT(QB.bonusResObj.AF_Locked__c)),'true','false')}">
-                        <apex:actionSupport event="onchange"  action="{!Calculate_Bonus}" reRender="bonusval1,bonusper1,bonus1,bonus2,totals,totalbonus,bonusper,bonusval,sumofbonusbase" >
-                        </apex:actionSupport>
-                     </apex:inputText>
-                     <apex:outputText value="{0,number,###,###,###}" rendered="{!If(QB.bonusResObj.AF_Locked__c,'true',false)}">
-                        <apex:param value="{!QB.bonusResObj.AF_Bonusable_Fees__c}"/>
-                     </apex:outputText>
-                     <apex:facet name="footer">
-                        <apex:outputText value="{0,number,###,###,###}" id="sumofbonusbase">
-                           <apex:param value="{!sum_of_bonus_basefee}"/>
-                        </apex:outputText>
-                     </apex:facet>
-                  </apex:column>
-                  <apex:column headerValue="Minimum (5%)">
-                     <apex:outputText value="{!QB.Minimum_bonus}"/>
-                  </apex:column>
-                  <apex:column headerValue="Stretching (10%)">
-                     <apex:outputText value="{!QB.Streching_bonus}"/>
-                  </apex:column>
-                  <apex:column headerValue="Outstanding (15%)">
-                     <apex:outputText value="{!QB.Outstanding_bonus}"/>
-                  </apex:column>
-                  <apex:column headerValue="Quant Result" rendered="{!IsEditable}" id="c1">
-                     <apex:outputPanel >
-                        <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}"/>
-                        <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}" styleClass="totalBonusInputBox two-digits">
-                           <div class="regTitlediv" id="regTitle"></div>
-                           <apex:actionSupport event="onchange" action="{!Calculate_Bonus}" reRender="bonusval1,bonusper1,bonus1,bonus2,totals,totalbonus,bonusper,bonusval,sumofbonusbase" >
-                           </apex:actionSupport>
-                        </apex:inputfield>
-                     </apex:outputPanel>
-                  </apex:column>
-                  <apex:column headerValue="Bonus (%)">
-                     <apex:facet name="footer">
-                        <apex:outputText value="{0,number,###,###,###}" id="bonusper1">
-                           <apex:param value="{!sum_of_bonus_per}" id="bonusper"/>
-                        </apex:outputText>
-                     </apex:facet>
-                     <apex:outputPanel id="bonus2">
-                        <apex:outputText value="{!QB.bonusResObj.AF_Quant_Bonus__c}"/>
-                     </apex:outputPanel>
-                  </apex:column>
-                  <apex:column headerValue="Bonus Value (€)">
-                     <apex:facet name="footer">
-                        <apex:outputText value="{0,number,###,###,###}" id="bonusval1">
-                           <apex:param value="{!sum_of_bonus_val}" id="bonusval"/>
-                        </apex:outputText>
-                     </apex:facet>
-                     <apex:outputpanel id="bonus1">
-                        <apex:outputText value="{0,number,###,###,###}">
-                           <apex:param value="{!QB.bonusResObj.AF_Quant_Bonus_Value__c}"/>
-                        </apex:outputText>
-                     </apex:outputpanel>
-                  </apex:column>
-                  <apex:column headerValue="Comment">
-                     <apex:outputtext value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" styleClass="bonusOutputBox"/>
-                     <apex:inputfield value="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" styleClass="bonusinputBox"/>
-                  </apex:column>
-               </apex:pageblockTable>
-            </div>
-            <br/>
-            <div class="noteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
-            <br/> <br/>
-            <apex:outputPanel rendered="{!IsEditable}" id="buttons">
-               <apex:outputPanel rendered="{!isNoRecord}" styleClass="floatR wid218PX">
-                  <div id="Savebutton">
-                     <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg,buttons,Confirm" styleClass="submit_btn1 savebutton" onClick="custFunc()" rendered="{!!IsLocked}"  status="status"/>
-                  </div>
-                  <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2 confirmbutton" onClick="custFunc()"  rendered="{!AND(NOT(IsLocked),NOT(displaySubmitButton),displaySubmitSave)}" status="status" />
-               </apex:outputPanel>
-            </apex:outputPanel>
-            <apex:ActionStatus id="status" >
-               <apex:facet name="start">
-                  <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
-               </apex:facet>
-            </apex:ActionStatus>
-         </apex:form>
-      </apex:pageBlock>
-   </div>
-   <script>
-      function calldisable(){
-                document.getElementById('Savebutton').style.visibility = "hidden";
-      }
-   </script>
-   <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'AF_QuarterlyBonus.js')}"/>
+      
+ <apex:pageMessages id="pmsg" >
+ </apex:pageMessages>
+ <apex:pageBlock id="pg1" rendered="{!showmainblock}">
+
+ 
+ <apex:form id="frm">
+ <apex:outputPanel >
+ <div class="alertMessage">
+Please select Quarter below:
+</div>
+ <apex:outputLabel value="Quarter" for="Quarter" styleClass="lableQuarter"/>
+          <apex:selectList id="chooseColor"  size="1"  value="{!Quarterinfo}">
+            <apex:selectOption itemValue="Q1" itemLabel="Q1" />
+            <apex:selectOption itemValue="Q2" itemLabel="Q2"/>
+            <apex:selectOption itemValue="Q3" itemLabel="Q3"/>
+            <!--<apex:selectOption itemValue="Q4" itemLabel="Q4"/>-->
+            <apex:actionsupport event="onchange" rerender="pbt,Trad_Digi,buttons,pmsg" action="{!CallBonusQuarterly}" oncomplete="twoDecimalCheck();"/>
+          </apex:selectList> 
+ </apex:outputpanel>
+<div class="clearB"></div>
+<div class="BonusableFeeLable">Bonusable Fees</div>
+
+ <apex:outputPanel id="Trad_Digi">
+  <div class="digitalLable">
+     <!--   <apex:inputCheckbox value="{!isDigital}" Title="Digital" disabled="true"/> -->
+      <span class="marginL4P">Digital 
+        <span class="marginL61P">&euro;</span>
+        <apex:outputText value="{0,number,###,###,###}"  >
+        <apex:param value="{!Totals_BonusMeasureDigital}"/>
+       </apex:outputText>
+       
+        </span> <br/>
+  </div>
+  <div class="traditionalLable">
+         <!-- <apex:inputCheckbox value="{!isTraditional}" title="Traditional" disabled="true"/>  -->
+          <span class="marginL2P">Traditional
+           <span class="marginL30P">&euro;</span>
+         <apex:outputText value="{0,number,###,###,###}">
+          <apex:param value="{!Totals_BonusMeasureTrad}"/>
+       </apex:outputText>
+       
+        </span> 
+  </div>
+ 
+ </apex:outputPanel>
+  
+
+
+ <!--<div style="font-size: 16px;font-weight: bold;margin-bottom:10px;margin-top:15px;"> {!Bonus_Measure}</div>-->
+  <div class="fontSize16P">
+  
+ <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" styleClass="wid100P tableSection">
+ <apex:column headerValue="Bonus Measure">
+  <apex:outputText value="{!QB.Bonus_Threshold_Measure}"/>
+ </apex:column>
+ <apex:column headerValue="Country">
+  <apex:outputText value="{!QB.Countryname}"/>
+  <apex:facet name="footer">
+    <apex:outputText value="Total"/>
+  </apex:facet>
+ </apex:column>
+ <apex:column headerValue="Bonusable Fee (€)">
+    <apex:outputText value="{0,number,###,###,###}" rendered="{!If(AND(NOT(QB.bonusResObj.AF_Locked__c),QB.countryCount==1),'true',false)}">
+          <apex:param value="{!QB.total_bonus_fees}"/>
+       </apex:outputText>
+    <apex:inputText value="{!QB.total_bonus_fees}" rendered="{!IF(AND(QB.countryCount>1,NOT(QB.bonusResObj.AF_Locked__c)),'true','false')}">
+    <apex:actionSupport event="onchange"  action="{!Calculate_Bonus}" reRender="bonusval1,bonusper1,bonus1,bonus2,totals,totalbonus,bonusper,bonusval,sumofbonusbase" >
+    </apex:actionSupport>
+ </apex:inputText>
+    <apex:outputText value="{0,number,###,###,###}" rendered="{!If(QB.bonusResObj.AF_Locked__c,'true',false)}">
+          <apex:param value="{!QB.bonusResObj.AF_Bonusable_Fees__c}"/>
+       </apex:outputText>
+        <apex:facet name="footer">
+   <apex:outputText value="{0,number,###,###,###}" id="sumofbonusbase">
+    <apex:param value="{!sum_of_bonus_basefee}"/>
+     </apex:outputText>
+     
+   </apex:facet>
+ </apex:column>
+ <apex:column headerValue="Minimum (5%)">
+  <apex:outputText value="{!QB.Minimum_bonus}"/>
+ </apex:column>
+ <apex:column headerValue="Stretching (10%)">
+  <apex:outputText value="{!QB.Streching_bonus}"/>
+ </apex:column>
+ <apex:column headerValue="Outstanding (15%)">
+  <apex:outputText value="{!QB.Outstanding_bonus}"/>
+ </apex:column>
+ 
+ <apex:column headerValue="Quant Result" rendered="{!IsEditable}" id="c1">
+ <!--<apex:facet name="footer">
+    <apex:outputText value="Total Bonus Value"/>
+  </apex:facet>-->
+ <apex:outputPanel >
+  <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}"/>
+  <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}" styleClass="totalBonusInputBox two-digits">
+  <div class="regTitlediv" id="regTitle"></div>
+ <apex:actionSupport event="onchange" action="{!Calculate_Bonus}" reRender="bonusval1,bonusper1,bonus1,bonus2,totals,totalbonus,bonusper,bonusval,sumofbonusbase" >
+ 
+ </apex:actionSupport>
+ 
+  </apex:inputfield>
+  </apex:outputPanel>
+ </apex:column>
+ 
+ <apex:column headerValue="Bonus (%)">
+ <apex:facet name="footer">
+   <apex:outputText value="{0,number,###,###,###}" id="bonusper1">
+    <apex:param value="{!sum_of_bonus_per}" id="bonusper"/>
+     </apex:outputText>
+   </apex:facet>
+ <apex:outputPanel id="bonus2">
+  <apex:outputText value="{!QB.bonusResObj.AF_Quant_Bonus__c}"/>
+  </apex:outputPanel>
+ </apex:column>
+ 
+ <apex:column headerValue="Bonus Value (€)">
+ <apex:facet name="footer">
+ <apex:outputText value="{0,number,###,###,###}" id="bonusval1">
+          <apex:param value="{!sum_of_bonus_val}" id="bonusval"/>
+       </apex:outputText>
+  </apex:facet>
+ <apex:outputpanel id="bonus1">
+ <apex:outputText value="{0,number,###,###,###}">
+  <apex:param value="{!QB.bonusResObj.AF_Quant_Bonus_Value__c}"/>
+  </apex:outputText>
+  </apex:outputpanel>
+ </apex:column>
+ <apex:column headerValue="Comment">
+    <apex:outputtext value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" styleClass="bonusOutputBox"/>
+    <apex:inputfield value="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" styleClass="bonusinputBox"/>
+ </apex:column>
+ 
+  
+ </apex:pageblockTable>
+
+ </div>
+  <!--   <apex:outputPanel id="totals" >
+        <div style="float: left;
+    font-size: 16px;
+    margin-left: 780px;
+    margin-top: 25px;"> Total Bonus Value </div>
+         <span style=" border: 2px solid #74AE00;
+    border-radius: 5px;
+    float: left;
+    font-size: 16px;
+    height: 20px;
+    margin-left: 12px;
+    margin-top: 20px;
+    padding: 5px;
+    text-align: center;
+    width: 108px;"><apex:outputText id="totalbonus" value="{!sum_of_bonus_val}"/></span>
+         <span style="border: 2px solid #74AE00;
+    border-radius: 5px;
+    float: left;
+    font-size: 16px;
+    height: 20px;
+    margin-left: 25px;
+    margin-top: 20px;
+    padding: 5px;
+    text-align: center;
+    width: 107px;"><apex:outputText id="totalbonusper" value="{!sum_of_bonus_per}" /></span>
+     </apex:outputPanel><br/>-->
+ <br/>
+ <div class="noteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
+ <br/> <br/>
+ <apex:outputPanel rendered="{!IsEditable}" id="buttons">
+ <apex:outputPanel rendered="{!isNoRecord}" styleClass="floatR wid218PX">
+ <div id="Savebutton">
+ <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg,buttons,Confirm" styleClass="submit_btn1 savebutton" onClick="custFunc()" rendered="{!!IsLocked}"  status="status"/>
+ </div>
+ 
+ <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2 confirmbutton" onClick="custFunc()"  rendered="{!AND(NOT(IsLocked),NOT(displaySubmitButton),displaySubmitSave)}" status="status" />
+</apex:outputPanel>
+</apex:outputPanel>
+
+
+<apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+ </apex:form>
+ 
+ </apex:pageBlock>
+ </div>
+  <script>
+  function calldisable(){
+          
+            document.getElementById('Savebutton').style.visibility = "hidden";
+           
+  }
+  </script>
 </apex:page>

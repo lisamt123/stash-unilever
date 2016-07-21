@@ -39,7 +39,7 @@
                         <apex:selectList multiselect="false" size="1" value="{!distributionType}" disabled="{!!isEditable}">
                         <apex:selectOption itemValue=""  itemLabel="{!$Label.IPM_SELECT}"></apex:selectOption>
                         <apex:selectOption itemValue="Numeric"  itemLabel="{!$Label.IPM_NUMERIC}"></apex:selectOption>
-                        <apex:selectOption itemValue="Weightage" itemLabel="{!$Label.IPM_WEIGHTED}"></apex:selectOption>
+                        <apex:selectOption itemValue="Weightage" itemLabel="{!$Label.IPM_WEIGHTAGE}"></apex:selectOption>
                         </apex:selectList>
                     </label>
                 </div>
@@ -48,17 +48,12 @@
                 <div class="inputField row">
                     <div class="col-xs-12 nopadLeft noPadright"><label class="bsFieldLabel">{!$Label.IPM_DATE_PERIOD}</label></div>
                     <div class="col-xs-4 nopadLeft noPadright assortmentDate assortFromDate">
-                       <!-- Below rendered is used to show text if read only is true -->
                         <apex:inputField value="{!ipmProdocContent.IPM_AssortmentStrategy_From__c}" styleClass="calendar" rendered="{!isEditable}" />
-                       <!-- Below rendered is used to show text if read only is false -->
                         <apex:outputField value="{!ipmProdocContent.IPM_AssortmentStrategy_From__c}" rendered="{!!isEditable}" /> 
                     </div>
-                    <!-- Below rendered is used for putting style if it is editable-->
                     <apex:outputPanel styleClass="assortmentDateSep" rendered="{!isEditable}">-</apex:outputPanel>
                     <div class="col-xs-4 nopadLeft noPadright assortmentDate assortToDate"> 
-                        <!-- Below rendered is used to enabled IPM_AssortmentStrategy_To__c inputfield -->
                         <apex:inputField value="{!ipmProdocContent.IPM_AssortmentStrategy_To__c}" styleClass="calendar" rendered="{!isEditable}" />
-                        <!-- Below rendered is used to enabled IPM_AssortmentStrategy_To__c outputfield -->
                         <apex:outputField value="{!ipmProdocContent.IPM_AssortmentStrategy_To__c}" rendered="{!!isEditable}"/> 
                     </div>
                 </div>
@@ -66,7 +61,6 @@
             <apex:outputPanel id="assortListdropdown1" layout="block" styleClass="col-sm-6">
                 <div class="inputField">
                     <label class="bsFieldLabel">{!$Label.IPM_TOP_5_CUS_CHANNEL}</label>
-                   <!-- Below rendered is used to enabled drop down -->
                     <apex:outputPanel rendered="{!isEditable}">
                         <div class="dropdown assortChannelList1 ipmDropDown">
                             <div data-toggle="dropdown">
@@ -101,12 +95,8 @@
                 </div>
             </apex:outputPanel>          
             <apex:outputPanel id="assortListdropdown2" layout="block" styleClass="col-sm-12">
-                <div class="inputField col-sm-6 nopadLeft nopadLeft infoDivv">
+                <div class="inputField col-sm-6 nopadLeft nopadLeft">
                     <label class="bsFieldLabel">{!$Label.IPM_CUS}</label>
-                    <span class="SecButtonSet infoMarTop">
-   <a class="icoButton info smalllinfo" title="{!$Label.IPM_PLEASE_TYPE_IN_THE_CU}"></a>
- </span>
-<!-- Below rendered is used to enabled input field IPM_Incumbent_CUs__c-->
                     <apex:outputPanel rendered="{!isEditable}">
                         <apex:inputField id="cusinput" value="{!ipmProdocContent.IPM_Incumbent_CUs__c}" styleClass="chCusValue" >
                         </apex:inputField>
@@ -115,7 +105,6 @@
             </apex:outputPanel>    
             <div class="col-sm-11 noPadright ipmButtonGroup assortCreateBtnDiv">
                 <div class="assortCreateBtn pull-right">
-                <!-- Below rendered is used to command button for create assortment -->
                     <apex:commandButton styleclass="ipmButton primary createAssortmetRec" value="{!$Label.IPM_CREATE}" rendered="{!isEditable}" />
                 </div>
                 <apex:actionFunction name="createAssort" status="Loading" action="{!CreateAssortStrategy}" reRender="assortListdropdown2,AssortStrategy,assortmentScript" oncomplete="refreshAssort();"> 
@@ -133,15 +122,12 @@
                                         <span class="expico pull-left fa fa-plus"></span>
                                         <div class="bsFieldLabel pull-left">{!UAS}</div>
                                         <div class="assortPriority"> {!$Label.IPM_Customer_Channel_Priority} {!assortPriorityMap[UAS]}</div>
-                                         <!-- Below rendered is used to enabled up down key-->
                                          <apex:outputPanel rendered="{!AND(assortPriorityMap[UAS]>=1,countCU>1,countCU!=assortPriorityMap[UAS])}">
                                             <a class="greyArrow pull-left dArrow" onclick="changeArrow('{!UAS}','down','{!assortPriorityMap[UAS]}');"></a>
                                         </apex:outputPanel>
-                                       <!-- Below rendered is used to enabled up arrow key-->
                                         <apex:outputPanel rendered="{!AND(assortPriorityMap[UAS]>1,countCU>1)}">
                                             <a class="greyArrow pull-left upArrow" onclick="changeArrow('{!UAS}','up','{!assortPriorityMap[UAS]}');"></a>
                                         </apex:outputPanel>
-                                        <!-- Below rendered is used to enabled delete assortment if it is editable -->
                                         <apex:outputPanel rendered="{!isEditable}">
                                            <a class="pull-right icoButton deleteStrategy delete" onclick="deleteAssortment('{!UAS}')" value="{!$Label.IPM_Delete_Button}"></a> 
                                         </apex:outputPanel>   
@@ -149,7 +135,6 @@
                                 </div>                           
                                 <div class="ipmAcrdnExpand assortExpand">
                                     <apex:repeat value="{!lstAssortStrategy}" var="lstAS">                                   
-                                       <!-- Below rendered is used to show IPM_Assort_Channel_Name__c -->
                                         <apex:outputPanel layout="block" rendered="{! if(lstAS.IPM_Incumbent_CUs__c=UAS,true,false)}">
                                             <div class="col-sm-12 assortContainer">
                                                 <div class="inputField assortTitle">
@@ -160,18 +145,14 @@
                                                 <div class="col-sm-6 noPadleft">
                                                     <div class="inputField noMarginTop">
                                                         <label class="ipmSelect-sec custSelectWidth">
-                                                           <!-- Below rendered is used to enabled IPM_Assortment_Strategy_Priority__c inputfield if it is editable -->
                                                             <apex:inputField value="{!lstAS.IPM_Assortment_Strategy_Priority__c}" onchange="updateAssortment('{!lstAS.id}',this.value,'{!lstAS.IPM_Assortment_strategy_Target__c}',false)" rendered="{!isEditable}"/>
-                                                            <!-- Below rendered is used to enabled IPM_Assortment_strategy_Target__c outputfield if it is not editable -->
                                                             <apex:outputField value="{!lstAS.IPM_Assortment_Strategy_Priority__c}" rendered="{!!isEditable}"/>
                                                         </label>
                                                     </div>                             
                                                 </div>
                                                 <div class="col-sm-6">                                  
                                                     <div class="inputField noMarginTop">                                    
-                                                       <!-- Below rendered is used to enabled IPM_Assortment_strategy_Target__c field if it is editable -->
                                                         <apex:inputField value="{!lstAS.IPM_Assortment_strategy_Target__c}" onchange="updateAssortment('{!lstAS.id}','{!lstAS.IPM_Assortment_Strategy_Priority__c}',this.value,true)" styleClass="textwidth" rendered="{!isEditable}"/>
-                                                        <!-- Below rendered is used to enabled IPM_Assortment_strategy_Target__c field if it is not editable -->
                                                         <apex:inputField value="{!lstAS.IPM_Assortment_strategy_Target__c}"  styleClass="textwidth" rendered="{!!isEditable}"/>
                                                     </div> 
                                                 </div>                                 

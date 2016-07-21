@@ -1,7 +1,5 @@
 public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentController {
 
-    private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
-    private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
     private final String GLOBAL_REGION = 'Global';
     private transient Schema.DescribeFieldResult lstProjectBV = Oblix_SOW_Projects__c.Brand_Led_Growth__c.getDescribe();
     private transient List < Schema.PickListEntry > projectBrandInnovationOptionsPicklistValues = lstProjectBV.getPickListValues();
@@ -13,12 +11,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
     public String sowId {
         get {
             if (sowId == null) {
-                try{
-                    sowId = (Id) ApexPages.currentPage().getParameters().get('sowId');
-                }
-                catch(Exception ex){
-                    sowId = '';
-                }
+                sowId = ApexPages.currentPage().getParameters().get('sowId');
             }
             return sowId;
         }
@@ -28,24 +21,9 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
     public String projectId {
         get {
             if (projectId == null) {
-                try{
-                    projectId = (Id) ApexPages.currentPage().getParameters().get('projectId');
-                }
-                catch(Exception ex){
-                    projectId = '';
-                }
+                projectId = ApexPages.currentPage().getParameters().get('projectId');
             }
             return projectId;
-        }
-        set;
-    }
-
-    public Boolean doClone {
-        get{
-            if(doClone == null){
-                doClone = ApexPages.currentPage().getParameters().containsKey('clone') && ApexPages.currentPage().getParameters().get('clone') == 'true';
-            }
-            return doClone;
         }
         set;
     }
@@ -75,17 +53,28 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         private set;
     }
 
-    public Oblix_SOW_Projects__c selectedProject {get;set;}
+    public Oblix_SOW_Projects__c selectedProject {
+        get {
+            if (selectedProject == null && projectId != null) {
+                selectedProject = [SELECT ID, Name, Brand_Led_Growth__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name, Campaign_Idea__c,
+                    OblixRegion__c, Campaign_Countries__c, Selected_Countries__c, Project_Scale_1__c, Project_Scale_2__c, Project_Priority__c,
+                    Project_Start_Date__c, Projected_Stage__c, Completed_Stage__c, Value_To_BePaid_Manual_Override__c,
+                    First_Air_Date__c, Preview_Date__c, Project_Completion_Date__c, BET_first_release__c, Value_to_be_paid_in_Current_FY__c,
+                    Final_release__c, Campaign_Total_Fees__c, Description__c, Platform__c, Jobs_to_be_Done__c, Percentage_of_Fee_for_this_FY__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
+                ];
+            } else if (selectedProject == null && projectId == null) {
+                selectedProject = new Oblix_SOW_Projects__c();
+                selectedProject.Financial_Year__c = sowId;
+            }
+            return selectedProject;
+        }
+        set;
+    }
 
     public Marketing_SOW__c selectedSow {
         get {
-            if (selectedSow == null && String.isNotEmpty(sowId)) {
-                try{
-                    selectedSow = [SELECT Id, Name, Financial_Year__c FROM Marketing_SOW__c WHERE ID = : sowId];
-                }
-                catch(Exception ex){
-                    selectedSow = NULL;
-                }
+            if (selectedSow == null && sowId != null) {
+                selectedSow = [SELECT Id, Name, Financial_Year__c FROM Marketing_SOW__c WHERE ID = : sowId];
             }
             return selectedSow;
         }
@@ -138,7 +127,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
                 regionsWithCountriesMap = new Map < String, Set < String >> ();
                 for (MDO_Geography__c eachCountry: countriesMap.values()) {
                     if (!regionsWithCountriesMap.containsKey(eachCountry.parent_L4__r.Name)) {
-                        regionsWithCountriesMap.put(eachCountry.parent_L4__r.Name, new Set < string > {eachCountry.Name});
+                        regionsWithCountriesMap.put(eachCountry.parent_L4__r.Name, new Set < string > ());
                     } else {
                         regionsWithCountriesMap.get(eachCountry.parent_L4__r.Name).add(eachCountry.Name);
                     }
@@ -339,80 +328,28 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
-
-    public Boolean onlyShowProjectedChevron {
+    public String selectedBrandBrand {
         get {
-            return !doClone && is_NFY_campaign_in_the_middle_of_rollover;
+            if (selectedProject.Brand_Led_Growth__c != null && selectedProject.Brand_Led_Growth__c.contains('€')) {
+                selectedBrandBrand = selectedProject.Brand_Led_Growth__c;
+            }
+            return selectedBrandBrand;
         }
+        set;
     }
 
-    
-
-    public String selectedBrandBrand {get;set;}
-
-    public String selectedBrandInnovation {get;set;}
+    public String selectedBrandInnovation {
+        get {
+            if (selectedProject.Brand_Led_Growth__c != null && !selectedProject.Brand_Led_Growth__c.contains('€')) {
+                selectedBrandInnovation = selectedProject.Brand_Led_Growth__c;
+            }
+            return selectedBrandInnovation;
+        }
+        set;
+    }
 
     public Oblix_CampaignCreateHelper() {
-        if (projectId != null) {
-            selectedProject = getCampaign(projectId, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'),null);
-            //selectedProject = [SELECT ID, Name, Brand_Led_Growth__c, Innovation_Projects__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name, Campaign_Idea__c,
-            //    OblixRegion__c, Campaign_Countries__c, Selected_Countries__c, First_3_selected_countries__c, Project_Scale_1__c, Project_Scale_2__c, Project_Priority__c,
-            //    Project_Start_Date__c, Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c,
-            //    First_Air_Date__c, Preview_Date__c, Project_Completion_Date__c, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Attributes_Updated__c,
-            //    Final_release__c, Campaign_Total_Fees__c, Description__c, Platform__c, Jobs_to_be_Done__c, Percentage_of_Fee_for_this_FY__c, Campaign_Status__c, Name_Prefix__c, 
-            //    Campaign_PFY__c,Oblix_ProjectBoxNumber_PFY__c, Percentage_of_Fees_PFY__c, Fees_Paid_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c, Total_Project_Score_PFY__c, Campaign_PFY__r.Financial_Year__r.SOW_Status__c,
-            //    BET_Required__c, BET_Required_Yes_No__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
-            //];
 
-            // if we are cloning, blank out the PFY fields in case the campaign is being cloned from a rolled-over campaign
-            if (doClone){
-                selectedProject.Box_Number_PFY__c = NULL;
-                selectedProject.Box_Number_PFY_Project_Score_CFY_Calc__c = NULL;
-                selectedProject.Campaign_PFY__c = NULL;
-                selectedProject.Oblix_ProjectBoxNumber_PFY__c = NULL;
-                selectedProject.Completed_Stage_PFY__c = NULL;
-                
-                selectedProject.Completed_Stage_CFY__c = NULL;
-                selectedProject.Projected_Stage_CFY__c = Oblix_Utils.CAMPAIGN_STAGES_ALL;
-                selectedProject.Percentage_of_Fee_for_this_FY__c = 100;
-
-                selectedProject.Projected_Stage_PFY__c = NULL;
-                selectedProject.Total_Project_Score_PFY__c = NULL;
-                selectedProject.Percentage_of_Fees_PFY__c = NULL;
-                selectedProject.Fees_Paid_PFY__c = NULL;
-                selectedProject.Fees_Total_PFY__c = NULL;
-                selectedProject.Fees_PFY_Paid_Using_CFY_Calc__c = NULL;
-                selectedProject.Fees_PFY_Total_By_CFY_Calculator__c = NULL;
-
-                // make sure we set the campaign attributes updated to true to include in the next batch job
-                selectedProject.Campaign_Attributes_Updated__c = true; 
-
-                selectedProject.Value_To_BePaid_Manual_Override__c = false;           
-            }
-
-        }else{
-            selectedProject = new Oblix_SOW_Projects__c();
-            try{
-                selectedProject.Financial_Year__c = sowId;
-            }
-            catch(Exception ex){
-                system.debug('invalid sow id!');
-            }
-        }
-
-        //Update Parent controller link to Campaign to leverage existing methods.
-        selected_project = selectedProject;
-
-
-        if (selectedProject.Innovation_Projects__c == Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL')) {
-            selectedBrandInnovation = selectedProject.Brand_Led_Growth__c;
-        } else {
-            selectedBrandBrand = selectedProject.Brand_Led_Growth__c;
-        }
-
-        selectedSow = getSOW(sowId, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL), NULL);
-        // TODO: remove the selectedSow attribute and replace all references to selected_sow attribute from the parent controller
-        //selected_sow = selectedSow;   
     }
 
     private List < Oblix_Marketing_SOW_Project_Splits__c > createFiveInstancesOFMarketingSplits() {

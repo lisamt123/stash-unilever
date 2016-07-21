@@ -1,4 +1,4 @@
-<apex:page sidebar="false" controller="Oblix_OuterPageTemplateController" docType="html-5.0" showHeader="false" standardStylesheets="false" >
+<apex:page sidebar="false" controller="Oblix_OuterPageTemplateController" docType="html-5.0" showHeader="false" standardStylesheets="false">
     <apex:form id="jqueryId">
         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
@@ -13,42 +13,18 @@
                         <apex:insert name="top_breadcrumb"/>    
                     </p>
                 </div>
-                <apex:outputLink value="/" id="swopExitButtonLink" styleClass="btn btn-xs pull-right btn_cross btn_exit_swop">DONE FOR TODAY? EXIT SWOP</apex:outputLink>
-                <!--apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" id="swopExitButton" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
-                </apex:commandButton-->
-                <apex:outputLink value="/00O/o" id="swopReportButtonLink" styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" target="_blank">REPORTS</apex:outputLink>
-
-                <!--apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
-                </apex:commandLink-->
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" id="swopExitButton" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
+                </apex:commandLink>
 
             </header>
         </div>
-            <apex:outputPanel rendered="{!showFXMessage}">
-            <div class="container SOW_body" >
-                <apex:variable var="FXMessageValue" value="<p>Welcome, </p>
-                <p>To your new Statement Of Work Online Planning tool (SWOP) </p>
-                <p>Your brand's 2016 statements of work have been pre-loaded as per the latest agreed version shared with your Agency. Please go ahead and complete any edits within the live - open for updates version of your statement of work. </p> <p>If you're not sure how to use SWOP please refer to the short task related videos to help guide you through. </p>Agency Relations Team"/>
-                <apex:outputPanel rendered="{!showFXMessage}">
-                    <!-- Change requested by Unilever on 02/06/2016,new message added to variable FXMessageValue above
-                    <apex:outputText value="{!FXMessage}" rendered="{!showFXMessage}" style="color:red;font-size: 14px" escape="false"/-->
-                    <apex:outputText value="{!FXMessageValue}" rendered="true" style="color:red;font-size: 14px" escape="false"/>
-                    <br/>
-                    <br/>
-                    <apex:commandButton value="Accept" action="{!updateFX}" styleClass="btn btn-xs btn-danger" onclick="blockme()" reRender="" style="float:left;" />
-                </apex:outputPanel>
-            </div>
-            </apex:outputPanel>
-        <apex:outputPanel rendered="{!NOT(showFXMessage)}">
         <div class="container SOW_body">
             <div class="row">
                 <apex:pageMessages id="page_message_id" />
-            </div>
-            <div class="row">
-                <apex:insert name="header_top_warning_text" />
-            </div>
-            <div class="row">
                 <apex:outputPanel id="swop_top_panel">
-                    <div class="col-lg-5">
+                    <div class="col-lg-6 col-md-6">
                         <h1 class="SOW_header_title">
                         	<apex:insert name="header_text" />
                         </h1>
@@ -61,14 +37,9 @@
             	</apex:outputPanel>
             </div>
 
-   			<apex:insert name="body_content" />
+   			<apex:insert name="body_content"/>
    		</div>
-        </apex:outputPanel>
-        <!--div class="container">
-            
-            <apex:insert name="history_content"/>
-                    
-        </div-->
+
     <!-- 
 	*************************************************************************************************************************
 		Adding required scripts for the page
@@ -80,9 +51,7 @@
         <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
         <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
         <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/readmore.min.js')}" />
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <apex:insert name="page_scripts"/>
+        <apex:insert name="page_scripts"/>                                                        
 
     <!-- 
 	*************************************************************************************************************************
@@ -90,4 +59,5 @@
 	*************************************************************************************************************************
     -->
     </apex:form>
+	
 </apex:page>

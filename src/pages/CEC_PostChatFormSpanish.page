@@ -1,3 +1,0 @@
-<apex:page controller="CEC_LiveAgentControllerSpanish" action="{!takeSurvey}">
-    <apex:pagemessages />
-</apex:page>

@@ -278,10 +278,8 @@ public with sharing class IPM_AssortmentStrategy {
         list<IPM_Project_Document_Section_Content__c> dltAllAssortS=new list<IPM_Project_Document_Section_Content__c>();
         dltAllAssortS=[SELECT id,IPM_Assortment_CU_Priority__c FROM IPM_Project_Document_Section_Content__c 
         			   WHERE IPM_Incumbent_CUs__c=:selecteAssortName AND IPM_Project_Document_Section__c=:prodocSecId limit 10];
-        try
-        {
-            if(dltAllAssortS!=null && !dltAllAssortS.isEmpty())
-            {
+        try{
+            if(dltAllAssortS!=null && dltAllAssortS.size()>0){
                 deletedPriority=(Integer)dltAllAssortS[0].IPM_Assortment_CU_Priority__c;
                 delete dltAllAssortS;    
             }

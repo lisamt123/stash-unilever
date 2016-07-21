@@ -79,11 +79,9 @@
                     </td>
                     
                     <td>
-                     <!-- Rendered condition for showing slider -->
                      <apex:outputPanel rendered="{!IF(AND(con.Section_Content_Ext_Id__c='OTIF_Status',isEditable) ,true,false)}">
-                         <!-- Rendered condition for showing slider -->
                         <apex:outputPanel rendered="{!Iseditable}">
-                           <!-- Rendered condition for showing slider -->
+             
                             <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF">
                              <input type="hidden" name="answer" value="{!con.IPM_OTIF_Status__c}"/>
                                  <div class="sld5 legendSld">
@@ -99,7 +97,7 @@
                                    <input type="radio" name="score" id="s4" value="{!$Label.IPM_NO_APPLICABLE}" />
                                  </div> 
                              </apex:outputPanel>
-                                <!-- Rendered condition for showing slider -->
+                               
                              <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=3}" styleClass="sliderOTIF" >
                              <input type="hidden" name="answer" value="{!con.IPM_OTIF_Status__c}"/>                             
                                         <div class="sld4 legendSld">
@@ -115,8 +113,7 @@
                              </apex:outputPanel>
                         </apex:outputPanel> 
                      </apex:outputPanel>
-                      <!-- Rendered condition for showing output text -->
-                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c!='OTIF_Status'),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
+                    <apex:outputText rendered="{!IF(AND(con.Section_Content_Ext_Id__c!='OTIF_Status',isEditable,Iseditable),true,false)}"><div class="gkcStatus {!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
   
                     </td>       
                   </tr>

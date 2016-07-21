@@ -4,28 +4,26 @@
 *
 */
 @isTest
-private class IPM_BosscardStatusController_Test
+public class IPM_BosscardStatusController_Test
 {   
     
     
-    private static final String SF_ID = 'Id';
-    private static final String BOSSFEEDBACK = 'Project has approved';
+    private static String SF_ID = 'Id';
+    private static String BOSSFEEDBACK = 'Project has approved';
     private static User loginUser = new User();
     private static User readUser = new User();
     private static IPM_Bosscard__c boss = new IPM_Bosscard__c();
     private static IPM_Company_Card__c compCard = new IPM_Company_Card__c();
     private static IPM_User_Profile__c up = new IPM_User_Profile__c();
     private static IPM_BosscardStatusController bossCtrl;
-    private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
-  private static final string PLATFORM_LASTNAME='PLATFORM_USER';
+    private static string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
     private static string lastUserName_STR='user last name is:';
     private static string bosscardStatus_STR='Bosscard status is:';
     private static string category_STR='Household Care';
-  private static string bosscarName='Test Boss card';
     /*********************************************************************
     * @Description: This method is used to initialize data for test class
     * *******************************************************************/
-    @TestSetup static void initializeData(){
+    static void initializeData(){
         
         //Insert User
         loginUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);//only created by user can do update operation
@@ -60,41 +58,32 @@ private class IPM_BosscardStatusController_Test
             
             //Insert Bosscard
             boss = IPM_TestFactory_Helper.createIPMBosscard(false);
-            boss.IPM_BosscardName__c=bosscarName;
             boss.IPM_Bosscard_Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
             boss.IPM_Company_Card__c=compCard.id;
             insert boss;
             List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:boss.id LIMIT 1];
             System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, bosscardStatus_STR+bossList[0].IPM_Bosscard_Status__c); //Positive test
+                    
+            //call class constructor as project leader role
+            
+            PageReference pg = Page.IPM_BosscardStatus;
+            Test.setCurrentPageReference(pg);
+            ApexPages.CurrentPage().getparameters().put(SF_ID, boss.id);
+            bossCtrl=new IPM_BosscardStatusController();
             
         }
         
     }
-	
-	/********************************************************************
-    * @Description: This method is used to call Page referecnce         
-    * *******************************************************************/
-	static void callPageReference(){
-		readUser=[SELECT ID FROM USER WHERE LastName=:IPMUSER_LASTNAME LIMIT 1];
-		loginUser=[SELECT ID FROM USER WHERE LastName=:PLATFORM_LASTNAME LIMIT 1]; 
-		boss=[SELECT IPM_BosscardName__c,IPM_Bosscard_Status__c,IPM_Company_Card__c FROM IPM_Bosscard__c WHERE IPM_BosscardName__c=:bosscarName LIMIT 1];
-		PageReference pg = Page.IPM_BosscardStatus;
-        Test.setCurrentPageReference(pg);
-        ApexPages.CurrentPage().getparameters().put(SF_ID, boss.id);
-		bossCtrl=new IPM_BosscardStatusController();
-		
-	}
-	
-	
     /*************************************************
     * @Description: Test invoke updateStatus
     * ***********************************************/
-    Static testMethod void testBosscardStatus()
+    public Static testMethod void testBosscardStatus()
     {      
-		callPageReference();
+        initializeData();
         Test.startTest();
         System.runAs(loginUser)
         { 
+            
             bossCtrl.updateStatus();//for first time update as in progress
             List<IPM_Bosscard__c>bossLists=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:boss.id LIMIT 1];
             System.AssertEquals(bossLists[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, bosscardStatus_STR+bossLists[0].IPM_Bosscard_Status__c); //Positive test
@@ -114,10 +103,12 @@ private class IPM_BosscardStatusController_Test
      * ****************************************************/
     Static testMethod void testBosscardUpdate()
     {
-        callPageReference();
+        
+        initializeData();
         Test.startTest();
         system.runAs(loginUser)
         {
+            
             bossCtrl.selectedPL =IPMUSER_LASTNAME;
             bossCtrl.filterprojectLeader();
             IPM_BosscardStatusController.createProject(boss.id,loginUser.id,BOSSFEEDBACK );
@@ -133,7 +124,7 @@ private class IPM_BosscardStatusController_Test
             system.assertEquals(bossCtrl.bosscard.IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_NOT_APPROVED,'Bosscard Status is:'+bossCtrl.bosscard.IPM_Bosscard_Status__c);//positive test
             
             bossCtrl.holdPLUserId();
-            system.assertEquals(bossCtrl.isPLSelected_Booln,true,'Change Button will not be displayed');//positive test
+            system.assertEquals(bossCtrl.isPLSelected_Booln,true);//positive test
             
             bossCtrl.Statusvalue=IPM_ConstantUtils.STATUS_DISCARD; 
             bossCtrl.updateStatus();
@@ -148,7 +139,8 @@ private class IPM_BosscardStatusController_Test
      * ****************************************************/
     Static testMethod void testBosscardReadUpdate()
     {
-		callPageReference();
+        
+        initializeData();
         Test.startTest(); 
         system.runAs(readUser)
         {

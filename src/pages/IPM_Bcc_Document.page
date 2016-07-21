@@ -38,9 +38,7 @@
                                     </span>   
                                 </div>                                
                                 <div class="bccStatusContainer pull-right clearfix">                    
-                                     <!--Below rendered condition will execute the below output panel if isEditable is true -->
                                     <apex:outputPanel rendered="{!isEditable}">
-                                        <!--Below rendered condition will execute the below output panel if showConfirmButton is true  -->
                                         <apex:outputPanel rendered="{!showConfirmButton}">
                                             <div class="SecStatusUpdate pull-right updateBox" data-toggle="modal" data-target="#ipmModalConfirmBcc" data-backdrop="static" data-keyboard="false" >
                                                 <a class="ipmButton orangebg">{!$Label.IPM_CONFIRM_BUSINESS_CASE}</a>
@@ -57,10 +55,8 @@
                                         {!$Label.IPM_CURRENT_DOCUMENT_STATUS}
                                         <apex:outputPanel id="confirmBCC">
                                             <span class="status">
-                                                 <!-- Below rendered condition is used to show the below output text -->
-                                                <apex:outputText value="In Progress" rendered="{!showConfirmButton}"/>
-                                                 <!-- Below rendered condition is used to show the below output text -->
-                                                <apex:outputText value="Confirmed" rendered="{!!showConfirmButton}"/>
+                                                <apex:outputText value="In Progress" rendered="{!!finance.IPM_Business_Case_Confirmed__c }"/>
+                                                <apex:outputText value="Confirmed" rendered="{!finance.IPM_Business_Case_Confirmed__c }"/>
                                             </span>
                                         </apex:outputPanel>                                        
                                     </div>
@@ -74,7 +70,6 @@
                     
                     <div class="col-sm-12 bosscardMtop">
                         <div class="pull-right noPadright txtAlignright">
-                             <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is true -->
                             <apex:outputPanel rendered="{!isFinanceUpdate}">
                                 <apex:commandLink value="Cancel" styleClass="ipmButton bosscardmright"/>
                                 <apex:commandLink value="Save" action="{!save}" styleClass="ipmButton primary">
@@ -92,11 +87,9 @@
                                 <div class="ipmAcrdnExpand">
                                     <div>
                                         <span class="bcFielddesc">{!$Label.IPM_COPY_COUNTRY_INPUT_TO_SEC}</span>
-                                        <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is true -->
                                         <apex:outputPanel rendered="{!isFinanceUpdate}">
                                             <apex:inputField value="{!finance.IPM_Country_Feedback__c}"/>
                                         </apex:outputPanel>
-                                         <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is false -->
                                         <apex:outputPanel rendered="{!!isFinanceUpdate}">
                                             <apex:outputField value="{!finance.IPM_Country_Feedback__c}"/>
                                         </apex:outputPanel>
@@ -107,9 +100,6 @@
                             <div class="bcsinglecontainer">   
                                 <span class="pHead">
                                     <span class='expico fa fa-minus'></span><a href="{!$Page.IPM_Financial}?Id={!finance.Local_Project__c}">{!$Label.IPM_BD_BB_ALIGNMENT}</a>
-                                    <span class="SecButtonSet infoMarTop">
-                                    	<a class="icoButton info smalllinfo" title="{!$Label.IPM_TO_EDIT_YOUR_NUMBERS}"></a>
-                                    </span>
                                 </span>
                                 <div class="ipmAcrdnExpand">
                                     <div>
@@ -149,11 +139,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                     <!--Below rendered condition will execute the below output panel if isFinanceUpdate is true  -->
                                     <apex:outputPanel rendered="{!isFinanceUpdate}">
                                     	<apex:inputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
                                     </apex:outputPanel>
-                                     <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is false-->
                                     <apex:outputPanel rendered="{!!isFinanceUpdate}">
                                     	<apex:outputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
                                     </apex:outputPanel>
@@ -163,9 +151,8 @@
                     </div>
                 </apex:form>
             </div>
-             <!--Below rendered condition will execute the below output panel if isEditable is true  -->
             <apex:outputPanel rendered="{!isEditable}">
-                <div id="ipmModalConfirmBcc" class="ipmModalConfirmBcc modal fade">
+                <div id="ipmModalConfirmBcc" class="modal fade">
                     <apex:form >
                         <div class="modal-dialog">
                             <div class="modal-content">

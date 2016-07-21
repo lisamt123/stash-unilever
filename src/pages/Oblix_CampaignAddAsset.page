@@ -1,4 +1,13 @@
-<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController" action="{!checkUserHasPermissionToProject}">
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController" standardStylesheets="true">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignAddAsset.js')}" />
+    <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.sticky.js')}"></script>
     <style>
         .removeAssetCss {
             background-image: url("{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}") !important;
@@ -16,42 +25,55 @@
         .hide_button {
             display: none;
         }
-
     </style>
-    <apex:composition template="Oblix_OuterPageTemplate">
-        <apex:define name="top_breadcrumb">
-            <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!helper.project_in_scope.Financial_Year__r.Id}">{!helper.project_in_scope.Financial_Year__r.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_campaignsummary?projectId={!helper.project_in_scope.Id}">{!helper.project_in_scope.Name}</a> &nbsp;
+    <apex:form >
+
+        <div class="Oblix_header_bkgd">
+            <header class="Oblix_header_panel">
+                <img alt="Unilever Logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <div class="header_divider_vertical"></div>
+                <div class="header_panel_text">
+                    <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
+                    <!-- <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                    </p> -->
+
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_campaignsummary?projectId={!project.Id}">{!project.Name}</a> &nbsp;
                         <span>&#9658;</span>&nbsp;Add campaign assets</p>
-        </apex:define>
-        <apex:define name="header_text" />
 
-        <apex:define name="top_option_links" />
-
-        <apex:define name="top_right_panel">
-        </apex:define>
-        <apex:define name="body_content">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <h1 class="SOW_header_title">Add Assets to {!helper.project_in_scope.Name}</h1>
                 </div>
-                <apex:outputPanel id="campaignBasketSummary">
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" id="swopExitButton" action="{!goToReportsHome}" value="REPORTS" target="_blank">
+                </apex:commandLink>
+
+            </header>
+        </div>
+        <div class="container SOW_body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="SOW_header_title">{!project.Name} Added!</h1>
+                </div>
+                <apex:outputPanel id="campaignFeeId">
                     <table class="SOW_header_value_summary">
                         <tr>
-                            <td class="SOW_header_value_title">Campaign Fees Total</td>
+                            <td class="SOW_header_value_title">{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label}</td>
                             <td class="SOW_header_value">
-                                <h2>€
-                                    <apex:outputText value="{0, number,###,###,##0}">
-                                        <apex:param value="{!helper.basket_total_fee}" />
-                                    </apex:outputText>
-                                </h2>
+                                <h2>
+                               €
+                               <apex:outputText value="{0, number,###,###,##0}">
+                                 <apex:param value="{!project.Campaign_Fees_Total__c}"/>
+                               </apex:outputText>
+                                
+                            </h2>
                             </td>
                         </tr>
                         <tr>
-                            <td class="SOW_header_value_subtitle">Fees to be Paid in Current FY</td>
-                            <td class="SOW_header_value_subvalue">€ 
-                                    <apex:outputText value="{0, number,###,###,##0}">
-                                        <apex:param value="{!helper.total_fees_this_FY}" />
-                                    </apex:outputText>
+                            <td class="SOW_header_value_subtitle"> {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} </td>
+                            <td class="SOW_header_value_subvalue">
+                                €
+                                <apex:outputText value="{0, number,###,###,##0}">
+                                    <apex:param value="{!project.Value_to_be_paid_in_Current_FY__c}" />
+                                </apex:outputText>
                             </td>
                         </tr>
                     </table>
@@ -61,127 +83,117 @@
             <div class="row confirm_assets_welcome_message">
                 <div>
                     <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-blue-down-left.png')}" width="96" height="77" alt="Add assets arrow" />
-                    <h1>{!helper.project_in_scope.Name} was successfully created.<br/>Select assets from below to add them to your campaign basket.</h1>
+                    <h1>{!project.Name} was successfully created.<br/>Select assets from below to add them to your campaign basket.</h1>
                     <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-down-right.png')}" width="96" height="77" alt="Basket arrow" />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-9 confirm_assets_accordion">
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                        <apex:repeat value="{!helper.assetOfferingWrapper.list_asset_types_in_order}" var="typeName">
-
-                            <!-- [LVL 1] TYPE ACCORDION -->
-                            <apex:variable var="offeringWrapper" value="{!helper.assetOfferingWrapper.map_asset_type_wrapper[typeName]}" />
-                            <apex:outputText rendered="{!offeringWrapper.is_visible}">
-                                <div class="oblix-type-navigation panel panel-default">
-                                    <div class="panel-heading" role="tab">
+            <apex:outputPanel id="rowID">
+                <div class="row">
+                    <div class="col-lg-9 confirm_assets_accordion">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <apex:variable var="accordianCounter" value="{!1}" />
+                            <apex:repeat value="{!lstRecordType}" var="recordType">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading{!accordianCounter}">
                                         <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!offeringWrapper.index}" aria-expanded="false" aria-controls="collapse{!offeringWrapper.index}">{!offeringWrapper.type_name}<img alt="add assets plus" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
-                                        </h4>
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!accordianCounter}" aria-expanded="{!if(accordianCounter == 1,'true','false')}" aria-controls="collapse{!accordianCounter}"><apex:outputText value="{!recordType}" styleClass="recordTypeValue" /> {!mapRecordTypeDescription[recordType]}<img alt="Add" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
+                                </h4>
                                     </div>
-                                    <div id="collapse{!offeringWrapper.index}" class="oblix-type-container panel-collapse collapse" role="tabpanel">
-                                        <div class="oblix-sub-category-navigation panel-body">
+                                    <div id="collapse{!accordianCounter}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{!accordianCounter}">
+                                        <div class="panel-body" id="{!mapRTIdCSS[recordType]}_tabs">
                                             <ul class="nav nav-tabs assets_tab_background" data-tabs="tabs">
-                                                <!--<apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">-->
-                                                <apex:repeat value="{!offeringWrapper.list_sub_categories_in_order}" var="subcategory">
+                                                <apex:variable var="count" value="{!1}" />
+                                                <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
 
-                                                    <!-- [LVL 2] SUB CATEGORY TAB LABELS -->
-                                                    <apex:outputText rendered="{!offeringWrapper.map_sub_categories[subcategory].is_visible}">
-                                                        <li role="presentation" class="{!IF(offeringWrapper.map_sub_categories[subcategory].index == 0,'active','')}">
-                                                            <a href="#{!offeringWrapper.index}_{!offeringWrapper.map_sub_categories[subcategory].index}" data-toggle="tab">{!offeringWrapper.map_sub_categories[subcategory].sub_category_name} </a>
-                                                        </li>
-                                                    </apex:outputText>
+                                                    <li class="{!if(count == 1,'active','')}">
+                                                        <a href="#{!mapRTIdCSS[recordType]}_tabs-{!count}" data-toggle="tab">{!subCat}</a>
+                                                    </li>
+                                                    <apex:variable var="count" value="{!count + 1}" />
                                                 </apex:repeat>
+
                                             </ul>
-                                            <!--tab body-->
-                                            <div class="tab-content">
-                                                <!--<apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">-->
-                                                <apex:repeat value="{!offeringWrapper.list_sub_categories_in_order}" var="subcategory">
-
-                                                    <!-- [LVL 2] SUB CATEGORY TAB CONTENT -->
-                                                    <apex:outputText rendered="{!offeringWrapper.map_sub_categories[subcategory].is_visible}">
-                                                        <div class="oblix-sub-category-container tab-pane asset_accordion_body {!IF(offeringWrapper.map_sub_categories[subcategory].index == 0,'active','')}" id="{!offeringWrapper.map_sub_categories[subcategory].type_index}_{!offeringWrapper.map_sub_categories[subcategory].index}" >
-                                                            <p class="asset_accordion_intro">{!offeringWrapper.map_sub_categories[subcategory].sub_category_description} </p>
+                                            <!-- tab body-->
+                                            <apex:outputPanel id="tab-contentPanel">
+                                                <div id="my-tab-content" class="tab-content">
+                                                    <apex:variable var="count2" value="{!1}" />
+                                                    <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
+                                                        <apex:variable var="selectionCount" value="{!1}" />
+                                                        <div class="tab-pane asset_accordion_body {!if(count2 == 1,'active','')}" id="{!mapRTIdCSS[recordType]}_tabs-{!count2}">
+                                                            <p class="asset_accordion_intro">{!mapSubCategOptionDefinition[subCat]}</p>
                                                             <div class="tabbable">
-                                                                <div class="col-lg-6">
-
-                                                                    <ul class="oblix-option-navigation nav nav-pills nav-stacked">
-                                                                        <!--<apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">-->
-                                                                        <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].list_asset_options_in_order}" var="eachSubcategoryOption">
-
-                                                                            <!-- [LVL 3] OPTION PILL LABELS -->
-
-                                                                            <apex:variable var="option" value="{!offeringWrapper.map_sub_categories[subcategory].map_asset_options[eachSubcategoryOption]}" />
-                                                                            <apex:variable var="optionSelector" value="#{!option.type_index}_{!option.sub_category_index}_{!option.index}" />
-                                                                            <apex:outputText rendered="{!option.is_visible}">
-                                                                                <li class="accordion_body_options {!IF(option.index == 0,'active','')}" >
-                                                                                    <a href="{!optionSelector}" data-toggle="tab"><strong>{!option.option_name}</strong>&nbsp;{!option.option_description}</a>
-                                                                                </li>
-                                                                            </apex:outputText>
+                                                                <div class="col-lg-6" id="{!mapRTIdCSS[recordType]}_tabs{!count2}">
+                                                                    <ul class="nav nav-pills nav-stacked">
+                                                                        <apex:variable var="count_opt" value="{!1}" />
+                                                                        <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
+                                                                            <li class="accordion_body_options {!if(count_opt == 1,'active','')}"><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}" title="Score {!opt}" onclick="if($('.hideOptionAsset').is(':visible')) ReInitializeInstanceAF('{!subCat}');" data-toggle="tab"><strong> {!$Label.Oblix_lbl_UIUX_Option} {!count_opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}</a> </li>
+                                                                            <apex:variable var="count_opt" value="{!count_opt + 1}" />
                                                                         </apex:repeat>
                                                                     </ul>
+
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <div class="add_asset_panel">
                                                                         <div class="row">
                                                                             <div class="tab-content">
-                                                                                <!--<apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">-->
-                                                                                <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].list_asset_options_in_order}" var="eachSubcategoryOption">
+                                                                                <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
 
-                                                                                    <!-- [LVL 3] OPTION PILL CONTENT -->
+                                                                                    <div class="tab-pane {!if(selectionCount == 1,'active','')}" id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
+                                                                                        <apex:outputPanel id="countedID">
+                                                                                            <h2 class="optionSelectionClass">Option {!selectionCount} selected</h2>
+                                                                                        </apex:outputPanel>
 
-                                                                                    <apex:variable var="option" value="{!offeringWrapper.map_sub_categories[subcategory].map_asset_options[eachSubcategoryOption]}" />
-                                                                                    <apex:variable var="optionSelector" value="{!option.type_index}_{!option.sub_category_index}_{!option.index}" />
-                                                                                    <apex:outputText rendered="{!option.is_visible}">
-                                                                                        <div class="oblix-option-container tab-pane {!IF(option.index == 0,'active','')}" id="{!optionSelector}" >
-                                                                                            <h2>{!option.option_name} selection</h2>
+                                                                                        <apex:outputPanel id="assetPart">
+                                                                                            <apex:actionRegion >
 
-                                                                                            <div class="col-lg-4">
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles"></p>
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Asset name*</p>
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles quantity_label">Quantity*
-                                                                                                    <br/><span class="form_bracket_text">(Numerics only)</span>
-                                                                                                </p>
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Other Info
-                                                                                                    <br/><span class="form_bracket_text">(Optional)</span>
-                                                                                                </p>
-                                                                                            </div>
-                                                                                            <div class="col-lg-6">
-                                                                                                <apex:variable var="assetNameMap" value="{!option.map_asset_names}" rendered="true" />
-                                                                                                <apex:variable var="assetNameOrderedList" value="{!option.list_asset_names_in_order}" rendered="true" />
 
-                                                                                                <apex:outputPanel id="optionPanel">
-                                                                                                    <apex:actionRegion >
-                                                                                                        <select class="asset-selector">
-                                                                                                            <option value="null">--None--</option>
-                                                                                                            <apex:repeat value="{!assetNameOrderedList}" var="assetName">
 
-                                                                                                                <!-- [LVL 4] ASSET NAME SELECTOR -->
-    
-                                                                                                                <apex:outputText rendered="{!assetNameMap[assetName].is_active}" >
-                                                                                                                    <option value="{!assetNameMap[assetName].mdm_id}" >{!assetName}</option>
-                                                                                                                </apex:outputText>
-                                                                                                            </apex:repeat>
-                                                                                                        </select>
-                                                                                                        <div class="trDescribe hidden">
-                                                                                                            <p class="form_bracket_text">Please describe if not listed* &nbsp;</p>
-                                                                                                            <input class="input_init descMend assetOtherName" maxlength="255" name="assetOtherName" size="20" type="text" />
-                                                                                                        </div>
-                                                                                                        <input type="number" name="assetQuantity" value="" class="assetQuantity" />
-                                                                                                        <br/>
-                                                                                                        <input type="text" name="assetNotes" value="" class="assetNotes" />
-                                                                                                        <br/>
 
-                                                                                                        <apex:outputText rendered="{!can_manage_asset}">
-                                                                                                            <button id="addButton-{!optionSelector}" class="btn btn-primary btn_plus btn_asset_add" onclick="checkAddValuesForBasket(this); return false;">ADD</button>
-                                                                                                            <button id="updateButton-{!optionSelector}" class="btn btn-primary hidden" onclick="checkUpdateValuesForBasket(this); return false;">UPDATE</button>
-                                                                                                        </apex:outputText>
-                                                                                                    </apex:actionRegion>
-                                                                                                </apex:outputPanel>
+                                                                                                <!--styleClass="removeBreak"-->
+                                                                                                <div class="col-lg-4">
+                                                                                                    <p class="create_SOW_form_titles asset_panel_titles"></p>
+                                                                                                    <p class="create_SOW_form_titles asset_panel_titles">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}*</p>
+                                                                                                    <p class="create_SOW_form_titles asset_panel_titles quantselector">{!$ObjectType.Oblix_Project_Assets__c.fields.Quantity__c.label}*
+                                                                                                        <br/><span class="form_bracket_text">(Numerics only)</span>
+                                                                                                    </p>
+                                                                                                    <p class="create_SOW_form_titles asset_panel_titles">Other info
+                                                                                                        <br/><span class="form_bracket_text">(Optional)</span>
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                                <div class="col-lg-6">
+                                                                                                    <apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat} subCatPicklist" />
+                                                                                                    <apex:inputField id="assetNamePicklist" value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" onchange="showhideDetail($(this),{!opt},'{!project.Id}'); return false;" />
+                                                                                                    <span class="error">error</span>
+                                                                                                    <div style="display:none" class="trDescribe">
+                                                                                                        <p class="form_bracket_text">
+                                                                                                            {!$Label.Oblix_lbl_UIUX_Please_describe} &nbsp;</p>
+                                                                                                        <apex:inputField styleClass="input_init descMend" value="{!mapAssetsPerSubCat[subCat].Location__c}" />
+                                                                                                    </div>
+                                                                                                    <apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="assetQuantity" />
 
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </apex:outputText>
+                                                                                                    <apex:inputField style="width:100%;min-height:100px" value="{!assetInstance.Additional_Description__c}" styleClass="assetNotes" />
+                                                                                                    <!--apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}"-->
+                                                                                                    <apex:outputpanel id="overallPanel">
+                                                                                                        <apex:outputPanel rendered="{!AND(hasEditAccess,NOT(isUpdate))}" id="AddButton">
+                                                                                                            <apex:commandButton value="ADD" onclick="if(addAsset(this, '{!subCat}' , '{!recordType}')); return false;" oncomplete="$.unblockUI();location.reload();" reRender="assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
+
+                                                                                                            </apex:commandButton>
+                                                                                                            <!--input value="Add" onclick="addAsset(this, '{!subCat}' , '{!recordType}'); if(setMendatory($(this))) return false;" class="btn btn-primary" style="width:70px" type="submit" data-asset-id='{!selectedAssetId}' /-->
+                                                                                                        </apex:outputPanel>
+                                                                                                        <!-- <apex:commandButton value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" styleclass="btn btn-primary hide_button" style="width:70px" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card"/>-->
+                                                                                                        <apex:outputPanel rendered="{!AND(hasEditAccess, isUpdate)}" id="UpdateButton">
+                                                                                                            <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary" style="width:70px" type="submit" data-asset-id='{!selectedAssetId}' />
+                                                                                                            <!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
+                                                                                                        </apex:outputPanel>
+                                                                                                    </apex:outputPanel>
+                                                                                                </div>
+
+                                                                                            </apex:actionRegion>
+
+                                                                                        </apex:outputPanel>
+                                                                                        <apex:variable var="selectionCount" value="{!selectionCount + 1}" />
+                                                                                    </div>
+                                                                                    <!--/div-->
+
                                                                                 </apex:repeat>
                                                                             </div>
                                                                         </div>
@@ -189,100 +201,122 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </apex:outputText>
-                                                </apex:repeat>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </apex:outputText>
-                        </apex:repeat>
-                    </div>
-                </div>
-                <div class="col-lg-3 asset_shopping_basket_margin">
-                    <div class="asset_shopping_basket">
 
-                        <apex:outputPanel id="campaignBasket">
-                            <div class="asset_shopping_basket_title_bar">
-                                <h2>Campaign Basket ({!helper.quantity_in_basket} asset{!IF(helper.quantity_in_basket == 1, '', 's')})</h2>
-                            </div>
-                            <input type="hidden" value="{!helper.map_assets_in_basket_json}" id="basketJSON" />
-                            <!--<apex:repeat value="{!helper.set_basket_AssetNames}" var="basketItemMDMID">-->
-                            <apex:repeat value="{!helper.list_reverese_order}" var="basketItemMDMID">
-                                <apex:variable value="{!helper.map_assets_in_basket[basketItemMDMID]}" var="basketAssetWrapper" />
-                                <apex:variable value="{!basketAssetWrapper.type_index}_{!basketAssetWrapper.sub_category_index}_{!basketAssetWrapper.option_index}" var="indexSelector" />
-                                <div class="asset_shopping_basket_item">
-                                    <div class="campaign_create_agency_hub_split_table_subtitle" id="{!indexSelector}">
-                                        <div class="row">
-                                            <div class="col-sm-1">
-                                                <apex:commandButton action="{!removeAssetFromBasket}" rendered="{!can_manage_asset}" reRender="campaignBasket, campaignBasketSummary, page_message_id" onclick="blockBasket(); assetToBeRemovedMDMId = '{!basketItemMDMID}';" oncomplete="unblockBasket(); handleBasketChange()" styleClass="removeAssetCss btn" style="width:12px;height:12px" value="">
-                                                    <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="{!basketItemMDMID}" />
-                                                </apex:commandButton>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
-                                                </apex:commandLink>
-                                            </div>
-                                            <div class="col-sm-1">
-                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
-                                                    {!basketAssetWrapper.quantity_in_basket}
-                                                </apex:commandLink>
-                                            </div>
+                                                        <!--                                    tab body end-->
+                                                        <!--                                    tab body-->
+
+                                                        <apex:variable var="count2" value="{!count2 + 1}" />
+                                                    </apex:repeat>
+
+                                                    <!--apex:variable var="selectionCount" value="{!selectionCount + 1}" /-->
+                                                </div>
+                                            </apex:outputPanel>
+                                            <!--                                    tab body end-->
+                                            <!--                                    panel body end-->
                                         </div>
-                                        <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""></apex:commandLink>
                                     </div>
                                 </div>
+                                <apex:variable var="accordianCounter" value="{!accordianCounter + 1}" />
                             </apex:repeat>
-                            <div class="asset_shopping_basket_total">
-                                <div class="row asset_basket_row">
-                                    <p class="asset_shopping_basket_total_fee_text">Campaign Fees Total</p>
-                                    <h2 class="asset_shopping_basket_total_fee_value">
-                                    €
-                                    <apex:outputText value="{0, number,###,###,##0}">
-                                        <apex:param value="{!helper.basket_total_fee}" />
-                                    </apex:outputText>
-                                    </h2>
-                                </div>
-                                <div class="row asset_basket_row">
-                                    <p class="asset_shopping_basket_total_FY_text">Fees to be Paid in Current FY</p>
-                                    <p class="asset_shopping_basket_total_FY_value">€ 
-                                    <apex:outputText value="{0, number,###,###,##0}">
-                                        <apex:param value="{!helper.total_fees_this_FY}" />
-                                    </apex:outputText></p>
-                                </div>
-                            </div>
-                        </apex:outputPanel>
-                        <div class="asset_shopping_basket_btn">
-                            <button type="button" class="btn btn-primary btn-xs btn_check btn_finish_basket" onclick="finishWithBasket(); return false;">FINISH WITH BASKET</button>
                         </div>
                     </div>
+                    <div class="col-lg-3 asset_shopping_basket_margin">
+                        <apex:outputPanel id="Oblix_card">
+                            <div class="asset_shopping_basket">
+                                <div class="asset_shopping_basket_title_bar">
+                                    <h2>Campaign Basket ({!countAssetNumberForCampaign} assets)
+                                 
+                            </h2>
+                                </div>
+                                <div class="asset_shopping_basket_body">
+                                    <div class="asset_shopping_basket_item_title ">
+
+                                        <!--
+                                <apex:repeat value="{!lstAssetsForCard}" var="asset">
+                                        <div class="Oblix_card_elmt">
+                                            <div>
+                                               <div class="Oblix_button_table_align">
+                                                <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px"  onclick="removeAsset('{!asset.Id}'); return false"/> <span>{!asset.Asset_Title__c}</span><!--value="{!$Label.Oblix_lbl_UIUX_Delete}" -->
+                                        <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAset(this, '{!asset.Id}); return false;"/>-->
+                                        <!--<input type="button" value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAsset1(this, '{!asset.Id}')" class="btn" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                </apex:repeat> 
+                                -->
+
+
+                                        <apex:repeat value="{!lstAssetsForCard}" var="wrapAsset">
+                                            <div class="Oblix_card_elmt asset_shopping_basket_item">
+                                                <div>
+                                                    <div class="Oblix_button_table_align">
+                                                        <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                                            <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px" onclick="removeAsset('{!wrapAsset.Id}', '{!project.Id}'); return false" />
+                                                        </apex:outputPanel>
+                                                        <span>
+                                                                <apex:commandLink onclick="editAsset(this, '{!wrapAsset.Id}'); return false;" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card">
+                                                                    {!wrapAsset.Asset_Picklist__c}
+                                                                    <apex:outputText rendered="{!wrapAsset.Asset_Picklist__c=='Other'}">  {!wrapAsset.Location__c}    </apex:outputText>
+                                                                     {!wrapAsset.Option_Name__c}
+                                                                    ( Quantity {!wrapAsset.Quantity__c} )
+                                                                   
+                                                                </apex:commandLink>
+                                                            </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+
+                                <div class="asset_shopping_basket_total">
+                                    <div class="row asset_basket_row">
+                                        <p class="asset_shopping_basket_total_fee_text">{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label}</p>
+                                        <h2 class="asset_shopping_basket_total_fee_value">€
+                                        <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!estimateCost}"/>
+                                         </apex:outputText></h2>
+                                    </div>
+                                    <div class="row asset_basket_row">
+                                        <p class="asset_shopping_basket_total_FY_text">{!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label}</p>
+                                        <p class="asset_shopping_basket_total_FY_value">€
+                                            <apex:outputText value="{0, number,###,###,##0}">
+                                                <apex:param value="{!project.Value_to_be_paid_in_Current_FY__c}" />
+                                            </apex:outputText>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="asset_shopping_basket_btn">
+                                    <apex:commandButton styleClass="btn btn-primary btn-xs btn_check btn_finish_basket" value="FINISH WITH BASKET" action="{!finishBasket}" />
+
+                                    <!--button type="button" class="btn btn-primary btn-xs"><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/check.png')}" width="12" height="12" />
+                                </button
+                                -->
+                                </div>
+                                <apex:actionFunction action="{!AddToProjectAction}" name="setToProjectAction" reRender="">
+                                    <apex:param assignTo="{!recordType}" name="recordType" value="" />
+                                    <apex:param assignTo="{!subCat}" name="subCat" value="" />
+                                    <apex:param assignTo="{!complexity}" name="complexity" value="" />
+                                    <apex:param assignTo="{!selectionCountvar}" name="selectionCountvar" value="" />
+                                    <apex:param assignTo="{!assetDescription}" name="addDesc" value="" />
+                                    <apex:param assignTo="{!assetLocation}" name="location" value="" />
+                                    <apex:param assignTo="{!assetQuantity}" name="quantity" value="" />
+                                    <apex:param assignTo="{!assetPicklist}" name="addPick" value="" />
+                                </apex:actionFunction>
+                                <apex:actionFunction action="{!refresh}" name="refreshAsset" reRender="campaignFeeId,Oblix_card" oncomplete="$.unblockUI()">
+                                    <apex:param name="updatedAssetInstance" assignTo="{!updatedAssetInstance}" value="" />
+                                </apex:actionFunction>
+                                <apex:actionFunction action="{!existsInBasket}" name="existsInBasket" reRender="overallPanel,UpdateButton,AddButton" oncomplete="$.unblockUI();">
+                                    <apex:param name="basketKey" assignTo="{!basketKey}" value="" />
+                                    <apex:param name="selectedAssetId" assignTo="{!selectedAssetId}" value="" />
+                                </apex:actionFunction>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
                 </div>
-            </div>
-            <br/>
-            <!--{!assetOfferingWrapper}-->
-            <br/>
-            <!--{!mainType[0].map_sub_categories[""]}-->
-            <br/>
-            <apex:actionFunction action="{!addAssetToBasket}" name="addToBasket" reRender="campaignBasket, campaignBasketSummary, page_message_id" oncomplete="unblockBasket(); handleBasketChange()">
-                <apex:param name="selectedAssetName" assignTo="{!helper.selectedAssetName}" value="" />
-                <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="" />
-                <apex:param name="selectedAssetOtherName" assignTo="{!helper.selectedAssetOtherName}" value="" />
-                <apex:param name="selectedAssetQuantity" assignTo="{!helper.selectedAssetQuantity}" value="" />
-                <apex:param name="selectedAssetNotes" assignTo="{!helper.selectedAssetNotes}" value="" />
-            </apex:actionFunction>
-            <apex:actionFunction action="{!updateAssetInBasket}" name="updateInBasket" reRender="campaignBasket, campaignBasketSummary, page_message_id" oncomplete="unblockBasket(); handleBasketChange()">
-                <apex:param name="selectedAssetName" assignTo="{!helper.selectedAssetName}" value="" />
-                <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="" />
-                <apex:param name="selectedAssetOtherName" assignTo="{!helper.selectedAssetOtherName}" value="" />
-                <apex:param name="selectedAssetQuantity" assignTo="{!helper.selectedAssetQuantity}" value="" />
-                <apex:param name="selectedAssetNotes" assignTo="{!helper.selectedAssetNotes}" value="" />
-            </apex:actionFunction>
-            <apex:actionFunction action="{!finishWithBasket}" name="finishWithBasket" reRender="page_message_id"/>
-            <input type="hidden" id="initWithAssetMDMId" value="{!helper.assetMDMId}" />
-            <input type="hidden" id="assetOtherNameLabel" value="{!helper.assetOtherNameLabel}" />
-        </apex:define>
-    </apex:composition>
-
-    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_AddAsset.js')}" />
-
+            </apex:outputPanel>
+            <!--end div  class row -->
+        </div>
+    </apex:form>
 </apex:page>

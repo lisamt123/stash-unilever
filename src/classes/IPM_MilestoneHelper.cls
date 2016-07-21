@@ -233,14 +233,6 @@ public with sharing class IPM_MilestoneHelper
                                     newprojectMilestone.IPM_Completed_On__c = null;     
                                 }
                                 
-                                // Set the Target launch date of milestone of project to Market Deployment Phase milestone planned/due date
-                                if(newProjectMilestone.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE)
-								{
-									if(project.IPM_Target_Launch_Dates__c!=null)
-									{
-										newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c;
-									}
-								}
                                 upsertedProjectMilestones.put(newProjectMilestone.ExternalField__c,newprojectMilestone);
                             }
                         }
@@ -272,15 +264,7 @@ public with sharing class IPM_MilestoneHelper
                                 Date myDate = date.newinstance(project.CreatedDate.year(), project.CreatedDate.month(), project.CreatedDate.day());
                                 
                                 if(newProjectMilestone.IPM_Type_of_gate__c == IPM_ConstantUtils.MARKET_READY_GATE){
-                                  
-                                  IPM_Blank_MrktRdyDueDate__c mrktReadyAutoPop = IPM_Blank_MrktRdyDueDate__c.getValues('NumberOfDays');
-                                  
-                                  if(project.IPM_Target_Launch_Dates__c < System.today().addDays(Integer.valueOf(mrktReadyAutoPop.No_Of_Days__c)))
-                                   {
-                                     newProjectMilestone.IPM_Planned_Date__c=null; 
-                                     newProjectMilestone.IPM_Due_Date__c=null;
-                                   }
-                                   else if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
+                                    if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
                                         String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing__c))
                                     {
                                         if(project.IPM_Target_Launch_Dates__c!=null &&  project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing__c) > myDate)
@@ -499,8 +483,8 @@ public with sharing class IPM_MilestoneHelper
                                 // Key check to identify the milestone from source to target projects
                                 if(sourceKey == targetKey)
                                 {
-                                    //DEF3184 & DEF3362 fix: Any update to Global/Regional project's milestone's Target Launch Date(Ship to Trade) should not update or copied to Regional/Local Project's milestone's Target Launch Date(Ship to Trade)
-                                    if(targetMilestone.IPM_Name__c != IPM_Utils.TargetLaunchDateShiptoTrade) {
+                                    //DEF3184 fix: Any update to Regional project's's milestone's Target Launch Date(Ship to Trade) should not update Local Project's milestone's Target Launch Date(Ship to Trade)
+                                    if(!(targetMilestone.IPM_Project__r.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && targetMilestone.IPM_Name__c ==IPM_Utils.TargetLaunchDateShiptoTrade)) {
                                         targetMilestone.IPM_Planned_Date__c =  eligiblemilestone.IPM_Planned_Date__c;
                                         finalMilestoneMap.put(targetMilestone.Id,targetMilestone);
                                         break;

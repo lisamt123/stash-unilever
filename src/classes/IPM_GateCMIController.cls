@@ -14,9 +14,8 @@ public with sharing class IPM_GateCMIController{
     public String[] cmiNameList; //Contains List of Selected CMI Names
     public SObject ipmCMIGate; //Contains Gate CMI Object
     public String selectedCountryName; //Contains Country Names of Gate CMI
-    public String openAccordian{get; set;} //to open corresponding accordian after creating test
     public Map<String,IPM_CMI_Color_Mapping__c> colorMapping;//For color coding the results
-    public Map<String,IPM_CMI_Overall_Color_Mapping__c> overallColorMapping; //For Overall Color Code Mapping
+    public Map<String,IPM_CMI_Overall_Color_Mapping__c> overallColorMapping;
     public Id projectId {   //Contains Project Id for Retrieving Countries List
         get{
             return projectId ;
@@ -73,7 +72,6 @@ public with sharing class IPM_GateCMIController{
     public String overallScore{get; set;} //For over all test score
     public Boolean isEditActionStandard{get; set;} //To check action standards editable for market ready gate
     public List<IPM_Country__c> countryList;
-    public map<String,String> mapCountryNameWithCode {get;set;}
     /****************************************************************************************************************************
     @description Getting Elements Picklist Values
     @return: Element Picklist values
@@ -98,14 +96,14 @@ public with sharing class IPM_GateCMIController{
     */ 
     public List<selectOption> getCountries() { 
         countryList=new List<IPM_Country__c>();
-        String soql  =  'SELECT Id,Country_Code__c,Country_Name__c,IPM_Project__c,IPM_Regional_Project__c,isActive__c FROM IPM_Country__c';
+        String soql  =  'SELECT Id,Country_Name__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
         if((gateType==IPM_ConstantUtils.CHARTER_GATE && projDocSec.IPM_Project_Document__r.IPM_Project_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
             soql += ' WHERE IPM_Project__c = \'' + projectId + '\'';
         }
         else{
             soql += ' WHERE IPM_Regional_Project__c = \'' + projectId + '\'';
         }
-        //soql+= ' AND isActive__c=true';
+        soql+= ' AND isActive__c=true';
         try{
             countryList=Database.query(soql);   
         }
@@ -117,9 +115,7 @@ public with sharing class IPM_GateCMIController{
         countries = new List<SelectOption>();
         if(countryList != null && !countryList.isEmpty()){
             for(IPM_Country__c tempCountry : countryList){
-              if(tempCountry.isActive__c){
-                  countries.add(new SelectOption(tempCountry.Country_Name__c,tempCountry.Country_Code__c));
-              }  
+                countries.add(new SelectOption(tempCountry.Country_Name__c,tempCountry.Country_Name__c));
             }
         }
         return countries;
@@ -281,7 +277,7 @@ public with sharing class IPM_GateCMIController{
             if(!String.isBlank(projDocSec.IPM_CMI_Selected_Countries__c)){
                 for(String country:projDocSec.IPM_CMI_Selected_Countries__c.split(IPM_ConstantUtils.SEMICOLON)){
                     for(IPM_Country__c availCountry:countryList){
-                        if(country==availCountry.Country_Code__c){
+                        if(country==availCountry.Country_Name__c){
                             if(String.isBlank(selectedCountryName)){
                                 selectedCountryName=country+IPM_ConstantUtils.SEMICOLON;
                             }
@@ -296,12 +292,8 @@ public with sharing class IPM_GateCMIController{
                 projDocSec.IPM_CMI_Selected_Countries__c=selectedCountryName;
                 update projDocSec;
             }
-            mapCountryNameWithCode=new map<String,String>();
             if(!String.isBlank(selectedCountryName)){
-              countryNameList=selectedCountryName.split(IPM_ConstantUtils.SEMICOLON);
-                for(IPM_Country__c c:countryList){
-                    mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
-                }    
+                countryNameList=selectedCountryName.split(IPM_ConstantUtils.SEMICOLON);
             }
             
             //Getting Gate CMI and CMI Contents List

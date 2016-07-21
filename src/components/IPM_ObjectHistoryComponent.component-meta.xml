@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>36.0</apiVersion>
+    <apiVersion>32.0</apiVersion>
     <description>To get the History of any Record of  an object which has History Tracking Enabled</description>
     <label>IPM_ObjectHistoryComponent</label>
 </ApexComponent>

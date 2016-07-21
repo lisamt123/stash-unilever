@@ -1,182 +1,182 @@
 <!--
-	Unilever
+    Unilever
 
-	Page Name: AR_InsuranceTradeRegsAndPolicy
-	Marc Saelzler | 2013-09-06
+    Page Name: AR_InsuranceTradeRegsAndPolicy
+    Marc Saelzler | 2013-09-06
 
-	Page for rate card.
+    Page for rate card.
 
-	Timeline
-	Date 					| Name 				| Description
-	2013-09-06 14:27 (CET) 	| Marc Saelzler 	| Initial development.
+    Timeline
+    Date                    | Name              | Description
+    2013-09-06 14:27 (CET)  | Marc Saelzler     | Initial development.
 -->
 <apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" controller="AR_InsuranceTradeRegsAndPolicyController" action="{!InitPage}">
-	
-	<apex:composition template="AR_Template">
-	
-		<apex:define name="content">
-        	
-        	<section role="main" id="content" class="form global-content">
-        	
-        		<apex:form styleClass="form-validate">
-        		
-	            	<header class="main-header">
-	            		
-	            		<nav class="steps-wrapper" style="margin-bottom:15px;">
-	                   		<c:AR_ProgressBar pController="{!this}" />
-		                </nav>
-	            	
-		                <h1>Insurance, Company Policies and Trade &amp; Regulatory Bodies</h1>
-		                <p>
-		                    Please provide details as to what insurance cover policies your organisation holds, as well as any internal operating policies and trade or regulatory bodies you may be a member of.
-		                </p>
+    
+    <apex:composition template="AR_Template">
+    
+        <apex:define name="content">
+            
+            <section role="main" id="content" class="form global-content">
+            
+                <apex:form styleClass="form-validate">
+                
+                    <header class="main-header">
+                        
+                        <nav class="steps-wrapper" style="margin-bottom:15px;">
+                            <c:AR_ProgressBar pController="{!this}" />
+                        </nav>
+                    
+                        <h1>Insurance, Company Policies and Trade &amp; Regulatory Bodies</h1>
+                        <p>
+                            Please provide details as to what insurance cover policies your organisation holds, as well as any internal operating policies and trade or regulatory bodies you may be a member of.
+                        </p>
 
-					</header>
+                    </header>
 
-					<div class="form-fields-wrapper">
-					
-	                    <ul class="form-errors active">
-							<apex:messages />
-	                    </ul>
-	                    
-	                    <apex:actionRegion >
-		                    <apex:outputPanel id="insuranceTable">
-			                    <h2>Insurance</h2>
-			                    <table class="table">
-			                        <thead>
-			                            <tr>
-			                            	<apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['insurance']}" var="field">
-				                                <th>{!field.Label}</th>
-				                            </apex:repeat>
-			                            </tr>
-			                        </thead>
-			                        <tbody>
-			                        	<apex:repeat value="{!insuranceObjectList}" var="insurance">
-				                            <tr>
-				                            	<apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['insurance']}" var="field">
-				                                	<td>
-				                                		<apex:inputField rendered="{!NOT(AND(OR(field.fieldPath='Insurance_Type__c', field.fieldPath='Description__c'), insurance.prefilled))}" value="{!insurance.obj[field.fieldPath]}" style="min-width:100px;" />
-														<apex:outputField rendered="{!AND(OR(field.fieldPath='Insurance_Type__c', field.fieldPath='Description__c'), insurance.prefilled)}" value="{!insurance.obj[field.fieldPath]}" />
-				                                	</td>
-				                                </apex:repeat>
-				                            </tr>
-			                            </apex:repeat>
-			                        </tbody>
-			                        <thead>
-			                            <tr>
-			                                <th colspan="5">Others (please list)</th>
-			                                <td colspan="1">
-			                                	<apex:commandButton action="{!addRowToInsuranceObjectList}" value="Add Row" styleClass="btn-add-row" status="addRowStatus" reRender="insuranceTable" />
-			                                	<apex:actionStatus id="addRowStatus">
-				                            		<apex:facet name="start">
-				                            			<apex:image value="/img/loading.gif" />
-				                            		</apex:facet>
-				                            	</apex:actionStatus>
-			                                </td>
-			                            </tr> 
-			                        </thead>
-			                        <tbody>
-			                        	<tr>
-			                        		<apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['insurance']}" var="field">
-				                                <td><apex:inputField value="{!insuranceObject.obj[field.fieldPath]}" /></td>
-				                            </apex:repeat>
-			                            </tr>
-			                        </tbody>
-			                    </table>
-			                </apex:outputPanel>
-			            </apex:actionRegion>
-	                    <h2>Company Policies</h2>
-	                    <table class="table">
-	                    	<thead>
-	                            <tr>
-	                                <th width="40%">Policy</th>
-	                                <th width="40%">Upload each policy that you have</th>
-	                                <th width="20%"></th>
-	                            </tr>
-	                        </thead>
-	                        <tbody>
-	                        	<apex:repeat value="{!policyObjectList}" var="policy">
-	                        		<tr>
-		                                <td><apex:outputText value="{!policy.obj['Policy__c']}" /></td>
-		                                <td style="width:60%;" colspan="2"><c:AR_FileUpload fileNamePrefix="one" holder="{!policy}" /></td>
-		                            </tr>
-	                        	</apex:repeat>
-	                        </tbody>
-	                        <thead>
-	                            <tr>
-	                                <th>Other (please list)</th>
-	                                <th>Overview</th>
-	                                <td><apex:commandButton action="{!addRowToPolicyObjectList}" value="Add Row" styleClass="btn-add-row" /></td>
-	                            </tr>
-	                        </thead>
-	                        <tbody>
-	                            <tr>
-	                                <td><apex:inputField value="{!policyObject.obj['Policy__c']}" /></td>
-	                                <td colspan="2"><c:AR_FileUpload fileNamePrefix="one" holder="{!policyObject}" /></td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	                    <h2>Trade and Regulatory Bodies</h2>
-	                    <apex:actionRegion >
-	                    <apex:outputPanel id="tradeRegulatoryPanel">
-		                    <table class="table">
-		                        <thead>
-		                            <tr>
-		                            	<apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['trade_and_regulatory_bodies']}" var="field">
-			                                <th>{!field.Label}</th>
-			                            </apex:repeat>              
-		                                <td style="width:125px;">
-		                                	<apex:commandButton value="Add Row" action="{!AddRowToTradeRegulatoryObjectList}" rerender="tradeRegulatoryPanel" status="tradeChangeStatus" styleClass="btn-add-row" />
-		                                	<apex:actionStatus id="tradeChangeStatus">
-						                		<apex:facet name="start">
-						                			<apex:image value="/img/loading.gif" />
-						                		</apex:facet>
-						                	</apex:actionStatus>
-		                                </td>
-		                            </tr>
-		                        </thead>
-		                        <tbody>
-		                        	<apex:repeat value="{!tradeRegulatoryObjectList}" var="tradeRegulatory">
-			                            <tr style="{!IF(tradeRegulatory.isDeleted,'display:none','')}">
-			                            	<apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['trade_and_regulatory_bodies']}" var="field">
-			                                	<td>
-			                                		<apex:inputField value="{!tradeRegulatory.obj[field.fieldPath]}" />
-			                                	</td>
-			                                </apex:repeat>
-			                               	
-			                                <td class="remove-row-cell">
-				                            	<apex:commandLink action="{!tradeRegulatory.remove}" status="tradeChangeStatus" reRender="tradeRegulatoryPanel">
-				                            		<img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
-												</apex:commandLink>
-				                            </td>
-			                            </tr>
-			                        </apex:repeat>
-		                        </tbody>
-		                    </table>
-	                    </apex:outputPanel>
-	                    </apex:actionRegion>
-	                    <div class="form-row textarea-row clearfix">
-	                        <label for="business-activities" class="form-row-label">
-	                             Additional Information
-	                        </label>
-	                        <div class="form-input">
-	                            <apex:inputField value="{!applicationObject.obj['Additional_Information__c']}" />
-	                        	<apex:outputText rendered="{!$ObjectType['ar_Application__c'].fields['Additional_Information__c'].InlineHelpText != null}">
-		                        	<p class="helper">{!$ObjectType['ar_Application__c'].fields['Additional_Information__c'].InlineHelpText}</p>
-		                        </apex:outputText>
-	                        </div>
-	                    </div>
-	                </div>
-	                
-                	<footer class="form-footer">
-		                <ul>
-		                    <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
-		                    <li><apex:commandButton styleClass="save" action="{!save}" /></li>
-		                    <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
-		                </ul>
-		            </footer>
-				</apex:form>
-			 </section>
-		</apex:define>
-	</apex:composition>
+                    <div class="form-fields-wrapper">
+                    
+                        <ul class="form-errors active">
+                            <apex:messages />
+                        </ul>
+                        
+                        <apex:actionRegion >
+                            <apex:outputPanel id="insuranceTable">
+                                <h2>Insurance</h2>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['insurance']}" var="field">
+                                                <th>{!field.Label}</th>
+                                            </apex:repeat>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!insuranceObjectList}" var="insurance">
+                                            <tr>
+                                                <apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['insurance']}" var="field">
+                                                    <td>
+                                                        <apex:inputField rendered="{!NOT(AND(OR(field.fieldPath='Insurance_Type__c', field.fieldPath='Description__c'), insurance.prefilled))}" value="{!insurance.obj[field.fieldPath]}" style="min-width:100px;" />
+                                                        <apex:outputField rendered="{!AND(OR(field.fieldPath='Insurance_Type__c', field.fieldPath='Description__c'), insurance.prefilled)}" value="{!insurance.obj[field.fieldPath]}" />
+                                                    </td>
+                                                </apex:repeat>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th colspan="5">Others (please list)</th>
+                                            <td colspan="1">
+                                                <apex:commandButton action="{!addRowToInsuranceObjectList}" value="Add Row" styleClass="btn-add-row" status="addRowStatus" reRender="insuranceTable" />
+                                                <apex:actionStatus id="addRowStatus">
+                                                    <apex:facet name="start">
+                                                        <apex:image value="/img/loading.gif" />
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </td>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['insurance']}" var="field">
+                                                <td><apex:inputField value="{!insuranceObject.obj[field.fieldPath]}" /></td>
+                                            </apex:repeat>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                        <h2>Company Policies</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="40%">Policy</th>
+                                    <th width="40%">Upload each policy that you have</th>
+                                    <th width="20%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <apex:repeat value="{!policyObjectList}" var="policy">
+                                    <tr>
+                                        <td><apex:outputText value="{!policy.obj['Policy__c']}" /></td>
+                                        <td style="width:60%;" colspan="2"><c:AR_FileUpload fileNamePrefix="one" holder="{!policy}" /></td>
+                                    </tr>
+                                </apex:repeat>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th>Other (please list)</th>
+                                    <th>Overview</th>
+                                    <td><apex:commandButton action="{!addRowToPolicyObjectList}" value="Add Row" styleClass="btn-add-row" /></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><apex:inputField value="{!policyObject.obj['Policy__c']}" /></td>
+                                    <td colspan="2"><c:AR_FileUpload fileNamePrefix="one" holder="{!policyObject}" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>Trade and Regulatory Bodies</h2>
+                        <apex:actionRegion >
+                        <apex:outputPanel id="tradeRegulatoryPanel">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['trade_and_regulatory_bodies']}" var="field">
+                                            <th>{!field.Label}</th>
+                                        </apex:repeat>              
+                                        <td style="width:125px;">
+                                            <apex:commandButton value="Add Row" action="{!AddRowToTradeRegulatoryObjectList}" rerender="tradeRegulatoryPanel" status="tradeChangeStatus" styleClass="btn-add-row" />
+                                            <apex:actionStatus id="tradeChangeStatus">
+                                                <apex:facet name="start">
+                                                    <apex:image value="/img/loading.gif" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!tradeRegulatoryObjectList}" var="tradeRegulatory">
+                                        <tr style="{!IF(tradeRegulatory.isDeleted,'display:none','')}">
+                                            <apex:repeat value="{!FieldSetMap['ar_Insurance_and_Policy__c']['trade_and_regulatory_bodies']}" var="field">
+                                                <td>
+                                                    <apex:inputField value="{!tradeRegulatory.obj[field.fieldPath]}" />
+                                                </td>
+                                            </apex:repeat>
+                                            
+                                            <td class="remove-row-cell">
+                                                <apex:commandLink action="{!tradeRegulatory.remove}" status="tradeChangeStatus" reRender="tradeRegulatoryPanel">
+                                                    <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" alt="InsuranceTradeRegsAndPolicy DelRow" class="remove-row"/>
+                                                </apex:commandLink>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                        </apex:actionRegion>
+                        <div class="form-row textarea-row clearfix">
+                            <label for="business-activities" class="form-row-label">
+                                 Additional Information
+                            </label>
+                            <div class="form-input">
+                                <apex:inputField value="{!applicationObject.obj['Additional_Information__c']}" />
+                                <apex:outputText rendered="{!$ObjectType['ar_Application__c'].fields['Additional_Information__c'].InlineHelpText != null}">
+                                    <p class="helper">{!$ObjectType['ar_Application__c'].fields['Additional_Information__c'].InlineHelpText}</p>
+                                </apex:outputText>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <footer class="form-footer">
+                        <ul>
+                            <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
+                            <li><apex:commandButton styleClass="save" action="{!save}" /></li>
+                            <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
+                        </ul>
+                    </footer>
+                </apex:form>
+             </section>
+        </apex:define>
+    </apex:composition>
 </apex:page>

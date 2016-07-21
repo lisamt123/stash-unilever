@@ -23,36 +23,14 @@ public with sharing class EA_Feedback_Controller {
         boolean strteamId=EA_Utils.isEmpty(teamId);*/
         // Update Team Member Record with Rating
         integer activity_rating=integer.valueOf(rating );
-        if( activity_rating>0 && teamId !=null  ){
-           system.debug('***'+ activity_rating);
+        if( activity_rating>0){
             EA_Team_Member__c objMember=[Select Id,Rating_By_Participant__c from EA_Team_Member__c where id=:teamId];
             objMember.Rating_By_Participant__c=integer.ValueOf(rating);
             update objMember;
           //  updateActivityRating(activityId);
            // system.debug('&&&'+objMember.Rating_By_Participant__c);
-        } 
-        
-         if( activity_rating>0 && teamId ==null  ){
-           system.debug('coming');
-            List<Everyday_Activity__c> acts = EA_ControllerClass.getactivitydetail(activityId);
-            
-            Decimal points = acts[0].Activity_Points__c;  
-           EA_Team_Member__c newrecord = new EA_Team_Member__c();
-            newrecord.Participant__c = UserInfo.getUserId();
-            newrecord.Invited_By__c = UserInfo.getUserId();   
-            newrecord.Invitation_Status__c = 'Commented';
-            newrecord.Everyday_Activity__c = activityId;
-            newrecord.Activity_Points__c= points;
-            newrecord.Rating_By_Participant__c=activity_rating;
-            
-            insert newrecord;
-         }
-        EA_Utils.postOnChatter(activityId,feedbackText);
-        //EA_Team_Member__c objMemberDetail =[Select Id,Rating_By_Participant__c from EA_Team_Member__c where id=:teamId AND Invitation_Status__c =: EA_Constants.INVITATION_STATUS_SELF];
-        //if(objMemberDetail.Latest_Feeditem_Id__c == ''){
-                
-           // update objMemberDetail;
-       // }          
+        }  
+        EA_Utils.postOnChatter(activityId,feedbackText);          
         updateActivityRating(activityId);
         return true;    
     }    
@@ -103,20 +81,6 @@ public with sharing class EA_Feedback_Controller {
         objActivity.Rating__c=integer.valueof(rating);
         activtyList.add(objActivity);
         return activtyList;
-    } 
-    
- /*******************************************************************************************************
-* @description This method returns  current user recent rating to an activty
-* @param  
-* @return rating. 
-*/
-    
-       @AuraEnabled
-        public static Integer getActivityRating(String ActivityID){
-        
-        EA_Team_Member__c objTeam=[Select Id,Rating_By_Participant__c from EA_Team_Member__c where Participant__c=:Userinfo.getUserId() AND Everyday_Activity__c =:ActivityID order by CreatedDate Desc limit 1];
-        system.debug('***'+Integer.valueOf(objTeam.Rating_By_Participant__c));
-        return Integer.valueOf(objTeam.Rating_By_Participant__c);
+    }      
        
-   }
 }

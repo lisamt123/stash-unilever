@@ -21,7 +21,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     
     private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
     private Map<Id,IPM_Project_Rollout__c> globalProjIdRollout = new Map<Id,IPM_Project_Rollout__c> {};     
-    private Map<Id,IPM_Project_Rollout__c> misAlignedConfirmedRollout = new Map<Id,IPM_Project_Rollout__c> {};      
     
     /**
     * @description:bulkBefore
@@ -35,22 +34,13 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         if(System.Trigger.isDelete)
         {           
             handler.processDelete((List<IPM_Project_Rollout__c>) Trigger.old);
-            handler.deleteRegionalFinancialActionStandards((List<IPM_Project_Rollout__c>) Trigger.old);
         } 
         
         //@@Design Review - Data Sharing Change - Update ownerid of rollouts to project ownerid
         
         if(System.Trigger.isInsert){
-            
             handler.OnBeforeInsert((List<IPM_Project_Rollout__c>) Trigger.new);
-           handler.assignCompanyCard((List<IPM_Project_Rollout__c>) Trigger.new);
-            
         }
-        
-        
-            
-               
-       
     }
     /**
     * @description:bulkAfter
@@ -63,8 +53,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(Trigger.isInsert)
         {
-            handler.processInsert((List<IPM_Project_Rollout__c>) Trigger.new); 
-            handler.createRegionalFinancialActionStandards((List<IPM_Project_Rollout__c>) Trigger.new);
+            handler.processInsert((List<IPM_Project_Rollout__c>) Trigger.new);    
         }
         
         if(Trigger.isUpdate)
@@ -119,8 +108,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(!newRollout.isActive__c && oldRollout.isActive__c != newRollout.isActive__c)
         {
-            newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-            newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
+           	newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
+			newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
         }               
     }
     
@@ -188,23 +177,16 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
         }
-        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ||  oldRollout.isActive__c != newRollout.isActive__c){
+        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ){
             rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
-            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)  && oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c){
+            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
                 if(newRollout.Regional_Project__c != null){
                     globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
                 } else if(newRollout.IPM_Project__c != null){
                     globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
                 }
             }            
-        }  
-        if( oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c ){
-            if(newRollout.Regional_Project__c != null){
-                misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
-            } else {
-                misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
-            }
-        }
+        }        
 
     }
     /**
@@ -216,10 +198,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void afterDelete(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface
-        //recalculate TLD when rollout is deleted
-        IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so; 
-        rolloutProjectTLDChanged.put(newRollout.Id,newRollout);
-          
     }
     
     /**
@@ -230,7 +208,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void andFinally()
     {
         //call method to insert all exception logs got while excecution of trigger
-        
+       	
         if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
         {
             if(!phaseChangeProjects.isEmpty())
@@ -246,10 +224,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
             rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
             rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout);                      
-        }
-        if(!misAlignedConfirmedRollout.isEmpty()){
-            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.notifyProjectFinanceAboutFinanceLeaderConfirmation(misAlignedConfirmedRollout);      
         }
         ExceptionLoggingHelper.insertLogRecordList();
     }

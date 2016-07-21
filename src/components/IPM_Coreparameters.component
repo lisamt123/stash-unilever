@@ -10,10 +10,10 @@
     id="IPM_Coreparameters">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Coreparameter_BET.css')}" />
     <div class='cust-overlay coreParm'></div>
-    <div class="row coreParamContent" id="coreParamContent">
+    <div class="row" id="coreParamContent">
 
         <apex:pagemessages id="pgmsg"></apex:pagemessages>
-        <div id="myCarousel" class="col-xs-12 negateMarginTop carousel myCarousel"
+        <div id="myCarousel" class="col-xs-12 negateMarginTop carousel"
             data-interval="false" data-ride="carousel" data-wrap="false">
             <apex:actionStatus id="coreLoader" startStyleClass="proInit"></apex:actionStatus>
             <!--Carousel indicators -->
@@ -40,10 +40,9 @@
                                 <label id="Q1Description">{!$Label.IPM_MPA_Description}</label>
                             </div>
                             <apex:outputPanel id="questionone" layout="block">
-                            <!--The below panel will be editable if isMPAEditable attribute is true -->
                                 <apex:outputPanel layout="block" rendered="{!isMPAEditable}">
                                     <div
-                                        class="slide-bar slideBar1 {! if(isOperational,operationalSlider_STR,'')}"
+                                        class="slide-bar {! if(isOperational,operationalSlider_STR,'')}"
                                         id="slideBar1">
                                         <span class="slideIcon fa fa-circle" id="slideIcon1" />
                                         <div class="sliderTrack qnumone">
@@ -63,7 +62,6 @@
                                     </div>
                                 </apex:outputPanel>
                             </apex:outputPanel>
-                            <!--The below panel will be readonly if isMPAEditable attribute is false -->
                             <apex:outputtext value="{!IPM_Coreparameter.IPM_Answer_of_Q1__c}"
                                 rendered="{!!isMPAEditable }" />
                         </div>
@@ -90,9 +88,8 @@
                                 <div class="panel-heading question">
                                     <label id="Q2Description">{!$Label.IPM_CVP_Description}</label>
                                 </div>
-                                <!--The below panel will be editable if isCPVEditable attribute is true -->
                                 <apex:outputPanel rendered="{!isCPVEditable}">
-                                    <div class="slide-bar slideBar2" id="slideBar2">
+                                    <div class="slide-bar" id="slideBar2">
                                         <span class="slideIcon fa fa-circle" id="slideIcon2" />
                                         <div class="sliderTrack qnumtwo">
                                             <label for="Select" class="fstchild"><span>{!$Label.IPM_Select_CoreParameter}</span></label>
@@ -108,7 +105,6 @@
                                         </div>
                                     </div>
                                 </apex:outputPanel>
-                                <!--The below text will be readonly if isCPVEditable attribute is false -->
                                 <apex:outputtext value="{!IPM_Coreparameter.IPM_Answer_of_Q2__c}"
                                     rendered="{!!isCPVEditable }" />
                             </apex:outputPanel>
@@ -136,9 +132,8 @@
                                 <div class="panel-heading question">
                                     <label id="Q3Description">{!$Label.IPM_ET_Description}</label>
                                 </div>
-                                <!--The below panel will be editable if isETEditable attribute is true -->
                                 <apex:outputPanel rendered="{!isETEditable}">
-                                    <div class="slide-bar slideBar3" id="slideBar3">
+                                    <div class="slide-bar" id="slideBar3">
                                         <span class="slideIcon fa fa-circle" id="slideIcon3" />
                                         <div class="sliderTrack qnumthree">
                                             <label for="Select" class="fstchild"><span>{!$Label.IPM_Select_CoreParameter}</span></label>
@@ -154,7 +149,6 @@
                                         </div>
                                     </div>
                                 </apex:outputPanel>
-                                <!--The below text will be readonly if isETEditable attribute is false -->
                                 <apex:outputText value="{!IPM_Coreparameter.IPM_Answer_of_Q3__c}"
                                     rendered="{!!isETEditable}" />
                             </apex:outputPanel>
@@ -229,7 +223,7 @@
                                     </div>
                                     <div class="col-sm-7 noPadleft noPadright table-responsive"
                                         id="strategicIntentTableDiv">
-                                        <table class="table-bordered strategicIntentTable" id="strategicIntentTable">
+                                        <table class="table-bordered" id="strategicIntentTable">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -244,135 +238,105 @@
                                             <tbody>
                                                 <tr>
                                                     <th>{!$Label.IPM_Radical}</th>
-                                                    <!-- If IPM_Radical_New_Core_Product__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Radical_New_Core_Product__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Radical_New_Benefit__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red2"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Radical_New_Benefit__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Radical_Improvement__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red3"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Radical_Improvement__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Radical_Variant__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red4"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Radical_Variant__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Radical_No_Change__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Radical_No_Change__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Radical_Operational__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="oprtnGreenTable"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Radical_Operational__c }">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
                                                 </tr>
                                                 <tr>
                                                     <th>{!$Label.IPM_Next_Generation}</th>
-                                                    <!-- If IPM_Next_Generation_New_Core_Product__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red2"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Next_Generation_New_Core_Product__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Next_Generation_New_Benefit__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red3"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Next_Generation_New_Benefit__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Next_Generation_Improvement__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red4"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Next_Generation_Improvement__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Next_Generation_Variant__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Next_Generation_Variant__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Next_Generation_No_Change__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green2"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Next_Generation_No_Change__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Next_Generation_Operational__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="oprtnGreenTable"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Next_Generation_Operational__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
                                                 </tr>
                                                 <tr>
                                                     <th>{!$Label.IPM_Incremental}</th>
-                                                    <!-- If IPM_Incremental_New_Core_Product__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red3"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_New_Core_Product__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Incremental_New_Benefit__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red4"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_New_Benefit__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Incremental_Improvement__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_Improvement__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Incremental_Variant__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green2"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_Variant__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Incremental_No_Change__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green3"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_No_Change__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Incremental_Operational__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="oprtnGreenTable"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_Operational__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
                                                 </tr>
                                                 <tr>
                                                     <th>{!$Label.IPM_Base}</th>
-                                                    <!-- If IPM_Base_New_Core_Product__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="red4"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Base_New_Core_Product__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Base_New_Benefit__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Base_New_Benefit__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Base_Improvement__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green2"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Base_Improvement__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Base_Variant__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green3"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Base_Variant__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Base_No_Change__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="green4"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Base_No_Change__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_Base_Operational__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="oprtnGreenTable"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Base_Operational__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
                                                 </tr>
                                                 <tr>
                                                     <th class="blgHeader">{!$Label.IPM_BLG_No_change}</th>
-                                                    <!-- If IPM_BLG_New_Core_Product__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="graphNoborder"><apex:outputPanel rendered="{!strategicGraphTick.IPM_BLG_New_Core_Product__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_BLG_New_Benefit__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="blue"><apex:outputPanel rendered="{!strategicGraphTick.IPM_BLG_New_Benefit__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_BLG_Improvement__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="blue"><apex:outputPanel rendered="{!strategicGraphTick.IPM_BLG_Improvement__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_BLG_Variant__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="blue"><apex:outputPanel rendered="{!strategicGraphTick.IPM_BLG_Variant__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    <!-- If IPM_BLG_No_Change__c field value is true based on Coreparemeter questions, display check mark -->
                                                     <td class="blue"><apex:outputPanel rendered="{!strategicGraphTick.IPM_BLG_No_Change__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
-                                                    
                                                     <td class="graphNoborder oprtnNobgrnd"><apex:outputPanel rendered="">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
@@ -405,19 +369,16 @@
                                             id="prevControl" class="ipmButton">{!$Label.IPM_Back}</a>
                                     </div>
                                     <div class="buttonmarRight pull-left ml5 testbtn">
-                                    <!--The below panel will be editable if isEditCoreparameter attribute is true -->
                                         <apex:outputPanel rendered="{!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                                onClick="skipValidation(),checkCoreParam();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
+                                                onClick="checkCoreParam();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                                         </apex:outputPanel>
-                                        <!--The below panel will be readonly if isEditCoreparameter attribute is false -->
                                         <apex:outputPanel rendered="{!!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#myCarousel" data-slide="next"
-                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="skipValidation(),checkTooltip();" id="nextControl"
+                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}" id="nextControl"
                                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
-                                            <!--The below panel will be readonly if isEditable attribute is false -->
                                             <apex:outputPanel rendered="{!!isEditable}">
                                                 <a href="#myCarousel" data-slide="next"
                                                     title="{!$Label.IPM_Continue}" id="nextControl"
@@ -447,7 +408,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 projectSpan" id="projectSpan">
+                            <div class="col-xs-12" id="projectSpan">
                                 <apex:outputPanel id="marketmain">
                                     <div class="row additionalParamContainer">
                                         <div class="col-sm-7 additionalParamTop noPadleft noBoxshadow">
@@ -455,41 +416,33 @@
                                                 <div class="panel-body">
 
                                                     <apex:outputPanel id="sectorMarket">
-                                                        <!-- If IPM_Market__c field value is true, the below will be diplayed  -->
+
                                                         <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Market__c}">
                                                             <div class="inputField">
                                                                 <div class="panel-label bsFieldLabel">
                                                                     <apex:outputlabel styleClass="fontB"
                                                                         value="{!$Label.IPM_Market}" />
-                                                                         <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
-                                             </span>
                                                                 </div>
-                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false" 
+                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false"
                                                                         disabled="{!!editSubSector}" value="{!market_STR}">
                                                                         <apex:selectOptions value="{!lstmarket}" />
                                                                     </apex:selectList>
                                                                 </label>
                                                             </div>
                                                         </apex:outputPanel>
-                                                        <!-- If IPM_Sub_Sector__c field value is true, the below panel will be diplayed  -->
                                                         <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}">
                                                             <div class="inputField">
                                                                 <div class="panel-label bsFieldLabel">
-                                                                    <apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" />
-                                                                     <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
-                                             </span>
+                                                                    <apex:outputlabel value="{!$Label.IPM_Sub_Sector}" />
                                                                 </div>
-                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false" styleClass="subSectorSTR"
-                                                                        disabled="{!!editSubSector}" value="{!subSector_STR}" onchange="changelist();">
+                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false"
+                                                                        disabled="{!!editSubSector}" value="{!subSector_STR}">
                                                                         <apex:selectOptions value="{!lstsubsector}" />
                                                                     </apex:selectList>
                                                                 </label>
                                                             </div>
                                                         </apex:outputPanel>
                                                     </apex:outputPanel>
-                                                    <!-- If IPM_BET__c field value is true, the below panel will be diplayed  -->
                                                     <apex:outputpanel rendered="{!coreConfig.IPM_BET__c}"
                                                         id="betOptions">
                                                         <div class="col-sm-12 noPadleft radioButton">
@@ -517,20 +470,20 @@
                                         </apex:actionFunction>
                                         <apex:outputPanel id="abc">
                                             <apex:outputPanel id="BET1">
-                                            <!-- If IPM_BET_Toolkit__c field value is NoBET, the below message will be diplayed  -->
                                                 <apex:outputPanel rendered="{! if(or(IPM_Coreparameter.IPM_BET_Toolkit__c==$Label.IPM_BET_NoBET),true,false)}">
                                                     <span class="coreParam noBetMsg">
                                                         {!$Label.IPM_BET_No_BET_Message} </span>
                                                 </apex:outputPanel>
-                                                    <!-- If IPM_BET_Toolkit__c field value = $Label.IPM_BET_Link_Existing, the below message will be diplayed  -->
+                                                <apex:outputPanel rendered="{! if(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET,true,false)}">
+
                                                     <apex:outputPanel rendered="{!IPM_Coreparameter.IPM_BET_Toolkit__c==$Label.IPM_BET_Link_Existing}">
                                                         <span class="coreParam noBetMsg">
                                                             {!$Label.IPM_BET_DifferentReleaseDate_HelpText} </span>
+                                                    </apex:outputPanel>
                                                     <div class="col-sm-12 toolkitContainer noPadleft">
                                                         <apex:outputPanel id="xyz">
-                                                            <!-- If bLinkBET attribute is true, the below panel will be diplayed  -->
                                                             <apex:outputPanel rendered="{!bLinkBET}">
-                                                                <!-- If IPM_BET_Toolkit__c field value is not CreateNewBET && isOperational attribute is false, the below panel will be diplayed  -->
+
                                                                 <apex:outputPanel rendered="{!!isOperational&&IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.BET_CreateNewBet}">
                                                                     <div class="searchBox allProj-leftSide padL0">
                                                                         <apex:inputText value="{!searchstring}"
@@ -549,10 +502,8 @@
                                                                 </apex:outputPanel>
 
                                                                 <apex:outputPanel layout="block" id="idToRerender">
-                                                                <!-- If isEmptySearchResult attribute is true && searchresultBet size is zero, the below message will be diplayed  -->
                                                                     <span class="coreParam noBetMsg"> <apex:outputText rendered="{!AND(searchresultBet.size==0,isEmptySearchResult =true)}">{!$Label.IPM_BET_No_Result_Found}</apex:outputText>
                                                                     </span>
-                                                                    <!-- If searchresultBet size is not zero, the below message will be diplayed  -->
                                                                     <apex:outputPanel layout="block"
                                                                         styleClass="panel-label bsFieldLabel"
                                                                         rendered="{!searchresultBet.size>0}">
@@ -592,7 +543,7 @@
                                                                                                 </label></td>
 
                                                                                                 <apex:repeat value="{!classProperties}" var="be">
-                                                                                                    <!-- If classPropertiesMap is true, the param bet has the value -->
+
                                                                                                     <td><span>
 
                                                                                                             {!if(classPropertiesMap[be]==FALSE,bet[be],'')}
@@ -615,14 +566,7 @@
                                                                 </apex:outputPanel>
                                                             </apex:outputPanel>
                                                         </apex:outputPanel>
-                                                    </div>
-
-                                                </apex:outputPanel>
-                                                
-                                                <div class="col-sm-12 toolkitContainer noPadleft">
-                                                
-                                                  <!-- If bLinkBET attribute is false, the below panel will be diplayed  -->
-                                                        <apex:outputPanel rendered="{!AND(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET, !bLinkBET)}">
+                                                        <apex:outputPanel rendered="{!!bLinkBET }">
                                                             <apex:outputText value="{!PreSelectedBet.betName}" />
 
                                                             <!--this is trigger point of pop up --->
@@ -638,7 +582,9 @@
                                                                 rerender="abc,renderme,betOptions,gototeam"
                                                                 oncomplete="betCallBack();" />
                                                         </apex:outputPanel>
-                                                        </div>
+                                                    </div>
+
+                                                </apex:outputPanel>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
 
@@ -649,40 +595,35 @@
 
                                     <div class="row">
                                         <div class="skipButtoncontainer txtAlignright pull-right">
-                                        <!-- If isAdditionalCoreparameter attribute is false, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!!isAdditionalCoreparameter}"
                                                 styleClass="buttonmarRight noPadright pull-left">
                                                 <a onClick="skipTab(this);" class="teammembers ipmButton">{!$Label.IPM_Skip_for_now}</a>
                                             </apex:outputPanel>
-                                            <!-- If isAdditionalCoreparameter attribute is true, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!isAdditionalCoreparameter}"
                                                 layout="block" styleClass="buttonmarRight pull-left">
                                                 <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                                    onclick="refreshaddcorep();validate();">{!$Label.IPM_Reset}</a>
+                                                    onclick="refreshaddcorep();">{!$Label.IPM_Reset}</a>
                                             </apex:outputPanel>
                                             <apex:actionFunction name="savecorep" reRender="sectorMarket"
                                                 action="{!saveAdditionalCorep}"
                                                 oncomplete="updateAdditional();" />
                                             <apex:actionFunction name="refreshaddcorep"
                                                 reRender="marketmain" action="{!resetAnswer}" />
-                                                <!-- If isAdditionalCoreparameter attribute is true, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!isAdditionalCoreparameter}"
                                                 styleClass="buttonmarRight ml5 ipmFromAction noPadleft pull-right noPadright"
                                                 layout="block">
                                                 <a href="#" title="{!$Label.IPM_Update}"
-                                                    onClick="savecorep();skipValidation()" class="ipmButton primary">{!$Label.IPM_Update}</a>
+                                                    onClick="savecorep();" class="ipmButton primary">{!$Label.IPM_Update}</a>
                                             </apex:outputPanel>
-                                            <!-- If isAdditionalCoreparameter attribute is false, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!!isAdditionalCoreparameter}"
                                                 styleClass="buttonmarRight ml5 ipmFromAction noPadleft pull-right noPadright"
                                                 layout="block">
                                                 <apex:commandLink onComplete="selectTeam(this);"
                                                     Value="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                                    rendered="{!isEditable}" onClick="skipValidation();" action="{!saveAdditionalCorep}"
+                                                    rendered="{!isEditable}" action="{!saveAdditionalCorep}"
                                                     styleClass="teammembers ipmButton primary"
                                                     reRender="pgmsg,gototeam,marketMsg1,helpTxt,helpTxt2,helpTxt3,Quest2,Quest3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg,marketmain" />
                                             </apex:outputPanel>
-                                            <!-- If isAdditionalCoreparameter attribute is false, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!!isAdditionalCoreparameter}"
                                                 layout="block"
                                                 styleClass="buttonmarRight backButton pull-right">
@@ -703,7 +644,6 @@
                 <div class="row helpContent">
                     <apex:outputPanel layout="block" styleClass="cpTextContainer"
                         id="helpTxt">
-                        <!-- If IPM_MPA__c field value is true, the below panel will be diplayed  -->
                         <apex:outputPanel layout="block" styleClass="cpInnerContainer"
                             rendered="{!coreConfig.IPM_MPA__c}">
 
@@ -731,38 +671,32 @@
                 </div>
 
                 <div class="skipButtoncontainer txtAlignright pull-right">
-                <!-- If isEditCoreparameter attribute is false, the below panel will be diplayed  -->
                     <apex:outputPanel styleClass="buttonmarRight noPadright pull-left"
                         layout="block" rendered="{!!isEditCoreparameter}">
                         <a onClick="skipTab(this);" class="teammembers ipmButton">{!$Label.IPM_Skip_for_now}</a>
                     </apex:outputPanel>
-                    <!-- If isEditCoreparameter attribute is true, the below panel will be diplayed  -->
                     <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                         styleClass="buttonmarRight pull-left">
                         <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                            onclick="resetqone();validate();">{!$Label.IPM_Reset}</a>
+                            onclick="resetqone();">{!$Label.IPM_Reset}</a>
                     </apex:outputPanel>
-                    <!-- If isEditCoreparameter attribute is false, the below panel will be diplayed  -->
                     <apex:outputPanel styleClass="buttonmarRight backButton pull-left"
                         layout="block" rendered="{!!isEditCoreparameter}">
                         <a onClick="backTab(this);" title="{!$Label.IPM_Back}"
                             id="prevControl" class="projectdetails ipmButton">{!$Label.IPM_Back}</a>
                     </apex:outputPanel>
                     <div class="pull-left ml5">
-                    <!-- If isMPAEditable attribute is true && editMarketActivityByPL attribute is false, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!AND(isMPAEditable,!editMarketActivityByPL)}">
                             <a href="#myCarousel" data-slide="next"
                                 title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                onclick="skipValidation(),saveselectedAns();" id="nextControl"
+                                onclick="saveselectedAns();" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
-                        <!-- If isMPAEditable attribute is true && editMarketActivityByPL attribute is true, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!AND(isMPAEditable,editMarketActivityByPL)}">
                             <a href="#myCarousel" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                onclick="skipValidation(),saveselectedbdAns();" id="nextControl"
+                                onclick="saveselectedbdAns();" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
-                        <!--If isMPAEditable attribute is false, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!!isMPAEditable}">
                             <a href="#myCarousel" data-slide="next"
                                 title="{!$Label.IPM_Continue}" id="nextControl"
@@ -777,7 +711,6 @@
                 <div class="row helpContent">
                     <apex:outputPanel layout="block" styleClass="cpTextContainer"
                         id="helpTxt2">
-                        <!--If IPM_CPV__c firld value is true, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!coreConfig.IPM_CPV__c}">
 
                             <div class="col-xs-12 helpDesc">
@@ -804,25 +737,21 @@
                 </div>
                 <div class="row modalBottom">
                     <div class="skipButtoncontainer txtAlignright pull-right">
-                    <!--If isEditCoreparameter attribute value is false, the below panel will be diplayed  -->
                         <apex:outputPanel styleClass="buttonmarRight noPadright pull-left"
                             layout="block" rendered="{!!isEditCoreparameter}">
                             <a onClick="skipTab(this);" class="teammembers ipmButton">{!$Label.IPM_Skip_for_now}</a>
                         </apex:outputPanel>
-                        <!--If isEditCoreparameter attribute value is true, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                             styleClass="buttonmarRight pull-left">
                             <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                onComplete="resetqtwo();" onclick="resetqtwo();validate();">{!$Label.IPM_Reset}</a>
+                                onComplete="resetqtwo();" onclick="resetqtwo();">{!$Label.IPM_Reset}</a>
                         </apex:outputPanel>
-                        <!--If isMPABack attribute value is true, the below panel will be diplayed  -->
                         <apex:outputPanel layout="block"
                             styleClass="buttonmarRight backButton pull-left"
                             rendered="{!isMPABack}">
                             <a title="{!$Label.IPM_Back}" onClick="backTab(this);"
                                 id="prevControl" class="projectdetails ipmButton">{!$Label.IPM_Back}</a>
                         </apex:outputPanel>
-                        <!--If IPM_MPA__c field value is true, the Back button will be diplayed  -->
                         <apex:outputPanel layout="block"
                             styleClass="buttonmarRight backButton pull-left"
                             rendered="{!coreConfig.IPM_MPA__c}">
@@ -830,20 +759,18 @@
                                 title="{!$Label.IPM_Back}" id="prevControl" class="ipmButton">{!$Label.IPM_Back}</a>
                         </apex:outputPanel>
                         <div class="buttonmarRight pull-left ml5">
-                        <!--If isEditable attribute value is true, the below IPM_SAVE_AND_CONTINUE will be diplayed  -->
                             <apex:outputPanel rendered="{!isEditable}">
                                 <a href="#myCarousel" data-slide="next"
-                                    onclick="skipValidation(),saveselectedAns();"
+                                    onclick="saveselectedAns();"
                                     title="{!$Label.IPM_SAVE_AND_CONTINUE}" id="nextControl"
                                     class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                             </apex:outputPanel>
-                            <!--If editCPVByBD attribute value is true, the below IPM_SAVE_AND_CONTINUE will be diplayed  -->
+
                             <apex:outputPanel rendered="{!editCPVByBD}">
-                                <a href="#myCarousel" onclick="skipValidation(),saveselectedbdAns();"
+                                <a href="#myCarousel" onclick="saveselectedbdAns();"
                                     title="{!$Label.IPM_SAVE_AND_CONTINUE}"
                                     class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                             </apex:outputPanel>
-                            <!--If isCPVEditable attribute value is false, the below panel will be diplayed  -->
                             <apex:outputPanel rendered="{!!isCPVEditable}">
                                 <a href="#myCarousel" data-slide="next"
                                     title="{!$Label.IPM_Continue}" id="nextControl"
@@ -857,7 +784,6 @@
                 <div class="row helpContent">
                     <apex:outputPanel layout="block" styleClass="cpTextContainer"
                         id="helpTxt3">
-                        <!--If IPM_ET__c field value is true, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!coreConfig.IPM_ET__c}">
                             <div class="col-xs-12 helpDesc">
                                 <apex:outputField value="{!lstIpmCoreHelpQ3.IPM_Core_Parameter_Helps__c}" />
@@ -882,19 +808,16 @@
                 </div>
                 <div class="row modalBottom">
                     <div class="skipButtoncontainer txtAlignright pull-right">
-                    <!--If isEditCoreparameter attribute value is false, the below Skip For Now will be diplayed  -->
                         <apex:outputPanel layout="block"
                             styleClass="buttonmarRight noPadright pull-left"
                             rendered="{!!isEditCoreparameter}">
                             <a onClick="skipTab(this);" class="teammembers ipmButton">{!$Label.IPM_Skip_for_now}</a>
                         </apex:outputPanel>
-                        <!--If isEditCoreparameter attribute value is true, the below will be diplayed  -->
                         <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                             styleClass="buttonmarRight pull-left">
                             <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                onComplete="resetqthree();" onclick="resetqthree();validate();">{!$Label.IPM_Reset}</a>
+                                onComplete="resetqthree();" onclick="resetqthree();">{!$Label.IPM_Reset}</a>
                         </apex:outputPanel>
-                        <!--If editETByTPL attribute value is false, the below will be diplayed  -->
                         <apex:outputPanel layout="block"
                             styleClass="buttonmarRight pull-left" rendered="{!!editETByTPL}">
                             <div class="backButton pull-left">
@@ -902,22 +825,20 @@
                                     title="{!$Label.IPM_Back}" id="prevControl" class="ipmButton">{!$Label.IPM_Back}</a>
                             </div>
                         </apex:outputPanel>
-                        <!--If editETByTPL attribute value is false, the below will be diplayed  -->
                         <apex:outputPanel layout="block"
                             styleClass="buttonmarRight pull-left" rendered="{!!editETByTPL}">
                             <div class="pull-left ml5">
                                 <a href="#myCarousel" data-slide="next"
                                     title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                    onclick="skipValidation(),saveselectedAns();" id="nextControl"
+                                    onclick="saveselectedAns();" id="nextControl"
                                     class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                             </div>
                         </apex:outputPanel>
-                        <!--If editETByTPL attribute value is true, the below will be diplayed  -->
                         <apex:outputPanel layout="block"
                             styleClass="buttonmarRight pull-left ml5"
                             rendered="{!editETByTPL}">
                             <a href="#myCarousel" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                onclick="skipValidation(),saveselectedbdAns();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
+                                onclick="saveselectedbdAns();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
                     </div>
                 </div>
@@ -934,6 +855,7 @@
       </script>
     </apex:outputPanel>
 
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Coreparameter_BET.js')}" type="text/javascript"></script>
-    
+    <script
+        src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Coreparameter_BET.js')}"
+        type="text/javascript"></script>
 </apex:component>

@@ -12,7 +12,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public IPM_Project__c project {get; set;} //The project record for which the rollouts are being viewed   
     public IPM_Project_Type__c projectType {get;set;}
   
-    
+    @TestVisible private Map<Id, Id> rolloutCCMap {get; set;} //Map of Local Rollouts to Local Company card matching Geographical scope
     @TestVisible private Set<String> setRegionalProjectNames {get; set;} //Set of Regional Projects which have already been created for this project hierarchy
     @TestVisible private Set<String> setLocalProjectNames {get; set;} //Set of Local Projects which have already been created for this project hierarchy
     @TestVisible private String[] MCOfilters;
@@ -41,7 +41,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public Integer rolloutCount{get; set;} // To calculate the count of rollouts to show on the page
     public Boolean isRolloutEditable{get;set;} ////If the Rollout can be edited
     public Boolean isEligibleToAddRollout {get;set;} //If the user is eligible to add Rollout
-    public Map<String,Boolean> nonKeyMcoTLDMisalignedMap {get;set;} // CR0355 - Map to capture non-key mco TLD misalignment.
     
     public Boolean isError {get; set;} //Boolean variable to indicate error on page
     public String errorMessage {get; set;} //Error Message to be displayed on the page  
@@ -50,8 +49,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public static final String CANCEL_REDIRECT = 'cancelRedirect';
     public static final String BOOLEAN_TRUE = 'true';
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
-    public Boolean isArchiveFalse = false;
-	public Boolean changeDateVal {get;set;}
+    
     @TestVisible private static final String ID_PARAMETER = 'Id';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
     @TestVisible private static final String SAVE_ROLLOUT = 'saveRollout';
@@ -114,9 +112,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     	isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
-		changeDateVal = false;
-        // initialisation
-       	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
+       
        	if(projectTolocalRolloutToCountryMap!=null)
        	{
        		projectTolocalRolloutToCountryMap.clear();
@@ -146,7 +142,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                            IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
                            IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c,
                            IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,  
-                           (SELECT Id, Is_Archieved__c,IPM_Project_Name__c FROM IPM_Projects__r),
+                           (SELECT Id, IPM_Project_Name__c FROM IPM_Projects__r),
                            (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
                            FROM IPM_Project__c 
                            WHERE Id=:projectId LIMIT 1];
@@ -297,9 +293,36 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                                WHERE RecordTypeId =:REGIONAL_COMPANYCARD_RECORDTYPE AND IPM_TxtGeographical_Scope__c like :MCOfilters
                                AND IPM_Managed_Category__c INCLUDES(:project.IPM_Category_Text__c) LIMIT 50000];
             
-        
+        rolloutCCMap = new Map<Id, Id>();
 
-        
+        //Create map rolloutCCMap for each local company card with Geographical_Scope matches rollout country names
+        for(IPM_Company_Card__c userCC : lstUserLocalCompanyCards )
+        {
+            for(Id localRolloutId : rolloutCountryNamesMap.keySet())
+            {
+                List<IPM_country__c> associatedCountryList  = rolloutCountryNamesMap.get(localRolloutId); 
+                for(IPM_Country__c country : associatedCountryList)
+                {
+                    if( !String.isBlank(country.Country_Name__c) &&  (userCC.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && userCC.IPM_Managed_Category__c.contains(project.IPM_Category_Text__c) && !rolloutCCMap.containsKey(localRolloutId)) || (Test.isRunningTest()))
+                    {
+                        rolloutCCMap.put(localRolloutId, userCC.Id);
+                    }
+                }
+            }
+        }  
+            
+        for(IPM_Company_Card__c userCC : lstUserRegionalCompanyCards )
+        {
+            for(Id tempRegionalRolloutId : marketClusterRolloutMap.keySet())
+            { 
+                String marketCluster = marketClusterRolloutMap.get(tempRegionalRolloutId);   
+                
+                if(!String.isBlank(marketCluster) && (userCC.IPM_TxtGeographical_Scope__c.contains(marketCluster) && userCC.IPM_Managed_Category__c.contains(project.IPM_Category_Text__c) && !rolloutCCMap.containsKey(tempRegionalRolloutId)) || (Test.isRunningTest()))
+                {
+                    rolloutCCMap.put(tempRegionalRolloutId, userCC.Id);
+                }
+            }
+        }       
     }
     
     /*******************************************************************************************************
@@ -357,7 +380,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                if (field != ID_PARAMETER)
                 {
                     queryString+= field + ', ';
                 }
@@ -368,15 +391,15 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             queryString+= ' (SELECT ';
             for (String field : Schema.SObjectType.IPM_Project__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                if (field != ID_PARAMETER)
                 {
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id from IPM_Projects__r  where Is_Archieved__c =: isArchiveFalse';
+            queryString+= ' Id from IPM_Projects__r  where Is_Archieved__c = false';
             queryString+= ' ORDER BY IPM_Project_Name__c) ';
           
-            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan AND Is_Archieved__c =: isArchiveFalse ';
+            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan AND Is_Archieved__c = false ';
             queryString+= ' ORDER BY IPM_Project_Name__c LIMIT 50000';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString) );
@@ -409,8 +432,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             String localSpan = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;//used in the query below
             
-            String queryString = ' SELECT Id,Is_Archieved__c ,Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c,IPM_Finance_Member__r.SmallPhotoUrl,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
-            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan AND Is_Archieved__c =: isArchiveFalse';
+            String queryString = ' SELECT Id, Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c,IPM_Finance_Member__r.SmallPhotoUrl,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
+            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan AND Is_Archieved__c = FALSE';
             queryString+= ' ORDER BY IPM_Project_Name__c';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString));
@@ -435,7 +458,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                if (field != ID_PARAMETER)
                 {
                     queryLocalRolloutString += field + ', ';
                 }
@@ -505,7 +528,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                if (field != ID_PARAMETER)
                 {
                     localRolloutQuery += field + ', ';
                 }
@@ -514,7 +537,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                if (field != ID_PARAMETER)
                 {
                     localRolloutQuery += field + ', ';
                 }
@@ -561,7 +584,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                if (field != ID_PARAMETER)
                 {
                     queryString+= field + ', ';
                 }
@@ -577,7 +600,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             //IPM PROJECT ROLLOUT
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (!(field.equalsignoreCase(ID_PARAMETER))) 
+                if (field != ID_PARAMETER) 
                 {
                     queryString+= field + ', ';
                 }
@@ -611,12 +634,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 lstcompleteRollout.put(localRollout.Id,localRollout); // Add Local Rollouts to the Compltete List
             }
         }
-        // CR0355 - populate 'nonKeyMcoTLDMisalignedMap' with default values to avoid element not found exception
-         for (IPM_Project_Rollout__c localRollout : lstcompleteRollout.values()) {
-                if( nonKeyMcoTLDMisalignedMap.isEmpty() || !nonKeyMcoTLDMisalignedMap.keySet().contains(localRollout.Regional_Rollout_External_Id__c) ) {
-                	nonKeyMcoTLDMisalignedMap.put(localRollout.Regional_Rollout_External_Id__c,false);
-                }
-        }   
             
         Map<Id,List<IPM_Country__c>> localRolloutToCountryMap = getLocalRolloutToCountryMapping(localRolloutIdSet);
                   
@@ -715,12 +732,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference saveRollout()
     {
-       // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
-       for(String key: nonKeyMcoTLDMisalignedMap.keySet()) {
-       		nonKeyMcoTLDMisalignedMap.put(key,false);
-       }
-       
-       	try
+        try
         {   
             Map<Id,IPM_Project_Rollout__c> updaterolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
                          
@@ -757,7 +769,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                                 localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
                             } 
                             
-                            
+                            if(rolloutCCMap != null && rolloutCCMap.isEmpty() && rolloutCCMap.containsKey(localRolloutId))
+                            {
+                               localRollout.IPM_Company_Card__c = rolloutCCMap.get(localRolloutId);
+                            }
                         
                             // No Date has been set. Set the first Date.
                             if(minimalDate == null || localRollout.Target_Launch_Date__c < minimalDate)
@@ -776,7 +791,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     }
                     
                     
-                                    
+                    if(rolloutCCMap.containsKey(rolloutId))
+                    {
+                        rollout.IPM_Company_Card__c = rolloutCCMap.get(rolloutId);
+                    } 
+                                       
                     updaterolloutsMap.put(rolloutId,rollout); 
                 }
             }     
@@ -799,7 +818,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
-                        if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) || rollout.Target_Launch_Date__c <= System.today())
+                        if(rollout.Target_Launch_Date__c < System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
@@ -810,14 +829,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                           
                             break;
                         }       
-                    } 
-                    // CR0355 implementation starts
-                    validateNonKeyMcoTLDMisalignment(updaterolloutsMap);
-                    // CR0355 implementation ends
+                    }               
                     
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
-                        if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) ||rollout.Target_Launch_Date__c <= System.today())
+                        if(rollout.Target_Launch_Date__c < System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
@@ -828,7 +844,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project__c localProject : updateLocalProjTLDList)
                     {
-                        if(String.isBlank(String.valueOf(localProject.Rollout_Plan_Target_Launch_Date__c)) || localProject.Rollout_Plan_Target_Launch_Date__c <= System.today())
+                        if(localProject.Rollout_Plan_Target_Launch_Date__c < System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
@@ -852,20 +868,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                         update updateLocalProjTLDList;
                     }
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.IPM_PROCESSING_REQUEST));
-					if(!changeDateVal)
-                    {
-                    	isEditMode=false ;
-
-                    }else if(changeDateVal){
-                        isEditMode=true;
-                    }
-                    
-					string editVal = string.valueOf(isEditMode);
-                    PageReference rolloutPlans = Page.IPM_RolloutPlans;
-		            rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
-		            rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, editVal);               
-		            rolloutPlans.setRedirect(true);
-		            return rolloutPlans;
+                    isEditMode=false;
+                    return refreshPage();
                 } 
                 else
                 {
@@ -881,39 +885,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         }
         return null;
     }
-
-    /*******************************************************************************************************
-    * @description  Method to Validate Non-Key TLD misalignment
-    * @param        Updated Project rollouts
-    * @return       None
-    */
-   
-    private void validateNonKeyMcoTLDMisalignment( Map<Id,IPM_Project_Rollout__c> updaterolloutsMap ) {
-            // The TLD misalignment check is only for Global/Regional original projects in Ideas phase
-            if( project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL||project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) {
-                Map<String,Date> mcoTLDMap = new Map<String,Date>();
-                Date mcoTDL;
-                // iterate through rollouts
-                for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values()) {
-                    // we are interested only in non-key local rollouts
-                    if(!rollout.KeyMCO__c && rollout.IPM_Rollout_Span__c  ==IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL) {
-                    	// get the non-key local rollouts TLDs into Map with its regional external id as key
-                    	mcoTDL = mcoTLDMap.get(rollout.Regional_Rollout_External_Id__c);
-                    	if(mcoTDL==null) {
-                    		// for the first time 'mcoTLDMap' will be empty, fill it with first mco TLD
-                    		mcoTLDMap.put(rollout.Regional_Rollout_External_Id__c,rollout.Target_Launch_Date__c);
-                    		continue;
-                    	}
-                    	if(mcoTLDMap.get(rollout.Regional_Rollout_External_Id__c)!=rollout.Target_Launch_Date__c) {
-                    		// if any of the non-key local rollout TLDs are not same, raise validation error 
-                    	    nonKeyMcoTLDMisalignedMap.put(rollout.Regional_Rollout_External_Id__c,true);
-                    		validationError = Label.IPM_NonMCO_TLD_Misaligned;
-                    	}
-                    }       
-                }
-            }
-
-    }
     
     /*******************************************************************************************************
     * @description  Method to refresh the page to keep proper edit mode
@@ -926,7 +897,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         rolloutPlans = Page.IPM_RolloutPlans;
         rolloutPlans.getParameters().put(ID_PARAMETER, projectId);                
         rolloutPlans.setRedirect(true);
-        
+        isEditMode=false;
         return rolloutPlans;
     }
     
@@ -938,7 +909,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public PageReference cancelRollout()
     {
         //Method invoked in IPM_LocalRolloutPlansTable component
-		isEditMode=false;
         return refreshPage();
     }
     
@@ -952,29 +922,13 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         try
         {
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,Local_Project__c,IPM_CharterApproved__c,Regional_Project__c,IPM_Project__c,Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
-            
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,IPM_CharterApproved__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
             if(!deleteRolloutList.isEmpty())
             {
-                    
-                    if(deleteRolloutList[0].Local_Project__c!=null)
-                    {
-                    	
-                      IPM_Project__c toBeArchievedProject = new IPM_Project__c();
-                      toBeArchievedproject.Id=deleteRolloutList[0].Local_Project__c;
-                      toBeArchievedproject.Is_Archieved__c=true;
-                      update toBeArchievedProject;
-                    
-						//recalculate TLD when rollout is inactive
-					  Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> ();
-					  rolloutProjectTLDChanged.put(deleteRolloutList[0].id,deleteRolloutList[0]);
-					  IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-					  rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
-                    }
-                else if(deleteRolloutList[0].IPM_CharterApproved__c)
-        		{
-        			deleteRolloutList[0].isActive__c = false; 
-                	update deleteRolloutList[0];
+                if(deleteRolloutList[0].IPM_CharterApproved__c)
+                {
+                    deleteRolloutList[0].isActive__c = false; 
+                    update deleteRolloutList[0];
                 }
                 else
                 {

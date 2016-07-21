@@ -11,7 +11,7 @@
 <!-- Attribute Definition -->
 <apex:attribute name="myObjectName" description="Object we wish to view the history of" type="SObject" required="true" assignTo="{!myObject}" />
 <apex:attribute name="recordLimitCount" description="Number of lines of history to display" type="Integer" required="false" assignTo="{!recordLimit}" />
-<div class="col-xs-12 ipmSecHistoryTab" id="ipmSecHistoryTab">
+<div class="col-xs-12" id="ipmSecHistoryTab">
 <div class="row">
    <div class="panel-group">                               
    <ul class="ipmTabs">
@@ -27,7 +27,6 @@
 <div>
 <div class="panel-group">
 <apex:repeat value="{!ObjectHistory}" var="History">
-<!-- Below rendered is used to show image -->
 <apex:outputPanel rendered="{!IF(History.FieldName='Gate Document Summary',True,False)}">
 <div class="row ">
     <div class="col-xs-2">
@@ -63,7 +62,6 @@
 <div>
 <div class="panel-group">
 <apex:repeat value="{!ObjectHistory}" var="History2">
-<!-- Below rendered is used to show image -->
 <apex:outputPanel rendered="{!IF(History2.FieldName='PDP Document Summary',True,False)}">
 <div class="row ">
     <div class="col-xs-2">

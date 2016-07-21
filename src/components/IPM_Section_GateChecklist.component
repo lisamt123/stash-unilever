@@ -11,7 +11,6 @@
     <apex:attribute name="getSecid" description="Pass the document type parameter" type="ID" required="true" assignTo="{!SecId}" />
     <apex:attribute name="getDocType" description="Pass the document type parameter" type="String" required="true" assignTo="{!gateType}" />
     <apex:outputPanel layout="block" id="ren">
-       <!--Below rendered condition is used to show the checklist question-->
         <apex:outputPanel layout="block" styleClass="altBGcolor" rendered="{!AND(gkChecklist!=null,gkChecklist.size>0)}"> 
             <table class="ipmTable table table-bordered gkTable otifTable"> 
                 <tbody>
@@ -23,38 +22,38 @@
                             <tr>   
                                 <th>{!$Label.IPM_GATEKEEPER_CHECKLIST}</th>
                             </tr>
-                            <apex:variable var="counter" value="{!0}" />
                             <apex:repeat value="{!gkChecklist}" var="gk">
-                          <!--Below rendered condition is used to show checklist question for particular master section external id-->
                             <apex:outputPanel layout="block" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==gk.IPM_Section_External_Id__c,true,false)}">
                             <tr>   
                                 <td>
-                                    <apex:outputText value="{!gk.IPM_Question__c}"/> 
+                                    <apex:outputText value="{!gk.IPM_Question__c}"/>
                                 </td>
                             </tr>
-                            <tr>     
-                                <td> 
-                                <!--Below rendered condition is used to show slider for checklist question-->
+                            <tr>    
+                                <td>
                                     <apex:outputPanel rendered="{!isEditable}">                                        
-                                        <apex:outputPanel id="gkSecSlide" styleClass="sliderGk sliderDynamic">
-                                            <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
-                                            <div class="legendSld gateKeeperSlider" id="legendSldGK{!counter}">
-                                                <apex:variable var="counter" value="{!counter+1}" /> 
-                                                <apex:selectRadio value="{!ans}"  onclick="updateSecGateKeeperList('{!gk.Id}',this.value,'{!JSENCODE(gk.IPM_Comments__c)}',false);" styleClass="info" id="radioResponseGK" >
-                                                    <apex:selectOptions value="{!gkChecklistAnsMap[gk.Id]}" id="selectoptionsGK"/> 
-                                                </apex:selectRadio><br/>  
+                                        <apex:outputPanel id="gkSecSlide" styleClass="sliderGk">
+                                        <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
+                                            <div class="legendSld gateKeeperSlider">
+                                                <label for="s0" onclick="updateSecGateKeeperList('{!gk.Id}','0','{!JSENCODE(gk.IPM_Comments__c)}',false);">{!$Label.IPM_SELECT}</label>
+                                                <input type="radio" name="score" id="s0" value="0" />
+                                                <label for="s1" onclick="updateSecGateKeeperList('{!gk.Id}','{!$Label.IPM_YES}','{!JSENCODE(gk.IPM_Comments__c)}',false);" class="info" title="{!gk.IPM_HelpText_Yes__c}">{!$Label.IPM_YES}</label>
+                                                <input type="radio" name="score" id="s1" value="{!$Label.IPM_YES}"/>
+                                                <label for="s2" onclick="updateSecGateKeeperList('{!gk.Id}','{!$Label.IPM_PARTLY}','{!JSENCODE(gk.IPM_Comments__c)}',false);" class="info" title="{!gk.IPM_HelpText_Partly__c}">{!$Label.IPM_PARTLY}</label>
+                                                <input type="radio" name="score" id="s2" value="{!$Label.IPM_PARTLY}"  />
+                                                <label for="s3" onclick="updateSecGateKeeperList('{!gk.Id}','{!$Label.IPM_NO}','{!JSENCODE(gk.IPM_Comments__c)}',false);" class="info" title="{!gk.IPM_HelpText_No__c}">{!$Label.IPM_NO}</label>
+                                                <input type="radio" name="score" id="s3" value="{!$Label.IPM_NO}"  />
+                                                <label for="s4" onclick="updateSecGateKeeperList('{!gk.Id}','{!$Label.IPM_NO_APPLICABLE}','{!JSENCODE(gk.IPM_Comments__c)}',false);" class="info" title="{!gk.IPM_Question_Help_Text__c}">{!$Label.IPM_NA}</label>
+                                                <input type="radio" name="score" id="s4" value="{!$Label.IPM_NO_APPLICABLE}"  />
                                             </div> 
                                         </apex:outputPanel>
                                     </apex:outputPanel>
-                                    <!--Below rendered condition is used to show the below text-->
-                                    <apex:outputText rendered="{!!isEditable}" id="gkAnswer"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!gk.IPM_GK_Answers__c}</div></apex:outputText>
+                                    <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!gk.IPM_GK_Answers__c}</div></apex:outputText>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <!--Below rendered condition is used to show the below text-->
                                     <apex:outputText value="{!gk.IPM_Comments__c}" rendered="{!!isEditable}"/> 
-                                    <!--Below rendered condition is used to show the below input text area-->
                                     <apex:inputTextarea styleClass="gkComments" value="{!gk.IPM_Comments__c}"  onchange="updateSecGateKeeperList('{!gk.Id}','{!gk.IPM_GK_Answers__c}',this.value,true);" rendered="{!isEditable}" />
                                 </td>
                             </tr>
@@ -63,7 +62,7 @@
                 </tbody>
             </table>  
         </apex:outputPanel>
-        <!--Below rendered condition is used to call action function which in turn will call updateGKchecklist method-->
+
         <apex:actionFunction name="callupdateSecGateKeeperList" action="{!updateGKchecklist}" reRender="" rendered="{!isEditable}" >
         <apex:param name="firstParam" assignTo="{!quesId}" value=""/>
         <apex:param name="secondParam" assignTo="{!ans}" value=""/>

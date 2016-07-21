@@ -2,40 +2,40 @@
 
     <apex:stylesheet value="{!$Resource.BET}/css/betSuggestedMembers.css"/> 
 
-	<apex:attribute name="betobj" description="Current BET object" 
+    <apex:attribute name="betobj" description="Current BET object" 
                     type="uw_BET__c" required="true" assignTo="{!bet}"/>
-	<apex:attribute name="cdata" description="Component Data Transfer Object" 
+    <apex:attribute name="cdata" description="Component Data Transfer Object" 
                     type="BET_CategoryComponentData" required="true" assignTo="{!compData}" />
-	<apex:attribute name="cancelURL" description="Cancel action redirect URL" 
+    <apex:attribute name="cancelURL" description="Cancel action redirect URL" 
                     type="String" required="false" assignTo="{!retUrl}" />
-	<apex:attribute name="saveURL" description="Save action redirect URL" 
+    <apex:attribute name="saveURL" description="Save action redirect URL" 
                     type="String" required="false" assignTo="{!forwardUrl}" />
 
 
     <apex:outputPanel id="mainBETPanels" rendered="{!NOT(goToMemberSelection)}">
-		<div class="form-header" style="{!If(bet.id == null,'','display:none')}">
-    		<div class="form-item-header">
+        <div class="form-header" style="{!If(bet.id == null,'','display:none')}">
+            <div class="form-item-header">
                 <div class="item-label">
-    				<apex:outputLabel >{!$Label.BET_Header}</apex:outputLabel>
-        		</div>
-        	</div>
+                    <apex:outputLabel >{!$Label.BET_Header}</apex:outputLabel>
+                </div>
+            </div>
         </div>
         
         <hr class="betLine" style="{!If(bet.id == null,'','display:none')}"/> 
 
         <div>
-        	<div class="form-mandatory" style="{!If(bet.id == null,'','display:none')}">
+            <div class="form-mandatory" style="{!If(bet.id == null,'','display:none')}">
                 <div class="item-label">
-        			<apex:outputLabel >
+                    <apex:outputLabel >
                         {!$Label.BET_MandatoryStar} {!$Label.BET_MarkedFieldsMandatory}
                     </apex:outputLabel>
-        		</div>
-        	</div>
-    	</div>
+                </div>
+            </div>
+        </div>
 
-		<div class="{!If(bet.id == null,'frameTableWrapper','')}">
-		<table class="{!If(bet.id == null,'frameTable','editTable')}" style="{!If(bet.id == null,'','width:100%;')}">
-		<tr><td>
+        <div class="{!If(bet.id == null,'frameTableWrapper','')}">
+        <table class="{!If(bet.id == null,'frameTable','editTable')}" style="{!If(bet.id == null,'','width:100%;')}">
+        <tr><td>
 
         <div class="form-item-wrapper">
             <div class="form-item">
@@ -67,13 +67,13 @@
 
             <div class="form-item" style="padding-top:10px;">
                 <div class="item-label">
-                  	<apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
-                        		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
-                        		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
                 </div>
                 <div class="item-input-date">
-                  	<apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
+                    <apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
                     <script>
                         document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}
                     </script>
@@ -118,11 +118,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+       </div>
         
         </td></tr>
         </table>
-		</div>
+        </div>
         <div class="betActionButtons" style="{!If(bet.id == null,'','display:none')}">
             <apex:commandButton value="{!$Label.BET_Cancel}" styleClass="btn-cancel" 
                                 action="{!cancelBET}" immediate="true"/>

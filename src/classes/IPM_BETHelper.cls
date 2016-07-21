@@ -302,8 +302,7 @@ public without sharing class IPM_BETHelper {
         }
     }
     
-    //Method to update Archived BET details on Project.
-	public static void setArchiveBET_IPM(BET_BETWrapper BET) {
+    public static void setArchiveBET_IPM(BET_BETWrapper BET) {
         list < IPM_Project__c > lstIPM = new list < IPM_Project__c > ();
         for (IPM_Project__c ipm: [select id from IPM_Project__c where bet__c = : BET.betid limit 50000]) {
             ipm.BET_Archived_BET__c = BET.betid;
@@ -316,19 +315,4 @@ public without sharing class IPM_BETHelper {
             update lstIPM;
         }
     }
-	//Method to update BET details on IPM
-	@future
-	public static void updateBETlinktoProject(id betId, id projectId){
-		IPM_Project__c proj = new IPM_Project__c();
-		try{
-			proj = [select bet__c,id from IPM_Project__c where id = :projectId  LIMIT 1  FOR UPDATE];
-			if(betId!=null){
-				proj.BET__c = betId;
-				update proj;
-			}
-		}catch(exception ex){
-			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETHelper.class.getName(),'updateBETlinktoProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, ex.getStackTraceString(), null, null) ;	
-		}
-	}
-	
 }

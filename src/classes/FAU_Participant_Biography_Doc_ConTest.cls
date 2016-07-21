@@ -38,39 +38,39 @@ public class FAU_Participant_Biography_Doc_ConTest{
         
         System.runAs(u1){
             
-        	FAU_Program__c programobj = new FAU_Program__c();
-        	programobj.name = 'TestName';
-        	programobj.FAU_Primary_Location__c = 'TestLocation';
-        	programobj.FAU_Invitation_ResponseDeadline__c = system.Today();
-        	programobj.FAU_Status__c='Draft';
-        	programobj.recordTypeId =  Schema.SObjectType.FAU_Program__c.getRecordTypeInfosByName().get('Core').getRecordTypeId();
+            FAU_Program__c programobj = new FAU_Program__c();
+            programobj.name = 'TestName';
+            programobj.FAU_Primary_Location__c = 'TestLocation';
+            programobj.FAU_Invitation_ResponseDeadline__c = system.Today();
+            programobj.FAU_Status__c='Draft';
+            programobj.recordTypeId =  Schema.SObjectType.FAU_Program__c.getRecordTypeInfosByName().get('Core').getRecordTypeId();
         
-        	insert programobj;
+            insert programobj;
         
-        	FAU_Webinar__c webinarobj = new FAU_Webinar__c();
-        	webinarobj.FAU_Title__c='TestTitle';
-        	webinarobj.FAU_Program_Wave__c = programobj.id;
-        	webinarobj.FAU_Start_Time__c = system.now();
-        	webinarobj.FAU_End_Time__c = system.now();
-        	webinarobj.FAU_URL__c = 'www.google.com';
-        	webinarobj.FAU_Description__c = 'test description';
+            FAU_Webinar__c webinarobj = new FAU_Webinar__c();
+            webinarobj.FAU_Title__c='TestTitle';
+            webinarobj.FAU_Program_Wave__c = programobj.id;
+            webinarobj.FAU_Start_Time__c = system.now();
+            webinarobj.FAU_End_Time__c = system.now();
+            webinarobj.FAU_URL__c = 'www.google.com';
+            webinarobj.FAU_Description__c = 'test description';
         
-        	insert webinarobj;
+            insert webinarobj;
         
-        	programobj.FAU_Status__c='Active';
-        	update programobj;
+            programobj.FAU_Status__c='Active';
+            update programobj;
         
-        	FAU_Participant__c participantobj= new FAU_Participant__c();
-        	participantobj.FAU_Program_Wave__c =programobj.id;
-        	participantobj.FAU_User__c = u.id;
-        	participantobj.FAU_Invite_State__c='Accepted';
+            FAU_Participant__c participantobj= new FAU_Participant__c();
+            participantobj.FAU_Program_Wave__c =programobj.id;
+            participantobj.FAU_User__c = u.id;
+            participantobj.FAU_Invite_State__c='Accepted';
         
-        	insert participantobj;
+            insert participantobj;
         
-        	PageReference pf = new PageReference('/apex/FAU_Participant_Biography_Doc?Id='+programobj.id);
-        	test.setCurrentPage(pf);
-        	ApexPages.StandardController controller = new ApexPages.StandardController(programobj);
-        	FAU_Participant_Biography_Doc_Controller testctrl = new FAU_Participant_Biography_Doc_Controller(controller);
+            PageReference pf = new PageReference('/apex/FAU_Participant_Biography_Doc?Id='+programobj.id);
+            test.setCurrentPage(pf);
+            ApexPages.StandardController controller = new ApexPages.StandardController(programobj);
+            //FAU_Participant_Biography_Doc_Controller testctrl = new FAU_Participant_Biography_Doc_Controller(controller);
         }
     }
 }

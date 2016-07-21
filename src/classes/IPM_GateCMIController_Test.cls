@@ -4,7 +4,7 @@
 * @description Test Class for IPM_GateCMIController 
 */
 @isTest
-private class IPM_GateCMIController_Test{    
+public class IPM_GateCMIController_Test{    
     private static IPM_Project__c project;// Project object initialization    
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static User stdUserForGateCMI;
@@ -130,7 +130,7 @@ private class IPM_GateCMIController_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    static void initializeTestMethodData(){
+    public static void initializeTestMethodData(){
   
     Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 

@@ -9,12 +9,14 @@
 <apex:component controller="IPM_Gate_RollOuts_Controller" allowDML="false">
 <apex:attribute name="projId" description="projectId" type="String" assignTo="{!proId}"/>
 <apex:attribute name="span" description="projectSpan" type="String" />
-<!--This is check for rollout wrapper list should not be blank or 0 -->
-<apex:outputPanel rendered="{!AND(regionalRollOutWrapperList!=null,regionalRollOutWrapperList.size>0)}">
-<table class="ipmTable table gaterollouts table-bordered">
-       <thead>
+<style>
+
+
+</style>
+    <table class="ipmTable table gaterollouts table-bordered">
+        <thead>
             <tr>
-                <apex:repeat var="header" value="{!headers}" >
+                <apex:repeat var="header" value="{!headers}"  rendered="{!AND(regionalRollOutWrapperList!=null,regionalRollOutWrapperList.size>0)}">
                    <th width="20%">{!header}</th>
                 </apex:repeat>  
             </tr>
@@ -40,7 +42,6 @@
                     </td>
                 </tr>
             </apex:repeat>
-        </tbody> 
+        </tbody>
     </table>
- </apex:outputPanel>   
 </apex:component>

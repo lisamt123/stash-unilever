@@ -70,17 +70,6 @@
             </div>
         </div>
 
-        <!-- FabricConditioner begin -->
-        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','display:none;')}">
-            <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}</apex:outputLabel>
-            </div>
-            <div class="item-input-checkbox">
-                <apex:outputField value="{!betobject.Is_Fabric_Conditioners__c}"/> 
-            </div>
-        </div>
-        <!-- FabricConditioner end -->
-
         <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
@@ -101,9 +90,7 @@
             </div>
         </div>
 
-        <!-- FabricConditioner begin -->
-        <div class="form-item" style="{!IF(fabricConditionerCategory,'','')}">
-        <!-- FabricConditioner end -->
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
             </div>
@@ -114,7 +101,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel Title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}">{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
                 <span class="SecButtonSet infoMarTop">
                 <a class="icoButton info smalllinfo" title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}"></a>
                 </span>

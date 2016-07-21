@@ -417,6 +417,7 @@ public without sharing class IPM_TestFactory {
                     {
                         finalValue = String.valueOf(finalValue).substring(0,maxfieldChar-1);
                     }
+                    
                 }
                 else if(fieldDescObj.getType() == Schema.DisplayType.Email)
                 {
@@ -425,14 +426,6 @@ public without sharing class IPM_TestFactory {
                 else if(fieldDescObj.getType() == Schema.DisplayType.Boolean)
                 {
                     finalValue = false;
-                }
-                else if(fieldDescObj.getType() == Schema.DisplayType.MultiPicklist || fieldDescObj.getType() == Schema.DisplayType.Picklist )
-                {
-                    finalValue =  getDefaultPicklistValue(obj, fieldDescObj);
-                    if(finalValue == null && !fieldDescObj.restrictedPicklist)
-                    {
-                        finalValue = defaultValue;  
-                    } 
                 }
                 else
                 {
@@ -443,7 +436,7 @@ public without sharing class IPM_TestFactory {
             if (fieldDescObj.getType() == Schema.DisplayType.base64) {
                 obj.put(fieldApiName, blob.valueOf(fieldLabel + finalValue ) );
             } 
-            else if (fieldDescObj.getType() == Schema.DisplayType.Boolean)  {  
+            else if (fieldDescObj.getType() == Schema.DisplayType.Boolean)  {
                 
                 obj.put(fieldApiName, Boolean.valueOf(finalValue));
             } 
@@ -471,6 +464,17 @@ public without sharing class IPM_TestFactory {
             {
                 obj.put(fieldApiName, Integer.valueOf(finalValue) );
             } 
+            else if (fieldDescObj.getType() == Schema.DisplayType.MultiPicklist) 
+            {
+                if(finalValue != null)
+                {
+                    obj.put(fieldApiName, String.valueOf(finalValue));      
+                }
+                else
+                {
+                    obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
+                }
+            } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Percent) 
             {
                 obj.put(fieldApiName, Double.valueOf(finalValue) );
@@ -479,11 +483,15 @@ public without sharing class IPM_TestFactory {
             {
                 obj.put(fieldApiName, '123-456-7890');
             } 
-            else if (fieldDescObj.getType() == Schema.DisplayType.MultiPicklist || fieldDescObj.getType() == Schema.DisplayType.Picklist) 
+            else if (fieldDescObj.getType() == Schema.DisplayType.Picklist) 
             {
                 if(finalValue != null)
                 {
                     obj.put(fieldApiName, String.valueOf(finalValue));      
+                }
+                else
+                {
+                    obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj)); 
                 }
             } 
             else if (fieldDescObj.getName() == 'CommunityNickname' && fieldDescObj.getType() == Schema.DisplayType.String) 

@@ -30,39 +30,37 @@ private class IPM_GroupManagement_Test
         user projectLeaderUser=IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
         List<User>userPlList=[SELECT lastName FROM user WHERE id=:projectLeaderUser.id LIMIT 1];
         System.AssertEquals(userPlList[0].lastName, projectLeaderUser.lastName,'user LastName is:'+userPlList[0].lastName);//positive test
-        
-        //get standard user profile
-        Profile p = [SELECT Id FROM Profile WHERE Name=:standardUser limit 3]; 
-        //insert users
-        projectLeader = IPM_TestFactory_Helper.createUser(false);
-        projectLeader.ProfileId = p.id;                           
-        
-        projectResource1 =IPM_TestFactory_Helper.createUser(false);
-        projectResource1.ProfileId = p.id;
-        
-        projectResource2 = IPM_TestFactory_Helper.createUser(false);
-        projectResource2.ProfileId = p.id;      
-                                 
-        projectResource3 = IPM_TestFactory_Helper.createUser(false);
-        projectResource3.ProfileId = p.id;
-        
-        projectResource4 = IPM_TestFactory_Helper.createUser(false);                                                  
-        projectResource4.ProfileId = p.id;
-        projectResource5 = IPM_TestFactory_Helper.createUser(false);                                                  
-        projectResource5.ProfileId = p.id;
-        
-        userList.add(projectLeader);//add to user list
-        userList.add(projectResource1);
-        userList.add(projectResource2);
-        userList.add(projectResource3);
-        userList.add(projectResource4);
-        userList.add(projectResource5);
-        insert userList;//insert users
-        List<User>lstUser=[SELECT ProfileId FROM USER WHERE ProfileId=:p.id];
-        system.assertEquals(lstUser[0].ProfileId,p.id,'User profile id is:'+lstUser[0].ProfileId);//positive test
-    
         system.RunAs(projectLeaderUser){
+            //get standard user profile
+            Profile p = [SELECT Id FROM Profile WHERE Name=:standardUser limit 3]; 
+            //insert users
+            projectLeader = IPM_TestFactory_Helper.createUser(false);
+            projectLeader.ProfileId = p.id;                           
             
+            projectResource1 =IPM_TestFactory_Helper.createUser(false);
+            projectResource1.ProfileId = p.id;
+            
+            projectResource2 = IPM_TestFactory_Helper.createUser(false);
+            projectResource2.ProfileId = p.id;      
+                                     
+            projectResource3 = IPM_TestFactory_Helper.createUser(false);
+            projectResource3.ProfileId = p.id;
+            
+            projectResource4 = IPM_TestFactory_Helper.createUser(false);                                                  
+            projectResource4.ProfileId = p.id;
+            projectResource5 = IPM_TestFactory_Helper.createUser(false);                                                  
+            projectResource5.ProfileId = p.id;
+            
+            userList.add(projectLeader);//add to user list
+            userList.add(projectResource1);
+            userList.add(projectResource2);
+            userList.add(projectResource3);
+            userList.add(projectResource4);
+            userList.add(projectResource5);
+            insert userList;//insert users
+            List<User>lstUser=[SELECT ProfileId FROM USER WHERE ProfileId=:p.id];
+            system.assertEquals(lstUser[0].ProfileId,p.id,'User profile id is:'+lstUser[0].ProfileId);//positive test
+    
             project = IPM_TestFactory_Helper.createIPMProject(False); 
             project.Sustainability_Period__c=susPeriod;
             project.IPM_Target_Launch_Dates__c=system.today();

@@ -4,23 +4,27 @@
 * @description Test Class for IPM_Assumptions_Controller
 */
 @isTest
-private class IPM_Assumptions_Controller_Test{    
-    private static IPM_Project__c project;// Project object initialization
-    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    private static User stdUserForAssumption;
+public class IPM_Assumptions_Controller_Test{    
+    public static IPM_Project__c project;// Project object initialization
+    public static IPM_Project_Document__c projDoc;
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    public static User stdUserForAssumption;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    private static PageReference  pRef;
-    private static IPM_Assumptions_Controller ipmAssumContrl;
+    public static PageReference  pRef;
+    public static IPM_Assumptions_Controller ipmAssumContrl;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
-    private static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
-    private static User globalUser;
-    private static IPM_Project_Document_Section__c docSec;
+    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
+    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    public static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
+    public static User globalUser;
+    public static List<IPM_Questionnaire__c> quesList;
+    public static IPM_Project_Document_Section__c docSec;
+    public static IPM_Project_Document__c document;
     private static final string SAVE_ASSUMPTION_STR='assumption saved';
     private static final string ASSUMPTION_DATA_STR='assumption data';
-    private static List<IPM_Project_Document_Section_Content__c> conList=new List<IPM_Project_Document_Section_Content__c>();
+    public static List<IPM_Project_Document_Section_Content__c> conList=new List<IPM_Project_Document_Section_Content__c>();
     
     /*************************************************************************************************************************
     * @description Test Data
@@ -67,11 +71,14 @@ private class IPM_Assumptions_Controller_Test{
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
+            projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
            
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
+                quesList=projectObj.IPM_Questionnaires__r;
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
+            document=projDocList[0];
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             

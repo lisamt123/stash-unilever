@@ -21,7 +21,6 @@ public with sharing class IPM_ProjectCountryDetails{
     public static Map<Id, Boolean> isDevelopedPresentMap = new Map<Id, Boolean>();
     public static Map<Id, Boolean> isDevelopingPresentMap = new Map<Id, Boolean>();
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
-    public static Boolean checkAtLeastOneAssmntPerEICountryVar = false;
     
     /****************************************************************************
     @Description : Rollouts - Update the MarketType field of project from Countries
@@ -75,7 +74,7 @@ public with sharing class IPM_ProjectCountryDetails{
                     if(mapProjIsDeveloped.get(proj.Id)){//isDeveloped Calculated for the project is true
                         // if Delete-- make it Developing n emerging
                         if(isDelete){
-                            if(isDevelopedPresentMap.isEmpty() && IsDevelopingPresentMap.isEmpty()){//Deleting last country
+                            if(isDevelopedPresentMap.size() == 0 && IsDevelopingPresentMap.size()== 0){//Deleting last country
                                 proj.IPM_Market_Type__c = IPM_ConstantUtils.MARKETTYPE_DEVELOPED;
                                 lstUpdateProjects.add(proj);
                             }
@@ -93,7 +92,7 @@ public with sharing class IPM_ProjectCountryDetails{
                     else{
                         // if Delete-- make it Developing n emerging
                         if(isDelete){
-                            if(isDevelopedPresentMap.isEmpty() && IsDevelopingPresentMap.isEmpty()){//deleting last country
+                            if(isDevelopedPresentMap.size() == 0 && IsDevelopingPresentMap.size()== 0){//deleting last country
                                 proj.IPM_Market_Type__c = IPM_ConstantUtils.MARKETTYPE_DEVELOPED;
                                 lstUpdateProjects.add(proj);
                             }
@@ -681,7 +680,6 @@ public with sharing class IPM_ProjectCountryDetails{
             Update toUpdateProjList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
-        checkAtLeastOneAssmntPerEICountryVar = true;
     }
     
     /****************************************************************************
@@ -847,7 +845,7 @@ public with sharing class IPM_ProjectCountryDetails{
     *****************************************************************************/
     public static Boolean isProjectReadyToSyncToEcoDesign(IPM_Project__c projectToEvaluate) {
         //Check the sync flag according to criteria specified in Custom Setting 'IPM Project Type'
-        if((IPM_Utils.retrieveProjectType(projectToEvaluate) == null || !IPM_Utils.retrieveProjectType(projectToEvaluate).IPM_Dont_Sync_Proj_To_EcoDesign__c) && projectToEvaluate.IPM_ProjectSubType__c != IPM_ConstantUtils.IPM_BLG && projectToEvaluate.IPM_Project_Type__c != IPM_ConstantUtils.ECODESIGN_PROJECT_TYPE_OPERATIONAL){
+        if((IPM_Utils.retrieveProjectType(projectToEvaluate) == null || !IPM_Utils.retrieveProjectType(projectToEvaluate).IPM_Dont_Sync_Proj_To_EcoDesign__c) && projectToEvaluate.IPM_Answer_of_Q1__c != IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG && projectToEvaluate.IPM_Project_Type__c != IPM_ConstantUtils.ECODESIGN_PROJECT_TYPE_OPERATIONAL){
             return TRUE;
         }
         else{
@@ -860,7 +858,7 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params ProjectsToEvaluate:  Set Of Project Ids
     *****************************************************************************/
     public static Map<Id,Boolean> getProjectIdToSyncMap(Set<Id> projectsToEvaluate) {
-        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
+        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
         Map<Id,Boolean> projectIdToSyncMap =  new Map<Id,Boolean>(); //Map of Project Id and Boolean(Whetehr the project is to be synced or not)
         
         for(IPM_Project__c project: projIdProjectMap.values()){
@@ -936,7 +934,7 @@ public with sharing class IPM_ProjectCountryDetails{
         
         
         if(projIdsSet != null && !projIdsSet.isEmpty()){
-            return new Map<Id,IPM_Project__c>([Select Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeepingModel__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_Project_Name__c, IPM_Project_Leader__r.Name from IPM_Project__c where Id IN :projIdsSet LIMIT 50000]);
+            return new Map<Id,IPM_Project__c>([Select Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeepingModel__c,IPMProject_Span__c,IPM_Phase__c,IPM_Answer_of_Q1__c, IPM_Project_Name__c, IPM_Project_Leader__r.Name from IPM_Project__c where Id IN :projIdsSet LIMIT 50000]);
         }
         else{
             return null;
@@ -1075,69 +1073,6 @@ public with sharing class IPM_ProjectCountryDetails{
         }
     
     }
-    
-      /*************************************************************************************************************
-  * @description:Assign Company Card to rollouts
-  */
- public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
-{
-  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
-  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
-                id IN:countyrMap.keyset() LIMIT 5000]; 
-  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
-  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
-  where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL Limit 5000];
-                                       
-  
-  List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
-  IPM_Project_Rollout__c newRollout;
-  Set<id> rolloutIdSet=new Set<id>();
-
-
-    
-  for(IPM_Country__c country : countryList)
-  {
-    for(IPM_Company_Card__c companyCard : companyCardLst)
-    {
-      
-      
-      
-      if(companyCard.IPM_Managed_Category__c!=null && country.Local_Rollout__r.IPM_Small_C__c!=null && 
-        companyCard.IPM_TxtGeographical_Scope__c!=null && country.Country_Name__c!=null && 
-        companyCard.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && 
-               companyCard.IPM_Managed_Category__c.contains(country.Local_Rollout__r.IPM_Small_C__c) && 
-               country.Local_Rollout__c !=null)
-          
-      
-      {
-      	if(!rolloutIdSet.contains(country.Local_Rollout__c)){
-       
-        newRollout=new IPM_Project_Rollout__c();
         
-        
-        newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
-        newRollout.id=country.Local_Rollout__c; 
-        rolloutList.add(newRollout);
-        rolloutIdSet.add(newRollout.id);
-      	} 
-      }
-      
-    }
     
-  
-  
- 
-  
 }
- if(!rolloutList.isEmpty()){
-     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
-                        
-                    
-  update rolloutList;
- 
-  IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
- }
- }
-        
-    
-  }

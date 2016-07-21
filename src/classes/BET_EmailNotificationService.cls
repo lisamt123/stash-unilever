@@ -11,9 +11,9 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 /* Without sharing due to it is a service class used by external system */
 public without sharing class BET_EmailNotificationService {
 
-	private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'Unilever'];
+  private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'Unilever'];
 
-	private BET_EmailNotificationService() {}
+  private BET_EmailNotificationService() {}
 
     /************************************************************
     Purpose: Method  notifies Bet owner that there is a lead project follow request
@@ -76,12 +76,12 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static List<Messaging.SingleEmailMessage> notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
-		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+  public static List<Messaging.SingleEmailMessage> notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
+    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
-		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
+    User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
 
-		List<String> sendTo = new List<String>();
+    List<String> sendTo = new List<String>();
         sendTo.add(betOwner.email);
         mail.setToAddresses(sendTo);
         mail.setOrgWideEmailAddressId(owea.id);
@@ -92,7 +92,7 @@ public without sharing class BET_EmailNotificationService {
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
-	}
+  }
 
     /************************************************************
     Purpose: Method  notifies Bet owner and Project Lead that new lead project has been assigned to bet
@@ -100,14 +100,14 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
-		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+  public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
+    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
-		List<User> usersToBeNofified = Test.isRunningTest() ? 
-		new List<User> {new User(email = BET_TestUtils.TEST_USER_EMAIL),new User(email = BET_TestUtils.TEST_USER_EMAIL)} : 
-		[select email from User where isActive = true and id =: bet.ownerid];
+    List<User> usersToBeNofified = Test.isRunningTest() ? 
+    new List<User> {new User(email = BET_TestUtils.TEST_USER_EMAIL),new User(email = BET_TestUtils.TEST_USER_EMAIL)} : 
+    [select email from User where isActive = true and id =: bet.ownerid];
 
-		List<String> sendTo = new List<String>();
+    List<String> sendTo = new List<String>();
         if(!usersToBeNofified.isEmpty()) {
           sendTo.add(usersToBeNofified.get(0).email);
         }
@@ -121,7 +121,7 @@ public without sharing class BET_EmailNotificationService {
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
-	}
+  }
 
     /************************************************************
     Purpose: Method notifies Bet owner that project has been unlinked from BET 
@@ -129,13 +129,13 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_BETWrapper project){ //US22, US26
-		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+  public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_BETWrapper project){ //US22, US26
+    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
-		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
+    User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
         String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
 
-		List<String> sendTo = new List<String>();
+    List<String> sendTo = new List<String>();
         sendTo.add(betOwner.email);
         mail.setToAddresses(sendTo);
         mail.setOrgWideEmailAddressId(owea.id);
@@ -147,5 +147,5 @@ public without sharing class BET_EmailNotificationService {
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
-	}
+  }
 }

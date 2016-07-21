@@ -5,7 +5,7 @@
 *               in the gate document
 */
 public with sharing class IPM_FinGateController {
- 
+
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
     public Id projectId; //Project Id of te current project
     public ID getprojectId(){ return projectId; }
@@ -33,7 +33,7 @@ public with sharing class IPM_FinGateController {
     public transient ipmFinancialSummaryWrapper PBObpsWrapper {get; set;} //PBO bps Financial Summay Wrapper
     public transient ipmFinancialSummaryWrapper iTOWrapper {get; set;} //iTO Financial Summay Wrapper
     public transient ipmFinancialSummaryWrapper iAPWrapper {get; set;} //iAP Financial Summay Wrapper
-	public String ExternalId{get;set;}//to construct the financial external id // NO SONAR. variable used in Dyanamic SOQL
+
     public String volumeUnit {get; set;} //Volume Unit
     public String fieldSuffix {get; set;} //Used to dynamically change the field suffix based on the current view. (Accepted values are - Global,Regional.Local,Charter,Contract,MR,MD)
 
@@ -77,16 +77,18 @@ public with sharing class IPM_FinGateController {
     * @return       NONE
     */
     private void getFieldSuffix(){
-        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
-            fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL; 
+        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL 
+             ||(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)) {
+            fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
         }
-        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
+
+        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
         }
+
         else {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
         }
-       
     }
 
     /*******************************************************************************************************
@@ -129,7 +131,7 @@ public with sharing class IPM_FinGateController {
     * @return       NONE
     */
     private void getFinancials(){
-        
+        String ExternalId; // NO SONAR. variable used in Dyanamic SOQL
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
             ExternalId = project.IPM_Project_Name__c;
         } 
@@ -256,9 +258,9 @@ public with sharing class IPM_FinGateController {
         String projectId=IPM_ConstantUtils.BLANK;
 
         //Only valid for Charter Gate Document
-        if (printDoc==IPM_ConstantUtils.CHARTER_GATE && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){ 
+        if (printDoc==IPM_ConstantUtils.CHARTER_GATE){ 
             //Global Original Project
-            
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS){
                 List<IPM_Financial__c> lstConsolidatedFinancial = new List<IPM_Financial__c>();
                 lstConsolidatedFinancial = [SELECT Id, IPM_Project_Rollout__r.Market_Cluster_Name__c, GM_Y1_bps_vs_DNDS_Global__c, GM_Y1_bps_vs_DNDS_Regional__c, GM_Y1_bps_vs_DNDS_Charter__c, 
                                                                         PBO_Y1_bps_vs_DNDS_Global__c, PBO_Y1_bps_vs_DNDS_Regional__c, PBO_Y1_bps_vs_DNDS_Charter__c,
@@ -270,7 +272,7 @@ public with sharing class IPM_FinGateController {
                                                                         WHERE Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION
                                                                             AND Year__c =: IPM_ConstantUtils.Y1_YEARINDEX)
                                                                 FROM IPM_Financial__c
-                                                                WHERE Parent_Project__c =: project.Id OR (Regional_Project__c =: project.Id AND Financial_External_ID__c =:ExternalId)
+                                                                WHERE Parent_Project__c =: project.Id OR Regional_Project__c =: project.Id
             
                                                                 ORDER BY IPM_Project_Rollout__r.Market_Cluster_Name__c];
                 For(IPM_Financial__c consolidatedFinancial : lstConsolidatedFinancial){
@@ -311,7 +313,9 @@ public with sharing class IPM_FinGateController {
                     }
                 }
             }
-       }
+        }
+
+    }
 
    
     

@@ -4,8 +4,8 @@
 *@Description : To add Adhoc Tasks to the project. 
 *Referring in  IPM_AddTask Page
 *********************************************/
-public with sharing class IPM_NewTask {   
-     
+public with sharing class IPM_NewTask {
+    
     private final String IPM_NEWTASK_STR = IPM_NewTask.class.getName();
     private static final string DO_SAVE_TASKS = 'doSaveTasks';
     private static final String PERCENT_SIGN = '%';
@@ -21,7 +21,7 @@ public with sharing class IPM_NewTask {
     public boolean validate {get;set;} // To validate for popup to show
     public boolean redirectToGateDocument {get;set;} // Checking the Gate document exists
     public String redirectToGateDocumentUrl {get;set;} // Redirecting to Gate document page
-    public String selectedSectionId {get;set;} // To check the values in the Documnet section values in the picklist
+    public String docSecList {get;set;} // To check the values in the Documnet section values in the picklist
     public String roleValue {get;set;} // To filter the sections based on role
     public string ProjectWizard{get;set;} // Checking for projects related to tasks
     public boolean displayPopup {get; set;} // To display pop up message
@@ -29,15 +29,6 @@ public with sharing class IPM_NewTask {
     public map<Id,String> userIdName{get;set;}
     public String roleList {get;set;}
     public list<SelectOption> FuntionalRolelist;
-    public Map<Id,Id> projectDocSectionToSectionMap {get;set;}
-    public Map<Id,String> SectionToExtenalIdSectionMap {get;set;}
-    
-    
-    private Map<String,String> phaseGateMapping;
-    
-    
-    private static final Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
-    
     private static Map<String, String> phaseGateMap = new Map<String, String>{IPM_Utils.Ideas => IPM_Utils.Charter, IPM_Utils.Feasibility => IPM_Utils.Contract,
                                                                                       IPM_Utils.Capability => IPM_Utils.IPM_MarketReadyGate, IPM_Utils.MarketReady => IPM_Utils.IPM_MarketDeploymentGate,
                                                                                       IPM_Utils.MarketDeployment => IPM_Utils.notapplicable, IPM_Utils.PostLaunchEvaluation => IPM_Utils.notapplicable, IPM_Utils.IPM_Stopped => IPM_Utils.notapplicable};
@@ -50,12 +41,9 @@ public with sharing class IPM_NewTask {
     {
         try{
             IPM_IECompatible.ieFix();
-            phaseGateMapping =  new Map<String,String>();
-            projectDocSectionToSectionMap = new Map<Id,Id>();
-            SectionToExtenalIdSectionMap = new Map<Id,String>();
-            
             ProjectWizard=ApexPages.currentPage().getParameters().get(IPM_Utils.projectWizard);
             tasks = (IPM_Task__c)controller.getRecord();
+            
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.projDocSecId)))
             {
                 redirectToGateDocument = true;  
@@ -75,7 +63,8 @@ public with sharing class IPM_NewTask {
                     Set<String> childList = new Set<String> {'IPM_Project_Resource__c','IPM_Milestone__c'};
                     string query = IPM_Utils.prepareSOQLQuery(sObjName ,true,childList,true)+' where id =: projectId ';
                     projectObject  = Database.query(query);
-                                        
+                   
+                    
                     if(projectObject != null )
                     {   
                         //get map of role as key and its functional owner as value
@@ -108,7 +97,7 @@ public with sharing class IPM_NewTask {
                     if(proDocSecList != NULL && !proDocSecList.isEmpty()){
                         tasks.IPM_Function__c = proDocSecList[0].IPM_FunctionalRole__c;
                         sectionValue = string.valueOf(proDocSecList[0].IPM_Section_Sequence__c+' '+proDocSecList[0].IPM_Section_Name__c);
-                        selectedSectionId  = proDocSecList[0].id;
+                        docSecList  = proDocSecList[0].id;
                     }
                 }
 
@@ -120,16 +109,16 @@ public with sharing class IPM_NewTask {
                     }
                     if(projToTaskPhaseMap.containsKey(projectObject.IPM_Phase__c)) 
                     {
-                        tasks.IPM_Phase__c = projToTaskPhaseMap.get(projectObject.IPM_Phase__c);
+                    	tasks.IPM_Phase__c = projToTaskPhaseMap.get(projectObject.IPM_Phase__c);
                         tasks.IPM_Type_of_Gate__c = phaseGateMap.get(tasks.IPM_Phase__c);
                     }
-                    tasks.IPM_Task_Complexity__c = projectObject.IPM_Complexity__c;
                   }
                     
                 } 
                 catch(Exception ex)
                 {
-                    ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject));
+                    ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+                    ApexPages.addMessage(myMsg); 
                 }
             }
             
@@ -147,30 +136,12 @@ public with sharing class IPM_NewTask {
                     {
                        tasks.IPM_Project__c=apexpages.currentpage().getparameters().get(IPM_Utils.IPM_NewTaskprojectId);
                     }
-                    
-                    if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS)
-                    {
-                        selectedSectionId = tasks.IPM_Section__c;
-                    }
-                    else
-                    {
-                        selectedSectionId = tasks.IPM_Project_Document_Section__c;
-                    }
-                    
                 }
                 catch(Exception ex)
                 {
-                    ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
+                    ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+                    ApexPages.addMessage(myMsg); 
                 }
-            }
-            else
-            {
-                // In case there is no task Id associated, it means we are creating new adhoc task.
-                tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.ADHOC;
-                tasks.IPM_Phase_Task_Added__c = projectObject.IPM_Phase__c;
-                tasks.RecordTypeId = recordTypeIdValue;
-                tasks.IPM_Project__c = apexpages.currentpage().getparameters().get(IPM_Utils.IPM_NewTaskprojectId);
-                
             }
             // Displaying due dates based on Approach
             displayDueDate=true;
@@ -179,7 +150,8 @@ public with sharing class IPM_NewTask {
             }
                         
         }catch(Exception ex){
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+            ApexPages.addMessage(myMsg); 
          }
     }
     
@@ -205,8 +177,11 @@ public with sharing class IPM_NewTask {
             }
         }
         if(String.isNotBlank(sErrorMessage)){
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,'upsertTask',sErrorMessage,null, ERROR, null, null, null,null);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,
+                'upsertTask',sErrorMessage,null, ERROR, null, null, null,null);
         }
     }
         
@@ -216,263 +191,91 @@ public with sharing class IPM_NewTask {
     ****************************************************************/
     
     public pageReference doSaveTasks(){
-        try
-        {
+        try{
             validate = true;
+           
+            if(tasks.IPM_Project__c == null)
+            {
+                tasks.IPM_Project__c=apexpages.currentpage().getparameters().get(IPM_Utils.IPM_NewTaskprojectId);
+            }
             
+            Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
+            if(recordTypeIdValue != null)
+            {
+                tasks.RecordTypeId = recordTypeIdValue;
+            }
+            
+            // Checking the Sections of gatedocument. 
+            if(docSecList != null){
+                tasks.IPM_Project_Document_Section__c=docSecList;
+            }
             //assign task assign from map created in constructor
             if(tasks.IPM_Function__c != null && assigneeIdName != null && assigneeIdName.containsKey(tasks.IPM_Function__c)){
                 tasks.IPM_Assignee__c = assigneeIdName.get(tasks.IPM_Function__c);
             }
             
-            if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS)
+                tasks.IPM_Active__c = TRUE;
+            //check if name is blank
+            if(String.isBlank(tasks.IPM_Task_Name__c))
             {
-                tasks.IPM_Section__c = selectedSectionId;
-                tasks.IPM_Task_Section_External_ID__c = SectionToExtenalIdSectionMap.get(selectedSectionId);
-                tasks.IPM_Project_Document_Section__c = null;
-            }
-            else
-            {
-            	if(projectDocSectionToSectionMap.containsKey(selectedSectionId))
-            	{
-            		tasks.IPM_Section__c = projectDocSectionToSectionMap.get(selectedSectionId);
-            	}
-                tasks.IPM_Task_Section_External_ID__c = SectionToExtenalIdSectionMap.get(selectedSectionId);
-                tasks.IPM_Project_Document_Section__c = selectedSectionId;
-            }
-            
-            tasks.IPM_Active__c = true;
-            
-            // check for task due date, which should not be greater than milestone due date
-            checkTaskDueDateGreaterThanMilestone(projectObject);
-            
-            checkTaskValidations(tasks);
-                
-              try{
-                if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
+            	validate = false;
+            	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskNameErrorMsg));
+            } 
+            //check if Function role is blank
+            if(String.isBlank(tasks.IPM_Function__c))
+             {
+             	validate = false;
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_FunctionalRoleErrorMsg));
+             }
+                // check for task due date, which should not be greater than milestone due date
+                if(projectObject != null && projectObject.IPM_Milestones__r != null )
+                {
+                    
+                    for(IPM_Milestone__c milestone :projectObject.IPM_Milestones__r)
+                    {
+                        if(milestone.IPM_Due_Date__c != null && tasks.IPM_Due_Date1__c != null && milestone.IPM_Type_of_Milestone__c == IPM_Utils.Standard && milestone.IPM_Phase__c == tasks.IPM_Phase__c
+                            && tasks.IPM_Due_Date1__c > milestone.IPM_Due_Date__c )
+                        {   
+                    	validate = false;
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
+                        }
+                    }
+                 }
+                if(tasks.IPM_Due_Date1__c < System.Today())
+                {
+             	validate = false;
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
+                }
+             
+             if(String.isNotBlank(tasks.IPM_Type_of_Gate__c) && tasks.IPM_Type_of_Gate__c == IPM_Utils.notapplicable)
+                {
+             	tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.BLANK;
+                }
+	    	
+             try{
+				if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
                 {
                     upsertTask(new List<IPM_Task__c>{tasks});
                 }
              }catch(Exception ex)
              {
-                ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
+                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+                ApexPages.addMessage(myMsg); 
                 validate =false;
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR, DO_SAVE_TASKS,ex.getMessage(),ex, ERROR, null, null, null,null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,
+                    DO_SAVE_TASKS,ex.getMessage(),ex, ERROR, null, null, null,null);
             }
             closePopup();
         }catch(Exception ex)
         {
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject)); 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR, DO_SAVE_TASKS,ex.getMessage(),ex, ERROR, null, null, null,null);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,
+                    DO_SAVE_TASKS,ex.getMessage(),ex, ERROR, null, null, null,null);
         }
         return null;            
     }
-    
-    /********************************************************************************
-     *@Description : check the task validations
-     *@Return : none
-    *********************************************************************************/
-    public void checkTaskValidations(IPM_Task__c tasks)
-    {
-        //check if name is blank
-        if(String.isBlank(tasks.IPM_Task_Name__c))
-        {
-            validate = false;
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskNameErrorMsg));
-        } 
-            //check if Function role is blank
-        if(String.isBlank(tasks.IPM_Function__c))
-        {
-            validate = false;
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_FunctionalRoleErrorMsg));
-        }
-             
-        if(tasks.IPM_Due_Date1__c < System.Today())
-                {
-                validate = false;
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
-                }
-             
-      if(String.isNotBlank(tasks.IPM_Type_of_Gate__c) && tasks.IPM_Type_of_Gate__c == IPM_Utils.notapplicable)
-                {
-                tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.BLANK;
-                }
-    }
-    
-    
-    /********************************************************************************
-     *@Description : create task due date validations
-     *@Return : none
-    *********************************************************************************/
-    public void checkTaskDueDateGreaterThanMilestone(IPM_Project__c projectObject)
-    {
-        if(projectObject != null && projectObject.IPM_Milestones__r != null )
-        {
-            
-            for(IPM_Milestone__c milestone :projectObject.IPM_Milestones__r)
-            {
-                if(milestone.IPM_Due_Date__c != null && tasks.IPM_Due_Date1__c != null && milestone.IPM_Type_of_Milestone__c == IPM_Utils.Standard && milestone.IPM_Phase__c == tasks.IPM_Phase__c
-                    && tasks.IPM_Due_Date1__c > milestone.IPM_Due_Date__c )
-                {   
-                validate = false;
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
-                }
-            }
-         }
-    }
-    /********************************************************************************
-     *@Description : create custome picklist field for current and future phases
-     *@Return : List of options
-    *********************************************************************************/
-    public List<SelectOption> getPhaselist()
-    {
-        List<SelectOption> options = new List<SelectOption>();
-        Set<String> nextPhases = new Set<String>();
-        
-        try
-        {
-            // Get Phase and Gate Mapping for Original Project.
-            IPM_ProjectMetadata__c projectMetaData = IPM_Utils.retrieveProjectMetadata(projectObject);
-            String[] applicablePhases = projectMetaData.IPM_Applicable_Phases__c.split(IPM_ConstantUtils.COMMA);
-            String[] applicableGates = projectMetaData.IPM_Applicable_Gate__c.split(IPM_ConstantUtils.COMMA);
-            
-            // Get curent Project Type information based on Project Phase. 
-            IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectObject);
-            
-            list<IPM_Project_Type__c> nextPhasesList = IPM_Utils.getNextPhases(associatedProjectType,false);
-            nextPhasesList.add(associatedProjectType);
-            
-            // Only Adhoc tasks have option of delegation across Levels.
-            if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS) 
-            {
-                // composite Mapping between Phase and Gate At Original/Operational Level.
-                for(Integer index=0;index<applicablePhases.size();index++)
-                {
-                    phaseGateMapping.put(applicablePhases[index],applicableGates[index]);
-                }
-                
-                // Prepare a Set of Next Phases for current Project.
-                for(IPM_Project_Type__c projectType : nextPhasesList) 
-                {   
-                    nextPhases.add(projectType.IPM_Phase__c);
-                }
-                
-                for(String phase :applicablePhases)
-                {   
-                    if(nextPhases.contains(phase))
-                    {
-                        options.add(new SelectOption(phase,phase));
-                    } 
-                }
-            }
-            else
-            {
-                for(IPM_Project_Type__c projectType :nextPhasesList)
-                {   
-                    if(String.isBlank(projectType.IPM_Gate_Document__c))
-                    {
-                        projectType.IPM_Gate_Document__c = 'N/A';
-                    }
-                    phaseGateMapping.put(projectType.IPM_Phase__c,projectType.IPM_Gate_Document__c);
-                    nextPhases.add(projectType.IPM_Phase__c);
-                }
-                for(String phase :applicablePhases)
-                {   
-                    if(nextPhases.contains(phase))
-                    {
-                        options.add(new SelectOption(phase,phase));
-                    } 
-                }
-            }
-            
-            if(tasks.IPM_Type_of_Gate__c == null)
-            {
-                tasks.IPM_Type_of_Gate__c = associatedProjectType.IPM_Gate_Document__c;
-            }
-        }
-        catch(Exception ex)
-        {
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage)); 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,'getPhaselist',ex.getMessage(),ex, ERROR, null, null, null,null);
-            return null;
-        }
-        return options;
-    }
-    
-     /********************************************************************************
-     *@Description : This is to display sections based on Gate document
-    *********************************************************************************/
-    
-    public void getGateSections()
-    {
-        tasks.IPM_Type_of_Gate__c = phaseGateMapping.get(tasks.IPM_Phase__c);
-        
-        // If Task Type is Adhoc or Future adhoc, Validate if phase has changed.
-        if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS)
-        {
-            if( projectObject.IPM_Phase__c != tasks.IPM_Phase__c )
-            {
-                tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
-            }
-            else
-            {
-                tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.ADHOC;
-            }
-        }
-        else
-        {
-            if( projectObject.IPM_Phase__c != tasks.IPM_Phase__c )
-            {
-                tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_STANDARD_TASKS;
-            }
-            else
-            {
-                tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD_TASKS;
-            }
-        }
-        
-        //tasks.IPM_Function__c = '';
-        
-   }
-   
-   public List<SelectOption> getGateSpecificSpan()
-   {
-        List<SelectOption> projectSpanOptionList = new List<SelectOption>();
-            
-        List<IPM_Project_Type__c> associatedProjectTypeList = new List<IPM_Project_Type__c>();
-        if(String.isNotBlank(tasks.IPM_Type_of_Gate__c))
-        {
-            IPM_Project__c expectedProject = new IPM_Project__c();
-            expectedProject.IPM_CompanyCardText__c = projectObject.IPM_CompanyCardText__c;
-            expectedProject.IPM_GateKeeping_Model__c = projectObject.IPM_GateKeeping_Model__c;
-            expectedProject.IPM_SourceProjectType__c = projectObject.IPM_SourceProjectType__c;
-            expectedProject.IPM_Phase__c = tasks.IPM_Phase__c;
-            
-            // If type of Task is adhoc or future adhoc get the project span
-            if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS)
-            {
-                associatedProjectTypeList = IPM_Utils.getProjectSpanBasedOnGate(expectedProject,tasks.IPM_Type_of_Gate__c);
-            }
-            else
-            {
-                expectedProject.IPM_Project_Type__c = projectObject.IPM_Project_Type__c;
-                expectedProject.IPMProject_Span__c = projectObject.IPMProject_Span__c;
-                associatedProjectTypeList.add(IPM_Utils.retrieveProjectType(expectedProject));  
-            }
-  
-            for(IPM_Project_Type__c projectType : associatedProjectTypeList)
-            {
-                projectSpanOptionList.add(new SelectOption(projectType.IPM_Project_Span__c,projectType.IPM_Project_Span__c));
-            }
-            if(projectObject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
-            {
-            	projectSpanOptionList.add(new SelectOption(projectObject.IPMProject_Span__c,projectObject.IPMProject_Span__c));
-            }
-        }
-        
-        return projectSpanOptionList;
-   }
-   
     
     /********************************************************************************
      *@Description : This is to display sections based on User Role 
@@ -491,140 +294,95 @@ public with sharing class IPM_NewTask {
     *********************************************************************************/
     public List<SelectOption> getSectionlist()
     {
-     try
-        {
-        	List<SelectOption> options = new List<SelectOption>();
-            if(tasks.IPM_Project_Document_Section__c == null)
-            {
-            	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
-            }
-             
-            if(string.isNotBlank(tasks.IPM_Function__c)  && string.isNotBlank(tasks.IPM_Type_of_Gate__c) )
-            {        
-                String functionalRole = IPM_ConstantUtils.BLANK;
-                String projectType = IPM_ConstantUtils.BLANK;
+    try{
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+        if(string.isNotBlank(tasks.IPM_Function__c)  && string.isNotBlank(tasks.IPM_Type_of_Gate__c) ){
                 
-                functionalRole = assignFunctionRole(tasks.IPM_Function__c);    
+             List<IPM_Project_Document__c> pdocument=[SELECT Id,IPM_Project__c 
+                                                      FROM IPM_Project_Document__c 
+                                                      WHERE IPM_Project__c =: projectId
+                                                      AND IPM_GateDocuments__c =: tasks.IPM_Type_of_Gate__c 
+                                                      AND IPM_Project_Complexity__c=: projectObject.IPM_Complexity__c];
                 
+            if(pdocument != null && !pdocument.isEmpty()){
+                    
+                String FunctionalRole = IPM_ConstantUtils.BLANK;
+                if(tasks.IPM_Function__c == IPM_Utils.SupplyChain)
+                {
+                    FunctionalRole = IPM_Utils.IPM_NewTaskIPM_FunctionalRole;
+                }else
+                {
+                    FunctionalRole = tasks.IPM_Function__c ;
+                }
                 String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
                 
-                projectType = projectObject.IPM_SourceProjectType__c;
-                
-                if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
-                {
-                    for(IPM_Section__c docsections :[SELECT IPM_Document_Template__r.IPM_Document_Type__c,External_ID__c,Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_IS_Default_Section__c 
-                                                    FROM IPM_Section__c 
-                                                    WHERE  
-                                                    IPM_FunctionalRole__c =: functionalRole  
-                                                    AND IPM_IS_Default_Section__c = true 
-                                                    AND IPM_Document_Template__r.IPM_Document_Type__c =: tasks.IPM_Type_of_Gate__c
-                                                    AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c =: projectObject.IPM_Complexity__c
-                                                    AND IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
-                                                    AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
-                                                    AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c =: projectType
-                                                    AND ProjectSpan__c includes (:tasks.IPM_TaskSpan__c) 
-                                                    ] ) 
-                                {
-                                    if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
-                                    {
-                                        options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+' '+docsections.IPM_Section_Name__c));
-                                        SectionToExtenalIdSectionMap.put(docsections.Id,docsections.External_ID__c);
-                                    }   
-                               } 
-                 }        
-                 else
-                 {
-                    for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Default_Section__c 
-                                                                            FROM IPM_Project_Document_Section__c 
-                                                                            WHERE IPM_Gate_Document__c=:tasks.IPM_Type_of_Gate__c 
-                                                                            AND IPM_FunctionalRole__c =: FunctionalRole  
-                                                                            AND IPM_Default_Section__c = true
-                                                                            AND IPM_Project_Document__r.IPM_Project_Complexity__c =: projectObject.IPM_Complexity__c 
-                                                                            AND IPM_Section__r.IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
-                                                                            AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
-                                                                            AND IPM_Project_Document__r.IPM_Project__c =:projectObject.id ] ) 
-                          {
-                                if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
-                                {
-                                    options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+' '+docsections.IPM_Section_Name__c));
-                                    projectDocSectionToSectionMap.put(docsections.Id,docsections.IPM_Section__c);
-                                    SectionToExtenalIdSectionMap.put(docsections.Id,docsections.IPM_Section__r.External_ID__c); 
-                                }  
-                          }
-                 }
-                        
-                if(assigneeIdName != null && assigneeIdName.containsKey(tasks.IPM_Function__c))
-                {
-                    tasks.IPM_Assignee__c = assigneeIdName.get(tasks.IPM_Function__c);
-                }
+                    for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Default_Section__c 
+                                                                        FROM IPM_Project_Document_Section__c 
+                                                                        WHERE IPM_Project_Document__c=:pdocument[0].Id 
+                                                                        AND IPM_FunctionalRole__c =: FunctionalRole  
+                                                                        AND IPM_Default_Section__c = true 
+                                                                        AND IPM_Section__r.IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
+                                                                        AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)] ) {
+                             if(string.isNotBlank(docsections.IPM_Section_Sequence__c) && string.isNotBlank(docsections.IPM_Section_Name__c))
+                            {
+                                options.add(new SelectOption(docsections.Id,docsections.IPM_Section_Sequence__c+' '+docsections.IPM_Section_Name__c));
+                            }   
+                    }
             }
-            if(tasks.IPM_Project_Document_Section__c != null)
+            if(assigneeIdName != null && assigneeIdName.containsKey(tasks.IPM_Function__c))
             {
-            	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
-            }	
-            return options;
+                tasks.IPM_Assignee__c = assigneeIdName.get(tasks.IPM_Function__c);
+            }
+            }return options;
         }
         catch(Exception ex)
         {
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage)); 
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+            ApexPages.addMessage(myMsg); 
             
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,'getSectionlist',ex.getMessage(),ex, ERROR, null, null, null,null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,
+                    'getSectionlist',ex.getMessage(),ex, ERROR, null, null, null,null);
             return null;
         }
     }
     
-     /********************************************************************************
-     *@Description : Assigns function role
-     *@Return : String
-    *********************************************************************************/
-    private static String assignFunctionRole(String taskFunctionRole)
-    {
-    	String functionalRole = IPM_ConstantUtils.BLANK;
-    	if(taskFunctionRole == IPM_Utils.SupplyChain)
-        {
-            functionalRole = IPM_Utils.IPM_NewTaskIPM_FunctionalRole;
-        }
-        else
-        {
-            functionalRole = taskFunctionRole ;
-        }
-        return functionalRole;
-    }
     /********************************************************************************
      *@Description : create custome picklist field for functional role.'BB' role will only be shown for local projects.
      *@Return : List of options
     *********************************************************************************/
     public List<SelectOption> getFuntionalRolelist()
     {
-        try
-        {
-            List<SelectOption> options = new List<SelectOption>();
-            options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
-            //get all the picklist values for task functional role
-            Schema.DescribeFieldResult fieldResult = IPM_Task__c.IPM_Function__c.getDescribe();
-            List<Schema.PicklistEntry> functionalRole = fieldResult.getPickListValues();
-            
-            for(Schema.PicklistEntry role :functionalRole)
-            {   
-                string roleValue = role.getValue();
-                //if project span is local then only add role as 'BB'
-                 
-                if(roleValue != IPM_ConstantUtils.FUNCTIONAL_ROLE_BB)
-                {
-                    options.add(new SelectOption(roleValue,roleValue));
-                }
-                else if(projectObject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                    options.add(new SelectOption(roleValue,roleValue));
-                }
+        
+    try{
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+        //get all the picklist values for task functional role
+        Schema.DescribeFieldResult fieldResult = IPM_Task__c.IPM_Function__c.getDescribe();
+        List<Schema.PicklistEntry> functionalRole = fieldResult.getPickListValues();
+        
+        for(Schema.PicklistEntry role :functionalRole)
+        {   
+            string roleValue = role.getValue();
+            //if project span is local then only add role as 'BB'
+            if(roleValue == IPM_ConstantUtils.FUNCTIONAL_ROLE_BB && projectObject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+            {
+                options.add(new SelectOption(roleValue,roleValue));
             }
-            return options;
+            else if(roleValue != IPM_ConstantUtils.FUNCTIONAL_ROLE_BB){
+                options.add(new SelectOption(roleValue,roleValue));
+            }
+            
         }
+        return options;
+     }
         catch(Exception ex)
         {
-            ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage)); 
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
+            ApexPages.addMessage(myMsg); 
             
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR, 'getFuntionalRolelist',ex.getMessage(),ex, ERROR, null, null, null,null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_NEWTASK_STR,
+                    'getFuntionalRolelist',ex.getMessage(),ex, ERROR, null, null, null,null);
             return null;
         }
     }

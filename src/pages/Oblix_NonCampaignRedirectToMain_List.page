@@ -1,3 +1,0 @@
-<apex:page showHeader="true" sidebar="true" action="{!redirectToSwopMain}" recordSetVar="nonCampaigns" standardController="Marketing_Basics__c" extensions="Oblix_NonCampaignRedirectController" >
-	<apex:listViews type="Marketing_Basics__c" />
-</apex:page>

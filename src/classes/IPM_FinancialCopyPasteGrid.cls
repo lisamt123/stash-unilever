@@ -41,7 +41,6 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);// keep it compatible with IE.
         submittedList = new list<String>();// initialing the list.
         projectId = ApexPages.currentPage().getParameters().get('Id');// stores the project ID from the URL
-        BI = ApexPages.currentPage().getParameters().get('BI');//stores the BI passed as URL parameter
         flag = false;//initializing the boolean value
         showdata = false;// initializing the boolean value
         if(String.isNotBlank(projectId) && projectId.length() > IPM_ConstantUtils.fifteen){// handling the 18 digits ID for the Picklist.
@@ -71,11 +70,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                 sustainability = IpmProject.Sustainability_Period__c;
                 span = IpmProject.IPMProject_Span__c;
                 projectType = ipmProject.IPM_Project_Type__c;
-                
+                BI = ipmProject.BI__c;
                 if(BI == null || BI == '')
-                {
                     BI = IPM_ConstantUtils.smallBI;
-                }
                 String soql = 'Select Id, RecordTypeId, Global_Project_Id__c, Financial_External_ID__c, Display_Name__c From IPM_Financial__c  where RecordType.Name = \'Default\'  and isActive__c = true ';
                 if(span == IPM_ConstantUtils.SpanGlobal){
                         soql = soql +' and Global_Project_Id__c = \''+String.escapeSingleQuotes(projectId)+'\'';
@@ -300,9 +297,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                            finUpdate.CAPEX_Global__c = SetFieldValues(capex);
                            finUpdate.BIC_Global__c = SetFieldValues(BIC);
                            finUpdate.Volume_Unit_Global__c = volumeUnit;
-                           finUpdate.Last_Saved_by_Global__c = UserInfo.getUserId();
-                           finUpdate.Last_Saved_Global__c = System.now(); 
-                           finUpdate.Status_Global__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
+                          
                         }
                         if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
                            finUpdate.NPV_Regional__c = SetFieldValues(NPV);
@@ -311,9 +306,6 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                            finUpdate.CAPEX_Regional__c = SetFieldValues(capex);
                            finUpdate.BIC_Regional__c = SetFieldValues(BIC);
                            finUpdate.Volume_Unit_Regional__c = volumeUnit;
-                           finUpdate.Last_Saved_by_Regional__c = UserInfo.getUserId();
-                           finUpdate.Last_Saved_Regional__c = System.now();
-                           finUpdate.Status_Regional__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                         } 
                          if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
                             finUpdate.NPV_Local__c = SetFieldValues(NPV);
@@ -322,9 +314,6 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                             finUpdate.CAPEX_Local__c = SetFieldValues(capex);
                             finUpdate.BIC_Local__c = SetFieldValues(BIC);
                             finUpdate.Volume_Unit_Local__c = volumeUnit;
-                            finUpdate.Last_Saved_by_Local__c = UserInfo.getUserId();
-                            finUpdate.Last_Saved_Local__c = System.now();
-                            finUpdate.Status_Local__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                         }
                         finUpdate.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;                                              
                         update finUpdate;

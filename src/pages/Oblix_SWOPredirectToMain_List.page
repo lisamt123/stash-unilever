@@ -1,3 +1,0 @@
-<apex:page showHeader="true" sidebar="true" action="{!redirectToSwopMain}" recordSetVar="sows" standardController="Marketing_SOW__c" extensions="Oblix_SWOPredirectController" >
-	<apex:listViews type="Marketing_SOW__c" />
-</apex:page>

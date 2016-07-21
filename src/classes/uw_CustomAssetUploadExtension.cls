@@ -1,6 +1,6 @@
 /**********************************************************************
 Name: uw_CustomAssetUploadExtension 
-Copyright © 2014 Unilever.
+Copyright � 2014 Unilever.
 
 ============================================================================
 ============================================================================
@@ -71,7 +71,7 @@ public with sharing class uw_CustomAssetUploadExtension {
         if (parentId != null && parentId.startsWith( CollaborationGroup.sObjectType.getDescribe().getKeyPrefix()) ){
             parentId = String.valueOf(Id.valueOf(parentId));
             System.debug('parentId ' + parentId);
-            List<uw_BET__C> betList = [SELECT Id, Status__c, Presentation_Id__c FROM uw_BET__C WHERE Studio_Chatter_Group__c = :parentId LIMIT 1];
+            List<uw_BET__C> betList = [SELECT Id, Status__c, Presentation_Id__c,finalreleasedate__c,firstreleasedate__C FROM uw_BET__C WHERE Studio_Chatter_Group__c = :parentId LIMIT 1];
             if(betList.size() > 0){
                 list<CollaborationGroup> chatterGroups = [SELECT IsArchived FROM CollaborationGroup WHERE Id =: parentId];
                 if (chatterGroups.isEmpty()) {
@@ -223,7 +223,7 @@ public with sharing class uw_CustomAssetUploadExtension {
                                                           where Studio_Asset_Type__c =: BET_ASSET_TYPE_BEP
                                                           and Status__c =: BET_ASSET_APPROVED
                                                           and uw_bet__c =: file.uw_BET__c].isEmpty();
-                    if(brandExperiencePresnetationIsThere) {
+                    if(brandExperiencePresnetationIsThere && bet.FinalReleaseDate__c==null) {
                         bet.FinalReleaseDate__c = date.today();
                         updateBet = true;
                     }
@@ -235,7 +235,7 @@ public with sharing class uw_CustomAssetUploadExtension {
         //@todo: how to determine if it's main presentation or not
         if(file.Studio_Asset_Type__c == BET_ASSET_TYPE_BEP){
 
-            if(file.Status__c == BET_ASSET_APPROVED){ // IPM-BET US43
+            if(file.Status__c == BET_ASSET_APPROVED && bet.FirstReleaseDate__c==null ){ // IPM-BET US43
                 bet.FirstReleaseDate__c = date.today();
 
                 Boolean keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
@@ -243,7 +243,7 @@ public with sharing class uw_CustomAssetUploadExtension {
                                                           and Media_Type__c =: BET_ASSET_MEDIA_TYPE_KW
                                                           and Status__c =: BET_ASSET_APPROVED
                                                           and uw_bet__c =: file.uw_BET__c].isEmpty();
-                if(keyVisualIsThere){
+                if(keyVisualIsThere && bet.FinalReleaseDate__c==null){
                     bet.FinalReleaseDate__c = date.today();
                 }
             }

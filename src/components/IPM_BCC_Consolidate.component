@@ -21,7 +21,7 @@
                          {!$Label.IPM_BUSINESS_CASE_ALIGNMENT}
                         </th>
                         <th>
-                        {!$Label.IPM_FinAlignment}
+                        Financial alignment
                         </th>
                         <th>
                         {!$Label.IPM_TLD_ALIGNMENT}
@@ -36,16 +36,14 @@
                             <apex:outputText value="{!finance.Local_Project__r.name}"/>
                             </td>
                             <td>
-                            <!-- Render condition for displaying business case confirmation in contract gate document -->
                              <apex:outputText value="{!IF(AND(finance.IPM_Business_Case_Confirmed__c,gateDocType=='Contract'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Contract',true,false)}"></apex:outputText>
-                              <!-- Render condition for displaying business case confirmation in market ready gate document -->
                               <apex:outputText value="{!IF(AND(finance.Is_BC_Confirmed_Capability__c,gateDocType=='Market Ready'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Market Ready',true,false)}"></apex:outputText>
                              </td>
                             <td>
                               <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
                             </td>
                             <td>
-                            <apex:outputText value="{!IF(finance.Local_Project__r.Rollout_Plan_Target_Launch_Date__c=finance.Local_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned')}"></apex:outputText>
+                            <apex:outputText value="{!IF(finance.Local_Project__r.IPM_Target_Launch_Dates__c=finance.Regional_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned')}"></apex:outputText>
                             </td>
                         </tr>
                     </apex:repeat>

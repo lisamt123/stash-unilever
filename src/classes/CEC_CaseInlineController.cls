@@ -38,12 +38,6 @@ global with sharing class CEC_CaseInlineController{
     /* Product name */
     public String productName {get; set;}
     
-    /* Product Status */
-    public String productStatus {get; set;}
-    
-    /* Product Last Manufacturing Date */
-    public String productMFD {get; set;}
-    
     public String userWarning {get; set;}
     
     /* to decide whether to display missing information section or not */
@@ -137,7 +131,7 @@ global with sharing class CEC_CaseInlineController{
 isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
 Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :caseRecord.Id];*/
             
-            caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name, CEC_Product__r.Global_CPG_Code__c, CEC_Product__r.Product_Name_Other__c,
+            caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name,CEC_Product__r.Global_CPG_Code__c,
                           isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
                           Date_of_Manufacture_str__c,Subject,Description,Market__c,Country_Name__c,Country__c,Country__r.Country__r.ISO_3166_1_Code__c,CEC_Product_Hierarchy__c,Case_Market_Tag__c, AccountId From case Where Id = :caseRecord.Id];
             
@@ -146,7 +140,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             oldReasonId = reasonId = caseRecord.Reason_Code__c;
             reasonName = caseRecord.Reason_Code__r.Name;
             oldProductId = productId = caseRecord.CEC_Product__c;
-            productName = caseRecord.CEC_Product__r.Product_Name_Other__c;
+            productName = caseRecord.CEC_Product__r.Name;
             
             /*-- Populate the isEmptyCountryVerbatimCheck --*/
             if(caseRecord.AccountId != null && (caseRecord.Country__c == null || String.isEmpty(caseRecord.Subject)) && caseRecord.Status != 'New'){
@@ -167,11 +161,9 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             }
             
             if (productId != null && productId != ''){
-              List<mdm_Case_Product__c> pObjList = [select name, Product_Name_Other__c, Product_Status__c, Last_Sold_Manufactured__c from mdm_Case_Product__c where id = :productId ];
+                List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
                 if (pObjList != null && pObjList.size() > 0 && pObjList[0].name != null){
-                    productName = pObjList[0].Product_Name_Other__c;
-                    productStatus = pObjList[0].Product_Status__c.toLowerCase();
-                    productMFD = pObjList[0].Last_Sold_Manufactured__c ;
+                    productName = pObjList[0].name;
                 }
             }
             
@@ -202,10 +194,10 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             
             System.debug('productId =' + productId );
             if (productId != null && productId != ''){
-                mdm_Case_Product__c pObj = [select name, Product_Name_Other__c from mdm_Case_Product__c where id = :productId ];
+                mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
                 System.debug('pObj =' + pObj );
                 if (pObj != null && pObj.name != null){
-                    productName = pObj.Product_Name_Other__c;
+                    productName = pObj.name;
                 }
                 
                 //isProductCategoryEnabled = false;
@@ -218,7 +210,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             System.debug('productObj =' + productObj+'caseRecord.isFormKnown__c'+caseRecord.isFormKnown__c+'    caseRecord.isVariantKnown__c'+caseRecord.isVariantKnown__c+' caseRecord.isPacksizeKnown__c'+caseRecord.isPacksizeKnown__c);
             if (productObj.size()>0 && productObj != null && productObj[0] != null){
                 
-                if(!caseRecord.isFormKnown__c) { //If Form is false
+                if(caseRecord.isFormKnown__c==false) { //If Form is false
                     isProductCategoryEnabled = true;
                     productHierarchy = productObj[0].Brand__c;
                     if (caseRecord.Case_product_category__c !=null && caseRecord.Case_product_category__c != ''){
@@ -229,11 +221,11 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
                         System.debug('Form PH>>>>>>>>> =' + productHierarchy );
                     }
                 }
-                else if(!caseRecord.isVariantKnown__c){ //if Variant is false
+                else if(caseRecord.isVariantKnown__c==false){ //if Variant is false
                     productHierarchy = productObj[0].Global_CPG_Code__r.Corp_Prod_Grouping_Name__c;
                     System.debug('Variant PH>>>>>>>>> =' + productHierarchy );
                     
-                }else if(!caseRecord.isPacksizeKnown__c){ //if Pack size is false
+                }else if(caseRecord.isPacksizeKnown__c==false){ //if Pack size is false
                     productHierarchy = productObj[0].Consumer_Product_Descriptor_no_size__c;
                     System.debug('Pack size PH>>>>>>>>> =' + productHierarchy );
                     
@@ -294,7 +286,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
         fiveRelatedIssues=relatedIssues;
         displayMore=false;
     }
-    
+
     public Boolean isCountryPopulated {get;set;}
     
     //Record type Spam
@@ -316,11 +308,11 @@ This method toggles the display of 'Missing information' section
 */
     public void toggleMissingInfoDisplay(){
         System.debug('in toggleMissingInfoDisplay....................');
-        if (missingInfoSectionDisplay){
+        if (missingInfoSectionDisplay == true){
             missingInfoSectionDisplay = false;
         }else{
             missingInfoSectionDisplay = true;
-            if(!caseRecord.isFormKnown__c){
+            if(caseRecord.isFormKnown__c==false){
                 isProductCategoryEnabled = true;
             }else{
                 isProductCategoryEnabled = false;
@@ -352,11 +344,11 @@ This method updates the details based on check / uncheck of FORM checkbox
 */
     public void updateFormAvailabilityDetails(){
         
-        if (!caseRecord.isFormKnown__c){
+        if (caseRecord.isFormKnown__c == false){
             isProductCategoryEnabled = true;
             
             /*if form is missing, loading product hierarchy */
-            if (!caseRecord.isFormKnown__c){
+            if (caseRecord.isFormKnown__c== false){
                 if (productId != null && productId != ''){
                     mdm_Case_Product__c productObj = [select id, Brand__c from mdm_Case_Product__c where Id = :productId ];
                     if (productObj != null && productObj.Brand__c!= null){
@@ -373,7 +365,7 @@ This method updates the details based on check / uncheck of FORM checkbox
         }else{
             isProductCategoryEnabled = false;
             //since form is known and if the other 2 are also known
-            if (caseRecord.isVariantKnown__c && caseRecord.isPacksizeKnown__c){
+            if (caseRecord.isVariantKnown__c== true && caseRecord.isPacksizeKnown__c == true){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){    
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -396,7 +388,7 @@ This method updates the details based on check / uncheck of VARIANT checkbox
 */
     public void updateVariantAvailabilityDetails(){
         /*if variant is missing, loading product hierarchy */
-        if (!caseRecord.isVariantKnown__c){
+        if (caseRecord.isVariantKnown__c== false){
             if (productId != null && productId != ''){ 
                 mdm_Case_Product__c productObj = [select id, Global_CPG_Code__r.Corp_Prod_Grouping_Name__c from mdm_Case_Product__c where Id = :productId ];
                 if (productObj != null && productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c != null){
@@ -405,7 +397,7 @@ This method updates the details based on check / uncheck of VARIANT checkbox
             }
         }else {
             //since variant is known and if the other 2 are also known
-            if (caseRecord.isFormKnown__c && caseRecord.isPacksizeKnown__c){
+            if (caseRecord.isFormKnown__c== true && caseRecord.isPacksizeKnown__c == true){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){ 
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -428,7 +420,7 @@ This method updates the details based on check / uncheck of VARIANT checkbox
 This method updates the details based on check / uncheck of PACK SIZE checkbox
 */
     public void updatePacksizeAvailabilityDetails(){
-        if (!caseRecord.isPacksizeKnown__c){
+        if (caseRecord.isPacksizeKnown__c == false){
             if (productId != null && productId != ''){ 
                 mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_no_size__c from mdm_Case_Product__c where Id = :productId ];
                 if (productObj != null && productObj.Consumer_Product_Descriptor_no_size__c!= null){
@@ -437,7 +429,7 @@ This method updates the details based on check / uncheck of PACK SIZE checkbox
             }
         } else {
             //since PACK SIZE is known and if the other 2 are also known
-            if (caseRecord.isFormKnown__c && caseRecord.isVariantKnown__c){
+            if (caseRecord.isFormKnown__c== true && caseRecord.isVariantKnown__c == true){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){ 
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -495,6 +487,7 @@ This method identifies daycode from the production code
 */
     public void identifyDaycode(){
         
+        Boolean populateDayCode;
         String Daycode = '';
         caseRecord.Date_of_Manufacture_str__c = '';
         caseRecord.Date_of_Manufacture__c = null;
@@ -633,15 +626,20 @@ This method selects all distinct categories from ProductCategory table
             categoryOptions.add(new SelectOption('None','None'));
         }
         /* selecting all distinct categories from ProductCategory table */
-        AggregateResult[] productCategoryList = [select L2_Product_Category__c from mdm_Product_Category__c GROUP BY L2_Product_Category__c limit 20000 ];
+        AggregateResult[] productCategoryList = [select L2_Product_Category__c from mdm_Product_Category__c GROUP BY L2_Product_Category__c ];
         if (productCategoryList != null && productCategoryList.size() > 0){
             Integer increment = 0;
             for (AggregateResult ar : productCategoryList ){
-                if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
-                        categoryOptions.add(new SelectOption(String.valueOf(ar.get('L2_Product_Category__c')), String.valueOf(ar.get('L2_Product_Category__c') )));
-                    }
-                
-                    increment++;                
+                /* if ( (productCategory == null || productCategory == '') && increment == 0 ){
+if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
+productCategory = String.valueOf(ar.get('L2_Product_Category__c'));
+}
+}
+*/if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
+    //if(String.valueOf(ar.get('L2_Product_Category__c'))!=caseRecord.Category__c)
+    categoryOptions.add(new SelectOption(String.valueOf(ar.get('L2_Product_Category__c')), String.valueOf(ar.get('L2_Product_Category__c') )));
+}
+                increment++;                
             }
         }
         
@@ -655,30 +653,28 @@ This method updates the reason hierarchy
         String level1Desc = '', level2Desc = '';
         popupAlertCheck = false;
         questionnaireAlertCheck = false;
-        // If reasonId is updated and is not null, extract reason codes
         if (reasonId != null && reasonId != '' && oldReasonId != reasonId){
-            List<mdm_Reason_Code__c> rObjList = [select id, L1_Desc__c, L2_Desc__c, name from mdm_Reason_Code__c where id = :reasonId];
-            // if reason code exists, update reason hierarchy acordingly
+            List<mdm_Reason_Code__c> rObjList = [select name from mdm_Reason_Code__c where id = :reasonId ];
             if (rObjList != null && rObjList.size() > 0 && rObjList[0].name != null){
                 reasonName = rObjList[0].name;
-                if (rObjList[0].L1_Desc__c != null && rObjList[0].L1_Desc__c != null){
-                    level1Desc = rObjList[0].L1_Desc__c;
+            }
+            List<mdm_Reason_Code__c> reasonCodeObjList = [ select id, L1_Desc__c, L2_Desc__c from mdm_Reason_Code__c where Id =:  reasonId ];
+            if (reasonCodeObjList != null && reasonCodeObjList.size() > 0 && reasonCodeObjList[0] != null ){
+                if (reasonCodeObjList[0].L1_Desc__c != null && reasonCodeObjList[0].L1_Desc__c != null){
+                    level1Desc = reasonCodeObjList[0].L1_Desc__c;
                 }
-                if (rObjList[0].L2_Desc__c != null && rObjList[0].L2_Desc__c != null){
-                    level2Desc = rObjList[0].L2_Desc__c;
+                if (reasonCodeObjList[0].L2_Desc__c != null && reasonCodeObjList[0].L2_Desc__c != null){
+                    level2Desc = reasonCodeObjList[0].L2_Desc__c;
                 }
                 
                 reasonHierarchy = level1Desc + ' ' +  level2Desc ;
             }
-            // set case fields
             caseRecord.Reason_Code__c = reasonId;
             caseRecord.CEC_Reason_Hierarchy__c = reasonHierarchy;
-            // Update case record
-            try{
+            try{ 
                 Database.update(caseRecord);
                 oldReasonId = reasonId;
                 knowledgeWrapperList.clear();
-                //fetch related reason and product knowledge articles 
                 searchMatchingReasonKnowledgeArticles();
                 searchMatchingProductKnowledgeArticles();
                 if (productId != null && productId != ''){
@@ -691,8 +687,8 @@ This method updates the reason hierarchy
                 System.debug('Exception:: ' + e.getMessage()+ ' :: '+ e.getStackTraceString());
             }
         }
-        // set product name
-        if(productId != null && productId != '' && oldProductId != productId){
+        
+        if (productId != null && productId != '' && oldProductId != productId){
             List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
             if (pObjList != null && pObjList.size() > 0 && pObjList[0].name != null){
                 productName = pObjList[0].name;
@@ -718,12 +714,10 @@ This method updates the product hierarchy
         System.debug('reasonName =' + reasonName);
         System.debug('productId =' + productId);
         if (productId != null && productId != '' && oldProductId != productId){
-            mdm_Case_Product__c pObj = [select name, Product_Status__c,Last_Sold_Manufactured__c  from mdm_Case_Product__c where id = :productId ];
+            mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
             System.debug('pObj =' + pObj );
             if (pObj != null && pObj.name != null){
                 productName = pObj.name;
-                productStatus = pObj.Product_Status__c.toLowerCase();
-                productMFD = pObj.Last_Sold_Manufactured__c ;
             }
             
             caseRecord.isFormKnown__c = true;
@@ -748,7 +742,7 @@ This method updates the product hierarchy
                     /* check for any popup alerts to show */
                     checkAlertAction();
                 }
-            }catch(Exception e){
+            } catch(Exception e){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
                 System.debug('Exception:: ' + e.getMessage()+ ' :: '+ e.getStackTraceString());
             }
@@ -992,4 +986,5 @@ This method updates form availability based on Category selection
             System.debug('Error in CEC_CaseInlineController -> mapArticleToCase : ' +  ex);
         }
     }
+    
 }

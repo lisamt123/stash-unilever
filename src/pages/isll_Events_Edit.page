@@ -1,52 +1,9 @@
 <apex:page showHeader="true" sidebar="true" tabStyle="Event__c" standardcontroller="Event__c" extensions="isll_EventController">
 <apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jquery-1.9.1.min.js')}" />
 <apex:includeScript value="{!URLFOR($Resource.tinymce_richTextEditor, '/tinymce.min.js')}" />
-<script type="text/javascript">
-tinymce.init({
-    selector: "textarea.customRich",
-    theme: "modern",
-    removed_menuitems: 'newdocument',
-    theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
-    font_size_style_values: "12px,13px,14px,16px,18px,20px",
-    plugins: [
-        "advlist autolink lists link image charmap hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code",
-        "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor"
-    ],
-    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image| media | fontsizeselect forecolor backcolor emoticons",
-    image_advtab: true,
-     forced_root_block : false,
-     textcolor_map: [
-        "E59063", "E59063",
-        "E56DB1", "E56DB1",
-        "DF1995", "DF1995",
-        "3C1053", "3C1053",
-        "0E0E9A", "0E0E9A",
-        "0085CA", "0085CA",
-        "40A4D7", "40A4D7",
-        "7FC0B1", "7FC0B1",
-        "00B388", "00B388",
-        "E9D561", "E9D561",
-        "E1C72C", "E1C72C",
-        "AC4FC6", "AC4FC6",
-        "B288B9", "B288B9",
-        "DC6B2F", "DC6B2F",
-        "E4002B", "E4002B",
-        "DF1995", "DF1995",
-        "702F8A", "702F8A",
-        "0E0E9A", "0E0E9A",
-        "EDB597", "EDB597",
-        "DC6B2F", "DC6B2F",
-        "40A4DA", "40A4DA",
-        "00573F", "00573F",
-        "7FC2E4", "7FC2E4"
-    ],
-      textcolor_rows: 6,
-    textcolor_cols: 4
-});
-</script>
 
+<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_Events_EditPage1.js')}" />
+<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_Events_EditPage2.js')}"/>
 <style>
     .fileLabel{
         color: #4a4a56;
@@ -56,53 +13,9 @@ tinymce.init({
         margin-right: 12px;
         margin-left: 103px;
     }
-</style>
-<script>
-    $(document).ready(function() {
+  </style>
 
-        if ('{!Event__c.Id}' == '')
-        {
-            $('#newGroupRadio').prop('checked',true);
-            $('.exGroup').parent().parent().parent().hide();
-        }
-        
-        $('input[name="chatter_group_option"]').change(function(){
-            if ($('#newGroupRadio').prop('checked'))
-            {
-                $('.newGroup').parent().parent().parent().show('slow');
-                $('.exGroup').parent().parent().parent().hide();
-                $('.exGroup').val('');
-                $('input[id*="chatterGroupId"]').val('');
-            }
-            else
-            {
-                $('.exGroup').parent().parent().parent().show('slow');
-                $('.newGroup').parent().parent().parent().hide();
-                $('.newGroup').val('');
-            }
-        });
-    });
 
-    function openChatterGroupSearch()
-    {
-        var w = 800
-        var h = 400
-        var left = (screen.width/2)-(w/2);
-        var top = (screen.height/2)-(h/2);
-
-        window.open(
-            '/apex/isll_ChatterGroupSearch',
-            'targetWindow',
-            'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width='+w+',height='+h+',left='+left+',top='+top
-        );
-    }
-
-    function selectChatterGroup(groupId, groupName)
-    {
-        $('.exGroup').val(groupName);
-        $('input[id*="chatterGroupId"]').val(groupId);
-    }
-</script>
     <apex:form id="theForm" >
         <apex:sectionHeader title="ISLL Events" subtitle="{!IF(Event__c.id == null,'New Event', Event__c.name)}"/>
         <apex:pageBlock title="Event Builder" mode="edit"  >

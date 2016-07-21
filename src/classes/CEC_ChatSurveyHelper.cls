@@ -12,7 +12,7 @@ History
 VERSION    AUTHOR                       DATE            DETAIL                   
 1.0      Goverdhan & Sathish            Feb-2016      Initial Development.   
 *************************************************************************************/
-public with sharing class CEC_ChatSurveyHelper {
+public class CEC_ChatSurveyHelper {
 
     /******************************************************************* 
         Purpose: 
@@ -22,7 +22,7 @@ public with sharing class CEC_ChatSurveyHelper {
         Exception : 
             Exception is handled in the parent calling class.
     ********************************************************************/
-    public void fetchAndUpdateSurveyRecords(List<cec_Additional_Case_Information__c> surveyRecords) {
+	public void fetchAndUpdateSurveyRecords(List<cec_Additional_Case_Information__c> surveyRecords) {
         System.debug('Entering fetchAndUpdateSurveyRecords() method. surveyRecords = ' + surveyRecords);
 
         Set<String> chatKeys = new Set<string>();
@@ -47,5 +47,5 @@ public with sharing class CEC_ChatSurveyHelper {
             update(surveyRecords);
         }
         System.debug('Exiting fetchAndUpdateSurveyRecords() method. surveyRecords = ' + surveyRecords);
-    }
+	}
 }

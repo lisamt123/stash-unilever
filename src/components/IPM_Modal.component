@@ -8,7 +8,7 @@
 -->
 <apex:component id="ipmModal">
     <apex:attribute name="modalTitle" default="" type="string" description=""/>    
-    <div id="ipmModal" class="ipmModal modal fade">
+    <div id="ipmModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

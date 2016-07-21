@@ -6,7 +6,7 @@ Purpose: BET_MemberRequestHandlerCls. contains logic used in BET_Member_RequestH
 
 History
 -------
-VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
+VERSION AUTHOR                          DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   k.szepietowski@polsource.com            23/07/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
 public without sharing class BET_MemberRequestHandlerCls {
@@ -24,9 +24,9 @@ public without sharing class BET_MemberRequestHandlerCls {
     *************************************************************/
     
     public static void preventMemberRequestDuplicatesWhileInsert(List<BET_Member_Request__c> memberRequestToInsert){
-    	/*System.debug('Entring preventMemberRequestDuplicatesWhileInsert  with param @memberRequestToInsert:'+memberRequestToInsert);
-    	Map<String,BET_Member_Request__c> recordsToInsertMap = new Map<String,BET_Member_Request__c>();
-    	Set<String> uniqRecords = new Set<String>();
+        /*System.debug('Entring preventMemberRequestDuplicatesWhileInsert  with param @memberRequestToInsert:'+memberRequestToInsert);
+        Map<String,BET_Member_Request__c> recordsToInsertMap = new Map<String,BET_Member_Request__c>();
+        Set<String> uniqRecords = new Set<String>();
         for(BET_Member_Request__c request : memberRequestToInsert){
             String uniqItem = '';
             
@@ -61,7 +61,7 @@ public without sharing class BET_MemberRequestHandlerCls {
         }
        
         for(BET_Member_Request__c existingRequest : [SELECT ConcatenatedField__c,UserId__r.Name FROM 
-        											BET_Member_Request__c WHERE ConcatenatedField__c in : uniqRecords]){
+                                                    BET_Member_Request__c WHERE ConcatenatedField__c in : uniqRecords]){
             
             if(recordsToInsertMap.containsKey(existingRequest.ConcatenatedField__c)){
                 recordsToInsertMap.get(existingRequest.ConcatenatedField__c).

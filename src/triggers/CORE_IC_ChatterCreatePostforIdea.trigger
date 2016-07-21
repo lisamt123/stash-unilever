@@ -4,7 +4,6 @@
 */
 trigger CORE_IC_ChatterCreatePostforIdea on Idea (Before Insert, After Insert) {
   try {
-  
   if (trigger.isBefore) 
   {
     Set<ID> setIdeaThemeIds=new Set<ID>();
@@ -28,6 +27,7 @@ trigger CORE_IC_ChatterCreatePostforIdea on Idea (Before Insert, After Insert) {
   //IdeaTheme ideaTheme=[SELECT Id,Idea_Theme_Poster_URL__c,Title,Groups_to_Post__c FROM IdeaTheme where id in:setIdeaThemeIds];
   //User u=[Select Id from user where id=:i.CreatedById];
   
+  
   Set<ID> setContentDocIds=new Set<ID>();
   Map<Id,Id> mapIdsForContent=new Map<Id,Id>();
   for(IdeaTheme rec : mapIdeaTheme.values()){
@@ -39,10 +39,9 @@ trigger CORE_IC_ChatterCreatePostforIdea on Idea (Before Insert, After Insert) {
   }
   Id idDefaultImage=[SELECT Id FROM ContentVersion WHERE ContentDocumentId =:Core_Ideation__c.getinstance('DefaultIdeaImageId').Text_Value__c].Id;
   
-  
   for(Idea i : trigger.new)
-  {  
- 
+  {
+  
   IdeaTheme ideaTheme= mapIdeaTheme.get(i.IdeaThemeId);//=[SELECT Id,Idea_Theme_Poster_URL__c,Title,Groups_to_Post__c FROM IdeaTheme where id=:i.IdeaThemeId];
   //User u=[Select Id from user where id=:i.CreatedById];
          
@@ -54,7 +53,7 @@ trigger CORE_IC_ChatterCreatePostforIdea on Idea (Before Insert, After Insert) {
                      FeedItem post = new FeedItem();
                  post.CreatedById=i.CreatorName;
                  post.type='ContentPost';
-                 post.Body =Core_Ideation__c.getinstance('IdeaPostNotificationText').Text_Value__c+'\n'+URL.getSalesforceBaseUrl().toExternalForm()+'/apex/CORE_IC_NavigateToApp?articleId='+i.id+'&articleType=Idea';
+                 post.Body =Core_Ideation__c.getinstance('IdeaPostNotificationText').Text_Value__c+'\n'+URL.getSalesforceBaseUrl().toExternalForm()+'/apex/Core_IC_IdeationHomePage?ideaId='+i.id;
                  
                  if(ideaTheme.Idea_Theme_Poster_URL__c!=null)
                  {
@@ -82,7 +81,7 @@ trigger CORE_IC_ChatterCreatePostforIdea on Idea (Before Insert, After Insert) {
                      FeedItem post = new FeedItem();
                      post.CreatedById=i.CreatorName;
                      post.type='ContentPost';
-                     post.Body =Core_Ideation__c.getinstance('IdeaPostNotificationText').Text_Value__c+'\n'+URL.getSalesforceBaseUrl().toExternalForm()+'/apex/CORE_IC_NavigateToApp?articleId='+i.id+'&articleType=Idea';
+                     post.Body =Core_Ideation__c.getinstance('IdeaPostNotificationText').Text_Value__c+'\n'+URL.getSalesforceBaseUrl().toExternalForm()+'/apex/Core_IC_IdeationHomePage?ideaId='+i.id;
                      
                      if(ideaTheme.Idea_Theme_Poster_URL__c!=null)
                      {

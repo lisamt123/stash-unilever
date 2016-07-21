@@ -1,8 +1,8 @@
 <apex:page standardController="FAU_Participant__c" 
-	extensions="FAU_PArticipant_BioControllerExtension"  
-	showHeader="false"
-	sidebar="false"
-	docType="html-5.0" >
+    extensions="FAU_PArticipant_BioControllerExtension"  
+    showHeader="false"
+    sidebar="false"
+    docType="html-5.0" >
 <!--====================================================-->
 <!--Name:  FAU_EmailTemplateSender                      -->
 <!--Copyright © 2014  Unilever                          -->
@@ -17,9 +17,9 @@
 <!-- VERSION  AUTHOR           DATE              DETAIL                     RELEASE/CSR         -->
 <!--   1.0   Jack Dermody      07/09/2014        INITIAL DEVELOPMENT                            -->
 <!--====================================================-->
-	<apex:stylesheet value="{!URLFOR($Resource.FAU_styles)}" /> 
+    <apex:stylesheet value="{!URLFOR($Resource.FAU_styles)}" /> 
 
-	<html>
+    <html>
         <head>
         <meta charset="utf-8"/>
         <title>Partiicpant's Biography</title>
@@ -128,7 +128,7 @@
                     color:#000 !important;
                 }
                 a.linkStyle01 {
-                	background: #000;
+                    background: #000;
                 }
             </style>
         </head>
@@ -137,9 +137,9 @@
         <div id="main-container-one">
             <div id="header-one">
             <span id="logos">
-                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" height="117" /></span>
-                    <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" height="117" /></span>
-                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" height="117" /></span>
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" alt="FAU Side logo" height="117" /></span>
+                    <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" alt="FAU Program Banner" height="117" /></span>
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" alt="FAU Side Logo Right" height="117" /></span>
             </span>
             </div>
             
@@ -150,63 +150,63 @@
                  
                 <div id="container-one">
 
-	 			<apex:pageMessages /> 
-			<br/><br/>
-			<apex:form id="bioForm">
-				<br/><br/>
-				<table style="width:700px; margin-left:auto; margin-right:auto;">
-					<tr>
-						<td>
-							<h2 style="color:#0D85C7 !important; font-size:22px;">Biography</h2>
-							<p><apex:outputLabel value=" This is the 'About Me' section of your Chatter home page : 1000 max" for="bioDetailsBiography2" /></p>
-						</td>
-						<td>
-							<apex:inputField id="bioDetailsBiography" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Biography__c}" required="false"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h2 style="color:#0D85C7 !important; font-size:22px;">Unilever Career</h2>
-						</td>
-						<td>	
-							<apex:inputField id="bioDetailsUnileverCareer" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Unilever_Career__c}" required="false"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h2 style="color:#0D85C7 !important; font-size:22px;">Prior Career</h2>
-						</td>
-						<td>	
-							<apex:inputField id="bioDetailsPriorCareer" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Prior_Career__c}" required="false"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h2 style="color:#0D85C7 !important; font-size:22px;">Education</h2>
-						</td>
-						<td>
-							<apex:inputField id="bioDetailsEducation" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Education__c}" required="false"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h2 style="color:#0D85C7 !important; font-size:22px;">Personal</h2>
-							<p><apex:outputLabel value="Share anything you like about yourself, where you live, hobbies, family.." for="bioDetailsPersonal2"/></p>
-						</td>
-						<td>
-							<apex:inputField id="bioDetailsPersonal" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Personal__c}" required="false"/>
-						</td>
-					</tr>
-				</table>
-				<h2><apex:commandButton style="color:#054976; height:30px; width:100px; background:#FFFFFF; border-radius:10px;" action="{!submitBio}" value="Submit" styleClass="btn" id="submitButton"/></h2>
-				<h2><apex:commandButton style="color:#054976; height:30px; width:100px; background:#FFFFFF; border-radius:10px;" action="{!cancelBio}" value="Fill Later" styleClass="btn" id="btnCancel" immediate="true"/></h2>
-			</apex:form>
-			
+                <apex:pageMessages /> 
+            <br/><br/>
+            <apex:form id="bioForm">
+                <br/><br/>
+                <table style="width:700px; margin-left:auto; margin-right:auto;">
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important; font-size:22px;">Biography</h2>
+                            <p><apex:outputLabel value=" This is the 'About Me' section of your Chatter home page : 1000 max" for="bioDetailsBiography2" /></p>
+                        </td>
+                        <td>
+                            <apex:inputField id="bioDetailsBiography" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Biography__c}" required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important; font-size:22px;">Unilever Career</h2>
+                        </td>
+                        <td>    
+                            <apex:inputField id="bioDetailsUnileverCareer" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Unilever_Career__c}" required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important; font-size:22px;">Prior Career</h2>
+                        </td>
+                        <td>    
+                            <apex:inputField id="bioDetailsPriorCareer" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Prior_Career__c}" required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important; font-size:22px;">Education</h2>
+                        </td>
+                        <td>
+                            <apex:inputField id="bioDetailsEducation" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Education__c}" required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important; font-size:22px;">Personal</h2>
+                            <p><apex:outputLabel value="Share anything you like about yourself, where you live, hobbies, family.." for="bioDetailsPersonal2"/></p>
+                        </td>
+                        <td>
+                            <apex:inputField id="bioDetailsPersonal" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Personal__c}" required="false"/>
+                        </td>
+                    </tr>
+                </table>
+                <h2><apex:commandButton style="color:#054976; height:30px; width:100px; background:#FFFFFF; border-radius:10px;" action="{!submitBio}" value="Submit" styleClass="btn" id="submitButton"/></h2>
+                <h2><apex:commandButton style="color:#054976; height:30px; width:100px; background:#FFFFFF; border-radius:10px;" action="{!cancelBio}" value="Fill Later" styleClass="btn" id="btnCancel" immediate="true"/></h2>
+            </apex:form>
+            
             <div style="clear:both; height:75px;"></div>
             <div id="side_bar"></div>
-			</div>
-		</div>
-	</div>
-	</body>
-	</html>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
 </apex:page>

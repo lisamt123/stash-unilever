@@ -7,14 +7,11 @@
 *************************************************************************
 -->
 <apex:component controller="IPM_Gate_Milestones">
-	 <!------- Below Attributes will be send from VF Pages where this component has been included -->
          <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
          <apex:attribute name="gateDocType" type="String" AssignTo="{!gateType}" description="this indicates the type of Gate Document"/>
        <apex:attribute name="gateDocStatus" type="String" AssignTo="{!gateDocumentStatus}" description="this indicates the status of Gate Document"/>
         <apex:outputPanel id="ren" >
-     	<!----- Below table has been used to display the milestone details  -->
         <table class="ipmTable table table-bordered" cellspacing="0"> 
-        	<!-- Table Heading  starts here -->
          <thead>
          <tr>
           <th width="30%" scope="col" colspan="1">
@@ -39,10 +36,7 @@
          </th>
          </tr>
         </thead>
-        	<!-- Table Heading  ends here -->
-        	<!-- Table Body to display milestone data starts here -->
         <tbody>
-        		<!-- Repeat to iterate the milestone list  starts here  -->
                  <apex:repeat value="{!projectMilestones}" var="p">
                   <tr>
                       <td>
@@ -67,9 +61,7 @@
                     </td>      
                   </tr>
                   </apex:repeat>
-               	<!-- Repeat to iterate the milestone list  ends here  -->
  </tbody>
-		 	<!-- Table Body to display milestone data ends here -->
 </table>  
 
 </apex:outputPanel>

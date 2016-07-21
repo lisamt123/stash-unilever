@@ -45,11 +45,11 @@ public with sharing class FAU_ModuleHandler
     
     public void bulkAfter()
     {
-    	if(triggerShouldExecute){
-    		if(Trigger.isInsert){
-    			lModuleParticipantsUpdate = FAUModuleCls.createWebinarParticipants(Trigger.new);
-    		}
-    	}
+        if(triggerShouldExecute){
+            if(Trigger.isInsert){
+                lModuleParticipantsUpdate = FAUModuleCls.createWebinarParticipants(Trigger.new);
+            }
+        }
     }
         
     public void beforeInsert(SObject so)
@@ -61,23 +61,32 @@ public with sharing class FAU_ModuleHandler
     {
         FAUModuleCls.updateParticipantModules((FAU_Module__c) so, lModuleParticipantsUpdate);
     }
-     
+    
+    // Itrigger Implemented so can't delete empty Method 
 
-    public void beforeDelete(SObject so)
+      public void beforeDelete(SObject so)
     {   
     }
+    
+    
+    // Itrigger Implemented so can't delete empty Method
     
     public void afterInsert(SObject so) 
     {
     }
     
+    // Itrigger Implemented so can't delete empty Method
+    
     public void afterUpdate(SObject oldSo, SObject so)
     {
     }
     
+    // Itrigger Implemented so can't delete empty Method
+    
     public void afterDelete(SObject so)
     {
-    }
+    } 
+    
     
     /**
      * andFinally

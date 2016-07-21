@@ -12,7 +12,6 @@
 <apex:attribute name="isEditable" description="For Edit or Read-Only mode" type="Boolean"/>
 <apex:attribute name="projId" description="Getting Project Id" type="Id"/>
 <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
-	<!-- Render condition for displaying editing assumptions or to display read only  -->
     <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
        <a href="{!$Page.IPM_Financial}?id={!projId}">{!$Label.IPM_Navigate_Financial}</a>
    </apex:outputPanel>

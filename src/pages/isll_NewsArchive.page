@@ -303,7 +303,7 @@
                                                    </apex:outputText></td>
                                                 <td width="160px">
                                                     <div class="thumbnail-container">
-                                                        <img src="{!news.ThumbnailLink__c}" class="thumbnail-img" data-url="{!news.Link__c}" height="70" />
+                                                        <img src="{!news.ThumbnailLink__c}" alt="NewsArchive Thumbnail" class="thumbnail-img" data-url="{!news.Link__c}" height="70" />
                                                     </div>
                                                 </td >
                                                 <td width="160px">

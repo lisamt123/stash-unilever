@@ -15,30 +15,30 @@
     
         <apex:define name="content">
         
-        	<!--  putting this here to override the SF dependant select -->
-			<style>
-				.form .form-row select {
-					width: 72% !important;
-					height: 30px;
-					padding: 5px 2%;
-					margin: 0;
-					-webkit-border-radius: 0px;
-					-moz-border-radius: 0px;
-					border-radius: 0px;
-					-webkit-box-shadow: 0;
-					-moz-box-shadow: 0;
-					box-shadow: 0;
-					background: #fff;
-					color: #000;
-					border: 1px solid #000;
-					outline: none;
-					display: inline-block;
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					cursor: pointer;
-					}
-			</style>
+            <!--  putting this here to override the SF dependant select -->
+            <style>
+                .form .form-row select {
+                    width: 72% !important;
+                    height: 30px;
+                    padding: 5px 2%;
+                    margin: 0;
+                    -webkit-border-radius: 0px;
+                    -moz-border-radius: 0px;
+                    border-radius: 0px;
+                    -webkit-box-shadow: 0;
+                    -moz-box-shadow: 0;
+                    box-shadow: 0;
+                    background: #fff;
+                    color: #000;
+                    border: 1px solid #000;
+                    outline: none;
+                    display: inline-block;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    cursor: pointer;
+                    }
+            </style>
         
             <section role="main" id="content" class="form global-content">
             
@@ -77,9 +77,9 @@
                                         </tr>
                                         <tr>
                                             <apex:repeat value="{!FieldSetMap['ar_Experience__c']['experience']}" var="field">
-                                            	<apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
-                                                	<th style="{!IF(OR(LOWER(field.fieldPath) = 'nonuni_category__c', LOWER(field.fieldPath) = 'nonuni_brand__c'), 'display:none;', '')}">{!field.Label}</th>
-                                            	</apex:outputText>
+                                                <apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
+                                                    <th style="{!IF(OR(LOWER(field.fieldPath) = 'nonuni_category__c', LOWER(field.fieldPath) = 'nonuni_brand__c'), 'display:none;', '')}">{!field.Label}</th>
+                                                </apex:outputText>
                                             </apex:repeat>
                                         </tr>
                                     </thead>
@@ -87,14 +87,14 @@
                                         <apex:repeat value="{!UniExperienceObjectList}" var="unileverExperience">
                                             <tr style="{!IF(unileverExperience.isDeleted,'display:none','')}">
                                                 <apex:repeat value="{!FieldSetMap['ar_Experience__c']['experience']}" var="field">
-                                                	<apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
-                                                    	<td><apex:outputField value="{!unileverExperience.obj[field.fieldPath]}" /></td>
+                                                    <apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
+                                                        <td><apex:outputField value="{!unileverExperience.obj[field.fieldPath]}" /></td>
                                                     </apex:outputText>
                                                 </apex:repeat>
                                                 
                                                 <td>
                                                     <apex:commandLink action="{!unileverExperience.remove}" rerender="unileverExperiencePanel">
-                                                        <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
+                                                        <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" alt="unileverExperiencePanel" class="remove-row"/>
                                                     </apex:commandLink>
                                                 </td>
                                             </tr>
@@ -113,8 +113,8 @@
                                         </tr>
                                         <tr>
                                             <apex:repeat value="{!FieldSetMap['ar_Experience__c']['experience']}" var="field">
-                                            	<apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
-                                                	<th>{!field.Label}</th>
+                                                <apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
+                                                    <th>{!field.Label}</th>
                                                 </apex:outputText>
                                             </apex:repeat>
                                         </tr>
@@ -123,16 +123,16 @@
                                         <apex:repeat value="{!NonUniExperienceObjectList}" var="nonunileverExperience">
                                             <tr style="{!IF(nonunileverExperience.isDeleted,'display:none','')}">
                                                 <apex:repeat value="{!FieldSetMap['ar_Experience__c']['experience']}" var="field">
-                                                	<apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
-	                                                    <td>
-	                                                        <apex:outputField value="{!nonunileverExperience.obj[field.fieldPath]}" />
-	                                                    </td>
-	                                                </apex:outputText>
+                                                    <apex:outputText rendered="{!field.fieldPath != 'Unilever_Non_Unilever__c'}">
+                                                        <td>
+                                                            <apex:outputField value="{!nonunileverExperience.obj[field.fieldPath]}" />
+                                                        </td>
+                                                    </apex:outputText>
                                                 </apex:repeat>
                                                 
                                                 <td>
                                                     <apex:commandLink action="{!nonunileverExperience.remove}" rerender="non-unileverExperiencePanel">
-                                                        <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
+                                                        <img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" alt="non-unileverExperiencePanel" class="remove-row"/>
                                                     </apex:commandLink>
                                                 </td>
                                             </tr>
@@ -144,7 +144,7 @@
                             <fieldset class="repeater"><legend>Experience</legend>
                                 <apex:actionStatus id="experienceChange">
                                     <apex:facet name="start">
-                                        <img src="/img/loading.gif" />
+                                        <img src="/img/loading.gif" alt="experienceChange" />
                                     </apex:facet>
                                     
                                     <apex:facet name="stop">
@@ -178,7 +178,7 @@
                                             </apex:repeat>
                                             
                                             <p class="submit-instruction">Once you included all of the above information, press the button below to submit and add another one</p>
-                               				<apex:commandButton action="{!addNewExperience}" styleClass="repeater-add" value="Add Experience" />
+                                            <apex:commandButton action="{!addNewExperience}" styleClass="repeater-add" value="Add Experience" />
                                             
                                         </apex:outputPanel>
                                     </apex:facet>

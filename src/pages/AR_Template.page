@@ -1,16 +1,16 @@
 <!--
-	Unilever
+    Unilever
 
-	Page Name: AR_Template
+    Page Name: AR_Template
 
-	Ben Edwards | 2013-08-30
+    Ben Edwards | 2013-08-30
 
-	Page for the agency template.
+    Page for the agency template.
 
-	Timeline
-	Date 					| Name 				| Description
-	2013-08-30 09:24 (CET) 	| Ben Edwards	 	| Initial development.
-	2013-09-14 19:52 (CET) 	| Marc Saelzler	 	| Added necessary information to display the standard sfdc date picker.
+    Timeline
+    Date                    | Name              | Description
+    2013-08-30 09:24 (CET)  | Ben Edwards       | Initial development.
+    2013-09-14 19:52 (CET)  | Marc Saelzler     | Added necessary information to display the standard sfdc date picker.
 -->
 <apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -28,68 +28,68 @@
         <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AR_StaticResources, 'fancybox/jquery.fancybox.css?v=2.1.4')}" media="screen" />
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/vendor/modernizr-2.6.2.min.js')}"></script>
         <style>
-        	.dateFormat{
-   				visibility:hidden;
-   				display:none;
-			}
-			
-			.multiSelectPicklistRow
-			{
-				min-width: 650px !important;
-				width: 650px !important;
-			}
-			
-			.multiSelectPicklistRow td
-			{
-				min-width: 325px !important;
-				width: 325px !important;
-			}
-			
-			.multiSelectPicklistRow select
-			{
-				min-width: 325px !important;
-				width: 325px !important;
-				padding: 0 !important;
-				margin: 0 !important;
-				border: 1px solid black !important;
-				overflow-y: visible !important;
-				background-position: right center !important;
-				background-size: 10px !important;
-				background-repeat: repeat-y !important;
-				background-image: url('{!URLFOR($Resource.AR_StaticResources, 'css/images/ui-bg_highlight-soft_75_cccccc_1x100.png')}') !important;
-			}
-			
-			.multiSelectPicklistCell
-			{
-				max-width: 23px !important;
-				text-align: center;
-				padding: 0;
-				margin: 0;
-			}
+            .dateFormat{
+                visibility:hidden;
+                display:none;
+            }
+            
+            .multiSelectPicklistRow
+            {
+                min-width: 650px !important;
+                width: 650px !important;
+            }
+            
+            .multiSelectPicklistRow td
+            {
+                min-width: 325px !important;
+                width: 325px !important;
+            }
+            
+            .multiSelectPicklistRow select
+            {
+                min-width: 325px !important;
+                width: 325px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: 1px solid black !important;
+                overflow-y: visible !important;
+                background-position: right center !important;
+                background-size: 10px !important;
+                background-repeat: repeat-y !important;
+                background-image: url('{!URLFOR($Resource.AR_StaticResources, 'css/images/ui-bg_highlight-soft_75_cccccc_1x100.png')}') !important;
+            }
+            
+            .multiSelectPicklistCell
+            {
+                max-width: 23px !important;
+                text-align: center;
+                padding: 0;
+                margin: 0;
+            }
         </style>
     </head>
     <body>
-    	<nav class="visuallyhidden">
+        <nav class="visuallyhidden">
             <a href="#content">Skip to content</a>
         </nav>
         <header class="global-header">
-        	<a href="{!$Page.AR_LandingPage}">
-	            <h1>
-	                <img src="{!URLFOR($Resource.AR_StaticResources, 'img/logo.png')}" alt="Unilever" />
-	            </h1>
+            <a href="{!$Page.AR_LandingPage}">
+                <h1>
+                    <img src="{!URLFOR($Resource.AR_StaticResources, 'img/logo.png')}" alt="Unilever" />
+                </h1>
             </a>
             <a href="{!$Page.AR_LandingPage}">
-	            <h2>
-	                <img src="{!URLFOR($Resource.AR_StaticResources, 'img/title.png')}" alt="The Agency Portal" />
-	            </h2>
-	        </a>
+                <h2>
+                    <img src="{!URLFOR($Resource.AR_StaticResources, 'img/title.png')}" alt="The Agency Portal" />
+                </h2>
+            </a>
             <nav class="global-nav">
                 <ul>
-                	<li class="na-acronym"><a href="{!$Page.AR_LandingPage}">Home</a></li>
+                    <li class="na-acronym"><a href="{!$Page.AR_LandingPage}">Home</a></li>
                     <li class="na-acronym"><a href="mailto:agency.list@unilever.com">Email&nbsp;Us</a></li>
                     <li class="{!IF(ISPICKVAL($User.UserType,'Guest'),'last','')}"><a href="{!$Page.AR_FAQ}">FAQs</a></li>
                     <apex:outputText rendered="{!NOT(ISPICKVAL($User.UserType,'Guest'))}">
-                    	<li class="na-acronym last"><a href="{!$Page.AR_Logout}">Logout</a></li>
+                        <li class="na-acronym last"><a href="{!$Page.AR_Logout}">Logout</a></li>
                     </apex:outputText>
                 </ul>
             </nav>
@@ -116,49 +116,9 @@
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/main.js')}"></script>
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/vendor/jquery.validate.js')}"></script>
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/vendor/jquery.maskedinput.min.js')}"></script>
+                
         
-        <script>
-        	var initMaskFunc = function()
-        	{
-        		try
-        		{
-        			$.mask.definitions['#']=/\d|\,|\./;
-        			
-        			$(".currency").mask('?###################', {placeholder:'', reverse:true});
-        			$(".double").mask('?###################', {placeholder:'', reverse:true});
-        			
-        			$(".percent").mask('9?99%');
-	    
-				    $(".percent").on("blur", function()
-				    {
-				        if(parseInt($(this).val()) > 100)
-				        {
-				        	$(this).val(100);
-				        }
-				    });
-				}
-				catch(e)
-				{
-					//alert('error: ' + e);
-				}
-        	}
-			
-			$(window).load(function()
-			{
-				try
-				{
-					initMaskFunc();
-					
-					$('select').addClass('select');
-					$('select').on('change', function(){$('select').addClass('select')});
-				}
-				catch(e)
-				{
-					//alert(e);
-				}
-        	});
-       	</script>
-        
+        <script src="{!$Resource.Agency_List_JS}/AR_Templatepage.js"></script>
         <c:AR_DatePicker />
         
     </body>

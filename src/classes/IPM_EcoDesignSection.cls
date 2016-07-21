@@ -166,7 +166,8 @@ public with sharing class IPM_EcoDesignSection {
                         }
                         countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),false,++noOfNonEICountries,hasLeadSKU));
                     }
-					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty() && nonEICountryWithIdeasPhase.contains(countryName)) {
+					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty()) {
+						if( nonEICountryWithIdeasPhase.contains(countryName))
 						countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfNonEICountries,hasLeadSKU));
                     }
                 } 

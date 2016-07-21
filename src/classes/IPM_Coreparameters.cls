@@ -136,9 +136,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     Public List<IPM_BET_BETWrapper> searchresultBet{
         get{
             if(searchresultBet==null)
-            {
                 searchresultBet=new List<IPM_BET_BETWrapper>();
-            }
                 return searchresultBet;
         } 
         set;    
@@ -337,10 +335,10 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             coreConfig=IPM_CoreParameter_Configration__c.getInstance(projectSubType);
             
             if(coreConfig!=null && !coreConfig.IPM_CPV__c){
-                IPM_Coreparameter.IPM_Answer_of_Q2__c=system.Label.IPM_Not_Applicable_Core;
+                IPM_Coreparameter.IPM_Answer_of_Q2__c=null;
             }
             if(coreConfig!=null && !coreConfig.IPM_ET__c){
-                IPM_Coreparameter.IPM_Answer_of_Q3__c=system.Label.IPM_Not_Applicable_Core;
+                IPM_Coreparameter.IPM_Answer_of_Q3__c=null;
             } 
       }
         
@@ -421,11 +419,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         integer qTwo=2;
         integer qThree=3;
         
-        List<IPM_CoreParameter_Questions__c>allCorepQuestionList=new List<IPM_CoreParameter_Questions__c>();
-        allCorepQuestionList=[SELECT Name,IPM_Question_Number__c,IPM_Innovation_Renovation__c,
-                            IPM_Operational__c,IPM_BLG__c FROM IPM_CoreParameter_Questions__c ORDER BY 
-                            IPM_Question_Number__c,IPM_Order_Number__c ASC LIMIT 1000];
-        for(IPM_CoreParameter_Questions__c coreQ:allCorepQuestionList){
+        map<string,IPM_CoreParameter_Questions__c> coreQuestionMap=IPM_CoreParameter_Questions__c.getAll();
+        for(IPM_CoreParameter_Questions__c coreQ:coreQuestionMap.Values()){
             //get coreparameter questions for Innovation/Renovation project
             if(IPM_Coreparameter.IPM_ProjectSubType__c!=null && IPM_Coreparameter.IPM_ProjectSubType__c.equals(IPM_ConstantUtils.IPM_INNOVATION_RENOVATION)){
                 if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qOne){
@@ -502,7 +497,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             market_STR=IPM_Coreparameter.IPM_Market__c;
             subSector_STR=IPM_Coreparameter.IPM_Sub_sector__c;
             betValue_STR=IPM_Coreparameter.IPM_BET_Toolkit__c;
-            if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) || IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)){
+            if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c)){
                 isOriginal=true;
             }
             
@@ -583,7 +578,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         IPM_Coreparameter.IPM_Answer_of_Q1__c=answerone_STR;
         IPM_Coreparameter.IPM_Answer_of_Q2__c=answertwo_STR;
         IPM_Coreparameter.IPM_Answer_of_Q3__c=answerthree_STR;
-        getCoreparameterConfig();
         updateCoreParameter();
     }
     /****************************************************************************
@@ -681,7 +675,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                     editMarketActivityByPL=true;
                 } 
                 isEditable=true;
-                editETByTPL=false;
                 if(IPM_ConstantUtils.PHASE_IDEAS.equals(IPM_Coreparameter.IPM_Phase__c)){
                     editSubSector=true;
                 }

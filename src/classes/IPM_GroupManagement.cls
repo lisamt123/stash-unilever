@@ -126,7 +126,7 @@ global without sharing class  IPM_GroupManagement {
           if(queueList!=null && !queueList.isEmpty()){
              if (Test.isRunningTest()) {
                 // start new context via system.runAs() for the same user for test code only
-                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+                System.runAs(new User(Id = Userinfo.getUserId())) {
                 insert queueList;
                 }
             } else {
@@ -143,7 +143,7 @@ global without sharing class  IPM_GroupManagement {
           if(memberList!=null && !memberList.isEmpty()){ 
             if (Test.isRunningTest()) {
                 // start new context via system.runAs() for the same user for test code only
-                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+                System.runAs(new User(Id = Userinfo.getUserId())) {
                     insert memberList;
             }
             } else {
@@ -165,6 +165,7 @@ global without sharing class  IPM_GroupManagement {
     @Description : This method is used to update the name of the queue to inline it with project name
     **************************************************************************************************/
       
+      @future
       public static void groupNameUpdate(Set<Id> projectId)
       {
          Set<string> queuename = new Set<string>();
@@ -189,7 +190,7 @@ global without sharing class  IPM_GroupManagement {
           if(grpList!=null && !grpList.isEmpty()){ 
             if (Test.isRunningTest()) {
                 // start new context via system.runAs() for the same user for test code only
-                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+                System.runAs(new User(Id = Userinfo.getUserId())) {
                 update grpList;
             }
             } else {
@@ -332,7 +333,7 @@ global without sharing class  IPM_GroupManagement {
             if(memberList!=null && !memberList.isEmpty()){ 
                    if (Test.isRunningTest()) {
                     // start new context via system.runAs() for the same user for test code only
-                    System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+                    System.runAs(new User(Id = Userinfo.getUserId())) {
                     insert memberList;
                 }
                 } else {

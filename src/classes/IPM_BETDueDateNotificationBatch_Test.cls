@@ -8,20 +8,19 @@
   */
   
 @isTest
-private class IPM_BETDueDateNotificationBatch_Test{
-     
+public class IPM_BETDueDateNotificationBatch_Test{
+    
     private static IPM_Project__c project;
     private static List<IPM_Project__c> lstProjects;
     private static IPM_Milestone__c ipmMilestone;
     private static List<IPM_Milestone__c> lstIpmMilestones;
     private static IPM_Company_Card__c ipmCompanyCard;
     private static Map<Id, IPM_Project__c> mapProjects;
-    private static final String PROJECT_INSERTED_ASSERTION = 'Projects Not Inserted';
+    private static final String PROJECT_INSERTED_ASSERTION = 'Projects Inserted';
     private static final String TESTPROJECTNAME = 'Acme';
-    private static final String MILESTONE_INSERTED_ASSERTION = 'Milestones not Inserted';    
-    private static final String BATCH_FAILURE = 'Batch excecution failed!';
-    private static final String COMPANY_CARD_INSERTED_ASSERTION= 'Company card not inserted';
-    private static final String  FEED_UPDATE_NOT_ASSERTED = 'Feed not Updated successfully';
+    private static final String MILESTONE_INSERTED_ASSERTION = 'Milestones Inserted';    
+    private static final String BATCH_SUCCESS = 'Batch excecuted successfully!';
+    private static final String  FEED_UPDATED_ASSERT = 'Feed Updated';
     private static final String  BET_FIRSTMILESTONE_NAME = 'BETFirstRelease';
     private static final String  BET_FINALMILESTONE_NAME = 'BETFinalRelease';
     private static User platformUser;
@@ -40,14 +39,11 @@ private class IPM_BETDueDateNotificationBatch_Test{
             ipmCompanyCard.IPM_Business_Partner__c = UserInfo.getUserId();
             insert ipmCompanyCard;
         }
-        
-        System.assertEquals(1, [Select count() from IPM_Company_Card__c where id =: ipmCompanyCard.id],COMPANY_CARD_INSERTED_ASSERTION);
-        
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
         System.runAs(platformUser) 
         {
         lstProjects = new List<IPM_Project__c>();
-        for(Integer i=1; i<=20; i++){
+        for(Integer i=1; i<=5; i++){
             project = IPM_TestFactory_Helper.createIPMProject(false);
             project.name = TESTPROJECTNAME+i;
             project.IPM_Project_Name__c = TESTPROJECTNAME+i;
@@ -69,11 +65,10 @@ private class IPM_BETDueDateNotificationBatch_Test{
         for(IPM_Project__c eachProj : lstProjects) {
             iDs.add(eachProj.Id);
         }
-        System.assertEquals(20, [Select count() from IPM_Project__c where id in:iDs],PROJECT_INSERTED_ASSERTION);
-        
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],PROJECT_INSERTED_ASSERTION);
         Id  PROJECT_MILESTONE_RECTYPE = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(); 
         lstIpmMilestones = new List<IPM_Milestone__c>();
-        for(Integer i=1; i<=20; i++){
+        for(Integer i=1; i<=5; i++){
             ipmMilestone = IPM_TestFactory_Helper.createIPMMilestone(lstProjects[i-1].id, false);
             ipmMilestone.Name = milestoneName+i;
             ipmMilestone.IPM_Project__c = project.id;
@@ -88,19 +83,19 @@ private class IPM_BETDueDateNotificationBatch_Test{
             
         }
         insert lstIpmMilestones;
-        System.assertEquals(20, lstIpmMilestones.size(),MILESTONE_INSERTED_ASSERTION);
+        System.assertEquals(5, lstIpmMilestones.size(),MILESTONE_INSERTED_ASSERTION);
         for(IPM_Milestone__c eachMilestone : lstIpmMilestones) {
             iDs.add(eachMilestone.Id);
         }
-        System.assertEquals(20, [Select count() from IPM_Milestone__c where id in:iDs],MILESTONE_INSERTED_ASSERTION);
+        System.assertEquals(5, [Select count() from IPM_Milestone__c where id in:iDs]);
         }
     }
-     
+    
     /**
     *  Description : when BET milestone first release due date is after 15 days from today then chatter feed should get post for PLs. 
     *  @name chatterFeedPostForFirstReleasePositive
    */
-    private static testmethod void testChatterFeedPostForFirstReleasePositive(){
+    public static testmethod void chatterFeedPostForFirstReleasePositive(){
         
             initializeData(System.today() + 15, BET_FIRSTMILESTONE_NAME);
             
@@ -108,8 +103,7 @@ private class IPM_BETDueDateNotificationBatch_Test{
             executeBatch();
             mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-            	//To check that the chatter post is fired exactly when first release date is 15 days from now
-                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATE_NOT_ASSERTED);
+                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
             }
             Test.stopTest();
     }
@@ -118,7 +112,7 @@ private class IPM_BETDueDateNotificationBatch_Test{
     *  Description : when BET milestone first release due date is after 15 days from today then chatter feed should get post for PLs. 
     *  @name chatterFeedPostForFirstReleasePositive
    */
-    private static testmethod void testChatterFeedPostForFinalReleasePositive(){
+    public static testmethod void chatterFeedPostForFinalReleasePositive(){
        
           initializeData(System.today() + 15, BET_FINALMILESTONE_NAME);
             
@@ -126,17 +120,16 @@ private class IPM_BETDueDateNotificationBatch_Test{
             executeBatch();
             mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-            	//To check that the chatter post is fired exactly when final release date is 15 days from now
-                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATE_NOT_ASSERTED);
+                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
             }
             Test.stopTest();
     }
     
     /**
-    *  Description : when BET milestone first release due date is 10 days from today then chatter feed should not get post for PLs. 
+    *  Description : when BET milestone first release due date is after 15 days from today then chatter feed should get post for PLs. 
     *  @name chatterFeedPostForFirstReleasePositive
    */
-    private static testmethod void testChatterFeedPostForFirstReleaseNegative(){
+    public static testmethod void chatterFeedPostForFirstReleaseNegative(){
         
             initializeData(System.today() + 10, BET_FIRSTMILESTONE_NAME);
             
@@ -144,17 +137,16 @@ private class IPM_BETDueDateNotificationBatch_Test{
             executeBatch();
             mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-            	//To check that the chatter post is not fired when first release date is 10 days from now
-                System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATE_NOT_ASSERTED);
+                System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
             }
             Test.stopTest();
     }
     
     /**
-    *  Description : when BET milestone first release due date is 10 days from today then chatter feed should not get post for PLs. 
+    *  Description : when BET milestone first release due date is after 15 days from today then chatter feed should get post for PLs. 
     *  @name chatterFeedPostForFirstReleasePositive
    */
-    private static testmethod void testChatterFeedPostForFinalReleaseNegative(){
+    public static testmethod void chatterFeedPostForFinalReleaseNegative(){
         
             initializeData(System.today() + 10, BET_FINALMILESTONE_NAME);
             
@@ -162,8 +154,7 @@ private class IPM_BETDueDateNotificationBatch_Test{
             executeBatch();
             mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-            	//To check that the chatter post is not fired when final release date is 10 days from now
-                System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATE_NOT_ASSERTED);
+                System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
             }
             Test.stopTest();
         
@@ -173,7 +164,7 @@ private class IPM_BETDueDateNotificationBatch_Test{
     private static void executeBatch(){
         IPM_BETDueDateNotificationBatch betNotificationBatch = new IPM_BETDueDateNotificationBatch();
         Id batchId = database.executeBatch(betNotificationBatch);
-        System.assert(batchId!= NULL, BATCH_FAILURE);
+        System.assert(batchId!= NULL, BATCH_SUCCESS);
     }
     
 }

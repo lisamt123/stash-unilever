@@ -4,16 +4,15 @@
 *
 */
 @istest
-private class IPM_MyProjects_Test{
+public class IPM_MyProjects_Test{
     
-    static User platformUser;
-    static User BDUser;
-    static list<IPM_Project__c> projectList;
-    static list<IPM_Project__c> updateProjectList;
-    static list<IPM_Project__c> projectDetailList;
-    static list<IPM_Project_Document__c> ipmProjDocumentTestList;
+    public static User platformUser;
+    public static User BDUser;
+    public static list<IPM_Project__c> projectList;
+    public static list<IPM_Project__c> updateProjectList;
+    public static list<IPM_Project__c> projectDetailList;
+    public static list<IPM_Project_Document__c> ipmProjDocumentTestList;
     
-    //This method will be used to create test required for test methods
     @testSetup static void projectSetUpData() 
      {
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
@@ -27,7 +26,6 @@ private class IPM_MyProjects_Test{
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
-        System.assertEquals(3, [Select count() from IPM_Company_Card__c limit 100], 'Comapny cards are not inserted');
         
          IPM_TestFactory_Helper.getProjectMasterData();
          
@@ -46,20 +44,20 @@ private class IPM_MyProjects_Test{
                 updateProjectList.add(proj);
             }
            insert updateProjectList;
-         }
-         List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 100];
-           
-         system.assertEquals(6, projectDBList.size(),'Projects are not created');
-     }
-     
-     private static void createTestData(){   
+         }  
+         system.assertEquals(5, [Select Id from IPM_Project__c limit 5].size(),'Projects are created');
+         
+      }
+    
+    public static void createTestData(){
+        set<string> projIdSet = new set<string>();
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5'};
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
                                                     (Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),
                                                     (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Section__c from Tasks__r),
                                                     (Select Id,Name,IPM_Phase__c from IPM_Milestones__r)
-                                                  from IPM_Project__c where Name in:projectNameSet limit 100];
+                                                  from IPM_Project__c where Name in:projectNameSet];
         
         list<IPM_Bosscard__c> ipmBosscardTestList = IPM_TestFactory_Helper.createIPMBosscardList(false, 5);
         
@@ -75,6 +73,7 @@ private class IPM_MyProjects_Test{
         ipmProjDocumentTestList = new list<IPM_Project_Document__c>();
         for(IPM_Project__c project : projectDetailList)
         {
+            projIdSet.add(project.id);
             for(IPM_Project_Document__c  projDoc : project.Project_Documents__r)
             {
                 ipmProjDocumentTestList.add(projDoc);       
@@ -95,17 +94,14 @@ private class IPM_MyProjects_Test{
             ipmMileStoneTestList[i].IPM_Phase__c = projectDetailList[i].IPM_Phase__c;
         }
         insert ipmMileStoneTestList;
-        
-        List<IPM_Milestone__c> milestoneList = [Select id from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100];
-        
-        system.assertEquals(30, milestoneList.size(),'Milestones are not created');
+        system.assertEquals(5, [Select Id from IPM_Milestone__c limit 5].size(),'Milestones are created');
         
     }
     
     /***
-    * @Description: This testmethod is used to check if bosscards and then projects will be displayed on IPM home page or not 
+    * @Description: Running Test Method
     */
-    private static testmethod void IPM_MyProjectsTest()
+    public static testmethod void IPM_MyProjectsTest()
     {
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         system.runAs(globalUser)
@@ -115,8 +111,8 @@ private class IPM_MyProjects_Test{
                 IPM_MyProjects ipmp = new IPM_MyProjects();
                 new IPM_MyProjects(new IPM_HomePageController());
                 ipmp.getProjects();
+                System.Assert(ipmp.getProjects() != null,'Should not be null');
                 new ApexPages.StandardController(ipmProjDocumentTestList[0]);
-                System.AssertEquals(10 , ipmp.getProjects().size() ,'On Home page, bosscards and projects are not available.');
             Test.stopTest();
         }
       

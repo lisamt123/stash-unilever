@@ -181,7 +181,7 @@ public with sharing class IPM_FinancialActionStandards {
             iTOWrapper.actionStandardValue = ((Decimal) firstFullYearIncremental.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
             GMWrapper.actionStandardValue = ((Decimal) firstFullYearGross.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
             NPVWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
-            IRRWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(3);
+            IRRWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
             PaybackWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
     
             //Charter - Always Process Charter Results
@@ -240,14 +240,14 @@ public with sharing class IPM_FinancialActionStandards {
         iTOWrapper.lstGateValues.add(((Decimal) firstFullYearIncremental.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2));
         GMWrapper.lstGateValues.add(((Decimal) firstFullYearGross.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1));
         NPVWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2));
-        IRRWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(3));
+        IRRWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1));
         PaybackWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2));
     }
     
     public void getActionStandards(){
         projDocSecCon=new IPM_Project_Document_Section_Content__c();
         if(String.isNotBlank(projDocSecId)){
-            projDocSecCon=[SELECT Id,IPM_GM_Action_Standards_Charter__c,IPM_GM_Action_Standards_Charter_Cmts__c,IPM_gTO_Action_Standard_Charter__c,IPM_gTO_Action_Standard_Charter_Cmts__c,IPM_Section_Name__c,
+            projDocSecCon=[SELECT Id,IPM_GM_Action_Standards_Charter__c,IPM_GM_Action_Standards_Charter_Cmts__c,IPM_gTO_Action_Standard_Charter__c,IPM_gTO_Action_Standard_Charter_Cmts__c,
                                   IPM_Inc_Val_Share_Action_Charter_Cmts__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inov_Value_Share_Action_Charter_Cmts__c,
                                   IPM_IRR_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_iTo_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c,
                                   IPM_NPV_Action_Standard_Charter_Cmts__c,IPM_Payback_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter_Cmts__c,IPM_Project_Document_Section__c,IPM_Content_Type__c 

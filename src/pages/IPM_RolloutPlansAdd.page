@@ -13,7 +13,6 @@
         <apex:define name="body">          
                 <apex:form >
                 <div class="gradientbg">  
-                <!-- Component added for Project Details at Rollout page --> 
                     <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan" />
                  </div>
              <apex:outputPanel id="theForm" layout="block">
@@ -40,8 +39,7 @@
                                 </div>
                             </div>
                         </div>                        
-                        <!-- Display list of countries matching search criteria -->                       
-                        <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/></div>
+                        <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
                         <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                         <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
                         <apex:outputPanel rendered="{!!isNoResult}">
@@ -77,10 +75,7 @@
                                         <div class="col-sm-4 countrybg">
                                             <div class="subheader">
                                                 {!$Label.IPM_COUNTRY}
-                                                 <span class="SecButtonSet infoMarTop infoFloatR">
-                                                 <a class="icoButton info" title="{!$Label.IPM_KEY_MCO_NEEDS}"></a>
-                                             </span>
-                                                <span class="btext pull-right ieAlign">
+                                                <span class="btext pull-right">
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
                                                     <div class="btm2 ipmCheckbox">
                                                         <input class="notselected {!IF( OR (mapMCOWrappers[selectedMCO].key,AND(NOT(mapMCOWrappers[selectedMCO].mcoDisabled),project.IPM_Phase__c !='Ideas') ), 'selected', '')} {!IF(OR(mapMCOWrappers[selectedMCO].mcoDisabled,project.IPM_Phase__c !='Ideas'), 'disabled', '')}" id="keyMCO" type="checkbox"/> 
@@ -119,15 +114,15 @@
                                     </div>
                                 </apex:outputPanel>
                                 <div class="col-sm-12 text-right">
-                                    <apex:commandLink styleClass="ipmButton buttonMarginRight" action="{!cancel}" onClick="skipValidation();" value="{!$Label.IPM_CANCEL}" status="loadingStatus"/>
-                                    <apex:commandButton styleClass="ipmButton buttonMarginRight primary generateRolloutBtn" onClick="skipValidation();" oncomplete="GotoParentPage();" value="{!$Label.IPM_GENERATE_ROLLOUTS}" />                                    
+                                    <apex:commandLink styleClass="ipmButton buttonMarginRight" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus"/>
+                                    <apex:commandButton styleClass="ipmButton buttonMarginRight primary generateRolloutBtn" oncomplete="GotoParentPage();" value="{!$Label.IPM_GENERATE_ROLLOUTS}" />                                    
                                     
                                 </div>
                             </div>
                         </apex:outputPanel>    
                     </div>
                 </apex:outputPanel>                   
-                <!-- Action function for Changing Market Cluster ,MCO And Generate Rollout  -->
+                
                 <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="theForm,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
                     <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
                     <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
@@ -148,13 +143,135 @@
                     <apex:param name="p3" assignTo="{!previouselectedMCO}" value=""/>
                     <apex:param name="p4" assignTo="{!selectedKey}" value=""/>
                 </apex:actionFunction>      
-                <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>           
+                          
                 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script> 
-				<apex:outputPanel id="scriptPanel">
+                <apex:outputPanel id="scriptPanel">
                     <script>
-                          var IPMRollOutAdd = {SelectedMCO:'{!JSENCODE(selectedMCO)}',proId:'{!projectId}',completed:'{!isCompleted}',rolloutURL:'{!URLFOR($Page.IPM_RolloutPlans)}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};
+                           var IPMRollOutAdd = {SelectedMCO:'{!JSENCODE(selectedMCO)}'};
+                           
+                            var jq= jQuery.noConflict();
+                            jq(document).ready(function(){
+                                    jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
+                                    
+                                            var selectedCountries=[];
+                                            var unselectedCountries=[];
+                                            
+                                             jq(document).off('click', '.changeMCOTab').on('click','.changeMCOTab', function(){
+                                                var changeMCOTab = jq(this);
+                                                // passed from front end
+                                                var previousMcoCode = IPMRollOutAdd.SelectedMCO;
+                                                var mcoCode = changeMCOTab.attr('id');
+                                                var keyMCO = jq('#keyMCO').is(":checked");
+                                                
+                                                jq('.countryFilter .countryList input:checkbox').each(function(){
+                                                    var cntryInput = jq(this);
+                                                    if(cntryInput.is(":checked")){
+                                                        selectedCountries.push(cntryInput.attr('id'));
+                                                    } else {
+                                                        unselectedCountries.push(cntryInput.attr('id'));
+                                                    }
+                                                });
+                                                changeMCO(selectedCountries.toString(),unselectedCountries.toString(),mcoCode,previousMcoCode,keyMCO);
+                                            });
+                                            
+                                           jq(document).off('click', '.changeClusterTab').on('click','.changeClusterTab', function(){
+                                                var previousMcoCode = IPMRollOutAdd.SelectedMCO;
+                                                var clusterCode = jq(this).attr('id');
+                                                var keyMCO = jq('#keyMCO').is(":checked");
+                                                
+                                                jq('.countryFilter .countryList input:checkbox').each(function(){
+                                                    var cntryInput = jq(this);
+                                                    if(cntryInput.is(":checked")){
+                                                        selectedCountries.push(cntryInput.attr('id'));
+                                                    } else {
+                                                        unselectedCountries.push(cntryInput.attr('id'));
+                                                    }
+                                                });
+                                                changeCluster(selectedCountries.toString(),unselectedCountries.toString(),clusterCode,previousMcoCode,keyMCO);
+                                            });
+                                            
+                                            jq(document).off('click', '.generateRolloutBtn').on('click','.generateRolloutBtn', function(){
+                                                var previousMcoCode = IPMRollOutAdd.SelectedMCO;
+                                                var keyMCO = jq('#keyMCO').is(":checked");
+                                                jq('.countryFilter .countryList input:checkbox').each(function(){
+                                                    var cntryInput = jq(this);
+                                                    if(cntryInput.is(":checked")){
+                                                        selectedCountries.push(cntryInput.attr('id'));
+                                                    } else {
+                                                        unselectedCountries.push(cntryInput.attr('id'));
+                                                    }
+                                                });
+                                                generateRollouts(selectedCountries.toString(),unselectedCountries.toString(),previousMcoCode,keyMCO);
+                                                var projectId = "{!projectId}";
+                                                                    
+                                            });
+                                            
+                                            jq(document).off('click', '#selectAll').on('click','#selectAll', function(){
+                                                var $this = jq(this);
+                                                var findInput = $this.closest("ul").find("li input[type=checkbox]");
+                                                var findLabel = $this.closest("ul").find("li label");
+                                                if($this.is(":checked")){
+                                                    findInput.prop("checked", true);
+                                                    findLabel.addClass("selected");
+                                                }else{
+                                                    findInput.prop("checked", false);
+                                                    findLabel.removeClass("selected");
+                                                }
+                                            });
+                                            
+                                            jq(document).off('click', '#selectproLeader').on('click', '#selectproLeader', function(e) {
+                                                
+                                               e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                                               var url = jq(this).attr('value');
+                                               var mtitle = jq(this).attr('html-text');
+                                               jq("#ipmAddMemberModal .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "' + url + '"></iframe>');
+                                               jq('#ipmAddMemberModal .modal-dialog').width('700px');
+                                               jq('#ipmAddMemberModal .modal-dialog').height('610px');
+                                               jq('#ipmAddMemberModal .modal-dialog').css({'margin-top': '2%','z-index': '999'});
+                                               jq('#ipmAddMemberModal .modal-title').html(mtitle);
+                                           });
+                                scriptPanelLoad();  
+                                    
+                            });
+                            
+                            function setFocusOnLoad() {}
+                            
+                            function scriptPanelLoad(){
+                                var keyMCO = jq('#keyMCO');
+                                var srchTxt = jq('#srchTxt');
+                                jq('.placeholder').clearSearch();
+                               jq('.countrybg input:checkbox').each(function(){
+                                    var $this = jq(this);
+                                    if($this.hasClass('selected')){
+                                        $this.prop('checked', 'true');
+                                    }
+                                    
+                                    if($this.hasClass('disabled')){
+                                        $this.prop('disabled', 'true');
+                                    }
+                                }); 
+                                
+                                    if(keyMCO.hasClass('selected')){
+                                        keyMCO.prop('checked', 'true');
+                                    }
+                                    srchTxt.addClass('placeholder');
+                                    srchTxt.val(srchTxt.attr('placeholder'));   
+                                    jq( ".placeholder" ).on( "keypress", function(event) {
+                                          if(event.which == 13) {                                      
+                                          callsearch();
+                                          return false;        
+                                          }
+                                     });                  
+                            }  
+
+                           function setRedirect()
+                           {
+                               if({!isCompleted})
+                               {
+                                   window.top.location = '{!URLFOR($Page.IPM_RolloutPlans)}?Id={!projectId}&EditMode=false';
+                               }
+                           }
                     </script>
-					<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansAdd.js')}" type="text/javascript"></script>
                  </apex:outputPanel>
              </apex:outputPanel>
         </apex:form>

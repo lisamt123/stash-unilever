@@ -3,8 +3,7 @@
 	<apex:composition template="Oblix_OuterPageTemplate">
 
         <apex:define name="top_breadcrumb">
-            <a href="{!URLFOR($Page.Oblix_SOWMain)}">SWOP Home</a>
-            
+            <a href="/apex/oblix_sowmain">SWOP Home</a>
         </apex:define>
         <apex:define name="header_text"/>
 

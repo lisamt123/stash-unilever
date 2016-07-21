@@ -1,6 +1,0 @@
-<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
-<tr valign="top" height="400" >
-<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
-<![CDATA[<span style="background-color: rgb(255, 255, 255);"><font face="arial" style="font-family: Arial, Helvetica, sans-serif;"><span style="font-size: 12pt;">Your Finance Leader has confirmed that the Business Case for&nbsp;</span></font><font face="Arial, Helvetica, sans-serif">{!IPM_EmailOut_Notification__c.Project_Name__c}&nbsp;</font><font face="arial"><font face="Arial, Helvetica, sans-serif"><span style="font-size: 12pt;">is up to&nbsp;date following the&nbsp;recent Target Launch Date change for&nbsp;</span></font>{!IPM_EmailOut_Notification__c.MCO_Country_Name__c}<font face="Arial, Helvetica, sans-serif"><span style="font-size: 12pt;">.</span></font></font></span>]]></td>
-</tr>
-</table>

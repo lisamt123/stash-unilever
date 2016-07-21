@@ -1,22 +1,28 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to display the Matrix page for Bonus 
-   *@Author: Cognizant
-   *@Created Date: 27/07/2014 
-   *************************************************************************
-   -->
 <apex:page standardController="AF_Bonus_Summary__c" extensions="AF_BonusFeeStdCtrlExt,AF_BonusSummaryRemote,AF_BrandEstimateRemote,AF_BonusMatrixSummary" showHeader="false" sidebar="false">
 <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+
 <head>
     <meta charset="utf-8" />
     <!-- Bootstrap_css File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
     <!-- Bootstrap_css File End -->
+     
     <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+    <!--<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>-->
     <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+      <!-- Add fancyBox -->
+    <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>-->
+    
+    
     <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
     <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
       <style>
+      /*div.AF_BonusMatrix .tableborder th, 
+      div.AF_BonusMatrix .tableborder td {
+  border: 1px solid #000;
+  height: 40px;
+}*/
         div.AF_BonusMatrix a.modalButton3 div:last-child {
   font-size: 13px !important;
 }
@@ -28,9 +34,12 @@
         text-decoration:underline;
         text-align: left!important;
         }
+        
         .modal {
     overflow-y: auto;
 }
+
+
 #iframe_cont
 {
     width:100%;
@@ -54,7 +63,9 @@
   height:102%;
 }
       </style>
-        <script type="text/javascript">
+      <script type="text/javascript">
+      
+    // commentsToggleClose(commentAddTable); 
             $('a.addfancy').fancybox({
               autoSize: false,
                     width: 1100,
@@ -67,10 +78,13 @@
                     overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
                     },
                     afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                        //parent.location.reload(true);
                         location.reload();
                     }
             });
+            
         </script>
+        
         <script>
         function displaymessage(){
         if({!bonusableFee} >0){
@@ -84,7 +98,14 @@
           }
         }
         </script>
+    
+    <!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
     <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>-->
+   
+    
     <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
@@ -93,16 +114,25 @@
     <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0"/>
   <!-- Add fancyBox -->
+    
+        
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/css/jquery.dataTables.css')}"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
+    <!--<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/styles/AF_Uniform_Styles.css')}"/>-->
+    
     <!-- Common_Style File Start -->
-    <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
     <!-- Common_Style File End -->
+    
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js')}"></script>
+   <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/ColVis/js/dataTables.colVis.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.js')}"></script>-->
     <script type="text/javascript" language="javascript">
+        //Page Initialisation....
         var colsSelected;
         var agencyEntities = [];
         var rowsSelected, progressValue;
@@ -113,32 +143,155 @@
         var isCol = location.search.split('bCol=')[1];
         var dataSet, cols, oTable, singleRow, singleCol;
     </script>
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functions.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+    
     <script type="text/javascript">
+    
         function runScript(e) {
             if (e.keyCode == 13) {
+                
                 alert('test'); 
                 return false;
             }
         }
+        
     </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
-    
     <script>
-        $(document).ready(function() {
-            loadBonusMatrix();
+    
+    loadBonusMatrix();
+    
+    $(document).ready(function() {
+        $('#agCol').on( 'click', function (e) {
+            e.preventDefault();
+            $.when( addUnileverEntityToEstimates(colsSelected) ).then( function(status){
+                if(typeof isCol === 'undefined') {
+                    location.replace(addParameterToURL('bCol=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#agCol").html(status);
+            });
         });
+        $('#ulRow').on( 'click', function () {
+            $.when( addAgencyEntityToEstimates(rowsSelected) ).then( function(status){
+                console.log('isRow :' + isRow);
+                //loadAgMatrix();
+                if(typeof isRow === 'undefined') {
+                    location.replace(addParameterToURL('bRow=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#ulRow").html(status);
+            });
+         });
+         $('#advFltr').on( 'click', function (e) {
+            $.each( advFilter, function( k, v ) {
+                $( ".display tbody tr td" ).each(function() {
+                    if(v == 't' || v == 'd' || v == 'a') {
+                        var selectedVal = $(this).attr(v);
+                        if(typeof selectedVal != 'undefined') {
+                            $(this).children("a").text(selectedVal);
+                        }
+                    }else {
+                        if(v != 'all') {
+                            var selectedVal = $(this).children("a").attr(v);
+                            if(typeof selectedVal != 'undefined') {
+                                $(this).children("a").text(selectedVal);
+                            }
+                        } else {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+        $('.display tbody').on('click', 'td .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
+                $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+         $('.display thead tr').on('click', 'th .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
+                $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+         $( "#ldMatrix" )
+        .click(function( event) {
+           event.preventDefault();
+           $.when( addSingleULAGEntity() ).then( function(status){
+               location.reload();
+           },
+           function(status){},
+           function(status){
+           });
+        });
+   });
+   
     </script>
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionBonusMatrix.js')}"></script>
+    <!-- jquery library Start-->
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+    <!-- jquery library End-->
+    
+     <!-- <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/> -->
+     <!--   Bootstrap_Js File start 
+     <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/> -->
+     
+     <!-- Bootstrap_Js File start-->
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+     <!--Bootstrap Js File End -->
+     
+     <!-- Bootstrap Tooltip methods Start -->
+         <script type="text/javascript" language="javascript">
+            var bsjQuery = $.noConflict(true);
+            bsjQuery.fn.bsTooltip= bsjQuery.fn.tooltip; 
+            bsjQuery(document).ready(function() {
+                  bsjQuery('[data-toggle=tooltip]').bsTooltip();
+            });
+         </script>
+     <!-- Bootstrap Tooltip methods End -->
      
 </head>
 <div class="AF_BonusMatrix">
 <!---Header Summary section -->
 <apex:form id="formId">
+
 <!-- Main Header Section -->
    <div class="row">            
      <div class="col-lg-12 charttable1"> 
@@ -148,26 +301,32 @@
            <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
            <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
            <td class="User_Name"> {!$User.FirstName} {!$User.LastName} </td>
+          <!--<td><apex:commandButton value="Email to Cat Finance" style="height:30px;background:#004976;padding:6px 10px 10px;border-radius:5px;color:white;font-size:13px;width:152px" onclick="Sendemailtofinance('{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" rendered="{!isCMCOSuperFlag}"/></td>-->
+           <!--<td style="text-align:center;width:5%"><apex:commandButton value="Reports" action="{!redirectToReportPage}" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 130px;"/></td>-->
+           <!--<td style="width:10%;text-align:right;"> <apex:commandButton value="Back to Chatter" action="{!backToChatter}" style="width:120px;background:#007DBB;margin-top: 40px;margin-top: 26px;border:none;color:white;border-radius:10px;padding:10px;"/> </td>-->
            <td class="helpicon"> <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" html-data-toggle="tooltip" styleclass="custom-link222" title="{!$Label.AF_BonusMatrixHelp}" html-data-placement="bottom"/> </td>
        </tr>
        </table>
   </div>    
    </div>
+     
     <div class="row">           
         <div class="col-lg-12 charttable1">         
             <apex:image url="{!$Resource.header_new}" styleClass="helpimg"/>            
         </div>          
     </div>
+
 <div class="row">
      <div class="col-lg-12 charttable1">
         <div class="chartCont">
         <div class="firstdiv_bonus">
                           <div class="barndLableHead"><b>{!bonusSummaryObj.AF_Brand__r.Name}</b> | <b>{!bonusSummaryObj.AF_Agency__r.Name}</b></div>  
+                                                       
                                     <div class="wid90P floatL">    
                                            <div class="bonusTargetCont">
                                                  <apex:outputlabel value="Bonus Target"/></div>
                                                  <div class="bonusTargetValue">
-                                                €
+                                                €<!--<apex:outputlabel value="{!bonusSummaryObj.AF_Bonus_Matrix_Value__c}"/>-->
                                                  <apex:outputText value="{0,number,###,###,###}">
                                                      <apex:param value="{!BonusTarget}"/>
                                                  </apex:outputText>    
@@ -180,11 +339,13 @@
                                                      <apex:outputText value="{0,number,###,###,###}">
                                                           €<apex:param value="{!remainingAllowances}"/>
                                                           </apex:outputText> 
+                                                          
                                                     </div>
                                       </div>    
+                                        
                                     <div class="wid90P floatL">    
                                            <div class="bonusableFeeCont">
-                                              {!$Label.AF_Bonusable_Fee}
+                                              Bonusable Fee
                                            </div>
                                        <div class="bonusableFeeValue">
                                               <apex:outputText value="{0,number,###,###,###}">
@@ -192,10 +353,14 @@
                                               </apex:outputText>
                                            </div>
                                     </div> 
+                       
+                                    
+              
       </div> <!-- First Div closed -->
+      
       <div class="seconddiv_bonus">
                              <div class="overallBonusPercentChatCont"> 
-                                   <div class="overallBonusPercentChatLable"> {!$Label.AF_OverAll_Bonus}</div >
+                                   <div class="overallBonusPercentChatLable"> Overall Bonus Percentage </div >
                                    <canvas id="mycrosscanvas" height="100" width="100" class="overallBonusPercentChatDonut"></canvas>
                                      <span class="overallBonusPercentChatDonutLableValue">   <apex:outputText styleclass="overallText" value="{0,number,###,###,###}">
                                              €<apex:param value="{!totalquant_qual}"/>
@@ -204,7 +369,7 @@
                              </div>
                              <div class="centerdiv_bonus"> </div>
                               <div class="quantitativeBonusCont"> 
-                                    <div class="quantitativeBonusLable">{!$Label.AF_Quantitative_Bonus}</div >
+                                    <div class="quantitativeBonusLable">Quantitative Bonus </div >
                                    <canvas id="mycrosscanvasQuant" height="100" width="100" class="quantitativeBonusDonut"></canvas>
                                  <span class="quantitativeBonusValue"> 
                                     <apex:outputText styleclass="quantText" value="{0,number,###,###,###}">
@@ -212,8 +377,10 @@
                                     </apex:outputText>   
                                  </span>  
                              </div>
+                  
+                  
                              <div class="qualitativeBonusCont"> 
-                                    <div class="qualitativeBonusLable">{!$Label.AF_Qualitative_Bonus}</div >
+                                    <div class="qualitativeBonusLable"> Qualitative Bonus </div >
                                    <canvas id="mycrosscanvasQual" height="100" width="100" class="qualitativeBonusDonut"></canvas>
                                   <span class="qualitativeBonusValue"> 
                                     <apex:outputText styleclass="qualText" value="{0,number,###,###,###}">
@@ -221,18 +388,37 @@
                                   </apex:outputText>    
                                   </span>  
                              </div>
+                         
+                               
+             
       </div>  <!-- Second Div closed -->
+      
+      
+       
+      
+             
+        
+        
+        
+        
+            
   </div>
   </div>
+ 
 </div>
+
 </apex:form> 
+
+
 <!--End of summary code -->
+
 <body class="dt-example">
     <apex:form >
       <div class="row">
     <div class="col-lg-12 charttable1">
         <table class="buttonsCont">
            <tr>
+ 
                                 <td id="first">
                             <select multiple="multiple"  id="advFltr" >
                                 <option value="all">All Currency</option>
@@ -244,16 +430,23 @@
                                            <a onClick="commentsToggleOpen('commentAddTable');window.location.hash='commentAddTable';return false;" title="{!$Label.AF_BFMX_General_feedback}" data-toggle="tooltip" Id="addCommentButton" styleClass="custom-link222 label_tooltip" >Add Comment</a>
                                       </td> 
                                       <td class="buttonBg1"> 
+                                           <!--<a href="" class="addfancy">Upload Document</a>-->
                                            <a href="" data-src="apex/AF_UploadAnAttachment?parentId={!bonusSummaryId}" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal3" class="modalButton3">Upload Document</a>
                                       </td>
+                                      
                                    <td class="buttonBg2"> 
                                            <a href="" data-src="apex/AF_AnnualBonus?Brandid={!brandid}&Agencyid={!agencyId}&Year={!Fyear}" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal3" class="modalButton3">Annual Bonus</a>
+                                           <!--<a href="#" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" onClick="openComments('/apex/AF_AgencyReviewComments?id={!brandEstimateId}');return false;">Review</a>-->
+                                           
                                       </td>
+                                    
                                      <td > 
                                        <apex:pagemessages id="pgm1"/>
                                         <apex:outputPanel rendered="{!isCatFinance}">
                                           <apex:commandButton value="Submit" action="{!SubmitforStatus}" rerender="pgm1" styleClass="submit_btn_screen1_bonus" oncomplete="displaymessage();" rendered="{!!IsReadyForPO}"/>
                                         </apex:outputPanel>
+                                           <!--<a href="#" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" onClick="openComments('/apex/AF_AgencyReviewComments?id={!brandEstimateId}');return false;">Review</a>-->
+                                          
                                       </td>
                                       <td class="printImgIcon">
                                               <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="window.print();" /> 
@@ -262,34 +455,88 @@
         </table>
     </div>
 </div>
+
+
   <div class="row">
      <div class="col-lg-12 charttable1">
  <div class="table_control">
    <div class="postSummary">
 <div class="fiscalYearLable"> 
+
       <div align="left" class="brandName">{!AF_Bonus_Summary__c.Name}</div>      
 </div> 
+
+ 
+     
+      
   </div> 
+   
  </div>
+ 
   </div>
  </div>
+
+
+
+
+
+
+
+  <!-- Action bar for Progeress -->
+    <!--
+      <div class="row">
+     <div class="col-lg-12 charttable1">
+ <div class="table_control_bonus">
+
+<div style="width: 50%;float:left;/* border: 1px solid red; */height: 59px;position: absolute;/* margin-left: 0px; */"> 
+
+      <div align="left" class="brandName"></div>       
+</div>  
+<div style="width: 16%;height: 59px;float:left;/* border: 1px solid red; */position: absolute;margin-left: 606px;">
+      
+        
+</div>    
+<div style="width: 16%;height: 59px;float: left;/* border: 1px solid red; */position: absolute;margin-left: 777px;">
+        <div id="progressbar" class="progressbar">
+            <div class="progress-label progresschange"></div>
+        </div> 
+        <br/><br/>
+            <div style="float: right;font-weight: bold;margin-right: 0px; margin-top: 1px;text-align: center;width: 160px;border: 1px solid black;border-radius:4px;background: white;/* display: block; */"> </div>
+
+</div>         
+        
+      
+
+   
+   
+   
+ </div>
+ 
+  </div>
+ </div>
+    
+     -->  <!-- End of Action bar for Progeress -->
+    
+    
     <!-- Matrix page loads from here -->
+    
+   
    <div class="row">
                <div class="col-lg-12 charttable1">
                <div class="cellMatrixCont">    
     <div id="gridPanel">
     <div align="right" class="fontSize16P">{!$Label.Matrix_Currency_Desc}</div>
         <div class="agencyBar">
-            <div align="left" class="agencyLeft">{!$Label.AF_Agency_Entities}</div>
+            <div align="left" class="agencyLeft">Agency Entities</div>
             <div align="right" class="agencyRight">
             <div id="colPanel" align="right" class="floatR marginT-10P">
                 <select multiple="multiple" id="agCol" class="marginR10P wid140PX toggle-vis"/>
-                <img id="submit-col" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
+                <img id="submit-col" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
              </div>
              <div id="loadColSpinner" class="spinner">
-                loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="spinner"/>
+                loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
              </div>
-             <img id="add-col-panel" class="vAlignM floatR marginT-8P" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
+             <img id="add-col-panel" class="vAlignM floatR marginT-8P" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
             </div>
         </div>
         <table class="display mydisplay tableborder " width="100%" border="0">
@@ -301,35 +548,41 @@
         </table>
          <div class="ulRowControl">
              <div align="center">
-                 <img id="add-row-panel" class="vAlignT" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
+                 <img id="add-row-panel" class="vAlignT" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
              </div>
          </div>
          <div id="rowPanel">
              <select multiple="multiple" id="ulRow" class="wid140PX"/>
-             <img id="submit-row" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
+             <img id="submit-row" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
          </div>
          <div id="loadRowSpinner" class="spinner">
-             loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="Spinner"/>
+             loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
          </div>
          <div id="fourth" style="
     float: right;">
                         <table>
                             <tr>
                                 <td align="right">
-                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15" alt="crossbroder"/>&nbsp;Represents Cross Border billing&nbsp;
-                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15" alt="Comment Change"/>&nbsp;Comment/Change to review&nbsp;
+                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
+                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15"/>&nbsp;Comment/Change to review&nbsp;
                                 </td>
                             </tr>
                          </table>
             </div>
     </div>
     <div id="gridSpinner" class="spinner">
-        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="Loading Matrix"/>
+        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
     </div>
+    
+    
+    
+   <!-- <a href="#" onClick="openAttachmentWindow('/apex/AF_UploadAnAttachment?parentId={!bonusSummaryId}');return false;">Upload Document</a> -->
+    <!-- <apex:outputLink onclick="openAttachmentWindow();return false;" >Upload Document</apex:outputLink> -->
     <c:AF_CommentsListComp ParentRecordValue="{!bonusSummaryId}" ParentObjectTypeDesc="AF_Bonus_Summary__c"  IsViewAllValue="false"  /><br/>
     <c:AF_DocumentListComp ParentRecordValue="{!bonusSummaryId}"/> 
     </div></div></div>
      </apex:form>
+    
 <!-- Bootstrap modal window Start -->    
 <div class="model_container">
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -337,31 +590,99 @@
          <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
            </div>
          <div class="modal-body">
               <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
               <div id="loader_cont">
+                
               </div>
               <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
          </div>
+         <!--
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+         -->
         </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 </div> 
 <!-- Bootstrap modal window End -->  
+    
+<!-- Bootstrap modal window methods  Start-->
+<script>
+document.body.setAttribute("data-shouldRefreshPage", "0");
+$(document).ready(function(){
+ $(document).on('click','.modalButton3', function(e) {
+    $("#iframe_cont").contents().find("body").html('');
+    var src = $(this).attr('data-src');
+    var height = $(this).attr('data-height') || 450;
+    var width = $(this).attr('data-width') || 1200;
+    
+    $("#myModal3 iframe").attr({'src':src,
+                        'height': height,
+                        'width': width}); 
+    $('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
+    window.setTimeout(timerForPageRefresh, 1000);
+ });
+});
+function timerForPageRefresh(){
+    shouldRefreshPage(!$('#myModal3').is(":visible"));
+}
+function shouldRefreshPage(flag) {
+   if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
+       document.body.setAttribute("data-shouldRefreshPage", "0");
+       window.location.reload(true);
+   }
+   else if(!flag){
+       window.setTimeout(timerForPageRefresh, 100);
+   }
+}
+/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
+function initializePageRefresh(){
+    var originalClick = $(this).attr("onclick");
+    $(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}
+
+$('#iframe_cont').load(function(){
+    var popupFrame = $("#iframe_cont").contents();
+    if(popupFrame.find("iframe").length ){
+        popupFrame.find("iframe").each(function(){
+            $(this).contents().find(".submit_btn_screen1_bonus, .submit_btn1, .submit_btn2, .upLoadDoc").each(initializePageRefresh);
+        });
+    }
+    else{
+        popupFrame.find(".submit_btn_screen1_bonus, .submit_btn1, .submit_btn2, .upLoadDoc").each(initializePageRefresh);
+    }
+});
+   </script>
+<!-- Bootstrap modal window methods End--> 
+ 
+<!-- Bootstrap modal window data loading_gif Animation methods Start-->
+<script> 
+    $(document).ready(function () {
+        $('#iframe_cont').on('load', function () {
+         $('#loader_cont, .loading_img').show();
+            console.log("madhu");
+            $('#loader_cont, .loading_img').delay(1000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
+        });
+    });  
+</script>
+<!-- Bootstrap modal window data loading_gif Animation methods End-->
 
 
 <!-- Bootstrap bootstrap modal window data loading_gif Animation methods End-->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/matrixControls.js')}"></script>
-    <script>
-    var jsDeclareBonus = {isAgencyFlag1: '{!isAgencyFlag}', overbonus1:'{!overallbonusPer}', quantbonus1:'{!quantPer}', quanlbonus1:'{!qualPer}'};
-    </script>
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasChart.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
     <!-- Matrix page code ends -->
     <!--Chart script -->
     <script>
-          window.onload = function() {
-               var urlChartCircles;
+    
+    window.onload = function() {console.log('onlod fn');
+            var urlChartCircles;
+            //alert('{!isAgencyFlag}');
             if({!isAgencyFlag}){
             urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
             }
@@ -369,32 +690,93 @@
             urlChartCircles='/resource/1435031136000/ChartNewJs';
             }
             $.getScript(urlChartCircles,function(){
-                var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
-                var myCrossBar = new Chart(document.getElementById("mycrosscanvasQuant").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQuant);
-                var myCrossBar = new Chart(document.getElementById("mycrosscanvasQual").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQual);             
-               
-            });
-            }
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvasQuant").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQuant);
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvasQual").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQual);          
+           });
+        }
+        
+        
+      
+        var DoughnutCrossData = 
+       [{
+            value : 100,
+            color: "#FF0000",
+        },
+        {
+            value : 0,
+            color: "#E6E6E6",
+        }]
+     
     
+     
+  var overbonus = {!overallbonusPer}+'%';
+    var crossopts= {legend : true,
+       crossText : [overbonus],
+       crossTextIter: ["all"],
+       crossTextOverlay :   [true],
+       crossTextFontSize : [20],
+       crossTextFontColor : ["black"],
+       crossTextRelativePosX : [2],
+       crossTextRelativePosY : [2],
+       crossTextPosX : [0],
+       crossTextPosY : [0],
+       crossTextAlign : ["center"],
+       crossTextBaseline : ["middle"],
+       canvasBorders : false,
+   
+    };
+   
+   
+   var quantbonus = {!quantPer}+'%';
+     var crossoptsQuant= {legend : true,
+       crossText : [quantbonus],
+       crossTextIter: ["all"],
+       crossTextOverlay :   [true],
+       crossTextFontSize : [20],
+       crossTextFontColor : ["black"],
+       crossTextRelativePosX : [2],
+       crossTextRelativePosY : [2],
+       crossTextPosX : [0],
+       crossTextPosY : [0],
+       crossTextAlign : ["center"],
+       crossTextBaseline : ["middle"],
+       canvasBorders : false,
+   
+    };
+    
+    
+    var quanlbonus = {!qualPer}+'%';
+     var crossoptsQual= {legend : true,
+       crossText : [quanlbonus],
+       crossTextIter: ["all"],
+       crossTextOverlay :   [true],
+       crossTextFontSize : [20],
+       crossTextFontColor : ["black"],
+       crossTextRelativePosX : [2],
+       crossTextRelativePosY : [2],
+       crossTextPosX : [0],
+       crossTextPosY : [0],
+       crossTextAlign : ["center"],
+       crossTextBaseline : ["middle"],
+       canvasBorders : false,
+   
+    };
+
     function commentsToggleOpen(elementId) 
-    {
+  {
+      //alert(elementId);
       document.getElementById(elementId).style.display = 'block';
-    }
+  }
   function commentsToggleClose(elementId) 
-    { 
+
+  { 
+      //alert(elementId);
       document.getElementById(elementId).style.display = 'none';
-    }
+  }
   commentsToggleClose('commentAddTable');
     </script>
-    <!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasChart.js')}"></script>-->
-    <!-- jquery library Start-->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
-    <!-- jquery library End-->
-     <!--   Bootstrap_Js File start -->
-     <!-- Bootstrap_Js File start-->
-     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
-     <!--Bootstrap Js File End -->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_BonusMatrix.js')}"></script>
+
 </body>
 </div>
 </apex:page>

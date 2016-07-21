@@ -5,20 +5,20 @@
 * *****************************************************/
 
 @isTest
-private class IPM_CustomerChannelController_Test {
-    private static User platformUser;
-    private static Attachment atth;
-    private static string EXCEPTION_OCCURED = 'Exception occured while saving document.';
-    private static string RECORD_NOT_SAVED = 'Record not saved successfully.';
-    private static string IMAGES_NOT_DELETED = 'image not deleted properly.';
-    private static string SECTION_NOT_UPDATED = 'section not updated properly';
-    private static string PRIOORITY_NOT_CHANGED = 'priority not changed properly.';
-    private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    private static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
-    private static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
-    private static IPM_Project_Document_Section_Content__c sectionContent;
-    private static IPM_Customer_Channel_Priority_Order__c customSettingData;
-    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+public class IPM_CustomerChannelController_Test {
+    public static User platformUser;
+    public static Attachment atth;
+    public static string EXCEPTION_OCCURED = 'Exception occured while saving document.';
+    public static string RECORD_NOT_SAVED = 'Record not saved successfully.';
+    public static string IMAGES_NOT_DELETED = 'image not deleted properly.';
+    public static string SECTION_NOT_UPDATED = 'section not updated properly';
+    public static string PRIOORITY_NOT_CHANGED = 'priority not changed properly.';
+    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    public static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
+    public static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
+    public static IPM_Project_Document_Section_Content__c sectionContent;
+    public static IPM_Customer_Channel_Priority_Order__c customSettingData;
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static final string INVALID_ASSERT_MESSAGE='Section Content Update Failed';
     private static final string CHANNEL_NAME='Club';
     private static final string FILE_NAME= 'abc.yuv';
@@ -62,7 +62,7 @@ private class IPM_CustomerChannelController_Test {
         system.assertEquals(ipmProjectList.size(),1,'Projects are not created');
     }
 
-    static void createTestData(){
+    public static void createTestData(){
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
@@ -115,7 +115,7 @@ private class IPM_CustomerChannelController_Test {
         }
     }
 
-    static Attachment createAttachment(){
+    public static Attachment createAttachment(){
         atth=new Attachment();
         Blob blbVal = Blob.valueof('abcd');
         atth.name=FILE_NAME;
@@ -127,7 +127,7 @@ private class IPM_CustomerChannelController_Test {
     /***********************************
     * @Description: validate Channel Creation functionality
     * *********************************/
-    static testMethod void testcreateChannel(){
+    public static testMethod void testcreateChannel(){
         Test.startTest();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
@@ -146,7 +146,7 @@ private class IPM_CustomerChannelController_Test {
         Test.stopTest();
     }
     
-    static testMethod void testUpdateSection(){
+    public static testMethod void testUpdateSection(){
         Test.startTest();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(globalUser)
@@ -191,7 +191,7 @@ private class IPM_CustomerChannelController_Test {
         Test.stopTest();
     } 
 
-    static testMethod void testcreateChannel2(){
+    public static testMethod void testcreateChannel2(){
         Test.startTest();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
@@ -207,7 +207,7 @@ private class IPM_CustomerChannelController_Test {
         Test.stopTest();
     } 
 
-    static testMethod void testcreateChannel3(){
+    public static testMethod void testcreateChannel3(){
         Test.startTest();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
@@ -268,7 +268,7 @@ private class IPM_CustomerChannelController_Test {
         Test.stopTest();
     } 
 
-    static testMethod void testcreateChannel4(){
+    public static testMethod void testcreateChannel4(){
         Test.startTest();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
@@ -437,7 +437,7 @@ private class IPM_CustomerChannelController_Test {
         Test.stopTest();
     } 
 
-    static testMethod void testcreateChannel5(){
+    public static testMethod void testcreateChannel5(){
         Test.startTest();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)

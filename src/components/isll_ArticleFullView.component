@@ -12,110 +12,110 @@
 <!--====================================================-->
 <apex:attribute name="articleName" description="Article to show." type="String" assignTo="{!aName}" required="true"/>
 <apex:attribute name="isNotWrapped" description="whether to wrap the text or not" type="boolean" required="false"/>
-	<style>
-		.articleFull{
-			clear: both;
-			/* font-family: Arial, Verdana, Helvetica, sans-serif; */
-		/*	color: black;*/
-			padding-top: 90px;
-		}
-		.articleFullWrapped{
-			padding-top: 0px;
-		}
-		
-		.articleFull .articleMedia{
-			float: left;
-			margin: 1px 20px 10px 0px;
-		}
-		.articleFull .articleMedia img{
-			width: 200px;
-			height: 150px;
-		}
-		
-		.articleFull .articleText{
-			margin-top: -90px
-		}
-		
-		.articleWrappedText{
-			width: 45%;
-			float: left;
-		}
-		
-		.articleFull h1 {
-			display: block;
-			font-size: 15px;
-			font-weight: bold;
-			margin: 20px 0 20px 0;
-			color: black;
-			text-transform: uppercase;
-		}
-	</style>
-	
-	<div class="articleFull {!IF(isNotWrapped, 'articleFullWrapped', '')}">
-		<apex:outputpanel rendered="{!!isNotWrapped}">
-			
-			<apex:outputText rendered="{!showMediaContent}">
-				<div class="articleMedia">
-					<apex:outputPanel id="imgPanel" rendered="{!article.Media_Content__r.Type__c == 'Image'}">
-						<apex:image value="{!article.Media_Content__r.Content__c}" />
-					</apex:outputPanel>
-					<apex:outputPanel id="videoPanel" rendered="{!article.Media_Content__r.Type__c == 'Video'}">
-				            
-			            <a href="javascript:void(0);" onclick="showVideo('{!article.Media_Content__r.Content__c}', 'my-video', 'inline_content');">
-			            	<div class="videobox">
-			            		<img src="{!article.Media_Content__r.ThumbnailLink__c}" />
-			            		<span></span>
-			            	</div>
-			            </a>
-			            
-			            <div style='display:none'>
-			                <div id='inline_content' style='padding:10px; background:#fff;'>
-			                    <div id='my-video'>
-			                    </div>
-			                </div>
-			            </div>
-				    </apex:outputPanel>
-				</div>
-			</apex:outputText>
-		
-			<div class="articleText">
-				<apex:outputText styleclass="cmsContentTitle" value="{!article.Title__c}" escape="false"/>
-				<apex:outputText value="{!article.Body__c}" escape="false"/>
-			</div>
-			
-		</apex:outputpanel>
-		
-		<apex:outputpanel rendered="{!isNotWrapped}">
-				<apex:outputText styleclass="cmsContentTitle" value="{!article.Title__c}" escape="false"/>
-			<apex:outputPanel rendered="{!showMediaContent}">
-				<div class="articleMedia">
-					<apex:outputPanel id="imgPanel1" rendered="{!article.Media_Content__r.Type__c == 'Image'}">
-						<apex:image value="{!article.Media_Content__r.Content__c}" />
-					</apex:outputPanel>
-					<apex:outputPanel id="videoPanel1" rendered="{!article.Media_Content__r.Type__c == 'Video'}">
-				            
-			            <a href="javascript:void(0);" onclick="showVideo('{!article.Media_Content__r.Content__c}', 'my-video1', 'inline_content1');">
-			            	<div class="videobox"><img src="{!article.Media_Content__r.ThumbnailLink__c}" /><span></span></div>
-			            </a>
-			            
-			            <div style='display:none'>
-			                <div id='inline_content1' style='padding:10px; background:#fff;'>
-			                    <div id='my-video1'></div>
-			                </div>
-			            </div>
-				    </apex:outputPanel>
-				</div>
-			</apex:outputPanel>
-		
-			<div class="articleWrappedText">
-				<apex:outputText value="{!article.Body__c}" escape="false"/>
-			</div>
-		</apex:outputpanel>
-		
-		<apex:outputLink value="isll_ArticleEdit" id="theLink" styleClass="editLink" rendered="{!showEditLink}">Edit
-			<apex:param name="id" value="{!article.Id}"/>
-			<apex:param name="returnPage" value="{!backUrl}" />
-		</apex:outputLink>
-	
-	</div>
+    <style>
+        .articleFull{
+            clear: both;
+            /* font-family: Arial, Verdana, Helvetica, sans-serif; */
+        /*  color: black;*/
+            padding-top: 90px;
+        }
+        .articleFullWrapped{
+            padding-top: 0px;
+        }
+        
+        .articleFull .articleMedia{
+            float: left;
+            margin: 1px 20px 10px 0px;
+        }
+        .articleFull .articleMedia img{
+            width: 200px;
+            height: 150px;
+        }
+        
+        .articleFull .articleText{
+            margin-top: -90px
+        }
+        
+        .articleWrappedText{
+            width: 45%;
+            float: left;
+        }
+        
+        .articleFull h1 {
+            display: block;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 20px 0 20px 0;
+            color: black;
+            text-transform: uppercase;
+        }
+    </style>
+    
+    <div class="articleFull {!IF(isNotWrapped, 'articleFullWrapped', '')}">
+        <apex:outputpanel rendered="{!!isNotWrapped}">
+            
+            <apex:outputText rendered="{!showMediaContent}">
+                <div class="articleMedia">
+                    <apex:outputPanel id="imgPanel" rendered="{!article.Media_Content__r.Type__c == 'Image'}">
+                        <apex:image value="{!article.Media_Content__r.Content__c}" />
+                    </apex:outputPanel>
+                    <apex:outputPanel id="videoPanel" rendered="{!article.Media_Content__r.Type__c == 'Video'}">
+                            
+                        <a href="javascript:void(0);" onclick="showVideo('{!article.Media_Content__r.Content__c}', 'my-video', 'inline_content');">
+                            <div class="videobox">
+                                <img src="{!article.Media_Content__r.ThumbnailLink__c}" alt="Article Media Content" />
+                                <span></span>
+                            </div>
+                        </a>
+                        
+                        <div style='display:none'>
+                            <div id='inline_content' style='padding:10px; background:#fff;'>
+                                <div id='my-video'>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </apex:outputText>
+        
+            <div class="articleText">
+                <apex:outputText styleclass="cmsContentTitle" value="{!article.Title__c}" escape="false"/>
+                <apex:outputText value="{!article.Body__c}" escape="false"/>
+            </div>
+            
+        </apex:outputpanel>
+        
+        <apex:outputpanel rendered="{!isNotWrapped}">
+                <apex:outputText styleclass="cmsContentTitle" value="{!article.Title__c}" escape="false"/>
+            <apex:outputPanel rendered="{!showMediaContent}">
+                <div class="articleMedia">
+                    <apex:outputPanel id="imgPanel1" rendered="{!article.Media_Content__r.Type__c == 'Image'}">
+                        <apex:image value="{!article.Media_Content__r.Content__c}" />
+                    </apex:outputPanel>
+                    <apex:outputPanel id="videoPanel1" rendered="{!article.Media_Content__r.Type__c == 'Video'}">
+                            
+                        <a href="javascript:void(0);" onclick="showVideo('{!article.Media_Content__r.Content__c}', 'my-video1', 'inline_content1');">
+                            <div class="videobox"><img src="{!article.Media_Content__r.ThumbnailLink__c}" alt="Article Media Content" /><span></span></div>
+                        </a>
+                        
+                        <div style='display:none'>
+                            <div id='inline_content1' style='padding:10px; background:#fff;'>
+                                <div id='my-video1'></div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </apex:outputPanel>
+        
+            <div class="articleWrappedText">
+                <apex:outputText value="{!article.Body__c}" escape="false"/>
+            </div>
+        </apex:outputpanel>
+        
+        <apex:outputLink value="isll_ArticleEdit" id="theLink" styleClass="editLink" rendered="{!showEditLink}">Edit
+            <apex:param name="id" value="{!article.Id}"/>
+            <apex:param name="returnPage" value="{!backUrl}" />
+        </apex:outputLink>
+    
+    </div>
 </apex:component>

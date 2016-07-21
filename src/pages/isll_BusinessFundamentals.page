@@ -12,185 +12,185 @@
 <!--====================================================-->
 
 <style>
-	.hidePanel{
-		//visibility : hidden;
-		display: none;
-		height : 0px;
-		width : 0px;
-	}
-	
-	.showPanel{
-		visibility : visible;
-		width : 100%;
-		height : 100%;
-		
-	}
-	
-	.imagePanel{
-		width : 100%;
-		
-	}
-	
-	.leftColumnContainer {width:95%; float:left;}
-	.leftColumn{margin-bottom: 20px;width: 48%;float: left;}
-	.rightColumnContainer {width:100%%; float:right;}
-	.rightColumn{margin-bottom: 20px;width: 48%;float: left;margin-left: 22px;}
-	.row{clear:both;}
+    .hidePanel{
+        //visibility : hidden;
+        display: none;
+        height : 0px;
+        width : 0px;
+    }
+    
+    .showPanel{
+        visibility : visible;
+        width : 100%;
+        height : 100%;
+        
+    }
+    
+    .imagePanel{
+        width : 100%;
+        
+    }
+    
+    .leftColumnContainer {width:95%; float:left;}
+    .leftColumn{margin-bottom: 20px;width: 48%;float: left;}
+    .rightColumnContainer {width:100%%; float:right;}
+    .rightColumn{margin-bottom: 20px;width: 48%;float: left;margin-left: 22px;}
+    .row{clear:both;}
 </style>
 <script>
-	function showHideMoreInfo(section, parent){
-		var searchEles = document.getElementById(parent).children;
-		for(var i = 0; i < searchEles.length; i++) {
-			 if(searchEles[i].id == section){
-			 	searchEles[i].className = "showPanel";
-			 }
-			 else{
-			 	searchEles[i].className = "hidden";
-			 }
-		}
-		
-	}
+    function showHideMoreInfo(section, parent){
+        var searchEles = document.getElementById(parent).children;
+        for(var i = 0; i < searchEles.length; i++) {
+             if(searchEles[i].id == section){
+                searchEles[i].className = "showPanel";
+             }
+             else{
+                searchEles[i].className = "hidden";
+             }
+        }
+        
+    }
 </script>
-	<apex:form >
-		<apex:composition template="isll_TemplateMain">
-				
-				<apex:define name="firstColumn">
-					<div style="width: 95%; float: left; ">
-						<div id = "leftColTop" style  = "height : 270px;">
-							<c:isll_CmsContentComponent cmsContentName="BusiFunda_SustainTitle" editable="true"/><br/>
-								<c:isll_ArticleFullView articleName="BusiFunda_GailVideo" isNotWrapped="true" />
-						</div>
-					</div>
-				</apex:define>
-				
-				<apex:define name="secondColumn">
-					<div style="width: 100%%; float: right; ">
-						<div id = "rightColTop" style  = "height : 255px;">
-							<div style = "padding-top: 15px;">
-								<c:isll_CmsContentComponent cmsContentName="BusiFunda_RightImage" editable="true"/>
-							</div>
-						</div>
-							
-						
-						</div>
-					</apex:define>
-					
-					<apex:define name="secondRow">
-						
-						<div class="row">
-						<div class="leftColumn">
-							<c:isll_ArticleFullView articleName="BusiFunda_FactsBusinessCaseTitle" isNotWrapped="true" /><br/>
-							<c:isll_CmsContentComponent cmsContentName="BusiFunda_TextElement" editable="true"/><br/>
-						</div>
-						<div class="rightColumn">
-							<c:isll_ArticleFullView articleName="BusiFunda_EmbedTitle" isNotWrapped="true" /><br/>
-							<c:isll_CmsContentComponent cmsContentName="BusiFunda_TextElement2" editable="true"/><br/>
-						</div>
-						</div>
-						
-						<div class="row">
-						<div class="leftColumn">
-							<div  class = "helpClass"  id = "clickableImageOne" rel="popover" data-content="Click part of each image to read more below"  data-original-title="Sustain Flower">
-								<div style="text-align:center; width:400px; margin-left:auto; margin-right:auto;">
-									<img id="Image-Maps_3201309270711294" src="{!URLFOR($Resource.isll_images,'sustainFlower.png')}" usemap="#Image-Maps_3201309270711294" border="0" width="456" height="426" alt="" style = "position: relative; left -42px"/>
-									<map id="_Image-Maps_3201309270711294" name="Image-Maps_3201309270711294">
-										<area style = "outline : none;" shape="poly" coords="237,10,364,22,412,100,239,204," onclick="showHideMoreInfo('ConsumerPreference','parentContainerFlower');" href="javascript:void(0);" alt="ConsumerPreference" title="ConsumerPreference"   />
-										<area style = "outline : none;" shape="poly" coords="416,110,454,157,450,265,396,301,242,215," onclick="showHideMoreInfo('WinWithCustomers','parentContainerFlower');" href="javascript:void(0);"  alt="WinWithCustomers" title="WinWithCustomers"   />
-										<area style = "outline : none;" shape="poly" coords="395,315,238,223,236,404,358,388," onclick="showHideMoreInfo('Innovation','parentContainerFlower');" href="javascript:void(0);" alt="Innovation" title="Innovation"   />
-										<area style = "outline : none;" shape="poly" coords="224,215,224,415,83,371,69,305," onclick="showHideMoreInfo('MarketDevelopment','parentContainerFlower');" href="javascript:void(0);" alt="MarketDevelopment" title="MarketDevelopment"   />
-										<area style = "outline : none;" shape="poly" coords="215,208,71,115,2,141,1,273,56,301," onclick="showHideMoreInfo('CostsBenefits','parentContainerFlower');" href="javascript:void(0);" alt="CostsBenefits" title="CostsBenefits"   />
-										<area style = "outline : none;" shape="poly" coords="226,11,101,47,80,104,230,206," onclick="showHideMoreInfo('InspiresPeople','parentContainerFlower');" href="javascript:void(0);"  alt="InspiresPeople" title="InspiresPeople"   />
-									</map>
-								</div>
-							</div>
-							
-							<div id = "parentContainerFlower" style = "height : 100%">
-								<div id = "InspiresPeople"  class = "hidePanel"  >
-									<c:isll_CmsContentComponent cmsContentName="InspiresPeople" editable="true"/>
-								</div>
-								
-								<div id = "ConsumerPreference"  class = "showPanel" >
-										<c:isll_CmsContentComponent cmsContentName="Consumer Preference" editable="true"/>
-								</div>
-							
-								<div id = "WinWithCustomers"  class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Win With Customers" editable="true"/>
-								</div>
-							
-								<div id = "Innovation" class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Innovation" editable="true"/>
-								</div>
-								
-								<div id = "MarketDevelopment" class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Market Development" editable="true"/>
-								</div>
-							
-								<div id = "CostsBenefits"  class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Cost Benefits" editable="true"/>
-								</div>
-							</div>
-					
-						 <br/><c:isll_CmsContentComponent cmsContentName="BusiFunda_Link" editable="true"/>
-						</div><!-- end .leftColumn -->
-						
-						<div class="rightColumn">
+    <apex:form >
+        <apex:composition template="isll_TemplateMain">
+                
+                <apex:define name="firstColumn">
+                    <div style="width: 95%; float: left; ">
+                        <div id = "leftColTop" style  = "height : 270px;">
+                            <c:isll_CmsContentComponent cmsContentName="BusiFunda_SustainTitle" editable="true"/><br/>
+                                <c:isll_ArticleFullView articleName="BusiFunda_GailVideo" isNotWrapped="true" />
+                        </div>
+                    </div>
+                </apex:define>
+                
+                <apex:define name="secondColumn">
+                    <div style="width: 100%%; float: right; ">
+                        <div id = "rightColTop" style  = "height : 255px;">
+                            <div style = "padding-top: 15px;">
+                                <c:isll_CmsContentComponent cmsContentName="BusiFunda_RightImage" editable="true"/>
+                            </div>
+                        </div>
+                            
+                        
+                        </div>
+                    </apex:define>
+                    
+                    <apex:define name="secondRow">
+                        
+                        <div class="row">
+                        <div class="leftColumn">
+                            <c:isll_ArticleFullView articleName="BusiFunda_FactsBusinessCaseTitle" isNotWrapped="true" /><br/>
+                            <c:isll_CmsContentComponent cmsContentName="BusiFunda_TextElement" editable="true"/><br/>
+                        </div>
+                        <div class="rightColumn">
+                            <c:isll_ArticleFullView articleName="BusiFunda_EmbedTitle" isNotWrapped="true" /><br/>
+                            <c:isll_CmsContentComponent cmsContentName="BusiFunda_TextElement2" editable="true"/><br/>
+                        </div>
+                        </div>
+                        
+                        <div class="row">
+                        <div class="leftColumn">
+                            <div  class = "helpClass"  id = "clickableImageOne" rel="popover" data-content="Click part of each image to read more below"  data-original-title="Sustain Flower">
+                                <div style="text-align:center; width:400px; margin-left:auto; margin-right:auto;">
+                                    <img id="Image-Maps_3201309270711294" src="{!URLFOR($Resource.isll_images,'sustainFlower.png')}" usemap="#Image-Maps_3201309270711294" border="0" width="456" height="426" alt="Business Fundamentals" style = "position: relative; left -42px"/>
+                                    <map id="_Image-Maps_3201309270711294" name="Image-Maps_3201309270711294">
+                                        <area style = "outline : none;" shape="poly" coords="237,10,364,22,412,100,239,204," onclick="showHideMoreInfo('ConsumerPreference','parentContainerFlower');" href="javascript:void(0);" alt="ConsumerPreference" title="ConsumerPreference"   />
+                                        <area style = "outline : none;" shape="poly" coords="416,110,454,157,450,265,396,301,242,215," onclick="showHideMoreInfo('WinWithCustomers','parentContainerFlower');" href="javascript:void(0);"  alt="WinWithCustomers" title="WinWithCustomers"   />
+                                        <area style = "outline : none;" shape="poly" coords="395,315,238,223,236,404,358,388," onclick="showHideMoreInfo('Innovation','parentContainerFlower');" href="javascript:void(0);" alt="Innovation" title="Innovation"   />
+                                        <area style = "outline : none;" shape="poly" coords="224,215,224,415,83,371,69,305," onclick="showHideMoreInfo('MarketDevelopment','parentContainerFlower');" href="javascript:void(0);" alt="MarketDevelopment" title="MarketDevelopment"   />
+                                        <area style = "outline : none;" shape="poly" coords="215,208,71,115,2,141,1,273,56,301," onclick="showHideMoreInfo('CostsBenefits','parentContainerFlower');" href="javascript:void(0);" alt="CostsBenefits" title="CostsBenefits"   />
+                                        <area style = "outline : none;" shape="poly" coords="226,11,101,47,80,104,230,206," onclick="showHideMoreInfo('InspiresPeople','parentContainerFlower');" href="javascript:void(0);"  alt="InspiresPeople" title="InspiresPeople"   />
+                                    </map>
+                                </div>
+                            </div>
+                            
+                            <div id = "parentContainerFlower" style = "height : 100%">
+                                <div id = "InspiresPeople"  class = "hidePanel"  >
+                                    <c:isll_CmsContentComponent cmsContentName="InspiresPeople" editable="true"/>
+                                </div>
+                                
+                                <div id = "ConsumerPreference"  class = "showPanel" >
+                                        <c:isll_CmsContentComponent cmsContentName="Consumer Preference" editable="true"/>
+                                </div>
+                            
+                                <div id = "WinWithCustomers"  class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Win With Customers" editable="true"/>
+                                </div>
+                            
+                                <div id = "Innovation" class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Innovation" editable="true"/>
+                                </div>
+                                
+                                <div id = "MarketDevelopment" class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Market Development" editable="true"/>
+                                </div>
+                            
+                                <div id = "CostsBenefits"  class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Cost Benefits" editable="true"/>
+                                </div>
+                            </div>
+                    
+                         <br/><c:isll_CmsContentComponent cmsContentName="BusiFunda_Link" editable="true"/>
+                        </div><!-- end .leftColumn -->
+                        
+                        <div class="rightColumn">
 
-							
-							<div  class = "helpClass"  id = "clickableImageTwo" rel="popover" data-content="Click part of each image to read more below"  data-original-title="Sustainable Living Integration">
-								<div style="text-align:center; width:400px; margin-left:auto; margin-right:auto;">
-									<div style="text-align:center; width:377px; margin-left:auto; margin-right:auto;">
-										<img id="Image-Maps_9201309270638468" src="{!URLFOR($Resource.isll_images,'toolKitStar.png')}"  usemap="#Image-Maps_9201309270638468" border="0" width="377" height="426" alt="" />
-										<map id="_Image-Maps_9201309270638468" name="Image-Maps_9201309270638468">
-											<area style = "outline : none;" shape="poly" coords="186,4,244,37,244,106,189,137,128,104,130,39," onclick="showHideMoreInfo('Unilever','parentContainerStar');" href="javascript:void(0);"  alt="Corporate" title="Corporate"/>
-											<area style = "outline : none;"  shape="poly" coords="312,75,369,110,368,175,312,207,251,176,252,113," onclick="showHideMoreInfo('MCO','parentContainerStar');" href="javascript:void(0);"  alt="MCO" title="MCO"/>
-											<area style = "outline : none;" shape="poly" coords="317,221,374,255,373,323,315,355,257,322,260,256," onclick="showHideMoreInfo('Customer','parentContainerStar');" href="javascript:void(0);" alt="Customer" title="Customer"/>
-											<area style = "outline : none;" shape="poly" coords="190,294,249,330,247,394,191,425,129,395,131,330," onclick="showHideMoreInfo('Projects','parentContainerStar');" href="javascript:void(0);" alt="Projects" title="Projects"/>
-											<area style = "outline : none;" shape="poly" coords="66,226,124,263,121,329,65,360,7,328,7,263," onclick ="showHideMoreInfo('Brand','parentContainerStar');" href="javascript:void(0);" alt="Brand" title="Brand"/>
-											<area style = "outline : none;" shape="poly" coords="61,85,118,120,117,188,58,219,0,185,1,124," onclick="showHideMoreInfo('Category','parentContainerStar');" href="javascript:void(0);" alt="Category" title="Category"/>
-											<area style = "outline : none;" shape="poly" coords="188,146,124,186,127,252,187,281,244,248,243,179," onclick="showHideMoreInfo('Sustainable Living','parentContainerStar');" href="javascript:void(0);" alt="Sustainable Living" title="Sustainable Living"   />
-										</map>
-									</div>
-								</div>
-							</div>
-							
-							<div id = "parentContainerStar" style = "height : 100%">
-							
-								<div id = "Unilever"  class = "hidePanel"  >
-									<c:isll_CmsContentComponent cmsContentName="BusinessFund_Unilever" editable="true"/>
-								</div>
-								
-								<div id = "MCO"  class = "showPanel" >
-										<c:isll_CmsContentComponent cmsContentName="MCO" editable="true"/>
-								</div>
-							
-								<div id = "Customer"  class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Customer" editable="true"/>
-								</div>
-							
-								<div id = "Projects" class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Projects" editable="true"/>
-								</div>
-								
-								<div id = "Brand" class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Brand" editable="true"/>
-								</div>
-							
-								<div id = "Category"  class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Category" editable="true"/>
-								</div>
-								
-								<div id = "Sustainable Living"  class = "hidePanel" >
-									<c:isll_CmsContentComponent cmsContentName="Sustainable Living" editable="true"/>
-								</div>
-							</div>
-								 <br/><c:isll_CmsContentComponent cmsContentName="BusiFunda_MCOText" editable="true"/><br/>
-							
-						</div><!-- end .rightColumn -->
-						</div><!-- end .row -->
+                            
+                            <div  class = "helpClass"  id = "clickableImageTwo" rel="popover" data-content="Click part of each image to read more below"  data-original-title="Sustainable Living Integration">
+                                <div style="text-align:center; width:400px; margin-left:auto; margin-right:auto;">
+                                    <div style="text-align:center; width:377px; margin-left:auto; margin-right:auto;">
+                                        <img id="Image-Maps_9201309270638468" src="{!URLFOR($Resource.isll_images,'toolKitStar.png')}"  usemap="#Image-Maps_9201309270638468" border="0" width="377" height="426" alt="ToolkitStar" />
+                                        <map id="_Image-Maps_9201309270638468" name="Image-Maps_9201309270638468">
+                                            <area style = "outline : none;" shape="poly" coords="186,4,244,37,244,106,189,137,128,104,130,39," onclick="showHideMoreInfo('Unilever','parentContainerStar');" href="javascript:void(0);"  alt="Corporate" title="Corporate"/>
+                                            <area style = "outline : none;"  shape="poly" coords="312,75,369,110,368,175,312,207,251,176,252,113," onclick="showHideMoreInfo('MCO','parentContainerStar');" href="javascript:void(0);"  alt="MCO" title="MCO"/>
+                                            <area style = "outline : none;" shape="poly" coords="317,221,374,255,373,323,315,355,257,322,260,256," onclick="showHideMoreInfo('Customer','parentContainerStar');" href="javascript:void(0);" alt="Customer" title="Customer"/>
+                                            <area style = "outline : none;" shape="poly" coords="190,294,249,330,247,394,191,425,129,395,131,330," onclick="showHideMoreInfo('Projects','parentContainerStar');" href="javascript:void(0);" alt="Projects" title="Projects"/>
+                                            <area style = "outline : none;" shape="poly" coords="66,226,124,263,121,329,65,360,7,328,7,263," onclick ="showHideMoreInfo('Brand','parentContainerStar');" href="javascript:void(0);" alt="Brand" title="Brand"/>
+                                            <area style = "outline : none;" shape="poly" coords="61,85,118,120,117,188,58,219,0,185,1,124," onclick="showHideMoreInfo('Category','parentContainerStar');" href="javascript:void(0);" alt="Category" title="Category"/>
+                                            <area style = "outline : none;" shape="poly" coords="188,146,124,186,127,252,187,281,244,248,243,179," onclick="showHideMoreInfo('Sustainable Living','parentContainerStar');" href="javascript:void(0);" alt="Sustainable Living" title="Sustainable Living"   />
+                                        </map>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id = "parentContainerStar" style = "height : 100%">
+                            
+                                <div id = "Unilever"  class = "hidePanel"  >
+                                    <c:isll_CmsContentComponent cmsContentName="BusinessFund_Unilever" editable="true"/>
+                                </div>
+                                
+                                <div id = "MCO"  class = "showPanel" >
+                                        <c:isll_CmsContentComponent cmsContentName="MCO" editable="true"/>
+                                </div>
+                            
+                                <div id = "Customer"  class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Customer" editable="true"/>
+                                </div>
+                            
+                                <div id = "Projects" class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Projects" editable="true"/>
+                                </div>
+                                
+                                <div id = "Brand" class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Brand" editable="true"/>
+                                </div>
+                            
+                                <div id = "Category"  class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Category" editable="true"/>
+                                </div>
+                                
+                                <div id = "Sustainable Living"  class = "hidePanel" >
+                                    <c:isll_CmsContentComponent cmsContentName="Sustainable Living" editable="true"/>
+                                </div>
+                            </div>
+                                 <br/><c:isll_CmsContentComponent cmsContentName="BusiFunda_MCOText" editable="true"/><br/>
+                            
+                        </div><!-- end .rightColumn -->
+                        </div><!-- end .row -->
 
 
-					</apex:define>
-				
-		</apex:composition>
-	</apex:form>
+                    </apex:define>
+                
+        </apex:composition>
+    </apex:form>
 </apex:page>

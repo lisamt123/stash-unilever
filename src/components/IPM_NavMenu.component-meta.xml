@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>36.0</apiVersion>
+    <apiVersion>20.0</apiVersion>
     <description>The navigation menu after Revamp2</description>
     <label>IPM_NavMenu</label>
 </ApexComponent>

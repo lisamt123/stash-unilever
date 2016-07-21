@@ -4,7 +4,7 @@ private class FAU_MilestoneTriggerTest {
     static testMethod void createMilestonesParticipantTest() {
         FAU_Program__c program = FAU_TestUtil.buildProgram('Test Program', Date.today(), 'Test Location');
         insert program;
-        FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
+       // FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
         FAU_Milestone__c milestone =  FAU_TestUtil.createMilestone(program);
         program.FAU_Status__c = 'Active';
         update program;

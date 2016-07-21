@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <body>&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: x-large;&quot;&gt;Welcome to Unilever Global Communications&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;a href=&quot;/apex/im_IssuesLP&quot;&gt;Issues Management&lt;/a&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;a href=&quot;/apex/kof_Stakeholders_home&quot;&gt;Stakeholder Management&lt;/a&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;a href=&quot;/apex/cp_calendar&quot;&gt;Communications Planner&lt;/a&gt; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://teamsites.unilever.com/global/central_issue/default.aspx&quot;  target=&quot;_blank&quot;&gt;Issues Briefing Centre&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;</body>
-    <pageComponentType>htmlArea</pageComponentType>
-    <width>wide</width>
-</HomePageComponent>

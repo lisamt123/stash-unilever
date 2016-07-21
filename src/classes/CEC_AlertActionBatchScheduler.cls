@@ -13,7 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
   1.0      Sathish           Aug-2015      INITIAL DEVELOPMENT   
 
  ***********************************************************************/
-global with sharing class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject>,Schedulable {
+global class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject>,Schedulable {
     
     String query;
 

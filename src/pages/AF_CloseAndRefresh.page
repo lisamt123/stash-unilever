@@ -1,32 +1,27 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to do close and refresh
-   *@Author: Cognizant
-   *@Created Date: 1/08/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_CloseAndRefresh" showheader="false">
-   <apex:OutputPanel id="CloseandRefreshScript" rendered="{!IsCloseAndRefresh}">
-      <SCRIPT language="javascript">
-         function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-         }
-         	var IsError = getParameterByName('IsError');
-         	if(IsError = 'false')
-         	{
-         	parent.location.reload();
-         }
-      </SCRIPT>
-   </apex:OutputPanel>
-   <apex:OutputPanel id="StandardErrorMessage" rendered="{!ShowStandardMessage}">
-      <br /><br /><br /><br /><br /><br />
-      <div style="font-family:arial;color:red;font-size:18px;text-align:center">Error Has occurred please contact your administrator. {!ErrorMessage}</div>
-   </apex:OutputPanel>
-   <apex:OutputPanel id="CustomErrorMessage" rendered="{!ShowCustomMessage}">
-      <br /><br /><br /><br /><br />
-      <div style="font-family:arial;color:red;font-size:18px;text-align:center">{!ErrorMessage}</div>
-   </apex:OutputPanel>
+<apex:OutputPanel id="CloseandRefreshScript" rendered="{!IsCloseAndRefresh}">
+<SCRIPT language="javascript">
+
+	function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+ 	
+ 	var IsError = getParameterByName('IsError');
+ 	if(IsError = 'false')
+ 	{
+		parent.location.reload();
+	}
+</SCRIPT>
+</apex:OutputPanel>
+<apex:OutputPanel id="StandardErrorMessage" rendered="{!ShowStandardMessage}">
+	<br /><br /><br /><br /><br /><br />
+	<div style="font-family:arial;color:red;font-size:18px;text-align:center">Error Has occurred please contact your administrator. {!ErrorMessage}</div>
+</apex:OutputPanel>
+<apex:OutputPanel id="CustomErrorMessage" rendered="{!ShowCustomMessage}">
+	<br /><br /><br /><br /><br />
+	<div style="font-family:arial;color:red;font-size:18px;text-align:center">{!ErrorMessage}</div>
+</apex:OutputPanel>
 </apex:page>

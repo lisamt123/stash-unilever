@@ -1,122 +1,135 @@
-<!--  
-   *************************************************************************
-   *@Description:This components is used displaying and adding comments 
-   *@Author: Cognizant
-   *@Created Date: 27/07/2014 
-   *************************************************************************
-   -->
 <apex:component controller="AF_CommentsListCompController" allowDML="true" id="pg1">
-   <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />
-   <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  />
-   <apex:attribute name="ParentObjectTypeDesc" type="String" AssignTo="{!ParentObjectType}" Description="The Is View All FLAG"  />
-   <apex:attribute name="ReturnPageURLValue" type="String" AssignTo="{!ReturnPageURL}" Description="The Is View All FLAG"  />
-   <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
-   <!-- Common_Style File End -->
-   <script type="text/javascript">
-      $('a.addfancy').fancybox({
-        autoSize: false,
-              width: 900,
-              height: 600,
-              type: 'iframe',
-              titlePosition: 'inside',
-              hideOnOverlayClick:'false',
-              hideOnContentClick:'false',
-              helpers     : { 
-              overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
-              },
-              afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-                  location.reload();
-              }
-      });
-      function commentsToggleClose(elementId) 
-      { 
+    <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />        
+    <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  />
+    <apex:attribute name="ParentObjectTypeDesc" type="String" AssignTo="{!ParentObjectType}" Description="The Is View All FLAG"  />
+    <apex:attribute name="ReturnPageURLValue" type="String" AssignTo="{!ReturnPageURL}" Description="The Is View All FLAG"  /> 
+    
+    
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
+
+<script type="text/javascript">
+    
+            $('a.addfancy').fancybox({
+              autoSize: false,
+                    width: 900,
+                    height: 600,
+                    type: 'iframe',
+                    titlePosition: 'inside',
+                    hideOnOverlayClick:'false',
+                    hideOnContentClick:'false',
+                    helpers     : { 
+                    overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                    },
+                    afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                        //parent.location.reload(true);
+                        location.reload();
+                    }
+            });
+            
+    function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
       document.getElementById(elementId).style.display = 'none';
-      }
-      function commentEdit(cId,createdbyId){
-      myActionFunction(cId,createdbyId);
-      }
-      function custFunc(){
+  }
+  function commentEdit(cId,createdbyId){
+    //alert('Hi1');
+    myActionFunction(cId,createdbyId);
+  }
+  
+  function custFunc(){
       parent.document.body.setAttribute("data-shouldRefreshPage", "1");
-      }
-   </script>
+  }
+</script>
    <div class="AF_CommentsListComp">
-      <table id="commentAddTable" class="wid92P">
-         <tr>
-            <td>
-               <span class="addCommentLabel">Add Comment:</span>
-               <apex:inputTextarea value="{!CommentRecord.AF_Comments__c}" styleClass="comment_box comment_box1" />
+    <table id="commentAddTable" class="wid92P">
+       <tr>
+            <td> 
+            <span class="addCommentLabel">Add Comment:</span>
+            <apex:inputTextarea value="{!CommentRecord.AF_Comments__c}" styleClass="comment_box comment_box1" />
             </td>
-         </tr>
-         <tr>
-            <td>
-               <apex:outputpanel rendered="{!!isAgencyFlag}">
-                  <span class="publicLabel">Public:</span>
-                  <apex:inputField value="{!CommentRecord.AF_Public__c}"  />
-                  This comment will be visible to Agencies
-               </apex:outputpanel>
-            </td>
-         </tr>
-         <tr>
+       </tr>
+        <tr>
+            <td> 
+            <apex:outputpanel rendered="{!!isAgencyFlag}">
+            <span class="publicLabel">Public:</span>
+            <apex:inputField value="{!CommentRecord.AF_Public__c}"  />
+            This comment will be visible to Agencies
+            </apex:outputpanel>
+            </td> 
+       </tr>
+       <tr>
             <td colspan='2' align='right'>
-               <apex:ActionStatus id="status" >
-                  <apex:facet name="start">
-                     <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3"  height="90px" width="180px" Message="Please wait" messageStyle="color:darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
-                  </apex:facet>
-               </apex:ActionStatus>
-               <apex:commandButton value="Save Comment" styleClass="submit_btn_addcomment" rerender="commentsPageBlock" action="{!SaveComment}" oncomplete="commentsToggleClose('commentAddTable');" status="status"/>
-            </td>
-         </tr>
-      </table>
-      <apex:pageBlock title="Comments" Id="commentsPageBlock" >
-         <apex:outputPanel rendered="{!IsViewAllLink}" styleClass="ViewAllLink">
-            <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"  rendered="{!isAgencyFlag}" id="theLink2" 
-               html-data-src="apex/AF_ViewAll?CParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal">View All</apex:outputLink>
-            <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"  rendered="{!!isAgencyFlag}" id="theLink3" 
-               html-data-src="apex/AF_ViewAll?CParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal">View All</apex:outputLink>
-         </apex:outputPanel>
-         <br />
+                        <apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3"  height="90px" width="180px" Message="Please wait" messageStyle="color:darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+                       <apex:commandButton value="Save Comment" styleClass="submit_btn_addcomment" rerender="commentsPageBlock" action="{!SaveComment}" oncomplete="commentsToggleClose('commentAddTable');" status="status"/> </td>
+       </tr> 
+    </table>
+     
+    <apex:pageBlock title="Comments" Id="commentsPageBlock" >
+    
+    <apex:outputPanel rendered="{!IsViewAllLink}" styleClass="ViewAllLink">    
+    <!--<apex:outputLink rendered="{!isAgencyFlag}" value="apex/AF_ViewAll?CParentId={!ParentRecordId}" styleClass="addfancy" id="theLink2">View All</apex:outputLink>-->
+    <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"  rendered="{!isAgencyFlag}" id="theLink2" 
+    html-data-src="apex/AF_ViewAll?CParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal">View All</apex:outputLink>
+    <!--<apex:outputLink rendered="{!!isAgencyFlag}" value="apex/AF_ViewAll?CParentId={!ParentRecordId}" styleClass="addfancy" id="theLink3">View all</apex:outputLink>-->
+    <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"  rendered="{!!isAgencyFlag}" id="theLink3" 
+    html-data-src="apex/AF_ViewAll?CParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal">View All</apex:outputLink>
+    </apex:outputPanel>     
+    <br />
          <apex:PageMessages id="pm3" />
-         <apex:pageBlockTable id="pg1" title="Comments" value="{!CommentsList}" var="tcl" rowClasses="even,odd" styleClass="fontSize16P">
-            <apex:column headerValue="Created Date" width="10%">
-               <apex:outputField value="{!tcl.CreatedDate}" title="Created Date"/>
+        <apex:pageBlockTable id="pg1" title="Comments" value="{!CommentsList}" var="tcl" rowClasses="even,odd" styleClass="fontSize16P">
+         
+            
+           <apex:column headerValue="Created Date" width="10%"> 
+                <apex:outputField value="{!tcl.CreatedDate}" title="Created Date"/>
             </apex:column>
             <apex:column headerValue="Created By" width="24%" >
-               <apex:outputField value="{!tcl.OwnerName__c}"/>
+                <apex:outputField value="{!tcl.OwnerName__c}"/>
             </apex:column>
             <apex:column headerValue="Double Click to Edit Comment" width="55%" >
-               <apex:outputPanel onclick="commentEdit('{!tcl.Id}','{!tcl.CreatedById}');" rendered="{!IF(tcl.Id!=myCommentId,'true','false')}">
-                  <apex:outputField value="{!tcl.AF_Comments__c}" >
-                  </apex:outputField>
-               </apex:outputPanel>
-               <apex:outputPanel rendered="{!IF(AND(tcl.Id==myCommentId,OR(myCreateId==LoggedId,bCMCOSuperUser)),'true','false')}">
-                  <apex:inputField value="{!tcl.AF_Comments__c}" styleClass="comment_box2">
-                  </apex:inputField>
-               </apex:outputPanel>
+            
+            
+            <apex:outputPanel onclick="commentEdit('{!tcl.Id}','{!tcl.CreatedById}');" rendered="{!IF(tcl.Id!=myCommentId,'true','false')}">
+            
+            <apex:outputField value="{!tcl.AF_Comments__c}" >
+            </apex:outputField>
+            </apex:outputPanel>
+             <apex:outputPanel rendered="{!IF(AND(tcl.Id==myCommentId,OR(myCreateId==LoggedId,bCMCOSuperUser)),'true','false')}">
+            <apex:inputField value="{!tcl.AF_Comments__c}" styleClass="comment_box2">
+            </apex:inputField>
+            </apex:outputPanel>
             </apex:column>
             <apex:column headerValue="Public" width="6%" >
-               <apex:outputPanel rendered="{!IF(tcl.Id!=myCommentId,'true','false')}">
-                  <apex:outputField value="{!tcl.AF_Public__c}" >
-                  </apex:outputField>
-               </apex:outputPanel>
-               <apex:outputPanel rendered="{!IF(tcl.Id==myCommentId,'true','false')}">
-                  <apex:inputField value="{!tcl.AF_Public__c}" >
-                  </apex:inputField>
-               </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(tcl.Id!=myCommentId,'true','false')}">
+            <apex:outputField value="{!tcl.AF_Public__c}" >
+            </apex:outputField>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(tcl.Id==myCommentId,'true','false')}">
+            <apex:inputField value="{!tcl.AF_Public__c}" >
+            </apex:inputField>
+            </apex:outputPanel>
             </apex:column>
             <apex:column width="5%">
-               <apex:commandButton image="{!URLFOR($Resource.AF_CommentEditImage)}" reRender="commentsPageBlock,pg1" action="{!SaveCommentEdit}"  id="saveButton" value="Edit Comment"  rendered="{!!isAgencyFlag}" status="status1" onClick="custFunc()" styleClass="EditSave"/>
+            <apex:commandButton image="{!URLFOR($Resource.AF_CommentEditImage)}" reRender="commentsPageBlock,pg1" action="{!SaveCommentEdit}"  id="saveButton" value="Edit Comment"  rendered="{!!isAgencyFlag}" status="status1" onClick="custFunc()" styleClass="EditSave"/>
             </apex:column>
-         </apex:pageBlockTable>
-      </apex:pageBlock>
-      <apex:ActionStatus id="status1" >
-         <apex:facet name="start">
+               
+        </apex:pageBlockTable>                 
+    </apex:pageBlock> 
+        <apex:ActionStatus id="status1" >
+        <apex:facet name="start">
             <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="100px" width="200px" Message="Please wait" messageStyle="color:darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
-         </apex:facet>
-      </apex:ActionStatus>
-      <apex:actionfunction name="myActionFunction" action="{!editCommentByUsers}" rerender="commentsPageBlock" >
-         <apex:param name="recordId" assignto="{!myCommentId}" value=""/>
-         <apex:param name="createId" assignto="{!myCreateId}" value=""/>
-      </apex:actionfunction>
-   </div>
+        </apex:facet>
+        </apex:ActionStatus>
+        <apex:actionfunction name="myActionFunction" action="{!editCommentByUsers}" rerender="commentsPageBlock" >
+            <apex:param name="recordId" assignto="{!myCommentId}" value=""/>
+            <apex:param name="createId" assignto="{!myCreateId}" value=""/>
+        </apex:actionfunction>
+ </div>
 </apex:component>

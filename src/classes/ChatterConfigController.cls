@@ -30,20 +30,21 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  * Controller for configuring chatter app. Used right after installing the app.
  */
 public with sharing class ChatterConfigController {
-    
+	
     public String feedObjectApiName {get; set;}
     public Boolean configComplete {get; private set;}
-    public string chatText = 'chatter';
-    public PageReference configureApp() {
-        Schema.SObjectType feedObjType = null;
-        if (StringUtil.isNotEmpty(feedObjectApiName)) {
+	
+	public PageReference configureApp() {
+		Schema.SObjectType feedObjType = null;
+		if (StringUtil.isNotEmpty(feedObjectApiName)) {
             feedObjType = Schema.getGlobalDescribe().get(this.feedObjectApiName);
             if (feedObjType == null) {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, 'Invalid API name for the object, please re-enter.'));
                 return null;
             }
-        }
-            List<NavigationElement__c> elements = new List<NavigationElement__c>();
+		}
+        
+        List<NavigationElement__c> elements = new List<NavigationElement__c>();
 
         /**  Config for default top navigation elements. **/
         elements.add(new NavigationElement__c(
@@ -58,8 +59,8 @@ public with sharing class ChatterConfigController {
         ));
         
         elements.add(new NavigationElement__c(
-            Name = chatText,
-            PageName__c = chatText,
+            Name = 'Chatter',
+            PageName__c = 'Chatter',
             Type__c = NavigationManager.TOP_NAV_TYPE,
             Url__c = 'Chatter#page=feeds',
             DisplayOrder__c = 2,
@@ -75,7 +76,7 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=feeds',
             DisplayOrder__c = 1,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
 
         elements.add(new NavigationElement__c(
@@ -84,7 +85,7 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=feeds&feed=getFeedsAtMe',
             DisplayOrder__c = 2,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
 
         elements.add(new NavigationElement__c(
@@ -93,7 +94,7 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=feeds&feed=getAllChatterFeed',
             DisplayOrder__c = 3,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
 
         elements.add(new NavigationElement__c(
@@ -102,7 +103,7 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=groups',
             DisplayOrder__c = 4,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
 
         elements.add(new NavigationElement__c(
@@ -111,7 +112,7 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=people',
             DisplayOrder__c = 5,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
 
         elements.add(new NavigationElement__c(
@@ -120,7 +121,7 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=objfeed&feed=getMyObjectFeed',
             DisplayOrder__c = 6,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
 
         elements.add(new NavigationElement__c(
@@ -129,33 +130,33 @@ public with sharing class ChatterConfigController {
             Type__c = NavigationManager.SIDE_NAV_TYPE,
             Url__c = 'Chatter#page=files',
             DisplayOrder__c = 7,
-            PageFilterUrl__c = chatText
+            PageFilterUrl__c = 'Chatter'
         ));
         insert elements;
 
         if (feedObjType != null) {
-            insert new CustomChatterConfig__c(Name = 'feedObjectApiName', Value__c = this.feedObjectApiName);
+        	insert new CustomChatterConfig__c(Name = 'feedObjectApiName', Value__c = this.feedObjectApiName);
         }
         this.configComplete = true;
         return null;
-    }
-    
+	}
+	
     private static testMethod void testConfigureApp_validApiName() {
         ChatterConfigController controller = new ChatterConfigController();
         controller.feedObjectApiName = 'Account';
         
         controller.configureApp();
         System.assert(!ApexPages.hasMessages());
-        Integer navElementCount = [Select count() from NavigationElement__c limit 100];
+        Integer navElementCount = [Select count() from NavigationElement__c];
         System.assert(navElementCount > 0);
     }
 
-    private static testMethod void testConfigureApp_invalidApiName() {
-        ChatterConfigController controller = new ChatterConfigController();
-        controller.feedObjectApiName = 'invalidObjName';
-        
-        controller.configureApp();
-        System.assert(ApexPages.hasMessages());
-    }
+	private static testMethod void testConfigureApp_invalidApiName() {
+		ChatterConfigController controller = new ChatterConfigController();
+		controller.feedObjectApiName = 'invalidObjName';
+		
+		controller.configureApp();
+		System.assert(ApexPages.hasMessages());
+	}
 
 }

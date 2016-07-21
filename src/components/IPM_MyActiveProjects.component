@@ -13,7 +13,6 @@
                 <div class="col-sm-3 noPadleft">                  
                    <apex:outputText value="{!if(p.projectObj.IPM_Project_Logo__c != null,p.projectObj.IPM_Project_Logo__c,p.bosscardObj.IPM_Bosscard_Logo__c)}" escape="false" styleClass="ipmImage"/>
                    <span class="ipmImage">
-                         <!-- Below render condition is giving default image -->
                        <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/upload_img2b.png')}" rendered="{!If(AND (p.bosscardObj.IPM_Bosscard_Logo__c==null,p.projectObj.IPM_Project_Logo__c==null),true,false)}" title="Default Image"/>
                    </span>
                 </div>
@@ -26,15 +25,15 @@
                       <apex:outputPanel >
                         <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,if(p.projectObj.IPM_IsSaved__c , $Page.IPM_ProjectOverview+'?id='+p.projectObj.Id, $Page.IPM_ProjectSetupView+'?Pid='+p.projectObj.Id))}"/>
                       </apex:outputPanel>
-                         <!-- Below rendered condition is used to show original icon -->
+                       
                        <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.projectObj.IPM_Project_Type__c='Original'}">
                             <span class="orgIcon"></span>
                        </apex:outputPanel>
-                          <!--Below rendered condition is used to show rollout icon  -->                                
+                                                        
                        <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.projectObj.IPM_Project_Type__c='Rollout'}">
                             <span class="rollIcon"></span>
                        </apex:outputPanel>
-                           <!-- Below rendered condition is used to show operational icon  -->                               
+                                                        
                        <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.projectObj.IPM_Project_Type__c='Operational'}">
                             <span class="oprtnIcon"></span>
                        </apex:outputPanel>
@@ -52,7 +51,7 @@
                     </span>
                     
                    <apex:param id="wrapperVal" assignTo="{!prjId}" value="{!if(p.projectObj!=null,p.projectObj.Id,p.bosscardObj.Id)}" />  
-                     <!-- Below render is used to provide link to project or bosscard page -->
+                   
                    <apex:outputPanel rendered="{!p.currGate != null}">
 	                   <span class="homeActiveText"> {!$Label.IPM_CurrentStatus} <strong class="percentage">
 	                  <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,$Page.IPM_GateDocument+'?id='+p.projectObj.Id+'&printDoc='+p.currGate,$Page.IPM_Bosscard+'?id='+p.bosscardObj.id)}">
@@ -70,7 +69,6 @@
             </div>
         </apex:repeat>
             
-       <!-- Below render is used to show the label text -->
        <apex:outputPanel rendered="{!projectcount = 0}"> 
            <div class='noRecordsMsg'>
                         {!$Label.IPM_Not_ProjectMember}

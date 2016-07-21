@@ -82,7 +82,7 @@
                                         </div>
                                         
                                         <!---New Requirement Approve with Edits----->
-                                            <!-- Below panel will get render when job status of project is either "Eligible for processing" or "Processing"  -->                                    
+                                                                                
                                             <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{! OR(project.IPM_Project_Job_Status__c == 'Eligible For Processing',project.IPM_Project_Job_Status__c == 'Processing') }" >
                                                 <div class="SecCurrentStatus pull-right"> 
                                                     
@@ -92,7 +92,7 @@
                                                     </span>
                                                 </div>
                                             </apex:outputPanel>
-                                            <!-- Below panel will get render when job status of project is neither "Eligible for processing" nor "Processing"  -->
+                                            
                                             <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{! AND(project.IPM_Project_Job_Status__c != 'Eligible For Processing',project.IPM_Project_Job_Status__c != 'Processing') }" >
                                             
                                                 <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
@@ -104,7 +104,6 @@
                                                 </apex:outputPanel>
                                                 
                                                 <!---New Requirement Approve with Edits Ends----->
-                                                <!-- Below panel get rendered when project document status is different from "Approved", "Approved with Edits" and "Not Started " -->
                                                 <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Approved with Edits' && projectDoc.IPM_Document_Status__c!='Not Started' && IsUpdateStatus=true),True,False)}">
                                                     <div class="SecStatusUpdate statusButton pull-right openModal" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
                                                         <input type="button" class="ipmButton" value="Change status"/>
@@ -127,9 +126,6 @@
                                                  </apex:actionFunction> 
                                              <!---Design Idea:GateDocument Refactor Ends Here---->
                                                      
-                                            <!-- below panel renders when one of followings criteria meets -->
-                                            <!-- 1. Project Document Status is "Approved", Phase is "Market Deployment" and span is "Local" -->
-                                            <!-- 2. Project phase is "Market Ready" and project type is "Operational" -->         
                                             <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment' && project.IPMProject_Span__c='Local'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
                                                 
                                                 <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
@@ -171,7 +167,7 @@
                                                 </div>  
                                                 <div class="ipmButtonGroup">
                                                     
-                                                    <input type="button" class="ipmButton resetFilterBtn" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>
+                                                    <input type="button" class="ipmButton" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>
                                                     <input type="button" class="ipmButton primary" value="Apply" onClick="applyFilter();" />
                                                 </div>
                                                 <apex:actionFunction name="setFilterValues" action="{!setFilter}" reRender="MainTable,count,filterBlock" status="customStatus" oncomplete="setFiltersAsPrevious();filterBlock();">
@@ -357,14 +353,12 @@
                                                 <input type="button" class="ipmButton" value="{!$Label.IPM_Add_Manage_Sections}"/>
                                             </div>
                                         </apex:outputPanel> 
-                                        <!-- below panel is rendered when project document status is either "Mot Started" or "In Progress" and  dueDate is within 4 days from today --> 
                                         <apex:outputPanel styleClass="messageBox infoMsg" layout="block" rendered="{!if(AND(OR(projectDoc.IPM_Document_Status__c='Not Started',projectDoc.IPM_Document_Status__c='In Progress'),dueDateMsg=true),true,false)}"> 
                                         <apex:outputPanel layout="block" styleClass="SecButtonSet">                                     
                                            <a class="icoButton info" title="info"></a><span class="msgTxt">{!gateDocument} {!$Label.IPM_Gate_Due_Date_Is} {!dueDate}</span>
                                                 <span class="closeMessage fa fa-times"></span>
                                         </apex:outputPanel>  
                                         </apex:outputPanel>            
-                                        <!-- below panel is rendered when project document status is either "Postponed" or "Approved" -->           
                                         <apex:outputPanel layout="block"  rendered="{!If(OR(projectDoc.IPM_Document_Status__c='Postponed',projectDoc.IPM_Document_Status__c='Approved'),True,False)}">
                                             <div class="col-sm-12">
                                                 <div class="StatusComment">
@@ -372,7 +366,6 @@
                                                         <div class="panelTitle">
                                                             <apex:outputText value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}" />
                                                         </div>
-                                                        <!-- below panel is rendered when project document status is "Approved" and approval date is there -->
                                                         <apex:outputPanel layout="block"  styleClass="clearfix panelRow" rendered="{!If(AND(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Approval_Date__c!=null),True,False)}">
                                                             
                                                             <div class="row">
@@ -402,7 +395,7 @@
                                                             </div>
                                                             
                                                         </apex:outputPanel>
-                                                        <!-- below panel is rendered when project document status is "Postponed" and postpone date is there-->
+                                                        
                                                         <apex:outputPanel layout="block" styleClass="clearfix panelRow" rendered="{!If(OR(projectDoc.IPM_Document_Status__c='Postponed',projectDoc.IPM_Postponement_Date__c!=null),True,False)}">
                                                             
                                                             <div class="row">
@@ -486,7 +479,6 @@
                                                         <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
                                                         <apex:outputPanel id="sectionContent" layout="block">
                                                             <apex:repeat value="{!projSubSectionList}" var="sub">   
-                                                            	<!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
                                                                 <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">    
                                                                 
                                                                  <span class='expico fa fa-minus' id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
@@ -501,7 +493,6 @@
                                                                         </apex:outputPanel>
                                                                        <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
                                                                             <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_CommentsPage}?id={!sub.Id}" data-backdrop="static" data-keyboard="false" title="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub.Id}"><apex:outputPanel styleClass="count" rendered="{!IF(sub.IPM_Count_of_Comments__c!=null && sub.IPM_Count_of_Comments__c >0 ,True,False)}">{!sub.IPM_Count_of_Comments__c}</apex:outputPanel></a>
-                                                                            <!-- below panel will render when section is not child section of section 8 -->
                                                                             <apex:outputPanel rendered="{!IF(AND(isEditLinkActive,NOT(contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.'))),True,False)}">
                                                                                 <a class="icoButton details" href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}" title="Details"></a>  
                                                                             </apex:outputPanel>
@@ -511,11 +502,10 @@
                                                                         {!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c} </span>
                                                                     </apex:outputPanel>
                                                                 </apex:outputPanel> 
-                                                                <!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
+                                                                
                                                                 <apex:outputPanel styleClass="ipmAcrdnExpand" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}">                              
                                                                     <apex:outputPanel id="subSection" layout="block">
                                                                     <apex:repeat value="{!projSubLevelSectionList}" var="sub1">                                
-                                                                    <!-- below panel renders when sub header section id is same as parent section id of sub sub header  -->                             
                                                                         <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF(AND(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,sub1.IPM_Default_Section__c=true),True,False)}">
                                                                             <span class='expico fa fa-minus' id="{!sub1.IPM_Section__c}" onclick="fetchAttachment('{!sub1.Id}');"></span>                                      
                                                                             <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section_Sequence__c}  {!sub1.IPM_Section__r.IPM_Section_Name__c} [{!sub1.IPM_FunctionalRole__c}] </a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>                                   
@@ -530,8 +520,7 @@
                                                                         <apex:outputPanel layout="block" styleClass="ipmAcrdnExpand" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}">
                                                                             <!--Special 2nd Level Section-->
                                                                              <c:IPM_TradeMark_QuestionsView rendered="{!if(sub1.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
-                                                                             <!-- below component will render when child od sub header section master external id is "CUs n Complexity" and project span is "Regional" or "Local" and phase is "Ideas" -->
-                                                                             <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!sub1.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c='Operational'))}"></c:IPM_CU_Complexity>
+                                                                             <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!sub1.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}"></c:IPM_CU_Complexity>
                                                                              <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
                                                                              <!--Special 2nd Level Section End-->
                                                                             <apex:outputField value="{!sub1.IPM_Gate_Document_Summary__c }" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}" />
@@ -556,11 +545,7 @@
                                                                     </apex:repeat> 
                                                                     
                                                                     <!-- Special 1st Level Sections-->
-                                                                    <c:IPM_GlobalFinancialActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original',OR(project.IPM_Phase__c='Ideas',projectDoc.IPM_GateDocuments__c='Charter'))}"></c:IPM_GlobalFinancialActionStandards>
-                                                                    <c:IPM_Financial_Action_Standards_Inverse gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment',OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Local',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',projectDoc.IPM_GateDocuments__c!='Charter')))}" > </c:IPM_Financial_Action_Standards_Inverse>
-                                                                    <!-- below component renders while it meet one of the criteria -->
-                                                                    <!-- 1. sub header section master section external id is "Initial_Estimate_of_Opportunity" -->
-                                                                    <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project type is "Rollout" and project span is "Local"-->
+                                                                    <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',AND(project.IPM_Project_Type__c!='Rollout',project.IPMProject_Span__c!='Local'))}" > </c:IPM_Financial_ActionStandards>
                                                                     <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c=='Local',sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'))}" ></c:IPM_FinGate>
                                                                     <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!sub.IPM_Master_Section_External_Id__c='Gate_Keeper_Checklist'}"></c:IPM_GateKeeperListView>
                                                                     <c:IPM_OTIFStatusTableView otfType="Table" getSectionId="{!sub.Id}" rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}"></c:IPM_OTIFStatusTableView>
@@ -622,10 +607,8 @@
                                                                 <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback>
                                                                 <c:IPM_CMIGateSection secId="{!apxSec.Id}" projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSection>
                                                                 <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
-                                                                <c:IPM_BCC_Consolidate gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
+                                                                <c:IPM_BCC_Consolidate projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
                                                                 <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
-                                                                <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
-                                                                <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.3' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown> 
                                                                </apex:outputPanel>
                                                             </apex:repeat>
                                                              </apex:outputPanel>
@@ -644,7 +627,7 @@
                     <!--/ Page Content -->
                         
                         <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
-                        <div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
+                        <div id="ipmMoveFeasibility" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

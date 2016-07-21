@@ -65,7 +65,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             if(projectRollout.IPM_CharterApproved__c)
             {
-               projectRollout.addError(Label.IPM_Cannot_Delete_CharterApproved); 
+               projectRollout.addError('Cannot Delete Charter Approved Rollouts'); 
             }    
         }
          
@@ -80,8 +80,8 @@ public with sharing class IPM_RolloutTriggerHandler
             } 
             else
             { 
-                deletedLocalRolloutIds.add(projectRollout.Id);
-                //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
+            	deletedLocalRolloutIds.add(projectRollout.Id);
+            	//PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
                 if(projectRollout.IPM_Project__c != null)
                 {
                     setTopLevelProjectIds.add(projectRollout.IPM_Project__c);
@@ -326,7 +326,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 //Rollout Status
                 if(newRollout.Target_Launch_Date__c != oldRollout.Target_Launch_Date__c || newRollout.isActive__c != oldRollout.isActive__c || newRollout.Regional_Project__c != oldRollout.Regional_Project__c)
                 {
-                    
+                	
                     //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
                     // Global Project
                     if(newRollout.IPM_Project__c != null)
@@ -336,7 +336,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     // regional project
                     else if (newRollout.Regional_Project__c != null)
                     {
-                        setTopLevelProjectIds.add(newRollout.Regional_Project__c);
+                    	setTopLevelProjectIds.add(newRollout.Regional_Project__c);
                     }
                 }
             }
@@ -373,7 +373,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
            
-        if(!updatedRollouts.isEmpty()) 
+        if(updatedRollouts.size()>0) 
         {
             IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
             syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
@@ -409,7 +409,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
         
-        if(projectidset != null && !projectidset.isEmpty())
+        if(projectidset != null && projectidset.size()>0)
         {
             for(IPM_Project__c proj: [select id, ownerid, IPM_Category_Text__c from IPM_Project__c where id IN:projectidset])
             {
@@ -449,7 +449,7 @@ public with sharing class IPM_RolloutTriggerHandler
             updateAsyncJobIdRolloutMap.put(rolloutId,projectRollout);
         }
         
-        if(!updateAsyncJobIdRolloutMap.isEmpty())
+        if(updateAsyncJobIdRolloutMap.size() > 0)
         {
             SKIP_TRIGGER_EXECUTION = true;
             update updateAsyncJobIdRolloutMap.values();
@@ -799,8 +799,8 @@ public with sharing class IPM_RolloutTriggerHandler
         //Delete Countries associated with rollouts.Make sure that we dont delete Countries which are inactive or Charter Approved.
         List<IPM_Project_Rollout__c> lstLocRollOuts = [SELECT Id,IPM_Status__c,IPM_Regional_Rollout_Status__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,KeyMCO__c,
                                                             Added_At_Stage__c,(SELECT Id,IPM_CharterApproved__c FROM IPM_Countries_Local__r where isActive__c = true)
-                                                        FROM IPM_Project_Rollout__c
-                                                        WHERE IPM_Rollout_Project__c IN: localRolloutCountrySet Limit 50000];
+							                            FROM IPM_Project_Rollout__c
+							                            WHERE IPM_Rollout_Project__c IN: localRolloutCountrySet Limit 50000];
                             
         for(IPM_Project_Rollout__c localRollout : LstLocRollOuts)
         {
@@ -868,170 +868,4 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
     }
-    
-      /*************************************************************************************************************
-    * @description:Assign Company Card to rollouts
-    */
-    public void assignCompanyCard(List<IPM_Project_Rollout__c>lstProjectRollouts)
-    {
-        List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
-        companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
-                        where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL Limit 5000];
-        
-        
-       
-            for(IPM_Project_Rollout__c rollouts : lstProjectRollouts)
-            {
-                for(IPM_Company_Card__c companyCard : companyCardLst)
-                {
-                    
-                        if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.Equals(rollouts.IPM_Rollout_Span__c) && 
-                            companyCard.IPM_Managed_Category__c!=null && rollouts.IPM_Small_C__c!=null && 
-                            companyCard.RecordType.Name!=null && rollouts.IPM_Rollout_Span__c!=null && 
-                            companyCard.IPM_TxtGeographical_Scope__c!=null && rollouts.Market_Cluster_Name__c!=null && 
-                            companyCard.IPM_Managed_Category__c.contains(rollouts.IPM_Small_C__c)&&
-                            companyCard.IPM_TxtGeographical_Scope__c.Equals(rollouts.Market_Cluster_Name__c))
-                        {
-                        
-                            rollouts.IPM_Company_Card__c=companyCard.Id;
-                        
-                        }
-                    }
-            }
-    }
-    
-    /*******************************************************************************************************
-    * @description  For Creating Financial Action Standards When Rollout get Created.  
-    */ 
-    public void createRegionalFinancialActionStandards(List<IPM_Project_Rollout__c> lstProjectRollouts)
-    {   
-        Set<Id> rolloutProjectIdSet=new Set<Id>();
-        Set<Id> rolloutIdSet=new Set<Id>();
-        for(IPM_Project_Rollout__c projRoll:lstProjectRollouts)
-        {
-            if(projRoll.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE)
-            {
-                rolloutProjectIdSet.add(projRoll.IPM_Project__c);
-                rolloutIdSet.add(projRoll.Id);
-            }
-        }
-
-        Map<String,IPM_Financial_Year__c>  finYearMap = getFinancialYears(rolloutIdSet);
-        
-        Map<Id,IPM_Project_Document_Section__c> projDocSecMap=new Map<Id,IPM_Project_Document_Section__c>();
-        for(IPM_Project_Document_Section__c projDocSec:[SELECT Id,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Document_Status__c 
-                                                        FROM IPM_Project_Document_Section__c 
-                                                        WHERE IPM_Project_Document__r.IPM_Project__c In :rolloutProjectIdSet AND IPM_Project_Document__r.IPM_Document_Status__c!=:IPM_ConstantUtils.STATUS_APPROVED
-                                                              AND IPM_Master_Section_External_Id__c=:IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD])
-        {
-            projDocSecMap.put(projDocSec.IPM_Project_Document__r.IPM_Project__c,projDocSec);                                                            
-        }
-        
-        List<IPM_Financial_Action_Standards__c> regionalActionStandardsList=new List<IPM_Financial_Action_Standards__c>();
-        
-        for(IPM_Project_Rollout__c projRollout:lstProjectRollouts)
-        {
-            if(projRollout.Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && projRollout.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE)
-            {
-                IPM_Financial_Action_Standards__c finActionStandard = new IPM_Financial_Action_Standards__c();
-                IPM_Market_Cluster_Short_Names__c mcsName=IPM_Market_Cluster_Short_Names__c.getValues(projRollout.Market_Cluster__c);
-                if(projDocSecMap.get(projRollout.IPM_Project__c)!=null)
-                {    
-                    finActionStandard.IPM_Project_Document_Section__c=projDocSecMap.get(projRollout.IPM_Project__c).Id;
-                }
-                finActionStandard.IPM_Financial_Year_Y1_Incremental__c=finYearMap.get(projRollout.Id+IPM_ConstantUtils.Y1InnovationIncremental).Id;
-                finActionStandard.IPM_Financial_Year_Y1_Gross__c=finYearMap.get(projRollout.Id+IPM_ConstantUtils.Y1InnovationGross).Id;
-                if(mcsName!=null)
-                {
-                    finActionStandard.IPM_Financial_Action_Standard_Name__c = mcsName.Short_Name__c+' '+IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARDS;
-                }
-                finActionStandard.IPM_GM_Action_Standards_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_gTO_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_Innov_Value_Share_Action_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_Inc_Value_Share_Action_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_IRR_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_iTo_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_NPV_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_Payback_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
-                finActionStandard.IPM_Project_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-                finActionStandard.IPM_Project__c = projRollout.IPM_Project__c;
-                regionalActionStandardsList.add(finActionStandard);
-            }
-        }
-        
-        if(regionalActionStandardsList!=null && !regionalActionStandardsList.isEmpty())
-        {
-            insert regionalActionStandardsList;
-        }
-    }
-    
-    public Map<String,IPM_Financial_Year__c> getFinancialYears(Set<Id> rolloutIdSet)
-    {
-        Map<String,IPM_Financial_Year__c> finYearMap = new Map<String,IPM_Financial_Year__c>();
-        
-        for(IPM_Financial_Year__c finYear:[SELECT Id,IPM_Financial__c,IPM_Financial__r.RecordTypeId,IPM_Financial__r.Parent_Project__c,NameYearPLtype__c,IPM_Financial__r.IPM_Project_Rollout__c FROM IPM_Financial_Year__c 
-                                           WHERE IPM_Financial__r.IPM_Project_Rollout__c In:rolloutIdSet AND (NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationIncremental OR NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationGross)
-                                                 AND IPM_Financial__r.RecordTypeId=:CONSOLIDATED_FINANCIAL_RECORDTYPE])
-        {
-            if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
-            {
-                finYearMap.put(finYear.IPM_Financial__r.IPM_Project_Rollout__c+IPM_ConstantUtils.Y1InnovationIncremental,finYear);
-            }
-            
-            if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
-            {
-                finYearMap.put(finYear.IPM_Financial__r.IPM_Project_Rollout__c+IPM_ConstantUtils.Y1InnovationGross,finYear);
-            }
-        }
-        
-        return finYearMap;
-    }
-    
-    /*******************************************************************************************************
-    * @description  For Collecting the List of Financial Action Standards When Rollout get Deleted.  
-    */ 
-    public void deleteRegionalFinancialActionStandards(List<IPM_Project_Rollout__c> lstProjectRollouts){
-        Set<Id> projIdSet=new Set<Id>();
-        Set<String> rollOutNameSet=new Set<String>();
-        rollOutNameSet.add(IPM_ConstantUtils.IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS);
-        for(IPM_Project_Rollout__c projRoll:lstProjectRollouts){
-            if(projRoll.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE){
-                IPM_Market_Cluster_Short_Names__c mcsName=IPM_Market_Cluster_Short_Names__c.getValues(projRoll.Market_Cluster__c);
-                rollOutNameSet.add(mcsName.Short_Name__c+' '+IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARDS);
-                projIdSet.add(projRoll.IPM_Project__c);
-            }    
-        }
-        List<IPM_Financial_Action_Standards__c> deleteFinActionList=new List<IPM_Financial_Action_Standards__c>();
-        List<IPM_Financial_Action_Standards__c> updateFinActionList=new List<IPM_Financial_Action_Standards__c>();
-        for(IPM_Financial_Action_Standards__c finActionStandard:[SELECT Id,IPM_Financial_Action_Standard_Name__c,IPM_gTO_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter__c,
-                                                                        IPM_Project__c,IPM_Project_Span__c FROM IPM_Financial_Action_Standards__c
-                                                                 WHERE IPM_Project__c In:projIdSet AND IPM_Financial_Action_Standard_Name__c In:rollOutNameSet]){
-            if(finActionStandard.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-                updateFinActionList.add(finActionStandard);    
-            }                                                         
-            else if(finActionStandard.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
-                deleteFinActionList.add(finActionStandard); 
-            }                                                      
-        }
-        updateFinActionStandards(deleteFinActionList,updateFinActionList);
-    }
-    /*******************************************************************************************************
-    * @description  For Updating the List of Financial Action Standards When Rollout get Deleted.  
-    */ 
-    public void updateFinActionStandards(List<IPM_Financial_Action_Standards__c> deleteFinActionList,List<IPM_Financial_Action_Standards__c> updateFinActionList){
-        for(IPM_Financial_Action_Standards__c updateFin:updateFinActionList){
-            for(IPM_Financial_Action_Standards__c delFin:deleteFinActionList){
-                if(updateFin.IPM_Project__c==delFin.IPM_Project__c){
-                    updateFin.IPM_gTO_Action_Standard_Charter__c=updateFin.IPM_gTO_Action_Standard_Charter__c-delFin.IPM_gTO_Action_Standard_Charter__c;
-                    updateFin.IPM_iTo_Action_Standard_Charter__c=updateFin.IPM_iTo_Action_Standard_Charter__c-delFin.IPM_iTo_Action_Standard_Charter__c;
-                }
-            }                                                         
-        }
-        if(updateFinActionList!=null && !updateFinActionList.isEmpty()){
-            update updateFinActionList;
-        }
-        if(deleteFinActionList!=null && !deleteFinActionList.isEmpty()){
-            delete deleteFinActionList;
-        }
-    }   
 }

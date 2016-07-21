@@ -11,8 +11,8 @@
     
 public without sharing class IPM_BETUpdateService{ 
     
-    private static final string BET_FIELD_STATUS = 'status';
-    private static final string BET_ARCHIVED = 'archived';
+    private static string BET_FIELD_STATUS = 'status';
+    private static string BET_ARCHIVED = 'archived';
     
     //Return List of IPM following BET
     public static List<IPM_BETWrapper> returnIPM(Id betId){

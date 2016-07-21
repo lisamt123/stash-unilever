@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
-    <available>true</available>
-    <encodingKey>ISO-8859-1</encodingKey>
-    <name>GEL_Further details are provided by exception raiser</name>
-    <style>none</style>
-    <subject>GPM Exception Notification_Process -  {!GEL_Global_Exception_Log__c.Name}</subject>
-    <type>text</type>
-</EmailTemplate>

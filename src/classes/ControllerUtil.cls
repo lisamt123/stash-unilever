@@ -40,19 +40,19 @@ public with sharing class ControllerUtil {
 
 public static String getMyLogoutUrl() {
 
-    String userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');         
+   String userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');         
+   
+   String Loginpage= System.Label.FA_Loginpagefor_Desktop_Browsers;
     
-    String Loginpage= System.Label.FA_Loginpagefor_Desktop_Browsers;
-    
-    if (userAgent.contains('iPad') || userAgent.contains('iPod') || userAgent.contains('iPhone')) 
+   if (userAgent.contains('iPad') || userAgent.contains('iPod') || userAgent.contains('iPhone')) 
     
         {
         
-        return System.Label.FA_Loginpagefor_iPad_Browsers; 
+       return System.Label.FA_Loginpagefor_iPad_Browsers; 
         
-        }
+     }
     
-     return System.Label.FA_Loginpagefor_Desktop_Browsers;
+    return System.Label.FA_Loginpagefor_Desktop_Browsers;
     
 }
 

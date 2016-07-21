@@ -16,7 +16,6 @@
         <div class="mainPagehead">
           <span class="pageTitle">{!pageTitle}</span>
         </div>
-<!-- Below rendered is used to show count -->       
         <apex:outputPanel rendered="{! IF(OR(count==''),'false','true')}">
             <div class="col-sm-2 headingBorder" id="taskCount">
                 {!count}
