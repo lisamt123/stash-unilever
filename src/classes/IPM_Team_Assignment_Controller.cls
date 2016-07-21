@@ -294,8 +294,8 @@ public with sharing class IPM_Team_Assignment_Controller {
         IPM_proj=new IPM_Project__c();
         List<IPM_Project__c>ipmProjectList=new List<IPM_Project__c>();
         ipmProjectList=[SELECT IPM_Project_Name__c,IPMProject_Span__c,IPM_Project_Gatekeeper__c,
-        Deputy_Project_Leader__c,IPM_Brand_Positioning__c,IPM_Project_Logo__c,
-        IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Description__c,
+        Deputy_Project_Leader__c,IPM_Brand_Positioning__c,IPM_Project_Logo__c,IPM_PrepareForArchival__c,
+        IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Description__c,Is_Archieved__c,
         IPM_CPP__c,IPM_CPP_Change_Reason__c,IPM_Technical_Project_Leader__r.name,
         Deputy_Project_Leader__r.name,Deputy_Project_Leader__r.id,IPM_Project_Gatekeeper__r.name,
         IPM_Project_Leader__r.name,IPM_Project_Leader__r.SmallPhotoUrl,
