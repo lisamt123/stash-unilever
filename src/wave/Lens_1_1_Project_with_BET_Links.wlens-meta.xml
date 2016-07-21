@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>UL_Reports</application>
+    <datasets>IPM_Report_7_Project_with_BET_Links</datasets>
+    <masterLabel>Lens 1.1-Project with BET Links</masterLabel>
+    <visualizationType>valuestable</visualizationType>
+</WaveLens>
