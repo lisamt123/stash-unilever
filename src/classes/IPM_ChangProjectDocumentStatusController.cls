@@ -644,7 +644,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		{
 			if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 			{
-				stopDisclaimer = Label.IPM_StopDisclaimer;
+	                    stopDisclaimer = String.format(Label.IPM_StopDisclaimer, new String[]{Label.IPM_ParentProjectStopDisclaimer});
+	                    if( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL )
+	                    {
+	                        stopDisclaimer = String.format(Label.IPM_StopDisclaimer, new String[]{IPM_ConstantUtils.BLANK});    
+	                    } 
 			}
 			else
 			{

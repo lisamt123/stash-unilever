@@ -232,6 +232,7 @@
                                                                 <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
                                                                     <!-- Variables -->
                                                                     <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
+                                                                    <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_NONKEY'), TRUE, FALSE)}" var="isNon_key"/> <!-- Fix4358 ---->
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Regional.-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop),project.IPMProject_Span__c == 'Regional', isEditable)}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_LOC_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
@@ -243,7 +244,7 @@
                                                                         <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when project phase is not PLE and project type is not Operational and controller's -->
-                                                                    <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',NOT(isProjectStop),isTargetLaunchDateMisaligned)}">
+                                                                    <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',NOT(isProjectStop),isTargetLaunchDateMisaligned,NOT(isNon_key))}">
                                                                          <div class="ipmButton secondary" onclick="alignTLDRecords();">{! if(isTDLAcceptNBC_Confirm,tldAcceptedBCConfirmed,tldAcceptFromValue)}</div>
                                                                         <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="finacialButtons,rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
@@ -342,7 +343,7 @@
                                                                     </div>
                                                                 </apex:outputPanel>
                                                                 <!-- Rendered when record is editable and controller property showMisalignedConfirmbtn is set to true-->
-                                                                <apex:outputPanel id="financeLeaderErrMsg" rendered="{!AND(isEditable,NOT(isProjectStop),NOT(showMisalignedConfirmbtn))}" >
+                                                                <apex:outputPanel id="financeLeaderErrMsg" rendered="{!AND(isEditable,NOT(isProjectStop),NOT(showMisalignedConfirmbtn),NOT(isNon_key))}" >
                                                                      <div class="misAlignedTLD"> 
                                                                         <apex:outputText value="The Target Launch Date for {!currentFinancial.Display_Name__c} has been updated to {!currentTargetLaunchDate} from {!previousTargetLaunchDate}. Please confirm that any necessary updates to the business case have been made."/>
                                                                     </div>
