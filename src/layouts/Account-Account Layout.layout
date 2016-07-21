@@ -25,8 +25,8 @@
                 <field>Subcategories__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>CurrencyIsoCode</field>
+                <behavior>Edit</behavior>
+                <field>SAP_ID__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

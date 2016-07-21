@@ -6834,8 +6834,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Escalated</value>
+            <value>CEC Southern Cone Escalation Queue</value>
         </filters>
         <label>CEC Southern Cone Argentina Escalation</label>
         <language>es</language>
@@ -6861,8 +6866,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Escalated</value>
+            <value>CEC Southern Cone Escalation</value>
         </filters>
         <label>CEC Southern Cone Bolivia Escalation</label>
         <language>es</language>
@@ -7435,6 +7445,44 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>DACH_Vacation_Queue_3</fullName>
+        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>SarahE</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Martin</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Kirsten</value>
+        </filters>
+        <label>DACH Vacation Queue 3</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_DACH</role>
+            <role>CEC_User_DACH</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Denmark_V2</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -7495,21 +7543,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Queue</filterScope>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
-            <operation>notEqual</operation>
-            <value>Phone</value>
+            <operation>equals</operation>
+            <value>Email,Email Southern Cone,Web</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>notEqual</operation>
             <value>SPAM</value>
         </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>notEqual</operation>
+            <value>CEC Southern Cone Queue</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>notEqual</operation>
+            <value>CEC Southern Cone Queue</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notEqual</operation>
+            <value>CEC Southern Cone Queue</value>
+        </filters>
         <label>Emails Q&amp;A</label>
         <language>es_MX</language>
-        <queue>CEC_Southern_Cone_Queue</queue>
     </listViews>
     <listViews>
         <fullName>Escalations_Queue</fullName>
