@@ -926,11 +926,6 @@ public without sharing class IPM_Utils {
         
         String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
         List<IPM_Project_Metadata__mdt> projectMetadataList = (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery);
-        String projectType = project.IPM_SourceProjectType__c;
-        if(String.isBlank(projectType))
-        {
-            projectType = project.IPM_Project_Type__c;
-        } 
         // Do the First Level of filtering based on Mandatory fields.
         if(project.IPM_Company_Card__c !=null  && String.isNotBlank(project.IPM_CompanyCardText__c) !=null && String.isNotBlank(project.IPM_Category_Text__c) && String.isNotBlank(project.IPM_ProjectSubType__c) )
         {
@@ -939,8 +934,7 @@ public without sharing class IPM_Utils {
 
                 if( projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c &&  
                     projectMetadata.IPM_ApplicableCategories__c.containsIgnoreCase(project.IPM_Category_Text__c) && 
-                    projectMetadata.IPM_ProjectType__c.equalsIgnoreCase(projectType) &&   
-                    projectMetadata.IPM_ProjectSubType__c.containsIgnoreCase(project.IPM_ProjectSubType__c) ) 
+                    (projectMetadata.IPM_ProjectSubType__c.containsIgnoreCase(project.IPM_ProjectSubType__c) ) )
                 {
                     selectedProjectMetadataList.add(projectMetadata); 
                 } 
