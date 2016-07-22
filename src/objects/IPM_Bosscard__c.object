@@ -689,24 +689,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>IPM_a7IE00000004Slw_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_TESTDEPLOY4_SEAA</label>
-        <queue>IPM_a7IE00000004Slw</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>IPM_a7IE00000004Sor_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_TESTINGPROJ5</label>
-        <queue>IPM_a7IE00000004Sor</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>IPM_a7IE00000004Sow_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTINGPROJ6</label>
@@ -2426,15 +2408,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>IPM_a7IE00000004UQv_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_ECODESIGN15FEB</label>
-        <queue>IPM_a7IE00000004UQv</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>IPM_a7IE00000004Uht_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TEST 12345_EU</label>
@@ -3267,6 +3240,15 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000cDG4</label>
         <queue>IPM_a7IE0000000cDG4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000cDwJ_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000cDwJ</label>
+        <queue>IPM_a7IE0000000cDwJ</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
