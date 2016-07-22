@@ -97,7 +97,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public IPM_Financial__c finProjectPriority {get; set;} //Contains Financial Record
     public list<IPM_Project_Rollout__c> rollOut {get; set;} //Contains Rollout Records
     public List<IPM_Project_Document_Section__c> filtersCountList{get;set;} //Contains Text Type Project Document Sections
-    
+    public decimal year3Ito {get;set;} //year3 ito in the PDF
     //For Filled-In Percentage
     public Integer NonNegotiable;
     public Integer removeoptional;
@@ -131,6 +131,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public boolean isWithAppendix{get;set;}//set boolean value to display appendix on gate document PDF page
     public boolean isDisplayWithoutAppendix{get;set;}//check whether without appendix pdf to display on page or not
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
+    
+    public boolean isRedStylingApplicable{get;set;} 
+    
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -315,6 +318,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
           IPM_CustomPermission custPermission = new IPM_CustomPermission();
           reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
        }
+      isRedStylingApplicable=((IPM_ConstantUtils.STATUS_APPROVED.equals(projectDoc.IPM_Document_Status__c) ? projectDoc.IPM_Category_Status_while_Approved__c:project.IPM_Threshold_Status__c)== Label.IPM_BelowThreshold) && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) ;
     } 
     
     /*************************************************************************************************************************************************************
@@ -802,6 +806,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 			brandPosition=IPM_ConstantUtils.BLANK;
 			String nam=project.IPM_Project_Name__c; 
 	        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+            year3Ito=0;
 	        country=new IPM_Country__c();
             for(String bPostion:project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA)){
                 if(String.isBlank(brandPosition)){
@@ -883,7 +888,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 				      FROM IPM_Financial__c WHERE Financial_External_ID__c =: nam limit 1];
 
 			}
-			
+            if(fin!=null)
+            {
+                year3Ito=fetchY3ITO(fin,gateDocument);
+            }
 			// For First Country To Rollouts
 			 Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId)];
@@ -910,7 +918,48 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 	catch(Exception ex){
 		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
 	}
-} 
+/*
+  @method name: fetchY3ITO 
+  @description:to Fetch the Y3 ITO based on teh document type and phase of the project 
+  @Param1 : financial object
+  @Param2: Gate Document
+*/
+     public decimal fetchY3ITO(IPM_Financial__c fin , String document)
+     {
+        decimal finValue=0;  
+        if(IPM_ConstantUtils.CHARTER_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){          
+            finValue=fin.Year_3_iTO_Charter__c/1000;
+            return finvalue;
+        }
+        else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
+            finValue=fin.Year_3_iTO_Contract__c/1000;
+            return finvalue;
+        }
+        else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
+            finValue=fin.Year_3_iTO_MR__c/1000;
+            return finvalue;
+        }
+        else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
+            finValue=fin.Year_3_iTO_MD__c/1000;
+            return finvalue;
+        }
+                
+        else if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL==project.IPMProject_Span__c && IPM_constantUtils.DOCUMENT_STATUS_APPROVED!=projectDoc.IPM_Document_Status__c){
+            finValue=fin.Year_3_iTO_Global__c/1000;
+            return finvalue;
+        }
+        
+        else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL==project.IPMProject_Span__c && IPM_constantUtils.DOCUMENT_STATUS_APPROVED!=projectDoc.IPM_Document_Status__c){
+            finValue=fin.Year_3_iTO_Regional__c/1000;
+            return finvalue;
+        }
+        
+        else if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL==project.IPMProject_Span__c && IPM_constantUtils.DOCUMENT_STATUS_APPROVED!=projectDoc.IPM_Document_Status__c){
+            finValue=fin.Year_3_iTO_Local__c/1000;
+            return finvalue;
+        }       
+        return finvalue;
+     }
     
     /********************************************************************
     @description For Moving Gate Document from Market Deployment to PLE

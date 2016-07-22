@@ -825,7 +825,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             isAdditionalPara=true;
         }
         if(isEditable && !IPM_ConstantUtils.PHASE_MARKET_READY.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.Equals(IPM_Coreparameter.IPM_Phase__c) &&
-        !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c)) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag))
+        !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && !IPM_ConstantUtils.IPM_OPERATIONAL.equals(IPM_Coreparameter.IPM_Project_Type__c)) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag))
             {
             isEditCoreparam=true;
             

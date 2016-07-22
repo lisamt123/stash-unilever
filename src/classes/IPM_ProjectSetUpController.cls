@@ -8,8 +8,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //*@Description: default sub project type for company card selection
     private static final Map<String,String> COMPANYCARDTODEFAULTSUBPROJECTTYPE = new Map<String,String>
     {'Global Company Card' => 'Innovation/Renovation','Regional Company Card' => 'Innovation/Renovation','Local Company Card'=>'Operational'};
-    private static final Map<String,String> COMPANYCARDTODEFAULTPROJECTTYPE = new Map<String,String>
-    {'Global Company Card' => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,'Regional Company Card' => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,'Local Company Card'=>IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL};
     private static final String IPM_PROJECTCONTROLLER_STR = 'IPM_ProjectController';
     private static final Map<String,Boolean> APPENDREGIONMAP = new Map<String,Boolean>{'Regional' => true};
     private static final List<String> DEFAULT_MANDATORY_FIELDS = new List<String>{'IPM_Project_Name__c','IPM_Category_Text__c','IPM_Brand_Positioning__c','IPM_Company_Card__c','IPM_ProjectSubType__c','IPM_Target_Launch_Dates__c'};
@@ -567,7 +565,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
             projectTypeList = IPM_Utils.getProjectTypesBasedOnCompanyCard(project);  
             String defaultSubProjectType = IPM_ConstantUtils.BLANK;
-            String defaultProjectType = IPM_ConstantUtils.BLANK;
             
             for(IPM_Project_Metadata__mdt projectMetadataObj : projectTypeList)
             {
@@ -576,7 +573,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(projectMetadataObj.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && COMPANYCARDTODEFAULTSUBPROJECTTYPE.containsKey(projectMetadataObj.IPM_ApplicableCompanyCard__c))
                 {
                     String tempDefaultSubProjectType = COMPANYCARDTODEFAULTSUBPROJECTTYPE.get(projectMetadataObj.IPM_ApplicableCompanyCard__c);  
-                    defaultProjectType = COMPANYCARDTODEFAULTPROJECTTYPE.get(projectMetadataObj.IPM_ApplicableCompanyCard__c);
                     if(!String.isBlank(tempDefaultSubProjectType) && 
                        !String.isBlank(projectSubTypeString) && projectSubTypeString.contains(tempDefaultSubProjectType))
                     {
@@ -602,14 +598,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(projectSubTypeSet.size() == 1)
                 {
                     List<String> subProjectTypeList = new List<String>(projectSubTypeSet);
-                    project.IPM_Project_Type__c  = defaultProjectType;
-                    project.IPM_SourceProjectType__c  = defaultProjectType;    
                     project.IPM_ProjectSubType__c = subProjectTypeList.get(0); 
                 }
                 else if(!String.isBlank(defaultSubProjectType) && String.isBlank(project.IPM_ProjectSubType__c))
                 {
-                    project.IPM_Project_Type__c  = defaultProjectType;
-                    project.IPM_SourceProjectType__c  = defaultProjectType;    
                         project.IPM_ProjectSubType__c = defaultSubProjectType;
                 } 
             }
