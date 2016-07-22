@@ -61,6 +61,7 @@
       <runTest>CommunitiesSelfRegControllerTest</runTest>
       <runTest>ExceptionLoggingHelper_Test</runTest>
       <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
