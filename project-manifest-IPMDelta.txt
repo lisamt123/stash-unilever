@@ -41,3 +41,4 @@ src/wave/IPM_Report_16_Optional_Sectional_Turned_On_OFF.wdash-meta.xml
 src/wave/PROJECT_WITH_BET_LINKS.wdash
 src/wave/PROJECT_WITH_BET_LINKS.wdash-meta.xml
 src/wave/VisualforceRequestWithUsers_custom.wds
+src/wave/IPM_Report_7_Dataset.wds
