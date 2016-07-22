@@ -364,6 +364,7 @@ public class IPM_ConstantUtils {
     public static String FINANCE_MEMBER_CONSTANT ='Finance Member';
     public static String HHC_CONSTANT = 'HHC';
     public static String HOUSEHOLDCARE_CONSTANT = 'Household Care';
+    public static String LAUNDRY_CONSTANT = 'Laundry';
     
     //For Financial
     public static String FINANCIAL_CONSOLIDATE = '_CONSOLIDATED';

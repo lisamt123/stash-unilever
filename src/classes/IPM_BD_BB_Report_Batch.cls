@@ -21,8 +21,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global set<id> localRolloutIDSet = new set<id>();
     global Map<Id, String> ipmCountryMap = new map<Id, String>();
     public static final String BB_BD_REPORT_RUNDATE='BD BB Report'; //To fetch BB BD Report last run date from custom setting
-    public static final String TURNOVER ='TO';
-    public static final String GROSSPROFIT ='GO';
     public static String CLASS_NAME = IPM_BD_BB_Report_Batch.class.getName();
     public static string METHOD_NAME='execute';
     public IPM_Reporting__c reportcs = IPM_Reporting__c.getValues(BB_BD_REPORT_RUNDATE); 
@@ -174,7 +172,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                               Turnover_Regional__c,
                                                                                               Year_Type__c,
                                                                                               PL_Type__c FROM IPM_Financial_Year__C 
-                                                                                              //WHERE IPM_Financial__r.Parent_Project__r.Id IN: projectIdMap.keyset() or IPM_Financial__r.Regional_Project__r.id IN: projectIdMap.keyset() or IPM_Financial__r.Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
                                                                                               WHERE IPM_Financial__c IN:financialIdSet Limit 50000]);
         
             for(IPM_Financial_Year__c fy:projectFinancialYrList){
@@ -284,12 +281,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     IPM_Parent_Project_Name__c,
                                                                                                     IPM_Regional_PL__c,
                                                                                                     IPM_Regional_PL__r.Name,
-                                                                                                    Regional_Project__r.IPM_Phase__c,
-                                                                                                    IPM_Project__R.IPM_Phase__c,
+                                                                                                    IPM_Project__r.IPM_Phase__c,
+		                                                                                    IPM_Project__r.IPM_ProjectGKM__c,
+		                                                                                    Regional_Project__r.IPM_Phase__c,
+		                                                                                    Regional_Project__r.IPM_ProjectGKM__c,                                                                                                    
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
                                                                                                     Regional_Project__r.Id                                                                    
                                                                                                     FROM IPM_Project_Rollout__c 
-                                                                                                    //WHERE IPM_Project__r.id IN:rolloutprojectIdSet Limit 50000]);
                                                                                                     WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
             for(IPM_Project_Rollout__c pr:projRolloutList){
                    
@@ -500,18 +498,19 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             analyticObj.IPM_Project_Start_Date__c = p.IPM_Project_Start_Date__c !=null?p.IPM_Project_Start_Date__c:p.CreatedDate.date();
             analyticObj.IPM_Cluster_Project__c = p.IPM_Clusters__c;
             analyticObj.IPM_Phase__c = p.IPM_Phase__c;
-            //a.IPM_Company_Priority__c = p.IPM_CPP__c; 
             analyticObj.IPM_Fast_Track_Project__c = p.IPM_Fast_Track_Project__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;                     
             analyticObj.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c; 
-            //a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; // Auto_Aligned will only be checked for local projects
             analyticObj.IPM_Stopped__c= p.Is_Archieved__c?IPM_ConstantUtils.OTIF_YES:'';
             analyticObj.IPM_Project_Route__c = p.IPM_Complexity__c;
+            analyticObj.IPM_BET_Name__c = p.BET__r.Name;
+            analyticObj.IPM_BET_Current_Status__c = p.BETCurrentStatus__c;
+            analyticObj.IPM_BETOwner__c = p.BET__r.Owner.Name;
             
             if(String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local))){
                 analyticObj.IPM_Gate_Keeping_Model__c = p.IPM_ProjectGKM__c;     
             }
             
-            if(String.isNotBlank(p.IPM_Category_Text__c) && p.IPM_Category_Text__c.equalsignorecase('Laundry')){
+            if(String.isNotBlank(p.IPM_Category_Text__c) && p.IPM_Category_Text__c.equalsignorecase(IPM_ConstantUtils.LAUNDRY_CONSTANT)){
             	analyticObj.IPM_Sub_Category__c =  p.IPM_Market__c; 
             }
             else if(String.isNotBlank(p.IPM_Sub_sector__c)){
@@ -545,8 +544,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 if(ipmCountryMap.containskey(p.id)){ analyticObj.IPM_Geography__c = ipmCountryMap.get(p.id);}
             }
 
-            if(String.isNotBlank(p.IPM_Category_Text__c) && String.isNotBlank(p.IPMPlatform__c) && p.IPMPlatform__c != IPM_ConstantUtils.OPTION_NONE && p.IPM_Category_Text__c != IPM_ConstantUtils.HHC_CONSTANT && p.IPM_Category_Text__c != System.Label.IPM_Laundry){
-                analyticObj.IPM_Platform__c = p.IPMPlatform__c;
+            if(String.isNotBlank(p.IPM_Category_Text__c) && String.isNotBlank(p.IPM_Platform_Formula__c)){
+                analyticObj.IPM_Platform__c = p.IPM_Platform_Formula__c;
             }
             // Populate target launch year & month for Global and Regional projects
             if(String.isNotBlank(p.IPM_Project_Type__c) && (p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
@@ -563,7 +562,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     analyticObj.IPM_Target_Launch_Year_BB__c = integer.valueOf(p.IPM_Target_Launch_Year__c);
                 }
                 
-                //if(String.isNotBlank(string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
+                
                 if(String.isNotBlank(string.valueof(p.IPM_Project_Rollout__r.Target_Launch_Date__c))){
                     analyticObj.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(p.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
                     analyticObj.IPM_Target_Launch_Year_BD__c = p.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
@@ -576,7 +575,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 analyticObj.IPM_Target_Launch_Date_Aligned__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null; // Auto_Aligned will only be checked for local projects
                 analyticObj.IPM_Financials_Aligned__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?(projFinMap.get(p.id).Misaligned__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO):null;
                 // CPP BD
-                analyticObj.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
+                analyticObj.IPM_Company_Project_Priority_BD__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
+                //CPP BB
+                analyticObj.IPM_Company_Project_Priority_BB__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Local__c:null;
                
             }  
             
@@ -614,9 +615,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             try{
                 upsert analyticreclist;
 
-                //Update the Last Run date time
-                //reportcs.Last_Batch_RunDate__c = system.now();
-                //update reportcs;
             }
             catch(Exception ex)
             {
@@ -631,36 +629,14 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
         //sends an email for job status, after the job is completed.
         IPM_Utils.sendApexJobStatusMail(BC);    
-
     }
-
-
-    /**************************************************************************************************
-     * @Description: To get the Turnover/Grossprofit values
-     * @param1: IPM_Financial_Year__c
-     * @param1: String Project Span  
-     * @param1: String  returnType (Values: TurnOver/GrossProfit)
-     * @return: Double (turn over / gross profit value) 
-     ***************************************************************************************************/
-
-    public double getTurnOver(IPM_Financial_Year__c fr, boolean globalORregionalvalue, string returnType ){   
-
-        double returnValue=0;
-        
-        if(globalORregionalvalue){
-            returnValue=returnType.equalsignorecase(TURNOVER)?fr.Turnover_Global__c:fr.Gross_Profit_Global__c;
-        }else{
-            returnValue=returnType.equalsignorecase(TURNOVER)?fr.Turnover_Regional__c:fr.Gross_Profit_Regional__c;
-        }
-        return returnValue; 
-    }  
-    
-    
-    public IPM_Analytics__c addNonKeyFinancial(IPM_Analytics__c parentanalyticrec, IPM_Financial__c nonKeyFinancial, IPM_Project__c project, IPM_Project_Rollout__c projectRollout){
-    	IPM_Analytics__c parent = parentanalyticrec;
+	
+    // Method to get records for Non Key Financials
+    public IPM_Analytics__c addNonKeyFinancial(IPM_Analytics__c parentAnalytic, IPM_Financial__c nonKeyFinancial, IPM_Project__c project, IPM_Project_Rollout__c projectRollout){
+    	IPM_Analytics__c parent = parentAnalytic;
     	
     	IPM_Analytics__c nonKeyAnalytic = new IPM_Analytics__c();
-    	nonKeyAnalytic.IPM_Project_Id__c = parentanalyticrec.IPM_Project_Id__c;
+    	nonKeyAnalytic.IPM_Project_Id__c = parentAnalytic.IPM_Project_Id__c;
     	nonKeyAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
     	nonKeyAnalytic.IPM_Project_Name__c = nonKeyFinancial.Display_Name__c;
     	nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;    	
@@ -675,6 +651,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	//nonKeyAnalytic.IPM_Geography__c = ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
     	
     	if(project!=null){
+    		nonKeyAnalytic.IPM_Stopped__c= parentAnalytic.IPM_Stopped__c;
     		nonKeyAnalytic.IPM_Market_Cluster__c = project.Market_Cluster_Name__c;
     		nonKeyAnalytic.IPM_Geography__c = ipmCountryMap.containskey(project.id)?ipmCountryMap.get(project.id):'';
     	}
@@ -682,8 +659,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     		nonKeyAnalytic.IPM_Market_Cluster__c = projectRollout.Market_Cluster_Name__c;
     		nonKeyAnalytic.IPM_Geography__c = ipmCountryMap.containskey(projectRollout.id)?ipmCountryMap.get(projectRollout.id):'';
     	}
-    	
-    	nonKeyAnalytic = processProjectRolloutFinancial(nonKeyAnalytic, nonKeyFinancial.Financial_External_ID__c, null);
+    	nonKeyAnalytic = processProjectRolloutFinancial(nonKeyAnalytic, nonKeyFinancial.Financial_External_ID__c, projectRollout);
     	
     	return nonKeyAnalytic;
     }
@@ -694,9 +670,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @return: List<IPM_Analytics__c> records for each rollout project to be inserted in Analytic object for reporting  
      *********************************************************************************************************************/
 
-    public List<IPM_Analytics__c> addrolloutproject (IPM_Analytics__c parentanalyticrec){         
+    public List<IPM_Analytics__c> addrolloutproject (IPM_Analytics__c parentAnalytic){         
        
-        IPM_Analytics__c parent = parentanalyticrec;
+        IPM_Analytics__c parent = parentAnalytic;
         list<IPM_Analytics__c> analyticRolloutList = new list<IPM_Analytics__c>();
         id regionalrolloutid=null;             
          	   
@@ -713,7 +689,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	                  if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
 	                      regionalrolloutid = pr.Id; 
 	                      for(IPM_Financial__c financial : rolloutFinancialmap.get(regionalrolloutid)){
-	                      	 if(financial.Financial_External_ID__c == pr.name + IPM_Utils.NONKEY){
+	                      	 if(financial.Financial_External_ID__c == pr.name + IPM_ConstantUtils.FINANCIAL_NONKEY){
 	                      	 	IPM_Analytics__c analyticNKObj = new IPM_Analytics__c();
 	                      	 	analyticNKObj = addNonKeyFinancial(analyticObj, financial, null, pr);
 	                      	 	analyticRolloutList.add(analyticNKObj);
@@ -769,46 +745,47 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         if(pr.Target_LaunchYear__c != null){
             analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
         }
-        analyticObj.IPM_Parent_Project_Name__c 					= pr.IPM_Parent_Project_Name__c; 
-        analyticObj.IPM_Project_Leader__c 						= pr.IPM_Regional_PL__r.Name;
+        analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
+        analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
         //Copy values From Parent project
-        analyticObj.IPM_Project_Id__c 							= parent.IPM_Project_Id__c;                    
-        analyticObj.IPM_Project_Description__c 					= parent.IPM_Project_Description__c;
-        analyticObj.IPM_Project_Type__c 						= IPM_Utils.Rollout;
-        analyticObj.IPM_Category_Group__c 						= parent.IPM_Category_Group__c;
-        analyticObj.IPM_Category__c 							= parent.IPM_Category__c;
-        analyticObj.IPM_Brand_Positioning__c 					= parent.IPM_Brand_Positioning__c;
-        analyticObj.IPM_Market_Place_Activity__c 				= parent.IPM_Market_Place_Activity__c;
-    	analyticObj.IPM_Consumer_Value_Perception__c 			= parent.IPM_Consumer_Value_Perception__c;
-        analyticObj.IPM_Enabling_Technology__c 					= parent.IPM_Enabling_Technology__c;
-        analyticObj.IPM_Strategic_Intent__c 					= parent.IPM_Strategic_Intent__c;
-        analyticObj.IPM_Exempt_from_Threshold__c 				= parent.IPM_Exempt_from_Threshold__c;
-        analyticObj.IPM_Expected_Charter_Approval_Date__c 		= parent.IPM_Expected_Charter_Approval_Date__c;
-        analyticObj.IPM_Charter_Approved_Date__c 				= parent.IPM_Charter_Approved_Date__c;  
-        analyticObj.IPM_Charter_Proposed_Date__c 				= parent.IPM_Charter_Proposed_Date__c;
-        analyticObj.IPM_Expected_Contract_Approval_Date__c  	= parent.IPM_Expected_Contract_Approval_Date__c;
-        analyticObj.IPM_Expected_Market_Ready_Approval_Date__c  = parent.IPM_Expected_Market_Ready_Approval_Date__c;
-        analyticObj.IPM_Expected_Market_Deployment_App_Date__c  = parent.IPM_Expected_Market_Deployment_App_Date__c;
-        analyticObj.IPM_BET_First_Release_Due_Date__c 			= parent.IPM_BET_First_Release_Due_Date__c;
-        analyticObj.IPM_BET_First_Released_On_Date__c 			= parent.IPM_BET_First_Released_On_Date__c;
-        analyticObj.IPM_BET_Final_Release_Due_date__c 			= parent.IPM_BET_Final_Release_Due_date__c;
-        analyticObj.IPM_BET_Final_Released_On_date__c 			= parent.IPM_BET_Final_Released_On_date__c;
+        analyticObj.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
+        analyticObj.IPM_Project_Description__c = parent.IPM_Project_Description__c;
+        analyticObj.IPM_Project_Type__c = IPM_Utils.Rollout;
+        analyticObj.IPM_Category_Group__c = parent.IPM_Category_Group__c;
+        analyticObj.IPM_Category__c = parent.IPM_Category__c;
+        analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
+        analyticObj.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
+        analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
+        analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
+        analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
+        analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
+        analyticObj.IPM_Expected_Charter_Approval_Date__c = parent.IPM_Expected_Charter_Approval_Date__c;
+        analyticObj.IPM_Charter_Approved_Date__c = parent.IPM_Charter_Approved_Date__c;  
+        analyticObj.IPM_Charter_Proposed_Date__c = parent.IPM_Charter_Proposed_Date__c;
+        analyticObj.IPM_Expected_Contract_Approval_Date__c = parent.IPM_Expected_Contract_Approval_Date__c;
+        analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
+        analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
+        analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
+        analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
+        analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
+        analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
         
         if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
             analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
-            analyticObj.IPM_Geography__c    = pr.Market_Cluster_Name__c;
-            analyticObj.IPM_Phase__c        = pr.Regional_Rollout_Phase__c;
-            analyticObj.IPM_IC_NBU__c       = IPM_Utils.IPM_IC;
-                                                 
+            analyticObj.IPM_Geography__c = pr.Market_Cluster_Name__c;
+            analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
+            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+            analyticObj.IPM_Platform__c = parent.IPM_Platform__c;
+            analyticObj.IPM_Stopped__c= parent.IPM_Stopped__c;
         }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
-            analyticObj.IPM_Project_Span__c 	= IPM_Utils.Local;
-            analyticObj.IPM_Geography__c    	= ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
-            analyticObj.IPM_Market_Cluster__c   = pr.Market_Cluster_Name__c;
-            analyticObj.IPM_Phase__c 			= pr.Regional_Project__c==null?pr.IPM_Project__r.IPM_Phase__c:pr.Regional_Project__r.IPM_Phase__c;
-            analyticObj.IPM_Key_NonKey__c 		= pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
-            analyticObj.IPM_IC_NBU__c 			= IPM_Utils.IPM_IC_NBU;
-            analyticObj.IPM_Brand__c 			= pr.IPM_Brand__c;
-            
+            analyticObj.IPM_Project_Span__c = IPM_Utils.Local;
+            analyticObj.IPM_Geography__c = ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
+            analyticObj.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
+            analyticObj.IPM_Phase__c = pr.Regional_Project__c==null?pr.IPM_Project__r.IPM_Phase__c:pr.Regional_Project__r.IPM_Phase__c;
+            analyticObj.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
+            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
+            analyticObj.IPM_Brand__c = pr.IPM_Brand__c;
+            analyticObj.IPM_Stopped__c= parent.IPM_Stopped__c;
         } 
         
       return analyticObj;
@@ -817,7 +794,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     
     // Method to set project related financial records
     public IPM_Analytics__c processProjectFinancial(IPM_Analytics__c analyticObj, IPM_Project__c project, map<Id, List<IPM_Financial_Year__c>> projFinYrMap){
-    	//projFinYrMap  
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj;
     	 
@@ -842,8 +818,21 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	//projFinYrMap  
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj; 
+    	String strFinancialScope = IPM_ConstantUtils.IPMGLOBAL; 
     	
-    	String strFinancialScope = IPM_ConstantUtils.IPMGLOBAL; // will update it later as dynamic 
+    	// Set financial scope for Local rollouts
+    	if(projectRollout != null && projectRollout.Regional_Project__r != null){
+    		
+    		if(String.isNotBlank(projectRollout.Regional_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.Regional_Project__r.IPM_ProjectGKM__c)){
+    			strFinancialScope = projectRollout.Regional_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.Regional_Project__r.IPM_Phase__c;
+    		}
+    	}else if(projectRollout != null && projectRollout.IPM_Project__r != null){ // For Regional Rollouts
+    		
+    		if(String.isNotBlank(projectRollout.IPM_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.IPM_Project__r.IPM_ProjectGKM__c)){
+    			strFinancialScope = projectRollout.IPM_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.IPM_Project__r.IPM_Phase__c;
+    		}
+    	}
+    	
     	
     	if(rolloutFinancialYearmap.containsKey(financialExtId)){
 	    	// Financial year related to project rollouts
@@ -880,6 +869,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     				ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
     			}
     			
+    			// Calendar Y3 gTO(BD) 
+    			if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+    				ipmAnalytic.put( 'IPM_Y3_gTO_BD__c' , financialYear.get(strFYearTOFieldName));
+    			}
+    			
     		} else if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
     		
 				strAnalyticTOFieldName = incTOCalYrFieldMapping.get(financialYear.Name); 
@@ -890,9 +884,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     			}
     			if(strAnalyticGPFieldName != null && strFYearGPFieldName != null){
     				ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
-    			}	
+    			}
+    			
+    			// Calendar Y3 iTO(BD)	
+    			if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+    				ipmAnalytic.put( 'IPM_Y3_iTO_BD__c' , financialYear.get(strFYearTOFieldName));
+    			}
     		}
-    		
     	}	
     	
     	// Innovation Financial Year Check
@@ -948,20 +946,18 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     
     
 	public void prepareFinancialGenericTemplate(){
-		Integer startYear = reportcs.IPM_Start_Year__c.intValue();
+	Integer startYear = reportcs.IPM_Start_Year__c.intValue();
     	Integer endYear = reportcs.IPM_End_Year__c.intValue();
     	
-    	Integer countFYear = endYear - startYear;   
-    	 
-    	grossTOCalYrFieldMapping 	= new Map<String, String>();
-    	incTOCalYrFieldMapping 		= new Map<String, String>();
-    	grossGPCalYrFieldMapping 	= new Map<String, String>();
-    	incGPCalYrFieldMapping 		= new Map<String, String>();
+    	grossTOCalYrFieldMapping = new Map<String, String>();
+    	incTOCalYrFieldMapping = new Map<String, String>();
+    	grossGPCalYrFieldMapping = new Map<String, String>();
+    	incGPCalYrFieldMapping = new Map<String, String>();
     	
-    	grossTOInnvYrFieldMapping   = new Map<String, String>();
-    	incTOInnvYrFieldMapping 	= new Map<String, String>();
-    	grossGPYrFieldMapping 		= new Map<String, String>();
-    	incGPInnvYrFieldMapping 	= new Map<String, String>();
+    	grossTOInnvYrFieldMapping = new Map<String, String>();
+    	incTOInnvYrFieldMapping = new Map<String, String>();
+    	grossGPYrFieldMapping = new Map<String, String>();
+    	incGPInnvYrFieldMapping = new Map<String, String>();
     	
     	fYearTOFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Turnover_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Turnover_Regional__c'};
     	fYearGPFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Gross_Profit_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Gross_Profit_Regional__c'};
@@ -1026,7 +1022,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
           }                 
 	  			
 	  			 
-	  			//analyticObj.IPM_Company_Priority__c = tempFin.IPM_CPP_Regional__c;
 	  			analyticObj.IPM_Company_Priority__c = CPP; 
 	  		}
 	  	} 
@@ -1133,93 +1128,4 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         return a;
     }
     
-     /*********************************************************************************************************************
-     * @Description: To copy financial years related details to that particular project
-     * @param1: Map<Id, List<IPM_Financial_Year__c>> (Project And Its related Financial years), IPM_Analytics__c IPM Analytics , IPM Project
-     * @return: IPM_Analytics__c Analytic object record  
-     *********************************************************************************************************************/
-    public IPM_Analytics__c processFinancialDetails(Map<Id, List<IPM_Financial_Year__c>> projFinYrmap, IPM_Analytics__c a, IPM_Project__c p){
-        
-        //Copying IPM Financial Year fields
-        if(projFinYrmap.containskey(p.id) && String.isNotBlank(p.IPMProject_Span__c)){
-        
-            for(IPM_Financial_Year__c fr:projFinYrMap.get(p.id)){
-                
-                Boolean globalORregionalValues=p.IPM_Global_OR_Regional__c;
-               /* if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) && String.isNotBlank(p.IPM_Phase__c) && p.IPM_Phase__c.equalsignorecase(IPM_ConstantUtils.PHASE_IDEAS)){
-                    globalORregionalValues = true;
-                }*/
-                
-                // Populating 1st Full Year Gross TO (BD)
-                if(String.isNotBlank(fr.Year_Type__c) && String.isNotBlank(fr.PL_Type__c) && fr.Name.equalsignorecase(IPM_Utils.Y1) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
-        
-                    a.IPM_1st_Full_Year_Gross_TO_BD__c= globalORregionalValues?fr.Turnover_Global__c:fr.Turnover_Regional__c;                        
-                }
-                // Populating 1st Full Year iTO (BD) & 1st Full Year iGP (BD)
-                if(fr.Name.equalsignorecase(IPM_Utils.Y1) && (String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation)) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
-                    a.IPM_1st_Full_Year_iTO_BD__c=globalORregionalValues?fr.Turnover_Global__c:fr.Turnover_Regional__c;
-                    a.IPM_1st_Full_Year_iGP_BD__c=globalORregionalValues?fr.Gross_Profit_Global__c:fr.Gross_Profit_Regional__c;
-                }
-        
-        		// this is the logic for getting the BD year even for the Rollout Projects
-        		 Integer bdYEAR=(p.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)?p.IPM_Project_Rollout__r.Target_Launch_Date__c.Year():integer.valueof(p.IPM_Target_Launch_Year__c);
-        		
-                // Populating Gross TO (BD) - Y0 - Y8
-                if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross) && String.isNotBlank(p.IPM_Target_Launch_Year__c) && fr.Name >= string.ValueOF(bdYEAR)){
-        
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_Gross_TO_Y0_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_Gross_TO_Y1_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ a.IPM_Gross_TO_Y2_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year())){ a.IPM_Gross_TO_Y3_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ a.IPM_Gross_TO_Y4_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ a.IPM_Gross_TO_Y5_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ a.IPM_Gross_TO_Y6_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){ a.IPM_Gross_TO_Y7_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ a.IPM_Gross_TO_Y8_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-        
-                }
-        
-                if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental) && String.isNotBlank(p.IPM_Target_Launch_Year__c) && fr.Name >= string.ValueOF(bdYEAR)){
-        
-                    // Populating iTO (BD) - Y0 - Y8  
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_iTO_Y0_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_iTO_Y1_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ a.IPM_iTO_Y2_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year())){ a.IPM_iTO_Y3_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ a.IPM_iTO_Y4_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ a.IPM_iTO_Y5_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ a.IPM_iTO_Y6_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){a.IPM_iTO_Y7_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-                    else if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ a.IPM_iTO_Y8_BD__c = getTurnOver(fr,globalORregionalValues,TURNOVER);}
-        
-        
-                    // Populating iGP (BD) - Y0 - Y8
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_iGP_Y0_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_iGP_Y1_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ a.IPM_iGP_Y2_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year())){ a.IPM_iGP_Y3_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ a.IPM_iGP_Y4_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ a.IPM_iGP_Y5_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) {a.IPM_iGP_Y6_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){ a.IPM_iGP_Y7_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-                    if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ a.IPM_iGP_Y8_BD__c = getTurnOver(fr,globalORregionalValues,GROSSPROFIT);}
-        
-                }  
-        
-                // Populating Y3 gTO
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
-                {  
-                   a.IPM_Y3_gTO_BD__c = globalORregionalValues?fr.Turnover_Global__c:fr.Turnover_Regional__c;
-                }                   
-                // Populating Y3 iTO                   
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
-                {                       
-                    a.IPM_Y3_iTO_BD__c = globalORregionalValues?fr.Turnover_Global__c:fr.Turnover_Regional__c;
-                }
-        
-            }//end of Financial Year For loop
-        
-        }
-        return a;
-    }   
 }
