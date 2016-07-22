@@ -22,6 +22,8 @@ src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
 src/classes/IPM_FinancialValueWrapper.cls
 src/classes/IPM_FinancialValueWrapper.cls-meta.xml
+src/classes/IPM_FinGateController.cls
+src/classes/IPM_FinGateController.cls-meta.xml
 src/classes/IPM_Gate_RollOuts_Controller.cls
 src/classes/IPM_Gate_RollOuts_Controller.cls-meta.xml
 src/classes/IPM_GateDocumentController.cls
