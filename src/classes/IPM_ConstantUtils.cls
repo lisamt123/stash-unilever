@@ -202,7 +202,7 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_SAVEFINANCIALS='saveFinancials';
     public static final string EXCEPTION_REFRESHFROMLOCAL='refreshFromLocal';
     public static final string EXCEPTION_REFRESHFROMREGIONAL='refreshFromRegional';
-    
+    public static final string CONSOLIDATED='CONSOLIDATED';
     
     
     
