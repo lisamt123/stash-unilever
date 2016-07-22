@@ -597,6 +597,15 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>FS_Decision_Maker__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Created to identify the decision maker of accounts</description>
+        <externalId>false</externalId>
+        <label>Decision Maker</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_Position__c</fullName>
         <description>To create contact for Russian and US FS users.</description>
         <externalId>false</externalId>

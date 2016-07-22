@@ -43,17 +43,6 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <fields>
-        <fullName>Active__c</fullName>
-        <description>Purpose : To calculate Active or Inactive for product 
-Data Source : NA | Integration : NA | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <formula>AND(not(ISBLANK(StartDate__c)),not(ISBLANK(EndDate__c)),EndDate__c&gt;=today(),StartDate__c&lt;=today() , IF( StartDate__c &gt; EndDate__c,false,true ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Active</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>COGS__c</fullName>
         <description>Purpose : Product&apos;s cost of goods sold
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>

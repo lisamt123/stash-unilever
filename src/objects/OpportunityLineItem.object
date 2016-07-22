@@ -243,6 +243,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FS_Fixed_Price_Copy__c</fullName>
+        <description>Field  is created for copying the Fixed Price(check box)  value .This value is used in approval process to send Email alert to line manger/AFM group users.</description>
+        <externalId>false</externalId>
+        <formula>IF( FS_FixedPrice__c=true,&apos;true&apos;,&apos;false&apos;)</formula>
+        <label>Fixed Price Copy</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_GM_TPR_DEL__c</fullName>
         <description>Gross Margin = Gross Profit / Turnover</description>
         <externalId>false</externalId>
@@ -743,7 +753,7 @@
         <fullName>FS_Inactive_Products</fullName>
         <active>true</active>
         <description>Check if inactive product is selected</description>
-        <errorConditionFormula>Product2.Active__c  = FALSE</errorConditionFormula>
+        <errorConditionFormula>Product2.IsActive  = FALSE</errorConditionFormula>
         <errorMessage>You can&apos;t select a product which is inactive.</errorMessage>
     </validationRules>
     <validationRules>

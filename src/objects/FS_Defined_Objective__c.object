@@ -58,7 +58,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>FS_Account_Plan_Statement__c</fullName>
+        <fullName>FS_Account_Plan_Statement_del__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Shows text from Account Plan for guidance during planning.</inlineHelpText>
         <label>Account Plan Statement</label>
@@ -93,18 +93,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FS_Cases__c</fullName>
-        <externalId>false</externalId>
-        <label>Cases</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>FS_Completion_Date__c</fullName>
         <externalId>false</externalId>
         <label>Completion Date</label>
@@ -136,6 +124,17 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FS_Dollars__c</fullName>
+        <externalId>false</externalId>
+        <label>Dollars</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_Estimated_Timing__c</fullName>
@@ -194,10 +193,6 @@
         <externalId>false</externalId>
         <label>Objective Type</label>
         <picklist>
-            <picklistValues>
-                <fullName>Qualitative</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
                 <default>false</default>
@@ -456,7 +451,8 @@
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
-        <type>Currency</type>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <label>Defined Objective</label>
     <listViews>
@@ -481,10 +477,6 @@
             <picklist>FS_Objective_Type__c</picklist>
             <values>
                 <fullName>Grow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Qualitative</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -609,10 +601,6 @@
             <picklist>FS_Objective_Type__c</picklist>
             <values>
                 <fullName>Grow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Qualitative</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -898,6 +886,15 @@ ISBLANK(FS_Other_Reason__c)
         <errorConditionFormula>And(ISCHANGED(FS_Status__c), Not(isPickVal(PRIORVALUE(FS_Status__c),&apos;Approved&apos;))
 ,isPickVal(FS_Status__c,&apos;Completed&apos;))</errorConditionFormula>
         <errorMessage>Please get this objective approved prior to mark it as Completed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_approved_Defined_Objective</fullName>
+        <active>true</active>
+        <description>Sales rep are not allowed to make certain changes in defined objective once it is approved</description>
+        <errorConditionFormula>And(OR(ISPICKVAL(PriorValue(FS_Status__c),&apos;Approved&apos;), 
+ISPICKVAL(FS_Status__c,&apos;Approved&apos;)), 
+OR( AND(ISCHANGED(FS_Status__c),Not(ISPICKVAL(FS_Status__c,&apos;Completed&apos;))), ISCHANGED(  FS_Completion_Date__c ), ISCHANGED( FS_Objective_Start_Date__c ),ISCHANGED( FS_Objective_Type__c ), ISCHANGED( FS_Account_Plan__c ), ISCHANGED( FS_Tension__c ), ISCHANGED(  FS_Account_Plan_Statement_del__c )),$Profile.Name &lt;&gt; &quot;System Administrator&quot;)</errorConditionFormula>
+        <errorMessage>You are not allowed to make changes in defined objective after it is approved</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>Create_Distributor_Objective</fullName>
