@@ -10,7 +10,7 @@ Purpose:  Used to instantiate and execute Trigger Handlers associated with sObje
 History                                                            
 -------                                                            
 VERSION  AUTHOR                      DATE               DETAIL                 Description
-
+1.0 -   Mahesh Sankapal             05/04/2016          Initial Development  
 ***********************************************************************/
 public with sharing class Amr_TriggerFactory
 {
@@ -43,7 +43,7 @@ public with sharing class Amr_TriggerFactory
      */ 
     private static void execute(amr_Interface_Trigger handler)
     {
-        Amr_Job_Details__c so = new Amr_Job_Details__c();
+        //Amr_Job_Details__c so = new Amr_Job_Details__c();
         // Before Trigger
         if (Trigger.isBefore)
         {
@@ -53,9 +53,9 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records to be deleted passing them to the handler.
             if (Trigger.isDelete)
             {
-                //for (SObject so : Trigger.old)
+               // for (SObject so : Trigger.old)
                 {
-                    handler.beforeDelete(so);
+                    handler.beforeDelete();
                 }
             }
             // Iterate through the records to be inserted passing them to the handler.
@@ -63,7 +63,7 @@ public with sharing class Amr_TriggerFactory
             {
                 //for (SObject so : Trigger.new)
                 {
-                    handler.beforeInsert(so);
+                    handler.beforeInsert();
                 }
             }
             // Iterate through the records to be updated passing them to the handler.
@@ -71,7 +71,7 @@ public with sharing class Amr_TriggerFactory
             {
                 //for (SObject so : Trigger.old)
                 {
-                    handler.beforeUpdate(so, Trigger.newMap.get(so.Id));
+                    handler.beforeUpdate();
                 }
             }
         }
@@ -85,7 +85,7 @@ public with sharing class Amr_TriggerFactory
             {
                 //for (SObject so : Trigger.old)
                 {
-                    handler.afterDelete(so);
+                    handler.afterDelete();
                 }
             }
             // Iterate through the records inserted passing them to the handler.
@@ -93,7 +93,7 @@ public with sharing class Amr_TriggerFactory
             {
                 //for (SObject so : Trigger.new)
                 {
-                    handler.afterInsert(so);
+                    handler.afterInsert();
                 }
             }
             // Iterate through the records updated passing them to the handler.
@@ -101,7 +101,7 @@ public with sharing class Amr_TriggerFactory
             {
                 //for (SObject so : Trigger.old)
                 {
-                    handler.afterUpdate(so, Trigger.newMap.get(so.Id));
+                    handler.afterUpdate();
                 }
             }
         }

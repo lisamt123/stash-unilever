@@ -1,0 +1,319 @@
+   <labels>
+        <fullName>ICB_ALERT_CHECKIN_OUT_CUSTOMER</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB ALERT CHECKIN OUT CUSTOMER</shortDescription>
+        <value>Alert! Check-In out of the customer address! Wish continue?</value>
+    </labels>
+    <labels>
+        <fullName>ICB_URL_GOOGLE_MAP</fullName>
+        <categories>ICB</categories>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>ICB URL GOOGLE MAP</shortDescription>
+        <value>https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Clabel:A%7C</value>
+    </labels>
+    <labels>
+        <fullName>ICB_ROADNET_CREATED_BY_NAME</fullName>
+        <categories>ICB</categories>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>ICB ROADNET CREATED BY NAME</shortDescription>
+        <value>antonio.raul.fonseca@unilever.com</value>
+    </labels>
+    <labels>
+        <fullName>GoogleAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GoogleAPIKey</shortDescription>
+        <value>gme-unilever</value>
+    </labels>
+    <labels>
+        <fullName>ICB_ALERT_CHECKOUT_OUT_CUSTOMER</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB ALERT CHECKOUT OUT CUSTOMER</shortDescription>
+        <value>Alert! Check-Out out of the customer address! Wish continue?</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_CANCEL</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON CANCEL</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_CHECK_IN</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON CHECK IN</shortDescription>
+        <value>Check-In</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_CHECK_OUT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON CHECK OUT</shortDescription>
+        <value>Check-Out</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_CLOSE</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON CLOSE</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_CONFIRM</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON CONFIRM</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_GOLDEN_MINUTE</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON GOLDEN MINUTE</shortDescription>
+        <value>GOLDEN MINUTE</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_OPEN</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BUTTON OPEN</shortDescription>
+        <value>Open</value>
+    </labels>
+    <labels>
+        <fullName>ICB_CONCLUDED_VISIT_STATUS</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB CONCLUDED VISIT STATUS</shortDescription>
+        <value>Concluded</value>
+    </labels>
+    <labels>
+        <fullName>ICB_Distance_Limit</fullName>
+        <categories>Ice Cream</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_Distance_Limit</shortDescription>
+        <value>0.5</value>
+    </labels>
+    <labels>
+        <fullName>ICB_ERROR_CHECKIN_BEFORE_CHECKOUT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB ERROR CHECKIN BEFORE CHECKOUT</shortDescription>
+        <value>Error! Perform Check-In before Check-Out!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_OUT_OF_ROUTE_VISIT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB OUT OF ROUTE VISIT</shortDescription>
+        <value>Out-of-Route</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PLANNED_VISIT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB PLANNED VISIT</shortDescription>
+        <value>Planned</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PREFIX_SOBJECT_EVENT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB PREFIX SOBJECT EVENT</shortDescription>
+        <value>/00U</value>
+    </labels>
+    <labels>
+        <fullName>ICB_REC_TYPE_ICE_CREAM_VISIT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB REC TYPE ICE CREAM VISIT</shortDescription>
+        <value>ICB_IceCreamVisit</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SCHEMA_MSERIES</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB SCHEMA MSERIES</shortDescription>
+        <value>mseries://</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SOBJECT_EVENT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB SOBJECT EVENT</shortDescription>
+        <value>Event</value>
+    </labels>
+    <labels>
+        <fullName>ICB_STATE_RESPONSE_SUCCESS</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB STATE RESPONSE SUCCESS</shortDescription>
+        <value>SUCCESS</value>
+    </labels>
+    <labels>
+        <fullName>ICB_STATUS_GEOLOCATING</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB STATUS GEOLOCATING</shortDescription>
+        <value>GEOLOCATING...</value>
+    </labels>
+    <labels>
+        <fullName>ICB_STATUS_GOLDEN_MINUTE_NOT_UPDATE</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB STATUS GOLDEN MINUTE NOT UPDATE</shortDescription>
+        <value>Golden Minute until not updated!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_STATUS_GOLDEN_MINUTE_NOT_UPLOADED</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB STATUS GOLDEN MINUTE NOT UPLOADED</shortDescription>
+        <value>Golden Minute for this territory not uploaded!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_STATUS_VIEW_DONE</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB STATUS VIEW DONE</shortDescription>
+        <value>DONE...</value>
+    </labels>
+    <labels>
+        <fullName>ICB_STATUS_VIEW_GETTING_GEO</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB STATUS VIEW GETTING GEO</shortDescription>
+        <value>Getting Geo...</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SUCCESS_CHECKIN_SUCCESSFULLY</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB SUCCESS CHECKIN SUCCESSFULLY</shortDescription>
+        <value>Success! Check-In successfully!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SUCCESS_CHECKOUT_SUCCESSFULLY</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB SUCCESS CHECKOUT SUCCESSFULLY</shortDescription>
+        <value>Success! Check-Out successfully!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_ALERT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT ALERT</shortDescription>
+        <value>Alert!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_CHECK_IN</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT CHECK IN</shortDescription>
+        <value>Check-In</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_ERROR</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT ERROR</shortDescription>
+        <value>Error!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_INFO</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT INFO</shortDescription>
+        <value>Info</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_SUCCESS</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT SUCCESS</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_SUCCESS2</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT SUCCESS 2</shortDescription>
+        <value>Success!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TEXT_WARNING</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB TEXT WARNING</shortDescription>
+        <value>Warning!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_UNPLANNED_VISIT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB UNPLANNED VISIT</shortDescription>
+        <value>Unplanned</value>
+    </labels>
+    <labels>
+        <fullName>ICB_WARNING_CANT_POSSIBLE_RETURN_GEO</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB WARNING CANT POSSIBLE RETURN GEO</shortDescription>
+        <value>Warning! It can&apos;t possible to return localization!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_WARNING_CHECKIN_SUCCESSFULLY</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB WARNING CHECKIN SUCCESSFULLY</shortDescription>
+        <value>Warning! Check-In it has been performed!</value>
+    </labels>
+    <labels>
+        <fullName>ICB_WARNING_CHECKOUT_SUCCESSFULLY</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_WARNING_CHECKOUT_SUCCESSFULLY</shortDescription>
+        <value>Warning! Check-Out it has been performed!</value>
+    </labels>

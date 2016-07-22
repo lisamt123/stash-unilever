@@ -48,7 +48,7 @@
             <script type="text/javascript">
                 showPopupRAPPortfolio();
             </script>
-                <div class="absolute padding10-10-0-0 pointer" style="right:25px;top:260px;">
+                <div class="absolute padding10-10-0-0 pointer" style="right:25px;top:130px;">
                     <div class="left bold bell-text-label">
                         {!totalAlertCount}
                     </div>

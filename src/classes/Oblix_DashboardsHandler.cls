@@ -9,7 +9,7 @@ public with sharing class Oblix_DashboardsHandler {
 	public final String SCORE_L = 'L';
 	public final String SCORE_TOTAL = 'TOTAL';
 	public final String TOTAL_ASSETS = 'TotalAssets';
-	public final Set<String> ASSET_TYPES_SET = new Set<String> { 'Stimulus Materials', 'Audio Visual' , 'Digital', 'Experiential', 'Static Imagery'};
+	public final Set<String> ASSET_TYPES_SET = new Set<String> {'Audio Visual' , 'Digital', 'Experiential', 'Static Imagery', 'Stimulus Materials'};
 	
 	public Integer totalAssets { 
 		get{
@@ -40,7 +40,7 @@ public with sharing class Oblix_DashboardsHandler {
 		this.recordId = pRecordId;
 	}
 
-	private List<List<Object>> generateGraphData(){
+	@TestVisible private List<List<Object>> generateGraphData(){
 		if(instanceType != null && (instanceType.equals(Type.SOW_SCORES_FY_FEE) || instanceType.equals(Type.SOW_SCORES_FULL_FEE))){
 			return generateSOWScoresGraphData();
 		} else if(instanceType != null && instanceType.equals(Type.CAMPAIGN_ASSET_TYPES)){
@@ -50,14 +50,16 @@ public with sharing class Oblix_DashboardsHandler {
 		}
 	}
 
-	private List<List<Object>> generateSOWScoresGraphData(){
+	@TestVisible private List<List<Object>> generateSOWScoresGraphData(){
 		List<List<Object>> retVal = new List<List<Object>>();
 
 		// first array for google chart is data header setup
 		List<DataSetupHeader> headerSetup = new List<DataSetupHeader>();
 		headerSetup.add(new DataSetupHeader('', 'string'));
-		headerSetup.add(new DataSetupHeader('Project Count', 'number'));
-		headerSetup.add(new DataSetupHeader('Fee', 'number'));
+		headerSetup.add(new DataSetupHeader('# of Campaigns', 'number'));
+		//headerSetup.add(new DataSetupRole('tooltip', 'string'));
+		headerSetup.add(new DataSetupHeader('Campaign Fee', 'number'));
+		//headerSetup.add(new DataSetupRole('tooltip', 'string'));
 
 		retVal.add(headerSetup);
 
@@ -66,8 +68,10 @@ public with sharing class Oblix_DashboardsHandler {
 		List<AggregateResult> feeDistribution;
 		if(instanceType.equals(Type.SOW_SCORES_FY_FEE)){
 			feeDistribution = [SELECT SUM(Value_to_be_paid_in_Current_FY__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+			System.DEBUG('feeDistribution : ' + feeDistribution);
 		} else if(instanceType.equals(Type.SOW_SCORES_FULL_FEE)){
 			feeDistribution = [SELECT SUM(Campaign_Fees_Total__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+			System.DEBUG('feeDistribution : ' + feeDistribution);
 		} else{
 			return null;
 		}
@@ -116,23 +120,29 @@ public with sharing class Oblix_DashboardsHandler {
 			scoreFeeMap.put(SCORE_ML, 0);
 			scoreFeeMap.put(SCORE_L, 0);
 		}
-		System.debug('####### ' + JSON.serialize(scoreCountMap));
-		System.debug('####### ' + JSON.serialize(scoreFeeMap));
+		//System.debug('####### ' + JSON.serialize(scoreCountMap));
+		//System.debug('####### ' + JSON.serialize(scoreFeeMap));
 
 		// populate data records and add them to the google chart data
-		retVal.add(new List<String>{SCORE_S, String.valueOf(scoreCountMap.get(SCORE_S)), String.valueOf(scoreFeeMap.get(SCORE_S))});
-		retVal.add(new List<String>{SCORE_SM, String.valueOf(scoreCountMap.get(SCORE_SM)), String.valueOf(scoreFeeMap.get(SCORE_SM))});
-		retVal.add(new List<String>{SCORE_M, String.valueOf(scoreCountMap.get(SCORE_M)), String.valueOf(scoreFeeMap.get(SCORE_M))});
-		retVal.add(new List<String>{SCORE_ML, String.valueOf(scoreCountMap.get(SCORE_ML)), String.valueOf(scoreFeeMap.get(SCORE_ML))});
-		retVal.add(new List<String>{SCORE_L, String.valueOf(scoreCountMap.get(SCORE_L)), String.valueOf(scoreFeeMap.get(SCORE_L))});
+		retVal.add(new List<Object>{SCORE_S, new DataSetupRecord(String.valueOf(scoreCountMap.get(SCORE_S)), String.valueOf(scoreCountMap.get(SCORE_S)) + '%'), new DataSetupRecord(String.valueOf(scoreFeeMap.get(SCORE_S)), String.valueOf(scoreFeeMap.get(SCORE_S)) + '%') });
+		retVal.add(new List<Object>{SCORE_SM, new DataSetupRecord(String.valueOf(scoreCountMap.get(SCORE_SM)), String.valueOf(scoreCountMap.get(SCORE_SM)) + '%'), new DataSetupRecord(String.valueOf(scoreFeeMap.get(SCORE_SM)), String.valueOf(scoreFeeMap.get(SCORE_SM)) + '%')});
+		retVal.add(new List<Object>{SCORE_M, new DataSetupRecord(String.valueOf(scoreCountMap.get(SCORE_M)), String.valueOf(scoreCountMap.get(SCORE_M)) + '%'), new DataSetupRecord(String.valueOf(scoreFeeMap.get(SCORE_M)), String.valueOf(scoreFeeMap.get(SCORE_M)) + '%')});
+		retVal.add(new List<Object>{SCORE_ML, new DataSetupRecord(String.valueOf(scoreCountMap.get(SCORE_ML)), String.valueOf(scoreCountMap.get(SCORE_ML)) + '%'), new DataSetupRecord(String.valueOf(scoreFeeMap.get(SCORE_ML)), String.valueOf(scoreFeeMap.get(SCORE_ML)) + '%')});
+		retVal.add(new List<Object>{SCORE_L, new DataSetupRecord(String.valueOf(scoreCountMap.get(SCORE_L)), String.valueOf(scoreCountMap.get(SCORE_L)) + '%'), new DataSetupRecord(String.valueOf(scoreFeeMap.get(SCORE_L)), String.valueOf(scoreFeeMap.get(SCORE_L)) + '%')});
+
+		//retVal.add(new List<String>{SCORE_S, String.valueOf(scoreCountMap.get(SCORE_S)), String.valueOf(scoreCountMap.get(SCORE_S)) + '%', String.valueOf(scoreFeeMap.get(SCORE_S)), String.valueOf(scoreFeeMap.get(SCORE_S)) + '%'});
+		//retVal.add(new List<String>{SCORE_SM, String.valueOf(scoreCountMap.get(SCORE_SM)), String.valueOf(scoreCountMap.get(SCORE_SM)) + '%', String.valueOf(scoreFeeMap.get(SCORE_SM)), String.valueOf(scoreFeeMap.get(SCORE_SM)) + '%'});
+		//retVal.add(new List<String>{SCORE_M, String.valueOf(scoreCountMap.get(SCORE_M)), String.valueOf(scoreCountMap.get(SCORE_M)), String.valueOf(scoreFeeMap.get(SCORE_M)), String.valueOf(scoreFeeMap.get(SCORE_M)) + '%'});
+		//retVal.add(new List<String>{SCORE_ML, String.valueOf(scoreCountMap.get(SCORE_ML)), String.valueOf(scoreCountMap.get(SCORE_ML)) + '%', String.valueOf(scoreFeeMap.get(SCORE_ML)), String.valueOf(scoreFeeMap.get(SCORE_ML)) + '%'});
+		//retVal.add(new List<String>{SCORE_L, String.valueOf(scoreCountMap.get(SCORE_L)), String.valueOf(scoreCountMap.get(SCORE_L)) + '%', String.valueOf(scoreFeeMap.get(SCORE_L)), String.valueOf(scoreFeeMap.get(SCORE_L)) + '%'});
 
 		return retVal;
 	}
 
-	private List<List<Object>> generateCampaignAssetTypesData(){
+	@TestVisible private List<List<Object>> generateCampaignAssetTypesData(){
 		List<List<Object>> retVal = new List<List<Object>>();
-		List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc limit 10000000];
-		System.DEBUG(assetTypes);
+		//List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc limit 10000000];
+		//System.DEBUG(assetTypes);
 		Map<String, Integer> assetCountToAddMap = new Map<String, Integer>();
 		//to maintain the order of the colours in the graph, google expects all possible types with a value 0 
 		for(String eachAssetType : ASSET_TYPES_SET){
@@ -167,13 +177,13 @@ public with sharing class Oblix_DashboardsHandler {
 			//this.totalAssets += (Decimal) assetCountToAddMap.get(assetType);
 		}
 		//retval.add(new List<String>{TOTAL_ASSETS,String.valueOf(totalAssets)});
-		System.DEBUG(JSON.serializePretty(retVal));
+		System.DEBUG('JSON : ' + JSON.serializePretty(retVal));
 		//System.DEBUG(this.totalAssets);
 		return retval;
 		
 	}
 
-	private Integer getAssetTotal(){
+	@TestVisible private Integer getAssetTotal(){
 		Integer total = 0;
 		for(AggregateResult ar : [SELECT Sum(Quantity__c) sumValue, Asset_Type__c assetType FROM Oblix_Project_Assets__c 
 									WHERE Agency_Projects__c =: recordId
@@ -183,7 +193,7 @@ public with sharing class Oblix_DashboardsHandler {
 		return total;
 	}
 
-	private String removeStringValuesAfterHyphen(String valueToBeRemoved){
+	@TestVisible private String removeStringValuesAfterHyphen(String valueToBeRemoved){
 	    if(valueToBeRemoved!=null && valueToBeRemoved.contains('-')){
 	        return valueToBeRemoved.substring(0, valueToBeRemoved.indexOf('-')).trim();
 	    }else{
@@ -191,30 +201,11 @@ public with sharing class Oblix_DashboardsHandler {
 	    }
 	}
 
-	private Decimal getScoreTotal(Map<String, Decimal> distributionMap, String businessValue){
+	@TestVisible private Decimal getScoreTotal(Map<String, Decimal> distributionMap, String businessValue){
 		return distributionMap.containsKey(businessValue) ? distributionMap.get(businessValue) : 0;
 	}
 
-	//private List<DataWrapper> generateCampaignAssetTypesData(){
-	//	List<DataWrapper> retVal = new List<DataWrapper>();
-
-	//	return retVal;
-	//}
-
-	//public class DataWrapper{
-	//	public List<Object> googleChartDataSetup {get; set;}
-	//	public DataWrapper(){
-	//		googleChartDataSetup = new List<Object>();
-	//	}
-	//	public DataWrapper (List<Object> pGoogleChartDataSetup){
-	//		googleChartDataSetup = new List<Object>();
-	//		googleChartDataSetup = pGoogleChartDataSetup;
-	//	}
-	//	public void add(Object googleChartDataSetupRecord){
-	//		googleChartDataSetup.add(googleChartDataSetupRecord);
-	//	}
-	//}
-	public class DataSetupHeader{
+	public class DataSetupHeader implements DataSetup{
 		public String label;
 		public String type;
 		public DataSetupHeader(String pLabel, String pType){
@@ -222,7 +213,24 @@ public with sharing class Oblix_DashboardsHandler {
 			this.type = pType;
 		}
 	}
-	//public class DataSetupDataRecord extends DataSetup{
-	//	public List<String> dataRecord {get; set;}
+
+	//public class DataSetupRole implements DataSetup{
+	//	public String role;
+	//	public String type;
+	//	public DataSetupRole(String pRole, String pType){
+	//		this.role = pRole;
+	//		this.type = pType;
+	//	}
 	//}
+
+	public class DataSetupRecord implements DataSetup{
+		public String v;
+		public String f;
+		public DataSetupRecord(String pV, String pF){
+			this.v = pV;
+			this.f = pF;
+		}
+	}
+
+	public interface DataSetup{}
 }

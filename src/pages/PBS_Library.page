@@ -1,4 +1,4 @@
-<apex:page html-class="noBgImage" controller="PBS_LibraryController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+<apex:page controller="PBS_LibraryController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
    
     <!-- javascript -->
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
@@ -16,12 +16,25 @@
         text-indent: -10px;
     
     }
+    ul li{
+      margin-left: 0em !important; 
+    }
 </style>
-   <apex:composition template="almond__LMS_Template">  
+    <apex:composition template="PBS_Header_Template"></apex:composition>
+    <div class="row bodyRow group">
+        
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_MyProfile}" target="innerFrame">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+    </div>
+   <apex:composition template="PBS_LMS_Template">  
         
    <apex:define name="body">
                      
-    <div class="wrapper">
+    <div class="wrapper wrapper-library">
         <!--<div class="row topRow">
             <div class="col-md-12 col-lg-12">
                 <a href="{!$Page.PC_Forum}" title="Go back to Forum Page">&laquo; Go Back to Forum Page</a>
@@ -29,9 +42,9 @@
         </div>-->
         
         <div class="row topRow">
-            <div class="col-md-12 col-lg-12">
+            <div class="col-md-12 col-lg-12 library-icon">
                 <div class="heading">
-                    <apex:image width="100" Height="100" title="Library" value="{!URLFOR($Resource.PCResources, 'img/Library.ico')}" /> Library
+                    <apex:image width="100" Height="100" title="Library" value="{!URLFOR($Resource.PCResources, 'img/Library-image.png')}" /> Library
                 </div>
             </div>
         </div>
@@ -39,7 +52,7 @@
         <div class="row">
             <apex:form >
                 <div class="row">
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-md-3 col-lg-3 box-library">
                         <div class="box">
                             <div class="headerBox" style="text-indent: -10px;">
                                 Filters
@@ -74,9 +87,9 @@
    
    
                     </div>
-                    <div class="col-md-9 col-lg-9">
+                    <div class="col-md-9 col-lg-9 table-library">
                     <apex:outputPanel id="theSearchResults" >
-                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover" >
+                        <apex:dataTable value="{!PbsArticleSearchList}" var="article" styleClass="table table-bordered table-striped table-hover" >
                            
                             <apex:column >
                                 <apex:facet name="header">
@@ -131,7 +144,14 @@
                                     <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 5, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
                                 </div>
                             </apex:column>
-                            
+                           
+                             <apex:column styleClass="statsCol">
+                                <apex:facet name="header">Feedback</apex:facet>
+                                  <apex:outputPanel rendered="{!(article.ArticleType == 'PBS_Wiki__kav')}"> <a href="/apex/PBS_WikiFeedbackview?ID={!article.id}" target="_self" title=""><apex:outputText value="View"/></a></apex:outputPanel>
+                                   <apex:outputPanel rendered="{!(article.ArticleType != 'PBS_Wiki__kav')}"><apex:outputText value="No Feedback"/></apex:outputPanel>
+                                
+                            </apex:column>
+                              
                         </apex:dataTable>
                         
                         <nav>

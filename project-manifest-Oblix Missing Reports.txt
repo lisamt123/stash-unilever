@@ -1,6 +1,0 @@
-src/reports/SWOP_Reporting_Agencies
-src/reports/SWOP_Reporting_Agencies-meta.xml
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_SOW_Report_Full_Export.report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_Campaign.report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Non_Campaign_Report.report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_SOW.report

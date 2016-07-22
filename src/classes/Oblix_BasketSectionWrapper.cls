@@ -75,7 +75,7 @@ public with sharing class Oblix_BasketSectionWrapper {
         }
         return item;
     }
-
+/*
     public void reloadBasketItems() {
 
         itemCount = 0;
@@ -87,7 +87,7 @@ public with sharing class Oblix_BasketSectionWrapper {
             existingNonCampaigns =[SELECT Id, Activities__c, Name, No_of_Hours_Required__c, 
                                             OblixCountry__c, OblixCountry__r.Name , Role_Title__c, 
                                             Agency_Department__c,OblixOtherItemFee__c, 
-                                            Oblix_Hourly_Rate__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
+                                            Hourly_Rate_or_FTE__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
                                      FROM 
                                             Marketing_Basics__c 
                                      WHERE 
@@ -99,7 +99,7 @@ public with sharing class Oblix_BasketSectionWrapper {
             existingNonCampaigns =[SELECT Id, Activities__c, Name, No_of_Hours_Required__c, 
                                             OblixCountry__c, OblixCountry__r.Name , Role_Title__c, 
                                             Agency_Department__c,OblixOtherItemFee__c, 
-                                            Oblix_Hourly_Rate__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
+                                            Hourly_Rate_or_FTE__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
                                      FROM 
                                             Marketing_Basics__c 
                                      WHERE 
@@ -112,7 +112,7 @@ public with sharing class Oblix_BasketSectionWrapper {
             existingNonCampaigns =[SELECT Id, Activities__c, Name, No_of_Hours_Required__c, 
                                             OblixCountry__c, OblixCountry__r.Name , Role_Title__c, 
                                             Agency_Department__c,OblixOtherItemFee__c, 
-                                            Oblix_Hourly_Rate__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
+                                            Hourly_Rate_or_FTE__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
                                      FROM 
                                             Marketing_Basics__c 
                                      WHERE 
@@ -130,13 +130,14 @@ public with sharing class Oblix_BasketSectionWrapper {
             this.add(nonCampaignWrapper);
         }
     }
-
+*/
     public Oblix_BasketSectionWrapper getCopy() {
         Oblix_BasketSectionWrapper wrapper = this.clone();
         wrapper.items = items.clone();
         for (String key : wrapper.items.keySet()) {
             wrapper.items.put(key, wrapper.items.get(key).clone());
         }
+        System.debug(this.sowId);
         return wrapper;
     }
 }

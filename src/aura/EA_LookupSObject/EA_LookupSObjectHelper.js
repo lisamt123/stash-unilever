@@ -36,6 +36,7 @@
             return;
         }
         // Show the lookuplist
+        
         $A.util.removeClass(lookupList, 'slds-hide');
         // Get the API Name
         var sObjectAPIName = cmp.get('v.sObjectAPIName');
@@ -51,9 +52,12 @@
             // Callback succeeded
             if (cmp.isValid() && state === "SUCCESS"){
                 // Get the search matches
+                 
+                // document.getElementsByClassName('slds-lookup__menu')[0].style.display='block';
                 var matches = response.getReturnValue();
                 // If we have no matches, return
                 if (matches.length === 0){
+                    
                     return;
                 }
                 // Render the results
@@ -144,6 +148,8 @@
      */
     handleSelection : function(cmp, event) {
         // Check the limit to select item
+        //alert("coming1");
+        //document.getElementsByClassName('slds-lookup__menu')[0].style.display='none';
         var selectedUsers = cmp.get("v.selectedUsers");
         var maxLimit = cmp.get("v.maxLimit");
         var participantCount = cmp.get("v.participantCount");

@@ -1,14 +1,15 @@
-<apex:page sidebar="false" controller="Oblix_SOWNonCampaignCreateController" docType="html-5.0" showHeader="false" standardStylesheets="true">
+<apex:page sidebar="false" controller="Oblix_SOWNonCampaignCreateController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
+    <apex:composition template="Oblix_OuterPageTemplate">
+        <apex:define name="top_breadcrumb">
+            <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!helper.sow.Id}">{!helper.sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
+        </apex:define>
+        <apex:define name="header_text" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
-    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+        <apex:define name="top_option_links" />
 
-    
-    <apex:form >
-        <head>
-            <title>SWOP : {!helper.sow.Name}</title>
-        </head>
-
+        <apex:define name="top_right_panel">
+        </apex:define>
+        <apex:define name="body_content">
 
         <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="other_pane, activity_resource_input_field_panel" action="{!helper.refreshActivitySelection}" >
         </apex:actionFunction>  
@@ -26,7 +27,7 @@
             <apex:param name="campaignItem" assignTo="{!helper.currentTab}" value="" />
         </apex:actionFunction>
 
-        <apex:actionFunction action="{!saveWorkList}" oncomplete="$.unblockUI()" name="saveWorkList" reRender="shoppingBasketPanel,activitySelectionTable, resourceSelectionTable,campaignTotalPanel,shoppingBasketPanel" >
+        <apex:actionFunction action="{!saveWorkList}" oncomplete="$.unblockUI()" name="saveWorkList" reRender="activity_resource_input_field_panel,shoppingBasketPanel,activitySelectionTable, resourceSelectionTable,campaignTotalPanel,shoppingBasketPanel" >
         </apex:actionFunction>
 
         
@@ -45,24 +46,6 @@
             <apex:param name="selected_activity" assignTo="{!helper.currentItemKey}" value="" />
         </apex:actionFunction>
         
-
-        <div class="Oblix_header_bkgd">
-            <header class="Oblix_header_panel">
-                <img alt="Unilever logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
-                <div class="header_divider_vertical"></div>
-                <div class="header_panel_text">
-                    <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <p><a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!helper.sow.Id}">{!helper.sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
-                    </p>
-                </div>
-                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
-                </apex:commandButton>
-                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
-                </apex:commandLink> 
-                <!--a target="_blank" href="/00O/o"><button class="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" >REPORTS</button></a-->
-            </header>
-        </div>
-        <div class="container SOW_body">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <h1 class="SOW_header_title">Add Non-Campaign Items to {!helper.sow.Name}</h1>
@@ -156,7 +139,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 non_camp_description_spacing">
                                             <p class="create_SOW_form_titles">Other info (optional)</p>
-                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
+                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" style="width: 100%;"/>
                                         </div>
                                         <div class="col-lg-4 non_camp_dropdown_spacing">
                                             <p class="create_SOW_form_titles">Role*</p>
@@ -194,7 +177,7 @@
                                         }
                                     </script>
                                     <apex:outputPanel rendered="{!IF(helper.currentSectionItemCount > 0, true, false)}">
-                                        <table class="table table-striped" id="swopTable">
+                                        <table class="table table-striped" id="swopTable1">
                                             <thead>
                                                 <tr>
                                                     <td style="display:none;">key</td>
@@ -247,8 +230,18 @@
                                                 </apex:repeat>
                                             </tbody>
                                         </table>
+                                        <script>
+                                            if ( $.fn.DataTable.isDataTable( '#swopTable1' ) ) {
+                                                table = $('#swopTable1').DataTable();
+                                            }
+                                            else {
+                                                var table = $('#swopTable1').DataTable({
+                                                    "dom": 'lrtip',
+                                                    'bPaginate' : false
+                                            });}
+                                        </script>
                                         <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                            <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="saveWorkList();blockme(); return false;" />
+                                            <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="blockme();saveWorkList(); return false;" />
                                         </apex:outputPanel>
                                     </apex:outputPanel>
                                 </apex:outputPanel>
@@ -277,7 +270,7 @@
                                         <div class="row">
                                             <div class="col-lg-4 non_camp_description_spacing">
                                                 <p class="create_SOW_form_titles">Other info (optional)</p>
-                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
+                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-4 non_camp_dropdown_spacing">
                                                 <p class="create_SOW_form_titles">Role*</p>
@@ -295,7 +288,7 @@
                                                     &nbsp;&nbsp;
                                                     
                                                     <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" />
-                                                    
+                                                %    
                                                 </p>
                                                 <apex:outputPanel id="addResourceUpdateButton">
                                                     <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
@@ -309,7 +302,7 @@
                                     </apex:outputPanel>
                                     <apex:outputPanel id="resourceSelectionTable"  >
                                         <apex:outputPanel rendered="{!IF(helper.currentSectionItemCount > 0, true, false)}">
-                                            <table class="table table-striped" id="swopTable">
+                                            <table class="table table-striped" id="swopTable2">
                                                 <thead>
                                                     <tr>
                                                         <td style="display:none;">key</td>
@@ -342,7 +335,9 @@
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedAgencyDepartment}</td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedRole}</td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">
-                                                                <apex:outputText rendered="{!can_see_financial_fields}">{!item.roundedRate}</apex:outputText>
+                                                                <apex:outputText value="{0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                                                    <apex:param value="{!VALUE(item.roundedRate)}"/>
+                                                                </apex:outputText>
                                                                 <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
                                                             </td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.hoursSelected}</td>
@@ -362,8 +357,18 @@
                                                     </apex:repeat>
                                                 </tbody>
                                             </table>
+                                            <script>
+                                                if ( $.fn.DataTable.isDataTable( '#swopTable2' ) ) {
+                                                    table = $('#swopTable2').DataTable();
+                                                }
+                                                else {
+                                                    var table = $('#swopTable2').DataTable({
+                                                        "dom": 'lrtip',
+                                                        'bPaginate' : false
+                                                });}
+                                            </script>
                                             <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                                <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="saveWorkList();blockme(); return false;" />
+                                                <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="blockme();saveWorkList(); return false;" />
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </apex:outputPanel>
@@ -429,25 +434,15 @@
                     </apex:outputPanel>
                 </div>
             </div>
-        </div>
-    </apex:form>
 
-
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
-    <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
-    
-    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
-    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
-    <script>
-        // this global variable is used from static resources
-        var sow_id = '{!helper.sow.Id}';
-    </script>
-
-    <script type="text/javascript">
-    </script>
-
-    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWNonCampaignCreate.js')}" />
-
+    </apex:define>
+    <apex:define name="page_scripts">
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+        <script>
+            // this global variable is used from static resources
+            var sow_id = '{!helper.sow.Id}';
+        </script>
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWNonCampaignCreate.js')}" />
+    </apex:define>
+    </apex:composition>
 </apex:page>

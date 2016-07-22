@@ -453,12 +453,10 @@ Returns:
                 savingJobsToShow.add(savingListToDisplay.get(i));
             }
         }
-        system.debug('savingJobsToShow!!'+savingJobsToShow);
         
-        totalSavingJobPages = (totalSizeForSavingJobs /limitSizeForSavingJobs)+1;
+        totalSavingJobPages = Math.ceil((decimal.valueOf(totalSizeForSavingJobs))/(decimal.valueOf(limitSizeForSavingJobs))).intValue();
         currentPageNumber  = (counterForSavingJobs/limitSizeForSavingJobs)+1;
                      
-        //getTotalActiveJobPages(totalSizeForActiveJobs/limitSizeForActiveJobs);
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -480,7 +478,7 @@ Returns:
             }       
         }
         
-        totalSavingJobPages = (totalSizeForSavingJobs/limitSizeForSavingJobs)+1;
+        totalSavingJobPages = Math.ceil((decimal.valueOf(totalSizeForSavingJobs))/(decimal.valueOf(limitSizeForSavingJobs))).intValue();
         currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -503,7 +501,7 @@ Returns:
             }
         }
         
-        totalSavingJobPages = (totalSizeForSavingJobs /limitSizeForSavingJobs)+1;
+        totalSavingJobPages = Math.ceil((decimal.valueOf(totalSizeForSavingJobs))/(decimal.valueOf(limitSizeForSavingJobs))).intValue();
         currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
         
         }catch(Exception ex){
@@ -520,7 +518,7 @@ Returns:
             savingJobsToShow.add(quoteList.get(i));
         }
         
-        totalSavingJobPages = (totalSizeForSavingJobs /limitSizeForSavingJobs)+1;
+        totalSavingJobPages = Math.ceil((decimal.valueOf(totalSizeForSavingJobs))/(decimal.valueOf(limitSizeForSavingJobs))).intValue();
         currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -540,7 +538,7 @@ Returns:
                 savingJobsToShow.add(quoteList.get(i));
         }
         
-        totalSavingJobPages = (totalSizeForSavingJobs/limitSizeForSavingJobs)+1;
+        totalSavingJobPages = Math.ceil((decimal.valueOf(totalSizeForSavingJobs))/(decimal.valueOf(limitSizeForSavingJobs))).intValue();
         currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -870,7 +868,6 @@ Returns: PageReference
           createdByUserEmailAdd.add(joblist.Final_Approver_Of_Material_Email__c);
          
           createdByUserEmail = JSON.serialize(createdByUserEmailAdd);
-          System.debug('Created BY EMAIL ->  ' + createdByUserEmail);
           
            update joblist;
            

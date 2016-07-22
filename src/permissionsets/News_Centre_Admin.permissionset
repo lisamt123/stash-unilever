@@ -2,19 +2,19 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>CORE_NewsApp_Test</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewArticleLikeHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsArticleCommentCount</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsArticleHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsCenterController</apexClass>
@@ -26,11 +26,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EmailHandler</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>NewsArticleFeedController</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
@@ -177,10 +177,6 @@
         <object>News_Article__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <recordType>News_Article__c.Core_Create</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>AssignTopics</name>

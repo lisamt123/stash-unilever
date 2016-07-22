@@ -18,11 +18,13 @@
                    
                 </div>
                 <!-------------------------------------------------/ Page Head & Toolbar ------------------------------------------------>
+                <!--Rendered when project type is not operational and span is not local and controller has thrown any error-->
                 <apex:outputPanel id="errorPanel" rendered="{!AND(project.IPM_Project_Type__c != 'Operational',project.IPMProject_Span__c != 'Local' ,(isError))}">
                     <div class="finGreyBG">
                         <apex:outputText value="{!errorMessage}"/>
                         
                     </div>
+                    <!--Rendered when controller has any rollouterror. message is displayed from custom label  -->
                     <apex:outputPanel rendered="{!isRolloutError}">
                         <div class="finErrMsg">
                             {!$Label.IPM_PLEASE_NAVIGATE_TO} <a href="{!URLFOR($Page.IPM_RolloutPlans,null,[id=project.Id])}">{!$Label.IPM_ROLLOUTS}</a> {!$Label.IPM_START_ADD_ROLLOUT}
@@ -33,6 +35,7 @@
                     <div class="col-sm-12">
                         <div class="panel-group pageContent clearfix">
                             <!-------------------------------------- SIDE PANEL ----------------------------->
+                         <!--Rendered when project type is not Operational and there is no error from controller class -->    
                          <apex:outputPanel id="rolloutPanel" rendered="{!AND(project.IPM_Project_Type__c != 'Operational' ,NOT(isError))}" layout="block" styleClass="col-sm-2 pull-left leftSideBar noPadleft noPadright">     
 
                             <div class="finFilter">
@@ -41,9 +44,11 @@
                                 </apex:outputText>
                                    <div class="ipmAccordion">
                                       <div class="projectContainer">   
+                                         <!--Rendered when project span is global and map is loaded with consolidated or default mapping-->
                                          <apex:outputPanel layout="block" styleClass="pHead" rendered="{!AND(project.IPMProject_Span__c == 'Global',renderMapGlobal)}">
                                               <div class="filterTitle {!IF(currentFinancialId == mapConsolidatedFinancials['Global'].Id, 'selected', '')}" >  
                                                     <span class='expico fa fa-minus'></span>
+                                                    <!--Rendered only if span is global -->
                                                     <apex:commandLink value="Global" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!AND(project.IPMProject_Span__c == 'Global')}" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                         <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials['Global'].Id}" assignTo="{!currentFinancialId}"/>
                                                     </apex:commandLink>
@@ -55,6 +60,7 @@
                                                    <li>
                                                        <div class="projectContainer">
                                                             <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
+                                                            <!--Rendered when project is not span ie it will render for all other span types-->    
                                                             <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
                                                                 <span class='expico-square fa fa-minus'></span>
                                                                     <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
@@ -68,6 +74,7 @@
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
                                                                             <div class="incHeight" id="flagID">              
                                                                                 <span class="key wordwrap">
+                                                                                    <!--Rendered when financial record's financial external id do not contain nonkey and current tab is myview and phase is not Ideas-->
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview', project.IPM_Phase__c <> 'Ideas'), TRUE, FALSE)}"/>
                                                                                 </span>
                                                                             
@@ -103,6 +110,7 @@
                                             <div role="tabpanel" class="tab-panel">
                                                  
                                                 <!-------------------------------------------- Nav tabs ------------------------------------>
+                                                <!--Rendered when there is no error from controller else whole block containing div will be skipped-->
                                                 <apex:outputText rendered="{!NOT(isError)}">
                                                 <div class="clearfix ipmFinancialNavbarDiv">
                                                 <div class="col-xs-9 noPadright noPadleft">
@@ -163,7 +171,7 @@
                                                             <apex:outputText id="otl" styleClass="otlCurr" value="Currency: {!selectedCurrency}: {!exrate}"/>
                                                         </apex:outputPanel>
                                                         <apex:outputPanel styleClass="SecButtonSet marginT10P">
-                                                            <apex:commandLink action="{!URLFOR('/apex/IPM_Financial?id=' +project.id)}" title="{!$Label.IPM_Currency_back_button}" >
+                                                            <apex:commandLink action="{!URLFOR($Page.IPM_Financial,null,[id=project.id])}" title="{!$Label.IPM_Currency_back_button}" >
                                                                 <i class="fa ipmButton primary">{!$Label.IPM_Currency_back_button}</i>
                                                             </apex:commandLink>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -177,7 +185,7 @@
                                                 </div>
                                                 
                                                 <!-- Currency work ends -->
-                                                
+                                                <!--Rendered if controller do not have any error -->
                                                 <apex:outputPanel layout="block" id="tabContentPanel" rendered="{!NOT(isError)}">
                                                     <div class="tab-content">
                                                         <!-- My View Tab -->

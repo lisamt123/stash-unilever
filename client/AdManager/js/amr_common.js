@@ -388,38 +388,40 @@ function additionalFilmProcess() {
         	}        		
         }
 		
-		function loadAdditionalFilmProcess() {        	
-        	var arrstrNoOfMasters = $j('.noOfAdditionalFilmsMain').val().split(",");
-        	var lengtharrstrNoOfMasters = arrstrNoOfMasters.length;
-        	
-        	var arrstrdurationOfMasters = $j('.durationOfAdditionalFilmsMain').val().split(",");
-        	var lengtharrstrdurationOfMasters = arrstrdurationOfMasters.length;
-        	        	
-        	if(lengtharrstrNoOfMasters > 1) {
-        		for( var i=0; i<lengtharrstrNoOfMasters-1;i++ ) {
-        			var dataToAppend = $j('.row1MainAdditional').html();
-        			$j('.row1AdditionalMainParent').append('<div class="row1MainAdditional">'+dataToAppend+'</div>');
-        		}
-        	}
-        	
-        	if(lengtharrstrNoOfMasters >= 1) {
-				if(lengtharrstrNoOfMasters == 1 && (($j('.noOfAdditionalFilmsMain').val().trim() =='' || $j('.noOfAdditionalFilmsMain').val().trim() ==0) && ($j('.durationOfAdditionalFilmsMain').val().trim() =='' || $j('.durationOfAdditionalFilmsMain').val().trim() ==0 ))) {
-					$j('.no-of-additional-films-class').val('');
-				} else {
-					$j('.no-of-additional-films-class').each(function(index, value){
-						$j(this).val(arrstrNoOfMasters[index]);	        		
-					});
-				}	        	
-				if(lengtharrstrdurationOfMasters == 1 && (($j('.noOfAdditionalFilmsMain').val().trim() =='' || $j('.noOfAdditionalFilmsMain').val().trim() ==0) && ($j('.durationOfAdditionalFilmsMain').val().trim() =='' || $j('.durationOfMastersMain').val().trim() ==0 ))) {
-					$j('.duration-of-additional-films-class').val('');
-				} else {
-					$j('.duration-of-additional-films-class').each(function(index, value){
-						$j(this).val(arrstrdurationOfMasters[index]);	        		
-					});
+		function loadAdditionalFilmProcess() {
+			//if($j('.noOfAdditionalFilmsMain').val() || $j('.durationOfAdditionalFilmsMain').val() ) {
+				var arrstrNoOfMasters = $j('.noOfAdditionalFilmsMain').val().split(",");
+				var lengtharrstrNoOfMasters = arrstrNoOfMasters.length;
+				
+				var arrstrdurationOfMasters = $j('.durationOfAdditionalFilmsMain').val().split(",");
+				var lengtharrstrdurationOfMasters = arrstrdurationOfMasters.length;
+							
+				if(lengtharrstrNoOfMasters > 1) {
+					for( var i=0; i<lengtharrstrNoOfMasters-1;i++ ) {
+						var dataToAppend = $j('.row1MainAdditional').html();
+						$j('.row1AdditionalMainParent').append('<div class="row1MainAdditional">'+dataToAppend+'</div>');
+					}
 				}
-        	}        		
-        }
-        
+				
+				if(lengtharrstrNoOfMasters >= 1) {
+					if(lengtharrstrNoOfMasters == 1 && (($j('.noOfAdditionalFilmsMain').val().trim() =='' || $j('.noOfAdditionalFilmsMain').val().trim() ==0) && ($j('.durationOfAdditionalFilmsMain').val().trim() =='' || $j('.durationOfAdditionalFilmsMain').val().trim() ==0 ))) {
+						$j('.no-of-additional-films-class').val('');
+					} else {
+						$j('.no-of-additional-films-class').each(function(index, value){
+							$j(this).val(arrstrNoOfMasters[index]);	        		
+						});
+					}	        	
+					if(lengtharrstrdurationOfMasters == 1 && (($j('.noOfAdditionalFilmsMain').val().trim() =='' || $j('.noOfAdditionalFilmsMain').val().trim() ==0) && ($j('.durationOfAdditionalFilmsMain').val().trim() =='' || $j('.durationOfMastersMain').val().trim() ==0 ))) {
+						$j('.duration-of-additional-films-class').val('');
+					} else {
+						$j('.duration-of-additional-films-class').each(function(index, value){
+							$j(this).val(arrstrdurationOfMasters[index]);	        		
+						});
+					}
+				}        		
+			//}
+		}
+		
         function noOfmasterdurationkeypress() {
         	$j('.no-of-masters-class, .duration-of-masters-class').on('input',function(){        		
         		masterProcess();
@@ -433,24 +435,47 @@ function additionalFilmProcess() {
         }
         
         function addMasterDurationrowsCall() {
-        	$j('.add_master_durationrows').click(function(){        	        	
-        		var dataToAppend = $j('.row1Main').html();
-        		$j('.row1MainParent').append('<div class="row1Main">'+dataToAppend+'</div>');
-                		
-        		removeMasterDurationRows();
-        		noOfmasterdurationkeypress();        		
+        	$j('.add_master_durationrows').click(function(){    
+				if($j('.row1Main').length < 50 ) {
+					var dataToAppend = $j('.row1Main').html();
+					$j('.row1MainParent').append('<div class="row1Main">'+dataToAppend+'</div>');
+							
+					removeMasterDurationRows();
+					noOfmasterdurationkeypress();        		
+				} else {
+					alert('maximum 50 masters can be added');
+				}
         	});
         }
 		
 		function addAdditionalFilmsDurationrowsCall() {
-        	$j('.add_additional_films_durationrows').click(function(){        	        	
-        		var dataToAppend = $j('.row1MainAdditional').html();
-        		$j('.row1AdditionalMainParent').append('<div class="row1MainAdditional">'+dataToAppend+'</div>');
+        	$j('.add_additional_films_durationrows').click(function(){  
+				if($j('.row1MainAdditional').length < 50 ) {
+					var dataToAppend = $j('.row1MainAdditional').html();
+					$j('.row1AdditionalMainParent').append('<div class="row1MainAdditional">'+dataToAppend+'</div>');
                 		
-        		removeAdditionalFilmDurationRows();
-        		noOfAdditionalFilmdurationkeypress();        		
+					removeAdditionalFilmDurationRows();
+					noOfAdditionalFilmdurationkeypress();
+				} else {
+					alert('maximum 50 additional films can be added');
+				}       		
         	});
         }
+
+function multiSelectShootLocation() {
+    var multiselectJq_selected = $j('.job-field-input-multiselectJq select').attr('datalist');
+    //	alert(multiselectJq_selected_array);
+    if (multiselectJq_selected) {
+        var multiselectJq_selected_array = multiselectJq_selected.split(",");
+        $j.each(multiselectJq_selected_array, function(i) {
+            var multiselectJq_selected_arrayvalue = multiselectJq_selected_array[i];
+            $j('.job-field-input-multiselectJq select option[value="' + multiselectJq_selected_arrayvalue + '"]').attr('selected', 1);
+            //system.debug(multiselectJq_selected_arrayvalue);
+            //	alert(multiselectJq_selected_arrayvalue);
+        });
+    }
+}
+
 
 $j(function() {
 	
