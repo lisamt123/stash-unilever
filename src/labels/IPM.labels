@@ -12,6 +12,13 @@
         <shortDescription>Functional input</shortDescription>
         <value>There is no minimum or maximum character count on this text box</value>
     </labels>
+	<labels>
+        <fullName>IPM_Platform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform</shortDescription>
+        <value>Platform</value>
+    </labels>
     <labels>
         <fullName>IPM_Platform_Title</fullName>
         <language>en_US</language>
