@@ -6,7 +6,7 @@
 *@Copyright © 2015  Unilever   
 ************************************************************************************
 -->
-<apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc">   
+<apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc" action="{!setConsolidatedFinancialValidationCells}">   
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>  
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Financial.css')}"/>
     <apex:composition template="IPM_TemplateRevamp">
@@ -401,7 +401,10 @@
                                                                     fieldSuffix="{!fieldSuffix}"
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
-                                                                    isProjectStop="{!isProjectStop}"
+                                                                    isCAPEXInvalid="{!isCAPEXInvalid}"
+                                                                    isIRRInvalid="{!isIRRInvalid}"
+                                                                    isNPVInvalid="{!isNPVInvalid}"
+                                                                    isPaybackInvalid="{!isPaybackInvalid}"
                                                                 />
                                                                   <!-- DEF2676 fix Start -->
                                                      			<apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">

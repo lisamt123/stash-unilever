@@ -9701,4 +9701,20 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>Label forBrand of Local project</shortDescription>
         <value>Brand</value>
     </labels>
+    <labels>
+        <fullName>IPM_SVF_CAPEX</fullName>
+        <categories>Soft Validations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SVF_CAPEX</shortDescription>
+        <value>CAPEX values are automatically considered to be negative values - if this field shows a negative number it will be treated as an asset rather than a cost</value>
+    </labels>
+    <labels>
+        <fullName>IPM_SVF_Please_check_your_MCO_financials</fullName>
+        <categories>Soft Validations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SVF_Please check your MCO financials</shortDescription>
+        <value>Please check your MCO financials</value>
+    </labels>
 	

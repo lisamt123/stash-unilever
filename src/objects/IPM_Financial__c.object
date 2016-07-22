@@ -2229,6 +2229,18 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Red_Validation_Cells__c</fullName>
+        <description>To store all the cells on the consolidated financials where the red validations are because of red validations on the rollup financials</description>
+        <externalId>false</externalId>
+        <label>Red Validation Cells</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Regional_External_Id__c</fullName>
         <description>Regional Project External Id associated with the financial.</description>
         <externalId>false</externalId>
@@ -2900,6 +2912,18 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells__c</fullName>
+        <description>To store cells on consolidated financials where the rollup financials have yellow validations</description>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>isActive__c</fullName>

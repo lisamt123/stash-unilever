@@ -2242,7 +2242,7 @@ OwnerId))</formula>
         <externalId>false</externalId>
         <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
   IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-    IF(ISPICKVAL(IPM_Phase__c,&apos;Regional&apos;),
+    IF(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),
        IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
        IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
        )
