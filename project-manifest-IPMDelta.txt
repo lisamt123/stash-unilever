@@ -2,8 +2,6 @@ src
 src/classes
 src/classes/IPM_GateDocumentController.cls
 src/classes/IPM_GateDocumentController.cls-meta.xml
-src/classes/IPM_ProjectCountryDetails.cls
-src/classes/IPM_ProjectCountryDetails.cls-meta.xml
 src/classes/IPM_ProjectSetUpController.cls
 src/classes/IPM_ProjectSetUpController.cls-meta.xml
 src/classes/IPM_Team_Assignment_Controller.cls
