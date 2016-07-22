@@ -1,12 +1,4 @@
 src
 src/classes
-src/classes/IPM_Coreparameters.cls
-src/classes/IPM_Coreparameters.cls-meta.xml
-
 src/classes/IPM_ProjectSetUpController.cls
 src/classes/IPM_ProjectSetUpController.cls-meta.xml
-
-src/classes/IPM_Team_Assignment_Controller.cls
-src/classes/IPM_Team_Assignment_Controller.cls-meta.xml
-src/classes/IPM_Utils.cls
-src/classes/IPM_Utils.cls-meta.xml
