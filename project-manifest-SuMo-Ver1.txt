@@ -25,9 +25,6 @@ src/analyticSnapshots/SuMo_Chatter_Activity.snapshot
 src/classes/SuMoPBS_FeedbackTriggerTest.cls
 src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger
 src/classes/SuMoPBS_FeedbackTriggerTest.cls-meta.xml
-<<<<<<< HEAD
 src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger-meta.xml
 project-manifest-SuMo-Ver1.txt
-=======
-src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger-meta.xml
->>>>>>> 87a8a35f4719cfde009bd2f2c2625938b1f13c89
+src/reports/success__SuMo_Reports/SuMo_Chatter_Activity.report
