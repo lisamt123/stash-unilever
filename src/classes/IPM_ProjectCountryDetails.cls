@@ -21,7 +21,7 @@ public with sharing class IPM_ProjectCountryDetails{
     public static Map<Id, Boolean> isDevelopedPresentMap = new Map<Id, Boolean>();
     public static Map<Id, Boolean> isDevelopingPresentMap = new Map<Id, Boolean>();
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
-    public static Boolean checkAtLeastOneAssmntPerEICountryVar = false;
+    public static Boolean checkAtLeastOneAssmntPerEICountryVar = false; 
     
     /****************************************************************************
     @Description : Rollouts - Update the MarketType field of project from Countries
@@ -598,17 +598,17 @@ public with sharing class IPM_ProjectCountryDetails{
     *****************************************************************************/
     
     public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
-        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r Where IPM_Country__c != null ) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
-        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();    
+        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
+        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();   
         
         //find all Projects which have an assessment for the current project phase
-                                if(projList != null && !projList.isEmpty()){
+       if(projList != null && !projList.isEmpty()){
             for(IPM_Project__c proj : projList){
                 if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty()){
                     for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r){
                         if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
                             toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
-                        	break;
+                            break;
                         }
                     }
                 }
@@ -1022,7 +1022,7 @@ public with sharing class IPM_ProjectCountryDetails{
  public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
 {
   List<IPM_Country__c>countryList=new list<IPM_Country__c>();
-  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
+  countryList=[select Local_Rollout__c,IPM_Brand_Position__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
                 id IN:countyrMap.keyset() LIMIT 5000]; 
   List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
   companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
@@ -1074,10 +1074,110 @@ public with sharing class IPM_ProjectCountryDetails{
                         
                     
   update rolloutList;
- 
+  
   IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
  }
  }
         
-    
+      /**********************************************************************************************
+      *@Description:Assign brand to MCO Rollout based on project brand position and rllout country
+      *@Param:List of ipm country
+      ***********************************************************************************************/
+      public static void assignBrandToRollout(List<IPM_Country__c>countryList){
+        map<string,string> brandPosMap = new map<string,string>();//map of country name and brand positioning
+        map<id,IPM_Project_Rollout__c> rolloutMap=new map<id,IPM_Project_Rollout__c>();//list of rollout which all need to update with brand value.
+        IPM_Project_Rollout__c newRollout;// declaration of local rollout
+        map<id,set<string>> brandsMap = new map<id,set<string>>();
+        for(IPM_Country__c country :countryList){
+        	if(country.IPM_Brand_Position__c !=null)
+        	{ 
+            	brandPosMap.put(country.Country_Name__c,country.IPM_Brand_Position__c);
+        	}
+        }
+        //get all brand values based on country and brand positioning.
+        List<MDO_BrandPositions__c>brandPosList = New list<MDO_BrandPositions__c>();
+        brandPosList=[SELECT id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+                         geo_id__r.Name IN :brandPosMap.Keyset() AND brand_position_id__r.Name IN :brandPosMap.values() ORDER BY brand_id__r.Name ASC NULLS LAST
+                         LIMIT 50000];
+        
+        for(IPM_Country__c country :countryList)
+        {
+            brandsMap.put(country.Local_Rollout__c,new set<string>());
+			for(MDO_BrandPositions__c  brandPos:brandPosList)
+            {
+                
+                if(brandPos.brand_id__r.Name != null && !brandsMap.get(country.Local_Rollout__c).contains(brandPos.brand_id__r.Name) && country.Country_Name__c !=null && country.Country_Name__c.equals(brandPos.geo_id__r.Name) 
+                && country.IPM_Brand_Position__c !=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name))
+                {
+                    brandsMap.get(country.Local_Rollout__c).add(brandPos.brand_id__r.Name); 
+				} 
+			}
+           
+        }
+        for(IPM_Country__c country :countryList)
+        {
+            if(!rolloutMap.containsKey(country.Local_Rollout__c)){
+				newRollout=new IPM_Project_Rollout__c();
+				newRollout.id=country.Local_Rollout__c; 
+				if(brandsMap.get(country.Local_Rollout__c) ==null || brandsMap.get(country.Local_Rollout__c).isEmpty())
+				{
+					newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
+				}
+				else if(brandsMap.get(country.Local_Rollout__c).contains(country.IPM_Brand_Position__c))
+				{
+					newRollout.IPM_Brand__c = country.IPM_Brand_Position__c;	
+				}
+				else
+				{
+					for(string brands: brandsMap.get(country.Local_Rollout__c)){
+						newRollout.IPM_Brand__c = brands;
+						break;
+					}
+				}
+				rolloutMap.put(newRollout.id,newRollout);
+				system.debug(loggingLevel.Error,'rolloutMap.......'+rolloutMap);
+			}
+		}  
+        
+        if(!rolloutMap.isEmpty())
+		{
+           IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+           update rolloutMap.values();
+           IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+        }
+    }
+       
+      /*************************************************************************************************************
+      *@Description:Returns the selectoptions for brands available to a local project 
+      *@Param:Local project  with fields IPM_LocalProject_Brand__c,IPM_Parent_Project__r.IPM_Brand_Positioning__c
+      *************************************************************************************************************/
+       public static List<selectoption> getAvailableBrands(IPM_project__c localProject){ 
+		
+			List<selectoption> brandOptions = new List<selectoption> {new selectoption(localProject.IPM_LocalProject_Brand__c,localProject.IPM_LocalProject_Brand__c)};
+	        
+			Map<String,IPM_Country__c> countryMap = new Map<String,IPM_Country__c>();
+			
+			for(IPM_Country__c country: [SELECT IPM_Brand_Position__c,Country_Name__c,Local_Rollout__c  FROM IPM_Country__c WHERE IPM_Local_Project__c=: localProject.Id LIMIT 50000])
+			{
+				countryMap.put(country.Country_Name__c,country);
+			}
+	        
+			for(MDO_BrandPositions__c  brandPos:[SELECT Id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+												 brand_position_id__r.Name =: localProject.IPM_Parent_Project__r.IPM_Brand_Positioning__c ORDER BY brand_id__r.Name ASC LIMIT 50000])
+			{
+				if(countryMap.containsKey(brandPos.geo_id__r.Name) && !String.isBlank(brandPos.brand_id__r.Name)&& brandPos.brand_id__r.Name!=localProject.IPM_LocalProject_Brand__c)
+				{
+					IPM_Country__c country = countryMap.get(brandPos.geo_id__r.Name);
+					
+					if(country.IPM_Brand_Position__c!=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name) )
+					{
+						brandOptions.add(new selectoption(brandPos.brand_id__r.Name,brandPos.brand_id__r.Name));
+					}
+				}
+				
+			}  
+			
+			return brandOptions;
+            
+    	} 
   }

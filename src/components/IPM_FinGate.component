@@ -22,7 +22,7 @@
     
     <!-- Financial Table -->
     <div class="table-responsive">
-    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+    <table class="ipmFinancetable fintable table table-bordered inEstmateTable" border="0" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="38%">
@@ -171,18 +171,18 @@
 
             <!-- Turnover -->
             <tr>
-                <td class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
-                <td class="fintleblubg">&euro; &#39;000</td>
-                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <td width="20%" class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
+                <td width="20%" class="fintleblubg">&euro; &#39;000</td>
+                <td width="2%" class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                <td width="10%" class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                     <apex:outputText value="{0, number, ###,###,###.##}">
                         <apex:param value="{!financialsInnovation.y0Turnover}" />
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!financialsInnovation.lstGrossPLTurnover}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="10%" class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
@@ -190,7 +190,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!financialsInnovation.lstIncrementalPLTurnover}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="10%" class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
@@ -584,7 +584,7 @@
 
     <!-- Financial Table -->
     <div class="table-responsive">
-    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+    <table class="ipmFinancetable fintable table table-bordered inEstmateTable" border="0" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="35%">
@@ -726,15 +726,15 @@
 
             <!-- Turnover -->
             <tr>
-                <td class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
-                <td class="fintleblubg">&euro; &#39;000</td>
-                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <td width="20%" class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
+                <td width="20%" class="fintleblubg">&euro; &#39;000</td>
+                <td width="2%" class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                <td width="2%" class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!financialsCalendar.lstGrossPLTurnover}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="10%" class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
@@ -742,7 +742,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!financialsCalendar.lstIncrementalPLTurnover}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="10%" class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
