@@ -1694,7 +1694,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            
           )
            {
-           		System.debug('In Innovation==>');
 
                 if(validationSettingSet.contains('checkValidITOYellow')){
                     //No validation needed for Incremental TO, since it could be zero or even negative              
@@ -1749,7 +1748,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
           ){
           	
-          	System.debug('In calendar table==>');
           	
             Boolean isValidateIncrementalTurnoverFailed= false;
             Boolean isValidateIncrementalProfitFailed= false; 
@@ -2933,33 +2931,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             yellowValidationCellsSetString.addAll(yellowValidationCellsString.split(IPM_ConstantUtils.SEMICOLON));
         }
         
-        System.debug('redValidationCellsSetString==>'+redValidationCellsSetString);
-        System.debug('yellowValidationCellsSetString==>'+yellowValidationCellsSetString);
         
-        /*
-        for(IPM_Financial__c conFin : consolidatedFinancialsMap.values()){
-        	
-        	System.debug('consolFinToRedValidationCellsMap.get(conFin.Id)==>'+consolFinToRedValidationCellsMap.get(conFin.Id));
-        	System.debug('consolFinToYellowValidationCellsMap.get(conFin.Id)==>'+consolFinToYellowValidationCellsMap.get(conFin.Id));
-        	
-            if(consolFinToRedValidationCellsMap.get(conFin.Id)!=null && !consolFinToRedValidationCellsMap.get(conFin.Id).isEmpty() && consolFinToRedValidationCellsMap.get(conFin.Id).size() == redValidationCellsSetString.size() && consolFinToRedValidationCellsMap.get(conFin.Id).containsAll(redValidationCellsSetString) ){
-                continue;
-            }
-            else{
-                consolFinToUpdateSet.add(consolidatedFinancialsMap.get(conFin.Id));
-            }
-            
-            if(consolFinToYellowValidationCellsMap.get(conFin.Id)!=null && !consolFinToYellowValidationCellsMap.get(conFin.Id).isEmpty() && consolFinToYellowValidationCellsMap.get(conFin.Id).size() == yellowValidationCellsSetString.size() && consolFinToYellowValidationCellsMap.get(conFin.Id).containsAll(yellowValidationCellsSetString) ){
-                continue;
-            }
-            else{
-                consolFinToUpdateSet.add(consolidatedFinancialsMap.get(conFin.Id));
-            }
-        }
-        */
+        
         
         for(IPM_Financial__c finToUpdate: consolidatedFinancialsMap.values()){
-        	System.debug('finToUpdate==>'+finToUpdate);
             existingNonCurrentFinancialRedValues = IPM_ConstantUtils.BLANK;
             existingNonCurrentFinancialYellowValues = IPM_ConstantUtils.BLANK;
             
@@ -2982,8 +2957,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
             }
             
-            System.debug('existingNonCurrentFinancialRedValues==>'+existingNonCurrentFinancialRedValues);
-            System.debug('existingNonCurrentFinancialYellowValues==>'+existingNonCurrentFinancialYellowValues);
+
             
             finToUpdate.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
             finToUpdate.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
@@ -3052,14 +3026,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         Map<Id, String> valSettingIdPhaseMap = new Map<Id, String>();
         Map<Id, String> valSettingIdMPAMap = new Map<Id, String>() ;
-        
-        //System.debug('project.Idc==>'+project.Id);
-        //System.debug('project.IPM_Project_Based_Threshold_Status__c==>'+project.IPM_Project_Based_Threshold_Status__c);
-        //System.debug('project.IPM_ProjectSubType__c==>'+project.IPM_ProjectSubType__c);
-        //System.debug('project.IPM_Phase__c==>'+project.IPM_Phase__c);
-        //System.debug('project.IPM_Answer_of_Q1__c.deleteWhitespace()'+project.IPM_Answer_of_Q1__c.deleteWhitespace());
 
-                
         
         for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettings ){
             if(valSetting.IPM_Project_Phase__c != null){
@@ -3083,20 +3050,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(valSettingIdMPAMap.get(valSetting.Id) != Null){
                 valSettingMPA = valSettingIdMPAMap.get(valSetting.Id).deleteWhitespace();
             }
-            /*
-            System.debug('valSetting.IPM_Threshold_Status__c==>'+valSetting.IPM_Threshold_Status__c);
-            System.debug('valSetting.IPM_Project_Sub_Type__c==>'+valSetting.IPM_Project_Sub_Type__c);
-            System.debug('valSetting.valSettingPhase==>'+valSettingPhase);
-            System.debug('valSetting.valSettingMPA==>'+valSettingMPA);
-            System.debug('String.isBlank(valSettingPhase)'+String.isBlank(valSettingPhase));
-            System.debug('String.isBlank(valSettingMPA)'+String.isBlank(valSettingMPA));
-            System.debug('---------------------------------------------------------------');
-            System.debug((String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)));
-            System.debug((String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && project.IPM_ProjectSubType__c == valSetting.IPM_Project_Sub_Type__c)));
-            System.debug((String.isBlank(valSettingPhase) || (String.isNotBlank(valSettingPhase) && valSettingPhase.deleteWhitespace().containsIgnoreCase(project.IPM_Phase__c.deleteWhitespace()) )));
-            //System.debug((String.isBlank(valSettingMPA) || (String.isNotBlank(valSettingMPA) && valSettingMPA.deleteWhitespace().containsIgnoreCase(project.IPM_Answer_of_Q1__c.deleteWhitespace()) ))) ; 
-            System.debug('=================================================================================='); 
-            */
+            
             if(
                 (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)) &&
                 (String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && String.isNotBlank(project.IPM_ProjectSubType__c) && project.IPM_ProjectSubType__c == valSetting.IPM_Project_Sub_Type__c)) &&
@@ -3105,7 +3059,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 
             ){
                 
-                System.debug('Valsetting added==>'+valSetting.Label);
                 validationSettingsList.add(valSetting);
             }
             
@@ -3148,17 +3101,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         getValidationSettingSet();
         
-        System.debug('currentFinancial==>'+currentFinancial);
-        System.debug('GKMPhaseMapEle.Financial_Type_To_Validate__c==>'+GKMPhaseMapEle.Financial_Type_To_Validate__c);
-        System.debug('validationSettingSet==>'+validationSettingSet);
-        
+
         if(currentFinancial != NULL  && 
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType)&&
            !validationSettingSet.isEmpty() &&
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
           ){
           	
-          	System.debug('In Summary table==>');
 
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow') &&
 	             !isFinacialConsolidated &&
@@ -3205,7 +3154,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(rysvs.checkValidPaybackYellow__c){ validationSettingSet.add('checkValidPaybackYellow'); }
         }
         
-        System.debug('validationSettingSet ==>'+validationSettingSet);
     }
     
     
@@ -3240,7 +3188,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
 		Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();
 	
-		System.debug('queryString==>'+queryString);
 	
 		LstCurrentFinancial = Database.query(queryString);
 	
@@ -3354,8 +3301,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				
 			}
 			
-		System.debug('finExtIdRedCellsMap==>'+finExtIdRedCellsMap);
-		System.debug('finExtIdYellowCellsMap==>'+finExtIdYellowCellsMap);
+
 			
 		}
 		

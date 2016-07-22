@@ -3288,6 +3288,16 @@
         <field>IPM_Financial_Year__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Financial__c.IPM_StoppedByProject__c</field>
@@ -6378,6 +6388,11 @@
         <field>IPM_Project_Template__c.IPM_Template_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Project__c.IPM_Project_Based_Threshold_Status__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Project__c.IPM_CancelStoppingProjectTill__c</field>
