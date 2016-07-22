@@ -9739,18 +9739,25 @@ If you discover that stopping this project was a mistake you can undo this actio
         <value>Please check your MCO financials</value>
     </labels>
 	<labels>
-        <fullName>IPM_Brand_Not_Found</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Brand Not Found</shortDescription>
-        <value>No matching brand (yet), please contact your IPM BP</value>
-    </labels>
-	<labels>
         <fullName>IPM_Rollout_Brand</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Brand</shortDescription>
         <value>Brand</value>
+    </labels>
+	<labels>
+        <fullName>IPM_FunctionalInput_minChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Functional input</shortDescription>
+        <value>There is no minimum or maximum character count on this text box</value>
+    </labels>
+    <labels>
+        <fullName>IPM_NoAttachment_ForDownload_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Message when no summary attachments are available for download</shortDescription>
+        <value>No Summary Attachments to download</value>
     </labels>
 
 	
