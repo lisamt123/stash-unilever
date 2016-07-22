@@ -96,8 +96,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     private Set<String > noRolloutDisabledCountrycodeSet = new Set<String >();
     private Set<Id> localRolloutProjectIds;
     public Set<Id> projPurgeIdSet = new Set<Id>();
-    
-    
+	public Map<String,IPM_Country__c> existingRelatedCountriesMap;
+	public Map<String,Set<String>> relatedMCOAndCountry;
+        
     /**
     *  @Description Constructor of the class 
     *  @name IPM_RolloutPlansAddController
@@ -1206,8 +1207,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     @TestVisible private void processGlobalMCORollouts()
     {    
-        Map<Id,IPM_Project__c> tobeRelatedToRolloutMap = new Map<Id,IPM_Project__c>([Select Id,Created_in_error__c,Is_Archieved__c,Name,IPM_Is_Invoked_From_Rollout__c from IPM_Project__c where  name IN: mapExistingRollouts.keySet() and Is_Archieved__c=true]);
-        //MCO Rollouts
         for (String countryCodeGlobal : setCountryCodesGlobal)
         {
             MDO_Geography__c geography = mapUnileverCountries.get(countryCodeGlobal);
@@ -1838,8 +1837,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @param NONE
     *  @return rolloutType - Indicates what type of rollouts need to be checked for deletion.
     */
-    @TestVisible public void checkLocalProjectAssociatedOrNot()
-    {
+    public void checkLocalProjectAssociatedOrNot()
+    { //mapExistingCountries
       localProjCnt = 0;
       String queryString = null;
       removeCountryFeasiCap = false;
@@ -1847,9 +1846,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
       countryRelatedProj = false;
       invokedFromRollouts = true;
       allRolloutFromSameMCO = false ;
-      
-      mapExistingCountries = new Map<String,IPM_Country__c>();
-      Map<String,Set<String>> relatedMCOAndCountry = new Map<String,Set<String>>();
+      existingRelatedCountriesMap = new Map<String,IPM_Country__c>();
+      relatedMCOAndCountry = new Map<String,Set<String>>();
       List<String> regionalNoRollList = new List<String>();
         queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c,Local_Rollout__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
@@ -1860,12 +1858,47 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
             queryString+= 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
         }
-          
-        for (IPM_Country__c country : Database.query(queryString))
+		//Getting the Countries related to the existing Project or not
+        getRelatedCountries(queryString);
+		
+        if(regionalNoRoll!=null && regionalNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+        {
+			regionalNoRollList = regionalNoRoll.split(IPM_ConstantUtils.COMMA); 
+        }
+		
+		//Checking the Associated Projects or not
+		checkRelatedLocalProjectOrNot(regionalNoRollList);
+		
+        for(String relMCO : relatedMCOAndCountry.keySet())
+        {
+          if(relatedMCOAndCountry.get(relMCO).size() == 0)
+          { 
+            allRolloutFromSameMCO = true;      
+          } 
+        }
+        if(project.IPMProject_Span__c == IPM_Utils.Regional && (project.IPM_Phase__c == IPM_Utils.Feasibility || project.IPM_Phase__c == IPM_Utils.Capability))
+        {
+              removeCountryFeasiCap = true;
+        }
+        else
+        {
+           removeCountryOtherFeasiCap = true;
+        }
+    }
+	
+	/**
+    *  @Description This is a helper method which checks the selected No Rollout related to Local Projects or not 
+    *  @name getRelatedCountries
+    *  @param queryStringCountries :  List of all selected countries
+    *  @return NONE
+    */
+	public void getRelatedCountries(String queryStringCountries)
+	{
+		for (IPM_Country__c country : Database.query(queryStringCountries))
         {
             if(IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(searchCountry) && country.Local_Rollout__c != null)
             {
-                mapExistingCountries.put(country.Project_Country__c, country);
+                existingRelatedCountriesMap.put(country.Project_Country__c, country);
                 if(relatedMCOAndCountry.containsKey(country.Local_Rollout__c)){
                   relatedMCOAndCountry.get(country.Local_Rollout__c).add(country.Country_Code__c);
                 }
@@ -1874,48 +1907,33 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
             }
         }
-      
-        if(regionalNoRoll!=null && regionalNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
-        {
-                regionalNoRollList = regionalNoRoll.split(IPM_ConstantUtils.COMMA); 
-        }
-
-    	for (String countryCode : regionalNoRollList)
+    }
+	
+	/**
+    *  @Description This is a helper method which checks the selected No Rollout related to Local Projects or not 
+    *  @name checkRelatedLocalProjectOrNot
+    *  @param regionalNoRollListStr :  List of selecte Countries with No Rollout
+    *  @return NONE
+    */
+	public void checkRelatedLocalProjectOrNot(List<String> regionalNoRollListStr)
+	{	
+		for (String countryCode : regionalNoRollListStr)
         {
             String countryRolloutName = getCountryExternalId(countryCode);
-            if(mapExistingCountries.containsKey(countryRolloutName))
+            if(existingRelatedCountriesMap.containsKey(countryRolloutName))
             {
-            	countryProj = mapExistingCountries.get(countryRolloutName);
+              countryProj = existingRelatedCountriesMap.get(countryRolloutName);
               if(relatedMCOAndCountry.containsKey(countryProj.Local_Rollout__c)){
                 relatedMCOAndCountry.get(countryProj.Local_Rollout__c).remove(countryCode);
               }
-
               if(countryProj.IPM_Local_Project__c != null)
-	          {
-	            localProjCnt++;
-	            countryRelatedProj = true;
-	          }
+          	  {
+              	localProjCnt++;
+                countryRelatedProj = true;
+              }
             }
         }
-        
-        for(String relMCO : relatedMCOAndCountry.keySet())
-        {
-          
-          if(relatedMCOAndCountry.get(relMCO).size() == 0)
-          { 
-            allRolloutFromSameMCO = true;      
-          } 
-        }
-        if(project.IPMProject_Span__c == IPM_Utils.Regional && (project.IPM_Phase__c == IPM_Utils.Feasibility || project.IPM_Phase__c == IPM_Utils.Capability))
-        {
-       	     removeCountryFeasiCap = true;
-        }
-        else
-        {
-        	 removeCountryOtherFeasiCap = true;
-        }	
-    }
-    
+	 }
      /**
     *  @Description This is a helper method which does the actual deletion of unselected MCO and Country specific rollouts.
     *  @name sortWrappersByName
