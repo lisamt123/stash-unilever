@@ -6538,7 +6538,21 @@
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Category_Picklist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+       <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Category_Platform__c</field>
+        <readable>true</readable>
+    </fieldPermissions>   <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Platform_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
         <readable>true</readable>
