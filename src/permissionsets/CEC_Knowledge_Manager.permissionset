@@ -33800,7 +33800,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>cec_FAQ__kav.Additional_Sensitive_Information__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -9,6 +9,84 @@
         <template>CEC_Unilever/CEC_Account_Email_Notification</template>
     </alerts>
     <fieldUpdates>
+        <fullName>CEC_Capitalise_the_consumers_First_name</fullName>
+        <description>CEC - Make the FirstName&apos;s letter uppoer case for the first letter of the word and the letter which follows space or hyphen.</description>
+        <field>FirstName</field>
+        <formula>IF (
+	NOT(OR(CONTAINS(FirstName,&quot; &quot;),CONTAINS(FirstName ,&quot;-&quot;))), UPPER(LEFT(FirstName ,1))&amp;LOWER(MID(FirstName,2,LEN(FirstName)-1)),
+	IF(CONTAINS(FirstName,&quot; &quot;),
+			IF(FIND(&quot; &quot;,MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+1,LEN(FirstName)-FIND(&quot; &quot;,FirstName,1)))=0,
+			UPPER(LEFT(FirstName ,1))&amp;
+			LOWER(MID(FirstName ,2,FIND(&quot; &quot;,FirstName ,1)-1))&amp;
+			UPPER(MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+1,1))&amp;
+			LOWER(MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+2,LEN(FirstName)-1)),
+			UPPER(LEFT(FirstName ,1))&amp;
+			LOWER(MID(FirstName ,2,FIND(&quot; &quot;,FirstName ,1)-1))&amp;
+			UPPER(MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+1,1))&amp;
+			LOWER(MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+2,FIND(&quot; &quot;,MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+1,LEN(FirstName )-FIND(&quot; &quot;,FirstName ,1)))-1))&amp;
+			UPPER(MID(FirstName ,FIND(&quot; &quot;,MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+1,LEN(FirstName )-FIND(&quot; &quot;,FirstName ,1)))+FIND(&quot; &quot;,FirstName ,1)+1,1))&amp;
+			LOWER(MID(FirstName ,FIND(&quot; &quot;,MID(FirstName ,FIND(&quot; &quot;,FirstName ,1)+1,LEN(FirstName )-FIND(&quot; &quot;,FirstName ,1)))+FIND(&quot; &quot;,FirstName ,1)+2,LEN(FirstName)-1))
+	),
+	IF(CONTAINS(FirstName,&quot;-&quot;),
+			IF(FIND(&quot;-&quot;,MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+1,LEN(FirstName)-FIND(&quot;-&quot;,FirstName,1)))=0,
+			UPPER(LEFT(FirstName ,1))&amp;
+			LOWER(MID(FirstName ,2,FIND(&quot;-&quot;,FirstName ,1)-1))&amp;
+			UPPER(MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+1,1))&amp;
+			LOWER(MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+2,LEN(FirstName)-1)),
+			UPPER(LEFT(FirstName ,1))&amp;
+			LOWER(MID(FirstName ,2,FIND(&quot;-&quot;,FirstName ,1)-1))&amp;
+			UPPER(MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+1,1))&amp;
+			LOWER(MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+2,FIND(&quot;-&quot;,MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+1,LEN(FirstName )-FIND(&quot;-&quot;,FirstName ,1)))-1))&amp;
+			UPPER(MID(FirstName ,FIND(&quot;-&quot;,MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+1,LEN(FirstName )-FIND(&quot;-&quot;,FirstName ,1)))+FIND(&quot;-&quot;,FirstName ,1)+1,1))&amp;
+			LOWER(MID(FirstName ,FIND(&quot;-&quot;,MID(FirstName ,FIND(&quot;-&quot;,FirstName ,1)+1,LEN(FirstName )-FIND(&quot;-&quot;,FirstName ,1)))+FIND(&quot;-&quot;,FirstName ,1)+2,LEN(FirstName)-1))
+	),
+	FirstName))
+)</formula>
+        <name>CEC Capitalise the consumers First name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CEC_Capitalise_the_consumers_Last_name</fullName>
+        <description>CEC - Make the LastName&apos;s letter uppoer case for the first letter of the word and the letter which follows space or hyphen</description>
+        <field>LastName</field>
+        <formula>IF (
+	NOT(OR(CONTAINS(LastName,&quot; &quot;),CONTAINS(LastName ,&quot;-&quot;))), UPPER(LEFT(LastName ,1))&amp;LOWER(MID(LastName,2,LEN(LastName)-1)),
+	IF(CONTAINS(LastName,&quot; &quot;),
+			IF(FIND(&quot; &quot;,MID(LastName ,FIND(&quot; &quot;,LastName ,1)+1,LEN(LastName)-FIND(&quot; &quot;,LastName,1)))=0,
+			UPPER(LEFT(LastName ,1))&amp;
+			LOWER(MID(LastName ,2,FIND(&quot; &quot;,LastName ,1)-1))&amp;
+			UPPER(MID(LastName ,FIND(&quot; &quot;,LastName ,1)+1,1))&amp;
+			LOWER(MID(LastName ,FIND(&quot; &quot;,LastName ,1)+2,LEN(LastName)-1)),
+			UPPER(LEFT(LastName ,1))&amp;
+			LOWER(MID(LastName ,2,FIND(&quot; &quot;,LastName ,1)-1))&amp;
+			UPPER(MID(LastName ,FIND(&quot; &quot;,LastName ,1)+1,1))&amp;
+			LOWER(MID(LastName ,FIND(&quot; &quot;,LastName ,1)+2,FIND(&quot; &quot;,MID(LastName ,FIND(&quot; &quot;,LastName ,1)+1,LEN(LastName )-FIND(&quot; &quot;,LastName ,1)))-1))&amp;
+			UPPER(MID(LastName ,FIND(&quot; &quot;,MID(LastName ,FIND(&quot; &quot;,LastName ,1)+1,LEN(LastName )-FIND(&quot; &quot;,LastName ,1)))+FIND(&quot; &quot;,LastName ,1)+1,1))&amp;
+			LOWER(MID(LastName ,FIND(&quot; &quot;,MID(LastName ,FIND(&quot; &quot;,LastName ,1)+1,LEN(LastName )-FIND(&quot; &quot;,LastName ,1)))+FIND(&quot; &quot;,LastName ,1)+2,LEN(LastName)-1))
+	),
+	IF(CONTAINS(LastName,&quot;-&quot;),
+			IF(FIND(&quot;-&quot;,MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+1,LEN(LastName)-FIND(&quot;-&quot;,LastName,1)))=0,
+			UPPER(LEFT(LastName ,1))&amp;
+			LOWER(MID(LastName ,2,FIND(&quot;-&quot;,LastName ,1)-1))&amp;
+			UPPER(MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+1,1))&amp;
+			LOWER(MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+2,LEN(LastName)-1)),
+			UPPER(LEFT(LastName ,1))&amp;
+			LOWER(MID(LastName ,2,FIND(&quot;-&quot;,LastName ,1)-1))&amp;
+			UPPER(MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+1,1))&amp;
+			LOWER(MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+2,FIND(&quot;-&quot;,MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+1,LEN(LastName )-FIND(&quot;-&quot;,LastName ,1)))-1))&amp;
+			UPPER(MID(LastName ,FIND(&quot;-&quot;,MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+1,LEN(LastName )-FIND(&quot;-&quot;,LastName ,1)))+FIND(&quot;-&quot;,LastName ,1)+1,1))&amp;
+			LOWER(MID(LastName ,FIND(&quot;-&quot;,MID(LastName ,FIND(&quot;-&quot;,LastName ,1)+1,LEN(LastName )-FIND(&quot;-&quot;,LastName ,1)))+FIND(&quot;-&quot;,LastName ,1)+2,LEN(LastName)-1))
+	),
+	LastName))
+)</formula>
+        <name>CEC Capitalise the consumers Last name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_Consumer_Country_Updates</fullName>
         <description>CEC: To update the consumer country field for NA</description>
         <field>PersonMailingCountry</field>
@@ -57,6 +135,34 @@
         <active>true</active>
         <description>Workflow is to send the email notification when account is created with mulesoft user owner id</description>
         <formula>IF(OwnerId == $Setup.cec_Org_Settings__c.Mulesoft_User_Id__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Capitalise the consumers name</fullName>
+        <actions>
+            <name>CEC_Capitalise_the_consumers_First_name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CEC_Capitalise_the_consumers_Last_name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Account.FirstName</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.LastName</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Person Account</value>
+        </criteriaItems>
+        <description>CEC - Change the FirstName and LastName to Camel Case format.</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
