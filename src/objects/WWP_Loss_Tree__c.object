@@ -107,6 +107,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>DC__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Actual_Dispatch__c&gt; 2*Planned_Dispatch__c, 0 , ((Planned_Dispatch__c- ABS( Planned_Dispatch__c- Actual_Dispatch__c ) ) / Planned_Dispatch__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DC%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>Loss_Description__c</fullName>
         <externalId>false</externalId>
         <label>Loss Description</label>
@@ -690,6 +703,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>OR__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Actual_Production__c &gt; 2*Planned_Production__c  , 0  , ((Planned_Production__c  -  ABS( Planned_Production__c  -  Actual_Production__c ) ) /  Planned_Production__c ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>%OR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>PO__c</fullName>
         <externalId>false</externalId>
         <label>PO</label>
@@ -771,6 +797,17 @@
         <externalId>false</externalId>
         <label>RegionId</label>
         <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Remarks__c</fullName>
+        <externalId>false</externalId>
+        <label>Remarks</label>
+        <length>150</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
