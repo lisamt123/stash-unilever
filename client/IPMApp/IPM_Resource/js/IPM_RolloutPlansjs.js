@@ -213,3 +213,18 @@ window.onbeforeunload = unloadPage;
 function skipValidation() {
     unsaved = false;
 }
+
+jq('.rollSelectList').on('click', function (e) {
+    var valueSelected = this.value;
+    jq(this).prev('.hideDupfield').attr('value',valueSelected);
+    var dataId = jq(this).prev('.hideDupfield').attr('data-holder');
+    holdRolloutsBrand(dataId,valueSelected);
+});
+jq(function(){
+    jq('.hideDupfield').each(function(){
+        var holder = jq(this).attr('value');
+       jq('.rollSelectList option').filter(function() {
+            return this.text === holder; 
+        }).attr('selected', true);
+    });    
+});

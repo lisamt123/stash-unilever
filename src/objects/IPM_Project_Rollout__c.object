@@ -1008,6 +1008,30 @@ Case(Global_Project_Phase__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>IPM_Brand_Position__c</fullName>
+        <description>Get brand position</description>
+        <externalId>false</externalId>
+        <formula>if(IPM_Project__c !=null,IPM_Project__r.IPM_Brand_Positioning__c, Regional_Project__r.IPM_Brand_Positioning__c)</formula>
+        <label>Brand Position</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>IPM_Brand__c</fullName>
+        <description>store rollout brand</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Project Rollout</label>
     <listViews>
         <fullName>All</fullName>

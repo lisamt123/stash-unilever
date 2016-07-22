@@ -841,3 +841,7 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
  }
  .assortChannelList1 .assortList1{background:#fff;min-width: 270px;margin-top:10px;}
  .widmax40P{max-width:40%;}
+ .panel-group.mrgbtmnone {margin-bottom: 0px;}
+.ipmButtonSet.mrgbtmnone {margin-bottom: 0px;}
+.padtopbtm{margin:10px 0px;display:inline-block;}
+.Mtop {margin-top: 33px;}

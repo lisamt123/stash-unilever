@@ -13,6 +13,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public static final String IPM_FUNCTIONALROLE_STR = '\' OR IPM_FunctionalRole__c=\'';
     //Variable Declarations
     public List<Attachment> attachmentList{get; set;} //Contains the Attachment
+    public List<Attachment> summaryAttachmentList{get; set;} //Contains the summary side Attachments   
     public string typeFilters{get;set;} //Contains All Type Filter Values
     public string statusFilters{get;set;} //Contains All Status Filter Values
     public string roleFilters{get;set;} //Contains All Functional Role Filter Values
@@ -119,6 +120,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Boolean isPDFDownload{get;set;}
     public boolean isExemptFromThresholdITO {get;set;}
     public Boolean showAttach{get;set;}
+    public Boolean showSummaryAttach{get;set;}
     
     public Set<String> proSubSectionParentsSequenceList1;//DEF1474 - contains all headers sequence
     
@@ -141,6 +143,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     {
         super();    
         showAttach=false;
+        showSummaryAttach=false;
         isReadable=true;
         IsUpdateStatus=false;
         isPDFDownload=true;
@@ -1378,6 +1381,27 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
         
     }
+    
+    /********************************************************************************************************************************
+    @Description: This method will be invoked on click of paperclip icon and will open up a modal containing summary side attachments                  
+    @param: none
+    @return: void
+    ********************************************************************************************************************************/
+    public void showAllCurrentDocSummaryAttch()
+    {
+        summaryAttachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId IN (SELECT Id from IPM_Project_Document_Section__c where IPM_Project_Document__c =:projectDoc.Id) AND Description='summary']; 
+        if(summaryAttachmentList.size()>0)
+        {
+            showSummaryAttach=true;
+        }
+        else
+        {
+            showSummaryAttach=false;
+        }
+                
+     }
+    
+    
     
     //DEF1474 - class to sort Project Document section according to sequence no
     private class ProjectSubSectionsWrapper implements Comparable{

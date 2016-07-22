@@ -149,3 +149,4 @@
 .tooltip.top .tooltip-arrow {
     border-top-color: #00b1a5;
 }
+.pos-tool .tooltip .tooltip-inner{width:100%; max-width: 80%;margin-left: 15px;}

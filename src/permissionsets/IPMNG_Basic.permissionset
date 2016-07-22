@@ -3288,6 +3288,16 @@
         <field>IPM_Financial_Year__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Financial__c.IPM_StoppedByProject__c</field>
@@ -6380,6 +6390,11 @@
     </fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
+		<field>IPM_Project__c.IPM_Project_Based_Threshold_Status__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
 		<field>IPM_Project__c.IPM_CancelStoppingProjectTill__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
@@ -6538,7 +6553,21 @@
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Category_Picklist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+       <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Category_Platform__c</field>
+        <readable>true</readable>
+    </fieldPermissions>   <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Platform_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
         <readable>true</readable>

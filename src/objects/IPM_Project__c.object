@@ -217,6 +217,19 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+		<fullName>IPM_LocalProject_Brand__c</fullName>
+		<description>Brand of local rollout project</description>
+		<externalId>false</externalId>
+		<formula>If(AND(text(IPM_Project_Type__c)==&apos;Rollout&apos; ,text(IPMProject_Span__c)==&apos;Local&apos;),IPM_Project_Rollout__r.IPM_Brand__c,Null)</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Brand</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
     <fields>
         <fullName>BET_Archive_Status__c</fullName>
         <description>To store BET status when BET is archived (first release, final release, unreleased).</description>
@@ -1117,6 +1130,90 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Category_Picklist__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Category Picklist</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Category_Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Category Platform</label>
+        <picklist>
+            <controllingField>IPM_Category_Picklist__c</controllingField>
+            <picklistValues>
+                <fullName>Cold Refreshment</fullName>
+                <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gorgeous treat</fullName>
+                <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Demystify</fullName>
+                <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Elevate</fullName>
+                <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inspire</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maille</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Category_Text__c</fullName>
         <description>To store the category text.</description>
         <externalId>false</externalId>
@@ -1949,6 +2046,18 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Platform_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(IPM_Parent_Project__c), TEXT(IPM_Category_Platform__c),TEXT(IPM_Parent_Project__r.IPM_Category_Platform__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Platform Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Postponed_Comments__c</fullName>
         <description>For Storing Postponement Comments</description>
         <externalId>false</externalId>
@@ -2133,7 +2242,7 @@ OwnerId))</formula>
         <externalId>false</externalId>
         <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
   IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-    IF(ISPICKVAL(IPM_Phase__c,&apos;Regional&apos;),
+    IF(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),
        IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
        IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
        )
@@ -4568,3 +4677,150 @@ OwnerId))</formula>
         <errorMessage>Global Original Project must begin with Ideas Phase</errorMessage>
     </validationRules>
 </CustomObject>
+        <picklistValues>
+            <picklist>IPM_Category_Platform__c</picklist>
+            <values>
+                <fullName>Cold Refreshment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demystify</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gorgeous treat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inspire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Picklist__c</picklist>
+            <values>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Platform__c</picklist>
+            <values>
+                <fullName>Cold Refreshment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demystify</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gorgeous treat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inspire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Picklist__c</picklist>
+            <values>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Platform__c</picklist>
+            <values>
+                <fullName>Cold Refreshment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demystify</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gorgeous treat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inspire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>

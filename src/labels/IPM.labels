@@ -1,4 +1,60 @@
     <labels>
+        <fullName>IPM_Assumption_GM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Assumption GM%</shortDescription>
+        <value>GM%</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FunctionalInput_minChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Functional input</shortDescription>
+        <value>There is no minimum or maximum character count on this text box</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Platform_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform Field Title</shortDescription>
+        <value>Optional - please liaise with your IPM Business Partner to determine whether this parameter needs to be filled in</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableAdvertisingPromotions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableAdvertisingPromotions</shortDescription>
+        <value>BMI</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDgTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDgTO</shortDescription>
+        <value>gTO</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDiTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDiTO</shortDescription>
+        <value>iTO</value>
+    </labels>
+    <labels>
+	<fullName>IPM_Brand_Not_Found</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Brand Not Found</shortDescription>
+	<value>No matching brand (yet), please contact your IPM BP</value>
+    </labels>
+    <labels>
+	<fullName>IPM_Rollout_Brand</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Brand</shortDescription>
+	<value>Brand</value>
+    </labels>
+    <labels>
         <fullName>IPM_ShowEntity</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9548,7 +9604,7 @@ If you take no further action after 72 hours from now this Project {0} will be s
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reactivate Project Message</shortDescription>
-        <value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any updates you have saved using the ‘Save and continue’ button will be retained.</value>
+        <value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any changes made will be saved.</value>
     </labels>
 	<labels>
         <fullName>IPM_ReactivatingProject</fullName>
@@ -9623,5 +9679,42 @@ If you discover that stopping this project was a mistake you can undo this actio
         <protected>false</protected>
         <shortDescription>Parent Project Stop Disclaimer</shortDescription>
         <value>and all its Rollout Projects</value>
+    </labels>
+    <labels>
+        <fullName>IPM_AllSummaryAttachDwnldBttn_Hovertext</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gate Document All Summary Attachments download button hover text</shortDescription>
+        <value>Download all Summary section attachments</value>
+    </labels>
+		<labels>
+        <fullName>IPM_DwnldAllSummaryAttachBttn_ModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gate Document download all summary section attachment modal header</shortDescription>
+        <value>Download  Summary section attachments</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Local_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label forBrand of Local project</shortDescription>
+        <value>Brand</value>
+    </labels>
+    <labels>
+        <fullName>IPM_SVF_CAPEX</fullName>
+        <categories>Soft Validations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SVF_CAPEX</shortDescription>
+        <value>CAPEX values are automatically considered to be negative values - if this field shows a negative number it will be treated as an asset rather than a cost</value>
+    </labels>
+    <labels>
+        <fullName>IPM_SVF_Please_check_your_MCO_financials</fullName>
+        <categories>Soft Validations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SVF_Please check your MCO financials</shortDescription>
+        <value>Please check your MCO financials</value>
     </labels>
 	

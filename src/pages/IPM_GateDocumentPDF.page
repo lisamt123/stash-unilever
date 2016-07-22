@@ -1,7 +1,7 @@
 <apex:page controller="IPM_GateDocumentController" sidebar="false"  renderAs="PDF" standardStylesheets="false" applyHtmlTag="false" showHeader="false" applyBodyTag="false" readOnly="true" extensions="IPM_GetHelpDoc">
 <html>
 <head>   
-    <style type="text/css" media="print"> 
+    <style type="text/css" media="print">
         @page { 
             margin-top:15mm; 
             margin-bottom:25mm;          
@@ -20,7 +20,7 @@
             }
             /*@top-left{
                   content: element(secLogo); 
-             }*/L850
+             }*/
              @bottom-center{
                  content: element(footer);
                  color:#666666!important;
@@ -150,8 +150,7 @@
         .table>thead>tr>th span {float:left;display:inline-block;}
         .table>thead>tr>th .btn-group, .ipmTable>thead>tr>th span.sortIcon, .ipmTable>thead>tr>th span.sortIcon1{float:right!important;}
         .ipmFinancetable.table>tbody>tr>td.textleft{text-align:left; background-color: #f3ffe7;font-weight: bold;}
-        .ipmFinancetable.table{width:100%;table-layout:fixed;}
-        .ipmFinancetable.table.inEstmateTable,.ipmFinancetable.table.inEstmateCharter,.ipmFinancetable.table.nofixedlayout{table-layout:inherit;width:100%;}
+        .ipmFinancetable.table{table-layout:fixed;}
     
           table.innertable td {border: 0.5pt solid #ddd;padding: 5px;table-layout: fixed;word-wrap: break-word;}
           table.innertable {border-spacing: 15px; width:100%;table-layout: fixed;}
@@ -223,6 +222,7 @@
        .gaterollouts>thead>tr>td, .gaterollouts>tbody>tr>td, .gaterollouts>tfoot>tr>td {  color: #666;  height: 40px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;word-break: break-all;}
        .empty-column-content {display: none; }
        .riskMainHead {  font-weight: bold;  padding: 2px 0px;  color: #344454;}
+       .finGateCustTable .fintleblubg{width:25% !important;}
         .col-sm-12{with:100%;float:none;}
         .col-sm-3{with:25%;float:left;}
         .col-sm-1{width:10px;}
@@ -261,7 +261,6 @@
        .col-sm-4 .fintable{padding-right:10px;}
          tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
         .ipmFinancetable thead th{width:100%;background-color:#dceefa;border: 0.5pt #ddd solid;padding: 2px 5px;vertical-align: middle;  }
-       .ipmFinancetable.inEstmateCharter thead th{width:auto;}
        .ipmFinancetable tr{height:11px;}
         .finproject{font-weight:bold !important;font-size:15px;color:#3b516d !important;}
         .fintotal{font-weight:Bold;font-size:12px;color:#253b78;line-height:10px;}
@@ -529,24 +528,25 @@
     /* Global Financial Action Standards Styles */
         .gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
         .glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
-        .glbHeadLeft{min-width: 135px;float: left;height: 50px;border: 1px solid #ddd;}
-        .glbHeadRight{width:623px;float: left;min-height: 35px;border: 1px solid #ddd;}
-        .glbHeadtop1{width:325px;float:left;min-height: 40px;}
-        .glbHeadtop2{width:290px;float:left;min-height: 40px;}
-        .glbfrstyear,.glbinnovation{padding-bottom: 2px;text-align: center;color: #364354;font-weight: bold;margin-top: 2px;border-bottom: 1px solid #ddd;}
-        .glbsubHeadM{float:left;width:64px;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
-        .glbsubHeadM2{float:left;width:33%;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
+        .glbHeadLeft{min-width: 100px;float: left;height: 113px;border: 1px solid #ddd;}
+        .glbHeadRight{width:658px;float: left;min-height: 100px;border: 1px solid #ddd;}
+        .glbHeadtop1{width:325px;float:left;min-height: 98px;}
+        .glbHeadtop2{width:330px;float:left;min-height: 98px;}
+        .glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
+        .glbsubHeadM{float:left;width:64px;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
+        .glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
         .glbHeadtop1{border-right: 1px solid #ddd;}
         .glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
-        .glbValLeft{height: 20px;width: 136px;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
-        .glbValRight{width:762px;height: 20px;}
-        .glbValSubLeft{width:325px;display:block;height: 20px;float:left;}
-        .glbValSubRight{width:298px;display:block;height: 24px;float:left;border-right: 1px solid #ddd;}
-        .glbValM{width:60px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
-        .glbValM2{width:93px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 20px;}
-        .glbVal8{border-right: 1px solid #ddd;float:left;width:96px;}        
-        .glbsecContainer .glbVal8{border-right:1px solid #ddd;width:98px;}
-        .glbValLeft.othValleft{height:20px !important;}
+        .glbValLeft{height: 43px;width: 100px;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
+        .glbValRight{width:762px;height: 42px;}
+        .glbValSubLeft{width:327px;display:block;height: 40px;float:left;}
+        .glbValSubRight{width:332px;display:block;height: 50px;float:left;border-right: 1px solid #ddd;}
+        .glbValM{width:54px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
+        .glbValM2{width:99px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
+        .glbVal8{border-right: 1px solid #ddd;width:100px;}
+        .glbVal5{width:56px;}
+        .glbsecContainer .glbVal8{border-right:1px solid #ddd;width:102px;}
+        .glbValLeft.othValleft{height:44px !important;}
         .glbsecContainer{float:left;width:100%;}
         .glbfrstContainer{float:left;width:100%;display:table;}
         .glbsubHeadM,.glbsubHeadM2{font-size: 11px;color: #364354;font-weight: bold;}
@@ -639,12 +639,12 @@
             <div class="dataTable">
             <table width="100%" cellpadding="0" cellspacing="0">            
                 <tr>
-                    <td class="label" width="20%">
-                      {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
+                    <td class="label" width="15%">
+                      {!IF(projectDoc.IPM_GateDocuments__c!='Market Deployment',$Label.IPM_BRAND_POSITIONING,$Label.IPM_Local_Brand)}{!$Label.IPM_COLON}
                     </td>      
-                    <td width="10%">
+                    <td width="15%">
                      
-                       <apex:outputText value="{!brandPosition}"/> 
+                       <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c!='Market Deployment',brandPosition,project.IPM_LocalProject_Brand__c)}"/> 
                     </td> 
                     <td class="label" width="20%">
                        {!$Label.IPM_Project_Leader}{!$Label.IPM_COLON}
