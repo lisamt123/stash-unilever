@@ -584,13 +584,11 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @Description:Get user type with access permission   
     */
     public void getIpmuserType(){
-        IPM_Project__c associatedProject = null;
         list<IPM_Project__c> projectList = [SELECT IPM_Project_Leader__c,IPM_PrepareForArchival__c,Is_Archieved__c FROM IPM_Project__c WHERE 
         id=:projectID AND (IPM_Project_Leader__c =:userinfo.getuserid() OR Deputy_Project_Leader__c=:userinfo.getuserid() ) LIMIT 1];
         
         if(!projectList.isEmpty())
         {
-        	associatedProject = projectList[0];
             isCoreMemEditable=true;
             isEditable=true;
         }
