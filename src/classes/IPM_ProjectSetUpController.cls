@@ -228,14 +228,14 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             Map<Id,String> resultantCompanyCardMap = new Map<Id,String>();
             // Preparing resultant company cards
             for(IPM_User_Profile__c userProfile : [SELECT ID,IPM_Company_Card__c,IPM_Company_Card__r.recordType.Name,IPM_Company_Card__r.name FROM IPM_User_Profile__c 
-                                                   WHERE IPM_User__c=:userinfo.getuserid()
+                                                   WHERE IPM_User__c=:userinfo.getuserid() AND IPM_Company_Card__c <>null AND IPM_Company_Card__r.name!=null 
                                                    ORDER BY IPM_Company_Card__r.name ASC LIMIT 10000])
             {
                 resultantCompanyCardMap.put(userProfile.IPM_Company_Card__c,userProfile.IPM_Company_Card__r.Name);
                 companyCardToRecordType.put(userProfile.IPM_Company_Card__c,userProfile.IPM_Company_Card__r.RecordType.Name);
             }
             for(IPM_Company_Card__c companyCard : [SELECT id,Name,RecordTypeId,RecordType.Name FROM IPM_Company_Card__c 
-                                                   WHERE IPM_Business_Partner__c=:userinfo.getuserid()
+                                                   WHERE IPM_Business_Partner__c=:userinfo.getuserid() AND Name !=null
                                                    ORDER BY Name ASC LIMIT 10000])
             {
                 if(!resultantCompanyCardMap.containsKey(companyCard.Id))
