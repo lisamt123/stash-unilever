@@ -384,14 +384,14 @@ public with sharing Class MB_Controller_Charts{
      public static MB_Wrapper_Class.MB_Device_Wrapper_Class getInsights(String month) {
      System.debug('%%'+month);
      MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
-     wrprobj.totalDataUsageIn=0; 
-     wrprobj.totalCallUsageIn=0; 
-     wrprobj.totalMessageUsageIn=0; 
-     wrprobj.totalIpassUsageIn=0; 
+     wrprobj.totalIpassUsageIn=0;   
      wrprobj.totalAverageDataUsageIn=0;
      wrprobj.totalAverageCallUsageIn=0;
      wrprobj.totalAverageMessageUsageIn=0;
      wrprobj.totalAverageIpassUsageIn=0;
+     wrprobj.totalDataUsageIn=0; 
+     wrprobj.totalCallUsageIn=0; 
+     wrprobj.totalMessageUsageIn=0;
      Integer UserCount=0;
      Decimal totalDataavg=0;
      Decimal totalCallavg=0;
@@ -404,47 +404,39 @@ public with sharing Class MB_Controller_Charts{
         userIdSet.add(userl.User__c);
       }
       UserCount=userIdSet.Size();
-      System.debug('@user'+UserCount);
+     
      //code for Sum Calculation
-     AggregateResult[] totalDataUsageIn=[SELECT SUM(Data_Consumed_In_MB__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data];   
-     if((Decimal)totalDataUsageIn[0].get('expr0')>0){
-      wrprobj.totalDataUsageIn=((Decimal)totalDataUsageIn[0].get('expr0')).setScale(2);
-     }
-     AggregateResult[] totalCallUsageIn=[SELECT SUM(Call_Minutes__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Calls];   
-     if((Decimal)totalCallUsageIn[0].get('expr0')>0){
-      wrprobj.totalCallUsageIn=((Decimal)totalCallUsageIn[0].get('expr0')).setScale(2);  
-     }
-     AggregateResult[] totalMessageUsageIn=[SELECT SUM(Messages__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Messaging];   
-     if((Decimal)totalMessageUsageIn[0].get('expr0')>0){
-      wrprobj.totalMessageUsageIn=((Decimal)totalMessageUsageIn[0].get('expr0')).setScale(2);
-     }
-     AggregateResult[] totalIpassUsageIn1=[SELECT SUM(Data_Consumed_In_MB__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data AND Charge_Type__r.Name LIKE :Roaming_Type+'%'];   
-     if((Decimal)totalIpassUsageIn1[0].get('expr0')>0){
-      wrprobj.totalIpassUsageIn=((Decimal)totalIpassUsageIn1[0].get('expr0')).setScale(2);  
-     }
-     AggregateResult[] totalAverageIpassUsageIn1=[SELECT SUM(Data_Consumed_In_MB__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_iPass AND Charge_Type__r.Name LIKE :Roaming_Type+'%'];   
-     if((Decimal)totalAverageIpassUsageIn1[0].get('expr0')>0){
-      wrprobj.totalAverageIpassUsageIn=((Decimal)totalAverageIpassUsageIn1[0].get('expr0')).setScale(2);  
+     wrprobj=getTotalInsights(month,country,wrprobj);
+    
+     AggregateResult[] totalIpassUsageIn1=[SELECT SUM(Data_Consumed_In_MB__c)Data_Consumed from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data AND Charge_Type__r.Name LIKE :Roaming_Type+'%'];   
+     System.debug('%%##1'+(Decimal)totalIpassUsageIn1[0].get('Data_Consumed')); 
+     if((Decimal)totalIpassUsageIn1[0].get('Data_Consumed') >0){
+      wrprobj.totalIpassUsageIn=((Decimal)totalIpassUsageIn1[0].get('Data_Consumed')).setScale(2); 
+      
+     }System.debug('%%###'+wrprobj.totalIpassUsageIn); 
+     AggregateResult[] totalAverageIpassUsageIn1=[SELECT SUM(Data_Consumed_In_MB__c)Ipass_Consumed from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_iPass AND Charge_Type__r.Name LIKE :Roaming_Type+'%'];   
+     if((Decimal)totalAverageIpassUsageIn1[0].get('Ipass_Consumed')>0){
+      wrprobj.totalAverageIpassUsageIn=((Decimal)totalAverageIpassUsageIn1[0].get('Ipass_Consumed')).setScale(2);  
      }
      //code for Average Calculation
-     AggregateResult[] totalData=[SELECT SUM(Data_Consumed_In_MB__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data];   
-     if((Decimal)totalData[0].get('expr0')>0){
-       totalDataavg=((Decimal)totalData[0].get('expr0')).setScale(2);
+     AggregateResult[] totalData=[SELECT SUM(Data_Consumed_In_MB__c)Avg_Data from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data];   
+     if((Decimal)totalData[0].get('Avg_Data')>0){
+       totalDataavg=((Decimal)totalData[0].get('Avg_Data')).setScale(2);
      }
-     AggregateResult[] totalCall=[SELECT SUM(Call_Minutes__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country  AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Calls];   
-     if((Decimal)totalCall[0].get('expr0')>0){
-       totalCallavg=((Decimal)totalCall[0].get('expr0')).setScale(2);  
+     AggregateResult[] totalCall=[SELECT SUM(Call_Minutes__c)Avg_Call from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country  AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Calls];   
+     if((Decimal)totalCall[0].get('Avg_Call')>0){
+       totalCallavg=((Decimal)totalCall[0].get('Avg_Call')).setScale(2);  
      }
-     AggregateResult[] totalMessage=[SELECT SUM(Messages__c) from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND  Usage_Type__r.Name= :MB_Constants.Usage_Type_Messaging];   
-     if((Decimal)totalMessage[0].get('expr0')>0){
-       totalMessageavg=((Decimal)totalMessage[0].get('expr0')).setScale(2);
+     AggregateResult[] totalMessage=[SELECT SUM(Messages__c)Avg_message from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND  Usage_Type__r.Name= :MB_Constants.Usage_Type_Messaging];   
+     if((Decimal)totalMessage[0].get('Avg_message')>0){
+       totalMessageavg=((Decimal)totalMessage[0].get('Avg_message')).setScale(2);
      }
      if(UserCount>0){
        if(totalDataavg >0){
        wrprobj.totalAverageDataUsageIn=(totalDataavg/UserCount).setScale(2); System.debug('@user1'+wrprobj.totalAverageDataUsageIn);
        }
        if(totalCallavg >0){
-       wrprobj.totalAverageCallUsageIn=(totalCallavg/UserCount).setScale(2); 
+       wrprobj.totalAverageCallUsageIn=(totalCallavg/UserCount).setScale(2); System.debug('@user1'+wrprobj.totalAverageCallUsageIn);
        }
        if(totalMessageavg >0){  
        wrprobj.totalAverageMessageUsageIn=(totalMessageavg/UserCount).setScale(2);
@@ -452,11 +444,35 @@ public with sharing Class MB_Controller_Charts{
      }
      else{
        wrprobj.totalAverageDataUsageIn=totalDataavg.setScale(2);System.debug('@user2'+wrprobj.totalAverageDataUsageIn);
-       wrprobj.totalAverageCallUsageIn=totalCallavg.setScale(2);   
+       wrprobj.totalAverageCallUsageIn=totalCallavg.setScale(2);   System.debug('@user1'+wrprobj.totalAverageCallUsageIn);
        wrprobj.totalAverageMessageUsageIn=totalMessageavg.setScale(2);
      }
      
      return wrprobj;
     
 }
+ public static MB_Wrapper_Class.MB_Device_Wrapper_Class getTotalInsights(String month,String country, MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj) {
+     System.debug('%%'+month+country);
+     /*MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
+     wrprobj.totalDataUsageIn=0; 
+     wrprobj.totalCallUsageIn=0; 
+     wrprobj.totalMessageUsageIn=0; */
+     
+      AggregateResult[] totalDataUsageIn=[SELECT SUM(Data_Consumed_In_MB__c)Total_data from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data];   
+     if((Decimal)totalDataUsageIn[0].get('Total_data')>0){
+      wrprobj.totalDataUsageIn=((Decimal)totalDataUsageIn[0].get('Total_data')).setScale(2);
+     }
+     AggregateResult[] totalCallUsageIn=[SELECT SUM(Call_Minutes__c)Total_Call from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Calls];   
+     if((Decimal)totalCallUsageIn[0].get('Total_Call')>0){
+      wrprobj.totalCallUsageIn=((Decimal)totalCallUsageIn[0].get('Total_Call')).setScale(2);  
+     }
+     AggregateResult[] totalMessageUsageIn=[SELECT SUM(Messages__c)Total_Message from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Messaging];   
+     if((Decimal)totalMessageUsageIn[0].get('Total_Message')>0){
+      wrprobj.totalMessageUsageIn=((Decimal)totalMessageUsageIn[0].get('Total_Message')).setScale(2);
+     }
+     System.debug('%%!'+wrprobj.totalDataUsageIn);
+     System.debug('%%!'+wrprobj.totalCallUsageIn);
+     System.debug('%%!'+wrprobj.totalMessageUsageIn);
+   return wrprobj;
+     }
 }
