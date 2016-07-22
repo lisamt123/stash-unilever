@@ -549,6 +549,24 @@
                                                             </div>
                                                         </apex:outputPanel>
                                                     </apex:outputPanel>
+                                                <!-- Platform Field Added-->   
+                                                                               <div class="col-sm-3 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">{!$Label.IPM_Platform}
+                                         <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_Platform_Title}"></a>
+                                             </span></span>
+                                    </div>   
+                                                 <label class="ipmSelect  pos-tool" >
+                                                <apex:actionRegion >
+                                                    <apex:outputPanel >
+                                                   <div class="info" title="" data-original-title="{!$Label.IPM_Platform_Title}">
+                                                        <apex:inputField value="{!project.IPM_Category_Picklist__c}"  style="display:none" >  </apex:inputField> 
+                                                        <apex:inputField value="{!project.IPM_Category_Platform__c}"  >    </apex:inputField>  
+                                                    </div>   
+                                                      </apex:outputPanel>                       
+                                                </apex:actionRegion>
+                                                 </label>
+                                                           
                                                     <!-- If IPM_BET__c field value is true, the below panel will be diplayed  -->
                                                     <apex:outputpanel rendered="{!coreConfig.IPM_BET__c}"
                                                         id="betOptions">

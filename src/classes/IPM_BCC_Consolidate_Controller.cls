@@ -9,6 +9,9 @@ public with sharing class IPM_BCC_Consolidate_Controller
 { 
     public Id projId; // used to store project id
     public ID getprojId(){ return projId; } //get project id
+    public IPM_Financial__c financial;
+    public static final String CORE_STRATEGIC_INNOVATION='Innovation';
+    public static final String Year ='3';
     public void setprojId (ID p){ // set project id
         projId= p;
         showBCC();
@@ -43,9 +46,12 @@ public with sharing class IPM_BCC_Consolidate_Controller
         else if(projectSpan==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projId!=null){
             localProjectsCount=[SELECT Count() FROM IPM_Project__c WHERE IPM_Parent_Project__c=:projId];
             if(localProjectsCount>0) {
-                localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
-                                           Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
-                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c 
+                localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Phase__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
+                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c,
+                                       (SELECT Turnover_Regional__c,Turnover_Contract__c,Turnover_MR__c,Advertising_Promotions_Regional__c,Advertising_Promotions_Contract__c,
+                                        Advertising_Promotions_MR__c,GM_of_TO_Regional__c,GM_of_TO_Contract__c,GM_of_TO_MR__c 
+                                    FROM IPM_Financial_Years__r 
+                                    WHERE Year_Type__c=: CORE_STRATEGIC_INNOVATION AND Year__c=: Year)
                                     FROM IPM_Financial__c 
                                     WHERE isActive__c=true and Regional_Project__c=:projId and Local_Project__c!=null];
                 }                           
