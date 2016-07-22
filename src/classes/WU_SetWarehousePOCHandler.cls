@@ -331,4 +331,3 @@ public with sharing class WU_SetWarehousePOCHandler
         }
     }   
 }
-}

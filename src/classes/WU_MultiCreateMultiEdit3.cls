@@ -1,18 +1,21 @@
 public with sharing class WU_MultiCreateMultiEdit3{
 
     public String loggedInUser;
+    private string emailLoggedUser;
     public List<WU_Master_Warehouse__c> masterWarehouseList {get;set;}
     public List<MasterWarehouseWrapper> masterWarehouseWrapperList {get;set;}
     public MasterWarehouseWrapper wrapperInstancePopup{get;set;}
     public string selectedId{get;set;}
     public string selectedField{get;set;}
     public string selectedRecords{get;set;}
-	public string EmptySpace = ' ';
+    public string EmptySpace = ' ';
     
     public map<id,WU_Master_Warehouse__c> mapWUMasterWarehouse  = new  map<id,WU_Master_Warehouse__c>();
     
     public WU_MultiCreateMultiEdit3(){
         loggedInUser = UserInfo.getUserId();
+        emailLoggedUser = UserInfo.getUserEmail();
+        
         masterWarehouseList = new List<WU_Master_Warehouse__c>();
         masterWarehouseWrapperList = new List<MasterWarehouseWrapper>();
         wrapperInstancePopup = new MasterWarehouseWrapper(False , new WU_Master_Warehouse__c());
@@ -26,7 +29,8 @@ public with sharing class WU_MultiCreateMultiEdit3{
                                WU_ToDate__c,WU_FromDate__c,WU_Utilization_Type__c,OwnerId,WU_SAPName_s__c,WU_Average_Current_Utilization__c,
                                (Select id,Name,Master_Warehouse__c,WU_Utilization_End_Date__c,WU_Utilization_Start_Date__c,
                                WU_Current_Pallet_Utilization__c,WU_Committed_Max_PalletStorage__c FROM Warehouse_Capacity_Utilizaion__r)
-                               FROM WU_Master_Warehouse__c where OwnerId = :loggedInUser];
+                               FROM WU_Master_Warehouse__c where OwnerId = :loggedInUser or
+WU_WarehousePOC_Email__c =: emailLoggedUser or WU_Warehouse_Secondary_POC_Email__c=: emailLoggedUser];
                                
        for( WU_Master_Warehouse__c objWareHouse : masterWarehouseList){
         mapWUMasterWarehouse.put(objWareHouse.id,objWareHouse);
