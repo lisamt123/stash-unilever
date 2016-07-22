@@ -60,6 +60,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
 	
     // top level wrapper which will contain Type/Subgroup/option/asset structure
     public Map<String, AssetTypeWrapper> map_asset_type_wrapper {get;set;}
+    public List<String> list_asset_types_in_order {get;set;}
     //private static Id wrapper_campaign_id;
 
     //public static Map<String, AssetWrapper> map_of_mdm_id_to_asset;// = new Map<String, AssetWrapper>();
@@ -176,6 +177,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
 
 
         map_asset_type_wrapper = new Map<String, AssetTypeWrapper>();
+        list_asset_types_in_order = new List<String>();
         //map_mdm_id_to_asset = new Map<String, AssetWrapper>();
 
         // can identify each item by a unique index number
@@ -187,6 +189,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
             // and increment the index of asset_type items
             if (!map_asset_type_wrapper.containsKey(asset.Type__c)){
                 map_asset_type_wrapper.put(asset.Type__c, new AssetTypeWrapper(asset, index));
+                list_asset_types_in_order.add(asset.Type__c);
                 index++;
             }
             // for the given item in the map call the .add method in the top level tier of the structure to build up
@@ -344,6 +347,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
 
         public Map<String, AssetSubCategoryWrapper> map_sub_categories {get;set;}
         public Map<String, Set<String>> map_type_subCategoriesSet { get;set; }
+        public List<String> list_sub_categories_in_order {get;set;}
 
         public Integer total_visible_children_count {get;set;}
         public Boolean is_visible {get;set;}
@@ -363,7 +367,8 @@ public with sharing class Oblix_AssetOfferingWrapper {
             this.index = index;
             sub_category_items_count = 0;
             map_sub_categories = new Map<String, AssetSubCategoryWrapper>(); 
-            map_type_subCategoriesSet = new  Map<String, Set<String>>();  
+            map_type_subCategoriesSet = new  Map<String, Set<String>>(); 
+            list_sub_categories_in_order = new List<String>();
 
             total_visible_children_count = 0;
             is_visible = false; 
@@ -381,6 +386,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
             // and increment the index of sub-category items by 1
             if (!map_sub_categories.containsKey(asset_score.Sub_Category__c)){
                 map_sub_categories.put(asset_score.Sub_Category__c, new AssetSubCategoryWrapper(asset_score, index, sub_category_items_count));
+                list_sub_categories_in_order.add(asset_score.Sub_Category__c);
                 sub_category_items_count++;
             }
 
@@ -418,6 +424,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
 
         public Map<String, AssetOptionWrapper> map_asset_options {get;set;}
         public Map<String, Set<String>> map_subcategories_options_set {get; set;}
+        public List<String> list_asset_options_in_order {get;set;}
 
         public Integer total_visible_children_count {get;set;}
         public Boolean is_visible {get;set;}
@@ -434,6 +441,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
         public AssetSubCategoryWrapper( Asset_Scoring__c asset_score, Integer type_index, Integer index){
             map_asset_options = new Map<String, AssetOptionWrapper>();
             map_subcategories_options_set = new Map<String, Set<String>>();
+            list_asset_options_in_order = new List<String>();
             this.sub_category_name = asset_score.Sub_Category__c;
             this.sub_category_description = asset_score.Sub_Category_Description__c;
             this.type_index = type_index;
@@ -456,6 +464,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
             // and increment the index of asset_option items
             if (!map_asset_options.containsKey(asset_score.Asset_Option__c)){
                 map_asset_options.put(asset_score.Asset_Option__c, new AssetOptionWrapper(asset_score, type_index, index, option_items_count));
+                list_asset_options_in_order.add(asset_score.Asset_Option__c);
                 option_items_count++;
             }
 

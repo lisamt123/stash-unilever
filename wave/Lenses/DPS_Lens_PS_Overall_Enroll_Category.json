@@ -1,0 +1,41 @@
+{
+    "name": "Lens_PS_Overall_Enroll_Category",
+    "label": "Lens: PS Overall (Enroll Category)",
+    "visualizationType": "hbar",
+    "state": {
+        "query": {
+            "groups": [
+                "Product_category"
+            ],
+            "filters": [
+                [
+                    "Date_of_audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -6
+                            ],
+                            [
+                                "month",
+                                -6
+                            ]
+                        ]
+                    ],
+                    ">=<="
+                ]
+            ],
+            "measures": [
+                [
+                    "count",
+                    "*"
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SSDSA2",
+        "name": "PS_ENROLLED_STORE",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SSDSA2"
+    }
+}

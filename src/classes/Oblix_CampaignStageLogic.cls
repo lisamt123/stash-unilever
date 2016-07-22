@@ -7,15 +7,17 @@
 ********************************************************************/
 public with sharing class Oblix_CampaignStageLogic{
 
-    public static final String CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME = 'Stage_Projected_CFY__c';
-    public static final String CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME = 'Stage_Completed_CFY__c';
+    public static final String CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME = 'Projected_Stage_CFY__c';
+    public static final String CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME = 'Completed_Stage_CFY__c';
+    public static final String CAMPIGN_PROJECTED_STAGE_PFY_FIELD_NAME = 'Projected_Stage_PFY__c';
+    public static final String CAMPIGN_COMPLETED_STAGE_PFY_FIELD_NAME = 'Completed_Stage_PFY__c';
 
     // final strings used for stage identifier CSS styling
-    public static final String CSS_COMPLETED_PROGRESS_NOT_STARTED = 'chevron_not_started';
-    public static final String CSS_COMPLETED_PROGRESS_STARTED = 'chevron_in_progress';
-    public static final String CSS_COMPLETED_PROGRESS_COMPLETED = 'chevron_completed';
-    public static final String CSS_PROJECTED_NOT_PROJECTED = 'chevron_not_projected';
-    public static final String CSS_PROJECTED_PROJECTED = 'chevron_projected';
+    public static final String CSS_COMPLETED_GREY = 'chevron_not_started';
+    public static final String CSS_COMPLETED_YELLOW = 'chevron_in_progress';
+    public static final String CSS_COMPLETED_GREEN = 'chevron_completed';
+    public static final String CSS_PROJECTED_GREY = 'chevron_not_projected';
+    public static final String CSS_PROJECTED_GREEN = 'chevron_projected';
 
 
     //containers for valid project stages and their parameters
@@ -58,8 +60,9 @@ public with sharing class Oblix_CampaignStageLogic{
     }
     
 
-    public Integer i_percentage_of_fee_this_year {get;set;}
-    public Integer i_agency_Percentage_of_fees_this_year {get;set;}
+    public Decimal i_percentage_of_fee_this_year {get;set;}
+    public Decimal i_agency_Percentage_of_fees_this_year {get;set;}
+    public Decimal cancelCampaignManualPercent {get;set;}
     public Boolean b_is_projection_selectable {get;set;}
     public Boolean b_is_completion_selectable {get;set;}
     public Boolean b_manual_override_on {
@@ -71,7 +74,18 @@ public with sharing class Oblix_CampaignStageLogic{
         }
         set;
     }
-    //public List<Boolean> lib_is_stage_projected {get;set;}
+    public Boolean b_cancelled_campaign {
+        get{
+            try {
+                return sow_project_in_scope.Campaign_Status__c == Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;    
+            } catch (Exception e) {
+                System.debug(e);
+            }
+            return false;
+        }
+    }
+
+    //public List<Boolean> liisProjected {get;set;}
     //public List<Boolean> lib_is_stage_completed {get;set;}
     
     public Oblix_SOW_Projects__c sow_project_in_scope {get;set;}
@@ -79,6 +93,62 @@ public with sharing class Oblix_CampaignStageLogic{
     public String s_selected_projected_stage{get; set;}
     public String s_selected_completed_stage{get; set;}
     public Integer i_fees_for_this_financial_year {get; private set;}
+
+    public Set<String> projectedValueSet {
+        get {
+    
+            String currentProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME);
+            currentProjectedValue = (currentProjectedValue == null) ? '' : currentProjectedValue;
+            List<String> projectedValueList = currentProjectedValue.split(';');
+            projectedValueSet = new Set<String>(projectedValueList);
+        
+            return projectedValueSet;
+        }
+        set;
+    }
+
+
+    public Set<String> completedValueSet {
+        get {
+
+            String currentCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME);
+            currentCompletedValue = (currentCompletedValue == null) ? '' : currentCompletedValue;
+            List<String> completedValueList = currentCompletedValue.split(';');
+            completedValueSet = new Set<String>(completedValueList);
+
+            return completedValueSet;
+        }
+        set;
+    }
+
+
+    public Set<String> pastFYProjectedValueSet {
+        get {
+
+            String pastFYProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_PFY_FIELD_NAME);
+            pastFYProjectedValue = (pastFYProjectedValue == null) ? '' : pastFYProjectedValue;
+            List<String> pastFYprojectedValueList = pastFYProjectedValue.split(';');
+            pastFYProjectedValueSet = new Set<String>(pastFYprojectedValueList);
+
+            return pastFYProjectedValueSet;
+        }
+        set;
+    }
+
+
+    public Set<String> pastFYCompletedValueSet {
+        get {
+
+            String pastFYCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_PFY_FIELD_NAME);
+            pastFYCompletedValue = (pastFYCompletedValue == null) ? '' : pastFYCompletedValue;
+            List<String> pastFYCompletedValueList = pastFYCompletedValue.split(';');
+            pastFYCompletedValueSet = new Set<String>(pastFYCompletedValueList);
+
+            return pastFYCompletedValueSet;
+        }
+        set;
+    }
+    
 
 
     /*******************************************************************************
@@ -93,7 +163,7 @@ public with sharing class Oblix_CampaignStageLogic{
 
                 for (Integer i : stagesByOrder.keySet()){
                     //Default to all selectable and selected (DE218)
-                    projected_stages.put(i, new Stage(true, i, stagesByOrder.get(i).Label__c, Integer.valueOf(stagesByOrder.get(i).Value__c), true, true));
+                    projected_stages.put(i, new Stage(true, i, stagesByOrder.get(i).Label__c, Integer.valueOf(stagesByOrder.get(i).Value__c), true, true, false));
                 }
             }
         return projected_stages;
@@ -115,7 +185,7 @@ public with sharing class Oblix_CampaignStageLogic{
 
                 for (Integer i : stagesByOrder.keySet()){
                     //Default to all selectable but not selected
-                    completed_stages.put(i, new Stage(false, i, stagesByOrder.get(i).Label__c, Integer.valueOf(stagesByOrder.get(i).Value__c), true, false));
+                    completed_stages.put(i, new Stage(false, i, stagesByOrder.get(i).Label__c, Integer.valueOf(stagesByOrder.get(i).Value__c), true, false, false));
                 }
             }
         return completed_stages;
@@ -125,7 +195,7 @@ public with sharing class Oblix_CampaignStageLogic{
     }
     
     
-     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Integer percentageValue, boolean is_projection_selectable, boolean is_completeion_selectable){
+     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Decimal percentageValue, boolean is_projection_selectable, boolean is_completeion_selectable){
         
 
         sow_project_in_scope = sow_project;
@@ -157,8 +227,8 @@ public with sharing class Oblix_CampaignStageLogic{
 
         // S.M. all projected stages should be set to true by default DE218
         //sow_project_in_scope.Projected_Stage__c = STAGE_PROJECT_PRODUCTION;
-        sow_project_in_scope.Stage_Projected_CFY__c = String.join(new List<String>(stagesByLabel.keyset()), ';');
-        sow_project_in_scope.Stage_Completed_CFY__c = '';
+        sow_project_in_scope.Projected_Stage_CFY__c = String.join(new List<String>(stagesByLabel.keyset()), ';');
+        sow_project_in_scope.Completed_Stage_CFY__c = '';
         //sow_project_in_scope.Completed_Stage__c = STAGE_PROJECT_BRIEFING;
         sow_project_in_scope.Campaign_Total_Adjustment__c = 0;
         sow_project_in_scope.Percentage_of_Fee_for_this_FY__c = 100;
@@ -178,9 +248,9 @@ public with sharing class Oblix_CampaignStageLogic{
     public Oblix_CampaignStageLogic(Id sow_project_id, boolean is_projection_selectable, boolean is_completeion_selectable){
 
         // retrieve campaign by Id passed in - to create override constructor
-        List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c
-            , CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Campaign_Total_Fees__c
-            , Percentage_of_Fee_for_this_FY__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Value_To_BePaid_Manual_Override__c 
+        List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Projected_Stage_CFY__c, Completed_Stage_CFY__c, 
+            Projected_Stage_PFY__c, Completed_Stage_PFY__c, CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Campaign_Total_Fees__c
+            , Percentage_of_Fee_for_this_FY__c, Percentage_of_Fees_PFY__c, Percentage_of_Fees_Paid_To_Date__c, Fees_PFY_Paid_Using_CFY_Calc__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Value_To_BePaid_Manual_Override__c 
             FROM Oblix_SOW_Projects__c WHERE Id = : sow_project_id ];
 
         if (NULL!=liso_projects_for_sow && !liso_projects_for_sow.isEmpty()){
@@ -200,6 +270,7 @@ public with sharing class Oblix_CampaignStageLogic{
 
         sow_project_in_scope = sow_project;
         b_manual_override_on = sow_project_in_scope.Value_To_BePaid_Manual_Override__c;
+
         //setStageAndCSS(sow_project.Projected_Stage__c, sow_project.Completed_Stage__c,true,true);
         initStages();
 
@@ -217,18 +288,10 @@ public with sharing class Oblix_CampaignStageLogic{
         i_percentage_of_fee_this_year = 0;
         i_agency_Percentage_of_fees_this_year = 0;
 
-        String currentProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME);
-        currentProjectedValue = (currentProjectedValue == null) ? '' : currentProjectedValue;
-        List<String> projectedValueList = currentProjectedValue.split(';');
-        Set<String> projectedValueSet = new Set<String>(projectedValueList);
+        //Resetting stage wrappers
+        projected_stages = null;
+        completed_stages = null;
 
-        String currentCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME);
-        currentCompletedValue = (currentCompletedValue == null) ? '' : currentCompletedValue;
-        List<String> completedValueList = currentCompletedValue.split(';');
-        Set<String> completedValueSet = new Set<String>(completedValueList);
-
-        Set<String> pastFYProjectedValueSet = new Set<String>();
-        Set<String> pastFYCompletedValueSet = new Set<String>();
 
         for (Integer i : projected_stages.keySet()) {
             Stage projectedStage = projected_stages.get(i);
@@ -239,15 +302,21 @@ public with sharing class Oblix_CampaignStageLogic{
             
         }
 
-        if (b_manual_override_on) {
-            i_percentage_of_fee_this_year = sow_project_in_scope.Percentage_of_Fee_for_this_FY__c.intValue();
-        }
+        if (b_manual_override_on || b_cancelled_campaign) {
+            i_percentage_of_fee_this_year = sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
+            //cancelCampaignManualPercent = i_percentage_of_fee_this_year;
+        } /*else {
+            cancelCampaignManualPercent = i_agency_Percentage_of_fees_this_year;
+        }*/
+        
+        //cancelCampaignManualPercent should always default to Projected % value when opening Cancel Modal
+        cancelCampaignManualPercent = i_percentage_of_fee_this_year;
 
         system.debug('### after - initStages - projected : '+projected_stages);
         system.debug('### after - initStages - completed : '+completed_stages);
 
-        s_selected_projected_stage = currentProjectedValue;
-        s_selected_completed_stage = currentCompletedValue;
+        s_selected_projected_stage = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME);
+        s_selected_completed_stage = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME);
     }
 
 
@@ -260,25 +329,28 @@ public with sharing class Oblix_CampaignStageLogic{
                                      Set<String> projectedValueSet, 
                                      Set<String> pastFYProjectedValueSet) {
         //Projected INIT
-        //PARAMETERS affecting selectability: b_is_projection_selectable, pastFYProjectedValueSet and b_manual_override_on
-        //DEFAULT from projected_stages getter - true
-        if (!b_is_projection_selectable || pastFYProjectedValueSet.contains(projectedStage.s_stage_name) || b_manual_override_on) {
-            projectedStage.b_is_stage_selectable = false;
+        if (pastFYProjectedValueSet.contains(projectedStage.name)) {
+            projectedStage.disabled = true;
         }
 
-        //PARAMETERS affecting selected state: projectedValueSet, pastFYProjectedValueSet and b_manual_override_on
+        //PARAMETERS affecting selectability: b_is_projection_selectable, pastFYProjectedValueSet and b_manual_override_on
+        //DEFAULT from projected_stages getter - true
+        if (!b_is_projection_selectable || pastFYProjectedValueSet.contains(projectedStage.name) || b_manual_override_on || b_cancelled_campaign) {
+            projectedStage.selectable = false;
+        }
+
+        //PARAMETERS affecting selected state: projectedValueSet, pastFYProjectedValueSet
         //DEFAULT from projected_stages getter - true
         //CRITERIA: Projected stage should NOT be selected if:
         //  a) it's not in the projectedValueSet
-        //  b) it's not in the pastFYProjectedValueSet AND b_manual_override_on is TRUE (maintain selection for past FY stages)
-        if (!projectedValueSet.contains(projectedStage.s_stage_name) ||
-                (!pastFYProjectedValueSet.contains(projectedStage.s_stage_name) && b_manual_override_on)) {
-            projectedStage.b_is_stage_selected = false;
+        //  b) it's not in the pastFYProjectedValueSet
+        if (!projectedValueSet.contains(projectedStage.name) && !pastFYProjectedValueSet.contains(projectedStage.name)) {
+            projectedStage.selected = false;
         }
 
         //Update projected stage completion for this FYI
-        if (projectedStage.b_is_stage_selectable && projectedStage.b_is_stage_selected) {
-            i_percentage_of_fee_this_year += projectedStage.i_stage_percentage;
+        if (!projectedStage.disabled && projectedStage.selected) {
+            i_percentage_of_fee_this_year += projectedStage.percentValue;
         }
     }
 
@@ -295,20 +367,26 @@ public with sharing class Oblix_CampaignStageLogic{
                                      Set<String> pastFYProjectedValueSet, 
                                      Set<String> pastFYCompletedValueSet) {
         //Completed INIT
+        //if (pastFYProjectedValueSet.contains(completedStage.name) || !projectedValueSet.contains(completedStage.name)) {
+        if (pastFYCompletedValueSet.contains(completedStage.name) || (!projectedValueSet.contains(completedStage.name) && !pastFYProjectedValueSet.contains(completedStage.name)) ) {
+            completedStage.disabled = true;
+        }
+
         //PARAMETERS affecting selectability: b_is_completion_selectable, projectedValueSet and pastFYProjectedValueSet
         //DEFAULT from completed_stages getter - true
-        if (!b_is_completion_selectable || !projectedValueSet.contains(completedStage.s_stage_name) || pastFYProjectedValueSet.contains(completedStage.s_stage_name)) {
-            completedStage.b_is_stage_selectable = false;
+        //if (!b_is_completion_selectable || !projectedValueSet.contains(completedStage.name) || pastFYProjectedValueSet.contains(completedStage.name) || b_cancelled_campaign) {
+        if (!b_is_completion_selectable || (!projectedValueSet.contains(completedStage.name) && !pastFYProjectedValueSet.contains(completedStage.name)) || pastFYCompletedValueSet.contains(completedStage.name) || b_cancelled_campaign) {
+            completedStage.selectable = false;
         }
 
         //PARAMETERS affecting selected state: completedValueSet and pastFYCompletedValueSet
         //DEFAULT from projected_stages getter - false
-        if (completedValueSet.contains(completedStage.s_stage_name) || pastFYCompletedValueSet.contains(completedStage.s_stage_name)) {
-            completedStage.b_is_stage_selected = true;
+        if (completedValueSet.contains(completedStage.name) || pastFYCompletedValueSet.contains(completedStage.name)) {
+            completedStage.selected = true;
         }
 
-        if (completedStage.b_is_stage_selectable && completedStage.b_is_stage_selected) {
-            i_agency_Percentage_of_fees_this_year += completedStage.i_stage_percentage;
+        if (completedStage.selectable && completedStage.selected) {
+            i_agency_Percentage_of_fees_this_year += completedStage.percentValue;
         }
     }
 
@@ -325,7 +403,10 @@ public with sharing class Oblix_CampaignStageLogic{
         system.debug('###is i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
         system.debug('###is sow_project_in_scope.Campaign_Total_Fees__c : '+sow_project_in_scope.Campaign_Total_Fees__c);
         
-        i_fees_for_this_financial_year = calculateFeesForThisFY(i_percentage_of_fee_this_year, sow_project_in_scope.Campaign_Total_Fees__c);
+        i_fees_for_this_financial_year = calculateFeesForThisFY(i_percentage_of_fee_this_year, 
+                                                                sow_project_in_scope.Campaign_Total_Fees__c, 
+                                                                sow_project_in_scope.Percentage_of_Fees_PFY__c, 
+                                                                sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c);
 
         //if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c && i_percentage_of_fee_this_year == 100 ){
         //    i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Campaign_Total_Fees__c);
@@ -339,12 +420,17 @@ public with sharing class Oblix_CampaignStageLogic{
         system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
     }
 
-    public static Integer calculateFeesForThisFY(Decimal campaign_percentage, Decimal total_fees){
-        if (NULL != campaign_percentage && NULL != total_fees && campaign_percentage == 100 ){
+    public static Integer calculateFeesForThisFY(Decimal campaign_percentage, Decimal total_fees, Decimal feePercentagePFY, Decimal feesPFYwithFXadjustment){
+
+        Decimal validatedFeePercentagePFY = (feePercentagePFY == null ? 0 : feePercentagePFY);
+        Decimal validatedFeesPFYwithFXadjustment = (feesPFYwithFXadjustment == null ? 0 : feesPFYwithFXadjustment);
+
+        /*if (NULL != campaign_percentage && NULL != total_fees && campaign_percentage == 100 ){
             return (Integer) total_fees.round(System.RoundingMode.HALF_EVEN);
         }
-        else if (NULL != campaign_percentage && NULL != total_fees ){
-            return Integer.valueOf((campaign_percentage * total_fees / 100).round(System.RoundingMode.HALF_EVEN));
+        else */if (NULL != campaign_percentage && NULL != total_fees){
+            //return Integer.valueOf((campaign_percentage * total_fees / 100).round(System.RoundingMode.HALF_EVEN));
+            return Integer.valueOf( ( ( (campaign_percentage + validatedFeePercentagePFY) * total_fees / 100) - validatedFeesPFYwithFXadjustment ).round(System.RoundingMode.HALF_EVEN) );
         }
         else{
             return 0;
@@ -363,6 +449,7 @@ public with sharing class Oblix_CampaignStageLogic{
     *********************************************************************/
     public void saveStage(){
         system.debug('## saving stage for campaign: '  + sow_project_in_scope.name);
+        sow_project_in_scope.Campaign_Attributes_Updated__c = true;
         upsert sow_project_in_scope;
     }
 
@@ -394,25 +481,35 @@ public with sharing class Oblix_CampaignStageLogic{
 
         if (currentValueSet.contains(val)) {
             //Unticked
-            i_percentage_of_fee_this_year -= projected_stage_wrapper.i_stage_percentage;
-            projected_stage_wrapper.b_is_stage_selected = false;
+            if (!b_manual_override_on) {
+                i_percentage_of_fee_this_year -= projected_stage_wrapper.percentValue;
+            }
+            projected_stage_wrapper.selected = false;
             currentValueSet.remove(val);
             
-            if (completed_stage_wrapper.b_is_stage_selected) {
-                i_agency_Percentage_of_fees_this_year -= completed_stage_wrapper.i_stage_percentage;
+            if (completed_stage_wrapper.selected) {
+                i_agency_Percentage_of_fees_this_year -= completed_stage_wrapper.percentValue;
             }
-            completed_stage_wrapper.b_is_stage_selectable = false;
-            completed_stage_wrapper.b_is_stage_selected = false;
+            completed_stage_wrapper.disabled = true;
+            completed_stage_wrapper.selectable = false;
+            completed_stage_wrapper.selected = false;
             currentCompletedValueSet.remove(val);
         } else {
             //Ticked
-            i_percentage_of_fee_this_year += projected_stage_wrapper.i_stage_percentage;
-            projected_stage_wrapper.b_is_stage_selected = true;
+            if (!b_manual_override_on) {
+                i_percentage_of_fee_this_year += projected_stage_wrapper.percentValue;
+            }
+            projected_stage_wrapper.selected = true;
             currentValueSet.add(val);
 
-            completed_stage_wrapper.b_is_stage_selectable = true;
-            completed_stage_wrapper.b_is_stage_selected = false;
+            completed_stage_wrapper.disabled = false;
+            completed_stage_wrapper.selectable = true;
+            completed_stage_wrapper.selected = false;
             currentCompletedValueSet.remove(val);
+        }
+
+        if (!b_manual_override_on) {
+            cancelCampaignManualPercent = i_percentage_of_fee_this_year;
         }
 
         calculateFeesForThisYear();
@@ -445,6 +542,10 @@ public with sharing class Oblix_CampaignStageLogic{
         currentValue = (currentValue == null) ? '' : currentValue;
         List<String> currentValueList = currentValue.split(';');
         Set<String> currentValueSet = new Set<String>(currentValueList);
+        System.debug('### toggleCompletionStage - before');
+        System.debug('### currentValue: ' + currentValue);
+        System.debug('### currentValueList: ' + currentValueList);
+        System.debug('### currentValueSet: ' + currentValueSet);
 
         Integer stage_number = Integer.valueOf(stagesByLabel.get(val).Attribute_1__c);
         Stage stage_wrapper = completed_stages.get(stage_number);
@@ -453,14 +554,21 @@ public with sharing class Oblix_CampaignStageLogic{
         System.debug('### before - stage_wrapper: ' + stage_wrapper);
 
         if (currentValueSet.contains(val)) {
-            i_agency_Percentage_of_fees_this_year -= stage_wrapper.i_stage_percentage;
+            i_agency_Percentage_of_fees_this_year -= stage_wrapper.percentValue;
             currentValueSet.remove(val);
-            stage_wrapper.b_is_stage_selected = false;
+            stage_wrapper.selected = false;
         } else {
-            i_agency_Percentage_of_fees_this_year += stage_wrapper.i_stage_percentage;
+            i_agency_Percentage_of_fees_this_year += stage_wrapper.percentValue;
             currentValueSet.add(val);
-            stage_wrapper.b_is_stage_selected = true;
+            stage_wrapper.selected = true;
         }
+
+        currentValueSet.remove('');
+        currentValueSet.remove(null);
+
+        //if (!b_manual_override_on) {
+        //    cancelCampaignManualPercent = i_agency_Percentage_of_fees_this_year;
+        //}
 
         calculateFeesForThisYear();
 
@@ -472,6 +580,9 @@ public with sharing class Oblix_CampaignStageLogic{
 
         String newValue = String.join(new List<String>(currentValueSet), ';');
         sow_project_in_scope.put(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME, newValue);
+        System.debug('### toggleCompletionStage - after');
+        System.debug('### currentValueSet: ' + currentValueSet);
+        System.debug('### newValue: ' + newValue);
 
         s_selected_completed_stage = newValue;
 
@@ -493,55 +604,62 @@ public with sharing class Oblix_CampaignStageLogic{
     ********************************************************************************/
     public class Stage{
         
-        public Integer i_stage_number {get;set;}
-        public String s_stage_name {get;set;}
-        public Boolean b_is_stage_projected {get;set;} //TRUE  if wrapper represents projected stage,
+        public Integer stageNumber {get;set;}
+        public String name {get;set;}
+        public Boolean isProjected {get;set;} //TRUE  if wrapper represents projected stage,
                                                        //FALSE if wrapper represents completed stage
 
-        public Boolean b_is_stage_selectable {
+        public Boolean disabled {
             get;
             set{
-                b_is_stage_selectable = value;
+                disabled = value;
                 calculateCSS();
             }
         }
-        public boolean b_is_stage_selected {
+        public Boolean selectable {
             get;
             set{
-                System.debug('### stage ' + s_stage_name + ' selected: ' + value);
-                b_is_stage_selected = value;
+                selectable = value;
+                calculateCSS();
+            }
+        }
+        public Boolean selected {
+            get;
+            set{
+                System.debug('### stage ' + name + ' selected: ' + value);
+                selected = value;
                 calculateCSS();
             }
         }
 
-        public String s_css_class_name {get;set;}
-        public Integer i_stage_percentage {get;set;}
+        public String cssClass {get;set;}
+        public Integer percentValue {get;set;}
 
-        public Stage(Boolean is_projected, Integer stage_number, String stage_name, Integer stage_percentage, Boolean is_selectable, boolean is_complete ){
-            b_is_stage_projected = is_projected;
-            i_stage_number = stage_number;
-            s_stage_name = stage_name;
-            b_is_stage_selectable = is_selectable;
-            b_is_stage_selected = is_complete;
-            i_stage_percentage = stage_percentage;
-
+        public Stage(Boolean is_projected, Integer stage_number, String stage_name, Integer stage_percentage, Boolean is_selectable, boolean is_complete, boolean past_fy ){
+            isProjected = is_projected;
+            stageNumber = stage_number;
+            name = stage_name;
+            selectable = is_selectable;
+            selected = is_complete;
+            percentValue = stage_percentage;
+            disabled = past_fy;
         }
 
         private void calculateCSS() {
             
-            if (b_is_stage_projected) { //CSS styles for projected chevrons
-                if (b_is_stage_selectable != null && b_is_stage_selected != null && b_is_stage_selectable && b_is_stage_selected) {
-                    s_css_class_name = CSS_PROJECTED_PROJECTED;
+            if (isProjected) { //CSS styles for projected chevrons
+                if (disabled != null && selected != null && !disabled && selected) {
+                    cssClass = CSS_PROJECTED_GREEN;
                 } else {
-                    s_css_class_name = CSS_PROJECTED_NOT_PROJECTED;
+                    cssClass = CSS_PROJECTED_GREY;
                 }
             } else { //CSS styles for completed chevrons
-                if (b_is_stage_selectable != null && !b_is_stage_selectable) {
-                    s_css_class_name = CSS_COMPLETED_PROGRESS_NOT_STARTED;
-                } else if (b_is_stage_selectable != null && b_is_stage_selected != null && b_is_stage_selectable && !b_is_stage_selected) {
-                    s_css_class_name = CSS_COMPLETED_PROGRESS_STARTED;
-                } else if (b_is_stage_selectable != null && b_is_stage_selected != null && b_is_stage_selectable && b_is_stage_selected) {
-                    s_css_class_name = CSS_COMPLETED_PROGRESS_COMPLETED;
+                if (disabled != null && disabled) {
+                    cssClass = CSS_COMPLETED_GREY;
+                } else if (selected != null && !selected) {
+                    cssClass = CSS_COMPLETED_YELLOW;
+                } else if (selected != null && selected) {
+                    cssClass = CSS_COMPLETED_GREEN;
                 }
             }
         }

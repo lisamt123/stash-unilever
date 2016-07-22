@@ -28,10 +28,10 @@ private class Oblix_CampaignStageLogic_Test {
             Test.stopTest();
 
             for (Integer i = 1; i < 6; i++) {
-                System.assertEquals(true, ctrl.projected_stages.get(i).b_is_stage_selectable);
-                System.assertEquals(true, ctrl.projected_stages.get(i).b_is_stage_selected);
-                System.assertEquals(true, ctrl.completed_stages.get(i).b_is_stage_selectable);
-                System.assertEquals(false, ctrl.completed_stages.get(i).b_is_stage_selected);
+                System.assertEquals(true, ctrl.projected_stages.get(i).selectable);
+                System.assertEquals(true, ctrl.projected_stages.get(i).selected);
+                System.assertEquals(true, ctrl.completed_stages.get(i).selectable);
+                System.assertEquals(false, ctrl.completed_stages.get(i).selected);
             }
             
         }
@@ -44,8 +44,8 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
-            project.Stage_Completed_CFY__c = BRIEFING;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Completed_Stage_CFY__c = BRIEFING;
             update project;
 
             Test.startTest();
@@ -67,8 +67,8 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
-            project.Stage_Completed_CFY__c = BRIEFING;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Completed_Stage_CFY__c = BRIEFING;
             update project;
 
             Test.startTest();
@@ -79,29 +79,29 @@ private class Oblix_CampaignStageLogic_Test {
 
             //Test: all projected stages are selectable
             for (Integer i = 1; i < 6; i++) {
-                System.assertEquals(true, ctrl.projected_stages.get(i).b_is_stage_selectable);
+                System.assertEquals(true, ctrl.projected_stages.get(i).selectable);
             }
 
             //Test: only some comepleted stages are selectable
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selectable); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selectable);//FALSE
-            System.assertEquals(true, ctrl.completed_stages.get(5).b_is_stage_selectable); //TRUE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selectable); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selectable);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(5).selectable); //TRUE
 
             //Test: only some projected stages are selected
-            System.assertEquals(true, ctrl.projected_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.projected_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(true, ctrl.projected_stages.get(5).b_is_stage_selected); //TRUE
+            System.assertEquals(true, ctrl.projected_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.projected_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(4).selected);//FALSE
+            System.assertEquals(true, ctrl.projected_stages.get(5).selected); //TRUE
 
             //Test: only some completed stages are selected
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(5).b_is_stage_selected);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(5).selected);//FALSE
             
         }
     }
@@ -114,8 +114,8 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
-            project.Stage_Completed_CFY__c = BRIEFING;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Completed_Stage_CFY__c = BRIEFING;
             update project;
 
             Test.startTest();
@@ -132,29 +132,29 @@ private class Oblix_CampaignStageLogic_Test {
 
             //Test: all projected stages are selectable
             for (Integer i = 1; i < 6; i++) {
-                System.assertEquals(false, ctrl.projected_stages.get(i).b_is_stage_selectable);
+                System.assertEquals(false, ctrl.projected_stages.get(i).selectable);
             }
 
             //Test: only some comepleted stages are selectable
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selectable); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selectable);//FALSE
-            System.assertEquals(true, ctrl.completed_stages.get(5).b_is_stage_selectable); //TRUE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selectable); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selectable);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(5).selectable); //TRUE
 
             //Test: only some projected stages are selected
-            System.assertEquals(true, ctrl.projected_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.projected_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(true, ctrl.projected_stages.get(5).b_is_stage_selected); //TRUE
+            System.assertEquals(true, ctrl.projected_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.projected_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(4).selected);//FALSE
+            System.assertEquals(true, ctrl.projected_stages.get(5).selected); //TRUE
 
             //Test: only some completed stages are selected
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(5).b_is_stage_selected);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(5).selected);//FALSE
             
         }
     }
@@ -167,8 +167,8 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
-            project.Stage_Completed_CFY__c = BRIEFING;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Completed_Stage_CFY__c = BRIEFING;
             update project;
 
             Oblix_CampaignStageLogic ctrl = new Oblix_CampaignStageLogic(project.id, true, true);
@@ -179,29 +179,29 @@ private class Oblix_CampaignStageLogic_Test {
 
             //Test: all projected stages are selectable
             for (Integer i = 1; i < 6; i++) {
-                System.assertEquals(true, ctrl.projected_stages.get(i).b_is_stage_selectable);
+                System.assertEquals(true, ctrl.projected_stages.get(i).selectable);
             }
 
             //Test: only some comepleted stages are selectable
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selectable); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selectable);//FALSE
-            System.assertEquals(true, ctrl.completed_stages.get(5).b_is_stage_selectable); //TRUE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selectable); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selectable);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(5).selectable); //TRUE
 
             //Test: only some projected stages are selected
-            System.assertEquals(true, ctrl.projected_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.projected_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(true, ctrl.projected_stages.get(5).b_is_stage_selected); //TRUE
+            System.assertEquals(true, ctrl.projected_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.projected_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(4).selected);//FALSE
+            System.assertEquals(true, ctrl.projected_stages.get(5).selected); //TRUE
 
             //Test: only some completed stages are selected
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(5).b_is_stage_selected);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(5).selected);//FALSE
 
             Test.startTest();
 
@@ -209,17 +209,17 @@ private class Oblix_CampaignStageLogic_Test {
             componentController.s_projection_stage = 'Creative Execution';
             componentController.setProjectedStageIdentifier();
             
-            System.assertEquals(true, ctrl.projected_stages.get(4).b_is_stage_selected);
-            System.assertEquals(true, ctrl.completed_stages.get(4).b_is_stage_selectable);
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selected);
+            System.assertEquals(true, ctrl.projected_stages.get(4).selected);
+            System.assertEquals(true, ctrl.completed_stages.get(4).selectable);
+            System.assertEquals(false, ctrl.completed_stages.get(4).selected);
 
             //Deselect Stage 5
             componentController.s_projection_stage = 'Production';
             componentController.setProjectedStageIdentifier();
             
-            System.assertEquals(false, ctrl.projected_stages.get(5).b_is_stage_selected);
-            System.assertEquals(false, ctrl.completed_stages.get(5).b_is_stage_selectable);
-            System.assertEquals(false, ctrl.completed_stages.get(5).b_is_stage_selected);
+            System.assertEquals(false, ctrl.projected_stages.get(5).selected);
+            System.assertEquals(false, ctrl.completed_stages.get(5).selectable);
+            System.assertEquals(false, ctrl.completed_stages.get(5).selected);
 
             Test.stopTest();
             
@@ -234,8 +234,8 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
-            project.Stage_Completed_CFY__c = BRIEFING;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Completed_Stage_CFY__c = BRIEFING;
             update project;
 
             Oblix_CampaignStageLogic ctrl = new Oblix_CampaignStageLogic(project.id, true, true);
@@ -246,29 +246,29 @@ private class Oblix_CampaignStageLogic_Test {
 
             //Test: all projected stages are selectable
             for (Integer i = 1; i < 6; i++) {
-                System.assertEquals(true, ctrl.projected_stages.get(i).b_is_stage_selectable);
+                System.assertEquals(true, ctrl.projected_stages.get(i).selectable);
             }
 
             //Test: only some comepleted stages are selectable
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selectable); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selectable);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selectable);//FALSE
-            System.assertEquals(true, ctrl.completed_stages.get(5).b_is_stage_selectable); //TRUE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selectable); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selectable);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selectable);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(5).selectable); //TRUE
 
             //Test: only some projected stages are selected
-            System.assertEquals(true, ctrl.projected_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.projected_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.projected_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(true, ctrl.projected_stages.get(5).b_is_stage_selected); //TRUE
+            System.assertEquals(true, ctrl.projected_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.projected_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.projected_stages.get(4).selected);//FALSE
+            System.assertEquals(true, ctrl.projected_stages.get(5).selected); //TRUE
 
             //Test: only some completed stages are selected
-            System.assertEquals(true, ctrl.completed_stages.get(1).b_is_stage_selected); //TRUE
-            System.assertEquals(false, ctrl.completed_stages.get(2).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(3).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selected);//FALSE
-            System.assertEquals(false, ctrl.completed_stages.get(5).b_is_stage_selected);//FALSE
+            System.assertEquals(true, ctrl.completed_stages.get(1).selected); //TRUE
+            System.assertEquals(false, ctrl.completed_stages.get(2).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(3).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(4).selected);//FALSE
+            System.assertEquals(false, ctrl.completed_stages.get(5).selected);//FALSE
 
             Test.startTest();
 
@@ -276,13 +276,13 @@ private class Oblix_CampaignStageLogic_Test {
             componentController.s_completion_stage = 'Production';
             componentController.setCompletionStageIdentifier();
             
-            System.assertEquals(true, ctrl.completed_stages.get(5).b_is_stage_selected);
+            System.assertEquals(true, ctrl.completed_stages.get(5).selected);
 
             //Deselect Stage 1
             componentController.s_completion_stage = BRIEFING;
             componentController.setCompletionStageIdentifier();
             
-            System.assertEquals(false, ctrl.completed_stages.get(1).b_is_stage_selected);
+            System.assertEquals(false, ctrl.completed_stages.get(1).selected);
 
             Test.stopTest();
             

@@ -1,182 +1,155 @@
+<!--  
+   *************************************************************************
+   *@Description:This page is used to perform controller review
+   *@Author: Cognizant
+   *@Created Date: 25/07/2014 
+   *************************************************************************
+   -->
 <apex:page standardController="AF_Brand_Estimate__c" extensions="AF_AgencyReviewCommentsExtension" showHeader="false">
-<apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
-<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
-<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
-   
-<!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
-<!-- Common_Style File End -->
-
-<!-- Bootstrap_css File Start -->
-    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
-<!-- Bootstrap_css File End --> 
-
-<!-- jquery library Start-->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
-<!-- jquery library End--> 
-
-<!-- Bootstrap_Js File start-->
-     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
-<!--Bootstrap Js File End -->
-<style>
-   #iframe_cont
-{
-    width:100%;
-}
-.modal-body
-{
-    height: 93%;
-} 
-.modal-body #iframe_cont
-{
-   height:100%;
-}
-.modal-dialog
-{
-  width:85% !important;
-  height:95% !important;
-  margin-top:8px;
-}
-.modal-content
-{
-  height:102%;
-}
-</style>
-  
+   <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
+   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
+   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
+   <!-- Common_Style File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+   <!-- Common_Style File End -->
+   <!-- Bootstrap_css File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
+   <!-- Bootstrap_css File End --> 
+   <!-- jquery library Start-->
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
+   <!-- jquery library End--> 
+   <!-- Bootstrap_Js File start-->
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
+   <!--Bootstrap Js File End -->
+   <style>
+      #iframe_cont
+      {
+      width:100%;
+      }
+      .modal-body
+      {
+      height: 93%;
+      } 
+      .modal-body #iframe_cont
+      {
+      height:100%;
+      }
+      .modal-dialog
+      {
+      width:85% !important;
+      height:95% !important;
+      margin-top:8px;
+      }
+      .modal-content
+      {
+      height:102%;
+      }
+   </style>
    <script>
-        var $ = jQuery.noConflict();
-        function btnClick() {           
-            $('input[id*=confirmBtn]').attr('value','Saving...');
-            $('input[id*=confirmBtn]').attr('class','btnDisabled');
-            callSave();
-        }
-        
-        function btnComplete(){
-            $('input[id*=confirmBtn]').attr('value','Save');
-            $('input[id*=confirmBtn]').attr('class','save_btn');
-            return true;
-        }
-        
-   function callclosepopup(){
-    CallClose();
-   } 
-    
-    </script> 
-    <div class="AF_ControllerReview">
-    <div id="test">
-    </div>
-    
-    <apex:form >
-    <div class="row">           
-        <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" styleClass="helpimg"/>            
-        </div>          
-    </div>
-     <div class="heading_main">
-     <!--  <h1 class="heading_text"> 'Double click to add/modify comments'</h1> -->
-      <h1 class="heading_text"> Reviews</h1>
-      
+      var $ = jQuery.noConflict();
+      function btnClick() {           
+          $('input[id*=confirmBtn]').attr('value','Saving...');
+          $('input[id*=confirmBtn]').attr('class','btnDisabled');
+          callSave();
+      }
+      function btnComplete(){
+          $('input[id*=confirmBtn]').attr('value','Save');
+          $('input[id*=confirmBtn]').attr('class','save_btn');
+          return true;
+      }
+      function callclosepopup(){
+      CallClose();
+      } 
+   </script> 
+   <div class="AF_ControllerReview">
+      <div id="test">
       </div>
-      <apex:pageBlock id="blockrefersh">
-      <apex:pageMessages id="pm1"></apex:pageMessages> 
-      
-     
-     
-        <apex:pageBlockTable value="{!brandEstimate.Controller_Reviews__r}" var="review" styleClass="reviewGrid" rowClasses="even,odd">
-            <apex:column headerValue="{!$ObjectType.AF_Controller_Review__c.fields.Controller_Group__c.label}" width="30%">
-                <apex:outputField value="{!review.Controller_Group__c}"/>
-            </apex:column>
-            <apex:column headerValue="{!$ObjectType.AF_Controller_Review__c.fields.AF_Comment__c.label}" width="74%" >
-                <apex:outputPanel id="Test" >
-                    <apex:outputPanel rendered="{!review.Review_Completed__c}" >
-                         <apex:outputField value="{!review.AF_Comment__c}" style="{!If(review.Review_Completed__c,'color:gray;','')}">
-                            <!-- <apex:inlineEditSupport event="ondblclick" showOnEdit="update"/> -->
-                        </apex:outputField> 
-                    </apex:outputPanel>
-                    <apex:inputField value="{!review.AF_Comment__c}" style="{!If(review.Review_Completed__c,'display:none;','width:550px;')}">
-                    </apex:inputField>
-                </apex:outputPanel>
-            </apex:column>
-            <apex:column headerValue="{!$ObjectType.AF_Controller_Review__c.fields.Review_Completed__c.label}" width="1%" styleClass="textAlignC">
-                <apex:inputCheckbox value="{!review.Review_Completed__c}" disabled="{!checkReview}" styleClass="reviewCheckbox">
-                    <apex:actionSupport event="onchange" rerender="Test" />
-                </apex:inputCheckbox>
-                <!--<apex:outputField value="{!review.Review_Completed__c}">
-                    <apex:inlineEditSupport event="ondblclick" showOnEdit="update"/>
-                </apex:outputField> -->
-            </apex:column>
-            
+      <apex:form >
+         <div class="row">
+            <div class="col-lg-12 charttable1">
+               <apex:image url="{!$Resource.header_new}" styleClass="helpimg"/>
+            </div>
+         </div>
+         <div class="heading_main">
+            <h1 class="heading_text">{!$Label.AF_Reviews}</h1>
+         </div>
+         <apex:pageBlock id="blockrefersh">
+            <apex:pageMessages id="pm1"></apex:pageMessages>
+            <apex:pageBlockTable value="{!brandEstimate.Controller_Reviews__r}" var="review" styleClass="reviewGrid" rowClasses="even,odd">
+               <apex:column headerValue="{!$ObjectType.AF_Controller_Review__c.fields.Controller_Group__c.label}" width="30%">
+                  <apex:outputField value="{!review.Controller_Group__c}"/>
+               </apex:column>
+               <apex:column headerValue="{!$ObjectType.AF_Controller_Review__c.fields.AF_Comment__c.label}" width="74%" >
+                  <apex:outputPanel id="Test" >
+                     <apex:outputPanel rendered="{!review.Review_Completed__c}" >
+                        <apex:outputField value="{!review.AF_Comment__c}" style="{!If(review.Review_Completed__c,'color:gray;','')}">
+                        </apex:outputField>
+                     </apex:outputPanel>
+                     <apex:inputField value="{!review.AF_Comment__c}" style="{!If(review.Review_Completed__c,'display:none;','width:550px;')}">
+                     </apex:inputField>
+                  </apex:outputPanel>
+               </apex:column>
+               <apex:column headerValue="{!$ObjectType.AF_Controller_Review__c.fields.Review_Completed__c.label}" width="1%" styleClass="textAlignC">
+                  <apex:inputCheckbox value="{!review.Review_Completed__c}" disabled="{!checkReview}" styleClass="reviewCheckbox">
+                     <apex:actionSupport event="onchange" rerender="Test" />
+                  </apex:inputCheckbox>
+               </apex:column>
             </apex:pageBlockTable>
-            
-        <apex:commandButton id="update" action="{!saveControllerReview}" value="Save" styleClass="save_btn_review" reRender="blockrefersh,pm1"/>
-        
-    </apex:pageBlock> 
-    <c:AF_FieldHistoryComp ParentRecordValue="{!controllerReviewId}" IsViewAllValue="false"  ParentObjectName="AF_Controller_Review__c"/> 
-    <apex:pageMessages />
-    </apex:form>
-    
-    
-    
-        <!-- Bootstrap bootstrap modal window Start -->    
-<div class="model_container">
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
-           </div>
-         <div class="modal-body">
-              <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
-              <div id="loader_cont">
-                
-              </div>
-              <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+            <apex:commandButton id="update" action="{!saveControllerReview}" value="Save" styleClass="save_btn_review" reRender="blockrefersh,pm1"/>
+         </apex:pageBlock>
+         <c:AF_FieldHistoryComp ParentRecordValue="{!controllerReviewId}" IsViewAllValue="false"  ParentObjectName="AF_Controller_Review__c"/>
+         <apex:pageMessages />
+      </apex:form>
+      <!-- Bootstrap bootstrap modal window Start -->    
+      <div class="model_container">
+         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                     <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+                     <div id="loader_cont">
+                     </div>
+                     <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+                  </div>
+               </div>
+               <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
          </div>
-         <!--
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-         </div>
-         -->
-        </div><!-- /.modal-content -->
-     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div> 
-<!-- Bootstrap bootstrap modal window End -->
-
-    </div>
-    
-
-
-<!-- Bootstrap bootstrap modal window methods  Start-->
-<script>
-$(document).ready(function(){
- $(document).on('click','.modalButton3', function(e) {
-    $("#iframe_cont").contents().find("body").html('');
-    var src = $(this).attr('data-src');
-    var height = $(this).attr('data-height') || 300;
-    var width = $(this).attr('data-width') || 600;
-    
-    $("#myModal3 iframe").attr({'src':src,
-                        'height': height,
-                        'width': width});                                  
-});
-});
+         <!-- /.modal -->
+      </div>
+      <!-- Bootstrap bootstrap modal window End -->
+   </div>
+   <!-- Bootstrap bootstrap modal window methods  Start-->
+   <script>
+      $(document).ready(function(){
+       $(document).on('click','.modalButton3', function(e) {
+          $("#iframe_cont").contents().find("body").html('');
+          var src = $(this).attr('data-src');
+          var height = $(this).attr('data-height') || 300;
+          var width = $(this).attr('data-width') || 600;
+          $("#myModal3 iframe").attr({'src':src,
+                              'height': height,
+                              'width': width});                                  
+      });
+      });
+         
    </script>
-<!-- Bootstrap bootstrap modal window methods End-->
-<!-- Bootstrap bootstrap modal window loading_img methods Start-->
-<script> 
-    $(document).ready(function () {
-        $('#iframe_cont').on('load', function () {
-         $('#loader_cont, .loading_img').show();
-            console.log("madhu");
-            $('#loader_cont, .loading_img').delay(1000).hide(0);
-            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
-        });
-    });   
-</script>
-<!-- Bootstrap bootstrap modal window loading_img methods End--> 
+   <!-- Bootstrap bootstrap modal window methods End-->
+   <!-- Bootstrap bootstrap modal window loading_img methods Start-->
+   <script> 
+      $(document).ready(function () {
+          $('#iframe_cont').on('load', function () {
+           $('#loader_cont, .loading_img').show();
+              console.log("madhu");
+              $('#loader_cont, .loading_img').delay(1000).hide(0);
+          });
+      });   
+   </script>
+   <!-- Bootstrap bootstrap modal window loading_img methods End--> 
 </apex:page>

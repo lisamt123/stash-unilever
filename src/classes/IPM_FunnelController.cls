@@ -5,9 +5,9 @@
 public with sharing class IPM_FunnelController 
 {
     public IPM_Project__c ipmProject {get;set;}
-	public Integer currentProjectPhaseSeq{get; set;}
-	
-	// Array of Phases for that particular project.	
+    public Integer currentProjectPhaseSeq{get; set;}
+    
+    // Array of Phases for that particular project. 
     public String[] getAssociatedProjectPhases()
     {
         IPM_ProjectMetadata__c projectMetadata = IPM_Utils.getPhasesBasedOnProjectType(ipmProject);
@@ -15,12 +15,12 @@ public with sharing class IPM_FunnelController
         
         if(projectMetadata !=null)
         {
-        	phaseSequenceString = projectMetadata.IPM_Applicable_Phases__c;
-        	return phaseSequenceString.split(IPM_ConstantUtils.COMMA);
+            phaseSequenceString = projectMetadata.IPM_Applicable_Phases__c;
+            return phaseSequenceString.split(IPM_ConstantUtils.COMMA);
         }
         else
         {
-        	return IPM_ConstantUtils.DEFAULT_PHASE_SEQ;
+            return IPM_ConstantUtils.DEFAULT_PHASE_SEQ;
         }
     }
 }

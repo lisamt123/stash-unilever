@@ -9,14 +9,16 @@ src/classes/WU_CreateCapacityDetails_Test.cls
 src/classes/WU_CreateCapacityDetails_Test.cls-meta.xml
 src/classes/WU_MultiCreateMultiEdit_Test.cls
 src/classes/WU_MultiCreateMultiEdit_Test.cls-meta.xml
+src/classes/WU_MultiCreateMultiEdit3.cls
+src/classes/WU_MultiCreateMultiEdit3.cls-meta.xml
+src/classes/WU_MultiCreateMultiEdit3_Test.cls
+src/classes/WU_MultiCreateMultiEdit3_Test.cls-meta.xml
 src/classes/WU_SetCurrentMonthBatch_Scheduler_Test.cls
 src/classes/WU_SetCurrentMonthBatch_Scheduler_Test.cls-meta.xml
 src/classes/WU_SetCurrentMonthBatch_Test.cls
 src/classes/WU_SetCurrentMonthBatch_Test.cls-meta.xml
 src/classes/WU_WarehouseSearchController_test.cls
 src/classes/WU_WarehouseSearchController_test.cls-meta.xml
-src/classes/WU_MultiCreateMultiEdit.cls
-src/classes/WU_MultiCreateMultiEdit.cls-meta.xml
 src/classes/WU_SetCurrentMonthBatch.cls
 src/classes/WU_SetCurrentMonthBatch.cls-meta.xml
 src/classes/WU_SetCurrentMonthBatch_Scheduler.cls
@@ -31,6 +33,8 @@ src/classes/WU_UpdateMasterWarehouseHandler.cls
 src/classes/WU_UpdateMasterWarehouseHandler.cls-meta.xml
 src/classes/WU_WarehouseSearchController.cls
 src/classes/WU_WarehouseSearchController.cls-meta.xml
+src/classes/WU_warehousUtility.cls
+src/classes/WU_warehousUtility.cls-meta.xml
 src/email
 src/email/Warehouse_Utilization
 src/email/Warehouse_Utilization/Capacity_Verification_Required.email
@@ -85,8 +89,6 @@ src/workflows/WU_Master_Warehouse__c.workflow
 src/workflows/WU_Warehouse_Capacity_Detail__c.workflow
 src/flows
 src/flows/WU_MasterWarehouseUpdationChanges-4.flow
-src/profiles
-src/profiles/Admin.profile
 src/dashboards
 src/dashboards/WU_Warehouse_Excellence_Team
 src/dashboards/WU_Warehouse_Excellence_Team/Home_Page_for_warehouse_excellence_Team.dashboard

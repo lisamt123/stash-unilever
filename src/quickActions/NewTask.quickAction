@@ -39,4 +39,5 @@
     <standardLabel>New</standardLabel>
     <targetObject>Task</targetObject>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

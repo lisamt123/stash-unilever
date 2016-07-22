@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-	Please update to list the components which are required to be removed
-	//-->
-<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+<Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
-		<members>Core_NC_Test_NewsApp</members>
-        <name>ApexClass</name>
-    </types>
+	<members>af_usersearch</members>
+		<members>af_SendCurrencyReminder</members>
+		<members>AFBrandEstimateStCtrlExtSummary</members>
+		<members>checkRecursive</members>
+		<members>checkRecursiveBonusQuarterly</members>
+		<members>checkRecursivePOReport</members>
+		<members>AgencyHomePageController</members>
+		<name>ApexClass</name>	
+    </types> 
+	<types>
+		<members>Ideas</members>
+		<name>CustomTab</name>
+	</types>
 </Package>

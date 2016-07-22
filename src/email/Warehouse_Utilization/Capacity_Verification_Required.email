@@ -1,14 +1,13 @@
 Dear {!WU_Master_Warehouse__c.OwnerFullName}
 
-Please be informed of the current warehouse utilization  exceeds 80% for the following Warehouse.
+Please be informed of the Average Pallet utilization exceeds 80% for the following Warehouse.
 
-Warehouse Code : {!WU_Master_Warehouse__c.WU_SAPCode_s__c}
-Warehouse Name :  {!WU_Master_Warehouse__c.WU_SAPName_s__c}
-Current Week : {!WU_Master_Warehouse__c.WU_FromDate__c} To  {!WU_Master_Warehouse__c.WU_ToDate__c}
+Warehouse SAP Code : {!WU_Master_Warehouse__c.WU_SAPCode_s__c}
+Location Name  :  {!WU_Master_Warehouse__c.WU_LocationName__c}
+Current Utilization Window : {!WU_Master_Warehouse__c.WU_FromDate__c} To  {!WU_Master_Warehouse__c.WU_ToDate__c}
 
 Warehouse Utilization Details :
-Current Utilization /Week (%)  :  {!WU_Master_Warehouse__c.WU_Warehouse_Capacity__c}
-Average Utilization /Month (%)  : {!WU_Master_Warehouse__c.WU_AverageUtilization__c}
+Average Pallet Utilization (%)  :  {!WU_Master_Warehouse__c.WU_Average_Current_Utilization__c}
 
 You can view the warehouse details using below link:
 {!WU_Master_Warehouse__c.Link} 

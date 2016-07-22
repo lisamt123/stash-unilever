@@ -8,11 +8,11 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
     /**
      * List<Training_Track__Share> toAdd list of sharings to be added
      */
-    List<Almond__Training_Track__Share> toAdd    = new List<Almond__Training_Track__Share>();
+    List<PBS_Training_Track__Share> toAdd    = new List<PBS_Training_Track__Share>();
     /**
      * List<Training_Track__Share> toAdd list of sharings to be removed
      */
-    List<Almond__Training_Track__Share> toRemove = new List<Almond__Training_Track__Share>();
+    List<PBS_Training_Track__Share> toRemove = new List<PBS_Training_Track__Share>();
 
     /**
      * This method is called prior to execution of a BEFORE trigger.
@@ -85,6 +85,7 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
         // check if new sharings should be created
         PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
         toAdd.addAll(serviceClass.getNewSharingForProfile((PBS_Profile__c) so));
+       
     }
 
     /**
@@ -102,6 +103,7 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
             PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
             toAdd.addAll(serviceClass.getNewSharingForProfile(obj));
             toRemove.addAll(serviceClass.getExistingSharingForProfile(oldObj));
+            
         }
     }
 

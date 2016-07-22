@@ -58,8 +58,13 @@ public with sharing class Oblix_AddAssetPageHelper {
             map_campaign_for_calculator = 
             	new Map<Id, Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)(
             		[SELECT 
+                        Financial_Year__c,
             			Financial_Year__r.Financial_Year__c, 
             			Financial_Year__r.Name,
+                        Financial_Year__r.SOW_Status__c,
+                        Campaign_PFY__c, 
+                        Campaign_PFY__r.Financial_Year__r.SOW_Status__c,
+                        Campaign_Status__c,
             			Brand_Led_Growth__c, 
             			Project_Scale_1__c, 
             			Project_Scale_2__c, 
@@ -71,6 +76,8 @@ public with sharing class Oblix_AddAssetPageHelper {
             			Name, 
             			Campaign_Hub_Summary__c, 
             			OblixProjectSplitPercentage_Comment__c, 
+                        Percentage_of_Fees_PFY__c,
+                        Fees_PFY_Paid_Using_CFY_Calc__c,
             			(
             				SELECT 
 	            				Id, 
@@ -98,7 +105,9 @@ public with sharing class Oblix_AddAssetPageHelper {
             			WHERE Id = :projectId]
             	)
             );
-            recalculateBasket();
+            if (map_campaign_for_calculator.keySet().size()>0){
+                recalculateBasket();
+            }
         }
         map_assets_in_basket_json = JSON.serialize(map_assets_in_basket);
 
@@ -208,6 +217,7 @@ public with sharing class Oblix_AddAssetPageHelper {
 
 
 	public void addAssetToBasket() {
+        Integer initialItemCount = list_order_added.size();
         try {
     		Oblix_AssetOfferingWrapper.AssetWrapper asset_to_add_to_basket = 
     			Oblix_AssetOfferingWrapper.initialiseAssetWrapper(projectId,
@@ -231,7 +241,9 @@ public with sharing class Oblix_AddAssetPageHelper {
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Failed to add asset to basket: ' + e.getMessage()));
 
             //Revert all changes to in-memory basket
-            list_order_added.remove(list_order_added.size()-1);
+            if (list_order_added.size() > initialItemCount) {
+                list_order_added.remove(list_order_added.size()-1);
+            }
             map_assets_in_basket.remove(selectedAssetMDMId);
             applySortToBasket(null);
             map_assets_in_basket_json = JSON.serialize(map_assets_in_basket);
@@ -276,9 +288,12 @@ public with sharing class Oblix_AddAssetPageHelper {
 
 	public void removeAssetFromBasket() {
 
-        Oblix_AssetOfferingWrapper.AssetWrapper oldAsset = map_assets_in_basket.get(selectedAssetMDMId);
+        Oblix_AssetOfferingWrapper.AssetWrapper oldAsset;
+        List<String> list_order_added_BCKP = list_order_added.clone();
 
         try {
+            oldAsset = map_assets_in_basket.get(selectedAssetMDMId); 
+
             Oblix_AssetOfferingWrapper.AssetWrapper removedItem = map_assets_in_basket.remove(selectedAssetMDMId);
             applySortToBasket(removedItem.mdm_id);
             
@@ -293,6 +308,9 @@ public with sharing class Oblix_AddAssetPageHelper {
             //Revert all changes to in-memory basket
             if (oldAsset != null) {
                 map_assets_in_basket.put(selectedAssetMDMId, oldAsset);
+                if (list_order_added_BCKP != null) {
+                    list_order_added = list_order_added_BCKP;
+                }
                 applySortToBasket(null);
                 map_assets_in_basket_json = JSON.serialize(map_assets_in_basket);
 
@@ -311,10 +329,11 @@ public with sharing class Oblix_AddAssetPageHelper {
         project_in_scope = map_campaign_for_calculator.get(projectId);
         Map<Id, Long> map_total_project_fee = Oblix_CalculatorLogic.getCampaignFee(
         	new Map<Id, Oblix_SOW_Projects__c>{projectId => map_campaign_for_calculator.get(projectId)}, 
-        	map_assets_in_basket.values(), 
-        	false, 
-        	true, 
-        	true
+            map_assets_in_basket.values(), 
+            false, 
+            true, 
+            true,
+            Oblix_Utils.TOTAL_PROJECT_SCORE_CFY_FILED
         );
 
         basket_total_fee = map_total_project_fee.get(projectId);
@@ -327,7 +346,7 @@ public with sharing class Oblix_AddAssetPageHelper {
         }
 
         // calculate fees for this financial year depending on the percentage
-        total_fees_this_FY = Oblix_CampaignStageLogic.calculateFeesForThisFY(project_in_scope.Percentage_of_Fee_for_this_FY__c, basket_total_fee);
+        total_fees_this_FY = Oblix_CampaignStageLogic.calculateFeesForThisFY(project_in_scope.Percentage_of_Fee_for_this_FY__c, basket_total_fee, project_in_scope.Percentage_of_Fees_PFY__c, project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c);
 
     }
 

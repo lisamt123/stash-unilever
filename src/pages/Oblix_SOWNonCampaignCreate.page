@@ -1,105 +1,84 @@
-<apex:page sidebar="false" controller="Oblix_SOWNonCampaignCreateController" docType="html-5.0" showHeader="false" standardStylesheets="true">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
-    <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
-    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
-    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
-    <script>
-        // this global variable is used from static resources
-        var sow_id = '{!marketing_SOW.Id}';
-    </script>
-    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWNonCampaignCreate.js')}" />
-    
-    <apex:form >
-        <head>
-            <title>SWOP : {!marketing_SOW.Name}</title>
-        </head>
+<apex:page sidebar="false" controller="Oblix_SOWNonCampaignCreateController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
+    <apex:composition template="Oblix_OuterPageTemplate">
+        <apex:define name="top_breadcrumb">
+            <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!helper.sow.Id}">{!helper.sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
+        </apex:define>
+        <apex:define name="header_text" />
 
+        <apex:define name="top_option_links" />
 
-        <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton,dedicatedSelectedRole,dedicatedRate,hours" action="{!refreshActivitySelection}" >
-        
-            <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
+        <apex:define name="top_right_panel">
+        </apex:define>
+        <apex:define name="body_content">
+
+        <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="other_pane, activity_resource_input_field_panel" action="{!helper.refreshActivitySelection}" >
         </apex:actionFunction>  
 
-        <apex:actionFunction oncomplete="$.unblockUI()" name="activityUpdate" reRender="other_pane" >
+        <apex:actionFunction action="{!addToWorkList}" oncomplete="$.unblockUI()" name="addToWorkList" reRender="activitySelectionTable, resourceSelectionTable,activity_resource_input_field_panel">
+            <apex:param name="campaignItem" assignTo="{!nonCampaignItemToAddJSON}" value="" />
         </apex:actionFunction>
 
-        <!-- <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton" >
-            <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
+
+        <apex:actionFunction action="{!helper.openBasketSection}" oncomplete="$.unblockUI()" name="openBasketSection" reRender="activitySelectionTable, resourceSelectionTable,resource_input_fields,activity_tabs, addResourceUpdateButton,activity_resource_input_field_panel">
+            <apex:param name="campaignItem" assignTo="{!helper.currentSection}" value="" />
         </apex:actionFunction>
 
-        <apex:actionFunction action="{!fillRoleTitle}" oncomplete="$.unblockUI()" name="RTupdate" reRender="selectedRole,dedicatedSelectedRole,rate,errMsg,addUpdateButton,addResourceUpdateButton" >
-            <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
+        <apex:actionFunction action="{!helper.openTab}" oncomplete="$.unblockUI()" name="openTab" reRender="activitySelectionTable, resourceSelectionTable,resource_input_fields,activity_tabs, addResourceUpdateButton,activity_resource_input_field_panel">
+            <apex:param name="campaignItem" assignTo="{!helper.currentTab}" value="" />
         </apex:actionFunction>
 
-        <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,dedicatedRate,hours,errMsg,addUpdateButton,addResourceUpdateButton" >
-            <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
-        </apex:actionFunction> -->       
-
-
-        <apex:actionFunction action="{!getAndSetActivitiesByName}" oncomplete="$.unblockUI()" name="getAndSetActivitiesByName" reRender="selectionTable,resource_input_fields,activity_tabs, addResourceUpdateButton,activity_resource_input_field_panel">
-            <apex:param name="campaignItem" assignTo="{!selectedName}" value="" />
-        </apex:actionFunction>
-        <apex:actionFunction action="{!addToActivitySelectionMap}" oncomplete="$.unblockUI()" name="addToActivitySelectionMap" reRender="selectionTable,activity_resource_input_field_panel">
-            <apex:param name="campaignItem" assignTo="{!seletedActivity}" value="" />
-            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
-        </apex:actionFunction>
-        <apex:actionFunction action="{!removeFromSelectionMap}" oncomplete="$.unblockUI()" name="removeFromSelectionMap" reRender="selectionTable,shoppingBasketPanel,campaignTotalPanel">
-            <apex:param name="selectedkey" assignTo="{!selectedkey}" value="" />
-            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
-        </apex:actionFunction>
-        <apex:actionFunction action="{!removeItemFromBasketList}" oncomplete="$.unblockUI()" name="removeItemFromBasketList" reRender="shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel,activity_resource_input_field_panel">
-            <apex:param name="basketItemToRemove" assignTo="{!basketItemToRemove}" value="" />
-        </apex:actionFunction>
-        <apex:actionFunction action="{!insertSelectedActivitiesAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedActivities" reRender="shoppingBasketPanel,selectionTable,campaignTotalPanel,shoppingBasketPanel" >
-            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
-        </apex:actionFunction>
-        <apex:actionFunction action="{!upsertSelectedResourceAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedResource" reRender="shoppingBasketPanel,selectionTable,campaignTotalPanel,shoppingBasketPanel, activity_resource_input_field_panel" />    
-
-        <apex:actionFunction action="{!setActivityInputFieldsForSelectedItem}" oncomplete="$.unblockUI()" name="setActivityInputFieldsForSelectedItem" reRender="activity_resource_input_field_panel">
-            <apex:param name="selected_activity" assignTo="{!selected_activity}" value="" />
-            <apex:param name="selected_country" assignTo="{!selected_country}"  value=""/>
-            <apex:param name="selected_agent_department" assignTo="{!selected_agent_department}"  value=""/>
-            <apex:param name="selected_other" assignTo="{!selected_other}" value="" />
-            <apex:param name="selected_role" assignTo="{!selected_role}" value="" />
-            <apex:param name="selected_hours" assignTo="{!selected_hours}" value="" />
-            <!--apex:param name="selected_hourly_rate" assignTo="{!selected_hourly_rate}" value="" /-->
-            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="true" /> -->
+        <apex:actionFunction action="{!saveWorkList}" oncomplete="$.unblockUI()" name="saveWorkList" reRender="activity_resource_input_field_panel,shoppingBasketPanel,activitySelectionTable, resourceSelectionTable,campaignTotalPanel,shoppingBasketPanel" >
         </apex:actionFunction>
 
-        <div class="Oblix_header_bkgd">
-            <header class="Oblix_header_panel">
-                <img alt="Unilever logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
-                <div class="header_divider_vertical"></div>
-                <div class="header_panel_text">
-                    <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <p><a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!marketing_SOW.Id}">{!marketing_SOW.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
-                    </p>
-                </div>
-                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
-                </apex:commandButton>
-                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
-                </apex:commandLink> 
-                <!--a target="_blank" href="/00O/o"><button class="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" >REPORTS</button></a-->
-            </header>
-        </div>
-        <div class="container SOW_body">
+        
+        <apex:actionFunction action="{!removeItem}" oncomplete="$.unblockUI()" name="removeItemAction" reRender="activity_resource_input_field_panel,shoppingBasketPanel,campaignTotalPanel">
+            <apex:param name="selectedkey" assignTo="{!helper.itemToRemove}" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction action="{!removeSection}" oncomplete="$.unblockUI()" name="removeSectionAction" reRender="shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel,activity_resource_input_field_panel">
+            <apex:param name="basketItemToRemove" assignTo="{!helper.sectionToRemove}" value="" />
+        </apex:actionFunction>
+
+        <apex:actionFunction action="{!openActivityForUpdate}" oncomplete="$.unblockUI()" name="openActivityForUpdate" reRender="activity_resource_input_field_panel">
+            <apex:param name="selected_activity" assignTo="{!helper.currentItemKey}" value="" />
+        </apex:actionFunction>
+
+        <apex:actionFunction action="{!openResourceForUpdate}" oncomplete="$.unblockUI()" name="openResourceForUpdate" reRender="activity_resource_input_field_panel">
+            <apex:param name="selected_activity" assignTo="{!helper.currentItemKey}" value="" />
+        </apex:actionFunction>
+        
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <h1 class="SOW_header_title">Add Non-Campaign Items to {!marketing_SOW.Name}</h1>
+                    <h1 class="SOW_header_title">Add Non-Campaign Items to {!helper.sow.Name}</h1>
                 </div>
                 <apex:outputPanel id="campaignTotalPanel">
                     <table class="SOW_header_value_summary">
                         <tr>
-                            <td class="SOW_header_value_title">Non Campaign Estimated Fee</td>
-                            
+                            <td class="SOW_header_value_title">SOW total (including risk adjustment)</td>
                             <td class="SOW_header_value">
-                                <h2>€<apex:outputText value="{0, number,###,###,##0}">
-                                        <apex:param value="{!campaignTotalValue}"/>
+                                <h2>
+                                    <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                        <apex:param value="{!selected_sow.Oblix_Current_FY_Total__c}" />
                                     </apex:outputText>
+                                    <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                 </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="SOW_header_value_subtitle">Campaign total</td>
+                            <td class="SOW_header_value_subvalue">
+                                <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                    <apex:param value="{!selected_sow.Total_Campaigns_This_FY__c}" />
+                                </apex:outputText>
+                                <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="SOW_header_value_subtitle">Non-campaign total</td>
+                            <td class="SOW_header_value_subvalue">
+                            <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                    <apex:param value="{!selected_sow.OblixTotalOtherItemsFees__c}" />
+                                </apex:outputText>
+                                <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                             </td>
                         </tr>
                     </table>
@@ -117,175 +96,285 @@
 
                     <div class="row">
                          <ul class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
-                            <li role="presentation" class="non_camp_tab_line_align {!if(selectedTab<>'dedicated resource','active','')}"><a href="#activity" data-toggle="tab">Add activity</a>
+                            <li role="presentation" class="non_camp_tab_line_align {!if(helper.activityTabSelected,'active','')}"><a href="#activity" data-toggle="tab" onClick="openTab('{!helper.ACTIVITY_DEV_NAME}');blockme();">Add activity</a>
                             </li>
-                            <li role="presentation" class="non_camp_tab_line_align {!if(selectedTab=='dedicated resource','active','')}"><a href="#resource" data-toggle="tab">Add dedicated resource</a>
+                            <li role="presentation" class="non_camp_tab_line_align {!if(helper.resourceTabSelected,'active','')}"><a href="#resource" data-toggle="tab" onClick="openTab('{!helper.RESOURCE_DEV_NAME}');blockme();">Add dedicated resource</a>
                             </li>
                         </ul> 
-                        <!--ul class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
-                            <li role="presentation" class="non_camp_tab_line_align active"><a href="#activity" data-toggle="tab">Add activity</a>
-                            </li>
-                            <li role="presentation" class="non_camp_tab_line_align"><a href="#resource" data-toggle="tab">Add dedicated resource</a>
-                            </li>
-                        </ul-->
                     </div>
                     </apex:outputPanel>
 
                     <apex:outputPanel id="activity_resource_input_field_panel">
-                    <div id="my-tab-content" class="tab-content">
-                        <div class="tab-pane {!if(selectedTab<>'dedicated resource','active','')}" id="activity">
-                    
-
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <p class="create_SOW_form_titles">Activity*</p>
-                                    <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="activityUpdate();blockme();" />
-                                    <!-- <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}" /> -->
-                                </div>
-                                <div class="col-lg-4">
-                                    <p class="create_SOW_form_titles">Country*</p>
-                                    <apex:selectList size="1" value="{!activity.selectedCountryname}" onchange="refreshActivitySelection('activity');blockme();" styleclass="investment_project_dropdowns_right" id="country">
-                                        <apex:selectOptions value="{!countries}" />
-                                    </apex:selectList>
-                                </div>
-                                <div class="col-lg-4">
-                                    <p class="create_SOW_form_titles">Agency department*</p>
-                                    <apex:selectList size="1" value="{!activity.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="agencyDepartment" onchange="refreshActivitySelection('activity');blockme();" disabled="{!IF(activity.agencyVisible==false,true,false)}" style="min-width:100%;">
-                                        <apex:selectOptions value="{!AgencyDepartments}" />
-                                    </apex:selectList>
-                                </div>
-                            </div>
-                            <apex:outputPanel id="other_pane"> 
-                                <apex:outputPanel id="otherInfoField" rendered="{!if(activity.nonCampaignItem.Activities__c == 'Other',true,false)}">
+                        <div id="my-tab-content" class="tab-content">
+                            <div class="tab-pane {!if(helper.activityTabSelected,'active','')}" id="activity">
+                                <apex:outputPanel rendered="{!NOT(is_agency_user)}">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <p class="non_campaign_other"><strong>Please describe "other" *</strong></p>
-                                            <apex:inputField styleClass="resource_name_box_align" value="{!activity.nonCampaignItem.name}" id="dedicatedResourceOther"  />
+                                            <p class="create_SOW_form_titles">Activity*</p>
+                                            <apex:inputField value="{!helper.currentActivity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="refreshActivitySelection();blockme();" />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <p class="create_SOW_form_titles">Country*</p>
+                                            <apex:selectList size="1" value="{!helper.currentActivity.selectedCountryname}" onchange="refreshActivitySelection();blockme();" styleclass="investment_project_dropdowns_right" id="country">
+                                                <apex:selectOptions value="{!helper.countries}" />
+                                            </apex:selectList>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <p class="create_SOW_form_titles">Agency department*</p>
+                                            <apex:selectList size="1" value="{!helper.currentActivity.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="agencyDepartment" onchange="refreshActivitySelection();blockme();" disabled="{!IF(helper.currentActivity.agencyVisible==false,true,false)}" style="min-width:100%;">
+                                                <apex:selectOptions value="{!helper.agencyDepartments}" />
+                                            </apex:selectList>
                                         </div>
                                     </div>
-                                </apex:outputPanel>
-                            </apex:outputPanel>
-                            <div class="row">
-                                <div class="col-lg-4 non_camp_dropdown_spacing">
-                                    <p class="create_SOW_form_titles">Role*</p>
-                                    <apex:selectList size="1" value="{!activity.selectedRole}" id="selectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(activity.roleVisible==false,true,false)}" onchange="refreshActivitySelection('activity');blockme();">
-                                        <apex:selectOptions value="{!agencyRoleTitle}" />
-                                    </apex:selectList>
-                                </div>
-                                <div class="col-lg-8 non-campaign_hourly_rate_section">
-                                    <p>Hourly rate €
-                                        <apex:outputText value="{0, number,###,###,##0}" id="rate">
-                                            <apex:param value="{!VALUE(activity.hourlyRate)}"/>
-                                        </apex:outputText>
-                                        <apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!activity.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(activity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" />
-                                        <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
-                                        <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
-                                        <apex:outputPanel id="addUpdateButton">
-                                            <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                            <apex:commandButton value="{!(IF(setUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setUpdateButton,'btn_update','btn_asset_add'))}" onclick="addToActivitySelection(); return false;" /> 
+                                    <apex:outputPanel id="other_pane"> 
+                                        <apex:outputPanel id="otherInfoField" rendered="{!if(helper.currentActivity.nonCampaignItem.Activities__c == 'Other',true,false)}">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="non_campaign_other"><strong>Please describe "other" *</strong></p>
+                                                    <apex:inputField styleClass="resource_name_box_align" value="{!helper.currentActivity.nonCampaignItem.name}" id="activityOtherName" onchange="refreshActivitySelection();blockme();" />
+                                                </div>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <div class="row">
+                                        <div class="col-lg-4 non_camp_description_spacing">
+                                            <p class="create_SOW_form_titles">Other info (optional)</p>
+                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" style="width: 100%;"/>
+                                        </div>
+                                        <div class="col-lg-4 non_camp_dropdown_spacing">
+                                            <p class="create_SOW_form_titles">Role*</p>
+                                            <apex:selectList size="1" value="{!helper.currentActivity.selectedRole}" id="selectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(helper.currentActivity.roleVisible==false,true,false)}" onchange="refreshActivitySelection();blockme();">
+                                                <apex:selectOptions value="{!helper.agencyRoleTitle}" />
+                                            </apex:selectList>
+                                        </div>
+                                        <div class="col-lg-4 non-campaign_hourly_rate_section">
+                                            <p>Hourly rate €
+                                                <apex:outputText value="{0, number,###,###,##0}" id="RoundedRate" rendered="{!can_see_financial_fields}">
+                                                    <apex:param value="{!VALUE(helper.currentActivity.hourlyRate)}"/>
+                                                </apex:outputText>
+                                                <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
+                                                <apex:outputText value="{!helper.currentActivity.hourlyRate}" id="rate" style="display:none;" rendered="{!can_see_financial_fields}"/>
+                                                <apex:outputText value="{!helper.currentActivity.hourlyRate}" id="hiddenRate" style="display:none;" rendered="{!can_see_financial_fields}"/>
+                                                
+                                                <!--<apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46"/>-->
+                                                <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/>
+                                                hours                                
+                                            </p>
+                                            <apex:outputPanel id="addUpdateButton">
+                                                <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                    <apex:commandButton value="{!(IF(helper.isUpdateActivity,'UPDATE','ADD'))}" styleClass="pull-right btn btn-primary btn_plus {!(IF(helper.isUpdateActivity,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(true);return false;" /> 
+                                                </apex:outputPanel> 
                                             </apex:outputPanel> 
-                                        </apex:outputPanel>                                  
-                                    </p>
-                                </div>
-                            </div>
-                            <apex:outputPanel id="selectionTable"  >
-                                <apex:outputPanel rendered="{!IF(selectedActivitiesSize > 0, true, false)}">
-                                    <table class="table table-striped" id="swopTable">
-                                        <thead>
-                                            <tr>
-                                                <td style="display:none;">key</td>
-                                                <td style="display:none;">Activity Id</td>
-                                                <th>Activity</th>
-                                                <th>Country</th>
-                                                <th>Agency department</th>
-                                                <th>Role</th>
-                                                <th>Hourly rate</th>
-                                                <th>Hours</th>
-                                                <th>Total €</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <apex:repeat value="{!activitySelectionMap}" var="eachActivity">
-                                                <tr >
-                                                    <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].key}" >{!activitySelectionMap[eachActivity].key}</th>
-                                                    <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].activityId}">{!activitySelectionMap[eachActivity].activityId}</th>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedActivity}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedCountryname}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedAgencyDepartment}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedRole}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hourlyRate}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hoursSelected}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">
-                                                        <apex:outputText value="{0, number,###,###,##0}"> 
-                                                            <apex:param value="{!activitySelectionMap[eachActivity].totalAmount}"/>
-                                                        </apex:outputText>
-                                                    </td>
-                                                    <td>
-                                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                                            <a href="#" id="removeRow_{!activitySelectionMap[eachActivity].key}" value="{!activitySelectionMap[eachActivity].key}" onclick="removeRow('{!activitySelectionMap[eachActivity].key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
-                                                            </a>
-                                                        </apex:outputPanel>
-                                                    </td>
+                                        </div>
+                                        
+                                    </div>
+
+                                </apex:outputPanel>
+                                <apex:outputPanel id="activitySelectionTable" >
+                                    <script>
+                                        if (typeof initPopover === "function") { 
+                                            initPopover();
+                                        }
+                                    </script>
+                                    <apex:outputPanel rendered="{!IF(helper.currentSectionItemCount > 0, true, false)}">
+                                        <table class="table table-striped" id="swopTable1">
+                                            <thead>
+                                                <tr>
+                                                    <td style="display:none;">key</td>
+                                                    <td style="display:none;">Activity Id</td>
+                                                    <th>Activity</th>
+                                                    <th>Country</th>
+                                                    <th>Agency department</th>
+                                                    <th>Role</th>
+                                                    <th>Hourly rate</th>
+                                                    <th>Hours</th>
+                                                    <th>Total €</th>
+                                                    <th></th>
                                                 </tr>
-                                            </apex:repeat>
-                                        </tbody>
-                                    </table>
-                                    <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                        <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="insertSelectedActivities(); return false;" />
+                                            </thead>
+                                            <tbody>
+                                                <apex:repeat value="{!helper.workList[helper.currentTab].items}" var="activityKey">
+                                                    <apex:variable var="item" value="{!helper.workList[helper.currentTab].items[activityKey]}" />
+                                                    <tr >
+                                                        <th style="display:none;" id="idColumn_{!item.key}" >{!item.key}</th>
+                                                        <th style="display:none;" id="idColumn_{!item.activityId}">{!item.activityId}</th>
+                                                        <td >
+                                                            <span onclick="openActivityForUpdate('{!item.key}');" >{!IF(item.selectedActivity != 'Other', item.selectedActivity, item.name)}</span>
+                                                            <apex:outputText rendered="{! NOT(ISBLANK(item.nonCampaignItem.Description__c))}">
+                                                                <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="{!item.nonCampaignItem.Description__c}">
+                                                                    <span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                                </a>
+                                                            </apex:outputText>
+                                                        </td>
+                                                        <td onclick="openActivityForUpdate('{!item.key}');">{!item.selectedCountryname}</td>
+                                                        <td onclick="openActivityForUpdate('{!item.key}');">{!item.selectedAgencyDepartment}</td>
+                                                        <td onclick="openActivityForUpdate('{!item.key}');">{!item.selectedRole}</td>
+                                                        <td onclick="openActivityForUpdate('{!item.key}');">
+                                                            <apex:outputText rendered="{!can_see_financial_fields}">{!item.roundedRate}</apex:outputText>
+                                                            <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
+                                                        </td>
+                                                        <td onclick="openActivityForUpdate('{!item.key}');">{!item.hoursSelected}</td>
+                                                        <td onclick="openActivityForUpdate('{!item.key}');">
+                                                            <apex:outputText value="{0, number,###,###,##0}" rendered="{!can_see_financial_fields}"> 
+                                                                <apex:param value="{!item.totalAmount}"/>
+                                                            </apex:outputText>
+                                                            <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                                <a href="#" id="removeRow_{!item.key}" value="{!item.key}" onclick="removeItem('{!item.key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
+                                                                </a>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table>
+                                        <script>
+                                            if ( $.fn.DataTable.isDataTable( '#swopTable1' ) ) {
+                                                table = $('#swopTable1').DataTable();
+                                            }
+                                            else {
+                                                var table = $('#swopTable1').DataTable({
+                                                    "dom": 'lrtip',
+                                                    'bPaginate' : false
+                                            });}
+                                        </script>
+                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                            <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="blockme();saveWorkList(); return false;" />
+                                        </apex:outputPanel>
                                     </apex:outputPanel>
                                 </apex:outputPanel>
-                            </apex:outputPanel>
-                        </div>
-                            <div class="tab-pane {!if(selectedTab=='dedicated resource','active','')}" id="resource">
+                            </div>
+                            <div class="tab-pane {!if(helper.resourceTabSelected,'active','')}" id="resource">
                                 <apex:outputPanel id="resource_input_fields">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <p class="create_SOW_form_titles">Resource Name*</p>
-                                        <apex:inputField styleClass="resource_name_box_align" value="{!resource.nonCampaignItem.name}" id="dedicatedResourceName"  />
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <p class="create_SOW_form_titles">Country*</p>
-                                        <apex:selectList size="1" value="{!resource.selectedCountryname}" onchange="refreshActivitySelection('resource');blockme();" styleclass="investment_project_dropdowns_right" id="dedicatedCountry">
-                                            <apex:selectOptions value="{!countries}" />
-                                        </apex:selectList>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <p class="create_SOW_form_titles">Agency department*</p>
-                                        <apex:selectList size="1" value="{!resource.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="dedicatedAgencyDepartment" onchange="refreshActivitySelection('resource');blockme();" disabled="{!IF(resource.agencyVisible==false,true,false)}" style="min-width:100%;">
-                                            <apex:selectOptions value="{!resourceAgencyDepartment}" />
-                                        </apex:selectList>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 non_camp_dropdown_spacing">
-                                        <p class="create_SOW_form_titles">Role*</p>
-                                        <apex:selectList size="1" value="{!resource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(resource.roleVisible==false,true,false)}" onchange="refreshActivitySelection('resource');blockme();">
-                                            <apex:selectOptions value="{!resourceRoleTitle}" />
-                                        </apex:selectList>
-                                    </div>
-                                    <div class="col-lg-8 non-campaign_hourly_rate_section yearly_rate_form_align">
-                                        <p>FTE €&nbsp;&nbsp;
-                                            <!--apex:outputLabel value="{!resource.hourlyRate}" id="dedicatedRate" /-->
-                                            <apex:outputText value="{0, number,###,###,##0}" id="dedicatedRate" >
-                                                <apex:param value="{!VALUE(resource.hourlyRate)}" />
-                                            </apex:outputText>
-                                            <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
-                                            <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!resource.hoursSelected}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
-                                            <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->%
+                                    <apex:outputPanel rendered="{!NOT(is_agency_user)}">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <p class="create_SOW_form_titles">Resource Name*</p>
+                                                <apex:inputField styleClass="resource_name_box_align" value="{!helper.currentResource.nonCampaignItem.name}" id="dedicatedResourceName" onchange="refreshActivitySelection();blockme();" />
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p class="create_SOW_form_titles">Country*</p>
+                                                <apex:selectList size="1" value="{!helper.currentResource.selectedCountryname}" onchange="refreshActivitySelection();blockme();" styleclass="investment_project_dropdowns_right" id="dedicatedCountry">
+                                                    <apex:selectOptions value="{!helper.countries}" />
+                                                </apex:selectList>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p class="create_SOW_form_titles">Agency department*</p>
+                                                <apex:selectList size="1" value="{!helper.currentResource.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="dedicatedAgencyDepartment" onchange="refreshActivitySelection();blockme();" disabled="{!IF(helper.currentResource.agencyVisible==false,true,false)}" style="min-width:100%;">
+                                                    <apex:selectOptions value="{!helper.resourceAgencyDepartment}" />
+                                                </apex:selectList>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 non_camp_description_spacing">
+                                                <p class="create_SOW_form_titles">Other info (optional)</p>
+                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" style="width: 100%;"/>
+                                            </div>
+                                            <div class="col-lg-4 non_camp_dropdown_spacing">
+                                                <p class="create_SOW_form_titles">Role*</p>
+                                                <apex:selectList size="1" value="{!helper.currentResource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(helper.currentResource.roleVisible==false,true,false)}" onchange="refreshActivitySelection();blockme();">
+                                                    <apex:selectOptions value="{!helper.resourceRoleTitle}" />
+                                                </apex:selectList>
+                                            </div>
+                                            <div class="col-lg-4 non-campaign_hourly_rate_section yearly_rate_form_align">
+                                                <p>FTE €&nbsp;&nbsp;
+                                                    <apex:outputText value="{0, number,###,###,##0}" id="dedicatedRate" rendered="{!can_see_financial_fields}">
+                                                        <apex:param value="{!VALUE(helper.currentResource.hourlyRate)}" />
+                                                    </apex:outputText>
+                                                    <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
+                                                    <apex:outputText value="{!helper.currentResource.hourlyRate}" id="hiddenDedicatedRate" style="display:none;" rendered="{!can_see_financial_fields}"/>
+                                                    &nbsp;&nbsp;
+                                                    
+                                                    <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" />
+                                                %    
+                                                </p>
+                                                <apex:outputPanel id="addResourceUpdateButton">
+                                                    <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                        <apex:commandButton value="{!(IF(helper.isUpdateResource,'UPDATE','ADD'))}" styleClass="pull-right btn btn-primary btn_plus {!(IF(helper.isUpdateResource,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(false); return false;" /> 
+                                                    </apex:outputPanel> 
+                                                </apex:outputPanel> 
+                                            </div>
                                             
-                                            <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
-                                            <apex:outputPanel id="addResourceUpdateButton">
-                                                <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                                <apex:commandButton value="{!(IF(setResourceUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setResourceUpdateButton,'btn_update','btn_asset_add'))} " onclick="validateResourceSelection(); return false;" />
-                                                </apex:outputPanel>
+                                        </div>
+
+                                    </apex:outputPanel>
+                                    <apex:outputPanel id="resourceSelectionTable"  >
+                                        <apex:outputPanel rendered="{!IF(helper.currentSectionItemCount > 0, true, false)}">
+                                            <table class="table table-striped" id="swopTable2">
+                                                <thead>
+                                                    <tr>
+                                                        <td style="display:none;">key</td>
+                                                        <td style="display:none;">Activity Id</td>
+                                                        <th>Resource</th>
+                                                        <th>Country</th>
+                                                        <th>Agency department</th>
+                                                        <th>Role</th>
+                                                        <th>FTE Rate €</th>
+                                                        <th>% of FTE Required</th>
+                                                        <th>Total €</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <apex:repeat value="{!helper.workList[helper.currentTab].items}" var="resourceKey">
+                                                        <apex:variable var="item" value="{!helper.workList[helper.currentTab].items[resourceKey]}" />
+                                                        <tr >
+                                                            <th style="display:none;" id="idColumn_{!item.key}" >{!item.key}</th>
+                                                            <th style="display:none;" id="idColumn_{!item.activityId}">{!item.activityId}</th>
+                                                            <td>
+                                                                <span onclick="openResourceForUpdate('{!item.key}');">{!item.name}</span>
+                                                                <apex:outputText rendered="{! NOT(ISBLANK(item.nonCampaignItem.Description__c))}">
+                                                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="{!item.nonCampaignItem.Description__c}">
+                                                                        <span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                                    </a>
+                                                                </apex:outputText>
+                                                            </td>
+                                                            <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedCountryname}</td>
+                                                            <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedAgencyDepartment}</td>
+                                                            <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedRole}</td>
+                                                            <td onclick="openResourceForUpdate('{!item.key}');">
+                                                                <apex:outputText value="{0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                                                    <apex:param value="{!VALUE(item.roundedRate)}"/>
+                                                                </apex:outputText>
+                                                                <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
+                                                            </td>
+                                                            <td onclick="openResourceForUpdate('{!item.key}');">{!item.hoursSelected}</td>
+                                                            <td onclick="openResourceForUpdate('{!item.key}');">
+                                                                <apex:outputText value="{0, number,###,###,##0}" rendered="{!can_see_financial_fields}"> 
+                                                                    <apex:param value="{!item.totalAmount}"/>
+                                                                </apex:outputText>
+                                                                <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                                    <a href="#" id="removeRow_{!item.key}" value="{!item.key}" onclick="removeItem('{!item.key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
+                                                                    </a>
+                                                                </apex:outputPanel>
+                                                            </td>
+                                                        </tr>
+                                                    </apex:repeat>
+                                                </tbody>
+                                            </table>
+                                            <script>
+                                                if ( $.fn.DataTable.isDataTable( '#swopTable2' ) ) {
+                                                    table = $('#swopTable2').DataTable();
+                                                }
+                                                else {
+                                                    var table = $('#swopTable2').DataTable({
+                                                        "dom": 'lrtip',
+                                                        'bPaginate' : false
+                                                });}
+                                            </script>
+                                            <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="blockme();saveWorkList(); return false;" />
                                             </apex:outputPanel>
-                                        </p>
-                                    </div>
-                                </div>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                                 </apex:outputPanel>
                             </div>
-                    </div>
+                        </div>
 
                     </apex:outputPanel>
                 </div>
@@ -293,30 +382,48 @@
                     <apex:outputPanel id="shoppingBasketPanel">
                         <div class="asset_shopping_basket">
                             <div class="asset_shopping_basket_title_bar">
-                                <h2>Non Campaign Basket ({!campaignBasketList.size})</h2>
+                                <h2>Non Campaign Basket ({!helper.totalBasketSize})</h2>
                             </div>
                                 
-                            <apex:repeat value="{!campaignBasketList}" var="eachItem">
-                                <div class="asset_shopping_basket_item">
-                                    <div class="campaign_create_agency_hub_split_table_subtitle padding_bottom0">
-                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                            <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
-                                        </apex:outputPanel>
-                                        <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getAndSetActivitiesByName('{!JSENCODE(eachItem.activityName)}');blockme();">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>
-                                        </a>
+                            <apex:repeat value="{!helper.basket}" var="basketSectionKey">
+                                <apex:variable value="{!helper.basket[basketSectionKey]}" var="basketSection" />
+                                <apex:outputPanel rendered="{!basketSection.itemCount > 0}" >
+
+                                    <div class="asset_shopping_basket_item">
+                                        <div class="campaign_create_agency_hub_split_table_subtitle">
+                                            <div class="row">
+                                                <div class="col-sm-1">
+                                                    <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                        <a href="#" id="basketRemoveRow_{!basketSection.key}" value="{!basketSection.name}" onclick="removeSection('{!basketSection.key}'); return false;"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
+                                                    </apex:outputPanel>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <a href="#" id="basketItem_{!basketSection.key}" onclick="openBasketSection('{!JSENCODE(basketSection.key)}');blockme();">{!basketSection.name}<apex:outputText rendered="{!can_see_financial_fields}"> - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!basketSection.totalValue}"/></apex:outputText></apex:outputText>
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <a href="#" id="basketItem_{!basketSection.key}" onclick="openBasketSection('{!JSENCODE(basketSection.key)}');blockme();">{!basketSection.itemCount}</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>    
+                                </apex:outputPanel> 
                             </apex:repeat>
                                 
                             <div class="asset_shopping_basket_total">
                                 <div class="row">
                                     <div class="col-lg-8">
-                                        <p class="asset_shopping_basket_total_fee_text">Non Campaign Estimated Fees</p>
+                                        <p class="asset_shopping_basket_total_fee_text">Non Campaign Fees</p>
                                     </div>
                                     <div class="col-lg-4">
+                                        <apex:outputText rendered="{!can_see_financial_fields}">
                                         <h2 class="asset_shopping_basket_total_fee_value">€<apex:outputText value="{0, number,###,###,##0}">
-                                                                                                <apex:param value="{!campaignTotalValue}"/>
+                                                                                                <apex:param value="{!helper.totalBasketValue}"/>
                                                                                             </apex:outputText></h2>
+                                        </apex:outputText>
+                                        <apex:outputText rendered="{!can_see_financial_fields == false}">
+                                            <h2 class="asset_shopping_basket_total_fee_value"> --- </h2>
+                                        </apex:outputText>
                                     </div>
                                 </div>
                             </div>
@@ -327,6 +434,15 @@
                     </apex:outputPanel>
                 </div>
             </div>
-        </div>
-    </apex:form>
+
+    </apex:define>
+    <apex:define name="page_scripts">
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+        <script>
+            // this global variable is used from static resources
+            var sow_id = '{!helper.sow.Id}';
+        </script>
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWNonCampaignCreate.js')}" />
+    </apex:define>
+    </apex:composition>
 </apex:page>

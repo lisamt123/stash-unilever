@@ -1,4 +1,4 @@
-<apex:page standardController="WU_Master_Warehouse__c" extensions="WU_WarehouseSearchController" tabStyle="WU_Master_Warehouse__c">
+<apex:page standardController="WU_Master_Warehouse__c" extensions="WU_WarehouseSearchController" tabStyle="WU_Warehouse_Search__tab">
 <apex:form >
 <apex:pageblock >
 
@@ -179,7 +179,7 @@
                             </apex:outputField>
                             </apex:actionRegion>
                         </apex:column>
-                        <apex:column value="{!item.WU_Total_Current_Month_Utilisation__c}"/>
+                        <apex:column value="{!item.WU_Average_Pallet_Utilization_Count__c}"/>
                         <apex:column value="{!item.WU_Average_Current_Utilization__c}"/>
                         <apex:column headerValue="Warehouse POC" value="{!item.Owner.Name}"/>
                         <apex:column headerValue="Procurement Manager" value="{!item.WU_Procurement_Manager__r.Name}"/>

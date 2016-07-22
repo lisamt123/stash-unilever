@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Capacity Verification Required</name>
     <style>none</style>
-    <subject>Notification :Warehouse Utilization Exceeds 80% Utilization for Warehouse SAP Code/Name: {!WU_Master_Warehouse__c.WU_SAPCode_s__c}/ {!WU_Master_Warehouse__c.WU_SAPName_s__c}</subject>
+    <subject>Notification :Warehouse Utilization Exceeds 80% for Warehouse SAP Code/Name: {!WU_Master_Warehouse__c.WU_SAPCode_s__c}/ {!WU_Master_Warehouse__c.WU_SAPName_s__c}</subject>
     <type>text</type>
 </EmailTemplate>

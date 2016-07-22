@@ -1,9 +1,5 @@
 src
-src/classes
-src/classes/IPM_ProjDocSectionController_Test.cls
-src/classes/IPM_ProjDocSectionController_Test.cls-meta.xml
-src/classes/IPM_TestFactory_Helper.cls
-src/classes/IPM_TestFactory_Helper.cls-meta.xml
-src/pages
-src/pages/IPM_ProjectSetUpView.page
-src/pages/IPM_ProjectSetUpView.page-meta.xml
+src/permissionsets
+src/permissionsets/IPM_System_Administrator_Permissions.permissionset
+src/workflows
+src/workflows/IPM_Project__c.workflow

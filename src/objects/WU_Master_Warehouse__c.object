@@ -66,6 +66,17 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+	<fields>
+		<fullName>WU_Warehouse_Secondary_POC_Email__c</fullName>
+		<externalId>false</externalId>
+		<label>Warehouse Secondary POC Email</label>
+		<length>255</length>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
     <fields>
         <fullName>WU_Approval_Status__c</fullName>
         <externalId>false</externalId>
@@ -106,17 +117,49 @@
         <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>WU_Average_Current_Utilization__c</fullName>
         <externalId>false</externalId>
         <formula>/*IF( WU_Approval_Status__c =&apos;Submitted&apos;,( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100 ,(WU_Current_Utilization__c/ WU_Committed_Max_PalletStorage__c)*100 )*/
+/*
+IF(AND(WU_Count_Avg_Current_Month_Utilization__c = 0,WU_Approval_Status__c =&apos;Submitted&apos;),( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100,IF(WU_Count_Avg_Current_Month_Utilization__c &gt; 0,( WU_Current_Utilization__c /  IF(ISBLANK(WU_Latest_Committed_Pallet__c ),WU_Committed_Max_PalletStorage__c,WU_Latest_Committed_Pallet__c ))*100,0) )*/
 
-IF(AND(WU_Count_Avg_Current_Month_Utilization__c = 0,WU_Approval_Status__c =&apos;Submitted&apos;),( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100,IF(WU_Count_Avg_Current_Month_Utilization__c &gt; 0,( WU_Current_Utilization__c /  IF(ISBLANK(WU_Latest_Committed_Pallet__c ),WU_Committed_Max_PalletStorage__c,WU_Latest_Committed_Pallet__c ))*100,0) )</formula>
+IF(
+AND(NOT(ISBLANK(WU_Latest_Committed_Pallet__c)),NOT(WU_Latest_Committed_Pallet__c = 0)),
+IF(   ((WU_Current_Utilization__c/WU_Latest_Committed_Pallet__c)*100  &gt; 100) , 100 , (WU_Current_Utilization__c/WU_Latest_Committed_Pallet__c)*100  ),
+IF(
+AND(NOT(ISBLANK(WU_Committed_Max_PalletStorage__c)),NOT(WU_Committed_Max_PalletStorage__c = 0)),
+IF(  ((WU_Current_Utilization__c/WU_Committed_Max_PalletStorage__c)*100 &gt; 100) , 100 , (WU_Current_Utilization__c/WU_Committed_Max_PalletStorage__c)*100 ),
+100
+)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Utilization %</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WU_Average_Pallet_Utilization_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+
+AND(NOT(ISBLANK(WU_Count_Avg_Current_Month_Utilization__c)),WU_Count_Avg_Current_Month_Utilization__c &lt;&gt; 0), 
+
+WU_Total_Current_Month_Utilisation__c /WU_Count_Avg_Current_Month_Utilization__c,
+
+null 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Average Pallet Utilization Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -3264,6 +3307,12 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
         <errorMessage>Utilization Start Date and Utilization End Date must be same if Utilization Type has been chosen as Daily.</errorMessage>
     </validationRules>
+	 <validationRules>
+        <fullName>ValidationForCurrentUtilizationDetails</fullName>
+        <active>true</active>
+        <errorConditionFormula>if(not(isnew()),if(and(ispickval(WU_Utilization_Type__c,&apos;&apos;),isBlank(WU_FromDate__c),isBlank(WU_ToDate__c),isBlank(WU_Current_Utilization__c)),false,or(ispickval(WU_Utilization_Type__c,&apos;&apos;),isBlank(WU_FromDate__c),isBlank(WU_ToDate__c),isBlank(WU_Current_Utilization__c))),false)</errorConditionFormula>
+        <errorMessage>In utilization section all fields should have values</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>DateValidationForMonthlyUtilizationType</fullName>
         <active>true</active>
@@ -3276,7 +3325,7 @@ OR(DAY(WU_FromDate__c) &lt;&gt; 1,
 DAY(WU_ToDate__c) &lt;&gt; (IF( MONTH( WU_FromDate__c) = 12,31,DAY(DATE( YEAR( WU_FromDate__c), MONTH ( WU_FromDate__c) + 1, 1 ) - 1))))
 )</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
-        <errorMessage>Utilization Start Date and Utilization End Date should be for same month for Utilization Type has been chosen as Monthly.</errorMessage>
+        <errorMessage>Utilization Start Date and Utilization End Date should be for same month (with start date  1st day  and end date as last day of the Month)  for Utilization Type has been chosen as Monthly.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>DateValidationForWeeklyUtilizationType</fullName>
@@ -3285,9 +3334,16 @@ DAY(WU_ToDate__c) &lt;&gt; (IF( MONTH( WU_FromDate__c) = 12,31,DAY(DATE( YEAR( W
 ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;=  7))*/
 
 AND(
-ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;= 7,AND(MOD( WU_FromDate__c - DATE(1900, 1, 6), 7)&lt;&gt;1,MOD( WU_ToDate__c - DATE(1900, 1, 6), 7)&lt;&gt;0)))</errorConditionFormula>
+
+ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), 
+
+OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;= 7, 
+
+MOD( WU_FromDate__c - DATE(1900, 1, 7), 7)&lt;&gt; 0,MOD( WU_ToDate__c - DATE(1900, 1, 7), 7)&lt;&gt;6)
+
+)</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
-        <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please renter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
+        <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please Re- Enter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>StartDate_NotGreaterThan_Enddate</fullName>

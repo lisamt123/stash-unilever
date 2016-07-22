@@ -1,4 +1,4 @@
-public class WU_MultiCreateMultiEdit3{
+public with sharing class WU_MultiCreateMultiEdit3{
 
     public String loggedInUser;
     public List<WU_Master_Warehouse__c> masterWarehouseList {get;set;}
@@ -7,6 +7,7 @@ public class WU_MultiCreateMultiEdit3{
     public string selectedId{get;set;}
     public string selectedField{get;set;}
     public string selectedRecords{get;set;}
+	public string EmptySpace = ' ';
     
     public map<id,WU_Master_Warehouse__c> mapWUMasterWarehouse  = new  map<id,WU_Master_Warehouse__c>();
     
@@ -19,6 +20,7 @@ public class WU_MultiCreateMultiEdit3{
         populateMasterList();    
     }
     
+    
     public void fetchLatestRecords(){
         masterWarehouseList = [SELECT Id,Name,WU_Committed_Max_PalletStorage__c,WU_Current_Utilization__c,WU_SAPCode_s__c,
                                WU_ToDate__c,WU_FromDate__c,WU_Utilization_Type__c,OwnerId,WU_SAPName_s__c,WU_Average_Current_Utilization__c,
@@ -26,9 +28,9 @@ public class WU_MultiCreateMultiEdit3{
                                WU_Current_Pallet_Utilization__c,WU_Committed_Max_PalletStorage__c FROM Warehouse_Capacity_Utilizaion__r)
                                FROM WU_Master_Warehouse__c where OwnerId = :loggedInUser];
                                
-	   for( WU_Master_Warehouse__c objWareHouse : masterWarehouseList){
-	   	mapWUMasterWarehouse.put(objWareHouse.id,objWareHouse);
-	   }
+       for( WU_Master_Warehouse__c objWareHouse : masterWarehouseList){
+        mapWUMasterWarehouse.put(objWareHouse.id,objWareHouse);
+       }
                                
     }
     
@@ -68,7 +70,7 @@ public class WU_MultiCreateMultiEdit3{
             try{
                 updateMasterResult = Database.update(toUpdateList,false);
                 String finalSuccessMessage = 'Success for records : ';
-                String finalErrorMessage = 'Failed records are : ';
+                String finalErrorMessage = 'Failed Records are :  ' ;
                 Boolean isMasterSuccess = false;
                 Boolean isMasterFailure = false;
                 
@@ -78,7 +80,7 @@ public class WU_MultiCreateMultiEdit3{
                     if (updateMasterResult.get(i).isSuccess()){
                         isMasterSuccess = true;
                         if(selectedMasterRecordsMap.containsKey(updateMasterResult.get(i).getId())){
-                            finalSuccessMessage = finalSuccessMessage + ' ' +selectedMasterRecordsMap.get(updateMasterResult.get(i).getId()).objWUMasterWarehouse.Name;
+                            finalSuccessMessage = finalSuccessMessage + EmptySpace +selectedMasterRecordsMap.get(updateMasterResult.get(i).getId()).objWUMasterWarehouse.Name;
                          
                         }
                     }                              
@@ -89,8 +91,13 @@ public class WU_MultiCreateMultiEdit3{
                             system.debug('::::::::In MAster map to fetch error');
                             Database.Error MasterError = updateMasterResult.get(i).getErrors().get(0);
                             system.debug('::::::::Final Master error'+MasterError);
-                            //finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).masterName +' ' + 'Failed due to error'+' '+MasterError.getMessage();
-                            finalErrorMessage = finalErrorMessage +' '+selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name;
+                            //finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).masterName + EmptySpace + 'Failed due to error'+ EmptySpace +MasterError.getMessage();
+                            //finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name;
+                            
+                            finalErrorMessage = finalErrorMessage + EmptySpace +selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name 
+                                                + EmptySpace + 'Failed due to error :- '+ EmptySpace +MasterError.getMessage()+'<br></br>';
+                            
+                            //finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name + EmptySpace;
                             system.debug('::::::::Error string error'+finalErrorMessage);
                         }
                     }                 
@@ -101,7 +108,8 @@ public class WU_MultiCreateMultiEdit3{
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,finalSuccessMessage));
                 }
                 if(isMasterFailure){
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,finalErrorMessage));
+                    //finalErrorMessage = finalErrorMessage + ' Records Failed due to Error';
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,finalErrorMessage));
                 }    
             }
             catch(exception ex){
@@ -119,23 +127,22 @@ public class WU_MultiCreateMultiEdit3{
         List<WU_Warehouse_Capacity_Detail__c> capacityDetailToUpdateList = new List<WU_Warehouse_Capacity_Detail__c>();
         List<Database.SaveResult> updateDetailsResult = new List<Database.SaveResult>();
         Map<String,MasterWarehouseWrapper> selectedRecordsMap = new Map<String,MasterWarehouseWrapper>();
-		boolean isRecordSelected = false;
         if(!masterWarehouseWrapperList.isEmpty()){
-        	for(MasterWarehouseWrapper wrap : masterWarehouseWrapperList){
+            for(MasterWarehouseWrapper wrap : masterWarehouseWrapperList){
                 if(wrap.isSelected && wrap.latestDetailRecordId != null){
-                	WU_Warehouse_Capacity_Detail__c wcdToUpdate = new WU_Warehouse_Capacity_Detail__c();
-	                system.debug('::::latestDetailRecordId after update clicked'+wrap.latestDetailRecordId);
-	                system.debug('::::latestDetailRecordName after update clicked'+wrap.latestDetailRecordName);
-	                wcdToUpdate.Id = wrap.latestDetailRecordId;
-	                wcdToUpdate.WU_Utilization_Start_Date__c = wrap.objWUMasterWarehouse.WU_FromDate__c;
-	                wcdToUpdate.WU_Utilization_End_Date__c = wrap.objWUMasterWarehouse.WU_ToDate__c;
-	                wcdToUpdate.WU_Utilization_Type__c = wrap.objWUMasterWarehouse.WU_Utilization_Type__c;
-	                wcdToUpdate.WU_Current_Pallet_Utilization__c = wrap.objWUMasterWarehouse.WU_Current_Utilization__c;
-	                capacityDetailToUpdateList.add(wcdToUpdate);
-	                if(selectedRecordsMap!=null && !selectedRecordsMap.containsKey(wrap.latestDetailRecordId)){
-	                    selectedRecordsMap.put(wrap.latestDetailRecordId,wrap);
-	                }
-                	
+                    WU_Warehouse_Capacity_Detail__c wcdToUpdate = new WU_Warehouse_Capacity_Detail__c();
+                    system.debug('::::latestDetailRecordId after update clicked'+wrap.latestDetailRecordId);
+                    system.debug('::::latestDetailRecordName after update clicked'+wrap.latestDetailRecordName);
+                    wcdToUpdate.Id = wrap.latestDetailRecordId;
+                    wcdToUpdate.WU_Utilization_Start_Date__c = wrap.objWUMasterWarehouse.WU_FromDate__c;
+                    wcdToUpdate.WU_Utilization_End_Date__c = wrap.objWUMasterWarehouse.WU_ToDate__c;
+                    wcdToUpdate.WU_Utilization_Type__c = wrap.objWUMasterWarehouse.WU_Utilization_Type__c;
+                    wcdToUpdate.WU_Current_Pallet_Utilization__c = wrap.objWUMasterWarehouse.WU_Current_Utilization__c;
+                    capacityDetailToUpdateList.add(wcdToUpdate);
+                    if(selectedRecordsMap!=null && !selectedRecordsMap.containsKey(wrap.latestDetailRecordId)){
+                        selectedRecordsMap.put(wrap.latestDetailRecordId,wrap);
+                    }
+                    
                 }
             }
             
@@ -144,7 +151,7 @@ public class WU_MultiCreateMultiEdit3{
                 try{
                     updateDetailsResult = Database.update(capacityDetailToUpdateList,false);
                     String finalSuccessRecords = 'Success for records :';
-                    String finalErrorRecords = 'Failed records are : ';
+                    String finalErrorRecords = 'Failed Records are :  ' ;
                     Boolean isSuccess=false;
                     Boolean isFailure=false;
 
@@ -153,7 +160,7 @@ public class WU_MultiCreateMultiEdit3{
                             if (updateDetailsResult.get(i).isSuccess()){
                                 isSuccess = true;
                                 if(selectedRecordsMap.containsKey(updateDetailsResult.get(i).getId())){
-                                    finalSuccessRecords = finalSuccessRecords + ' ' +selectedRecordsMap.get(updateDetailsResult.get(i).getId()).objWUMasterWarehouse.Name;
+                                    finalSuccessRecords = finalSuccessRecords + EmptySpace +selectedRecordsMap.get(updateDetailsResult.get(i).getId()).objWUMasterWarehouse.Name;
                                 }
                             }
                             else if (!updateDetailsResult.get(i).isSuccess()){
@@ -165,8 +172,9 @@ public class WU_MultiCreateMultiEdit3{
                                     system.debug('::::::::In map to fetch error');
                                     Database.Error error = updateDetailsResult.get(i).getErrors().get(0);
                                     system.debug('::::::::Final error'+error);
-                                    //finalErrorRecords = finalErrorRecords + selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).masterName +' ' + 'Failed due to error'+' '+error.getMessage();
-                                    finalErrorRecords = finalErrorRecords + ' '+selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).objWUMasterWarehouse.Name;
+                                    //finalErrorRecords = finalErrorRecords + selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).masterName + EmptySpace + 'Failed due to error'+EmptySpace+error.getMessage();
+                                    finalErrorRecords = finalErrorRecords + EmptySpace +selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).objWUMasterWarehouse.Name + EmptySpace + 'Failed due to error :- '+EmptySpace+error.getMessage()+'<br></br>';
+                                    //finalErrorRecords = finalErrorRecords + EmptySpace +selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).objWUMasterWarehouse.Name+ EmptySpace ;
                                     system.debug('::::::::Error string error'+finalErrorRecords); 
                                 }
                             }
@@ -175,6 +183,7 @@ public class WU_MultiCreateMultiEdit3{
                             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,finalSuccessRecords));
                         }
                         if(isFailure){
+                            //finalErrorRecords = finalErrorRecords + ' Records Failed due to Error';
                             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,finalErrorRecords));
                         }
                     }

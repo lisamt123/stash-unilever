@@ -141,6 +141,16 @@
         <label>IPM_BETProjectLeaders</label>
     </fieldSets>
     <fieldSets>
+        <fullName>IPM_Exclude_Fields</fullName>
+        <description>Its used in the IPM_Utils class for excluding fields from the generic SOQL method : prepareSOQLQuery.</description>
+        <displayedFields>
+            <field>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Exclude Fields</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>IPM_Project_Fields_EcoDesign</fullName>
         <description>Contains fields to sync to EcoDesign from IPM</description>
         <displayedFields>
@@ -350,7 +360,17 @@
         <summaryFilterItems>
             <field>IPM_Milestone__c.Name</field>
             <operation>contains</operation>
-            <value>BETFinalRelease</value>
+            <value>BET</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.Name</field>
+            <operation>contains</operation>
+            <value>Final</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.Name</field>
+            <operation>contains</operation>
+            <value>Release</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
@@ -372,7 +392,17 @@
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Name__c</field>
             <operation>contains</operation>
-            <value>BETFirstRelease</value>
+            <value>BET</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>contains</operation>
+            <value>First</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>contains</operation>
+            <value>Release</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
@@ -2488,6 +2518,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+	<fields>
+        <fullName>IPM_Postponed_Comments__c</fullName>
+        <description>For Storing Postponement Comments</description>
+        <externalId>false</externalId>
+        <label>IPM Postponed Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Market_Cluster_Name__c</fullName>

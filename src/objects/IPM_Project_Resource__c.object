@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To store the IPM Project Team Members</description>
@@ -53,7 +52,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -95,6 +93,7 @@
     </fields>
     <fields>
         <fullName>IPM_Company_Card__c</fullName>
+        <description>Project&apos;s company card value will be populated in this field.</description>
         <externalId>false</externalId>
         <formula>IPM_Project__r.IPM_Company_Card__c</formula>
         <label>Company Card</label>
@@ -105,6 +104,7 @@
     </fields>
     <fields>
         <fullName>IPM_Docmnt_Sec_FunctionalorSummary_Inpt__c</fullName>
+        <description>Functional input or summary of the project document section is copied.</description>
         <externalId>false</externalId>
         <formula>IPM_Project_Document_Section__r.IPM_Functional_Input_or_Summary__c</formula>
         <label>IPM Docmnt Sec FunctionalorSummary Inpt</label>
@@ -115,6 +115,7 @@
     </fields>
     <fields>
         <fullName>IPM_Locale_Time__c</fullName>
+        <description>Local time value of project document section is copied.</description>
         <externalId>false</externalId>
         <formula>IPM_Project_Document_Section__r.IPM_Locale_Time__c</formula>
         <label>IPM Locale Time</label>
@@ -135,6 +136,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Document_Section_Name__c</fullName>
+        <description>section name from project document section is copied.</description>
         <externalId>false</externalId>
         <formula>IPM_Project_Document_Section__r.IPM_Section_Name__c</formula>
         <label>IPM Project Document Section Name</label>
@@ -146,6 +148,7 @@
     <fields>
         <fullName>IPM_Project_Document_Section__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>look up of object IPM_Project_Document_Section.</description>
         <externalId>false</externalId>
         <label>IPM Project Document Section</label>
         <referenceTo>IPM_Project_Document_Section__c</referenceTo>
@@ -180,6 +183,7 @@
     </fields>
     <fields>
         <fullName>IPM_Res_Email__c</fullName>
+        <description>Email id of the resource.</description>
         <externalId>false</externalId>
         <label>IPM_Res_Email</label>
         <required>false</required>
@@ -219,7 +223,7 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_User__c</fullName>
@@ -235,6 +239,7 @@
     </fields>
     <fields>
         <fullName>IPM_copyEmail__c</fullName>
+        <description>Email id of the user added for the project resource.</description>
         <externalId>false</externalId>
         <formula>IPM_User__r.Email</formula>
         <label>IPM copyEmail</label>
@@ -246,6 +251,7 @@
     <fields>
         <fullName>IPM_send_an_email__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>checkbox to check whether and email should be sent or not.</description>
         <externalId>false</externalId>
         <label>IPM send an email</label>
         <trackTrending>false</trackTrending>
@@ -253,6 +259,7 @@
     </fields>
     <fields>
         <fullName>Project_Leader__c</fullName>
+        <description>project leader&apos;s profile name.</description>
         <externalId>false</externalId>
         <formula>IPM_Project__r.IPM_Project_Leader__r.Profile.Name</formula>
         <label>Project Leader</label>

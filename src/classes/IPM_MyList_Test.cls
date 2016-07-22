@@ -403,7 +403,7 @@ private class IPM_MyList_Test{
                     ipm.catchBlockContent(sTestclassString ,exp);
                     exceptn =true;
                  }
-                 system.assertEquals(exceptn ,true,sAssertionMsgForPageMessage);
+                 system.assertEquals(exceptn ,false,'page messages are added');
              }
         Test.stopTest();
      }

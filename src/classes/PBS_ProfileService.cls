@@ -36,7 +36,7 @@ public with sharing class PBS_ProfileService
     {
         List<PBS_Profile__c> profileList = [
             SELECT
-                Id, Name, User_Role__c, User_Role__r.Name, User__c, User__r.Name, Work_Level__c, Geography__c, Buddy__c
+                Id, Name, User_Role__c, User_Role__r.Name, User__c, User__r.Name, Work_Level__c, Geography__c, Category__c, Buddy__c
             FROM
                 PBS_Profile__c
             WHERE
@@ -64,7 +64,9 @@ public with sharing class PBS_ProfileService
             return true;
         } else if (oldObject.Geography__c != currentObject.Geography__c) {
             return true;
-        } else if (oldObject.User_Role__c != currentObject.User_Role__c) {
+        }else if (oldObject.Category__c != currentObject.Category__c) {
+            return true; 
+        }else if (oldObject.User_Role__c != currentObject.User_Role__c) {
             return true;
         } else if (oldObject.user__c != currentObject.user__c) {
             return true;
@@ -79,12 +81,12 @@ public with sharing class PBS_ProfileService
      * @param Training_Track__c oldObject Training track object before changes
      * @return Boolean True if sharing needs to be updated
      */
-    public static boolean isUpdateRequired(Almond__Training_Track__c currentObject, Almond__Training_Track__c oldObject) {
+    public static boolean isUpdateRequired(PBS_Training_Track__c currentObject, PBS_Training_Track__c oldObject) {
         if (oldObject.Work_Level__c != currentObject.Work_Level__c) {
             return true;
         } else if (oldObject.Geography__c != currentObject.Geography__c) {
             return true;
-        } else if (oldObject.PBS_Standard_Job_Profile__c != currentObject.PBS_Standard_Job_Profile__c) {
+        }  else if (oldObject.PBS_Standard_Job_Profile__c != currentObject.PBS_Standard_Job_Profile__c) {
             return true;
         }
         return false;
@@ -103,13 +105,14 @@ public with sharing class PBS_ProfileService
          * @param List<Training_Track__Share> toRemove List of sharings to remove
          * @return void
          */
-        public void updateSharing(List<Almond__Training_Track__Share> toAdd, List<Almond__Training_Track__Share> toRemove) {
+        public void updateSharing(List<PBS_Training_Track__Share> toAdd, List<PBS_Training_Track__Share> toRemove) {
             Savepoint sp = null;
             try {
                 sp = Database.setSavepoint();
 
                 if (toAdd != null && !toAdd.isEmpty()) {
                     insert toAdd;
+                       
                 }
                 if (toRemove != null && !toRemove.isEmpty()) {
                     delete toRemove;
@@ -128,13 +131,13 @@ public with sharing class PBS_ProfileService
          * @param PBS_Profile__c profileObject Profile object to look for existing sharings
          * @return List<Training_Track__Share> List of sharings matching given profile
          */
-        public List<Almond__Training_Track__Share> getExistingSharingForProfile(PBS_Profile__c profileObject) {
+        public List<PBS_Training_Track__Share> getExistingSharingForProfile(PBS_Profile__c profileObject) {
             // find sharings for specific set of data
             return [
                 SELECT
                     Id
                 FROM
-                    Almond__Training_Track__Share
+                    PBS_Training_Track__Share
                 WHERE
                     UserOrGroupId = :profileObject.user__c
                 AND
@@ -144,7 +147,7 @@ public with sharing class PBS_ProfileService
                         SELECT
                             Id
                         FROM
-                            Almond__Training_Track__c
+                            PBS_Training_Track__c
                         WHERE
                             Work_Level__c = :profileObject.Work_Level__c
                         AND
@@ -161,13 +164,16 @@ public with sharing class PBS_ProfileService
          * @param PBS_Profile__c profileObject Profile object to look for sharings that has to be created
          * @return List<Training_Track__Share> List of sharings to create
          */
-        public List<Almond__Training_Track__Share> getNewSharingForProfile(PBS_Profile__c profileObject) {
+        public List<PBS_Training_Track__Share> getNewSharingForProfile(PBS_Profile__c profileObject) {
             // find profile for specific set of data
-            List<Almond__Training_Track__c> trackList = [
+            
+             
+              
+            List<PBS_Training_Track__c> trackList = [
                 SELECT
                     Id
                 FROM
-                    Almond__Training_Track__c
+                    PBS_Training_Track__c
                 WHERE
                     Work_Level__c = :profileObject.Work_Level__c
                 AND
@@ -176,14 +182,14 @@ public with sharing class PBS_ProfileService
                     PBS_Standard_Job_Profile__c = :profileObject.User_Role__c
                 AND
                     // do not add user to track if he is already there
-                    Id NOT IN (SELECT ParentId FROM Almond__Training_Track__Share WHERE UserOrGroupId = :profileObject.user__c)
+                    Id NOT IN (SELECT ParentId FROM PBS_Training_Track__Share WHERE UserOrGroupId = :profileObject.user__c)
             ];
 
-            List<Almond__Training_Track__Share> result = new List<Almond__Training_Track__Share>();
+            List<PBS_Training_Track__Share> result = new List<PBS_Training_Track__Share>();
 
             if (!trackList.isEmpty()) {
-                for(Almond__Training_Track__c tc : trackList) {
-                    result.add(new Almond__Training_Track__Share(
+                for(PBS_Training_Track__c tc : trackList) {
+                    result.add(new PBS_Training_Track__Share(
                             AccessLevel   = 'Read',
                             ParentId      = tc.Id,
                             UserOrGroupId = profileObject.user__c
@@ -191,7 +197,7 @@ public with sharing class PBS_ProfileService
                     );
                 }
             }
-
+            
             return result;
         }
 
@@ -201,13 +207,13 @@ public with sharing class PBS_ProfileService
          * @param Training_Track__c trainingTrackObject Training Track object to look for existing sharings
          * @return List<Training_Track__Share> List of sharings matching given profile
          */
-        public List<Almond__Training_Track__Share> getExistingSharingForTrainingTrack(Almond__Training_Track__c trainingTrackObject) {
+        public List<PBS_Training_Track__Share> getExistingSharingForTrainingTrack(PBS_Training_Track__c trainingTrackObject) {
             // find sharings for specific set of data
             return [
                 SELECT
                     Id
                 FROM
-                    Almond__Training_Track__Share
+                    PBS_Training_Track__Share
                 WHERE
                     ParentId = :trainingTrackObject.Id
                 AND
@@ -234,7 +240,7 @@ public with sharing class PBS_ProfileService
          * @param Training_Track__c trainingTrackObject Training track object to look for sharings that has to be created
          * @return List<Training_Track__Share> List of sharings to create
          */
-        public List<Almond__Training_Track__Share> getNewSharingForTrainingTrack(Almond__Training_Track__c trainingTrackObject) {
+        public List<PBS_Training_Track__Share> getNewSharingForTrainingTrack(PBS_Training_Track__c trainingTrackObject) {
             // find profile for specific set of data
             List<PBS_Profile__c> profileList = [
                 SELECT
@@ -249,14 +255,14 @@ public with sharing class PBS_ProfileService
                     User_Role__c  = :trainingTrackObject.PBS_Standard_Job_Profile__c
                 AND
                     // do not add user to track if he is already there
-                    User__c NOT IN (SELECT UserOrGroupId FROM Almond__Training_Track__Share WHERE ParentId = :trainingTrackObject.Id)
+                    User__c NOT IN (SELECT UserOrGroupId FROM PBS_Training_Track__Share WHERE ParentId = :trainingTrackObject.Id)
             ];
 
-            List<Almond__Training_Track__Share> result = new List<Almond__Training_Track__Share>();
+            List<PBS_Training_Track__Share> result = new List<PBS_Training_Track__Share>();
 
             if (!profileList.isEmpty()) {
                 for(PBS_Profile__c profile : profileList) {
-                    result.add(new Almond__Training_Track__Share(
+                    result.add(new PBS_Training_Track__Share(
                             AccessLevel   = 'Read',
                             ParentId      = trainingTrackObject.Id,
                             UserOrGroupId = profile.user__c

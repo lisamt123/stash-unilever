@@ -3,7 +3,7 @@
 *@Date :            December 2015
 *@Description :     Handler class for trigger WU_SetWarehousePOC
 *************************************************************/
-public class WU_SetWarehousePOCHandler 
+public with sharing class WU_SetWarehousePOCHandler 
 {
     public static Boolean isInserted = false;
     private static Map<string, User> userMap=new Map<string, User>();
@@ -22,21 +22,29 @@ public class WU_SetWarehousePOCHandler
             if(Date.today().month()!=wc.WU_Previous_Month__c){
                 wc.WU_Previous_Month__c=Date.today().month();
             }
-            if(!userMap.isEmpty()){
-                if(userMap.containsKey(wc.WU_WarehousePOC_Email__c)  && wc.WU_WarehousePOC_Email__c!=null){
-                    User usr=userMap.get(wc.WU_WarehousePOC_Email__c);
-                    wc.OwnerId =usr.Id;
-                    //if(mgrMap.containsKey(usr.ManagerId)){
-                        //wc.WU_WarehouseManager_Email__c=(mgrMap.get(usr.ManagerId)).Email;
-                    //}
-                }
-            }
-            else{
+            if(userMap.isEmpty()){
                 wc.OwnerId =UserInfo.getuserid();
-                
             }
         }
         isInserted = true;
+    }
+    
+    public static void onAfterInsert(List<WU_Master_Warehouse__c> InsertedItems) {
+        list<WU_Warehouse_Capacity_Detail__c> warehouseCapacityDetailListToInsert = new list<WU_Warehouse_Capacity_Detail__c>();
+        for(WU_Master_Warehouse__c masterWH : InsertedItems ){
+            if(masterWH.WU_Committed_Max_PalletStorage__c != Null && masterWH.WU_Current_Utilization__c != Null && masterWH.WU_ToDate__c != Null &&
+                masterWH.WU_FromDate__c != Null && masterWH.WU_Utilization_Type__c != Null  ){
+                    WU_Warehouse_Capacity_Detail__c warehouseCapacityDetail = new WU_Warehouse_Capacity_Detail__c();
+                    warehouseCapacityDetail.Master_Warehouse__c = masterWH.id;
+                    warehouseCapacityDetail.WU_Committed_Max_PalletStorage__c = masterWH.WU_Committed_Max_PalletStorage__c;
+                    warehouseCapacityDetail.WU_Current_Pallet_Utilization__c = masterWH.WU_Current_Utilization__c;
+                    warehouseCapacityDetail.WU_Utilization_End_Date__c = masterWH.WU_ToDate__c;
+                    warehouseCapacityDetail.WU_Utilization_Start_Date__c = masterWH.WU_FromDate__c;
+                    warehouseCapacityDetail.WU_Utilization_Type__c = masterWH.WU_Utilization_Type__c;
+                    warehouseCapacityDetailListToInsert.add(warehouseCapacityDetail);
+            }
+        }
+        insert warehouseCapacityDetailListToInsert;
     }
     
     public static void onBeforeUpdate(Map<Id, WU_Master_Warehouse__c>  oldMapItems, List<WU_Master_Warehouse__c> updatedItems, Map<Id, WU_Master_Warehouse__c> newMapItems) {
@@ -235,4 +243,90 @@ public class WU_SetWarehousePOCHandler
         return profileSet;
     }
     */
+    /*For Sharing Records with POC Email Owners*/
+    
+    
+    public static void wareHouseShare(List<WU_Master_Warehouse__c> newWareHouseShareList){
+        Set<String> userEmail=new Set<String>();
+        List<WU_Master_Warehouse__Share> wareHouseShareList=new List<WU_Master_Warehouse__Share>();
+        for(WU_Master_Warehouse__c masterWare:newWareHouseShareList){
+            if(String.isNotBlank(masterWare.WU_WarehousePOC_Email__c)){
+                userEmail.add(masterWare.WU_WarehousePOC_Email__c);
+            }
+            if(String.isNotBlank(masterWare.WU_Warehouse_Secondary_POC_Email__c)){
+                for(String email:masterWare.WU_Warehouse_Secondary_POC_Email__c.split(',')){
+                    userEmail.add(email);
+                }
+            }
+        }
+        Map<String,User> userIdMap=new Map<String,User>();
+        for(User u:[Select Id,Email from User where isActive=true and Email in:userEmail]){
+            userIdMap.put(u.Email,u);
+        }
+        for(WU_Master_Warehouse__c masterWareHouse:newWareHouseShareList){
+             if(String.isNotBlank(masterWareHouse.WU_Warehouse_Secondary_POC_Email__c)){
+                for(String sEmail:masterWareHouse.WU_Warehouse_Secondary_POC_Email__c.split(',')){
+                    if(userIdMap.containsKey(sEmail) && masterWareHouse.owner.Email != sEmail  ){
+                        WU_Master_Warehouse__Share wareShare=new WU_Master_Warehouse__Share();
+                        wareShare.ParentId=masterWareHouse.Id;
+                        wareShare.AccessLevel = 'Edit';
+                        wareShare.UserOrGroupId = userIdMap.get(sEmail).Id;
+                        wareHouseShareList.add(wareShare);
+                    }
+                }
+            }
+            if(String.isNotBlank(masterWareHouse.WU_WarehousePOC_Email__c) && userIdMap.containsKey(masterWareHouse.WU_WarehousePOC_Email__c)){
+                if(masterWareHouse.owner.Email != masterWareHouse.WU_WarehousePOC_Email__c){
+                    WU_Master_Warehouse__Share wareShare=new WU_Master_Warehouse__Share();
+                    wareShare.ParentId=masterWareHouse.Id;
+                    wareShare.AccessLevel = 'Edit';
+                    wareShare.UserOrGroupId = userIdMap.get(masterWareHouse.WU_WarehousePOC_Email__c).Id;
+                    wareHouseShareList.add(wareShare);
+                }
+            }
+        }
+        updateWareHouseShare(wareHouseShareList);
+    }
+
+    public static void updateWareHouseShare(List<WU_Master_Warehouse__Share> wareHouseShareList){
+        if(!wareHouseShareList.isEmpty()){
+            list<string> lstExistingUsers = new list<string>();
+            //Map<string,list<string>> mapExistingUser = new Map<string,list<string>>();
+            list<WU_Master_Warehouse__Share> lstShareToInsert = new list<WU_Master_Warehouse__Share>();
+            
+            
+            for(WU_Master_Warehouse__Share objShare : wareHouseShareList ){
+                lstExistingUsers.add(objShare.ParentId);
+            }
+            list<WU_Master_Warehouse__Share> lstShared = [select id,ParentId,UserOrGroupId from WU_Master_Warehouse__Share Where ParentId in : lstExistingUsers ];
+            /*
+            for(string parentRecordRecId : lstExistingUsers ){
+                list<string> existingUserlst = new list<string>();
+                mapExistingUser.put(parentRecordRecId,existingUserlst);
+                for(WU_Master_Warehouse__Share objShare1: lstShared ){
+                    if(parentRecordRecId == objShare1.ParentId ){
+                        
+                    }
+                }
+            }
+            */
+            
+            for(WU_Master_Warehouse__Share objShare : wareHouseShareList){
+                boolean isRecordExists = false;
+                for(WU_Master_Warehouse__Share objExistingShare : lstShared ){
+                    if(objShare.ParentId == objExistingShare.ParentId &&  objShare.UserOrGroupId == objExistingShare.UserOrGroupId  ){
+                        isRecordExists = true;
+                    }
+                }
+                
+                if(!isRecordExists){
+                    lstShareToInsert.add(objShare);
+                }
+            }
+            
+            if(lstShareToInsert.size() > 0){
+                insert lstShareToInsert;
+            }
+        }
+    }   
 }

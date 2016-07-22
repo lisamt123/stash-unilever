@@ -30,7 +30,7 @@
             <field>IPM_Finance_Member__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_Notify_Finance_Leader_about_TLD_is_changed</template>
     </alerts>
     <alerts>
@@ -49,7 +49,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_and_Gatekeeper_TLD_changed_after_Contract</template>
     </alerts>
     <alerts>
@@ -64,7 +64,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_and_DPL_the_TLD_changed_during_Charter_or_Contract</template>
     </alerts>
     <alerts>
@@ -75,7 +75,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_on_Local_Rollout</template>
     </alerts>
     <alerts>
@@ -98,7 +98,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_FL_and_Gatekeeper_TLD_changed_after_Contract</template>
     </alerts>
     <alerts>
@@ -117,27 +117,8 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_and_FL_TLD_is_changed</template>
-    </alerts>
-    <alerts>
-        <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_doc</fullName>
-        <description>IPM Notify leaders the TLD changed during Charter doc</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Deputy_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Finance_Member__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>
@@ -147,7 +128,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created</template>
     </alerts>
     <alerts>
@@ -157,7 +138,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Project_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
@@ -420,7 +401,7 @@
     </rules>
     <rules>
         <fullName>IPM Project Archival On Inactive</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Project__c.Is_Archieved__c</field>
             <operation>equals</operation>
@@ -576,7 +557,11 @@
         </actions>
         <active>true</active>
         <description>Notification to Finance Leader for TLD change in Local Rollout Project</description>
-        <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;), OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;), ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
+        <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;),
+OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;),
+ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;),
+ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;),
+ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

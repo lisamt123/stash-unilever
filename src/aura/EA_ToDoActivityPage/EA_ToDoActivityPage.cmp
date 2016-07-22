@@ -15,6 +15,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="pagename" type="String" />
     <aura:attribute name="index" type="Integer" />
+    <aura:attribute name="pageIndex" type="integer"/>
     
     <!-- Event handlers -->
     <aura:registerEvent name="redirectToDetail" type="c:EA_Detailpage_Event" />
@@ -63,7 +64,7 @@
     </style>
     <form aura:id="frm1">
         <div class="slds">
-            <div class="outer_sec">
+            <div class="">
                 <div class="activity-sec_f"  style="{!'background:'+ v.themecolor +';'}">
                     <aura:iteration items="{!v.activity}" var="act">
                         <div class="a-title_f"><p><ui:outputText value="{!act.RecordType.Name}"/></p></div>

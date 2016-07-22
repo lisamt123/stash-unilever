@@ -100,6 +100,9 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         //    Oblix_SOWHandlerLogic.adjustBrandCategoriesForSOW((Marketing_SOW__c) so, mids_campaign_id_category_brand);
         // set approvers to SOWs in this scope
         Oblix_SOWHandlerLogic.setSOWApprovers((Marketing_SOW__c) so, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
+
+        // adjust SOW name Prefix + Suffix
+        Oblix_SOWHandlerLogic.setSOWname((Marketing_SOW__c) so);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
@@ -115,6 +118,15 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c) || (sow.Oblix_AgencyEstimate__c != oldSow.Oblix_AgencyEstimate__c)){
             Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
         }
+
+        // adjust SOW name Prefix + Suffix
+        Oblix_SOWHandlerLogic.setSOWname((Marketing_SOW__c) so);
+        
+        ////if sow has just been approved,  initiate versioniong process
+        //if(sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY && oldSow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY){
+        //    Id sowCloneId = Oblix_SOWHandlerLogic.copySOW(sow.Id);
+        //    sow.Name += Oblix_SOWHandlerLogic.ORIGINAL_SUFFIX;
+        //}
     }
      
 
@@ -155,7 +167,13 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     public void andFinally()
     {
         System.debug('Entering Oblix_SOWHandler.andFinally');
-        System.debug('li_sharesToInsert' + JSON.serialize(li_sharesToInsert));
+        Set<Id> parentIds = new Set<Id>();
+        for(Marketing_SOW__Share newShare : li_sharesToInsert){
+            parentIds.add(newShare.ParentId);
+        }
+        System.debug('li_sharesExisting: ' + JSON.serialize([SELECT Id, ParentId, UserOrGroupId, RowCause, AccessLevel FROM Marketing_SOW__Share WHERE ParentId IN :parentIds]));
+        System.debug('li_sharesToInsert: ' + JSON.serialize(li_sharesToInsert));
+        System.debug('sows: ' + JSON.serialize(Trigger.new));
         if(!li_sharesToInsert.isEmpty()){
             insert li_sharesToInsert;
         }

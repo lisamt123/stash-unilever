@@ -36,18 +36,13 @@ public with sharing class CPA_CRTrigger_Handler
     {   
         System.debug('Entering CPA_CRTrigger_Handler.bulkAfter');  
         if(triggerShouldExecute){
-            if(Trigger.isInsert || Trigger.isUpdate) {
+            if(Trigger.isUpdate) {
                 System.debug('inside isInsert');
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isInsert){
-                //}
-
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isUpdate) 
-                //{
-                    // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-               // } 
-                
+                CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
+                CPA_CR_TriggerUtil.previouStatusValue(trigger.old,trigger.new);
+                CPA_CR_TriggerUtil.checkPWOTermination(trigger.new,trigger.old);
+                CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
+                CPA_CR_TriggerUtil.calculateDelta(trigger.old,trigger.new);
 
             } else if(Trigger.isDelete){
                 CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
@@ -60,17 +55,15 @@ public with sharing class CPA_CRTrigger_Handler
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_CRTrigger_Handler.bulkAfter');  
+        System.debug('Entering CPA_CRTrigger_Handler.bulkAfter'); 
+         if(triggerShouldExecute){
+            if(Trigger.isUpdate) { 
+        CPA_CR_TriggerUtil.submitforApproval(trigger.old,trigger.new);
+           CPA_CR_TriggerUtil.recallApproval(trigger.old,trigger.new);
+           lstPWOUpdate  = CPA_CR_TriggerUtil.CalculatePOWCost(trigger.old,trigger.new);
 
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){ 
-        //    if(Trigger.isInsert || Trigger.isUpdate) {
-
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isUpdate) {
-                //}
-        //    }
-       // }
+        }
+        }
     }
         
     public void beforeInsert(SObject so)
@@ -86,15 +79,7 @@ public with sharing class CPA_CRTrigger_Handler
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        if(triggerShouldExecute){ 
-
-            CPA_CR_TriggerUtil.previouStatusValue(trigger.old,trigger.new);
-            CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
-            CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
-            //  CPA_CR_TriggerUtil.unlockrecord(trigger.old,trigger.new);
-            CPA_CR_TriggerUtil.calculateDelta(trigger.old,trigger.new);
-            CPA_CR_TriggerUtil.checkPWOTermination(trigger.new,trigger.old);
-        }
+        System.debug('Entering CPA_CRTrigger_Handler.beforeUpdate');
     }
     
 
@@ -105,18 +90,12 @@ public with sharing class CPA_CRTrigger_Handler
     
     public void afterInsert(SObject so) 
     {
-        if(triggerShouldExecute){
-            CPA_CR_TriggerUtil.newCR(trigger.new);
-        }
+        System.debug('Entering CPA_CRTrigger_Handler.afterInsert');
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        if(triggerShouldExecute){
-           CPA_CR_TriggerUtil.submitforApproval(trigger.old,trigger.new);
-           CPA_CR_TriggerUtil.recallApproval(trigger.old,trigger.new);
-           lstPWOUpdate  = CPA_CR_TriggerUtil.CalculatePOWCost(trigger.old,trigger.new);
-        }
+        System.debug('Entering CPA_CRTrigger_Handler.afterUpdate');
     }
     
     /*******************************************************************

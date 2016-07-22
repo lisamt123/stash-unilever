@@ -10,7 +10,7 @@ Purpose: This Class is used to perform various operations for HLE request
 History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
-1.0         Name       12/01/2016     INITIAL DEVELOPMENT CSR:
+1.0         Pooja K       12/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_HLERequest_TriggerUtil{
 
@@ -200,4 +200,74 @@ public with sharing class CPA_HLERequest_TriggerUtil{
             obj.addError(System.Label.CPA_HLE_Request_cant_be_deleted);
         }
     }
+    
+  /** Method Name : restricSMTULPMToAcceptReject
+    * Parameter   : newHLEReqList,oldHLEReqList
+    * Return type : None
+    * Author      : Pooja Kanani  
+    * Description : This method restric SMT/ULPM to accept/reject HLE request
+    */
+    public static void restricSMTULPMToAcceptReject(List<CPA_HLE_Request__c> newHLEReqList,List<CPA_HLE_Request__c> oldHLEReqList){
+ 
+  // Create a map that stores all the objects that require editing 
+  Map<Id, CPA_HLE_Request__c> approvalStatements = new Map<Id, CPA_HLE_Request__c>{};
+  map<id,CPA_HLE_Request__c> mapOldMap = new map<Id,CPA_HLE_Request__c>();
+  
+  for(CPA_HLE_Request__c objTemp : oldHLEReqList)
+  {
+      mapOldMap.put(objTemp.Id,objTemp);
+  }
+  Boolean user_has_permission = false;              
+    
+        List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
+        for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
+                string permission = psa.PermissionSet.Name;
+                if (permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAADM)){
+                    user_has_permission = true;
+                    break;
+                }
+            system.debug('permission>>'+permission);
+            }
+            system.debug('user_has_permission>>'+user_has_permission);
+                    
+            for(CPA_HLE_Request__c inv:newHLEReqList){ 
+                if(!user_has_permission && ((inv.pkl_Status__c==CPA_ConstantsForContractingAppClasses.ACCEPTED && mapOldMap.get(inv.Id).pkl_Status__c!=CPA_ConstantsForContractingAppClasses.ACCEPTED)|| (inv.pkl_Status__c==CPA_ConstantsForContractingAppClasses.RETURNED && mapOldMap.get(inv.Id).pkl_Status__c!= CPA_ConstantsForContractingAppClasses.RETURNED))){
+                    approvalStatements.put(inv.Id, inv);                     
+                }
+            }
+        system.debug('approvalStatements>>'+approvalStatements);
+  if (approvalStatements != null && !approvalStatements.isEmpty())  
+  {
+    // If there are some approvals to be reviewed for approval, then
+    // get the most recent process instance for each object.
+    List<Id> processInstanceIds = new List<Id>{};
+    
+    for (CPA_HLE_Request__c invs : [SELECT (SELECT ID
+                                              FROM ProcessInstances
+                                              ORDER BY CreatedDate DESC
+                                              LIMIT 1)
+                                      FROM CPA_HLE_Request__c
+                                      WHERE ID IN :approvalStatements.keySet()])
+    {
+        processInstanceIds.add(invs.ProcessInstances[0].Id);
+    }
+      if(processInstanceIds!=null){  
+    // Now that we have the most recent process instances, we can check
+    // the most recent process steps for comments.  
+    for (ProcessInstance pi : [SELECT TargetObjectId,
+                                   (SELECT Id, StepStatus, Comments 
+                                    FROM Steps
+                                    ORDER BY CreatedDate DESC
+                                    LIMIT 1 )
+                               FROM ProcessInstance
+                               WHERE Id IN :processInstanceIds
+                               ORDER BY CreatedDate DESC])
+    {       
+      // If no comment exists, then prevent the object from saving.                 
+
+           approvalStatements.get(pi.TargetObjectId).addError('<br/><br/><Strong style= "color:red">Error: </Strong><b>HLE request can be Accepted/Returned/Recall by Vendor only.<br/>Please raise a query with vendor for recalling this form using Query section. </b><br/><br/>');
+       }
+    }                                       
+  }
+}
 }

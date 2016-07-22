@@ -1,0 +1,1591 @@
+<apex:page controller="Amr_SubmittedSavingController_CC" sidebar="false">
+    <apex:include pageName="Amr_common" />
+    <apex:include pageName="Amr_common_header" />
+
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_submitted_saving.js')}" />
+
+    <style type="text/css">
+        .inner_saving_details .bPageBlock {
+            background: #FFFFFF !important;            
+            border: none !important;
+            margin-top: 20px !important;
+            margin-bottom: 0px !important;
+        }
+        
+        body .bPageBlock {
+            margin-bottom: 0px !important;
+        }
+        
+        .holder-class span.common {  
+            cursor: pointer;
+        }
+         
+        .job-field-input {
+            font-weight: bold;
+        } 
+        
+        .job-field-parent-smaller {
+            width: 200px !important;
+        }
+        
+        .job-field-parent-smaller input {
+            width: 160px !important;
+        }
+        
+        .job-field-parent-smaller select {
+            width: 180px !important;
+        }
+        
+        .job-field-parent-bigger {
+            width: 220px !important;
+        }
+        
+        .job-field-parent-bigger input {
+            width: 180px !important;
+        }
+        
+        .pbBody {
+            background: #FFFFFF !important;
+        }
+        
+        .minusclass {
+            background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ExpandArrow.png')}");
+            background-position: 0 5px;
+            background-repeat: no-repeat;
+            /*background-size: 20px 8px;*/
+            float: right;
+            height: 18px;
+            width: 20px;
+            cursor: pointer;
+        }
+        
+        .plusclass {
+            background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_CollapseArrow.png')}");
+            background-repeat: no-repeat;
+            float: right;
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+            background-position: 0 5px;
+        }
+        
+        a.anchorbtnmodified {
+            color: #FFFFFF !important;
+            text-decoration: none;
+        }
+        
+        .subheader-quotes {
+            color: #2C99CE;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+    </style>
+    <script type="text/javascript">
+        var stringArraySavingSubmitted = JSON.parse('{!lstcov }');
+
+        function pCEuroAmountAccepted() {
+            pCEuroAmountAcceptedCall(stringArraySavingSubmitted);
+        }
+
+        function pPCEuroAmountAccepted() {
+            pPCEuroAmountAcceptedCall(stringArraySavingSubmitted);
+        }
+
+
+        function cAEuroAmountAccepted() {
+            cAEuroAmountAcceptedCall(stringArraySavingSubmitted);
+        }
+
+        function commonCurrencyRelatedNew() {
+            commonCurrencyRelatedNewCall(stringArraySavingSubmitted)
+        }
+
+        function commonCurrencyRelatedPPCNewFun() {            
+            commonCurrencyRelatedPPCNewFunCall(stringArraySavingSubmitted); 
+        }
+
+        function commonCurrencyRelatedCANewFun() {
+            commonCurrencyRelatedCANewFunCall(stringArraySavingSubmitted);
+        }        
+                
+        $j(function() {
+            var starRatingData = {!SelectedRatingStar};
+            starRatingProcess(starRatingData);            
+        });        
+    </script>
+    <div class="container">
+        <apex:form >
+            <apex:actionRegion >
+                <apex:actionFunction name="editSavingActionFun" action="{!edit}" ReRender="savingData">
+                    <apex:param name="one" value="" assignTo="{!saveRecordValue}" />
+                </apex:actionFunction>
+            </apex:actionRegion>
+            <apex:pageBlock id="savingData">
+                <div style="display:{!if(savingMessages != true, 'none','')}"> 
+                    <apex:pageMessages id="msg" />
+                </div>
+                <apex:outputPanel id="pageBlockId">
+                    <div class="inner_section padding-top20 bg-w8">
+                        <h4>
+                                   {!$Label.Amr_Job_Information}                                 
+                                </h4>
+                        <div class="saving_line_detail inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section margin-top10">
+                                <apex:actionRegion >
+
+                                    <div class="left margin-right12">
+                                        <apex:commandLink value="Delete" action="{!deleteSaving}" status="actStatusIdDelete" styleclass="commonbtn anchorbtn">
+                                            <apex:param name="paramSav" value="{!savObj.Id}" assignTo="{!savingId}" />
+                                        </apex:commandLink>
+                                        <apex:actionStatus id="actStatusIdDelete">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" alt="loading-image" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </apex:actionRegion>
+                                <div class="left margin-right12">
+                                    <apex:commandLink value="Edit" onclick="editFun('{!savObj.id}');return Null;" styleclass="commonbtn anchorbtn" status="actStatusEditSav" />
+                                    <apex:actionStatus id="actStatusEditSav">
+                                        <apex:facet name="start">
+                                            <img src="/img/loading.gif" alt="loading-image" />
+                                        </apex:facet>
+                                    </apex:actionStatus>
+                                </div>
+                                <div class="left margin-right12">                                    
+                                    <a class="cloneSaving commonbtn anchorbtn" style="cursor:pointer;" savingId="{!savObj.id}" jobId="{!jobId}">Clone</a>                                                                     
+                                </div>
+
+                                <div class="inner_saving_details">
+                                    <apex:outputPanel styleClass="radio-selected">
+                                        <apex:pageBlock id="savingData">
+                                            <apex:outputPanel id="savingData1">
+                                                <script type="text/javascript">
+                                                    multiSelectShootLocation();
+                                                </script>
+                                                <apex:outputPanel rendered="{!if(editedSavingMode == true,true,false)}">
+                                                    <script type="text/javascript">
+                                                        showOnEdit();
+                                                        if( $j('.noOfMastersMain').length ) {
+                                                        showOnEdit();
+                                                        
+                                                        loadMasterProcess();
+                                                        noOfmasterdurationkeypress();
+                                                        removeMasterDurationRows();
+                                                        addMasterDurationrowsCall();
+                                                        
+                                                        $j('.show-on-edit').show();
+                                                        
+                                                        loadAdditionalFilmProcess(); //
+                                                        noOfAdditionalFilmdurationkeypress(); //
+                                                        removeAdditionalFilmDurationRows(); //
+                                                        addAdditionalFilmsDurationrowsCall(); //
+                                                        }
+                                                                                                               
+                                                    </script>
+                                                </apex:outputPanel>
+                                                <div class="job-field-parent displayIB VATop" style="width:200px;">
+                                                    <div class="job-field-label">{!$Label.Amr_AdManager_Number}</div>
+                                                    <div class="job-field-input">
+                                                        <apex:outputText value="{!adManagerNumber}" />
+                                                    </div>
+                                                </div>
+                                                <apex:outputPanel rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}">                                                   
+                                                    <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                        <div class="job-field-label">{!$Label.Amr_No_Of_Masters}</div>
+                                                        <div class="job-field-input">
+                                                          <!--  <apex:inputField value="{!savObj.No_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />-->
+                                                            <apex:outputField value="{!savObj.No_of_Masters_List__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                        <div class="job-field-label">{!$Label.Amr_Duration_of_Masters}</div>
+                                                        <div class="job-field-input">
+                                                           <!--  <apex:inputField value="{!savObj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" html-placeholder="In Seconds" /> -->
+                                                            <apex:outputText value="{!savObj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                        </div>
+                                                    </div>                                                
+                                                    <!--
+                                                    <apex:outputPanel rendered="{!if(editedSavingMode==true,false,true)}">
+                                                    <div class="job-field-parent displayIB VATop" style="width:220px !important;">
+                                                        <div class="job-field-label">Duration of Masters x No. of Masters</div>
+                                                        <div class="job-field-input">
+                                                            <apex:outputPanel >
+                                                                <div class="nombydom">                                                              
+                                                                    {!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters_List__c,',','_')}
+                                                                </div>
+                                                            </apex:outputPanel>
+                                                        </div>
+                                                    </div>
+                                                    </apex:outputPanel>
+                                                    -->
+                                                    <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                        <div class="job-field-label">{!$Label.Amr_No_of_Additional_Films}</div>
+                                                        <div class="job-field-input">
+                                                            <!--  <apex:inputField value="{!savObj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" /> -->
+                                                            <apex:outputText value="{!savObj.No_of_Additional_Films_List__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                        <div class="job-field-label">{!$Label.Amr_Duration_Of_Additional_Films}</div>
+                                                        <div class="job-field-input">
+                                                            <!--  <apex:inputField value="{!savObj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" html-placeholder="In Seconds" />-->
+                                                            <apex:outputText value="{!savObj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                        </div>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                
+                                                <apex:outputPanel rendered="{!if(editedSavingMode==true,true,false)}">
+                                                <div class="displayIB VATop margin-right20">
+                                                    <div style="margin-bottom:5px;margin-top:20px;">
+                                                        Masters
+                                                    </div>
+                                                    <div style="margin-bottom:10px;border:3px solid #205EA5;padding:20px;width:90%;">
+                                                        <div class="row1MainParent">
+                                                            <apex:inputField value="{!savObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
+                                                            <apex:inputField value="{!savObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
+                                                            <div class="row1" style="margin-bottom:5px;">
+                                                                <div class="displayIB" style="width:170px;">
+                                                                    Duration                                        
+                                                                </div>
+                                                                <div class="displayIB VATop">
+                                                                    Number                           
+                                                                </div>
+                                                            </div>
+                                                            <div class="row1Main">
+                                                                <div class="displayIB VATop" style="width:140px;">                                      
+                                                                    <div class="job-field-input" style="font-weight:bold;">
+                                                                        <input type="text" class="duration-of-masters-class" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="displayIB VATop" style="margin:10px 18px 0 0;">                                      
+                                                                    X
+                                                                </div>
+                                                                <div class="displayIB VATop" style="width:140px;">                                      
+                                                                    <div class="job-field-input" style="font-weight:bold;">
+                                                                        <input type="text" class="no-of-masters-class" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="displayIB remove_master_durationrows pointer" style="margin:6px 0 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                     
+                                                                    x
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div style="margin-top:20px;">
+                                                            <input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                 </div>
+                                                 
+                                                 <div class="displayIB VATop margin-right20">
+                                                    <div style="margin-bottom:5px;margin-top:20px;">
+                                                        Additional Films
+                                                    </div>
+                                                    <div style="margin-bottom:10px;border:3px solid #205EA5;padding:20px;width:90%;">
+                                                        <div class="row1AdditionalMainParent">
+                                                            <apex:inputField value="{!savObj.Duration_of_Additional_Films__c}" styleClass="durationOfAdditionalFilmsMain hide"/>
+                                                            <apex:inputField value="{!savObj.No_of_Additional_Films_List__c}" styleClass="noOfAdditionalFilmsMain hide"/>
+                                                            <apex:inputField value="{!savObj.No_of_Additional_Films__c}" styleClass="noOfAdditionalFilmsAddition hide"/>
+                                                            <div class="row1Additional" style="margin-bottom:5px;">
+                                                                <div class="displayIB" style="width:170px;">
+                                                                    Duration                                        
+                                                                </div>
+                                                                <div class="displayIB VATop"> 
+                                                                    Number                                      
+                                                                </div>
+                                                            </div>
+                                                            <div class="row1MainAdditional">
+                                                                <div class="displayIB VATop" style="width:140px;">                                      
+                                                                    <div class="job-field-input" style="font-weight:bold;">
+                                                                        <input type="text" class="duration-of-additional-films-class" placeholder="In Seconds" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="displayIB VATop" style="margin:10px 18px 0 0;">                                     
+                                                                    X
+                                                                </div>
+                                                                <div class="displayIB VATop" style="width:140px;">                                      
+                                                                    <div class="job-field-input" style="font-weight:bold;">
+                                                                        <input type="text" class="no-of-additional-films-class" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="displayIB remove_additional_films_durationrows pointer" style="margin:6px 0 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                      
+                                                                    x
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div style="margin-top:20px;">
+                                                            <input type="button" value="Add More" class="commonbtn add_additional_films_durationrows pointer" />
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>                                              
+                                                </apex:outputPanel>
+                                                
+                                                                                                
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                    <div class="job-field-label">{!$Label.Amr_No_of_Shoot_Days}</div>
+                                                    <div class="job-field-input">
+                                                        <apex:inputField value="{!savObj.No_of_shoot_days__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
+                                                        <apex:outputText value="{!savObj.No_of_shoot_days__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                    </div>
+                                                </div>                                                
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                    <div class="job-field-label">{!$Label.Amr_Script_Title}</div>
+                                                    <div class="job-field-input">
+                                                        <apex:inputField value="{!savObj.Script_Title__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
+                                                        <apex:outputText value="{!savObj.Script_Title__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                    </div>
+                                                </div>
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                    <div class="job-field-label">{!$Label.Amr_scope_rebrief}</div>
+                                                    <div class="job-field-input">
+                                                        <apex:inputField value="{!savObj.Scope_re_brief__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
+                                                        <apex:outputText value="{!savObj.Scope_re_brief__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                    </div>
+                                                </div>                                                
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                    <div class="job-field-label">{!$Label.Amr_Production_Type}</div>
+                                                    <div class="job-field-input">
+                                                        <apex:inputField value="{!savObj.Production_Type__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
+                                                        <apex:outputText value="{!savObj.Production_Type__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                    </div>
+                                                </div>
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                    <div class="job-field-label">{!$Label.Amr_Stage_RAP_engaged}</div>
+                                                    <div class="job-field-input">
+                                                        <apex:inputField value="{!savObj.Stage_RAP_engaged__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
+                                                        
+                                                        <apex:outputPanel rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}">
+                                                            <div style="height:27px;" title="{!savObj.Stage_RAP_engaged__c}" class="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(savObj.Stage_RAP_engaged__c, ' ', '_'),'(',''),')',''),',',''),'/','')}">
+                                                                &nbsp;
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Cost_Per_Master}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Cost_Per_Master__c}" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Cost_per_master_per_shoot_day}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Cost_per_master_per_shoot_day__c}" />
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Saving_Average_of_Quotes}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Saving_Average_of_Quotes__c}" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Percentage_Saving_Average_of_Quotes}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Percentage_Saving_Average_of_Quotes__c}" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Euro_Saving_Accepted_Quote}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Saving_Accepted_Quote_Euro__c}" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Percentage_Saving_Accepted_Quote} </div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Percentage_Saving_Accepted_Quote__c}" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Total_No_of_Films}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Total_no_of_films__c}" />
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_No_of_Quotes}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Number_Of_Quotes__c}" />
+                                                    </div>
+
+                                                </div>
+                                                <!--<div class="job-field-parent displayIB VATop">
+                                                         
+                                                            <div class="job-field-label">Total Accepted Final Cost (CA/PC/PPC) Euro Amount</div>
+                                                            <div class="job-field-input">
+                                                                
+                                                                <apex:outputText value="{!savObj.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}"   rendered="{!savObj.Quotes__r.size != 0}"/>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                         <div class="job-field-parent displayIB VATop">
+                                                         
+                                                            <div class="job-field-label">Total Cost</div>
+                                                            <div class="job-field-input">
+                                                                
+                                                                <apex:outputText value="{!savObj.Quotes__r[0].Total_Cost__c}"   rendered="{!savObj.Quotes__r.size != 0}"/>
+                                                            </div>
+                                                            
+                                                        </div>-->
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+
+                                                    <div class="job-field-label">{!$Label.Amr_Average_of_all_total_opening_quotes}</div>
+                                                    <div class="job-field-input">
+
+                                                        <apex:outputText value="{!savObj.Average_Total_Opening_Quotes__c}" />
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                                                    <div class="job-field-label">{!$Label.Amr_Shoot_Location}</div>
+                                                    <div class="job-field-input job-field-input-multiselect job-field-input-multiselectJq">
+                                                        <apex:outputText value="{!savObj.Shoot_Location__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+                                                        <apex:selectList value="{!selectedcountry}" multiselect="true" size="5" label="Shoot Location" html-datalist="{!savObj.Shoot_Location__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true )}">
+                                                            <apex:selectOptions value="{!shootLocation}" />
+                                                        </apex:selectList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>
+                                                
+                                                
+                                                
+                                            </apex:outputPanel>
+                                        </apex:pageBlock>
+                                    </apex:outputPanel>
+                                    <!--<apex:outputPanel >
+                                                <div class="job-field-parent left">
+                                                    <div class="job-field-input fileClass">
+                                                        <apex:inputFile value="{!fileBody}" filename="{!document.name}" id="test" />
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </apex:outputPanel>
+                                            <apex:actionRegion >
+                                                <div class="savingClass1 savingSave hide">
+                                                    <apex:commandlink action="{!saveData}" value="Save"   status="actStatusIdQuote1" styleclass="commonbtn anchorbtn right">
+                                                        <apex:param name="param" value="{!savObj.Id}" assignTo="{!savingId}"/>
+                                                        <apex:param name="param2" value="{!document.body}" />
+                                                    </apex:commandlink>
+                                                    <apex:actionStatus id="actStatusIdQuote1" >
+                                                        <apex:facet name="start" >
+                                                            <img src="/img/loading.gif" alt="loading-image" />                    
+                                                        </apex:facet>
+                                                    </apex:actionStatus>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </apex:actionRegion>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+                <!--accepted quote section -->
+
+                <div class="bg-w8 accepted-quote-css" style="padding:0 12px 12px 12px;">
+
+                    <apex:outputPanel >
+                        <div class="inner_section margin-btwn-inner-container">
+                            <h4 style="display:block;">
+                                               {!$Label.Amr_Accepted_Quote_Opening_and_Closing_Quote_1}                             
+                                            </h4>
+                        </div>
+
+
+                        <div class="inner_saving_details" style="margin-top:20px;">
+                            <!--accepted opening starts here-->
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Is_PC_part_of_the_Roster}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Is_PC_part_of_the_Roster__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.Is_PC_part_of_the_Roster__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_PC_Name}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.PC_name__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.PC_name__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_PC_Country}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.PC_Country__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.PC_Country__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20" style="width:220px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Service_Company_Name}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Service_Company_Name__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.Service_Company_Name__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Local_Currency_Of_PC_Cost}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Local_Currency_of_PC_Costs__c}" styleclass="commonCurrencyRelatedNew" onchange="commonCurrencyRelatedNew()" html-data-id="{!acceptedQuote.Quote_Number__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.Local_Currency_of_PC_Costs__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Local_Amount_Of_PC}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Local_Amount_of_PC__c}" onkeyup="commonCurrencyRelatedNew()" onkeypress="return isCurrency(event)" rendered="{!editedSavingMode}" styleclass="commonPCLocalAmountNew PCLocalAmountNew" />
+                                    <apex:outputText value="{!acceptedQuote.Local_Amount_of_PC__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_PC_Cost_Euro_Amount}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputText value="{!acceptedQuote.PC_Costs_Euro_Amount__c}" rendered="{!editedSavingMode }" styleclass="commonPCEuroAmountNew PCEuroAmountNew" html-readonly="true" />
+                                    <apex:outputText value="{!acceptedQuote.PC_Costs_Euro_Amount__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Is_PPC_part_of_the_Roster}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Is_the_PPC_part_of_the_Roster__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.Is_the_PPC_part_of_the_Roster__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_PPC_Name}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.PPC_Name__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.PPC_Name__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_PPC_Country}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.PPC_Country__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.PPC_Country__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Local_Currency_of_PPC_Costs}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Local_Currency_of_PPC_Costs__c}" rendered="{!editedSavingMode}" onchange="commonCurrencyRelatedPPCNewFun()" styleclass="commonCurrencyRelatedPPCNew" html-data-id="{!acceptedQuote.Quote_Number__c}" />
+                                    <apex:outputText value="{!acceptedQuote.Local_Currency_of_PPC_Costs__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Local_Amount_of_PPC}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Local_Amount_of_PPC__c}" onkeyup="commonCurrencyRelatedPPCNewFun()" onkeypress="return isCurrency(event)" rendered="{!editedSavingMode}" styleclass="commonPPCLocalAmountNew PPCLocalAmountNew" />
+                                    <apex:outputText value="{!acceptedQuote.Local_Amount_of_PPC__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_PPC_Costs_Euro_Amount}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputText value="{!acceptedQuote.PPC_Costs_Euro_Amount__c}" rendered="{!editedSavingMode}" styleclass="commonPPCEuroAmountNew PPCEuroAmountNew" html-readonly="true" />
+                                    <apex:outputText value="{!acceptedQuote.PPC_Costs_Euro_Amount__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_CA_Additional_agency_Name}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.CA_Additional_agency_Name__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.CA_Additional_agency_Name__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_CA_Location}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.CA_Location__c}" rendered="{!editedSavingMode}" />
+                                    <apex:outputText value="{!acceptedQuote.CA_Location__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Local_Currency_of_CA_Costs}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Local_Currency_of_CA_Costs__c}" rendered="{!editedSavingMode}" onchange="commonCurrencyRelatedCANewFun()" styleclass="commonCurrencyRelatedCANew" html-data-id="{!acceptedQuote.Quote_Number__c}" />
+                                    <apex:outputText value="{!acceptedQuote.Local_Currency_of_CA_Costs__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Local_Amount_of_CA}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputField value="{!acceptedQuote.Local_Amount_of_CA__c}" onkeyup="commonCurrencyRelatedCANewFun()" onkeypress="return isCurrency(event)" rendered="{!editedSavingMode}" styleclass="commonCALocalAmountNew CALocalAmountNew" />
+                                    <apex:outputText value="{!acceptedQuote.Local_Amount_of_CA__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+                            <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_CA_Costs_Euro_Amount}
+                                </div>
+                                <div class="job-field-input">
+                                    <apex:inputText value="{!acceptedQuote.CA_Costs_Euro_Amount__c}" rendered="{!editedSavingMode}" styleclass="commonCAEuroAmountNew CAEuroAmountNew" html-readonly="true" />
+                                    <apex:outputText value="{!acceptedQuote.CA_Costs_Euro_Amount__c}" rendered="{!viewSavingMode}" />
+                                </div>
+                            </div>
+
+                            <div class="job-field-parent-smaller left margin-bottom20">
+                                <div class="job-field-label">
+                                    {!$Label.Amr_Total_Cost}
+                                </div>
+                                <div class="job-field-input">
+
+                                    <apex:outputText value="{!acceptedQuote.Total_Cost__c}" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="clear"></div>
+                            <!--accepted opening ends here-->
+                            <!--accepted final cost starts here--->
+                            <div style="border:3px solid #2C99CE;padding:12px;margin-top:12px;">
+                                <div class="subheader-quotes bold" style="margin-bottom:0px;color: #2c99ce;font-size: 14px;">
+                                    {!$Label.Amr_Accepted_Final_Costs}
+                                </div>
+                                <div class="job-field-parent job-field-parent-smaller left">
+                                    <div class="job-field-label">{!$Label.Amr_Accepted_Final_Cost_PC_only_Currency}</div>
+
+                                    <div class="job-field-input">
+                                        <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="pCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="PC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" rendered="{!viewSavingMode}" />
+                                    </div>
+
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+                                    <div class="job-field-label">{!$Label.Amr_Accepted_Final_Cost_PC_only_Local_Amount}</div>
+
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" styleclass="PCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="pCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_PC_only_Euro_Amount}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputtext label="PC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}" styleclass="PCEuroAmountAccepted" html-readonly="true" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="PC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-smaller left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_PPC_only_Currency}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="pPCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_PPC_only_Local_Amount}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" styleclass="PPCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="pPCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>                                
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_PPC_only_Euro_Amount}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputtext label="PPC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}" styleclass="PPCEuroAmountAccepted" html-readonly="true" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="PPC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+
+                                <div class="job-field-parent job-field-parent-smaller left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_CA_only_Currency}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted" onchange="cAEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_CA_only_Local_Amount}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" styleclass="CALocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="cAEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_CA_only_Euro_Amount}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputtext label="Accepted Final Cost - CA only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}" styleclass="CAEuroAmountAccepted" html-readonly="true" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Accepted Final Cost - CA only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_Editors_name}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="Editors name" value="{!acceptedQuote.Accepted_Final_Cost_Editors_name__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Editors name" value="{!acceptedQuote.Accepted_Final_Cost_Editors_name__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>                                
+                                <div class="job-field-parent job-field-parent-currency left" style="width:220px !important;">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_Total_editing_cost}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="Total editing cost" value="{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Total editing cost" value="{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left" style="width:220px !important;">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_Sound_Studio_Name}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="Sound Studio Name" value="{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Sound Studio Name" value="{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c}" rendered="{!viewSavingMode }"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_Total_Sound_Studio_costs}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="Total Sound Studio costs" value="{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Total Sound Studio costs" value="{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Accepted_Final_Cost_Travel_Costs}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="Travel Costs" value="{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Travel Costs" value="{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-currency left" style="width:220px !important;">
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Acc_Final_Cost_Value_of_props_and_wardrobe_paid_for}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="Value of props & wardrobe (paid for)" value="{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Value of props & wardrobe (paid for)" value="{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>                                
+                                <div class="job-field-parent job-field-parent-currency left" style="width:310px !important">
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_Total_Acc_Final_Cost_CA_PC_PPC_Euro_Amount}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputText label="Total Acc. Final Cost (CA/PC/PPC) Euro Amount" value="{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" styleclass="TotalAcceptedFinalCostAccepted" html-readonly="true" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="Total Acc. Final Cost (CA/PC/PPC) Euro Amount" value="{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+                                <div class="job-field-parent job-field-parent-smaller left">
+
+                                    <div class="job-field-label">
+                                        {!$Label.Amr_What_type_of_Savings_is_this}
+                                    </div>
+                                    <div class="job-field-input">
+                                        <apex:inputfield label="What type of Savings is this?" value="{!acceptedQuote.Saving_Type__c}" rendered="{!editedSavingMode}" />
+                                        <apex:outputText label="What type of Savings is this?" value="{!acceptedQuote.Saving_Type__c}" rendered="{!viewSavingMode}"></apex:outputText>
+                                    </div>
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="clear"></div>
+
+                    </apex:outputPanel>
+
+                </div>
+
+
+
+                <!--end of accepted quote-->
+                <!-- start of quote section -->
+                <apex:pageBlock id="savingData2">
+
+                    <script type="text/javascript">
+                        var stringArraySubmittedSaving2 = JSON.parse('{!lstcov }');
+                        $j(function() {
+
+                            $j('.commonCurrencyRelated').on('change', function() {
+
+                                var data_id = $j(this).attr('data-id');
+                                var PCLocalAmount = $j('.PCLocalAmount' + data_id).val();
+                                var PCEuroAmount = $j('.PCEuroAmount' + data_id).val();
+                                var PCCurrency = $j('.commonCurrencyRelated').val();
+
+                                commonCurrencyRelatedCall(stringArraySubmittedSaving2, PCLocalAmount, PCEuroAmount, PCCurrency, data_id);
+
+                            });
+
+
+                            $j('.commonPCLocalAmount').on('keyup', function() {
+
+                                var data_id = $j(this).attr('data-id');
+                                var PCLocalAmount = $j('.PCLocalAmount' + data_id).val();
+                                var PCEuroAmount = $j('.PCEuroAmount' + data_id).val();
+                                var PCCurrency = $j('.commonCurrencyRelated').val();
+
+                                commonPCLocalAmountCall(stringArraySubmittedSaving2, PCLocalAmount, PCEuroAmount, PCCurrency, data_id);
+                            });
+
+
+
+                            $j('.commonCurrencyRelatedPPC').on('change', function() {
+
+                                var data_id = $j(this).attr('data-id');
+
+                                var PPCLocalAmount = $j('.PPCLocalAmount' + data_id).val();
+                                var PPCEuroAmount = $j('.PPCEuroAmount' + data_id).val();
+                                var PPCCurrency = $j('.commonCurrencyRelatedPPC').val();
+
+                                commonCurrencyRelatedPPCCall(stringArraySubmittedSaving2, PPCLocalAmount, PPCEuroAmount, PPCCurrency, data_id);
+
+                            });
+
+                            $j('.commonPPCLocalAmount').on('keyup', function() {
+
+                                var data_id = $j(this).attr('data-id');
+
+                                var PPCLocalAmount = $j('.PPCLocalAmount' + data_id).val();
+                                var PPCEuroAmount = $j('.PPCEuroAmount' + data_id).val();
+                                var PPCCurrency = $j('.commonCurrencyRelatedPPC').val();
+
+                                commonPPCLocalAmountCall(stringArraySubmittedSaving2, PPCLocalAmount, PPCEuroAmount, PPCCurrency, data_id);
+                            });
+
+
+                            $j('.commonCurrencyRelatedCA').on('change', function() {
+
+                                var data_id = $j(this).attr('data-id');
+
+                                var CALocalAmount = $j('.CALocalAmount' + data_id).val();
+                                var CAEuroAmount = $j('.CAEuroAmount' + data_id).val();
+                                var CACurrency = $j('.commonCurrencyRelatedCA').val();
+
+                                commonCurrencyRelatedCACall(stringArraySubmittedSaving2, CALocalAmount, CAEuroAmount, CACurrency, data_id)
+
+
+                            });
+
+
+
+
+                            $j('.commonCALocalAmount').on('keyup', function() {
+
+                                var data_id = $j(this).attr('data-id');
+
+                                var CALocalAmount = $j('.CALocalAmount' + data_id).val();
+                                var CAEuroAmount = $j('.CAEuroAmount' + data_id).val();
+                                var CACurrency = $j('.commonCurrencyRelatedCA').val();
+
+                                commonCALocalAmountCall(stringArraySubmittedSaving2, CALocalAmount, CAEuroAmount, CACurrency, data_id);
+
+
+                            });
+                        });
+                    </script>
+
+
+                    <apex:repeat value="{!quoteRelatedToSavingList}" var="quotObj">
+                        <div class="bg-w8" style="padding:0 12px 12px 12px;">
+                            <div class="inner_section margin-btwn-inner-container">
+                                <h4 style="display:block;">
+                                                                            
+                                        {!$Label.Amr_Quote_Col} {!quotObj.Quote_Number__c}                                   
+                                    </h4>
+                            </div>
+
+
+                            <div class="inner_saving_details">
+                                <apex:pageBlock id="quoteData">
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Is_PC_part_of_the_Roster}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Is_PC_part_of_the_Roster__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.Is_PC_part_of_the_Roster__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_PC_Name}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.PC_name__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.PC_name__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_PC_Country}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.PC_Country__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.PC_Country__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20" style="width:220px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Service_Company_Name}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Service_Company_Name__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.Service_Company_Name__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Local_Currency_Of_PC_Cost}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Local_Currency_of_PC_Costs__c}" styleclass="commonCurrencyRelated" html-data-id="{!quotObj.Quote_Number__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.Local_Currency_of_PC_Costs__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Local_Amount_Of_PC}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Local_Amount_of_PC__c}" onkeyup="commonCurrencyRelatedNew()" onkeypress="return isCurrency(event)" rendered="{!editedSavingMode}" styleclass="commonPCLocalAmount PCLocalAmount{!quotObj.Quote_Number__c}" html-data-id="{!quotObj.Quote_Number__c}" />
+                                            <apex:outputText value="{!quotObj.Local_Amount_of_PC__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>                                    
+                                    <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_PC_Cost_Euro_Amount}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputText value="{!quotObj.PC_Costs_Euro_Amount__c}" rendered="{!editedSavingMode }" styleclass="commonPCEuroAmount PCEuroAmount{!quotObj.Quote_Number__c}" html-readonly="true" />
+                                            <apex:outputText value="{!quotObj.PC_Costs_Euro_Amount__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Is_PPC_part_of_the_Roster}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Is_the_PPC_part_of_the_Roster__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.Is_the_PPC_part_of_the_Roster__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_PPC_Name}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.PPC_Name__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.PPC_Name__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_PPC_Country}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.PPC_Country__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.PPC_Country__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Local_Currency_of_PPC_Costs}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Local_Currency_of_PPC_Costs__c}" rendered="{!editedSavingMode}" styleclass="commonCurrencyRelatedPPC" html-data-id="{!quotObj.Quote_Number__c}" />
+                                            <apex:outputText value="{!quotObj.Local_Currency_of_PPC_Costs__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Local_Amount_of_PPC}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Local_Amount_of_PPC__c}" onkeyup="commonCurrencyRelatedPPCNewFun()" onkeypress="return isCurrency(event)" rendered="{!editedSavingMode}" styleclass="commonPPCLocalAmount PPCLocalAmount{!quotObj.Quote_Number__c}" html-data-id="{!quotObj.Quote_Number__c}" />
+                                            <apex:outputText value="{!quotObj.Local_Amount_of_PPC__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_PPC_Costs_Euro_Amount}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputText value="{!quotObj.PPC_Costs_Euro_Amount__c}" rendered="{!editedSavingMode}" styleclass="commonPPCEuroAmount PPCEuroAmount{!quotObj.Quote_Number__c}" html-readonly="true" />
+                                            <apex:outputText value="{!quotObj.PPC_Costs_Euro_Amount__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_CA_Additional_agency_Name}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.CA_Additional_agency_Name__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.CA_Additional_agency_Name__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_CA_Location}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.CA_Location__c}" rendered="{!editedSavingMode}" />
+                                            <apex:outputText value="{!quotObj.CA_Location__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Local_Currency_of_CA_Costs}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Local_Currency_of_CA_Costs__c}" rendered="{!editedSavingMode}" styleclass="commonCurrencyRelatedCA" html-data-id="{!quotObj.Quote_Number__c}" />
+                                            <apex:outputText value="{!quotObj.Local_Currency_of_CA_Costs__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Local_Amount_of_CA}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputField value="{!quotObj.Local_Amount_of_CA__c}" onkeyup="commonCurrencyRelatedCANewFun()" onkeypress="return isCurrency(event)" rendered="{!editedSavingMode}" styleclass="commonCALocalAmount CALocalAmount{!quotObj.Quote_Number__c}" html-data-id="{!quotObj.Quote_Number__c}" />
+                                            <apex:outputText value="{!quotObj.Local_Amount_of_CA__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+                                    <div class="job-field-parent-currency left margin-bottom20" style="width:180px !important;">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_CA_Costs_Euro_Amount}
+                                        </div>
+                                        <div class="job-field-input">
+                                            <apex:inputText value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!editedSavingMode}" styleclass="commonCAEuroAmount CAEuroAmount{!quotObj.Quote_Number__c}" html-readonly="true" />
+                                            <apex:outputText value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!viewSavingMode}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="job-field-parent-smaller left margin-bottom20">
+                                        <div class="job-field-label">
+                                            {!$Label.Amr_Total_Cost}
+                                        </div>
+                                        <div class="job-field-input">
+
+                                            <apex:outputText value="{!quotObj.Total_Cost__c}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                    <div class="available-quotes-saving" id="available-quotes-saving{!quotObj.Id}">
+
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </apex:pageBlock>
+                            </div>
+                        </div>
+                    </apex:repeat>
+                </apex:pageBlock>
+                <!-- <apex:actionRegion >
+                        
+                           <apex:commandlink action="{!saveData}" value="Save"   status="actStatusIdQuote1" styleclass="commonbtn anchorbtn right">
+                         
+                        
+                         </apex:commandlink>
+                       <apex:actionStatus id="actStatusIdQuote1" >
+                   <apex:facet name="start" >
+                           <img src="/img/loading.gif" alt="loading-image" />                    
+                   </apex:facet>
+                    </apex:actionStatus>
+                    <div class="clear"></div>
+                
+                 <div class="clear"></div>
+                 </apex:actionRegion>-->
+
+                <div class="bg-w8" style="padding:0 12px 12px 12px;">
+                    <div class="inner_section margin-btwn-inner-container">
+                        <h4 style="display:block;">
+                                                                            
+                                      {!$Label.Amr_Quote_Files}                             
+                                    </h4>
+                    </div>
+
+                    <div class="quote-files-container" style="width: 100%; display: inline-flex;">
+
+                        <div class="left padding12 add-quotes margin-bottom20" style="width:40%;border:3px solid #2C99CE">
+
+                            <apex:outputPanel >
+
+
+                                <div class="subheader-quotes bold"> {!$Label.Amr_Accepted_Quotes_And_Documents} </div>
+
+
+                                <div class="margin-bottom20 show-on-edit">
+                                    <div class="job-field-input fileClass">
+                                        <apex:inputFile value="{!document.body}" filename="{!document.name}" id="test1" />
+                                        <apex:actionRegion >
+
+                                            <apex:commandlink action="{!uploadAcceptedData}" value="Upload" status="actStatus1" styleclass="commonbtn-blue anchorbtnmodified right">
+                                                <apex:param name="param" value="{!acceptedQuote.Id}" assignTo="{!acceptedQuoteId}" />
+                                                <apex:param name="param2" value="{!document.body}" />
+                                            </apex:commandlink>
+                                            <apex:actionStatus id="actStatusId1">
+                                                <apex:facet name="start">
+                                                    <img src="/img/loading.gif" alt="loading-image" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                            <div class="clear"></div>
+
+                                            <div class="clear"></div>
+                                        </apex:actionRegion>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+
+
+                                <apex:outputPanel rendered="{!if(feedItemAcceptedList.size>0,true,false)}">
+                                    <apex:repeat value="{!feedItemAcceptedList}" var="obj">
+                                        <div class="margin-right20 margin-top20">
+                                            <div class="left margin-right12 margin-top25 show-on-edit">
+                                                <apex:commandLink value="x" action="{!deleteFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
+                                                    <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
+                                                </apex:commandLink>
+                                            </div>
+                                            <div class="left margin-right12">
+                                                <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
+                                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
+                                                </apex:outputLink>
+                                            </div>
+                                            <div class="left margin-right12 margin-top25 width120">
+                                                <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
+                                            </div>
+                                            <div class="left margin-right12 margin-top25">
+                                                {!obj.CreatedBy.name}
+                                            </div>
+                                            <div class="left margin-top25">
+                                                <apex:outputText value="{0,date,dd/MM/yy}">
+                                                    <apex:param value="{!obj.createdDate}" />
+                                                </apex:outputText>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </apex:repeat>
+                                </apex:outputPanel>
+
+                                <div class="clear"></div>
+                            </apex:outputPanel>
+
+                        </div>
+
+                        <div class="left margin-left20 padding12 add-quotes margin-bottom20" style="width:50%;border:3px solid #2C99CE">
+
+                            <apex:outputPanel >
+
+
+                                <div class="subheader-quotes bold"> {!$Label.Amr_Additional_Quotes_And_Documents} </div>
+
+                                <div class="margin-bottom20 show-on-edit">
+                                    <div class="job-field-input fileClass">
+                                        <apex:inputFile value="{!document.body}" filename="{!document.name}" id="test" />
+                                        <apex:actionRegion >
+
+                                            <apex:commandlink action="{!uploadAdditionalData}" value="Upload" status="actStatus" styleclass="commonbtn-blue anchorbtnmodified right">
+                                                <apex:param name="param" value="{!savObj.Id}" assignTo="{!savingId}" />
+                                                <apex:param name="param2" value="{!document.body}" />
+                                            </apex:commandlink>
+                                            <apex:actionStatus id="actStatusId">
+                                                <apex:facet name="start">
+                                                    <img src="/img/loading.gif" alt="loading-image" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                            <div class="clear"></div>
+
+                                            <div class="clear"></div>
+                                        </apex:actionRegion>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+
+                                <apex:outputPanel rendered="{!if(feedItemAdditionalList.size>0,true,false)}">
+                                    <div>
+                                        <apex:repeat value="{!feedItemAdditionalList}" var="obj">
+                                            <div class="displayinlineblock margin-right20 margin-top20">
+                                                <div class="left margin-right12 margin-top25 show-on-edit">
+                                                    <apex:commandLink value="x" action="{!deleteOtherFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
+                                                        <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
+                                                    </apex:commandLink>
+                                                </div>
+                                                <div class="left margin-right12">
+                                                    <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
+                                                        <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
+                                                    </apex:outputLink>
+                                                </div>
+                                                <div class="left margin-right12 margin-top25 width120">
+                                                    <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
+                                                </div>
+                                                <div class="left margin-right12 margin-top25">
+                                                    {!obj.CreatedBy.name}
+                                                </div>
+                                                <div class="left margin-top25">
+                                                    <apex:outputText value="{0,date,dd/MM/yy}">
+                                                        <apex:param value="{!obj.createdDate}" />
+                                                    </apex:outputText>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>                                        
+                                        </apex:repeat>
+                                    <div class="clear"></div>
+                                    </div>
+                                </apex:outputPanel>
+
+
+                            </apex:outputPanel>
+                        </div>
+                    <div class="clear"></div>
+                    </div>
+                </div>
+
+            </apex:pageBlock>
+            <!-- end of quote section -->
+            <!-- start of appraisal section -->
+
+            <apex:pageBlock >
+                <div class="bg-w8" style="padding:0 12px 12px;">
+                    <div class="inner_section margin-btwn-inner-container">
+                        <h4 style="display:block;">
+                                               {!$Label.Amr_Appraisal}                             
+                                            </h4>
+                    </div>
+
+                    <div class="main-container" id="mainclass">
+                        <div class="category-container">
+                            <div class="holder-class" data-id="sendPcTimeMangCategory">
+                                <div class="categoryStyleHeader">{!$Label.Amr_PC_Appraisal}</div>
+                                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
+                                </div>
+                                <div class="holder-class-star sendPcTimeMangCategory sendPcTimeMangCategory{!savObj.Id}">
+                                    <span class="common pc-time-cat" rel="1"></span>
+                                    <span class="common pc-time-cat" rel="2"><i></i></span>
+                                    <span class="common pc-time-cat" rel="3"><i></i></span>
+                                    <span class="common pc-time-cat" rel="4"><i></i></span>
+                                    <span class="common pc-time-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendPcCostMangCategory">
+                                <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}  </label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPcCostMangCategory{!savObj.Id}">
+                                    <span class="common pc-cost-cat" rel="1"></span>
+                                    <span class="common pc-cost-cat" rel="2"><i></i></span>
+                                    <span class="common pc-cost-cat" rel="3"><i></i></span>
+                                    <span class="common pc-cost-cat" rel="4"><i></i></span>
+                                    <span class="common pc-cost-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendPcProcessMangCategory">
+                                <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPcProcessMangCategory{!savObj.Id}">
+                                    <span class="common pc-process-cat" rel="1"></span>
+                                    <span class="common pc-process-cat" rel="2"><i></i></span>
+                                    <span class="common pc-process-cat" rel="3"><i></i></span>
+                                    <span class="common pc-process-cat" rel="4"><i></i></span>
+                                    <span class="common pc-process-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendPcOutputQualityCategory">
+                                <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality} </label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPcOutputQualityCategory{!savObj.Id}">
+                                    <span class="common pc-output-cat" rel="1"></span>
+                                    <span class="common pc-output-cat" rel="2"><i></i></span>
+                                    <span class="common pc-output-cat" rel="3"><i></i></span>
+                                    <span class="common pc-output-cat" rel="4"><i></i></span>
+                                    <span class="common pc-output-cat" rel="5"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category-container">
+                            <label style="font-size:20px; font-weight:bold;display:none;"> {!$Label.Amr_PPC_Appraisal} </label>
+                            <div class="holder-class" data-id="sendPpcTimeMangCategory">
+                                <div class="categoryStyleHeader">{!$Label.Amr_PPC_Appraisal} </div>
+                                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcTimeMangCategory{!savObj.Id}">
+                                    <span class="common ppc-time-cat" rel="1"></span>
+                                    <span class="common ppc-time-cat" rel="2"><i></i></span>
+                                    <span class="common ppc-time-cat" rel="3"><i></i></span>
+                                    <span class="common ppc-time-cat" rel="4"><i></i></span>
+                                    <span class="common ppc-time-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendPpcCostMangCategory">
+                                <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}  </label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcCostMangCategory{!savObj.Id}">
+                                    <span class="common ppc-cost-cat" rel="1"></span>
+                                    <span class="common ppc-cost-cat" rel="2"><i></i></span>
+                                    <span class="common ppc-cost-cat" rel="3"><i></i></span>
+                                    <span class="common ppc-cost-cat" rel="4"><i></i></span>
+                                    <span class="common ppc-cost-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendPpcProcessMangCategory">
+                                <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcProcessMangCategory{!savObj.Id}">
+                                    <span class="common ppc-process-cat" rel="1"></span>
+                                    <span class="common ppc-process-cat" rel="2"><i></i></span>
+                                    <span class="common ppc-process-cat" rel="3"><i></i></span>
+                                    <span class="common ppc-process-cat" rel="4"><i></i></span>
+                                    <span class="common ppc-process-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendPpcOutputQualityCategory">
+                                <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality} </label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcOutputQualityCategory{!savObj.Id}">
+                                    <span class="common ppc-output-cat" rel="1"></span>
+                                    <span class="common ppc-output-cat" rel="2"><i></i></span>
+                                    <span class="common ppc-output-cat" rel="3"><i></i></span>
+                                    <span class="common ppc-output-cat" rel="4"><i></i></span>
+                                    <span class="common ppc-output-cat" rel="5"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-container">
+                            <label style="font-size:20px; font-weight:bold;display:none;"> {!$Label.Amr_CA_Appraisal} </label>
+                            <div class="holder-class" data-id="sendCaTimeMangCategory">
+                                <div class="categoryStyleHeader">{!$Label.Amr_CA_Appraisal}</div>
+                                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaTimeMangCategory{!savObj.Id}">
+                                    <span class="common ca-time-cat" rel="1"></span>
+                                    <span class="common ca-time-cat" rel="2"><i></i></span>
+                                    <span class="common ca-time-cat" rel="3"><i></i></span>
+                                    <span class="common ca-time-cat" rel="4"><i></i></span>
+                                    <span class="common ca-time-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendCaCostMangCategory">
+                                <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}</label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaCostMangCategory{!savObj.Id}">
+                                    <span class="common ca-cost-cat" rel="1"></span>
+                                    <span class="common ca-cost-cat" rel="2"><i></i></span>
+                                    <span class="common ca-cost-cat" rel="3"><i></i></span>
+                                    <span class="common ca-cost-cat" rel="4"><i></i></span>
+                                    <span class="common ca-cost-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendCaProcessMangCategory">
+                                <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaProcessMangCategory{!savObj.Id}">
+                                    <span class="common ca-process-cat" rel="1"></span>
+                                    <span class="common ca-process-cat" rel="2"><i></i></span>
+                                    <span class="common ca-process-cat" rel="3"><i></i></span>
+                                    <span class="common ca-process-cat" rel="4"><i></i></span>
+                                    <span class="common ca-process-cat" rel="5"></span>
+                                </div>
+                            </div>
+                            <div class="holder-class" data-id="sendCaOutputQualityCategory">
+
+                                <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality}</label>
+                                </div>
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaOutputQualityCategory{!savObj.Id}">
+                                    <span class="common ca-output-cat" rel="1"></span>
+                                    <span class="common ca-output-cat" rel="2"><i></i></span>
+                                    <span class="common ca-output-cat" rel="3"><i></i></span>
+                                    <span class="common ca-output-cat" rel="4"><i></i></span>
+                                    <span class="common ca-output-cat" rel="5"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                </div>
+
+            </apex:pageBlock>
+
+            <!-- end of appraisal section -->
+            <div style="height: 30px;margin-bottom: 6px;padding: 14px 12px 12px;" class="bg-w8 entire-submit show-on-edit">
+                <apex:commandButton value="Submit" action="{!SubmitWholeSaving}" styleclass="commonbtn-blue right" />
+            </div>
+            <div class="clear"></div>
+            <apex:actionRegion >
+                <apex:outputPanel id="statusId">
+
+                    <apex:actionFunction name="sendPcTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="mainclass,statusId" status="actStatusIdQuote4" oncomplete="closeloading()">
+                        <apex:param id="pccattimename" assignTo="{!pcTimeMangCategoryValue}" name="sendPcTimeMangCategory" value="{!pcTimeMangCategoryValue}" />
+                        <apex:param id="pccattimeclass" assignTo="{!pcTimeMangCategoryClass}" name="pcTimeMangCategoryClass" value="{!pcTimeMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPcCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pccatcostname" assignTo="{!pcCostMangCategoryValue}" name="sendPcCostMangCategory" value="{!pcCostMangCategoryValue}" />
+                        <apex:param id="pccattcostclass" assignTo="{!pcCostMangCategoryClass }" name="pcCostMangCategoryClass " value="{!pcCostMangCategoryClass }" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPcProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pccatprocessname" assignTo="{!pcProcessMangCategoryValue}" name="sendPcProcessMangCategory" value="{!pcProcessMangCategoryValue}" />
+                        <apex:param id="pccatprocssclass" assignTo="{!pcProcessMangCategoryClass}" name="pcProcessMangCategoryClass" value="{!pcProcessMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPcOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pccatoutput" assignTo="{!pcOutputQualityCategoryValue}" name="sendPcOutputQualityCategory" value="{!pcOutputQualityCategoryValue}" />
+                        <apex:param id="pccatoutputclass" assignTo="{!pcOutputQualityCategoryClass}" name="pcOutputQualityCategoryClass" value="{!pcOutputQualityCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPpcTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pcccattimename" assignTo="{!pccTimeMangCategoryValue}" name="sendPpcTimeMangCategory" value="{!pccTimeMangCategoryValue}" />
+                        <apex:param id="pcttimeclass" assignTo="{!pccTimeMangCategoryClass}" name="pccTimeMangCategoryClass" value="{!pccTimeMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPpcCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pcccatcostname" assignTo="{!pccCostMangCategoryValue }" name="sendPpcCostMangCategory" value="{!pccCostMangCategoryValue }" />
+                        <apex:param id="pcccatcostclass" assignTo="{!pccCostMangCategoryClass}" name="pccCostMangCategoryClass" value="{!pccCostMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPpcProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pcccatprocessname" assignTo="{!pccProcessMangCategoryValue}" name="sendPpcProcessMangCategory" value="{!pccProcessMangCategoryValue}" />
+                        <apex:param id="pcccatprocessclass" assignTo="{!pccProcessMangCategoryClass}" name="pccProcessMangCategoryClass" value="{!pccProcessMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendPpcOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="pcccatoutput" assignTo="{!pccOutputQualityCategoryValue }" name="sendPpcOutputQualityCategory" value="{!pccOutputQualityCategoryValue }" />
+                        <apex:param id="pcccatoutputclass" assignTo="{!pccOutputQualityCategoryClass}" name="pccOutputQualityCategoryClass" value="{!pccOutputQualityCategoryClass}" />
+                    </apex:actionFunction>
+
+
+                    <apex:actionFunction name="sendCaTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="cacattimename" assignTo="{!caTimeMangCategoryValue}" name="sendCaTimeMangCategory" value="{!caTimeMangCategoryValue}" />
+                        <apex:param id="cacattimeclass" assignTo="{!caTimeMangCategoryClass}" name="caTimeMangCategoryClass" value="{!caTimeMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendCaCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="cacatcostname" assignTo="{!caCostMangCategoryValue}" name="sendCaCostMangCategory" value="{!caCostMangCategoryValue}" />
+                        <apex:param id="cacatcostclass" assignTo="{!caCostMangCategoryClass }" name="caCostMangCategoryClass " value="{!caCostMangCategoryClass }" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendCaProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="cacatprocessname" assignTo="{!caProcessMangCategoryValue}" name="sendCaProcessMangCategory" value="{!caProcessMangCategoryValue}" />
+                        <apex:param id="cacatprocessclass" assignTo="{!caProcessMangCategoryClass}" name="caProcessMangCategoryClass" value="{!caProcessMangCategoryClass}" />
+                    </apex:actionFunction>
+
+                    <apex:actionFunction name="sendCaOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+                        <apex:param id="cacatoutput" assignTo="{!caOutputQualityCategoryValue }" name="sendCaOutputQualityCategory" value="{!caOutputQualityCategoryValue}" />
+                        <apex:param id="cacatoutputclass" assignTo="{!caOutputQualityCategoryClass}" name="caOutputQualityCategoryClass" value="{!caOutputQualityCategoryClass}" />
+                    </apex:actionFunction>
+                </apex:outputPanel>
+            </apex:actionRegion>
+        </apex:form>
+    </div>
+</apex:page>

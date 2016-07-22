@@ -1,4 +1,4 @@
-<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController">
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController" action="{!checkUserHasPermissionToProject}">
     <style>
         .removeAssetCss {
             background-image: url("{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}") !important;
@@ -16,6 +16,7 @@
         .hide_button {
             display: none;
         }
+
     </style>
     <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
@@ -67,7 +68,7 @@
             <div class="row">
                 <div class="col-lg-9 confirm_assets_accordion">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                        <apex:repeat value="{!helper.assetOfferingWrapper.map_asset_type_wrapper}" var="typeName">
+                        <apex:repeat value="{!helper.assetOfferingWrapper.list_asset_types_in_order}" var="typeName">
 
                             <!-- [LVL 1] TYPE ACCORDION -->
                             <apex:variable var="offeringWrapper" value="{!helper.assetOfferingWrapper.map_asset_type_wrapper[typeName]}" />
@@ -75,13 +76,14 @@
                                 <div class="oblix-type-navigation panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!offeringWrapper.index}" aria-expanded="{!if(offeringWrapper.index == 0,'true','false')}" aria-controls="collapse{!offeringWrapper.index}">{!offeringWrapper.type_name}<img alt="add assets plus" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!offeringWrapper.index}" aria-expanded="false" aria-controls="collapse{!offeringWrapper.index}">{!offeringWrapper.type_name}<img alt="add assets plus" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
                                         </h4>
                                     </div>
-                                    <div id="collapse{!offeringWrapper.index}" class="oblix-type-container panel-collapse collapse {!if(offeringWrapper.index == 0,'in','')}" role="tabpanel">
+                                    <div id="collapse{!offeringWrapper.index}" class="oblix-type-container panel-collapse collapse" role="tabpanel">
                                         <div class="oblix-sub-category-navigation panel-body">
                                             <ul class="nav nav-tabs assets_tab_background" data-tabs="tabs">
-                                                <apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">
+                                                <!--<apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">-->
+                                                <apex:repeat value="{!offeringWrapper.list_sub_categories_in_order}" var="subcategory">
 
                                                     <!-- [LVL 2] SUB CATEGORY TAB LABELS -->
                                                     <apex:outputText rendered="{!offeringWrapper.map_sub_categories[subcategory].is_visible}">
@@ -93,7 +95,8 @@
                                             </ul>
                                             <!--tab body-->
                                             <div class="tab-content">
-                                                <apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">
+                                                <!--<apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">-->
+                                                <apex:repeat value="{!offeringWrapper.list_sub_categories_in_order}" var="subcategory">
 
                                                     <!-- [LVL 2] SUB CATEGORY TAB CONTENT -->
                                                     <apex:outputText rendered="{!offeringWrapper.map_sub_categories[subcategory].is_visible}">
@@ -103,7 +106,8 @@
                                                                 <div class="col-lg-6">
 
                                                                     <ul class="oblix-option-navigation nav nav-pills nav-stacked">
-                                                                        <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">
+                                                                        <!--<apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">-->
+                                                                        <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].list_asset_options_in_order}" var="eachSubcategoryOption">
 
                                                                             <!-- [LVL 3] OPTION PILL LABELS -->
 
@@ -121,7 +125,8 @@
                                                                     <div class="add_asset_panel">
                                                                         <div class="row">
                                                                             <div class="tab-content">
-                                                                                <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">
+                                                                                <!--<apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">-->
+                                                                                <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].list_asset_options_in_order}" var="eachSubcategoryOption">
 
                                                                                     <!-- [LVL 3] OPTION PILL CONTENT -->
 
@@ -137,7 +142,7 @@
                                                                                                 <p class="create_SOW_form_titles asset_panel_titles quantity_label">Quantity*
                                                                                                     <br/><span class="form_bracket_text">(Numerics only)</span>
                                                                                                 </p>
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Notes
+                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Other Info
                                                                                                     <br/><span class="form_bracket_text">(Optional)</span>
                                                                                                 </p>
                                                                                             </div>
@@ -159,7 +164,7 @@
                                                                                                             </apex:repeat>
                                                                                                         </select>
                                                                                                         <div class="trDescribe hidden">
-                                                                                                            <p class="form_bracket_text">Please describe if not listed &nbsp;</p>
+                                                                                                            <p class="form_bracket_text">Please describe if not listed* &nbsp;</p>
                                                                                                             <input class="input_init descMend assetOtherName" maxlength="255" name="assetOtherName" size="20" type="text" />
                                                                                                         </div>
                                                                                                         <input type="number" name="assetQuantity" value="" class="assetQuantity" />
@@ -167,8 +172,10 @@
                                                                                                         <input type="text" name="assetNotes" value="" class="assetNotes" />
                                                                                                         <br/>
 
-                                                                                                        <button id="addButton-{!optionSelector}" class="btn btn-primary btn_plus btn_asset_add" onclick="checkAddValuesForBasket(this); return false;">ADD</button>
-                                                                                                        <button id="updateButton-{!optionSelector}" class="btn btn-primary hidden" onclick="checkUpdateValuesForBasket(this); return false;">UPDATE</button>
+                                                                                                        <apex:outputText rendered="{!can_manage_asset}">
+                                                                                                            <button id="addButton-{!optionSelector}" class="btn btn-primary btn_plus btn_asset_add" onclick="checkAddValuesForBasket(this); return false;">ADD</button>
+                                                                                                            <button id="updateButton-{!optionSelector}" class="btn btn-primary hidden" onclick="checkUpdateValuesForBasket(this); return false;">UPDATE</button>
+                                                                                                        </apex:outputText>
                                                                                                     </apex:actionRegion>
                                                                                                 </apex:outputPanel>
 
@@ -206,26 +213,23 @@
                                 <apex:variable value="{!basketAssetWrapper.type_index}_{!basketAssetWrapper.sub_category_index}_{!basketAssetWrapper.option_index}" var="indexSelector" />
                                 <div class="asset_shopping_basket_item">
                                     <div class="campaign_create_agency_hub_split_table_subtitle" id="{!indexSelector}">
-                                        <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
-                                            <div class="row">
-                                                <div class="col-sm-1">
-                                                    <apex:commandButton action="{!removeAssetFromBasket}" reRender="campaignBasket, campaignBasketSummary, page_message_id" onclick="blockBasket(); assetToBeRemovedMDMId = '{!basketItemMDMID}';" oncomplete="unblockBasket(); handleBasketChange()" styleClass="removeAssetCss btn" style="width:12px;height:12px" value="">
-                                                        <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="{!basketItemMDMID}" />
-                                                    </apex:commandButton>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) } / {!basketAssetWrapper.option_name}
-                                                    </apex:commandLink>
-                                                </div>
-                                                <div class="col-sm-1">
-                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
-                                                        {!basketAssetWrapper.quantity_in_basket}
-                                                    </apex:commandLink>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <apex:commandButton action="{!removeAssetFromBasket}" rendered="{!can_manage_asset}" reRender="campaignBasket, campaignBasketSummary, page_message_id" onclick="blockBasket(); assetToBeRemovedMDMId = '{!basketItemMDMID}';" oncomplete="unblockBasket(); handleBasketChange()" styleClass="removeAssetCss btn" style="width:12px;height:12px" value="">
+                                                    <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="{!basketItemMDMID}" />
+                                                </apex:commandButton>
                                             </div>
-                                        </apex:outputPanel>
-                                        <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
-                                        </apex:commandLink>
+                                            <div class="col-sm-10">
+                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
+                                                </apex:commandLink>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
+                                                    {!basketAssetWrapper.quantity_in_basket}
+                                                </apex:commandLink>
+                                            </div>
+                                        </div>
+                                        <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""></apex:commandLink>
                                     </div>
                                 </div>
                             </apex:repeat>

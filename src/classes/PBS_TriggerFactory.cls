@@ -50,7 +50,8 @@ public with sharing class PBS_TriggerFactory
      */
     private static void execute(PBS_Trigger handler)
     {
-        String operationType = Trigger.IsInsert ? PBS_TriggerFactory.OP_INSERT : Trigger.isUpdate ? PBS_TriggerFactory.OP_UPDATE : Trigger.isDelete ? PBS_TriggerFactory.OP_DELETE : PBS_TriggerFactory.OP_UNDELETE;
+        //Commented for sonar issue
+        //String operationType = Trigger.IsInsert ? PBS_TriggerFactory.OP_INSERT : Trigger.isUpdate ? PBS_TriggerFactory.OP_UPDATE : Trigger.isDelete ? PBS_TriggerFactory.OP_DELETE : PBS_TriggerFactory.OP_UNDELETE;
 
         // Before Trigger
         if (Trigger.isBefore)
@@ -135,10 +136,12 @@ public with sharing class PBS_TriggerFactory
      * @return OV_Trigger - A trigger handler if one exists or null.
      */
     private static PBS_Trigger getHandler(Schema.sObjectType soType)
-    {
+    {    system.debug('----soType'+soType);
+         system.debug('----111Testing trigger');
         if (soType == PBS_Profile__c.sObjectType) {
             return new PBS_ProfileHandler();
-        } else if (soType == Almond__Training_Track__c.sObjectType) {
+        } else if (soType == PBS_Training_Track__c.sObjectType) {
+            system.debug('----Testing trigger');
             return new PBS_TrainingTrackHandler();
         } else if (soType == PC_Group__c.sObjectType) {
             return new PC_GroupHandler();

@@ -183,6 +183,7 @@
     </layoutSections>
     <relatedLists>
         <customButtons>New_Warehouse_Capacity_Detail</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>WU_Utilization_Start_Date__c</fields>
         <fields>WU_Utilization_End_Date__c</fields>
