@@ -918,6 +918,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 	catch(Exception ex){
 		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
 	}
+	}
 /*
   @method name: fetchY3ITO 
   @description:to Fetch the Y3 ITO based on teh document type and phase of the project 
