@@ -41,7 +41,7 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <fields>
         <fullName>Active__c</fullName>
         <description>Purpose : To calculate Active or Inactive for product 
@@ -62,15 +62,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>6</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>CanUseQuantitySchedule</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>CanUseRevenueSchedule</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
@@ -81,6 +84,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Category Code</label>
         <length>4</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -970,15 +974,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CurrencyIsoCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
@@ -1022,6 +1029,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1032,6 +1040,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Date</type>
     </fields>
@@ -1043,6 +1052,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1054,6 +1064,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Compensable</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
@@ -1065,6 +1076,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Corpbrand Code</label>
         <length>9</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1076,6 +1088,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Customizable</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
@@ -1087,6 +1100,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>DU Number</label>
         <length>20</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1099,6 +1113,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Equivalent Unit</label>
         <length>30</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1124,6 +1139,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1136,6 +1152,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1147,6 +1164,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Orderable</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
@@ -1158,6 +1176,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Pack size Code</label>
         <length>17</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1170,6 +1189,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Product Description LONG</label>
         <length>80</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1194,6 +1214,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Profit Center</label>
         <length>20</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1204,6 +1225,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Sample</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Url</type>
     </fields>
@@ -1216,6 +1238,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1258,6 +1281,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1267,6 +1291,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <description>Top Sellers check box is used for Russia</description>
         <externalId>false</externalId>
         <label>Top Sellers</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
@@ -1341,6 +1366,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1353,6 +1379,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>17</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1366,6 +1393,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>17</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1379,6 +1407,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>17</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1391,6 +1420,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
     </fields>
@@ -1403,6 +1433,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
@@ -1423,6 +1454,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1435,6 +1467,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>GTIN</label>
         <length>20</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1445,11 +1478,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Image URL</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Url</type>
     </fields>
     <fields>
         <fullName>IsActive</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
@@ -1461,6 +1496,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -1473,6 +1509,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Market Code</label>
         <length>6</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1571,12 +1608,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Name</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Net_Weight_lb__c</fullName>
+        <description>Net Weight by SKU in pounds (lb) | US only</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Net Weight by SKU in pounds (lb)</inlineHelpText>
+        <label>Net Weight (lb)</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PackSize__c</fullName>
@@ -1586,6 +1639,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Pack Size</label>
         <length>30</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1615,6 +1669,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1935,11 +1990,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>ProductCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
@@ -1981,6 +2038,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -1992,6 +2050,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <label>Product Term</label>
         <length>30</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -2045,6 +2104,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -2096,6 +2156,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <label>Resource Type</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -2121,6 +2182,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -2133,6 +2195,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <label>SAP ID</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
@@ -2144,6 +2207,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Sales Product</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
@@ -2155,6 +2219,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Sales Unit</label>
         <length>3</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -2166,6 +2231,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Date</type>
     </fields>
@@ -2190,6 +2256,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -3078,6 +3145,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -3966,6 +4034,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -3977,6 +4046,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Barcode</label>
         <length>25</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -4481,6 +4551,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4552,6 +4623,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4563,6 +4635,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -4575,6 +4648,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -4591,6 +4665,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4602,6 +4677,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -4613,6 +4689,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Manufacturer</label>
         <length>25</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -4633,6 +4710,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4644,6 +4722,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Material ID</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
@@ -4660,6 +4739,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4670,6 +4750,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Product Hierarchy</label>
         <length>25</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -4686,6 +4767,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4697,6 +4779,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -4713,6 +4796,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4728,6 +4812,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4739,6 +4824,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -4755,6 +4841,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4766,6 +4853,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <precision>18</precision>
         <required>false</required>
         <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
@@ -4778,6 +4866,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Unit Of Measure</label>
         <length>30</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -4811,6 +4900,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -4841,6 +4931,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         </filters>
         <label>Latest Products Chid</label>
     </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>GFS_Product</fullName>

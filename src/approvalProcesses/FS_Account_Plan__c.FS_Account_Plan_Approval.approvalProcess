@@ -52,7 +52,7 @@
             <value>Approval Requested</value>
         </criteriaItems>
         <criteriaItems>
-            <field>FS_Account_Plan__c.No_of_Objectives__c</field>
+            <field>FS_Account_Plan__c.FS_No_of_Objectives__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
     </entryCriteria>

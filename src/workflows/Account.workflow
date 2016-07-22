@@ -53,6 +53,26 @@
         <senderType>CurrentUser</senderType>
         <template>CEC_Unilever/CEC_Account_Email_Notification</template>
     </alerts>
+    <alerts>
+        <fullName>FS_Account_Validation_Reject_From_Admin_Group</fullName>
+        <description>Account Validation Reject From Admin Group</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Account_Validation_Reject_From_Admin_Group</template>
+    </alerts>
+    <alerts>
+        <fullName>FS_Account_Validation_Reject_From_Manager</fullName>
+        <description>FS Account Validation Reject From Manager</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Account_Validation_Reject_From_Manager</template>
+    </alerts>
     <fieldUpdates>
         <fullName>CEC_Consumer_Country_Updates</fullName>
         <description>CEC: To update the consumer country field for NA</description>

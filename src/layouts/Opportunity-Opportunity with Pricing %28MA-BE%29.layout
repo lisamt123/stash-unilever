@@ -50,6 +50,18 @@
                 <behavior>Required</behavior>
                 <field>CurrencyIsoCode</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Account_Plan__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>New_Biz_20K__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Finance_User__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -63,6 +75,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Reason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Type_from_Objective__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -94,14 +110,35 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Account_Plan__c</field>
+                <field>Defined_Objective__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Defined_Objective__c</field>
+                <field>FS_Comment__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Funding rationale</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Account_History__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Rationale_for_funding_request__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Future_potential_opportunities__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -186,20 +223,8 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>MABE Analysis</label>
-        <layoutColumns>
-            <layoutItems>
-                <reportChartComponent>
-                    <cacheData>true</cacheData>
-                    <contextFilterableField>Opportunity.Id</contextFilterableField>
-                    <hideOnError>false</hideOnError>
-                    <includeContext>true</includeContext>
-                    <reportName>MABE_Analysis</reportName>
-                    <showTitle>false</showTitle>
-                    <size>SMALL</size>
-                </reportChartComponent>
-            </layoutItems>
-        </layoutColumns>
+        <label>Opportunity Analysis</label>
+        <layoutColumns/>
         <style>OneColumn</style>
     </layoutSections>
     <relatedContent>
@@ -223,7 +248,6 @@
     </relatedContent>
     <relatedLists>
         <fields>Product2</fields>
-        <fields>Distributor__c</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>ListPrice</fields>
@@ -232,6 +256,7 @@
         <fields>ApprovalRequired__c</fields>
         <fields>ApprovalGranted__c</fields>
         <fields>Discount</fields>
+        <fields>FS_Sample__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>

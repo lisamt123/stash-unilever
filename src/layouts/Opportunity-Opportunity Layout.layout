@@ -78,6 +78,10 @@
                 <behavior>Edit</behavior>
                 <field>FS_Rate__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Type_from_Objective__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -281,7 +285,6 @@
     </relatedLists>
     <relatedLists>
         <fields>Product2</fields>
-        <fields>Distributor__c</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>ListPrice</fields>
@@ -289,6 +292,8 @@
         <fields>FS_MarketTarget__c</fields>
         <fields>ApprovalRequired__c</fields>
         <fields>ApprovalGranted__c</fields>
+        <fields>Discount</fields>
+        <fields>FS_Sample__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>

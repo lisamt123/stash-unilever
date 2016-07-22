@@ -597,6 +597,26 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>FS_Position__c</fullName>
+        <description>To create contact for Russian and US FS users.</description>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seller</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Fax</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -928,6 +948,17 @@
         <active>true</active>
         <description>A contact belonging to an agency</description>
         <label>Agency Contact</label>
+        <picklistValues>
+            <picklist>FS_Position__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
@@ -1446,6 +1477,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Position__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Homebase__c</picklist>
             <values>
                 <fullName>Amsterdam</fullName>
@@ -1611,6 +1653,17 @@
         <active>true</active>
         <description>A contact belonging to a standard account</description>
         <label>Standard Contact</label>
+        <picklistValues>
+            <picklist>FS_Position__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>

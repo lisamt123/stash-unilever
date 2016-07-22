@@ -109,6 +109,21 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Account_History__c</fullName>
+        <description>Won/lost opportunities? 
+How are they performing? Please add discovery snapshot - yellow tab
+Is the customer growing?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Won/lost opportunities? 
+How are they performing? Please add discovery snapshot - yellow tab
+Is the customer growing?</inlineHelpText>
+        <label>Account History</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Account_Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -234,6 +249,29 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Finance_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is updated based on droller value, which is used for approval process.</description>
+        <externalId>false</externalId>
+        <label>Finance User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_FixedPrice__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Created for updating the Fixed Price from line items to send email notification to line manger and AFM</description>
+        <externalId>false</externalId>
+        <label>Fixed Price</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_GPOName__c</fullName>
         <externalId>false</externalId>
         <label>GPO Name</label>
@@ -327,6 +365,16 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_TPRApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Purpose: This will be used to flag the opportunity as TPR Approved.</description>
+        <externalId>false</externalId>
+        <label>TPR Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
@@ -478,6 +526,21 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Future_potential_opportunities__c</fullName>
+        <description>Are there branding opportunities with this customer? If so, have you reached 
+to marketing? Is the branding impressions template included? 
+Is the customer growing?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Are there branding opportunities with this customer? If so, have you reached 
+to marketing? Is the branding impressions template included? 
+Is the customer growing?</inlineHelpText>
+        <label>Future potential opportunities</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>IsPrivate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -553,6 +616,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>New_Biz_20K__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If new business, is the opportunity above 20K (US Only)?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If new business, is the opportunity above 20K?</inlineHelpText>
+        <label>If new business, is it min. 20K NSV?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>NextStep</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -603,6 +677,25 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>Probability</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Rationale_for_funding_request__c</fullName>
+        <description>Adding new SKUs?
+Increasing rates on new SKUs?
+How were allowances calculated? 
+Is business at risk? 
+Enter competitor pricing if available</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Adding new SKUs?
+Increasing rates on new SKUs?
+How were allowances calculated? 
+Is business at risk? 
+Enter competitor pricing if available</inlineHelpText>
+        <label>Rationale for funding request?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>ReasonWonLost__c</fullName>
@@ -1081,6 +1174,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Type_from_Objective__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Defined_Objective__r.FS_Objective_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Type from Objective</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <listViews>
         <fullName>All_Best_Few_Opportunities</fullName>
@@ -2527,9 +2631,9 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <requireRowSelection>true</requireRowSelection>
         <url>/006/e?
 retURL=%2F006%2Fo&amp;
-opp3={!FS_Defined_Objective__c.Name}&amp;&quot; &quot;&amp;&quot;Opportunity&quot;&amp;-&amp;{!FS_Defined_Objective__c.Objective_Start_Date__c}&amp;
-opp4={!FS_Defined_Objective__c.CustomerId__c}&amp;
-opp9={!FS_Defined_Objective__c.Objective_Start_Date__c}&amp;
+opp3={!FS_Defined_Objective__c.Name}&amp;&quot; &quot;&amp;&quot;Opportunity&quot;&amp;-&amp;{!FS_Defined_Objective__c.FS_Objective_Start_Date__c}&amp;
+opp4={!FS_Defined_Objective__c.FS_CustomerId__c}&amp;
+opp9={!FS_Defined_Objective__c.FS_Objective_Start_Date__c}&amp;
 opp11=&quot;01 - Universe&quot;&amp;
 RecordType=0128A0000000BC8&amp;
 ent=Opportunity</url>
@@ -2549,7 +2653,7 @@ CF00N8A000000VoBp={!FS_Account_Plan__c.Name}&amp;
 CF00N8A000000VoBp_lkid={!FS_Account_Plan__c.Id}&amp;
 CF00N8A000000VoEe={!FS_Defined_Objective__c.Name}&amp;
 CF00N8A000000VoEe_lkid={!FS_Defined_Objective__c.Id}&amp;
-opp9={!FS_Defined_Objective__c.Objective_Start_Date__c}&amp; 
+opp9={!FS_Defined_Objective__c.FS_Objective_Start_Date__c}&amp; 
 opp4={!Account.Name}&amp;
 opp4_lkid={!Account.Id}&amp;
 retURL=%2F{!Opportunity.Id} &amp;

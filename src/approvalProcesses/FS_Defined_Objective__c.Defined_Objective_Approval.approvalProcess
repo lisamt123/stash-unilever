@@ -6,14 +6,14 @@
         <type>creator</type>
     </allowedSubmitters>
     <approvalPageFields>
-        <field>Customer__c</field>
+        <field>FS_Customer__c</field>
         <field>Name</field>
-        <field>Account_Plan__c</field>
-        <field>Objective_Type__c</field>
-        <field>Status__c</field>
-        <field>Tension__c</field>
-        <field>Objective_Start_Date__c</field>
-        <field>Completion_Date__c</field>
+        <field>FS_Account_Plan__c</field>
+        <field>FS_Objective_Type__c</field>
+        <field>FS_Status__c</field>
+        <field>FS_Tension__c</field>
+        <field>FS_Objective_Start_Date__c</field>
+        <field>FS_Completion_Date__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -56,17 +56,17 @@
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
-            <field>FS_Defined_Objective__c.Approved__c</field>
+            <field>FS_Defined_Objective__c.FS_Approved__c</field>
             <operation>notEqual</operation>
             <value>True</value>
         </criteriaItems>
         <criteriaItems>
-            <field>FS_Account_Plan__c.approved__c</field>
+            <field>FS_Account_Plan__c.FS_Approved__c</field>
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
         <criteriaItems>
-            <field>FS_Defined_Objective__c.Status__c</field>
+            <field>FS_Defined_Objective__c.FS_Status__c</field>
             <operation>equals</operation>
             <value>Approval Requested</value>
         </criteriaItems>

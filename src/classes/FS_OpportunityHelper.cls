@@ -90,7 +90,7 @@ public with sharing class FS_OpportunityHelper {
               }
             }
         //Get Accoun Plan deatils where associated opportunities have been modified
-        AccPlanList=[select id,name,Opportunity_Gain__c,No_of_Opportunities__c,Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
+        AccPlanList=[select id,name,FS_Opportunity_Gain__c,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
         OppList=[select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId]  ;
         //Roll up opportunity details up to account plan object
         for(FS_Account_Plan__c AccPlan : AccPlanList )
@@ -111,9 +111,9 @@ public with sharing class FS_OpportunityHelper {
                  }
                 }
             //Update roll up fields on account plan object
-            AccPlan.Opportunity_Gain__c=Opportunity_Gain;
-            AccPlan.No_of_Opportunities__c=Record_Count;
-            accPlan.Opportunity_Amount__c=Opportunity_Potential;
+            AccPlan.FS_Opportunity_Gain__c=Opportunity_Gain;
+            AccPlan.FS_No_of_Opportunities__c=Record_Count;
+            accPlan.FS_Opportunity_Amount__c=Opportunity_Potential;
             AccPlanToUpdate.add(accPlan);            
          }
             try{
@@ -142,7 +142,7 @@ public with sharing class FS_OpportunityHelper {
               }
             }
         //Get Accoun Plan deatils where associated opportunities have been modified
-        ObjList=[select id,name,No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId];
+        ObjList=[select id,name,FS_No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId];
         OppList=[select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId];
         //Roll up opportunity details up to account plan object
         for(FS_Defined_Objective__c Obj : ObjList )
@@ -158,8 +158,8 @@ public with sharing class FS_OpportunityHelper {
                  }
              }
             }
-            Obj.No_of_Opportunities__c=Record_Count;
-            Obj.Opportunity_Amount__c=Gross_Amount;
+            Obj.FS_No_of_Opportunities__c=Record_Count;
+            Obj.FS_Opportunity_Amount__c=Gross_Amount;
             ObjToUpdate.add(obj);            
          }
             try{

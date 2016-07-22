@@ -103,7 +103,7 @@
     <fields>
         <fullName>External_Key__c</fullName>
         <externalId>false</externalId>
-        <formula>Account__r.External_Id__c +&apos;-&apos; +TEXT(First_of_Month__c)+&apos;-&apos;+Product__r.UID_Material_ID__c</formula>
+        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.UID_Material_ID__c + &apos;-&apos;+TEXT(First_of_Month__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>External Key</label>
         <required>false</required>

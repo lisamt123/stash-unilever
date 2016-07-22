@@ -1436,7 +1436,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <lookupFilter>
             <active>true</active>
             <filterItems>
-                <field>$Source.SubSegmentRussia__c</field>
+                <field>$Source.SubSegment__c</field>
                 <operation>equals</operation>
                 <valueField>FS_Segmentation__c.Name</valueField>
             </filterItems>
@@ -2790,6 +2790,42 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>B-Local Led</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Pubs/Bars/Entertaining center/Caffee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -3158,6 +3194,120 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>International</fullName>
                 <default>false</default>
                 <controllingFieldValues>Military</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бар / Паб</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание - Ж/Д</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Бортовое питание – Заправки</fullName>
+                <default>false</default>
+                <controllingFieldValues>Travel</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hotels</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hotels</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Доставка еды на дом/офис</fullName>
+                <default>false</default>
+                <controllingFieldValues>Take Away</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canteens</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+                <controllingFieldValues>Take Away</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+                <controllingFieldValues>Wholesalers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+                <controllingFieldValues>Offices</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+                <controllingFieldValues>Take Away</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ресторан гастрономический (премиальный)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canteens</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+                <controllingFieldValues>QSR</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+                <controllingFieldValues>QSR</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Фри-фло, рестораны самообслуживания</fullName>
+                <default>false</default>
+                <controllingFieldValues>Restaurants</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -3572,6 +3722,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <picklistValues>
                 <fullName>Buying Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RussiaAccount</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -4141,6 +4295,26 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <value>PersonAccount.Pitch_Expert</value>
         </filters>
         <label>Pitch Experts</label>
+    </listViews>
+    <listViews>
+        <fullName>PrimAcc</fullName>
+        <columns>FS_SoldToCode__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STREET</columns>
+        <columns>PARENT_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Distributor</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>contains</operation>
+            <value>doroshenko</value>
+        </filters>
+        <label>PrimAcc</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Primary_Account_View</fullName>
@@ -10095,6 +10269,2104 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Redistributor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Geography__c</picklist>
+            <values>
+                <fullName>AILEU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AIMUTIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AINARO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ATABAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ATAURO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BAIROPITE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BALIBE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BALIBO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BAUCAU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BECORA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BEDOIS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BIDAU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COLMERA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DAISOLI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DILI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DILI4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DISTRICT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ELMERA-GLENO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ERMERA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GLENO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GLENO-ERMERA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HUDILARAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KAMPUNG MERDEKA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIQUICA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIQUICA-MAUBARA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIQUISA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LOES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LOS PALOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LOSPALOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MALIANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MANATUTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MANLEUANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MANUTOTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAUBESI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAUBESSI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>METINARO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PANTAI KELAPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUAI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TAIBESI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIQUEQUE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WALKIN</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Region__c</picklist>
+            <values>
+                <fullName>EUROPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MIDDLE EAST ASIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORTH ASIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOUTH ASIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOUTH EAST ASIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Segment__c</picklist>
+            <values>
+                <fullName>NON PI CUSTOMERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI CUSTOMERS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unilever_Opt_In__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neutral</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Zone__c</picklist>
+            <values>
+                <fullName>NAFS 54 - Obsolete%2FInactive Zone Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FS_RussiaAccount</fullName>
+        <active>true</active>
+        <label>RussiaAccount</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agency_Expertise__c</picklist>
+            <values>
+                <fullName>Behaviour Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environment%2FSet Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experience Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gaming Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Identity Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lighting Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Motion%2FAnimation%2FFilm Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging Design 2D %28Decoration%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging Design 3D %28Structure%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Point of Sale %28POS%29 Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Print%2FAdvertisement%2FComms Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research %28Design Research%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound%2FMusic Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy%2FForesight %28Design%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmedia%2FExperimental Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User Interface Design</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agree_to_Audits__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agree_to_comply_Unilever_Supplier_Code__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agree_to_logo_use__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Currency__c</picklist>
+            <values>
+                <fullName>Algeria-DZD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina-ARS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia-AUD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan-AZN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahrain-BHD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh-BDT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bermuda-BMD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia-BOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Botswana-BWP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil-BRL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria-BGN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia-KHR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada-CAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile-CLP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China-CNY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia-COP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Congo %28Dem%2ERep%29-CDF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica-CRC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia-HRK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Rep-CZK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark-DKK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominican Rep-DOP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EEC-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador-USD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Egypt-EGP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia-EEK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia-ETB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fiji-FJD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Africa-XAF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Africa-XOF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana-GHC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana-GHS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala-GTQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras-HNL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong-HKD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary-HUF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland-ISK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India-INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia-IDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iran-IRR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Israel-ILS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jamaica-JMD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan-JPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jordan-JOD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan-KZT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kenya-KES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea-KRW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kuwait-KWD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia-LVL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lebanon-LBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania-LTL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malawi-MWK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia-MYR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico-MXN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morocco-MAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mozambique-MZM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mozambique-MZN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Namibia-NAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal-NPR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherland Ant-ANG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand-NZD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nicaragua-NIO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nigeria-NGN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway-NOK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oman-OMR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pakistan-PKR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama-PAB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay-PYG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru-PEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines-PHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland-PLN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qatar-QAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania-ROL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania-RON</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia%2FCIS-RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salvador-SVC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saudi Arabia-SAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia-RSD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore-SGD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa-ZAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain-EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri Lanka-LKR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden-SEK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland-CHF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan-TWD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tanzania-TZS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand-THB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trinidad-TTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tunisia-TND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey-TRL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey-TRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAE-AED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK-GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USA-USD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uganda-UGX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine-UAH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay-UYU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela-VEB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela-VEF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam-VND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zambia-ZMK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zimbabwe-USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deoleo_Opt_in__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Discipline__c</picklist>
+            <values>
+                <fullName>Activations and Promotions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artwork</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Co-op marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer %26 Customer Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design %28Adaptive%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design %28Creative%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Distribution %26 Mailing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive %28Digital%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Materials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging Print Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Point of Sale Materials %28POSM%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premiums</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Print Media Placement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Printed Material</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotional Merchandise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research %E2%80%93 Continuous</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research - Ad hoc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales %26 Business Promotion Activities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Channel Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Promotion Print Production %28Commercial Print%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warehousing %26 Logistics</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DistributorProgram__c</picklist>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_ChainTargetingModel__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>C%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gortons_Opt_in__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Known_Consumer__c</picklist>
+            <values>
+                <fullName>Frequent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loyal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Length_of_client_relationship__c</picklist>
+            <values>
+                <fullName>1 - 2 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 Years %2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 - 5 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5 - 10 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6 months to 1 Year</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Less than 6 Months</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Channel__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>R_B_Opt_in__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>10007 Custom Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10100 Non-Comm Region 2 Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10200 Retail FS Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10500 Redistribution - US Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10600 Travel Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10610 Club Stores - US Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10620 Cash %26 Carry Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10800 C-Store Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53000 East Regional Managerer Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53010 Mid Atlantic Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53015 Tri State Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53020 New England Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54100 Obsolete%2FInactive Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54200 Pepsi Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55000 West Zone Leader Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55005 Non-Comm Region 3 Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55015 Midwest Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55020 North central Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55030 South Central Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55035 Mountain Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55040 West Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55045 West Client delivery Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56005 Non-Comm Region 1 Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56010 Military Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56015 Buying Groups Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56020 Corporate Accounts Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56025 OCS Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59000 South CDM Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59005 East CDM Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59010 Redistribution - CA Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59015 Southeast Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59020 Canada CDM Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59025 Club Stores - CA Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59040 South Regional Managerer Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59045 Canada Zone Leader Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82100 Disposal Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82200 Exited Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89010 Canada West Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89015 Canada Central Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89020 Canada East Regional Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89100 Intercompany Regional Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Retention_Reason__c</picklist>
+            <values>
+                <fullName>1-Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2-Customer Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Default</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SegmentRussia__c</picklist>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Segment__c</picklist>
+            <values>
+                <fullName>A-Center Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-Local Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Away</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marked For Deletion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Target</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegmentRussia__c</picklist>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSegment__c</picklist>
+            <values>
+                <fullName>Airlines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business %26 Industry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C Stores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canadian Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Casual Dining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commissaries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Correction Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cruise Lines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education %28C%26U%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education %28K-12%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fast Casual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Dining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare%2FHospital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mid-Scale Dining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi Segment Contract Caterer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Living</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports %26 Leisure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supermarkets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace Canteens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бар %2F Паб</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание %E2%80%93 Заправки</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Авиа</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Водный транспорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Бортовое питание - Ж%2FД</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 0-3*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Гостиница 4-5*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Доставка еды на дом%2Fофис</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кейтеринг</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Коммерческая столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кофейни</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Оптовик</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Офисы</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Пищевое производство</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Развлекательный центр</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан гастрономический %28премиальный%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ресторан повседневный</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Социальная столовая</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Спорт</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Стрит-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фаст-фуд</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subcategories__c</picklist>
+            <values>
+                <fullName>Apple Farms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corn Fields</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Television</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Winery</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sun_Opt_In__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Territory__c</picklist>
+            <values>
+                <fullName>10007 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10100 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10200 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10500 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10600 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10610 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10620 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10800 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53020 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54100 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54200 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55005 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55015 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55020 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55030 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55035 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55040 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55045 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56005 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56010 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56015 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56020 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56025 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59005 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59010 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59020 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59025 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82100 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82200 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89010 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89100 Sales Rep</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Direct Operator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Distributor</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Redistributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RussiaAccount</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18755,6 +21027,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>http://news.altavista.com/search?nc=0&amp;q={!Account_Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FS_New_Conatct</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Conatct</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>https://www.google.com</url>
     </webLinks>
     <webLinks>
         <fullName>GoogleMaps</fullName>
