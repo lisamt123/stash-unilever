@@ -9664,5 +9664,26 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_SVF_Please check your MCO financials</shortDescription>
         <value>Please check your MCO financials</value>
     </labels>
+	<labels>
+		<fullName>IPM_Brand_Not_Found</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>Brand Not Found</shortDescription>
+		<value>No matching brand (yet), please contact your IPM BP</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_Platform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform</shortDescription>
+        <value>Platform</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Platform_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform Field Title</shortDescription>
+        <value>Optional - please liaise with your IPM Business Partner to determine whether this parameter needs to be filled in</value>
+    </labels>
 </CustomLabels>
 
