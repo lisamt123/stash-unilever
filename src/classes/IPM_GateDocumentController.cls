@@ -1276,14 +1276,13 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         List<Id> parentSectionIds = new List<Id>();
         Boolean flag = false;
         Map<String, List<IPM_Project_Document_Section__c>> parentSeqChildDocMap = new Map<String, List<IPM_Project_Document_Section__c>>();
-        if(projSubSectionList != null && !projSubSectionList.isEmpty())
-        {
-            for(IPM_Project_Document_Section__c tempSection : projSubSectionList)
-            {
-                parentSectionIds.add(tempSection.IPM_Section__c);
-                parentSequenceList.put(tempSection.IPM_Section__r.IPM_Section_Sequence__c, tempSection);                                
-            }    
-        }
+        
+	for(IPM_Project_Document_Section__c tempSection : projSubSectionList)
+	{
+	    parentSectionIds.add(tempSection.IPM_Section__c);
+	    parentSequenceList.put(tempSection.IPM_Section__r.IPM_Section_Sequence__c, tempSection);                                
+	}    
+       
         
         if(parentSectionIds != null && !parentSectionIds.isEmpty())
         {
@@ -1292,37 +1291,36 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                      order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
         }
         // If header is having more than 1 sub header, then check for each sub-header subsections
-        if(subSectionList != null && !subSectionList.isEmpty())
-        {
-            List<IPM_Project_Document_Section__c> docList;
-            for(IPM_Project_Document_Section__c tempSubSection : subSectionList){
-                if(parentSeqChildDocMap.get(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c) == null ){
-                    docList = new List<IPM_Project_Document_Section__c>();
-                    docList.add(tempSubSection);
-                    parentSeqChildDocMap.put(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, docList);
-                }
-                else{
-                    if(docList != null && !docList.isEmpty()){
-                        docList.add(tempSubSection);
-                        parentSeqChildDocMap.put(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, docList);
-                    }
-                }
-            }
-            // if sub-header is having more than 1 subsections, if any any subsection is having default section as true then skip that sub-header
-            if(parentSeqChildDocMap != null && !parentSeqChildDocMap.isEmpty()){
-                for(String tempSeq : parentSeqChildDocMap.keyset()){
-                    for(IPM_Project_Document_Section__c tempSection : parentSeqChildDocMap.get(tempSeq)){
-                        if(tempSection.IPM_Default_Section__c){
-                            flag = true;
-                        }
-                    }
-                    if(!flag){
-                        subSectionSequenceList.put(tempSeq, parentSeqChildDocMap.get(tempSeq));
-                    }
-                    flag = false;
-                }
-            }
-        }
+        
+	    List<IPM_Project_Document_Section__c> docList;
+	    for(IPM_Project_Document_Section__c tempSubSection : subSectionList){
+	        if(parentSeqChildDocMap.get(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c) == null ){
+	            docList = new List<IPM_Project_Document_Section__c>();
+	            docList.add(tempSubSection);
+	            parentSeqChildDocMap.put(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, docList);
+	        }
+	        else{
+	            if(docList != null && !docList.isEmpty()){
+	                docList.add(tempSubSection);
+	                parentSeqChildDocMap.put(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, docList);
+	            }
+	        }
+	    }
+	    // if sub-header is having more than 1 subsections, if any any subsection is having default section as true then skip that sub-header
+	    if(parentSeqChildDocMap != null && !parentSeqChildDocMap.isEmpty()){
+	        for(String tempSeq : parentSeqChildDocMap.keyset()){
+	            for(IPM_Project_Document_Section__c tempSection : parentSeqChildDocMap.get(tempSeq)){
+	                if(tempSection.IPM_Default_Section__c){
+	                    flag = true;
+	                }
+	            }
+	            if(!flag){
+	                subSectionSequenceList.put(tempSeq, parentSeqChildDocMap.get(tempSeq));
+	            }
+	            flag = false;
+	        }
+	    }
+         
     }
 
     
