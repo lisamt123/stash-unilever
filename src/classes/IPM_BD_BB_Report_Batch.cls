@@ -9,7 +9,7 @@
 
 global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchable<sObject> {   
 
-    global final String query;  
+    global final String query;   
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>(); 
     global list<IPM_Project__c> scopeProjectList = new list<IPM_Project__c>();   
     global set<id> projectIdSet = new set<id>();
@@ -88,7 +88,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             } 
         }
         
-        // prepare Generic Maps related to Financial Year and Analytic object
+        // prepare Generic Maps related to Financial Year Object and Analytic object's fields API Name 
         prepareFinancialGenericTemplate();
         
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
@@ -674,17 +674,25 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
        
         IPM_Analytics__c parent = parentAnalytic;
         list<IPM_Analytics__c> analyticRolloutList = new list<IPM_Analytics__c>();
-        id regionalrolloutid=null;             
          	   
          	 if(projRolloutMap.containskey(parent.IPM_Project_Id__c)){
          	 	
 	             for(IPM_Project_Rollout__c pr : projRolloutMap.get(parent.IPM_Project_Id__c)){ 
-	                     
+            	rolloutProjectHelp(pr,parent, analyticRolloutList);
+            }
+         }
+        return analyticRolloutList;    
+    }
+    /***********************************************
+    Description
+    ************************************************/
+    public void rolloutProjectHelp(IPM_Project_Rollout__c pr, IPM_Analytics__c parent, list<IPM_Analytics__c> analyticRolloutList)
+    {
 	                  IPM_Analytics__c analyticObj = new IPM_Analytics__c();
+         id regionalrolloutid=null;
 	                    
 	                  // project Rollout related details to be copied  
 	                  analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
-	                  string finExtId = '';
 	                    
 	                  if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
 	                      regionalrolloutid = pr.Id; 
@@ -704,8 +712,14 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	                      // To set the CPP details - CPP BD
 	                      analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal,localFinExternalID); 
 	                   } 
-	                   
-	                    
+          rolloutProjectSubHelp(regionalrolloutid,pr,analyticObj);
+          analyticRolloutList.add(analyticObj);
+    }
+    /***************************************************
+    *************/
+    public void rolloutProjectSubHelp(id regionalrolloutid, IPM_Project_Rollout__c pr, IPM_Analytics__c analyticObject1)
+    {
+    	string finExtId = '';
 	                    if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
 	                        for(IPM_Financial__c fir:rolloutFinancialmap.get(regionalrolloutid)){
 	                            if(finExtId != '' && (pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE && fir.Financial_External_ID__c == pr.name + IPM_Utils.CONSOLIDATED) || (pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && fir.Financial_External_ID__c == pr.name)){
@@ -719,18 +733,14 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 						 
 						 
 						if(finExtId != ''){    
-							analyticObj = processProjectRolloutFinancial(analyticObj, finExtId, pr);
+			analyticObject1 = processProjectRolloutFinancial(analyticObject1, finExtId, pr);
 						}
 	                                                            
-	                    analyticRolloutList.add(analyticObj);         
 	                }
 	                
 	                
 	                
 	                
-	             }
-            return analyticRolloutList;    
-        }
     
     /*********************************************************************************************************************
      * @Description: To copy rollout related financial details 
@@ -815,7 +825,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     }
     // Method to set project rollout related financial records
     public IPM_Analytics__c processProjectRolloutFinancial(IPM_Analytics__c analyticObj, String financialExtId, IPM_Project_Rollout__c projectRollout){
-    	//projFinYrMap  
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj; 
     	String strFinancialScope = IPM_ConstantUtils.IPMGLOBAL; 
@@ -859,37 +868,15 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     		// PL Type check for Gross
     		if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
     		
-    			strAnalyticTOFieldName = grossTOCalYrFieldMapping.get(financialYear.Name); 
-    			strAnalyticGPFieldName = grossGPCalYrFieldMapping.get(financialYear.Name);
     			
-    			if(strAnalyticTOFieldName != null && strFYearTOFieldName != null){
-    				ipmAnalytic.put(strAnalyticTOFieldName, financialYear.get(strFYearTOFieldName));
-    			}
-    			if(strAnalyticGPFieldName != null && strFYearGPFieldName != null){
-    				ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
-    			}
+    			ipmAnalytic = populateGrossForCalendar(ipmAnalytic,financialYear,grossTOCalYrFieldMapping,grossGPCalYrFieldMapping,strFYearTOFieldName,strFYearGPFieldName);    		
     			
-    			// Calendar Y3 gTO(BD) 
-    			if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
-    				ipmAnalytic.put( 'IPM_Y3_gTO_BD__c' , financialYear.get(strFYearTOFieldName));
-    			}
     			
     		} else if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
     		
-				strAnalyticTOFieldName = incTOCalYrFieldMapping.get(financialYear.Name); 
-    			strAnalyticGPFieldName = incGPCalYrFieldMapping.get(financialYear.Name);   			
     			
-    			if(strAnalyticTOFieldName != null && strFYearTOFieldName != null){
-    				ipmAnalytic.put(strAnalyticTOFieldName, financialYear.get(strFYearTOFieldName));	
-    			}
-    			if(strAnalyticGPFieldName != null && strFYearGPFieldName != null){
-    				ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
-    			}
+				ipmAnalytic = populateIncForCalendar(ipmAnalytic,financialYear,grossTOCalYrFieldMapping,grossGPCalYrFieldMapping,strFYearTOFieldName,strFYearGPFieldName);
     			
-    			// Calendar Y3 iTO(BD)	
-    			if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
-    				ipmAnalytic.put( 'IPM_Y3_iTO_BD__c' , financialYear.get(strFYearTOFieldName));
-    			}
     		}
     	}	
     	
@@ -899,6 +886,50 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     		// PL Type check for Gross
     		if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
     			
+    			ipmAnalytic = populateGrossForInnovation(ipmAnalytic,financialYear,incTOInnvYrFieldMapping,incGPInnvYrFieldMapping,strFYearTOFieldName,strFYearGPFieldName);
+    		} if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
+    			ipmAnalytic = populateIncForInnovation(ipmAnalytic,financialYear,incTOInnvYrFieldMapping,incGPInnvYrFieldMapping,strFYearTOFieldName,strFYearGPFieldName);
+    		}
+    	}
+    	return ipmAnalytic;
+    }
+    public IPM_Analytics__c populateGrossForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, Map<String, String> grossTOCalYrFieldMapping, Map<String, String> grossGPCalYrFieldMapping, String strFYearTOFieldName, String strFYearGPFieldName){
+    	String strAnalyticTOFieldName = '';
+    	String strAnalyticGPFieldName = '';
+    	strAnalyticTOFieldName = grossTOCalYrFieldMapping.get(financialYear.Name); 
+		strAnalyticGPFieldName = grossGPCalYrFieldMapping.get(financialYear.Name);
+		if(strAnalyticTOFieldName != null && strFYearTOFieldName != null){
+			ipmAnalytic.put(strAnalyticTOFieldName, financialYear.get(strFYearTOFieldName));
+		}
+		if(strAnalyticGPFieldName != null && strFYearGPFieldName != null){
+			ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
+		}
+		// Calendar Y3 gTO(BD) 
+		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+			ipmAnalytic.put( 'IPM_Y3_gTO_BD__c' , financialYear.get(strFYearTOFieldName));
+		}
+		return ipmAnalytic;
+    }
+    public IPM_Analytics__c populateIncForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, Map<String, String> grossTOCalYrFieldMapping, Map<String, String> grossGPCalYrFieldMapping, String strFYearTOFieldName, String strFYearGPFieldName){
+    	String strAnalyticTOFieldName = '';
+    	String strAnalyticGPFieldName = '';
+    	strAnalyticTOFieldName = incTOCalYrFieldMapping.get(financialYear.Name); 
+		strAnalyticGPFieldName = incGPCalYrFieldMapping.get(financialYear.Name);   			
+		if(strAnalyticTOFieldName != null && strFYearTOFieldName != null){
+			ipmAnalytic.put(strAnalyticTOFieldName, financialYear.get(strFYearTOFieldName));	
+		}
+		if(strAnalyticGPFieldName != null && strFYearGPFieldName != null){
+			ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
+		}
+		// Calendar Y3 iTO(BD)	
+		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+			ipmAnalytic.put( 'IPM_Y3_iTO_BD__c' , financialYear.get(strFYearTOFieldName));
+		}
+		return ipmAnalytic;
+    }
+    public IPM_Analytics__c populateGrossForInnovation(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, Map<String, String> grossTOInnvYrFieldMapping, Map<String, String> grossGPYrFieldMapping, String strFYearTOFieldName, String strFYearGPFieldName){
+    	String strAnalyticTOFieldName = '';
+    	String strAnalyticGPFieldName = '';
     			strAnalyticTOFieldName = grossTOInnvYrFieldMapping.get(financialYear.Name);
     			strAnalyticGPFieldName = grossGPYrFieldMapping.get(financialYear.Name);
     			
@@ -909,8 +940,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     				ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
     			}
     			
-    		} if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
+		return ipmAnalytic;
+
+    }
     			
+    public IPM_Analytics__c populateIncForInnovation(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, Map<String, String> incTOInnvYrFieldMapping, Map<String, String> incGPInnvYrFieldMapping, String strFYearTOFieldName, String strFYearGPFieldName){
+    	String strAnalyticTOFieldName = '';
+    	String strAnalyticGPFieldName = '';
     			strAnalyticTOFieldName = incTOInnvYrFieldMapping.get(financialYear.Name);
     			strAnalyticGPFieldName = incGPInnvYrFieldMapping.get(financialYear.Name);
     			
@@ -920,9 +956,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     			if(strAnalyticGPFieldName != null && strFYearGPFieldName != null){
     				ipmAnalytic.put(strAnalyticGPFieldName, financialYear.get(strFYearGPFieldName));
     			}
-    		}
     		
-    	}
     	
     	return ipmAnalytic;
     }
@@ -947,7 +981,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     
 	public void prepareFinancialGenericTemplate(){
 	Integer startYear = reportcs.IPM_Start_Year__c.intValue();
-    	Integer endYear = reportcs.IPM_End_Year__c.intValue();
     	
     	grossTOCalYrFieldMapping = new Map<String, String>();
     	incTOCalYrFieldMapping = new Map<String, String>();
@@ -967,7 +1000,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		String strRefernceInnYear = '';
 		    	
     	for(integer i = 0; i <= 8; i++){
-    		if(startYear + i <= endYear){
+
 	    		strRefernceCalYear = String.valueOf(startYear + i); 
 	    		
 	    		fYearFieldAPIName = 'IPM_Gross_TO_Y' + String.valueOf(i) + '_BD__c';
@@ -996,7 +1029,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 			    	fYearFieldAPIName = 'IPM_Y' + String.valueOf(i) +'_iGP_BD__c';	
 			    	incGPInnvYrFieldMapping.put(strRefernceInnYear, fYearFieldAPIName);
 	    		}
-    		}
+    		
     	}
     	
     }
@@ -1022,7 +1055,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
           }                 
 	  			
 	  			 
-	  			analyticObj.IPM_Company_Priority__c = CPP; 
+	  			analyticObj.IPM_Company_Project_Priority_BD__c = CPP; 
 	  		}
 	  	} 
   		return analyticObj;  
