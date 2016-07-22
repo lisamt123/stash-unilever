@@ -1292,10 +1292,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
         // If header is having more than 1 sub header, then check for each sub-header subsections
         
-	    List<IPM_Project_Document_Section__c> docList;
+       	List<IPM_Project_Document_Section__c> docList = new List<IPM_Project_Document_Section__c>();
 	    for(IPM_Project_Document_Section__c tempSubSection : subSectionList){
 	        if(parentSeqChildDocMap.get(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c) == null ){
-	            docList = new List<IPM_Project_Document_Section__c>();
+               	
 	            docList.add(tempSubSection);
 	            parentSeqChildDocMap.put(tempSubSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, docList);
 	        }
