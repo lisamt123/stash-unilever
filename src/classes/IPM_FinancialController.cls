@@ -1604,9 +1604,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
        try 
        {
             lstUpdateFinancials = new List<IPM_Financial_Year__c>();
-             milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
-            Boolean isCalendarValidationFailed = false;
-            Boolean isInnovationValidationFailed = false;
+            milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
+   
             isEditMode = false;
             isEditModeBottomUp = false;
             
@@ -1695,28 +1694,28 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
           )
            {
 
-                if(validationSettingSet.contains('checkValidITOYellow')){
+                if(validationSettingSet.contains('checkValidITOYellow'.toLowerCase())){
                     //No validation needed for Incremental TO, since it could be zero or even negative              
                     validateIncrementalTurnover(finWrapper.lstIncrementalPLTurnover); // it is not showing incremental turn over
                 }
                 
-                if(validationSettingSet.contains('checkGrossProfitYellow')){
+                if(validationSettingSet.contains('checkGrossProfitYellow'.toLowerCase())){
                     //Validate Gross Profit values
                     validateGrossProfit(finWrapper.lstGrossPLGrossProfit);
 
                 }
                
-                if(validationSettingSet.contains('checkPBOYellow')){
+                if(validationSettingSet.contains('checkPBOYellow'.toLowerCase())){
                     //Validate Gross PBO values
                     validateGrossPBO(finWrapper.lstGrossPLProfit);
                     
                 }
                 
-                if(validationSettingSet.contains('checkBMIYellow')){
+                if(validationSettingSet.contains('checkBMIYellow'.toLowerCase())){
                     validateGrossBMI(finWrapper.lstGrossPLAdvertising);
                 }
                 
-                if(validationSettingSet.contains('checkValidGTOAndITORed')){
+                if(validationSettingSet.contains('checkValidGTOAndITORed'.toLowerCase())){
                     //Validate Gross Turnover values 
                     validateGrossTurnover(finWrapper.lstGrossPLTurnover);
                     validateInnovationTurnOver(finWrapper.lstGrossPLTurnover,finWrapper.lstIncrementalPLTurnover);
@@ -1759,25 +1758,25 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             Boolean isValidateCalendarTurnOverFailed = false;
             
             //validateForGateSubmission
-            if(validationSettingSet.contains('checkValidITOYellow')){
+            if(validationSettingSet.contains('checkValidITOYellow'.toLowerCase())){
                 
                 isValidateIncrementalTurnoverFailed = validateIncrementalTurnover(finWrapper.lstIncrementalPLTurnover); 
             }
             
-            if(validationSettingSet.contains('checkGrossProfitYellow')){
+            if(validationSettingSet.contains('checkGrossProfitYellow'.toLowerCase())){
                 isValidateGrossProfitFailed = validateGrossProfit(finWrapper.lstGrossPLGrossProfit);
             }
             
-            if(validationSettingSet.contains('checkPBOYellow')){
+            if(validationSettingSet.contains('checkPBOYellow'.toLowerCase())){
                 isValidateGrossPBOFailed = validateGrossPBO(finWrapper.lstGrossPLProfit);
             }
             
-            if(validationSettingSet.contains('checkBMIYellow')){
+            if(validationSettingSet.contains('checkBMIYellow'.toLowerCase())){
                 isValidateGrossBMIFailed = validateGrossBMI(finWrapper.lstGrossPLAdvertising);
             }
             
             
-            if(validationSettingSet.contains('checkValidGTOAndITORed')){
+            if(validationSettingSet.contains('checkValidGTOAndITORed'.toLowerCase())){
                 //Validate Gross Turnover values 
                 validateGrossTurnover(finWrapper.lstGrossPLTurnover);
                 isValidateCalendarTurnOverFailed = ValidateCalendarTurnOver(finWrapper.lstGrossPLTurnover,finWrapper.lstIncrementalPLTurnover);
@@ -2669,7 +2668,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                 showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
                                 currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();  
                                 previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();                               
-                                if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == '' || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == ''){
+                                if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
                                     showMisalignedConfirmbtn = true;
                                 } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
                                     showMisalignedConfirmbtn = true;
@@ -2682,7 +2681,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
                     currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();                 
 		    // check for the misalignment
-                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == '' || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == ''){
+                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
                         showMisalignedConfirmbtn = true;
                     } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
                         showMisalignedConfirmbtn = true;
@@ -2694,7 +2693,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
                     currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();                 
             	    // check for the misalignment
-                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == '' || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == ''){
+                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
                         showMisalignedConfirmbtn = true;
                     } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
 		    showMisalignedConfirmbtn = true;
@@ -2887,7 +2886,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String regionalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+finExtIdSplit.get(1)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
         Map<Id,IPM_Financial__c> consolidatedFinancialsMap = new Map<Id,IPM_Financial__c>([Select Id,Red_Validation_Cells__c, Yellow_Validation_Cells__c from IPM_Financial__c 
                                                              where Financial_External_ID__c =:globalConsolidatedFinExtId 
-                                                             OR Financial_External_ID__c=:regionalConsolidatedFinExtId 
+                                                             OR Financial_External_ID__c=:regionalConsolidatedFinExtId Limit 1000
                                                             ]);
         
 
@@ -2897,8 +2896,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         Map<Id, Set<String>> consolFinToYellowValidationCellsMap=  new Map<Id, Set<String>>();
         //Set<IPM_Financial__c> consolFinToUpdateSet = new Set<IPM_Financial__c>();
         
-        String existingNonCurrentFinancialRedValues;
-        String existingNonCurrentFinancialYellowValues;
+        String existingNonCurrentFinancialRedValues = IPM_ConstantUtils.BLANK;
+        String existingNonCurrentFinancialYellowValues = IPM_ConstantUtils.BLANK;
         
         //Find financials To update
         
@@ -2933,35 +2932,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         
         
-        
-        for(IPM_Financial__c finToUpdate: consolidatedFinancialsMap.values()){
-            existingNonCurrentFinancialRedValues = IPM_ConstantUtils.BLANK;
-            existingNonCurrentFinancialYellowValues = IPM_ConstantUtils.BLANK;
-            
-            
-            if(finToUpdate.Red_Validation_Cells__c != null){
-                for (String cells : finToUpdate.Red_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
-                    
-                    if(!cells.containsIgnoreCase(currentFinancial.Financial_External_ID__c)){
-                        existingNonCurrentFinancialRedValues = existingNonCurrentFinancialRedValues + cells + IPM_ConstantUtils.SEMICOLON;
-                    }
-                    
-                }
-            }
-            
-            if(finToUpdate.Yellow_Validation_Cells__c != null){
-                for (String cells : finToUpdate.Yellow_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
-                    if(!cells.containsIgnoreCase(currentFinancial.Financial_External_ID__c)){
-                        existingNonCurrentFinancialYellowValues = existingNonCurrentFinancialYellowValues + cells + IPM_ConstantUtils.SEMICOLON;
-                    }
-                }
-            }
-            
 
-            
-            finToUpdate.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
-            finToUpdate.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
-        }
+        
+        getRedYellowCellsUpdatedConsolFin(consolidatedFinancialsMap,existingNonCurrentFinancialRedValues, existingNonCurrentFinancialYellowValues );
+        
         
         //return consolFinToUpdateSet;
         return new Set<IPM_Financial__c>(consolidatedFinancialsMap.values());
@@ -2998,11 +2972,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * Return : IPM_Project_GKM_To_Phase_Matrix__mdt 
     *************************************************************************************************************/
     public IPM_Project_GKM_To_Phase_Matrix__mdt getProjGKMToPhaseMatrixElement(IPM_Project__c project){
-        List<IPM_Project_GKM_To_Phase_Matrix__mdt> projToGKMPhaseMatrix =  [Select Id,GKM_Model__c,Project_Phase__c,Financial_Type_To_Validate__c from IPM_Project_GKM_To_Phase_Matrix__mdt];
+        List<IPM_Project_GKM_To_Phase_Matrix__mdt> projToGKMPhaseMatrix =  [Select Id,GKM_Model__c,Project_Phase__c,Financial_Type_To_Validate__c from IPM_Project_GKM_To_Phase_Matrix__mdt limit 1000];
         
         for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : projToGKMPhaseMatrix ){
             if(GKMPhaseMapEle.GKM_Model__c == project.IPM_ProjectGKM__c &&
-               GKMPhaseMapEle.Project_Phase__c == project.IPM_Phase__c
+               GKMPhaseMapEle.Project_Phase__c.equalsIgnoreCase(project.IPM_Phase__c)
               ){
               return GKMPhaseMapEle;
             }
@@ -3020,36 +2994,29 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * return : List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList
     ***********************************************************************************************************/
     public List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> getSoftValidationSettingList(IPM_Project__c project){
-        List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettings =  [Select Id,Label,IPM_Threshold_Status__c,IPM_Project_Sub_Type__c,IPM_Project_Phase__c,IPM_Market_Place_Activity__c,checkValidPaybackYellow__c,checkValidNPVYellow__c,checkValidITOYellow__c,checkValidIRRYellow__c,checkValidGTOAndITORed__c,checkValidCAPEXYellow__c,checkPBOYellow__c,checkGrossProfitYellow__c,checkBMIYellow__c from IPM_Red_Yellow_Soft_Validation_Setting__mdt];
+        Map<Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingMap = new Map <Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt>([Select Id,Label,IPM_Threshold_Status__c,IPM_Project_Sub_Type__c,IPM_Project_Phase__c,IPM_Market_Place_Activity__c,checkValidPaybackYellow__c,checkValidNPVYellow__c,checkValidITOYellow__c,checkValidIRRYellow__c,checkValidGTOAndITORed__c,checkValidCAPEXYellow__c,checkPBOYellow__c,checkGrossProfitYellow__c,checkBMIYellow__c from IPM_Red_Yellow_Soft_Validation_Setting__mdt Limit 1000 ]);
         
         List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList =  new List<IPM_Red_Yellow_Soft_Validation_Setting__mdt>();
         
         Map<Id, String> valSettingIdPhaseMap = new Map<Id, String>();
         Map<Id, String> valSettingIdMPAMap = new Map<Id, String>() ;
-
         
-        for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettings ){
-            if(valSetting.IPM_Project_Phase__c != null){
-                valSettingIdPhaseMap.put(valSetting.Id,valSetting.IPM_Project_Phase__c);
-            }
-            if(valSetting.IPM_Market_Place_Activity__c!= null){
-                valSettingIdMPAMap.put(valSetting.Id,valSetting.IPM_Market_Place_Activity__c);
-            }
-        }
+        String valSettingPhase = IPM_ConstantUtils.BLANK;
+        String valSettingMPA = IPM_ConstantUtils.BLANK;
+        
         
         //IPM_Red_Yellow_Soft_Validation_Setting__mdt validationSetting;
         
-        for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettings ){
+        for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettingMap.values() ){
             
-            String valSettingPhase = IPM_ConstantUtils.BLANK;
-            String valSettingMPA = IPM_ConstantUtils.BLANK;
+            if(valSetting.IPM_Project_Phase__c!=null){
+            	valSettingPhase = valSetting.IPM_Project_Phase__c.deleteWhitespace();
+            }
             
-            if(valSettingIdPhaseMap.get(valSetting.Id) != Null){
-                valSettingPhase = valSettingIdPhaseMap.get(valSetting.Id).deleteWhitespace();
-            }
-            if(valSettingIdMPAMap.get(valSetting.Id) != Null){
-                valSettingMPA = valSettingIdMPAMap.get(valSetting.Id).deleteWhitespace();
-            }
+	    if(valSetting.IPM_Market_Place_Activity__c!=null){
+		valSettingMPA = valSetting.IPM_Market_Place_Activity__c.deleteWhitespace();
+	     }
+            
             
             if(
                 (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)) &&
@@ -3109,7 +3076,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
           ){
           	
 
-	        if(( validationSettingSet.contains('checkValidCAPEXYellow') &&
+	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
 	            (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
 	            (isFinacialConsolidated && currentFinancial.Yellow_Validation_Cells__c != null && currentFinancial.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
@@ -3117,15 +3084,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	           yellowValidationCellsString = yellowValidationCellsString + currentFinancial.Financial_External_ID__c + IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.SEMICOLON;
 	        }
 	    
-	        if(validationSettingSet.contains('checkValidIRRYellow') && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
+	        if(validationSettingSet.contains('checkValidIRRYellow'.toLowerCase()) && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isIRRInvalid = true;
 	        }
 	        
-	        if(validationSettingSet.contains('checkValidNPVYellow') && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
+	        if(validationSettingSet.contains('checkValidNPVYellow'.toLowerCase()) && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isNPVInvalid = true;
 	        }
 	        
-	        if(validationSettingSet.contains('checkValidPaybackYellow') && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
+	        if(validationSettingSet.contains('checkValidPaybackYellow'.toLowerCase()) && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isPaybackInvalid = true;
 	        }
         }
@@ -3141,17 +3108,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void getValidationSettingSet(){
     	List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> vaildationSettingList = getSoftValidationSettingList(project);
         
+        Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.IPM_Red_Yellow_Soft_Validation_Setting__mdt.fields.getMap();
+        
         for(IPM_Red_Yellow_Soft_Validation_Setting__mdt rysvs : vaildationSettingList ){
-            if(rysvs.checkValidITOYellow__c){ validationSettingSet.add('checkValidITOYellow'); }
-            if(rysvs.checkGrossProfitYellow__c){ validationSettingSet.add('checkGrossProfitYellow'); }
-            if(rysvs.checkPBOYellow__c){ validationSettingSet.add('checkPBOYellow'); }
-            if(rysvs.checkBMIYellow__c){ validationSettingSet.add('checkBMIYellow'); }
-            if(rysvs.checkValidGTOAndITORed__c){ validationSettingSet.add('checkValidGTOAndITORed'); }
             
-            if(rysvs.checkValidCAPEXYellow__c){ validationSettingSet.add('checkValidCAPEXYellow'); }
-            if(rysvs.checkValidIRRYellow__c){ validationSettingSet.add('checkValidIRRYellow'); }
-            if(rysvs.checkValidNPVYellow__c){ validationSettingSet.add('checkValidNPVYellow'); }
-            if(rysvs.checkValidPaybackYellow__c){ validationSettingSet.add('checkValidPaybackYellow'); }
+            For (String field : fieldMap.KeySet()) {
+				if(String.valueOf(fieldMap.get(field).getDescribe().getType()).equalsIgnoreCase('BOOLEAN') && (Boolean)rysvs.get(field) ){
+                    validationSettingSet.add(field.replace(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,''));
+				}
+			}
         }
         
     }
@@ -3191,7 +3156,52 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	
 		LstCurrentFinancial = Database.query(queryString);
 	
-		for(IPM_Financial__c currentFin: LstCurrentFinancial){
+		getRedYellowCellsMap(LstCurrentFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
+		
+		
+		//Work with the string containing list of erroneous cells to populate the cells on consolidated with their names
+		List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
+			
+		for(IPM_Financial__c currentFinance: LstCurrentFinancial){
+		
+			if(currentFinance.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+				Set<String> uniqueRedCells = new Set<String>( finExtIdRedCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
+				Set<String> uniqueYellowCells = new Set<String>( finExtIdYellowCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
+				
+				String uniqueRedCellsStr = IPM_ConstantUtils.BLANK;
+				String uniqueYellowCellsStr = IPM_ConstantUtils.BLANK;
+				
+				for(String redStr : uniqueRedCells){
+					uniqueRedCellsStr = uniqueRedCellsStr + redStr + IPM_ConstantUtils.SEMICOLON;
+				}
+				
+				for(String yellowStr : uniqueYellowCells){
+					uniqueYellowCellsStr = uniqueYellowCellsStr + yellowStr + IPM_ConstantUtils.SEMICOLON;
+				}
+				
+				currentFinance.Red_Validation_Cells__c = uniqueRedCellsStr;
+				currentFinance.Yellow_Validation_Cells__c = uniqueYellowCellsStr;
+				toUpdateFinancials.add(currentFinance);
+			}
+			
+		}
+		
+		update toUpdateFinancials;
+	}
+    
+    /**************************************************************************************************************
+    * This method populates the consolidated financials with the rolloup financial error cells (name of the cells)
+    * Called when financials page is loaded
+    * All rollup financials are fetcehd and validated 
+    * the validations created error cells string
+    * This string is the used to populate the maps finExtIdRedCellsMap,finExtIdYellowCellsMap
+    * Helper method for setConsolidatedFinancialValidationCells
+    * Parameter : LstCurrentFinancial : the list of the financials
+    *    		  finExtIdRedCellsMap & finExtIdYellowCellsMap : the Maps containing the string conatining the red and yellow erroneous cells respectively(semi colon seperated)	
+    **************************************************************************************************************/
+    public void getRedYellowCellsMap(List<IPM_Financial__c> LstCurrentFinancial,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
+    	
+    	for(IPM_Financial__c currentFin: LstCurrentFinancial){
 			redValidationCellsString = IPM_ConstantUtils.BLANK;
     		yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
 			currentFinancial = currentFin;
@@ -3202,19 +3212,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				financialsInnovation = new IPM_FinancialWrapper();
 				financialsCalendar = new IPM_FinancialWrapper();
 	
-				// DEF2676 fix start
-				consolidatedYearCount = 0;
-				if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE) {
-					 for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
-						if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS) {
-							consolidatedYearCount ++;
-						}
-					}
-					if( consolidatedYearCount>sustainabilityPeriod && nextIndex==0 && previousIndex==0 ) {
-						previousIndex = 1;
-						nextIndex = sustainabilityPeriod;
-					}
-				}
+				
 			   // DEF2676 fix end
 				for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
 					//Add to Map
@@ -3227,26 +3225,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 					}
 					//Calendar Years
 					else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
-						if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE) {
-							if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS) {
-								grossCount++;
-							} else if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL) {
-								incrementalCount++;
-							}  
-						}
-						
-						if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && consolidatedYearCount>sustainabilityPeriod ) { 
-							if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS && grossCount>=previousIndex && grossCount<=nextIndex) {
-								generateFinancials(finYear, financialsCalendar);
-							} else if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL && incrementalCount>=previousIndex && incrementalCount<=nextIndex) {
-								generateFinancials(finYear, financialsCalendar);
-							}
-						} else {
-							generateFinancials(finYear, financialsCalendar);
-						}
-	
-						
-				   }
+						generateFinancials(finYear, financialsCalendar);
+					}
 				}
 				
 				//Run the validations
@@ -3304,37 +3284,46 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
 			
 		}
-		
-		
-		//Work with the string containing list of erroneous cells to populate the cells on consolidated with their names
-		List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
-			
-		for(IPM_Financial__c currentFinance: LstCurrentFinancial){
-		
-			if(currentFinance.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
-				Set<String> uniqueRedCells = new Set<String>( finExtIdRedCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
-				Set<String> uniqueYellowCells = new Set<String>( finExtIdYellowCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
-				
-				String uniqueRedCellsStr = IPM_ConstantUtils.BLANK;
-				String uniqueYellowCellsStr = IPM_ConstantUtils.BLANK;
-				
-				for(String redStr : uniqueRedCells){
-					uniqueRedCellsStr = uniqueRedCellsStr + redStr + IPM_ConstantUtils.SEMICOLON;
-				}
-				
-				for(String yellowStr : uniqueYellowCells){
-					uniqueYellowCellsStr = uniqueYellowCellsStr + yellowStr + IPM_ConstantUtils.SEMICOLON;
-				}
-				
-				currentFinance.Red_Validation_Cells__c = uniqueRedCellsStr;
-				currentFinance.Yellow_Validation_Cells__c = uniqueYellowCellsStr;
-				toUpdateFinancials.add(currentFinance);
-			}
-			
-		}
-		
-		update toUpdateFinancials;
-	}
+    
+    }
+    
+    /**************************************************************************************************************
+    * This method populates the consolidated financials with the rolloup financial error cells (name of the cells)
+    * Called when the financial is edited and saved
+    * Helper method for getConsolidatedValidationCells
+    * Parameter : consolidatedFinancialsMap : the map of consolidated financials
+    *    		  existingNonCurrentFinancialRedValues & existingNonCurrentFinancialYellowValues : the string containing all the cells that are not of the current financial	
+    **************************************************************************************************************/
+    public void getRedYellowCellsUpdatedConsolFin( Map<Id,IPM_Financial__c> consolidatedFinancialsMap,String existingNonCurrentFinancialRedValues, String existingNonCurrentFinancialYellowValues ){
+    	
+    	for(IPM_Financial__c finToUpdate: consolidatedFinancialsMap.values()){
+        	System.debug('finToUpdate==>'+finToUpdate);
+            
+            if(finToUpdate.Red_Validation_Cells__c != null){
+                for (String cells : finToUpdate.Red_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
+                    
+                    if(!cells.containsIgnoreCase(currentFinancial.Financial_External_ID__c)){
+                        existingNonCurrentFinancialRedValues = existingNonCurrentFinancialRedValues + cells + IPM_ConstantUtils.SEMICOLON;
+                    }
+                    
+                }
+            }
+            
+            if(finToUpdate.Yellow_Validation_Cells__c != null){
+                for (String cells : finToUpdate.Yellow_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
+                    if(!cells.containsIgnoreCase(currentFinancial.Financial_External_ID__c)){
+                        existingNonCurrentFinancialYellowValues = existingNonCurrentFinancialYellowValues + cells + IPM_ConstantUtils.SEMICOLON;
+                    }
+                }
+            }
+            
+            System.debug('existingNonCurrentFinancialRedValues==>'+existingNonCurrentFinancialRedValues);
+            System.debug('existingNonCurrentFinancialYellowValues==>'+existingNonCurrentFinancialYellowValues);
+            
+            finToUpdate.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
+            finToUpdate.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
+        }
+    }
     
     
     
