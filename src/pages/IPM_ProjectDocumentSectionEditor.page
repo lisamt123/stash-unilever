@@ -137,12 +137,12 @@
                                                <span class="filledinDesc asterisk padtopbtm">{!$Label.IPM_FunctionalInput_minChar}</span>
                                                 <!--upto here-->
                                                 <div class="row">
-                                                    <apex:outputPanel layout="block" styleClass="col-sm-12 dateUpdate" rendered="{! if(projDocSec.IPM_PDPHistoty__c !=null,'true','false')}">
+                                                    <div class="col-sm-12 dateUpdate" >
                                                         <div class="panel">
-                                                            <apex:outputText value="Last updated by: {!projDocSec.IPM_PDPHistoty__c} on "  />
-                                                              <apex:outputField value="{!projDocSec.IPM_PDPHistoty_Date__c}" />   
+                                                            <apex:outputText value="Last updated by: {!projDocSec.IPM_PDPHistoty__c} on " rendered="{! if(projDocSec.IPM_PDPHistoty__c !=null,'true','false')}" /> 
+                                                            <apex:outputField value="{!projDocSec.IPM_PDPHistoty_Date__c}" />   
                                                         </div>
-                                                    </apex:outputPanel> 
+                                                    </div> 
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-sm-12">
