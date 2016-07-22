@@ -120,7 +120,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Boolean isPDFDownload{get;set;}
     public boolean isExemptFromThresholdITO {get;set;}
     public Boolean showAttach{get;set;}
-    public Boolean showSummaryAttach{get;set;}
+    public Boolean showSummaryAttach{ get{showAllCurrentDocSummaryAttch(); return showSummaryAttach; } set;}  
     
     public Set<String> proSubSectionParentsSequenceList1;//DEF1474 - contains all headers sequence
     

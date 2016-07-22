@@ -1,4 +1,18 @@
     <labels>
+        <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download All Attachments</shortDescription>
+        <value>Download All</value>
+    </labels> 
+    <labels>
+        <fullName>IPM_NoAttachment_ForDownload_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Message when no summary attachments are available for download</shortDescription>
+        <value>No Summary Attachments to download</value>
+    </labels>
+    <labels>
         <fullName>IPM_Assumption_GM</fullName>
         <language>en_US</language>
         <protected>false</protected>

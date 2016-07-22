@@ -73,8 +73,8 @@
                                                 <a class="icoButton history" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ProjectDocumentSectionHistory}?Id={!project.Id}" data-backdrop="static" data-keyboard="false" title="View Update History" id="showHistory"></a>
                                                 <!-- CR0434 -->
                                                 <a class="icoButton paper-clip clipinfo" title="{!$Label.IPM_AllSummaryAttachDwnldBttn_Hovertext}" 
-                                                       onclick="showAllCurrentDocSummaryAttch();" data-toggle="modal" data-target="#ipmAttachmentModal" data-backdrop="static" data-keyboard="false"></a>
-                                                <apex:actionfunction name="showAllCurrentDocSummaryAttch" action="{!showAllCurrentDocSummaryAttch}" rerender="attsec" /> 
+                                                       onclick="showAllCurrentDocSummaryAttch();" data-toggle="modal" data-target="{!if(showSummaryAttach,'#ipmAttachmentModal','#ipmNoAttachmentModal')}" data-backdrop="static" data-keyboard="false"></a>
+                                                <apex:actionfunction name="showAllCurrentDocSummaryAttch"  rerender="attsec" /> 
                                                 <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!$Label.IPM_Download_with_Appendix}" rendered="{!isPDFDownload}">
                                                     <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="True"/>
                                                 </apex:commandLink>
@@ -724,9 +724,28 @@
                                                             </apex:column>
                                                             <apex:column >{!attch.name}</apex:column>
                                                         </apex:datatable>
-                                                    </apex:outputpanel>
+                                                    </apex:outputpanel> 
                                                  </div>
                                              </div>  
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- No Attachment Modal --->
+                        <div id="ipmNoAttachmentModal" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-hidden="true">&times;</button>
+                                        <div class="modal-title">{!$Label.IPM_DwnldAllSummaryAttachBttn_ModalHeader}</div>
+                                     </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                             <div class="container-fluid">                               
+                                                <span class="modMtop">{!$Label.IPM_NoAttachment_ForDownload_Msg }</span> 
+                                            </div>  
                                         </div>          
                                     </div>
                                 </div>     
