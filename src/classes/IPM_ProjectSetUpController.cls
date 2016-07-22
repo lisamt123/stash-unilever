@@ -399,44 +399,58 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     *****************************************************************************/
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos()
-    {   
-        List<Selectoption> brandOptionList = new List<Selectoption>();
-        List<MDO_BrandPositions__c> userBrandPos=null; 
+    {
+    	List<Selectoption> brandOptionsList = new List<Selectoption>();   
         if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
         {
-           brandOptionList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
+           brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
         }
-        
-        Set<String> brandPositionSet = new Set<String>(); 
+
         try
         {
             if(!String.isBlank(project.IPM_Category_Text__c))
             {
-                String Query_STR=IPM_ConstantUtils.BLANK;
-                if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL))
-                {
-                Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
-                    Query_STR+=' LIMIT 50000';
-                    userBrandPos=database.query(Query_STR);    
-                }
-                else
-                {
-                    if(String.isNotBlank(project.IPM_Region_Shr__c))
-                    {
-                        Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
-                        if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL))
-	                	    {
-                   		Query_STR+=' and geo_id__r.parent_L4__r.name=\''+ string.escapeSingleQuotes(project.IPM_Region_Shr__c) +'\' ';
-                }
-	                    else if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_LOCAL))
-	                    {
-                    List<String>uniqueCountryList=project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
-                    Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
-                }
-                Query_STR+=' LIMIT 50000';
-                userBrandPos=database.query(Query_STR);
-                    }
-                } 
+                fetchBrandPos(brandOptionsList);
+            }
+        }
+        catch(Exception ex)
+        {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));    
+        }
+        return brandOptionsList;
+    }
+    /***************************************************************************
+    Description
+    ***************************************************************************/
+    public void fetchBrandPos(List<Selectoption> brandOptionList)
+    {
+        List<MDO_BrandPositions__c> userBrandPos = new List<MDO_BrandPositions__c>();
+    	Set<String> brandPositionSet = new Set<String>();
+    	String Query_STR = IPM_ConstantUtils.BLANK;
+		if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL))
+        {
+        	Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
+            	Query_STR+=' LIMIT 50000';
+            	userBrandPos=database.query(Query_STR);    
+        }
+        else
+        {
+        	if(String.isNotBlank(project.IPM_Region_Shr__c))
+        	{
+	        	Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' ';
+	            if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL))
+	            {
+	            	Query_STR+=' and geo_id__r.parent_L4__r.name=\''+ string.escapeSingleQuotes(project.IPM_Region_Shr__c) +'\' ';
+	    		}
+	            else if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_LOCAL))
+	            {
+	        		List<String>uniqueCountryList=project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
+	        		Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
+	    		}
+	    		Query_STR+=' LIMIT 50000';
+	    		userBrandPos=database.query(Query_STR);
+	        }
+		} 
                 
                 if(userBrandPos !=null && !userBrandPos.isEmpty())
                 {
@@ -451,42 +465,30 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     } 
                 }
                                 
-                // To retain or Loose user Selection.
-                if(!String.isBlank(project.IPM_Brand_Positioning__c))
-                {
-                    String[] selectedBrandPos = project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA);
-
-                    Set<String> selectedBrandPosSet = new Set<String>(selectedBrandPos);  
-                
-                    Set<String> retainedBrandPos = new Set<String>();
-                
-                    for(String brandPos : brandPositionSet)
-                    {
-                        if(selectedBrandPosSet.contains(brandPos) )
-                        {
-                           retainedBrandPos.add(brandPos); 
-                        }
-                    }
-
-                    String finalBrandPosString = IPM_ConstantUtils.BLANK;
-                
-                    if(!retainedBrandPos.isEmpty())
-                    {
-                        for(String retainedbrand : retainedBrandPos)
-                        {
-                            finalBrandPosString = finalBrandPosString + retainedbrand +  IPM_ConstantUtils.COMMA;      
-                        }
-                        finalBrandPosString = finalBrandPosString.removeEndIgnoreCase(IPM_ConstantUtils.COMMA);
-                    }
-                    project.IPM_Brand_Positioning__c = finalBrandPosString;
-                }
-            }
-        }
-        catch(Exception ex)
+		// To retain or Loose user Selection.
+        if(!String.isBlank(project.IPM_Brand_Positioning__c))
         {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));    
+			String[] selectedBrandPos = project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA);
+		    Set<String> selectedBrandPosSet = new Set<String>(selectedBrandPos);  
+		    Set<String> retainedBrandPos = new Set<String>();
+			for(String brandPos : brandPositionSet)
+            {
+	            if(selectedBrandPosSet.contains(brandPos) )
+	            {
+	               retainedBrandPos.add(brandPos); 
+	            }
+			}
+			String finalBrandPosString = IPM_ConstantUtils.BLANK;
+            if(!retainedBrandPos.isEmpty())
+            {
+	            for(String retainedbrand : retainedBrandPos)
+                {
+                    finalBrandPosString = finalBrandPosString + retainedbrand +  IPM_ConstantUtils.COMMA;      
+                }
+                finalBrandPosString = finalBrandPosString.removeEndIgnoreCase(IPM_ConstantUtils.COMMA);
+            }
+            project.IPM_Brand_Positioning__c = finalBrandPosString;
         }
-        return brandOptionList;
     }
     /****************************************************************************
     @Description : Getting List of Gate Keeping Models
@@ -1009,54 +1011,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             list<IPM_Project_Resource__c> projectResourceList = [select Id,IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Project__r.Deputy_Project_Leader__c,IPM_Project__r.IPM_Technical_Project_Leader__c 
                                                                  from IPM_Project_Resource__c where 
                                                                  IPM_Project__c=:projectId and IPM_User__c=:userinfo.getuserid() and IPM_Project__r.Is_Archieved__c=false  limit 1];
-            
-            if(projectResourceList != null && !projectResourceList.isEmpty()){
-                IPM_Project_Resource__c projectResource = projectResourceList[0];
-                
-                if( projectResource.IPM_Role_Type__c != IPM_Utils.Guest ){
-                
-                    isMilestoneEditable = false;
-                    
-                    if( projectResource.IPM_Role_Type__c == IPM_Utils.BD || projectResource.IPM_Role_Type__c == IPM_Utils.BDMarketing )
-                    {
-                        isBDuser=true;
-                    }
-                    if(projectResource.IPM_Project_Role_Owner__c)
-                    {
-                            isCreateTask=true;
-                            isTaskeditable =true;
-                    }
-                }
-                else {
-                    isMilestoneEditable=false;
-                    
-                }
-                if( projectResource.IPM_Role_Type__c != null && !String.isBlank(projectResource.IPM_Role_Type__c)){
-                    functionRole = projectResource.IPM_Role_Type__c;
-                }
-                if(projectResource.IPM_Role_Type__c==IPM_Utils.CMI || projectResource.IPM_Role_Type__c==IPM_Utils.CD || projectResource.IPM_Role_Type__c==IPM_Utils.Finance || projectResource.IPM_Role_Type__c==IPM_Utils.Guest){
-                    isupdateDates=false;
-                }
-            } 
-            
+            checkAccess(projectResourceList);
+ 
             // Checking the user List
-            if(!(project.IPM_PrepareForArchival__c || project.Is_Archieved__c))
-            {
-                // To check the Project Leader
-               if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
-                {
-                    isMilestoneEditable=true;
-                    
-                }
-               if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c 
-                        || loggedInUser == project.IPM_Technical_Project_Leader__c)
-                    {
-                        updateApproach =true;
-                        isTaskeditable =true;
-                        isCreateTask=true;
-                        isAllTask=true;
-                    }
-            }
+            checkUserList(loggedInUser);
+            
             //security for central team and BP users
                 IPM_CustomPermission cpr = new IPM_CustomPermission();
                 boolean isCentralTeam=false;
@@ -1077,6 +1036,67 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                             'getMilesTaskIpmuserType',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }                                           
     }
+    /*****************************
+    Description
+    ********************************/
+    public void checkAccess(list<IPM_Project_Resource__c> projectResourceList)
+    {
+    	if(projectResourceList != null && !projectResourceList.isEmpty())
+    	{
+			IPM_Project_Resource__c projectResource = projectResourceList[0];
+	        if( projectResource.IPM_Role_Type__c != IPM_Utils.Guest )
+	        {
+	            isMilestoneEditable = false;
+	            
+	            if( projectResource.IPM_Role_Type__c == IPM_Utils.BD || projectResource.IPM_Role_Type__c == IPM_Utils.BDMarketing )
+	            {
+	                isBDuser=true;
+	            }
+	            if(projectResource.IPM_Project_Role_Owner__c)
+	            {
+					isCreateTask=true;
+	                isTaskeditable =true;
+	            }
+	        }
+	        else
+	        {
+	            isMilestoneEditable=false;
+	        }
+	        if( projectResource.IPM_Role_Type__c != null && !String.isBlank(projectResource.IPM_Role_Type__c))
+	        {
+	            functionRole = projectResource.IPM_Role_Type__c;
+	        }
+	        if(projectResource.IPM_Role_Type__c==IPM_Utils.CMI || projectResource.IPM_Role_Type__c==IPM_Utils.CD || projectResource.IPM_Role_Type__c==IPM_Utils.Finance || projectResource.IPM_Role_Type__c==IPM_Utils.Guest)
+	        {
+	            isupdateDates=false;
+	        }
+        }
+    }
+    
+/*******************************************************
+Description
+********************************************************/
+	public void checkUserList(Id loggedInUser)
+	{
+		if(!(project.IPM_PrepareForArchival__c || project.Is_Archieved__c))
+	    {
+	        // To check the Project Leader
+	       if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
+	       {
+	            isMilestoneEditable=true;
+	            
+	       }
+	       if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c 
+	                || loggedInUser == project.IPM_Technical_Project_Leader__c)
+            {
+                updateApproach =true;
+                isTaskeditable =true;
+                isCreateTask=true;
+                isAllTask=true;
+            }
+	    }
+	}
+    
     /****************************************************************************
     @Description : save complexity type
     *****************************************************************************/

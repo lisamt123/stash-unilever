@@ -398,25 +398,24 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             boolean isBPUser=false;
             isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
             isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
-            if(isCentralTeam || isBPUser){
+            if(isCentralTeam || isBPUser)
+            {
                 IsUpdateStatus=true;
                 isReadable=false;
                 
             }   
-           	if(associatedProject !=null)
+            
+            if(project !=null)
             {
                 if(IsUpdateStatus)
                 {
-            		IsUpdateStatus = !(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c);
-            	}
- 
-	            if(associatedProject.Is_Archieved__c || associatedProject.IPM_PrepareForArchival__c)
-	            {
-            		isReadable = true;
+                    IsUpdateStatus = !(project.Is_Archieved__c || project.IPM_PrepareForArchival__c);
                 } 
-            }  
-
-            
+                if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c)
+                {
+                   isReadable = true;   
+                }
+            }   
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
