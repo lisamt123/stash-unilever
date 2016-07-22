@@ -2628,6 +2628,11 @@
         <field>IPM_Country__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Country__c.IPM_Brand_Position__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Document_Template__c.IPM_Document_Order__c</field>
@@ -6363,7 +6368,17 @@
         <field>IPM_Project_Rollout__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project_Rollout__c.IPM_Brand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout__c.IPM_Brand_Position__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Template__c.IPM_Category__c</field>
         <readable>true</readable>

@@ -67,8 +67,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public string localRolloutIdBrand{get;set;}
     public string localRolloutBrand{get;set;}
     @TestVisible private Map<id,IPM_Project_Rollout__c> rolloutToUpdateBrand;
-    public map<id,set<string>> holdRolloutidBrandMap{get;set;}
-    
+    public map<id,set<string>> holdRolloutidBrandMap{get;set;}//map of local rollout id and set of brands
+    @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
     /*******************************************************************************************************
     * @description  Constructor
     * @param        NONE
@@ -127,6 +127,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         // initialisation
 		isBrandEditable = false;
         rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
+		rolloutCountryMap = new Map<string,IPM_Country__c>(); 
        	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
        	if(projectTolocalRolloutToCountryMap!=null)
        	{
@@ -571,7 +572,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 if(!localRollout.IPM_Countries_Local__r.IsEmpty() )
                 {
                     localRolloutToCountryMap.put(localRollout.Id,localRollout.IPM_Countries_Local__r);
-                }   
+                }
+				for(IPM_Country__c country  :localRollout.IPM_Countries_Local__r)  
+                {
+                    rolloutCountryMap.put(country.Country_Name__c,country);
+                }  
             }
         }
         
@@ -1081,16 +1086,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public void getAllbrands(){
         //get brand values
         holdRolloutidBrandMap = new map<id,set<string>>();//hold rollout id's with set of brand names
-        List<IPM_Country__c> countriesList = New List<IPM_Country__c>();//hold list of all countries name of current project.
-        countriesList=[SELECT IPM_Brand_Position__c,Country_Name__c,Local_Rollout__c  FROM IPM_Country__c 
-                        WHERE (Local_Rollout__r.Regional_Project__c =: projectId OR Local_Rollout__r.Regional_Rollout__r.IPM_Project__c =: projectId OR Local_Rollout__r.IPM_Project__c =: projectId) LIMIT 5000];
-        
         List<MDO_BrandPositions__c>brandPosList = New list<MDO_BrandPositions__c>();
         brandPosList=[SELECT id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
-                         brand_position_id__r.Name =: project.IPM_Brand_Positioning__c ORDER BY brand_id__r.Name ASC LIMIT 10000];
-        for(IPM_Country__c country: countriesList)
+                         brand_position_id__r.Name =: project.IPM_Brand_Positioning__c AND geo_id__r.Name IN :rolloutCountryMap.keyset() ORDER BY brand_id__r.Name ASC LIMIT 10000];
+        for(IPM_Country__c country: rolloutCountryMap.Values())
         {
-            set<string> countrySet = new set<string>();
             if(!holdRolloutidBrandMap.containskey(country.Local_Rollout__c))
             {
                 holdRolloutidBrandMap.put(country.Local_Rollout__c,new set<string>());
@@ -1109,7 +1109,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         localRolloutBrandMap = new Map<Id,IPM_Project_Rollout__c>( [SELECT Id,IPM_Brand__c FROM IPM_Project_Rollout__c WHERE id IN :holdRolloutidBrandMap.keyset() LIMIT 10000]);
         for(IPM_Project_Rollout__c rollout: localRolloutBrandMap.values())
         {
-            if(rollout.IPM_Brand__c == null || IPM_ConstantUtils.BRAND_NOT_FOUND.equals(rollout.IPM_Brand__c)){
+            if(IPM_ConstantUtils.BRAND_NOT_FOUND.equals(rollout.IPM_Brand__c)){
                 holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
             } 
         }

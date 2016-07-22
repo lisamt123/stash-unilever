@@ -1084,68 +1084,76 @@ public with sharing class IPM_ProjectCountryDetails{
       ***********************************************************************************************/
       public static void assignBrandToRollout(List<IPM_Country__c>countryList){
         map<string,string> brandPosMap = new map<string,string>();//map of country name and brand positioning
-        set<string> localRolloutsSet = new set<string>();//set of local rollout id's
-        List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();//list of rollout which all need to update with brand value.
-        IPM_Project_Rollout__c newRollout;// declaration of local rollout
-        
-        Set<id> rolloutIdSet=new Set<id>();//set of local rollout id's
+        map<id,set<string>> brandsMap = new map<id,set<string>>();
         for(IPM_Country__c country :countryList){
         	if(country.IPM_Brand_Position__c !=null)
         	{ 
             	brandPosMap.put(country.Country_Name__c,country.IPM_Brand_Position__c);
         	}
-            localRolloutsSet.add(country.Local_Rollout__c);  
-        }
+        } 
         //get all brand values based on country and brand positioning.
         List<MDO_BrandPositions__c>brandPosList = New list<MDO_BrandPositions__c>();
         brandPosList=[SELECT id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
                          geo_id__r.Name IN :brandPosMap.Keyset() AND brand_position_id__r.Name IN :brandPosMap.values() ORDER BY brand_id__r.Name ASC NULLS LAST
                          LIMIT 50000];
         
-        for(IPM_Country__c country :countryList)
+        for(IPM_Country__c country :countryList) 
         {
-            for(MDO_BrandPositions__c  brandPos:brandPosList)
+            brandsMap.put(country.Local_Rollout__c,new set<string>());
+			for(MDO_BrandPositions__c  brandPos:brandPosList)
             {
                 
-                if(!rolloutIdSet.contains(country.Local_Rollout__c) && country.Country_Name__c !=null && country.Country_Name__c.equals(brandPos.geo_id__r.Name) && country.IPM_Brand_Position__c !=null 
-                    && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name))
+                if(brandPos.brand_id__r.Name != null && !brandsMap.get(country.Local_Rollout__c).contains(brandPos.brand_id__r.Name) && country.Country_Name__c !=null && country.Country_Name__c.equals(brandPos.geo_id__r.Name) 
+                && country.IPM_Brand_Position__c !=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name))
                 {
-                    newRollout=new IPM_Project_Rollout__c();
-                    newRollout.id=country.Local_Rollout__c; 
-                    //brand and brand positioning matached then assign brand as brand positioning
-                    if(brandPos.brand_id__r.Name != null && country.IPM_Brand_Position__c.equals(brandPos.brand_id__r.Name))
-                    {
-                        newRollout.IPM_Brand__c=country.IPM_Brand_Position__c;      
-                    }
-                    else if(brandPos.brand_id__r.Name == null)
-                    {
-                        newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
-                     }
-                    else
-                    {
-                    	newRollout.IPM_Brand__c=brandPos.brand_id__r.Name;	
-                    }
-                    rolloutList.add(newRollout);
-                    rolloutIdSet.add(newRollout.id);
-                    localRolloutsSet.remove(newRollout.id);
-                }
-            }
-        } 
-        //update default brand to local rollout when no brand values found for brand positioning and country. 
-        for(id localRollId : localRolloutsSet)
+                    brandsMap.get(country.Local_Rollout__c).add(brandPos.brand_id__r.Name); 
+				} 
+			}
+           
+        }
+        assignBrandToRolloutSplit(countryList,brandsMap);
+    }
+    /**************************************************************************************************************
+    @Description:split assignBrandToRollout method, assign brand value to local rollout while adding country or 
+	* 			 updating country.
+	@Param:list of country,map of rollout id and set of brand values
+    ***************************************************************************************************************/
+    public static void assignBrandToRolloutSplit(List<IPM_Country__c>countryList,map<id,set<string>> brandsMap)
+    {
+    	map<id,IPM_Project_Rollout__c> rolloutMap=new map<id,IPM_Project_Rollout__c>();//list of rollout which all need to update with brand value.
+        IPM_Project_Rollout__c newRollout;// declaration of local rollout
+    	for(IPM_Country__c country :countryList)
         {
-        	newRollout=new IPM_Project_Rollout__c(); 
-            newRollout.id=localRollId; 
-            newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
-            rolloutList.add(newRollout);
-        } 
+            if(!rolloutMap.containsKey(country.Local_Rollout__c)){
+				newRollout=new IPM_Project_Rollout__c();
+				newRollout.id=country.Local_Rollout__c; 
+				if(brandsMap.get(country.Local_Rollout__c).isEmpty())
+				{
+					newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
+				}
+				else if(brandsMap.get(country.Local_Rollout__c).contains(country.IPM_Brand_Position__c))
+				{
+					newRollout.IPM_Brand__c = country.IPM_Brand_Position__c;	
+				}
+				else
+				{
+					for(string brands: brandsMap.get(country.Local_Rollout__c)){
+						newRollout.IPM_Brand__c = brands;
+						break;
+					}
+				}
+				rolloutMap.put(newRollout.id,newRollout);
+			}
+		}  
         
-        if(!rolloutList.isEmpty()){
+        if(!rolloutMap.isEmpty())
+		{
            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
-           update rolloutList;
+           update rolloutMap.values();
            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
-         }
-       }
+        }	
+    
+    }
        
       /**********************************************************************************************
       *@Description:Returns the selectoptions for brands available to a local project 
