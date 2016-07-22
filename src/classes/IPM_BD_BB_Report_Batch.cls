@@ -858,9 +858,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	
     	String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);
     	String strFYearGPFieldName = fYearGPFieldMapping.get(strScope);
-    	String strAnalyticTOFieldName = '';
-    	String strAnalyticGPFieldName = '';
-    	
     	// Calender Financial Year Check 
     	if(String.isNotBlank(financialYear.Year_Type__c) && financialYear.Year_Type__c.equalsignorecase(IPM_Utils.Calendar)){
     		
