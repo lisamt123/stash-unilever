@@ -21,10 +21,10 @@ public class IPM_FinancialValueWrapper_Test {
         
         test.startTest();
         system.runAs(plUser){
-             IPM_FinancialValueWrapper  ifvw=new IPM_FinancialValueWrapper (2,2.0,2.0);
+             IPM_FinancialValueWrapper  ifvw=new IPM_FinancialValueWrapper (2,2.0,2.0,null,null,null,null);
              system.assertEquals(ifvw.index,2, 'Index Mismatch');//positive test
             
-             new IPM_FinancialValueWrapper (2, 2.0, 0.0, 2); 
+             new IPM_FinancialValueWrapper (2, 2.0, 0.0, 2,null,null,null); 
              system.assertEquals(ifvw.difference,2.0, 'Difference Mismatch');//positive test
         }
         test.stopTest();
