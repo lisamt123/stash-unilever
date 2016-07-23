@@ -8,6 +8,8 @@ src/classes/IPM_BD_BB_Report_BatchSchedule.cls
 src/classes/IPM_BD_BB_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_BosscardController.cls
 src/classes/IPM_BosscardController.cls-meta.xml
+src/classes/IPM_ChatterFeedHelper.cls
+src/classes/IPM_ChatterFeedHelper.cls-meta.xml
 src/classes/IPM_ChatterFeedHelper_Test.cls
 src/classes/IPM_ChatterFeedHelper_Test.cls-meta.xml
 src/classes/IPM_ConstantUtils.cls
@@ -56,6 +58,8 @@ src/classes/IPM_SyncFinanceTableTLD.cls
 src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
 src/classes/IPM_WithoutSharingHelper.cls
 src/classes/IPM_WithoutSharingHelper.cls-meta.xml
+src/classes/IPM_FinancialControllerRegional_Test.cls
+src/classes/IPM_FinancialControllerRegional_Test.cls-meta.xml
 src/components
 src/components/IPM_BCC_Consolidate.component
 src/components/IPM_BCC_Consolidate.component-meta.xml
