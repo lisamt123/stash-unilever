@@ -54,7 +54,7 @@ src/classes/IPM_ProjectHelper_Test.cls
 src/classes/IPM_ProjectHelper_Test.cls-meta.xml
 src/classes/IPM_SyncFinanceTableTLD.cls
 src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
-src/classes/IPM_WithoutSharingHelper
+src/classes/IPM_WithoutSharingHelper.cls
 src/classes/IPM_WithoutSharingHelper.cls-meta.xml
 src/components
 src/components/IPM_BCC_Consolidate.component

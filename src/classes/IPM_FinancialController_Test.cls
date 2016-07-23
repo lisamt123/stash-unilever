@@ -544,6 +544,8 @@ public class IPM_FinancialController_Test {
     }
     
     private static void callCtrlAction(IPM_FinancialController ipmfincon, integer part){
+        IPM_Financial__c currentFinancial = new IPM_Financial__c();
+        currentFinancial.Financial_External_ID__c='1234';
         if (part == EXEC_PART_2){        
             
             PageReference tmplatePage = ipmFinCon.CopyPasteTemplate();
