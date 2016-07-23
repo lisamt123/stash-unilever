@@ -74,6 +74,6 @@
     </mappings>
     <name>SuMo Chatter Activity</name>
     <runningUser>consulting@cloudapps.com.sfdcplancr</runningUser>
-    <sourceReport>unfiled$public/SuMo_Chatter_Activity</sourceReport>
+    <sourceReport>success__SuMo_Reports/SuMo_Chatter_Activity</sourceReport>
     <targetObject>Chatter_Likes__c</targetObject>
 </AnalyticSnapshot>
