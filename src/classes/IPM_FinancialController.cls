@@ -337,85 +337,85 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isRolloutError = true;
             }  
         }
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
       }
      //method to calculate the Business Impact
      private void setBusinessImpact(Final Id pId){
-		//For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
-		try{
-			String nam=project.IPM_Project_Name__c; 
-			globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
-		    // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
-			if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
-			{
-				if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-				{
-					fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,
-					Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
-					IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
-					FROM IPM_Financial__c 
-					WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					globalbusinessImpactStr = fin.Business_Impact_Global__c;
-				}
-				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-				{		
-					fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
-					Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
-					Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
-					FROM IPM_Financial__c 
-					WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					globalbusinessImpactStr = fin.Business_Impact_Regional__c;						
-					if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
-					{						
-						finRegional=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
-						Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
-						Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
-						FROM IPM_Financial__c 
-						WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						globalbusinessImpactStr = project.IPM_Phase__C!= IPM_ConstantUtils.PHASE_IDEAS?finRegional.Business_Impact_Regional__c:finRegional.Business_Impact_Global__c;
-					}
-				}
-				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-				{
-					fin = [SELECT ipm_cpp_local__c,Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
-					Year_3_iTO_MD__c,Business_Impact_Local__c 
-					FROM IPM_Financial__c 
-					WHERE Financial_External_ID__c =: nam limit 1];
-					string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;					
-					if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
-					{
-						finLocal=[SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
-						WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
-						AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
-					}
-					else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
-					{
-						IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
-						
+        //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
+        try{
+            String nam=project.IPM_Project_Name__c; 
+            globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+            // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
+            if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+            {
+                if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+                {
+                    fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,
+                    Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
+                    IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
+                    FROM IPM_Financial__c 
+                    WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                    globalbusinessImpactStr = fin.Business_Impact_Global__c;
+                }
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                {       
+                    fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+                    Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+                    Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+                    FROM IPM_Financial__c 
+                    WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                    globalbusinessImpactStr = fin.Business_Impact_Regional__c;                      
+                    if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+                    {                       
+                        finRegional=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+                        Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+                        Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+                        FROM IPM_Financial__c 
+                        WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                        globalbusinessImpactStr = project.IPM_Phase__C!= IPM_ConstantUtils.PHASE_IDEAS?finRegional.Business_Impact_Regional__c:finRegional.Business_Impact_Global__c;
+                    }
+                }
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                {
+                    fin = [SELECT ipm_cpp_local__c,Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
+                    Year_3_iTO_MD__c,Business_Impact_Local__c 
+                    FROM IPM_Financial__c 
+                    WHERE Financial_External_ID__c =: nam limit 1];
+                    string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;                 
+                    if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                    {
+                        finLocal=[SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+                        WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+                        AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                        globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
+                    }
+                    else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
+                    {
+                        IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
+                        
                         finLocal=[SELECT Business_Impact_Global__c,IPM_Business_Impact_Charter__c,Business_Impact_Regional__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
-						WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
-						AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						globalbusinessImpactStr =  project.IPM_Phase__C!= IPM_ConstantUtils.PHASE_IDEAS?finLocal.Business_Impact_Regional__c:finLocal.Business_Impact_Global__c;
-					}
-				}
-			}
-			// For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM5,GKM6,GKM7 OPERATIONAL
-			else if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
-			{
-				globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
-				fin= [SELECT ipm_cpp_local__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
-				Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,
-				Year_3_iTO_MR__c,Year_3_iTO_MD__c 
-				FROM IPM_Financial__c WHERE Financial_External_ID__c =: nam limit 1];
-			}
-		}
-		catch(Exception ex){
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-		}
-	} 
+                        WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
+                        AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                        globalbusinessImpactStr =  project.IPM_Phase__C!= IPM_ConstantUtils.PHASE_IDEAS?finLocal.Business_Impact_Regional__c:finLocal.Business_Impact_Global__c;
+                    }
+                }
+            }
+            // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM5,GKM6,GKM7 OPERATIONAL
+            else if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+            {
+                globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+                fin= [SELECT ipm_cpp_local__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
+                Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,
+                Year_3_iTO_MR__c,Year_3_iTO_MD__c 
+                FROM IPM_Financial__c WHERE Financial_External_ID__c =: nam limit 1];
+            }
+        }
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        }
+    } 
      //upto here 
      
      private List<IPM_Country__c> getCountryList()
@@ -879,37 +879,37 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void getOperationalMyViewWrappers()
-	{    
-	    
-	    List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
+    {    
+        
+        List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         String projectId = project.Id; //No Sonar Used in Query
-	  
-	    String selectQueryString = ' SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c FROM IPM_Financial__c ';
-	    String whereClauseString = ' WHERE RecordTypeId =:DEFAULT_FINANCIAL_RECORDTYPE ';
-	    
-	    if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-	    {
-	       whereClauseString = whereClauseString +  ' AND Parent_Project__c = :projectId '; 
-	    }
-	    else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-	    {
-	        whereClauseString = whereClauseString + ' AND Regional_Project__c = :projectId ';
-	    }
-	    else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-	    {
-	        whereClauseString = whereClauseString + ' AND Local_Project__c = :projectId ';
-	    }
-	   
-	    String LimitString = ' Limit 50000';
-	       
-	    String finalQueryString = selectQueryString+whereClauseString+LimitString;                                        
-	    lstIpmFinancial = database.query(finalQueryString);
-	   
-	    for(IPM_Financial__c ipmFinancial : lstIpmFinancial)
-	    {
-	        mapDefaultFinancials.put(project.IPMProject_Span__c, ipmFinancial);
-	   	}
-	   	
+      
+        String selectQueryString = ' SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c FROM IPM_Financial__c ';
+        String whereClauseString = ' WHERE RecordTypeId =:DEFAULT_FINANCIAL_RECORDTYPE ';
+        
+        if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+        {
+           whereClauseString = whereClauseString +  ' AND Parent_Project__c = :projectId '; 
+        }
+        else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
+            whereClauseString = whereClauseString + ' AND Regional_Project__c = :projectId ';
+        }
+        else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+        {
+            whereClauseString = whereClauseString + ' AND Local_Project__c = :projectId ';
+        }
+       
+        String LimitString = ' Limit 50000';
+           
+        String finalQueryString = selectQueryString+whereClauseString+LimitString;                                        
+        lstIpmFinancial = database.query(finalQueryString);
+       
+        for(IPM_Financial__c ipmFinancial : lstIpmFinancial)
+        {
+            mapDefaultFinancials.put(project.IPMProject_Span__c, ipmFinancial);
+        }
+        
     }
     
    
@@ -964,17 +964,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             if(!regionalProject.IPM_Financials_Regional__r.isEmpty())
             {
-            lstRolloutWrappers.add( new RolloutWrapper( regionalProject.Market_Cluster_Name__c,regionalProject.IPM_Financials_Regional__r));
+                lstRolloutWrappers.add( new RolloutWrapper( regionalProject.Market_Cluster_Name__c,regionalProject.IPM_Financials_Regional__r));
             }
         }
-        
-       
+
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
         lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Project_Rollout__c,Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR   IPM_ShowAtGlobal__c  = true )
-                                                     AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
+                                                 AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
            
         For(IPM_Financial__c ipmFinancial : lstIpmFinancial)
@@ -988,6 +987,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 mapConsolidatedFinancials.put(ipmFinancial.Regional_Project__r.Market_Cluster_Name__c, ipmFinancial);
             }
         }
+        
+
     }
     
     /*******************************************************************************************************
@@ -1010,7 +1011,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-      	lstIpmFinancial = [SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+        lstIpmFinancial = [SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtRegional__c = true)
                                                      AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -1108,7 +1109,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             for(IPM_Financial__c ipmFinancial : lstIpmFinancial)
             {
                     mapConsolidatedFinancials.put(ipmFinancial.Regional_Project__r.Market_Cluster_Name__c, ipmFinancial);
-         	}
+            }
         }
     }
 
@@ -1150,11 +1151,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
      }
      
    /****************************************************************************************************************
-    * @description  		Used to get data related to MCO selected, queryies for the financial and finanical years 
-    *              		    records to be displayed on the financial page. This generates data based on span and 
-    *               		type of financial to be displayed default/consolidated 
+    * @description          Used to get data related to MCO selected, queryies for the financial and finanical years 
+    *                       records to be displayed on the financial page. This generates data based on span and 
+    *                       type of financial to be displayed default/consolidated 
     * @NPath Complexity:        due to complex functionality explained in the description we cannot avoid 
-    					    NPathComplexity on this method.    
+                            NPathComplexity on this method.    
     * @param        NONE
     * @return       NONE
     ****************************************************************************************************************/
@@ -1198,6 +1199,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             currentFinancial = LstCurrentFinancial[0];
          }
         mapFinancialYears = new Map<String, IPM_Financial_Year__c>();
+
         if (currentFinancial != NULL)
         {
             financialsInnovation = new IPM_FinancialWrapper();
@@ -1225,7 +1227,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION)
                 {
                     generateFinancials(finYear, financialsInnovation);
-                                  
                 }
                 //Calendar Years
                 else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
@@ -1322,30 +1323,30 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 finWrapper.lstYearNames.add(finYear.Name);
                 
                 //Gross PL Values to show when misaligned with Regional and Local
-                finWrapper.lstGrossPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Regional__c, finYear.Value_Market_Share_Local__c, finYear.Value_Market_Share_Difference__c, 1 , finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));                
-                finWrapper.lstGrossPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Regional__c, finYear.Volume_Local__c, finYear.Volume_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Regional__c, finYear.Volume_Tons_Local__c, finYear.Volume_Tons_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Turnover_Regional__c, finYear.Turnover_Local__c, finYear.Turnover_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_TURNOVER.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Gross_Profit_Regional__c , finYear.Gross_Profit_Local__c, finYear.Gross_Profit_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Advertising_Promotions_Regional__c , finYear.Advertising_Promotions_Local__c, finYear.Advertising_Promotions_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Profit_Before_Overheads_Regional__c, finYear.Profit_Before_Overheads_Local__c, finYear.Profit_Before_Overheads_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLGM.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.GM_of_TO_Local__c, finYear.GM_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLAP.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.AP_of_TO_Local__c, finYear.AP_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstGrossPLPBO.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.PBO_of_TO_Regional__c , finYear.PBO_of_TO_Local__c, finYear.PBO_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
+                finWrapper.lstGrossPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Regional__c, finYear.Value_Market_Share_Local__c, finYear.Value_Market_Share_Difference__c, 1 , finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));                
+                finWrapper.lstGrossPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Regional__c, finYear.Volume_Local__c, finYear.Volume_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Regional__c, finYear.Volume_Tons_Local__c, finYear.Volume_Tons_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Turnover_Regional__c, finYear.Turnover_Local__c, finYear.Turnover_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_TURNOVER.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Gross_Profit_Regional__c , finYear.Gross_Profit_Local__c, finYear.Gross_Profit_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Advertising_Promotions_Regional__c , finYear.Advertising_Promotions_Local__c, finYear.Advertising_Promotions_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Profit_Before_Overheads_Regional__c, finYear.Profit_Before_Overheads_Local__c, finYear.Profit_Before_Overheads_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLGM.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.GM_of_TO_Local__c, finYear.GM_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLAP.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.AP_of_TO_Local__c, finYear.AP_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstGrossPLPBO.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.PBO_of_TO_Regional__c , finYear.PBO_of_TO_Local__c, finYear.PBO_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
              
             }
             //Incremental PL Values to show when misaligned with Regional and Local
             else if (finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL) {
-                finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Regional__c, finYear.Value_Market_Share_Local__c, finYear.Value_Market_Share_Difference__c, 1 , finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Regional__c, finYear.Volume_Local__c, finYear.Volume_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Regional__c, finYear.Volume_Tons_Local__c, finYear.Volume_Tons_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)* decMultFactor, finYear.Turnover_Regional__c, finYear.Turnover_Local__c, finYear.Turnover_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_TURNOVER.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Gross_Profit_Regional__c , finYear.Gross_Profit_Local__c, finYear.Gross_Profit_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Advertising_Promotions_Regional__c , finYear.Advertising_Promotions_Local__c, finYear.Advertising_Promotions_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Profit_Before_Overheads_Regional__c, finYear.Profit_Before_Overheads_Local__c, finYear.Profit_Before_Overheads_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLGM.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.GM_of_TO_Local__c, finYear.GM_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLAP.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.AP_of_TO_Local__c, finYear.AP_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
-                finWrapper.lstIncrementalPLPBO.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.PBO_of_TO_Regional__c , finYear.PBO_of_TO_Local__c, finYear.PBO_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial));
+                finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Regional__c, finYear.Value_Market_Share_Local__c, finYear.Value_Market_Share_Difference__c, 1 , finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Regional__c, finYear.Volume_Local__c, finYear.Volume_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Regional__c, finYear.Volume_Tons_Local__c, finYear.Volume_Tons_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)* decMultFactor, finYear.Turnover_Regional__c, finYear.Turnover_Local__c, finYear.Turnover_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_TURNOVER.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Gross_Profit_Regional__c , finYear.Gross_Profit_Local__c, finYear.Gross_Profit_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Advertising_Promotions_Regional__c , finYear.Advertising_Promotions_Local__c, finYear.Advertising_Promotions_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Profit_Before_Overheads_Regional__c, finYear.Profit_Before_Overheads_Local__c, finYear.Profit_Before_Overheads_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLGM.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.GM_of_TO_Local__c, finYear.GM_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLAP.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Regional__c , finYear.AP_of_TO_Local__c, finYear.AP_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLPBO.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.PBO_of_TO_Regional__c , finYear.PBO_of_TO_Local__c, finYear.PBO_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO.removeEnd(IPM_ConstantUtils.UNDERSCORE),currentFinancial,currentTab));
                 
                 
             }
@@ -1487,8 +1488,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(currentFinancial.Project_Sustainability_Period__c == selectedSustainabilityPeriod) {
                 sustainabilityPeriodChanging = false;
             }
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
@@ -1517,8 +1518,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getCurrentFinancialType(currentFinancial);
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
                         
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
         } 
         catch (Exception ex)
@@ -1544,8 +1545,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getMisalignmentVisibility();
             isEditMode = FALSE;
             isEditModeBottomUp = false;
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
         } 
         catch (Exception ex)
@@ -1603,15 +1604,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     {
        try 
        {
-            lstUpdateFinancials = new List<IPM_Financial_Year__c>();
-            milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
+             lstUpdateFinancials = new List<IPM_Financial_Year__c>();
+             milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
    
-            isEditMode = false;
-            isEditModeBottomUp = false;
+             isEditMode = false;
+             isEditModeBottomUp = false;
             
-                 //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
-                  saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-                  saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+             //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
+              saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+              saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
       
                   //Update Financial Record
               currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
@@ -1635,19 +1636,18 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               //need to call this initializations in this method because constructor is not called for this method  
               redValidationCellsString = IPM_ConstantUtils.BLANK;
               yellowValidationCellsString = IPM_ConstantUtils.BLANK;
-              //find the currentFinancialType based on external Id
-              getCurrentFinancialType(currentFinancial);
-              //flag to identify if the financial id consolidatd financial
-              isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
-              
+
               getValidationSettingSet();
               validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
               validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
               
+              validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+              validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
               validateFinancialSummaryTable(currentFinancial);
-          	  //check for hard validation - REQ3006
-          	  if(isFinancialInvalid || isFinancialInvalidInnovation){
-              	currentFinancial.isFinancialInvalid__c = true;
+
+              //check for hard validation - REQ3006
+              if(isFinancialInvalid || isFinancialInvalidInnovation){
+                currentFinancial.isFinancialInvalid__c = true;
               }
               else{
                 currentFinancial.isFinancialInvalid__c = false;
@@ -1676,16 +1676,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @param yearType       Used to process the passed financial wrapper for the passed year type
     * @return                   Boolean value says if the validation is failed or not
     */
-    private Boolean validateInnovationFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType){
+    private Boolean validateInnovationFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType, IPM_Financial__c finToValidate){
+        
         isValidationFailed = false;
         IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle = getProjGKMToPhaseMatrixElement(project);
-        getCurrentFinancialType(currentFinancial);
+        getCurrentFinancialType(finToValidate);
         isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
         getValidationSettingSet();
         //Validate Innovation Year cell data
         //REQ3006- non key financial will be validated in upto charter, post charter validation will not be for non key financials
         if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION && 
-           currentFinancial != NULL  && 
+           finToValidate != NULL  && 
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType)&&
            !validationSettingSet.isEmpty() &&
            !isFinacialConsolidated &&
@@ -1731,16 +1732,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @param yearType       Used to process the passed financial wrapper for the passed year type
     * @return                   Boolean value says if the validation is failed or not
     */
-    private Boolean validateCalendarFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType){
+    private Boolean validateCalendarFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType, IPM_Financial__c finToValidate){
         isValidationFailed = false;
         IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle = getProjGKMToPhaseMatrixElement(project);
-        getCurrentFinancialType(currentFinancial);
+        getCurrentFinancialType(finToValidate);
         isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
         getValidationSettingSet();
         //Validate Calendar Year cell data
         //REQ3006- non key financial will be validated in upto charter, post charter validation will not be for non key financials
         If(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && 
-           currentFinancial != NULL  && 
+           finToValidate != NULL  && 
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType) &&
            !validationSettingSet.isEmpty() &&
            !isFinacialConsolidated &&
@@ -1783,7 +1784,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             
             if(isValidateIncrementalBMIFailed && isValidateGrossBMIFailed && isValidateCalendarTurnOverFailed && isValidateIncrementalTurnoverFailed && isValidateGrossProfitFailed && isValidateIncrementalProfitFailed && isValidateGrossPBOFailed && isValidateIncrementalPBOFailed){
-                    currentFinancial.isGateSubmissionDue__c = true;
+                    finToValidate.isGateSubmissionDue__c = true;
             }       
         }        
         return isValidationFailed;
@@ -1849,8 +1850,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return                                   Boolean value says if the validation is failed or not
     */
     public boolean validateIncrementalTurnover(List<IPM_FinancialValueWrapper> lstIncrementalPLTurnover){
-                //Validate Incremental Turnover values
-                Boolean isInvalid = false;
+        //Validate Incremental Turnover values
+        Boolean isInvalid = false;
         for(IPM_FinancialValueWrapper valueWrapper: lstIncrementalPLTurnover){
             valueWrapper.isValueInvalid = false;
             valueWrapper.isMinorValueInvalid = false;
@@ -2177,8 +2178,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getCurrentFinancialType(currentFinancial);
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
             
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
         } 
         catch (Exception ex) 
@@ -2214,8 +2215,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getCurrentFinancialType(currentFinancial);
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
             
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
         } 
         catch (Exception ex) 
@@ -2235,32 +2236,32 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     private String getFieldSuffix()
     {
-                if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
-                {
+        if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
+        {
             return project.IPMProject_Span__c;
-                } 
-                else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
-                {
+        } 
+        else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
+        {
             if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
             {
-                    return IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+                return IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             }
             else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
                 
                 return IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-                    }   
-                }
-                else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
-                {
+            }   
+        }
+        else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
+        {
             if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-                {
+            {
                 return IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
             }
             else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
             {
-                    return IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-           
+                return IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+                
             }
         }
         return null;
@@ -2347,8 +2348,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     
                 }
                 if(valueWrapperIncremental.value <= IPM_ConstantUtils.INVALID_VALUE){
-                	valueWrapperIncremental.isValueInvalid = true;
-                	valueWrapperIncremental.isMinorValueInvalid = true;
+                    valueWrapperIncremental.isValueInvalid = true;
+                    valueWrapperIncremental.isMinorValueInvalid = true;
                 }
 
              }            
@@ -2486,12 +2487,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 localRolloutProject.IPM_Target_Launch_Dates__c = mcoCountryRolloutPlan.Target_Launch_Date__c;
                 localRolloutProject.Rollout_Plan_Target_Launch_Date__c = mcoCountryRolloutPlan.Target_Launch_Date__c;
                 update localRolloutProject;
-				getFinancials();                 
+                getFinancials();                 
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
                 mcoCountryRolloutPlan.Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 mcoCountryRolloutPlan.Local_Project_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 update mcoCountryRolloutPlan;
-				getFinancials();                 
+                getFinancials();                 
             }
             
            
@@ -2511,9 +2512,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void updateMisalignmentByFinanceLeader() {
         try{
             if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
-            	project.MisAligned_Confirmed_By_Finance_Leader__c = true;
-            	update project;
-            	setMisalignedValue();
+                project.MisAligned_Confirmed_By_Finance_Leader__c = true;
+                update project;
+                setMisalignedValue();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                 localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
                 showMisalignedConfirmbtn = true;  
@@ -2534,10 +2535,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     }   
     /****************************************************************************************************************************************
     * @description          Used to set misaligned date values for TLD, when the Financial data is loaded it checks for the current TLD and Previous
-	    				    TLD to generate page message to let user know the need for Business Case update, or if the TLD dates are not aligned 
-	    				    between regional and local rollouts.
+                            TLD to generate page message to let user know the need for Business Case update, or if the TLD dates are not aligned 
+                            between regional and local rollouts.
     * @NPath Complexity:    due to complex functionality explained in the description we cannot avoid 
-    					    NPathComplexity on this method.    
+                            NPathComplexity on this method.    
     * @param        NONE
     * @return       NONE
     *******************************************************************************************************************************************/
@@ -2931,10 +2932,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
         
         
+        for(IPM_Financial__c conFin : consolidatedFinancialsMap.values()){
+        	existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.RED);
+        	existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
+        	conFin.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
+            conFin.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
+        }
         
 
         
-        getRedYellowCellsUpdatedConsolFin(consolidatedFinancialsMap,existingNonCurrentFinancialRedValues, existingNonCurrentFinancialYellowValues );
+        //getRedYellowCellsUpdatedConsolFin(consolidatedFinancialsMap,existingNonCurrentFinancialRedValues, existingNonCurrentFinancialYellowValues );
         
         
         //return consolFinToUpdateSet;
@@ -2945,13 +2952,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * This method return of the type of the currently opened fianncial
     * Parameter : IPM_Financial__c currentFinancial i.e. the currently opened financial
     **************************************************************************************************************/
-    public void getCurrentFinancialType(IPM_Financial__c currentFinancial){
+    public void getCurrentFinancialType(IPM_Financial__c finToEvaluate){
         
-        if(currentFinancial != null){
-        	 If(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+        if(finToEvaluate != null){
+        	 If(finToEvaluate.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
 	            currentFinancialType = IPM_ConstantUtils.CONSOLIDATED;
 	        }
-	        else if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
+	        else if(finToEvaluate.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
 	            currentFinancialType = 'NONKEY';
 	        }
 	        else{
@@ -2974,12 +2981,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Project_GKM_To_Phase_Matrix__mdt getProjGKMToPhaseMatrixElement(IPM_Project__c project){
         List<IPM_Project_GKM_To_Phase_Matrix__mdt> projToGKMPhaseMatrix =  [Select Id,GKM_Model__c,Project_Phase__c,Financial_Type_To_Validate__c from IPM_Project_GKM_To_Phase_Matrix__mdt limit 1000];
         
+        if(projToGKMPhaseMatrix != null){
         for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : projToGKMPhaseMatrix ){
             if(GKMPhaseMapEle.GKM_Model__c == project.IPM_ProjectGKM__c &&
                GKMPhaseMapEle.Project_Phase__c.equalsIgnoreCase(project.IPM_Phase__c)
               ){
               return GKMPhaseMapEle;
             }
+	        }
         }
         
         return null;
@@ -2994,7 +3003,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * return : List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList
     ***********************************************************************************************************/
     public List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> getSoftValidationSettingList(IPM_Project__c project){
-        Map<Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingMap = new Map <Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt>([Select Id,Label,IPM_Threshold_Status__c,IPM_Project_Sub_Type__c,IPM_Project_Phase__c,IPM_Market_Place_Activity__c,checkValidPaybackYellow__c,checkValidNPVYellow__c,checkValidITOYellow__c,checkValidIRRYellow__c,checkValidGTOAndITORed__c,checkValidCAPEXYellow__c,checkPBOYellow__c,checkGrossProfitYellow__c,checkBMIYellow__c from IPM_Red_Yellow_Soft_Validation_Setting__mdt Limit 1000 ]);
+        Map<Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingMap = new Map <Id,IPM_Red_Yellow_Soft_Validation_Setting__mdt>([Select Id,MasterLabel,IPM_Threshold_Status__c,IPM_Project_Sub_Type__c,IPM_Project_Phase__c,IPM_Market_Place_Activity__c,checkValidPaybackYellow__c,checkValidNPVYellow__c,checkValidITOYellow__c,checkValidIRRYellow__c,checkValidGTOAndITORed__c,checkValidCAPEXYellow__c,checkPBOYellow__c,checkGrossProfitYellow__c,checkBMIYellow__c from IPM_Red_Yellow_Soft_Validation_Setting__mdt Limit 1000 ]);
         
         List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList =  new List<IPM_Red_Yellow_Soft_Validation_Setting__mdt>();
         
@@ -3009,13 +3018,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettingMap.values() ){
             
+            valSettingPhase = IPM_ConstantUtils.BLANK;
+        	valSettingMPA = IPM_ConstantUtils.BLANK;
+            
             if(valSetting.IPM_Project_Phase__c!=null){
             	valSettingPhase = valSetting.IPM_Project_Phase__c.deleteWhitespace();
             }
             
-	    if(valSetting.IPM_Market_Place_Activity__c!=null){
-		valSettingMPA = valSetting.IPM_Market_Place_Activity__c.deleteWhitespace();
-	     }
+			
+			if(valSetting.IPM_Market_Place_Activity__c!=null){
+				valSettingMPA = valSetting.IPM_Market_Place_Activity__c.deleteWhitespace();
+			}
             
             
             if(
@@ -3050,7 +3063,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * Parameter passed : IPM_Financial__c currentFinancial i.e. the currently opened financial
     ************************************************************************************************************/
     
-    public void validateFinancialSummaryTable(IPM_Financial__c currentFinancial){
+    public void validateFinancialSummaryTable(IPM_Financial__c finToValidate){
         
         isFinacialConsolidated = false;
         isCAPEXInvalid = false;
@@ -3061,15 +3074,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle = getProjGKMToPhaseMatrixElement(project);
         
         //find the currentFinancialType based on external Id
-        getCurrentFinancialType(currentFinancial);
+        getCurrentFinancialType(finToValidate);
         
         //flag to identify if the financial id consolidatd financial
         isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
         
         getValidationSettingSet();
         
-
-        if(currentFinancial != NULL  && 
+        if(finToValidate != NULL  && 
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType)&&
            !validationSettingSet.isEmpty() &&
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
@@ -3078,21 +3090,21 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
-	            (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
-	            (isFinacialConsolidated && currentFinancial.Yellow_Validation_Cells__c != null && currentFinancial.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
+	            (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
+	            (isFinacialConsolidated && finToValidate.Yellow_Validation_Cells__c != null && finToValidate.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
 	           isCAPEXInvalid = true;
-	           yellowValidationCellsString = yellowValidationCellsString + currentFinancial.Financial_External_ID__c + IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.SEMICOLON;
+	           yellowValidationCellsString = yellowValidationCellsString + finToValidate.Financial_External_ID__c + IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.SEMICOLON;
 	        }
 	    
-	        if(validationSettingSet.contains('checkValidIRRYellow'.toLowerCase()) && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
+	        if(validationSettingSet.contains('checkValidIRRYellow'.toLowerCase()) && (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isIRRInvalid = true;
 	        }
 	        
-	        if(validationSettingSet.contains('checkValidNPVYellow'.toLowerCase()) && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
+	        if(validationSettingSet.contains('checkValidNPVYellow'.toLowerCase()) && (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isNPVInvalid = true;
 	        }
 	        
-	        if(validationSettingSet.contains('checkValidPaybackYellow'.toLowerCase()) && (Decimal)currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
+	        if(validationSettingSet.contains('checkValidPaybackYellow'.toLowerCase()) && (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isPaybackInvalid = true;
 	        }
         }
@@ -3110,13 +3122,26 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.IPM_Red_Yellow_Soft_Validation_Setting__mdt.fields.getMap();
         
-        for(IPM_Red_Yellow_Soft_Validation_Setting__mdt rysvs : vaildationSettingList ){
+        if(vaildationSettingList != null){
+        	for(IPM_Red_Yellow_Soft_Validation_Setting__mdt rysvs : vaildationSettingList ){
             
-            For (String field : fieldMap.KeySet()) {
-				if(String.valueOf(fieldMap.get(field).getDescribe().getType()).equalsIgnoreCase('BOOLEAN') && (Boolean)rysvs.get(field) ){
-                    validationSettingSet.add(field.replace(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,''));
+	            For (String field : fieldMap.KeySet()) {
+					if(String.valueOf(fieldMap.get(field).getDescribe().getType()).equalsIgnoreCase('BOOLEAN') && (Boolean)rysvs.get(field) ){
+	                    validationSettingSet.add(field.replace(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,''));
+					}
 				}
-			}
+	        }
+	        
+	        for(IPM_Red_Yellow_Soft_Validation_Setting__mdt rysvs : vaildationSettingList ){
+            
+	            For (String field : fieldMap.KeySet()) {
+					if(String.valueOf(fieldMap.get(field).getDescribe().getType()).equalsIgnoreCase('BOOLEAN') && (Boolean)rysvs.get(field) ){
+	                    validationSettingSet.add(field.replace(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,''));
+					}
+				}
+	        }
+	        
+	        
         }
         
     }
@@ -3132,7 +3157,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void setConsolidatedFinancialValidationCells(){
 		
 		String queryString = 'SELECT ';
-		List<IPM_Financial__c> LstCurrentFinancial = new List<IPM_Financial__c>();
+		List<IPM_Financial__c> lstFinancial = new List<IPM_Financial__c>();
 		
 		//IPM Financial
 		For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet()) {
@@ -3148,21 +3173,22 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		}
 	
 		queryString+= ' Id FROM IPM_Financial_Years__r ORDER BY Name)';
-		queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.IPM_Project_Name__c+'%\' FOR UPDATE'; //Added For Update to obtain exclusive access to the record
+		queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.IPM_Project_Name__c+'%\' Limit 1000 FOR UPDATE'; //Added For Update to obtain exclusive access to the record
 	
 		Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
 		Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();
 	
 	
-		LstCurrentFinancial = Database.query(queryString);
-	
-		getRedYellowCellsMap(LstCurrentFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
+		lstFinancial = Database.query(queryString);
 		
+		System.debug('getRedYellowCellsMap isFinacialConsolidated==>'+isFinacialConsolidated);
+		
+		getRedYellowCellsMap(lstFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
 		
 		//Work with the string containing list of erroneous cells to populate the cells on consolidated with their names
 		List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
 			
-		for(IPM_Financial__c currentFinance: LstCurrentFinancial){
+		for(IPM_Financial__c currentFinance: lstFinancial){
 		
 			if(currentFinance.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
 				Set<String> uniqueRedCells = new Set<String>( finExtIdRedCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
@@ -3199,22 +3225,29 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * Parameter : LstCurrentFinancial : the list of the financials
     *    		  finExtIdRedCellsMap & finExtIdYellowCellsMap : the Maps containing the string conatining the red and yellow erroneous cells respectively(semi colon seperated)	
     **************************************************************************************************************/
-    public void getRedYellowCellsMap(List<IPM_Financial__c> LstCurrentFinancial,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
+    public void getRedYellowCellsMap(List<IPM_Financial__c> lstFinancial,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
     	
-    	for(IPM_Financial__c currentFin: LstCurrentFinancial){
+    	Set<String> financialExtIdsForCurrentTab = getFinExtIdsForCurrentTab();
+    	
+    	for(IPM_Financial__c currentFin: lstFinancial){
 			redValidationCellsString = IPM_ConstantUtils.BLANK;
     		yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
-			currentFinancial = currentFin;
 			mapFinancialYears = new Map<String, IPM_Financial_Year__c>();
-	
-			if (currentFinancial != NULL && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE))
+			
+			//find the currentFinancialType based on external Id
+	        getCurrentFinancialType(currentFin);
+	        //flag to identify if the financial id consolidatd financial
+	        isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+			if (financialExtIdsForCurrentTab != null && financialExtIdsForCurrentTab.contains(currentFin.Financial_External_Id__c) && !currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE))
 			{
 				financialsInnovation = new IPM_FinancialWrapper();
 				financialsCalendar = new IPM_FinancialWrapper();
 	
 				
 			   // DEF2676 fix end
-				for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
+				
+				for (IPM_Financial_Year__c finYear : currentFin.IPM_Financial_Years__r){
+
 					//Add to Map
 					mapFinancialYears.put(generateMapKey(finYear.Year_Type__c, finYear.Year__c, finYear.PL_Type__c), finYear);
 					
@@ -3230,12 +3263,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				}
 				
 				//Run the validations
-				validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-				validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-				validateFinancialSummaryTable(currentFinancial);
+				validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFin);
+				validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFin);
+				validateFinancialSummaryTable(currentFin);
 
 				
-				List<String> finExtIdSplit = currentFinancial.Financial_External_ID__c.split(IPM_ConstantUtils.UNDERSCORE);
+				List<String> finExtIdSplit = currentFin.Financial_External_ID__c.split(IPM_ConstantUtils.UNDERSCORE);
 				
 				//fetch the extenralId of the corresponding consolidated financials
 				String globalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
@@ -3284,7 +3317,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
 			
 		}
-    
+		
+		//reset and get the currentfinancial year wrapper i.e. the corresponding financial wrappers
+		getCurrentFinancialWrapper(currentFinancial);
+		
     }
     
     /**************************************************************************************************************
@@ -3294,37 +3330,81 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * Parameter : consolidatedFinancialsMap : the map of consolidated financials
     *    		  existingNonCurrentFinancialRedValues & existingNonCurrentFinancialYellowValues : the string containing all the cells that are not of the current financial	
     **************************************************************************************************************/
-    public void getRedYellowCellsUpdatedConsolFin( Map<Id,IPM_Financial__c> consolidatedFinancialsMap,String existingNonCurrentFinancialRedValues, String existingNonCurrentFinancialYellowValues ){
+    public String getExistingNonCurrentFinancialValues( IPM_Financial__c consolidatedFinancial,String finValidationType ){
+    	//Pass by reference has been used for the variable 'existingNonCurrentFinancialYellowValues' and 'existingNonCurrentFinancialRedValues', because we want the updated values to reflect in the calling method
     	
-    	for(IPM_Financial__c finToUpdate: consolidatedFinancialsMap.values()){
-        	System.debug('finToUpdate==>'+finToUpdate);
-            
-            if(finToUpdate.Red_Validation_Cells__c != null){
-                for (String cells : finToUpdate.Red_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
+    		String existingNonCurrentFinancialValues ='';
+
+            if( finValidationType.equalsIgnoreCase(IPM_ConstantUtils.RED) && consolidatedFinancial.Red_Validation_Cells__c != null){
+                for (String cells : consolidatedFinancial.Red_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
                     
                     if(!cells.containsIgnoreCase(currentFinancial.Financial_External_ID__c)){
-                        existingNonCurrentFinancialRedValues = existingNonCurrentFinancialRedValues + cells + IPM_ConstantUtils.SEMICOLON;
+                        existingNonCurrentFinancialValues = existingNonCurrentFinancialValues + cells + IPM_ConstantUtils.SEMICOLON;
                     }
                     
                 }
             }
             
-            if(finToUpdate.Yellow_Validation_Cells__c != null){
-                for (String cells : finToUpdate.Yellow_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
+            if(finValidationType.equalsIgnoreCase(IPM_ConstantUtils.YELLOW) && consolidatedFinancial.Yellow_Validation_Cells__c != null){
+                for (String cells : consolidatedFinancial.Yellow_Validation_Cells__c.split(IPM_ConstantUtils.SEMICOLON)){
                     if(!cells.containsIgnoreCase(currentFinancial.Financial_External_ID__c)){
-                        existingNonCurrentFinancialYellowValues = existingNonCurrentFinancialYellowValues + cells + IPM_ConstantUtils.SEMICOLON;
+                        existingNonCurrentFinancialValues = existingNonCurrentFinancialValues + cells + IPM_ConstantUtils.SEMICOLON;
                     }
                 }
             }
             
-            System.debug('existingNonCurrentFinancialRedValues==>'+existingNonCurrentFinancialRedValues);
-            System.debug('existingNonCurrentFinancialYellowValues==>'+existingNonCurrentFinancialYellowValues);
-            
-            finToUpdate.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
-            finToUpdate.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
-        }
+            return existingNonCurrentFinancialValues;
+
     }
     
     
+    /**************************************************************************************************************
+    * This method the list of financial_ExternalIds of the finacial available for the current tab
+    * This list is to be used in queries normally
+	**************************************************************************************************************/
+    public Set<String> getFinExtIdsForCurrentTab(){
+    	Set<String> financialExtIdsForCurrentTab = new Set<String>();
+		
+		if(lstRolloutWrappers!= null && !lstRolloutWrappers.isEmpty()){
+			for(RolloutWrapper rollWrapper : lstRolloutWrappers ){
+				for(IPM_Financial__c fin : rollWrapper.lstFinancials){
+					financialExtIdsForCurrentTab.add(fin.Financial_External_ID__c);
+				}
+			}
+			
+		}
+		
+		return financialExtIdsForCurrentTab;
+		
+    }
+    
+    /**************************************************************************************************************
+    * This method prepares the financial wrapper and financial year value wrappers for the passed fianncial
+    * Helper method for getConsolidatedValidationCells
+    * Parameter : currentFinancial :  the financial  for which wrappers are to be created
+    **************************************************************************************************************/
+    public void getCurrentFinancialWrapper(IPM_Financial__c currentFinancial){
+    	
+    	financialsInnovation = new IPM_FinancialWrapper();
+		financialsCalendar = new IPM_FinancialWrapper();
+    	
+    	for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
+
+			//Add to Map
+			mapFinancialYears.put(generateMapKey(finYear.Year_Type__c, finYear.Year__c, finYear.PL_Type__c), finYear);
+			
+			//Innovation Years
+			if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION)
+			{
+				generateFinancials(finYear, financialsInnovation);
+			}
+			//Calendar Years
+			else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
+				generateFinancials(finYear, financialsCalendar);
+			}	
+		}
+		
+    }
+      
     
 }

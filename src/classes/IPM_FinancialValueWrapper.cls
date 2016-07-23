@@ -23,7 +23,7 @@ public class IPM_FinancialValueWrapper {
     * @param difference     difference
     * @return               NONE
     */
-    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal difference,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial){
+    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal difference,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial, String currentTab){
         this.scale = 2;
         this.index = index;
         this.value = value.setScale(scale);
@@ -36,7 +36,7 @@ public class IPM_FinancialValueWrapper {
         
         String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
         
-        if(currentFinancial!=null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  && currentFinancial.Red_Validation_Cells__c != null && currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
         	this.redValidationErrorMessage = this.redValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -44,7 +44,7 @@ public class IPM_FinancialValueWrapper {
         	this.isValueInvalid = false;
         }
         
-        if(currentFinancial !=null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && currentFinancial.Yellow_Validation_Cells__c != null && currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.YELLOW,currentTab)){
         	this.isMinorValueInvalid = true;
         	this.yellowValidationErrorMessage = this.yellowValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -62,7 +62,7 @@ public class IPM_FinancialValueWrapper {
     * @param scale          scale
     * @return               NONE
     */
-    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal difference, Integer scale,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial){
+    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal difference, Integer scale,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial,String currentTab){
         this.scale = scale;
         this.index = index;
         this.value = value.setScale(scale);
@@ -75,7 +75,7 @@ public class IPM_FinancialValueWrapper {
         
         String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
         
-        if(currentFinancial != null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  && currentFinancial.Red_Validation_Cells__c != null && currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
         	this.redValidationErrorMessage = this.redValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -83,7 +83,7 @@ public class IPM_FinancialValueWrapper {
         	this.isValueInvalid = false;
         }
         
-        if(currentFinancial != null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && currentFinancial.Yellow_Validation_Cells__c != null && currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.YELLOW,currentTab)){
         	this.isMinorValueInvalid = true;
         	this.yellowValidationErrorMessage = this.yellowValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -101,7 +101,7 @@ public class IPM_FinancialValueWrapper {
     * @param LocalValue     LocalValue for misalignment
     * @param scale          scale
     */
-    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal regionalValue, Decimal localValue, Decimal difference, Integer scale,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial){
+    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal regionalValue, Decimal localValue, Decimal difference, Integer scale,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial,String currentTab){
         this.scale = scale;
         this.index = index;
         this.value = value.setScale(scale);
@@ -116,7 +116,7 @@ public class IPM_FinancialValueWrapper {
         
         String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
         
-        if(currentFinancial != null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && currentFinancial.Red_Validation_Cells__c != null && currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
         	this.redValidationErrorMessage = this.redValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -124,7 +124,7 @@ public class IPM_FinancialValueWrapper {
         	this.isValueInvalid = false;
         }
         
-        if(currentFinancial != null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && currentFinancial.Yellow_Validation_Cells__c != null && currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.YELLOW,currentTab)){
         	this.isMinorValueInvalid = true;
         	this.yellowValidationErrorMessage = this.yellowValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -142,7 +142,7 @@ public class IPM_FinancialValueWrapper {
     * @param LocalValue     LocalValue for misalignment
     * @param scale          scale
     */
-    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal regionalValue, Decimal localValue, Decimal difference,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial){
+    public IPM_FinancialValueWrapper(Integer index, Decimal value, Decimal regionalValue, Decimal localValue, Decimal difference,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial,String currentTab){
         this.scale = 2;
         this.index = index;
         this.value = value.setScale(scale);
@@ -157,7 +157,7 @@ public class IPM_FinancialValueWrapper {
         
         String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
         
-        if(currentFinancial != null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && currentFinancial.Red_Validation_Cells__c != null &&currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
         	this.redValidationErrorMessage = this.redValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -165,7 +165,7 @@ public class IPM_FinancialValueWrapper {
         	this.isValueInvalid = false;
         }
         
-        if(currentFinancial != null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && currentFinancial.Yellow_Validation_Cells__c != null && currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.YELLOW,currentTab)){
         	this.isMinorValueInvalid = true;
         	this.yellowValidationErrorMessage = this.yellowValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
         }
@@ -174,4 +174,50 @@ public class IPM_FinancialValueWrapper {
         }
         this.finextIdFieldSuffixKey = finextIdFieldSuffixKey;
     }
+    
+    /*******************************************************************************************************
+    * @description   Method to check if the consolidated financial year value has any red or yellow soft validation
+    * @param currentFinancial
+    * @param toFindStr
+    * @param cellValidationType
+    * @param currentTab
+    ********************************************************************************************************/
+    public boolean isConsolidatedFinValueInvalid(IPM_Financial__c currentFinancial, String toFindStr,String cellValidationType, String currentTab){
+    	if(currentFinancial != null &&
+    	   currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && 
+    	   currentTab != null &&
+    	   currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)){
+		   		//for red validations
+			   if(cellValidationType!= null && cellValidationType.equalsIgnoreCase(IPM_ConstantUtils.RED) &&
+			   	  currentFinancial.Red_Validation_Cells__c != null && 
+	    	      currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
+			   	  System.debug('currentTab==>'+currentTab);
+				  System.debug('isConsolidatedFinValueInvalid==>'+cellValidationType);
+				  return true;
+			   }
+			   //for Yellow validations
+			   else if(cellValidationType!= null && cellValidationType.equalsIgnoreCase(IPM_ConstantUtils.YELLOW) &&
+			   	  currentFinancial.Yellow_Validation_Cells__c != null && 
+	    	      currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
+	    	      System.debug('currentTab==>'+currentTab);
+				  System.debug('isConsolidatedFinValueInvalid==>'+cellValidationType);
+				  return true;
+			   
+			   }
+			   
+			   else{
+			   	return false;
+			   }
+			   
+    	}
+    	
+    	else{
+		   	return false;
+		}
+    	
+    }
+    
+    
+    
+    
 }
