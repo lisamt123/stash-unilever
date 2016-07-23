@@ -83,6 +83,8 @@ private class IPM_ProjectSetUpController_Test {
         ProjectWithOutBoss.IPM_Project_Leader__c=userInitialize.id;
         ProjectWithOutBoss.IPM_Company_Card__c=globalCompanyCard.id;
         ProjectWithOutBoss.IPM_Category_Text__c='Household Care';
+        ProjectWithOutBoss.IPM_Category_Picklist__c = IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
+        ProjectWithOutBoss.IPM_Category_Platform__c = 'Revitalisation';   
         insert projectWithOutBoss;
         List<IPM_Project__c> BDProjectList = [ SELECT Id,Name FROM IPM_Project__c WHERE Name=:ProjectWithOutBoss.Name LIMIT 1];
         system.assertEquals(BDProjectList[0].Name,ProjectWithOutBoss.Name,'Project name is :'+BDProjectList[0].Name);

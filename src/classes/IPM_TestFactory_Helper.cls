@@ -1949,7 +1949,9 @@ public class IPM_TestFactory_Helper
         { 'IPM_Category__c'=> new List<String>{HOUSEHOLDCARE,'Laundry'},
             'IPM_Template_Complexity__c' => new List<String>{FULL,LITE},
             'IPM_Template_Name__c' => new List<String>{'HHC-FULL','HHC-Lite'},
-            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE}
+            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE},
+            CATEGORY_PICKLIST => new List<String>{IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT}, 
+            CATEGORY_PLATFORM => new List<String>{CATEGORY_PLATFORM_REVITAL,CATEGORY_PLATFORM_REVITAL}
         };
         
         projectTemplateList = (List<IPM_Project_Template__c>)IPM_TestFactory.createSObjectList(IPM_PROJECT_TEMPLATE,projectTemplateMap,false);  
