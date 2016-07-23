@@ -537,19 +537,20 @@
         <fullName>Abhishek_Alerts</fullName>
         <columns>NAME</columns>
         <columns>L0_Product_Category__c</columns>
-        <columns>L1_Product_Category__c</columns>
-        <columns>L2_Product_Category__c</columns>
         <columns>L5_Reason_Code__c</columns>
         <columns>Market__c</columns>
         <columns>Active__c</columns>
-        <columns>Alert_Type_Image__c</columns>
-        <columns>CREATEDBY_USER</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UPDATEDBY_USER</field>
             <operation>equals</operation>
             <value>Abhishek Kumar Singh</value>
+        </filters>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Italy</value>
         </filters>
         <label>Abhishek Alerts</label>
         <language>en_US</language>
@@ -604,32 +605,15 @@
         <columns>Active__c</columns>
         <columns>L5_Reason_Code__c</columns>
         <columns>Market__c</columns>
-        <columns>Threshold__c</columns>
-        <columns>Group_By_Day_Code__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>Type__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All Alert Rules</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>All_Alert_Rules4</fullName>
-        <columns>NAME</columns>
-        <columns>Active__c</columns>
-        <columns>L5_Reason_Code__c</columns>
-        <columns>Market__c</columns>
-        <columns>Threshold__c</columns>
-        <columns>Group_By_Day_Code__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>L5_Reason_Code__c</field>
-            <operation>contains</operation>
-            <value>skin / eye</value>
-        </filters>
         <filters>
             <field>Market__c</field>
             <operation>equals</operation>
-            <value>Italy</value>
+            <value>United Kingdom</value>
         </filters>
-        <label>All Alert Rules_5</label>
+        <label>All Alert Rules_2</label>
         <language>en_US</language>
     </listViews>
     <listViews>

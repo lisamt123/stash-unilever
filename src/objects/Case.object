@@ -3429,11 +3429,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>New</value>
         </filters>
-        <filters>
-            <field>CASES.CREATED_DATE</field>
-            <operation>greaterThan</operation>
-            <value>7/9/2016 12:00 AM</value>
-        </filters>
         <label>CEC Benelux queue WH</label>
         <language>nl_NL</language>
     </listViews>
@@ -7256,6 +7251,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>Casos_BackOffice_EMAIL_Brazil</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
@@ -7263,7 +7259,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>L1_Product_Category__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Case_Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -7498,6 +7493,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
+            <value>Michael</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
