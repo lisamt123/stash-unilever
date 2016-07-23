@@ -73,7 +73,7 @@
         <targetField>Chatter_Likes__c.Likes_Percent__c</targetField>
     </mappings>
     <name>SuMo Chatter Activity</name>
-    <runningUser>consulting@cloudapps.com.sfdcplancr</runningUser>
+    <runningUser>SuMoDev@unilever.com</runningUser>
     <sourceReport>success__SuMo_Reports/SuMo_Chatter_Activity</sourceReport>
     <targetObject>Chatter_Likes__c</targetObject>
 </AnalyticSnapshot>
