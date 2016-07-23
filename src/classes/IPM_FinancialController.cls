@@ -1638,9 +1638,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               yellowValidationCellsString = IPM_ConstantUtils.BLANK;
 
               getValidationSettingSet();
-              validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-              validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-              
+ 
               validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
               validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
               validateFinancialSummaryTable(currentFinancial);
