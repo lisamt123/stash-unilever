@@ -4637,6 +4637,60 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+	<picklistValues>
+            <picklist>IPM_Category_Picklist__c</picklist>
+            <values>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Platform__c</picklist>
+            <values>
+                <fullName>Cold Refreshment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demystify</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gorgeous treat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inspire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>IPM_Project_Name__c</searchResultsAdditionalFields>
