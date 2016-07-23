@@ -396,7 +396,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	                                                           ( Select Target_Launch_Date__c, Financial_External_ID__c 
 	                                                              From IPM_Financials__r   where isActive__c=true
 	                                                              AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) ) 
-	                                                         From IPM_Project_Rollout__c  where Id IN : regionalRolloutIDs AND isActive__c=true];
+	                                                         From IPM_Project_Rollout__c  where Id IN : regionalRolloutIDsFin AND isActive__c=true];
 	  
 	    if(!regionalRolloutList.isEmpty()) {    
 	      
