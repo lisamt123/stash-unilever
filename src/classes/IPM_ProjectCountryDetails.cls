@@ -1153,40 +1153,43 @@ public with sharing class IPM_ProjectCountryDetails{
            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
         }	
     
-    }
-       
-      /**********************************************************************************************
+    }   
+      /*************************************************************************************************************
       *@Description:Returns the selectoptions for brands available to a local project 
-      *@Param:Local project  with fields IPM_LocalProject_Brand__c,IPM_Parent_Project__r.IPM_Brand_Positioning__c
-      *************************************************************************************************************/
-       public static List<selectoption> getAvailableBrands(IPM_project__c localProject){ 
+      *@Param:Local project 
+      *************************************************************************************************************/ 
+       public static Set<selectoption> getAvailableBrands(IPM_project__c localProject){ 
 		
-			List<selectoption> brandOptions = new List<selectoption> {new selectoption(localProject.IPM_LocalProject_Brand__c,localProject.IPM_LocalProject_Brand__c)};
+			Set<selectoption> brandOptions = new Set<selectoption>();
+			
+			if(!String.isBlank(localProject.IPM_LocalProject_Brand__c))
+			{
+				brandOptions.add(new selectoption(localProject.IPM_LocalProject_Brand__c,localProject.IPM_LocalProject_Brand__c));    
+			}
 	        
 			Map<String,IPM_Country__c> countryMap = new Map<String,IPM_Country__c>();
 			
-			for(IPM_Country__c country: [SELECT IPM_Brand_Position__c,Country_Name__c,Local_Rollout__c  FROM IPM_Country__c WHERE IPM_Local_Project__c=: localProject.Id LIMIT 50000])
+			for(IPM_Country__c country: [SELECT IPM_Brand_Position__c,Country_Name__c,Local_Rollout__c  FROM IPM_Country__c WHERE isActive__c=true AND Local_Rollout__c=: localProject.IPM_Project_Rollout__c LIMIT 50000])
 			{
-				countryMap.put(country.Country_Name__c,country);
+				countryMap.put(country.Country_Name__c,country);  
 			}
 	        
 			for(MDO_BrandPositions__c  brandPos:[SELECT Id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
-												 brand_position_id__r.Name =: localProject.IPM_Parent_Project__r.IPM_Brand_Positioning__c ORDER BY brand_id__r.Name ASC LIMIT 50000])
+												 brand_position_id__r.Name =: localProject.IPM_Brand_Positioning__c AND geo_id__r.Name IN :countryMap.keyset() ORDER BY brand_id__r.Name ASC LIMIT 50000])
 			{
-				if(countryMap.containsKey(brandPos.geo_id__r.Name) && !String.isBlank(brandPos.brand_id__r.Name)&& brandPos.brand_id__r.Name!=localProject.IPM_LocalProject_Brand__c)
+				if(!String.isBlank(brandPos.brand_id__r.Name)&& brandPos.brand_id__r.Name!=localProject.IPM_LocalProject_Brand__c)
 				{
-					IPM_Country__c country = countryMap.get(brandPos.geo_id__r.Name);
+					IPM_Country__c country = countryMap.get(brandPos.geo_id__r.Name);  
 					
 					if(country.IPM_Brand_Position__c!=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name) )
 					{
 						brandOptions.add(new selectoption(brandPos.brand_id__r.Name,brandPos.brand_id__r.Name));
-					}
+					}   
 				}
 				
 			}  
 			
 			return brandOptions;
             
-    	}    
-    
+    	} 
   }
