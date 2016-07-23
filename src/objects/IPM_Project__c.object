@@ -1146,7 +1146,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Savoury</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
+            <restrictedPicklist>false</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>

@@ -1982,6 +1982,8 @@ public class IPM_TestFactory_Helper
         Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => HOUSEHOLDCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal ,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
         
         IPM_Project__c masterProjectObj = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,masterProjectMap,true);
+        masterProjectObj.IPM_Category_Picklist__c = IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
+        masterProjectObj.IPM_Category_Platform__c = 'Revitalisation'; 
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         insert   masterProjectObj;
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
