@@ -32,7 +32,6 @@ private class IPM_RolloutPlansAddController_Test
     private static IPM_Market_Cluster_Short_Names__c mcoShortName;
     private static List<IPM_Project__c> regionalProjectsFR;
     private static List<IPM_Project__c> regionalProjects;
-    private static ApexPages.Message[] pageMessages;
     private static PageReference pageRef= Page.ipm_rolloutplansadd;
     private static PageReference pageRefRegional= Page.ipm_rolloutplansregional;
     private static PageReference expectedPageRef ;
