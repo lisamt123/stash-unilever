@@ -4,13 +4,14 @@
 * @description  This class is used for managing the ipmFinancial Page 
 *               and displaying Financial Business cases 
 * version: Samrat Removed uploadDownloadTemplate function not required 
-*/
+*/ 
+
 public with sharing class IPM_FinancialController extends IPM_ProjectIntermediateController  
-{ 
+{  
     //public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
     public Integer sustainabilityPeriod {get; set;} //Sustainability Period relevant for this set of business cases. 
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
-    
+     
     public Boolean isEditMode {get; set;} //Boolean variable to define if the page is in edit mode
     public Boolean isEditModeBottomUp {get; set;} //Boolean variable to define if the page is in edit mode
     public Boolean isEditable{get;set;} //Boolean Variable to define if the record is editable by the current logged in user
@@ -35,7 +36,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String currentTab {get; set;} //Used to manage the current selected tab on the UI
     public IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
     private List<IPM_Financial_Year__c> lstUpdateFinancials;
-   
+    
 
     public Boolean showTopDownTab {get; set;} //Boolean variable to decide when to show the TopDown tab
     public Boolean showRollupTab {get; set;} //Boolean variable to decide when to show the Rollup tab
@@ -80,7 +81,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public boolean isITOgrtGTO{get; set;} //DEF2315
     public boolean isITOgrtGTOCal{get; set;} //DEF2315
     public String BI{get;set;}
-	public string financialAcceptFrom{get;set;}
+    public string financialAcceptFrom{get;set;}
     public boolean toShowEditButton{get;set;}
     public boolean toShowEditOpern{get;set;}
     public boolean isCopyfromSTDBC{get;set;}
@@ -110,6 +111,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         } 
         set;} 
     public boolean isFinancialInvalidInnovation;
+
+
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
     {
@@ -1633,7 +1636,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                if(BI == null || BI == IPM_ConstantUtils.BLANK){
                   BI = IPM_ConstantUtils.smallBI;
                 }
-              //need to call this initializations in this method because constructor is not called for this method  
+              
               redValidationCellsString = IPM_ConstantUtils.BLANK;
               yellowValidationCellsString = IPM_ConstantUtils.BLANK;
 
@@ -1685,6 +1688,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //REQ3006- non key financial will be validated in upto charter, post charter validation will not be for non key financials
         if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION && 
            finToValidate != NULL  && 
+           GKMPhaseMapEle != Null &&
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType)&&
            !validationSettingSet.isEmpty() &&
            !isFinacialConsolidated &&
@@ -1740,6 +1744,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //REQ3006- non key financial will be validated in upto charter, post charter validation will not be for non key financials
         If(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && 
            finToValidate != NULL  && 
+           GKMPhaseMapEle != Null && 
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType) &&
            !validationSettingSet.isEmpty() &&
            !isFinacialConsolidated &&
@@ -2936,11 +2941,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         	conFin.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
             conFin.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
         }
-        
-
-        
-        //getRedYellowCellsUpdatedConsolFin(consolidatedFinancialsMap,existingNonCurrentFinancialRedValues, existingNonCurrentFinancialYellowValues );
-        
+             
         
         //return consolFinToUpdateSet;
         return new Set<IPM_Financial__c>(consolidatedFinancialsMap.values());
@@ -2978,14 +2979,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     *************************************************************************************************************/
     public IPM_Project_GKM_To_Phase_Matrix__mdt getProjGKMToPhaseMatrixElement(IPM_Project__c project){
         List<IPM_Project_GKM_To_Phase_Matrix__mdt> projToGKMPhaseMatrix =  [Select Id,GKM_Model__c,Project_Phase__c,Financial_Type_To_Validate__c from IPM_Project_GKM_To_Phase_Matrix__mdt limit 1000];
-        
-        if(projToGKMPhaseMatrix != null){
-        for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : projToGKMPhaseMatrix ){
-            if(GKMPhaseMapEle.GKM_Model__c == project.IPM_ProjectGKM__c &&
-               GKMPhaseMapEle.Project_Phase__c.equalsIgnoreCase(project.IPM_Phase__c)
-              ){
-              return GKMPhaseMapEle;
-            }
+        if(projToGKMPhaseMatrix != null && project!=null){
+        	for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : projToGKMPhaseMatrix ){
+	            if(project.IPM_ProjectGKM__c != null && GKMPhaseMapEle.GKM_Model__c!= null && GKMPhaseMapEle.GKM_Model__c == project.IPM_ProjectGKM__c &&
+	               project.IPM_Phase__c != null && GKMPhaseMapEle.Project_Phase__c != null && GKMPhaseMapEle.Project_Phase__c.equalsIgnoreCase(project.IPM_Phase__c)
+	              ){
+	              return GKMPhaseMapEle;
+	            }
 	        }
         }
         
@@ -3004,44 +3004,40 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         Map<Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingMap = new Map <Id,IPM_Red_Yellow_Soft_Validation_Setting__mdt>([Select Id,MasterLabel,IPM_Threshold_Status__c,IPM_Project_Sub_Type__c,IPM_Project_Phase__c,IPM_Market_Place_Activity__c,checkValidPaybackYellow__c,checkValidNPVYellow__c,checkValidITOYellow__c,checkValidIRRYellow__c,checkValidGTOAndITORed__c,checkValidCAPEXYellow__c,checkPBOYellow__c,checkGrossProfitYellow__c,checkBMIYellow__c from IPM_Red_Yellow_Soft_Validation_Setting__mdt Limit 1000 ]);
         
         List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList =  new List<IPM_Red_Yellow_Soft_Validation_Setting__mdt>();
-        
-        Map<Id, String> valSettingIdPhaseMap = new Map<Id, String>();
-        Map<Id, String> valSettingIdMPAMap = new Map<Id, String>() ;
+
         
         String valSettingPhase = IPM_ConstantUtils.BLANK;
         String valSettingMPA = IPM_ConstantUtils.BLANK;
-        
-        
-        //IPM_Red_Yellow_Soft_Validation_Setting__mdt validationSetting;
-        
-        for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettingMap.values() ){
+        if(project!= null && validationSettingMap !=null ){
+        	for (IPM_Red_Yellow_Soft_Validation_Setting__mdt valSetting : validationSettingMap.values() ){
             
-            valSettingPhase = IPM_ConstantUtils.BLANK;
-        	valSettingMPA = IPM_ConstantUtils.BLANK;
-            
-            if(valSetting.IPM_Project_Phase__c!=null){
-            	valSettingPhase = valSetting.IPM_Project_Phase__c.deleteWhitespace();
-            }
-            
-			
-			if(valSetting.IPM_Market_Place_Activity__c!=null){
-				valSettingMPA = valSetting.IPM_Market_Place_Activity__c.deleteWhitespace();
-			}
-            
-            
-            if(
-                (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)) &&
-                (String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && String.isNotBlank(project.IPM_ProjectSubType__c) && project.IPM_ProjectSubType__c == valSetting.IPM_Project_Sub_Type__c)) &&
-                (String.isBlank(valSettingPhase) || (String.isNotBlank(valSettingPhase) && String.isNotBlank(project.IPM_Phase__c) && valSettingPhase.deleteWhitespace().containsIgnoreCase(project.IPM_Phase__c.deleteWhitespace()) )) &&
-                (String.isBlank(valSettingMPA) || (String.isNotBlank(valSettingMPA) && String.isNotBlank(project.IPM_Answer_of_Q1__c) && valSettingMPA.deleteWhitespace().containsIgnoreCase(project.IPM_Answer_of_Q1__c.deleteWhitespace()) ))   
-                
-            ){
-                
-                validationSettingsList.add(valSetting);
-            }
-            
+	            valSettingPhase = IPM_ConstantUtils.BLANK;
+	        	valSettingMPA = IPM_ConstantUtils.BLANK;
+	            
+	            if(valSetting.IPM_Project_Phase__c!=null){
+	            	valSettingPhase = valSetting.IPM_Project_Phase__c.deleteWhitespace();
+	            }
+	            
+				
+				if(valSetting.IPM_Market_Place_Activity__c!=null){
+					valSettingMPA = valSetting.IPM_Market_Place_Activity__c.deleteWhitespace();
+				}
+	            
+	
+	            if(
+	                (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)) &&
+	                (String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && String.isNotBlank(project.IPM_ProjectSubType__c) && project.IPM_ProjectSubType__c == valSetting.IPM_Project_Sub_Type__c)) &&
+	                (String.isBlank(valSettingPhase) || (String.isNotBlank(valSettingPhase) && String.isNotBlank(project.IPM_Phase__c) && valSettingPhase.deleteWhitespace().containsIgnoreCase(project.IPM_Phase__c.deleteWhitespace()) )) &&
+	                (String.isBlank(valSettingMPA) || (String.isNotBlank(valSettingMPA) && String.isNotBlank(project.IPM_Answer_of_Q1__c) && valSettingMPA.deleteWhitespace().containsIgnoreCase(project.IPM_Answer_of_Q1__c.deleteWhitespace()) ))   
+	                
+	            ){
+	
+	                validationSettingsList.add(valSetting);
+	            }
+	            
+	        }
         }
-        
+
         if(!validationSettingsList.isEmpty()){
             return validationSettingsList;
         }
@@ -3080,11 +3076,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         getValidationSettingSet();
         
         if(finToValidate != NULL  && 
+           GKMPhaseMapEle != Null &&
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType)&&
            !validationSettingSet.isEmpty() &&
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
           ){
-          	
 
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
@@ -3142,6 +3138,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	        
         }
         
+        
+            
     }
     
     
@@ -3179,10 +3177,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	
 		lstFinancial = Database.query(queryString);
 		
-		System.debug('getRedYellowCellsMap isFinacialConsolidated==>'+isFinacialConsolidated);
 		
 		getRedYellowCellsMap(lstFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
-		
+
 		//Work with the string containing list of erroneous cells to populate the cells on consolidated with their names
 		List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
 			

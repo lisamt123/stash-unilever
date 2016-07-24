@@ -184,6 +184,7 @@ public class IPM_FinancialValueWrapper {
     ********************************************************************************************************/
     public boolean isConsolidatedFinValueInvalid(IPM_Financial__c currentFinancial, String toFindStr,String cellValidationType, String currentTab){
     	if(currentFinancial != null &&
+    	   currentFinancial.Financial_External_ID__c != null &&
     	   currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && 
     	   currentTab != null &&
     	   currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)){
