@@ -2,3 +2,4 @@ src
 src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
 src/objects/FS_Segmentation__c.object
+src/objects/FS_Monthly_Claimed_Cases__c.object
