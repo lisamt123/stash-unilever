@@ -1436,6 +1436,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Operator Outlet</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SubSegment__c</field>
+                <operation>equals</operation>
+                <valueField>FS_Segmentation__c.Name</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>FS_Segmentation__c</referenceTo>
         <relationshipLabel>Accounts</relationshipLabel>
         <relationshipName>Accounts</relationshipName>
