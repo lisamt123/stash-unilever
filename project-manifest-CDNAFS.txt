@@ -2,4 +2,7 @@ src
 src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
 src/objects/FS_Segmentation__c.object
-src/objects/FS_Monthly_Claimed_Cases__c.object
+src/classes/FS_SendMDMRequestEmail_CE.cls
+src/classes/FS_SendMDMRequestEmail_CE.cls-meta.xml
+src/pages/FS_SendMDMRequestEmail.page
+src/pages/FS_SendMDMRequestEmail.page-meta.xml
