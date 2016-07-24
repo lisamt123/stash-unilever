@@ -1431,7 +1431,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    
+    <fields>
+        <fullName>FS_OperatorOutlet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Operator Outlet</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SubSegment__c</field>
+                <operation>equals</operation>
+                <valueField>FS_Segmentation__c.Name</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>FS_Segmentation__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>FS_Payer__c</fullName>
         <description>Purpose : To display Payer
