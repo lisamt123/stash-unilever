@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Store the information about the SSD from Blacksmith.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Actuals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Product__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Product</label>
+        <referenceTo>Contract_Product__c</referenceTo>
+        <relationshipName>Contract_Product_Monthly_Actuals</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Current_Year__c</fullName>
+        <externalId>false</externalId>
+        <formula>YEAR(TODAY()) =  YEAR(First_of_Month__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Year</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>External_Key__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.UID_Material_ID__c + &apos;-&apos;+TEXT(First_of_Month__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>External Key</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Amount_Paid__c</fullName>
+        <description>Amount paid to an Account (Operator or Distributor)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount paid to an Account (Operator or Distributor)</inlineHelpText>
+        <label>Amount Paid</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Bill_Back_Date__c</fullName>
+        <description>Invoice Date for the Claim</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Invoice Date for the Claim</inlineHelpText>
+        <label>Bill Back Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Billback_Reference__c</fullName>
+        <description>Customer Invoice Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer Invoice Number</inlineHelpText>
+        <label>Billback Reference</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Claimed_Cases_Paid__c</fullName>
+        <description>Cases paid: actual volumes received from Blacksmith</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Cases paid: actual volumes received from Blacksmith</inlineHelpText>
+        <label>Claimed Cases Paid</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Count_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Yes/No Volumes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Yes/No Volumes</inlineHelpText>
+        <label>Count Indicator</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_Delivery_Start_Date__c</fullName>
+        <description>Start Date of the Claim Period</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date of the Claim Period</inlineHelpText>
+        <label>Delivery Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Delivery_end_date__c</fullName>
+        <description>End Date of the Claim period</description>
+        <externalId>false</externalId>
+        <inlineHelpText>End Date of the Claim period</inlineHelpText>
+        <label>Delivery end date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Distributor_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Entity where claimed product was purchases from.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Entity where claimed product was purchases from.</inlineHelpText>
+        <label>Distributor</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Contract_Product_Monthly_Actuals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_Lum_Sum_Amount__c</fullName>
+        <description>Amount paid to an Account (Operator or Distributor)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount paid to an Account (Operator or Distributor)</inlineHelpText>
+        <label>Lum Sum Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Lump_Sum_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Lump sum will be for Operators as well as Distributor but the two will never be on a lump sum transaction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lump sum will be for Operators as well as Distributor but the two will never be on a lump sum transaction.</inlineHelpText>
+        <label>Lump Sum Indicator</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_Paid_Date__c</fullName>
+        <description>Date the check of Credit was issued</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date the check of Credit was issued</inlineHelpText>
+        <label>Paid Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Paid_to__c</fullName>
+        <description>D for Distributor, O for Operator</description>
+        <externalId>false</externalId>
+        <inlineHelpText>D for Distributor, O for Operator</inlineHelpText>
+        <label>Paid to</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Rate_Paid_per_Case__c</fullName>
+        <description>Rate actually paid per case (coming from Blacksmith)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Rate actually paid per case (coming from Blacksmith)</inlineHelpText>
+        <label>Rate Paid per Case</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_of_Month__c</fullName>
+        <externalId>false</externalId>
+        <label>First of Month</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipName>Actuals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Monthly Claimed Cases</label>
+    <nameField>
+        <displayFormat>CPMA-{0}</displayFormat>
+        <label>Actual Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Monthly Claimed Cases</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

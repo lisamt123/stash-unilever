@@ -2,6 +2,7 @@ src
 src/objects/FS_Defined_Objective__c.object
 src/objects/Activity.object
 src/objects/Contract_Product__c.object
+src/objects/FS_Monthly_Claimed_Cases__c.object
 src/objects/Product2.object
 src/objects/Pricebook2.object
 src/objects/PricebookEntry.object
