@@ -53,12 +53,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>View</actionName>
-        <content>Account_Record_Page</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>ViewCustomerPortalUser</actionName>
         <type>Default</type>
     </actionOverrides>
