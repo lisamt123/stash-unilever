@@ -41,6 +41,21 @@
                                 <span class="coreMtitle">{!$Label.IPM_BRAND_POSITIONING}</span>
                                 <span class="coreMvalue"><apex:outputtext value="{!IPM_Coreparameter.IPM_Brand_Positioning__c}"/></span>    
                             </div>
+                            <apex:outputpanel rendered="{!isBrandVisible}"> 
+                                
+                                <div class="col-sm-2 custCoreparmborder">  
+                                    <span class="coreMtitle">{!$Label.IPM_Local_Brand}</span>
+                                    <apex:outputpanel rendered="{!NOT(isBrandEditable)}">
+                                        <span class="coreMvalue"><apex:outputtext value="{!IPM_Coreparameter.IPM_LocalProject_Brand__c}"/></span>    
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!isBrandEditable}">
+                                        <apex:selectList styleClass="brandDropdown" size="1" value="{!selectedBrand}" onchange="updateLocalRolloutBrand();" >  
+                                            <apex:selectOptions value="{!availableBrands}" />
+                                        </apex:selectList> 
+                                    </apex:outputpanel>
+                                </div>
+                                <apex:actionfunction name="updateLocalRolloutBrand" action="{!updateLocalRolloutBrand}" />
+                            </apex:outputpanel>
                             <div class="col-sm-2">    
                                 <span class="coreMtitle">{!$Label.IPM_TARGET_LAUNCH_DATE}</span>
                                 <span class="coreMvalue"><apex:outputField value="{!IPM_Coreparameter.IPM_Target_Launch_Dates__c}"/></span>
@@ -307,6 +322,20 @@
                                     </div>
                                 </div>
                                 </apex:outputPanel>
+                                           <apex:outputPanel >
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-3 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">{!$Label.IPM_Platform}
+                                         <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_Platform_Title}"></a>
+                                             </span></span>
+                                    </div>
+                                    <div class="col-sm-9 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Platform_Formula__c}</span>
+                                    </div>
+                                </div>
+                                </apex:outputPanel>
+                                
                                 <!--check whether project is applicable for market or not-->
                                  <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Market__c}">
                                      <div class="col-sm-12 noPadleft noPadright coreFieldContainer">

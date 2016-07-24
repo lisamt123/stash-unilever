@@ -62,8 +62,13 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     @TestVisible private static final String LOCAL_COMPANYCARD_RECORDTYPE =Schema.SObjectType.IPM_Company_Card__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL).getRecordTypeId(); //Recordtype Id for Local Company card on IPM_Company_Card__c object cant delete it using in the query below
     @TestVisible private static final String REGIONAL_COMPANYCARD_RECORDTYPE =Schema.SObjectType.IPM_Company_Card__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL).getRecordTypeId(); //Recordtype Id for Regional Company card on IPM_Company_Card__c object cant delete it using in the query below
     @TestVisible private static final String CLASS_NAME = IPM_RolloutPlansTableController.class.getName();//Class Name for Exception Logging
-     
-    
+    public map<id,IPM_Project_Rollout__c>localRolloutBrandMap{get;set;}//map for local rollout with list of brand 
+    public boolean isBrandEditable{get;set;}//set true for rollout project with feasibility/capability phase
+    public string localRolloutIdBrand{get;set;}
+    public string localRolloutBrand{get;set;}
+    @TestVisible private Map<id,IPM_Project_Rollout__c> rolloutToUpdateBrand;
+    public map<id,set<string>> holdRolloutidBrandMap{get;set;}//map of local rollout id and set of brands
+    @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
     /*******************************************************************************************************
     * @description  Constructor
     * @param        NONE
@@ -120,6 +125,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         isFLAllocated=false;
 		changeDateVal = false;
         // initialisation
+		isBrandEditable = false;
+        rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
+		rolloutCountryMap = new Map<string,IPM_Country__c>(); 
        	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
        	if(projectTolocalRolloutToCountryMap!=null)
        	{
@@ -228,6 +236,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 {
                     doShowFLName = true;   
                 }
+				getAllbrands();
             }
         } 
         catch (Exception ex) 
@@ -563,7 +572,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 if(!localRollout.IPM_Countries_Local__r.IsEmpty() )
                 {
                     localRolloutToCountryMap.put(localRollout.Id,localRollout.IPM_Countries_Local__r);
-                }   
+                }
+				for(IPM_Country__c country  :localRollout.IPM_Countries_Local__r)  
+                {
+                    rolloutCountryMap.put(country.Country_Name__c,country);
+                }  
             }
         }
         
@@ -889,7 +902,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     }else if(changeDateVal){
                         isEditMode=true;
                     }
-                    
+                    saveLocalRolloutBrand();
 					string editVal = string.valueOf(isEditMode);
                     PageReference rolloutPlans = Page.IPM_RolloutPlans;
 		            rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
@@ -1066,5 +1079,77 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             } 
         }
         return leastProjectMilestonesDate;
-    }        
+    } 
+	/*************************************************************************************************
+    *@Description:get all rollout with brands
+    *************************************************************************************************/
+    public void getAllbrands(){
+        //get brand values
+        holdRolloutidBrandMap = new map<id,set<string>>();//hold rollout id's with set of brand names
+        List<MDO_BrandPositions__c>brandPosList = New list<MDO_BrandPositions__c>();
+        brandPosList=[SELECT id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+                         brand_position_id__r.Name =: project.IPM_Brand_Positioning__c AND geo_id__r.Name IN :rolloutCountryMap.keyset() ORDER BY brand_id__r.Name ASC LIMIT 10000];
+        for(IPM_Country__c country: rolloutCountryMap.Values())
+        {
+            if(!holdRolloutidBrandMap.containskey(country.Local_Rollout__c))
+            {
+                holdRolloutidBrandMap.put(country.Local_Rollout__c,new set<string>());
+            }
+            for(MDO_BrandPositions__c  brandPos:brandPosList)
+            {
+                if(brandPos.brand_id__r.Name !=null && country.Country_Name__c!=null && country.Country_Name__c.equals(brandPos.geo_id__r.Name) && country.IPM_Brand_Position__c!=null 
+                    && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name) && !holdRolloutidBrandMap.get(country.Local_Rollout__c).contains(brandPos.brand_id__r.Name))
+                {
+                    holdRolloutidBrandMap.get(country.Local_Rollout__c).add(brandPos.brand_id__r.Name);
+                 }
+                
+            }
+        }
+        //get all local rollouts with brand value 
+        localRolloutBrandMap = new Map<Id,IPM_Project_Rollout__c>( [SELECT Id,IPM_Brand__c FROM IPM_Project_Rollout__c WHERE id IN :holdRolloutidBrandMap.keyset() LIMIT 10000]);
+        for(IPM_Project_Rollout__c rollout: localRolloutBrandMap.values())
+        {
+            if(IPM_ConstantUtils.BRAND_NOT_FOUND.equals(rollout.IPM_Brand__c)){
+                holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
+            } 
+        }
+        //enable edit access on brand when current project is reginal rollout and phase is feasibility/capability
+        if( (IPM_ConstantUtils.PHASE_FEASIBILITY.Equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_CAPABILITY.Equals(project.IPM_Phase__c)) && 
+            IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
+           {
+                isBrandEditable = true;
+           }
+           brandPosList.clear(); 
+           
+    } 
+    /**************************************************************************************************************************
+    @description:save local rollout brand
+    **************************************************************************************************************************/
+    public void saveLocalRolloutBrand(){
+        if(!rolloutToUpdateBrand.isEmpty())
+        {
+	    	 IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+	    	 update rolloutToUpdateBrand.values();
+	    	 IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+        }
+        
+    }
+    /**************************************************************************************************************************
+    @description:map local rollout id's and brand values.values are coming from vf page.
+    **************************************************************************************************************************/
+    public void holdLocalRolloutBrandVal(){
+        try
+        { 
+	        IPM_Project_Rollout__c updatedRollout =new IPM_Project_Rollout__c();
+	        updatedRollout.id = localRolloutIdBrand;
+	        updatedRollout.IPM_Brand__c = localRolloutBrand;
+	        rolloutToUpdateBrand.put(localRolloutIdBrand,updatedRollout);
+        }
+        catch (Exception ex) 
+        { 
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SAVE_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
+            
+        }
+    }   
 }

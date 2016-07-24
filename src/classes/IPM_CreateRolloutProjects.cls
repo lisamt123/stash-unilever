@@ -59,6 +59,7 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_SourceProjectType__c = ipmProject.IPM_SourceProjectType__c,  
                         IPM_Category_Group__c = ipmProject.IPM_Category_Group__c,
                         IPM_Category_Text__c = ipmProject.IPM_Category_Text__c,
+                        IPM_Category_Picklist__c = ipmProject.IPM_Category_Text__c,
                         IPMCompany__c = ipmProject.IPMCompany__c,
                         IPM_Market__c = ipmProject.IPM_Market__c,
                        // IPMPlatform__c = ipmProject.IPMPlatform__c,

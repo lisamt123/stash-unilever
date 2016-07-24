@@ -66,10 +66,15 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 // Check if Project has a  Name, if yes it came from child Projects, else Initial Creation of Global Project.       
                 if(Trigger.isInsert &&  project.IPM_Project_Name__c !=null && !String.isBlank(project.IPM_Project_Name__c) && project.IPM_Company_Card__c !=null && project.IPM_ProjectSubType__c !=null && !String.isBlank(project.IPM_ProjectSubType__c) )
                 {
+                    project.IPM_Category_Picklist__c = project.IPM_Category_Text__c;
                     projectAssociatedWithProjectTypesList.add(project); 
                 }
                 //Process BET flow
                 if(Trigger.isUpdate){
+                	
+                	// Set category picklist value from category text value
+                    project.IPM_Category_Picklist__c = project.IPM_Category_Text__c;
+                    
                     //Set default BET value
                     if(String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
                         project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;

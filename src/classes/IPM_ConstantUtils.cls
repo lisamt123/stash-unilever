@@ -5,7 +5,9 @@
 *              all the classes 
 */
 public class IPM_ConstantUtils {
-     
+    // General Constants
+    public static String IPM_true = 'true';
+    public static String IPM_false = 'false';
     //UI Compatibilty
     public static String UA_COMPATIBLE='X-UA-Compatible';
     public static String IE_EDGE='IE=edge';
@@ -202,7 +204,7 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_SAVEFINANCIALS='saveFinancials';
     public static final string EXCEPTION_REFRESHFROMLOCAL='refreshFromLocal';
     public static final string EXCEPTION_REFRESHFROMREGIONAL='refreshFromRegional';
-    
+    public static final string CONSOLIDATED='CONSOLIDATED';
     
     
     
@@ -356,6 +358,8 @@ public class IPM_ConstantUtils {
     public static final String VOLUME_UNIT_000_UNITS = 'Total \'000 Units';
     public static final String INVALID_DATA_TO_SAVE = 'Please rectify the values indicated in red in the table. The Business case cannot be submitted until the values are modified.';
     public static final Decimal INVALID_VALUE = 0;
+    public static final String RED = 'Red';
+    public static final String YELLOW = 'Yellow';
     //Financial variables ends
     
     //Miscelanious variables starts
@@ -364,6 +368,7 @@ public class IPM_ConstantUtils {
     public static String FINANCE_MEMBER_CONSTANT ='Finance Member';
     public static String HHC_CONSTANT = 'HHC';
     public static String HOUSEHOLDCARE_CONSTANT = 'Household Care';
+    public static String LAUNDRY_CONSTANT = 'Laundry';
     
     //For Financial
     public static String FINANCIAL_CONSOLIDATE = '_CONSOLIDATED';
@@ -1230,4 +1235,6 @@ public class IPM_ConstantUtils {
    public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
    public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
    public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
+   
+   public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
 }

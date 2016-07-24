@@ -143,10 +143,7 @@ private class IPM_ChatterFeedHelper_Test {
         
         regionalProjectList = createRegionalProjects(lstProjects);
         
-               
-        
-        
-         //Bulk insert of project resources
+        //Bulk insert of project resources
         IPM_Project_Resource__c projectResourceBDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false); 
         IPM_Project_Resource__c projectResourceCDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false);
         IPM_Project_Resource__c projectResourceCMIUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false);
@@ -397,7 +394,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testNotifyFinanceMemberAddedToRollout() {
-        
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
         initializeData();
         Test.startTest();
         System.runAs(platformUser) 
@@ -442,6 +440,8 @@ private class IPM_ChatterFeedHelper_Test {
                 }
            }
         }
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
         Test.stopTest();                              
     }
     
@@ -493,9 +493,9 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testPostChatterIfLocalRegionalTLDMisaligned() {
-        
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
             initializeData();
-            
             Test.startTest();
             System.runAs(platformUser) {
             createLocalProjectList(regionalProjectList);  
@@ -526,7 +526,8 @@ private class IPM_ChatterFeedHelper_Test {
             }
              
             }
-            
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest(); 
     }
     
@@ -537,7 +538,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testPostChatterIfLocalRegionalMisaligned() {
-        
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
             initializeData();   
         
             Test.startTest();  
@@ -569,6 +571,8 @@ private class IPM_ChatterFeedHelper_Test {
                     System.assert(projectFeed.Body.contains(FINANCIAL_ALIGN),FEED_UPDATED_NOT_ASSERTED);
                 }
             }
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest();
        }
     }
@@ -580,7 +584,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testPostChatterRegionalRolloutAddedToPlan() {
-        
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
             initializeData();
             
             Test.startTest();
@@ -593,6 +598,8 @@ private class IPM_ChatterFeedHelper_Test {
                       System.assert(projectFeed.Body.contains(System.Label.IPM_Included_In),FEED_UPDATED_NOT_ASSERTED);
                 }      
             }
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest();
         }
      }
@@ -604,7 +611,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
    private static testmethod void testPostChatterIfDocumentStatusChanged(){
-        
+       IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
         initializeData();
         
         Test.startTest(); 
@@ -649,7 +657,9 @@ private class IPM_ChatterFeedHelper_Test {
                     System.assert(projectFeed.Body.contains(Label.IPM_Gate_Approved_With_Edits),FEED_UPDATED_NOT_ASSERTED);
                 }    
             }
-            Test.stopTest();
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
+            Test.stopTest();            
         }
     }
     
@@ -690,6 +700,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testManageChatterMembers (){
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
         initializeData(); 
         
         Map<Id,IPM_Project__c> newProjectMap= new Map<Id,IPM_Project__c>();
@@ -715,7 +727,9 @@ private class IPM_ChatterFeedHelper_Test {
             System.assert(projectFeed.Body.contains(IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project),FEED_UPDATED_NOT_ASSERTED);
          }
         }   
-        }   
+        }
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
         Test.stopTest();
     }
     
@@ -726,7 +740,9 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testBusinessCaseChanged() {
-            
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION=true;
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;	
+         IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION=true;   
          initializeData();
          
          System.runAs(platformUser) {
@@ -751,6 +767,9 @@ private class IPM_ChatterFeedHelper_Test {
                 System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BUSINESS_CASE_SAVED),BUSINESS_NOT_SAVED);
             }   
          }
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+         IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION=false;
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION=false;
          Test.stopTest();   
          }      
     }    
@@ -761,11 +780,11 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testProjectTriggerHandler(){
-       
+       IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
         initializeData();
         System.runAs(platformUser) {
             Test.startTest();   
-			createLocalProjectList(regionalProjectList);  
+            createLocalProjectList(regionalProjectList);  
             IPM_ProjectTriggerHandler IPM_ProjectTriggerHandlerctrl = new IPM_ProjectTriggerHandler();
             IPM_ProjectTriggerHandlerctrl.onAfterInsert(regionalProjectList);
             IPM_ProjectTriggerHandlerctrl.onBeforeUpdate(regionalProjectList);
@@ -786,7 +805,7 @@ private class IPM_ChatterFeedHelper_Test {
             
             system.assertNotEquals(Null, IPM_GroupManagement.grpList,PROJECT_GROUP_CREATED );
             system.assert(IPM_GroupManagement.grpList.size() > 0,PROJECT_GROUP_CREATED );
-            
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest();    
         }
     }

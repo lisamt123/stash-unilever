@@ -3,7 +3,13 @@
     <apex:attribute name="fieldSuffix" type="String" required="true" description="Field Suffix - Global/Regional/Local"/>
     <apex:attribute name="isEditMode" type="Boolean" default="false" description="Edit Mode"/>
     <apex:attribute name="showMisalignment" type="Boolean" default="false" description="showMisalignment"/>
-    <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." /> 
+    <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." />
+    
+    <apex:attribute name="isCAPEXInvalid" type="Boolean" description="Identify whether CAPEX value is invalid." />
+    <apex:attribute name="isIRRInvalid" type="Boolean" description="Identify whether IRR value is invalid." />
+    <apex:attribute name="isNPVInvalid" type="Boolean" description="Identify whether NPV value is invalid." />
+    <apex:attribute name="isPaybackInvalid" type="Boolean" description="Identify whether Payback value is invalid." />
+    
     <!-- Variables -->
     <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
 
@@ -13,7 +19,10 @@
                 <tr>
                     <td width="30%" class="finproject fintleblubg">{!$Label.ipmFinSummaryNPV}</td>
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c > 0), 'misaligned', IF(isNPVInvalid,'yellowmisaligned',''))}">
+                        
+                        <apex:variable value="{!if(!isNPVInvalid,'',$Label.IPM_Possible_Error_Will_Not_Block_Progress)}" var="NPVErrorMsg" />
+                        
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -24,7 +33,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
-                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}">
+                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}{!NPVErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.NPV_Global__c}" />
                                     </apex:outputText>
@@ -34,7 +43,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If NPV difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0),NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" title="{!NPVErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0),NOT(isEditMode))}">
                                 <apex:param value="{!ipmFinancial.NPV_Global__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
@@ -51,7 +60,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
-                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}">
+                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}{!NPVErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
                                     </apex:outputText>
@@ -61,7 +70,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If NPV difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0),NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" title="{!NPVErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0),NOT(isEditMode))}">
                                 <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
@@ -78,7 +87,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
-                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}">
+                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}{!NPVErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.NPV_Local__c}" />
                                     </apex:outputText>
@@ -88,7 +97,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If NPV difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0),NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" title="{!NPVErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0),NOT(isEditMode))}">
                                 <apex:param value="{!ipmFinancial.NPV_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
@@ -98,7 +107,7 @@
                          <!-- Charter Values -->
                         <!-- For only Charter the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:outputText styleClass="info" title="{!NPVErrorMsg}" value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!ipmFinancial.NPV_Charter__c}" />
                             </apex:outputText> 
                         </apex:outputPanel>
@@ -108,7 +117,10 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryIRR}</td>
                     <td width="30%" class="fintleblubg">%</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c > 0), 'misaligned', IF(isIRRInvalid,'yellowmisaligned',''))}">
+                        
+                        <apex:variable value="{!if(!isIRRInvalid,'',$Label.IPM_Possible_Error_Will_Not_Block_Progress)}" var="IRRErrorMsg" />
+                        
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -119,7 +131,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
-                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}">
+                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}{!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Global__c}
                                 </a>
                             </apex:outputText>
@@ -127,7 +139,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If IRR difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{!ipmFinancial.IRR_Global__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{!ipmFinancial.IRR_Global__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
                             <!-- This section will be rendered if its edit mode -->
                             <apex:inputText value="{!ipmFinancial.IRR_Global__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
@@ -142,7 +154,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
-                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}">
+                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}{!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Regional__c}
                                 </a>
                             </apex:outputText>
@@ -150,7 +162,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If IRR difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{!ipmFinancial.IRR_Regional__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{!ipmFinancial.IRR_Regional__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
                             <!-- This section will be rendered if its edit mode -->
                             <apex:inputText value="{!ipmFinancial.IRR_Regional__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
@@ -165,7 +177,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
-                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}">
+                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}{!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Local__c}
                                 </a>
                             </apex:outputText>
@@ -173,7 +185,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If IRR difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{!ipmFinancial.IRR_Local__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{!ipmFinancial.IRR_Local__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
                             <!-- This section will be rendered if its edit mode -->
                             <apex:inputText value="{!ipmFinancial.IRR_Local__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
@@ -181,7 +193,7 @@
                         <!-- Charter Values -->
                         <!-- For only Charter the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!ipmFinancial.IRR_Charter__c}" />
                             </apex:outputText> 
                         </apex:outputPanel>
@@ -191,7 +203,10 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPayback}</td>
                     <td width="30%" class="fintleblubg">Years</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c > 0), 'misaligned', IF(isPaybackInvalid,'yellowmisaligned',''))}">
+                        
+                        <apex:variable value="{!if(!isPaybackInvalid,'',$Label.IPM_Possible_Error_Will_Not_Block_Progress)}" var="PaybackErrorMsg" />
+                        
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -200,9 +215,9 @@
                                 2. If Payback difference is greater than '0'
                                 3. If its not edit mode
                             -->
-                            <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
-                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}">
+                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c} {!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.Payback_Global__c}" />
                                     </apex:outputText>
@@ -212,7 +227,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If Payback difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode) )}">
+                            <apex:outputText styleClass="info" title="{!PaybackErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode) )}">
                                 <apex:param value="{!ipmFinancial.Payback_Global__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
@@ -229,7 +244,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
-                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}">
+                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}{!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
                                     </apex:outputText>
@@ -239,7 +254,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If Payback difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" title="{!PaybackErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode))}">
                                 <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
@@ -256,7 +271,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0, NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
-                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}">
+                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}{!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.Payback_Local__c}" />
                                     </apex:outputText>
@@ -266,7 +281,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If Payback difference is '0'
                                 2. If its not edit mode
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" title="{!PaybackErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode))}">
                                 <apex:param value="{!ipmFinancial.Payback_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
@@ -276,7 +291,7 @@
                         <!-- Charter Values -->
                         <!-- For only Charter the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:outputText styleClass="info" title="{!PaybackErrorMsg}" value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!ipmFinancial.Payback_Charter__c}" />
                             </apex:outputText> 
                         </apex:outputPanel>
@@ -290,7 +305,10 @@
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryCAPEX}</td>
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
-                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c > 0), 'misaligned', '')}">
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c > 0), 'misaligned', IF(isCAPEXInvalid,'yellowmisaligned',''))}">
+                         
+                    <apex:variable value="{!if(!isCAPEXInvalid,'',if(isConsolidated,$Label.IPM_Possible_Error_Will_Not_Block_Progress,$Label.IPM_SVF_CAPEX))}" var="CAPEXErrorMsg" />
+                        
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -299,9 +317,9 @@
                                 2. If CAPEX difference is greater than '0'
                                 3. If its not edit mode
                             -->
-                            <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
-                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}">
+                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c} {!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.CAPEX_Global__c}" />
                                     </apex:outputText>
@@ -311,9 +329,10 @@
                                 1. If there is no misalignment in business case between global/regional/local or If CAPEX difference is '0'
                                 2. If its not edit mode or consolidated 
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
+                            <apex:outputText styleClass="info" title="{!CAPEXErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Global__c}" />
                             </apex:outputText>
+
                             <!-- This section will be rendered if its edit mode or not consolidated-->
                             <apex:inputText value="{!ipmFinancial.CAPEX_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
@@ -326,9 +345,9 @@
                                 2. If CAPEX difference is greater than '0'
                                 3. If its not edit mode
                             -->
-                            <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
-                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}">
+                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}{!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
                                     </apex:outputText>
@@ -338,7 +357,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If CAPEX difference is '0'
                                 2. If its not edit mode or consolidated 
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
+                            <apex:outputText styleClass="info" title="{!CAPEXErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode or not consolidated-->
@@ -353,9 +372,9 @@
                                 2. If CAPEX difference is greater than '0'
                                 3. If its not edit mode
                             -->
-                            <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
+                            <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
-                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}">
+                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}{!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
                                     </apex:outputText>
@@ -365,7 +384,7 @@
                                 1. If there is no misalignment in business case between global/regional/local or If CAPEX difference is '0'
                                 2. If its not edit mode or consolidated 
                             -->
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
+                            <apex:outputText styleClass="info" title="{!CAPEXErrorMsg}" value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode or not consolidated-->
@@ -375,7 +394,7 @@
                         <!-- Charter Values -->
                         <!-- For only Charter the following section will be rendered -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:outputText styleClass="info" title="{!CAPEXErrorMsg}" value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Charter__c}" />
                             </apex:outputText> 
                         </apex:outputPanel>

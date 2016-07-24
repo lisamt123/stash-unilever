@@ -439,3 +439,19 @@ jq(window).load(function(){
         jq('#ipmModal .modal-body').addClass('status_body');
     });
 });
+
+jq(".clipinfo").tooltip({ position: { my: 'left bottom', at: 'center bottom+10' },placement: 'bottom'}); 
+ jq(document).on('click', '.paper-clip', function(e) {
+    jq('#ipmAttachmentModal .modal-dialog').width('500px');
+    jq('#ipmAttachmentModal .modal-dialog').height('460px');
+    jq('#ipmAttachmentModal .modal-dialog').css('margin-top','10%');
+    jq('#ipmNoAttachmentModal .modal-dialog').width('500px');
+    jq('#ipmNoAttachmentModal .modal-dialog').height('100px');
+    jq('#ipmNoAttachmentModal .modal-dialog').css('margin-top','10%');
+});
+jq(document).on('click', '.dwnldClick', function(e) {
+    jq('td.attchImgtd a').each(function() {
+        var list = jq(this).attr('href');
+     window.open(list);
+  });
+ });

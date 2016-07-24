@@ -390,3 +390,7 @@ background: #e5f8ff;
 }
 div.filterTitle span.wordwrap img{width: 15px;height: 19px;}
 div.filterTitle span.wordwrap {margin-left: -5px;}
+
+.finSumTbl>tbody>tr>td.yellowmisaligned {
+    border: 3px solid #EC2;
+}

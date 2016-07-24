@@ -172,8 +172,20 @@ This componet used for regional rollout project
                                                     <apex:outputText value="{!countryString}"/>
                                                            </div>
                                         </td>
-                                        <td class="text-right" width="26%">
-                                            <div class="mr15 inlineBlk">
+										<td colspan="3">
+                                        <strong>{!$Label.IPM_Rollout_Brand}: </strong>
+                                        <apex:outputText styleClass="lclNoselect" value="{!localrollout.IPM_Brand__c}" rendered="{!!AND(isEditMode,isEditable,isBrandEditable)}"/>
+                                        <apex:outputPanel styleClass="localSelectList" rendered="{!AND(isEditMode,isEditable,isBrandEditable)}">
+                                            <span class="hideDupfield" data-holder="{!localrollout.id}" value="{!localRolloutBrandMap[localrollout.id].IPM_Brand__c}"></span>
+                                            <select class="rollSelectList" id="">  
+                                                <apex:repeat value="{!holdRolloutidBrandMap[localrollout.id]}" var="brandVal">
+                                                    <option value="{!brandVal}">{!brandVal}</option>
+                                                </apex:repeat>
+                                            </select>
+                                        </apex:outputPanel>
+                                        </td>
+                                        <td class="text-right" width="6%">
+											<div class="mr15 inlineBlk">
                                                 <div class="SecButtonSet"> 
                                                     <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!AND(isEditMode,!localrollout.Local_Project__r.IPM_No_Rollout_Disabled__c)}" onComplete="reRenderPanels();" status="loadingStatus" >
                                                         <apex:param name="p1" assignTo="{!selectedMCORollout}" value="{!localRolloutId}"/> 
@@ -290,7 +302,7 @@ This componet used for regional rollout project
                                         <td width="15%"> 
                                             <strong>{!$Label.IPM_MCO}: </strong>{!localRollout.MCO_Name__c}
                                         </td>
-                                        <td  width="47%" class="noBorder" colspan="4">
+                                        <td class="noBorder" colspan="3" width="40%">
                                             <div class="separator">
                                                 <strong>{!$Label.IPM_INCLUDED_COUNTRIES}: </strong>
                                                  <apex:variable var="countryString" value="" />
@@ -301,7 +313,20 @@ This componet used for regional rollout project
                                                     <apex:outputText value="{!countryString}"/>
                                             </div>
                                         </td>
-                                        <td class="text-right" width="26%">
+										<td colspan="3">
+                                        <strong>{!$Label.IPM_Rollout_Brand}: </strong>
+                                        <apex:outputText styleClass="lclNoselect" value="{!localrollout.IPM_Brand__c}" rendered="{!!AND(isEditMode,isEditable)}"/>
+                                        <apex:outputPanel styleClass="localSelectList" rendered="{!AND(isEditMode,isEditable)}">
+                                        <span class="hideDupfield" data-holder="{!localrollout.id}" value="{!localRolloutBrandMap[localrollout.id].IPM_Brand__c}"></span>
+                                            <select class="rollSelectList" id="">  
+                                                <apex:repeat value="{!holdRolloutidBrandMap[localrollout.id]}" var="brandVal">
+                                                    <option value="{!brandVal}">{!brandVal}</option>
+                                                </apex:repeat>
+                                            </select>
+                                            <apex:actionStatus startText="Testing the loader" id="Loadingpage" startStyleClass="proInit"  />
+                                        </apex:outputPanel>
+                                        </td> 
+                                        <td class="text-right" width="6%">
                                             <div class="mr15 inlineBlk">
                                                 <div class="SecButtonSet">
                                                     <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
@@ -322,6 +347,10 @@ This componet used for regional rollout project
                 </div>
             </div>
         </apex:outputPanel>
+		<apex:actionFunction name="holdRolloutsBrand" action="{!holdLocalRolloutBrandVal}" reRender="topButtonPanel" status="loadingStatus">
+            <apex:param name="localRolloutIdBrand" value="" assignTo="{!localRolloutIdBrand}"/>
+              <apex:param name="localRolloutBrandVal" value="" assignTo="{!localRolloutBrand}"/>
+        </apex:actionFunction>
         <div class="row">
             <apex:outputPanel id="bottomButtonPanel">
                 <div class="col-sm-6 pull-left mSpacing">

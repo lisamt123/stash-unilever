@@ -3974,6 +3974,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+	<editable>true</editable>
+	<field>IPM_Financial__c.Red_Validation_Cells__c</field>
+	<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+	<editable>true</editable>
+	<field>IPM_Financial__c.Red_Validation_Cells__c</field>
+	<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Threshold_Status_Global__c</field>
         <readable>true</readable>
@@ -6363,6 +6373,16 @@
         <field>IPM_Project_Template__c.IPM_Template_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
+       <fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Project__c.IPM_Project_Based_Threshold_Status__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_LocalProject_Brand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
 		<field>IPM_Project__c.IPM_Is_Invoked_From_Rollout__c</field>
@@ -6407,7 +6427,21 @@
 		<editable>false</editable>
 		<field>IPM_Project__c.IPM_CountDown_Reference_Time__c</field>
 		<readable>true</readable>
-	</fieldPermissions>
+	</fieldPermissions>	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project__c.IPM_Category_Picklist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+       <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project__c.IPM_Category_Platform__c</field>
+        <readable>true</readable>
+    </fieldPermissions>   <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Platform_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
 		<field>IPM_Project__c.IPM_StoppedByUser__c</field>
@@ -8503,4 +8537,3 @@
     </tabSettings>
     
 </PermissionSet>
-

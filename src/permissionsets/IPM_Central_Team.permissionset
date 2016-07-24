@@ -1038,13 +1038,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Auto_Aligned_Fin_TLD__c</field>
-        <readable>true</readable>
+        <field>IPM_Analytics__c.IPM_BETOwner__c</field>
+        <readable>false</readable>
     </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Auto_Aligned_Fin_TLD_for_financial__c</field>
-        <readable>false</readable>
+        <field>IPM_Analytics__c.IPM_BET_Current_Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1068,7 +1068,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_BET_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Brand_Positioning__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Brand__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1104,6 +1114,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Company_Priority__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Company_Project_Priority_BB__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Company_Project_Priority_BD__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1179,6 +1199,61 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Finance_Member__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Financials_Aligned__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y0BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y1BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y2BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y3BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y4BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y5BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y6BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y7BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_GP_Y8BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Gate_Keeping_Model__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1288,6 +1363,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Product_DesignLock_Completed_On_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Product_Design_Lock_Due_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Project_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1308,6 +1393,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Project_Route__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Project_Span__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1323,7 +1413,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Status__c</field>
+        <field>IPM_Analytics__c.IPM_Reason_for_No_BET__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1334,6 +1424,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Strategic_Intent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Sub_Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Target_Launch_Date_Aligned__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1363,12 +1463,117 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_White_Space_Project__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y1_GPBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y1_Gross_TO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y1_iGP_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y1_iTOBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y2_GPBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y2_Gross_TO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y2_iGP_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y2_iTOBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y3_GPBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y3_Gross_TO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Y3_gTO_BD__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y3_iGP_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y3_iTOBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Y3_iTO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y4_GPBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y4_Gross_TO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y4_iGP_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y4_iTOBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y5_GPBD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y5_Gross_TO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y5_iGP_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Y5_iTOBD__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

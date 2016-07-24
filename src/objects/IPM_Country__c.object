@@ -612,6 +612,18 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>IPM_Brand_Position__c</fullName>
+        <description>get brand position</description>
+        <externalId>false</externalId>
+        <formula>Local_Rollout__r.IPM_Brand_Position__c</formula>
+        <label>Brand Position</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Country</label>
     <listViews>
         <fullName>All</fullName>

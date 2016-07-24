@@ -158,6 +158,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public String stopButtonHoverText{get;set;}//hover text of  Stop Project button 
     public boolean isStopped{get;set;}
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
+    
+    public Boolean isBrandVisible{get;set;} //to display brand value
+    
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -318,6 +321,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
         	bShowChangeStatusButton = false;
         }
         
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c))
+        {   
+        	isBrandVisible=true; 
+        }
+        
     }
     
     public void intializeVariables()
@@ -373,7 +381,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT IPM_Is_Invoked_From_Rollout__c,IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        project = [SELECT IPM_LocalProject_Brand__c,IPM_Is_Invoked_From_Rollout__c,IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,IPM_EligibleForReactivation__c,IPM_StoppedByProject__c,
         IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c, IPM_CancelStoppingProjectTill__c, 
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,IPM_Stopped_At_Span__c, 

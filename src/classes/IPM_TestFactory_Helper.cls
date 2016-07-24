@@ -174,7 +174,10 @@ public class IPM_TestFactory_Helper
     public static final String LAUNDRY = 'Laundry';  
     public static final String BRAND_POS = 'IPM_Brand_Positioning__c';
     public static final String ROLLOUT_OBJECT ='IPM_Project_Rollout__c';
-    
+    public static final String CATEGORY_PLATFORM_REVITAL ='Revitalisation';
+	public static final String CATEGORY_PICKLIST ='IPM_Category_Picklist__c';
+	public static final String CATEGORY_PLATFORM ='IPM_Category_Platform__c';
+	
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
     public static List<IPM_Financial_Year__c> finYear=new List<IPM_Financial_Year__c>();
@@ -198,6 +201,7 @@ public class IPM_TestFactory_Helper
     public static ID recTypeIDRQS = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
     public static ID recTypeIDCR = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.CORPORATE_RISK_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
 
+
     // R&D feasibility, Suppy Chain Feasibility and Risk Record Type 
     public static ID recTypeRnDFeasibility = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RNDFEASIBILITYQUESTION_RECORD_TYPE).RecordTypeId;
     public static ID recTypeSCFeasibility = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.SCFEASIBILITY_RECORD_TYPE).RecordTypeId;
@@ -205,6 +209,7 @@ public class IPM_TestFactory_Helper
     
     // Gatekeeping Question Rcord Type
     public static ID recTypeGKC = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId;
+        
     public static List<IPM_Project__c>masterProject=new List<IPM_Project__c>();
     
     //TO query the profile
@@ -436,7 +441,7 @@ public class IPM_TestFactory_Helper
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
                 IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
-                'Sustainability_Period__c' => '3',IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL};
+                'Sustainability_Period__c' => '3',IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,true); 
             projectList.add(projectRecord);
         }
@@ -783,7 +788,7 @@ public class IPM_TestFactory_Helper
             
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_COMMENTS + i,IPM_PROJECT_NAME=>TEST_COMMENTS + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
-                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6), IPM_PROJECT_LEADER => UserInfo.getUserId(), IPM_PHASE=> IPM_ConstantUtils.PHASE_IDEAS};
+                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6), IPM_PROJECT_LEADER => UserInfo.getUserId(), IPM_PHASE=> IPM_ConstantUtils.PHASE_IDEAS,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
             
@@ -808,7 +813,7 @@ public class IPM_TestFactory_Helper
             
             Map<String,Object> projMap =  new Map<String,Object>{NAME => 'IPMProjectName' + i,IPM_PROJECT_NAME=>'IPMProjectName' + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
-                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6), IPM_PROJECT_LEADER => UserInfo.getUserId(), IPM_PHASE=> IPM_ConstantUtils.PHASE_IDEAS};
+                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6), IPM_PROJECT_LEADER => UserInfo.getUserId(), IPM_PHASE=> IPM_ConstantUtils.PHASE_IDEAS,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
             
@@ -836,7 +841,7 @@ public class IPM_TestFactory_Helper
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => scope +' Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => OPERATIONAL_PROJECTYPE,
                 IPM_PROJECT_SUB_TYPE => OPERATIONAL_PROJECTYPE,IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => OPERATIONAL_PROJECTYPE,
-                IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL};
+                IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
         }
@@ -862,7 +867,7 @@ public class IPM_TestFactory_Helper
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Regional Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
                 IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
-                IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL};
+                IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
         }
@@ -888,7 +893,7 @@ public class IPM_TestFactory_Helper
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
                 IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
-                'Sustainability_Period__c' => '3',IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL};
+                'Sustainability_Period__c' => '3',IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
         }
@@ -904,7 +909,7 @@ public class IPM_TestFactory_Helper
 	**************************************************************************************************/
     public static IPM_Project__c createIPMProject(Boolean doInsert){
         Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_COMMENTS,
-            IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT};
+            IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
         IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
         if(doInsert) { 
             insert projectRecord;
@@ -1944,7 +1949,9 @@ public class IPM_TestFactory_Helper
         { 'IPM_Category__c'=> new List<String>{HOUSEHOLDCARE,'Laundry'},
             'IPM_Template_Complexity__c' => new List<String>{FULL,LITE},
             'IPM_Template_Name__c' => new List<String>{'HHC-FULL','HHC-Lite'},
-            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE}
+            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE},
+            CATEGORY_PICKLIST => new List<String>{IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT}, 
+            CATEGORY_PLATFORM => new List<String>{CATEGORY_PLATFORM_REVITAL,CATEGORY_PLATFORM_REVITAL}
         };
         
         projectTemplateList = (List<IPM_Project_Template__c>)IPM_TestFactory.createSObjectList(IPM_PROJECT_TEMPLATE,projectTemplateMap,false);  
@@ -1972,9 +1979,11 @@ public class IPM_TestFactory_Helper
         
         
         // Create Master Project For sharing to work for master tasks and milestones.
-        Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => HOUSEHOLDCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal};
+        Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => HOUSEHOLDCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal ,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
         
         IPM_Project__c masterProjectObj = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,masterProjectMap,true);
+        masterProjectObj.IPM_Category_Picklist__c = IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
+        masterProjectObj.IPM_Category_Platform__c = 'Revitalisation'; 
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         insert   masterProjectObj;
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
@@ -2215,7 +2224,7 @@ public class IPM_TestFactory_Helper
     
     public static IPM_Reporting__c createIPMReportingCustomSetting(String strName, Boolean doInsert) {
         
-        IPM_Reporting__c RP = new IPM_Reporting__c(Name = strName, Last_Batch_RunDate__c= System.now(), Y1__c = 1, Y2__c=2, Y3__c=3, Y4__c=4, Y5__c=5, Y_1__c = -1, Y_2__c=-2, Y_3__c=-3);  
+        IPM_Reporting__c RP = new IPM_Reporting__c(Name = strName, Batch_Size__c=25, Last_Batch_RunDate__c= System.now(), Y1__c = 1, Y2__c=2, Y3__c=3, Y4__c=4, Y5__c=5, Y_1__c = -1, Y_2__c=-2, Y_3__c=-3);  
         if(doInsert){
         	insert RP;
         }

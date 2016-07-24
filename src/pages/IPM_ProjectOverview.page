@@ -168,7 +168,7 @@
 								</apex:outputPanel>
 							</div>
 
-							<p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c}
+                            <p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c} <apex:outputtext value="| {!project.IPM_LocalProject_Brand__c}" rendered="{!isBrandVisible}"/>
 								| {!project.IPM_Project_Type__c}</p>
                             <apex:outputpanel rendered="{!AND(isOriginal,!ISBLANK(project.IPM_Cluster__r.Name))}">
 								<div class="row">
