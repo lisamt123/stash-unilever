@@ -62,7 +62,6 @@ src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
-src/classes/IPM_WithoutSharingHelper.cls-meta.xml
 src/components
 src/components/IPM_BCC_Consolidate.component
 src/components/IPM_BCC_Consolidate.component-meta.xml
