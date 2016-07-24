@@ -33,8 +33,12 @@ public class IPM_FinancialValueWrapper {
         this.isGrossTOGRTIto =false;
         this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
         this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
         
-        String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+        	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        }
+        
         
         if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
@@ -72,8 +76,11 @@ public class IPM_FinancialValueWrapper {
         this.isGrossTOGRTIto =false;
         this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
         this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
         
-        String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+        	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        }
         
         if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
@@ -113,8 +120,11 @@ public class IPM_FinancialValueWrapper {
         this.isGrossTOGRTIto =false;
         this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
         this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
         
-        String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+        	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        }
         
         if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
@@ -183,7 +193,8 @@ public class IPM_FinancialValueWrapper {
     * @param currentTab
     ********************************************************************************************************/
     public boolean isConsolidatedFinValueInvalid(IPM_Financial__c currentFinancial, String toFindStr,String cellValidationType, String currentTab){
-    	if(currentFinancial != null &&
+
+    	if(currentFinancial != null && String.isNotBlank(toFindStr) &&
     	   currentFinancial.Financial_External_ID__c != null &&
     	   currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && 
     	   currentTab != null &&

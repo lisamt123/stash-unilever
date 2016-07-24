@@ -42,6 +42,8 @@ src/classes/IPM_ProjectSetUpController_Test.cls
 src/classes/IPM_ProjectSetUpController_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController.cls
 src/classes/IPM_RolloutPlansAddController.cls-meta.xml
+src/classes/IPM_RolloutPlansAddController_Test.cls
+src/classes/IPM_RolloutPlansAddController_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansTableController.cls
 src/classes/IPM_RolloutPlansTableController.cls-meta.xml
 src/classes/IPM_Team_Assignment_Controller.cls
