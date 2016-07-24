@@ -54,7 +54,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <content>Account_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>ViewCustomerPortalUser</actionName>
@@ -416,7 +419,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <fields>
         <fullName>BillingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Business_activity_types__c</fullName>
@@ -1427,28 +1430,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_OperatorOutlet__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Operator Outlet</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>$Source.SubSegment__c</field>
-                <operation>equals</operation>
-                <valueField>FS_Segmentation__c.Name</valueField>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>FS_Segmentation__c</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>FS_Payer__c</fullName>
@@ -20959,6 +20940,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <customTabListAdditionalFields>UID_Branch__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UID_Geography__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UID_Segment__c</customTabListAdditionalFields>
+        <listViewButtons>Merge_Accts</listViewButtons>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.PHONE1</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PC_EMAIL</lookupDialogsAdditionalFields>
@@ -21116,6 +21098,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
         <url>http://search.hoovers.com/cgi-bin/hol_search?which=company&amp;query_string={!Account_Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Merge_Accts</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Merge Accts</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!URLFOR(&apos;/merge/accmergewizard.jsp&apos;,&apos;&apos;)}</url>
     </webLinks>
     <webLinks>
         <fullName>YahooMaps</fullName>

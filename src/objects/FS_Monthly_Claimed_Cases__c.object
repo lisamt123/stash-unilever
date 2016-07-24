@@ -58,7 +58,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>FS_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Account</label>
@@ -269,7 +269,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Product__c</fullName>
+        <fullName>FS_Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Product</label>
