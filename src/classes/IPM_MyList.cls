@@ -17,7 +17,7 @@ public with sharing class IPM_MyList{
     /********************************************************************************
     *@Description: To set the Tasks for different types of tasks on the Page
     *********************************************************************************/
-    public ApexPages.StandardSetController standardSetCon {get;set;}
+    public static ApexPages.StandardSetController standardSetCon {get;set;}
     /********************************************************************************
     *@Description: Total Pages contains the No of pages 
     *********************************************************************************/
