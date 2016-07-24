@@ -78,12 +78,12 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Actual_Quantity__c</fields>
+        <fields>FS_Claimed_Cases_Paid__c</fields>
         <fields>Product__c</fields>
-        <fields>Account__c</fields>
+        <fields>FS_Account__c</fields>
         <fields>External_Key__c</fields>
         <fields>Planned_Quantity__c</fields>
-        <relatedList>Contract_Product_Monthly_Actual__c.Contract_Product__c</relatedList>
+        <relatedList>FS_Monthly_Claimed_Cases__c.Contract_Product__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

@@ -1,6 +1,4 @@
 src
-src/classes/FS_SendMDMRequestEmail_CE.cls
-src/classes/FS_SendMDMRequestEmail_CE.cls-meta.xml
 src/classes/FS_Utility.cls
 src/classes/FS_Utility.cls-meta.xml
 src/classes/FS_OpportunityHelper.cls

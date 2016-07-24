@@ -58,10 +58,6 @@
                 <behavior>Edit</behavior>
                 <field>New_Biz_20K__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Finance_User__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -115,6 +111,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Comment__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Fixed_Price__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
