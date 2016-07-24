@@ -1,4 +1,13 @@
 src
-src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
-src/objects/FS_Segmentation__c.object
+src/classes/FS_SendMDMRequestEmail_CE.cls
+src/classes/FS_SendMDMRequestEmail_CE.cls-meta.xml
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
+src/classes/FS_CentrallyLedChildAccount_Picklist.cls
+src/classes/FS_CentrallyLedChildAccount_Picklist.cls-meta.xml
+src/classes/FS_AccountPlanHandler.cls
+src/classes/FS_AccountPlanHandler.cls-meta.xml
+src/classes/FS_AccountPlanHelper.cls
+src/classes/FS_AccountPlanHelper.cls-meta.xml
