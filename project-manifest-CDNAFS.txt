@@ -1,5 +1,6 @@
 src
 src/objects/FS_Defined_Objective__c.object
+src/objects/Account.object
 src/objects/Activity.object
 src/objects/Contract_Product__c.object
 src/objects/FS_Monthly_Claimed_Cases__c.object
