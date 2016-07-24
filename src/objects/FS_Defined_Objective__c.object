@@ -396,10 +396,6 @@
         <label>Tension</label>
         <picklist>
             <picklistValues>
-                <fullName>Relationship</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Improve Profitability</fullName>
                 <default>false</default>
             </picklistValues>
@@ -429,6 +425,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Gross Margin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Relationship</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -587,7 +587,31 @@
         <picklistValues>
             <picklist>FS_Tension__c</picklist>
             <values>
-                <fullName>Relationship</fullName>
+                <fullName>Drive Check Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drive Traffic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improve Product Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improve Profitability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitchen Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manage Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Menu Development</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -738,10 +762,6 @@
                 <fullName>Menu Development</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Relationship</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -855,7 +875,31 @@
         <picklistValues>
             <picklist>FS_Tension__c</picklist>
             <values>
-                <fullName>Relationship</fullName>
+                <fullName>Drive Check Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drive Traffic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improve Product Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improve Profitability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitchen Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manage Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Menu Development</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

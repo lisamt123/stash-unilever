@@ -1,0 +1,3 @@
+<apex:page standardController="Opportunity" extensions="FS_SendMDMRequestEmail_CE" Action="{!createExcelAttachment}">
+Email has been successfully sent.
+</apex:page>

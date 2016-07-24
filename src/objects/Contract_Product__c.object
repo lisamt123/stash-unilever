@@ -60,8 +60,8 @@
         <fullName>Actual_Quantity__c</fullName>
         <externalId>false</externalId>
         <label>Actual Quantity</label>
-        <summarizedField>Contract_Product_Monthly_Actual__c.Actual_Quantity__c</summarizedField>
-        <summaryForeignKey>Contract_Product_Monthly_Actual__c.Contract_Product__c</summaryForeignKey>
+        <summarizedField>FS_Monthly_Claimed_Cases__c.FS_Claimed_Cases_Paid__c</summarizedField>
+        <summaryForeignKey>FS_Monthly_Claimed_Cases__c.Contract_Product__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
