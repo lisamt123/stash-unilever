@@ -402,7 +402,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	      
 	      for(IPM_Project_Rollout__c regRlout : regionalRolloutList){
 	      	
-	      	Date regTLd =!String.isEmpty(regRlout.Regional_Rollout__c)? regRlout.Target_Launch_Date__c:regRlout.Regional_Project__r.IPM_Target_Launch_Dates__c;
+	      	Date regTLd = regRlout.Target_Launch_Date__c;
 	      	Date earliestLocalTLd = regRlout.Local_Rollouts__r[0].Target_Launch_Date__c;
 	      	Date earliestTLd = regTLd < earliestLocalTLd ? regTLd : earliestLocalTLd ;
 	      	
