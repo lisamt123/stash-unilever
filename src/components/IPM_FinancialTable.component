@@ -22,12 +22,13 @@
     <apex:attribute name="isITOgrtGTOCal" type="Boolean" description="Flag to check if iTO greater than GTO for Calendar year"/>
     <apex:attribute name="isValidationErrorCal" type="Boolean" description="Flag to check if there is validation error for financial values of calendar table"/>
     <apex:attribute name="validationErrorMessageCal" type="string" description="Flag to check if there is validation error message for financial values of calendar table"/>
+	<apex:attribute name="isNonkey" type="Boolean" description="Identify whether Financial is NONKEY." />
     <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." /> 
     <!-- Validation Message -->
     <!--
         Renders if there any validation error for innovation financial year records
     -->
-    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),OR(isValidationError, isValidationErrorCal), isInnovation)}">
+    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),NOT(isNonkey),OR(isValidationError, isValidationErrorCal), isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">

@@ -111,7 +111,19 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         } 
         set;} 
     public boolean isFinancialInvalidInnovation;
-
+	//Fix4355 Variable to check NONKEY
+	public Boolean isNonkey
+	{
+		get	{
+				Boolean flag = false;
+				if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))
+					{    
+                		flag = true;
+            		}
+            	return flag;
+        	} 		
+		set;	
+	}
 
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
