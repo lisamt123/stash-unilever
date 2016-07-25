@@ -287,11 +287,13 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Company Project Priority (BD)</displayNameOverride>
             <field>IPM_Company_Project_Priority_BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Company Project Priority (BB)</displayNameOverride>
             <field>IPM_Company_Project_Priority_BB__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
@@ -405,55 +407,55 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2013</displayNameOverride>
+            <displayNameOverride>GP 2013 (BD)</displayNameOverride>
             <field>IPM_GP_Y0BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2014</displayNameOverride>
+            <displayNameOverride>GP 2014 (BD)</displayNameOverride>
             <field>IPM_GP_Y1BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2015</displayNameOverride>
+            <displayNameOverride>GP 2015 (BD)</displayNameOverride>
             <field>IPM_GP_Y2BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2016</displayNameOverride>
+            <displayNameOverride>GP 2016 (BD)</displayNameOverride>
             <field>IPM_GP_Y3BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2017</displayNameOverride>
+            <displayNameOverride>GP 2017 (BD)</displayNameOverride>
             <field>IPM_GP_Y4BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2018</displayNameOverride>
+            <displayNameOverride>GP 2018 (BD)</displayNameOverride>
             <field>IPM_GP_Y5BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2019</displayNameOverride>
+            <displayNameOverride>GP 2019 (BD)</displayNameOverride>
             <field>IPM_GP_Y6BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2020</displayNameOverride>
+            <displayNameOverride>GP 2020 (BD)</displayNameOverride>
             <field>IPM_GP_Y7BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>GP 2021</displayNameOverride>
+            <displayNameOverride>GP 2021 (BD)</displayNameOverride>
             <field>IPM_GP_Y8BD__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
