@@ -358,12 +358,6 @@ span.expico {
 .noBackground {
     background: #fff ;
 }
-.secrow td {
-    border-top: 1px solid #ddd ;
-    ;
-    border-bottom: 1px solid #ddd ;
-    background: #f7f8fa;
-}
 .greyborleft {
     border-left: 1px solid #ddd ;
 }
