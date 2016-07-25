@@ -1,11 +1,5 @@
 src
-src/classes/FS_Utility.cls
-src/classes/FS_Utility.cls-meta.xml
-src/classes/FS_OpportunityHelper.cls
-src/classes/FS_OpportunityHelper.cls-meta.xml
-src/classes/FS_CentrallyLedChildAccount_Picklist.cls
-src/classes/FS_CentrallyLedChildAccount_Picklist.cls-meta.xml
-src/classes/FS_AccountPlanHandler.cls
-src/classes/FS_AccountPlanHandler.cls-meta.xml
-src/classes/FS_AccountPlanHelper.cls
-src/classes/FS_AccountPlanHelper.cls-meta.xml
+src/triggers/AccountPlanTrigger.trigger
+src/triggers/AccountPlanTrigger.trigger-meta.xml
+src/triggers/OpportunityTrigger.trigger
+src/triggers/OpportunityTrigger.trigger-meta.xml
