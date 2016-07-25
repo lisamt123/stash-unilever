@@ -1099,7 +1099,9 @@ public with sharing class IPM_ProjectCountryDetails{
         
         for(IPM_Country__c country :countryList) 
         {
-            brandsMap.put(country.Local_Rollout__c,new set<string>());
+            if(!brandsMap.ContainsKey(country.Local_Rollout__c)){
+                brandsMap.put(country.Local_Rollout__c,new set<string>());  
+            }
 			for(MDO_BrandPositions__c  brandPos:brandPosList)
             {
                 
