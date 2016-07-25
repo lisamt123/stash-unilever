@@ -137,6 +137,9 @@ public with sharing class IPM_StopProjectHelper
     
     public static void processArchiving(Map<Id,IPM_Project__c> projectArchivingMap) 
     {
+        if(projectArchivingMap.isEmpty()){
+        	return;
+        }
         Map<Id,IPM_Project__c> relatedArchvingProjectsMap = new Map<Id,IPM_Project__c>(); 
         Map<Id,Set<Id>> parentToChildProjectIds = new Map<Id,Set<Id>>(); 
         set<Id> projectArchivingIdSet =  new Set<Id>(projectArchivingMap.keySet()); 
@@ -204,6 +207,10 @@ public with sharing class IPM_StopProjectHelper
 
     public static void processUnArchiving(Map<Id,IPM_Project__c> cancelStopProjectMap )
     {
+        if(cancelStopProjectMap.isEmpty()){
+        	return;
+        }
+        
         Map<Id,IPM_Project__c> relatedUnArchvingProjectsMap = new Map<Id,IPM_Project__c>(); 
         
         for(IPM_Project__c impactedProject : [SELECT Id,IPM_StoppedByProject__c  FROM IPM_Project__c WHERE IPM_StoppedByProject__c IN : cancelStopProjectMap.keySet() and IPM_PrepareForArchival__c = true limit 10000])
@@ -236,6 +243,10 @@ public with sharing class IPM_StopProjectHelper
     **********************************************************************/
     public static void processArchival(map<Id,IPM_Project__c> archivalProjectMap)
     { 
+        if(archivalProjectMap.isEmpty()){
+        	return;
+        }
+        
         relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
         relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
         relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();
@@ -382,6 +393,10 @@ public with sharing class IPM_StopProjectHelper
 
     public static void processUnArchival(map<Id,IPM_Project__c> unArchieveProjectMap)
     {
+        if(unArchieveProjectMap.isEmpty()){
+        	return;
+        }
+        
         relatedProjectsToStopMap = new Map<Id,IPM_Project__c>();
         relatedProjectDocToStopMap = new Map<Id,IPM_Project_Document__c>();
         relatedProjectTaskToStopMap = new Map<Id,IPM_Task__c>();

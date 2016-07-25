@@ -318,6 +318,10 @@ public without sharing class IPM_ChatterFeedHelper {
     */
     
     public static void notifyProjectIsFasttrack(List<IPM_Project__c> updatedProjects){
+        if(updatedProjects == null || updatedProjects.isEmpty()){
+        	return;
+        }
+        
         clearData();
         Set<Id> fasttrackProjects = new Map<Id,IPM_Project__c>(updatedProjects).keySet();
         String posttext;
