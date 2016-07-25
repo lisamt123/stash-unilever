@@ -44,7 +44,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Actual__c</field>
+                <field>Contract_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Actual_Quantity__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -71,6 +75,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ProductCode</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Sample__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Discount</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -119,77 +131,81 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_TPR_percent__c</field>
+                <field>FS_tprPercent__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Additional_Discount__c</field>
+                <field>FS_additionalDiscount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Total_TPR__c</field>
+                <field>FS_totalTPRPercentage__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_GSV__c</field>
+                <field>FS_grossSalesValue__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_NIV__c</field>
+                <field>FS_netInvoiceValue__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Turnover__c</field>
+                <field>FS_temporaryPriceReduction__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_TPR__c</field>
+                <field>FS_turnover__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_PC__c</field>
+                <field>FS_profitCost__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_SC__c</field>
+                <field>FS_supplyCost__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_SCC__c</field>
+                <field>FS_supplyCostChain__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_GP__c</field>
+                <field>FS_grossProfit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_GM__c</field>
+                <field>FS_grossMargin__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_GM_when_TPR_equals_zero__c</field>
+                <field>FS_gmWhenTPREqualsZero__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Value_necessary_w_VAT_TPR__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_Price_1_w_Disc_w_VAT_TPR__c</field>
+                <field>FS_valueNecessaryWithVAT__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Distr_markup_TPR__c</field>
+                <field>FS_Price1WithDiscountWithVAT__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_VAT_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_DistributorMarkup__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_necessary_TPR__c</field>
+                <behavior>Edit</behavior>
+                <field>FS_vat__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_necessaryTPR__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_TPRCalculationFlag__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -309,6 +325,7 @@
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
     <multilineLayoutFields>ListPrice</multilineLayoutFields>
     <multilineLayoutFields>ServiceDate</multilineLayoutFields>
+    <multilineLayoutFields>Discount</multilineLayoutFields>
     <multilineLayoutFields>Description</multilineLayoutFields>
     <multilineLayoutFields>OpportunityId</multilineLayoutFields>
     <relatedLists>
