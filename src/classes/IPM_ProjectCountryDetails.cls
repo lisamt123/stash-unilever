@@ -1099,7 +1099,7 @@ public with sharing class IPM_ProjectCountryDetails{
         
         for(IPM_Country__c country :countryList) 
         {
-            if(!brandsMap.ContainsKey(country.Local_Rollout__c)){
+            if(country.Local_Rollout__c !=null && !brandsMap.ContainsKey(country.Local_Rollout__c)){
                 brandsMap.put(country.Local_Rollout__c,new set<string>());  
             }
 			for(MDO_BrandPositions__c  brandPos:brandPosList)
@@ -1126,7 +1126,7 @@ public with sharing class IPM_ProjectCountryDetails{
         IPM_Project_Rollout__c newRollout;// declaration of local rollout
     	for(IPM_Country__c country :countryList)
         {
-            if(!rolloutMap.containsKey(country.Local_Rollout__c)){
+            if(country.Local_Rollout__c !=null && !rolloutMap.containsKey(country.Local_Rollout__c)){
 				newRollout=new IPM_Project_Rollout__c();
 				newRollout.id=country.Local_Rollout__c; 
 				if(brandsMap.get(country.Local_Rollout__c).isEmpty())

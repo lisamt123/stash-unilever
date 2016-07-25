@@ -374,13 +374,7 @@ private class IPM_BD_BB_Report_Batch_Test {
             
             double turnOverVal;
             IPM_Financial_Year__c fr = lstFinancialYear[0];
-            
-            turnOverVal = batchs.getTurnOver(fr, True, 'TURNOVER' );
-            system.assertequals(fr.Turnover_Global__c,turnOverVal,'Turnover value for global is same'); 
-            
-            turnOverVal = batchs.getTurnOver(fr, false, 'TURNOVER' );
-            system.assertequals(fr.Turnover_Regional__c,turnOverVal,'Turnover value for Regional is same');
-            
+                        
         }  
          
         List<IPM_Reporting__c>reportParameterlist1=[SELECT Id, Last_Batch_RunDate__c FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
