@@ -372,8 +372,6 @@ private class IPM_BD_BB_Report_Batch_Test {
             cppRec = batchs.calculateCPP(0.20, 1000.00);
             system.assertequals(cppRec,'Bronze','CPP value is not BRONZE'); 
             
-            double turnOverVal;
-            IPM_Financial_Year__c fr = lstFinancialYear[0];
                         
         }  
          

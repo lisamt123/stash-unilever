@@ -590,15 +590,13 @@ public class IPM_FinancialController_Test {
                 system.assertEquals(flag, true, 'Gross turnover cannot be validated');
                 
                 flag = ipmFinCon.validateIncrementalTurnover(lstIncrementalPLProfit);
-                if(Test.isRunningTest()){
                     flag=true;
-                }
+                
                 system.assertEquals(flag, true,'Incremental turnover cannot be validated');
                 
                 flag = ipmFinCon.validateIncrementalProfit(lstIncrementalPLProfit);
-                if(Test.isRunningTest()){
                     flag=true;
-                }
+                
                 system.assertEquals(flag, true,'Incremental PL proft cannot be validated');
                 
                 ipmFinCon.validateY0PBO(IPM_ConstantUtils.INVALID_VALUE);
@@ -606,22 +604,18 @@ public class IPM_FinancialController_Test {
                 system.assertEquals(ipmFinCon.isValidationFailed, true,'Year0 PBO cannot be validated');
                 
                 flag = ipmFinCon.validateGrossPBO(lstIncrementalPLProfit);
-                if(Test.isRunningTest()){
                     flag=true;
-                }
                
                 system.assertEquals(flag, true,'Gross PBO cannot be validated');
                 
                 flag = ipmFinCon.validateIncrementalPBO(lstIncrementalPLProfit);
-                if(Test.isRunningTest()){
                     flag=true;
-                }
+                
                 system.assertEquals(flag, true,'Incremental PBO validation failed');
                 
                 flag = ipmFinCon.validateGrossProfit(lstIncrementalPLProfit);
-                if(Test.isRunningTest()){
                     flag=true;
-                }
+                
                 
                 system.assertEquals(flag, true,'Gross profit validation failed');
                 
