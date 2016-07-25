@@ -377,6 +377,38 @@
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of Clarity Approvals meta-data before deployment with few Test Classes      -->
   <!-- ***************************************************************************** -->
+  <target name="validatePaperless">
+    <echo level="info">Testing the deployment of Clarity Approvals</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+			<runTest>VEP_AutocompleteV2_Con_Test.cls</runTest>
+			<runTest>VEP_AutoCompleteV2_Con.cls</runTest>
+			<runTest>VEP_MapFactory_CC.cls</runTest>
+			<runTest>VEP_MapFactory_Test.cls</runTest>
+			<runTest>VEP_SafetyQuiz_CC.cls</runTest>
+			<runTest>VEP_SafetyQuiz_Test.cls</runTest>
+			<runTest>VEP_Visitor_Trigger_Test.cls</runTest>
+			<runTest>VEP_Visitor_TriggerHandler.cls</runTest>
+			<runTest>VEP_VisitorPassonBehalf_Test.cls</runTest>
+			<runTest>VEP_VisitorPassonBehalf.cls</runTest>
+			<runTest>VEP_VisitorStatus_CC.cls</runTest>
+			<runTest>VEP_VisitorStatus_Test.cls</runTest>
+			<runTest>TriggerFactory.cls</runTest>		   
+    </sf:deploy>
+  </target>  
+  <!-- ***************************************************************************** -->
+  <!-- Validate the  set of Clarity Approvals meta-data before deployment with few Test Classes      -->
+  <!-- ***************************************************************************** -->
   <target name="validateCA">
     <echo level="info">Testing the deployment of Clarity Approvals</echo>
     <sf:deploy username="${sf.username}"
