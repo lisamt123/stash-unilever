@@ -28,11 +28,6 @@
         <targetField>Chatter_Likes__c.OwnerId</targetField>
     </mappings>
     <mappings>
-        <sourceField>ExecutionTime</sourceField>
-        <sourceType>snapshot</sourceType>
-        <targetField>Chatter_Likes__c.LastReferencedDate</targetField>
-    </mappings>
-    <mappings>
         <aggregateType>Sum</aggregateType>
         <sourceField>ChatterActivity$PostCount</sourceField>
         <sourceType>summary</sourceType>
