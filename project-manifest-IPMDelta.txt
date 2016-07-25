@@ -13,7 +13,7 @@ src/objects/IPM_Project__c.object
 src/objects/IPM_Project_Document_Section__c.object
 src/wave
 src/wave/UL_Reports.wapp
-src/wave/UL_Reports.json
+src/wave/UL_Reports.wdf
 src/wave/IPM_Report_1_Unique_Users_Access.wdash
 src/wave/IPM_Report_1_Unique_Users_Access.wdash-meta.xml
 src/wave/IPM_Report_1_User_Login_Last_30_days.wdash
