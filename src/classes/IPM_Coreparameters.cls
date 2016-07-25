@@ -145,7 +145,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         set;    
     }
     
-    public Set<selectoption> availableBrands{get;set;} 
+    public List<selectoption> availableBrands{get;set;} 
     public Boolean isBrandEditable{get;set;}
     public Boolean isBrandVisible{get;set;}
     public string selectedBrand{get;set;}
