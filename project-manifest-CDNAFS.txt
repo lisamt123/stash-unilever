@@ -1,10 +1,8 @@
 src
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators.layout
-src/layouts/Contract_Product__c-Contract Product Layout.layout
-src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
-src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
-src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/layouts/Opportunity-Opportunity Layout.layout
 src/layouts/Product2-Food Solutions Product.layout
+src/layouts/Pricebook2-FS PriceBook Layout.layout
+src/layouts/PricebookEntry-Price Book Entry Layout.layout
+src
+src/approvalProcesses/FS_Account_Plan__c.FS_Account_Plan_Approval.approvalProcess
