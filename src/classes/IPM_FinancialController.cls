@@ -2937,7 +2937,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         for(IPM_Financial__c conFin : consolidatedFinancialsMap.values()){
         	existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.RED);
-        	existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
+        	existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
         	conFin.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
             conFin.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
         }
