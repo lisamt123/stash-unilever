@@ -18,14 +18,9 @@
         <targetField>Chatter_Likes__c.Event_Type__c</targetField>
     </mappings>
     <mappings>
-        <sourceField>ChatterActivity$Parent.Id</sourceField>
+        <sourceField>ChatterActivity.Parent.Id</sourceField>
         <sourceType>tabular</sourceType>
         <targetField>Chatter_Likes__c.User_ID__c</targetField>
-    </mappings>
-    <mappings>
-        <sourceField>ChatterActivity$Parent.Id</sourceField>
-        <sourceType>tabular</sourceType>
-        <targetField>Chatter_Likes__c.OwnerId</targetField>
     </mappings>
     <mappings>
         <aggregateType>Sum</aggregateType>
