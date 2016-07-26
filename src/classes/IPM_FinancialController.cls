@@ -1332,6 +1332,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         } 
         //Rest of the Year Values
+        
+        //For different constructors of IPM_FinancialValueWrapper there additional parameters are passed
+        //These values are used for red/soft vaildations on consolidated financials
+        //@Param1 : financialExternalId + Field Name (only field name is not necessary since, for consolidated financials can have may rollup financials. 
+        //                                           if any of the rolloup financials have error in a cell the corresponding financial cells needs to be highlighted red/yellow. 
+        //											 So financila external id of the rollup financial and field/cell name is used to create a unique key)
+        //@Param2 : currentFinancial : So as to check the currentfinancial values and whether it is a consolidated financial
+        //@Param3 : currentTab :  Since the validations need to happen only for editabel financials i.e. currentTab = 'myView'
+        
         else if(Integer.valueOf(finYear.Year__c) <= sustainabilityPeriod) {
             //Gross P&L Values
             if (finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS){
@@ -1482,6 +1491,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
             getSustainabilityPeriod();
             getFinancials();
+            
+            setConsolidatedFinancialValidationCells();
+            
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_CHANGESUSTAINABILITY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
@@ -1694,7 +1706,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isValidationFailed = false;
         IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle = getProjGKMToPhaseMatrixElement(project);
         getCurrentFinancialType(finToValidate);
+        
+        //Calculate the financial type : Since here only non consolidate financials are to be evaluated
+        //consolidated financial red/yellow soft validations are evaluated in the constructor of IPM_FinancialValue_Wrapper itself
         isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+        
+        //get the validation setting which defines what cells needs to be validated
         getValidationSettingSet();
         //Validate Innovation Year cell data
         //REQ3006- non key financial will be validated in upto charter, post charter validation will not be for non key financials
@@ -1709,8 +1726,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
           )
            {
 
-                if(validationSettingSet.contains('checkValidITOYellow'.toLowerCase())){
-                    //No validation needed for Incremental TO, since it could be zero or even negative              
+                if(validationSettingSet.contains('checkValidITOYellow'.toLowerCase())){           
                     validateIncrementalTurnover(finWrapper.lstIncrementalPLTurnover); // it is not showing incremental turn over
                 }
                 
@@ -1846,10 +1862,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     isFinancialInvalid = true;
                     isValidationError = true;
                     validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+                    
+                    //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                     if(!redValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                         redValidationCellsString = redValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                     }
                     
+                    //Set the popup message value for the cell to be shown on financials page
                     if(valueWrapper.redValidationErrorMessage !=  null & !valueWrapper.redValidationErrorMessage.contains(Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative)){
                         valueWrapper.redValidationErrorMessage = valueWrapper.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative;
                     }
@@ -1878,10 +1897,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 valueWrapper.isMinorValueInvalid = true;               
                 isValidationFailed = true;
                 isInvalid = true;
+                
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
                 
+                //Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
                 }
@@ -1890,19 +1912,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         return isInvalid;
     }
     
-    /*******************************************************************************************************
-    * @description         Used to validate the financial y0GrossProfit
-    * @param y0GrossProfit         Used to process the passed y0GrossProfit
-    * @return              Boolean value says if the validation is failed or not
-    */
-    public void validateY0GrossProfit(Decimal y0GrossProfit){
-        //Validate Y0GrossProfit value    
-        if(y0GrossProfit <= IPM_ConstantUtils.INVALID_VALUE){            
-            isy0GrossProfitInvalid = true;
-            isValidationFailed = true;
-        }
-    }
-    
+
     /*******************************************************************************************************
     * @description                              Used to Validate Gross Profit values
     * @param lstGrossPLGrossProfit      Used to process the passed lstGrossPLGrossProfit
@@ -1920,11 +1930,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isValidationFailed = true;
                 isInvalid = true;
                 
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
-                
-               
+               	
+               	//Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
                 }
@@ -1950,10 +1961,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 valueWrapper.isMinorValueInvalid = true;
                 isValidationFailed = true;
                 isInvalid = true;
+                
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
                 
+                //Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
                 }
@@ -1962,18 +1976,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         return isInvalid;
     }
     
-    /*******************************************************************************************************
-    * @description         Used to validate the financial y0Profit
-    * @param y0Profit         Used to process the passed y0Profit
-    * @return              Boolean value says if the validation is failed or not
-    */
-    public void validateY0PBO(Decimal y0Profit){
-        //Validate Y0 PBO value    
-        if(y0Profit <= IPM_ConstantUtils.INVALID_VALUE){
-            isy0ProfitInvalid = true;
-            isValidationFailed = true;
-        }
-    }
+
     /*******************************************************************************************************
     * @description                              Used to Validate Gross Profit values
     * @param lstGrossPLProfit   Used to process the passed lstGrossPLProfit
@@ -1992,10 +1995,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isValidationFailed = true;
                 isInvalid = true;
                 
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
                 
+                //Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                 	
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
@@ -2022,10 +2027,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isValidationFailed = true;
                 isInvalid = true;
                 
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
-		
+                
+                //Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
                 }
@@ -2052,10 +2059,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isValidationFailed = true;
                 isInvalid = true;
                 
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
-		
+                
+                //Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
                 }
@@ -2082,12 +2091,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isValidationFailed = true;
                 isInvalid = true;
                 
+                 //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                 if(!yellowValidationCellsString.containsIgnoreCase(valueWrapper.finextIdFieldSuffixKey)){
                 	yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                 }
                 
-                //yellowValidationCellsString = yellowValidationCellsString + valueWrapper.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
-                
+                //Set the popup message value for the cell to be shown on financials page
                 if(valueWrapper.yellowValidationErrorMessage !=  null & !valueWrapper.yellowValidationErrorMessage.contains(Label.IPM_Possible_Error_Will_Not_Block_Progress)){
                     valueWrapper.yellowValidationErrorMessage = valueWrapper.yellowValidationErrorMessage + Label.IPM_Possible_Error_Will_Not_Block_Progress;
                 }
@@ -2339,10 +2348,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                        isFinancialInvalid = true;
                        isValidationErrorCal = true;
                        validationErrorMessageCal = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+                       
+                       //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                        if(!redValidationCellsString.containsIgnoreCase(valueWrapperGross.finextIdFieldSuffixKey)){
                             redValidationCellsString = redValidationCellsString + valueWrapperGross.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                         }
                         
+                        //Set the popup message value for the cell to be shown on financials page
                         if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_ITO_should_not_be_greater_than_GTO)){
                             valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO;
                         }
@@ -2354,9 +2366,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     isFinancialInvalid = true;
                     isValidationErrorCal = true;
                     validationErrorMessageCal = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+                    
+                    //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                     if(!redValidationCellsString.containsIgnoreCase(valueWrapperGross.finextIdFieldSuffixKey)){
                         redValidationCellsString = redValidationCellsString + valueWrapperGross.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                     }
+                    //Set the popup message value for the cell to be shown on financials page
                     if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative)){
                        valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative;
                     }
@@ -2393,28 +2408,34 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                        isFinancialInvalidInnovation = true;
                        isValidationError = true;
                        validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+                       
+                       //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                        if(!redValidationCellsString.containsIgnoreCase(valueWrapperGross.finextIdFieldSuffixKey)){
                             redValidationCellsString = redValidationCellsString + valueWrapperGross.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                         }
-                        if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_ITO_should_not_be_greater_than_GTO)){
-                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO;
-                        }
+	                    
+	                    //Set the popup message value for the cell to be shown on financials page
+	                    if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_ITO_should_not_be_greater_than_GTO)){
+	                        valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO;
+	                    }
                         
                      }
                 }
                if(valueWrapperIncremental.value <= IPM_ConstantUtils.INVALID_VALUE){
-                
-                	valueWrapperIncremental.isMinorValueInvalid = true;
+                    valueWrapperIncremental.isMinorValueInvalid = true;
                 }
                 if(valueWrapperGross.Value <= IPM_ConstantUtils.INVALID_VALUE && !isFinacialConsolidated){
                         valueWrapperGross.isValueInvalid = true;
-                        //valueWrapperGross.isGrossTOValueInvalid = true;
                         isFinancialInvalidInnovation = true;
                         isValidationError = true;
                         validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+                        
+                        //since the cell has invalid value, add the cell key(FinanicalExternalId + cell name) to the red/yellow ValidationCellsString
                         if(!redValidationCellsString.containsIgnoreCase(valueWrapperGross.finextIdFieldSuffixKey)){
                             redValidationCellsString = redValidationCellsString + valueWrapperGross.finextIdFieldSuffixKey + IPM_ConstantUtils.SEMICOLON;
                         }
+                        
+                        //Set the popup message value for the cell to be shown on financials page
                         if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative)){
                             valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative;
                         }
@@ -2893,7 +2914,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     /***************************************************************************************************************
     * This method is run when the financial is edited and saved
     * The method is responsible for populating the rollup fianncial erroneous cell names in the corresponding consolidated financials
-    * When an erroneous cell is corrected that cell is removed from the appropriate consolidated field Red_Validation_Cells__c/Yellow_Validation_Cells__c and vice-vers
+    * When an erroneous cell is corrected that cell is removed from the appropriate consolidated field Red_Validation_Cells__c/Yellow_Validation_Cells__c and vice-versa
     * Parameter :  IPM_Financial__c currentFinancial i.e. the currently opened financial
     ***************************************************************************************************************/
     public Set<IPM_Financial__c> getConsolidatedValidationCells(IPM_Financial__c currentFinancial){
@@ -2946,7 +2967,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             yellowValidationCellsSetString.addAll(yellowValidationCellsString.split(IPM_ConstantUtils.SEMICOLON));
         }
         
-        
         for(IPM_Financial__c conFin : consolidatedFinancialsMap.values()){
         	existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.RED);
         	existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
@@ -2960,7 +2980,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     }
     
     /**************************************************************************************************************
-    * This method return of the type of the currently opened fianncial
+    * This method return of the type of the currently opened fianncial (CONSOLIDATED,KEY,NONKEY)
     * Parameter : IPM_Financial__c currentFinancial i.e. the currently opened financial
     **************************************************************************************************************/
     public void getCurrentFinancialType(IPM_Financial__c finToEvaluate){
@@ -3037,6 +3057,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	            
 	
 	            if(
+	            	//check for isBlank is also made, since if the particular value is balnk for the metadata type record then
+	            	//that means that either we need not check that value or all the values are acceptable for the current validation criteria 
 	                (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)) &&
 	                (String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && String.isNotBlank(project.IPM_ProjectSubType__c) && project.IPM_ProjectSubType__c == valSetting.IPM_Project_Sub_Type__c)) &&
 	                (String.isBlank(valSettingPhase) || (String.isNotBlank(valSettingPhase) && String.isNotBlank(project.IPM_Phase__c) && valSettingPhase.deleteWhitespace().containsIgnoreCase(project.IPM_Phase__c.deleteWhitespace()) )) &&
@@ -3071,6 +3093,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     public void validateFinancialSummaryTable(IPM_Financial__c finToValidate){
         
+        //initialize the flags for the finToValidate financial
         isFinacialConsolidated = false;
         isCAPEXInvalid = false;
         isIRRInvalid = false;
@@ -3093,7 +3116,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            !validationSettingSet.isEmpty() &&
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
           ){
-
+			
+			//for CAPEX, the validation is based on rollup financials, for consolidated financials
+			//if any rollup finanicial cell is having a wrong value 
+			//then the corresponding cell in the correspondiong consolidated financial cell should be highligted red/yellow
+			// the consolidated financial validation are handled in IPM_FinancialValue_Wrapper class so a check for !isFinacialConsolidated is made here
+			//so as to calculate validations for non consolidated financials
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
 	            (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
@@ -3101,7 +3129,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	           isCAPEXInvalid = true;
 	           yellowValidationCellsString = yellowValidationCellsString + finToValidate.Financial_External_ID__c + IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.SEMICOLON;
 	        }
-	    
+	    	
+	    	//calcualte other summary table validations for IRR, NPV and Payback values
+	    	// for these validations, the validtion is based on current financial value (for consolidated financials as well)
+	    	//So no check for !isFinacialConsolidated is made here
+	    		    	
 	        if(validationSettingSet.contains('checkValidIRRYellow'.toLowerCase()) && (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE){
 	           isIRRInvalid = true;
 	        }
@@ -3117,20 +3149,23 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     }
     
     /***********************************************************************************************************
-    * This method fetces the validation setting from the custom metadata Type IPM_Red_Yellow_Soft_Validation_Setting__mdt
+    * This method fetches the validation setting from the custom metadata Type IPM_Red_Yellow_Soft_Validation_Setting__mdt
     * This custom metadata type holds the different criteria for different kind of validation(i.e. different cells to be considered for validations)
     * based on the setting returned Set validationSettingSet is prepared
     * this set set is then used for soft validation purposes
     ***********************************************************************************************************/
     
     public void getValidationSettingSet(){
+    	
     	List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> vaildationSettingList = getSoftValidationSettingList(project);
         
         Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.IPM_Red_Yellow_Soft_Validation_Setting__mdt.fields.getMap();
         
         if(vaildationSettingList != null){
         	for(IPM_Red_Yellow_Soft_Validation_Setting__mdt rysvs : vaildationSettingList ){
-            
+            	
+            	//fetch all the boolean field which have true values from the metadata type and used it to populate the set
+            	//this is because the boolean fields indicate if the corresponding validation is to be run or not
 	            For (String field : fieldMap.KeySet()) {
 					if(String.valueOf(fieldMap.get(field).getDescribe().getType()).equalsIgnoreCase('BOOLEAN') && (Boolean)rysvs.get(field) ){
 	                    validationSettingSet.add(field.replace(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,''));
@@ -3139,7 +3174,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	        }
 	        
 	        for(IPM_Red_Yellow_Soft_Validation_Setting__mdt rysvs : vaildationSettingList ){
-            
+            	
+            	//fetch all the boolean field which have true values from the metadata type and used it to populate the set
+            	//this is because the boolean fields indicate if the corresponding validation is to be run or not
 	            For (String field : fieldMap.KeySet()) {
 					if(String.valueOf(fieldMap.get(field).getDescribe().getType()).equalsIgnoreCase('BOOLEAN') && (Boolean)rysvs.get(field) ){
 	                    validationSettingSet.add(field.replace(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,''));
@@ -3167,7 +3204,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		String queryString = 'SELECT ';
 		List<IPM_Financial__c> lstFinancial = new List<IPM_Financial__c>();
 		
-		//IPM Financial
+		//fetch all the financials from the current project
+		
+		//IPM financial
 		For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet()) {
 			queryString+= field + ', ';
 		}
@@ -3189,37 +3228,50 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	
 		lstFinancial = Database.query(queryString);
 		
-		
-		getRedYellowCellsMap(lstFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
-
-		//Work with the string containing list of erroneous cells to populate the cells on consolidated with their names
-		List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
+		//if there are are more than one fiancials only then proceed
+		//this is because if there is only fianncial , then it means that no rollouts have been created for the project.
+		//so only the Global consolidated financial is existing for the project
+		if(lstFinancial!= null && lstFinancial.size()>1){
 			
-		for(IPM_Financial__c currentFinance: lstFinancial){
-		
-			if(currentFinance.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
-				Set<String> uniqueRedCells = new Set<String>( finExtIdRedCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
-				Set<String> uniqueYellowCells = new Set<String>( finExtIdYellowCellsMap.get(currentFinance.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
+			//the map conatining the erroneous cells financial external Ids for red and soft validation
+			//this map is then used to populate these external ids in the redValidationCells and YellowValidation cells field on the consolidated financials for the project
+			getRedYellowCellsMap(lstFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
+
+			//Work with the string containing list of erroneous cells to populate the cells on consolidated financials
+			List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
 				
-				String uniqueRedCellsStr = IPM_ConstantUtils.BLANK;
-				String uniqueYellowCellsStr = IPM_ConstantUtils.BLANK;
-				
-				for(String redStr : uniqueRedCells){
-					uniqueRedCellsStr = uniqueRedCellsStr + redStr + IPM_ConstantUtils.SEMICOLON;
+			for(IPM_Financial__c currentFin: lstFinancial){
+			
+				if(currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+					Set<String> uniqueRedCells = new Set<String>( finExtIdRedCellsMap.get(currentFin.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
+					Set<String> uniqueYellowCells = new Set<String>( finExtIdYellowCellsMap.get(currentFin.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
+					
+					String uniqueRedCellsStr = IPM_ConstantUtils.BLANK;
+					String uniqueYellowCellsStr = IPM_ConstantUtils.BLANK;
+					
+					for(String redStr : uniqueRedCells){
+						uniqueRedCellsStr = uniqueRedCellsStr + redStr + IPM_ConstantUtils.SEMICOLON;
+					}
+					
+					for(String yellowStr : uniqueYellowCells){
+						uniqueYellowCellsStr = uniqueYellowCellsStr + yellowStr + IPM_ConstantUtils.SEMICOLON;
+					}
+					
+					currentFin.Red_Validation_Cells__c = uniqueRedCellsStr;
+					currentFin.Yellow_Validation_Cells__c = uniqueYellowCellsStr;
+					toUpdateFinancials.add(currentFin);
 				}
 				
-				for(String yellowStr : uniqueYellowCells){
-					uniqueYellowCellsStr = uniqueYellowCellsStr + yellowStr + IPM_ConstantUtils.SEMICOLON;
-				}
-				
-				currentFinance.Red_Validation_Cells__c = uniqueRedCellsStr;
-				currentFinance.Yellow_Validation_Cells__c = uniqueYellowCellsStr;
-				toUpdateFinancials.add(currentFinance);
 			}
 			
+			if(toUpdateFinancials != null && !toUpdateFinancials.isEmpty() ){
+				update toUpdateFinancials;
+			}
+			
+			//call the getFinancials(); method to properly render the validation cells highlighting on page load
+			getFinancials();
 		}
 		
-		update toUpdateFinancials;
 	}
     
     /**************************************************************************************************************
@@ -3234,6 +3286,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     **************************************************************************************************************/
     public void getRedYellowCellsMap(List<IPM_Financial__c> lstFinancial,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
     	
+    	//get the financial external Id present for the current tab view and  calculate the soft validation based on those financials only
     	Set<String> financialExtIdsForCurrentTab = getFinExtIdsForCurrentTab();
     	
     	for(IPM_Financial__c currentFin: lstFinancial){
@@ -3261,28 +3314,33 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 					//Innovation Years
 					if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION)
 					{
+						//Generate the calendar financial year value wrapper
 						generateFinancials(finYear, financialsInnovation);
 					}
 					//Calendar Years
 					else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
+						//Generate the calendar financial year value wrapper
 						generateFinancials(finYear, financialsCalendar);
 					}
+					
 				}
+				
 				
 				//Run the validations
 				validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFin);
 				validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFin);
 				validateFinancialSummaryTable(currentFin);
-
 				
+				
+				//fetch the consolidated financials and then up
 				List<String> finExtIdSplit = currentFin.Financial_External_ID__c.split(IPM_ConstantUtils.UNDERSCORE);
 				
 				//fetch the extenralId of the corresponding consolidated financials
 				String globalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
 				String regionalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+finExtIdSplit.get(1)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
 				
-
 				
+				//prepare financial external Ids for the red and yellow validations
 				if(finExtIdRedCellsMap.containsKey(regionalConsolidatedFinExtId)){
 					finExtIdRedCellsMap.put(regionalConsolidatedFinExtId,finExtIdRedCellsMap.get(regionalConsolidatedFinExtId) + redValidationCellsString);
 				}
@@ -3321,12 +3379,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				
 			}
 			
-
-			
 		}
-		
-		//reset and get the currentfinancial year wrapper i.e. the corresponding financial wrappers
-		getCurrentFinancialWrapper(currentFinancial);
 		
     }
     
@@ -3338,8 +3391,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     *    		  existingNonCurrentFinancialRedValues & existingNonCurrentFinancialYellowValues : the string containing all the cells that are not of the current financial	
     **************************************************************************************************************/
     public String getExistingNonCurrentFinancialValues( IPM_Financial__c consolidatedFinancial,String finValidationType ){
-    	//Pass by reference has been used for the variable 'existingNonCurrentFinancialYellowValues' and 'existingNonCurrentFinancialRedValues', because we want the updated values to reflect in the calling method
     	
+    		//method fetches the string conatining the redvalidationCells and yellowValidationCells values from the financial,
+    		//which doesn't contain values from the current financial being evaluated
+    		//then this string is concatenated with the red/yellow validation strings to update
+    		//the redvalidationCells and yellowValidationCells on the financial record.
+    		//these redvalidationCells and yellowValidationCells are then used to calculate the validations on the concolidated financials
+    		//these redvalidationCells and yellowValidationCells are filled in for consolidated financials only
     		String existingNonCurrentFinancialValues ='';
 
             if( finValidationType.equalsIgnoreCase(IPM_ConstantUtils.RED) && consolidatedFinancial.Red_Validation_Cells__c != null){
@@ -3384,34 +3442,5 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		return financialExtIdsForCurrentTab;
 		
     }
-    
-    /**************************************************************************************************************
-    * This method prepares the financial wrapper and financial year value wrappers for the passed fianncial
-    * Helper method for getConsolidatedValidationCells
-    * Parameter : currentFinancial :  the financial  for which wrappers are to be created
-    **************************************************************************************************************/
-    public void getCurrentFinancialWrapper(IPM_Financial__c currentFinancial){
-    	
-    	financialsInnovation = new IPM_FinancialWrapper();
-		financialsCalendar = new IPM_FinancialWrapper();
-    	
-    	for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
-
-			//Add to Map
-			mapFinancialYears.put(generateMapKey(finYear.Year_Type__c, finYear.Year__c, finYear.PL_Type__c), finYear);
-			
-			//Innovation Years
-			if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION)
-			{
-				generateFinancials(finYear, financialsInnovation);
-			}
-			//Calendar Years
-			else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
-				generateFinancials(finYear, financialsCalendar);
-			}	
-		}
-		
-    }
-      
-    
+        
 }
