@@ -1,4 +1,3 @@
-src
 src/classes/SuMoSuMo_Job_CoursesTriggerTest.cls
 src/classes/SuMoSuMo_Job_CoursesTriggerTest.cls-meta.xml
 src/classes/SuMoSuMo_PBS_CourseTriggerTest.cls
@@ -17,3 +16,13 @@ src/tabs/SuMo_PBS_Course__c.tab
 src/layouts/SuMo_Job_Courses__c-SuMo Job Course Layout.layout
 src/layouts/SuMo_PBS_Course__c-PBS Course Layout.layout
 src/permissionsets/Motivation_Designer_Supplementary.permissionset
+src/reports/Others/SuMo_Likes_Received.report
+src/objects/Chatter_Likes__c.object
+src/tabs/Chatter_Likes__c.tab
+src/layouts/Chatter_Likes__c-Chatter_Likes_Layout.layout
+src/reportTypes/SuMo_Chatter_Activity.reportType
+src/analyticSnapshots/SuMo_Chatter_Activity.snapshot
+src/classes/SuMoPBS_FeedbackTriggerTest.cls
+src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger
+src/classes/SuMoPBS_FeedbackTriggerTest.cls-meta.xml
+src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger-meta.xml
