@@ -741,7 +741,7 @@
                 </div> 
                 <div style="width:50%;float:left;" class="glbSeclist"> 
                     <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_Section_GateChecklist>
-                    <!-- <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus> -->
+                    <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus>
                 </div>
             </apex:form> 
         </apex:define>
