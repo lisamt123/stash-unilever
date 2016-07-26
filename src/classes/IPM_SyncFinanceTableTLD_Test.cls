@@ -645,7 +645,7 @@ private class IPM_SyncFinanceTableTLD_Test
                                                                                     ) 
                                                                          From 
                                                                             IPM_Financial__c 
-                                                                                where id in : updatedFinancialIDList  and RecordTypeId = :DEFAULT_FINANCIAL_RT limit 5];
+                                                                                where id in : updatedFinancialIDList  and RecordTypeId = :DEFAULT_FINANCIAL_RECORDTYPE limit 5];
             
             for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
                 for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
