@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Reporting on Chatter performance: Likes, Comments</description>
-    <groupColumn>ChatterActivity$Parent.Id</groupColumn>
+    <groupColumn>ChatterActivity.ParentId</groupColumn>
     <mappings>
         <sourceField>FORMULA2</sourceField>
         <sourceType>summary</sourceType>
@@ -18,7 +18,7 @@
         <targetField>Chatter_Likes__c.Event_Type__c</targetField>
     </mappings>
     <mappings>
-        <sourceField>ChatterActivity.Parent.Id</sourceField>
+        <sourceField>ChatterActivity.ParentId</sourceField>
         <sourceType>tabular</sourceType>
         <targetField>Chatter_Likes__c.User_ID__c</targetField>
     </mappings>
