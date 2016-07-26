@@ -164,8 +164,12 @@ public class IPM_FinancialValueWrapper {
         this.isGrossTOGRTIto =false;
         this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
         this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
         
-        String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+         if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+         	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+         }
+        
         
         if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
