@@ -4602,7 +4602,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_INCREMENTAL_P&amp;L</shortDescription>
-        <value>Incremental P &amp;amp; L</value>
+        <value>Incremental P &amp; L</value>
     </labels>
     <labels>
         <fullName>IPM_INITIAL_HUNCHES_AND_HYPOTHESES</fullName>
