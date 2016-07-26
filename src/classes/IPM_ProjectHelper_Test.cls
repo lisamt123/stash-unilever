@@ -101,10 +101,10 @@ private with sharing class IPM_ProjectHelper_Test
                 regionalProjectLeader = lUser;
             }
         }
-        List<IPM_Project__c> projectList=new List<IPM_Project__c>();
+        
         System.RunAs(globalProjectLeader)
         {
-            createProjectGlobal(projectList,projectNameSet, globalProjectIdList, projectMap,globalProjectLeader,regionalProjectLeader); 
+            createProjectGlobal(projectNameSet, globalProjectIdList, projectMap,globalProjectLeader,regionalProjectLeader); 
         }
         Test.stopTest();
         List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
@@ -161,19 +161,8 @@ private with sharing class IPM_ProjectHelper_Test
                 System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility','Regional Project Phase not equal to feasiblity.'); // Phase would be feasibility for Regional Projects.
                 
             }
-        }
       
-        System.RunAs(globalProjectLeader)
-        {
-            // Set fasttact project
-            set<id>projids=new set<id>();
-            for(IPM_Project__c project : projectList)
-            {
-                project.IPM_Fast_Track_Project__c= true;
-                projids.add(project.id);
-            }  
             
-            update projectList;  
         }
      } 
      
@@ -538,13 +527,14 @@ private with sharing class IPM_ProjectHelper_Test
         
      }
      
-     public static void createProjectGlobal(List<IPM_Project__c> projectList, set<String> projectNameSet, List<Id> globalProjectIdList, Map<Id,IPM_Project__c> projectMap,User globalProjectLeader,User regionalProjectLeader){
+     public static void createProjectGlobal(set<String> projectNameSet, List<Id> globalProjectIdList, Map<Id,IPM_Project__c> projectMap,User globalProjectLeader,User regionalProjectLeader){
          
-         projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
+         	List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
             for(IPM_Project__c project : projectList)
             {
+            	project.IPM_Fast_Track_Project__c= true;
                 projectMap.put(project.Id,project);
             }
             
