@@ -207,16 +207,12 @@ public class IPM_FinancialValueWrapper {
 			   if(cellValidationType!= null && cellValidationType.equalsIgnoreCase(IPM_ConstantUtils.RED) &&
 			   	  currentFinancial.Red_Validation_Cells__c != null && 
 	    	      currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
-			   	  System.debug('currentTab==>'+currentTab);
-				  System.debug('isConsolidatedFinValueInvalid==>'+cellValidationType);
 				  return true;
 			   }
 			   //for Yellow validations
 			   else if(cellValidationType!= null && cellValidationType.equalsIgnoreCase(IPM_ConstantUtils.YELLOW) &&
 			   	  currentFinancial.Yellow_Validation_Cells__c != null && 
 	    	      currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
-	    	      System.debug('currentTab==>'+currentTab);
-				  System.debug('isConsolidatedFinValueInvalid==>'+cellValidationType);
 				  return true;
 			   
 			   }
