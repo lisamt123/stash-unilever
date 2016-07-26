@@ -1740,3 +1740,10 @@ margin-right:1px;
     height: 220px;
     overflow-y: scroll;
 }
+
+a.icoButton.info.pos-icon.smallllinfo {
+    margin-left: 26px;
+}
+a.icoButton.info.pos-icon1.smallllinfo {
+    margin-left: 33px;
+}

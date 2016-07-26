@@ -209,7 +209,9 @@
                                                 <apex:outputField value="{!localRollout.Local_Project__r.IPM_Finance_Lead__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
-                                        <tr class="secrow">
+                                    </table>
+									<table class="rollouttable editable">
+										<tr class="secrow">
                                             <td width="3%"> </td>
                                             <td width="15%"> 
                                                 <strong>{!$Label.IPM_MCO}: </strong>{!localRollout.MCO_Name__c}
@@ -357,8 +359,10 @@
                                                 <div>
                                                 </div>
                                             </td>                
-                                        </tr>                                    
-                                        <tr class="secrow">
+                                        </tr>
+                                    </table>
+									<table class="rollouttable editable">
+										<tr class="secrow">
                                             <td width="3%"> </td>
                                             <td width="15%"> 
                                                 <strong>MCO: </strong>{!localRollout.MCO_Name__c}
