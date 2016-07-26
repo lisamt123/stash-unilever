@@ -174,6 +174,7 @@ function scriptPanelLoad(){
     var selectedDateInputBox = "";
     function setChangedDate()
     {
+        unsaved = false;
         saveChangedTLDjs();
     }
     

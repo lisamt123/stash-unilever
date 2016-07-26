@@ -3395,7 +3395,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Take_Me_To_EcoDesign_Url</shortDescription>
-        <value>http://ecodesign.unilever.com/Project/GetIPMProject</value>
+        <value>http://ecodesign-q.unilever.com/Project/GetIPMProject</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Waste</fullName>
@@ -4527,7 +4527,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_INCREMENTAL_P&amp;L</shortDescription>
-        <value>Incremental P &amp;amp; L</value>
+        <value>Incremental P &amp; L</value>
     </labels>
     <labels>
         <fullName>IPM_INITIAL_HUNCHES_AND_HYPOTHESES</fullName>
