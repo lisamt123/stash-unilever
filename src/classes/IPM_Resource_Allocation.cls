@@ -756,6 +756,10 @@ public with sharing class IPM_Resource_Allocation {
     
     public static void createFinanceMember(Map<Id,Id>newproAndUserMap)
     {
+        if(newproAndUserMap == null || newproAndUserMap.isEmpty()){
+        	return;
+        }
+        
         list<IPM_Project_Resource__c>lstnewResource=new list<IPM_Project_Resource__c>();
         for(Id projid:newproAndUserMap.keySet())
         {
