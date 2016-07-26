@@ -131,6 +131,9 @@ public with sharing class IPM_ProjectDocumentHelper
     */
     public static void updateProjectDocumentStatus(Map<Id,IPM_Project__c> incomingProjectMap)
     {
+        if(incomingProjectMap == null || incomingProjectMap.isEmpty()){
+        	return;
+        }
         
         List<IPM_Project_Document__c> updateProjectDocumentList = new List<IPM_Project_Document__c>(); 
         for(IPM_Project__c project : incomingProjectMap.values())

@@ -666,6 +666,11 @@ public with sharing class IPM_ProjectHelper
     */
     public static void manageProjectDocuments(Map<Id,IPM_Project__c> projectMap)
     {                                               
+        /* Early exit if map is empty*/
+        if(projectMap == null || projectMap.isEmpty()){
+        	return;
+        }
+        
         /* Used for DML Operations */        
         List<IPM_Project_Document__c> preparedprojectDocumentList = new List<IPM_Project_Document__c>();
         preparedprojectDocumentList = IPM_ProjectDocumentHelper.manageProjectDocuments(projectMap);
@@ -730,6 +735,12 @@ public with sharing class IPM_ProjectHelper
     */
     public static void manageProjectCountryNRolloutReferences(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Project__c> oldProjectMap)
     {
+        
+        if(incomingProjectMap == null || incomingProjectMap.isEmpty())
+        {
+        	return;
+        }
+        
         Map<Id,IPM_Project_Rollout__c> updateRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
         Map<Id,IPM_Country__c> updateCountriesMap = new Map<Id,IPM_Country__c>();
         
@@ -855,6 +866,11 @@ public with sharing class IPM_ProjectHelper
    
     public static void manageProjectFinancials(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Project__c> oldProjectMap)
     {
+        if(incomingProjectMap == null || incomingProjectMap.isEmpty())
+        {
+        	return;
+        }
+        
         Map<String,IPM_Financial__c> finUniqueKeyToFinancialMap = new Map<String,IPM_Financial__c>();
         Map<String,IPM_Financial__c> financialsToUpsert = new Map<String,IPM_Financial__c>();
         
@@ -1283,6 +1299,11 @@ public with sharing class IPM_ProjectHelper
     
     public static void updateSustainabilityPeriod(Map<String,IPM_Project__c> financialYearUpdates)
     {
+        if(financialYearUpdates.isEmpty())
+        {
+        	return;
+        }
+        
         // Get the financials asssociated with Project. Default Sustainability Period is 3 years. This would be invoked only in case of update for Original Projects.
         // Financials with Parent
         List<String> incomingProjectsIds =  new List<String>(financialYearUpdates.keySet());
@@ -1337,6 +1358,11 @@ public with sharing class IPM_ProjectHelper
     
     public static void refreshProjectRolloutCountryMapping(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap) 
     {
+        if(projectPhaseChange == null || projectPhaseChange.isEmpty())
+        {
+        	return;
+        }
+        
         Set<Id> phaseChangeProjectIdSet = projectPhaseChange.keySet();
         
         if(phaseChangeProjectIdSet != null && !phaseChangeProjectIdSet.isEmpty())
@@ -1523,6 +1549,9 @@ public with sharing class IPM_ProjectHelper
     */ 
     public static void processFastTrackProjects(Map<Id, IPM_Project__c> ipmFastTrackProjectMap){
         
+        if(ipmFastTrackProjectMap.isEmpty()){
+        	return;
+        }
         List<IPM_Project__c> childProjectListToUpdate = new List<IPM_Project__c>(); // List of child IPMProjects to be updated
         for(IPM_Project__c childProject :    [SELECT Id, 
                                                      IPM_Fast_Track_Project__c, 
@@ -1687,7 +1716,11 @@ public with sharing class IPM_ProjectHelper
     
     // for copying over the MPA value from parent project to its child project
     
-     public static void copyOverMPAValue(Map<Id,IPM_Project__c> projectMPAMap) {
+    public static void copyOverMPAValue(Map<Id,IPM_Project__c> projectMPAMap) {
+    if(projectMPAMap.isEmpty()){
+    	return;
+    }
+    
     List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     Set<String> parentIdSet = new Set<String>();
     for(Id projectId : projectMPAMap.keySet() ) {

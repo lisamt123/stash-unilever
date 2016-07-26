@@ -190,6 +190,10 @@ public with sharing class IPM_AssesmentHandler_Helper {
     *****************************************************************************/
     public static void copyOverAssessments(List<IPM_Project__c> incomingProjectsWithChangedPhase, Map<Id, IPM_Project__c> oldProjectsMap){
          
+        if(incomingProjectsWithChangedPhase == null || incomingProjectsWithChangedPhase.isEmpty())
+        {
+        	return;
+        }
         Map<Id,String> projectIdPhaseMap = new Map<Id,String>();
         Map<Id,String> projectIdOldPhaseMap = new Map<Id,String>();
         List<IPM_Assessment__c> actualAssesmentsToCopy =  new List<IPM_Assessment__c>();
