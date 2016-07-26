@@ -131,7 +131,7 @@ public with sharing class IPM_ProjectDocumentHelper
     */
     public static void updateProjectDocumentStatus(Map<Id,IPM_Project__c> incomingProjectMap)
     {
-        if(incomingProjectMap == null || incomingProjectMap.isEmpty()){
+        if(incomingProjectMap.isEmpty()){
         	return;
         }
         
@@ -141,7 +141,7 @@ public with sharing class IPM_ProjectDocumentHelper
             IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
             IPM_Project_Type__c previousProjectType = IPM_Utils.getPreviousPhase(currentProjectType,true);
             
-            if(currentProjectType !=null && project.IPM_Current_Document_Status__c !=null && !String.isBlank(project.IPM_Current_Document_Status__c))
+            if(currentProjectType !=null && String.isNotBlank(project.IPM_Current_Document_Status__c))
             {             
                 String projectGate = null;
                 
@@ -197,7 +197,7 @@ public with sharing class IPM_ProjectDocumentHelper
             }
         }
         
-        if(updateProjectDocumentList !=null && !updateProjectDocumentList.isEmpty())
+        if(!updateProjectDocumentList.isEmpty())
         {
             update updateProjectDocumentList; // Not including try , catch as when the transaction is failed roll back is handled at other class
         }    
