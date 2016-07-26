@@ -16,8 +16,16 @@
     <aura:handler name="ChatterClearLookupIdEvent" event="c:ChatterClearLookupIdEvent" action="{!c.handleAccountIdClear}"/>
     <aura:registerEvent name="ClearLookup" type="c:ClearLookup"/>    
     <!--<c:ChatterPopUp subjectId="{!v.subjectId}" textToPost="{!v.textToPost}" feedType="{!v.textToPost}"/> -->
-    
-    <div class="slds" style="margin-top:10px;margin-left:10px;">
+    <style>
+        .slds-feed__list{
+        width:96% !important;
+        }
+        .slds .slds-avatar--medium {
+        width: 2rem;
+        height: 2rem;
+        }
+    </style>
+    <div class="slds" style="margin-top:10px;margin-left:10px;width:93%;">
 	<div class="slds-tabs--scoped">
         <ul class="slds-tabs--scoped__nav" role="tablist">
           <li class="slds-tabs--scoped__item slds-text-heading--label slds-active" title="Item One" role="presentation">
