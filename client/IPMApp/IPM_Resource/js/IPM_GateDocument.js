@@ -417,6 +417,7 @@ function dirApp() {
 /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".ipmAccordian.mainTable").on("click", ".appText", function() {
         var appDir = jq(this).attr("data-dir");
+        appDir = appDir.replace('/','_');
         jq(".ipmAccordian.mainTable").find(".aHead").find(".expico").removeClass("fa-minus").addClass("fa-plus");
         jq(".ipmAccordian.mainTable").find(".ipmAcrdnExpand").slideUp("fast");
         jq(".ipmAccordian.appendix").find(">.aHead").find(".expico").removeClass("fa-plus").addClass("fa-minus");
@@ -445,6 +446,9 @@ jq(".clipinfo").tooltip({ position: { my: 'left bottom', at: 'center bottom+10' 
     jq('#ipmAttachmentModal .modal-dialog').width('500px');
     jq('#ipmAttachmentModal .modal-dialog').height('460px');
     jq('#ipmAttachmentModal .modal-dialog').css('margin-top','10%');
+    jq('#ipmNoAttachmentModal .modal-dialog').width('500px');
+    jq('#ipmNoAttachmentModal .modal-dialog').height('100px');
+    jq('#ipmNoAttachmentModal .modal-dialog').css('margin-top','10%');
 });
 jq(document).on('click', '.dwnldClick', function(e) {
     jq('td.attchImgtd a').each(function() {
@@ -452,3 +456,6 @@ jq(document).on('click', '.dwnldClick', function(e) {
      window.open(list);
   });
  });
+jq('.ipmAcrdnExpand').attr('class', function() {
+    return jq(this).attr('class').replace('/', '_');
+});
