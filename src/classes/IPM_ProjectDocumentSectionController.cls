@@ -694,10 +694,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		}
 		
 		//For Storing Filled-In Percentage Calculation in Project Object 
-		Integer NonNegotiableCount=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projDoc.Id AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND 
-		IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
-		Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projDoc.Id AND  IPM_Default_Section__c=true AND 
-		IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
+		Integer NonNegotiableCount=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projDoc.Id 
+                                    AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
+        Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projDoc.Id AND  IPM_Default_Section__c=true 
+                                AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
 		if(NonNegotiableCount!=0){
 			Decimal FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiableCount))*100);
 			project.IPM_FilledIn_Percentage__c=FilledinPer;
@@ -823,12 +823,11 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			currGate = IPM_Utils.phaseGateDocumentMap.get(currPhase);
 		}
 		
-		projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
-		IPM_Project_Document__r.IPM_Project__c, IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c ,IPM_Master_Section_External_Id__c FROM IPM_Project_Document_Section__c 
-		WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
-		IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
-		AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
-		IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true ORDER BY IPM_Section_Sequence__c];
+		projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c,IPM_Project_Document__r.IPM_Project__c, IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c ,IPM_Master_Section_External_Id__c 
+                             FROM IPM_Project_Document_Section__c 
+                             WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) 
+                             AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER 
+                             AND IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true ORDER BY IPM_Section_Sequence__c];
 		
 		for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
 			projectSections.add(eachProSection);
@@ -948,7 +947,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		//For Checking OTIF Questions
 		List<IPM_Project_Document_Section_Content__c> ipmProjectDocumentSectionContents=[SELECT Id,IPM_OTIF_Measure__c,IPM_OTIF_Status__c 
 		FROM IPM_Project_Document_Section_Content__c 
-		WHERE IPM_Section_Id__c=:projDocSec.Id AND IPM_OTIF_Measure__c!=null];
+		WHERE IPM_Section_Id__c=:projDocSec.Id AND IPM_OTIF_Measure_isNull__c = :IPM_ConstantUtils.IPM_false];
 		for(IPM_Project_Document_Section_Content__c otif:ipmProjectDocumentSectionContents){
 			if(otif.IPM_OTIF_Status__c<> IPM_ConstantUtils.OPTION_NONE && otif.IPM_OTIF_Status__c<> null && otif.IPM_OTIF_Status__c<> ''){
 				if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && summary.length()>=15 && !projDocSec.IPM_Negotiable__c){

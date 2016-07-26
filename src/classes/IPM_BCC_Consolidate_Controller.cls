@@ -40,7 +40,7 @@ public with sharing class IPM_BCC_Consolidate_Controller
                                            Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
                                            Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c 
                                     FROM IPM_Financial__c 
-                                    WHERE isActive__c=true and Regional_Project__r.IPM_Parent_Project__c=:projId and Local_Project__c!=null];
+                                    WHERE isActive__c=true and Regional_Project__r.IPM_Parent_Project__c=:projId and Local_Project_isNull__c = :IPM_ConstantUtils.IPM_false];
                 }
         }
         else if(projectSpan==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projId!=null){
@@ -53,8 +53,10 @@ public with sharing class IPM_BCC_Consolidate_Controller
                                     FROM IPM_Financial_Years__r 
                                     WHERE Year_Type__c=: CORE_STRATEGIC_INNOVATION AND Year__c=: Year)
                                     FROM IPM_Financial__c 
-                                    WHERE isActive__c=true and Regional_Project__c=:projId and Local_Project__c!=null];
-                }                           
+                                    WHERE isActive__c=true and Regional_Project__c=:projId and Local_Project_isNull__c = :IPM_ConstantUtils.IPM_false] ;
+                }       
+         
+                                 
         }
         else if(projectSpan==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projId!=null){
             localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,

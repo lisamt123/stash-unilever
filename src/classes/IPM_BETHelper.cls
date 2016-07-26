@@ -180,7 +180,7 @@ public without sharing class IPM_BETHelper {
         
         set<id> setIds = new set<id>();
         //Get All users to be given access
-        for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where IPM_User__c != null and((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))) from IPM_Project__c where (IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.BET__c = : betId) OR (IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c = : betId) limit 10000]) {
+        for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where ((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))) from IPM_Project__c where (IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.BET__c = : betId) OR (IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c = : betId) limit 10000]) {
             if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proj.IPM_Project_Leader__c))){
                 lstMemberRequests.add(generateBETMember(proj.IPM_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
                 setIds.add(proj.IPM_Project_Leader__c);

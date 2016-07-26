@@ -192,11 +192,11 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        regionalRolloutsMap = new Map<ID, IPM_Project_Rollout__c>(  [ Select name, id, External_Id__c, IPM_Project__r.IPM_Phase__c, 
 	                                                                                                        ( Select Target_Launch_Date__c 
 	                                                                                                          From Local_Rollouts__r
-	                                                                                                          where KeyMCO__c !=true AND  isActive__c=true
+	                                                                                                          where KeyMCO__c = false AND  isActive__c=true
 	                                                                                                          ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                                                                        ( Select Financial_External_ID__c 
 	                                                                                                          From IPM_Financials__r 
-	                                                                                                          where isActive__c=true AND (Financial_External_ID__c like '%NONKEY') ) 
+	                                                                                                          where isActive__c=true AND Financial_External_ID_Check_If_NONKEY__c = :IPM_ConstantUtils.IPM_true ) 
 	                                                                                                     From IPM_Project_Rollout__c  
 	                                                                                                     where id in : regionalRolloutIDs AND isActive__c=true]);
 	        if(!regionalRolloutsMap.isEmpty()) {
@@ -231,7 +231,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
 	        											( Select Name, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c, Local_Project__c 
 	        											  From Regional_Project_Rollout__r 
-	        											  where KeyMCO__c !=true  AND isActive__c=true 
+	        											  where KeyMCO__c = false  AND isActive__c=true 
 	        											  ORDER BY Target_Launch_Date__c ASC NULLS LAST ),  
 	        											( Select id, Financial_External_ID__c, Target_Launch_Date__c 
 	        											  From IPM_Financials_Regional__r  where isActive__c=true)   

@@ -35,7 +35,7 @@ private class IPM_SyncFinanceTableTLD_Test
     
    
     
-    private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
+    private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
     
     /*
     1.  All the individual tests need unique data setup. 
@@ -645,7 +645,7 @@ private class IPM_SyncFinanceTableTLD_Test
                                                                                     ) 
                                                                          From 
                                                                             IPM_Financial__c 
-                                                                                where id in : updatedFinancialIDList  and RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE limit 5];
+                                                                                where id in : updatedFinancialIDList  and RecordTypeId = :DEFAULT_FINANCIAL_RT limit 5];
             
             for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
                 for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
