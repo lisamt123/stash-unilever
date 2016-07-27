@@ -3243,8 +3243,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			for(IPM_Financial__c currentFin: lstFinancial){
 			
 				if(currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
-					Set<String> uniqueRedCells = new Set<String>( finExtIdRedCellsMap.get(currentFin.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
-					Set<String> uniqueYellowCells = new Set<String>( finExtIdYellowCellsMap.get(currentFin.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON));
+					
+					Set<String> uniqueRedCells = new Set<String>( );
+					Set<String> uniqueYellowCells = new Set<String>( );
+
+					if(finExtIdRedCellsMap.ContainsKey(currentFin.Financial_External_ID__c)){
+						uniqueRedCells.addAll(finExtIdRedCellsMap.get(currentFin.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON)) ;
+					}
+					
+					if(finExtIdYellowCellsMap.ContainsKey(currentFin.Financial_External_ID__c)){
+						uniqueYellowCells.addAll(finExtIdYellowCellsMap.get(currentFin.Financial_External_ID__c).split(IPM_ConstantUtils.SEMICOLON)) ;
+					}
 					
 					String uniqueRedCellsStr = IPM_ConstantUtils.BLANK;
 					String uniqueYellowCellsStr = IPM_ConstantUtils.BLANK;
