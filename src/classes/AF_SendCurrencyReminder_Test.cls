@@ -25,6 +25,7 @@ public class AF_SendCurrencyReminder_Test
         System.runAs(u)
         {
             List<Send_Email__c> sendEmail = AF_TestFactory_Helper.insertSendEmail(1,true);
+            System.assert(sendEmail[0].Id!=null ,SEND_EMAIL);
             List<Send_Email__c> sendEmailQuery = [SELECT Id FROM Send_Email__c LIMIT 1];
             System.assert(sendEmailQuery[0].Id!=null ,SEND_EMAIL);
             AF_SendCurrencyReminder_schedule  EmailtoCatFinance =new AF_SendCurrencyReminder_schedule();

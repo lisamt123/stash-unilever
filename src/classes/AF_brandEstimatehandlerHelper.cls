@@ -63,13 +63,15 @@ global with sharing class AF_brandEstimatehandlerHelper{
 *  @return: none.
 **************************************************************************************************************/
 	public static void brandEstApprovalProcess(){
+		Approval.ProcessResult result;
+		Approval.ProcessResult result2;
 		for(ID wid : brandWorkitem.keySet()){
 			Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
 			req.setComments('Rejecting for change Approver'); //RejectComment
 			req.setAction('Removed');                    
 			req.setWorkitemId(brandWorkitem.get(wid));
 			// Submit the request for approval
-			Approval.ProcessResult result =  Approval.process(req);
+			result =  Approval.process(req);
 		}
 		for(AF_Brand_Estimate__c brandEst:brandEstimateList){
 			brandEst.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WITH_AGENCY;
@@ -89,7 +91,7 @@ global with sharing class AF_brandEstimatehandlerHelper{
 			Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
 			req1.setComments('Submitting request for Change Approver');
 			req1.setObjectId(wid);
-			Approval.ProcessResult result2 = Approval.process(req1);
+			result2 = Approval.process(req1);
 		}
 	}
 	/*********************************************************************************************************

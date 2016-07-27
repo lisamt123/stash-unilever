@@ -56,6 +56,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
+            System.Assert(brandQuery[0].Id != null,AF_TestFactory_Helper.BRAND_RECORD);
             List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
             List<AF_Brand_Estimate__c> BrandEstlist=new List<AF_Brand_Estimate__c>();
             for(AF_Brand_Estimate__c  loopBrandEst : BrandEst)
@@ -81,9 +82,11 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE LIMIT 1];
             System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE LIMIT 1];
             System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
+            System.assertEquals(AFUnileverEntityQuery[0].Id != null,AFUnileverEntity[0].Id != null,AF_TestFactory_Helper.UNILEVER_ENTITY);
             //inset Agency Estimate.           
             List<AF_Agency_Estimate__c> AgencyEsitmate1 = AF_TestFactory_Helper.insertAgencyEstimate(1,true);
             List<AF_Agency_Estimate__c> AgencyQuery1 = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate1 limit 1];
@@ -107,6 +110,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c LIMIT 1];
             System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
+            System.assertEquals(AFCurrencyQuery[0].Id != null,AFCurrency[0].Id != null,AF_TestFactory_Helper.CURRENCY_RECORD);
             //Insert Bonus Threshold
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,false);
             List<AF_Bonus_Threshold__c> BonusThresholdLSt = new   List<AF_Bonus_Threshold__c>();
@@ -173,6 +177,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Category_Brand__c> cb = AF_TestFactory_Helper.insertAFCBList(1,true);
             List<AF_Category_Brand__c> categoryQuery = [SELECT id FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_CATEGORY_RECTYPE and Id IN:cb LIMIT 1];
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
+            System.assertEquals(categoryQuery[0].Id != null,cb[0].Id != null,AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
@@ -212,9 +217,11 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE LIMIT 1];
             System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE LIMIT 1];
             System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
+            System.assertEquals(AFUnileverEntityQuery[0].Id != null,AFUnileverEntity[0].Id != null,AF_TestFactory_Helper.UNILEVER_ENTITY);
             List<AF_Agency_Estimate__c> AgencyEsitmate = AF_TestFactory_Helper.insertAgencyEstimate(1,false);
             List<AF_Agency_Estimate__c> AgencyEsitmatelist=new List<AF_Agency_Estimate__c>();
             for(AF_Agency_Estimate__c agency : AgencyEsitmate){
@@ -229,6 +236,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             }
             insert AgencyEsitmatelist;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
+            System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             try{
                 delete AgencyEsitmate;
             }
@@ -238,6 +246,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c LIMIT 1];
             System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
+            System.assertEquals(AFCurrencyQuery[0].Id != null,AFCurrency[0].Id != null,AF_TestFactory_Helper.CURRENCY_RECORD);
             //Insert Bonus Threshold
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,false);
             List<AF_Bonus_Threshold__c> BonusThresholdLSt = new   List<AF_Bonus_Threshold__c>();
@@ -313,6 +322,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
+            System.assertEquals(AFCategoryBrand[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             // insert brand estimate
             List<AF_Brand_Estimate__c> BrandEst1 = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
             List<AF_Brand_Estimate__c> BrandEstlist1=new list<AF_Brand_Estimate__c>();
@@ -348,9 +358,11 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE LIMIT 1];
             System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE LIMIT 1];
             System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
+            System.assertEquals(AFUnileverEntityQuery[0].Id != null,AFUnileverEntity[0].Id != null,AF_TestFactory_Helper.UNILEVER_ENTITY);
             List<AF_Agency_Estimate__c> AgencyEsitmate = AF_TestFactory_Helper.insertAgencyEstimate(1,false);
             List<AF_Agency_Estimate__c> AgencyEsitmatelist=new List<AF_Agency_Estimate__c>();
             for(AF_Agency_Estimate__c agency : AgencyEsitmate){
@@ -365,6 +377,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             }
             insert AgencyEsitmatelist;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
+            System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             try{
                 delete AgencyEsitmate;
             }
@@ -374,6 +387,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c LIMIT 1];
             System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
+            System.assertEquals(AFCurrencyQuery[0].Id != null,AFCurrency[0].Id != null,AF_TestFactory_Helper.CURRENCY_RECORD);
             //Insert Bonus Threshold
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,false);
             List<AF_Bonus_Threshold__c> BonusThresholdLSt = new   List<AF_Bonus_Threshold__c>();

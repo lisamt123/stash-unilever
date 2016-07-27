@@ -28,8 +28,9 @@ public class AF_SendEmailToCatFinance_Test
             System.assert(u.id!=null,AF_TestFactory_Helper.USER_RECORD);
             List<AF_CatFinanceThreshold__c> catFinanceLst = AF_TestFactory_Helper.insertcatfinancethreshold(1,true);
             List<AF_CatFinanceThreshold__c> catFinanceLstQuery = [SELECT Id FROM AF_CatFinanceThreshold__c LIMIT 1];
-            System.assert(catFinanceLstQuery[0].Id!=null,EMAIL_CATFINANCE);
+            System.assertEquals(catFinanceLstQuery[0].Id!=null,catFinanceLst[0].Id!=null,EMAIL_CATFINANCE);
             Datetime dt = Datetime.now().addMinutes(1);
+            System.assert(dt!=null,EMAIL_CATFINANCE);
             AF_SendEmailToCatFinance_schedule  EmailtoCatFinance =new AF_SendEmailToCatFinance_schedule();
             String CRON_VALUE = '0 0 3 ? * *';
             system.schedule('AF_SendEmailToCatFinance_schedule', CRON_VALUE, EmailtoCatFinance);
