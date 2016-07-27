@@ -1111,7 +1111,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             if(IPM_ConstantUtils.BRAND_NOT_FOUND.equals(rollout.IPM_Brand__c)){
                 holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
-            } 
+            }
+			if(holdRolloutidBrandMap.get(rollout.id).isEmpty())
+	        {
+	        	holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
+	        } 
         }
         //enable edit access on brand when current project is reginal rollout and phase is feasibility/capability
         if( (IPM_ConstantUtils.PHASE_FEASIBILITY.Equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_CAPABILITY.Equals(project.IPM_Phase__c)) && 

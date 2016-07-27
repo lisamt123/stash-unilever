@@ -8,6 +8,7 @@ public class IPM_ConstantUtils {
     // General Constants
     public static String IPM_true = 'true';
     public static String IPM_false = 'false';
+    public static String IPM_STOPPED = 'Stopped';
     //UI Compatibilty
     public static String UA_COMPATIBLE='X-UA-Compatible';
     public static String IE_EDGE='IE=edge';
@@ -33,13 +34,13 @@ public class IPM_ConstantUtils {
     public static String STATUS_EXCLUDED = 'Excluded';
     public static String STATUS_NOT_STARTED = 'Not Started';
     public static String STATUS_STARTED = 'Started';
-    public static String STATUS_NOT_FILLED = 'Filled-in';    
+    public static String STATUS_NOT_FILLED = 'Filled-in';
     public static String STATUS_FILLED_IN = 'Filled-in';
     public static String STATUS_APPROVED = 'Approved';
-    public static String PD_STATUS_STOPPED = 'Stopped';
+    public static String PD_STATUS_STOPPED = IPM_STOPPED;
     public static String GD_ATTACHMENT_SUFFIX = 'Gate_Document';
     public static final String COMMENT_TYPE='TextPost';
-    public static final set<String> STATUS_SET_WO_APPROVED = new set<String> {'Not Started', 'In Progress', 'Proposed', 'Stopped', 'Postponed', 'Approved with Edits'};
+    
     
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
@@ -108,11 +109,11 @@ public class IPM_ConstantUtils {
     public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='Communication: Full Think Big Pack Available';    
     public static final String OTIF_CONCEPT_TEST='Concept Test';    
     public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
-    public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';    
+    public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';
     
     public static final String CONTRACT_PRODUCT ='What is the Consumer test scoring on Product?';
     public static final String CONTRACT_FULL_MIX ='What is the Consumer test scoring on Full mix?';
-    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';    
+    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';       
     // Newly added OTIF questions 
     public static final String CONTRACT_PACK ='What is the Consumer test scoring on Pack ?';    
     public static final String CONTRACT_PRICE ='What is the Consumer test scoring on Price ?';    
@@ -216,8 +217,8 @@ public class IPM_ConstantUtils {
     public static String PHASE_MARKET_READY='Market Ready';
     public static String PHASE_MARKET_DEPLOYMENT='Market Deployment';
     public static String PHASE_PLE='PLE';
-    public static set<String> PHASE_SET_WO_PLE = new set<String> {'Ideas', 'Feasibility', 'Capability', 'Market Ready', 'Market Deployment'} ;
-    public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {'Ideas', 'Feasibility', 'Capability', 'Market Ready', 'Post Launch Evaluation'} ;
+    public static set<String> PHASE_SET_WO_PLE = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_MARKET_DEPLOYMENT} ;
+    public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_PLE} ;
     
     public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
@@ -260,12 +261,12 @@ public class IPM_ConstantUtils {
     
     //All the phases & their respective Gates
     public static final Map<String, String> phaseGateDocumentMap = new Map<String, String>{'Ideas' => 'Charter', 'Feasibility' => 'Contract',
-                                                                                      'Capability' => 'Market Ready', 'Market Ready' => 'Market Deployment',
-                                                                                      'Market Deployment' => 'n/a','PLE' => 'n/a','Stopped' => 'n/a'};
+                                                                                      PHASE_CAPABILITY => 'Market Ready', 'Market Ready' => 'Market Deployment',
+                                                                                      'Market Deployment' => 'n/a','PLE' => 'n/a',IPM_STOPPED => 'n/a'};
     
-    public static final Map<String,Integer> phaseSequence = new Map<String,Integer>{'Ideas' => 1,'Feasibility' => 2,'Capability' => 3,'Market Ready' => 4,'Market Deployment' => 5,'PLE' => 6};
+    public static final Map<String,Integer> phaseSequence = new Map<String,Integer>{'Ideas' => 1,'Feasibility' => 2,PHASE_CAPABILITY => 3,'Market Ready' => 4,'Market Deployment' => 5,'PLE' => 6};
     
-    public static final List<String> DEFAULT_PHASE_SEQ = new List<String>{'Ideas','Feasibility','Capability','Market Ready','Market Deployment','PLE'};
+    public static final List<String> DEFAULT_PHASE_SEQ = new List<String>{'Ideas','Feasibility',PHASE_CAPABILITY,'Market Ready','Market Deployment','PLE'};
                                                                                       
     //Permission set variables starts
     public static final String PERMISSION_CENTRAL='IPM_Central_Team';
@@ -537,11 +538,13 @@ public class IPM_ConstantUtils {
     public static String PROJECT_MILESTONES='IPM Project Milestones';
     
     //Gate document various status
-    public static final String DOCUMENT_STATUS_STOPPED='Stopped';
+    public static final String DOCUMENT_STATUS_STOPPED=IPM_STOPPED;
     public static final String DOCUMENT_STATUS_POSTPONED='Postponed';
     public static final String DOCUMENT_STATUS_PROPOSED='Proposed';
     public static final String DOCUMENT_STATUS_APPROVED='Approved';
-     public static final String DOCUMENT_STATUS_APPROVEDWITHEDITS = 'Approved with Edits';
+    public static final String DOCUMENT_STATUS_APPROVEDWITHEDITS = 'Approved with Edits';
+    public static final set<String> STATUS_SET_WO_APPROVED = new set<String> {STATUS_NOT_STARTED, STATUS_IN_PROGRESS, DOCUMENT_STATUS_PROPOSED, IPM_STOPPED, DOCUMENT_STATUS_POSTPONED, DOCUMENT_STATUS_APPROVEDWITHEDITS};
+    
     //For Section History
     public static final String HISTORY_SECTION_NAME = 'IPM_Section_Name__c';
     public static final String HISTORY_SECTION_SEQUENCE = 'IPM_Section_Sequence__c';
@@ -1235,7 +1238,8 @@ public class IPM_ConstantUtils {
    
    public static final string SIX_THREE='6.3'; 
    
-   public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c'; 
+   public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c';
+   
    public static final string Clustering = 'Clustering';
    public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
    public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';

@@ -529,7 +529,7 @@
     /* Global Financial Action Standards Styles */
         .gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
         .glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
-        .glbHeadLeft{min-width: 135px;float: left;height: 50px;border: 1px solid #ddd;}
+        .glbHeadLeft{min-width: 135px;float: left;height: 50px;border: 1px solid #ddd;border-bottom:0px;}
         .glbHeadRight{width:623px;float: left;min-height: 35px;border: 1px solid #ddd;}
         .glbHeadtop1{width:325px;float:left;min-height: 40px;}
         .glbHeadtop2{width:290px;float:left;min-height: 40px;}
@@ -538,12 +538,12 @@
         .glbsubHeadM2{float:left;width:33%;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
         .glbHeadtop1{border-right: 1px solid #ddd;}
         .glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
-        .glbValLeft{height: 20px;width: 136px;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
+        .glbValLeft{height: 20px;width: 136px;float: left;display: block;text-align:center;border: 1px solid #ddd;padding-top: 5px;}
         .glbValRight{width:762px;height: 20px;}
         .glbValSubLeft{width:325px;display:block;height: 20px;float:left;}
         .glbValSubRight{width:298px;display:block;height: 24px;float:left;border-right: 1px solid #ddd;}
         .glbValM{width:60px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
-        .glbValM2{width:93px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 20px;}
+        .glbValM2{width:93px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
         .glbVal8{border-right: 1px solid #ddd;float:left;width:96px;}        
         .glbsecContainer .glbVal8{border-right:1px solid #ddd;width:98px;}
         .glbValLeft.othValleft{height:20px !important;}
