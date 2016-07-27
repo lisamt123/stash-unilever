@@ -559,7 +559,7 @@
                                                  <label class="ipmSelect  pos-tool" >
                                                 <apex:actionRegion >
                                                     <apex:outputPanel >
-                                                   <div class="info" title="" data-original-title="{!$Label.IPM_Platform_Title}">
+                                                   <div class="info" title="">
                                                         <apex:inputField value="{!project.IPM_Category_Picklist__c}"  style="display:none" >  </apex:inputField> 
                                                         <apex:inputField value="{!project.IPM_Category_Platform__c}"  >    </apex:inputField>  
                                                     </div>   
