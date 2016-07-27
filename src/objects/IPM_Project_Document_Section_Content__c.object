@@ -407,6 +407,19 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	 <fields>
+        <fullName>IPM_CMI_Country_isNull__c</fullName>
+        <description>This field will advice if IPM_CMI_Country__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_CMI_Country__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if IPM_CMI_Country__c is null or not</inlineHelpText>
+        <label>IPM_CMI_Country_isNull</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_CMI_Country__c</fullName>
         <description>contains cmi country</description>
@@ -1946,6 +1959,19 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+	<fields>
+        <fullName>IPM_OTIF_Measure_isNull__c</fullName>
+        <description>This field will advice if IPM_OTIF_Measure__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_OTIF_Measure__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if  IPM OTIF Measure is null or not</inlineHelpText>
+        <label>IPM_OTIF_Measure_isNull</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_OTIF_Measure__c</fullName>

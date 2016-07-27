@@ -57,6 +57,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+	 <fieldUpdates>
+        <fullName>Update_IPM_Parent_Section_isNull_c</fullName>
+        <description>Updates the said field</description>
+        <field>IPM_Parent_Section_isNull__c</field>
+        <formula>IF(  ISBLANK( IPM_Section__r.IPM_Parent_Section__c ), &apos;true&apos;, &apos;false&apos;)</formula>
+        <name>Update IPM_Parent_Section_isNull__c</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>Update_PD_Section_Name</fullName>
         <field>Name</field>
@@ -117,6 +127,20 @@
         </actions>
         <active>true</active>
         <formula>IPM_Notify_Team__c=true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+	 <rules>
+        <fullName>IPM check if Parent Section is Null</fullName>
+        <actions>
+            <name>Update_IPM_Parent_Section_isNull_c</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Project_Document_Section__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Updates IPM_Parent_Section_isNull__c, will be true when IPM_Section__r.IPM_Parent_Section__c is Null and false when IPM_Section__r.IPM_Parent_Section__c is NOT Null</description>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

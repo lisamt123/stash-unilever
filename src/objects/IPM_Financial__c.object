@@ -536,6 +536,20 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
+	<fields>
+        <fullName>Financial_External_ID_Check_If_NONKEY__c</fullName>
+        <description>This field return true if Financial External ID has NONKEY</description>
+        <externalId>false</externalId>
+        <formula>IF( CONTAINS( Financial_External_ID__c , &apos;NONKEY&apos;) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field return true if Financial External ID has NONKEY</inlineHelpText>
+        <label>Financial_External_ID_Check_If_NONKEY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Financial_External_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -1703,6 +1717,20 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>Local_Project_isNull__c</fullName>
+        <description>This field will advice whether Local_Project__c is Null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( Local_Project__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice whether Local_Project__c is Null or not</inlineHelpText>
+        <label>Local_Project_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MD_Approved__c</fullName>
