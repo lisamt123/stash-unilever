@@ -674,7 +674,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     public void getusertype(){
         list<IPM_User_Profile__c>lstuserprofile=[SELECT IPM_User_Role__c,IPM_User_Function__c,Export_Porfolio_Data__c 
                                                  FROM IPM_User_Profile__c 
-                                                 WHERE IPM_User__c=:userinfo.getuserid() AND (IPM_User_Role__c!=null or IPM_User_Function__c!=null) LIMIT 50000];
+                                                 WHERE IPM_User__c=:userinfo.getuserid() AND IPM_User_Role_Function_isNull__c = :IPM_ConstantUtils.IPM_false LIMIT 50000];
         
          if(lstuserprofile != null && !lstuserprofile.isEmpty()){
             for(IPM_User_Profile__c up:lstuserprofile){

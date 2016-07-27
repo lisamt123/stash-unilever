@@ -1734,13 +1734,13 @@ public with sharing class IPM_ProjectHelper
     
 
     projectList = [select Id,IPM_Answer_of_Q1__c,IPMProject_Span__c,Name,IPM_Parent_Project__c,IPM_Global_Project_Id__c  from IPM_Project__c 
-    where (IPM_Global_Project_Id__c IN: parentIdSet AND IPM_Parent_Project__c != '' ) OR (IPM_Parent_Project__c IN: parentIdSet AND IPMProject_Span__c =: 'Local' ) LIMIT 50000];
+    where (IPM_Global_Project_Id__c IN: parentIdSet AND IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT ) OR (IPM_Parent_Project__c IN: parentIdSet AND IPMProject_Span__c =:IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL ) LIMIT 50000];
     
     
     for(IPM_Project__c proj : projectList) {
         for(Id projMap : projectMPAMap.keySet()) {
         
-            if(proj.IPM_Global_Project_Id__c == projMap || (proj.IPM_Parent_Project__c == projMap && proj.IPMProject_Span__c == 'Local' )){
+            if(proj.IPM_Global_Project_Id__c == projMap || (proj.IPM_Parent_Project__c == projMap && proj.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL )){
         
                 proj.IPM_Answer_of_Q1__c = projectMPAMap.get(projMap).IPM_Answer_of_Q1__c;
         

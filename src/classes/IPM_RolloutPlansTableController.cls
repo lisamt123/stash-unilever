@@ -1069,7 +1069,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     private Date getLeastProjectMilestonesDate(){
         //Method invoked in IPM_LocalRolloutPlansTable component
         List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
-        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames limit 50000];
+        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Name__c in: milestoneNames limit 50000];
         Date leastProjectMilestonesDate = null;
         for(IPM_Milestone__c i :milestones){
             if(leastProjectMilestonesDate == null){

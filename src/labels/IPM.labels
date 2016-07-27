@@ -9620,12 +9620,12 @@ If you take no further action after 72 hours from now this Project {0} will be s
         <shortDescription>Passed Cancellation Widnow</shortDescription>
         <value>Your Project has passed applicable cancellation window.</value>
     </labels>
-	<labels>
-        <fullName>IPM_ReactivateProjectMessage</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Reactivate Project Message</shortDescription>
-        <value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any changes made will be saved.</value>
+    <labels>
+	<fullName>IPM_ReactivateProjectMessage</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Reactivate Project Message</shortDescription>
+	<value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any updates you have saved using the ‘Save and continue’ button will be retained.</value>
     </labels>
 	<labels>
         <fullName>IPM_ReactivatingProject</fullName>

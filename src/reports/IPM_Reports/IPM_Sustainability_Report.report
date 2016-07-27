@@ -88,6 +88,9 @@
         <field>IPM_Assessment__c.IPM_Country_Name__c</field>
     </columns>
     <columns>
+        <field>IPM_Project__c.IPM_LocalProject_Brand__c</field>
+    </columns>
+    <columns>
         <field>IPM_Assessment__c.IPM_Assessment_GHG_PCU__c</field>
     </columns>
     <columns>
@@ -100,10 +103,16 @@
         <field>IPM_Assessment__c.IPM_Assessment_Waste_PCU_Percentage__c</field>
     </columns>
     <columns>
+        <field>IPM_Assessment__c.QM_Global_Category_Average_View_Waste__c</field>
+    </columns>
+    <columns>
         <field>IPM_Assessment__c.IPM_Assessment_Water_PCU__c</field>
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Assessment_Water_PCU_Percentage__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Assessment__c.QM_Global_Category_Average_View_Water__c</field>
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Comparison_Rep_GTU_Code__c</field>
@@ -137,6 +146,9 @@
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Country_Category_Avg_GHG_PCU__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Assessment__c.QM_Global_Category_Average_View_GHG__c</field>
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Country_Category_Avg_Waste_PCU__c</field>
@@ -234,6 +246,7 @@
     <columns>
         <field>CHILD_LAST_UPDATE</field>
     </columns>
+    <currency>EUR</currency>
     <description>Sustainability Report utilizing Eco-Design Data</description>
     <format>Summary</format>
     <groupingsDown>
@@ -241,7 +254,7 @@
         <field>CUST_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>IPM Sustainability Report</name>
+    <name>Environmental and Social Impact Report</name>
     <params>
         <name>co</name>
         <value>1</value>

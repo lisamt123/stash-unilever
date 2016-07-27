@@ -716,9 +716,7 @@ public without sharing class IPM_ProjectJobHelper
           																						     Select Id, IPM_Document_Status__c,IPM_Project__c,
           																						     (Select Id, IPM_Section_Status__c FROM IPM_Project_Sections__r 
           																						     WHERE IPM_Default_Section__c=true 
-          																						     AND IPM_Section__r.IPM_Section_Type__c NOT IN ( :IPM_ConstantUtils.SECTION_TYPE_HEADER , :IPM_ConstantUtils.SECTION_TYPE_SUBHEADER) 
-	  																								 AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX
-          																						     ) 
+          																						     AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER) 
           																						     FROM IPM_Project_Document__c 
           																						     WHERE IPM_Project__c IN : projectMap.keySet() 
           																						     AND  ( IPM_Document_Status__c =:IPM_ConstantUtils.STATUS_NOT_STARTED OR (IPM_Project__r.IPM_Phase__c = :IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT AND IPM_Project__r.IPMProject_Span__c= :IPM_ConstantUtils.PROJECT_SPAN_LOCAL))

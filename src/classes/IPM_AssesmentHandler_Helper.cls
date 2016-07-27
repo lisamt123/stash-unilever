@@ -197,7 +197,6 @@ public with sharing class IPM_AssesmentHandler_Helper {
         Map<Id,String> projectIdPhaseMap = new Map<Id,String>();
         Map<Id,String> projectIdOldPhaseMap = new Map<Id,String>();
         List<IPM_Assessment__c> actualAssesmentsToCopy =  new List<IPM_Assessment__c>();
-        List<IPM_Assessment__c> assessmentsCloned =  new List<IPM_Assessment__c>();
             
         //use the custom setting IPM_Project_Type to find if the assessments are to be copied over to the next phase for the projects
         for(IPM_Project__c project :incomingProjectsWithChangedPhase){
@@ -228,7 +227,15 @@ public with sharing class IPM_AssesmentHandler_Helper {
         
         
         //clone the assessment and set the phase as the next phase
-        if(actualAssesmentsToCopy != null && !actualAssesmentsToCopy.isEmpty()){
+       cloneAndInsertAssessments(actualAssesmentsToCopy,projectIdPhaseMap);
+        
+    }
+    
+    public static void cloneAndInsertAssessments(List<IPM_Assessment__c> actualAssesmentsToCopy,Map<Id,String>projectIdPhaseMap)
+    {
+    	
+         List<IPM_Assessment__c> assessmentsCloned =  new List<IPM_Assessment__c>();
+    	 if(actualAssesmentsToCopy != null && !actualAssesmentsToCopy.isEmpty()){
             
             for(IPM_Assessment__c assessmentToCopy : actualAssesmentsToCopy){
                 IPM_Assessment__c assessment = assessmentToCopy.clone(false, true, false, true);
@@ -239,7 +246,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
         }
         
         //insert the cloned assessments
-        if(assessmentsCloned != null && !assessmentsCloned.isEmpty()){
+        if(!assessmentsCloned.isEmpty()){
             Insert assessmentsCloned;
         }
         

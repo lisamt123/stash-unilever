@@ -164,8 +164,12 @@ public class IPM_FinancialValueWrapper {
         this.isGrossTOGRTIto =false;
         this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
         this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
         
-        String toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+         if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+         	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+         }
+        
         
         if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
         	this.isValueInvalid = true;
@@ -203,16 +207,12 @@ public class IPM_FinancialValueWrapper {
 			   if(cellValidationType!= null && cellValidationType.equalsIgnoreCase(IPM_ConstantUtils.RED) &&
 			   	  currentFinancial.Red_Validation_Cells__c != null && 
 	    	      currentFinancial.Red_Validation_Cells__c.contains(toFindStr)){
-			   	  System.debug('currentTab==>'+currentTab);
-				  System.debug('isConsolidatedFinValueInvalid==>'+cellValidationType);
 				  return true;
 			   }
 			   //for Yellow validations
 			   else if(cellValidationType!= null && cellValidationType.equalsIgnoreCase(IPM_ConstantUtils.YELLOW) &&
 			   	  currentFinancial.Yellow_Validation_Cells__c != null && 
 	    	      currentFinancial.Yellow_Validation_Cells__c.contains(toFindStr)){
-	    	      System.debug('currentTab==>'+currentTab);
-				  System.debug('isConsolidatedFinValueInvalid==>'+cellValidationType);
 				  return true;
 			   
 			   }

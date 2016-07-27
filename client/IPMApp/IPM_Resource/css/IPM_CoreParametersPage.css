@@ -287,3 +287,9 @@ input.hiddenBrand {
     height: 220px;
     overflow-y: scroll;
 } 
+a.icoButton.info.pos-icon.smallllinfo {
+    margin-left: 22px;
+}
+a.icoButton.info.pos-icon1.smallllinfo {
+    margin-left: 33px;
+}

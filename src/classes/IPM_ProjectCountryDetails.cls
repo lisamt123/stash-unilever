@@ -598,8 +598,8 @@ public with sharing class IPM_ProjectCountryDetails{
     *****************************************************************************/
     
     public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
-        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r Where IPM_Country__c != null ) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
-        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();    
+        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
+        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();   
         
         //find all Projects which have an assessment for the current project phase
                                 if(projList != null && !projList.isEmpty()){
