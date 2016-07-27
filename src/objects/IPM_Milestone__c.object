@@ -358,6 +358,20 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+	<fields>
+        <fullName>IPM_Due_Date_isNull__c</fullName>
+        <description>This field will advice if IPM_Due_Date__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(IPM_Due_Date__c) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Due Date is null or not</inlineHelpText>
+        <label>IPM_Due_Date_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Due_Date__c</fullName>
         <description>Due date of milestone</description>
@@ -630,6 +644,20 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>IPM_Planned_Date_isNull__c</fullName>
+        <description>This field will advice if IPM_Planned_Date__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Planned_Date__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Suggested Planned date is null or not</inlineHelpText>
+        <label>IPM_Planned_Date_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Launch_Date__c</fullName>

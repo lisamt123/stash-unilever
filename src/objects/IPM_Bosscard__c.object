@@ -112,6 +112,19 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+	<fields>
+        <fullName>IPM_BosscardName_isNull__c</fullName>
+        <description>This field will advice if IPM_BosscardName__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_BosscardName__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Bosscard Name is null or not</inlineHelpText>
+        <label>IPM_BosscardName_isNull</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_BosscardName__c</fullName>
         <caseSensitive>false</caseSensitive>

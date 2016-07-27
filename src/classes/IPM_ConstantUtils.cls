@@ -33,11 +33,13 @@ public class IPM_ConstantUtils {
     public static String STATUS_EXCLUDED = 'Excluded';
     public static String STATUS_NOT_STARTED = 'Not Started';
     public static String STATUS_STARTED = 'Started';
-    public static String STATUS_NOT_FILLED = 'Filled-in';
+    public static String STATUS_NOT_FILLED = 'Filled-in';    
+    public static String STATUS_FILLED_IN = 'Filled-in';
     public static String STATUS_APPROVED = 'Approved';
     public static String PD_STATUS_STOPPED = 'Stopped';
     public static String GD_ATTACHMENT_SUFFIX = 'Gate_Document';
     public static final String COMMENT_TYPE='TextPost';
+    public static final set<String> STATUS_SET_WO_APPROVED = new set<String> {'Not Started', 'In Progress', 'Proposed', 'Stopped', 'Postponed', 'Approved with Edits'};
     
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
@@ -214,6 +216,8 @@ public class IPM_ConstantUtils {
     public static String PHASE_MARKET_READY='Market Ready';
     public static String PHASE_MARKET_DEPLOYMENT='Market Deployment';
     public static String PHASE_PLE='PLE';
+    public static set<String> PHASE_SET_WO_PLE = new set<String> {'Ideas', 'Feasibility', 'Capability', 'Market Ready', 'Market Deployment'} ;
+    public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {'Ideas', 'Feasibility', 'Capability', 'Market Ready', 'Post Launch Evaluation'} ;
     
     public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
@@ -805,6 +809,7 @@ public class IPM_ConstantUtils {
      public static final String CUSTOMER_CHANNELS = 'Customers/Channels';
      
     public static final Set<String> PDF_SECTION_LIST = new Set<String>{'Text','Checklist','Static Table','Dynamic Complex Table','Dynamic Simple Table'};
+    public static final Set<String> SECTION_LIST_WO_HEADER_SUBHEADER = new Set<String>{'Text','Checklist','Static Table','Dynamic Complex Table','Dynamic Simple Table','Project Parameters'};
     
     public static final String DEFAULT_CSS_KEY = 'default';
     

@@ -180,6 +180,20 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+	<fields>
+        <fullName>IPM_Due_Date1_isNull__c</fullName>
+        <description>This field will advice if the Due Date is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Due_Date1__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if the Due Date is null or not</inlineHelpText>
+        <label>IPM_Due_Date1_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Due_Date__c</fullName>
         <description>Due date of the milestone</description>
