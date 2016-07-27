@@ -293,3 +293,6 @@ a.icoButton.info.pos-icon.smallllinfo {
 a.icoButton.info.pos-icon1.smallllinfo {
     margin-left: 33px;
 }
+label.ipmSelect.pos-tool {
+    z-index: 0;
+}
