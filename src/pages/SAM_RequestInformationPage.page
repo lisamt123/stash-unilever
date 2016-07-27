@@ -1,0 +1,27 @@
+<apex:page standardController="SAM_Request__c" extensions="SAM_RequestInformationController">
+ <apex:form >
+   <apex:pageBlock >
+   <div align="center" draggable="false" >
+   <apex:commandButton value="Submit" action="{!submit}" reRender="redirectPanel" rendered="{!flagToShowSubmitbutton}"/>
+   </div>
+      <apex:pageMessages />
+      <apex:pageBlock rendered="{!mandatoryStringFlag != null}">
+        <apex:pageMessage summary="{!mandatoryStringFlag}"
+                      severity="warning"
+                      strength="3"
+                     rendered="{!mandatoryStringFlag != null}" />
+            <apex:pageBlockTable value="{!objectMap}" var="listItem" rendered="{!mandatoryStringFlag != null}">
+                <apex:column value="{!listItem}"  headerValue="Field Name"/>
+                <apex:column value="{!objectMap[listItem]}" headerValue="Criteria"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>    
+    </apex:pageBlock> 
+    <apex:outputPanel id="redirectPanel" >
+            <apex:outputText rendered="{!shouldRedirect}">
+                <script type="text/javascript">
+                    window.top.location.href = '{!redirectUrl}';
+                </script>
+            </apex:outputText>
+        </apex:outputPanel>    
+ </apex:form>
+</apex:page>

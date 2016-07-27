@@ -1,0 +1,51 @@
+<apex:page standardController="SAM_Request__c" extensions="SAM_NewButtonOverrideController">
+<style>
+.myTable { background-color:#eee;border-collapse:collapse; }
+.myTable th { background-color:#fff;color:white;width:50%; }
+.myTable td, .myTable th { padding:5px;border:1px solid #000; }
+
+</style>
+  <apex:form >
+  <apex:sectionHeader title="New Request" subtitle="Select Request Record Type"/> 
+    <apex:pageBlock title="Select Request Record Type"> 
+    <apex:PageBlockButtons >
+       <apex:commandButton action="{!redirectToPageNewItem}" value="Continue">
+       </apex:commandButton>
+       <apex:commandButton action="{!cancelRedirect}" value="Cancel"/>
+        
+    </apex:PageBlockButtons>
+
+      
+     
+      <apex:pageBlockSection columns="1" collapsible="false"  id="theSec">
+       <apex:selectList label="Record Type of new record" value="{!recordtypeId}" style=" width: 177px; form-control" size="1" > 
+        <apex:selectOptions value="{!recordTypelist}" /> 
+      </apex:selectList>
+       
+          
+      </apex:pageBlockSection>   
+      
+      
+ <apex:pageBlockSection title="Available Request Record Types" columns="1" collapsible="false"  >
+<table style="width:100%" class="myTable" border="1">
+  <tr>
+    <td><strong>Record Type Name</strong></td>
+    <td><strong>Description</strong></td> 
+    
+  </tr>
+   <apex:repeat value="{!recordTypeInfoList}" var="obj">
+  <tr>
+       
+    <td><strong>{!obj.Name}</strong></td>
+    <td>{!obj.Description}</td> 
+    
+    </tr>
+  </apex:repeat>
+</table>
+</apex:pageBlockSection>
+         
+    </apex:pageBlock>
+      
+    
+  </apex:form>
+</apex:page>
