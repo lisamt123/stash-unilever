@@ -48,7 +48,7 @@ public with sharing class IPM_MyProjects{
         List<IPM_Project__c> lstProjects;
         List<IPM_Milestone__c> lstipmmilestones;
         List<Id> projectIds=new List<Id>();
-        for(IPM_Project_Resource__c res : [SELECT IPM_Project__c FROM IPM_Project_Resource__c 
+        for(IPM_Project_Resource__c res : [SELECT IPM_Project__c,IPM_Role_Type__c  FROM IPM_Project_Resource__c 
                                        WHERE IPM_User__c = : UserInfo.getUserId() 
                                        Limit 10000])
 	   {
