@@ -613,6 +613,30 @@
         <type>Checkbox</type>
     </fields>
 	<fields>
+        <fullName>IPM_Brand_Null_or_Brand_Not_Matched__c</fullName>
+        <description>check if brand value is null</description>
+        <externalId>false</externalId>
+        <formula>if(Local_Rollout__r.IPM_Brand__c == null,&apos;true&apos;,&apos;false&apos;)</formula>
+        <label>Brand Null or Brand Not Matched</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>IPM_Brand_and_BrandPos_Matched__c</fullName>
+        <description>check if brand and brand position is matched</description>
+        <externalId>false</externalId>
+        <formula>if(IPM_Brand_Position__c ==  Local_Rollout__r.IPM_Brand__c,&apos;true&apos;,&apos;false&apos;)</formula>
+        <label>Brand and BrandPos Matched</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
         <fullName>IPM_Brand_Position__c</fullName>
         <description>get brand position</description>
         <externalId>false</externalId>

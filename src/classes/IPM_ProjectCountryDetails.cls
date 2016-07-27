@@ -1126,7 +1126,8 @@ public with sharing class IPM_ProjectCountryDetails{
         IPM_Project_Rollout__c newRollout;// declaration of local rollout
     	for(IPM_Country__c country :countryList)
         {
-            if(country.Local_Rollout__c !=null && !rolloutMap.containsKey(country.Local_Rollout__c)){
+            if(country.Local_Rollout__c !=null && !rolloutMap.containsKey(country.Local_Rollout__c) && !IPM_ConstantUtils.IPM_true.Equals(country.IPM_Brand_and_BrandPos_Matched__c)
+            	&& IPM_ConstantUtils.IPM_true.Equals(country.IPM_Brand_Null_or_Brand_Not_Matched__c)){
 				newRollout=new IPM_Project_Rollout__c();
 				newRollout.id=country.Local_Rollout__c; 
 				if(brandsMap.get(country.Local_Rollout__c).isEmpty())

@@ -2488,6 +2488,16 @@
         <field>IPM_Country__c.Geography__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Country__c.IPM_Brand_and_BrandPos_Matched__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Country__c.IPM_Brand_Null_or_Brand_Not_Matched__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country__c.IPM_CharterApproved__c</field>
