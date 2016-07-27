@@ -19,7 +19,7 @@ private class FAU_ProgramTest {
     private static String PROGRAM_STATUS_ACTIVE = 'Active';
     private static String PARTICIPANT_STATUS_DECLINED = 'Declined';
     private static String PARTICIPANT_STATUS_ACCEPTED = 'Accepted';
-    
+    public static string city='Singapore';//Modified by yugandhar
     
     static User testdatacreation()
     {
@@ -37,7 +37,7 @@ private class FAU_ProgramTest {
     private static void completeProgramTest(){
         FAU_Program__c program = FAU_TestUtil.buildProgram('Test Program', Date.today(), 'Test Location');
         insert program;
-        FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
+      //  FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
         program.FAU_Status__c = 'Active';
         program.FAU_Participant_Chatter_Group_Id__c  = 'test1234test';
         update program;
@@ -53,14 +53,14 @@ private class FAU_ProgramTest {
     static void testInsertParticipant()
     {
         
-        Profile pp = [select id from Profile where name ='System Administrator'];
+       // Profile pp = [select id from Profile where name ='System Administrator'];
         User u =    testdatacreation();
         
         System.runAs(u){
             User[] users = createUsersWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = 'Invited';
                  
             Test.startTest();
@@ -116,7 +116,7 @@ private class FAU_ProgramTest {
     @isTest
     static void testUpdateParticipant()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+        //Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
         
            
@@ -127,7 +127,7 @@ private class FAU_ProgramTest {
             //User[] user2 = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = 'Invited';
     
             FAU_Participant__c participantRecord
@@ -152,7 +152,7 @@ private class FAU_ProgramTest {
     static void testUpdateStatusDeclineParticipant()
     {
         
-        Profile pp = [select id from Profile where name ='System Administrator'];
+        //Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
           
         
@@ -161,7 +161,7 @@ private class FAU_ProgramTest {
             //User[] user2 = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = PROGRAM_STATUS_NEW;
     
             FAU_Participant__c participantRecord
@@ -185,7 +185,7 @@ private class FAU_ProgramTest {
     @isTest
     static void testUpdateStatusAcceptParticipant()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+        //Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
         
            
@@ -195,7 +195,7 @@ private class FAU_ProgramTest {
             //User[] user2 = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = PARTICIPANT_STATUS_DECLINED;
     
             FAU_Participant__c participantRecord
@@ -222,7 +222,7 @@ private class FAU_ProgramTest {
     @isTest
     static void testUpdateRequestEmailAcceptParticipant()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+       // Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
         
           
@@ -232,7 +232,7 @@ private class FAU_ProgramTest {
             //User[] user2 = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = PARTICIPANT_STATUS_DECLINED;
     
             FAU_Participant__c participantRecord
@@ -255,7 +255,7 @@ private class FAU_ProgramTest {
     @isTest
     static void testRemoveParticipant()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+        //Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
         
           
@@ -265,7 +265,7 @@ private class FAU_ProgramTest {
             User[] user1 = createUsersWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = PROGRAM_STATUS_NEW;
     
     
@@ -287,7 +287,7 @@ private class FAU_ProgramTest {
 
     static void testInsertWebinarParticipant()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+       // Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
          
         
@@ -295,7 +295,7 @@ private class FAU_ProgramTest {
             User[] users = createUsersWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = 'Invited';
                  
             
@@ -330,7 +330,7 @@ private class FAU_ProgramTest {
     @isTest
     static void testNegativeSecurityParticipant()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+        //Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
         
           
@@ -339,7 +339,7 @@ private class FAU_ProgramTest {
             User[] users = createUsersWithProfile(PROFILE_PARTICIPANT_HOLDS, 2);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = PROGRAM_STATUS_NEW;
     
     
@@ -362,7 +362,7 @@ private class FAU_ProgramTest {
     @isTest
     static void testModuleUpdate()
     {
-        Profile pp = [select id from Profile where name ='System Administrator'];
+        //Profile pp = [select id from Profile where name ='System Administrator'];
         User u = testdatacreation();
         
           
@@ -372,7 +372,7 @@ private class FAU_ProgramTest {
             User[] users = createUsersWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
     
             Date startDateFixture = Date.newInstance(2015, 10, 25);
-            String locationFixture = 'Singapore';
+            String locationFixture = city;
             String inviteStateFixture = 'Invited';
             
             FAU_Participant__c participantRecord

@@ -14,6 +14,8 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
    1.0   Jack Dermody      18/09/2014        Coding Standards          
 ***********************************************************************/
 public with sharing class FAU_ParticipantClsSC {
+     
+     public static string name='User';
 
     public static void submitforApprovals(FAU_Participant__c newParticipant, FAU_Participant__c oldParticipant)
     {
@@ -240,8 +242,8 @@ public with sharing class FAU_ParticipantClsSC {
             
         if ((newParticipant.FAU_User__c <> null && newParticipant.FAU_Is_Participant_Shared__c)
              && newParticipant.FAU_User__c <> newParticipant.OwnerId){
-            lParticipantShares.add(addParticipantSharing(newParticipant, 'User'));
-            lProgramShares.add(addProgramSharing(newParticipant, 'User'));
+            lParticipantShares.add(addParticipantSharing(newParticipant, name));
+            lProgramShares.add(addProgramSharing(newParticipant, name));
         }
      
 
@@ -264,8 +266,8 @@ public with sharing class FAU_ParticipantClsSC {
         if (((newParticipant.FAU_User__c <> oldParticipant.FAU_User__c && newParticipant.FAU_User__c <> null)
                 || (!oldParticipant.FAU_Is_Participant_Shared__c && newParticipant.FAU_Is_Participant_Shared__c))
                 && newParticipant.FAU_User__c <> newParticipant.OwnerId){
-            lParticipantShares.add(addParticipantSharing(newParticipant, 'User'));
-            lProgramShares.add(addProgramSharing(newParticipant, 'User'));
+            lParticipantShares.add(addParticipantSharing(newParticipant, name));
+            lProgramShares.add(addProgramSharing(newParticipant, name));
         }
      
 
@@ -318,8 +320,8 @@ public with sharing class FAU_ParticipantClsSC {
         if (((newParticipant.FAU_User__c <> oldParticipant.FAU_User__c && oldParticipant.FAU_User__c <> null)
             || (!newParticipant.FAU_Is_Participant_Shared__c && oldParticipant.FAU_Is_Participant_Shared__c))
             && oldParticipant.FAU_User__c <> newParticipant.OwnerId){
-            lRemoveParticipantShares.addAll(removeParticipantSharing(oldParticipant, lParticipantShares, 'User')); 
-            lRemoveProgramShares.addAll(removeProgramSharing(oldParticipant, lProgramShares, 'User'));   
+            lRemoveParticipantShares.addAll(removeParticipantSharing(oldParticipant, lParticipantShares, name)); 
+            lRemoveProgramShares.addAll(removeProgramSharing(oldParticipant, lProgramShares, name));   
         }
 
         if (((newParticipant.FAU_Personal_Assistant__c <> oldParticipant.FAU_Personal_Assistant__c)
@@ -456,7 +458,7 @@ public with sharing class FAU_ParticipantClsSC {
         FAU_Participant__Share oParticipantShare = new FAU_Participant__Share();
         
         oParticipantShare.ParentId = oParticipant.Id;
-        if(sRelatedUser == 'User'){
+        if(sRelatedUser == name){
             oParticipantShare.UserOrGroupId = oParticipant.FAU_User__c; 
         }else{
             oParticipantShare.UserOrGroupId = oParticipant.FAU_Personal_Assistant__c;
@@ -475,7 +477,7 @@ public with sharing class FAU_ParticipantClsSC {
         FAU_Program__Share oProgramShare = new FAU_Program__Share();
         
         oProgramShare.ParentId = oParticipant.FAU_Program_Wave__c;
-        if(sRelatedUser == 'User'){
+        if(sRelatedUser == name){
             oProgramShare.UserOrGroupId = oParticipant.FAU_User__c;
         }else{
             oProgramShare.UserOrGroupId = oParticipant.FAU_Personal_Assistant__c;
@@ -495,7 +497,7 @@ public with sharing class FAU_ParticipantClsSC {
     
         for(FAU_Participant__Share oParticipantShares: lParticipantShares){
             if (oParticipantShares.ParentId == oParticipant.Id && 
-                ((oParticipantShares.UserOrGroupId == oParticipant.FAU_User__c && sRelatedUser == 'User')||
+                ((oParticipantShares.UserOrGroupId == oParticipant.FAU_User__c && sRelatedUser == name)||
                 (oParticipantShares.UserOrGroupId == oParticipant.FAU_Personal_Assistant__c && sRelatedUser == 'PA'))){
                 lRemoveParticipantShares.add(oParticipantShares);   
             
@@ -516,7 +518,7 @@ public with sharing class FAU_ParticipantClsSC {
 
         for(FAU_Program__Share oProgramShare: lProgramShares){
             if (oProgramShare.ParentId == oParticipant.FAU_Program_Wave__c && 
-                ((oProgramShare.UserOrGroupId == oParticipant.FAU_User__c && sRelatedUser == 'User')||
+                ((oProgramShare.UserOrGroupId == oParticipant.FAU_User__c && sRelatedUser == name)||
                 (oProgramShare.UserOrGroupId == oParticipant.FAU_Personal_Assistant__c && sRelatedUser == 'PA'))){
                 lRemoveProgramShares.add(oProgramShare);    
             
