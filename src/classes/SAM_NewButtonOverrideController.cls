@@ -57,8 +57,11 @@ public with sharing class SAM_NewButtonOverrideController{
         }
         //Dinesh 26/7 - Remove this debug, once you are done with testing of this method
         system.debug('requestorFlag>>'+requestorFlag+'samAdminFlag>>'+samAdminFlag+'samTeamFlag>>'+samTeamFlag);
-        //Dinesh 26/7 - replace below hardcoded values with constants
-        if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
+        
+        //Dinesh 27/7 - modified below if condition to fix SonarQube issue
+        //if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
+        if(requestorFlag && !samAdminFlag && !samTeamFlag){
+                //Dinesh 26/7 - replace below hardcoded values with constants
                 recordTypeInfoList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_RW_Project_Request','SAM_RW_Non_Project_Request','SAM_RW_Query_Request')] ;
             }else{
                 recordTypeInfoList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_RW_Project_Request','SAM_RW_Non_Project_Request','SAM_RW_CrossCharge_Request','SAM_RW_Query_Request')] ;
@@ -76,8 +79,10 @@ public with sharing class SAM_NewButtonOverrideController{
         schemeList = new List<RecordType>();
         List<SelectOption> optionsList = new List<SelectOption>();
         try {
-            //Dinesh 26/7 - replace below hardcoded values with constants
-            if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
+            //Dinesh 27/7 - modified below if condition to fix SonarQube issue
+            //if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
+            if(requestorFlag && !samAdminFlag && !samTeamFlag){
+                    //Dinesh 26/7 - replace below hardcoded values with constants
                     schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_RW_Project_Request','SAM_RW_Non_Project_Request','SAM_RW_Query_Request')] ;
                 }else{
                      schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_RW_Project_Request','SAM_RW_Non_Project_Request','SAM_RW_CrossCharge_Request','SAM_RW_Query_Request')] ;

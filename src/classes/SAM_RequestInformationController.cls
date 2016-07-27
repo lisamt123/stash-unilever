@@ -12,7 +12,9 @@ History
 VERSION     AUTHOR           DATE            DETAIL Description
 1.0         Mindtree       13/07/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
-public class SAM_RequestInformationController{
+//Dinesh 27/7 - Added with sharing in class declaration to fix SonarQube issue
+//Issue - With Sharing should be used on classes that make use of DML
+public with sharing class SAM_RequestInformationController{
  
      public Id requestId ;
      public Map<String,String> objectMap {get; set;}
@@ -64,11 +66,11 @@ public class SAM_RequestInformationController{
            //project record type
            if(requestRecord.RecordTypeId !=null && requestRecord.txt_Request_Type__c != null){
            //if(requestRecord.RecordTypeId == projectRecordType){
-           	   List<SAM_success_messages__c> customSettingStatusMsg = SAM_success_messages__c.getall().values();             
+               List<SAM_success_messages__c> customSettingStatusMsg = SAM_success_messages__c.getall().values();             
                for(SAM_success_messages__c msg:customSettingStatusMsg){
                    if(msg.SAM_Status__c == requestRecord.pkl_Status__c){                       
                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, msg.SAM_Success_message__c));
-                   }              	
+                   }                
                }
            //below fields are manadtory if status is saved 
                if(requestRecord.pkl_Status__c== SAM_Constants.SAVED){
@@ -140,11 +142,15 @@ public class SAM_RequestInformationController{
      public void submit(){
          shouldRedirect = true;
         system.debug('i am in submit'+requestRecord);
-         boolean resultFlag;
+        //Dinesh 27/7 - modified below line to fix SonarQube issue - Variable not assigned: Found 'UR'-anomaly for variable 'resultflag' (lines '140'-'147').
+         //boolean resultFlag;
+         boolean resultFlag = false;
          if(requestId !=null){
              resultFlag= checkMessageValidation(requestId);
          }
-         if(resultFlag == true){
+         //Dinesh 27/7 - modified below if condition to fix SonarQube issue - Avoid unnecessary comparisons in boolean expressions
+         //if(resultFlag == true){
+         if(resultFlag){
              requestRecord.pkl_Status__c= SAM_Constants.OPEN;
              system.debug('requestRecord.pkl_Status__c>>'+requestRecord.pkl_Status__c);
              update requestRecord;

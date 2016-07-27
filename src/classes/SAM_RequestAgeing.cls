@@ -79,8 +79,9 @@ public with sharing class SAM_RequestAgeing {
                 
                     system.debug('requestorFlag>>'+requestorFlag+'samAdminFlag>>'+samAdminFlag+'samTeamFlag>>'+samTeamFlag);
                 
-                
-                    if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
+                    //Dinesh 27/7 - modified below if condition to fix SonarQube issue
+                    //if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
+                    if(requestorFlag && !samAdminFlag && !samTeamFlag){
                         if(req.pkl_Status__c == SAM_Constants.OPEN || req.pkl_Status__c == SAM_Constants.INPROGRESS ){
                              if(req.Ticket_Age__c !=null){
                                  ticketAge =0;
