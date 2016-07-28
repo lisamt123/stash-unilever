@@ -1,4 +1,4 @@
-@IsTest(SeeAllData=true)
+@IsTest
 
 public class AA_Agent_Report_util_Test {
 
