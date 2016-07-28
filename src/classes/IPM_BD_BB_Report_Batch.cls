@@ -706,32 +706,32 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     ************************************************/
     public void rolloutProjectHelp(IPM_Project_Rollout__c pr, IPM_Analytics__c parent, list<IPM_Analytics__c> analyticRolloutList)
     {
-	                  IPM_Analytics__c analyticObj = new IPM_Analytics__c();
-         id regionalrolloutid=null;
-	                    
-	                  // project Rollout related details to be copied  
-	                  analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
-	                    
-	                  if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-	                      regionalrolloutid = pr.Id; 
-	                      for(IPM_Financial__c financial : rolloutFinancialmap.get(regionalrolloutid)){
-	                      	 if(financial.Financial_External_ID__c == pr.name + IPM_ConstantUtils.FINANCIAL_NONKEY){
-	                      	 	IPM_Analytics__c analyticNKObj = new IPM_Analytics__c();
-	                      	 	analyticNKObj = addNonKeyFinancial(analyticObj, financial, null, pr);
-	                      	 	analyticRolloutList.add(analyticNKObj);
-	                      	 	break; 
-	                         } 
-	                      }    
-	                                                    
-	                  }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
-	                      regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
-	                      Boolean bdGlobal=pr.IPM_Project__c != null?(pr.Regional_Project__c != null?false:true):false; 
-	                      String localFinExternalID=pr.name;
-	                      // To set the CPP details - CPP BD
-	                      analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal,localFinExternalID); 
-	                   } 
-          rolloutProjectSubHelp(regionalrolloutid,pr,analyticObj);
-          analyticRolloutList.add(analyticObj);
+        IPM_Analytics__c analyticObj = new IPM_Analytics__c();
+        id regionalrolloutid=null;
+            
+        // project Rollout related details to be copied  
+        analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
+            
+        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
+            regionalrolloutid = pr.Id; 
+            for(IPM_Financial__c financial : rolloutFinancialmap.get(regionalrolloutid)){
+              	 if(financial.Financial_External_ID__c == pr.name + IPM_ConstantUtils.FINANCIAL_NONKEY){
+              	     IPM_Analytics__c analyticNKObj = new IPM_Analytics__c();
+              	     analyticNKObj = addNonKeyFinancial(analyticObj, financial, null, pr);
+              	     analyticRolloutList.add(analyticNKObj);
+              	     break; 
+                 } 
+            }    
+                                            
+        }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
+              regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
+              Boolean bdGlobal=pr.IPM_Project__c != null?(pr.Regional_Project__c != null?false:true):false; 
+              String localFinExternalID=pr.name;
+              // To set the CPP details - CPP BD
+              analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal,localFinExternalID); 
+        } 
+        rolloutProjectSubHelp(regionalrolloutid,pr,analyticObj);
+        analyticRolloutList.add(analyticObj);
     }
     /***************************************************
     *************/
@@ -841,11 +841,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     		
     		if(String.isNotBlank(projectRollout.Regional_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.Regional_Project__r.IPM_ProjectGKM__c)){
     			strFinancialScope = projectRollout.Regional_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.Regional_Project__r.IPM_Phase__c;
+    			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
     	}else if(projectRollout != null && projectRollout.IPM_Project__r != null){ // For Regional Rollouts
     		
     		if(String.isNotBlank(projectRollout.IPM_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.IPM_Project__r.IPM_ProjectGKM__c)){
     			strFinancialScope = projectRollout.IPM_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.IPM_Project__r.IPM_Phase__c;
+    			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
     	}
     	
