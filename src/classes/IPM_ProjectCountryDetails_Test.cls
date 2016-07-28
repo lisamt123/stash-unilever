@@ -336,6 +336,8 @@ private class IPM_ProjectCountryDetails_Test {
             insert countryList;
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
             System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
+            IPM_ProjectCountryDetails.getAvailableBrands(localProjNew);
+            IPM_ProjectCountryDetails.setEISectionStatus(new List<IPM_Project__c>{globalProjNew});
             test.stopTest();
         }
     }
