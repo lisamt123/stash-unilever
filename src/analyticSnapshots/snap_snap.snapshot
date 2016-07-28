@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <mappings>
+        <sourceField>Snap_test__c$Name</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>X_Snaptest1__c.Name</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Snap_test__c$map1__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>X_Snaptest1__c.map1__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Snap_test__c$Snap_usr_id__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>X_Snaptest1__c.snap_usr_id__c</targetField>
+    </mappings>
+    <name>snap_snap</name>
+    <runningUser>sambit.kumar.mund@accenture.com.prod</runningUser>
+    <sourceReport>Others/X_Snap_rep_actual</sourceReport>
+    <targetObject>X_Snaptest1__c</targetObject>
+</AnalyticSnapshot>

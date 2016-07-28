@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Snap_test__c$Name</field>
+    </columns>
+    <columns>
+        <field>Snap_test__c$map1__c</field>
+    </columns>
+    <columns>
+        <field>Snap_test__c$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>Snap_test__c$CreatedBy</field>
+    </columns>
+    <columns>
+        <field>Snap_test__c$Owner</field>
+    </columns>
+    <columns>
+        <field>Snap_test__c$Id</field>
+    </columns>
+    <columns>
+        <field>Snap_test__c$Snap_usr_id__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>X_Snap_rep_actual</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>X_snap_rep__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Snap_test__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>
