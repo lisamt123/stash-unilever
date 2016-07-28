@@ -2,8 +2,8 @@ global with sharing class MB_DeleteBillingData_Batch implements Database.Batchab
     global Database.QueryLocator start(Database.BatchableContext BC)
     {
         // fetching Billing Entries older than 225 days
-        Date dateObj = system.today().addDays(-225);
-        String query = 'SELECT Id,CreatedDate FROM MB_Billing_Entity__c WHERE CreatedDate <=: '+dateObj;
+        
+        String query = 'SELECT Id,CreatedDate FROM MB_Billing_Entity__c WHERE CreatedDate < LAST_N_MONTHS:7';
         return Database.getQueryLocator(query);
     }
  
