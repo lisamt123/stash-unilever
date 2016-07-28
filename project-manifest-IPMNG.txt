@@ -187,6 +187,8 @@ src/classes/IPM_ProjectSearchCtrl.cls
 src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
 src/classes/IPM_ProjectSectionContentHelper.cls
 src/classes/IPM_ProjectSectionContentHelper.cls-meta.xml
+src/classes/IPM_ProjectSetUpController.cls
+src/classes/IPM_ProjectSetUpController.cls-meta.xml
 src/classes/IPM_ProjectSetUpController_Test.cls
 src/classes/IPM_ProjectSetUpController_Test.cls-meta.xml
 src/classes/IPM_ProjectTriggerHandler.cls
@@ -515,6 +517,8 @@ src/pages/IPM_ProjectOverview.page
 src/pages/IPM_ProjectOverview.page-meta.xml
 src/pages/IPM_ProjectSearchPage.page
 src/pages/IPM_ProjectSearchPage.page-meta.xml
+src/pages/IPM_ProjectSetUpView.page
+src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_RolloutPlansAdd.page
 src/pages/IPM_RolloutPlansAdd.page-meta.xml
 src/pages/IPM_RolloutPlansRegional.page
