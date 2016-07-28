@@ -1,4 +1,4 @@
-@IsTest(SeeAllData=true)
+@IsTest(seeAlldata=true)
 public with sharing class aa_Agent_Report_Trigger_Handler_Test {
 
     //private static aa_Agent_Report__c objReport = null;

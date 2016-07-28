@@ -12,17 +12,12 @@ public class AA_Follow_UnFollow_SchedularTest {
         agentCustomSetting.Name = 'Follow Batch Last Run Time';
         insert agentCustomSetting;
         test.starttest();
-        AA_Follow_UnFollow_Schedular obj1 = new AA_Follow_UnFollow_Schedular();
-         
+                
         String sc = System.schedule('ScheduleApexClassTest',
                         CRON_EXP, 
                         new AA_Follow_UnFollow_Schedular());
-        
-        
-        
-            //SchedulableContext sc;
-		//AA_Follow_UnFollow_Schedular.execute(sc);
-        //System.assert(obj1 != null);
+
+        System.assert(CRON_EXP != sc ); 
         test.stoptest();
     }
 }
