@@ -1175,4 +1175,67 @@ private class IPM_ProjectOverviewCtrl_Test
         
         }
      }
+	//Testmethod to validate stop project functionalities
+    static testMethod void testStopProjects(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+         
+        system.runAs(platformUser)
+        {
+        initializedData();
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
+        Test.setCurrentPage(pRef1);
+        //initialise standard and custom controller
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
+        //initialise public variables
+        overCtrl1.categryId = null;
+        overCtrl1.CategoryGroupId = null;
+    	overCtrl1.BrandPositionId = null;
+    	overCtrl1.stopButtonHoverText = null;
+    	overCtrl1.reactivateProjectFlag = null;
+    	overCtrl1.isBrandVisible = null;
+    	overCtrl1.isChecked = null;
+    	overCtrl1.StoppedMsg = null;
+    	
+    	//earliest TLD functionality
+    	overCtrl1.earliestTLD = string.valueof(system.now());
+    	string eTLD =overCtrl1.getEarlTLD();
+    	system.assertEquals(eTLD,overCtrl1.earliestTLD,'earliest TLD is not matched');//positive test
+        
+        //stop project functionality
+        
+        overCtrl1.project = null;
+        overCtrl1.stopProject();//pass project as null and test negative scenario
+        List<IPM_Project__c> noStopProjectList =[SELECT Is_Archieved__c  FROM IPM_Project__c WHERE Id =:project.id LIMIT 1];
+        system.assertEquals(noStopProjectList[0].Is_Archieved__c,false,'project is stopped');//negative test
+        
+        overCtrl1.project = project;
+        overCtrl1.stopProject();//call this method for positive test
+        
+        List<IPM_Project__c> stopProjectList =[SELECT Is_Archieved__c  FROM IPM_Project__c WHERE Id =:project.id LIMIT 1];
+        system.assertEquals(stopProjectList[0].Is_Archieved__c,true,'project is not getting stopped');//positive test
+        
+        //Cancel stopped project
+        project.IPM_PrepareForArchival__c = true;
+        update project;
+        List<IPM_Project__c> projectList =[SELECT IPM_PrepareForArchival__c  FROM IPM_Project__c WHERE Id =:project.id LIMIT 1];
+        system.assertEquals(projectList[0].IPM_PrepareForArchival__c,true,'IPM_PrepareForArchival__c is false');//positive test
+        
+        overCtrl1.cancelStoppingProject();//call for negative test
+        overCtrl1.project= null;
+        List<IPM_Project__c> cancelStopProjectList =[SELECT IPM_PrepareForArchival__c  FROM IPM_Project__c WHERE Id =:project.id LIMIT 1];
+        system.assertEquals(cancelStopProjectList[0].IPM_PrepareForArchival__c,true,'project cancel is done');//negative test
+        
+        overCtrl1.project = project;
+        overCtrl1.project.IPM_CancelStoppingProjectTill__c = system.now().adddays(1);
+        overCtrl1.cancelStoppingProject();//call for positive test
+        List<IPM_Project__c> cancelProjectList =[SELECT IPM_PrepareForArchival__c  FROM IPM_Project__c WHERE Id =:project.id LIMIT 1];
+        system.assertEquals(cancelProjectList[0].IPM_PrepareForArchival__c,false,'project cancel is not done');//positive test
+        
+        overCtrl1.project.id = null;
+        overCtrl1.cancelStoppingProject();//call for negative test
+        Test.stopTest();
+        }
+    }
 }
