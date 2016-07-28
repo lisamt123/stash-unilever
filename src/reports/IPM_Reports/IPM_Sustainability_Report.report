@@ -103,9 +103,6 @@
         <field>IPM_Assessment__c.IPM_Assessment_Waste_PCU_Percentage__c</field>
     </columns>
     <columns>
-        <field>IPM_Assessment__c.QM_Global_Category_Average_View_Waste__c</field>
-    </columns>
-    <columns>
         <field>IPM_Assessment__c.IPM_Assessment_Water_PCU__c</field>
     </columns>
     <columns>

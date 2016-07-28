@@ -114,6 +114,7 @@ src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
 src/classes/IPM_ValidationHelper.cls
 src/classes/IPM_ValidationHelper.cls-meta.xml
+src/classes/IPM_WithoutSharingHelper.cls
 src/classes/IPM_WithoutSharingHelper.cls-meta.xml
 src/components
 src/components/IPM_BCC_Consolidate.component

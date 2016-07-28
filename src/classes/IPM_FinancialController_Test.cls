@@ -599,7 +599,7 @@ public class IPM_FinancialController_Test {
                 
                 system.assertEquals(flag, true,'Incremental PL proft cannot be validated');
                 
-                ipmFinCon.validateY0PBO(IPM_ConstantUtils.INVALID_VALUE);
+                //ipmFinCon.validateY0PBO(IPM_ConstantUtils.INVALID_VALUE);
                 
                 system.assertEquals(ipmFinCon.isValidationFailed, true,'Year0 PBO cannot be validated');
                 
