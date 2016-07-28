@@ -2,11 +2,3 @@ src
 src/classes
 src/classes/IPM_ProcessRolloutStatusAndDates.cls
 src/classes/IPM_ProcessRolloutStatusAndDates.cls-meta.xml
-src/classes/IPM_ProjectHandler.cls
-src/classes/IPM_ProjectHandler.cls-meta.xml
-src/classes/IPM_ProjectRolloutHandler.cls
-src/classes/IPM_ProjectRolloutHandler.cls-meta.xml
-src/classes/IPM_RolloutPlansTableController.cls
-src/classes/IPM_RolloutPlansTableController.cls-meta.xml
-src/classes/IPM_RolloutPlanTLDSync.cls
-src/classes/IPM_RolloutPlanTLDSync.cls-meta.xml

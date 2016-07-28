@@ -3,8 +3,8 @@
 * @date         27/04/2015
 * @description  This class is used for updating the rollout status and dates
 */
-
-/* This class is being used to Set First and Follower on a rollout/Project , which needs access to all Rollout and 
+ 
+/* This class is being used to Set First and Follower on a rollout/Project and updated TLD, which needs access to all Rollout and 
    Projects associated with a project, hence has been set as Without Sharing.
 */
 
@@ -80,8 +80,6 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                     }
                 }    
            	}
-
-           	Map<Id,IPM_Project__c> regionalProjectMap = new Map<Id,IPM_Project__c>();
            	
            	if(!regionalProjectList.isEmpty())
            	{
@@ -112,7 +110,6 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
 	                    projectToTargetTLDMap.put(regionalProject.id,minimumdateRollout.Target_Launch_Date__c);
 	                } 
 	           	}
-            	regionalProjectMap = new Map<Id,IPM_Project__c>(lstRegionalProjects);
            	}
            
            	populateRolloutStatus(lstGlobalProjects);
@@ -150,7 +147,6 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
 
     public static void updateParentRolloutTLD(Set<Id> parentProjectIdSet)
     {
-    	Map<Id,IPM_Project__c> tempProjectMap = new Map<Id,IPM_Project__c>();
     	// get the latest TLD Date from project.
     	Map<Id,IPM_Project__c> parentProjectsMap = new Map<Id,IPM_Project__c>([SELECT Id, IPM_Project_Rollout__c, Rollout_Plan_Target_Launch_Date__c FROM IPM_Project__c 
     												WHERE Id IN: parentProjectIdSet and IPM_Project_Rollout__c != null AND Is_Archieved__c = false LIMIT 50000]);
