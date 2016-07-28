@@ -7,8 +7,8 @@ public with sharing class aa_Agent_Report_Trigger_Handler_Test {
         //aa_Agent_Report_Trigger_Handler.aa_Agent_Report_Trigger_Handler();
         new aa_Agent_Report_Trigger_Handler().bulkBefore();
         new aa_Agent_Report_Trigger_Handler().bulkAfter();
-        SObject so;
-        SObject oldSo;
+        SObject so=new aa_Agent_Report__c();
+        SObject oldSo=new aa_Agent_Report__c();
         //new aa_Agent_Report_Trigger_Handler().beforeInsert(so);
         /***********************/
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
