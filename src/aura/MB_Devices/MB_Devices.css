@@ -42,3 +42,6 @@
 .THIS .first_class{
    border-bottom:2px solid #0070d2;
 }
+.THIS .device_img img{
+    width:90%;
+}

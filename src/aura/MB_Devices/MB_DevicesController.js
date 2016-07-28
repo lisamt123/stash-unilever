@@ -56,10 +56,7 @@
                             	result[i].deviceImageUrl='';
                             	result[i].deviceImageUrl='/resource/MB_Icons/MB_Icons/phone_portrait_120.png';
                          	}                         
-                         }
-                      
-                         
-                        }
+                         }  }
                     component.set("v.showDevice",true);
                     component.set("v.Device_Details",response.getReturnValue());
                     component.set("v.userName",result[0].userName);
@@ -71,21 +68,17 @@
                     }
                    var ipassAmount= component.get("v.iPassTotalAmount")[0];
                     usertotalUsage=Number(usertotalUsage+ipassAmount.iPassTotalAmount).toFixed(2);
-                    component.set("v.totalUsage",usertotalUsage);
-                }
+                    component.set("v.totalUsage",usertotalUsage);                }
                 //Get the current username if the current user does not have any spend for current month
-                else{
-                    var action1=component.get("c.getUserName");
+                else{ var action1=component.get("c.getUserName");
                     action1.setCallback(this, function(response) {
                         var state = response.getState();
                         if (state === "SUCCESS" && response.getReturnValue()!=='') {
                             //component.set("v.showDevice",false);
                             component.set("v.userName",response.getReturnValue());
-                        }
-                    });
+                        }  });
                     $A.enqueueAction(action1);  
-                }
-            }
+                }         }
             component.set("v.showspinner","false"); 
         });
         $A.enqueueAction(action);
@@ -93,19 +86,16 @@
         action2.setCallback(this, function(response) {
             var state = response.getState(); 
             //alert(response.getReturnValue());
-            if (state === "SUCCESS" && response.getReturnValue()!=='') {
-                
+            if (state === "SUCCESS" && response.getReturnValue()!=='') { 
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                                         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
                 ga('create',response.getReturnValue(), 'auto');
-                ga('send', 'pageview');  
-            }                  
+                ga('send', 'pageview');    }                  
         });
         $A.enqueueAction(action2);
     },
-    
     //This method redirects selected device's spend details page
     gotoDetailSummary:function(component, event, helper){
         //var dataid = document.getElementById("outerdiv");
@@ -154,15 +144,12 @@
                 }
                 else{
                     component.set("v.showDevice",false); 
-                }
-            }
+                }}
         });
         $A.enqueueAction(action);
     },
-    gotoIpassCharts:function(component, event, helper){
-        
+    gotoIpassCharts:function(component, event, helper){        
         var detailpage_event=$A.get("e.c:MB_IPassDevice_Event");   
         detailpage_event.setParams({"UsageType":"iPass","CurrentMonth":component.get("v.CurrentMonth")}).fire();
     },
-
 })

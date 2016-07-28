@@ -272,7 +272,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
-        <displayFormat>BE-{0000000}</displayFormat>
+        <displayFormat>BE-{DD}-{MM}-{YY}-{00000000}</displayFormat>
         <label>Name</label>
         <type>AutoNumber</type>
     </nameField>
