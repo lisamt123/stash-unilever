@@ -159,7 +159,6 @@ function scriptPanelLoad(){
         tldOrignalValue = param.value;
         if(newTLDValue !== tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
-            jq('[id$=hiddenDateVal]').val(true) ;
             return false;
         }
         return true;
@@ -174,7 +173,6 @@ function scriptPanelLoad(){
     var selectedDateInputBox = "";
     function setChangedDate()
     {
-        unsaved = false;
         saveChangedTLDjs();
     }
     
