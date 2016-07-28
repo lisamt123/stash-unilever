@@ -1,0 +1,7 @@
+src
+src/objects
+src/objects/Snap_test__c.object
+src/objects/X_Snaptest1__c.object
+src/analyticSnapshots/SuMo_Chatter_Activity.snapshot
+src/reports/Others/X_Snap_rep_actual.report
+src/reportTypes/X_snap_rep.reportType
