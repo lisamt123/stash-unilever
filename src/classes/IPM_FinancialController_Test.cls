@@ -619,7 +619,7 @@ public class IPM_FinancialController_Test {
                 
                 system.assertEquals(flag, true,'Gross profit validation failed');
                 
-                ipmFinCon.validateY0GrossProfit(IPM_ConstantUtils.INVALID_VALUE);
+                //ipmFinCon.validateY0GrossProfit(IPM_ConstantUtils.INVALID_VALUE);
                 system.assertEquals(ipmFinCon.isValidationFailed, true,'Year0 Gross profit cannot be validated');
         }
         if (part == EXEC_PART_3){

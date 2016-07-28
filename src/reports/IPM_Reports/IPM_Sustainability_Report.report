@@ -109,9 +109,6 @@
         <field>IPM_Assessment__c.IPM_Assessment_Water_PCU_Percentage__c</field>
     </columns>
     <columns>
-        <field>IPM_Assessment__c.QM_Global_Category_Average_View_Water__c</field>
-    </columns>
-    <columns>
         <field>IPM_Assessment__c.IPM_Comparison_Rep_GTU_Code__c</field>
     </columns>
     <columns>
