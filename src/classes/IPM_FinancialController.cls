@@ -2578,31 +2578,34 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @param        NONE
     * @return       NONE
     *******************************************************************************************************************************************/
-    private void setMisalignedValue(){
-            isTLDYearMisaligned = false;
-            Integer localProjectTLDYear = 0;
-            Integer localProjectRolloutTLDYear = 0;
-            List<IPM_Project__c> projList = new List<IPM_Project__c>();
-            List<IPM_Project_Rollout__c> projRolloutList = new List<IPM_Project_Rollout__c>();
-            localProjectTLD = IPM_ConstantUtils.BLANK;
-            localProjectRolloutTLD = IPM_ConstantUtils.BLANK;
-            Boolean flag = false;
-            String localProjectName = IPM_ConstantUtils.BLANK;
-            localRolloutProject = null;
-            showMisalignedConfirmbtn = true;
-            mcoCountryRolloutPlan = null;
-            //get the Rollout related to the project currently to get the TLD and year details
-            if(project != null && currentFinancial != null && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
-                if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-	            //Assign Local Project Target Launch Date
-                    localProjectTLD = project.IPM_Target_Launch_Dates__c.format();
-		    //Assign Local Project Target Launch Year
-                    localProjectTLDYear = project.IPM_Target_Launch_Dates__c.year();
-		    //Assign Local Project Name
-                    localProjectName = project.Name;
-		    //Fetch Project Rollout list
-                    projRolloutList = [Select Target_Launch_Date__c, Previous_Target_Launch_Date__c ,MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where id=:project.IPM_Project_Rollout__c];
-		    //Check if project list has rollout or not 
+    private void setMisalignedValue()
+	{
+        isTLDYearMisaligned = false;
+        Integer localProjectTLDYear = 0;
+        Integer localProjectRolloutTLDYear = 0;
+        List<IPM_Project__c> projList = new List<IPM_Project__c>();
+        List<IPM_Project_Rollout__c> projRolloutList = new List<IPM_Project_Rollout__c>();
+        localProjectTLD = IPM_ConstantUtils.BLANK;
+        localProjectRolloutTLD = IPM_ConstantUtils.BLANK;
+        Boolean flag = false;
+        String localProjectName = IPM_ConstantUtils.BLANK;
+        localRolloutProject = null;
+        showMisalignedConfirmbtn = true;
+        mcoCountryRolloutPlan = null;
+     	//get the Rollout related to the project currently to get the TLD and year details
+        if(project != null && currentFinancial != null && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
+             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+            	//Assign Local Project Target Launch Date
+               localProjectTLD = project.IPM_Target_Launch_Dates__c.format();
+            
+        		//Assign Local Project Target Launch Year
+               localProjectTLDYear = project.IPM_Target_Launch_Dates__c.year();
+               
+        		//Assign Local Project Name
+               localProjectName = project.Name;
+        		//Fetch Project Rollout list
+               projRolloutList = [Select Target_Launch_Date__c, Previous_Target_Launch_Date__c ,MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where id=:project.IPM_Project_Rollout__c];
+            	//Check if project list has rollout or not 
                 if(!projRolloutList.isEmpty()) {
 			//Assign Rollout Target Launch Date
                         localProjectRolloutTLD = projRolloutList[0].Target_Launch_Date__c.format();
@@ -2611,134 +2614,167 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			//Assign rollout
                         mcoCountryRolloutPlan = projRolloutList[0];
                     }
-                    localRolloutProject = project;
-                } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {// if project is regional get the project detials based currentFinanical
-                    String financialExternalIdString;
-                //Check if Financial external id ends with '_NONKEY'
-                    if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
-                        financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-                    } else {
-                        financialExternalIdString = currentFinancial.Financial_External_ID__c;
-                    }
-                    projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From Regional_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c   where id=:project.id];
-                    if(!projList.isEmpty() && !projList[0].Regional_Project_Rollout__r.isEmpty()) {
-                            Date tempTLD = null;
-                            for(IPM_Project_Rollout__c rollout:projList[0].Regional_Project_Rollout__r) {
-                                String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-                            //Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
-                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                                //Assign the earliest TLD from non key MCOs
-                                if(tempTLD == null){
-                                        mcoCountryRolloutPlan = rollout;
-                                        tempTLD = rollout.Target_Launch_Date__c;
-                                    } else if (tempTLD>rollout.Target_Launch_Date__c){
-                                        mcoCountryRolloutPlan = rollout;
-                                        tempTLD = rollout.Target_Launch_Date__c;
-                                    }
-                                } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
+               localRolloutProject = project;
+            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {// if project is regional get the project detials based currentFinanical
+                String financialExternalIdString;
+            	//Check if Financial external id ends with '_NONKEY'
+                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
+                    financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
+                } else {
+                    financialExternalIdString = currentFinancial.Financial_External_ID__c;
+                }
+                projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From Regional_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c   where id=:project.id];
+                if(!projList.isEmpty() && !projList[0].Regional_Project_Rollout__r.isEmpty()) {
+                        Date tempTLD = null;
+                        for(IPM_Project_Rollout__c rollout:projList[0].Regional_Project_Rollout__r) {
+                            String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
+                        	//Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
+                            if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                            //Assign the earliest TLD from non key MCOs
+                            if(tempTLD == null){
                                     mcoCountryRolloutPlan = rollout;
-                                    break;
+                                    tempTLD = rollout.Target_Launch_Date__c;
+                                } else if (tempTLD>rollout.Target_Launch_Date__c){
+                                    mcoCountryRolloutPlan = rollout;
+                                    tempTLD = rollout.Target_Launch_Date__c;
                                 }
-                            }                       
-                    //Assign local project rollout TLD  
-                        localProjectRolloutTLD = mcoCountryRolloutPlan.Target_Launch_Date__c.format();
-                    //Assign local project rollout TLD year
-                        localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();                                               
-                    }
-                    if(!projList.isEmpty() && !projList[0].IPM_Projects__r.isEmpty()) {
-                        localProjectTLD = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.format();
-                        localProjectTLDYear = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.year();
-                        localProjectName = projList[0].IPM_Projects__r[0].Name;
-                        localRolloutProject = projList[0].IPM_Projects__r[0]; 
-                    }
+                            } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
+                                mcoCountryRolloutPlan = rollout;
+                                break;
+                            }
+                        }                       
+                	//Assign local project rollout TLD  
+                    localProjectRolloutTLD = mcoCountryRolloutPlan.Target_Launch_Date__c.format();
+                 
+                	//Assign local project rollout TLD year
+                    localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();  
+                        
+                }
+                if(!projList.isEmpty() && !projList[0].IPM_Projects__r.isEmpty()) {
+                    localProjectTLD = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.format();
+                    localProjectTLDYear = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.year();
+                    localProjectName = projList[0].IPM_Projects__r[0].Name;
+                    localRolloutProject = projList[0].IPM_Projects__r[0]; 
                 }
             }
-            // check for the misalignment 
-            if(localProjectTLD!= IPM_ConstantUtils.BLANK && localProjectTLD!=localProjectRolloutTLD) {
-                flag = true;
-                isMisalignedTLD  = true;
-                validationErrorMessage = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
-                if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) {
-                	isTLDYearMisaligned = true;
-                	validationErrorMessage += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
-                }
-               // misalignment message 
-            } else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
-                isMisalignedTLD  = false;
-                validationErrorMessage = IPM_ConstantUtils.BLANK;
-            }          
-            isTargetLaunchDateMisaligned =  flag; 
-            //check for the operational type project to check for the misalignment.                              
-            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=null && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) {
-            	showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
-            	currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
-            	if(project.Previous_Target_Launch_Date__c!=null)
-            	{
-            	  previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
-            	}
-            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
-                if(currentFinancial != null){
-                        IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c,isActive__c,IPM_Rollout_Span__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];                    
-                        if(!proj.IPM_Project_Rollout__r.isEmpty()) 
-                        {
-                            Date earliestTLD = null;
-                            for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
-                                String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-                //Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
-                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL) {
-                                //Assign the earliest TLD from non key MCOs
-                                    if(earliestTLD == null){
-                                        mcoCountryRolloutPlan = rollout;
-                                        earliestTLD = rollout.Target_Launch_Date__c;
-                                    } else if (earliestTLD>rollout.Target_Launch_Date__c){
-                                        mcoCountryRolloutPlan = rollout;
-                                        earliestTLD = rollout.Target_Launch_Date__c;
-                                    }
-                                } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
-                                    mcoCountryRolloutPlan = rollout;
-                                    break;
-                                }
-                            }
-			}
-			// check for the misalignment                                          
-                        if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
-                                showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
-                                currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();  
-                                previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();                               
-                                if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
-                                    showMisalignedConfirmbtn = true;
-                                } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
-                                    showMisalignedConfirmbtn = true;
-                                }
-                        }                        
-                }
-            }else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){// misalignment for the regional projects 
-                if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
-                    showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
-                    previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
-                    currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();                 
-		    // check for the misalignment
-                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
-                        showMisalignedConfirmbtn = true;
-                    } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
-                        showMisalignedConfirmbtn = true;
-                    }  
-                 }    
-            } else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {// misalignment for the local projects 
-                    if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
-                    showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
-                    previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
-                    currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();                 
-            	    // check for the misalignment
-                    if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
-                        showMisalignedConfirmbtn = true;
-                    } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
-		    showMisalignedConfirmbtn = true;
-                        } 
-                    } 
-                 
-            } 
         } 
+        // check for the misalignment 
+        if(localProjectTLD!= IPM_ConstantUtils.BLANK && localProjectTLD!=localProjectRolloutTLD) 
+        {
+            flag = true;
+            isMisalignedTLD  = true;
+            validationErrorMessage = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
+            if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) 
+            {
+                isTLDYearMisaligned = true;
+                validationErrorMessage += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
+            }
+           // misalignment message 
+        } 
+        else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
+            isMisalignedTLD  = false;
+            validationErrorMessage = IPM_ConstantUtils.BLANK;
+        }
+                  
+        isTargetLaunchDateMisaligned =  flag; 
+        //check for the operational type project to check for the misalignment.                              
+        if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=null && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) 
+        {
+            showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
+            currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
+            if(project.Previous_Target_Launch_Date__c!=null)
+            {
+              previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
+            }
+        } 
+        else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) 
+        {
+            if(currentFinancial != null)
+            {
+                    IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c,isActive__c,IPM_Rollout_Span__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];                    
+                    if(!proj.IPM_Project_Rollout__r.isEmpty()) 
+                    {
+                        Date earliestTLD = null; 
+                        for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
+                            String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
+            				//Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
+                            if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL) {
+                            		//Assign the earliest TLD from non key MCOs
+                                   if(earliestTLD == null){
+                                    mcoCountryRolloutPlan = rollout;
+                                    earliestTLD = rollout.Target_Launch_Date__c;
+                                } else if (earliestTLD>rollout.Target_Launch_Date__c){
+                                    mcoCountryRolloutPlan = rollout;
+                                    earliestTLD = rollout.Target_Launch_Date__c;
+                                }
+                            } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
+                                mcoCountryRolloutPlan = rollout;
+                                break;
+                            }
+                        }
+        }
+        			// check for the misalignment                                          
+                    if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
+                            showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
+                            currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();
+                            previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
+                            if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
+                                showMisalignedConfirmbtn = true;
+                            } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
+                                showMisalignedConfirmbtn = true;
+                            }
+                    }                        
+            }
+        }
+        else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {// misalignment for the regional projects 
+            if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
+                showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
+                previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
+                currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();          
+        		// check for the misalignment
+                if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK){
+                    showMisalignedConfirmbtn = true;
+                } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
+                    showMisalignedConfirmbtn = true;
+                }  
+             }    
+        } 
+        else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) 
+        {	// misalignment for the local projects 
+        	if(localRolloutProject != null && localRolloutProject.Previous_Target_Launch_Date__c !=null && localRolloutProject.IPM_Target_Launch_Dates__c !=null)
+        	{
+            	showMisalignedConfirmbtn = localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c;
+            	previousTargetLaunchDate = localRolloutProject.Previous_Target_Launch_Date__c.format();
+                currentTargetLaunchDate = localRolloutProject.IPM_Target_Launch_Dates__c.format();
+        		// check for the misalignment
+                if(project.IPM_Target_Launch_Dates__c == null || project.IPM_Target_Launch_Dates__c.format() == IPM_ConstantUtils.BLANK || project.Previous_Target_Launch_Date__c == null || project.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK )
+                {
+                    showMisalignedConfirmbtn = true;
+                }
+                else if (project.IPM_Target_Launch_Dates__c.format() == project.Previous_Target_Launch_Date__c.format())
+                {
+                	showMisalignedConfirmbtn =true;
+                }
+        	}
+        	/* 
+            if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null)
+            {
+            	showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
+            	previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();            	
+            	currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();             
+    			// check for the misalignment
+            	if(mcoCountryRolloutPlan.Target_Launch_Date__c == null || mcoCountryRolloutPlan.Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c == null || mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() == IPM_ConstantUtils.BLANK)
+            	{
+                	showMisalignedConfirmbtn = true;
+            	}
+            	else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() )
+            	{
+                	showMisalignedConfirmbtn = true;
+            	}
+         	} */
+        } 
+    }
         
         
     public void updateVolumeType()
@@ -2796,7 +2832,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         }
     }
-	/****************************************************************************************************************
+    /****************************************************************************************************************
     *@Description:checks for local project financial
     *
     *****************************************************************************************************************/
@@ -2852,53 +2888,52 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             currentFinancialId = statefulCurrentFinancialId;
         }
-		
-		// If previousfinancialId is null, it means there is no current financial set, which means that this is the first time page is loading.
-		
-		// If previousfinancialId is not null, it means there is a current financial set, which means that we are navigating from one financial tab to another.
+        
+        // If previousfinancialId is null, it means there is no current financial set, which means that this is the first time page is loading.
+        
+        // If previousfinancialId is not null, it means there is a current financial set, which means that we are navigating from one financial tab to another.
         if (previousFinancialId != null)
         {
-        	//In case of Tab change, check if the previous financial Id still holds true and exists in the current financial View.
-        	
-	    	//first check the previous financial in list of Non consolidated financials in the new tab 
-	    	//lRolloutWrapper holds all the non-consolidated financials existing for the current financial view
-	    	if(!lstRolloutWrappers.isEmpty()){
-	    	for(RolloutWrapper lRolloutWrapper :lstRolloutWrappers)
-	    	{
-	    		List<IPM_Financial__c> associatedFinancials = lRolloutWrapper.lstFinancials;
-	    		Map<Id,IPM_Financial__c> associatedFinancialMap = new Map<Id,IPM_Financial__c>(associatedFinancials);
-	    		if(associatedFinancialMap.containsKey(previousFinancialId))
-	    		{
-	    			currentFinancialId = previousFinancialId;
-	    			break;
-	    		}
-	    	}
-        	}
-	    	
-	    	//if currentFinancialId == null this means that the previous financial was not present in non-consolidated financials existing for the current financial view
-	    	//So check if the previous finacial is present in the list of consolidated financials existing for the current financial view
-	    	//mapConsolidatedFinancials hold the consolidated financials existing for the current financial view
-	    	if(currentFinancialId ==null)
-	    	{
-				for(IPM_Financial__c associatedConsolidatedFin : mapConsolidatedFinancials.values())
-				{
-					if(previousFinancialId == associatedConsolidatedFin.Id)
-					{
-						currentFinancialId = previousFinancialId;
-						break;
-					}
-				}
-	    	}	
+            //In case of Tab change, check if the previous financial Id still holds true and exists in the current financial View.
+            
+            //first check the previous financial in list of Non consolidated financials in the new tab 
+            //lRolloutWrapper holds all the non-consolidated financials existing for the current financial view
+            if(!lstRolloutWrappers.isEmpty()){
+                for(RolloutWrapper lRolloutWrapper :lstRolloutWrappers)
+                {
+                    List<IPM_Financial__c> associatedFinancials = lRolloutWrapper.lstFinancials;
+                    Map<Id,IPM_Financial__c> associatedFinancialMap = new Map<Id,IPM_Financial__c>(associatedFinancials);
+                    if(associatedFinancialMap.containsKey(previousFinancialId))
+                    {
+                        currentFinancialId = previousFinancialId;
+                        break;
+                    }
+                }
+            }
+            
+            //if currentFinancialId == null this means that the previous financial was not present in non-consolidated financials existing for the current financial view
+            //So check if the previous finacial is present in the list of consolidated financials existing for the current financial view
+            //mapConsolidatedFinancials hold the consolidated financials existing for the current financial view
+            if(currentFinancialId ==null)
+            {
+                for(IPM_Financial__c associatedConsolidatedFin : mapConsolidatedFinancials.values())
+                {
+                    if(previousFinancialId == associatedConsolidatedFin.Id)
+                    {
+                        currentFinancialId = previousFinancialId;
+                        break;
+                    }
+                }
+            }
+              
         }
-        
-        
-        //if the current financial Id is still NULL then set it to the default financial Id
+         //if the current financial Id is still NULL then set it to the default financial Id
         //for global projects the defualtfinancialId is the associated global consolidated financial id
         //for regioanl projects the defualtfinancialId is the associated regional consolidated financial id
         if(currentFinancialId == null)
         {
-        	//If lstRolloutWrappers.lstFinancials is not empty then the rollouts have been created (hence financials for the rollouts are created), then set the currentFinancialId = defaultFinancialId;
-        	//Also for operational projects, set the currentFinancialId = defaultFinancialId since only one financial is generated : Consolidated
+            //If lstRolloutWrappers.lstFinancials is not empty then the rollouts have been created (hence financials for the rollouts are created), then set the currentFinancialId = defaultFinancialId;
+            //Also for operational projects, set the currentFinancialId = defaultFinancialId since only one financial is generated : Consolidated
             if((!lstRolloutWrappers.isEmpty() && !lstRolloutWrappers.get(0).lstFinancials.isEmpty()) || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL ){
         	currentFinancialId = defaultFinancialId;
         }
