@@ -831,11 +831,11 @@ div.metric table.ecoDesignCountry tr th.fourthCol div.colProject span{
 }
 
 div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
-    width:57%;
+    width:100px;
     float: left;
  }
  div.metric table.ecoDesignCountry tbody tr td div.cellWidth:last-child{
-    width: 41%;
+    width: 70px;
     float: left;
     padding-left: 10px;
  }
