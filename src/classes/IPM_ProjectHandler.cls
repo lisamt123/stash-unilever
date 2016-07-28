@@ -31,8 +31,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
     public Set<id>queueSet=new Set<id>();
-    private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
-    private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
+    private Map<Id,IPM_Project__c> TLDChangedProjectMap = new Map<Id,IPM_Project__c> {};
+    private Set<Id> updateTLDOnMilestones = new Set<Id> {};
     public static Map<String,IPM_Category__c> customSettingCategory = IPM_Category__c.getAll();
     public Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
     public static Map<String ,IPM_Category_Thresholds__mdt>  masterCategoryThrshMap ;
@@ -1108,14 +1108,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         IPM_Project__c oldProject = (IPM_Project__c) oldSo;
         IPM_Project__c newProject = (IPM_Project__c) so;
 
-        //To update Rollout TLD date on Rollout Projet Object
-        if((oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c) || (oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c))
+        //To update Rollout TLD date on Rollout Project Object
+        if(newProject.IPM_Project_Rollout__c!=null && (oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c))
         {
-            rolloutTLDChangedProjList.put(newProject.IPM_Project_Rollout__c,newProject);
+        	TLDChangedProjectMap.put(newProject.IPM_Project_Rollout__c,newProject);
         }
         if(oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c)
         {
-            tldChangeProjListForMilestones.add(newProject);
+            updateTLDOnMilestones.add(newProject.id);
         }
         
     }
@@ -1151,14 +1151,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         }
         
         
-        if(!tldChangeProjListForMilestones.isEmpty()){
-            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.updatedMilestoneTLD(tldChangeProjListForMilestones);     
+        if(!updateTLDOnMilestones.isEmpty())
+        {
+           IPM_ProcessRolloutStatusAndDates.updatedMilestoneTLD(updateTLDOnMilestones);     
         }
         
-        if(!rolloutTLDChangedProjList.isEmpty()){
-            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
+        if(!TLDChangedProjectMap.isEmpty())
+        {
+            IPM_ProcessRolloutStatusAndDates.updateTLDOnRollout(TLDChangedProjectMap);
         }
         
         // To update Sum of Y3 iTO's of Original Projects on IPM Project Cluster if the project under the cluster is deleted,project Y3 iTO changes or project is moved to another cluster

@@ -1029,8 +1029,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     //recalculate TLD when rollout is inactive
                     Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> ();
                     rolloutProjectTLDChanged.put(deleteRolloutList[0].id,deleteRolloutList[0]);
-                    IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-                    rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
                 }
                 else if(deleteRolloutList[0].IPM_CharterApproved__c)
                 {
