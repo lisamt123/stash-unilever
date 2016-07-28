@@ -47,7 +47,7 @@
                                 <apex:param value="{!ipmFinancial.NPV_Global__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.NPV_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.NPV_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -74,7 +74,7 @@
                                 <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.NPV_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.NPV_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -101,7 +101,7 @@
                                 <apex:param value="{!ipmFinancial.NPV_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.NPV_Local__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.NPV_Local__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
                         
                          <!-- Charter Values -->
@@ -141,7 +141,7 @@
                             -->
                             <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{!ipmFinancial.IRR_Global__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.IRR_Global__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.IRR_Global__c}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -164,7 +164,7 @@
                             -->
                             <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{!ipmFinancial.IRR_Regional__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.IRR_Regional__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.IRR_Regional__c}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -187,7 +187,7 @@
                             -->
                             <apex:outputText styleClass="info" title="{!IRRErrorMsg}" value="{!ipmFinancial.IRR_Local__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.IRR_Local__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.IRR_Local__c}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
                         
                         <!-- Charter Values -->
@@ -231,7 +231,7 @@
                                 <apex:param value="{!ipmFinancial.Payback_Global__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -258,7 +258,7 @@
                                 <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -285,7 +285,7 @@
                                 <apex:param value="{!ipmFinancial.Payback_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode -->
-                            <apex:inputText value="{!ipmFinancial.Payback_Local__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.Payback_Local__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
                         
                         <!-- Charter Values -->
@@ -307,7 +307,7 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder {!IF(AND(showMisalignment,NOT(isProjectStop),(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c > 0), 'misaligned', IF(isCAPEXInvalid,'yellowmisaligned',''))}">
                          
-                    <apex:variable value="{!if(!isCAPEXInvalid,'',if(isConsolidated,$Label.IPM_Possible_Error_Will_Not_Block_Progress,$Label.IPM_SVF_CAPEX))}" var="CAPEXErrorMsg" />
+                    <apex:variable value="{!if(!isCAPEXInvalid,'',if(isConsolidated,$Label.IPM_SVF_Please_check_your_MCO_financials,$Label.IPM_SVF_CAPEX))}" var="CAPEXErrorMsg" />
                         
                         <!-- Global Values -->
                         <!-- For only Global the following section will be rendered -->
@@ -334,7 +334,7 @@
                             </apex:outputText>
 
                             <!-- This section will be rendered if its edit mode or not consolidated-->
-                            <apex:inputText value="{!ipmFinancial.CAPEX_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -361,7 +361,7 @@
                                 <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode or not consolidated-->
-                            <apex:inputText value="{!ipmFinancial.CAPEX_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -388,7 +388,7 @@
                                 <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode or not consolidated-->
-                            <apex:inputText value="{!ipmFinancial.CAPEX_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
                         
                         <!-- Charter Values -->
@@ -429,7 +429,7 @@
                                 <apex:param value="{!ipmFinancial.BIC_Global__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode or not consolidated-->
-                            <apex:inputText value="{!ipmFinancial.BIC_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.BIC_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -456,7 +456,7 @@
                                 <apex:param value="{!ipmFinancial.BIC_Regional__c}" />
                             </apex:outputText> 
                             <!-- This section will be rendered if its edit mode or not consolidated-->
-                            <apex:inputText value="{!ipmFinancial.BIC_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.BIC_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -483,7 +483,7 @@
                                 <apex:param value="{!ipmFinancial.BIC_Local__c}" />
                             </apex:outputText>
                             <!-- This section will be rendered if its edit mode or not consolidated-->
-                            <apex:inputText value="{!ipmFinancial.BIC_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.BIC_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)" />
                         </apex:outputPanel>
                         
                         <!-- Charter Values -->
