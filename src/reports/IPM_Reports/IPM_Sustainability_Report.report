@@ -142,9 +142,6 @@
         <field>IPM_Assessment__c.IPM_Country_Category_Avg_GHG_PCU__c</field>
     </columns>
     <columns>
-        <field>IPM_Assessment__c.QM_Global_Category_Average_View_GHG__c</field>
-    </columns>
-    <columns>
         <field>IPM_Assessment__c.IPM_Country_Category_Avg_Waste_PCU__c</field>
     </columns>
     <columns>
