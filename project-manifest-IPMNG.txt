@@ -2,6 +2,10 @@ src
 src/classes
 src/classes/AbstractStandardSetExtension.cls
 src/classes/AbstractStandardSetExtension.cls-meta.xml
+src/classes/IPM_AssesmentHandler_Helper.cls
+src/classes/IPM_AssesmentHandler_Helper.cls-meta.xml
+src/classes/IPM_BBSectionData.cls
+src/classes/IPM_BBSectionData.cls-meta.xml
 src/classes/IPM_BCCController.cls
 src/classes/IPM_BCCController.cls-meta.xml
 src/classes/IPM_BCC_Consolidate_Controller.cls
@@ -28,6 +32,8 @@ src/classes/IPM_BosscardController.cls
 src/classes/IPM_BosscardController.cls-meta.xml
 src/classes/IPM_BosscardStatusController.cls
 src/classes/IPM_BosscardStatusController.cls-meta.xml
+src/classes/IPM_CMIGateSectionController.cls
+src/classes/IPM_CMIGateSectionController.cls-meta.xml
 src/classes/IPM_CU_Complexity_Consolidated.cls
 src/classes/IPM_CU_Complexity_Consolidated.cls-meta.xml
 src/classes/IPM_ChangProjectDocStatusController_Test.cls
@@ -108,6 +114,10 @@ src/classes/IPM_List_Milestones.cls
 src/classes/IPM_List_Milestones.cls-meta.xml
 src/classes/IPM_List_Milestones_Test.cls
 src/classes/IPM_List_Milestones_Test.cls-meta.xml
+src/classes/IPM_Milestone.cls
+src/classes/IPM_Milestone.cls-meta.xml
+src/classes/IPM_MilestoneHelper.cls
+src/classes/IPM_MilestoneHelper.cls-meta.xml
 src/classes/IPM_MyList.cls
 src/classes/IPM_MyList.cls-meta.xml
 src/classes/IPM_MyList_Test.cls
@@ -142,6 +152,8 @@ src/classes/IPM_ProcessRolloutStatusAndDates.cls
 src/classes/IPM_ProcessRolloutStatusAndDates.cls-meta.xml
 src/classes/IPM_ProjDocSectionController_Test.cls
 src/classes/IPM_ProjDocSectionController_Test.cls-meta.xml
+src/classes/IPM_ProjDocumentSectionHstryController.cls
+src/classes/IPM_ProjDocumentSectionHstryController.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails_Test.cls
@@ -168,6 +180,8 @@ src/classes/IPM_ProjectOverviewCtrl_Test.cls
 src/classes/IPM_ProjectOverviewCtrl_Test.cls-meta.xml
 src/classes/IPM_ProjectQuestionnaireHelper.cls
 src/classes/IPM_ProjectQuestionnaireHelper.cls-meta.xml
+src/classes/IPM_ProjectRolloutHandler.cls
+src/classes/IPM_ProjectRolloutHandler.cls-meta.xml
 src/classes/IPM_ProjectSearchCtrl.cls
 src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
 src/classes/IPM_ProjectSectionContentHelper.cls
@@ -184,6 +198,8 @@ src/classes/IPM_Resource_Allocation.cls
 src/classes/IPM_Resource_Allocation.cls-meta.xml
 src/classes/IPM_Resource_Allocation_Test.cls
 src/classes/IPM_Resource_Allocation_Test.cls-meta.xml
+src/classes/IPM_RolloutPlanTLDSync.cls
+src/classes/IPM_RolloutPlanTLDSync.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController.cls
 src/classes/IPM_RolloutPlansAddController.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController_Test.cls
@@ -218,6 +234,8 @@ src/classes/IPM_UpdateBETOnProject_Queueable.cls
 src/classes/IPM_UpdateBETOnProject_Queueable.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
+src/classes/IPM_ValidationHelper.cls
+src/classes/IPM_ValidationHelper.cls-meta.xml
 src/classes/IPM_WithoutSharingHelper.cls
 src/classes/IPM_WithoutSharingHelper.cls-meta.xml
 src/components
@@ -437,6 +455,7 @@ src/objects
 src/objects/IPM_Analytics_OTIF__c.object
 src/objects/IPM_Analytics__c.object
 src/objects/IPM_Assessment__c.object
+src/objects/IPM_Bosscard__c.object
 src/objects/IPM_Cat_Thrhl_Mrkt_Cluster__c.object
 src/objects/IPM_Category_EI_Matrix__mdt.object
 src/objects/IPM_Category_Thresholds__mdt.object
@@ -445,11 +464,13 @@ src/objects/IPM_Clusters__c.object
 src/objects/IPM_Company_Card__c.object
 src/objects/IPM_Country__c.object
 src/objects/IPM_EI_Water_Scarce_Countries__c.object
+src/objects/IPM_Financial_Year__c.object
 src/objects/IPM_Financial__c.object
 src/objects/IPM_MarketPerformanceBreakdown__c.object
 src/objects/IPM_Milestone__c.object
 src/objects/IPM_OTIF_Status__c.object
 src/objects/IPM_Project_Document_Section_Content__c.object
+src/objects/IPM_Project_Document_Section__c.object
 src/objects/IPM_Project_Document__c.object
 src/objects/IPM_Project_GKM_To_Phase_Matrix__mdt.object
 src/objects/IPM_Project_Metadata__mdt.object
@@ -533,6 +554,7 @@ src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
 src/workflows
 src/workflows/IPM_Milestone__c.workflow
+src/workflows/IPM_Project_Document_Section__c.workflow
 src/workflows/IPM_Project_Document__c.workflow
 src/workflows/IPM_Project_Resource__c.workflow
 src/workflows/IPM_Project_Rollout__c.workflow
