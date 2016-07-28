@@ -21,8 +21,8 @@
         .trend{
         width: 20px;
         float: left;
-        margin-left: 15%;
-        margin-right:-35%;
+		margin-left: 7%;
+    	margin-right: -24%;
         }
         .SMS .trend{
         margin-right:-45%;
@@ -78,6 +78,9 @@
         }
         .SMS .trend{
         margin-right:-15%;
+        }
+        .message_body {
+        min-height: 460px !important;
         }
         }
     </style>

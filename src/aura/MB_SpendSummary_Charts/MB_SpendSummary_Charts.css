@@ -84,8 +84,7 @@
     text-align: center;
 }
 .THIS .chartstext11{
-  line-height:11px;
-    margin-bottom:-17px;
+    margin-bottom:-8px;
 }
 .THIS .line_bar_data,.THIS .line_bar_calls,.THIS .line_bar_SMS,.THIS .line_bars_ipass{
     width: 20px;
@@ -122,4 +121,7 @@
 }
 .THIS .charttext{
     font-size:10px
+}
+.THIS .slds-text-body--regular {
+    line-height: 18px;
 }

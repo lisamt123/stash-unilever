@@ -24,9 +24,11 @@
             var state = response.getState(); 
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var result=response.getReturnValue();
-                if(result.iPassTotalAmount>0 || result.iPassDataConsumedinMB>0)
+               // alert(result.iPassTotalAmount);
+                if(result.iPassTotalAmount > 0 ) //|| result.iPassDataConsumedinMB>0
                {
-                   component.set("v.showDevice",true);
+                   component.set("v.showDevice",true); 
+                   component.set("v.showiPass",true);
                }
                 component.set("v.iPassTotalAmount",result);
             }                  
@@ -40,15 +42,23 @@
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var result=response.getReturnValue();
-                console.log("image url"+result.length );
+                console.log("image url"+result.deviceImageUrl );
                 if(result.length > 0){
                      for(var i=0;i<result.length;i++)
                         {   str=result[i].deviceImageUrl;
-                           var s=str.substring(str.length-4, str.length);
-                         if(s== 'null'){
+                         //alert(str);
+                         if(typeof str === 'undefined'){
                             result[i].deviceImageUrl='';
                             result[i].deviceImageUrl='/resource/MB_Icons/MB_Icons/phone_portrait_120.png';
+                         }else{
+                              var s=str.substring(str.length-4, str.length);
+                             if(s== 'null'){
+                            	result[i].deviceImageUrl='';
+                            	result[i].deviceImageUrl='/resource/MB_Icons/MB_Icons/phone_portrait_120.png';
+                         	}                         
                          }
+                      
+                         
                         }
                     component.set("v.showDevice",true);
                     component.set("v.Device_Details",response.getReturnValue());

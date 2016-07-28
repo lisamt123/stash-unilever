@@ -221,11 +221,11 @@ public class MB_Controller_Charts_Test{
   deviceWrapperClassObject4 = MB_Controller_Charts.getInsights(Month_April);
   System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsageIn,75.00);     
   System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsageIn,750.00); 
-  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsageIn,20.00);
+  System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsageIn,10.00);
    
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject5 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject5 = MB_Controller_Charts.getInsights('October 2015');
-  System.assertEquals(deviceWrapperClassObject5,null);
+  System.assertEquals(deviceWrapperClassObject5.userName,null);
   }    
                          
   Test.stopTest();
