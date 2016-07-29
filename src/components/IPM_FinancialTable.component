@@ -779,9 +779,6 @@
                     <apex:variable value="{!AND(showMisalignment,valueWrapper.difference != NULL,valueWrapper.difference > 0)}" var="GrossProfitMisAligned" />    
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossProfitAligned" />
-                    <apex:outputText >::valueWrapper.isValueInvalid{!valueWrapper.isValueInvalid}</apex:outputText>
-                	<apex:outputText >::valueWrapper.isGrossTOGRTIto{!valueWrapper.isGrossTOGRTIto}</apex:outputText>
-                	<apex:outputText >::GrossProfitMisAligned{!GrossProfitMisAligned}</apex:outputText>
                     <td class=" {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossProfitMisAligned), 'misaligned', If(AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross Profit value is misaligned in non-edit mode

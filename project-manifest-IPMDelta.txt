@@ -1,4 +1,6 @@
 src
 src/components
+src/components/IPM_FinancialTable.component
+src/components/IPM_FinancialTable.component-meta.xml
 src/components/IPM_LocalRolloutPlansTable.component
 src/components/IPM_LocalRolloutPlansTable.component-meta.xml
