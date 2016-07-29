@@ -582,10 +582,7 @@ public class IPM_FinancialController_Test {
                 }
                 system.assertEquals(flag, true, 'Gross profit validation failed');
                 
-                ipmFinCon.validateY0Turnover(IPM_ConstantUtils.INVALID_VALUE);
-                system.assertEquals(ipmFinCon.isy0TurnoverInvalid, true,'Y0 turnover cannot ve validated');
-                system.assertEquals(ipmFinCon.isValidationFailed, true,'Validation failed after validating Year0 turnover');
-                
+
                 flag = ipmFinCon.validateGrossTurnover(lstIncrementalPLProfit);
                 system.assertEquals(flag, true, 'Gross turnover cannot be validated');
                 
@@ -599,11 +596,8 @@ public class IPM_FinancialController_Test {
                 
                 system.assertEquals(flag, true,'Incremental PL proft cannot be validated');
                 
-                ipmFinCon.validateY0PBO(IPM_ConstantUtils.INVALID_VALUE);
                 
-                system.assertEquals(ipmFinCon.isValidationFailed, true,'Year0 PBO cannot be validated');
-                
-                flag = ipmFinCon.validateGrossPBO(lstIncrementalPLProfit);
+flag = ipmFinCon.validateGrossPBO(lstIncrementalPLProfit);
                     flag=true;
                
                 system.assertEquals(flag, true,'Gross PBO cannot be validated');
@@ -619,9 +613,7 @@ public class IPM_FinancialController_Test {
                 
                 system.assertEquals(flag, true,'Gross profit validation failed');
                 
-                ipmFinCon.validateY0GrossProfit(IPM_ConstantUtils.INVALID_VALUE);
-                system.assertEquals(ipmFinCon.isValidationFailed, true,'Year0 Gross profit cannot be validated');
-        }
+      }
         if (part == EXEC_PART_3){
                 
                 ipmFinCon.editFinancials();
