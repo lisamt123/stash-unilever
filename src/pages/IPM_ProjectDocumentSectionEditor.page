@@ -190,8 +190,8 @@
                                                         <div class="panel-group mrgbtmnone">
                                                             <div class="secComponent noMargin">
                                                                 <!---OLD BUTTON POSITIONS--->
+                                                                <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c!='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus>
                                                                 <c:IPM_Section_GateChecklist getSecid="{!projDocSecId}" getDocType="{!projDoc.IPM_GateDocuments__c}"  editGateSect="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c!='Business_Case_Action_Standards'}"></c:IPM_Section_GateChecklist>
-                                                                <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c!='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus> 
                                                                 <c:IPM_Assumptions projId="{!projectId}" gateType="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSecId}" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="{!IsEditableOutC}"></c:IPM_Assumptions>
                                                                 <c:IPM_Consumer_Evidence gate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="{!IsEditableOutC}" getSecid="{!projDocSec.Id}" rendered="{!AND(countOfCountries>=1,projDocSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept')}"></c:IPM_Consumer_Evidence>
                                                                 <c:IPM_RND_Questions gateDocType="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(OR(projdocsec.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',projdocsec.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}" RNDEdit="{!IsEditableOutC}" ></c:IPM_RND_Questions>
@@ -567,7 +567,6 @@
                                                                 <apex:outputPanel rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c='Risk',true,false)}">
                                                                     <c:IPM_Risk_Questionnaire getProjectId="{!if(AND(project.IPMProject_Span__c=='Local',project.IPM_Project_Type__c=='Rollout'),project.IPM_Parent_Project__c,projectId)}" getProjectSectionId="{!projDocSecId}" riskedit="{!IsEditableSumm}" editSection="true" gateType="{!projDoc.IPM_GateDocuments__c}"></c:IPM_Risk_Questionnaire>
                                                                 </apex:outputPanel>
-                                                                <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}"></c:IPM_Section_GateChecklist>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm-12">
@@ -627,6 +626,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                              <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}"></c:IPM_Section_GateChecklist>
                                                             <apex:actionFunction action="{!IsNotify}" name="Notify" reRender="pmsg">
                                                                 <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                             </apex:actionFunction>

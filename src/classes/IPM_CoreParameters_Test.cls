@@ -515,7 +515,7 @@ private with sharing class IPM_CoreParameters_Test {
             testProject.IPM_Project_Leader__c = userInitialize.id;
             testProject.Name = 'ProjectWithOut';
             testProject.IPM_ProjectSubType__c = 'Innovation/Renovation';
-            testProject.IPM_Category_Text__c = 'TestCategory';
+            testProject.IPM_Category_Text__c = 'Household care';
             testProject.IPM_Phase__c = 'Ideas';
             testProject.IPMProject_Span__c = 'Global';
             testProject.IPM_CompanyCardText__c = 'Global Company Card';
@@ -548,6 +548,7 @@ private with sharing class IPM_CoreParameters_Test {
             string proBET = [select bet__c from IPM_Project__c where id = : testProject.id].bet__c;
             Test.stopTest();
             system.assertEquals(null, proBET, 'BET not unlinked from IPM Project!');
+            System.assertEquals(null, sic2.PreSelectedBet);
             apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,''); 
             
            
