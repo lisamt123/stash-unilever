@@ -146,9 +146,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     }
     
     public List<selectoption> availableBrands{get;set;} 
-    public Boolean isBrandEditable{get;set;}
     public Boolean isBrandVisible{get;set;}
-    public string selectedBrand{get;set;}
     /****************************************************************************
     @Description: MEthod to unlink BET from IPM Project
     *****************************************************************************/
@@ -246,17 +244,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c))
         {   
             isBrandVisible=true;
-            Set<String> phaseSet =new Set<String>{IPM_ConstantUtils.PHASE_FEASIBILITY,IPM_ConstantUtils.PHASE_CAPABILITY,IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT,IPM_ConstantUtils.PHASE_PLE};
             
-            if(phaseSet.contains(IPM_Coreparameter.IPM_Phase__c))
-            {
-                isBrandEditable=false;
-            }
-            else if(IPM_ConstantUtils.PHASE_MARKET_READY.Equals(IPM_Coreparameter.IPM_Phase__c) && isEditable)
-            {
-                availableBrands=IPM_ProjectCountryDetails.getAvailableBrands(IPM_Coreparameter);
-                isBrandEditable=true;  
-            }
         }
     }
     @TestVisible private  void initialise(){
@@ -852,18 +840,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
         
     }
-    /****************************************************************************
-    @Description :This updates the brand of project rollout.
-    *****************************************************************************/
-    public void updateLocalRolloutBrand(){ 
         
-        if(IPM_Coreparameter.IPM_Project_Rollout__r.IPM_Brand__c!=selectedBrand && !String.isBlank(selectedBrand))   
-        {
-            IPM_Coreparameter.IPM_Project_Rollout__r.IPM_Brand__c=selectedBrand;
-            update  IPM_Coreparameter.IPM_Project_Rollout__r;
-        } 
     
-    }
       
     
     /****************************************************************************

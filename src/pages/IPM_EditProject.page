@@ -198,7 +198,7 @@
                                     </apex:outputPanel>
                                 </div>
                                 <div class="row brandPosContainer">
-                                    <div class="col-sm-6"> 
+                                    <div class="col-sm-4"> 
                                         <apex:outputPanel id="BrandPositionPanel" layout="block" styleClass="inputField">
                                             <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
                                             <span class="SecButtonSet infoMarTop">
@@ -261,11 +261,26 @@
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </div>
-                                    <div class="col-sm-6 rightColumn">
+                                     <div class="col-sm-4">
+                                    <apex:outputpanel rendered="{!isBrandVisible}" layout="block" styleClass="inputField">  
+                                        <div >  
+                                            <label styleClass="bsFieldLabel" >{!$Label.IPM_Local_Brand}</label> 
+                                            <apex:outputpanel rendered="{!NOT(isBrandEditable)}">
+                                                <span class="disp-blk"><apex:outputtext value="{!project.IPM_LocalProject_Brand__c}"/></span>    
+                                            </apex:outputpanel>
+                                            <apex:outputpanel rendered="{!isBrandEditable}" layout="block">
+                                                <apex:selectList styleClass="ipmSelect custSelectWidth selBrandPos" size="1" value="{!selectedBrand}"  >  
+                                                   <apex:selectOptions value="{!availableBrands}" />
+                                                </apex:selectList> 
+                                            </apex:outputpanel> 
+                                        </div>  
+                                    </apex:outputpanel> 
+                                     </div>
+                                    <div class="col-sm-4 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
                                             <!-- To display below inputField when current user has edit access on page   -->
-                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="checkTLDDate()"/>                                                              
+                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar custom_cal_width" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="checkTLDDate()"/>                                                              
                                             <!-- To display below outputField when current user has read access on page   -->
                                             <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!OR(!isEditable,!isTLDFieldEditable)}"/>
                                             <!-- To display below outputLabel when IPM_Target_Launch_Date__c field value has been selected from bosscard    -->

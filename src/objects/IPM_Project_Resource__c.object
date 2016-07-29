@@ -114,6 +114,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Is_Lead__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Project_Role_Owner__c,&apos;YES&apos;,&apos;NO&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Lead</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Locale_Time__c</fullName>
         <description>Local time value of project document section is copied.</description>
         <externalId>false</externalId>
