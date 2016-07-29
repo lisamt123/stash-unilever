@@ -628,7 +628,7 @@
         <fullName>IPM_Brand_and_BrandPos_Matched__c</fullName>
         <description>check if brand and brand position is matched</description>
         <externalId>false</externalId>
-        <formula>if(IPM_Brand_Position__c ==  Local_Rollout__r.IPM_Brand__c,&apos;true&apos;,&apos;false&apos;)</formula>
+        <formula>if(AND(IPM_Brand_Position__c != null,IPM_Brand_Position__c ==  Local_Rollout__r.IPM_Brand__c),&apos;true&apos;,&apos;false&apos;)</formula>
         <label>Brand and BrandPos Matched</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

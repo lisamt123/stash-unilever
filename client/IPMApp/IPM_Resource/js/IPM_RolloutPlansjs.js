@@ -159,7 +159,6 @@ function scriptPanelLoad(){
         tldOrignalValue = param.value;
         if(newTLDValue !== tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
-            jq('[id$=hiddenDateVal]').val(true) ;
             return false;
         }
         return true;
@@ -174,7 +173,6 @@ function scriptPanelLoad(){
     var selectedDateInputBox = "";
     function setChangedDate()
     {
-        unsaved = false;
         saveChangedTLDjs();
     }
     
@@ -222,10 +220,10 @@ jq('.rollSelectList').on('click', function (e) {
     holdRolloutsBrand(dataId,valueSelected);
 });
 jq(function(){
-    jq('.hideDupfield').each(function(){
-        var holder = jq(this).attr('value');
-       jq('.rollSelectList option').filter(function() {
-            return this.text === holder; 
-        }).attr('selected', true);
+    jq('.rollSelectList option').each(function(){
+      var holder = jq(this).parent().prev('.hideDupfield').attr('value');
+      if(jq(this).val() === holder){
+        jq(this).attr('selected', true);
+      }
     });    
 });

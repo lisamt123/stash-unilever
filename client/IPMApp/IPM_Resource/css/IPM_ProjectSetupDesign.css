@@ -1729,15 +1729,15 @@ margin-right:1px;
     -ms-transform: rotate(-45deg);
     }
 	
-	.icoButton.smalllinfo{
-		height: 16px ;
-		width: 16px ;
-		top: 0;
-		left: 5px;
+.icoButton.smalllinfo{
+	height: 16px ;
+	width: 16px ;
+	top: 0;
+	left: 5px;
 }
 .mtaskwizardcss .modal-body,.edittaskModal .modal-body{height: 90%;}
 .ipmDropDown .brandposList ul.ccm-new, .ipmDropDown .sectorposList ul.ccm-new{
-    height: 220px;
+    height: 205px;
     overflow-y: scroll;
 }
 
@@ -1750,3 +1750,4 @@ a.icoButton.info.pos-icon1.smallllinfo {
 label.ipmSelect.pos-tool {
     z-index: 0;
 }
+.inputField .tldBox.custom_cal_width {width: 65%;padding-right: 30px;}

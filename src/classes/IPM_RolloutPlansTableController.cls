@@ -51,7 +51,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public static final String BOOLEAN_TRUE = 'true';
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
     public Boolean isArchiveFalse = false;
-	public Boolean changeDateVal {get;set;}
     public String showEntity{get;set;}
     @TestVisible private static final String ID_PARAMETER = 'Id';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
@@ -77,18 +76,17 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public IPM_RolloutPlansTableController()
     {
         IPM_IECompatible.ieFix();//Added for compatibility fix
-       
         showEntity = IPM_ConstantUtils.BLANK;
         initialise();
         
     }
    
     /*******************************************************************************************************
-* @description  Method to check if any rollouts exist and if not, redirect to the appropriate 
-*               page for adding rollouts
-* @param        NONE
-* @return       Page Reference to the appropriate page
-*/
+    * @description  Method to check if any rollouts exist and if not, redirect to the appropriate 
+    *               page for adding rollouts
+    * @param        NONE
+    * @return       Page Reference to the appropriate page
+    */
     public PageReference checkRollouts()
     {
         try
@@ -123,9 +121,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     	isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
-		changeDateVal = false;
-        // initialisation
-		isBrandEditable = false;
+        isBrandEditable = false;
         rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
 		rolloutCountryMap = new Map<string,IPM_Country__c>(); 
        	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
@@ -277,7 +273,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             }
         }
             
-          
         //Logic to create map(rolloutCCMap) local rollout and its company card matching geographical scope, when PL is assigned for the rollout            
         String[] filters = new String[]{};
         
@@ -744,14 +739,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference editRollout()
     {
-        //Method invoked in IPM_LocalRolloutPlansTable component PageReference
-        PageReference rolloutPlans;
-        rolloutPlans = Page.IPM_RolloutPlans;
-        rolloutPlans.getParameters().put(ID_PARAMETER, projectId); 
-        rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_TRUE );               
-        rolloutPlans.setRedirect(true);
-
-        return rolloutPlans;
+        isEditMode =TRUE;  
+        return null;
     }
         
     
@@ -894,25 +883,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     {
                         update updateLocalProjTLDList;
                     }
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.IPM_PROCESSING_REQUEST));
-					if(!changeDateVal)
-                    {
-                    	isEditMode=false ;
-
-                    }else if(changeDateVal){
-                        isEditMode=true;
-                    }
-                    saveLocalRolloutBrand();
-					string editVal = string.valueOf(isEditMode);
-                    PageReference rolloutPlans = Page.IPM_RolloutPlans;
-		            rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
-		            rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, editVal);               
-		            rolloutPlans.setRedirect(true);
-		            return rolloutPlans;
-                } 
-                else
-                {
-                    isEditMode = true;
+                   	saveLocalRolloutBrand();
+                   
                 }
             }
         }
@@ -981,7 +953,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public PageReference cancelRollout()
     {
         //Method invoked in IPM_LocalRolloutPlansTable component
-		isEditMode=false;
+        isEditMode=false;
         return refreshPage();
     }
     
