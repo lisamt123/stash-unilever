@@ -43,8 +43,6 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 ***********************************************************************************************/
 	global void execute(Database.BatchableContext BC,  List<AF_Brand_Estimate__c> brandEstimateList){
 		list<AF_Brand_Estimate__c > abelistUpdate = new list<AF_Brand_Estimate__c >();
-		list<AF_Agency_Estimate__c> agest_list = new list<AF_Agency_Estimate__c >();
-		list<AF_OOPS_Estimate__c> aoop_list = new list<AF_OOPS_Estimate__c>();
 		abelist = [select id,Name,af_agency__r.name,brand__r.name,AF_Active__c,AF_Adaptive__c ,AF_Copied__c,AF_Agency__c,Agency_Base_Fee__c,AF_Basefee_Estimate_Initial_Quarter__c,Base_Fee_Total__c,AF_Bonus_Trigger_Date__c,Brand__c,AF_Comment_Type__c,AF_Controller_Flag__c,AF_Created_By_Batch__c,AF_Digital__c,AF_Fiscal_Year__c,AF_Measure_Bonus__c,AF_Overall_OOPS__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Traditional__c,AF_Locked__c from AF_Brand_Estimate__c where id in :brandEstimateList];
 		for(AF_Brand_Estimate__c abe:abelist){
 			AF_Brand_Estimate__c  abe_new = abe.clone(false,true);

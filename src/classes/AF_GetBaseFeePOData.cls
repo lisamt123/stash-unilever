@@ -121,7 +121,6 @@ global with sharing class AF_GetBaseFeePOData{
 	public static void BatchcreatePOReportFromAgencyEstimate(Set<ID> AgencyEstimateIds,Boolean deletePOReport)
 	{
 		af_po_report__c eachPORecord;
-		List<af_agency_estimate__c> lstagest = new List<af_agency_estimate__c>();
 		List<af_po_report__c> lstpo = new List<af_po_report__c>();
 		List<af_po_report__c> lstpoupdate = new List<af_po_report__c>();
 		List<af_po_report__c> deletePOReportList = new List<af_po_report__c>();

@@ -29,7 +29,6 @@ public with sharing class AF_FieldHistoryCompController {
 *************************************************************************************/	
 	public List<WrapperHistory> getFieldHistoryList()
 	{
-		string parentURL = ApexPages.currentPage().getUrl();
 		if(ApexPages.currentPage().getParameters().get('CHParentId') != null){ParentRecordId = ApexPages.currentPage().getParameters().get('CHParentId');}
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];

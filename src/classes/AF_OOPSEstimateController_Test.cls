@@ -96,6 +96,8 @@ public class AF_OOPSEstimateController_Test
             oopsEstCtrl1.closePopupReject();
             delete OopsactualList1;
             AF_OOPSEstimateHandler  handler=new AF_OOPSEstimateHandler();
+            handler.bulkAfter();
+            handler.andFinally();
             Test.stopTest();
         }
     }
@@ -185,6 +187,8 @@ public class AF_OOPSEstimateController_Test
             oopsEstCtrl1.closePopupReject();
             delete OopsactualList1;
             AF_OOPSEstimateHandler  handler=new AF_OOPSEstimateHandler();
+            handler.bulkAfter();
+            handler.andFinally();
             Test.stopTest();
         }
     }

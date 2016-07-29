@@ -82,6 +82,7 @@ public with sharing class AF_Brand_Controller_Review
 		checkReview(BrandId);
 	}
 	public void checkReview(set<id> BrandId){
+		Approval.ProcessResult result;
 		string CHECK_REVIEW='checkReview';
 		if(!mapgroups.isempty())
 		{
@@ -138,7 +139,7 @@ public with sharing class AF_Brand_Controller_Review
 					request.setComments(Label.AF_Submitted);
 					request.setNextApproverIds(new ID[]{UserInfo.getUserId()});
 					// submit the approval request for processing
-					Approval.ProcessResult result = Approval.process(request);
+					result = Approval.process(request);
 				}
 			}
 		}

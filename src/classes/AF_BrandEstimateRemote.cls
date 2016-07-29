@@ -98,9 +98,7 @@ global with sharing class AF_BrandEstimateRemote {
         orderedRow.sort();
         agencyNameMap = getAllAgencyEntities(agencyId);
         ulNameMap = getUnileverEntitiesByName();
-        List<String> agenciesToSelect = getAgencyEntities(agencyId, brandEstimateId, AF_Constants.SOBJECT_BRANDESTIMATE_APINAME); 
         // These are the Agency Entities which are not created as Agency Estimates.
-        List<String> ulEntitiesToSelect = getUnileverEntities(brandEstimateId, AF_Constants.SOBJECT_BRANDESTIMATE_APINAME); 
         // These are those Unilever Entities which are not created as a record for Agency Estimates.
         colDetail = ''; //Column variable which gets added to the map finally.
         rowDetail = ''; //Row variable which gets added to the map finally.
@@ -641,7 +639,6 @@ global with sharing class AF_BrandEstimateRemote {
     global static void archiveAgencyEntityToEstimates(String sObjectId, String sobjectName, String rowName) {
         
         string archiveAgencyEntityToEstimates='archiveAgencyEntityToEstimates';
-        Id ulRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Unilever);
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
         List<AF_Bonus_Matrix__c> bonusMatrixToDelete = new List<AF_Bonus_Matrix__c>();
