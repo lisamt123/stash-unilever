@@ -72,7 +72,7 @@ This componet used for regional rollout project
                     <th scope="col" width="100px" colspan="1">
                         <div>
                             <div class="colPhase incHeight"><span>{!$Label.IPM_Status}</span></div>
-                        </div>
+                        </div> 
                     </th>
                     <!-- This render condition will check if project span is regional and type is original and project phase is ideas -->
                     <apex:outputPanel layout="block" styleClass="test" rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
