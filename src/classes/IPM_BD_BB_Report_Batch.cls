@@ -549,6 +549,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             {
                 analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
                 analyticObj.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;                 
+                analyticObj.IPM_Brand__c = p.IPM_LocalProject_Brand__c;       
             }
 			
             if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original)){
