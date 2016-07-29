@@ -394,6 +394,8 @@ private class IPM_GateDocumentController_Test{
 			{
 				System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,'Project document sections not updated properly');
 			}
+			ipmGateDocContrl.cancelStoppingProject();
+			ipmGateDocContrl.showAllCurrentDocSummaryAttch();
             test.stopTest();
         }
     }

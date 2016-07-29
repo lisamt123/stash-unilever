@@ -473,6 +473,20 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>BET_isNull__c</fullName>
+        <description>This field will advice if BET__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(BET__c) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if BET is null or not</inlineHelpText>
+        <label>BET_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>BET__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -2362,6 +2376,20 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
+    </fields>
+	<fields>
+        <fullName>IPM_Project_Name_isNull__c</fullName>
+        <description>This field will advice is IPM_Project_Name__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Project_Name__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice is Project Name is null or not</inlineHelpText>
+        <label>IPM_Project_Name_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Name__c</fullName>

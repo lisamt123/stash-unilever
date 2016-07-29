@@ -48,11 +48,13 @@ public with sharing class IPM_MyProjects{
         List<IPM_Project__c> lstProjects;
         List<IPM_Milestone__c> lstipmmilestones;
         List<Id> projectIds=new List<Id>();
-        for(IPM_Project_Resource__c res : [SELECT IPM_Project__c FROM IPM_Project_Resource__c 
+        for(IPM_Project_Resource__c res : [SELECT IPM_Project__c,IPM_Role_Type__c  FROM IPM_Project_Resource__c 
                                        WHERE IPM_User__c = : UserInfo.getUserId() 
-                                       and IPM_Role_Type__c != : IPM_ConstantUtils.IPM_ROLE_GUEST 
-                                       Limit 10000]){
+                                       Limit 10000])
+	   {
+                if(res.IPM_Role_Type__c != IPM_ConstantUtils.IPM_ROLE_GUEST) {
                 projectIds.add(res.IPM_Project__c);
+            }
         }
       
         try {
@@ -66,7 +68,7 @@ public with sharing class IPM_MyProjects{
                                             or Deputy_Project_Leader__c  = : UserInfo.getUserId()  or IPM_Technical_Project_Leader__c = : UserInfo.getUserId() 
                                             or IPM_Project_Gatekeeper__c = : UserInfo.getUserId() or IPM_Finance_Lead__c = : UserInfo.getUserId() 
                                             or IPM_Bosscard__r.OwnerId = :UserInfo.getUserId() or Id IN : projectIds)  and Is_Archieved__c = false 
-                                            and IPM_Project_Name__c != NULL and IPM_Phase__c != :IPM_ConstantUtils.PHASE_PLE 
+                                            and IPM_Project_Name_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Phase__c IN :IPM_ConstantUtils.PHASE_SET_WO_PLE 
                                             Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 1000];
                                                                             
                                             
@@ -101,7 +103,7 @@ public with sharing class IPM_MyProjects{
         //Changed the query to show only In Progress bosscards where logged-in user is the owner & not displaying skipped bosscard 
         bosscardList=[SELECT name,IPM_Category__c,IPM_Bosscard_Logo__c,IPM_isBosscardSkipped__c,IPM_Brand__c,IPM_BosscardName__c,IPM_Brand_Positioning__c,
                       IPM_Bosscard_Status__c,IPM_Filled_In_Percent__c FROM IPM_Bosscard__c 
-                      WHERE IPM_BosscardName__c!=null 
+                      WHERE IPM_BosscardName_isNull__c = :IPM_ConstantUtils.IPM_false
                       AND IPM_Bosscard_Status__c = :IPM_ConstantUtils.STATUS_IN_PROGRESS
                       AND OwnerId = :UserInfo.getUserId() AND IPM_isBosscardSkipped__c=False 
                       order by IPM_BosscardName__c limit 1000];

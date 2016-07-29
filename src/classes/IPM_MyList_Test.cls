@@ -217,7 +217,7 @@ private class IPM_MyList_Test{
             update updatedTaskTest;
             
             
-            list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1__c!= null and IPM_Project__c IN:projIdSet limit 100];
+            list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Project__c IN:projIdSet limit 100];
             for(IPM_Task__c task :taskList){
                 system.assertEquals(task.IPM_Due_Date1__c!= null,true,'Due dates should not be null');
             }

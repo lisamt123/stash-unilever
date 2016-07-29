@@ -161,7 +161,7 @@ This componet used for regional rollout project
                                         <td width="15%">  
                                          <strong>{!$Label.IPM_MCO}: </strong> {!localrollout.MCO_Name__c}                                         
                                         </td>
-                                        <td  width="47%" class="noBorder" colspan="4">
+                                        <td  width="40%" class="noBorder" colspan="3">
                                             <div class="separator">
                                                 <strong>{!$Label.IPM_INCLUDED_COUNTRIES}: </strong>
                                                 <apex:variable var="countryString" value="" />
@@ -241,8 +241,7 @@ This componet used for regional rollout project
                                             </div>
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
-                                            <div class="incHeight">
-												<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
+                                            <div class="incHeight"> 
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}"  rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>

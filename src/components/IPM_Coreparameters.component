@@ -462,7 +462,7 @@
                                                                     <apex:outputlabel styleClass="fontB"
                                                                         value="{!$Label.IPM_Market}" />
                                                                          <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                                 <a class="icoButton info smallllinfo pos-icon1" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
                                              </span>
                                                                 </div>
 																
@@ -553,13 +553,13 @@
                                                                                <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Platform}
                                          <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_Platform_Title}"></a>
+                                                 <a class="icoButton info smallllinfo pos-icon" title="{!$Label.IPM_Platform_Title}"></a>
                                              </span></span>
                                     </div>   
                                                  <label class="ipmSelect  pos-tool" >
                                                 <apex:actionRegion >
                                                     <apex:outputPanel >
-                                                   <div class="info" title="" data-original-title="{!$Label.IPM_Platform_Title}">
+                                                   <div class="info" title="">
                                                         <apex:inputField value="{!project.IPM_Category_Picklist__c}"  style="display:none" >  </apex:inputField> 
                                                         <apex:inputField value="{!project.IPM_Category_Platform__c}"  >    </apex:inputField>  
                                                     </div>   

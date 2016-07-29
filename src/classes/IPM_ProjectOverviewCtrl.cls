@@ -448,9 +448,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
             rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name,IPM_Name__c,IPM_Type_of_gate__c, IPM_Due_Date__c ,IPM_Project__r.Is_Archieved__c
                                                                   from IPM_Milestone__c
                                                                   where IPM_Project__r.IPM_Parent_Project__c =: projectId 
-                                                                  AND IPM_Due_Date__c != NULL AND IPM_Due_Date__c >= TODAY
+                                                                  AND IPM_Due_Date__c >= TODAY
                                                                   AND IPM_Completed_On__c = null 
-                                                                  AND IPM_Phase__c != : IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT
+                                                                  AND IPM_Phase__c IN :IPM_ConstantUtils.PHASE_SET_WO_MARKET_DEPLOYMENT
                                                                   ORDER BY IPM_Due_Date__c asc, IPM_Project__r.IPM_Target_Launch_Dates__c asc limit 1]; 
              if(rolloutProjectRecentMilestone != null && !rolloutProjectRecentMilestone.isEmpty()){
                 gateDueDateMessage = string.format(System.Label.IPM_GateDueDateMesg, new string[] {String.valueof(rolloutProjectRecentMilestone[0].IPM_Name__c)});
@@ -733,7 +733,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                                 IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
             (IPM_FunctionalRole__c not in :functionalRoleSet OR IPM_FunctionalRole__c in :plFunctionalRoleSet) AND  
                                                                                 IPM_Default_Section__c = true
@@ -743,7 +743,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
             IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
                                                                                 IPM_FunctionalRole__c =: userRole AND
                                                                                 IPM_Default_Section__c = true 

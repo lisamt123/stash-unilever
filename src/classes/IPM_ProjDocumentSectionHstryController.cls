@@ -93,11 +93,12 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
                 		bDocStatusNotStartedOrApproved = true;
                 		
                         Integer NonNegotiable=[SELECT count() FROM IPM_Project_Document_Section__c 
-                                                                   WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND 
-                                                                   IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
+                                               WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id 
+                                               AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
                         Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c 
-                                                                        WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projectDoc.Id AND  IPM_Default_Section__c=true AND 
-                                                                    IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
+                                                WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED 
+                                                AND IPM_Project_Document__c=:projectDoc.Id AND  IPM_Default_Section__c=true AND 
+                                                IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
                                 
                                 if(NonNegotiable!=0){
                                         FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiable))*100);

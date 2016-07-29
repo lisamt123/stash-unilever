@@ -318,6 +318,10 @@ public without sharing class IPM_ChatterFeedHelper {
     */
     
     public static void notifyProjectIsFasttrack(List<IPM_Project__c> updatedProjects){
+        if(updatedProjects == null || updatedProjects.isEmpty()){
+        	return;
+        }
+        
         clearData();
         Set<Id> fasttrackProjects = new Map<Id,IPM_Project__c>(updatedProjects).keySet();
         String posttext;
@@ -460,12 +464,12 @@ public without sharing class IPM_ChatterFeedHelper {
                       
                        projectIds.add(fin.Regional_Project__c);
                        mentionIdRegional.add(fin.Regional_Project__r.IPM_Finance_Lead__c);
-	                   mentionIdRegional.add(fin.Regional_Project__r.IPM_Project_Leader__c);
-	                   mentionIdRegional.add(fin.Regional_Project__r.Deputy_Project_Leader__c);
-	                   mentionIdRegional.remove(null);
-	                   subjectIdMentionIdMap.put(fin.Regional_Project__c,mentionIdRegional);
-	                   subjectIdMessageMap.put(fin.Regional_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR5);
-	                     
+                       mentionIdRegional.add(fin.Regional_Project__r.IPM_Project_Leader__c);
+                       mentionIdRegional.add(fin.Regional_Project__r.Deputy_Project_Leader__c);
+                       mentionIdRegional.remove(null);
+                       subjectIdMentionIdMap.put(fin.Regional_Project__c,mentionIdRegional);
+                       subjectIdMessageMap.put(fin.Regional_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR5);
+                         
                        projectIds.add(fin.Local_Project__c);
                        mentionIdLocal.add(fin.Local_Project__r.IPM_Finance_Lead__c);
                        mentionIdLocal.add(fin.Local_Project__r.IPM_Project_Leader__c);

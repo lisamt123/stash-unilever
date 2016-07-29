@@ -1174,5 +1174,5 @@ private class IPM_ProjectOverviewCtrl_Test
             Test.stopTest();
         
         }
-     }
+    }
 }

@@ -329,9 +329,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 List<String> availableCategoryStringList = new List<String>();
                 List<IPM_Company_Card__c> availableCategoryList = new List<IPM_Company_Card__c>();
                 availableCategoryList =[SELECT id, IPM_Managed_category__c,RecordType.Name,IPM_TxtGeographical_Scope__c,
-                                        (SELECT Id,IPM_Region__c FROM IPM_User_Profile__r WHERE IPM_User__c=:userinfo.getuserid() AND IPM_Region__c!=null) 
+                                        (SELECT Id,IPM_Region__c FROM IPM_User_Profile__r WHERE IPM_User__c=:userinfo.getuserid() AND IPM_Region_isNull__c = :IPM_ConstantUtils.IPM_false) 
                                         FROM IPM_Company_Card__c 
-                                        WHERE Id=:project.IPM_Company_Card__c AND IPM_Managed_category__c !=null LIMIT 1];
+                                        WHERE Id=:project.IPM_Company_Card__c LIMIT 1];
                 Map<String,IPM_Market_Cluster_Short_Names__c> mcsNames= IPM_Market_Cluster_Short_Names__c.getAll();  
                 project.Market_Cluster_Name__c = project.Market_Cluster__c = IPM_ConstantUtils.BLANK;
                 if(String.isNotBlank(availableCategoryList[0].RecordType.Name) && 
@@ -1213,16 +1213,21 @@ Description
                     }
                 }
             } else if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE || project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
-                List<IPM_Financial__c>  financeList = [SELECT Id, IPM_Business_Case_Confirmed__c FROM IPM_Financial__c WHERE Local_Project__c=:projectId];
+                List<IPM_Financial__c>  financeList = [SELECT Id, Is_BC_Confirmed_Capability__c,IPM_Business_Case_Confirmed__c FROM IPM_Financial__c WHERE Local_Project__c=:projectId];
                 if(!financeList.isEmpty()){
                     IPM_Financial__c financeObj = financeList[0];
-                    if(financeObj.IPM_Business_Case_Confirmed__c){
+                    if(financeObj.IPM_Business_Case_Confirmed__c && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE){
                         isTLDFieldEditable = false;
-                    } else {
-                        isTLDFieldEditable = true;
+                    } 
+                    else if(financeObj.Is_BC_Confirmed_Capability__c && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) {
+                        isTLDFieldEditable = false;
+                    }
+                    else{
+                    	isTLDFieldEditable = true;
                     }               
                 }
-            } else {
+            } 
+            else {
                 isTLDFieldEditable = true;
             }
         }else if(project !=null){

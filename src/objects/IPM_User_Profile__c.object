@@ -193,6 +193,20 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	 <fields>
+        <fullName>IPM_Region_isNull__c</fullName>
+        <description>This field will advice if Region is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Region__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Region is null or not</inlineHelpText>
+        <label>IPM_Region_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Region__c</fullName>
         <description>To store user region&apos;s</description>
@@ -266,6 +280,20 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+	<fields>
+        <fullName>IPM_User_Role_Function_isNull__c</fullName>
+        <description>This field is true when both User Role and User Function are Null</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( ISBLANK(  TEXT(IPM_User_Role__c ) ) , ISBLANK(  TEXT(IPM_User_Function__c ) ) ), &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is true when both User Role and User Function are Null</inlineHelpText>
+        <label>IPM_User_Role_Function_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_User_Role__c</fullName>

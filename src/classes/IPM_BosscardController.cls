@@ -311,7 +311,6 @@ Global with sharing class IPM_BosscardController {
         try{
             ipmcompanycard=[SELECT ID,IPM_Company_Card__c,IPM_Central_Team__c,IPM_User_Function__c,IPM_Company_Card__r.name FROM
                             IPM_User_Profile__c WHERE IPM_User__c=:userinfo.getuserid()
-                            and  IPM_Company_Card__c <>null and IPM_Company_Card__r.name!=null 
                             order by IPM_Company_Card__r.name ASC LIMIT 1000]; 
             bpUserCCList=[SELECT id,Name FROM IPM_Company_Card__c WHERE IPM_Business_Partner__c=:userinfo.getuserid() Order By name ASC LIMIT 1000];
         }

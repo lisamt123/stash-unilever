@@ -209,7 +209,9 @@
                                                 <apex:outputField value="{!localRollout.Local_Project__r.IPM_Finance_Lead__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
-                                        <tr class="secrow">
+                                    </table>
+									<table class="rollouttable editable">
+										<tr class="secrow">
                                             <td width="3%"> </td>
                                             <td width="15%"> 
                                                 <strong>{!$Label.IPM_MCO}: </strong>{!localRollout.MCO_Name__c}
@@ -338,8 +340,8 @@
                                                 </div>
                                             </td>
                                             <td scope="col" width="190px">
-                                                <div class="incHeight">                                                    
-													<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
+                                                <div class="incHeight">                                                     
+                                                    <input type="hidden" id="hiddenDateVal" /> 
                                                     <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
                                                     <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="checkTLDDate(this)"/> 
                                                 </div>
@@ -358,6 +360,8 @@
                                                 </div>
                                             </td>                
                                         </tr>                                    
+                                    </table>
+                                    <table class="rollouttable editable">
                                         <tr class="secrow">
                                             <td width="3%"> </td>
                                             <td width="15%"> 
@@ -366,17 +370,15 @@
                                             <td scope="col" colspan="3" width="40%" class="noBorder">
                                                 <span class="separator">
                                                     <strong>{!$Label.IPM_INCLUDED_COUNTRIES}: </strong>
-                                                    
                                                     <apex:variable var="countryString" value="" />
                                                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[regionalRolloutID][localRolloutId]}" var="country"> 
                                                         <apex:variable var="countryString" value="{!countryString +','+country.Country_Name__c}" rendered="{!LEN(countryString) > 0}"/>
                                                         <apex:variable var="countryString" value="{!country.Country_Name__c}" rendered="{!LEN(countryString) == 0}"/>
                                                     </apex:repeat>
-                                                    <apex:outputText value="{!countryString}"/>
-                                                    
+                                                    <apex:outputText value="{!countryString}"/> 
                                                 </span>
                                             </td>
-											<td scope="col" class="" colspan="3">
+                                            <td scope="col" class="" colspan="3">
                                             <strong>{!$Label.IPM_Rollout_Brand}: </strong>
                                                 <apex:outputText styleClass="lclNoselect" value="{!localRollout.IPM_Brand__c}" rendered="{!!AND(isEditMode,isEditable)}"/>
                                                 <apex:outputPanel styleClass="localSelectList" rendered="{!AND(isEditMode,isEditable)}">
@@ -409,10 +411,10 @@
                 </div>
             </div>
         </apex:outputPanel>
-        </apex:outputPanel>
-		<apex:actionFunction name="holdRolloutsBrand" action="{!holdLocalRolloutBrandVal}" reRender="topButtonPanel" status="Loading1">
+        </apex:outputPanel> 
+        <apex:actionFunction name="holdRolloutsBrand" action="{!holdLocalRolloutBrandVal}" reRender="topButtonPanel" status="Loading1">
             <apex:param name="localRolloutIdBrand" value="" assignTo="{!localRolloutIdBrand}"/>
-            <apex:param name="localRolloutBrandVal" value="" assignTo="{!localRolloutBrand}"/>
+              <apex:param name="localRolloutBrandVal" value="" assignTo="{!localRolloutBrand}"/>
         </apex:actionFunction>
         <div class="row"> 
             <apex:outputPanel id="bottomButtonPanel">
@@ -492,10 +494,10 @@
                             </div>
                             <div class="buttonMarginRight noPadright pull-left" >
                                 <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                    <apex:commandLink value="{!$Label.Agree_and_Proceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();skipValidation();" oncomplete="hideTldWarningDialog();"  >
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();skipValidation();" oncomplete="hideTldWarningDialog();" status="loadingStatus">
                     </apex:commandLink>
                         
-                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}"/>
+                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}" status="loadingStatus" />
                          </div>
                         </div>
                     </div>        

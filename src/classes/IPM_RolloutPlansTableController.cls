@@ -51,7 +51,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public static final String BOOLEAN_TRUE = 'true';
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
     public Boolean isArchiveFalse = false;
-	public Boolean changeDateVal {get;set;}
     public String showEntity{get;set;}
     @TestVisible private static final String ID_PARAMETER = 'Id';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
@@ -77,18 +76,17 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public IPM_RolloutPlansTableController()
     {
         IPM_IECompatible.ieFix();//Added for compatibility fix
-       
         showEntity = IPM_ConstantUtils.BLANK;
         initialise();
         
     }
    
     /*******************************************************************************************************
-* @description  Method to check if any rollouts exist and if not, redirect to the appropriate 
-*               page for adding rollouts
-* @param        NONE
-* @return       Page Reference to the appropriate page
-*/
+    * @description  Method to check if any rollouts exist and if not, redirect to the appropriate 
+    *               page for adding rollouts
+    * @param        NONE
+    * @return       Page Reference to the appropriate page
+    */
     public PageReference checkRollouts()
     {
         try
@@ -123,9 +121,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     	isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
-		changeDateVal = false;
-        // initialisation
-		isBrandEditable = false;
+        isBrandEditable = false;
         rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
 		rolloutCountryMap = new Map<string,IPM_Country__c>(); 
        	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
@@ -277,7 +273,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             }
         }
             
-          
         //Logic to create map(rolloutCCMap) local rollout and its company card matching geographical scope, when PL is assigned for the rollout            
         String[] filters = new String[]{};
         
@@ -744,14 +739,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference editRollout()
     {
-        //Method invoked in IPM_LocalRolloutPlansTable component PageReference
-        PageReference rolloutPlans;
-        rolloutPlans = Page.IPM_RolloutPlans;
-        rolloutPlans.getParameters().put(ID_PARAMETER, projectId); 
-        rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_TRUE );               
-        rolloutPlans.setRedirect(true);
-
-        return rolloutPlans;
+        isEditMode =TRUE;  
+        return null;
     }
         
     
@@ -894,25 +883,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     {
                         update updateLocalProjTLDList;
                     }
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.IPM_PROCESSING_REQUEST));
-					if(!changeDateVal)
-                    {
-                    	isEditMode=false ;
-
-                    }else if(changeDateVal){
-                        isEditMode=true;
-                    }
-                    saveLocalRolloutBrand();
-					string editVal = string.valueOf(isEditMode);
-                    PageReference rolloutPlans = Page.IPM_RolloutPlans;
-		            rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
-		            rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, editVal);               
-		            rolloutPlans.setRedirect(true);
-		            return rolloutPlans;
-                } 
-                else
-                {
-                    isEditMode = true;
+                   	saveLocalRolloutBrand();
+                   
                 }
             }
         }
@@ -981,7 +953,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public PageReference cancelRollout()
     {
         //Method invoked in IPM_LocalRolloutPlansTable component
-		isEditMode=false;
+        isEditMode=false;
         return refreshPage();
     }
     
@@ -1029,8 +1001,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     //recalculate TLD when rollout is inactive
                     Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> ();
                     rolloutProjectTLDChanged.put(deleteRolloutList[0].id,deleteRolloutList[0]);
-                    IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-                    rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
                 }
                 else if(deleteRolloutList[0].IPM_CharterApproved__c)
                 {
@@ -1069,7 +1039,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     private Date getLeastProjectMilestonesDate(){
         //Method invoked in IPM_LocalRolloutPlansTable component
         List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
-        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames limit 50000];
+        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Name__c in: milestoneNames limit 50000];
         Date leastProjectMilestonesDate = null;
         for(IPM_Milestone__c i :milestones){
             if(leastProjectMilestonesDate == null){
@@ -1111,7 +1081,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             if(IPM_ConstantUtils.BRAND_NOT_FOUND.equals(rollout.IPM_Brand__c)){
                 holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
-            } 
+            }
+			if(holdRolloutidBrandMap.get(rollout.id).isEmpty())
+	        {
+	        	holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
+	        } 
         }
         //enable edit access on brand when current project is reginal rollout and phase is feasibility/capability
         if( (IPM_ConstantUtils.PHASE_FEASIBILITY.Equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_CAPABILITY.Equals(project.IPM_Phase__c)) && 

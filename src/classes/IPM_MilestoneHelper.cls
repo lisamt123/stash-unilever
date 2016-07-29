@@ -64,6 +64,10 @@ public with sharing class IPM_MilestoneHelper
     */  
     public static void manageMilestones(Map<Id,IPM_Project__c> incomingProjects)
     {
+        if(incomingProjects == null || incomingProjects.isEmpty()){
+        	return;
+        }
+        
         List<IPM_Milestone__c> deleteProjectMilestones = new List<IPM_Milestone__c>(); // List of milestones to be deleted 
         Map<String,IPM_Milestone__c> upsertedProjectMilestones = new Map<String,IPM_Milestone__c>(); // Milestone map wwith external key and milestone records to be updated/inserted.
         

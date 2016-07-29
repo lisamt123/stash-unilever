@@ -2073,6 +2073,11 @@
         <field>IPM_Bosscard__c.IPM_BosscardIdea__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Bosscard__c.IPM_BosscardName_isNull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Bosscard__c.IPM_BosscardName__c</field>
@@ -2481,6 +2486,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country__c.Geography__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Country__c.IPM_Brand_and_BrandPos_Matched__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Country__c.IPM_Brand_Null_or_Brand_Not_Matched__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3005,6 +3020,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial_Year__c.Name_isY0__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial_Year__c.NameYearPLtype__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3478,6 +3498,11 @@
         <field>IPM_Financial__c.Financial_Countries__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Financial_External_ID_Check_If_NONKEY__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Financial__c.Financial_External_ID__c</field>
@@ -3781,6 +3806,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Financial__c.Last_Saved_Regional__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Local_Project_isNull__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4700,6 +4730,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_isNull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Due_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4796,6 +4831,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Phase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Milestone__c.IPM_Planned_Date_isNull__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5006,6 +5046,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Country_isNull__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5383,6 +5428,11 @@
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_HelpText_Red__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Measure_isNull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Measure__c</field>
@@ -5721,6 +5771,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Document_Section__c.IPM_PDP_Document_Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Document_Section__c.IPM_Parent_Section_isNull__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6550,6 +6605,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project__c.BET_isNull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project__c.BET__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7010,6 +7070,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_Project_Logo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Project_Name_isNull__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7623,6 +7688,11 @@
         <field>IPM_Task__c.IPM_Due_Date1__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Task__c.IPM_Due_Date1_isNull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Task__c.IPM_Due_Date__c</field>
@@ -7810,6 +7880,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_User_Profile__c.IPM_Region_isNull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_User_Profile__c.IPM_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7826,6 +7901,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_User_Profile__c.IPM_User_Function__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_User_Profile__c.IPM_User_Role_Function_isNull__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

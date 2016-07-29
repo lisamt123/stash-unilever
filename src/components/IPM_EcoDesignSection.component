@@ -207,53 +207,53 @@
                                                             </tr>
                                                             </apex:outputPanel>
                                                             <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_Ecodesign_Nutrition]}">
-																<tr>
-																	<td>
-																		<label>{!$Label.IPM_Ecodesign_Nutrition}</label>
-																	</td>
-																	<td>
-																		<div class="inputField inline">                                
-																		</div>
-																		<div class="inputField inline">                                
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Nutri__c}"/>
-																		</div>
-																	</td>
-															
-																</tr>
-															</apex:outputPanel>
-															<apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Health_and_Hygiene]}">
-																<tr>
-																	<td>
-																		<label>{!$Label.IPM_EcoDesign_Health_and_Hygiene}</label>
-																	</td>
-																	<td>
-																		<div class="inputField inline">                                
-																		</div>
-																		<div class="inputField inline">                                
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Health_Hygiene__c}"/>
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_HlthHyg__c}"/>
-																		</div>
-																	</td>
-															
-																</tr>
-															</apex:outputPanel>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label>{!$Label.IPM_Ecodesign_Nutrition}</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField inline">                                
+                                                                        </div>
+                                                                        <div class="inputField inline">                                
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Nutri__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                            
+                                                                </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Health_and_Hygiene]}">
+                                                                <tr>
+                                                                    <td>
+                                                                        <label>{!$Label.IPM_EcoDesign_Health_and_Hygiene}</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField inline">                                
+                                                                        </div>
+                                                                        <div class="inputField inline">                                
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Health_Hygiene__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_HlthHyg__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                            
+                                                                </tr>
+                                                            </apex:outputPanel>
                                                             <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Sustainable_Sourcing]}">
                                                             <tr>
                                                                 <td>
@@ -382,11 +382,11 @@
                                                                     <label>{!$Label.IPM_EcoDesign_Waste}</label>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                         <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Waste_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                         <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                     </div>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Waste_PCU__c}"/> 
                                                                     </div>
                                                                 </td>
@@ -409,11 +409,11 @@
                                                                     <label>{!$Label.IPM_EcoDesign_Water_litres}</label>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                         <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Water_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                         <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                     </div>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                      <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU__c}" />
                                                                     </div>
                                                                 </td>
@@ -434,11 +434,11 @@
                                                                 <td><label>{!$Label.IPM_EcoDesign_Greenhouse_Gases}</label>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                         <apex:outputtext value="{!countryEle.IPM_Comparison_Rep_GTU_GHG_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                         <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                     </div>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                      <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU__c}"/>
                                                                     </div>
                                                                 </td>
@@ -456,53 +456,53 @@
                                                             </tr>
                                                             </apex:outputPanel>
                                                             <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_Ecodesign_Nutrition]}">
-																<tr>
-																	<td>
-																		<label>{!$Label.IPM_Ecodesign_Nutrition}</label>
-																	</td>
-																	<td>
-																		<div class="inputField inline">                                
-																		</div>
-																		<div class="inputField inline">                                
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Nutri__c}"/>
-																		</div>
-																	</td>
-															
-																</tr>
-															</apex:outputPanel>
-															<apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Health_and_Hygiene]}">
-																<tr>
-																	<td>
-																		<label>{!$Label.IPM_EcoDesign_Health_and_Hygiene}</label>
-																	</td>
-																	<td>
-																		<div class="inputField inline">                                
-																		</div>
-																		<div class="inputField inline">                                
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Health_Hygiene__c}"/>
-																		</div>
-																	</td>
-																	<td>
-																		<div class="inputField">                                
-																		<apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_HlthHyg__c}"/>
-																		</div>
-																	</td>
-															
-																</tr>
-															</apex:outputPanel>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label>{!$Label.IPM_Ecodesign_Nutrition}</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField cellWidth">                                
+                                                                        </div>
+                                                                        <div class="inputField cellWidth">                                
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Nutri__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                            
+                                                                </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Health_and_Hygiene]}">
+                                                                <tr>
+                                                                    <td>
+                                                                        <label>{!$Label.IPM_EcoDesign_Health_and_Hygiene}</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField cellWidth">                                
+                                                                        </div>
+                                                                        <div class="inputField cellWidth">                                
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Health_Hygiene__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_HlthHyg__c}"/>
+                                                                        </div>
+                                                                    </td>
+                                                            
+                                                                </tr>
+                                                            </apex:outputPanel>
                                                             <apex:outputPanel rendered="{!mapCatMetric[$Label.IPM_EcoDesign_Sustainable_Sourcing]}">
                                                             <tr>
                                                                 <td>

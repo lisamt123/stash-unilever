@@ -527,7 +527,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
 	        Date dateToCompare = System.today().addMonths(-noOfMonths); 
 	        if(IPM_Coreparameter.IPM_EligibleForReactivation__c && IPM_Coreparameter.IPM_Stopped_Date_Time__c > dateToCompare)
 	        {
-	        	reactivateProjFlag = isEditable;	// Fir 
+	        	editSubSector = reactivateProjFlag = isEditable; 
 	        }
             answerone_STR=IPM_Coreparameter.IPM_Answer_of_Q1__c;
             answertwo_STR=IPM_Coreparameter.IPM_Answer_of_Q2__c;

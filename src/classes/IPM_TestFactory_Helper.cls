@@ -316,6 +316,28 @@ public class IPM_TestFactory_Helper
     }
     
     /***********************************************************************************************************************************************************
+	* @description To insert user and permissioon set assignment of Central team Business User
+	**************************************************************************************************/
+    public static User createIPMCentralTeamProfileUser(){
+        lstPermissionSetAssignment = new List<PermissionSetAssignment>();
+        String uniqueUserEMailId = getUniqueUsername();
+        
+        User u = new User(Alias = uniqueUserEMailId.substring(18,23), Email=uniqueUserEMailId, 
+        EmailEncodingKey=IPM_ConstantUtils.USER_EMAIL_ENCODE, LastName='BD_BB_USER', LanguageLocaleKey=IPM_ConstantUtils.USER_LOCALEKEY, 
+        LocaleSidKey='en_US', ProfileId = profileList[1].Id, 
+        TimeZoneSidKey=IPM_ConstantUtils.USER_TIMEZONEKEY, UserName=uniqueUserEMailId, 
+        isActive =true);
+        
+        insert u; 
+
+        for(PermissionSet permissionSet : [SELECT Id from PermissionSet WHERE Name IN (:IPM_ConstantUtils.PERMISSION_CENTRAL,:IPM_ConstantUtils.PERMISSION_BUSINESS,:IPM_ConstantUtils.PERMISSION_BASIC)]){
+            lstPermissionSetAssignment.add(new PermissionSetAssignment(AssigneeId = u.Id, PermissionSetId = permissionSet.Id));
+        }        
+        insert lstPermissionSetAssignment;
+        return u;
+    }
+    
+    /***********************************************************************************************************************************************************
 	* @description To get platform user
 	**************************************************************************************************/
     public static User returnPlatformUser(){
