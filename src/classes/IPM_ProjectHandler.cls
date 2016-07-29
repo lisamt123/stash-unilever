@@ -300,24 +300,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                 processMilestonesMap.put(incomingProject.Id,incomingProject);
                                 
                                 // Follow Unfollow People
-                                for(String projectMember : ProjectMembersAPINames)
-                                {
-                                    // checking if team member's are filled in before enabling chatter follow up for them
-                                    if(incomingProject.get(projectMember) !=null)
-                                    {
-                                        chatterFollowProjects.put(incomingProject.Id,incomingProject);
-                                        break;
-                                    }
-                                }
+                                chatterFollowProjects = followUnfollowPeople(ProjectMembersAPINames,incomingProject,chatterFollowProjects);                                
             
                                 // populate countryFeedbackProjects map for Local projects with Marker ready gate
-                                if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && 
-                                incomingProject.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE)
-                                {
-                                    countryFeedbackProjects.put(incomingProject.Id,incomingProject);
-                                }                        
-                                
-                            }
+                                countryFeedbackProjects = populateCountryFeedbackProjects(countryFeedbackProjects,incomingProject);                                
+                            } 
                         }
                     }
                     // Process Batch Processing for transaction Management ends
@@ -811,6 +798,33 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         populateClusterIDsOnDelete(Trigger.old);
      }
    }
+   
+   private MAP<Id,IPM_Project__c> followUnfollowPeople(List<String> lstProjectMembersAPINames,IPM_Project__c incomingProject,MAP<Id,IPM_Project__c> chatterFollowProjects)
+   {
+   		MAP<Id,IPM_Project__c> mapchatterFollowProjects = chatterFollowProjects;
+   		for(String projectMember : lstProjectMembersAPINames)
+    	{
+    		// checking if team member's are filled in before enabling chatter follow up for them
+    		if(incomingProject.get(projectMember) !=null)
+    		{
+    			mapchatterFollowProjects.put(incomingProject.id,incomingProject);
+    			break;
+    		}
+    	}
+   		return mapchatterFollowProjects;
+   }
+   
+   private map<id,IPM_Project__c> populateCountryFeedbackProjects(Map<id,IPM_Project__c> countryFeedbackProjects,IPM_Project__c incomingProject)
+   {
+   		map<id,IPM_Project__c> mapCountryFeedbackProjects = countryFeedbackProjects;
+    	// populate countryFeedbackProjects map for Local projects with Marker ready gate
+    	if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && 
+    	incomingProject.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE)
+    	{
+    		mapCountryFeedbackProjects.put(incomingProject.Id,incomingProject);
+    	}  
+    	return mapCountryFeedbackProjects;
+   }   
    
    /**************************************************************************************
     * This method is used to delete project
