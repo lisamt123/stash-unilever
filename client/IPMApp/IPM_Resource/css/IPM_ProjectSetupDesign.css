@@ -1742,12 +1742,16 @@ margin-right:1px;
 }
 
 a.icoButton.info.pos-icon.smallllinfo {
-    margin-left: 26px;
+    margin-left: 23px;
 }
 a.icoButton.info.pos-icon1.smallllinfo {
-    margin-left: 33px;
+    margin-left: 35px;
 }
 label.ipmSelect.pos-tool {
     z-index: 0;
 }
 .inputField .tldBox.custom_cal_width {width: 65%;padding-right: 30px;}
+.disp-blk
+{
+display:inline-block;
+}

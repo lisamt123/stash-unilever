@@ -461,8 +461,8 @@
                                                                 <div class="panel-label bsFieldLabel">
                                                                     <apex:outputlabel styleClass="fontB"
                                                                         value="{!$Label.IPM_Market}" />
-                                                                         <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo pos-icon1" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                                                         <span class="SecButtonSet custButton infoMarTop">
+                                                 <a class="icoButton info smallllinfo pos-icon1" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}">i</a>
                                              </span>
                                                                 </div>
 																
@@ -507,8 +507,8 @@
                                                             <div class="inputField">
                                                                 <div class="panel-label bsFieldLabel">
                                                                     <apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" />
-                                                                     <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                                                     <span class="SecButtonSet custButton infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}">i</a>
                                              </span>
                                                                 </div>
                                                                 <div class="ipmSelect">
@@ -552,8 +552,8 @@
                                                 <!-- Platform Field Added-->   
                                                                                <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Platform}
-                                         <span class="SecButtonSet infoMarTop">
-                                                 <a class="icoButton info smallllinfo pos-icon" title="{!$Label.IPM_Platform_Title}"></a>
+                                         <span class="SecButtonSet custButton infoMarTop">
+                                                 <a class="icoButton info smallllinfo pos-icon" title="{!$Label.IPM_Platform_Title}">i</a>
                                              </span></span>
                                     </div>   
                                                  <label class="ipmSelect  pos-tool" >
