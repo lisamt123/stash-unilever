@@ -14,7 +14,7 @@ This componet used for regional rollout project
             <apex:outputText value="{!errorMessage}" rendered="{!AND(errorMessage!=null,LEN(errorMessage)>0)}"/>
         </div>
     </apex:outputPanel>
-      
+    <div class="proInit"></div> 
     
     <apex:outputPanel rendered="{!NOT(isError)}">
         <div class="row">
@@ -72,7 +72,7 @@ This componet used for regional rollout project
                     <th scope="col" width="100px" colspan="1">
                         <div>
                             <div class="colPhase incHeight"><span>{!$Label.IPM_Status}</span></div>
-                        </div>
+                        </div> 
                     </th>
                     <!-- This render condition will check if project span is regional and type is original and project phase is ideas -->
                     <apex:outputPanel layout="block" styleClass="test" rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
@@ -253,9 +253,9 @@ This componet used for regional rollout project
                                             <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), true, false)}"/>
                                         </th>
                                         <!--This render condition will check if Project span is regional ,type is original and phase is ideas-->
-                                        <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                                               
                                         <th scope="col" width="180px" colspan="1">
+                                            <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                                         
                                         <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!localrollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
@@ -270,10 +270,12 @@ This componet used for regional rollout project
                                             </apex:outputPanel>
                                             <apex:outputField value="{!localrollout.IPM_Regional_PL__r.Name}"/> 
                                          </apex:outputPanel> 
+                                            </apex:outputPanel>
                                         </th>
                                         
                                         <th scope="col" width="120px" colspan="1">
                                         
+                                            <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                                         <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!localrollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                         </apex:outputPanel>
@@ -287,8 +289,9 @@ This componet used for regional rollout project
                                             </apex:outputPanel>
                                             <apex:outputField value="{!localrollout.Finance_Member__r.Name}"/>
                                       </apex:outputPanel>   
+                                            </apex:outputPanel> 
                                         </th>
-                                     </apex:outputPanel> 
+                                     
                                     </tr>
                                 </thead>
                             </table>
@@ -346,7 +349,7 @@ This componet used for regional rollout project
                 </div>
             </div>
         </apex:outputPanel>
-		<apex:actionFunction name="holdRolloutsBrand" action="{!holdLocalRolloutBrandVal}" reRender="topButtonPanel" status="loadingStatus">
+		<apex:actionFunction name="holdRolloutsBrand" action="{!holdLocalRolloutBrandVal}" reRender="topButtonPanel" status="Loadingpage">
             <apex:param name="localRolloutIdBrand" value="" assignTo="{!localRolloutIdBrand}"/>
               <apex:param name="localRolloutBrandVal" value="" assignTo="{!localRolloutBrand}"/>
         </apex:actionFunction>
