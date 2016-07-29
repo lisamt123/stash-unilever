@@ -9,8 +9,6 @@
 ****************************************************************************************************************************/
 public with sharing Class AF_UpdateAgencyEstimatesValues2
 {
-	static set<id>   AgencyEntity= new set<id>();
-	static set<id>   unileverEntity=new set<id>();
 	static set<String> fYear=new set<String>();
 	static Map<id ,String> AgencyEntityNames=new Map<id,String>();
 	static Map<id ,String> unileverEntityNames=new Map<id,String>();
@@ -22,11 +20,9 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 	static Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
 	static Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
 	static set<string>  currncycodes=new set<string>();
-	static list<string> matrixString;
 	static Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
 	static Map<id,String>  matrixReadyforconversion=new Map<id,String>();
 	static Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
-	static Integer MatrixRecoundCount=0;
 	static Double USDValue=0.0;
 	static Double EURValue=0.0;
 	static List<String> AgencyEntitycountry =new List<String>();
@@ -42,6 +38,8 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 *************************************************************************************/	 
 	public static void UpdateExchageRates(list<AF_Agency_Estimate__c> ae)
 	{
+		set<id>   AgencyEntity= new set<id>();
+		set<id>   unileverEntity=new set<id>();
 		List<AF_Agency_Estimate__c> agencyRecords=ae;
 		if(agencyRecords.size()>0)
 		for(AF_Agency_Estimate__c agencyEst:agencyRecords)
@@ -122,6 +120,8 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 *  @return: none.
 *************************************************************************************/
 	public static void retrieveCurrency(List<AF_Agency_Estimate__c> agencyRecords,List<AF_Matrix_Table__c> matrixRecords){
+		list<string> matrixString;
+		Integer MatrixRecoundCount=0;
 		retrieveCurrencyExt();
 		if(agencyRecords.size()>0)
 		for(AF_Agency_Estimate__c agencyEst:agencyRecords)

@@ -13,6 +13,7 @@ global with sharing class AF_BonusSummaryRemote {
 	static Integer colTotalA;
 	static Integer colTotal;
 	static String rowDetail;
+	static String rowDetailToReturn;
 	static Map<String, AF_Bonus_Matrix__c> bonusULRelationMap  = new Map<String, AF_Bonus_Matrix__c>();
 	static String strongStrt;
 	static String strongEnd;
@@ -22,7 +23,6 @@ global with sharing class AF_BonusSummaryRemote {
 	static Map<String, AF_Entity__c> agencyNameMap= new Map<String, AF_Entity__c>();
 	static Map<String, String> ulNameMap = new Map<String, String>();
 	static Integer total;
-	static String rowDetailToReturn;
 	static String crsBrdrImg;
 	static String cmntImg;
 	static Integer totalA;
@@ -67,10 +67,8 @@ global with sharing class AF_BonusSummaryRemote {
 		orderedRow = AF_BrandEstimateRemote.fillList(rowsSet);
 		orderedRow.sort();
 		agencyNameMap = AF_BrandEstimateRemote.getAllAgencyEntities(agencyId);
-		ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName();
-		List<String> agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
+		ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName(); 
 		// These are the Agency Entities which are not created as Agency Estimates.
-		List<String> ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
 		// These are those Unilever Entities which are not created as a record for Agency Estimates.
 		colDetail = ''; //Column variable which gets added to the map finally.
 		rowDetail = ''; //Row variable which gets added to the map finally.

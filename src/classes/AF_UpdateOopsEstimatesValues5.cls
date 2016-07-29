@@ -12,19 +12,16 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 	static set<String> fYear=new set<String>(); 
     static Map<id ,String> AgencyEntityNames=new Map<id,String>();
     static Map<id ,String> unileverEntityNames=new Map<id,String>();
-    static List<string> matrixCountries=new list<string>();
     static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
     static Map<id,string> mapMatrixcountry=new Map<id,string>();
     static Map<id,string> mapReadyForPOCountry=new Map<id,string>();
     static Map<string,Double>  CurrencyMap=new  Map<string,Double>();
     static Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
     static Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
-    static set<string>  currncycodes=new set<string>();
-    static list<string> matrixString;
     static Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
     static Map<id,String>  matrixReadyforconversion=new Map<id,String>();
     static Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
-    static Integer MatrixRecoundCount=0;
+    static set<string>  currncycodes=new set<string>();
     static set<String> agencyCountries=new set<String>();
     static set<String> unileverCountries=new set<String>();
     private static string className_STR=AF_UpdateOopsEstimatesValues5.class.getName();
@@ -74,6 +71,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
     }
     public static void retrieveMatrixTable(List<AF_OOPS_Estimate__c> agencyRecords){
         //Query for matrix Table records 
+        List<string> matrixCountries=new list<string>();
         list<AF_Matrix_Table__c> matrixRecords=[select id, AF_Agency_Country__c,AF_Matrix_Country__c,Ready_For_PO_Conversion__c,AF_Matrix_country_Currency__c,AF_Matrix_Currency_Code__c,AF_Ready_For_PO_Country__c,AF_Ready_For_PO_Country_Currency__c,AF_Ready_For_PO_Currency_Code__c,AF_Unilver_Country__c from AF_Matrix_Table__c where AF_Agency_Country__c IN : agencyCountries And AF_Unilver_Country__c IN : unileverCountries limit 50000];
         if(matrixRecords.size()>0)
         for(AF_Matrix_Table__c mtable:matrixRecords)
@@ -113,6 +111,8 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 *  @return: none.
 *************************************************************************************/  
     public static void retrieveCurrency(List<AF_OOPS_Estimate__c> agencyRecords,List<AF_Matrix_Table__c> matrixRecords){
+        list<string> matrixString;
+        Integer MatrixRecoundCount=0;
         retrieveCurrencyExt();
         if(agencyRecords.size()>0)
         for(AF_OOPS_Estimate__c agencyEst:agencyRecords)

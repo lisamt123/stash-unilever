@@ -135,7 +135,6 @@ Global with sharing class AF_BonusRecordManager {
 			}
 		}
 		List<AF_Bonus_Summary__c> BonusSummarys = [Select a.Name, a.Id, a.AF_Status__c, a.AF_Fiscal_Year__c, a.AF_Brand__c, a.AF_Agency__c From AF_Bonus_Summary__c a where a.AF_Brand__c = : pBrandEstimate.Brand__c AND a.AF_Agency__c = : pBrandEstimate.AF_Agency__c AND a.AF_Fiscal_Year__c = : pBrandEstimate.AF_Fiscal_Year__c LIMIT 1];
-		set<string> UnileverEntityCollection = new set<string>();
 		for(AF_Bonus_Summary__c bs : BonusSummarys)
 		{
 			BonusSummary = bs; //set the bonus summer to be used.
@@ -188,7 +187,6 @@ Global with sharing class AF_BonusRecordManager {
 					CountryNameAndTotalCollection.put(String.ValueOf(ar.get(AF_Constants.COUNTRY_NAME)),Double.valueof(ar.get(AF_Constants.COUNTRY_TOTAL)));                                
 				}               
 			}
-			Boolean result = false;
 			set<string> CountryNames =  new set<string>(); 
 			set<string> BonusThresholdCountryNames = new set<string>(); 
 			set<string> ExceptionList = new set<string>(); 
@@ -539,7 +537,6 @@ Global with sharing class AF_BonusRecordManager {
 ***********************************************************************************/  
 	public Boolean BonusThresholdValidationCheck(AF_Brand_Estimate__c pBrandEstimate)
 	{                          
-		Boolean result = false;
 		Boolean finalResult = false;
 		set<string> CountryNames =  new set<string>(); 
 		set<string> BonusThresholdCountryNames = new set<string>(); 

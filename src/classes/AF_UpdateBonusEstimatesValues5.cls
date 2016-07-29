@@ -11,7 +11,6 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
 {
         static Map<id ,String> AgencyEntityNames=new Map<id,String>();
         static Map<id ,String> unileverEntityNames=new Map<id,String>();
-    
         static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
         static Map<id,string> mapMatrixcountry=new Map<id,string>();
         static Map<id,string> mapReadyForPOCountry=new Map<id,string>();
@@ -19,11 +18,9 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
         static Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
         static Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
         static set<string>  currncycodes=new set<string>();
-        static list<string> matrixString;
         static Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
         static Map<id,String>  matrixReadyforconversion=new Map<id,String>();
         static Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
-        static Integer MatrixRecoundCount=0;
         static set<String> agencyCountries=new set<String>();
         static set<String> unileverCountries=new set<String>();
         static set<String> fYear=new set<String>();
@@ -115,6 +112,8 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
 *  @return: none.
 *************************************************************************************/  
     public static void retrieveCurrency(List<AF_Bonus_Matrix__c> agencyRecords,List<AF_Matrix_Table__c> matrixRecords){
+        list<string> matrixString;
+        Integer MatrixRecoundCount=0;
         retrieveCurrencyExt();
         if(agencyRecords.size()>0)
         for(AF_Bonus_Matrix__c agencyEst:agencyRecords)

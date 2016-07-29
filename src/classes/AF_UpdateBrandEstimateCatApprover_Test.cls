@@ -26,9 +26,6 @@ public class AF_UpdateBrandEstimateCatApprover_Test
     static  List<contact> con7;
     static  List<contact> con8;
     static  List<contact> con9;
-    static User u1;
-    static User u2;
-    static User u3;
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : UpdOopsEstiCatApproverValues
@@ -103,9 +100,10 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		System.assertEquals(u!=null,u1!=null,AF_TestFactory_Helper.USER_RECORD);
 		System.runAs(u2)
 		{
 			//Insert Account
@@ -172,7 +170,8 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		System.assert(u1!=null,AF_TestFactory_Helper.USER_RECORD);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -236,11 +235,13 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
-		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		System.assert(u1!=null,AF_TestFactory_Helper.USER_RECORD);
+		System.assertEquals(u2!=null,u3!=null,AF_TestFactory_Helper.USER_RECORD);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -304,14 +305,15 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
-		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		userForupdateoopsEstcatApprover4=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
 		user u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
-		System.Assert(u4!= null, AF_TestFactory_Helper.USER_RECORD);
+		System.Assertequals(u1!= null,u4!= null, AF_TestFactory_Helper.USER_RECORD);
+		System.assertEquals(u2!=null,u3!=null,AF_TestFactory_Helper.USER_RECORD);
 		system.runAs(u)
 		{
 			//Insert Account
@@ -382,16 +384,18 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
-		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		System.assertequals(u2!=null,u1!=null,AF_TestFactory_Helper.USER_RECORD);
+		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		userForupdateoopsEstcatApprover4=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
 		user u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
 		userForupdateoopsEstcatApprover5=AF_TestFactory_Helper.createUserAdmin3(true);
+		System.assertEquals(u3!=null,u4!=null,AF_TestFactory_Helper.USER_RECORD);
 		user u5=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover5.id LIMIT 1];
-		System.assertequals(u5!=null,u4!=null,AF_TestFactory_Helper.USER_RECORD);
+		System.assert(u5!=null,AF_TestFactory_Helper.USER_RECORD);
 		system.runAs(u)
 		{
 			//Insert Account 
@@ -463,13 +467,15 @@ public class AF_UpdateBrandEstimateCatApprover_Test
 		userForupdateoopsEstcatApprover=AF_TestFactory_Helper.createUserADMINSTRATOR(true);
 		User u=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover.id LIMIT 1];
 		userForupdateoopsEstcatApprover1=AF_TestFactory_Helper.createUserADMINSTRATOR1(true);
-		u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
+		User u1=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover1.id LIMIT 1];
 		userForupdateoopsEstcatApprover2=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
-		u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
+		User u2=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover2.id LIMIT 1];
 		userForupdateoopsEstcatApprover3=AF_TestFactory_Helper.createUserADMINSTRATOR2(true);
-		u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
+		system.assertEquals(u2!=null, u1!=null,AF_TestFactory_Helper.USER_RECORD);
+		User u3=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover3.id LIMIT 1];
 		userForupdateoopsEstcatApprover4=AF_TestFactory_Helper.createUserADMINSTRATOR3(true);
 		user u4=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover4.id LIMIT 1];
+		system.assertEquals(u4!=null, u3!=null,AF_TestFactory_Helper.USER_RECORD);
 		userForupdateoopsEstcatApprover5=AF_TestFactory_Helper.createUserAdmin3(true);
 		user u5=[SELECT id,Email FROM user WHERE id=:userForupdateoopsEstcatApprover5.id LIMIT 1];
 		userForupdateoopsEstcatApprover6=AF_TestFactory_Helper.createAgency(true);
