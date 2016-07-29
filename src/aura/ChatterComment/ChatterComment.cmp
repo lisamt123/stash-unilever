@@ -29,14 +29,14 @@
                             <div class="slds-tile__detail">
                               <p > {!v.currentComment.text}</p>
                               <ul class="slds-list--horizontal slds-text-body--small">
-                                <li class="slds-list__item slds-m-right--large">
-                                  <span><a href="javascript:void(0)" onclick="{!c.handleLikeComment}">
+                                 <li class="slds-list__item">
+                                  <span>{!v.currentComment.relativeCreatedDate}</span>
+                                 </li>
+								 <li class="slds-list__item slds-m-right--large">
+                                  <span class="hideLike"><a href="javascript:void(0)" onclick="{!c.handleLikeComment}">
                                       		<aura:if isTrue="{!v.currentComment.myLikeId == null}">Like</aura:if>
                                         	<aura:if isTrue="{!v.currentComment.myLikeId != null}">Unlike</aura:if>
                                       </a></span>
-                                </li>
-                                <li class="slds-list__item">
-                                  <span>{!v.currentComment.relativeCreatedDate}</span>
                                 </li>
                               </ul>
                             </div>
@@ -44,7 +44,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="slds-media__figure slds-media__figure--reverse">
+                    <div class="slds-media__figure slds-media__figure--reverse nonfuctional">
                       <div class="slds-timeline__actions">
                         <p class="slds-timeline__date"></p>
                         <button class="slds-button slds-button--icon-border-filled">

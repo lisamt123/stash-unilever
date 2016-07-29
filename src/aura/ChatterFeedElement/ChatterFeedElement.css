@@ -8,9 +8,17 @@
     border-style: solid;
     border-width: 0 0 0 1px;
     bottom: 5px;
-    content: "";
+    content: none;
     display: block;
     left: 15px;
     position: absolute;
     top: 39px;
+}
+
+.THIS .downHide {
+     display:none;
+}
+
+.THIS .insertPadding {
+    padding-bottom: 5px;
 }

@@ -24,6 +24,19 @@
         width: 2rem;
         height: 2rem;
         }
+        .label{
+        font-size:11px;
+        }
+        .slds .slds-input {
+        margin-bottom: 10px;
+        }
+        .slds-media--timeline .slds-tile__title:after {
+        border-bottom: none !important;
+        }
+        
+        .parent-div {
+        height:75px;
+        }
     </style>
     <div class="slds" style="margin-top:10px;margin-left:10px;width:93%;">
 	<div class="slds-tabs--scoped">
@@ -35,18 +48,18 @@
         		<a class="slds-tabs--scoped__link" href="#void" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2" id="tab-scoped-2__item">Poll</a>
       		</li>
         </ul>
-        <div id="tab-scoped-1" class="slds-tabs--scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+        <div id="tab-scoped-1" class="slds-tabs--scoped__content  slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
           
             <div class="slds-publisher slds-publisher--discussion">
             <dl class="slds-list--horizontal slds-m-bottom--small slds-publisher__toggle-visibility">
-              <dt class="slds-list__item slds-text-body--small">To : </dt>
+              <dt class="slds-list__item slds-text-body--small">To:&nbsp;</dt>
               <dd class="slds-list__item">{!v.to}</dd>
             </dl>
-            <label for="comment-text-input2" class="slds-assistive-text">Share an update, @mention someone, add a file...</label>
+            <label for="comment-text-input2" class="slds-assistive-text">Share an update, @mention someone, add a file..</label>
          
-           <ui:inputText aura:id="textToPost" label="" class="slds-input lookup-input" value="{!v.textToPost}" placeholder="Share an update, @mention someone, add a file..." click="{!c.handlePublisherStyling}"/> 
+           <ui:inputText aura:id="textToPost" label="" class="slds-input lookup-input" value="{!v.textToPost}" placeholder="Share an update, @mention someone..." click="{!c.handlePublisherStyling}"/> 
             
-                <div class="slds-attachments attachmentContainer">
+                <div class="slds-attachments attachmentContainer  hideApproval">
               <div class="slds-attachments__item slds-box slds-box--x-small slds-theme--shade">
                 <div class="slds-grid slds-grid--align-spread">
                   <div class="slds-media">
@@ -82,10 +95,14 @@
                     </button>
                 </li>
               </ul>
-              <ui:button class="slds-button slds-button--brand" label="Share" press="{!c.sharePost}"/>
+             
             </div>
           </div>
-                  
+            <div class="shareButton">
+           
+              <button class="slds-button slds-button--brand" onclick="{!c.sharePost}">Share</button>   
+            </div>
+                
             </div>
      		<div id="tab-scoped-2" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item">TBD</div>
   	</div>

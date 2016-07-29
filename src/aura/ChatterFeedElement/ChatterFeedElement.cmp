@@ -3,8 +3,6 @@
     <aura:attribute name="element" type="ChatterAuraFeedItem" />
     <aura:attribute name="feedElementId" type="String" />
     <aura:attribute name="textComment" type="String" description="" />
-
-    
     
     <li class="slds-feed__item">
         <div class="spinningFeedElement"><center><ui:spinner aura:id="FeedElementSpinner" isVisible="false"/></center></div>
@@ -28,7 +26,7 @@
                   </aura:if>
               </aura:iteration>
           </p>
-          <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none">
+          <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none downHide">
        		<c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#down" class="slds-button__icon slds-button__icon--hint slds-button__icon--small" ariaHidden="true"/>
             <span class="slds-assistive-text">Show More</span>
           </button>
@@ -117,8 +115,8 @@
               </ul>
             </div>
          </aura:if>
-        <ul class="slds-list--horizontal slds-has-dividers--right slds-text-body--small">
-          <li class="slds-list__item">
+        <ul class="slds-list--horizontal slds-has-dividers--right slds-text-body--small ">
+          <li class="slds-list__item insertPadding">
             <a href="javascript:void(0)" onclick="{!c.doLikeFeedElement}" title="Like this item" >
               <button class="slds-button slds-button--icon-border slds-button--icon-small slds-m-right--small"  >
                 	<aura:renderIf isTrue="{!v.element.isLikedByCurrentUser}">
@@ -128,7 +126,7 @@
                         <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#like" class="slds-button__icon" />
                   	</aura:renderIf> 
                   	
-                	<span class="slds-assistive-text">Like</span>
+                	<span class="slds-assistive-text ">Like</span>
                 </button>
               <aura:if isTrue="{!v.element.numberOfLikes>0}">{!v.element.numberOfLikes} </aura:if> Like
               

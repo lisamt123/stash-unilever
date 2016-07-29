@@ -10,7 +10,7 @@
     <div class="slds" style="margin-top:10px;margin-left:10px;" id="feeddiv">
     <div class="slds-feed">
     <ul class="slds-feed__list">
-        <li class="slds-feed__item">
+      <li class="slds-feed__item refreshHide">
             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
             <p></p>
             <ui:button class="slds-button slds-button--icon-border slds-button--icon-small slds-m-right--small" label="" press="{!c.doInit}">
