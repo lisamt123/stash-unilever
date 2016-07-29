@@ -27,7 +27,7 @@ src/components/IPM_RolloutPlansTable.component
 src/components/IPM_RolloutPlansTable.component-meta.xml
 src/flows
 src/flows/IPM_Financial_SnapShot-7.flow
-src/flows/IPM_Financial_Year_SnapShot-5.flow
+src/flows/IPM_Financial_Year_SnapShot-6.flow
 src/labels
 src/labels/CustomLabels.labels
 src/objects
