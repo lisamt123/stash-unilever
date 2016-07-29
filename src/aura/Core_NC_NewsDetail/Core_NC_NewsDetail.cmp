@@ -21,6 +21,22 @@
             height: 100% !important;
             width: 100% !important;
         }
+        ul.slds-tabs--scoped__nav {
+            display: none !important;
+        }
+        div#tab-scoped-1 {
+            border: 1px solid #d8dde6;
+            border-radius: 4px;
+        }
+        .slds .slds-publisher__actions > .slds-button {
+        margin-left: 0.1rem !important;
+        margin-top: 10px;
+        }
+         .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1) {
+        display: none!important;
+        } 
+        .slds-button--icon-container{
+        display: none!important;}
     </style>   
     <!--add bootstrap style class to give space in the both left and right side of the display pannel-->
     <div id="pageTopSection" aura:id="mytopdiv" class="pageBackgroundColor"> 
@@ -188,6 +204,9 @@
                     <!--<input type="text"/>
                         <div onclick="{!c.postChatterInfo}">  POST </div>-->
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
+                <!--Ligthning Chatter Feed:News App Enhancements
+                	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
+                	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> -->
             </div>
     	</div>                 
     </div>
