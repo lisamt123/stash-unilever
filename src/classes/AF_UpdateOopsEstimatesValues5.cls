@@ -9,9 +9,7 @@
 ****************************************************************************************************************************/
 public with sharing Class AF_UpdateOopsEstimatesValues5
 {
-    static set<id>   AgencyEntity= new set<id>();
-    static set<id>   unileverEntity=new set<id>();
-    static set<String> fYear=new set<String>();
+	static set<String> fYear=new set<String>(); 
     static Map<id ,String> AgencyEntityNames=new Map<id,String>();
     static Map<id ,String> unileverEntityNames=new Map<id,String>();
     static List<string> matrixCountries=new list<string>();
@@ -39,6 +37,8 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 *************************************************************************************/  
     public static void UpdateExchageRates(list<AF_OOPS_Estimate__c> ae)
     {
+    	set<id>   AgencyEntity= new set<id>();
+    	set<id>   unileverEntity=new set<id>();
         List<AF_OOPS_Estimate__c> agencyRecords=ae;
         if(agencyRecords.size()>0)
         for(AF_OOPS_Estimate__c agencyEst:agencyRecords)

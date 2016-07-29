@@ -31,7 +31,8 @@ public with sharing class AF_subResult_Helper{
 *  @param : queryListofSubResult,status,Lock,BonusAnnualSubResult,BonusQuarterlySubResultMap
 *  @return: none.
 *************************************************************************************/  
-    public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
+    public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  
+    BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
         subResultCalcExt(queryListofSubResult);
         subResultBonusFeesCalc(queryListofSubResult);
         bonusResultList = new List<AF_Bonus_Results__c>();

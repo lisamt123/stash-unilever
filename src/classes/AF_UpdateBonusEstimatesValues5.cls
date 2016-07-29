@@ -9,11 +9,9 @@
 ****************************************************************************************************************************/
 public with sharing Class AF_UpdateBonusEstimatesValues5
 {
-        static set<id>   AgencyEntity= new set<id>();
-        static set<id>   unileverEntity=new set<id>();
         static Map<id ,String> AgencyEntityNames=new Map<id,String>();
         static Map<id ,String> unileverEntityNames=new Map<id,String>();
-        static List<string> matrixCountries=new list<string>();
+    
         static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
         static Map<id,string> mapMatrixcountry=new Map<id,string>();
         static Map<id,string> mapReadyForPOCountry=new Map<id,string>();
@@ -40,6 +38,8 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
 *************************************************************************************/
     public static void UpdateExchageRates(list<AF_Bonus_Matrix__c> ae)
     {
+	    set<id>   AgencyEntity= new set<id>();
+        set<id>   unileverEntity=new set<id>();
         List<AF_Bonus_Matrix__c> agencyRecords=ae;
         if(agencyRecords.size()>0)
         for(AF_Bonus_Matrix__c agencyEst:agencyRecords)
@@ -75,6 +75,7 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
     }
     
     public static void retrieveMatrixTable(List<AF_Bonus_Matrix__c> agencyRecords){
+	    List<string> matrixCountries=new list<string>();
         list<AF_Matrix_Table__c> matrixRecords=[select id, AF_Agency_Country__c,AF_Matrix_Country__c,Ready_For_PO_Conversion__c,AF_Matrix_country_Currency__c,AF_Matrix_Currency_Code__c,AF_Ready_For_PO_Country__c,AF_Ready_For_PO_Country_Currency__c,AF_Ready_For_PO_Currency_Code__c,AF_Unilver_Country__c from AF_Matrix_Table__c where AF_Agency_Country__c IN : agencyCountries And AF_Unilver_Country__c IN : unileverCountries limit 50000];
         if(matrixRecords.size()>0)
         for(AF_Matrix_Table__c mtable:matrixRecords)
