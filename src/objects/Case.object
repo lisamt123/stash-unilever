@@ -3427,9 +3427,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Review Needed</value>
         </filters>
-        <label>CEC Benelux queue WH</label>
+        <label>CEC Benelux WH Nieuw/Herzien</label>
         <language>nl_NL</language>
     </listViews>
     <listViews>
@@ -7959,20 +7959,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>My_Open_Cases</fullName>
+        <fullName>My_Open_Cases_DO_NOT_EDIT11</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
-        <columns>CASES.STATUS</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
+            <field>CASES.STATUS</field>
+            <operation>notContain</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>My Open Cases - DO NOT EDIT</label>
         <language>en_US</language>
