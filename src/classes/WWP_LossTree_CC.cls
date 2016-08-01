@@ -6,6 +6,10 @@ public with sharing class WWP_LossTree_CC{
      public string successmessage{get; set;}
      public string selectedWeek{get;set;}
       public Boolean isdisabled {get;set;}
+      public decimal plantCode{get;set;}
+      public boolean showingPanel{get;set;}
+      public string showPanelsDiv{get;set;}
+      public string code1{get;set;}
       
     public List<WWP_Loss_Tree__c> listLossTree{get; set;}
     public List<LossTreeWrapper> listLossTreeW{get; set;}
@@ -26,6 +30,27 @@ public with sharing class WWP_LossTree_CC{
     String valueNone = 'None';
     String valueNull = '';
     
+    
+    public void showPanelsDiv(){
+    
+    String code = lossTree.Plant_Code__c;
+    code1 = code;
+    system.debug(code);
+    
+    if(code != null){
+    
+    Map<string,WWP_Master_Table__c> masterTableValues= WWP_Master_Table__c.getAll();
+            
+    plantCode= masterTableValues.get(code).OR_Tolerance__c;
+    
+    showingPanel = true;}
+    else{
+    showingPanel = false;}
+    //plantCode = 96;
+    
+    
+    }
+    
    
     
      public WWP_LossTree_CC(){
@@ -37,6 +62,8 @@ public with sharing class WWP_LossTree_CC{
          plantcodeusers = [Select name,user__c,Plant_code__c from WWP_PlantCode_User_Mapping__c where user__c =: userinfo.getuseremail()];
          listPlantCodes.add(new SelectOption(valueNull,'--None--'));
           listWeekCodes.add(new SelectOption(valueNull,'--None--'));
+          showingPanel = false;
+          
          Set<string> uniqueCodes = new Set<String>();
          if(!plantcodeusers.isEmpty()){             
              for(WWP_PlantCode_User_Mapping__c ps: plantcodeusers){
@@ -56,8 +83,8 @@ public with sharing class WWP_LossTree_CC{
              message = label.WWP_NocodeAssigned_Err;
          }
          
-          List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c  order by createddate Limit 50000];
-           
+          List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c where plant_code__c IN :uniqueCodes order by createddate  Limit 50000];
+           system.debug('dddddddddddddddd'+weeklistLossTree.size());
            Map<String,String> weekMap = new Map<String,String>();
          
            for(WWP_Loss_Tree__c weekV:weeklistLossTree )
@@ -67,9 +94,11 @@ public with sharing class WWP_LossTree_CC{
              
              for(String week:weekMap.Keyset())
              {
-               listWeekCodes.add(new SelectOption(week,week));
+               if(week!=null){
+                   listWeekCodes.add(new SelectOption(week,week));
+               }
              }
-         
+         system.debug('week'+listWeekCodes);
          
          }
          catch(Exception e){
@@ -95,12 +124,17 @@ public with sharing class WWP_LossTree_CC{
         if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek !=null){
             if(dispalyAll){
             system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where  Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c  order by CreatedDate ASC LIMIT 1000];
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,InsertedDate__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where  Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c  order by CreatedDate asc LIMIT 1000];
+                             
+                             
             }
             else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,InsertedDate__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
                              Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
+            
+                
+                   
             }
             
           if(listLossTree.isEmpty()){
@@ -219,6 +253,9 @@ public with sharing class WWP_LossTree_CC{
              message = label.WWP_RequiredFeilds_Err;
          }
          
+         
+         
+         
     }
     
     public void fetchLossTreeExt(set<string> setbox1all, set<string> setbox2all, set<string> setbox3all){
@@ -323,24 +360,24 @@ public with sharing class WWP_LossTree_CC{
            {
            
            isdisabled =true;
-           system.debug('inside true');
+           //system.debug('inside true');
            }
            else
            {
            isdisabled=false;
-           system.debug('inside false');
+           //system.debug('inside false');
            }
            }
            else{
            if(lossdiffDC <= 0.05)
            {
-           system.debug('inside true for compli');
+           //system.debug('inside true for compli');
            isdisabled =true;
            }
            else
            {
            isdisabled=false;
-           system.debug('inside false for compli');
+           //system.debug('inside false for compli');
            }
            
            }
