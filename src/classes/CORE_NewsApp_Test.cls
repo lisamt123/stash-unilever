@@ -24,6 +24,12 @@ public class CORE_NewsApp_Test{
         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GoogleAnalyticsId', Text_Value__c='UA-69390369-6'));
         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='RecordCounNumber', Text_Value__c='10'));
         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='NEWS_ARTICLE_AVATAR_USER', Text_Value__c='005E0000005My3X'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GroupsToPost', Text_Value__c='0F918000000D4dDCAS'));
+         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='Site', Text_Value__c='PaulBlog'));
+         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='chatterBody', Text_Value__c='PaulPolmanSeemylatestblog'));
+       
+         
+        
         if(!lstCustSet.isEmpty()){
             insert lstCustSet;  
         }
@@ -112,6 +118,8 @@ public class CORE_NewsApp_Test{
                                                   View_Count__c=10);
         insert news3;
         
+        
+        
         Attachment attachmnt4 =new Attachment();
         attachmnt4.name='textfileone4.txt';
         attachmnt4.body =blob.valueOf('my attachment text4');
@@ -127,7 +135,11 @@ public class CORE_NewsApp_Test{
         System.assert(attachmnt5!= null);
         
         System.assert(news3!= null);
+     
+     
+          
         insert new FeedItem(Type='TextPost',Body='Hi',ParentId=news1.Id);
+        
         insert new FeedItem(Type='TextPost',Body='Hi',ParentId=news3.Id);
         
        System.assert(Core_NC_NewsCenterController.putLikeForNews(news1.Id)!=null);
@@ -143,9 +155,12 @@ public class CORE_NewsApp_Test{
 
         FeedItem feedItemObject =new FeedItem();
         feedItemObject.Type='TextPost';
-        feedItemObject.Body='Hi';
+        feedItemObject.Body='Hi?';
         feedItemObject.ParentId=news3.Id;
-        insert feedItemObject;
+          insert feedItemObject ;
+          
+        
+     
         
         FeedComment feedCommentObject =new FeedComment();
         feedCommentObject.CommentBody='Hi';
@@ -154,6 +169,7 @@ public class CORE_NewsApp_Test{
         
         delete feedCommentObject;
         delete feedItemObject;
+        
         
         Test.stopTest();
     }
