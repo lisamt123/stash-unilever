@@ -996,6 +996,10 @@
         <apexClass>IPM_ExportDataController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_ExportTeamMembersReportController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
    
     
     <fieldPermissions>
@@ -8594,6 +8598,11 @@
 		<field>IPM_Project__c.IPM_No_Rollout_Disabled__c</field>
 		<readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Resource__c.IPM_Is_Lead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>IPMNG Basic</label>
 
     <objectPermissions>
@@ -9187,6 +9196,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_ExportToExcel</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_ExportTeamMembersReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 

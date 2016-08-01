@@ -174,8 +174,8 @@
                                                                 <apex:outputPanel layout="block"  styleClass="required proNameContainer">
                                                                     <apex:outputLabel value="{!$Label.IPM_PROJECT_NAME}" styleClass="bsFieldLabel" />
                                                                     <span class="mandatorycolor">*</span>
-                                                                    <span class="SecButtonSet infoMarTop">
-                                                                        <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>
+                                                                    <span class="SecButtonSet custButton infoMarTop">
+                                                                        <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}">i</a>
                                                                     </span>
                                                                     <!-- To display below inputText when current logged in user has edit access   -->
                                                                     <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox inputcontent" html-onpaste="return false"  onblur="hideSuggetion();" onkeypress="return invalidChar(event);"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" html-onfocusout="changeAlertBosscardName();">
@@ -294,10 +294,10 @@
                                                                     <apex:outputPanel id="BrandPositionPanel" layout="block" styleClass="inputField">
                                                                        
                                                                         <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
-                                                                        <span class="SecButtonSet infoMarTop">
+                                                                        <span class="SecButtonSet custButton infoMarTop">
                                                                             <!-- To display below outputPanel when multiple brand positioning is applicable   -->
                                                                     <apex:outputPanel rendered="{!projectMetadata.IPM_MultiBrandPosApplicable__c}">
-                                                                                <a class="icoButton info small-Info" title="{!$Label.IPM_BrandPositioningHelpText}"></a>
+                                                                                <a class="icoButton info small-Info" title="{!$Label.IPM_BrandPositioningHelpText}">i</a>
                                                                         	</apex:outputPanel>
                                                                     	</span>
                                                                         <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
@@ -412,8 +412,8 @@
                                                                         <!-- To display below outputPanel when fasttract or white space is applicable    -->
                                                                         <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
                                                                             <div class="col-sm-12 yellowBox noPadleft">
-                                                                                <span class="SecButtonSet infoMarTop pull-left">
-                                                                                <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
+                                                                                <span class="SecButtonSet custButton infoMarTop pull-left">
+                                                                                <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}">i</a>
                                                                             </span>
                                                                                 <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox"  >
                                                                                     <!-- To display below outputPanel when fasttract is applicable    -->

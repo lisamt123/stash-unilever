@@ -45,16 +45,8 @@
                                 
                                 <div class="col-sm-2 custCoreparmborder">  
                                     <span class="coreMtitle">{!$Label.IPM_Local_Brand}</span>
-                                    <apex:outputpanel rendered="{!NOT(isBrandEditable)}">
                                         <span class="coreMvalue"><apex:outputtext value="{!IPM_Coreparameter.IPM_LocalProject_Brand__c}"/></span>    
-                                    </apex:outputpanel>
-                                    <apex:outputpanel rendered="{!isBrandEditable}">
-                                        <apex:selectList styleClass="brandDropdown" size="1" value="{!selectedBrand}" onchange="updateLocalRolloutBrand();" >  
-                                            <apex:selectOptions value="{!availableBrands}" />
-                                        </apex:selectList> 
-                                    </apex:outputpanel>
                                 </div>
-                                <apex:actionfunction name="updateLocalRolloutBrand" action="{!updateLocalRolloutBrand}" />
                             </apex:outputpanel>
                             <div class="col-sm-2">    
                                 <span class="coreMtitle">{!$Label.IPM_TARGET_LAUNCH_DATE}</span>

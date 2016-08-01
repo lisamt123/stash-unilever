@@ -98,6 +98,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     }   
     
     public Boolean reactivateProject{get; set;} // Param will be passed from 'Reactivate Project' button of Project Overview screen   
+    public List<selectoption> availableBrands{get;set;} //list of available brands to local projects
+    public Boolean isBrandEditable{get;set;}
+    public Boolean isBrandVisible{get;set;}
+    public string selectedBrand{get;set;}
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -207,6 +211,20 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
           IPM_CustomPermission custPermission = new IPM_CustomPermission();
           reactivateProject = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
        }
+       if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c))
+        {   
+            isBrandVisible=true;
+            Set<String> phaseSet =new Set<String>{IPM_ConstantUtils.PHASE_FEASIBILITY,IPM_ConstantUtils.PHASE_CAPABILITY,IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT,IPM_ConstantUtils.PHASE_PLE};
+            if(phaseSet.contains(project.IPM_Phase__c)) 
+            {
+                isBrandEditable=false;
+            }
+            else if(IPM_ConstantUtils.PHASE_MARKET_READY.Equals(project.IPM_Phase__c) && isEditable)
+            {
+                availableBrands=IPM_ProjectCountryDetails.getAvailableBrands(project); 
+                isBrandEditable=true;  
+            }
+        }
     }  
     /****************************************************************************
     @Description : Inner class to get date
@@ -867,6 +885,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
             update project;
             
+            //to update brand on local rollout associated with the local project
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true; 
+            	updateLocalRolloutBrand();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             if(!skipValidation)
             {
                 // Check if project is being processed for backGround Processing, if no allow user to navigate to the next screen.
@@ -1310,4 +1332,20 @@ Description
         }
        return null;
 	}
+    /****************************************************************************
+    @Description :This updates the brand of project rollout.
+    *****************************************************************************/
+    public void updateLocalRolloutBrand(){  
+        if(project.IPM_Project_Rollout__r.IPM_Brand__c!=selectedBrand && !String.isBlank(selectedBrand))   
+        {   
+            project.IPM_Project_Rollout__r.IPM_Brand__c=selectedBrand; 
+            try {
+            	update  project.IPM_Project_Rollout__r;
+            }
+            catch(Exception ex){             
+         		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            	ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTCONTROLLER_STR,'updateLocalRolloutBrand',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+            }
+        }   
+    }
 }

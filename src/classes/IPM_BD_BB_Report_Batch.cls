@@ -67,6 +67,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     private static Map<String, String> fYearTOFieldMapping; // Global, Regional Turn Over field will be mapped
     private static Map<String, String> fYearGPFieldMapping; // Global, Regional Gross Profitfield will be mapped
     
+    public Map<Id, Set<Id>> regRLToNKLocalRolloutMap = new Map<Id, Set<Id>>(); // This map will store Regional Rollout Id to corresponding Non key rollout ids
 	
     //Contructor - @@ Param - query string from schedular class  
     global IPM_BD_BB_Report_Batch(String querystr){
@@ -283,6 +284,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     RecordTypeId,
                                                                                                     MCO_Name__c,
                                                                                                     Regional_Project__c,
+                                                                                                    Regional_Rollout__c,
                                                                                                     IPM_Status__c,
                                                                                                     KeyMCO__c,
                                                                                                     IPM_Company_Card__r.Name,
@@ -294,6 +296,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     Target_LaunchMonth__c,
                                                                                                     Target_LaunchYear__c,
                                                                                                     Regional_Rollout__r.id,
+                                                                                                    Regional_Rollout__r.Name,
                                                                                                     IPM_Global_OR_Regional__c,
                                                                                                     IPM_Brand__c,
                                                                                                     IPM_Parent_Project_Name__c,
@@ -344,6 +347,21 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                       ID regionalRolloutID=pr.Regional_Project__r.id != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.Id;
                       regionalRolloutset.add(regionalRolloutID); 
                       localRolloutIDSet.add(pr.Id);                        
+                    } 
+                    
+                    // Prepare the map of Regional Rollout Id to corresponding Non-key local rollouts
+                    if(pr.Regional_Rollout__c != null && !pr.KeyMCO__c){ 
+                    	
+                    	
+                    	if(!regRLToNKLocalRolloutMap.containsKey(pr.Regional_Rollout__c)){
+                    		regRLToNKLocalRolloutMap.put(pr.Regional_Rollout__c, new set<Id>{pr.Id});
+                    	}else{
+                    		set<Id> localRolloutIdSet = regRLToNKLocalRolloutMap.get(pr.Regional_Rollout__c);
+                    		localRolloutIdSet.add(pr.Id);
+                    		regRLToNKLocalRolloutMap.put(pr.Regional_Rollout__c, localRolloutIdSet);
+                    	} 
+                    	
+                    	
                     }
                  }    
             }
@@ -362,6 +380,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             RecordTypeId,  
                                                                                             Display_Name__c, 
                                                                                             Financial_External_ID__c,
+                                                                                            IPM_Project_Rollout__c,
                                                                                             IPM_Project_Rollout__r.Id,
                                                                                             IPM_Project_Rollout__r.Name,
                                                                                             Regional_Project__c,
@@ -667,16 +686,26 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	nonKeyAnalytic.IPM_Phase__c = parent.IPM_Phase__c;
     	nonKeyAnalytic.IPM_Key_NonKey__c = IPM_ConstantUtils.OTIF_NO;
     	
-    	//nonKeyAnalytic.IPM_Geography__c = ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
+    	
+    	if(regRLToNKLocalRolloutMap.containsKey(nonKeyFinancial.IPM_Project_Rollout__c)){
+    		String strGeography = '';
+    		for(Id localRolloutId : regRLToNKLocalRolloutMap.get(nonKeyFinancial.IPM_Project_Rollout__c)){
+    			
+    			if(strGeography != ''){
+    				strGeography = strGeography + ', ' + ipmCountryMap.get(localRolloutId);
+    			}else{
+    				strGeography = ipmCountryMap.get(localRolloutId);
+    			}
+    		} 
+    		nonKeyAnalytic.IPM_Geography__c = strGeography; 
+    	} 
     	
     	if(project!=null){
     		nonKeyAnalytic.IPM_Stopped__c= parentAnalytic.IPM_Stopped__c;
     		nonKeyAnalytic.IPM_Market_Cluster__c = project.Market_Cluster_Name__c;
-    		nonKeyAnalytic.IPM_Geography__c = ipmCountryMap.containskey(project.id)?ipmCountryMap.get(project.id):'';
     	}
     	else if(projectRollout!=null){
     		nonKeyAnalytic.IPM_Market_Cluster__c = projectRollout.Market_Cluster_Name__c;
-    		nonKeyAnalytic.IPM_Geography__c = ipmCountryMap.containskey(projectRollout.id)?ipmCountryMap.get(projectRollout.id):'';
     	}
     	nonKeyAnalytic = processProjectRolloutFinancial(nonKeyAnalytic, nonKeyFinancial.Financial_External_ID__c, projectRollout);
     	

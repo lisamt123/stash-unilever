@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    
         <applicationVisibilities>
         <application>IPM_NG</application>
         <visible>false</visible>
@@ -983,6 +984,10 @@
     <classAccesses>
         <apexClass>ITriggerHandler</apexClass>
         <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_ExportTeamMembersReportController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     
     <fieldPermissions>
@@ -7897,6 +7902,11 @@
         <field>IPM_Project__c.IPM_Last_Modified_Time__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Resource__c.IPM_Is_Lead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     
     <label>IPM ProjectLeader</label>
     
@@ -8386,6 +8396,10 @@
     <pageAccesses>
         <apexPage>IPM_UploadBusinessCase</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_ExportTeamMembersReport</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
 
 

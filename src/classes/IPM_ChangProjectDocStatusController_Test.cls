@@ -117,7 +117,13 @@ private class  IPM_ChangProjectDocStatusController_Test {
                 system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document not created'); 
             }
             
-            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
+            IPM_Project_Document_Section__c projectDocSec = new IPM_Project_Document_Section__c();
+            projectDocSec.IPM_Project_Document__c = projDocList[0].Id;
+            projectDocSec.IPM_Negotiable__c = true;
+            projectDocSec.IPM_Default_Section__c = true;
+            insert projectDocSec;
+            
+            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Negotiable__c,IPM_Default_Section__c,IPM_Section_Sequence__c,IPM_Project_Document__c,IPM_Section__r.External_ID__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id,'Project Document Sections not created');
             
@@ -408,6 +414,10 @@ private class  IPM_ChangProjectDocStatusController_Test {
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
             System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_CHANGED_STR);
             
+            chngPro.projSectionList = projectDocSecListObj;
+            chngPro.submit();
+            
+            chngPro.project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];

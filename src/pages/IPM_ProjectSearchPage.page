@@ -40,6 +40,12 @@
                                         {!$Label.IPM_CREATE_NEW} {!$Label.IPM_ProjectLabel}
                                     </a>
                                 </div>
+                                <apex:outputPanel rendered="{!OR($Permission.IPM_TeamMembers_ExtractDownloadable,$Permission.IPM_Business_Partner,$Permission.IPM_CentralTeam )}">  
+	                            	<div class=" col-xs-2 SecButtonSet pull-right downloadbtnmilestone">
+	                       				<!-- Below commandlink is used to provide excel download button only when user is assigned custom permissions for that  -->   
+	                        			<apex:OutputLink styleClass="icoButton download" target="_blank"  value="{!$Page.IPM_ExportTeamMembersReport}" title="{!$Label.IPM_Team_Members_Report }"  />    
+	                     			</div> 
+                            	</apex:outputPanel> 
                             </div>
                             </apex:outputPanel>
                         </div>
