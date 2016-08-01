@@ -38,6 +38,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.InsertedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Description__c</field>
         <readable>true</readable>

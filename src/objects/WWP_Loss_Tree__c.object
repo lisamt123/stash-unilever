@@ -120,6 +120,17 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>InsertedDate__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( CreatedDate )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>InsertedDate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Loss_Description__c</fullName>
         <externalId>false</externalId>
         <label>Loss Description</label>
