@@ -260,11 +260,7 @@
             <field>Created_in_error__c</field>
             <table>IPM_Project__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CurrencyIsoCode</field>
-            <table>IPM_Project__c</table>
-        </columns>
+        
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IPM_Current_Document_Status__c</field>
@@ -1090,11 +1086,7 @@
             <field>CreatedDate</field>
             <table>IPM_Project__c.IPM_Project_Resources__r</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CurrencyIsoCode</field>
-            <table>IPM_Project__c.IPM_Project_Resources__r</table>
-        </columns>
+        
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IPM_Res_Email__c</field>
