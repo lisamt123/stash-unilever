@@ -40,7 +40,6 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 *  @return: PageReference.
 *********************************************************************************************/
 	public PageReference saveControllerReview(){
-		Approval.ProcessResult result;
 		if(checkReview){
 			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.info,Label.AF_Approval_Process);
 			apexpages.addmessage(msg);
@@ -52,6 +51,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 			count++;
 		}
 		try{
+			Approval.ProcessResult result;
 			update brandEstimate.Controller_Reviews__r;
 			//Check if all reviews have been completed
 			if (count == brandEstimate.Controller_Reviews__r.size()){
