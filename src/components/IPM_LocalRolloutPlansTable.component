@@ -377,7 +377,7 @@ This componet used for regional rollout project
                 </div>
             </apex:outputPanel>
         </div>
-        <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,localProjectPanel,rolloutPanel,bottomButtonPanel,hideUser,validationErrorMsg" status="loadingStatus"/>
+        <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,localProjectPanel,rolloutPanel,bottomButtonPanel,hideUser,validationErrorMsg" onComplete="selectDrpdown();" status="loadingStatus"/>
     </apex:outputPanel>
      <div id="ipmLocalRollout" class="modal fade" >
         <div class="modal-dialog">

@@ -831,7 +831,7 @@ div.metric table.ecoDesignCountry tr th.fourthCol div.colProject span{
 }
 
 div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
-    width:100px;
+    width:56px;
     float: left;
  }
  div.metric table.ecoDesignCountry tbody tr td div.cellWidth:last-child{
