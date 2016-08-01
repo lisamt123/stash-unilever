@@ -1474,6 +1474,11 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <default>false</default>
                 <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
+	      <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -5179,6 +5184,10 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Win with strong brands</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Other</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
