@@ -261,9 +261,10 @@
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </div>
-                                     <div class="col-sm-4">
-                                    <apex:outputpanel rendered="{!isBrandVisible}" layout="block" styleClass="inputField">  
-                                        <div >  
+                                     
+                                    <apex:outputpanel rendered="{!isBrandVisible}"  styleClass="inputField"> 
+                                    <div class="col-sm-4"> 
+                                       
                                             <label styleClass="bsFieldLabel" >{!$Label.IPM_Local_Brand}</label> 
                                             <apex:outputpanel rendered="{!NOT(isBrandEditable)}">
                                                 <span class="disp-blk"><apex:outputtext value="{!project.IPM_LocalProject_Brand__c}"/></span>    
@@ -275,7 +276,7 @@
                                             </apex:outputpanel> 
                                         </div>  
                                     </apex:outputpanel> 
-                                     </div>
+                                  
                                     <div class="col-sm-4 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
