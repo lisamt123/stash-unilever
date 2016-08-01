@@ -357,16 +357,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IPM_GKCRiskManagementPlanCharterValue__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_GKCRiskQuickScanCharterValue__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Phase__c</field>
             <table>IPM_Project__c</table>
         </columns>
